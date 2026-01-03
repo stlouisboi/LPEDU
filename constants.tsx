@@ -11,15 +11,67 @@ import {
   BookOpen,
   Route
 } from 'lucide-react';
-import { BlogPost, RoadmapStep, SiteSettings } from './types';
+import { BlogPost, RoadmapStep, SiteSettings, CourseModule, Testimonial } from './types';
 
 export const INITIAL_SETTINGS: SiteSettings = {
-  siteName: "LaunchPath",
+  siteName: "LaunchPath™",
+  tagline: "Compliance-First Guidance for New Entrant Carriers",
   heroTitle: "Build Your Trucking Business the Right Way — From Day One",
   heroSubtitle: "Compliance-first education for new and aspiring owner-operators who want to get set up correctly, survive their new entrant audit, and keep their authority active long-term.",
-  contactEmail: "guidance@launchpath.com",
-  phoneNumber: "(888) 555-ROAD"
+  primaryColor: "#1e3a5f",
+  secondaryColor: "#d4af37",
+  metaDescription: "Professional carrier compliance education for new box truck owner-operators. Surviving your first 90 days and passing your new entrant audit.",
+  showVeteranBadge: true,
+  contact: {
+    email: "guidance@launchpath.com",
+    phone: "1-800-DOT-COMP",
+    address: "700 Compliance Way, Charlotte, NC 28202",
+    hours: "Mon-Fri: 9am - 6pm EST"
+  },
+  social: {
+    facebook: "https://facebook.com/launchpath",
+    twitter: "https://twitter.com/launchpath",
+    linkedin: "https://linkedin.com/company/launchpath",
+    instagram: "https://instagram.com/launchpath",
+    youtube: "https://youtube.com/@launchpath"
+  },
+  seo: {
+    titleFormat: "{{pageTitle}} | LaunchPath™",
+    twitterCard: "summary_large_image"
+  }
 };
+
+export const INITIAL_TESTIMONIALS: Testimonial[] = [
+  {
+    id: '1',
+    author: 'Marcus J.',
+    role: 'Owner-Operator, MJ Logistics',
+    content: 'LaunchPath was the difference between keeping my authority and losing everything. Their DQ file templates alone saved me during my first roadside inspection.'
+  },
+  {
+    id: '2',
+    author: 'Sarah Chen',
+    role: 'Carrier Manager, NorthStar Hauling',
+    content: 'The most comprehensive compliance training I have ever seen. They don’t just tell you the rules; they show you how to implement them without the headache.'
+  },
+  {
+    id: '3',
+    author: 'David Rodriguez',
+    role: 'Box Truck Entrepreneur',
+    content: 'I was overwhelmed by DOT requirements until I found the 90-Day Success Roadmap. Now, I feel confident and audit-ready every single morning.'
+  }
+];
+
+export const COURSE_MODULES: CourseModule[] = [
+  { id: 0, title: "Carrier Orientation & Professional Mindset", description: "Laying the ethical foundation. Transitioning from 'driver' to 'carrier owner'.", lessons: 4 },
+  { id: 1, title: "Authority & Business Infrastructure", description: "USDOT, MC, BOC-3, and the legal setup of your motor carrier.", lessons: 6 },
+  { id: 2, title: "Insurance & Fiscal Responsibility", description: "Liability, cargo, and financial filings required to keep your authority active.", lessons: 5 },
+  { id: 3, title: "The Drug & Alcohol Clearinghouse", description: "Mandatory enrollment, query requirements, and consortium setup.", lessons: 5 },
+  { id: 4, title: "Driver Qualification (DQ) Mastery", description: "Building and maintaining compliant files for yourself and your drivers.", lessons: 7 },
+  { id: 5, title: "Hours of Service & ELD Management", description: "The Part 395 rules, exemptions, and electronic logging device management.", lessons: 8 },
+  { id: 6, title: "Maintenance & Inspection Systems", description: "Implementing systematic maintenance and required periodic inspections.", lessons: 6 },
+  { id: 7, title: "The New Entrant Safety Audit", description: "Step-by-step preparation to ensure a 'Pass' rating in your first 12 months.", lessons: 5 }
+];
 
 export const INITIAL_BLOGS: BlogPost[] = [
   {
@@ -31,7 +83,9 @@ export const INITIAL_BLOGS: BlogPost[] = [
     content: "Content goes here. Detailed explanation of the new entrant audit process...",
     publishedAt: "2024-05-15",
     author: "Safety Specialist John",
-    image: "https://picsum.photos/seed/audit/800/400"
+    image: "https://picsum.photos/seed/audit/800/400",
+    status: 'published',
+    tags: ['Audit', 'FMCSA', 'New Entrant']
   },
   {
     id: "2",
@@ -42,18 +96,9 @@ export const INITIAL_BLOGS: BlogPost[] = [
     content: "Content goes here. In-depth look at insurance requirements...",
     publishedAt: "2024-05-10",
     author: "Insurance Expert Sarah",
-    image: "https://picsum.photos/seed/truck/800/400"
-  },
-  {
-    id: "3",
-    title: "Setting Up Your Driver Qualification Files Correctly",
-    slug: "driver-qualification-files",
-    category: "Authority",
-    excerpt: "Even if you are a single driver-owner, you must maintain a file for yourself. Here is the checklist.",
-    content: "Content goes here. Step-by-step guide to DQ files...",
-    publishedAt: "2024-05-01",
-    author: "Safety Specialist John",
-    image: "https://picsum.photos/seed/driver/800/400"
+    image: "https://picsum.photos/seed/truck/800/400",
+    status: 'published',
+    tags: ['Insurance', 'Finance', 'Compliance']
   }
 ];
 
@@ -83,7 +128,7 @@ export const ROADMAP_STEPS: RoadmapStep[] = [
     phase: "Phase II: Risk Mitigation",
     title: "Insurance & Fiscal Compliance",
     description: "Protecting your assets and meeting federal minimums to move freight legally.",
-    timeline: "Weeks 4-6",
+    timeline: "Weeks 4-8",
     difficulty: "Critical",
     details: [
       "Primary Auto Liability ($750k Federal min / $1M Industry standard)",
@@ -103,7 +148,7 @@ export const ROADMAP_STEPS: RoadmapStep[] = [
     phase: "Phase III: The Shield",
     title: "The Compliance System",
     description: "Installing the administrative backbone that protects you during DOT inspections and audits.",
-    timeline: "Week 6 - Launch",
+    timeline: "Weeks 8-12",
     difficulty: "Moderate",
     details: [
       "Comprehensive Driver Qualification (DQ) Files",
@@ -123,7 +168,7 @@ export const ROADMAP_STEPS: RoadmapStep[] = [
     phase: "Phase IV: Continuity",
     title: "Audit Readiness & Operations",
     description: "Operating with excellence and preparing for the mandatory New Entrant Safety Audit.",
-    timeline: "Months 1-12",
+    timeline: "Months 3-12",
     difficulty: "Advanced",
     details: [
       "Internal 'Mock Audit' performance",
@@ -144,31 +189,31 @@ export const FEATURES = [
   {
     title: "Authority & Registration",
     desc: "Understand when you need a USDOT number, MC authority, and how to avoid registration mistakes that delay or shut down operations.",
-    icon: <Truck className="w-6 h-6 text-steel-blue" />
+    icon: <Truck className="w-6 h-6 text-authority-blue" />
   },
   {
     title: "Insurance & Financial Responsibility",
     desc: "Learn what coverage is legally required, what brokers actually expect, and how insurance lapses destroy authority.",
-    icon: <ShieldCheck className="w-6 h-6 text-steel-blue" />
+    icon: <ShieldCheck className="w-6 h-6 text-authority-blue" />
   },
   {
     title: "New Entrant Audit Readiness",
     desc: "Know what FMCSA looks for, what causes automatic failure, and how to prepare before the audit notice arrives.",
-    icon: <FileText className="w-6 h-6 text-steel-blue" />
+    icon: <FileText className="w-6 h-6 text-authority-blue" />
   },
   {
     title: "Driver Qualification Files",
     desc: "Build and maintain compliant driver files — including when the driver is you.",
-    icon: <AlertCircle className="w-6 h-6 text-steel-blue" />
+    icon: <AlertCircle className="w-6 h-6 text-authority-blue" />
   },
   {
     title: "Hours of Service & ELD Rules",
     desc: "Understand when HOS rules apply, which exemptions are real, and how to avoid logbook and ELD violations.",
-    icon: <Clock className="w-6 h-6 text-steel-blue" />
+    icon: <Clock className="w-6 h-6 text-authority-blue" />
   },
   {
     title: "Maintenance & Safety Systems",
     desc: "Learn what inspection and maintenance records auditors request and how to keep them audit-ready.",
-    icon: <Wrench className="w-6 h-6 text-steel-blue" />
+    icon: <Wrench className="w-6 h-6 text-authority-blue" />
   }
 ];

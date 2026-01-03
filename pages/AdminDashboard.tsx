@@ -9,9 +9,7 @@ import {
   Eye, 
   BarChart3,
   Users,
-  Image as ImageIcon,
   MessageSquare,
-  ArrowRight,
   Mail,
   Quote
 } from 'lucide-react';
@@ -129,7 +127,7 @@ const AdminDashboard = () => {
               { id: 'blogs', name: 'Blog Content', icon: <PenTool className="w-5 h-5" /> },
               { id: 'submissions', name: 'Form Submissions', icon: <Mail className="w-5 h-5" /> },
               { id: 'testimonials', name: 'Testimonials', icon: <Quote className="w-5 h-5" /> },
-              { id: 'analytics', name: 'Analytics', icon: <BarChart3 className="w-5 h-5" /> },
+              { id: 'analytics', name: 'Analytics', icon: <BarChart3 className="w-5 h-5" /> }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -140,7 +138,6 @@ const AdminDashboard = () => {
                   : 'text-text-muted hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
-                {/* Active Indicator Bar */}
                 {activeTab === tab.id && (
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-signal-gold"></div>
                 )}
@@ -158,7 +155,6 @@ const AdminDashboard = () => {
       <main className="flex-grow p-6 lg:p-12">
         <div className="max-w-5xl mx-auto">
           
-          {/* Header */}
           <div className="flex justify-between items-center mb-12">
             <div>
               <h1 className="text-3xl font-bold font-serif mb-2">
@@ -188,7 +184,6 @@ const AdminDashboard = () => {
             )}
           </div>
 
-          {/* Submissions Content */}
           {activeTab === 'submissions' && (
             <div className="bg-white dark:bg-surface-dark rounded-[2rem] border border-border-light dark:border-border-dark overflow-hidden shadow-sm">
                {formSubmissions.length > 0 ? (
@@ -235,7 +230,6 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {/* Settings Content */}
           {activeTab === 'settings' && (
             <form onSubmit={handleSaveSettings} className="bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-border-light dark:border-border-dark shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -268,7 +262,6 @@ const AdminDashboard = () => {
             </form>
           )}
 
-          {/* Blogs Content */}
           {activeTab === 'blogs' && (
             <div className="space-y-8">
               {isAddingBlog ? (
@@ -358,7 +351,6 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {/* Testimonials Content */}
           {activeTab === 'testimonials' && (
             <div className="space-y-8">
               {isAddingTestimonial ? (
@@ -428,7 +420,6 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {/* Analytics Content */}
           {activeTab === 'analytics' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-border-light dark:border-border-dark shadow-sm">

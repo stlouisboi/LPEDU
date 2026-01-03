@@ -1,10 +1,16 @@
 
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { db } from '../firebase';
 import { useApp } from '../App';
+import { FormSettings } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 const ContactPage = () => {
   const { settings, addFormSubmission } = useApp();
+  const navigate = useNavigate();
+  const [formSettings, setFormSettings] = useState<FormSettings | null>(null);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -12,16 +18,56 @@ const ContactPage = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const fetchFormSettings = async () => {
+      if (!db) return;
+      try {
+        const snap = await getDoc(doc(db, "settings", "contactForm"));
+        if (snap.exists()) {
+          setFormSettings(snap.data() as FormSettings);
+        }
+      } catch (err) {
+        console.error("Failed to load form settings", err);
+      }
+    };
+    fetchFormSettings();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    addFormSubmission({
-      type: 'Contact Inquiry',
-      date: new Date().toISOString(),
-      ...formData
-    });
-    setIsSubmitted(true);
+    if (!db) return;
+    setSending(true);
+    
+    try {
+      await addDoc(collection(db, "formSubmissions"), {
+        ...formData,
+        status: 'unread',
+        createdAt: new Date().toISOString()
+      });
+
+      addFormSubmission({
+        type: 'Contact Inquiry',
+        date: new Date().toISOString(),
+        ...formData
+      });
+
+      setIsSubmitted(true);
+      
+      if (formSettings?.redirectUrl) {
+        setTimeout(() => navigate(formSettings.redirectUrl!), 2000);
+      }
+    } catch (err) {
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setSending(false);
+    }
   };
+
+  const currentTitle = formSettings?.title || "Expert DOT Compliance Guidance";
+  const currentSubmitText = formSettings?.submitButtonText || "Send Message";
+  const currentSuccessMsg = formSettings?.successMessage || "We've received your inquiry. One of our compliance specialists will reach out within 24 business hours.";
 
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-24">
@@ -29,7 +75,7 @@ const ContactPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           
           <div className="animate-in slide-in-from-left duration-700">
-            <h1 className="text-5xl font-bold font-serif mb-8">Let's Talk Compliance</h1>
+            <h1 className="text-5xl font-bold font-serif mb-8">{currentTitle}</h1>
             <p className="text-xl text-text-muted dark:text-text-dark-muted mb-12 leading-relaxed">
               Have a question about your new entrant audit? Need help with your DQ files? Our expert educators are here to provide clarity.
             </p>
@@ -59,9 +105,14 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <h4 className="font-bold">Main Office</h4>
-                  <p className="text-text-muted">Logistics District, Dallas, TX 75201</p>
+                  <p className="text-text-muted">Compliance Center, NC [VERIFY ADDRESS]</p>
                 </div>
               </div>
+            </div>
+            <div className="mt-12 p-6 bg-signal-gold/5 border border-signal-gold/20 rounded-2xl">
+               <p className="text-xs italic text-text-muted leading-relaxed font-medium">
+                  Response time is typically within 24 business hours. For emergency roadside inspection guidance, please use our member-exclusive priority line.
+               </p>
             </div>
           </div>
 
@@ -72,7 +123,7 @@ const ContactPage = () => {
                    <CheckCircle className="w-10 h-10" />
                  </div>
                  <h2 className="text-3xl font-bold font-serif mb-4">Message Sent</h2>
-                 <p className="text-text-muted max-w-sm mx-auto">We've received your inquiry. One of our compliance specialists will reach out within 24 business hours.</p>
+                 <p className="text-text-muted max-w-sm mx-auto">{currentSuccessMsg}</p>
                  <button onClick={() => setIsSubmitted(false)} className="mt-12 font-bold text-authority-blue hover:underline">Send another message</button>
               </div>
             ) : (
@@ -123,9 +174,13 @@ const ContactPage = () => {
                     onChange={e => setFormData({...formData, message: e.target.value})}
                   ></textarea>
                 </div>
-                <button type="submit" className="w-full bg-authority-blue text-white font-bold py-5 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-lg hover:shadow-none">
-                  <Send className="w-5 h-5" />
-                  <span>Send Message</span>
+                <button 
+                  type="submit" 
+                  disabled={sending}
+                  className="w-full bg-authority-blue text-white font-bold py-5 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-lg hover:shadow-none disabled:opacity-50"
+                >
+                  {sending ? <Loader2 className="animate-spin" /> : <Send className="w-5 h-5" />}
+                  <span>{currentSubmitText}</span>
                 </button>
               </form>
             )}

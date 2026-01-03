@@ -1,17 +1,40 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, Calendar, User, ArrowRight } from 'lucide-react';
+import { collection, query, where, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { db } from '../firebase';
+import { Search, Filter, Calendar, User, ArrowRight, Loader2 } from 'lucide-react';
 import { useApp } from '../App';
-import { BlogCategory } from '../types';
+import { BlogPost, BlogCategory } from '../types';
 
 const BlogPage = () => {
-  const { blogs } = useApp();
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
 
+  useEffect(() => {
+    if (!db) return;
+    const q = query(
+      collection(db, "blogPosts"), 
+      where("status", "==", "published"),
+      orderBy("publishedAt", "desc")
+    );
+    
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as BlogPost[];
+      setBlogs(data);
+      setLoading(false);
+    }, (err) => {
+      console.error("Public Blog Fetch Error:", err);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const categories: (BlogCategory | 'All')[] = [
-    'All', 'Authority', 'Audit', 'Clearinghouse', 'Insurance', 'HOS', 'ELD', 'Maintenance'
+    'All', 'Compliance', 'Audit', 'Authority', 'Insurance', 'HOS', 'ELD', 'Maintenance'
   ];
 
   const filteredBlogs = blogs.filter(blog => {
@@ -20,6 +43,15 @@ const BlogPage = () => {
                           blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
+        <Loader2 className="animate-spin text-authority-blue" size={40} />
+        <p className="text-text-muted font-bold uppercase tracking-widest text-xs">Accessing Knowledge Base...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white dark:bg-primary-dark min-h-screen pt-20 pb-32">
@@ -69,14 +101,14 @@ const BlogPage = () => {
             filteredBlogs.map(post => (
               <article key={post.id} className="flex flex-col bg-white dark:bg-primary-dark rounded-3xl overflow-hidden border border-border-light dark:border-border-dark group transition-all hover:shadow-2xl hover:-translate-y-1">
                 <Link to={`/blog/${post.slug}`} className="block overflow-hidden h-60">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={post.image || 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800'} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 </Link>
                 <div className="p-8 flex flex-col flex-grow">
                   <div className="flex items-center space-x-4 text-xs font-bold uppercase tracking-widest text-steel-blue mb-4">
                     <span>{post.category}</span>
                     <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
                     <span className="text-text-muted flex items-center">
-                      <Calendar className="w-3 h-3 mr-1" /> {post.publishedAt}
+                      <Calendar className="w-3 h-3 mr-1" /> {new Date(post.publishedAt).toLocaleDateString()}
                     </span>
                   </div>
                   <h3 className="text-2xl font-bold mb-4 group-hover:text-authority-blue transition-colors font-serif leading-tight">
@@ -90,7 +122,7 @@ const BlogPage = () => {
                       <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
                         <img src={`https://picsum.photos/seed/${post.author}/40/40`} alt={post.author} />
                       </div>
-                      <span>{post.author}</span>
+                      <span className="text-xs font-bold">{post.author}</span>
                     </div>
                     <Link to={`/blog/${post.slug}`} className="text-authority-blue font-bold flex items-center group-hover:translate-x-1 transition-transform">
                       Read More <ArrowRight className="ml-2 w-4 h-4" />

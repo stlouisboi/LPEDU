@@ -4,314 +4,271 @@ import { useNavigate } from 'react-router-dom';
 import { 
   ShieldCheck, 
   CheckCircle2, 
-  XCircle, 
   Lock, 
   CreditCard, 
-  ShieldAlert, 
-  FileText, 
-  ArrowRight,
-  UserCheck,
-  AlertCircle,
+  ArrowRight, 
+  Target,
+  Award,
+  BookOpen,
+  HelpCircle,
   Users,
-  Target
+  ShieldAlert,
+  ChevronDown,
+  Video
 } from 'lucide-react';
+import { collection, query, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { db } from '../firebase';
 import { useApp } from '../App';
+import { COURSE_MODULES } from '../constants';
+import { GeneratedVideo } from '../types';
 
 const EnrollPage = () => {
   const { login, addFormSubmission } = useApp();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
-  
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [openCurriculum, setOpenCurriculum] = useState<number | null>(0);
+  const [videos, setVideos] = useState<GeneratedVideo[]>([]);
 
-  const [touched, setTouched] = useState({
-    name: false,
-    email: false,
-    password: false,
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const validate = (name: string, value: string) => {
-    let error = '';
-    if (name === 'name') {
-      if (!value) error = 'Full name is required';
-      else if (value.length < 2) error = 'Name must be at least 2 characters';
-    }
-    if (name === 'email') {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!value) error = 'Email address is required';
-      else if (!emailRegex.test(value)) error = 'Please enter a valid email address';
-    }
-    if (name === 'password') {
-      if (!value) error = 'Password is required';
-      else if (value.length < 8) error = 'Password must be at least 8 characters';
-    }
-    return error;
-  };
-
-  const handleBlur = (field: string) => {
-    setTouched(prev => ({ ...prev, [field]: true }));
-    const error = validate(field, formData[field as keyof typeof formData]);
-    setErrors(prev => ({ ...prev, [field]: error }));
-  };
-
-  const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (touched[field as keyof typeof touched]) {
-      const error = validate(field, value);
-      setErrors(prev => ({ ...prev, [field]: error }));
-    }
-  };
-
-  const isFormValid = !errors.name && !errors.email && !errors.password && 
-                      formData.name && formData.email && formData.password;
+  useEffect(() => {
+    if (!db) return;
+    const q = query(collection(db, "generatedVideos"));
+    const unsub = onSnapshot(q, (snap) => {
+      const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as GeneratedVideo));
+      setVideos(data);
+    });
+    return unsub;
+  }, []);
 
   const handleEnroll = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Final check
-    const nameErr = validate('name', formData.name);
-    const emailErr = validate('email', formData.email);
-    const passErr = validate('password', formData.password);
-
-    if (nameErr || emailErr || passErr) {
-      setErrors({ name: nameErr, email: emailErr, password: passErr });
-      setTouched({ name: true, email: true, password: true });
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      addFormSubmission({
-        type: 'Enrollment',
-        date: new Date().toISOString(),
-        ...formData
-      });
-      login();
-      navigate('/admin'); 
-    }, 1500);
+    addFormSubmission({ type: 'Course Enrollment', ...formData, date: new Date().toISOString() });
+    login();
+    navigate('/admin'); 
   };
 
-  const getInputClass = (field: string) => {
-    const base = "w-full pl-12 pr-5 py-4 bg-gray-50 dark:bg-gray-800 border rounded-2xl outline-none transition-all";
-    if (touched[field as keyof typeof touched] && errors[field as keyof typeof errors]) {
-      return `${base} border-red-500 ring-4 ring-red-500/10 focus:border-red-500`;
-    }
-    if (touched[field as keyof typeof touched] && !errors[field as keyof typeof errors]) {
-      return `${base} border-green-500 focus:border-green-500 focus:ring-4 focus:ring-green-500/10`;
-    }
-    return `${base} border-border-light dark:border-border-dark focus:ring-4 focus:ring-authority-blue/10 focus:border-authority-blue`;
+  const getVideosForModule = (moduleId: number) => {
+    return videos.filter(v => v.moduleId === moduleId);
   };
 
   return (
-    <div className="bg-primary-light dark:bg-primary-dark min-h-screen pt-12 pb-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Bridge Header */}
-        <div className="text-center mb-20 animate-in fade-in slide-in-from-top-4 duration-700">
-          <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue dark:text-steel-blue px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-            <Lock className="w-3 h-3" />
-            <span>Secure Registration</span>
+    <div className="bg-white dark:bg-primary-dark min-h-screen">
+      
+      {/* 1. Hero */}
+      <section className="py-24 bg-primary-light dark:bg-surface-dark/30 text-center relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <div className="inline-flex items-center space-x-2 bg-authority-blue text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8">
+            <ShieldCheck className="w-3 h-3" />
+            <span>Official Carrier Mastery Curriculum</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold font-serif mb-6 leading-tight">Professional Carrier Enrollment</h1>
-          <p className="text-xl text-text-muted dark:text-text-dark-muted max-w-3xl mx-auto leading-relaxed">
-            Take the first step toward building a compliant, resilient trucking business. Our curriculum is designed to move you from uncertainty to mastery.
+          <h1 className="text-5xl md:text-7xl font-bold font-serif mb-8 leading-tight text-authority-blue dark:text-white">The Carrier Mastery Program</h1>
+          <p className="text-xl text-text-muted dark:text-text-dark-muted mb-12 max-w-2xl mx-auto leading-relaxed">
+            From Authority Registration to Audit Readiness. Everything you need to build, protect, and scale your motor carrier in one structured system.
+          </p>
+          <a href="#pricing" className="bg-authority-blue text-white px-12 py-5 rounded-2xl text-xl font-bold shadow-2xl hover:bg-steel-blue transition-all">
+            Secure Your Spot →
+          </a>
+        </div>
+      </section>
+
+      {/* 2. What You'll Learn (8 Modules Overview) */}
+      <section className="py-24 border-y border-border-light dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-serif mb-4">What You'll Learn</h2>
+            <p className="text-text-muted">A university-level approach to DOT safety and compliance.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {COURSE_MODULES.map((m) => (
+              <div key={m.id} className="p-8 bg-gray-50 dark:bg-surface-dark rounded-3xl border border-border-light dark:border-border-dark flex flex-col hover:border-authority-blue/30 transition-colors">
+                <span className="text-[10px] font-bold text-authority-blue mb-4 uppercase tracking-[0.2em]">Module {m.id}</span>
+                <h3 className="text-xl font-bold mb-4 font-serif">{m.title}</h3>
+                <p className="text-sm text-text-muted mb-6 flex-grow">{m.description}</p>
+                <div className="flex items-center justify-between mt-auto">
+                   <div className="text-[10px] font-bold uppercase tracking-widest text-text-muted">{m.lessons} Detailed Lessons</div>
+                   {getVideosForModule(m.id).length > 0 && <Video className="w-3.5 h-3.5 text-authority-blue opacity-50" />}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Full Curriculum (Accordion) */}
+      <section className="py-24 bg-primary-light dark:bg-primary-dark">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center font-serif">Deep Dive Curriculum</h2>
+          <div className="space-y-4">
+             {COURSE_MODULES.map((m) => {
+               const moduleVideos = getVideosForModule(m.id);
+               return (
+                 <div key={m.id} className="bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl overflow-hidden shadow-sm">
+                   <button 
+                    onClick={() => setOpenCurriculum(openCurriculum === m.id ? null : m.id)}
+                    className="w-full p-6 flex items-center justify-between text-left font-bold hover:bg-slate-50 transition-colors"
+                   >
+                     <div className="flex items-center">
+                       <span className="mr-3 text-authority-blue opacity-30">#0{m.id}</span>
+                       <span>{m.title}</span>
+                     </div>
+                     <ChevronDown className={`w-5 h-5 transition-transform ${openCurriculum === m.id ? 'rotate-180' : ''}`} />
+                   </button>
+                   {openCurriculum === m.id && (
+                     <div className="p-6 pt-0 border-t border-gray-100 dark:border-gray-800 animate-in slide-in-from-top-2">
+                       <p className="text-sm text-text-muted italic mb-6 mt-4">{m.description}</p>
+                       
+                       {moduleVideos.length > 0 && (
+                          <div className="mb-8 space-y-3">
+                             <h5 className="text-[10px] font-black uppercase tracking-widest text-authority-blue">Dynamic Preview Clip</h5>
+                             <div className="rounded-2xl overflow-hidden border border-border-light bg-black aspect-video">
+                                <video src={moduleVideos[0].url} className="w-full h-full object-cover" controls />
+                             </div>
+                          </div>
+                       )}
+
+                       <ul className="space-y-3">
+                          <h5 className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-1">Key Learning Objectives</h5>
+                          {[1,2,3,4].map(l => (
+                            <li key={l} className="flex items-center text-sm text-text-muted">
+                              <BookOpen className="w-3.5 h-3.5 mr-3 text-authority-blue/50" />
+                              Section {m.id}.{l}: Comprehensive Regulatory Framework Breakdown
+                            </li>
+                          ))}
+                       </ul>
+                     </div>
+                   )}
+                 </div>
+               );
+             })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Pricing Tiers */}
+      <section id="pricing" className="py-24 border-y border-border-light dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-bold font-serif mb-6">Choose Your Level</h2>
+            <p className="text-text-muted">Investment in your business's long-term survival.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Tier 1 */}
+            <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark flex flex-col">
+              <h3 className="text-2xl font-bold mb-4">Self-Paced</h3>
+              <p className="text-4xl font-black mb-8">$397</p>
+              <ul className="space-y-4 mb-12 text-sm text-text-muted flex-grow">
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Full Access to 8 Modules</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Audit-Ready Templates</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Lifetime Updates</li>
+              </ul>
+              <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all">Select Self-Paced</button>
+            </div>
+            {/* Tier 2 (Featured) */}
+            <div className="bg-authority-blue text-white p-10 rounded-[2.5rem] shadow-2xl flex flex-col relative">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[10px] px-4 py-1 rounded-full uppercase tracking-widest">Most Popular</div>
+              <h3 className="text-2xl font-bold mb-4">Mastery Bundle</h3>
+              <p className="text-4xl font-black mb-8">$797</p>
+              <ul className="space-y-4 mb-12 text-sm opacity-80 flex-grow">
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-signal-gold" /> Everything in Self-Paced</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-signal-gold" /> Weekly Group Q&A Calls</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-signal-gold" /> Audit Readiness Certificate</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-signal-gold" /> Private Community Access</li>
+              </ul>
+              <button className="w-full bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl">Start Mastery Now</button>
+            </div>
+            {/* Tier 3 */}
+            <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark flex flex-col">
+              <h3 className="text-2xl font-bold mb-4">Concierge Elite</h3>
+              <p className="text-4xl font-black mb-8">$1,497</p>
+              <ul className="space-y-4 mb-12 text-sm text-text-muted flex-grow">
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Everything in Mastery</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> 1-on-1 Safety Consultation</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Custom Mock Safety Audit</li>
+              </ul>
+              <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold">Inquire About Elite</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. What's Included */}
+      <section className="py-24 bg-primary-light dark:bg-primary-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+             <div>
+               <h2 className="text-3xl md:text-5xl font-bold font-serif mb-8">What's Truly Included</h2>
+               <p className="text-lg text-text-muted mb-12">We don't just give you videos. We provide the physical framework for your business success.</p>
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                 <div className="flex items-start space-x-4">
+                   <CheckCircle2 className="w-6 h-6 text-authority-blue" />
+                   <div>
+                     <h4 className="font-bold">Checklists</h4>
+                     <p className="text-xs text-text-muted">40+ pages of downloadable checklists.</p>
+                   </div>
+                 </div>
+                 <div className="flex items-start space-x-4">
+                   <CheckCircle2 className="w-6 h-6 text-authority-blue" />
+                   <div>
+                     <h4 className="font-bold">Templates</h4>
+                     <p className="text-xs text-text-muted">Custom DVIRs and DQ file layouts.</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div className="relative">
+                <img src="https://picsum.photos/seed/curriculum/600/600" alt="LaunchPath Curriculum Overview" className="rounded-[3rem] shadow-2xl border-8 border-white dark:border-gray-800" />
+             </div>
+           </div>
+        </div>
+      </section>
+
+      {/* 6. Guarantee */}
+      <section className="py-24 border-y border-border-light dark:border-border-dark">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <Award className="w-16 h-16 text-signal-gold mx-auto mb-8" />
+          <h2 className="text-3xl font-bold font-serif mb-6">30-Day Money-Back Guarantee</h2>
+          <p className="text-xl text-text-muted leading-relaxed">
+            If you don't find the curriculum more valuable than any "consultant" you've hired, we'll refund your full enrollment fee. No questions asked. We're confident because our methodology works.
           </p>
         </div>
+      </section>
 
-        {/* Deep Dive Sections */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
-          <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
-            <h2 className="text-xl font-bold font-serif mb-6 flex items-center">
-              <ShieldCheck className="w-6 h-6 mr-3 text-authority-blue" />
-              What LaunchPath Is
-            </h2>
-            <ul className="space-y-4 text-sm text-text-muted">
-              <li className="flex items-start">
-                <CheckCircle2 className="w-5 h-5 mr-3 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Compliance-first education built on verified FMCSA Part 390-399 guidance.</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle2 className="w-5 h-5 mr-3 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>A structured library of checklists, templates, and record-keeping systems.</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle2 className="w-5 h-5 mr-3 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Ongoing regulatory updates so your business stays current.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
-            <h2 className="text-xl font-bold font-serif mb-6 flex items-center">
-              <Target className="w-6 h-6 mr-3 text-steel-blue" />
-              Who This Program Is For
-            </h2>
-            <ul className="space-y-4 text-sm text-text-muted">
-              <li className="flex items-start">
-                <CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue flex-shrink-0 mt-0.5" />
-                <span>New box truck operators starting their journey.</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue flex-shrink-0 mt-0.5" />
-                <span>New authorities (MC/DOT) within their first 12 months.</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue flex-shrink-0 mt-0.5" />
-                <span>Owner-operators seeking compliance clarity and structure.</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue flex-shrink-0 mt-0.5" />
-                <span>Fleet managers building a safety-first culture.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
-            <h2 className="text-xl font-bold font-serif mb-6 flex items-center">
-              <ShieldAlert className="w-6 h-6 mr-3 text-signal-gold" />
-              Who This Is NOT For
-            </h2>
-            <ul className="space-y-4 text-sm text-text-muted">
-              <li className="flex items-start">
-                <XCircle className="w-5 h-5 mr-3 text-red-400 flex-shrink-0 mt-0.5" />
-                <span>Shortcut seekers looking to bypass federal safety rules.</span>
-              </li>
-              <li className="flex items-start">
-                <XCircle className="w-5 h-5 mr-3 text-red-400 flex-shrink-0 mt-0.5" />
-                <span>Individuals with an "operate now, fix later" mindset.</span>
-              </li>
-              <li className="flex items-start">
-                <XCircle className="w-5 h-5 mr-3 text-red-400 flex-shrink-0 mt-0.5" />
-                <span>Anyone unwilling to maintain professional record-keeping.</span>
-              </li>
-            </ul>
-          </div>
+      {/* 7. FAQ */}
+      <section className="py-24">
+        <div className="max-w-3xl mx-auto px-4">
+           <h2 className="text-3xl font-bold mb-12 text-center font-serif">Enrollment FAQ</h2>
+           <div className="space-y-6">
+              {[
+                {q: "When can I start?", a: "Immediately. Access is granted as soon as payment is confirmed."},
+                {q: "Is there a monthly fee?", a: "No. Enrollment is a one-time fee for lifetime access."},
+                {q: "Can I use this for CDL operations too?", a: "Yes. While we focus on non-CDL box trucks, the federal compliance requirements (HOS, DQ, Maintenance) are nearly identical."}
+              ].map((faq, i) => (
+                <div key={i} className="bg-gray-50 dark:bg-surface-dark p-6 rounded-2xl">
+                  <h4 className="font-bold mb-2">{faq.q}</h4>
+                  <p className="text-sm text-text-muted">{faq.a}</p>
+                </div>
+              ))}
+           </div>
         </div>
+      </section>
 
-        {/* Enrollment Form */}
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white dark:bg-surface-dark p-12 rounded-[3rem] border border-border-light dark:border-border-dark shadow-2xl relative">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold font-serif mb-2">Final Step: Create Your Account</h2>
-              <p className="text-text-muted">Access your modules and templates instantly.</p>
-            </div>
-            
-            <form onSubmit={handleEnroll} className="space-y-6">
-              <div className="space-y-1">
-                <label className="block text-sm font-bold mb-2">Full Name</label>
-                <div className="relative">
-                   <UserCheck className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${touched.name && errors.name ? 'text-red-500' : 'text-text-muted'}`} />
-                   <input 
-                     required
-                     type="text" 
-                     className={getInputClass('name')}
-                     placeholder="John Doe"
-                     value={formData.name}
-                     onBlur={() => handleBlur('name')}
-                     onChange={e => handleChange('name', e.target.value)}
-                   />
-                </div>
-                {touched.name && errors.name && (
-                  <p className="text-red-500 text-xs font-bold flex items-center pt-1 animate-in fade-in slide-in-from-top-1">
-                    <AlertCircle className="w-3 h-3 mr-1" /> {errors.name}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-1">
-                <label className="block text-sm font-bold mb-2">Email Address</label>
-                <div className="relative">
-                   <FileText className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${touched.email && errors.email ? 'text-red-500' : 'text-text-muted'}`} />
-                   <input 
-                     required
-                     type="email" 
-                     className={getInputClass('email')}
-                     placeholder="john@carrier.com"
-                     value={formData.email}
-                     onBlur={() => handleBlur('email')}
-                     onChange={e => handleChange('email', e.target.value)}
-                   />
-                </div>
-                {touched.email && errors.email && (
-                  <p className="text-red-500 text-xs font-bold flex items-center pt-1 animate-in fade-in slide-in-from-top-1">
-                    <AlertCircle className="w-3 h-3 mr-1" /> {errors.email}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-1">
-                <label className="block text-sm font-bold mb-2">Create Password</label>
-                <div className="relative">
-                   <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${touched.password && errors.password ? 'text-red-500' : 'text-text-muted'}`} />
-                   <input 
-                     required
-                     type="password" 
-                     className={getInputClass('password')}
-                     placeholder="••••••••"
-                     value={formData.password}
-                     onBlur={() => handleBlur('password')}
-                     onChange={e => handleChange('password', e.target.value)}
-                   />
-                </div>
-                {touched.password && errors.password && (
-                  <p className="text-red-500 text-xs font-bold flex items-center pt-1 animate-in fade-in slide-in-from-top-1">
-                    <AlertCircle className="w-3 h-3 mr-1" /> {errors.password}
-                  </p>
-                )}
-              </div>
-
-              <div className="pt-6 border-t border-gray-100 dark:border-gray-800">
-                <label className="block text-sm font-bold mb-4 flex items-center">
-                  <CreditCard className="w-4 h-4 mr-2" />
-                  Payment Details
-                </label>
-                <div className="p-5 bg-gray-100 dark:bg-gray-800/50 border border-dashed border-border-light dark:border-border-dark rounded-2xl text-center">
-                   <p className="text-xs text-text-muted uppercase font-bold tracking-widest mb-1">Enrollment Fee: $497</p>
-                   <p className="text-[10px] text-text-muted">Test Mode: Payment processing placeholder</p>
-                </div>
-              </div>
-
-              <button 
-                type="submit"
-                disabled={isSubmitting || (Object.values(touched).some(t => t) && !isFormValid)}
-                className="w-full bg-authority-blue text-white font-bold py-5 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-xl hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <span className="animate-pulse">Processing...</span>
-                ) : (
-                  <>
-                    <span>Enroll in LaunchPath</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </>
-                )}
-              </button>
-            </form>
-            
-            <p className="mt-8 text-[10px] text-center text-text-muted leading-relaxed uppercase tracking-tighter">
-              By enrolling, you agree to our Terms of Service. LaunchPath is for educational use only and does not guarantee audit success or provide legal/dispatching services.
-            </p>
+      {/* 8. Final CTA (Enrollment Form) */}
+      <section className="py-24 bg-authority-blue text-white">
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold font-serif mb-4">Start Your Journey Today</h2>
+            <p className="opacity-70">Complete the form below to secure your enrollment.</p>
           </div>
+          <form onSubmit={handleEnroll} className="space-y-6 bg-white dark:bg-surface-dark p-12 rounded-[3rem] shadow-2xl text-text-primary dark:text-text-dark-primary">
+            <input required placeholder="Full Name" className="w-full px-5 py-4 border rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+            <input required type="email" placeholder="Email Address" className="w-full px-5 py-4 border rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+            <input required type="password" placeholder="Create Password" className="w-full px-5 py-4 border rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} />
+            <button type="submit" className="w-full bg-signal-gold text-authority-blue py-5 rounded-2xl font-bold shadow-xl">Complete Enrollment & Start Module 0</button>
+            <p className="text-[10px] text-center text-text-muted mt-6 uppercase tracking-widest font-bold">Secure Stripe Payment Processing • Encrypted Access</p>
+          </form>
         </div>
+      </section>
 
-        <div className="mt-20 flex justify-center">
-          <div className="flex items-center space-x-6 grayscale opacity-40">
-             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_the_United_States_Department_of_Transportation.svg/1024px-Logo_of_the_United_States_Department_of_Transportation.svg.png" alt="DOT" className="h-8" />
-             <span className="font-bold text-xs uppercase tracking-widest">Compliant with FMCSA Standards</span>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

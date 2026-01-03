@@ -1,4 +1,48 @@
 
+export interface Resource {
+  id: string;
+  name: string;
+  description: string;
+  category: 'Templates' | 'Checklists' | 'Worksheets' | 'Guides';
+  type: 'PDF' | 'XLSX' | 'DOCX' | 'External';
+  size: string;
+  url: string;
+  driveId?: string;
+  requiresEmail: boolean;
+  downloadCount: number;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface ResourceLead {
+  id: string;
+  name: string;
+  email: string;
+  resourceId: string;
+  resourceName: string;
+  timestamp: string;
+}
+
+export interface FormSettings {
+  title: string;
+  submitButtonText: string;
+  successMessage: string;
+  enableNotifications: boolean;
+  notificationEmail: string;
+  emailSubjectTemplate: string;
+  redirectUrl?: string;
+}
+
+export interface ContactSubmission {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+  status: 'unread' | 'read' | 'replied';
+  createdAt: string;
+}
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -9,6 +53,11 @@ export interface BlogPost {
   publishedAt: string;
   author: string;
   image: string;
+  status: 'draft' | 'published';
+  tags: string[];
+  seoTitle?: string;
+  seoDescription?: string;
+  updatedAt?: string;
 }
 
 export type BlogCategory = 
@@ -18,14 +67,41 @@ export type BlogCategory =
   | 'Insurance' 
   | 'HOS' 
   | 'ELD' 
-  | 'Maintenance';
+  | 'Maintenance'
+  | 'Compliance';
 
 export interface SiteSettings {
   siteName: string;
+  tagline: string;
   heroTitle: string;
   heroSubtitle: string;
-  contactEmail: string;
-  phoneNumber: string;
+  logoUrl?: string;
+  faviconUrl?: string;
+  primaryColor: string;
+  secondaryColor: string;
+  metaDescription: string;
+  googleAnalyticsId?: string;
+  facebookPixelId?: string;
+  showVeteranBadge: boolean;
+  contact: {
+    email: string;
+    phone: string;
+    address: string;
+    hours: string;
+  };
+  social: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+    youtube?: string;
+  };
+  seo: {
+    titleFormat: string;
+    ogImage?: string;
+    twitterCard: 'summary' | 'summary_large_image';
+    schemaMarkup?: string;
+  };
 }
 
 export interface RoadmapStep {
@@ -38,6 +114,13 @@ export interface RoadmapStep {
   details: string[];
   mistakes: string[];
   tools: string[];
+}
+
+export interface CourseModule {
+  id: number;
+  title: string;
+  description: string;
+  lessons: number;
 }
 
 export interface Testimonial {
@@ -56,4 +139,30 @@ export enum UserRole {
 export interface User {
   role: UserRole;
   isLoggedIn: boolean;
+}
+
+export interface HomepageContent {
+  hero: {
+    headline: string;
+    subheadline: string;
+    imageUrl: string;
+    primaryCTA: { text: string; link: string };
+    secondaryCTA: { text: string; link: string };
+  };
+  mission: {
+    headline: string;
+    content: string;
+    imageUrl: string;
+  };
+  stats: { value: string; label: string }[];
+  faqs: { q: string; a: string }[];
+}
+
+export interface GeneratedVideo {
+  id: string;
+  prompt: string;
+  url: string;
+  aspectRatio: '16:9' | '9:16';
+  createdAt: string;
+  moduleId?: number;
 }
