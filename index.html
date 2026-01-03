@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaunchPath | Compliance-First Logistics Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'authority-blue': '#0B3C5D',
+              'steel-blue': '#1F6F8B',
+              'signal-gold': '#F4B41A',
+              'primary-light': '#F8FAFC',
+              'primary-dark': '#020617',
+              'surface-dark': '#0F172A',
+              'text-primary': '#1F2933',
+              'text-muted': '#64748B',
+              'text-dark-primary': '#E5E7EB',
+              'text-dark-muted': '#94A3B8',
+              'border-light': '#CBD5E1',
+              'border-dark': '#1E293B'
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['IBM Plex Sans', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'IBM Plex Sans', sans-serif;
+      }
+      .roadmap-line {
+        background: linear-gradient(180deg, #1F6F8B 0%, transparent 100%);
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-primary-light text-text-primary dark:bg-primary-dark dark:text-text-dark-primary transition-colors duration-200">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
