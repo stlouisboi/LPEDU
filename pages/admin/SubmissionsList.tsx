@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { 
   collection, 
   query, 
-  orderBy, 
   onSnapshot, 
   deleteDoc, 
   doc, 
@@ -40,10 +39,12 @@ const SubmissionsList = () => {
       setLoading(false);
       return;
     }
-    const q = query(collection(db, "formSubmissions"), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "formSubmissions"));
     const unsub = onSnapshot(q, (snap) => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as ContactSubmission));
-      setSubmissions(data);
+      // Client-side sort to avoid index errors
+      const sorted = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setSubmissions(sorted);
       setLoading(false);
     }, (error) => {
       console.warn("LaunchPath: Submissions fetch failed.", error);
@@ -60,7 +61,7 @@ const SubmissionsList = () => {
         setSelectedSub(prev => prev ? {...prev, status} : null);
       }
     } catch (err) {
-      alert("Failed to update status. Persistence is likely offline.");
+      alert("Failed to update status.");
     }
   };
 
@@ -124,7 +125,6 @@ const SubmissionsList = () => {
         </button>
       </div>
 
-      {/* Filters & Search */}
       <div className="bg-white dark:bg-surface-dark p-6 rounded-3xl border border-border-light dark:border-border-dark flex flex-col lg:flex-row gap-4 shadow-sm">
         <div className="relative flex-grow">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
@@ -227,7 +227,6 @@ const SubmissionsList = () => {
         </div>
       </div>
 
-      {/* Detail Modal */}
       {selectedSub && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
           <div className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3rem] shadow-2xl border border-border-light dark:border-border-dark max-w-2xl w-full relative">

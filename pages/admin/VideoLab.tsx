@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { 
   collection, 
   query, 
-  orderBy, 
   onSnapshot, 
   addDoc, 
   updateDoc, 
@@ -75,10 +74,12 @@ const VideoLab = () => {
 
   useEffect(() => {
     if (!db) return;
-    const q = query(collection(db, "generatedVideos"), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "generatedVideos"));
     const unsub = onSnapshot(q, (snap) => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as GeneratedVideo));
-      setVideos(data);
+      // Client-side sort to avoid index errors
+      const sorted = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setVideos(sorted);
       setLoading(false);
     }, (error) => {
       console.warn("VideoLab: Sync error.", error);
@@ -135,14 +136,15 @@ const VideoLab = () => {
       const blob = await response.blob();
 
       const videoId = `video_${Date.now()}`;
-      const storageRef = ref(storage, `curriculum_videos/${videoId}.mp4`);
+      const storagePath = `curriculum_videos/${videoId}.mp4`;
+      const storageRef = ref(storage, storagePath);
       const uploadResult = await uploadBytes(storageRef, blob);
       const persistentUrl = await getDownloadURL(uploadResult.ref);
 
       await addDoc(collection(db, "generatedVideos"), {
         prompt: formData.prompt,
         url: persistentUrl,
-        storagePath: `curriculum_videos/${videoId}.mp4`,
+        storagePath: storagePath,
         aspectRatio: formData.aspectRatio,
         moduleId: formData.moduleId,
         createdAt: new Date().toISOString()
@@ -154,7 +156,7 @@ const VideoLab = () => {
       console.error("Video Gen Error:", err);
       if (err.message?.includes("Requested entity was not found") || err.message?.includes("404")) {
         setHasApiKey(false);
-        alert("Requested entity was not found. Please select your API key again.");
+        alert("Requested entity was not found. Please select your API key again via the button.");
       } else {
         alert("Failed to generate video: " + err.message);
       }
@@ -179,8 +181,8 @@ const VideoLab = () => {
   const handleDelete = async (vid: GeneratedVideo) => {
     if (!window.confirm("Delete this video clip permanently?")) return;
     try {
-      if (storage && (vid as any).storagePath) {
-        const fileRef = ref(storage, (vid as any).storagePath);
+      if (storage && vid.storagePath) {
+        const fileRef = ref(storage, vid.storagePath);
         await deleteObject(fileRef).catch(e => console.warn("Storage delete failed", e));
       }
       await deleteDoc(doc(db, "generatedVideos", vid.id));
@@ -215,14 +217,13 @@ const VideoLab = () => {
         )}
       </div>
 
-      {/* API Key Alert (same as before) */}
       {!hasApiKey && (
         <div className="bg-amber-50 dark:bg-amber-950/20 p-8 rounded-[2.5rem] border border-amber-200 dark:border-amber-900/50 text-center space-y-4">
           <Film className="mx-auto text-amber-600" size={48} />
           <h3 className="text-xl font-bold font-serif text-amber-900 dark:text-amber-400">Paid API Key Required</h3>
           <p className="text-amber-800/70 dark:text-amber-300/70 max-w-xl mx-auto">
             Veo video generation requires a billing-enabled Google Cloud project. 
-            <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" className="mx-1 underline font-bold">Learn about billing</a>.
+            <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noreferrer" className="mx-1 underline font-bold">Learn about billing</a>.
           </p>
           <button 
             onClick={handleOpenSelectKey}
@@ -233,7 +234,6 @@ const VideoLab = () => {
         </div>
       )}
 
-      {/* Grid of Generated Videos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {videos.map((vid) => {
           const isEditing = editingVideoId === vid.id;
@@ -298,7 +298,7 @@ const VideoLab = () => {
                       </div>
                     )}
                   </div>
-                  <span className="text-[10px] font-bold text-text-muted shrink-0">{new Date(vid.createdAt).toLocaleDateString()}</span>
+                  <span className="text-[10px] font-bold text-text-muted shrink-0">{vid.createdAt ? new Date(vid.createdAt).toLocaleDateString() : 'N/A'}</span>
                 </div>
                 <p className="text-xs text-text-muted line-clamp-2 italic flex-grow">"{vid.prompt}"</p>
               </div>
@@ -306,7 +306,6 @@ const VideoLab = () => {
           );
         })}
 
-        {/* Empty state (same as before) */}
         {videos.length === 0 && !loading && hasApiKey && (
           <div className="col-span-full py-24 text-center bg-slate-50 dark:bg-gray-800/50 border-2 border-dashed border-border-light rounded-[3rem]">
             <Sparkles className="mx-auto text-authority-blue/20 mb-4" size={48} />
@@ -316,7 +315,6 @@ const VideoLab = () => {
         )}
       </div>
 
-      {/* Generator Modal (same as before) */}
       {showGenerator && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-300">
           <div className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3rem] shadow-2xl border border-border-light dark:border-border-dark max-w-2xl w-full relative">

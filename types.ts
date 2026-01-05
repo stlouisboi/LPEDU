@@ -165,4 +165,5 @@ export interface GeneratedVideo {
   aspectRatio: '16:9' | '9:16';
   createdAt: string;
   moduleId?: number;
+  storagePath?: string;
 }

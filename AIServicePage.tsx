@@ -125,6 +125,27 @@ const AIServicePage = () => {
     checkKey();
   }, []);
 
+  // Memory Check & Cleanup Effect
+  useEffect(() => {
+    return () => {
+      // Close standard audio context
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+      // Stop live sessions
+      if (isLiveActive) {
+        stopLiveConversation();
+      }
+    };
+  }, [isLiveActive]);
+
+  // Handle cleanup when switching tabs
+  useEffect(() => {
+    if (activeTab !== 'voice' && isLiveActive) {
+      stopLiveConversation();
+    }
+  }, [activeTab]);
+
   // --- CHAT HANDLERS ---
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -175,7 +196,7 @@ const AIServicePage = () => {
 
       const base64Audio = response.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
       if (base64Audio) {
-        if (!audioContextRef.current) {
+        if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
           audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
         }
         const ctx = audioContextRef.current;
@@ -223,8 +244,8 @@ const AIServicePage = () => {
           },
           onmessage: async (message: LiveServerMessage) => {
             const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
-            if (base64Audio) {
-              const outCtx = liveAudioContextRef.current!.output;
+            if (base64Audio && liveAudioContextRef.current) {
+              const outCtx = liveAudioContextRef.current.output;
               nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outCtx.currentTime);
               const buffer = await decodeAudioData(decode(base64Audio), outCtx, 24000, 1);
               const source = outCtx.createBufferSource();
@@ -236,13 +257,18 @@ const AIServicePage = () => {
               liveSourcesRef.current.add(source);
             }
             if (message.serverContent?.interrupted) {
-              liveSourcesRef.current.forEach(s => s.stop());
+              liveSourcesRef.current.forEach(s => {
+                try { s.stop(); } catch(e) {}
+              });
               liveSourcesRef.current.clear();
               nextStartTimeRef.current = 0;
             }
           },
           onclose: () => setIsLiveActive(false),
-          onerror: (e) => console.error("Live Error", e)
+          onerror: (e) => {
+            console.error("Live Error", e);
+            setIsLiveActive(false);
+          }
         },
         config: {
           responseModalities: [Modality.AUDIO],
@@ -260,14 +286,21 @@ const AIServicePage = () => {
 
   const stopLiveConversation = () => {
     if (liveSessionRef.current) {
-      liveSessionRef.current.then((s: any) => s.close());
+      liveSessionRef.current.then((s: any) => {
+        try { s.close(); } catch(e) {}
+      });
     }
     setIsLiveActive(false);
     setLiveTranscript([]);
     if (liveAudioContextRef.current) {
       liveAudioContextRef.current.input.close();
       liveAudioContextRef.current.output.close();
+      liveAudioContextRef.current = null;
     }
+    liveSourcesRef.current.forEach(s => {
+      try { s.stop(); } catch(e) {}
+    });
+    liveSourcesRef.current.clear();
   };
 
   // --- VIDEO GENERATION HANDLERS ---
