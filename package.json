@@ -2,6 +2,12 @@
   "name": "launchpath---compliance-first-guidance-for-owner-operators",
   "private": true,
   "version": "0.0.0",
+  "overrides": {
+    "react-quill": {
+      "react": "^19.2.3",
+      "react-dom": "^19.2.3"
+    }
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
