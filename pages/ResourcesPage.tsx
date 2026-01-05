@@ -1,216 +1,278 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-  collection, 
-  query, 
-  orderBy, 
-  onSnapshot, 
-  addDoc, 
-  updateDoc, 
-  doc, 
-  increment 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  Download, 
+  FileText, 
+  CheckCircle, 
+  ArrowRight, 
+  X, 
+  Loader2, 
+  Mail, 
+  Lock, 
+  Shield, 
+  FolderOpen, 
+  CheckCircle2, 
+  ClipboardList,
+  AlertCircle
+} from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { db } from '../firebase';
-import { Download, FileText, Database, CheckCircle, ArrowRight, X, Loader2, Mail, Lock } from 'lucide-react';
 import { useApp } from '../App';
-import { Resource } from '../types';
+import { Link } from 'react-router-dom';
+
+interface StaticResource {
+  phase: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  includes: string[];
+  version: string;
+  updatedAt: string;
+}
+
+const STATIC_RESOURCES: StaticResource[] = [
+  {
+    phase: 1,
+    title: "Phase 1: Legal Setup & Authority",
+    description: "Everything you need to get your USDOT/MC authority legally set up.",
+    icon: <ClipboardList className="w-12 h-12 text-authority-blue" />,
+    includes: [
+      "USDOT/MC Application Checklist",
+      "BOC-3 Provider Comparison",
+      "UCR Registration Guide",
+      "Clearinghouse Enrollment Steps",
+      "Fatal Mistakes to Avoid"
+    ],
+    version: "v2.4",
+    updatedAt: "Jan 2025"
+  },
+  {
+    phase: 2,
+    title: "Phase 2: Insurance & Fiscal",
+    description: "Protect your assets and meet federal insurance minimums.",
+    icon: <Shield className="w-12 h-12 text-authority-blue" />,
+    includes: [
+      "Insurance Requirements Breakdown",
+      "Quote Comparison Template",
+      "Form 2290 Tax Filing Guide",
+      "IRP/IFTA Registration (if needed)",
+      "Insurance Agent Questions"
+    ],
+    version: "v2.4",
+    updatedAt: "Jan 2025"
+  },
+  {
+    phase: 3,
+    title: "Phase 3: The Compliance System",
+    description: "Build the administrative backbone that protects you during audits.",
+    icon: <FolderOpen className="w-12 h-12 text-authority-blue" />,
+    includes: [
+      "Driver Qualification File Template",
+      "Maintenance Management Guide",
+      "HOS & ELD Policy Template",
+      "Accident Register Template",
+      "Maintenance Logbook"
+    ],
+    version: "v2.4",
+    updatedAt: "Jan 2025"
+  },
+  {
+    phase: 4,
+    title: "Phase 4: Audit Readiness",
+    description: "Prepare for and pass your new entrant safety audit.",
+    icon: <CheckCircle2 className="w-12 h-12 text-authority-blue" />,
+    includes: [
+      "Mock Safety Audit Checklist",
+      "Quarterly Self-Evaluation Form",
+      "Driver Training Templates",
+      "Safety-First Hiring Guide",
+      "SMS/CSA Score Monitoring Guide"
+    ],
+    version: "v2.4",
+    updatedAt: "Jan 2025"
+  }
+];
 
 const ResourcesPage = () => {
   const { addFormSubmission } = useApp();
-  const [resources, setResources] = useState<Resource[]>([]);
-  const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [newsletter, setNewsletter] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeResource, setActiveResource] = useState<Resource | null>(null);
+  const [activeResource, setActiveResource] = useState<StaticResource | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!db) {
-      setLoading(false);
-      return;
-    }
-    const q = query(collection(db, "resources"), orderBy("createdAt", "desc"));
-    const unsub = onSnapshot(q, (snap) => {
-      const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as Resource));
-      setResources(data);
-      setLoading(false);
-    }, (error) => {
-      console.warn("LaunchPath: Resources public fetch failed (Likely API disabled).", error);
-      setLoading(false);
-    });
-    return unsub;
-  }, []);
-
-  const handleDownloadClick = async (res: Resource) => {
-    if (res.requiresEmail) {
-      setActiveResource(res);
-      setIsModalOpen(true);
-    } else {
-      triggerDownload(res);
-    }
+  const handleDownloadClick = (res: StaticResource) => {
+    setActiveResource(res);
+    setIsModalOpen(true);
+    setIsSubmitted(false);
+    setError(null);
   };
 
-  const triggerDownload = async (res: Resource) => {
-    // Record download count
-    if (db && (db as any).app) {
-      try {
-        await updateDoc(doc(db, "resources", res.id), {
-          downloadCount: increment(1)
-        });
-      } catch (err) {
-        console.warn("Could not increment download count.");
-      }
-    }
-
-    // Trigger actual download
+  const triggerDownload = (phaseNum: number) => {
     const link = document.createElement('a');
-    link.href = res.url;
-    link.target = '_blank';
-    link.download = res.name;
+    link.href = `./downloads/phase-${phaseNum}-pack.pdf`;
+    link.download = `LaunchPath-Phase-${phaseNum}-Pack.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
+  const validateEmail = (email: string) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const handleLeadCapture = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !activeResource || !db) return;
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
     
-    // Save contact to firestore
     try {
-      await addDoc(collection(db, "contacts"), {
-        name,
-        email,
-        resourceId: activeResource.id,
-        resourceName: activeResource.name,
-        timestamp: new Date().toISOString()
-      });
+      if (db) {
+        await addDoc(collection(db, "leads"), {
+          name,
+          email,
+          phase: activeResource?.phase,
+          phaseName: activeResource?.title,
+          newsletter,
+          timestamp: serverTimestamp(),
+          source: "resource-library",
+          userAgent: navigator.userAgent
+        });
+      }
 
       addFormSubmission({
         type: 'Resource Lead',
-        resourceId: activeResource.id,
-        name: name,
-        email: email,
+        resourceName: activeResource?.title,
+        name,
+        email,
         date: new Date().toISOString()
       });
 
       setIsSubmitted(true);
-      triggerDownload(activeResource);
+      triggerDownload(activeResource?.phase || 1);
 
       setTimeout(() => {
           setIsModalOpen(false);
           setIsSubmitted(false);
           setName('');
           setEmail('');
-      }, 2000);
+      }, 2500);
     } catch (err) {
-      alert("Submission failed. You might be in offline/fallback mode.");
-      triggerDownload(activeResource); // Still allow download if possible
+      console.error("Lead capture failed", err);
+      // Still allow download
+      triggerDownload(activeResource?.phase || 1);
+      setError("⚠️ Download started, but we couldn't save your email. Try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const categories = ['Checklists', 'Templates', 'Worksheets', 'Guides'];
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
-        <Loader2 className="animate-spin text-authority-blue" size={40} />
-        <p className="text-text-muted font-bold uppercase tracking-widest text-xs">Accessing Knowledge Library...</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-white dark:bg-primary-dark min-h-screen py-24">
+    <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-24 animate-in fade-in duration-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="mb-20 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 font-serif">Carrier Resource Library</h1>
           <p className="text-xl text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto mb-8 leading-relaxed">
-            Free downloadable DOT compliance resources for new owner-operators. Build your authority backbone with verified checklists and templates.
+            Free downloadable compliance packs for new owner-operators. Build your authority with verified FMCSA checklists, templates, and step-by-step guides.
           </p>
-          <div className="flex items-center justify-center space-x-4 text-sm font-bold text-authority-blue">
-             <CheckCircle className="w-5 h-5" />
-             <span>FMCSA Standard Compliance Pack v2.4</span>
+        </div>
+
+        {/* 2x2 Resource Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+          {STATIC_RESOURCES.map((res) => (
+            <div key={res.phase} className="bg-white dark:bg-surface-dark p-8 rounded-2xl border border-border-light dark:border-border-dark flex flex-col hover:shadow-xl transition-all group relative overflow-hidden">
+              <div className="mb-6">
+                {res.icon}
+              </div>
+              
+              <h3 className="text-xl font-bold mb-3 font-serif text-authority-blue dark:text-white border-b border-gray-100 dark:border-gray-800 pb-3">
+                {res.title}
+              </h3>
+              
+              <p className="text-sm text-text-muted dark:text-text-dark-muted mb-6 leading-relaxed">
+                {res.description}
+              </p>
+
+              <div className="mb-8 flex-grow">
+                <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue/60 mb-3">Includes:</p>
+                <ul className="space-y-2">
+                  {res.includes.map((item, i) => (
+                    <li key={i} className="flex items-start text-[13px] text-text-muted">
+                      <CheckCircle2 className="w-4 h-4 mr-2 mt-0.5 text-authority-blue/40 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <button 
+                onClick={() => handleDownloadClick(res)}
+                className="flex items-center justify-center space-x-2 bg-authority-blue text-white py-4 rounded-xl font-bold hover:bg-steel-blue transition-all shadow-md group-hover:scale-[1.02]"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Phase {res.phase} Pack</span>
+              </button>
+
+              <div className="mt-6 flex items-center justify-between text-[11px] text-text-dark-muted font-medium opacity-60">
+                <span>Version: {res.version}</span>
+                <span>Updated: {res.updatedAt}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Want the Complete Course Banner */}
+        <div className="bg-blue-50 dark:bg-authority-blue/10 border border-blue-100 dark:border-authority-blue/20 p-8 lg:p-12 rounded-[2.5rem] text-center shadow-sm">
+          <div className="max-w-2xl mx-auto">
+            <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+              <CheckCircle className="text-authority-blue w-6 h-6" />
+            </div>
+            <h2 className="text-2xl lg:text-3xl font-bold mb-4 font-serif text-authority-blue dark:text-white">🎓 Want the Complete Course?</h2>
+            <p className="text-text-muted dark:text-text-dark-muted mb-8 leading-relaxed">
+              These free packs are just the beginning. Get the full 8-module course with video lessons, interactive compliance scorecards, and 1-on-1 audit preparation support.
+            </p>
+            <Link 
+              to="/enroll"
+              className="inline-flex items-center justify-center space-x-2 bg-authority-blue text-white px-8 py-4 rounded-2xl font-bold hover:bg-steel-blue transition-all shadow-lg"
+            >
+              <span>View Course Details</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
 
-        <div className="space-y-24">
-          {categories.map((cat, idx) => {
-            const groupResources = resources.filter(r => r.category === cat);
-            if (groupResources.length === 0) return null;
-
-            return (
-              <div key={idx}>
-                <h2 className="text-2xl font-bold mb-10 flex items-center">
-                  <div className="w-8 h-8 bg-authority-blue/10 text-authority-blue rounded-lg flex items-center justify-center mr-4">
-                    <Database className="w-4 h-4" />
-                  </div>
-                  {cat}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {groupResources.map((res, i) => (
-                    <div key={i} className="bg-primary-light dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark flex flex-col hover:shadow-2xl transition-all group relative overflow-hidden">
-                      {res.requiresEmail && (
-                        <div className="absolute top-6 right-6 p-2 bg-amber-50 dark:bg-amber-900/20 text-amber-600 rounded-full" title="Requires Email">
-                           <Lock size={14} />
-                        </div>
-                      )}
-                      <div className="flex justify-between items-start mb-6">
-                        <div className="p-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm group-hover:bg-authority-blue group-hover:text-white transition-colors">
-                          <FileText className="w-6 h-6" />
-                        </div>
-                        <span className="text-[10px] font-black text-text-muted uppercase tracking-widest bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded">
-                          {res.type} • {res.size}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-bold mb-3 font-serif leading-tight">{res.name}</h3>
-                      <p className="text-sm text-text-muted dark:text-text-dark-muted mb-8 flex-grow leading-relaxed">
-                        {res.description}
-                      </p>
-                      <button 
-                        onClick={() => handleDownloadClick(res)}
-                        className="flex items-center justify-center space-x-2 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark py-4 rounded-2xl font-bold hover:bg-authority-blue hover:text-white transition-all shadow-sm"
-                      >
-                        <Download className="w-4 h-4" />
-                        <span>Download Now</span>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-          
-          {resources.length === 0 && !loading && (
-             <div className="text-center py-20 bg-gray-50 dark:bg-surface-dark rounded-3xl border-2 border-dashed border-border-light">
-                <Database className="mx-auto mb-4 opacity-20" size={48} />
-                <p className="text-text-muted font-bold">No resources found.</p>
-                <p className="text-xs text-text-muted">Ensure your Cloud Firestore API is enabled if you have uploaded files.</p>
-             </div>
-          )}
-        </div>
-
-        {/* Lead Capture Modal */}
+        {/* Email Capture Modal */}
         {isModalOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300">
-            <div className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3rem] shadow-2xl border border-border-light dark:border-border-dark max-w-lg w-full relative">
+            <div className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-border-light dark:border-border-dark max-w-lg w-full relative">
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-8 right-8 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="absolute top-8 right-8 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
               >
                 <X className="w-6 h-6" />
               </button>
               
               {isSubmitted ? (
                 <div className="text-center py-12">
-                   <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                   <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
                      <CheckCircle className="w-10 h-10" />
                    </div>
-                   <h3 className="text-3xl font-bold font-serif mb-2">Ready to Go!</h3>
-                   <p className="text-text-muted">Your download should start momentarily.</p>
+                   <h3 className="text-3xl font-bold font-serif mb-2">Success!</h3>
+                   <p className="text-text-muted">Downloading now! Check your email for your copy.</p>
                 </div>
               ) : (
                 <>
@@ -219,17 +281,24 @@ const ResourcesPage = () => {
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold font-serif leading-none">Unlock Access</h3>
+                      <h3 className="text-2xl font-bold font-serif leading-none">Get Your Pack</h3>
                       <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mt-1">Compliance Ledger Integration</p>
                     </div>
                   </div>
-                  <h4 className="text-xl font-bold mb-4 font-serif">{activeResource?.name}</h4>
-                  <p className="text-sm text-text-muted mb-8 leading-relaxed">Enter your information to download this resource instantly. We'll also send you weekly safety bulletins to keep you audit-ready.</p>
+                  <h4 className="text-xl font-bold mb-4 font-serif text-authority-blue">Get Your Phase {activeResource?.phase} Pack</h4>
+                  <p className="text-sm text-text-muted mb-8 leading-relaxed">Enter your email to download your free compliance pack with checklists, templates, and guides.</p>
+                  
+                  {error && (
+                    <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-xl text-xs font-bold flex items-center">
+                      <AlertCircle className="w-4 h-4 mr-2" />
+                      {error}
+                    </div>
+                  )}
+
                   <form onSubmit={handleLeadCapture} className="space-y-4">
                     <input 
-                      required
                       type="text" 
-                      placeholder="Full Name" 
+                      placeholder="Your Name (Optional)" 
                       className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue"
                       value={name}
                       onChange={e => setName(e.target.value)}
@@ -237,17 +306,50 @@ const ResourcesPage = () => {
                     <input 
                       required
                       type="email" 
-                      placeholder="Professional Email Address" 
+                      placeholder="Your Email Address" 
                       className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                     />
-                    <button className="w-full bg-authority-blue text-white font-bold py-5 rounded-2xl flex items-center justify-center group shadow-xl hover:shadow-2xl transition-all">
-                      <span>Download Secure File</span>
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <div className="flex items-center space-x-3 mb-6">
+                      <input 
+                        type="checkbox" 
+                        id="newsletter-check" 
+                        checked={newsletter}
+                        onChange={e => setNewsletter(e.target.checked)}
+                        className="w-5 h-5 accent-authority-blue cursor-pointer"
+                      />
+                      <label htmlFor="newsletter-check" className="text-xs font-medium text-text-muted cursor-pointer">
+                        Send me the LaunchPath First 90 Days newsletter
+                      </label>
+                    </div>
+
+                    <button 
+                      disabled={loading}
+                      className="w-full bg-authority-blue text-white font-bold py-5 rounded-2xl flex items-center justify-center group shadow-xl hover:shadow-2xl transition-all disabled:opacity-50"
+                    >
+                      {loading ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <>
+                          <Download className="mr-2 w-5 h-5" />
+                          <span>Download Now</span>
+                        </>
+                      )}
                     </button>
+                    
+                    <div className="text-center mt-4">
+                      <button 
+                        type="button"
+                        onClick={() => setIsModalOpen(false)}
+                        className="text-xs text-text-muted hover:text-authority-blue hover:underline"
+                      >
+                        No thanks
+                      </button>
+                    </div>
+
                     <p className="text-[9px] text-center text-text-muted mt-6 uppercase tracking-widest font-black">
-                      Zero Spam Policy • Regulatory Updates Only
+                      We respect your privacy. Unsubscribe anytime.
                     </p>
                   </form>
                 </>

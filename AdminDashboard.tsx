@@ -12,22 +12,16 @@ import {
   MessageSquare,
   Mail,
   Quote,
-  ShieldCheck,
   Loader2
 } from 'lucide-react';
-import { useApp } from '../App';
-import { useAuth } from '../AuthContext';
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { auth, db } from '../firebase';
-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { BlogPost, Testimonial, SiteSettings } from '../types';
+import { useApp } from './App';
+import { useAuth } from './AuthContext';
+import { BlogPost, Testimonial, SiteSettings } from './types';
 
 const AdminDashboard = () => {
   const { settings, updateSettings, blogs, addBlog, updateBlog, formSubmissions, testimonials, addTestimonial, deleteTestimonial } = useApp();
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
   const [activeTab, setActiveTab] = useState<'settings' | 'blogs' | 'analytics' | 'submissions' | 'testimonials'>('settings');
-  const [authLoading, setAuthLoading] = useState(false);
-  const [authError, setAuthError] = useState('');
 
   // Blog Form State
   const [isAddingBlog, setIsAddingBlog] = useState(false);
@@ -48,67 +42,27 @@ const AdminDashboard = () => {
     content: ''
   });
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    setAuthLoading(true);
-    setAuthError('');
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (err: any) {
-      setAuthError('Invalid credentials.');
-    } finally {
-      setAuthLoading(false);
-    }
-  };
-
   if (!currentUser) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark px-4">
-        <form onSubmit={handleLogin} className="max-w-md w-full bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] shadow-2xl border border-border-light dark:border-border-dark">
+        <div className="max-w-md w-full bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] shadow-2xl border border-border-light dark:border-border-dark">
           <div className="text-center mb-10">
             <div className="w-16 h-16 bg-authority-blue text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
               <Settings className="w-8 h-8" />
             </div>
             <h1 className="text-3xl font-bold font-serif">Admin Portal</h1>
-            <p className="text-text-muted mt-2">Access the LaunchPath control center</p>
+            <p className="text-text-muted mt-2">Authentication Required</p>
           </div>
-          {authError && <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-xl text-xs font-bold">{authError}</div>}
-          <div className="space-y-6">
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-widest mb-2">Email</label>
-              <input 
-                name="email"
-                type="email" 
-                required
-                className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all" 
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-widest mb-2">Password</label>
-              <input 
-                name="password"
-                type="password" 
-                required
-                className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all" 
-              />
-            </div>
-            <button 
-              type="submit"
-              disabled={authLoading}
-              className="w-full bg-authority-blue text-white font-bold py-4 rounded-2xl hover:bg-steel-blue transition-all shadow-xl disabled:opacity-50 flex items-center justify-center"
-            >
-              {authLoading ? <Loader2 className="animate-spin" /> : 'Sign In'}
-            </button>
+          <div className="space-y-6 text-center">
+             <p className="text-sm text-text-muted">You must be logged in as an administrator to access this area.</p>
+             <a href="/#/admin/login" className="inline-block bg-authority-blue text-white px-8 py-3 rounded-xl font-bold">Login</a>
           </div>
-        </form>
+        </div>
       </div>
     );
   }
 
-  const handleSaveSettings = async (e: React.FormEvent) => {
+  const handleSaveSettings = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const updated: SiteSettings = {
@@ -118,13 +72,10 @@ const AdminDashboard = () => {
       heroSubtitle: formData.get('heroSubtitle') as string,
       contact: {
         ...settings.contact,
-        email: formData.get('contactEmail') as string
+        email: formData.get('contactEmail') as string,
+        phone: formData.get('phoneNumber') as string
       }
     };
-    
-    if (db) {
-      await setDoc(doc(db, "settings", "general"), updated);
-    }
     updateSettings(updated);
     alert('Settings saved successfully!');
   };

@@ -74,6 +74,9 @@ const VideoLab = () => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as GeneratedVideo));
       setVideos(data);
       setLoading(false);
+    }, (error) => {
+      console.warn("VideoLab: Sync error.", error);
+      setLoading(false);
     });
     return unsub;
   }, []);

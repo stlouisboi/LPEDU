@@ -10,7 +10,8 @@ const AdminDashboardHome = () => {
 
   useEffect(() => {
     const checkHealth = async () => {
-      if (!isFirebaseConfigured || !db || !(db as any).app) {
+      // FIX: Guard against missing or invalid Firestore instance
+      if (!isFirebaseConfigured || !db || typeof db !== 'object') {
         setDbStatus('error');
         return;
       }

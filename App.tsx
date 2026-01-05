@@ -304,45 +304,48 @@ export default function App() {
 
   // Apply real-time settings and theme colors
   useEffect(() => {
-    if (!isFirebaseConfigured || !db) {
+    // FIX: Verify db is a valid object before calling SDK functions
+    if (!isFirebaseConfigured || !db || typeof db !== 'object') {
       setAppLoading(false);
       return;
     }
 
-    const unsub = onSnapshot(doc(db, "settings", "general"), (snap) => {
-      if (snap.exists()) {
-        const data = snap.data() as SiteSettings;
-        setSettings(data);
-        
-        // Apply theme colors to CSS variables
-        const root = document.documentElement;
-        root.style.setProperty('--authority-blue', data.primaryColor || '#1e3a5f');
-        root.style.setProperty('--signal-gold', data.secondaryColor || '#d4af37');
-        
-        // Dynamic Meta Management
-        const pageTitle = document.title.split('|')[0].trim() || 'Home';
-        document.title = (data.seo?.titleFormat || INITIAL_SETTINGS.seo.titleFormat).replace('{{pageTitle}}', pageTitle);
-        
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', data.metaDescription);
-        
-        // Update Favicon
-        if (data.faviconUrl) {
-          const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement || document.createElement('link');
-          link.type = 'image/x-icon';
-          link.rel = 'icon';
-          link.href = data.faviconUrl;
-          if (!document.head.contains(link)) document.head.appendChild(link);
+    try {
+      const unsub = onSnapshot(doc(db, "settings", "general"), (snap) => {
+        if (snap.exists()) {
+          const data = snap.data() as SiteSettings;
+          setSettings(data);
+          
+          const root = document.documentElement;
+          root.style.setProperty('--authority-blue', data.primaryColor || '#1e3a5f');
+          root.style.setProperty('--signal-gold', data.secondaryColor || '#d4af37');
+          
+          const pageTitle = document.title.split('|')[0].trim() || 'Home';
+          document.title = (data.seo?.titleFormat || INITIAL_SETTINGS.seo.titleFormat).replace('{{pageTitle}}', pageTitle);
+          
+          const metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc) metaDesc.setAttribute('content', data.metaDescription);
+          
+          if (data.faviconUrl) {
+            const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement || document.createElement('link');
+            link.type = 'image/x-icon';
+            link.rel = 'icon';
+            link.href = data.faviconUrl;
+            if (!document.head.contains(link)) document.head.appendChild(link);
+          }
         }
-      }
-      setAppLoading(false);
-    }, (err: any) => {
-      console.warn("LaunchPath: Settings Sync Error (Using Defaults):", err);
-      setSettings(INITIAL_SETTINGS);
-      setAppLoading(false);
-    });
+        setAppLoading(false);
+      }, (err: any) => {
+        console.warn("LaunchPath: Settings Sync Error (Using Defaults):", err);
+        setSettings(INITIAL_SETTINGS);
+        setAppLoading(false);
+      });
 
-    return () => unsub();
+      return () => unsub();
+    } catch (e) {
+      console.error("LaunchPath: Snapshot setup failed", e);
+      setAppLoading(false);
+    }
   }, []);
 
   useEffect(() => {

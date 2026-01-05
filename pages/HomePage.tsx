@@ -41,7 +41,7 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
     },
     mission: {
       headline: "Accuracy Over Hype",
-      content: "<p>The trucking industry is built on systems. Without them, even the hardest working owner-operator will eventually fail an FMCSA audit.</p>",
+      content: "<p>The trucking industry is built on systems. Without them, even the hardest working owner-operator will eventually fail an FMCSA audit. LaunchPath provides the compliance-first education required to survive the new-entrant phase and build a foundation you can scale from—regardless of vehicle type.</p>",
       imageUrl: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800"
     },
     stats: [
@@ -49,8 +49,22 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
       { value: "90 Days", label: "To build a compliant system" }
     ],
     faqs: [
-      { q: "Is this for CDL only?", a: "No, box trucks are our primary focus." },
-      { q: "How long does the course take?", a: "You can complete the core modules in roughly 15-20 hours of focused study." }
+      { 
+        q: "Is this for CDL only?", 
+        a: "No. LaunchPath works whether you need a CDL or not. The course teaches compliance systems that apply to all motor carriers—we just call out where CDL vs non-CDL regulations differ. Module 0 helps you decide which path makes sense for your situation." 
+      },
+      { 
+        q: "How long does the course take?", 
+        a: "Most students complete the core modules in 2-4 weeks working part-time. You get lifetime access, so you can move at your own pace and return as regulations change. The goal isn't speed—it's audit readiness before you file for authority." 
+      },
+      {
+        q: "What type of vehicle do I need?",
+        a: "None yet. This course works whether you're considering a box truck, step van, or semi. LaunchPath teaches you how to evaluate your options and understand the compliance differences before you invest in equipment."
+      },
+      {
+        q: "Will this help me find loads?",
+        a: "No. LaunchPath focuses on compliance, audit readiness, and new-entrant survival. We teach you how to operate legally and sustainably. Load finding and dispatch are separate skills you'll need, but they don't matter if you can't pass an audit."
+      }
     ]
   };
 
@@ -71,7 +85,6 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
         (error: any) => {
           console.warn("LaunchPath Firestore Sync Error:", error);
           setFirestoreError(error.message);
-          // Graceful fallback on API errors (like disabled Firestore API or Missing DB)
           setLiveContent(fallbackContent);
         }
       );
@@ -103,8 +116,6 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
     );
   }
 
-  const isDatabaseMissing = firestoreError?.includes("database (default) does not exist") || firestoreError?.includes("not-found");
-
   return (
     <div className="animate-in fade-in duration-500">
       {/* System Alert for Admins if API/DB is missing */}
@@ -114,18 +125,14 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
             <div className="flex items-center space-x-2">
               <AlertTriangle className="w-3.5 h-3.5" />
               <span>
-                {isDatabaseMissing 
+                {firestoreError.includes("database (default) does not exist") 
                   ? "CRITICAL: Cloud Firestore Database has not been created." 
                   : "NOTE: Cloud Firestore API may be disabled."} 
                 App is running in Local Fallback mode.
               </span>
             </div>
             <div className="mt-2 sm:mt-0 flex gap-4">
-              {isDatabaseMissing ? (
-                <a href="https://console.cloud.google.com/datastore/setup?project=launchpathedu-426fb" target="_blank" rel="noreferrer" className="underline hover:text-red-600">Create Database</a>
-              ) : (
-                <a href="https://console.cloud.google.com/apis/library/firestore.googleapis.com?project=launchpathedu-426fb" target="_blank" rel="noreferrer" className="underline hover:text-red-600">Enable API</a>
-              )}
+              <a href="https://console.cloud.google.com/datastore/setup?project=launchpathedu-426fb" target="_blank" rel="noreferrer" className="underline hover:text-red-600">Resolve in Console</a>
             </div>
           </div>
         </div>
@@ -196,7 +203,7 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
               <div className="bg-gray-100 dark:bg-surface-dark p-2 rounded-3xl shadow-2xl relative overflow-hidden">
                 <img 
                   src={content.hero.imageUrl || fallbackContent.hero.imageUrl} 
-                  alt="Professional Box Truck Operation" 
+                  alt="Professional Trucking Fleet" 
                   className="rounded-2xl w-full h-[600px] object-cover"
                 />
                 <div className="absolute top-6 left-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-5 rounded-2xl shadow-lg border border-border-light dark:border-border-dark max-w-[240px]">
@@ -204,7 +211,7 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
                     <ShieldCheck className="text-authority-blue w-6 h-6" />
                     <span className="text-sm font-bold uppercase tracking-wider leading-none">Compliance <br/> First</span>
                   </div>
-                  <p className="text-[11px] text-text-muted dark:text-text-dark-muted font-medium">Verified curriculum based on official FMCSA safety manuals.</p>
+                  <p className="text-[11px] text-text-muted dark:text-text-dark-muted font-medium">Verified curriculum for box trucks, step vans, and semis.</p>
                 </div>
               </div>
             </div>
@@ -212,7 +219,7 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
         </div>
       </section>
 
-      {/* Problem Section (Pain/Agitation) */}
+      {/* Problem Section */}
       <section className="py-24 bg-primary-light dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -234,7 +241,7 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
                     </li>
                   ))}
                 </ul>
-                <p className="font-bold text-text-primary dark:text-white pt-4">A haphazard approach to safety isn't just risky—it's a business-ender.</p>
+                <p className="font-bold text-text-primary dark:text-white pt-4">Whether you're starting with a box truck, step van, or semi—compliance is the only path to survival.</p>
               </div>
             </div>
             <div className="bg-white dark:bg-surface-dark p-12 rounded-[3rem] border border-border-light dark:border-border-dark shadow-xl">
@@ -247,32 +254,6 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
                 <img src={content.mission.imageUrl || fallbackContent.mission.imageUrl} className="mt-8 rounded-2xl w-full h-48 object-cover shadow-lg" alt="Mission" />
               )}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Course Modules Preview */}
-      <section className="py-24 bg-white dark:bg-surface-dark/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-serif">Audit-Ready Compliance from Day One</h2>
-            <p className="text-xl text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto">8 Modules • 46 On-Demand Lessons • Verified Federal Guidance</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {COURSE_MODULES.map((module) => (
-              <div key={module.id} className="bg-white dark:bg-primary-dark p-6 rounded-2xl border border-border-light dark:border-border-dark hover:border-signal-gold transition-all group">
-                <div className="text-xs font-black text-authority-blue/20 dark:text-white/20 mb-4">MODULE {module.id}</div>
-                <h4 className="text-lg font-bold mb-3 font-serif leading-tight">{module.title}</h4>
-                <p className="text-xs text-text-muted dark:text-text-dark-muted mb-6 leading-relaxed">
-                  {module.description}
-                </p>
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">{module.lessons} Lessons</span>
-                  <BookOpen className="w-4 h-4 text-authority-blue opacity-30 group-hover:opacity-100 transition-opacity" />
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

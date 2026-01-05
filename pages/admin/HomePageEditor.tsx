@@ -114,7 +114,8 @@ const HomePageEditor = () => {
     setGeneratingImage(true);
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const prompt = "A professional box truck owner-operator, a focused person in their 30s-40s with a confident expression, reviewing compliance documents on a clipboard. In the background, a clean, modern white box truck is parked. The color palette should feature deep navy blue (#1e3a5f) and vibrant gold (#d4af37) accents in the clothing or environment. High-quality photography, cinematic lighting, corporate professional style, sharp focus, 16:9 aspect ratio.";
+      // Updated prompt to include both semi trucks and box trucks per user request
+      const prompt = "A wide-angle, high-quality photograph of a professional trucking fleet owner-operator confidently reviewing compliance documents on a clipboard. In the background, a modern white semi-truck and a clean box truck are parked side-by-side at a logistics center. The lighting is cinematic and bright, conveying authority and success. The color palette features deep navy blue and vibrant gold accents in the operator's professional gear and the facility environment. Corporate professional style, sharp focus, 16:9 aspect ratio.";
       
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash-image',
@@ -127,25 +128,24 @@ const HomePageEditor = () => {
       });
 
       let generatedImageUrl = '';
-      for (const candidate of response.candidates) {
-        for (const part of candidate.content.parts) {
+      if (response.candidates && response.candidates.length > 0) {
+        for (const part of response.candidates[0].content.parts) {
           if (part.inlineData) {
             generatedImageUrl = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
             break;
           }
         }
-        if (generatedImageUrl) break;
       }
 
       if (generatedImageUrl) {
         // Convert base64 to blob for storage upload
         const res = await fetch(generatedImageUrl);
         const blob = await res.blob();
-        const file = new File([blob], "generated_hero.png", { type: "image/png" });
+        const file = new File([blob], `hero_ai_${Date.now()}.png`, { type: "image/png" });
         await handleImageUpload(file, 'hero');
-        setMessage({ type: 'success', text: 'AI Hero image generated and uploaded!' });
+        setMessage({ type: 'success', text: 'AI Hero image generated and assigned!' });
       } else {
-        throw new Error("No image was returned by the AI.");
+        throw new Error("No image was returned by the AI. Please try again.");
       }
     } catch (err: any) {
       console.error("AI Image Generation Error:", err);
@@ -244,7 +244,7 @@ const HomePageEditor = () => {
               onClick={handleGenerateHeroImage}
               disabled={generatingImage}
               className="flex items-center px-4 py-2 bg-gradient-to-r from-authority-blue to-steel-blue text-white rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition-all disabled:opacity-50"
-              title="Generate a brand-aligned hero image with Gemini AI"
+              title="Generate a brand-aligned hero image (Semi & Box Trucks)"
             >
               {generatingImage ? <Loader2 size={14} className="mr-2 animate-spin" /> : <Sparkles size={14} className="mr-2" />}
               AI Image Gen
@@ -283,13 +283,21 @@ const HomePageEditor = () => {
                   </div>
                 )}
                 {generatingImage && (
-                  <div className="absolute inset-0 bg-white/60 dark:bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center animate-in fade-in">
-                    <Loader2 className="animate-spin text-authority-blue mb-2" size={32} />
-                    <p className="text-xs font-black uppercase tracking-widest text-authority-blue dark:text-white">AI Imagining Brand Vision...</p>
+                  <div className="absolute inset-0 bg-white/80 dark:bg-black/80 backdrop-blur-md flex flex-col items-center justify-center animate-in fade-in z-30">
+                    <div className="p-6 bg-white dark:bg-gray-800 rounded-[2rem] shadow-2xl flex flex-col items-center space-y-4 border border-border-light dark:border-border-dark">
+                      <div className="relative">
+                        <Loader2 className="animate-spin text-authority-blue" size={48} />
+                        <Sparkles className="absolute -top-2 -right-2 text-signal-gold animate-bounce" size={20} />
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-white">AI Vision Processing...</p>
+                        <p className="text-[10px] text-text-muted mt-1">Generating your professional fleet hero image</p>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="flex flex-wrap items-center gap-4">
                 <input 
                   type="file" 
                   id="hero-upload"
@@ -306,12 +314,15 @@ const HomePageEditor = () => {
                 <button 
                   onClick={handleGenerateHeroImage}
                   disabled={generatingImage}
-                  className="flex items-center px-4 py-3 bg-authority-blue text-white rounded-xl text-xs font-bold hover:bg-steel-blue transition-all shadow-sm disabled:opacity-50"
+                  className="flex items-center px-6 py-3 bg-gradient-to-r from-authority-blue to-steel-blue text-white rounded-xl text-xs font-black uppercase tracking-widest hover:shadow-xl transition-all shadow-lg disabled:opacity-50 group"
                 >
-                  {generatingImage ? <Loader2 size={16} className="mr-2 animate-spin" /> : <Sparkles size={16} className="mr-2" />}
-                  Generate Professional AI Hero
+                  <Sparkles className="mr-2 group-hover:rotate-12 transition-transform" size={16} />
+                  Generate AI Fleet Hero
                 </button>
               </div>
+              <p className="text-[10px] text-text-muted italic">
+                The "Generate AI Fleet Hero" button uses Gemini to create a custom image featuring your industry niche (Semi & Box Trucks) with your brand's color palette.
+              </p>
             </div>
           </div>
         </div>

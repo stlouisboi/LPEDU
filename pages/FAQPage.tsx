@@ -8,24 +8,24 @@ const FAQPage = () => {
 
   const faqs = [
     {
-      q: "Do I really need a USDOT number if I only operate in one state?",
-      a: "Yes, in many cases. Even if you don't cross state lines, many states require a USDOT number for commercial vehicles over a certain weight. Additionally, hauling 'interstate commerce' (freight that originated in another state) counts as interstate operation even if the truck never leaves the state."
+      q: "Is this for CDL only?",
+      a: "No. LaunchPath works whether you need a CDL or not. The course teaches compliance systems that apply to all motor carriers—we just call out where CDL vs non-CDL regulations differ. Module 0 helps you decide which path makes sense for your situation."
     },
     {
-      q: "What is the most common reason carriers fail the New Entrant Audit?",
-      a: "The #1 reason is 'Failure to implement a random drug and alcohol testing program.' Many owner-operators forget to join a consortium before they start hauling."
+      q: "How long does the course take?",
+      a: "Most students complete the core modules in 2-4 weeks working part-time. You get lifetime access, so you can move at your own pace and return as regulations change. The goal isn't speed—it's audit readiness before you file for authority."
     },
     {
-      q: "How long does it take for my MC Authority to become active?",
-      a: "Typically 21-25 days. This includes a mandatory 10-day public protest period that the FMCSA requires before granting final authority."
+      q: "What type of vehicle do I need to take this course?",
+      a: "None yet. This course works whether you're considering a box truck, step van, or semi. LaunchPath teaches you how to evaluate your options and understand the compliance differences before you invest in equipment."
+    },
+    {
+      q: "Will this help me find loads or teach me dispatch?",
+      a: "No. LaunchPath focuses on compliance, audit readiness, and new-entrant survival—the things that get carriers shut down in their first 18 months. We teach you how to operate legally and sustainably. Load finding and dispatch are separate skills you'll need, but they don't matter if you can't pass an audit."
     },
     {
       q: "Can I manage my own compliance or should I hire a consultant?",
-      a: "You can absolutely do it yourself. FMCSA regulations are public. Our platform is built to teach you the skills so you don't have to pay a consultant thousands of dollars for simple paperwork."
-    },
-    {
-      q: "What are Driver Qualification (DQ) Files?",
-      a: "DQ files are a collection of documents that prove a driver is legally qualified to operate a commercial motor vehicle. This includes their application, road test certificate, medical card, and annual MVR reviews. Every carrier must maintain these for all drivers, including owner-operators."
+      a: "You can absolutely do it yourself. FMCSA regulations are public. Our platform is built to teach you the skills so you don't have to pay a consultant thousands of dollars for simple paperwork. We move you from 'trying to start' to 'operating a regulated company'."
     }
   ];
 

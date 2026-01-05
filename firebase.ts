@@ -1,12 +1,11 @@
 
 import { initializeApp, FirebaseApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAuth, Auth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getFirestore, Firestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { initializeFirestore, Firestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getStorage, FirebaseStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
 /**
  * Robustly retrieves environment variables from common injection points.
- * Filters out literal placeholder strings that cause Firebase SDK errors.
  */
 const getEnvVar = (key: string, fallback: string = ""): string => {
   const meta = (import.meta as any);
@@ -38,7 +37,6 @@ const getEnvVar = (key: string, fallback: string = ""): string => {
   return fallback;
 };
 
-// Use provided credentials as hardcoded fallbacks if environment variables are missing
 const firebaseConfig = {
   apiKey: getEnvVar('VITE_FIREBASE_API_KEY', "AIzaSyBqxF30YWDkqt91BLazfAf__NQsuPM13nI"),
   authDomain: getEnvVar('VITE_FIREBASE_AUTH_DOMAIN', "launchpathedu-426fb.firebaseapp.com"),
@@ -48,13 +46,11 @@ const firebaseConfig = {
   appId: getEnvVar('VITE_FIREBASE_APP_ID', "1:296687537162:web:18fcbf64f9eb984ce0a3f3")
 };
 
-// Strict validation to prevent SDK from attempting connections to invalid resources
 export const isFirebaseConfigured = !!(
   firebaseConfig.apiKey && 
   firebaseConfig.projectId && 
   firebaseConfig.apiKey.length > 10 &&
-  !firebaseConfig.projectId.includes('YOUR_VITE') &&
-  !firebaseConfig.projectId.includes('placeholder')
+  !firebaseConfig.projectId.includes('YOUR_VITE')
 );
 
 export let auth: Auth;
@@ -65,33 +61,24 @@ if (isFirebaseConfigured) {
   try {
     const app = initializeApp(firebaseConfig);
     auth = getAuth(app);
-    db = getFirestore(app);
+    
+    /**
+     * FIX: Use auto-detect long polling only. 
+     * Forcing long polling and auto-detecting it simultaneously is disallowed.
+     */
+    db = initializeFirestore(app, {
+      experimentalAutoDetectLongPolling: true,
+      useFetchStreams: false
+    });
+    
     storage = getStorage(app);
-    console.log("LaunchPath: Firebase services initialized successfully.");
+    console.log("LaunchPath: Firebase initialized successfully.");
   } catch (error) {
     console.error("LaunchPath: Firebase initialization failed:", error);
-    initializeProxies();
+    // If initialization fails, we do NOT set db to a Proxy because 
+    // passing a Proxy to Firestore SDK functions (like collection())
+    // causes a runtime FirebaseError.
   }
 } else {
-  console.warn("LaunchPath: Firebase environment variables are missing. Using No-Op mode.");
-  initializeProxies();
-}
-
-function initializeProxies() {
-  const serviceProxyHandler = {
-    get: (target: any, prop: string) => {
-      // Return null/undefined for properties that SDK modular functions check to detect a valid instance
-      if (prop === 'app' || prop === '_delegate' || prop === 'INTERNAL') return undefined;
-      if (prop === 'currentUser') return null;
-      
-      return (...args: any[]) => {
-        console.warn(`LaunchPath: Action '${prop}' ignored (Firebase not configured).`);
-        return new Promise(() => {});
-      };
-    }
-  };
-
-  auth = new Proxy({}, serviceProxyHandler) as Auth;
-  db = new Proxy({}, serviceProxyHandler) as Firestore;
-  storage = new Proxy({}, serviceProxyHandler) as FirebaseStorage;
+  console.warn("LaunchPath: Firebase unconfigured. Firestore features disabled.");
 }

@@ -11,13 +11,16 @@ import {
   Users,
   MessageSquare,
   Mail,
-  Quote
+  Quote,
+  Loader2
 } from 'lucide-react';
 import { useApp } from '../App';
-import { BlogPost, Testimonial } from '../types';
+import { useAuth } from '../AuthContext';
+import { BlogPost, Testimonial, SiteSettings } from '../types';
 
 const AdminDashboard = () => {
-  const { user, login, logout, settings, updateSettings, blogs, addBlog, updateBlog, formSubmissions, testimonials, addTestimonial, deleteTestimonial } = useApp();
+  const { settings, updateSettings, blogs, addBlog, updateBlog, formSubmissions, testimonials, addTestimonial, deleteTestimonial } = useApp();
+  const { currentUser } = useAuth();
   const [activeTab, setActiveTab] = useState<'settings' | 'blogs' | 'analytics' | 'submissions' | 'testimonials'>('settings');
 
   // Blog Form State
@@ -39,7 +42,7 @@ const AdminDashboard = () => {
     content: ''
   });
 
-  if (!user.isLoggedIn) {
+  if (!currentUser) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark px-4">
         <div className="max-w-md w-full bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] shadow-2xl border border-border-light dark:border-border-dark">
@@ -48,23 +51,16 @@ const AdminDashboard = () => {
               <Settings className="w-8 h-8" />
             </div>
             <h1 className="text-3xl font-bold font-serif">Admin Portal</h1>
-            <p className="text-text-muted mt-2">Access the LaunchPath control center</p>
+            <p className="text-text-muted mt-2">Please log in via the admin gateway</p>
           </div>
           <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-semibold mb-2">Password</label>
-              <input 
-                type="password" 
-                defaultValue="password"
-                className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all" 
-              />
-            </div>
-            <button 
-              onClick={login}
-              className="w-full bg-authority-blue text-white font-bold py-4 rounded-2xl hover:bg-steel-blue transition-all shadow-xl hover:shadow-none"
+            <p className="text-center text-sm text-text-muted">Access to this dashboard is restricted to authenticated administrators.</p>
+            <a 
+              href="/#/admin/login"
+              className="block w-full bg-authority-blue text-white text-center font-bold py-4 rounded-2xl hover:bg-steel-blue transition-all shadow-xl"
             >
-              Sign In
-            </button>
+              Go to Login Page
+            </a>
           </div>
         </div>
       </div>
@@ -74,13 +70,18 @@ const AdminDashboard = () => {
   const handleSaveSettings = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    updateSettings({
+    const updated: SiteSettings = {
+      ...settings,
       siteName: formData.get('siteName') as string,
       heroTitle: formData.get('heroTitle') as string,
       heroSubtitle: formData.get('heroSubtitle') as string,
-      contactEmail: formData.get('contactEmail') as string,
-      phoneNumber: formData.get('phoneNumber') as string,
-    });
+      contact: {
+        ...settings.contact,
+        email: formData.get('contactEmail') as string,
+        phone: formData.get('phoneNumber') as string
+      }
+    };
+    updateSettings(updated);
     alert('Settings saved successfully!');
   };
 
@@ -90,7 +91,9 @@ const AdminDashboard = () => {
       ...newBlog as BlogPost,
       id: Date.now().toString(),
       slug: newBlog.title?.toLowerCase().replace(/\s+/g, '-') || 'new-post',
-      publishedAt: new Date().toISOString().split('T')[0]
+      publishedAt: new Date().toISOString().split('T')[0],
+      status: 'published',
+      tags: []
     };
     addBlog(blog);
     setIsAddingBlog(false);
@@ -247,11 +250,11 @@ const AdminDashboard = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-bold mb-3">Contact Email</label>
-                  <input name="contactEmail" defaultValue={settings.contactEmail} className="w-full px-5 py-3 rounded-xl border border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800 outline-none" />
+                  <input name="contactEmail" defaultValue={settings.contact.email} className="w-full px-5 py-3 rounded-xl border border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800 outline-none" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold mb-3">Public Phone</label>
-                  <input name="phoneNumber" defaultValue={settings.phoneNumber} className="w-full px-5 py-3 rounded-xl border border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800 outline-none" />
+                  <input name="phoneNumber" defaultValue={settings.contact.phone} className="w-full px-5 py-3 rounded-xl border border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800 outline-none" />
                 </div>
               </div>
               <div className="mt-12 flex justify-end">

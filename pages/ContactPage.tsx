@@ -87,7 +87,8 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <h4 className="font-bold">Email Us</h4>
-                  <p className="text-text-muted">{settings.contactEmail}</p>
+                  {/* Fixed: Accessing email via settings.contact.email as per SiteSettings type definition */}
+                  <p className="text-text-muted">{settings.contact.email}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-6">
@@ -96,7 +97,8 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <h4 className="font-bold">Call Support</h4>
-                  <p className="text-text-muted">{settings.phoneNumber}</p>
+                  {/* Fixed: Accessing phone via settings.contact.phone as per SiteSettings type definition */}
+                  <p className="text-text-muted">{settings.contact.phone}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-6">

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, query, where, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { db } from '../firebase';
 import { Search, Filter, Calendar, User, ArrowRight, Loader2 } from 'lucide-react';
 import { useApp } from '../App';
@@ -15,15 +15,26 @@ const BlogPage = () => {
 
   useEffect(() => {
     if (!db) return;
+    
+    /**
+     * FIX: To avoid the 'The query requires an index' error without requiring the user 
+     * to manually create composite indexes in the Firebase Console, we remove the 
+     * orderBy clause from the server-side query and perform the sort on the client side.
+     */
     const q = query(
       collection(db, "blogPosts"), 
-      where("status", "==", "published"),
-      orderBy("publishedAt", "desc")
+      where("status", "==", "published")
     );
     
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as BlogPost[];
-      setBlogs(data);
+      
+      // Client-side sort by date descending
+      const sortedData = data.sort((a, b) => 
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
+      
+      setBlogs(sortedData);
       setLoading(false);
     }, (err) => {
       console.error("Public Blog Fetch Error:", err);
