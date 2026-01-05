@@ -26,7 +26,9 @@ import {
   BarChart3,
   Code,
   Zap,
-  Award
+  Award,
+  CreditCard,
+  Link as LinkIcon
 } from 'lucide-react';
 import { SiteSettings } from '../../types';
 
@@ -34,7 +36,7 @@ const SettingsManager = () => {
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<'site' | 'contact' | 'social' | 'seo'>('site');
+  const [activeTab, setActiveTab] = useState<'site' | 'contact' | 'social' | 'seo' | 'checkout'>('site');
   const [message, setMessage] = useState<{type: 'success' | 'error', text: string} | null>(null);
 
   useEffect(() => {
@@ -125,6 +127,7 @@ const SettingsManager = () => {
           { id: 'site', label: 'Site Identity', icon: <Layout size={16} /> },
           { id: 'contact', label: 'Contact Info', icon: <Phone size={16} /> },
           { id: 'social', label: 'Social Media', icon: <Facebook size={16} /> },
+          { id: 'checkout', label: 'Checkout Config', icon: <CreditCard size={16} /> },
           { id: 'seo', label: 'SEO & Tracking', icon: <Search size={16} /> }
         ].map(tab => (
           <button
@@ -331,6 +334,62 @@ const SettingsManager = () => {
                       placeholder="e.g. Mon-Fri: 9am - 6pm EST"
                     />
                   </div>
+               </div>
+            </div>
+          )}
+
+          {/* Checkout Tab */}
+          {activeTab === 'checkout' && (
+            <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-6 animate-in slide-in-from-right duration-300">
+               <div className="flex items-center space-x-2 border-b pb-4">
+                 <CreditCard className="text-authority-blue" size={20} />
+                 <h3 className="text-lg font-bold font-serif">Checkout & Payment Links</h3>
+               </div>
+               <p className="text-xs text-text-muted leading-relaxed">
+                 Configure external payment links for the pricing tiers shown on the enrollment page. Ensure you use full HTTPS URLs (e.g. Stripe Payment Links, PayPal, etc.)
+               </p>
+               
+               <div className="space-y-6 pt-4">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center">
+                      <LinkIcon size={12} className="mr-1.5" /> Self-Paced Tier URL
+                    </label>
+                    <input 
+                      value={settings.checkoutUrls?.selfPaced || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: { ...settings.checkoutUrls!, selfPaced: e.target.value }})}
+                      className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-sm font-mono"
+                      placeholder="https://buy.stripe.com/..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center">
+                      <LinkIcon size={12} className="mr-1.5" /> Mastery Bundle Tier URL
+                    </label>
+                    <input 
+                      value={settings.checkoutUrls?.mastery || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: { ...settings.checkoutUrls!, mastery: e.target.value }})}
+                      className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-sm font-mono"
+                      placeholder="https://buy.stripe.com/..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center">
+                      <LinkIcon size={12} className="mr-1.5" /> Concierge Elite Inquire URL
+                    </label>
+                    <input 
+                      value={settings.checkoutUrls?.elite || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: { ...settings.checkoutUrls!, elite: e.target.value }})}
+                      className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-sm font-mono"
+                      placeholder="e.g. /contact or a custom form link"
+                    />
+                  </div>
+               </div>
+
+               <div className="p-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/50 rounded-2xl flex items-start space-x-3">
+                  <AlertCircle className="text-amber-600 shrink-0 mt-0.5" size={16} />
+                  <p className="text-[11px] text-amber-800 dark:text-amber-300 leading-relaxed">
+                    <strong>Notice:</strong> If these fields are left blank, the pricing buttons on the enrollment page will default to an internal navigation behavior.
+                  </p>
                </div>
             </div>
           )}

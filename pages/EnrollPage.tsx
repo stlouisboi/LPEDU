@@ -56,7 +56,7 @@ const AccordionItem: React.FC<{ question: string; answer: string }> = ({ questio
 };
 
 const EnrollPage = () => {
-  const { addFormSubmission } = useApp();
+  const { settings, addFormSubmission } = useApp();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [videos, setVideos] = useState<GeneratedVideo[]>([]);
@@ -79,6 +79,9 @@ const EnrollPage = () => {
     alert("Enrollment successful! Please check your email for access instructions.");
     navigate('/'); 
   };
+
+  // Safe access to checkout URLs to prevent undefined property errors
+  const urls = settings?.checkoutUrls || { selfPaced: '', mastery: '', elite: '' };
 
   return (
     <div className="bg-white dark:bg-primary-dark min-h-screen">
@@ -147,7 +150,11 @@ const EnrollPage = () => {
                 </ul>
               </div>
 
-              <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all mt-8">Select Self-Paced</button>
+              {urls.selfPaced ? (
+                <a href={urls.selfPaced} className="w-full text-center border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all mt-8">Select Self-Paced</a>
+              ) : (
+                <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all mt-8">Select Self-Paced</button>
+              )}
             </div>
 
             {/* Tier 2: Mastery Bundle */}
@@ -190,7 +197,11 @@ const EnrollPage = () => {
                 </ul>
               </div>
 
-              <button className="w-full bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl mt-8">Start Mastery Now</button>
+              {urls.mastery ? (
+                <a href={urls.mastery} className="w-full text-center bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl mt-8">Start Mastery Now</a>
+              ) : (
+                <button className="w-full bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl mt-8">Start Mastery Now</button>
+              )}
             </div>
 
             {/* Tier 3: Concierge Elite */}
@@ -211,7 +222,11 @@ const EnrollPage = () => {
                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Custom Mock Safety Audit</li>
               </ul>
 
-              <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold mt-8">Inquire About Elite</button>
+              {urls.elite ? (
+                <a href={urls.elite} className="w-full text-center border-2 border-authority-blue py-4 rounded-xl font-bold mt-8">Inquire About Elite</a>
+              ) : (
+                <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold mt-8">Inquire About Elite</button>
+              )}
             </div>
           </div>
         </div>

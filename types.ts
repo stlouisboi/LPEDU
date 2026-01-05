@@ -96,6 +96,11 @@ export interface SiteSettings {
     instagram?: string;
     youtube?: string;
   };
+  checkoutUrls?: {
+    selfPaced: string;
+    mastery: string;
+    elite: string;
+  };
   seo: {
     titleFormat: string;
     ogImage?: string;

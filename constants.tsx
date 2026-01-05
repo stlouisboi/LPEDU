@@ -35,6 +35,11 @@ export const INITIAL_SETTINGS: SiteSettings = {
     instagram: "https://instagram.com/launchpath",
     youtube: "https://youtube.com/@launchpath"
   },
+  checkoutUrls: {
+    selfPaced: "",
+    mastery: "",
+    elite: ""
+  },
   seo: {
     titleFormat: "{{pageTitle}} | LaunchPath™",
     twitterCard: "summary_large_image"
