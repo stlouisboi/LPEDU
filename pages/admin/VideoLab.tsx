@@ -6,6 +6,7 @@ import {
   orderBy, 
   onSnapshot, 
   addDoc, 
+  updateDoc, 
   deleteDoc, 
   doc 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -26,7 +27,10 @@ import {
   X,
   ChevronRight,
   Film,
-  CheckCircle2
+  CheckCircle2,
+  Edit,
+  Save,
+  Tag
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 import { GeneratedVideo } from '../../types';
@@ -39,6 +43,8 @@ const VideoLab = () => {
   const [hasApiKey, setHasApiKey] = useState(false);
   const [genMessage, setGenMessage] = useState('');
   const [showGenerator, setShowGenerator] = useState(false);
+  const [editingVideoId, setEditingVideoId] = useState<string | null>(null);
+  const [editModuleId, setEditModuleId] = useState<number>(0);
   
   const [formData, setFormData] = useState({
     prompt: '',
@@ -102,7 +108,6 @@ const VideoLab = () => {
     }, 12000);
 
     try {
-      // Create fresh instance per guidelines
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
       let operation = await ai.models.generateVideos({
@@ -125,18 +130,15 @@ const VideoLab = () => {
 
       setGenMessage("Transferring media to secure storage...");
       
-      // Fetch the binary data
       const response = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
       if (!response.ok) throw new Error("Failed to download video from Veo server.");
       const blob = await response.blob();
 
-      // Upload to Firebase Storage for persistence
       const videoId = `video_${Date.now()}`;
       const storageRef = ref(storage, `curriculum_videos/${videoId}.mp4`);
       const uploadResult = await uploadBytes(storageRef, blob);
       const persistentUrl = await getDownloadURL(uploadResult.ref);
 
-      // Save metadata to Firestore
       await addDoc(collection(db, "generatedVideos"), {
         prompt: formData.prompt,
         url: persistentUrl,
@@ -162,16 +164,25 @@ const VideoLab = () => {
     }
   };
 
+  const handleUpdateModule = async (vidId: string) => {
+    if (!db) return;
+    try {
+      await updateDoc(doc(db, "generatedVideos", vidId), {
+        moduleId: editModuleId
+      });
+      setEditingVideoId(null);
+    } catch (err) {
+      alert("Update failed.");
+    }
+  };
+
   const handleDelete = async (vid: GeneratedVideo) => {
     if (!window.confirm("Delete this video clip permanently?")) return;
     try {
-      // Delete from Storage first
       if (storage && (vid as any).storagePath) {
         const fileRef = ref(storage, (vid as any).storagePath);
         await deleteObject(fileRef).catch(e => console.warn("Storage delete failed", e));
       }
-      
-      // Delete from Firestore
       await deleteDoc(doc(db, "generatedVideos", vid.id));
     } catch (err) {
       alert("Delete failed.");
@@ -185,7 +196,7 @@ const VideoLab = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Video Content Lab</h1>
-          <p className="text-text-muted mt-1">Generate cinematic clips for carrier orientation using Veo 3.1.</p>
+          <p className="text-text-muted mt-1">Generate and manage cinematic clips for curriculum modules using Veo 3.1.</p>
         </div>
         {!hasApiKey ? (
           <button 
@@ -204,6 +215,7 @@ const VideoLab = () => {
         )}
       </div>
 
+      {/* API Key Alert (same as before) */}
       {!hasApiKey && (
         <div className="bg-amber-50 dark:bg-amber-950/20 p-8 rounded-[2.5rem] border border-amber-200 dark:border-amber-900/50 text-center space-y-4">
           <Film className="mx-auto text-amber-600" size={48} />
@@ -223,33 +235,78 @@ const VideoLab = () => {
 
       {/* Grid of Generated Videos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {videos.map((vid) => (
-          <div key={vid.id} className="bg-white dark:bg-surface-dark rounded-[2.5rem] border border-border-light dark:border-border-dark overflow-hidden shadow-sm hover:shadow-xl transition-all group">
-            <div className={`relative ${vid.aspectRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-video'} bg-black`}>
-              <video 
-                src={vid.url} 
-                className="w-full h-full object-cover" 
-                controls
-              />
-              <button 
-                onClick={() => handleDelete(vid)}
-                className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                <Trash2 size={16} />
-              </button>
-            </div>
-            <div className="p-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold bg-authority-blue/5 px-2 py-1 rounded">
-                  Module {vid.moduleId}: {COURSE_MODULES.find(m => m.id === vid.moduleId)?.title || 'General'}
-                </span>
-                <span className="text-[10px] font-bold text-text-muted">{new Date(vid.createdAt).toLocaleDateString()}</span>
+        {videos.map((vid) => {
+          const isEditing = editingVideoId === vid.id;
+          const associatedModule = COURSE_MODULES.find(m => m.id === vid.moduleId);
+          
+          return (
+            <div key={vid.id} className="bg-white dark:bg-surface-dark rounded-[2.5rem] border border-border-light dark:border-border-dark overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col">
+              <div className={`relative ${vid.aspectRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-video'} bg-black`}>
+                <video 
+                  src={vid.url} 
+                  className="w-full h-full object-cover" 
+                  controls
+                />
+                <button 
+                  onClick={() => handleDelete(vid)}
+                  className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <Trash2 size={16} />
+                </button>
               </div>
-              <p className="text-xs text-text-muted line-clamp-2 italic">"{vid.prompt}"</p>
+              <div className="p-6 space-y-4 flex-grow flex flex-col">
+                <div className="flex items-start justify-between">
+                  <div className="space-y-1 flex-grow pr-2">
+                    {isEditing ? (
+                      <div className="space-y-2 animate-in slide-in-from-top-2">
+                        <p className="text-[10px] font-black uppercase text-authority-blue">Assign to Module:</p>
+                        <select 
+                          value={editModuleId}
+                          onChange={e => setEditModuleId(parseInt(e.target.value))}
+                          className="w-full text-xs font-bold p-2 bg-slate-50 rounded-lg border border-border-light"
+                        >
+                          {COURSE_MODULES.map(m => (
+                            <option key={m.id} value={m.id}>M{m.id}: {m.title}</option>
+                          ))}
+                        </select>
+                        <div className="flex space-x-2">
+                          <button 
+                            onClick={() => handleUpdateModule(vid.id)}
+                            className="bg-authority-blue text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase flex items-center"
+                          >
+                            <Save size={10} className="mr-1" /> Save
+                          </button>
+                          <button 
+                            onClick={() => setEditingVideoId(null)}
+                            className="bg-slate-100 text-text-muted px-3 py-1.5 rounded-lg text-[10px] font-black uppercase"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center space-x-2">
+                        <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded ${associatedModule ? 'bg-authority-blue text-white' : 'bg-amber-100 text-amber-700'}`}>
+                          {associatedModule ? `M${associatedModule.id}: ${associatedModule.title}` : 'Unassigned'}
+                        </span>
+                        <button 
+                          onClick={() => { setEditingVideoId(vid.id); setEditModuleId(vid.moduleId || 0); }}
+                          className="p-1 hover:bg-slate-100 rounded text-text-muted opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Edit size={12} />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  <span className="text-[10px] font-bold text-text-muted shrink-0">{new Date(vid.createdAt).toLocaleDateString()}</span>
+                </div>
+                <p className="text-xs text-text-muted line-clamp-2 italic flex-grow">"{vid.prompt}"</p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
 
+        {/* Empty state (same as before) */}
         {videos.length === 0 && !loading && hasApiKey && (
           <div className="col-span-full py-24 text-center bg-slate-50 dark:bg-gray-800/50 border-2 border-dashed border-border-light rounded-[3rem]">
             <Sparkles className="mx-auto text-authority-blue/20 mb-4" size={48} />
@@ -259,7 +316,7 @@ const VideoLab = () => {
         )}
       </div>
 
-      {/* Generator Modal */}
+      {/* Generator Modal (same as before) */}
       {showGenerator && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-300">
           <div className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3rem] shadow-2xl border border-border-light dark:border-border-dark max-w-2xl w-full relative">

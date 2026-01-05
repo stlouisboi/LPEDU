@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   CheckCircle2, 
   AlertCircle, 
@@ -16,10 +17,13 @@ import {
   CheckCircle, 
   ShieldCheck, 
   BarChart3,
-  Star
+  Star,
+  BookOpen,
+  ChevronRight
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { db } from '../firebase';
+import { COURSE_MODULES } from '../constants';
 
 interface PhaseData {
   number: number;
@@ -29,6 +33,7 @@ interface PhaseData {
   icon: React.ReactNode;
   requirements: string[];
   color: string;
+  moduleIds: number[];
 }
 
 const PHASES: PhaseData[] = [
@@ -43,7 +48,8 @@ const PHASES: PhaseData[] = [
       "Process Agents (BOC-3) Filing",
       "Drug & Alcohol Clearinghouse Enrollment"
     ],
-    color: "#1e3a5f" // Navy Blue
+    color: "#1e3a5f",
+    moduleIds: [0, 1]
   },
   {
     number: 2,
@@ -56,7 +62,8 @@ const PHASES: PhaseData[] = [
       "Cargo Insurance ($100k standard)",
       "Heavy Vehicle Use Tax (Form 2290)"
     ],
-    color: "#475569" // Slate Gray
+    color: "#475569",
+    moduleIds: [2]
   },
   {
     number: 3,
@@ -69,7 +76,8 @@ const PHASES: PhaseData[] = [
       "Maintenance Management & Inspections",
       "Hours of Service (HOS) & ELD Policy"
     ],
-    color: "#0891b2" // Teal/Cyan
+    color: "#0891b2",
+    moduleIds: [3, 4, 5, 6]
   },
   {
     number: 4,
@@ -82,7 +90,8 @@ const PHASES: PhaseData[] = [
       "Quarterly Safety Self-Evaluations",
       "Safety-First Hiring Practices"
     ],
-    color: "#ca8a04" // Gold
+    color: "#ca8a04",
+    moduleIds: [7]
   }
 ];
 
@@ -239,7 +248,7 @@ const LearningPathPage = () => {
                     {phase.title}
                   </h3>
                   
-                  <ul className="space-y-4 mb-10">
+                  <ul className="space-y-4 mb-10 border-b border-gray-50 dark:border-gray-800 pb-8">
                     {phase.requirements.map((req, i) => (
                       <li key={i} className="flex items-start text-sm text-text-muted font-medium">
                         <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" style={{ color: phase.color }} />
@@ -247,6 +256,29 @@ const LearningPathPage = () => {
                       </li>
                     ))}
                   </ul>
+
+                  {/* Modules for this phase */}
+                  <div className="mb-10 space-y-4">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">Explore Curriculum Modules:</p>
+                    <div className="grid grid-cols-1 gap-3">
+                       {phase.moduleIds.map(mid => {
+                         const mod = COURSE_MODULES.find(m => m.id === mid);
+                         return mod ? (
+                           <Link 
+                            key={mid} 
+                            to={`/modules/${mid}`}
+                            className="flex items-center justify-between p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl group/mod hover:bg-authority-blue transition-all"
+                           >
+                             <div className="flex items-center space-x-3">
+                                <BookOpen size={16} className="text-authority-blue group-hover/mod:text-white" />
+                                <span className="text-sm font-bold group-hover/mod:text-white">{mod.title}</span>
+                             </div>
+                             <ChevronRight size={14} className="text-text-muted group-hover/mod:text-white" />
+                           </Link>
+                         ) : null;
+                       })}
+                    </div>
+                  </div>
 
                   <button 
                     onClick={() => handleDownloadClick(phase)}

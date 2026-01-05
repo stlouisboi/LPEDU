@@ -47,6 +47,7 @@ import ContactPage from './pages/ContactPage';
 import LegalPage from './pages/LegalPage';
 import AIServicePage from './pages/AIServicePage';
 import EnrollPage from './pages/EnrollPage';
+import ModuleDetailPage from './pages/ModuleDetailPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -403,6 +404,7 @@ export default function App() {
                 <Route path="/legal" element={<LegalPage />} />
                 <Route path="/advisor" element={<AIServicePage />} />
                 <Route path="/enroll" element={<EnrollPage />} />
+                <Route path="/modules/:id" element={<ModuleDetailPage />} />
                 
                 {/* Admin Auth */}
                 <Route path="/admin/login" element={<AdminLogin />} />
