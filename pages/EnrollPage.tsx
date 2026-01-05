@@ -23,7 +23,7 @@ import { COURSE_MODULES } from '../constants';
 import { GeneratedVideo } from '../types';
 
 const EnrollPage = () => {
-  const { login, addFormSubmission } = useApp();
+  const { addFormSubmission } = useApp();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [openCurriculum, setOpenCurriculum] = useState<number | null>(0);
@@ -42,8 +42,8 @@ const EnrollPage = () => {
   const handleEnroll = (e: React.FormEvent) => {
     e.preventDefault();
     addFormSubmission({ type: 'Course Enrollment', ...formData, date: new Date().toISOString() });
-    login();
-    navigate('/admin'); 
+    alert("Enrollment successful! You will receive an email shortly.");
+    navigate('/'); 
   };
 
   const getVideosForModule = (moduleId: number) => {
