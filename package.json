@@ -2,6 +2,12 @@
   "name": "copy-of-launchpath---compliance-first-guidance-for-owner-operators",
   "private": true,
   "version": "0.0.0",
+  "overrides": {
+    "react-quill": {
+      "react": "^19.2.3",
+      "react-dom": "^19.2.3"
+    }
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,8 +19,7 @@
     "react-dom": "^19.2.3",
     "react": "^19.2.3",
     "lucide-react": "^0.562.0",
-    "react-router-dom": "^7.11.0",
-    "react-quill": "^2.0.0"
+    "react-router-dom": "^7.11.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
