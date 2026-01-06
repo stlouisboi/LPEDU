@@ -89,10 +89,13 @@ const VideoLab = () => {
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: formData.aspectRatio }
       });
 
+      // Defensive copy to prevent circular structure issues
       let operation = { name: initialOp.name, done: initialOp.done } as any;
       while (!operation.done) {
         await new Promise(r => setTimeout(r, 10000));
-        const res = await ai.operations.getVideosOperation({ operation: { name: operation.name } as any });
+        const res = await ai.operations.getVideosOperation({ 
+          operation: { name: operation.name } as any 
+        });
         operation = { name: res.name, done: res.done, response: res.response };
       }
 
@@ -115,7 +118,8 @@ const VideoLab = () => {
       });
       setShowUploader(false);
     } catch (e) {
-      alert("AI Generation failed.");
+      console.error("AI Gen Failed", e);
+      alert("AI Generation encountered an error.");
     } finally {
       clearInterval(msgInt);
       setIsGenerating(false);
@@ -128,13 +132,13 @@ const VideoLab = () => {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold font-serif text-authority-blue">Video Curriculum Lab</h1>
-          <p className="text-text-muted mt-1 text-sm">Synchronize AI visualizations and manual curriculum assets.</p>
+          <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Video Curriculum Lab</h1>
+          <p className="text-text-muted mt-1">Synchronize AI visualizations and manual curriculum assets.</p>
         </div>
         <div className="flex gap-3">
           <button 
             onClick={() => setShowUploader(true)}
-            className="bg-authority-blue text-white px-6 py-3 rounded-xl font-bold flex items-center shadow-lg hover:bg-steel-blue transition-all"
+            className="bg-authority-blue text-white px-6 py-3 rounded-xl font-bold flex items-center shadow-lg hover:bg-steel-blue transition-all active:scale-95"
           >
             <Plus size={18} className="mr-2" /> Add Curriculum Media
           </button>
@@ -143,12 +147,12 @@ const VideoLab = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {videos.map((vid) => (
-          <div key={vid.id} className="bg-white dark:bg-surface-dark rounded-[2.5rem] border border-border-light overflow-hidden flex flex-col group relative shadow-sm hover:shadow-xl transition-all">
+          <div key={vid.id} className="bg-white dark:bg-surface-dark rounded-[2.5rem] border border-border-light dark:border-border-dark overflow-hidden flex flex-col group relative shadow-sm hover:shadow-2xl transition-all">
             <div className={`relative ${vid.aspectRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-video'} bg-black`}>
               <video src={vid.url} className="w-full h-full object-cover" controls />
               <button 
                 onClick={async () => {
-                   if(window.confirm("Purge this video?")) {
+                   if(window.confirm("Purge this video asset from curriculum?")) {
                      await deleteDoc(doc(db, "generatedVideos", vid.id));
                      if(vid.storagePath) await deleteObject(ref(storage, vid.storagePath));
                    }
@@ -160,24 +164,30 @@ const VideoLab = () => {
             </div>
             <div className="p-6">
                <div className="flex items-center space-x-2 mb-3">
-                  <span className="bg-authority-blue/10 text-authority-blue px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
+                  <span className="bg-authority-blue/10 text-authority-blue dark:text-steel-blue px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border border-authority-blue/20">
                     Module {vid.moduleId}
                   </span>
                   <span className="text-[10px] text-text-muted font-bold font-mono">
                     {new Date(vid.createdAt).toLocaleDateString()}
                   </span>
                </div>
-               <p className="text-xs font-bold text-text-primary line-clamp-2 leading-relaxed">{vid.prompt}</p>
+               <p className="text-xs font-bold text-text-primary dark:text-white line-clamp-2 leading-relaxed">{vid.prompt}</p>
             </div>
           </div>
         ))}
+        {videos.length === 0 && (
+          <div className="col-span-full py-24 bg-slate-50 dark:bg-gray-900/30 rounded-[3rem] border border-dashed border-border-light dark:border-border-dark text-center">
+            <Film className="w-16 h-16 text-text-muted mx-auto mb-4 opacity-20" />
+            <p className="text-text-muted font-bold">No curriculum clips detected in the lab.</p>
+          </div>
+        )}
       </div>
 
       {showUploader && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xl animate-in fade-in duration-300">
-           <div className="bg-white p-10 rounded-[3.5rem] shadow-2xl max-w-2xl w-full relative">
-              <button onClick={() => setShowUploader(false)} className="absolute top-8 right-8 p-3 hover:bg-slate-100 rounded-full"><X /></button>
-              <h2 className="text-2xl font-bold font-serif mb-8 text-authority-blue">Add Asset to Curriculum</h2>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xl animate-in fade-in duration-300">
+           <div className="bg-white dark:bg-surface-dark p-10 rounded-[3.5rem] shadow-2xl max-w-2xl w-full relative border border-border-light dark:border-border-dark overflow-y-auto max-h-[95vh] custom-scrollbar">
+              <button onClick={() => setShowUploader(false)} className="absolute top-8 right-8 p-3 hover:bg-slate-100 dark:hover:bg-gray-800 rounded-full transition-all active:scale-90"><X /></button>
+              <h2 className="text-2xl font-bold font-serif mb-8 text-authority-blue dark:text-white">Add Asset to Curriculum</h2>
               
               <div className="space-y-6">
                 <div className="space-y-3">
@@ -185,15 +195,15 @@ const VideoLab = () => {
                   <select 
                     value={formData.moduleId}
                     onChange={(e) => setFormData({...formData, moduleId: parseInt(e.target.value)})}
-                    className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold outline-none"
+                    className="w-full px-6 py-4 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl font-bold outline-none focus:ring-2 focus:ring-authority-blue transition-all"
                   >
                     {COURSE_MODULES.map(m => <option key={m.id} value={m.id}>Module {m.id}: {m.title}</option>)}
                   </select>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8 py-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4">
                    <div className="space-y-4">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue border-b pb-2">Option A: Manual Sync</p>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-steel-blue border-b border-border-light dark:border-border-dark pb-2">Option A: Manual Sync</p>
                       <MediaUploader 
                         label="Upload Production File"
                         folder="curriculum_videos"
@@ -203,19 +213,19 @@ const VideoLab = () => {
                       />
                    </div>
                    <div className="space-y-4">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue border-b pb-2">Option B: Neural Synthesis</p>
-                      <div className="bg-slate-50 p-6 rounded-3xl border border-border-light space-y-4">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-steel-blue border-b border-border-light dark:border-border-dark pb-2">Option B: Neural Synthesis</p>
+                      <div className="bg-slate-50 dark:bg-gray-900 p-6 rounded-3xl border border-border-light dark:border-border-dark space-y-4 shadow-inner">
                         <textarea 
                           rows={3}
                           value={formData.prompt}
                           onChange={(e) => setFormData({...formData, prompt: e.target.value})}
                           placeholder="Describe the cinematic scene..."
-                          className="w-full bg-white border border-border-light rounded-xl p-4 text-xs font-bold"
+                          className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl p-4 text-xs font-bold focus:ring-2 focus:ring-authority-blue transition-all"
                         />
                         <button 
                           onClick={generateAIVideo}
                           disabled={!hasApiKey || isGenerating}
-                          className="w-full bg-gradient-to-r from-authority-blue to-steel-blue text-white py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center disabled:opacity-30"
+                          className="w-full bg-gradient-to-r from-authority-blue to-steel-blue text-white py-4 rounded-xl font-bold text-[10px] uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-30 active:scale-95 transition-all shadow-lg"
                         >
                           {isGenerating ? <Loader2 className="animate-spin mr-2" size={14}/> : <Sparkles className="mr-2" size={14} />}
                           Synthesize Asset

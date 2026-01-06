@@ -54,7 +54,7 @@ const HomePageEditor = () => {
       } catch (err: any) {
         console.error("Fetch Error:", err);
         if (err.code === 'permission-denied') {
-          setError("Cloud Firestore API is disabled or permissions are insufficient. Please enable it in your Google Cloud Console.");
+          setError("Cloud Firestore API is disabled or permissions are insufficient for project lpedu-d9bb2. Please enable it in your Google Cloud Console.");
         } else {
           setError(err.message || "An unexpected error occurred while loading page content.");
         }
@@ -114,7 +114,7 @@ const HomePageEditor = () => {
     setGeneratingImage(true);
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const prompt = "A wide-angle, high-quality photograph of a professional trucking fleet owner-operator confidently reviewing compliance documents on a clipboard. In the background, a modern white semi-truck and a clean box truck are parked side-by-side at a logistics center. The lighting is cinematic and bright, conveying authority and success. The color palette features deep navy blue and vibrant gold accents in the operator's professional gear and the facility environment. Corporate professional style, sharp focus, 16:9 aspect ratio.";
+      const prompt = "A wide-angle, high-quality photograph of a professional trucking fleet owner-operator confidently reviewing compliance documents on a clipboard. In the background, a modern white semi-truck and a clean box truck are parked side-by-side at a logistics center. The lighting is cinematic and bright, conveying authority and success. Corporate professional style, sharp focus, 16:9 aspect ratio.";
       
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash-image',
@@ -174,10 +174,10 @@ const HomePageEditor = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="https://console.cloud.google.com/apis/library/firestore.googleapis.com" 
+              href="https://console.cloud.google.com/apis/library/firestore.googleapis.com?project=lpedu-d9bb2" 
               target="_blank" 
               rel="noreferrer" 
-              className="bg-red-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-red-700 transition-all flex items-center justify-center"
+              className="bg-red-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-red-700 transition-all flex items-center justify-center shadow-lg"
             >
               Enable Firestore API <ExternalLink size={16} className="ml-2" />
             </a>
@@ -253,7 +253,7 @@ const HomePageEditor = () => {
             <input 
               value={content.hero.headline}
               onChange={e => setContent({ ...content, hero: { ...content.hero, headline: e.target.value } })}
-              className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none focus:ring-2 focus:ring-authority-blue"
+              className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none focus:ring-2 focus:ring-authority-blue transition-all"
             />
           </div>
 
@@ -263,14 +263,14 @@ const HomePageEditor = () => {
               rows={3}
               value={content.hero.subheadline}
               onChange={e => setContent({ ...content, hero: { ...content.hero, subheadline: e.target.value } })}
-              className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none focus:ring-2 focus:ring-authority-blue"
+              className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none focus:ring-2 focus:ring-authority-blue transition-all"
             />
           </div>
 
           <div className="space-y-4">
             <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">Hero Image</label>
             <div className="flex flex-col space-y-4">
-              <div className="w-full aspect-video bg-slate-100 dark:bg-gray-800 rounded-2xl overflow-hidden flex items-center justify-center border border-dashed border-border-light relative group">
+              <div className="w-full aspect-video bg-slate-100 dark:bg-gray-800 rounded-2xl overflow-hidden flex items-center justify-center border border-dashed border-border-light relative group shadow-inner">
                 {content.hero.imageUrl ? (
                   <img src={content.hero.imageUrl} className="w-full h-full object-cover" alt="Hero" />
                 ) : (
@@ -330,7 +330,7 @@ const HomePageEditor = () => {
             <input 
               value={content.mission.headline}
               onChange={e => setContent({ ...content, mission: { ...content.mission, headline: e.target.value } })}
-              className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none"
+              className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none transition-all focus:ring-2 focus:ring-authority-blue"
             />
           </div>
 
@@ -439,11 +439,11 @@ const HomePageEditor = () => {
       </div>
 
       {/* Preview Panel */}
-      <div className="hidden lg:block w-1/2 bg-slate-100 dark:bg-primary-dark rounded-[2.5rem] border border-border-light dark:border-border-dark overflow-hidden relative group">
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-authority-blue/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20 shadow-xl pointer-events-none">
+      <div className="hidden lg:block w-1/2 bg-slate-100 dark:bg-primary-dark rounded-[2.5rem] border border-border-light dark:border-border-dark overflow-hidden relative group shadow-2xl">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-authority-blue/90 backdrop-blur-md px-6 py-2 rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 shadow-2xl pointer-events-none">
           Live Real-Time Preview
         </div>
-        <div className="h-full overflow-y-auto transform scale-[0.85] origin-top transition-transform duration-500">
+        <div className="h-full overflow-y-auto transform scale-[0.85] origin-top transition-transform duration-500 custom-scrollbar">
            <HomePage previewData={content} />
         </div>
       </div>
