@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -45,12 +46,6 @@ export const INITIAL_SETTINGS: SiteSettings = {
   }
 };
 
-export const CHECKOUT_URLS = {
-  starter: "",
-  professional: "",
-  enterprise: ""
-};
-
 export const INITIAL_TESTIMONIALS: Testimonial[] = [
   {
     id: '1',
@@ -62,7 +57,7 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
     id: '2',
     author: 'Sarah Chen',
     role: 'Carrier Manager, NorthStar Hauling',
-    content: 'The most comprehensive compliance training I have ever seen. They don't just tell you the rules; they show you how to implement them without the headache.'
+    content: 'The most comprehensive compliance training I have ever seen. They don’t just tell you the rules; they show you how to implement them without the headache.'
   },
   {
     id: '3',

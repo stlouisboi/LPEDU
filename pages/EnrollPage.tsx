@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
@@ -15,7 +15,10 @@ import {
   Users,
   ShieldAlert,
   ChevronDown,
-  Video
+  Video,
+  AlertCircle,
+  User,
+  Mail
 } from 'lucide-react';
 import { collection, query, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { db } from '../firebase';
@@ -59,6 +62,7 @@ const EnrollPage = () => {
   const { settings, addFormSubmission } = useApp();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [touched, setTouched] = useState({ name: false, email: false, password: false });
   const [videos, setVideos] = useState<GeneratedVideo[]>([]);
 
   useEffect(() => {
@@ -73,8 +77,32 @@ const EnrollPage = () => {
     return unsub;
   }, []);
 
+  const validation = useMemo(() => {
+    const errors = {
+      name: formData.name.length < 2 ? 'Please enter your full name.' : null,
+      email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ? 'Please enter a valid professional email.' : null,
+      password: formData.password.length < 8 ? 'Password must be at least 8 characters long.' : null
+    };
+
+    return {
+      errors,
+      isValid: !errors.name && !errors.email && !errors.password
+    };
+  }, [formData]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+  };
+
   const handleEnroll = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validation.isValid) return;
+
     addFormSubmission({ type: 'Course Enrollment', ...formData, date: new Date().toISOString() });
     alert("Enrollment successful! Please check your email for access instructions.");
     navigate('/'); 
@@ -151,7 +179,7 @@ const EnrollPage = () => {
               </div>
 
               {urls.selfPaced ? (
-                <a href={urls.selfPaced} className="w-full text-center border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all mt-8">Select Self-Paced</a>
+                <a href={urls.selfPaced} target="_blank" rel="noopener noreferrer" className="w-full text-center border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all mt-8">Select Self-Paced</a>
               ) : (
                 <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all mt-8">Select Self-Paced</button>
               )}
@@ -198,7 +226,7 @@ const EnrollPage = () => {
               </div>
 
               {urls.mastery ? (
-                <a href={urls.mastery} className="w-full text-center bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl mt-8">Start Mastery Now</a>
+                <a href={urls.mastery} target="_blank" rel="noopener noreferrer" className="w-full text-center bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl mt-8">Start Mastery Now</a>
               ) : (
                 <button className="w-full bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl mt-8">Start Mastery Now</button>
               )}
@@ -223,7 +251,7 @@ const EnrollPage = () => {
               </ul>
 
               {urls.elite ? (
-                <a href={urls.elite} className="w-full text-center border-2 border-authority-blue py-4 rounded-xl font-bold mt-8">Inquire About Elite</a>
+                <a href={urls.elite} target="_blank" rel="noopener noreferrer" className="w-full text-center border-2 border-authority-blue py-4 rounded-xl font-bold mt-8">Inquire About Elite</a>
               ) : (
                 <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold mt-8">Inquire About Elite</button>
               )}
@@ -320,10 +348,133 @@ const EnrollPage = () => {
             <p className="opacity-70">Complete the form below to secure your enrollment.</p>
           </div>
           <form onSubmit={handleEnroll} className="space-y-6 bg-white dark:bg-surface-dark p-12 rounded-[3rem] shadow-2xl text-text-primary dark:text-text-dark-primary">
-            <input required placeholder="Full Name" className="w-full px-5 py-4 border rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue bg-white dark:bg-gray-800 border-border-light dark:border-border-dark" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-            <input required type="email" placeholder="Email Address" className="w-full px-5 py-4 border rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue bg-white dark:bg-gray-800 border-border-light dark:border-border-dark" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
-            <input required type="password" placeholder="Create Password" className="w-full px-5 py-4 border rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue bg-white dark:bg-gray-800 border-border-light dark:border-border-dark" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} />
-            <button type="submit" className="w-full bg-signal-gold text-authority-blue py-5 rounded-2xl font-bold shadow-xl hover:bg-white transition-all">Complete Enrollment & Start Module 0</button>
+            
+            {/* Full Name Field */}
+            <div className="space-y-2">
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
+                  <User size={18} />
+                </div>
+                <input 
+                  required 
+                  name="name"
+                  placeholder="Full Name" 
+                  className={`w-full pl-12 pr-12 py-4 border rounded-2xl outline-none focus:ring-2 bg-white dark:bg-gray-800 transition-all ${
+                    touched.name 
+                      ? validation.errors.name 
+                        ? 'border-red-500 focus:ring-red-200' 
+                        : 'border-green-500 focus:ring-green-200' 
+                      : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
+                  }`}
+                  value={formData.name} 
+                  onChange={handleInputChange} 
+                  onBlur={() => handleBlur('name')}
+                />
+                {touched.name && (
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    {validation.errors.name ? (
+                      <AlertCircle className="text-red-500" size={18} />
+                    ) : (
+                      <CheckCircle2 className="text-green-500" size={18} />
+                    )}
+                  </div>
+                )}
+              </div>
+              {touched.name && validation.errors.name && (
+                <p className="text-xs text-red-500 font-bold ml-2 animate-in fade-in slide-in-from-top-1">{validation.errors.name}</p>
+              )}
+            </div>
+
+            {/* Email Address Field */}
+            <div className="space-y-2">
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
+                  <Mail size={18} />
+                </div>
+                <input 
+                  required 
+                  name="email"
+                  type="email" 
+                  placeholder="Professional Email Address" 
+                  className={`w-full pl-12 pr-12 py-4 border rounded-2xl outline-none focus:ring-2 bg-white dark:bg-gray-800 transition-all ${
+                    touched.email 
+                      ? validation.errors.email 
+                        ? 'border-red-500 focus:ring-red-200' 
+                        : 'border-green-500 focus:ring-green-200' 
+                      : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
+                  }`}
+                  value={formData.email} 
+                  onChange={handleInputChange}
+                  onBlur={() => handleBlur('email')}
+                />
+                {touched.email && (
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    {validation.errors.email ? (
+                      <AlertCircle className="text-red-500" size={18} />
+                    ) : (
+                      <CheckCircle2 className="text-green-500" size={18} />
+                    )}
+                  </div>
+                )}
+              </div>
+              {touched.email && validation.errors.email && (
+                <p className="text-xs text-red-500 font-bold ml-2 animate-in fade-in slide-in-from-top-1">{validation.errors.email}</p>
+              )}
+            </div>
+
+            {/* Password Field */}
+            <div className="space-y-2">
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
+                  <Lock size={18} />
+                </div>
+                <input 
+                  required 
+                  name="password"
+                  type="password" 
+                  placeholder="Create Secure Password" 
+                  className={`w-full pl-12 pr-12 py-4 border rounded-2xl outline-none focus:ring-2 bg-white dark:bg-gray-800 transition-all ${
+                    touched.password 
+                      ? validation.errors.password 
+                        ? 'border-red-500 focus:ring-red-200' 
+                        : 'border-green-500 focus:ring-green-200' 
+                      : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
+                  }`}
+                  value={formData.password} 
+                  onChange={handleInputChange}
+                  onBlur={() => handleBlur('password')}
+                />
+                {touched.password && (
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    {validation.errors.password ? (
+                      <AlertCircle className="text-red-500" size={18} />
+                    ) : (
+                      <CheckCircle2 className="text-green-500" size={18} />
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="flex justify-between items-center px-2">
+                {touched.password && validation.errors.password ? (
+                  <p className="text-xs text-red-500 font-bold animate-in fade-in slide-in-from-top-1">{validation.errors.password}</p>
+                ) : (
+                  <p className="text-[10px] text-text-muted font-medium uppercase tracking-wider">Min. 8 characters recommended</p>
+                )}
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={!validation.isValid}
+              className={`w-full py-5 rounded-2xl font-bold shadow-xl transition-all ${
+                validation.isValid 
+                  ? 'bg-signal-gold text-authority-blue hover:bg-white active:scale-[0.98]' 
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed grayscale'
+              }`}
+            >
+              Complete Enrollment & Start Module 0
+            </button>
+
             <div className="flex items-center justify-center space-x-4 mt-8 opacity-50">
                <ShieldCheck size={16} />
                <p className="text-[10px] text-center uppercase tracking-widest font-bold">Secure SSL Encryption • Verified Course Provider</p>

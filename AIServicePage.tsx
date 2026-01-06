@@ -346,11 +346,31 @@ const AIServicePage = () => {
         config.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      let operation = await ai.models.generateVideos(config);
+      let initialOp = await ai.models.generateVideos(config);
 
+      // Clean the initial operation object to strip circular references
+      let operation = {
+        name: initialOp.name,
+        done: initialOp.done,
+        response: initialOp.response,
+        error: initialOp.error
+      } as any;
+
+      // Defensively polling using a cleaned object literal to avoid circular structure crash
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        operation = await ai.operations.getVideosOperation({ operation });
+        
+        const opResult = await ai.operations.getVideosOperation({ 
+          operation: { name: operation.name } as any 
+        });
+
+        // Re-clean the response at each step
+        operation = {
+          name: opResult.name,
+          done: opResult.done,
+          response: opResult.response,
+          error: opResult.error
+        } as any;
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;

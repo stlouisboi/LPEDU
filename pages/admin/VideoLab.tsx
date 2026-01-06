@@ -111,7 +111,7 @@ const VideoLab = () => {
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
-      let operation = await ai.models.generateVideos({
+      let initialOp = await ai.models.generateVideos({
         model: 'veo-3.1-fast-generate-preview',
         prompt: `Professional instructional video for a trucking business: ${formData.prompt}. High definition, cinematic corporate education style, clean visuals.`,
         config: {
@@ -121,9 +121,29 @@ const VideoLab = () => {
         }
       });
 
+      // Break initial circularity
+      let operation = {
+        name: initialOp.name,
+        done: initialOp.done,
+        response: initialOp.response,
+        error: initialOp.error
+      } as any;
+
+      // Poll until done. Using a clean object literal to avoid circular structure JSON errors.
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        operation = await ai.operations.getVideosOperation({ operation });
+        
+        // Pass only the name, and rebuild a clean result object
+        const opResult = await ai.operations.getVideosOperation({ 
+          operation: { name: operation.name } as any 
+        });
+
+        operation = {
+          name: opResult.name,
+          done: opResult.done,
+          response: opResult.response,
+          error: opResult.error
+        } as any;
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;

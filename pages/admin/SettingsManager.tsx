@@ -95,6 +95,9 @@ const SettingsManager = () => {
   if (loading) return <div className="h-96 flex items-center justify-center"><Loader2 className="animate-spin text-authority-blue" size={40} /></div>;
   if (!settings) return null;
 
+  // Proper null checking for configuration object as requested
+  const checkoutUrls = settings?.checkoutUrls || { selfPaced: '', mastery: '', elite: '' };
+
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -355,8 +358,8 @@ const SettingsManager = () => {
                       <LinkIcon size={12} className="mr-1.5" /> Self-Paced Tier URL
                     </label>
                     <input 
-                      value={settings.checkoutUrls?.selfPaced || ''}
-                      onChange={e => setSettings({...settings, checkoutUrls: { ...settings.checkoutUrls!, selfPaced: e.target.value }})}
+                      value={checkoutUrls.selfPaced || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: { ...checkoutUrls, selfPaced: e.target.value }})}
                       className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-sm font-mono"
                       placeholder="https://buy.stripe.com/..."
                     />
@@ -366,8 +369,8 @@ const SettingsManager = () => {
                       <LinkIcon size={12} className="mr-1.5" /> Mastery Bundle Tier URL
                     </label>
                     <input 
-                      value={settings.checkoutUrls?.mastery || ''}
-                      onChange={e => setSettings({...settings, checkoutUrls: { ...settings.checkoutUrls!, mastery: e.target.value }})}
+                      value={checkoutUrls.mastery || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: { ...checkoutUrls, mastery: e.target.value }})}
                       className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-sm font-mono"
                       placeholder="https://buy.stripe.com/..."
                     />
@@ -377,8 +380,8 @@ const SettingsManager = () => {
                       <LinkIcon size={12} className="mr-1.5" /> Concierge Elite Inquire URL
                     </label>
                     <input 
-                      value={settings.checkoutUrls?.elite || ''}
-                      onChange={e => setSettings({...settings, checkoutUrls: { ...settings.checkoutUrls!, elite: e.target.value }})}
+                      value={checkoutUrls.elite || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: { ...checkoutUrls, elite: e.target.value }})}
                       className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-sm font-mono"
                       placeholder="e.g. /contact or a custom form link"
                     />
