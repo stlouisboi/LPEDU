@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
 import { 
   Save, 
@@ -10,7 +10,6 @@ import {
   CheckCircle, 
   AlertCircle, 
   Loader2, 
-  ExternalLink,
   Settings,
   Zap
 } from 'lucide-react';
@@ -97,7 +96,6 @@ const FormManagement = () => {
 
       <form onSubmit={handleSave} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
-          {/* Form UI Settings */}
           <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-6">
             <h3 className="text-lg font-bold font-serif flex items-center text-authority-blue dark:text-white border-b pb-4 border-border-light">
               <Settings className="mr-2" size={20} /> Interface Customization
@@ -144,7 +142,6 @@ const FormManagement = () => {
         </div>
 
         <div className="space-y-8">
-          {/* Notification Settings */}
           <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-6">
             <h3 className="text-lg font-bold font-serif flex items-center text-authority-blue dark:text-white border-b pb-4 border-border-light">
               <Bell className="mr-2" size={20} /> Notifications
@@ -182,14 +179,12 @@ const FormManagement = () => {
                     onChange={e => setSettings({...settings, emailSubjectTemplate: e.target.value})}
                     className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-xs"
                   />
-                  <p className="text-[9px] text-text-muted mt-1 italic">Tags: &#123;&#123;firstName&#125;&#125;, &#123;&#123;lastName&#125;&#125;</p>
                 </div>
               </div>
             )}
           </div>
 
           <div className="bg-authority-blue p-8 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-10 translate-x-10"></div>
             <Zap className="mb-4 text-signal-gold" size={24} />
             <h4 className="font-bold text-lg mb-2">Automated Leads</h4>
             <p className="text-sm opacity-70 leading-relaxed mb-8">All submissions are securely stored in the cloud knowledge base and can be exported for CRM use.</p>

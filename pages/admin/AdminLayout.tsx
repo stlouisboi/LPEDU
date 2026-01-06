@@ -5,7 +5,6 @@ import { useAuth } from '../../AuthContext';
 import { 
   LayoutDashboard, 
   FileText, 
-  BookOpen, 
   Download, 
   MessageSquare, 
   Settings, 
@@ -45,9 +44,6 @@ const AdminLayout = () => {
         <div className="h-full flex flex-col">
           <div className="p-6 border-b border-border-light dark:border-border-dark flex items-center justify-between">
             <Link to="/admin" className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">L</span>
-              </div>
               <span className="font-bold text-authority-blue dark:text-white uppercase tracking-tighter">LP Admin</span>
             </Link>
             <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
@@ -87,9 +83,7 @@ const AdminLayout = () => {
         </div>
       </aside>
 
-      {/* Content */}
       <div className="flex-grow flex flex-col min-w-0 h-screen overflow-hidden">
-        {/* Header content unchanged ... */}
         <header className="h-16 bg-white dark:bg-surface-dark border-b border-border-light dark:border-border-dark flex items-center justify-between px-8 shrink-0">
           <div className="flex items-center space-x-4">
             <button className="lg:hidden" onClick={() => setSidebarOpen(true)}>
@@ -99,19 +93,8 @@ const AdminLayout = () => {
               {navItems.find(n => n.path === location.pathname)?.name || 'Management'}
             </h2>
           </div>
-          <div className="flex items-center space-x-4">
-            <a 
-              href="/" 
-              target="_blank" 
-              className="text-xs font-bold text-authority-blue dark:text-white hover:underline flex items-center space-x-1"
-            >
-              <Globe size={14} />
-              <span>Live Site</span>
-            </a>
-          </div>
         </header>
 
-        {/* Main scrollable area */}
         <main className="flex-grow overflow-y-auto p-8">
           <div className="max-w-6xl mx-auto">
             <Outlet />

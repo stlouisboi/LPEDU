@@ -1,8 +1,8 @@
 
-import { initializeApp, FirebaseApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, Auth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { initializeFirestore, Firestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { getStorage, FirebaseStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+import { initializeApp, FirebaseApp } from "firebase/app";
+import { getAuth, Auth } from "firebase/auth";
+import { initializeFirestore, Firestore } from "firebase/firestore";
+import { getStorage, FirebaseStorage } from "firebase/storage";
 
 /**
  * Robustly retrieves environment variables from common injection points.
@@ -62,22 +62,14 @@ if (isFirebaseConfigured) {
     const app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     
-    /**
-     * FIX: Use auto-detect long polling only. 
-     * Forcing long polling and auto-detecting it simultaneously is disallowed.
-     */
     db = initializeFirestore(app, {
-      experimentalAutoDetectLongPolling: true,
-      useFetchStreams: false
+      experimentalAutoDetectLongPolling: true
     });
     
     storage = getStorage(app);
     console.log("LaunchPath: Firebase initialized successfully.");
   } catch (error) {
     console.error("LaunchPath: Firebase initialization failed:", error);
-    // If initialization fails, we do NOT set db to a Proxy because 
-    // passing a Proxy to Firestore SDK functions (like collection())
-    // causes a runtime FirebaseError.
   }
 } else {
   console.warn("LaunchPath: Firebase unconfigured. Firestore features disabled.");

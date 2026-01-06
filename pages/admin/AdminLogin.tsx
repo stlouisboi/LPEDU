@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, Lock, Mail, Loader2 } from 'lucide-react';

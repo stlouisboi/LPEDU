@@ -8,28 +8,21 @@ import {
   updateDoc, 
   deleteDoc, 
   doc 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+} from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { db, storage, isFirebaseConfigured } from '../../firebase';
 import { 
   Video, 
   Plus, 
   Trash2, 
   Loader2, 
-  Play, 
   Download, 
   ShieldAlert, 
-  Zap, 
-  Clock,
-  Sparkles,
-  ExternalLink,
-  X,
-  ChevronRight,
-  Film,
-  CheckCircle2,
-  Edit,
-  Save,
-  Tag
+  Sparkles, 
+  X, 
+  Edit, 
+  Save, 
+  Film
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 import { GeneratedVideo } from '../../types';
@@ -56,10 +49,7 @@ const VideoLab = () => {
     "Rendering realistic motion profiles...",
     "Applying regulatory textures to scene...",
     "Finalizing safety audit visual flow...",
-    "Calibrating authority registration animations...",
-    "Baking cinematic lighting into explanatory clips...",
-    "Optimizing video for streaming delivery...",
-    "Generating professional narrative flow..."
+    "Calibrating authority registration animations..."
   ];
 
   useEffect(() => {
@@ -77,7 +67,6 @@ const VideoLab = () => {
     const q = query(collection(db, "generatedVideos"));
     const unsub = onSnapshot(q, (snap) => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as GeneratedVideo));
-      // Client-side sort to avoid index errors
       const sorted = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setVideos(sorted);
       setLoading(false);
@@ -113,7 +102,7 @@ const VideoLab = () => {
       
       let initialOp = await ai.models.generateVideos({
         model: 'veo-3.1-fast-generate-preview',
-        prompt: `Professional instructional video for a trucking business: ${formData.prompt}. High definition, cinematic corporate education style, clean visuals.`,
+        prompt: `Professional instructional video for a trucking business: ${formData.prompt}.`,
         config: {
           numberOfVideos: 1,
           resolution: '720p',
@@ -121,7 +110,6 @@ const VideoLab = () => {
         }
       });
 
-      // Break initial circularity
       let operation = {
         name: initialOp.name,
         done: initialOp.done,
@@ -129,15 +117,11 @@ const VideoLab = () => {
         error: initialOp.error
       } as any;
 
-      // Poll until done. Using a clean object literal to avoid circular structure JSON errors.
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        
-        // Pass only the name, and rebuild a clean result object
         const opResult = await ai.operations.getVideosOperation({ 
           operation: { name: operation.name } as any 
         });
-
         operation = {
           name: opResult.name,
           done: opResult.done,
@@ -149,17 +133,15 @@ const VideoLab = () => {
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
       if (!downloadLink) throw new Error("Video generation failed to return a link.");
 
-      setGenMessage("Transferring media to secure storage...");
-      
       const response = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
-      if (!response.ok) throw new Error("Failed to download video from Veo server.");
+      if (!response.ok) throw new Error("Failed to download video.");
       const blob = await response.blob();
 
       const videoId = `video_${Date.now()}`;
       const storagePath = `curriculum_videos/${videoId}.mp4`;
       const storageRef = ref(storage, storagePath);
-      const uploadResult = await uploadBytes(storageRef, blob);
-      const persistentUrl = await getDownloadURL(uploadResult.ref);
+      await uploadBytes(storageRef, blob);
+      const persistentUrl = await getDownloadURL(storageRef);
 
       await addDoc(collection(db, "generatedVideos"), {
         prompt: formData.prompt,
@@ -174,12 +156,7 @@ const VideoLab = () => {
       setFormData({ prompt: '', aspectRatio: '16:9', moduleId: 0 });
     } catch (err: any) {
       console.error("Video Gen Error:", err);
-      if (err.message?.includes("Requested entity was not found") || err.message?.includes("404")) {
-        setHasApiKey(false);
-        alert("Requested entity was not found. Please select your API key again via the button.");
-      } else {
-        alert("Failed to generate video: " + err.message);
-      }
+      alert("Failed to generate video.");
     } finally {
       clearInterval(messageInterval);
       setIsGenerating(false);
@@ -199,7 +176,7 @@ const VideoLab = () => {
   };
 
   const handleDelete = async (vid: GeneratedVideo) => {
-    if (!window.confirm("Delete this video clip permanently?")) return;
+    if (!window.confirm("Delete this video?")) return;
     try {
       if (storage && vid.storagePath) {
         const fileRef = ref(storage, vid.storagePath);
@@ -218,7 +195,7 @@ const VideoLab = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Video Content Lab</h1>
-          <p className="text-text-muted mt-1">Generate and manage cinematic clips for curriculum modules using Veo 3.1.</p>
+          <p className="text-text-muted mt-1">Generate cinematic clips using Veo 3.1.</p>
         </div>
         {!hasApiKey ? (
           <button 
@@ -237,203 +214,21 @@ const VideoLab = () => {
         )}
       </div>
 
-      {!hasApiKey && (
-        <div className="bg-amber-50 dark:bg-amber-950/20 p-8 rounded-[2.5rem] border border-amber-200 dark:border-amber-900/50 text-center space-y-4">
-          <Film className="mx-auto text-amber-600" size={48} />
-          <h3 className="text-xl font-bold font-serif text-amber-900 dark:text-amber-400">Paid API Key Required</h3>
-          <p className="text-amber-800/70 dark:text-amber-300/70 max-w-xl mx-auto">
-            Veo video generation requires a billing-enabled Google Cloud project. 
-            <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noreferrer" className="mx-1 underline font-bold">Learn about billing</a>.
-          </p>
-          <button 
-            onClick={handleOpenSelectKey}
-            className="bg-amber-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-amber-700 transition-all"
-          >
-            Select API Key
-          </button>
-        </div>
-      )}
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {videos.map((vid) => {
-          const isEditing = editingVideoId === vid.id;
-          const associatedModule = COURSE_MODULES.find(m => m.id === vid.moduleId);
-          
-          return (
-            <div key={vid.id} className="bg-white dark:bg-surface-dark rounded-[2.5rem] border border-border-light dark:border-border-dark overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col">
-              <div className={`relative ${vid.aspectRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-video'} bg-black`}>
-                <video 
-                  src={vid.url} 
-                  className="w-full h-full object-cover" 
-                  controls
-                />
-                <button 
-                  onClick={() => handleDelete(vid)}
-                  className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-                >
-                  <Trash2 size={16} />
-                </button>
-              </div>
-              <div className="p-6 space-y-4 flex-grow flex flex-col">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-1 flex-grow pr-2">
-                    {isEditing ? (
-                      <div className="space-y-2 animate-in slide-in-from-top-2">
-                        <p className="text-[10px] font-black uppercase text-authority-blue">Assign to Module:</p>
-                        <select 
-                          value={editModuleId}
-                          onChange={e => setEditModuleId(parseInt(e.target.value))}
-                          className="w-full text-xs font-bold p-2 bg-slate-50 rounded-lg border border-border-light"
-                        >
-                          {COURSE_MODULES.map(m => (
-                            <option key={m.id} value={m.id}>M{m.id}: {m.title}</option>
-                          ))}
-                        </select>
-                        <div className="flex space-x-2">
-                          <button 
-                            onClick={() => handleUpdateModule(vid.id)}
-                            className="bg-authority-blue text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase flex items-center"
-                          >
-                            <Save size={10} className="mr-1" /> Save
-                          </button>
-                          <button 
-                            onClick={() => setEditingVideoId(null)}
-                            className="bg-slate-100 text-text-muted px-3 py-1.5 rounded-lg text-[10px] font-black uppercase"
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-center space-x-2">
-                        <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded ${associatedModule ? 'bg-authority-blue text-white' : 'bg-amber-100 text-amber-700'}`}>
-                          {associatedModule ? `M${associatedModule.id}: ${associatedModule.title}` : 'Unassigned'}
-                        </span>
-                        <button 
-                          onClick={() => { setEditingVideoId(vid.id); setEditModuleId(vid.moduleId || 0); }}
-                          className="p-1 hover:bg-slate-100 rounded text-text-muted opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <Edit size={12} />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                  <span className="text-[10px] font-bold text-text-muted shrink-0">{vid.createdAt ? new Date(vid.createdAt).toLocaleDateString() : 'N/A'}</span>
-                </div>
-                <p className="text-xs text-text-muted line-clamp-2 italic flex-grow">"{vid.prompt}"</p>
-              </div>
+        {videos.map((vid) => (
+          <div key={vid.id} className="bg-white dark:bg-surface-dark rounded-[2.5rem] border border-border-light overflow-hidden flex flex-col">
+            <div className={`relative ${vid.aspectRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-video'} bg-black`}>
+              <video src={vid.url} className="w-full h-full object-cover" controls />
+              <button 
+                onClick={() => handleDelete(vid)}
+                className="absolute top-4 right-4 p-2 bg-red-500 text-white rounded-lg"
+              >
+                <Trash2 size={16} />
+              </button>
             </div>
-          );
-        })}
-
-        {videos.length === 0 && !loading && hasApiKey && (
-          <div className="col-span-full py-24 text-center bg-slate-50 dark:bg-gray-800/50 border-2 border-dashed border-border-light rounded-[3rem]">
-            <Sparkles className="mx-auto text-authority-blue/20 mb-4" size={48} />
-            <p className="text-text-muted font-bold">No generated clips yet.</p>
-            <p className="text-xs text-text-muted mt-1">Use the "Create Clip" button to visualize your curriculum.</p>
           </div>
-        )}
+        ))}
       </div>
-
-      {showGenerator && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3rem] shadow-2xl border border-border-light dark:border-border-dark max-w-2xl w-full relative">
-            <button 
-              disabled={isGenerating}
-              onClick={() => setShowGenerator(false)}
-              className="absolute top-8 right-8 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-            >
-              <X size={24} />
-            </button>
-
-            {isGenerating ? (
-              <div className="py-12 text-center space-y-8 animate-pulse">
-                <div className="relative w-24 h-24 mx-auto">
-                   <Film className="w-24 h-24 text-authority-blue animate-spin" />
-                   <Sparkles className="absolute -top-2 -right-2 text-signal-gold animate-bounce" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-bold font-serif">{genMessage}</h3>
-                  <p className="text-text-muted text-sm max-w-sm mx-auto">Generation and storage can take up to 3 minutes. Please stay on this page.</p>
-                </div>
-                <div className="w-full bg-slate-100 dark:bg-gray-800 h-2 rounded-full overflow-hidden">
-                   <div className="bg-authority-blue h-full w-1/3 animate-[loading_2s_ease-in-out_infinite]"></div>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-8">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-authority-blue/10 text-authority-blue rounded-2xl flex items-center justify-center">
-                    <Video size={24} />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold font-serif leading-none">AI Video Generator</h2>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mt-1">Veo 3.1 Cinematic Engine</p>
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Module Association</label>
-                    <select 
-                      value={formData.moduleId}
-                      onChange={e => setFormData({...formData, moduleId: parseInt(e.target.value)})}
-                      className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none text-sm font-bold"
-                    >
-                      {COURSE_MODULES.map(m => (
-                        <option key={m.id} value={m.id}>Module {m.id}: {m.title}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Visual Concept Prompt</label>
-                    <textarea 
-                      rows={4}
-                      value={formData.prompt}
-                      onChange={e => setFormData({...formData, prompt: e.target.value})}
-                      placeholder="e.g. An owner-operator performing a detailed pre-trip inspection on a clean white box truck at sunset, high quality, professional photography style."
-                      className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none text-sm leading-relaxed"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <button 
-                      onClick={() => setFormData({...formData, aspectRatio: '16:9'})}
-                      className={`p-4 rounded-2xl border flex flex-col items-center justify-center gap-2 transition-all ${formData.aspectRatio === '16:9' ? 'border-authority-blue bg-authority-blue/5 text-authority-blue' : 'border-border-light opacity-50'}`}
-                    >
-                       <div className="w-8 h-4 bg-current opacity-20 rounded-sm"></div>
-                       <span className="text-[10px] font-black uppercase">Landscape 16:9</span>
-                    </button>
-                    <button 
-                      onClick={() => setFormData({...formData, aspectRatio: '9:16'})}
-                      className={`p-4 rounded-2xl border flex flex-col items-center justify-center gap-2 transition-all ${formData.aspectRatio === '9:16' ? 'border-authority-blue bg-authority-blue/5 text-authority-blue' : 'border-border-light opacity-50'}`}
-                    >
-                       <div className="w-4 h-8 bg-current opacity-20 rounded-sm"></div>
-                       <span className="text-[10px] font-black uppercase">Portrait 9:16</span>
-                    </button>
-                  </div>
-
-                  <button 
-                    onClick={generateVideo}
-                    className="w-full bg-authority-blue text-white py-5 rounded-2xl font-bold flex items-center justify-center group shadow-xl hover:bg-steel-blue transition-all"
-                  >
-                    <Sparkles className="mr-2 group-hover:rotate-12 transition-transform" size={18} />
-                    Generate Media Asset
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes loading {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(300%); }
-        }
-      `}</style>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { collection, query, where, getDocs, limit } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from '../firebase';
 import { Calendar, User, ChevronLeft, Share2, Bookmark, Loader2, ShieldAlert } from 'lucide-react';
 import { BlogPost } from '../types';

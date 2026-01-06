@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase';
 import { Search, Filter, Calendar, User, ArrowRight, Loader2 } from 'lucide-react';
 import { useApp } from '../App';

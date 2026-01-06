@@ -8,10 +8,9 @@ import {
   addDoc, 
   updateDoc, 
   deleteDoc, 
-  doc,
-  increment 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+  doc
+} from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage, isFirebaseConfigured } from '../../firebase';
 import { 
   Plus, 
@@ -20,11 +19,9 @@ import {
   Trash2, 
   Edit, 
   Search, 
-  Link as LinkIcon, 
   Loader2, 
   Upload, 
   X,
-  Database,
   CheckCircle,
   Eye,
   Mail,
@@ -44,7 +41,6 @@ const ResourceManager = () => {
   const [saving, setSaving] = useState(false);
   const [apiError, setApiError] = useState<boolean>(false);
 
-  // Added missing formData state to fix reference errors in handlers and JSX.
   const [formData, setFormData] = useState<Partial<Resource>>({
     name: '',
     description: '',

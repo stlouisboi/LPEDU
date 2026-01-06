@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, PlusCircle, AlertCircle, CheckCircle2, Loader2, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { doc, getDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
 
 const AdminDashboardHome = () => {
@@ -158,16 +158,16 @@ const AdminDashboardHome = () => {
         <div className="bg-authority-blue p-8 rounded-[2.5rem] text-white relative overflow-hidden flex flex-col justify-center">
           <div className="absolute top-0 right-0 w-32 h-32 bg-signal-gold opacity-10 rounded-full -translate-y-12 translate-x-12"></div>
           <div className="relative z-10">
-            <h3 className="text-2xl font-bold font-serif mb-4 leading-tight">System Status: <br/>{dbStatus === 'active' ? 'Optimal' : (dbStatus === 'not-found' || dbStatus === 'api-disabled') ? 'Action Required' : 'Degraded'}</h3>
+            <h3 className="text-2xl font-bold font-serif mb-4 leading-tight">System Status: <br/>{dbStatus === 'active' ? 'Operational' : (dbStatus === 'not-found' || dbStatus === 'api-disabled') ? 'Action Required' : 'Checking...'}</h3>
             <p className="text-white/70 text-sm leading-relaxed mb-6">
               {dbStatus === 'not-found' 
-                ? "The database has not been created yet. Follow the red alert instructions to fix this." 
+                ? "The database instance hasn't been created yet. Follow the instructional alerts above to finalize setup." 
                 : dbStatus === 'api-disabled'
-                ? "The database is unreachable because the API is disabled in GCP console."
-                : "Database, Storage, and Authentication services are operational. All security patches are up to date."}
+                ? "Connectivity is blocked because the required Google APIs are not enabled."
+                : "Secure Cloud, Storage, and Authentication systems are reporting optimal health."}
             </p>
             <Link to="/admin/settings" className="inline-flex items-center space-x-2 text-signal-gold font-bold hover:underline">
-              <span>Security Settings</span>
+              <span>System Settings</span>
               <ArrowUpRight size={16} />
             </Link>
           </div>

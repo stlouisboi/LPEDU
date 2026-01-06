@@ -27,9 +27,10 @@ import {
   Star,
   Globe,
   Loader2,
-  Video
+  Video,
+  ArrowUp
 } from 'lucide-react';
-import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, User, UserRole, Testimonial } from './types';
@@ -45,7 +46,7 @@ import ResourcesPage from './pages/ResourcesPage';
 import FAQPage from './pages/FAQPage';
 import ContactPage from './pages/ContactPage';
 import LegalPage from './pages/LegalPage';
-import AIServicePage from './pages/AIServicePage';
+import AIServicePage from './AIServicePage';
 import EnrollPage from './pages/EnrollPage';
 import ModuleDetailPage from './pages/ModuleDetailPage';
 
@@ -111,29 +112,29 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 dark:bg-primary-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark">
+    <header className="sticky top-0 z-50 bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center space-x-3 group" onClick={() => setIsMenuOpen(false)}>
             {settings.logoUrl ? (
               <img src={settings.logoUrl} alt={settings.siteName} className="h-10 w-auto object-contain" />
             ) : (
-              <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center group-hover:bg-logo-red transition-colors shadow-sm">
-                <span className="text-white font-bold text-lg">{settings.siteName.charAt(0)}</span>
+              <div className="w-10 h-10 bg-black dark:bg-authority-blue rounded-xl flex items-center justify-center">
+                <span className="text-white font-black text-lg">{settings.siteName.charAt(0)}</span>
               </div>
             )}
-            <span className="text-xl font-bold tracking-tight text-authority-blue dark:text-white uppercase font-serif">
+            <span className="text-xl font-black tracking-tighter text-authority-blue dark:text-white uppercase font-serif">
               {settings.siteName}
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-semibold transition-colors hover:text-authority-blue ${
-                  location.pathname === item.path ? 'text-authority-blue' : 'text-text-muted dark:text-text-dark-muted'
+                className={`text-sm font-bold transition-all hover:text-authority-blue ${
+                  location.pathname === item.path ? 'text-authority-blue dark:text-signal-gold' : 'text-text-muted dark:text-text-dark-muted'
                 }`}
               >
                 {item.name}
@@ -143,24 +144,24 @@ const Header = () => {
             <div className="flex items-center space-x-4 pl-4 border-l border-border-light dark:border-border-dark">
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
                 aria-label="Toggle theme"
               >
-                {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+                {theme === 'light' ? <Moon className="w-5 h-5 text-authority-blue" /> : <Sun className="w-5 h-5 text-signal-gold" />}
               </button>
               
               <Link
                 to="/enroll"
-                className="bg-authority-blue text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:opacity-90 transition-all shadow-md hover:shadow-lg"
+                className="bg-authority-blue text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-steel-blue transition-all shadow-md"
               >
-                Start Learning
+                Enroll Now
               </Link>
             </div>
           </nav>
 
           <div className="lg:hidden flex items-center space-x-4">
             <button onClick={toggleTheme} className="p-2">
-              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              {theme === 'light' ? <Moon className="w-5 h-5 text-authority-blue" /> : <Sun className="w-5 h-5 text-signal-gold" />}
             </button>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -169,20 +170,30 @@ const Header = () => {
         </div>
       </div>
 
-      {isMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark px-4 py-8 space-y-4 shadow-xl animate-in slide-in-from-top duration-300">
+      {/* Mobile Menu */}
+      <div className={`lg:hidden bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark px-4 py-8 space-y-4 shadow-xl ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <nav className="flex flex-col space-y-4">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
               onClick={() => setIsMenuOpen(false)}
-              className="block text-xl font-bold text-text-primary dark:text-text-dark-primary hover:text-authority-blue"
+              className={`text-lg font-bold ${
+                location.pathname === item.path ? 'text-authority-blue dark:text-signal-gold' : 'text-text-primary dark:text-text-dark-primary'
+              }`}
             >
               {item.name}
             </Link>
           ))}
-        </div>
-      )}
+          <Link
+            to="/enroll"
+            onClick={() => setIsMenuOpen(false)}
+            className="bg-authority-blue text-white text-center py-4 rounded-xl font-bold"
+          >
+            Start Learning Path
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 };
@@ -202,46 +213,44 @@ const Footer = () => {
   ].filter(s => s.url);
 
   return (
-    <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark pt-16 pb-24 lg:pb-8 relative">
+    <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark pt-16 pb-24 lg:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-            <Link to="/" className="flex items-center space-x-2 mb-6">
+            <Link to="/" className="flex items-center space-x-3 mb-6">
               {settings.logoUrl ? (
                 <img src={settings.logoUrl} alt={settings.siteName} className="h-8 w-auto" />
               ) : (
-                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-black dark:bg-authority-blue rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold">{settings.siteName.charAt(0)}</span>
                 </div>
               )}
-              <span className="text-2xl font-bold tracking-tight text-authority-blue dark:text-white uppercase font-serif">
+              <span className="text-2xl font-black tracking-tighter text-authority-blue dark:text-white uppercase font-serif">
                 {settings.siteName}
               </span>
             </Link>
-            <p className="text-text-muted dark:text-text-dark-muted max-w-sm mb-6 leading-relaxed">
+            <p className="text-text-muted dark:text-text-dark-muted max-w-sm mb-8">
               {settings.metaDescription}
             </p>
             
             {settings.showVeteranBadge && (
-              <div className="mb-8 p-4 bg-slate-50 dark:bg-gray-800/50 rounded-2xl border border-slate-100 dark:border-slate-800 inline-flex items-center space-x-3 shadow-sm group hover:border-authority-blue/20 transition-all">
-                <div className="w-10 h-10 bg-authority-blue text-white rounded-xl flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-                  <Award size={20} className="text-signal-gold" />
-                </div>
+              <div className="mb-8 p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 inline-flex items-center space-x-3">
+                <Award size={20} className="text-signal-gold" />
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold leading-none">Certified</p>
-                  <p className="text-xs font-bold text-text-primary dark:text-white mt-1 uppercase">Service-Disabled Veteran Owned</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-authority-blue dark:text-signal-gold leading-none">Certified SDVOB</p>
+                  <p className="text-xs font-bold text-text-primary dark:text-white mt-1 uppercase">Veteran Owned Business</p>
                 </div>
               </div>
             )}
 
-            <div className="flex space-x-4 mb-8">
+            <div className="flex space-x-4">
               {socialItems.map((social) => (
                 <a 
                   key={social.name} 
                   href={social.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-authority-blue hover:text-white transition-all"
+                  className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-authority-blue dark:text-text-dark-muted flex items-center justify-center hover:bg-authority-blue hover:text-white dark:hover:text-white transition-all"
                   title={social.name}
                 >
                   <span className="sr-only">{social.name}</span>
@@ -252,7 +261,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-bold mb-6 uppercase tracking-widest text-xs opacity-50">Quick Links</h4>
+            <h4 className="font-bold mb-6 uppercase tracking-widest text-xs text-text-muted">Quick Links</h4>
             <ul className="space-y-4 text-text-muted dark:text-text-dark-muted text-sm font-medium">
               <li><Link to="/about" className="hover:text-authority-blue transition-colors">About Us</Link></li>
               <li><Link to="/learning-path" className="hover:text-authority-blue transition-colors">The Learning Path</Link></li>
@@ -263,22 +272,21 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold mb-6 uppercase tracking-widest text-xs opacity-50">Contact & Hours</h4>
+            <h4 className="font-bold mb-6 uppercase tracking-widest text-xs text-text-muted">Contact</h4>
             <ul className="space-y-4 text-text-muted dark:text-text-dark-muted text-sm leading-relaxed">
-              <li className="font-bold text-authority-blue dark:text-steel-blue">{settings.contact.email}</li>
+              <li>{settings.contact.email}</li>
               <li>{settings.contact.phone}</li>
               <li>{settings.contact.address}</li>
-              <li className="pt-2 text-[10px] font-black uppercase tracking-tighter opacity-40">{settings.contact.hours}</li>
             </ul>
           </div>
         </div>
         
-        <div className="pt-8 border-t border-border-light dark:border-border-dark flex flex-col md:flex-row justify-between items-center text-sm text-text-muted dark:text-text-dark-muted space-y-4 md:space-y-0">
+        <div className="pt-8 border-t border-border-light dark:border-border-dark flex flex-col lg:flex-row justify-between items-center text-xs font-medium text-text-muted dark:text-text-dark-muted space-y-4 lg:space-y-0">
           <p>© {new Date().getFullYear()} {settings.siteName}. All rights reserved.</p>
-          <div className="flex space-x-6">
-            <Link to="/legal" className="hover:underline">Privacy Policy</Link>
-            <Link to="/legal" className="hover:underline">Terms of Service</Link>
-            <Link to="/legal" className="hover:underline">Disclaimer</Link>
+          <div className="flex space-x-8">
+            <Link to="/legal" className="hover:text-authority-blue transition-colors">Privacy Policy</Link>
+            <Link to="/legal" className="hover:text-authority-blue transition-colors">Terms of Service</Link>
+            <Link to="/legal" className="hover:text-authority-blue transition-colors">Disclaimer</Link>
           </div>
         </div>
       </div>
@@ -286,9 +294,9 @@ const Footer = () => {
       <div className="lg:hidden fixed bottom-0 left-0 w-full p-4 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-t border-border-light dark:border-border-dark z-50">
         <Link 
           to="/enroll"
-          className="block w-full bg-authority-blue text-white py-4 rounded-xl text-center font-bold text-lg shadow-md"
+          className="block w-full bg-authority-blue text-white py-4 rounded-xl text-center font-bold text-sm shadow-lg"
         >
-          Get Started
+          Enroll Now
         </Link>
       </div>
     </footer>
@@ -305,7 +313,6 @@ export default function App() {
 
   // Apply real-time settings and theme colors
   useEffect(() => {
-    // FIX: Verify db is a valid object before calling SDK functions
     if (!isFirebaseConfigured || !db || typeof db !== 'object') {
       setAppLoading(false);
       return;
@@ -375,8 +382,8 @@ export default function App() {
   if (appLoading) {
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center bg-primary-light">
-        <Loader2 className="animate-spin text-authority-blue mb-4" size={48} />
-        <p className="font-serif italic text-text-muted">Synchronizing Knowledge Base...</p>
+        <Loader2 className="animate-spin text-authority-blue mb-6" size={56} />
+        <p className="font-black uppercase tracking-[0.3em] text-authority-blue/40 text-xs">Synchronizing Knowledge Base</p>
       </div>
     );
   }
@@ -388,7 +395,7 @@ export default function App() {
     }}>
       <AuthProvider>
         <Router>
-          <div className={`min-h-screen flex flex-col ${theme === 'dark' ? 'dark' : ''}`}>
+          <div className={`min-h-screen flex flex-col transition-opacity duration-500 ${theme === 'dark' ? 'dark' : ''}`}>
             <Header />
             <main className="flex-grow">
               <Routes>

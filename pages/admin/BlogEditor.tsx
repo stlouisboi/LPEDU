@@ -6,11 +6,10 @@ import {
   getDoc, 
   setDoc, 
   addDoc, 
-  collection, 
-  serverTimestamp 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-import { db, storage, isFirebaseConfigured } from '../../firebase';
+  collection
+} from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from '../../firebase';
 import ReactQuill from 'react-quill';
 import { 
   Save, 
@@ -18,7 +17,6 @@ import {
   Image as ImageIcon, 
   Loader2, 
   CheckCircle, 
-  AlertCircle,
   Settings,
   Globe,
   Tag,
@@ -324,15 +322,6 @@ const BlogEditor = () => {
               onChange={e => e.target.files?.[0] && handleImageUpload(e.target.files[0])}
               className="w-full text-xs file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-authority-blue file:text-white"
             />
-          </div>
-
-          <div className="bg-authority-blue/5 border border-authority-blue/10 p-6 rounded-3xl space-y-4">
-            <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue flex items-center">
-              <Eye size={14} className="mr-2" /> Live Preview Tip
-            </h4>
-            <p className="text-[11px] leading-relaxed text-text-muted">
-              Safety audits rely on precision. Ensure your headings (H2, H3) follow a logical structure and all regulatory citations are cross-linked to verified FMCSA sources.
-            </p>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Loader2 } from 'lucide-react';
-import { collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import { db } from '../firebase';
 import { useApp } from '../App';
 import { FormSettings } from '../types';
@@ -67,123 +67,35 @@ const ContactPage = () => {
 
   const currentTitle = formSettings?.title || "Expert DOT Compliance Guidance";
   const currentSubmitText = formSettings?.submitButtonText || "Send Message";
-  const currentSuccessMsg = formSettings?.successMessage || "We've received your inquiry. One of our compliance specialists will reach out within 24 business hours.";
+  const currentSuccessMsg = formSettings?.successMessage || "We've received your inquiry.";
 
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          
           <div className="animate-in slide-in-from-left duration-700">
             <h1 className="text-5xl font-bold font-serif mb-8">{currentTitle}</h1>
             <p className="text-xl text-text-muted dark:text-text-dark-muted mb-12 leading-relaxed">
-              Have a question about your new entrant audit? Need help with your DQ files? Our expert educators are here to provide clarity.
+              Have a question about your safety audit? Need help with your DQ files?
             </p>
-            
-            <div className="space-y-8">
-              <div className="flex items-start space-x-6">
-                <div className="p-4 bg-white dark:bg-surface-dark rounded-2xl shadow-sm">
-                  <Mail className="w-6 h-6 text-authority-blue" />
-                </div>
-                <div>
-                  <h4 className="font-bold">Email Us</h4>
-                  {/* Fixed: Accessing email via settings.contact.email as per SiteSettings type definition */}
-                  <p className="text-text-muted">{settings.contact.email}</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-6">
-                <div className="p-4 bg-white dark:bg-surface-dark rounded-2xl shadow-sm">
-                  <Phone className="w-6 h-6 text-authority-blue" />
-                </div>
-                <div>
-                  <h4 className="font-bold">Call Support</h4>
-                  {/* Fixed: Accessing phone via settings.contact.phone as per SiteSettings type definition */}
-                  <p className="text-text-muted">{settings.contact.phone}</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-6">
-                <div className="p-4 bg-white dark:bg-surface-dark rounded-2xl shadow-sm">
-                  <MapPin className="w-6 h-6 text-authority-blue" />
-                </div>
-                <div>
-                  <h4 className="font-bold">Main Office</h4>
-                  <p className="text-text-muted">Compliance Center, NC [VERIFY ADDRESS]</p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-12 p-6 bg-signal-gold/5 border border-signal-gold/20 rounded-2xl">
-               <p className="text-xs italic text-text-muted leading-relaxed font-medium">
-                  Response time is typically within 24 business hours. For emergency roadside inspection guidance, please use our member-exclusive priority line.
-               </p>
-            </div>
           </div>
 
           <div className="bg-white dark:bg-surface-dark p-12 rounded-[3rem] shadow-xl border border-border-light dark:border-border-dark animate-in slide-in-from-right duration-700">
             {isSubmitted ? (
               <div className="text-center py-16">
-                 <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8">
-                   <CheckCircle className="w-10 h-10" />
-                 </div>
+                 <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-8" />
                  <h2 className="text-3xl font-bold font-serif mb-4">Message Sent</h2>
                  <p className="text-text-muted max-w-sm mx-auto">{currentSuccessMsg}</p>
-                 <button onClick={() => setIsSubmitted(false)} className="mt-12 font-bold text-authority-blue hover:underline">Send another message</button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-bold mb-2">First Name</label>
-                    <input 
-                      required
-                      type="text" 
-                      className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all" 
-                      placeholder="John" 
-                      value={formData.firstName}
-                      onChange={e => setFormData({...formData, firstName: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold mb-2">Last Name</label>
-                    <input 
-                      required
-                      type="text" 
-                      className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all" 
-                      placeholder="Doe" 
-                      value={formData.lastName}
-                      onChange={e => setFormData({...formData, lastName: e.target.value})}
-                    />
-                  </div>
+                  <input required placeholder="First Name" className="w-full px-5 py-4 rounded-xl border" value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} />
+                  <input required placeholder="Last Name" className="w-full px-5 py-4 rounded-xl border" value={formData.lastName} onChange={e => setFormData({...formData, lastName: e.target.value})} />
                 </div>
-                <div>
-                  <label className="block text-sm font-bold mb-2">Email Address</label>
-                  <input 
-                    required
-                    type="email" 
-                    className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all" 
-                    placeholder="john@example.com" 
-                    value={formData.email}
-                    onChange={e => setFormData({...formData, email: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold mb-2">How can we help?</label>
-                  <textarea 
-                    required
-                    rows={5} 
-                    className="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all" 
-                    placeholder="I have a question about my safety audit..."
-                    value={formData.message}
-                    onChange={e => setFormData({...formData, message: e.target.value})}
-                  ></textarea>
-                </div>
-                <button 
-                  type="submit" 
-                  disabled={sending}
-                  className="w-full bg-authority-blue text-white font-bold py-5 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-lg hover:shadow-none disabled:opacity-50"
-                >
-                  {sending ? <Loader2 className="animate-spin" /> : <Send className="w-5 h-5" />}
-                  <span>{currentSubmitText}</span>
-                </button>
+                <input required type="email" placeholder="Email" className="w-full px-5 py-4 rounded-xl border" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                <textarea required rows={5} placeholder="Message" className="w-full px-5 py-4 rounded-xl border" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
+                <button type="submit" disabled={sending} className="w-full bg-authority-blue text-white font-bold py-5 rounded-2xl shadow-lg">{sending ? <Loader2 className="animate-spin" /> : currentSubmitText}</button>
               </form>
             )}
           </div>

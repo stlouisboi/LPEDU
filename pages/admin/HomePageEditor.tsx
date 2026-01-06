@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage, isFirebaseConfigured } from '../../firebase';
 import ReactQuill from 'react-quill';
 import { 
@@ -114,7 +114,6 @@ const HomePageEditor = () => {
     setGeneratingImage(true);
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      // Updated prompt to include both semi trucks and box trucks per user request
       const prompt = "A wide-angle, high-quality photograph of a professional trucking fleet owner-operator confidently reviewing compliance documents on a clipboard. In the background, a modern white semi-truck and a clean box truck are parked side-by-side at a logistics center. The lighting is cinematic and bright, conveying authority and success. The color palette features deep navy blue and vibrant gold accents in the operator's professional gear and the facility environment. Corporate professional style, sharp focus, 16:9 aspect ratio.";
       
       const response = await ai.models.generateContent({
@@ -138,7 +137,6 @@ const HomePageEditor = () => {
       }
 
       if (generatedImageUrl) {
-        // Convert base64 to blob for storage upload
         const res = await fetch(generatedImageUrl);
         const blob = await res.blob();
         const file = new File([blob], `hero_ai_${Date.now()}.png`, { type: "image/png" });
@@ -244,7 +242,6 @@ const HomePageEditor = () => {
               onClick={handleGenerateHeroImage}
               disabled={generatingImage}
               className="flex items-center px-4 py-2 bg-gradient-to-r from-authority-blue to-steel-blue text-white rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition-all disabled:opacity-50"
-              title="Generate a brand-aligned hero image (Semi & Box Trucks)"
             >
               {generatingImage ? <Loader2 size={14} className="mr-2 animate-spin" /> : <Sparkles size={14} className="mr-2" />}
               AI Image Gen
@@ -320,9 +317,6 @@ const HomePageEditor = () => {
                   Generate AI Fleet Hero
                 </button>
               </div>
-              <p className="text-[10px] text-text-muted italic">
-                The "Generate AI Fleet Hero" button uses Gemini to create a custom image featuring your industry niche (Semi & Box Trucks) with your brand's color palette.
-              </p>
             </div>
           </div>
         </div>
