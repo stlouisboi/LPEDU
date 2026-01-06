@@ -360,7 +360,7 @@ const AIServicePage = () => {
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
         
-        const opResult = await ai.operations.getVideosOperation(operation.name) 
+        const opResult = await ai.operations.getVideosOperation({ 
           operation: { name: operation.name } as any 
         });
 
