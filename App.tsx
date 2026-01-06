@@ -7,33 +7,20 @@ import {
   Menu, 
   X, 
   ChevronRight, 
-  LayoutDashboard, 
   LogOut, 
-  LogIn,
-  Settings,
-  PenTool,
-  MessageSquare,
+  ArrowRight,
+  Loader2,
   Award,
-  Youtube,
-  Instagram,
   Facebook,
   Twitter,
+  Instagram,
   Linkedin,
-  Music,
-  ArrowRight,
-  BookOpen,
-  User as UserIcon,
-  ShieldAlert,
-  Star,
-  Globe,
-  Loader2,
-  Video,
-  ArrowUp
+  Youtube
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
-import { BlogPost, SiteSettings, User, UserRole, Testimonial } from './types';
+import { BlogPost, SiteSettings, Testimonial } from './types';
 import { AuthProvider, useAuth } from './AuthContext';
 
 // Pages
@@ -64,14 +51,8 @@ import SubmissionsList from './pages/admin/SubmissionsList';
 import SettingsManager from './pages/admin/SettingsManager';
 import VideoLab from './pages/admin/VideoLab';
 
-// Scroll to top helper
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
+// Security
+import ProtectedRoute from './components/admin/ProtectedRoute';
 
 // Contexts
 interface AppContextType {
@@ -95,13 +76,6 @@ export const useApp = () => {
   const context = useContext(AppContext);
   if (!context) throw new Error('useApp must be used within AppProvider');
   return context;
-};
-
-const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
-  const { currentUser, loading } = useAuth();
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  if (!currentUser) return <Navigate to="/admin/login" />;
-  return <>{children}</>;
 };
 
 const ProgressBar = () => {
@@ -142,6 +116,7 @@ const Header = () => {
     { name: 'Resources', path: '/resources' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
+    { name: 'AI Advisor', path: '/advisor' }
   ];
 
   return (
@@ -205,7 +180,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div className={`lg:hidden absolute top-20 left-0 w-full bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark px-4 py-8 space-y-4 shadow-2xl transition-all duration-300 ease-in-out origin-top ${isMenuOpen ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-95 invisible'}`}>
         <div className="flex flex-col space-y-2">
           {navItems.map((item) => (
@@ -220,13 +194,6 @@ const Header = () => {
               {item.name}
             </Link>
           ))}
-          <Link
-            to="/enroll"
-            onClick={() => setIsMenuOpen(false)}
-            className="block w-full bg-authority-blue text-white text-center py-5 rounded-2xl text-xl font-black uppercase tracking-widest shadow-xl mt-4"
-          >
-            Start Learning Path
-          </Link>
         </div>
       </div>
     </header>
@@ -304,7 +271,6 @@ const Footer = () => {
             <ul className="space-y-5 text-text-muted dark:text-text-dark-muted text-sm font-bold">
               <li><Link to="/about" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">About Us</Link></li>
               <li><Link to="/learning-path" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">The Learning Path</Link></li>
-              <li><Link to="/resources" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">Free Resources</Link></li>
               <li><Link to="/blog" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">Compliance Blog</Link></li>
               <li><Link to="/faq" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">FAQ</Link></li>
             </ul>
@@ -321,10 +287,6 @@ const Footer = () => {
                 <span className="text-[10px] font-black uppercase text-text-muted/60 mb-1">Corporate Line</span>
                 <span className="font-bold text-text-primary dark:text-white">{settings.contact.phone}</span>
               </li>
-              <li className="flex flex-col">
-                <span className="text-[10px] font-black uppercase text-text-muted/60 mb-1">Headquarters</span>
-                <span className="font-medium">{settings.contact.address}</span>
-              </li>
             </ul>
           </div>
         </div>
@@ -338,15 +300,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      <div className="lg:hidden fixed bottom-0 left-0 w-full p-4 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-xl border-t border-border-light dark:border-border-dark z-50 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
-        <Link 
-          to="/enroll"
-          className="block w-full bg-authority-blue text-white py-4 rounded-xl text-center font-black uppercase tracking-widest text-base shadow-xl active:scale-95 transition-all"
-        >
-          Enroll Now
-        </Link>
-      </div>
     </footer>
   );
 };
@@ -359,7 +312,6 @@ export default function App() {
   const [formSubmissions, setFormSubmissions] = useState<any[]>([]);
   const [appLoading, setAppLoading] = useState(true);
 
-  // Apply real-time settings and theme colors
   useEffect(() => {
     if (!isFirebaseConfigured || !db || typeof db !== 'object') {
       setAppLoading(false);
@@ -443,7 +395,6 @@ export default function App() {
     }}>
       <AuthProvider>
         <Router>
-          <ScrollToTop />
           <div className={`min-h-screen flex flex-col transition-opacity duration-500 ${theme === 'dark' ? 'dark' : ''}`}>
             <Header />
             <main className="flex-grow">
@@ -452,7 +403,6 @@ export default function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/learning-path" element={<LearningPathPage />} />
-                <Route path="/resources" element={<ResourcesPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/faq" element={<FAQPage />} />
