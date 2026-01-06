@@ -15,7 +15,7 @@ import {
   ClipboardList,
   AlertCircle
 } from 'lucide-react';
-import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { useApp } from '../App';
 import { Link } from 'react-router-dom';

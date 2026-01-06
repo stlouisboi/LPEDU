@@ -119,7 +119,7 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
   }
 
   return (
-    <div className="animate-in fade-in duration-500">
+    <div className="animate-in fade-in duration-700">
       {/* System Alert for Admins */}
       {firestoreError && (
         <div className="bg-red-50 border-b border-red-100 p-3">
@@ -128,67 +128,74 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
               <AlertTriangle className="w-3.5 h-3.5" />
               <span>
                 {firestoreError.includes("database (default) does not exist") 
-                  ? "CRITICAL: Cloud Firestore Database missing." 
+                  ? "CRITICAL: Cloud Firestore Database has not been created." 
                   : "NOTE: Cloud Firestore API may be disabled."} 
                 App is running in Local Fallback mode.
               </span>
+            </div>
+            <div className="mt-2 sm:mt-0 flex gap-4">
+              <a href="https://console.cloud.google.com/datastore/setup?project=launchpathedu-426fb" target="_blank" rel="noreferrer" className="underline hover:text-red-600 text-[9px]">Configure Cloud Firestore</a>
             </div>
           </div>
         </div>
       )}
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 pb-24 lg:pt-32 lg:pb-40 bg-white dark:bg-primary-dark">
+      <section className="relative overflow-hidden pt-16 pb-24 lg:pt-32 lg:pb-40 bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark">
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-authority-blue/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-96 h-96 bg-signal-gold/5 rounded-full blur-3xl"></div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue dark:text-signal-gold px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-10 border border-authority-blue/10">
+            <div className="text-center lg:text-left animate-reveal-up stagger-parent">
+              <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue dark:text-signal-gold px-4 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-authority-blue/10 dark:border-signal-gold/10 stagger-item">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Accuracy Over Hype — Verified FMCSA Methodology</span>
               </div>
-              <h1 className="text-4xl lg:text-7xl font-bold text-authority-blue dark:text-white mb-8 font-serif leading-tight">
+              <h1 className="text-4xl lg:text-7xl font-black tracking-tighter text-authority-blue dark:text-white mb-8 font-serif leading-[1.05] stagger-item">
                 {content.hero.headline || settings.heroTitle}
               </h1>
-              <p className="text-lg lg:text-2xl text-text-muted dark:text-text-dark-muted mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg lg:text-2xl text-text-muted dark:text-text-dark-muted mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 stagger-item">
                 {content.hero.subheadline || settings.heroSubtitle}
               </p>
               
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-center justify-center lg:justify-start mb-12">
-                <Link to="/enroll" className="w-full sm:w-auto bg-authority-blue text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-steel-blue transition-all shadow-xl flex items-center justify-center">
+              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-center justify-center lg:justify-start mb-12 stagger-item">
+                <Link to="/enroll" className="w-full sm:w-auto bg-authority-blue text-white px-10 py-5 rounded-2xl text-xl font-black uppercase tracking-widest hover:bg-steel-blue transition-all shadow-2xl hover:shadow-authority-blue/20 flex items-center justify-center group active:scale-95">
                   Start Learning
-                  <ChevronRight className="ml-2 w-5 h-5" />
+                  <ChevronRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link to="/learning-path" className="w-full sm:w-auto border-2 border-border-light dark:border-border-dark text-text-primary dark:text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-50 dark:hover:bg-slate-900 transition-all flex items-center justify-center">
+                <Link to="/learning-path" className="w-full sm:w-auto border-2 border-border-light dark:border-border-dark text-text-primary dark:text-white px-10 py-5 rounded-2xl text-xl font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-900 transition-all flex items-center justify-center group active:scale-95">
                   View Path
+                  <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
 
               {/* Lead Magnet CTA */}
-              <div className="max-w-md mx-auto lg:mx-0 p-6 bg-slate-50 dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-3xl shadow-sm">
+              <div className="max-w-md mx-auto lg:mx-0 p-8 bg-slate-50 dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-[2.5rem] shadow-xl stagger-item">
                 {leadSubmitted ? (
-                  <div className="text-center py-4 flex flex-col items-center">
-                    <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-                      <CheckCircle className="w-6 h-6" />
+                  <div className="text-center py-6 flex flex-col items-center animate-scale-in">
+                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-6">
+                      <CheckCircle className="w-10 h-10" />
                     </div>
-                    <h4 className="font-bold text-xl mb-1">Check your inbox!</h4>
-                    <p className="text-sm text-text-muted">The Risk Map™ is on its way.</p>
+                    <h4 className="font-black text-2xl mb-2">Check your inbox!</h4>
+                    <p className="text-sm text-text-muted font-bold uppercase tracking-widest">The Risk Map™ is on its way.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleLeadSubmit} className="space-y-4">
+                  <form onSubmit={handleLeadSubmit} className="space-y-5">
                     <div className="flex items-center space-x-2 text-authority-blue dark:text-signal-gold mb-2">
-                      <Download className="w-4 h-4" />
-                      <span className="text-[10px] font-black uppercase tracking-widest">Free Download: First 90 Days Risk Map™</span>
+                      <Download className="w-5 h-5 animate-bounce" />
+                      <span className="text-[11px] font-black uppercase tracking-[0.2em]">Free Download: First 90 Days Risk Map™</span>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-2">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <input 
                         required
                         type="email" 
                         placeholder="your.email@address.com"
-                        className="flex-grow px-4 py-3 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none focus:ring-2 focus:ring-authority-blue transition-all font-medium text-sm"
+                        className="flex-grow h-14 px-6 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-4 focus:ring-authority-blue/10 outline-none transition-all font-bold text-sm"
                         value={leadEmail}
                         onChange={(e) => setLeadEmail(e.target.value)}
                       />
-                      <button type="submit" className="bg-signal-gold text-authority-blue font-bold px-6 py-3 rounded-xl hover:bg-white active:scale-95 transition-all shadow-md whitespace-nowrap text-sm">
+                      <button type="submit" className="h-14 bg-signal-gold text-authority-blue font-black uppercase tracking-widest px-8 rounded-2xl hover:bg-white active:scale-95 transition-all shadow-lg whitespace-nowrap">
                         Get It Now
                       </button>
                     </div>
@@ -197,19 +204,23 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
               </div>
             </div>
             
-            <div className="hidden lg:block relative">
-              <div className="bg-slate-100 dark:bg-surface-dark p-2 rounded-[2.5rem] shadow-2xl overflow-hidden">
+            <div className="hidden lg:block relative group animate-reveal-up" style={{ animationDelay: '0.2s' }}>
+              <div className="bg-slate-100 dark:bg-surface-dark p-3 rounded-[3.5rem] shadow-2xl relative overflow-hidden transform group-hover:scale-[1.02] transition-all duration-700">
                 <img 
                   src={content.hero.imageUrl || fallbackContent.hero.imageUrl} 
                   alt="Professional Trucking Fleet" 
-                  className="rounded-[2.25rem] w-full h-[600px] object-cover"
+                  className="rounded-[3rem] w-full h-[650px] object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
                 />
-                <div className="absolute top-12 left-12 bg-white/95 dark:bg-gray-800/95 p-6 rounded-2xl shadow-xl border border-border-light max-w-[240px]">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <ShieldCheck className="text-authority-blue dark:text-signal-gold w-6 h-6" />
-                    <span className="text-sm font-black uppercase italic">Compliance Unlocks Profit</span>
+                <div className="absolute top-10 left-10 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl p-6 rounded-[2rem] shadow-2xl border border-border-light dark:border-border-dark max-w-[260px] animate-float">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <ShieldCheck className="text-authority-blue dark:text-signal-gold w-8 h-8" />
+                    <span className="text-lg font-black tracking-tight leading-none uppercase italic">Compliance <br/> <span className="text-authority-blue dark:text-signal-gold">Unlocks Profit</span></span>
                   </div>
-                  <p className="text-[10px] text-text-muted dark:text-text-dark-muted font-bold uppercase">Course verified for Box Trucks & Semis.</p>
+                  <p className="text-[11px] text-text-muted dark:text-text-dark-muted font-black uppercase tracking-wider">Course verified for Box Trucks & Semis.</p>
+                </div>
+
+                <div className="absolute bottom-10 right-10 flex space-x-2">
+                   <div className="px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg border border-border-light">FMCSA Ready</div>
                 </div>
               </div>
             </div>
@@ -218,35 +229,36 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
       </section>
 
       {/* Problem Section */}
-      <section className="py-24 bg-primary-light dark:bg-primary-dark">
+      <section className="py-32 bg-primary-light dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center space-x-2 text-red-600 bg-red-50 dark:bg-red-900/10 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-8 border border-red-100">
-                <AlertTriangle className="w-4 h-4" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="reveal-on-scroll">
+              <div className="inline-flex items-center space-x-2 text-red-600 bg-red-50 dark:bg-red-900/20 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-10 border border-red-100 dark:border-red-900/30">
+                <AlertTriangle className="w-5 h-5" />
                 <span>Regulatory Death Valley</span>
               </div>
-              <h2 className="text-3xl lg:text-5xl font-bold mb-8 font-serif leading-tight">The 18-Month Survival Gap</h2>
-              <div className="space-y-6 text-lg text-text-muted dark:text-text-dark-muted leading-relaxed">
-                <p>Most new authorities fail not for lack of work, but for lack of <span className="text-text-primary dark:text-white font-bold underline decoration-signal-gold">audit-proof systems</span>. LaunchPath™ closes the knowledge gap before the DOT inspector arrives.</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
+              <h2 className="text-3xl lg:text-6xl font-black mb-10 font-serif leading-tight tracking-tight">The 18-Month Survival Gap</h2>
+              <div className="space-y-8 text-xl text-text-muted dark:text-text-dark-muted leading-relaxed">
+                <p>Most new authorities fail not for lack of work, but for lack of <span className="text-text-primary dark:text-white font-black underline decoration-signal-gold underline-offset-4">audit-proof systems</span>. LaunchPath™ closes the knowledge gap before the DOT inspector arrives.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 stagger-parent">
                   {(content.stats.length ? content.stats : fallbackContent.stats).map((stat, i) => (
-                    <div key={i} className="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-border-light shadow-sm">
-                      <div className="text-3xl font-bold text-authority-blue dark:text-signal-gold mb-1">{stat.value}</div>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">{stat.label}</p>
+                    <div key={i} className="bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl transition-all group stagger-item">
+                      <div className="text-5xl font-black text-authority-blue dark:text-signal-gold mb-3 group-hover:scale-110 transition-transform origin-left">{stat.value}</div>
+                      <p className="text-[11px] font-black uppercase tracking-widest text-text-muted leading-tight">{stat.label}</p>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
-            <div className="bg-white dark:bg-surface-dark p-10 md:p-16 rounded-[3rem] border border-border-light dark:border-border-dark shadow-xl">
-              <h3 className="text-2xl font-bold font-serif mb-8 text-authority-blue dark:text-white leading-tight">
+            <div className="bg-white dark:bg-surface-dark p-12 md:p-20 rounded-[4rem] border border-border-light dark:border-border-dark shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-authority-blue/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-1000"></div>
+              <h3 className="text-3xl font-black font-serif mb-10 text-authority-blue dark:text-white leading-tight">
                 {content.mission.headline || fallbackContent.mission.headline}
               </h3>
-              <div className="prose dark:prose-invert font-medium leading-relaxed text-text-muted space-y-4" dangerouslySetInnerHTML={{ __html: content.mission.content || fallbackContent.mission.content }}>
+              <div className="prose prose-lg dark:prose-invert font-medium leading-relaxed text-text-muted space-y-6" dangerouslySetInnerHTML={{ __html: content.mission.content || fallbackContent.mission.content }}>
               </div>
-              <Link to="/about" className="inline-flex items-center text-authority-blue dark:text-signal-gold font-black uppercase tracking-widest text-[10px] mt-10 hover:gap-2 transition-all">
-                Our Philosophy <ArrowRight className="ml-1 w-4 h-4" />
+              <Link to="/about" className="inline-flex items-center text-authority-blue dark:text-signal-gold font-black uppercase tracking-widest text-xs mt-12 hover:gap-4 transition-all group/btn">
+                Our Core Philosophy <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
@@ -254,34 +266,50 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 border-t border-border-light dark:border-border-dark bg-white dark:bg-primary-dark">
+      <section id="faq" className="py-32 border-t border-border-light dark:border-border-dark bg-slate-50 dark:bg-surface-dark/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-             <h2 className="text-3xl lg:text-5xl font-bold mb-4 font-serif">Zero Ambiguity</h2>
-             <p className="text-xs font-bold uppercase tracking-widest text-text-muted">Direct answers to industry hurdles</p>
+          <div className="text-center mb-20">
+             <div className="w-16 h-16 bg-authority-blue/10 dark:bg-signal-gold/10 text-authority-blue dark:text-signal-gold rounded-[1.5rem] flex items-center justify-center mx-auto mb-8">
+                <Sparkles size={32} />
+             </div>
+             <h2 className="text-4xl lg:text-6xl font-black mb-6 font-serif tracking-tighter">Zero Ambiguity</h2>
+             <p className="text-[11px] font-black uppercase tracking-[0.3em] text-text-muted">Direct answers to industry hurdles</p>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-6">
             {(content.faqs.length ? content.faqs : fallbackContent.faqs).map((faq, idx) => (
-              <div key={idx} className="border border-border-light dark:border-border-dark rounded-2xl overflow-hidden bg-white dark:bg-surface-dark">
+              <div key={idx} className={`border rounded-3xl overflow-hidden transition-all duration-500 bg-white dark:bg-surface-dark ${openFAQ === idx ? 'shadow-2xl border-authority-blue ring-4 ring-authority-blue/5' : 'border-border-light dark:border-border-dark hover:border-text-muted/30 shadow-sm'}`}>
                 <button 
                   onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                  className="w-full flex items-center justify-between p-8 text-left focus:outline-none group"
                 >
-                  <span className="font-bold text-lg leading-tight">{faq.q}</span>
-                  <div className={`transition-transform duration-300 ${openFAQ === idx ? 'rotate-180' : ''}`}>
-                    <ChevronDown className="w-5 h-5 text-text-muted" />
+                  <span className={`font-black text-xl leading-tight transition-colors ${openFAQ === idx ? 'text-authority-blue dark:text-white' : 'text-text-primary dark:text-text-dark-primary'}`}>{faq.q}</span>
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${openFAQ === idx ? 'bg-authority-blue text-white rotate-180' : 'bg-slate-100 dark:bg-gray-800 text-text-muted group-hover:bg-slate-200'}`}>
+                    <ChevronDown className="w-6 h-6" />
                   </div>
                 </button>
-                {openFAQ === idx && (
-                  <div className="p-6 pt-0 text-text-muted dark:text-text-dark-muted leading-relaxed border-t border-gray-50 dark:border-gray-800">
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${openFAQ === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <div className="p-8 pt-0 text-text-muted dark:text-text-dark-muted leading-relaxed text-lg border-t border-gray-100 dark:border-gray-800 mt-2">
                     {faq.a}
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Floating Action / Scroll Observer Implementation */}
+      <style>{`
+        .reveal-on-scroll {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
     </div>
   );
 };
