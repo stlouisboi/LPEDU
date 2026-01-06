@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -449,7 +448,7 @@ const AIServicePage = () => {
                 <div className="flex-grow space-y-4 overflow-y-auto max-h-[220px] custom-scrollbar">
                   {liveTranscript.map((t, idx) => (
                     <div key={idx} className="text-base font-bold text-authority-blue dark:text-signal-gold animate-reveal-up">
-                      <span className="opacity-30 mr-2">></span> {t}
+                      <span className="opacity-30 mr-2">&gt;</span> {t}
                     </div>
                   ))}
                 </div>

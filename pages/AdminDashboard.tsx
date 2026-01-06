@@ -88,8 +88,6 @@ const AdminDashboard = () => {
           {activeTab === 'settings' && (
             <div className="space-y-12">
                <SettingsManager />
-               {/* Homepage Specific Editor Integrated via Modular Path in Sub-routes, 
-                   but we can display quick status here */}
                <div className="bg-authority-blue p-10 rounded-[3.5rem] text-white shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
                   <Globe className="mb-6 text-signal-gold" size={32} />
@@ -142,7 +140,6 @@ const AdminDashboard = () => {
   );
 };
 
-// Fixed ChevronRight definition to accept className for future-proofing and consistency with Lucide icons
 const ChevronRight = ({ size, className }: { size: number; className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M9 18l6-6-6-6" />

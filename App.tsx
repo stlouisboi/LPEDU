@@ -39,7 +39,7 @@ import ModuleDetailPage from './pages/ModuleDetailPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard'; // monolithic tabbed view
+import AdminDashboard from './pages/AdminDashboard'; // monolithic tabbed view in pages folder
 import AdminLayout from './pages/admin/AdminLayout'; // modular layout
 import AdminDashboardHome from './pages/admin/AdminDashboardHome';
 import PageList from './pages/admin/PageList';
@@ -415,9 +415,11 @@ export default function App() {
                 
                 {/* Admin Auth */}
                 <Route path="/admin/login" element={<AdminLogin />} />
+                
+                {/* Primary Admin Dashboard View */}
                 <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
 
-                {/* Modular Admin (Layout-based) */}
+                {/* Modular Admin (Layout-based sub-routes) */}
                 <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
                   <Route index element={<AdminDashboardHome />} />
                   <Route path="pages" element={<PageList />} />
