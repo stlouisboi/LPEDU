@@ -19,3 +19,4 @@ View your app in AI Studio: https://ai.studio/apps/drive/1CsSxpjbjw7H4T4gx5HqTHY
 3. Run the app:
    `npm run dev`
 
+trigger rebuild
