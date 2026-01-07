@@ -83,6 +83,7 @@ export interface SiteSettings {
   googleAnalyticsId?: string;
   facebookPixelId?: string;
   showVeteranBadge: boolean;
+  showDisabledVeteranBadge: boolean;
   contact: {
     email: string;
     phone: string;

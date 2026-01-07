@@ -1,226 +1,156 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { doc, onSnapshot } from "firebase/firestore";
-import { db, isFirebaseConfigured } from '../firebase';
 import { 
-  ChevronRight, 
   ShieldCheck, 
-  CheckCircle, 
+  CheckCircle2, 
   ArrowRight, 
   Download, 
-  ChevronDown, 
   AlertTriangle,
   BookOpen,
   Loader2,
+  Star,
+  Shield,
+  FileCheck,
+  Award,
+  BadgeCheck,
+  Target,
+  FileText,
+  Wrench,
+  Mail,
+  Zap,
   Info,
-  ExternalLink,
-  Sparkles
+  ShieldAlert,
+  BarChart3,
+  ChevronRight,
+  Phone,
+  Calendar,
+  Users,
+  MessageCircle
 } from 'lucide-react';
 import { useApp } from '../App';
-import { COURSE_MODULES } from '../constants';
-import { HomepageContent } from '../types';
 
-interface HomePageProps {
-  previewData?: HomepageContent;
-}
-
-const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
-  const { settings, addFormSubmission } = useApp();
-  const [liveContent, setLiveContent] = useState<HomepageContent | null>(null);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+const HomePage: React.FC = () => {
+  const { addFormSubmission } = useApp();
   const [leadEmail, setLeadEmail] = useState('');
   const [leadSubmitted, setLeadSubmitted] = useState(false);
-  const [firestoreError, setFirestoreError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const fallbackContent: HomepageContent = {
-    hero: {
-      headline: settings.heroTitle,
-      subheadline: settings.heroSubtitle,
-      imageUrl: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
-      primaryCTA: { text: "Start Learning", link: "/enroll" },
-      secondaryCTA: { text: "View Path", link: "/learning-path" }
-    },
-    mission: {
-      headline: "Accuracy Over Hype",
-      content: "<p>The trucking industry is built on systems. Without them, even the hardest working owner-operator will eventually fail an FMCSA audit. LaunchPath provides the compliance-first education required to survive the new-entrant phase and build a foundation you can scale from—regardless of vehicle type.</p>",
-      imageUrl: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800"
-    },
-    stats: [
-      { value: "20%", label: "Failure rate for new carriers" },
-      { value: "90 Days", label: "To build a compliant system" }
-    ],
-    faqs: [
-      { 
-        q: "Is this for CDL only?", 
-        a: "No. LaunchPath works whether you need a CDL or not. The course teaches compliance systems that apply to all motor carriers—we just call out where CDL vs non-CDL regulations differ. Module 0 helps you decide which path makes sense for your situation." 
-      },
-      { 
-        q: "How long does the course take?", 
-        a: "Most students complete the core modules in 2-4 weeks working part-time. You get lifetime access, so you can move at your own pace and return as regulations change. The goal isn't speed—it's audit readiness before you file for authority." 
-      },
-      {
-        q: "What type of vehicle do I need?",
-        a: "None yet. This course works whether you're considering a box truck, step van, or semi. LaunchPath teaches you how to evaluate your options and understand the compliance differences before you invest in equipment."
-      },
-      {
-        q: "Will this help me find loads?",
-        a: "No. LaunchPath focuses on compliance, audit readiness, and new-entrant survival. We teach you how to operate legally and sustainably. Load finding and dispatch are separate skills you'll need, but they don't matter if you can't pass an audit."
-      }
-    ]
-  };
-
-  useEffect(() => {
-    if (previewData) return;
-    
-    if (isFirebaseConfigured && db && (db as any).app) {
-      const unsub = onSnapshot(
-        doc(db, "pages", "home_live"), 
-        (snap) => {
-          if (snap.exists()) {
-            setLiveContent(snap.data() as HomepageContent);
-            setFirestoreError(null);
-          } else {
-            setLiveContent(fallbackContent);
-          }
-        },
-        (error: any) => {
-          console.warn("LaunchPath Firestore Sync Error:", error);
-          setFirestoreError(error.message);
-          setLiveContent(fallbackContent);
-        }
-      );
-      return unsub;
-    } else {
-      setLiveContent(fallbackContent);
-    }
-  }, [previewData, settings]);
-
-  const content = previewData || liveContent;
-
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!leadEmail) return;
+    setLoading(true);
+    
+    // Integrity-based delay for "Processing Risk Map"
+    await new Promise(r => setTimeout(r, 1500));
+    
     addFormSubmission({
       type: 'Lead Magnet',
-      name: 'Hero Lead (Risk Map)',
+      name: 'Hero Lead (First 90 Days Risk Map)',
       email: leadEmail,
       date: new Date().toISOString()
     });
+    
+    setLoading(false);
     setLeadSubmitted(true);
   };
 
-  if (!content) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="animate-spin text-authority-blue" size={40} />
-      </div>
-    );
-  }
-
   return (
-    <div className="animate-in fade-in duration-700">
-      {/* System Alert for Admins */}
-      {firestoreError && (
-        <div className="bg-red-50 border-b border-red-100 p-3">
-          <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row sm:items-center justify-between text-red-800 text-[10px] font-bold uppercase tracking-wider">
-            <div className="flex items-center space-x-2">
-              <AlertTriangle className="w-3.5 h-3.5" />
-              <span>
-                {firestoreError.includes("database (default) does not exist") 
-                  ? "CRITICAL: Cloud Firestore Database has not been created." 
-                  : "NOTE: Cloud Firestore API may be disabled."} 
-                App is running in Local Fallback mode.
-              </span>
-            </div>
-            <div className="mt-2 sm:mt-0 flex gap-4">
-              <a href="https://console.cloud.google.com/datastore/setup?project=launchpathedu-426fb" target="_blank" rel="noreferrer" className="underline hover:text-red-600 text-[9px]">Configure Cloud Firestore</a>
-            </div>
-          </div>
-        </div>
-      )}
+    <div className="animate-in fade-in duration-700 relative overflow-x-hidden">
+      {/* Visual Background Pattern */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.02] z-0">
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#1e3a5f 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+      </div>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 pb-24 lg:pt-32 lg:pb-40 bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark">
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-authority-blue/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-96 h-96 bg-signal-gold/5 rounded-full blur-3xl"></div>
-        
+      {/* 1. HERO SECTION - ENHANCED LEAD MAGNET */}
+      <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-40 bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark overflow-hidden z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="text-center lg:text-left animate-reveal-up stagger-parent">
-              <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue dark:text-signal-gold px-4 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-10 border border-authority-blue/10 dark:border-signal-gold/10 stagger-item">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Accuracy Over Hype — Verified FMCSA Methodology</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-7 text-center lg:text-left">
+              <div className="inline-flex items-center space-x-2 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-authority-blue mb-8">
+                <ShieldCheck size={14} className="text-signal-gold" />
+                <span>Verified FMCSA Methodology</span>
               </div>
-              <h1 className="text-4xl lg:text-7xl font-black tracking-tighter text-authority-blue dark:text-white mb-8 font-serif leading-[1.05] stagger-item">
-                {content.hero.headline || settings.heroTitle}
-              </h1>
-              <p className="text-lg lg:text-2xl text-text-muted dark:text-text-dark-muted mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 stagger-item">
-                {content.hero.subheadline || settings.heroSubtitle}
-              </p>
               
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-center justify-center lg:justify-start mb-12 stagger-item">
-                <Link to="/enroll" className="w-full sm:w-auto bg-authority-blue text-white px-10 py-5 rounded-2xl text-xl font-black uppercase tracking-widest hover:bg-steel-blue transition-all shadow-2xl hover:shadow-authority-blue/20 flex items-center justify-center group active:scale-95">
-                  Start Learning
-                  <ChevronRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link to="/learning-path" className="w-full sm:w-auto border-2 border-border-light dark:border-border-dark text-text-primary dark:text-white px-10 py-5 rounded-2xl text-xl font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-900 transition-all flex items-center justify-center group active:scale-95">
-                  View Path
-                  <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+              <h1 className="text-5xl lg:text-8xl font-black tracking-tighter text-authority-blue dark:text-white mb-8 font-serif leading-[0.95]">
+                Build Your Trucking Business the <span className="text-signal-gold">Right Way</span> — From Day One.
+              </h1>
+              
+              <p className="text-xl lg:text-2xl text-text-muted dark:text-text-dark-muted mb-12 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
+                Identify your compliance gaps before they become violations. We provide the technical education required to survive the critical 18-month new entrant phase.
+              </p>
 
-              {/* Lead Magnet CTA */}
-              <div className="max-w-md mx-auto lg:mx-0 p-8 bg-slate-50 dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-[2.5rem] shadow-xl stagger-item">
-                {leadSubmitted ? (
-                  <div className="text-center py-6 flex flex-col items-center animate-scale-in">
-                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-6">
-                      <CheckCircle className="w-10 h-10" />
-                    </div>
-                    <h4 className="font-black text-2xl mb-2">Check your inbox!</h4>
-                    <p className="text-sm text-text-muted font-bold uppercase tracking-widest">The Risk Map™ is on its way.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleLeadSubmit} className="space-y-5">
-                    <div className="flex items-center space-x-2 text-authority-blue dark:text-signal-gold mb-2">
-                      <Download className="w-5 h-5 animate-bounce" />
-                      <span className="text-[11px] font-black uppercase tracking-[0.2em]">Free Download: First 90 Days Risk Map™</span>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <input 
-                        required
-                        type="email" 
-                        placeholder="your.email@address.com"
-                        className="flex-grow h-14 px-6 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl focus:ring-4 focus:ring-authority-blue/10 outline-none transition-all font-bold text-sm"
-                        value={leadEmail}
-                        onChange={(e) => setLeadEmail(e.target.value)}
-                      />
-                      <button type="submit" className="h-14 bg-signal-gold text-authority-blue font-black uppercase tracking-widest px-8 rounded-2xl hover:bg-white active:scale-95 transition-all shadow-lg whitespace-nowrap">
-                        Get It Now
-                      </button>
-                    </div>
-                  </form>
-                )}
+              <div className="flex items-center justify-center lg:justify-start space-x-8 opacity-60 grayscale hover:grayscale-0 transition-all">
+                <div className="flex items-center space-x-2">
+                  <Award size={20} className="text-authority-blue" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Veteran Owned</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <ShieldAlert size={20} className="text-authority-blue" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Compliance First</span>
+                </div>
               </div>
             </div>
             
-            <div className="hidden lg:block relative group animate-reveal-up" style={{ animationDelay: '0.2s' }}>
-              <div className="bg-slate-100 dark:bg-surface-dark p-3 rounded-[3.5rem] shadow-2xl relative overflow-hidden transform group-hover:scale-[1.02] transition-all duration-700">
-                <img 
-                  src={content.hero.imageUrl || fallbackContent.hero.imageUrl} 
-                  alt="Professional Trucking Fleet" 
-                  className="rounded-[3rem] w-full h-[650px] object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute top-10 left-10 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl p-6 rounded-[2rem] shadow-2xl border border-border-light dark:border-border-dark max-w-[260px] animate-float">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <ShieldCheck className="text-authority-blue dark:text-signal-gold w-8 h-8" />
-                    <span className="text-lg font-black tracking-tight leading-none uppercase italic">Compliance <br/> <span className="text-authority-blue dark:text-signal-gold">Unlocks Profit</span></span>
+            {/* AGGRESSIVE LEAD CAPTURE FORM */}
+            <div className="lg:col-span-5 relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-signal-gold via-yellow-400 to-yellow-600 rounded-[3.5rem] blur-xl opacity-20 animate-pulse"></div>
+              <div className="relative bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3.5rem] border-[6px] border-signal-gold shadow-[0_30px_60px_-15px_rgba(212,175,55,0.5)] overflow-hidden group">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-signal-gold/10 rounded-full -translate-y-20 translate-x-20"></div>
+                
+                <div className="relative z-10">
+                  <div className="bg-authority-blue text-white inline-block px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-4">
+                    Immediate Digital Access
                   </div>
-                  <p className="text-[11px] text-text-muted dark:text-text-dark-muted font-black uppercase tracking-wider">Course verified for Box Trucks & Semis.</p>
-                </div>
+                  <h2 className="text-3xl font-black text-authority-blue dark:text-white uppercase tracking-tighter mb-2 leading-[0.9]">
+                    GET FREE DOWNLOAD: <br/>
+                    <span className="text-signal-gold">FIRST 90 DAYS RISK MAP™</span>
+                  </h2>
+                  <p className="text-sm font-bold text-text-muted mb-8 leading-tight">
+                    Identify your compliance gaps <span className="text-authority-blue underline decoration-signal-gold decoration-2">before they become violations</span>.
+                  </p>
 
-                <div className="absolute bottom-10 right-10 flex space-x-2">
-                   <div className="px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg border border-border-light">FMCSA Ready</div>
+                  {leadSubmitted ? (
+                    <div className="bg-green-50 dark:bg-green-900/20 p-8 rounded-3xl text-center animate-scale-in border border-green-100">
+                      <CheckCircle2 className="mx-auto text-green-600 mb-4" size={56} />
+                      <h3 className="font-black text-green-800 dark:text-green-400 uppercase tracking-widest mb-2">Access Granted</h3>
+                      <p className="text-sm font-bold text-green-700 leading-relaxed">Check your inbox. Your custom Risk Map asset is being processed for your account.</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleLeadSubmit} className="space-y-5">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted ml-2">Deliver to professional inbox:</label>
+                        <div className="relative group">
+                          <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-text-muted transition-colors group-focus-within:text-authority-blue" size={20} />
+                          <input 
+                            required
+                            type="email"
+                            placeholder="professional@carrier.com"
+                            className="w-full pl-14 pr-4 py-6 rounded-[1.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark outline-none focus:ring-4 focus:ring-signal-gold/30 focus:border-signal-gold transition-all font-bold text-lg"
+                            value={leadEmail}
+                            onChange={(e) => setLeadEmail(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      <button 
+                        disabled={loading}
+                        className="w-full bg-signal-gold text-authority-blue py-6 rounded-[1.5rem] font-black uppercase tracking-[0.3em] text-lg hover:bg-authority-blue hover:text-white transition-all active:scale-95 flex items-center justify-center shadow-[0_20px_40px_-10px_rgba(212,175,55,0.6)] disabled:opacity-50 group/btn"
+                      >
+                        {loading ? <Loader2 className="animate-spin" size={28} /> : (
+                          <>
+                            <span>GET IT NOW</span>
+                            <ArrowRight className="ml-3 group-hover/btn:translate-x-2 transition-transform" size={24} />
+                          </>
+                        )}
+                      </button>
+                      <div className="flex flex-col space-y-3 pt-4 border-t border-slate-100 dark:border-gray-800">
+                        <p className="text-[9px] font-black uppercase tracking-widest text-text-muted text-center flex items-center justify-center space-x-2">
+                          <ShieldCheck size={14} className="text-authority-blue" />
+                          <span>100% Privacy • No Spam Guaranteed</span>
+                        </p>
+                      </div>
+                    </div >
+                  )}
                 </div>
               </div>
             </div>
@@ -228,69 +158,85 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="py-32 bg-primary-light dark:bg-primary-dark">
+      {/* 2. VALUE PROPOSITION - AUTHENTICITY */}
+      <section className="py-24 bg-slate-50 dark:bg-surface-dark border-b border-border-light dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div className="reveal-on-scroll">
-              <div className="inline-flex items-center space-x-2 text-red-600 bg-red-50 dark:bg-red-900/20 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-10 border border-red-100 dark:border-red-900/30">
-                <AlertTriangle className="w-5 h-5" />
-                <span>Regulatory Death Valley</span>
+            <div className="space-y-8">
+              <h2 className="text-4xl lg:text-6xl font-black font-serif tracking-tighter">Why LaunchPath <br/><span className="text-authority-blue italic">Exists</span></h2>
+              <p className="text-xl text-text-muted leading-relaxed font-medium">
+                1 in 5 new carriers fail their first audit. We built LaunchPath because the industry needs <span className="text-authority-blue font-black underline decoration-signal-gold decoration-4 underline-offset-8">accuracy over hype</span>. 
+              </p>
+              <div className="bg-white dark:bg-primary-dark p-8 rounded-[3rem] border border-border-light shadow-sm">
+                <p className="text-lg text-text-muted leading-relaxed italic">
+                  "No get-rich-quick schemes. No shortcuts. Just verified FMCSA methodology that keeps your authority active."
+                </p>
               </div>
-              <h2 className="text-3xl lg:text-6xl font-black mb-10 font-serif leading-tight tracking-tight">The 18-Month Survival Gap</h2>
-              <div className="space-y-8 text-xl text-text-muted dark:text-text-dark-muted leading-relaxed">
-                <p>Most new authorities fail not for lack of work, but for lack of <span className="text-text-primary dark:text-white font-black underline decoration-signal-gold underline-offset-4">audit-proof systems</span>. LaunchPath™ closes the knowledge gap before the DOT inspector arrives.</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 stagger-parent">
-                  {(content.stats.length ? content.stats : fallbackContent.stats).map((stat, i) => (
-                    <div key={i} className="bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl transition-all group stagger-item">
-                      <div className="text-5xl font-black text-authority-blue dark:text-signal-gold mb-3 group-hover:scale-110 transition-transform origin-left">{stat.value}</div>
-                      <p className="text-[11px] font-black uppercase tracking-widest text-text-muted leading-tight">{stat.label}</p>
-                    </div>
-                  ))}
+              <div className="flex items-center space-x-6 pt-4">
+                <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl border-2 border-signal-gold shadow-lg flex items-center space-x-3">
+                  <Award size={28} className="text-authority-blue" />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue">Veteran Owned</span>
+                    <span className="text-[8px] font-bold text-text-muted uppercase">Certified Enterprise</span>
+                  </div>
                 </div>
+                <div className="h-10 w-px bg-border-light"></div>
+                <p className="text-xs font-black uppercase tracking-widest text-text-muted">Built by operators, for operators</p>
               </div>
             </div>
-            <div className="bg-white dark:bg-surface-dark p-12 md:p-20 rounded-[4rem] border border-border-light dark:border-border-dark shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-authority-blue/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-1000"></div>
-              <h3 className="text-3xl font-black font-serif mb-10 text-authority-blue dark:text-white leading-tight">
-                {content.mission.headline || fallbackContent.mission.headline}
-              </h3>
-              <div className="prose prose-lg dark:prose-invert font-medium leading-relaxed text-text-muted space-y-6" dangerouslySetInnerHTML={{ __html: content.mission.content || fallbackContent.mission.content }}>
+
+            <div className="grid grid-cols-1 gap-6">
+              <div className="bg-authority-blue p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
+                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+                 <BadgeCheck size={48} className="text-signal-gold mb-6" />
+                 <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 leading-tight">Regulatory Authority</h3>
+                 <p className="opacity-70 font-medium leading-relaxed">
+                   Our curriculum isn't based on YouTube opinions. It's derived directly from Part 390-399 of the FMCSRs. We teach you to master the law, so you don't fear it.
+                 </p>
               </div>
-              <Link to="/about" className="inline-flex items-center text-authority-blue dark:text-signal-gold font-black uppercase tracking-widest text-xs mt-12 hover:gap-4 transition-all group/btn">
-                Our Core Philosophy <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-32 border-t border-border-light dark:border-border-dark bg-slate-50 dark:bg-surface-dark/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-             <div className="w-16 h-16 bg-authority-blue/10 dark:bg-signal-gold/10 text-authority-blue dark:text-signal-gold rounded-[1.5rem] flex items-center justify-center mx-auto mb-8">
-                <Sparkles size={32} />
-             </div>
-             <h2 className="text-4xl lg:text-6xl font-black mb-6 font-serif tracking-tighter">Zero Ambiguity</h2>
-             <p className="text-[11px] font-black uppercase tracking-[0.3em] text-text-muted">Direct answers to industry hurdles</p>
+      {/* 3. THE PROBLEM SECTION - REAL FMCSA DATA */}
+      <section className="py-32 bg-white dark:bg-primary-dark overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-24">
+            <div className="inline-flex items-center space-x-3 text-red-600 bg-red-50 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6 border border-red-100">
+               <AlertTriangle size={16} />
+               <span>Critical Industry Risk</span>
+            </div>
+            <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter">The Real Cost of <br/><span className="text-red-600 italic">Getting It Wrong</span></h2>
           </div>
-          <div className="space-y-6">
-            {(content.faqs.length ? content.faqs : fallbackContent.faqs).map((faq, idx) => (
-              <div key={idx} className={`border rounded-3xl overflow-hidden transition-all duration-500 bg-white dark:bg-surface-dark ${openFAQ === idx ? 'shadow-2xl border-authority-blue ring-4 ring-authority-blue/5' : 'border-border-light dark:border-border-dark hover:border-text-muted/30 shadow-sm'}`}>
-                <button 
-                  onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-8 text-left focus:outline-none group"
-                >
-                  <span className={`font-black text-xl leading-tight transition-colors ${openFAQ === idx ? 'text-authority-blue dark:text-white' : 'text-text-primary dark:text-text-dark-primary'}`}>{faq.q}</span>
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${openFAQ === idx ? 'bg-authority-blue text-white rotate-180' : 'bg-slate-100 dark:bg-gray-800 text-text-muted group-hover:bg-slate-200'}`}>
-                    <ChevronDown className="w-6 h-6" />
-                  </div>
-                </button>
-                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${openFAQ === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <div className="p-8 pt-0 text-text-muted dark:text-text-dark-muted leading-relaxed text-lg border-t border-gray-100 dark:border-gray-800 mt-2">
-                    {faq.a}
-                  </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { 
+                stat: "12 Months", 
+                title: "Mandatory Audit", 
+                desc: "Every new entrant carrier faces a mandatory safety audit within their first 12 months. There is no 'flying under the radar'.",
+                source: "FMCSA Safety Data"
+              },
+              { 
+                stat: "Instant Fail", 
+                title: "Authority Revocation", 
+                desc: "Specific critical violations (missing DQ files, lack of drug testing enrollment) trigger automatic failure and immediate deactivation.",
+                source: "FMCSR Part 385 App. B"
+              },
+              { 
+                stat: "20%", 
+                title: "Survival Rate", 
+                desc: "One in five new motor carrier authorities shut down permanently in their first year due to preventable compliance failures.",
+                source: "FMCSA Safety Data"
+              }
+            ].map((item, i) => (
+              <div key={i} className="p-12 bg-slate-50 dark:bg-surface-dark rounded-[3.5rem] border border-border-light dark:border-border-dark group hover:border-red-200 transition-all flex flex-col">
+                <div className="text-5xl font-black text-authority-blue dark:text-white mb-6 group-hover:text-red-600 transition-colors">{item.stat}</div>
+                <h4 className="text-xl font-black uppercase tracking-tighter mb-4">{item.title}</h4>
+                <p className="text-text-muted font-medium leading-relaxed mb-10 flex-grow">{item.desc}</p>
+                <div className="pt-8 border-t border-border-light text-[9px] font-black uppercase tracking-widest text-text-muted/60 flex items-center">
+                  <Info size={12} className="mr-1.5" /> (Source: {item.source})
                 </div>
               </div>
             ))}
@@ -298,17 +244,219 @@ const HomePage: React.FC<HomePageProps> = ({ previewData }) => {
         </div>
       </section>
 
-      {/* Floating Action / Scroll Observer Implementation */}
+      {/* 4. THE SOLUTION - WHAT YOU GET */}
+      <section className="py-32 bg-authority-blue text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-10">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter mb-4 leading-none">What You Get</h2>
+              <p className="text-xl text-white/70 font-medium">A complete operational toolkit. No fluff, just technical deliverables.</p>
+            </div>
+            <Link to="/learning-path" className="bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all flex items-center shadow-2xl active:scale-95">
+              Explore Curriculum <ArrowRight className="ml-3" size={16} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <BookOpen />, title: "8-Module Framework", desc: "Step-by-step video training on the technical compliance pillars of a US Motor Carrier." },
+              { icon: <FileText />, title: "DQ File Templates", desc: "Ready-to-use Driver Qualification files that meet 100% of Part 391 requirements." },
+              { icon: <Wrench />, title: "Maintenance Tracking", desc: "Systematic maintenance log templates and mandatory periodic inspection trackers." },
+              { icon: <CheckCircle2 />, title: "Audit Preparation", desc: "The exact checklist auditors use, allowing you to perform a pre-audit on your own files." },
+              { icon: <Zap />, title: "Lifetime Access", desc: "Regulations change. We update our materials constantly. You keep access to new data forever." },
+              { icon: <Shield />, title: "Authority Protection", desc: "Proven strategies to protect your MC number from predatory violations and phishing scams." }
+            ].map((item, i) => (
+              <div key={i} className="bg-white/5 backdrop-blur-xl p-10 rounded-[3rem] border border-white/10 hover:bg-white/10 transition-all group">
+                <div className="text-signal-gold mb-6 group-hover:scale-110 transition-transform duration-500">
+                  {React.cloneElement(item.icon as React.ReactElement, { size: 32 })}
+                </div>
+                <h3 className="text-xl font-black uppercase tracking-tighter mb-4">{item.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed font-medium">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. TRANSPARENCY SECTION - OUR COMMITMENT */}
+      <section className="py-32 bg-white dark:bg-primary-dark">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-slate-50 dark:bg-surface-dark p-16 md:p-24 rounded-[4rem] border-2 border-dashed border-border-light text-center relative shadow-inner">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-primary-dark p-5 rounded-full border border-border-light shadow-xl">
+               <Zap className="text-signal-gold" size={36} />
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-black font-serif mb-10 text-authority-blue">Our Commitment</h2>
+            <div className="space-y-8 text-xl text-text-muted leading-relaxed font-medium">
+              <p>
+                We're a new educational platform built on <span className="text-authority-blue font-black underline decoration-signal-gold decoration-2 underline-offset-4">15+ years of combined industry experience.</span>
+              </p>
+              <p>
+                We don't have 500 students yet. What we do have is accurate, audit-tested methodology. If you're looking for hype, this isn't it. If you want to build correctly from day one, you're in the right place.
+              </p>
+              <div className="pt-10 flex flex-wrap justify-center gap-6">
+                 <div className="flex items-center space-x-3 bg-white dark:bg-gray-800 px-6 py-3 rounded-2xl border border-border-light shadow-sm">
+                    <BarChart3 className="text-authority-blue" size={20} />
+                    <span className="text-xs font-black uppercase tracking-widest text-authority-blue">Data-First</span>
+                 </div>
+                 <div className="flex items-center space-x-3 bg-white dark:bg-gray-800 px-6 py-3 rounded-2xl border border-border-light shadow-sm">
+                    <ShieldCheck className="text-green-600" size={20} />
+                    <span className="text-xs font-black uppercase tracking-widest text-authority-blue">Audit-Tested</span>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. INVESTMENT SECTION - 3 TIERS WITH SALE PRICING */}
+      <section className="py-32 bg-slate-50 dark:bg-surface-dark border-y border-border-light dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-24">
+             <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter mb-6 leading-none">Your Compliance <br/>Investment</h2>
+             <p className="text-lg text-text-muted font-medium">Professional insurance against authority revocation.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-24">
+            {/* TIER 1: SELF-PACED */}
+            <div className="bg-white dark:bg-gray-900 p-12 rounded-[3.5rem] border border-border-light dark:border-border-dark flex flex-col transition-all duration-500 hover:shadow-2xl group">
+              <div className="flex flex-col mb-10">
+                <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">Self-Paced Fundamentals</h3>
+                <div className="flex items-center space-x-3">
+                  <span className="text-lg font-bold text-text-muted line-through opacity-50">$597</span>
+                  <div className="flex items-baseline">
+                    <span className="text-xl font-bold text-signal-gold mr-1">$</span>
+                    <span className="text-5xl font-black tracking-tighter text-signal-gold">397</span>
+                  </div>
+                </div>
+              </div>
+              
+              <ul className="space-y-4 mb-12 flex-grow">
+                {[
+                  "Complete 8-module compliance framework",
+                  "DQ file templates (driver qualification)",
+                  "DVIR forms and maintenance logs",
+                  "HOS policy templates",
+                  "Drug & Alcohol testing checklist",
+                  "New Entrant Audit preparation guide",
+                  "Lifetime access to all materials",
+                  "Email support"
+                ].map((f, j) => (
+                  <li key={j} className="flex items-start text-sm font-medium leading-tight">
+                    <CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue flex-shrink-0 mt-0.5" />
+                    <span className="text-text-muted">{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/enroll" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-steel-blue active:scale-95 shadow-xl">
+                ENROLL NOW
+              </Link>
+            </div>
+
+            {/* TIER 2: MASTERY BUNDLE (MOST POPULAR) */}
+            <div className="bg-authority-blue text-white p-12 rounded-[3.5rem] flex flex-col transition-all duration-500 hover:shadow-2xl relative scale-105 shadow-2xl z-10 border-4 border-signal-gold">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[10px] px-8 py-2 rounded-full uppercase tracking-[0.2em] shadow-xl whitespace-nowrap">
+                MOST POPULAR
+              </div>
+              
+              <div className="flex flex-col mb-10 pt-4">
+                <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">Compliance Mastery</h3>
+                <div className="flex items-center space-x-3">
+                  <span className="text-lg font-bold text-white/40 line-through">$1,497</span>
+                  <div className="flex items-baseline">
+                    <span className="text-xl font-bold text-signal-gold mr-1">$</span>
+                    <span className="text-5xl font-black tracking-tighter text-signal-gold">797</span>
+                  </div>
+                </div>
+              </div>
+
+              <ul className="space-y-4 mb-12 flex-grow">
+                {[
+                  "Everything in Self-Paced, PLUS:",
+                  "Live Q&A sessions (monthly)",
+                  "Personalized file review (one-time)",
+                  "State-specific registration guidance",
+                  "Authority application walkthrough",
+                  "Insurance shopping guidance",
+                  "Roadmap implementation support",
+                  "Priority email support",
+                  "Access to private community"
+                ].map((f, j) => (
+                  <li key={j} className="flex items-start text-sm font-medium leading-tight">
+                    <CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold flex-shrink-0 mt-0.5" />
+                    <span className={j === 0 ? "font-black uppercase tracking-widest text-[10px] text-signal-gold" : "opacity-90"}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/enroll" className="w-full bg-signal-gold text-authority-blue py-6 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-white hover:text-authority-blue active:scale-95 shadow-2xl">
+                ENROLL NOW
+              </Link>
+            </div>
+
+            {/* TIER 3: CONCIERGE ELITE */}
+            <div className="bg-white dark:bg-gray-900 p-12 rounded-[3.5rem] border border-border-light dark:border-border-dark flex flex-col transition-all duration-500 hover:shadow-2xl">
+              <div className="flex flex-col mb-10">
+                <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">White-Glove Elite</h3>
+                <div className="flex items-center space-x-3">
+                  <span className="text-lg font-bold text-text-muted line-through opacity-50">$2,197</span>
+                  <div className="flex items-baseline">
+                    <span className="text-xl font-bold text-signal-gold mr-1">$</span>
+                    <span className="text-5xl font-black tracking-tighter text-signal-gold">1,497</span>
+                  </div>
+                </div>
+              </div>
+
+              <ul className="space-y-4 mb-12 flex-grow">
+                {[
+                  "Everything in Compliance Mastery, PLUS:",
+                  "1-on-1 audit preparation coaching (2 sessions)",
+                  "Mock audit performance review",
+                  "Custom compliance calendar",
+                  "Direct phone/text support line",
+                  "SMS compliance reminders",
+                  "Certificate of completion",
+                  "Ongoing regulatory update alerts",
+                  "Lifetime priority access"
+                ].map((f, j) => (
+                  <li key={j} className="flex items-start text-sm font-medium leading-tight">
+                    <CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue flex-shrink-0 mt-0.5" />
+                    <span className={j === 0 ? "font-black uppercase tracking-widest text-[10px] text-authority-blue" : "text-text-muted"}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/enroll" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-steel-blue active:scale-95 shadow-xl">
+                ENROLL NOW
+              </Link>
+            </div>
+          </div>
+
+          {/* Guarantee Banner */}
+          <div className="bg-white dark:bg-primary-dark p-12 lg:p-20 rounded-[4rem] border-4 border-signal-gold/30 text-center shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-48 h-48 bg-signal-gold/5 rounded-full -translate-y-24 translate-x-24"></div>
+             <ShieldCheck size={64} className="text-signal-gold mx-auto mb-10 animate-float" />
+             <h3 className="text-3xl lg:text-5xl font-black font-serif mb-6 leading-tight">30-Day Money-Back Guarantee</h3>
+             <p className="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed font-medium">
+               "If our system doesn't help you build audit-ready files, we refund 100%. We stand behind our methodology because it's based on the law, not opinion."
+             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CALL TO ACTION */}
+      <section className="py-40 bg-authority-blue text-white text-center relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-signal-gold opacity-5 rounded-full blur-3xl"></div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+           <h2 className="text-5xl lg:text-8xl font-black font-serif tracking-tighter mb-12">Launch Securely. <br/>From <span className="text-signal-gold italic">Day One.</span></h2>
+           <Link to="/enroll" className="inline-flex items-center space-x-5 bg-white text-authority-blue px-16 py-8 rounded-[2.5rem] text-2xl font-black uppercase tracking-widest hover:bg-signal-gold transition-all shadow-2xl group active:scale-95">
+              <span>GET STARTED</span>
+              <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
+           </Link>
+        </div>
+      </section>
+
       <style>{`
-        .reveal-on-scroll {
-          opacity: 0;
-          transform: translateY(40px);
-          transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal-on-scroll.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
       `}</style>
     </div>
   );

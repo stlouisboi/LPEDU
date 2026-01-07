@@ -15,7 +15,9 @@ import {
   CreditCard,
   Palette,
   Eye,
-  Globe
+  Globe,
+  Award,
+  ShieldCheck
 } from 'lucide-react';
 import { SiteSettings } from '../../types';
 import MediaUploader from '../../components/admin/MediaUploader';
@@ -141,6 +143,39 @@ const SettingsManager = () => {
                       className="flex-grow px-6 py-4 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl outline-none font-mono text-xs uppercase"
                     />
                   </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl border border-border-light flex flex-col space-y-4">
+                   <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <Award className="text-authority-blue" />
+                        <span className="text-xs font-bold uppercase tracking-widest">Veteran Owned Badge</span>
+                      </div>
+                      <button 
+                        onClick={() => setSettings({...settings, showVeteranBadge: !settings.showVeteranBadge})}
+                        className={`w-12 h-6 rounded-full transition-colors relative ${settings.showVeteranBadge ? 'bg-authority-blue' : 'bg-gray-300'}`}
+                      >
+                        <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${settings.showVeteranBadge ? 'right-1' : 'left-1'}`}></div>
+                      </button>
+                   </div>
+                   <p className="text-[10px] text-text-muted leading-relaxed uppercase font-black">Displays "Veteran Owned Business" in the footer trust signals.</p>
+                </div>
+                <div className="p-6 bg-white dark:bg-gray-900 border-2 border-signal-gold rounded-3xl flex flex-col space-y-4 shadow-[0_4px_20px_rgba(212,175,55,0.1)]">
+                   <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3 text-authority-blue">
+                        <ShieldCheck />
+                        <span className="text-xs font-bold uppercase tracking-widest">SDVOSB Badge</span>
+                      </div>
+                      <button 
+                        onClick={() => setSettings({...settings, showDisabledVeteranBadge: !settings.showDisabledVeteranBadge})}
+                        className={`w-12 h-6 rounded-full transition-colors relative ${settings.showDisabledVeteranBadge ? 'bg-signal-gold' : 'bg-gray-300'}`}
+                      >
+                        <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${settings.showDisabledVeteranBadge ? 'right-1' : 'left-1'}`}></div>
+                      </button>
+                   </div>
+                   <p className="text-[10px] text-text-muted leading-relaxed uppercase font-black">Displays "Service-Disabled Veteran-Owned Small Business" trust logo.</p>
                 </div>
               </div>
 

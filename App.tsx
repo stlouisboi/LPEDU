@@ -15,7 +15,17 @@ import {
   Twitter,
   Instagram,
   Linkedin,
-  Youtube
+  Youtube,
+  ShieldCheck,
+  CheckCircle,
+  ShieldAlert,
+  FileText,
+  BadgeCheck,
+  Star,
+  Shield,
+  Phone,
+  Mail,
+  HelpCircle
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -207,24 +217,21 @@ const Footer = () => {
 
   if (location.pathname.startsWith('/admin')) return null;
   
-  const socialItems = [
-    { name: 'Facebook', icon: <Facebook className="w-5 h-5" />, url: settings.social.facebook },
-    { name: 'Twitter', icon: <Twitter className="w-5 h-5" />, url: settings.social.twitter },
-    { name: 'Instagram', icon: <Instagram className="w-5 h-5" />, url: settings.social.instagram },
-    { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: settings.social.linkedin },
-    { name: 'YouTube', icon: <Youtube className="w-5 h-5" />, url: settings.social.youtube },
-  ].filter(s => s.url);
-
   return (
-    <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark pt-20 pb-24 lg:pb-12 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-authority-blue/5 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
+    <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark pt-24 pb-16 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-authority-blue/5 rounded-full -translate-y-48 translate-x-48 blur-3xl"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+          <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-8 group">
               {settings.logoUrl ? (
-                <img src={settings.logoUrl} alt={settings.siteName} className="h-10 w-auto" />
+                <img 
+                  src={settings.logoUrl} 
+                  alt={settings.siteName} 
+                  loading="lazy" 
+                  className="h-10 w-auto" 
+                />
               ) : (
                 <div className="w-10 h-10 bg-black dark:bg-authority-blue rounded-xl flex items-center justify-center transition-transform group-hover:scale-110">
                   <span className="text-white font-black">{settings.siteName.charAt(0)}</span>
@@ -234,70 +241,82 @@ const Footer = () => {
                 {settings.siteName}
               </span>
             </Link>
-            <p className="text-text-muted dark:text-text-dark-muted max-w-sm mb-10 leading-relaxed font-medium">
-              {settings.metaDescription}
+            <p className="text-text-muted dark:text-text-dark-muted mb-10 leading-relaxed font-black uppercase tracking-widest text-[10px]">
+              Accuracy Over Hype.™
             </p>
             
-            {settings.showVeteranBadge && (
-              <div className="mb-10 p-5 bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 inline-flex items-center space-x-4 shadow-sm group hover:border-signal-gold transition-all cursor-default">
-                <div className="w-12 h-12 bg-authority-blue text-white rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all">
-                  <Award size={24} className="text-signal-gold" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-authority-blue dark:text-signal-gold leading-none">SDVOB Certified</p>
-                  <p className="text-sm font-black text-text-primary dark:text-white mt-1 uppercase tracking-tight">Veteran Owned Business</p>
-                </div>
-              </div>
-            )}
-
-            <div className="flex space-x-4">
-              {socialItems.map((social) => (
-                <a 
-                  key={social.name} 
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 text-authority-blue dark:text-text-dark-muted flex items-center justify-center hover:bg-authority-blue hover:text-white dark:hover:text-white transition-all transform hover:-translate-y-1 active:scale-90"
-                  title={social.name}
-                >
-                  <span className="sr-only">{social.name}</span>
-                  {social.icon}
-                </a>
-              ))}
+            <div className="space-y-4">
+               <div className="flex items-center space-x-3 text-sm font-bold text-text-muted">
+                  <Mail size={16} className="text-authority-blue" />
+                  <span>support@launchpath.com</span>
+               </div>
+               <div className="flex items-center space-x-3 text-sm font-bold text-text-muted">
+                  <Phone size={16} className="text-authority-blue" />
+                  <span>1-800-DOT-COMP</span>
+               </div>
             </div>
           </div>
           
           <div>
-            <h4 className="font-black mb-8 uppercase tracking-widest text-xs text-text-muted opacity-80">Quick Links</h4>
-            <ul className="space-y-5 text-text-muted dark:text-text-dark-muted text-sm font-bold">
-              <li><Link to="/about" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">About Us</Link></li>
-              <li><Link to="/learning-path" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">The Learning Path</Link></li>
-              <li><Link to="/blog" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">Compliance Blog</Link></li>
-              <li><Link to="/faq" className="hover:text-authority-blue hover:translate-x-1 inline-block transition-all">FAQ</Link></li>
+            <h4 className="font-black mb-8 uppercase tracking-[0.2em] text-xs text-authority-blue dark:text-signal-gold">Knowledge</h4>
+            <ul className="space-y-4 text-text-muted dark:text-text-dark-muted text-sm font-bold">
+              <li><Link to="/resources" className="hover:text-authority-blue transition-colors">Compliance Guides</Link></li>
+              <li><Link to="/blog" className="hover:text-authority-blue transition-colors">Safety Ledger Blog</Link></li>
+              <li><Link to="/learning-path" className="hover:text-authority-blue transition-colors">90-Day Success Map</Link></li>
+              <li><Link to="/advisor" className="hover:text-authority-blue transition-colors">AI Advisor Tools</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-black mb-8 uppercase tracking-widest text-xs text-text-muted opacity-80">Contact Hub</h4>
-            <ul className="space-y-6 text-text-muted dark:text-text-dark-muted text-sm leading-relaxed">
-              <li className="flex flex-col">
-                <span className="text-[10px] font-black uppercase text-text-muted/60 mb-1">Direct Email</span>
-                <span className="font-black text-authority-blue dark:text-signal-gold break-all">{settings.contact.email}</span>
-              </li>
-              <li className="flex flex-col">
-                <span className="text-[10px] font-black uppercase text-text-muted/60 mb-1">Corporate Line</span>
-                <span className="font-bold text-text-primary dark:text-white">{settings.contact.phone}</span>
-              </li>
+            <h4 className="font-black mb-8 uppercase tracking-[0.2em] text-xs text-authority-blue dark:text-signal-gold">Company</h4>
+            <ul className="space-y-4 text-text-muted dark:text-text-dark-muted text-sm font-bold mb-10">
+              <li><Link to="/about" className="hover:text-authority-blue transition-colors">Our Methodology</Link></li>
+              <li><Link to="/contact" className="hover:text-authority-blue transition-colors">Contact Support</Link></li>
+              <li><Link to="/legal" className="hover:text-authority-blue transition-colors">Legal Disclosure</Link></li>
             </ul>
+            
+            {/* STANDOUT SDVOSB BADGE */}
+            <div className="p-6 bg-slate-50 dark:bg-gray-800 rounded-[2rem] border-2 border-signal-gold shadow-xl animate-in slide-in-from-bottom-2 duration-1000">
+               <div className="flex items-center space-x-4">
+                  <div className="relative flex-shrink-0">
+                    <ShieldCheck size={32} className="text-authority-blue" />
+                    <Star size={14} fill="currentColor" className="absolute -top-1.5 -right-1.5 text-signal-gold" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-black uppercase tracking-tight text-authority-blue leading-none">SDVOSB Certified</span>
+                    <span className="text-[8px] font-bold uppercase tracking-widest text-text-muted mt-1 leading-tight">Service-Disabled <br/>Veteran Owned</span>
+                  </div>
+               </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-black mb-8 uppercase tracking-[0.2em] text-xs text-authority-blue dark:text-signal-gold">Verified Trust</h4>
+            <div className="space-y-6">
+               <div className="flex items-center space-x-3 bg-slate-50 dark:bg-gray-800/50 p-4 rounded-2xl border border-border-light dark:border-border-dark">
+                  <BadgeCheck size={24} className="text-signal-gold" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-text-primary dark:text-white">FMCSA Verified Standards</span>
+               </div>
+               <div className="flex items-center space-x-3 bg-slate-50 dark:bg-gray-800/50 p-4 rounded-2xl border border-border-light dark:border-border-dark">
+                  <ShieldCheck size={24} className="text-green-600" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-text-primary dark:text-white">Audit Pass Guarantee</span>
+               </div>
+            </div>
           </div>
         </div>
         
-        <div className="pt-10 border-t border-border-light dark:border-border-dark flex flex-col lg:flex-row justify-between items-center text-[11px] font-bold uppercase tracking-widest text-text-muted dark:text-text-dark-muted space-y-6 lg:space-y-0">
-          <p>© {new Date().getFullYear()} {settings.siteName}. Compliance First Methodology.</p>
-          <div className="flex space-x-10">
-            <Link to="/legal" className="hover:text-authority-blue transition-colors">Privacy</Link>
-            <Link to="/legal" className="hover:text-authority-blue transition-colors">Terms</Link>
-            <Link to="/legal" className="hover:text-authority-blue transition-colors">Disclaimer</Link>
+        <div className="pt-12 border-t border-border-light dark:border-border-dark flex flex-col lg:flex-row justify-between items-center text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-text-dark-muted space-y-8 lg:space-y-0">
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-12">
+            <p>© {new Date().getFullYear()} LaunchPath Transportation EDU. All rights reserved.</p>
+            <div className="flex space-x-8">
+              <Link to="/legal" className="hover:text-authority-blue transition-colors">Privacy Policy</Link>
+              <Link to="/legal" className="hover:text-authority-blue transition-colors">Terms of Service</Link>
+              <Link to="/legal" className="hover:text-authority-blue transition-colors">Disclaimer</Link>
+            </div>
+          </div>
+          <div className="flex items-center space-x-2 bg-slate-100 dark:bg-gray-800 px-4 py-2 rounded-full border border-border-light">
+             <Shield size={12} className="text-authority-blue" />
+             <span>256-bit Secure Portal</span>
           </div>
         </div>
       </div>
@@ -400,7 +419,6 @@ export default function App() {
             <Header />
             <main className="flex-grow">
               <Routes>
-                {/* Public Routes */}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/learning-path" element={<LearningPathPage />} />
@@ -412,14 +430,8 @@ export default function App() {
                 <Route path="/advisor" element={<AIServicePage />} />
                 <Route path="/enroll" element={<EnrollPage />} />
                 <Route path="/modules/:id" element={<ModuleDetailPage />} />
-                
-                {/* Admin Auth */}
                 <Route path="/admin/login" element={<AdminLogin />} />
-                
-                {/* Primary Admin Dashboard View */}
                 <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-
-                {/* Modular Admin (Layout-based sub-routes) */}
                 <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
                   <Route index element={<AdminDashboardHome />} />
                   <Route path="pages" element={<PageList />} />
