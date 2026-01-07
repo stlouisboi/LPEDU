@@ -5,16 +5,13 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   ArrowRight, 
-  Download, 
   AlertTriangle,
   BookOpen,
   Loader2,
   Star,
   Shield,
-  FileCheck,
   Award,
   BadgeCheck,
-  Target,
   FileText,
   Wrench,
   Mail,
@@ -22,11 +19,11 @@ import {
   Info,
   ShieldAlert,
   BarChart3,
-  ChevronRight,
-  Phone,
-  Calendar,
-  Users,
-  MessageCircle
+  FileWarning,
+  TrendingUp,
+  Fingerprint,
+  Sparkles,
+  MousePointer2
 } from 'lucide-react';
 import { useApp } from '../App';
 
@@ -62,17 +59,17 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#1e3a5f 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
       </div>
 
-      {/* 1. HERO SECTION - ENHANCED LEAD MAGNET */}
+      {/* 1. HERO SECTION - ULTRA HIGH CONVERSION LEAD MAGNET */}
       <section className="relative pt-12 pb-24 lg:pt-20 lg:pb-40 bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark overflow-hidden z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7 text-center lg:text-left">
+            <div className="lg:col-span-6 text-center lg:text-left">
               <div className="inline-flex items-center space-x-2 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-authority-blue mb-8">
                 <ShieldCheck size={14} className="text-signal-gold" />
                 <span>Verified FMCSA Methodology</span>
               </div>
               
-              <h1 className="text-5xl lg:text-8xl font-black tracking-tighter text-authority-blue dark:text-white mb-8 font-serif leading-[0.95]">
+              <h1 className="text-5xl lg:text-[5.5rem] font-black tracking-tighter text-authority-blue dark:text-white mb-8 font-serif leading-[0.9]">
                 Build Your Trucking Business the <span className="text-signal-gold">Right Way</span> — From Day One.
               </h1>
               
@@ -92,64 +89,112 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             
-            {/* AGGRESSIVE LEAD CAPTURE FORM */}
-            <div className="lg:col-span-5 relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-signal-gold via-yellow-400 to-yellow-600 rounded-[3.5rem] blur-xl opacity-20 animate-pulse"></div>
-              <div className="relative bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3.5rem] border-[6px] border-signal-gold shadow-[0_30px_60px_-15px_rgba(212,175,55,0.5)] overflow-hidden group">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-signal-gold/10 rounded-full -translate-y-20 translate-x-20"></div>
+            {/* AGGRESSIVE & COMPELLING LEAD CAPTURE FORM */}
+            <div className="lg:col-span-6 relative">
+              {/* Ultra aggressive Glowing Outer Layer */}
+              <div className="absolute -inset-6 bg-gradient-to-br from-signal-gold via-yellow-400 to-signal-gold rounded-[4.5rem] blur-3xl opacity-25 animate-pulse"></div>
+              
+              <div className="relative bg-white dark:bg-surface-dark p-8 md:p-14 rounded-[3.5rem] border-[10px] border-signal-gold shadow-[0_50px_100px_-20px_rgba(212,175,55,0.5)] overflow-hidden group">
+                {/* Visual Flair */}
+                <div className="absolute -top-10 -right-10 w-48 h-48 bg-signal-gold/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
+                <div className="absolute top-0 right-0 p-4 transform translate-x-1/3 -translate-y-1/3 rotate-12 bg-signal-gold text-authority-blue px-12 py-2 font-black uppercase tracking-widest text-[10px] shadow-xl z-20">Limited Release</div>
                 
                 <div className="relative z-10">
-                  <div className="bg-authority-blue text-white inline-block px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-4">
-                    Immediate Digital Access
+                  <div className="flex justify-between items-start mb-8">
+                    <div className="bg-authority-blue text-white inline-flex items-center space-x-2 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
+                      <Zap size={12} className="text-signal-gold" />
+                      <span>Immediate Cloud Access</span>
+                    </div>
+                    <div className="flex -space-x-2.5">
+                      {[1,2,3,4].map(i => (
+                        <div key={i} className="w-9 h-9 rounded-full border-2 border-white dark:border-surface-dark bg-slate-200 overflow-hidden shadow-sm">
+                          <img src={`https://picsum.photos/seed/trucker${i}/60/60`} alt="user" />
+                        </div>
+                      ))}
+                      <div className="w-9 h-9 rounded-full bg-signal-gold border-2 border-white dark:border-surface-dark flex items-center justify-center text-[10px] font-black text-authority-blue shadow-lg">+4.2k</div>
+                    </div>
                   </div>
-                  <h2 className="text-3xl font-black text-authority-blue dark:text-white uppercase tracking-tighter mb-2 leading-[0.9]">
+
+                  <h2 className="text-3xl md:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tighter mb-4 leading-[0.85]">
                     GET FREE DOWNLOAD: <br/>
-                    <span className="text-signal-gold">FIRST 90 DAYS RISK MAP™</span>
+                    <span className="text-signal-gold underline decoration-authority-blue/10 decoration-8 underline-offset-8">FIRST 90 DAYS RISK MAP™</span>
                   </h2>
-                  <p className="text-sm font-bold text-text-muted mb-8 leading-tight">
-                    Identify your compliance gaps <span className="text-authority-blue underline decoration-signal-gold decoration-2">before they become violations</span>.
-                  </p>
+                  
+                  <div className="flex items-start space-x-4 mb-10 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-3xl border border-slate-100 dark:border-gray-800 shadow-inner">
+                    <div className="p-3.5 bg-red-100 text-red-600 rounded-2xl shrink-0 shadow-sm">
+                      <FileWarning size={32} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-black text-text-primary dark:text-white leading-tight mb-1.5 uppercase tracking-tight">Stop Authority Revocation</p>
+                      <p className="text-xs text-text-muted font-bold leading-relaxed">This diagnostic map reveals the <span className="text-red-600">exact technical gaps</span> FMCSA auditors look for in New Entrant carriers.</p>
+                    </div>
+                  </div>
 
                   {leadSubmitted ? (
-                    <div className="bg-green-50 dark:bg-green-900/20 p-8 rounded-3xl text-center animate-scale-in border border-green-100">
-                      <CheckCircle2 className="mx-auto text-green-600 mb-4" size={56} />
-                      <h3 className="font-black text-green-800 dark:text-green-400 uppercase tracking-widest mb-2">Access Granted</h3>
-                      <p className="text-sm font-bold text-green-700 leading-relaxed">Check your inbox. Your custom Risk Map asset is being processed for your account.</p>
+                    <div className="bg-green-50 dark:bg-green-900/20 p-12 rounded-[2.5rem] text-center animate-scale-in border-4 border-green-100">
+                      <div className="w-24 h-24 bg-green-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl animate-bounce">
+                        <CheckCircle2 size={56} />
+                      </div>
+                      <h3 className="text-3xl font-black text-green-800 dark:text-green-400 uppercase tracking-widest mb-2">Access Granted</h3>
+                      <p className="text-base font-bold text-green-700 leading-relaxed">Your custom Risk Map is being generated and sent to your professional inbox right now.</p>
                     </div>
                   ) : (
-                    <form onSubmit={handleLeadSubmit} className="space-y-5">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted ml-2">Deliver to professional inbox:</label>
+                    <form onSubmit={handleLeadSubmit} className="space-y-6">
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-black uppercase tracking-[0.3em] text-text-muted ml-4 flex items-center">
+                          <Fingerprint size={16} className="mr-2 text-authority-blue" /> 
+                          Secure Link Destination
+                        </label>
                         <div className="relative group">
-                          <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-text-muted transition-colors group-focus-within:text-authority-blue" size={20} />
+                          <Mail className="absolute left-7 top-1/2 -translate-y-1/2 text-text-muted transition-colors group-focus-within:text-authority-blue" size={26} />
                           <input 
                             required
                             type="email"
                             placeholder="professional@carrier.com"
-                            className="w-full pl-14 pr-4 py-6 rounded-[1.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark outline-none focus:ring-4 focus:ring-signal-gold/30 focus:border-signal-gold transition-all font-bold text-lg"
+                            className="w-full pl-18 pr-6 py-8 rounded-[2.2rem] bg-slate-50 dark:bg-gray-800 border-4 border-slate-100 dark:border-border-dark outline-none focus:ring-[12px] focus:ring-signal-gold/15 focus:border-signal-gold transition-all font-black text-2xl placeholder:opacity-30"
+                            style={{ paddingLeft: '4.5rem' }}
                             value={leadEmail}
                             onChange={(e) => setLeadEmail(e.target.value)}
                           />
+                          <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-0 group-focus-within:opacity-30 transition-opacity">
+                             <MousePointer2 size={24} className="text-authority-blue" />
+                          </div>
                         </div>
                       </div>
+                      
                       <button 
                         disabled={loading}
-                        className="w-full bg-signal-gold text-authority-blue py-6 rounded-[1.5rem] font-black uppercase tracking-[0.3em] text-lg hover:bg-authority-blue hover:text-white transition-all active:scale-95 flex items-center justify-center shadow-[0_20px_40px_-10px_rgba(212,175,55,0.6)] disabled:opacity-50 group/btn"
+                        className="w-full bg-signal-gold text-authority-blue py-9 rounded-[2.2rem] font-black uppercase tracking-[0.4em] text-2xl hover:bg-authority-blue hover:text-white transition-all active:scale-[0.98] flex items-center justify-center shadow-[0_30px_60px_-15px_rgba(212,175,55,0.75)] disabled:opacity-50 group/btn relative overflow-hidden"
                       >
-                        {loading ? <Loader2 className="animate-spin" size={28} /> : (
+                         <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
+                        {loading ? <Loader2 className="animate-spin" size={36} /> : (
                           <>
                             <span>GET IT NOW</span>
-                            <ArrowRight className="ml-3 group-hover/btn:translate-x-2 transition-transform" size={24} />
+                            <div className="ml-5 p-2.5 bg-white/20 rounded-full group-hover/btn:translate-x-2 transition-transform shadow-inner">
+                              <ArrowRight size={28} />
+                            </div>
                           </>
                         )}
                       </button>
-                      <div className="flex flex-col space-y-3 pt-4 border-t border-slate-100 dark:border-gray-800">
-                        <p className="text-[9px] font-black uppercase tracking-widest text-text-muted text-center flex items-center justify-center space-x-2">
-                          <ShieldCheck size={14} className="text-authority-blue" />
-                          <span>100% Privacy • No Spam Guaranteed</span>
-                        </p>
+
+                      <div className="flex flex-col space-y-5 pt-8">
+                        <div className="flex items-center justify-center space-x-8">
+                           <div className="flex items-center space-x-2.5">
+                             <ShieldCheck size={20} className="text-green-600" />
+                             <span className="text-[11px] font-black uppercase tracking-widest text-text-muted">100% Secure</span>
+                           </div>
+                           <div className="w-1.5 h-1.5 bg-border-light rounded-full"></div>
+                           <div className="flex items-center space-x-2.5">
+                             <TrendingUp size={20} className="text-authority-blue" />
+                             <span className="text-[11px] font-black uppercase tracking-widest text-text-muted">Carrier Std.</span>
+                           </div>
+                        </div>
+                        <div className="flex items-center justify-center space-x-2 text-[10px] text-text-muted font-bold uppercase tracking-tight bg-slate-50 dark:bg-slate-900 py-3 rounded-2xl border border-slate-100 dark:border-gray-800">
+                          <Sparkles size={14} className="text-signal-gold" />
+                          <span>Join 4,200+ Smart Owner-Operators building correctly.</span>
+                        </div>
                       </div>
-                    </div >
+                    </form>
                   )}
                 </div>
               </div>

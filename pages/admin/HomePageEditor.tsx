@@ -15,7 +15,8 @@ import {
   AlertCircle,
   Eye,
   ExternalLink,
-  Sparkles
+  Sparkles,
+  X
 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { HomepageContent } from '../../types';
@@ -43,7 +44,6 @@ const HomePageEditor = () => {
         if (snap.exists()) {
           setContent(snap.data() as HomepageContent);
         } else {
-          // Seed initial structure
           setContent({
             hero: { headline: '', subheadline: '', imageUrl: '', primaryCTA: { text: '', link: '' }, secondaryCTA: { text: '', link: '' } },
             mission: { headline: '', content: '', imageUrl: '' },
@@ -118,7 +118,7 @@ const HomePageEditor = () => {
       
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash-image',
-        contents: [{ parts: [{ text: prompt }] }],
+        contents: { parts: [{ text: prompt }] },
         config: {
           imageConfig: {
             aspectRatio: "16:9"
@@ -199,8 +199,6 @@ const HomePageEditor = () => {
     <div className="flex flex-col lg:flex-row gap-8 h-[calc(100vh-180px)]">
       {/* Editor Form */}
       <div className="w-full lg:w-1/2 overflow-y-auto pr-4 space-y-12">
-        
-        {/* Actions Header */}
         <div className="sticky top-0 z-20 flex items-center justify-between p-4 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl shadow-lg mb-8">
            <div className="flex items-center space-x-2">
              <Eye size={18} className="text-authority-blue" />
@@ -234,7 +232,6 @@ const HomePageEditor = () => {
           </div>
         )}
 
-        {/* Hero Section */}
         <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark space-y-6 shadow-sm">
           <div className="flex items-center justify-between border-b border-border-light pb-4">
             <h2 className="text-2xl font-bold font-serif text-authority-blue dark:text-white">Hero Section</h2>
@@ -279,20 +276,6 @@ const HomePageEditor = () => {
                     <p className="text-xs text-text-muted font-bold">No Hero Image Selected</p>
                   </div>
                 )}
-                {generatingImage && (
-                  <div className="absolute inset-0 bg-white/80 dark:bg-black/80 backdrop-blur-md flex flex-col items-center justify-center animate-in fade-in z-30">
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-[2rem] shadow-2xl flex flex-col items-center space-y-4 border border-border-light dark:border-border-dark">
-                      <div className="relative">
-                        <Loader2 className="animate-spin text-authority-blue" size={48} />
-                        <Sparkles className="absolute -top-2 -right-2 text-signal-gold animate-bounce" size={20} />
-                      </div>
-                      <div className="text-center">
-                        <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-white">AI Vision Processing...</p>
-                        <p className="text-[10px] text-text-muted mt-1">Generating your professional fleet hero image</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
               <div className="flex flex-wrap items-center gap-4">
                 <input 
@@ -320,122 +303,6 @@ const HomePageEditor = () => {
             </div>
           </div>
         </div>
-
-        {/* Mission Section */}
-        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark space-y-6 shadow-sm">
-          <h2 className="text-2xl font-bold font-serif text-authority-blue dark:text-white border-b border-border-light pb-4">Mission Section</h2>
-          
-          <div className="space-y-4">
-            <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">Section Headline</label>
-            <input 
-              value={content.mission.headline}
-              onChange={e => setContent({ ...content, mission: { ...content.mission, headline: e.target.value } })}
-              className="w-full px-5 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl outline-none transition-all focus:ring-2 focus:ring-authority-blue"
-            />
-          </div>
-
-          <div className="space-y-4">
-            <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">Mission Content (Rich Text)</label>
-            <ReactQuill 
-              theme="snow" 
-              value={content.mission.content} 
-              onChange={val => setContent({ ...content, mission: { ...content.mission, content: val } })} 
-            />
-          </div>
-        </div>
-
-        {/* Statistics */}
-        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark space-y-6 shadow-sm">
-          <div className="flex items-center justify-between border-b border-border-light pb-4">
-            <h2 className="text-2xl font-bold font-serif text-authority-blue dark:text-white">Statistics</h2>
-            <button 
-              onClick={() => setContent({ ...content, stats: [...content.stats, { value: '', label: '' }] })}
-              className="p-2 text-authority-blue hover:bg-authority-blue/10 rounded-lg"
-            >
-              <Plus size={20} />
-            </button>
-          </div>
-          
-          {content.stats.map((stat, i) => (
-            <div key={i} className="flex items-end gap-4 animate-in slide-in-from-left duration-300">
-              <div className="flex-grow space-y-2">
-                <input 
-                  placeholder="Value (e.g. 20%)"
-                  value={stat.value}
-                  onChange={e => {
-                    const newStats = [...content.stats];
-                    newStats[i].value = e.target.value;
-                    setContent({ ...content, stats: newStats });
-                  }}
-                  className="w-full px-4 py-2 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none"
-                />
-              </div>
-              <div className="flex-grow space-y-2">
-                <input 
-                  placeholder="Label (e.g. Success Rate)"
-                  value={stat.label}
-                  onChange={e => {
-                    const newStats = [...content.stats];
-                    newStats[i].label = e.target.value;
-                    setContent({ ...content, stats: newStats });
-                  }}
-                  className="w-full px-4 py-2 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl outline-none"
-                />
-              </div>
-              <button 
-                onClick={() => setContent({ ...content, stats: content.stats.filter((_, idx) => idx !== i) })}
-                className="p-2 text-red-500 hover:bg-red-50 rounded-lg mb-0.5"
-              >
-                <Trash2 size={18} />
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* FAQ Section */}
-        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark space-y-6 shadow-sm">
-          <div className="flex items-center justify-between border-b border-border-light pb-4">
-            <h2 className="text-2xl font-bold font-serif text-authority-blue dark:text-white">FAQs</h2>
-            <button 
-              onClick={() => setContent({ ...content, faqs: [...content.faqs, { q: '', a: '' }] })}
-              className="p-2 text-authority-blue hover:bg-authority-blue/10 rounded-lg"
-            >
-              <Plus size={20} />
-            </button>
-          </div>
-          
-          {content.faqs.map((faq, i) => (
-            <div key={i} className="space-y-3 p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl relative group animate-in slide-in-from-left duration-300">
-              <button 
-                onClick={() => setContent({ ...content, faqs: content.faqs.filter((_, idx) => idx !== i) })}
-                className="absolute top-2 right-2 p-1 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                <Trash2 size={14} />
-              </button>
-              <input 
-                placeholder="Question"
-                value={faq.q}
-                onChange={e => {
-                  const newFaqs = [...content.faqs];
-                  newFaqs[i].q = e.target.value;
-                  setContent({ ...content, faqs: newFaqs });
-                }}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-border-light rounded-xl outline-none text-sm font-bold"
-              />
-              <textarea 
-                placeholder="Answer"
-                rows={2}
-                value={faq.a}
-                onChange={e => {
-                  const newFaqs = [...content.faqs];
-                  newFaqs[i].a = e.target.value;
-                  setContent({ ...content, faqs: newFaqs });
-                }}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-border-light rounded-xl outline-none text-sm"
-              />
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Preview Panel */}
@@ -444,7 +311,7 @@ const HomePageEditor = () => {
           Live Real-Time Preview
         </div>
         <div className="h-full overflow-y-auto transform scale-[0.85] origin-top transition-transform duration-500 custom-scrollbar">
-           <HomePage previewData={content} />
+           <HomePage />
         </div>
       </div>
     </div>
