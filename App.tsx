@@ -32,6 +32,7 @@ import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
 import { AuthProvider, useAuth } from './AuthContext';
+import ScrollToTop from './components/ScrollToTop';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -172,7 +173,7 @@ const Header = () => {
               </button>
               
               <Link
-                to="/enroll"
+                to="/pricing"
                 className="bg-authority-blue text-white px-7 py-3 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-steel-blue transition-all shadow-md hover:shadow-lg active:scale-95"
               >
                 Enroll Now
@@ -205,6 +206,13 @@ const Header = () => {
               {item.name}
             </Link>
           ))}
+          <Link
+            to="/pricing"
+            onClick={() => setIsMenuOpen(false)}
+            className="block px-4 py-3 text-xl font-black rounded-2xl bg-authority-blue text-white mt-4 text-center"
+          >
+            Enroll Now
+          </Link>
         </div>
       </div>
     </header>
@@ -415,6 +423,7 @@ export default function App() {
     }}>
       <AuthProvider>
         <Router>
+          <ScrollToTop />
           <div className={`min-h-screen flex flex-col transition-opacity duration-500 ${theme === 'dark' ? 'dark' : ''}`}>
             <Header />
             <main className="flex-grow">
@@ -428,7 +437,7 @@ export default function App() {
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/legal" element={<LegalPage />} />
                 <Route path="/advisor" element={<AIServicePage />} />
-                <Route path="/enroll" element={<EnrollPage />} />
+                <Route path="/pricing" element={<EnrollPage />} />
                 <Route path="/modules/:id" element={<ModuleDetailPage />} />
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />

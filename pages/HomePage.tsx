@@ -77,6 +77,15 @@ const HomePage: React.FC = () => {
                 Identify your compliance gaps before they become violations. We provide the technical education required to survive the critical 18-month new entrant phase.
               </p>
 
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12">
+                <Link to="/learning-path" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all flex items-center shadow-2xl active:scale-95">
+                  Start Learning <ArrowRight className="ml-3" size={16} />
+                </Link>
+                <Link to="/about" className="bg-white dark:bg-gray-800 text-authority-blue dark:text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 dark:hover:bg-gray-700 transition-all border border-border-light dark:border-border-dark flex items-center shadow-sm active:scale-95">
+                  Our Methodology
+                </Link>
+              </div>
+
               <div className="flex items-center justify-center lg:justify-start space-x-8 opacity-60 grayscale hover:grayscale-0 transition-all">
                 <div className="flex items-center space-x-2">
                   <Award size={20} className="text-authority-blue" />
@@ -299,7 +308,7 @@ const HomePage: React.FC = () => {
               <p className="text-xl text-white/70 font-medium">A complete operational toolkit. No fluff, just technical deliverables.</p>
             </div>
             <Link to="/learning-path" className="bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all flex items-center shadow-2xl active:scale-95">
-              Explore Curriculum <ArrowRight className="ml-3" size={16} />
+              View Path <ArrowRight className="ml-3" size={16} />
             </Link>
           </div>
 
@@ -393,7 +402,7 @@ const HomePage: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <Link to="/enroll" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-steel-blue active:scale-95 shadow-xl">
+              <Link to="/pricing" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-steel-blue active:scale-95 shadow-xl">
                 ENROLL NOW
               </Link>
             </div>
@@ -433,7 +442,7 @@ const HomePage: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <Link to="/enroll" className="w-full bg-signal-gold text-authority-blue py-6 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-white hover:text-authority-blue active:scale-95 shadow-2xl">
+              <Link to="/pricing" className="w-full bg-signal-gold text-authority-blue py-6 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-white hover:text-authority-blue active:scale-95 shadow-2xl">
                 ENROLL NOW
               </Link>
             </div>
@@ -469,7 +478,7 @@ const HomePage: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <Link to="/enroll" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-steel-blue active:scale-95 shadow-xl">
+              <Link to="/pricing" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center transition-all hover:bg-steel-blue active:scale-95 shadow-xl">
                 ENROLL NOW
               </Link>
             </div>
@@ -492,7 +501,7 @@ const HomePage: React.FC = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-signal-gold opacity-5 rounded-full blur-3xl"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
            <h2 className="text-5xl lg:text-8xl font-black font-serif tracking-tighter mb-12">Launch Securely. <br/>From <span className="text-signal-gold italic">Day One.</span></h2>
-           <Link to="/enroll" className="inline-flex items-center space-x-5 bg-white text-authority-blue px-16 py-8 rounded-[2.5rem] text-2xl font-black uppercase tracking-widest hover:bg-signal-gold transition-all shadow-2xl group active:scale-95">
+           <Link to="/pricing" className="inline-flex items-center space-x-5 bg-white text-authority-blue px-16 py-8 rounded-[2.5rem] text-2xl font-black uppercase tracking-widest hover:bg-signal-gold transition-all shadow-2xl group active:scale-95">
               <span>GET STARTED</span>
               <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
            </Link>
