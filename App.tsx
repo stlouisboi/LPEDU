@@ -51,7 +51,6 @@ import ModuleDetailPage from './pages/ModuleDetailPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboardHome from './pages/admin/AdminDashboardHome';
 import PageList from './pages/admin/PageList';
@@ -222,6 +221,7 @@ export default function App() {
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/legal" element={<LegalPage />} />
@@ -243,6 +243,7 @@ export default function App() {
                 <Route path="video-lab" element={<VideoLab />} />
                 <Route path="initialize-data" element={<InitializeDataPage />} />
               </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
           <Footer />
