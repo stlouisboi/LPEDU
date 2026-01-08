@@ -59,6 +59,7 @@ import SubmissionsList from './pages/admin/SubmissionsList';
 import SettingsManager from './pages/admin/SettingsManager';
 import VideoLab from './pages/admin/VideoLab';
 import InitializeDataPage from './pages/admin/InitializeDataPage';
+import LeadsManager from './pages/admin/LeadsManager';
 
 // Security
 import ProtectedRoute from './components/admin/ProtectedRoute';
@@ -284,6 +285,7 @@ export default function App() {
                 <Route path="resources" element={<ResourceManager />} />
                 <Route path="forms" element={<FormManagement />} />
                 <Route path="forms/submissions" element={<SubmissionsList />} />
+                <Route path="leads" element={<LeadsManager />} />
                 <Route path="settings" element={<SettingsManager />} />
                 <Route path="video-lab" element={<VideoLab />} />
                 <Route path="initialize-data" element={<InitializeDataPage />} />

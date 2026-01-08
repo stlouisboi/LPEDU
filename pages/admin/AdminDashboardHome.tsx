@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, PlusCircle, AlertCircle, CheckCircle2, Loader2, ExternalLink, ChevronRight } from 'lucide-react';
+import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, PlusCircle, AlertCircle, CheckCircle2, Loader2, ExternalLink, ChevronRight, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
@@ -45,6 +45,7 @@ const AdminDashboardHome = () => {
   const quickActions = [
     { name: 'Edit Homepage', path: '/admin/pages/home', icon: <FileEdit size={18} /> },
     { name: 'New Blog Post', path: '/admin/blog/new', icon: <PlusCircle size={18} /> },
+    { name: 'Manage Leads', path: '/admin/leads', icon: <Users size={18} /> },
     { name: 'Upload Resource', path: '/admin/resources', icon: <Zap size={18} /> },
   ];
 

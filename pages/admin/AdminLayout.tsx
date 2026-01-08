@@ -14,7 +14,8 @@ import {
   X,
   ChevronRight,
   Video,
-  Database
+  Database,
+  Users
 } from 'lucide-react';
 
 const AdminLayout = () => {
@@ -34,6 +35,7 @@ const AdminLayout = () => {
     { name: 'Dashboard', path: '/admin', icon: <LayoutDashboard size={20} /> },
     { name: 'Pages', path: '/admin/pages', icon: <Globe size={20} /> },
     { name: 'Blog', path: '/admin/blog', icon: <FileText size={20} /> },
+    { name: 'Leads', path: '/admin/leads', icon: <Users size={20} /> },
     { name: 'Video Lab', path: '/admin/video-lab', icon: <Video size={20} /> },
     { name: 'Resources', path: '/admin/resources', icon: <Download size={20} /> },
     { name: 'Forms', path: '/admin/forms', icon: <MessageSquare size={20} /> },
