@@ -9,12 +9,14 @@ import { BlogPost, BlogCategory } from '../types';
 import { INITIAL_BLOGS } from '../constants';
 
 const BlogPage = () => {
-  const [blogs, setBlogs] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  // TEMPORARY: Using INITIAL_BLOGS directly for immediate uptime
+  const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
+  const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [usingFallback, setUsingFallback] = useState(false);
+  const [usingFallback, setUsingFallback] = useState(true);
 
+  /* Firebase logic commented out temporarily 
   useEffect(() => {
     if (!db) {
       setBlogs(INITIAL_BLOGS);
@@ -23,7 +25,6 @@ const BlogPage = () => {
       return;
     }
     
-    // Query published posts
     const q = query(
       collection(db, "blogPosts"), 
       where("status", "==", "published")
@@ -31,12 +32,9 @@ const BlogPage = () => {
     
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as BlogPost[];
-      
-      // If the database is empty, use initial blogs as starter content
       if (data.length === 0) {
         setBlogs(INITIAL_BLOGS);
       } else {
-        // Client-side sort by date descending to avoid requiring composite indexes immediately
         const sortedData = data.sort((a, b) => 
           new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
         );
@@ -45,8 +43,7 @@ const BlogPage = () => {
       setLoading(false);
       setUsingFallback(false);
     }, (err) => {
-      console.warn("Public Blog Fetch Error (Falling back to local data):", err.message);
-      // On permission error or index error, show initial blogs so the page isn't empty
+      console.warn("Public Blog Fetch Error:", err.message);
       setBlogs(INITIAL_BLOGS);
       setLoading(false);
       setUsingFallback(true);
@@ -54,6 +51,7 @@ const BlogPage = () => {
 
     return () => unsubscribe();
   }, []);
+  */
 
   const categories: (BlogCategory | 'All')[] = [
     'All', 'Compliance', 'Audit', 'Authority', 'Insurance', 'HOS', 'ELD', 'Maintenance'
@@ -88,7 +86,7 @@ const BlogPage = () => {
           {usingFallback && (
             <div className="mt-4 inline-flex items-center space-x-2 px-4 py-1.5 bg-amber-50 text-amber-700 rounded-full text-[10px] font-bold uppercase tracking-widest border border-amber-100">
                <AlertCircle size={12} />
-               <span>Viewing Offline Archive (DB Setup Required)</span>
+               <span>Viewing Static Archive (Cloud Sync Pending)</span>
             </div>
           )}
         </div>

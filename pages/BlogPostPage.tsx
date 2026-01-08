@@ -5,6 +5,7 @@ import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from '../firebase';
 import { Calendar, User, ChevronLeft, Share2, Bookmark, Loader2, ShieldAlert } from 'lucide-react';
 import { BlogPost } from '../types';
+import { INITIAL_BLOGS } from '../constants';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
@@ -12,6 +13,15 @@ const BlogPostPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // TEMPORARY: Find post from static data instead of Firebase
+    const foundPost = INITIAL_BLOGS.find(p => p.slug === slug);
+    if (foundPost) {
+      setPost(foundPost);
+      if (foundPost.seoTitle) document.title = foundPost.seoTitle;
+    }
+    setLoading(false);
+
+    /* Firebase logic commented out temporarily
     if (!db || !slug) return;
     const fetchPost = async () => {
       try {
@@ -20,8 +30,6 @@ const BlogPostPage = () => {
         if (!snap.empty) {
           const postData = { id: snap.docs[0].id, ...snap.docs[0].data() } as BlogPost;
           setPost(postData);
-          
-          // Set SEO metadata dynamically
           if (postData.seoTitle) document.title = postData.seoTitle;
           const metaDesc = document.querySelector('meta[name="description"]');
           if (metaDesc && postData.seoDescription) {
@@ -35,6 +43,7 @@ const BlogPostPage = () => {
       }
     };
     fetchPost();
+    */
   }, [slug]);
 
   if (loading) {

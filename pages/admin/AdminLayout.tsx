@@ -13,7 +13,8 @@ import {
   Menu,
   X,
   ChevronRight,
-  Video
+  Video,
+  Database
 } from 'lucide-react';
 
 const AdminLayout = () => {
@@ -30,6 +31,7 @@ const AdminLayout = () => {
     { name: 'Resources', path: '/admin/resources', icon: <Download size={20} /> },
     { name: 'Forms', path: '/admin/forms', icon: <MessageSquare size={20} /> },
     { name: 'Settings', path: '/admin/settings', icon: <Settings size={20} /> },
+    { name: 'Init Cloud', path: '/admin/initialize-data', icon: <Database size={20} /> },
   ];
 
   const handleLogout = async () => {
