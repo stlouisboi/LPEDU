@@ -10,8 +10,7 @@ import {
   Settings, 
   Quote, 
   Layers,
-  RefreshCw,
-  ArrowRight
+  RefreshCw
 } from 'lucide-react';
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from '../../firebase';
@@ -22,117 +21,56 @@ import {
   COURSE_MODULES 
 } from '../../constants';
 
-type SyncStatus = 'idle' | 'processing' | 'success' | 'error';
-
-interface SyncSectionProps {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  status: SyncStatus;
-  progress?: string;
-  onSync: () => void;
-}
-
-const SyncSection: React.FC<SyncSectionProps> = ({ title, description, icon, status, progress, onSync }) => (
-  <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm flex flex-col h-full">
-    <div className="flex justify-between items-start mb-6">
-      <div className="w-14 h-14 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center">
-        {icon}
-      </div>
-      {status === 'success' && <CheckCircle className="text-green-500" size={20} />}
-      {status === 'error' && <AlertCircle className="text-red-500" size={20} />}
-    </div>
-    
-    <h3 className="text-xl font-bold font-serif mb-2">{title}</h3>
-    <p className="text-xs text-text-muted mb-8 leading-relaxed font-medium">
-      {description}
-    </p>
-
-    <div className="mt-auto space-y-4">
-      {status === 'processing' && progress && (
-        <div className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold animate-pulse">
-          {progress}
-        </div>
-      )}
-      
-      <button
-        onClick={onSync}
-        disabled={status === 'processing'}
-        className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center transition-all active:scale-95 ${
-          status === 'processing' 
-          ? 'bg-slate-100 text-slate-400 cursor-not-allowed' 
-          : status === 'success'
-          ? 'bg-green-50 text-green-700 border border-green-100 hover:bg-green-100'
-          : 'bg-authority-blue text-white hover:bg-steel-blue shadow-lg'
-        }`}
-      >
-        {status === 'processing' ? (
-          <>
-            <Loader2 size={14} className="mr-2 animate-spin" />
-            Synchronizing...
-          </>
-        ) : status === 'success' ? (
-          <>
-            <RefreshCw size={14} className="mr-2" />
-            Re-Sync Data
-          </>
-        ) : (
-          <>
-            <Play size={14} className="mr-2" />
-            Initialize {title.split(' ')[0]}
-          </>
-        )}
-      </button>
-    </div>
-  </div>
-);
-
 const InitializeDataPage = () => {
-  const [statuses, setStatuses] = useState<Record<string, SyncStatus>>({
-    blogs: 'idle',
-    settings: 'idle',
-    testimonials: 'idle',
-    modules: 'idle'
-  });
-  
-  const [progress, setProgress] = useState<Record<string, string>>({
-    blogs: '',
-    testimonials: '',
-    modules: ''
-  });
+  // Section 1: Blog Posts
+  const [blogStatus, setBlogStatus] = useState<string>('');
+  const [blogSuccess, setBlogSuccess] = useState<boolean>(false);
+  const [blogUploading, setBlogUploading] = useState<boolean>(false);
 
-  const updateStatus = (key: string, status: SyncStatus) => {
-    setStatuses(prev => ({ ...prev, [key]: status }));
-  };
+  // Section 2: Site Settings
+  const [settingsStatus, setSettingsStatus] = useState<string>('');
+  const [settingsUploading, setSettingsUploading] = useState<boolean>(false);
 
-  const updateProgress = (key: string, val: string) => {
-    setProgress(prev => ({ ...prev, [key]: val }));
-  };
+  // Section 3: Testimonials
+  const [testimonialStatus, setTestimonialStatus] = useState<string>('');
+  const [testimonialUploading, setTestimonialUploading] = useState<boolean>(false);
 
-  const syncBlogs = async () => {
+  // Section 4: Course Modules
+  const [moduleStatus, setModuleStatus] = useState<string>('');
+  const [moduleUploading, setModuleUploading] = useState<boolean>(false);
+
+  const uploadBlogPosts = async () => {
     if (!db) return;
-    updateStatus('blogs', 'processing');
+    setBlogUploading(true);
+    setBlogSuccess(false);
+    setBlogStatus('Initializing upload...');
     let count = 0;
+    
     try {
-      for (const blog of INITIAL_BLOGS) {
-        const id = blog.id || blog.slug;
-        await setDoc(doc(db, "blogPosts", id), blog, { merge: true });
+      for (const post of INITIAL_BLOGS) {
+        const id = post.id || post.slug;
+        await setDoc(doc(db, 'blogPosts', id), post, { merge: true });
         count++;
-        updateProgress('blogs', `Uploading ${count} of ${INITIAL_BLOGS.length}...`);
+        setBlogStatus(`Uploading ${count} of ${INITIAL_BLOGS.length}...`);
       }
-      updateStatus('blogs', 'success');
-    } catch (err) {
-      console.error(err);
-      updateStatus('blogs', 'error');
+      setBlogStatus(`✅ Successfully uploaded ${count} blog posts`);
+      setBlogSuccess(true);
+    } catch (error) {
+      console.error('Error uploading post:', error);
+      setBlogStatus('❌ Error uploading blog posts. Check console.');
+    } finally {
+      setBlogUploading(false);
     }
   };
 
-  const syncSettings = async () => {
+  const initializeSettings = async () => {
     if (!db) return;
-    updateStatus('settings', 'processing');
+    setSettingsUploading(true);
+    setSettingsStatus('Checking settings...');
     try {
       await setDoc(doc(db, "settings", "general"), INITIAL_SETTINGS, { merge: true });
-      // Initialize homepage drafts as well
+      
+      // Also init homepage draft if missing
       const homeDraftRef = doc(db, "pages", "home_draft");
       const homeDraftSnap = await getDoc(homeDraftRef);
       if (!homeDraftSnap.exists()) {
@@ -155,107 +93,173 @@ const InitializeDataPage = () => {
         await setDoc(homeDraftRef, defaultHome);
         await setDoc(doc(db, "pages", "home_live"), defaultHome);
       }
-      updateStatus('settings', 'success');
+      setSettingsStatus('✅ Site settings initialized successfully');
     } catch (err) {
-      console.error(err);
-      updateStatus('settings', 'error');
+      setSettingsStatus('❌ Failed to initialize settings.');
+    } finally {
+      setSettingsUploading(false);
     }
   };
 
-  const syncTestimonials = async () => {
+  const uploadTestimonials = async () => {
     if (!db) return;
-    updateStatus('testimonials', 'processing');
+    setTestimonialUploading(true);
+    setTestimonialStatus('Syncing testimonials...');
     let count = 0;
     try {
       for (const t of INITIAL_TESTIMONIALS) {
         await setDoc(doc(db, "testimonials", t.id), t, { merge: true });
         count++;
-        updateProgress('testimonials', `Syncing ${count} of ${INITIAL_TESTIMONIALS.length}...`);
+        setTestimonialStatus(`Uploading ${count} of ${INITIAL_TESTIMONIALS.length}...`);
       }
-      updateStatus('testimonials', 'success');
+      setTestimonialStatus(`✅ Successfully uploaded ${count} testimonials`);
     } catch (err) {
-      console.error(err);
-      updateStatus('testimonials', 'error');
+      setTestimonialStatus('❌ Failed to upload testimonials.');
+    } finally {
+      setTestimonialUploading(false);
     }
   };
 
-  const syncModules = async () => {
+  const uploadModules = async () => {
     if (!db) return;
-    updateStatus('modules', 'processing');
+    setModuleUploading(true);
+    setModuleStatus('Provisioning modules...');
     let count = 0;
     try {
       for (const mod of COURSE_MODULES) {
         await setDoc(doc(db, "courseModules", mod.id.toString()), mod, { merge: true });
         count++;
-        updateProgress('modules', `Syncing ${count} of ${COURSE_MODULES.length}...`);
+        setModuleStatus(`Uploading ${count} of ${COURSE_MODULES.length}...`);
       }
-      updateStatus('modules', 'success');
+      setModuleStatus(`✅ Successfully uploaded ${count} course modules`);
     } catch (err) {
-      console.error(err);
-      updateStatus('modules', 'error');
+      setModuleStatus('❌ Failed to upload course modules.');
+    } finally {
+      setModuleUploading(false);
     }
-  };
-
-  const runFullProvisioning = async () => {
-    await syncSettings();
-    await syncBlogs();
-    await syncTestimonials();
-    await syncModules();
   };
 
   return (
     <div className="space-y-12 animate-in fade-in duration-500 pb-20">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold font-serif text-authority-blue dark:text-white uppercase tracking-tight">Database Provisioning</h1>
-          <p className="text-text-muted mt-2 text-lg font-medium">
-            Initialize or reset your Cloud Firestore environment with baseline production data from local constants.
-          </p>
-        </div>
-        <button 
-          onClick={runFullProvisioning}
-          className="bg-authority-blue text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-[11px] flex items-center shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group"
-        >
-          <Database size={18} className="mr-3 group-hover:rotate-12 transition-transform" />
-          Run Full Cloud Sync
-        </button>
+      <div className="max-w-4xl">
+        <h1 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Initialize Firebase Database</h1>
+        <p className="text-text-muted mt-2 text-lg font-medium">
+          Populate Firestore with sample data from constants
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <SyncSection 
-          title="Blog Archive"
-          description="Populates the knowledge base with initial safety bulletins and compliance deep-dives."
-          icon={<FileText size={28} />}
-          status={statuses.blogs}
-          progress={progress.blogs}
-          onSync={syncBlogs}
-        />
-        
-        <SyncSection 
-          title="Site Settings"
-          description="Resets brand identity, contact information, and homepage content drafts to defaults."
-          icon={<Settings size={28} />}
-          status={statuses.settings}
-          onSync={syncSettings}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* SECTION 1: Blog Posts */}
+        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm flex flex-col">
+          <div className="flex items-center space-x-4 mb-6">
+            <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
+              <FileText size={24} />
+            </div>
+            <h3 className="text-xl font-bold font-serif">SECTION 1: Blog Posts</h3>
+          </div>
+          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
+            Upload the archive of safety bulletins and compliance guides from the system constants.
+          </p>
+          <div className="mt-auto space-y-4">
+            {blogStatus && (
+              <div className={`text-xs font-bold ${blogSuccess ? 'text-green-600' : 'text-authority-blue dark:text-signal-gold animate-pulse'}`}>
+                {blogStatus}
+              </div>
+            )}
+            <button
+              onClick={uploadBlogPosts}
+              disabled={blogUploading}
+              className="w-full py-4 rounded-xl font-black uppercase tracking-widest text-[10px] bg-authority-blue text-white hover:bg-steel-blue shadow-lg transition-all active:scale-95 disabled:opacity-50"
+            >
+              {blogUploading ? <Loader2 size={14} className="animate-spin mr-2" /> : <Play size={14} className="mr-2" />}
+              Upload All Blog Posts to Firebase
+            </button>
+          </div>
+        </div>
 
-        <SyncSection 
-          title="Testimonials"
-          description="Populates social proof and student success stories across the marketing site."
-          icon={<Quote size={28} />}
-          status={statuses.testimonials}
-          progress={progress.testimonials}
-          onSync={syncTestimonials}
-        />
+        {/* SECTION 2: Site Settings */}
+        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm flex flex-col">
+          <div className="flex items-center space-x-4 mb-6">
+            <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
+              <Settings size={24} />
+            </div>
+            <h3 className="text-xl font-bold font-serif">SECTION 2: Site Settings</h3>
+          </div>
+          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
+            Initialize global brand identity, contact details, and homepage configuration.
+          </p>
+          <div className="mt-auto space-y-4">
+            {settingsStatus && (
+              <div className="text-xs font-bold text-green-600">
+                {settingsStatus}
+              </div>
+            )}
+            <button
+              onClick={initializeSettings}
+              disabled={settingsUploading}
+              className="w-full py-4 rounded-xl font-black uppercase tracking-widest text-[10px] bg-authority-blue text-white hover:bg-steel-blue shadow-lg transition-all active:scale-95 disabled:opacity-50"
+            >
+              {settingsUploading ? <Loader2 size={14} className="animate-spin mr-2" /> : <Play size={14} className="mr-2" />}
+              Initialize Site Settings
+            </button>
+          </div>
+        </div>
 
-        <SyncSection 
-          title="Course Pathway"
-          description="Initializes the 6-module curriculum structure for the Carrier Mastery framework."
-          icon={<Layers size={28} />}
-          status={statuses.modules}
-          progress={progress.modules}
-          onSync={syncModules}
-        />
+        {/* SECTION 3: Testimonials */}
+        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm flex flex-col">
+          <div className="flex items-center space-x-4 mb-6">
+            <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
+              <Quote size={24} />
+            </div>
+            <h3 className="text-xl font-bold font-serif">SECTION 3: Testimonials</h3>
+          </div>
+          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
+            Populate student success stories and industry social proof.
+          </p>
+          <div className="mt-auto space-y-4">
+            {testimonialStatus && (
+              <div className="text-xs font-bold text-authority-blue dark:text-signal-gold">
+                {testimonialStatus}
+              </div>
+            )}
+            <button
+              onClick={uploadTestimonials}
+              disabled={testimonialUploading}
+              className="w-full py-4 rounded-xl font-black uppercase tracking-widest text-[10px] bg-authority-blue text-white hover:bg-steel-blue shadow-lg transition-all active:scale-95 disabled:opacity-50"
+            >
+              {testimonialUploading ? <Loader2 size={14} className="animate-spin mr-2" /> : <Play size={14} className="mr-2" />}
+              Upload Testimonials
+            </button>
+          </div>
+        </div>
+
+        {/* SECTION 4: Course Modules */}
+        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm flex flex-col">
+          <div className="flex items-center space-x-4 mb-6">
+            <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
+              <Layers size={24} />
+            </div>
+            <h3 className="text-xl font-bold font-serif">SECTION 4: Course Modules</h3>
+          </div>
+          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
+            Provision the 6-module curriculum structure for the learning pathway.
+          </p>
+          <div className="mt-auto space-y-4">
+            {moduleStatus && (
+              <div className="text-xs font-bold text-authority-blue dark:text-signal-gold">
+                {moduleStatus}
+              </div>
+            )}
+            <button
+              onClick={uploadModules}
+              disabled={moduleUploading}
+              className="w-full py-4 rounded-xl font-black uppercase tracking-widest text-[10px] bg-authority-blue text-white hover:bg-steel-blue shadow-lg transition-all active:scale-95 disabled:opacity-50"
+            >
+              {moduleUploading ? <Loader2 size={14} className="animate-spin mr-2" /> : <Play size={14} className="mr-2" />}
+              Upload Course Modules
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="bg-authority-blue p-10 rounded-[3.5rem] text-white relative overflow-hidden shadow-2xl">
@@ -264,17 +268,15 @@ const InitializeDataPage = () => {
           <div className="max-w-xl">
             <h3 className="text-2xl font-bold font-serif mb-4 flex items-center">
               <RefreshCw className="mr-3 text-signal-gold" size={24} />
-              Protocol Note
+              Sync Protocol
             </h3>
             <p className="opacity-70 leading-relaxed font-medium">
-              Synchronizing will overwrite existing records with the same IDs. This utility is primarily for new project deployments or resetting testing environments. Ensure you have backups if you've made manual cloud edits.
+              Running these initializations will merge data with existing cloud records. IDs are used as primary keys to prevent duplication while allowing for easy content updates from constants.
             </p>
           </div>
-          <div className="flex gap-4">
-             <div className="p-4 bg-white/10 rounded-2xl border border-white/10 flex items-center space-x-3">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Database: Active</span>
-             </div>
+          <div className="p-4 bg-white/10 rounded-2xl border border-white/10 flex items-center space-x-3">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Status: Cloud Linked</span>
           </div>
         </div>
       </div>
