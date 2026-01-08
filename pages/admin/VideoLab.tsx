@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { collection, query, onSnapshot, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
@@ -17,7 +16,7 @@ import {
   Upload,
   Layers,
   Zap,
-  Image as ImageIcon,
+  ImageIcon,
   CheckCircle2,
   AlertCircle,
   ShieldAlert
@@ -68,11 +67,17 @@ const VideoLab = () => {
   useEffect(() => {
     if (!db) return;
     const q = query(collection(db, "generatedVideos"));
+    
+    // Added error handling to stop uncaught permission-denied errors
     const unsub = onSnapshot(q, (snap) => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as GeneratedVideo));
       setVideos(data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
       setLoading(false);
+    }, (error) => {
+      console.error("VideoLab: Sync failed.", error);
+      setLoading(false);
     });
+    
     return unsub;
   }, []);
 

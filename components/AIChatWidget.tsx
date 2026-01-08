@@ -1,6 +1,5 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
 const AIChatWidget = () => {
@@ -28,7 +27,12 @@ const AIChatWidget = () => {
     setLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const apiKey = process.env.API_KEY;
+      if (!apiKey) {
+        throw new Error("API_KEY_MISSING");
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: userMsg,
@@ -39,8 +43,13 @@ const AIChatWidget = () => {
       });
 
       setMessages(prev => [...prev, { role: 'assistant', content: response.text || "Connection lost. Try again." }]);
-    } catch (err) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "System offline. Check your connection." }]);
+    } catch (err: any) {
+      console.error("AI Advisor Error:", err);
+      let errorMsg = "System offline. Check your connection.";
+      if (err.message === "API_KEY_MISSING") {
+        errorMsg = "AI service is currently unconfigured. Please contact support.";
+      }
+      setMessages(prev => [...prev, { role: 'assistant', content: errorMsg }]);
     } finally {
       setLoading(false);
     }
@@ -67,18 +76,18 @@ const AIChatWidget = () => {
                 <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Short & Sweet Guidance</p>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-white transition-colors">
+            <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-white transition-colors p-1">
               <X size={20} />
             </button>
           </div>
 
           {/* Chat Body */}
-          <div ref={scrollRef} className="flex-grow overflow-y-auto p-6 space-y-4 bg-slate-50 dark:bg-primary-dark/40">
+          <div ref={scrollRef} className="flex-grow overflow-y-auto p-6 space-y-4 bg-slate-50 dark:bg-primary-dark/40 custom-scrollbar">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[85%] px-5 py-3.5 rounded-[1.5rem] text-sm font-medium leading-relaxed ${
                   m.role === 'user' 
-                  ? 'bg-authority-blue text-white rounded-tr-none' 
+                  ? 'bg-authority-blue text-white rounded-tr-none shadow-md' 
                   : 'bg-white dark:bg-gray-800 text-text-primary dark:text-text-dark-primary border border-border-light dark:border-border-dark rounded-tl-none shadow-sm'
                 }`}>
                   {m.content}
@@ -121,12 +130,12 @@ const AIChatWidget = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Ask about compliance..."
-                className="w-full bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark pl-5 pr-14 py-4 rounded-2xl outline-none focus:ring-4 focus:ring-authority-blue/5 text-sm font-bold"
+                className="w-full bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark pl-5 pr-14 py-4 rounded-2xl outline-none focus:ring-4 focus:ring-authority-blue/5 text-sm font-bold placeholder:opacity-50"
               />
               <button 
                 onClick={() => handleSend()}
                 disabled={loading || !input.trim()}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-2.5 rounded-xl hover:bg-steel-blue transition-all disabled:opacity-30 disabled:grayscale"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-2.5 rounded-xl hover:bg-steel-blue transition-all disabled:opacity-30 disabled:grayscale shadow-lg active:scale-95"
               >
                 {loading ? <Loader2 className="animate-spin" size={18} /> : <Send size={18} />}
               </button>
@@ -136,9 +145,9 @@ const AIChatWidget = () => {
       ) : (
         <button 
           onClick={() => setIsOpen(true)}
-          className="bg-authority-blue text-white p-5 rounded-[2rem] shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center space-x-3 group"
+          className="bg-authority-blue text-white p-5 rounded-[2rem] shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center space-x-3 group border border-white/10"
         >
-          <div className="bg-signal-gold p-1.5 rounded-lg text-authority-blue">
+          <div className="bg-signal-gold p-1.5 rounded-lg text-authority-blue group-hover:rotate-12 transition-transform">
             <MessageCircle size={24} />
           </div>
           <span className="font-black uppercase tracking-widest text-xs pr-2 hidden sm:block">Ask Advisor</span>

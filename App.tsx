@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -11,11 +10,6 @@ import {
   ArrowRight,
   Loader2,
   Award,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Youtube,
   ShieldCheck,
   CheckCircle,
   ShieldAlert,
@@ -96,6 +90,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
   if (location.pathname.startsWith('/admin')) return null;
 
   const navItems = [
@@ -109,24 +107,24 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 dark:bg-primary-dark/80 backdrop-blur-xl border-b border-border-light dark:border-border-dark transition-all duration-300">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <Link to="/" className="flex items-center space-x-3 group" onClick={() => setIsMenuOpen(false)}>
-            <div className="w-10 h-10 bg-black dark:bg-authority-blue rounded-xl flex items-center justify-center group-hover:bg-logo-red transition-colors shadow-sm">
-              <span className="text-white font-black text-lg">{settings.siteName.charAt(0)}</span>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 bg-authority-blue rounded-xl flex items-center justify-center text-white font-black text-lg">
+              {settings.siteName.charAt(0)}
             </div>
-            <span className="text-xl font-black tracking-tighter text-authority-blue dark:text-white uppercase font-serif group-hover:opacity-80 transition-opacity">
+            <span className="text-xl font-black tracking-tighter text-authority-blue dark:text-white uppercase font-serif">
               {settings.siteName}
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-bold transition-all hover:text-authority-blue relative group ${
+                className={`text-sm font-bold transition-all hover:text-authority-blue ${
                   location.pathname === item.path ? 'text-authority-blue dark:text-signal-gold' : 'text-text-muted dark:text-text-dark-muted'
                 }`}
               >
@@ -136,26 +134,63 @@ const Header = () => {
             <div className="flex items-center space-x-4 pl-4 border-l border-border-light dark:border-border-dark">
               <button
                 onClick={toggleTheme}
-                className="p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-90"
+                className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
               >
                 {theme === 'light' ? <Moon className="w-5 h-5 text-authority-blue" /> : <Sun className="w-5 h-5 text-signal-gold" />}
               </button>
               <Link
                 to="/pricing"
-                className="bg-authority-blue text-white px-7 py-3 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-steel-blue transition-all shadow-md active:scale-95"
+                className="bg-authority-blue text-white px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-steel-blue transition-all shadow-md"
               >
-                Enroll Now
+                Enroll
               </Link>
             </div>
           </nav>
 
           <div className="lg:hidden flex items-center space-x-4">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800">
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <button
+                onClick={toggleTheme}
+                className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800"
+              >
+                {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              </button>
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              className="text-authority-blue dark:text-white"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </div>
+
+      {isMenuOpen && (
+        <div className="lg:hidden bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark animate-in slide-in-from-top duration-300">
+          <nav className="flex flex-col p-4 space-y-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`block p-4 rounded-xl font-bold ${
+                  location.pathname === item.path ? 'bg-authority-blue text-white' : 'text-text-muted hover:bg-slate-50 dark:hover:bg-slate-800'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="pt-4 border-t border-border-light mt-2">
+              <Link
+                to="/pricing"
+                className="block w-full bg-authority-blue text-white py-4 rounded-xl text-center font-black uppercase tracking-widest"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Enroll Now
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
@@ -165,7 +200,7 @@ const Footer = () => {
   const location = useLocation();
   if (location.pathname.startsWith('/admin')) return null;
   return (
-    <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark pt-24 pb-16">
+    <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-12">
       <div className="max-w-7xl mx-auto px-4 text-center">
          <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">© {new Date().getFullYear()} {settings.siteName} Transportation EDU.</p>
       </div>
@@ -182,17 +217,19 @@ export default function App() {
   const [appLoading, setAppLoading] = useState(true);
 
   useEffect(() => {
-    if (!isFirebaseConfigured || !db || typeof db !== 'object') {
+    if (!isFirebaseConfigured || !db) {
       setAppLoading(false);
       return;
     }
+    
     const unsub = onSnapshot(doc(db, "settings", "general"), (snap) => {
       if (snap.exists()) setSettings(snap.data() as SiteSettings);
       setAppLoading(false);
-    }, () => {
-      setSettings(INITIAL_SETTINGS);
+    }, (error) => {
+      console.error("App: Settings listener failed. Using defaults.", error);
       setAppLoading(false);
     });
+    
     return () => unsub();
   }, []);
 
