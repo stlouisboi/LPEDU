@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
+import Logo from '../../components/Logo';
 import { 
   LayoutDashboard, 
   FileText, 
@@ -60,8 +60,8 @@ const AdminLayout = () => {
       <aside className={`fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-surface-dark border-r border-border-light dark:border-border-dark transition-transform duration-300 lg:static lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="h-full flex flex-col">
           <div className="p-6 border-b border-border-light dark:border-border-dark flex items-center justify-between">
-            <Link to="/admin" className="flex items-center space-x-3">
-              <span className="font-bold text-authority-blue dark:text-white uppercase tracking-tighter">LP Admin</span>
+            <Link to="/admin" className="flex items-center">
+              <Logo className="h-7" />
             </Link>
             <button className="lg:hidden p-2 hover:bg-slate-50 dark:hover:bg-gray-800 rounded-lg" onClick={() => setSidebarOpen(false)}>
               <X size={20} />

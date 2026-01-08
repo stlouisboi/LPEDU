@@ -2,14 +2,19 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Public read access for content collections
-    match /blogPosts/{postId} {
+    // PUBLIC READ ACCESS: Global site configuration
+    match /settings/{docId} {
       allow read: if true;
       allow write: if request.auth != null;
     }
     
-    // Code uses "settings", rules were using "siteSettings"
-    match /settings/{settingId} {
+    // PUBLIC READ ACCESS: Page content and blog
+    match /pages/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    match /blogPosts/{postId} {
       allow read: if true;
       allow write: if request.auth != null;
     }
@@ -29,24 +34,23 @@ service cloud.firestore {
       allow write: if request.auth != null;
     }
 
-    match /pages/{pageId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-
     match /generatedVideos/{videoId} {
       allow read: if true;
       allow write: if request.auth != null;
     }
     
-    // Form submissions and Leads: Public can create, only Admin can manage
+    // PUBLIC CREATE ACCESS: Lead generation
     match /formSubmissions/{submissionId} {
       allow create: if true;
       allow read, update, delete: if request.auth != null;
     }
     
-    // Code uses "leads", rules were using "leadMagnets"
     match /leads/{leadId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+
+    match /leadMagnets/{leadId} {
       allow create: if true;
       allow read, update, delete: if request.auth != null;
     }
@@ -56,7 +60,13 @@ service cloud.firestore {
       allow read, update, delete: if request.auth != null;
     }
 
-    // Default catch-all for authenticated administrators
+    // SYSTEM HEALTH (Public read to avoid UI errors)
+    match /_health_check_/{docId} {
+      allow read: if true; 
+      allow write: if request.auth != null;
+    }
+
+    // ADMIN ACCESS: Default catch-all
     match /{document=**} {
       allow read, write: if request.auth != null;
     }

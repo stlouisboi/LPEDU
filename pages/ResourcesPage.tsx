@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   FileText, 
   Download, 
@@ -24,45 +24,48 @@ import {
   FileSearch,
   BookOpen
 } from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from '../firebase';
 import { useApp } from '../App';
 
 const ResourcesPage = () => {
-  const { addFormSubmission } = useApp();
-  const [featuredEmail, setFeaturedEmail] = useState('');
-  const [premiumEmail, setPremiumEmail] = useState('');
-  const [featuredLoading, setFeaturedLoading] = useState(false);
-  const [premiumLoading, setPremiumLoading] = useState(false);
-  const [featuredSubmitted, setFeaturedSubmitted] = useState(false);
-  const [premiumSubmitted, setPremiumSubmitted] = useState(false);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ firstName: '', email: '' });
+  const [errors, setErrors] = useState<{firstName?: string, email?: string}>({});
+  const [loading, setLoading] = useState(false);
 
-  const handleFeaturedSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!featuredEmail) return;
-    setFeaturedLoading(true);
-    // Simulate API delay
-    await new Promise(r => setTimeout(r, 1200));
-    addFormSubmission({
-      type: 'Resource Lead',
-      name: 'First 90 Days Risk Map',
-      email: featuredEmail,
-      date: new Date().toISOString()
-    });
-    setFeaturedLoading(false);
-    setFeaturedSubmitted(true);
+  const validate = () => {
+    const newErrors: {firstName?: string, email?: string} = {};
+    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handlePremiumSubmit = async (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!premiumEmail) return;
-    setPremiumLoading(true);
-    await new Promise(r => setTimeout(r, 1200));
-    addFormSubmission({
-      type: 'Premium Library Unlock',
-      email: premiumEmail,
-      date: new Date().toISOString()
-    });
-    setPremiumLoading(false);
-    setPremiumSubmitted(true);
+    if (!validate()) return;
+    
+    setLoading(true);
+    try {
+      if (db) {
+        await addDoc(collection(db, "leadMagnets"), {
+          firstName: formData.firstName,
+          email: formData.email,
+          downloadedAt: serverTimestamp(),
+          source: "risk-map-resources"
+        });
+      }
+      setLoading(false);
+      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName)}`);
+    } catch (error) {
+      console.error("Resource lead capture failed:", error);
+      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName)}`);
+    }
   };
 
   return (
@@ -108,43 +111,47 @@ const ResourcesPage = () => {
               </div>
 
               <div className="bg-slate-50 dark:bg-slate-900/50 p-8 md:p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark shadow-inner relative z-10">
-                {featuredSubmitted ? (
-                  <div className="text-center py-6 animate-scale-in">
-                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
-                      <CheckCircle size={32} />
+                <form onSubmit={handleLeadSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">First Name</label>
+                      <input 
+                        required
+                        type="text"
+                        placeholder="First Name"
+                        className={`w-full px-8 py-4 rounded-2xl bg-white dark:bg-gray-800 border-2 outline-none transition-all font-bold text-lg ${errors.firstName ? 'border-red-500' : 'border-slate-100 dark:border-border-dark focus:border-signal-gold'}`}
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      />
                     </div>
-                    <h3 className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase mb-2">Access Granted</h3>
-                    <p className="text-sm text-text-muted font-bold">Check your inbox for the First 90 Days Risk Map™.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleFeaturedSubmit} className="space-y-6">
                     <div className="space-y-2">
                       <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Authorized Link Destination</label>
                       <input 
                         required
                         type="email"
-                        placeholder="professional@carrier.com"
-                        className="w-full px-8 py-5 rounded-2xl bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark outline-none focus:ring-4 focus:ring-signal-gold/10 focus:border-signal-gold transition-all font-bold text-lg"
-                        value={featuredEmail}
-                        onChange={(e) => setFeaturedEmail(e.target.value)}
+                        placeholder="your.email@address.com"
+                        className={`w-full px-8 py-4 rounded-2xl bg-white dark:bg-gray-800 border-2 outline-none transition-all font-bold text-lg ${errors.email ? 'border-red-500' : 'border-slate-100 dark:border-border-dark focus:border-signal-gold'}`}
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
                     </div>
-                    <button 
-                      disabled={featuredLoading}
-                      className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-authority-blue hover:text-white transition-all shadow-xl disabled:opacity-50 active:scale-95 flex items-center justify-center group"
-                    >
-                      {featuredLoading ? <Loader2 className="animate-spin" size={24} /> : (
-                        <>
-                          <span>GET FREE DOWNLOAD</span>
-                          <Download size={18} className="ml-3 group-hover:translate-y-0.5 transition-transform" />
-                        </>
-                      )}
-                    </button>
-                    <p className="text-[9px] text-center text-text-muted uppercase tracking-widest font-black opacity-50 pt-2">
-                      We respect your inbox. No spam, just compliance guidance.
-                    </p>
-                  </form>
-                )}
+                  </div>
+                  <button 
+                    disabled={loading}
+                    type="submit"
+                    className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-authority-blue hover:text-white transition-all shadow-xl disabled:opacity-50 active:scale-95 flex items-center justify-center group"
+                  >
+                    {loading ? <Loader2 className="animate-spin" size={24} /> : (
+                      <>
+                        <span>GET FREE DOWNLOAD</span>
+                        <Download size={18} className="ml-3 group-hover:translate-y-0.5 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                  <p className="text-[9px] text-center text-text-muted uppercase tracking-widest font-black opacity-50 pt-2">
+                    We respect your inbox. No spam, just compliance guidance.
+                  </p>
+                </form>
               </div>
             </div>
           </div>
@@ -291,32 +298,25 @@ const ResourcesPage = () => {
             </div>
 
             <div className="max-w-xl mx-auto">
-              {premiumSubmitted ? (
-                <div className="bg-green-50 dark:bg-green-900/20 p-8 rounded-[2.5rem] border border-green-100 animate-scale-in">
-                  <h3 className="text-2xl font-black font-serif text-green-700 uppercase mb-2">Access Unlocked</h3>
-                  <p className="text-sm text-green-600 font-bold">Premium resources are being delivered to your dashboard credentials.</p>
-                </div>
-              ) : (
-                <div className="space-y-6">
-                  <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-steel-blue">Enter your email to unlock all premium resources</p>
-                  <form onSubmit={handlePremiumSubmit} className="flex flex-col sm:flex-row gap-4">
-                    <input 
-                      required
-                      type="email" 
-                      placeholder="Enter your professional email"
-                      className="flex-grow px-8 py-5 rounded-2xl bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark outline-none focus:border-authority-blue transition-all font-bold"
-                      value={premiumEmail}
-                      onChange={(e) => setPremiumEmail(e.target.value)}
-                    />
-                    <button 
-                      disabled={premiumLoading}
-                      className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl disabled:opacity-50 whitespace-nowrap flex items-center justify-center min-w-[160px]"
-                    >
-                      {premiumLoading ? <Loader2 className="animate-spin" size={20} /> : "GET ACCESS"}
-                    </button>
-                  </form>
-                </div>
-              )}
+              <div className="space-y-6">
+                <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-steel-blue">Enter your email to unlock all premium resources</p>
+                <form onSubmit={handleLeadSubmit} className="flex flex-col sm:flex-row gap-4">
+                  <input 
+                    required
+                    type="email" 
+                    placeholder="Enter your professional email"
+                    className="flex-grow px-8 py-5 rounded-2xl bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark outline-none focus:border-authority-blue transition-all font-bold"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                  <button 
+                    disabled={loading}
+                    className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl disabled:opacity-50 whitespace-nowrap flex items-center justify-center min-w-[160px]"
+                  >
+                    {loading ? <Loader2 className="animate-spin" size={20} /> : "GET ACCESS"}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

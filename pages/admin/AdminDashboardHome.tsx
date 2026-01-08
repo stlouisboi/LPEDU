@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, PlusCircle, AlertCircle, CheckCircle2, Loader2, ExternalLink } from 'lucide-react';
+import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, PlusCircle, AlertCircle, CheckCircle2, Loader2, ExternalLink, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
@@ -14,10 +14,14 @@ const AdminDashboardHome = () => {
         return;
       }
       try {
-        // Light check - attempt to fetch a doc to trigger a connection
-        // The wildcard rule in firestore.rules now allows this for authed admins
-        await getDoc(doc(db, "_health_check_", "ping"));
-        setDbStatus('active');
+        // Attempt a light check on the global settings doc
+        const snap = await getDoc(doc(db, "settings", "general"));
+        if (snap.exists()) {
+          setDbStatus('active');
+        } else {
+          // Doc doesn't exist, but API responded (so it is active)
+          setDbStatus('active');
+        }
       } catch (err: any) {
         console.error("Dashboard Health Check Error:", err);
         if (err.code === 'permission-denied') {
@@ -25,8 +29,7 @@ const AdminDashboardHome = () => {
         } else if (err.code === 'not-found' || err.message?.includes('database (default) does not exist')) {
           setDbStatus('not-found');
         } else {
-          // If it's just 'not-found' for the specific doc, the API is actually working
-          setDbStatus('active');
+          setDbStatus('error');
         }
       }
     };
@@ -53,7 +56,6 @@ const AdminDashboardHome = () => {
           <p className="text-text-muted mt-1">Welcome back. Monitoring LaunchPath systems.</p>
         </div>
         
-        {/* API Health Check Status */}
         <div className="bg-white dark:bg-surface-dark px-4 py-2 rounded-xl border border-border-light dark:border-border-dark flex items-center space-x-3 shadow-sm">
           <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">Cloud Health:</span>
           {dbStatus === 'checking' && <Loader2 size={14} className="animate-spin text-authority-blue" />}
@@ -80,7 +82,7 @@ const AdminDashboardHome = () => {
           <div>
             <h3 className="text-2xl font-bold text-red-800 dark:text-red-400 font-serif">Firestore Database Missing</h3>
             <p className="text-red-700/80 dark:text-red-300/80 mt-2 max-w-xl mx-auto leading-relaxed">
-              Your Firebase project <strong>lpedu-d9bb2</strong> exists, but the Cloud Firestore database instance has not been created yet. You must initialize it in the Google Cloud console.
+              The Cloud Firestore database instance has not been created yet. You must initialize it in the Google Cloud console.
             </p>
           </div>
           <a 
@@ -176,11 +178,5 @@ const AdminDashboardHome = () => {
     </div>
   );
 };
-
-const ChevronRight = ({ size, className }: { size: number; className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M9 18l6-6-6-6" />
-  </svg>
-);
 
 export default AdminDashboardHome;

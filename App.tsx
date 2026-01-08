@@ -28,6 +28,7 @@ import { BlogPost, SiteSettings, Testimonial } from './types';
 import { AuthProvider, useAuth } from './AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
+import Logo from './components/Logo';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -42,6 +43,7 @@ import LegalPage from './pages/LegalPage';
 import AIServicePage from './pages/AIServicePage';
 import EnrollPage from './pages/EnrollPage';
 import ModuleDetailPage from './pages/ModuleDetailPage';
+import DownloadPage from './pages/DownloadPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -110,13 +112,8 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-authority-blue rounded-xl flex items-center justify-center text-white font-black text-lg">
-              {settings.siteName.charAt(0)}
-            </div>
-            <span className="text-xl font-black tracking-tighter text-authority-blue dark:text-white uppercase font-serif">
-              {settings.siteName}
-            </span>
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <Logo />
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
@@ -201,8 +198,9 @@ const Footer = () => {
   if (location.pathname.startsWith('/admin')) return null;
   return (
     <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-12">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-         <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">© {new Date().getFullYear()} {settings.siteName} Transportation EDU.</p>
+      <div className="max-w-7xl mx-auto px-4 text-center flex flex-col items-center space-y-6">
+         <Logo className="opacity-60 transition-all" />
+         <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">© {new Date().getFullYear()} LaunchPath™ Transportation EDU.</p>
       </div>
     </footer>
   );
@@ -222,11 +220,16 @@ export default function App() {
       return;
     }
     
-    const unsub = onSnapshot(doc(db, "settings", "general"), (snap) => {
-      if (snap.exists()) setSettings(snap.data() as SiteSettings);
+    // Explicit settings listener with requested error string
+    const settingsRef = doc(db, "settings", "general");
+    const unsub = onSnapshot(settingsRef, (snap) => {
+      if (snap.exists()) {
+        setSettings(snap.data() as SiteSettings);
+      }
       setAppLoading(false);
     }, (error) => {
-      console.error("App: Settings listener failed. Using defaults.", error);
+      // FIX: Matches the user's specific error reporting request
+      console.warn("App: Settings listener failed. Using defaults.", error.message);
       setAppLoading(false);
     });
     
@@ -240,7 +243,11 @@ export default function App() {
     else document.documentElement.classList.remove('dark');
   };
 
-  if (appLoading) return null;
+  if (appLoading) return (
+    <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
+      <Loader2 className="animate-spin text-authority-blue" size={32} />
+    </div>
+  );
 
   return (
     <AppContext.Provider value={{
@@ -265,6 +272,7 @@ export default function App() {
               <Route path="/advisor" element={<AIServicePage />} />
               <Route path="/pricing" element={<EnrollPage />} />
               <Route path="/modules/:id" element={<ModuleDetailPage />} />
+              <Route path="/download/risk-map" element={<DownloadPage />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
                 <Route index element={<AdminDashboardHome />} />

@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   ShieldCheck, 
   CheckCircle2, 
@@ -29,33 +28,54 @@ import {
   Calendar,
   AlertCircle,
   Clock,
-  ChevronRight
+  ChevronRight,
+  User
 } from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from '../firebase';
 import { useApp } from '../App';
-import { COURSE_MODULES } from '../constants';
 
 const HomePage: React.FC = () => {
-  const { addFormSubmission } = useApp();
-  const [leadEmail, setLeadEmail] = useState('');
-  const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ firstName: '', email: '' });
+  const [errors, setErrors] = useState<{firstName?: string, email?: string}>({});
   const [loading, setLoading] = useState(false);
+
+  const validate = () => {
+    const newErrors: {firstName?: string, email?: string} = {};
+    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!leadEmail) return;
+    if (!validate()) return;
+    
     setLoading(true);
-    
-    await new Promise(r => setTimeout(r, 1500));
-    
-    addFormSubmission({
-      type: 'Lead Magnet',
-      name: 'Hero Lead (First 90 Days Risk Map)',
-      email: leadEmail,
-      date: new Date().toISOString()
-    });
-    
-    setLoading(false);
-    setLeadSubmitted(true);
+    try {
+      if (db) {
+        await addDoc(collection(db, "leadMagnets"), {
+          firstName: formData.firstName,
+          email: formData.email,
+          downloadedAt: serverTimestamp(),
+          source: "risk-map-hero"
+        });
+      }
+      
+      // Briefly show success state then redirect
+      setLoading(false);
+      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName)}`);
+    } catch (error) {
+      console.error("Lead capture failed:", error);
+      // Still redirect even if firestore fails to ensure user gets their PDF
+      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName)}`);
+    }
   };
 
   return (
@@ -131,51 +151,52 @@ const HomePage: React.FC = () => {
                     </div>
                   </div>
 
-                  {leadSubmitted ? (
-                    <div className="bg-green-50 dark:bg-green-900/20 p-12 rounded-[2.5rem] text-center animate-scale-in border-4 border-green-100">
-                      <div className="w-24 h-24 bg-green-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl animate-bounce">
-                        <CheckCircle2 size={56} />
-                      </div>
-                      <h3 className="text-3xl font-black text-green-800 dark:text-green-400 uppercase tracking-widest mb-2">Access Granted</h3>
-                      <p className="text-base font-bold text-green-700 leading-relaxed">Your custom Risk Map is being generated and sent to your professional inbox right now.</p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleLeadSubmit} className="space-y-6">
-                      <div className="space-y-3">
-                        <label className="text-[11px] font-black uppercase tracking-[0.3em] text-text-muted ml-4 flex items-center">
-                          <Fingerprint size={16} className="mr-2 text-authority-blue" /> 
-                          Secure Link Destination
+                  <form onSubmit={handleLeadSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4 flex items-center">
+                          <User size={12} className="mr-2" /> First Name
                         </label>
-                        <div className="relative group">
-                          <Mail className="absolute left-7 top-1/2 -translate-y-1/2 text-text-muted transition-colors group-focus-within:text-authority-blue" size={26} />
-                          <input 
-                            required
-                            type="email"
-                            placeholder="professional@carrier.com"
-                            className="w-full pl-18 pr-6 py-8 rounded-[2.2rem] bg-slate-50 dark:bg-gray-800 border-4 border-slate-100 dark:border-border-dark outline-none focus:ring-[12px] focus:ring-signal-gold/15 focus:border-signal-gold transition-all font-black text-2xl placeholder:opacity-30"
-                            style={{ paddingLeft: '4.5rem' }}
-                            value={leadEmail}
-                            onChange={(e) => setLeadEmail(e.target.value)}
-                          />
-                        </div>
+                        <input 
+                          required
+                          type="text"
+                          placeholder="First Name"
+                          className={`w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-gray-800 border-4 outline-none transition-all font-bold text-lg ${errors.firstName ? 'border-red-500' : 'border-slate-100 dark:border-border-dark focus:border-signal-gold'}`}
+                          value={formData.firstName}
+                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        />
+                        {errors.firstName && <p className="text-[9px] text-red-500 font-bold ml-4">{errors.firstName}</p>}
                       </div>
-                      
-                      <button 
-                        disabled={loading}
-                        className="w-full bg-signal-gold text-authority-blue py-9 rounded-[2.2rem] font-black uppercase tracking-[0.4em] text-2xl hover:bg-authority-blue hover:text-white transition-all active:scale-[0.98] flex items-center justify-center shadow-[0_30px_60px_-15px_rgba(212,175,55,0.75)] disabled:opacity-50 group/btn relative overflow-hidden"
-                      >
-                         <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
-                        {loading ? <Loader2 className="animate-spin" size={36} /> : (
-                          <>
-                            <span>GET IT NOW</span>
-                            <div className="ml-5 p-2.5 bg-white/20 rounded-full group-hover/btn:translate-x-2 transition-transform shadow-inner">
-                              <ArrowRight size={28} />
-                            </div>
-                          </>
-                        )}
-                      </button>
-                    </form>
-                  )}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4 flex items-center">
+                          <Mail size={12} className="mr-2" /> Email Address
+                        </label>
+                        <input 
+                          required
+                          type="email"
+                          placeholder="your.email@address.com"
+                          className={`w-full px-6 py-4 rounded-2xl bg-slate-50 dark:bg-gray-800 border-4 outline-none transition-all font-bold text-lg ${errors.email ? 'border-red-500' : 'border-slate-100 dark:border-border-dark focus:border-signal-gold'}`}
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                        {errors.email && <p className="text-[9px] text-red-500 font-bold ml-4">{errors.email}</p>}
+                      </div>
+                    </div>
+                    
+                    <button 
+                      disabled={loading}
+                      type="submit"
+                      className="w-full bg-signal-gold text-authority-blue py-8 rounded-[2.2rem] font-black uppercase tracking-[0.2em] text-xl hover:bg-authority-blue hover:text-white transition-all active:scale-[0.98] flex items-center justify-center shadow-[0_30px_60px_-15px_rgba(212,175,55,0.75)] disabled:opacity-50 group/btn relative overflow-hidden"
+                    >
+                      <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
+                      {loading ? <Loader2 className="animate-spin" size={32} /> : (
+                        <>
+                          <span>GET FREE DOWNLOAD</span>
+                          <ArrowRight size={24} className="ml-4 group-hover/btn:translate-x-2 transition-transform" />
+                        </>
+                      )}
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
