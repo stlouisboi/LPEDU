@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -171,7 +170,8 @@ const ResourcesPage = () => {
             ].map((card, i) => (
               <div key={i} className="bg-slate-50 dark:bg-gray-900/50 p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark hover:shadow-xl transition-all group flex flex-col">
                 <div className="w-14 h-14 bg-authority-blue text-white rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                  {React.cloneElement(card.icon as React.ReactElement, { size: 28 })}
+                  {/* Fix: Explicitly cast ReactElement props to any to avoid property assignment errors during cloneElement */}
+                  {React.cloneElement(card.icon as React.ReactElement<any>, { size: 28 })}
                 </div>
                 <h3 className="text-xl font-black font-serif uppercase tracking-tight mb-3 text-authority-blue dark:text-white leading-tight">{card.title}</h3>
                 <p className="text-sm text-text-muted font-medium mb-8 flex-grow leading-relaxed">{card.desc}</p>
@@ -302,7 +302,7 @@ const ResourcesPage = () => {
                   <form onSubmit={handlePremiumSubmit} className="flex flex-col sm:flex-row gap-4">
                     <input 
                       required
-                      type="email"
+                      type="email" 
                       placeholder="Enter your professional email"
                       className="flex-grow px-8 py-5 rounded-2xl bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark outline-none focus:border-authority-blue transition-all font-bold"
                       value={premiumEmail}

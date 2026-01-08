@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -254,7 +253,8 @@ const AIServicePage = () => {
               source.addEventListener('ended', () => liveSourcesRef.current.delete(source));
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
-              liveSourcesRef.add(source);
+              // Fix: Explicitly access .current property of the ref Set before adding the source node
+              liveSourcesRef.current.add(source);
             }
             if (message.serverContent?.interrupted) {
               liveSourcesRef.current.forEach(s => {
