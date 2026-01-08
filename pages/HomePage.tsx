@@ -88,7 +88,7 @@ const HomePage: React.FC = () => {
                   Start Learning <ArrowRight className="ml-3" size={16} />
                 </Link>
                 <Link to="/learning-path" className="bg-white dark:bg-gray-800 text-authority-blue dark:text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 dark:hover:bg-gray-700 transition-all border border-border-light dark:border-border-dark flex items-center shadow-sm active:scale-95">
-                  View Mastery Curriculum
+                  View Roadmap
                 </Link>
               </div>
 
@@ -535,7 +535,7 @@ const HomePage: React.FC = () => {
 
             {/* TIER 2: MASTERY BUNDLE (MOST POPULAR) */}
             <div className="bg-authority-blue text-white p-12 rounded-[3.5rem] flex flex-col transition-all duration-500 hover:shadow-2xl relative scale-105 shadow-2xl z-10 border-4 border-signal-gold">
-              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[10px] px-8 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-xl">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[10px] px-8 py-2 rounded-full uppercase tracking-[0.2em] shadow-xl whitespace-nowrap shadow-xl whitespace-nowrap shadow-xl">
                 MOST POPULAR
               </div>
               

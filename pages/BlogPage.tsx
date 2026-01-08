@@ -3,24 +3,27 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase';
-import { Search, Filter, Calendar, User, ArrowRight, Loader2 } from 'lucide-react';
+import { Search, Filter, Calendar, User, ArrowRight, Loader2, AlertCircle } from 'lucide-react';
 import { useApp } from '../App';
 import { BlogPost, BlogCategory } from '../types';
+import { INITIAL_BLOGS } from '../constants';
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [usingFallback, setUsingFallback] = useState(false);
 
   useEffect(() => {
-    if (!db) return;
+    if (!db) {
+      setBlogs(INITIAL_BLOGS);
+      setLoading(false);
+      setUsingFallback(true);
+      return;
+    }
     
-    /**
-     * FIX: To avoid the 'The query requires an index' error without requiring the user 
-     * to manually create composite indexes in the Firebase Console, we remove the 
-     * orderBy clause from the server-side query and perform the sort on the client side.
-     */
+    // Query published posts
     const q = query(
       collection(db, "blogPosts"), 
       where("status", "==", "published")
@@ -29,16 +32,24 @@ const BlogPage = () => {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as BlogPost[];
       
-      // Client-side sort by date descending
-      const sortedData = data.sort((a, b) => 
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-      );
-      
-      setBlogs(sortedData);
+      // If the database is empty, use initial blogs as starter content
+      if (data.length === 0) {
+        setBlogs(INITIAL_BLOGS);
+      } else {
+        // Client-side sort by date descending to avoid requiring composite indexes immediately
+        const sortedData = data.sort((a, b) => 
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+        setBlogs(sortedData);
+      }
       setLoading(false);
+      setUsingFallback(false);
     }, (err) => {
-      console.error("Public Blog Fetch Error:", err);
+      console.warn("Public Blog Fetch Error (Falling back to local data):", err.message);
+      // On permission error or index error, show initial blogs so the page isn't empty
+      setBlogs(INITIAL_BLOGS);
       setLoading(false);
+      setUsingFallback(true);
     });
 
     return () => unsubscribe();
@@ -74,6 +85,12 @@ const BlogPage = () => {
           <p className="text-xl text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto">
             Weekly deep-dives into the latest safety regulations, business ethics, and operational excellence.
           </p>
+          {usingFallback && (
+            <div className="mt-4 inline-flex items-center space-x-2 px-4 py-1.5 bg-amber-50 text-amber-700 rounded-full text-[10px] font-bold uppercase tracking-widest border border-amber-100">
+               <AlertCircle size={12} />
+               <span>Viewing Offline Archive (DB Setup Required)</span>
+            </div>
+          )}
         </div>
 
         {/* Filters */}

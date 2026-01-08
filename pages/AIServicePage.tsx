@@ -78,11 +78,10 @@ function createBlob(data: Float32Array) {
 }
 
 const AIServicePage = () => {
-  // Tabs: 'chat', 'voice', 'video'
   const [activeTab, setActiveTab] = useState<'chat' | 'voice' | 'video'>('chat');
   
   // --- CHAT STATE ---
-  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, audio?: string}[]>([
+  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string}[]>([
     { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm now powered by Gemini 3 Pro to handle complex regulatory questions. How can I help your carrier today?" }
   ]);
   const [input, setInput] = useState('');
@@ -125,21 +124,17 @@ const AIServicePage = () => {
     checkKey();
   }, []);
 
-  // Memory Check & Cleanup Effect
   useEffect(() => {
     return () => {
-      // Close standard audio context
       if (audioContextRef.current) {
         audioContextRef.current.close();
       }
-      // Stop live sessions
       if (isLiveActive) {
         stopLiveConversation();
       }
     };
   }, [isLiveActive]);
 
-  // Handle cleanup when switching tabs
   useEffect(() => {
     if (activeTab !== 'voice' && isLiveActive) {
       stopLiveConversation();
@@ -384,7 +379,6 @@ const AIServicePage = () => {
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-16 px-4">
       <div className="max-w-6xl mx-auto flex flex-col h-[85vh] bg-white dark:bg-surface-dark rounded-[3.5rem] border border-border-light dark:border-border-dark shadow-2xl overflow-hidden relative stagger-parent">
         
-        {/* Navigation Tabs */}
         <div className="flex bg-authority-blue p-2 sm:p-4 gap-2 sm:gap-4 shrink-0 overflow-x-auto no-scrollbar">
           {[
             { id: 'chat', label: 'AI Advisor', icon: <MessageCircle size={18} /> },
@@ -406,10 +400,7 @@ const AIServicePage = () => {
           ))}
         </div>
 
-        {/* Dynamic Content Area */}
         <div className="flex-grow flex flex-col overflow-hidden">
-          
-          {/* --- ADVISOR CHAT --- */}
           {activeTab === 'chat' && (
             <>
               <div ref={scrollRef} className="flex-grow overflow-y-auto p-10 space-y-10 scroll-smooth custom-scrollbar">
@@ -465,28 +456,20 @@ const AIServicePage = () => {
                     <Send className="w-6 h-6" />
                   </button>
                 </div>
-                <div className="flex items-center justify-center space-x-4 mt-6">
-                   <div className="h-px bg-border-light flex-grow max-w-[100px]"></div>
-                   <p className="text-[9px] text-text-muted uppercase tracking-[0.4em] font-black">
-                     Powered by Gemini 3 Pro Deep Reasoning
-                   </p>
-                   <div className="h-px bg-border-light flex-grow max-w-[100px]"></div>
-                </div>
               </div>
             </>
           )}
 
-          {/* --- VOICE MODE --- */}
           {activeTab === 'voice' && (
             <div className="flex-grow flex flex-col items-center justify-center p-10 bg-gradient-to-b from-transparent to-authority-blue/5">
               <div className="text-center max-w-xl mb-16 animate-reveal-up">
                 <div className="w-32 h-32 bg-authority-blue/5 rounded-[3rem] flex items-center justify-center mx-auto mb-10 relative">
-                  {isLiveActive ? (
+                  {isLiveActive && (
                     <>
                       <div className="absolute inset-0 bg-authority-blue/10 rounded-[3rem] animate-ping"></div>
                       <div className="absolute inset-4 bg-authority-blue/20 rounded-[2rem] animate-pulse"></div>
                     </>
-                  ) : null}
+                  )}
                   <Mic size={56} className={isLiveActive ? 'text-authority-blue' : 'text-text-muted opacity-30'} />
                 </div>
                 <h2 className="text-4xl font-black font-serif mb-6 tracking-tight leading-none">Voice Command Mode</h2>
@@ -495,7 +478,7 @@ const AIServicePage = () => {
                 </p>
               </div>
 
-              <div className="w-full max-w-3xl bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-[3rem] p-10 mb-12 min-h-[180px] shadow-2xl flex flex-col animate-reveal-up" style={{ animationDelay: '0.1s' }}>
+              <div className="w-full max-w-3xl bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-[3rem] p-10 mb-12 min-h-[180px] shadow-2xl flex flex-col animate-reveal-up">
                 <div className="flex items-center justify-between mb-6">
                   <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted">Live Telemetry</p>
                   {isLiveActive && <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>}
@@ -520,21 +503,14 @@ const AIServicePage = () => {
                 }`}
               >
                 {isLiveActive ? (
-                  <>
-                    <PhoneOff size={28} />
-                    <span>Terminate Session</span>
-                  </>
+                  <><PhoneOff size={28} /><span>Terminate Session</span></>
                 ) : (
-                  <>
-                    <Phone size={28} />
-                    <span>Initiate Voice Link</span>
-                  </>
+                  <><Phone size={28} /><span>Initiate Voice Link</span></>
                 )}
               </button>
             </div>
           )}
 
-          {/* --- VIDEO STUDIO --- */}
           {activeTab === 'video' && (
             <div className="flex-grow overflow-y-auto p-10 space-y-12 animate-reveal-up custom-scrollbar">
               {!hasApiKey && (
@@ -554,13 +530,10 @@ const AIServicePage = () => {
               )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                {/* Generation Form */}
                 <div className="space-y-10">
                   <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light dark:border-border-dark space-y-8 shadow-sm">
                     <div className="flex items-center space-x-4 mb-2">
-                       <div className="p-3 bg-signal-gold/10 text-signal-gold rounded-2xl">
-                          <Sparkles size={24} />
-                       </div>
+                       <div className="p-3 bg-signal-gold/10 text-signal-gold rounded-2xl"><Sparkles size={24} /></div>
                        <h3 className="text-2xl font-black font-serif tracking-tight">Visual Directives</h3>
                     </div>
                     
@@ -579,12 +552,7 @@ const AIServicePage = () => {
                       <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Base Visual (Optional)</label>
                       <div className="flex items-center space-x-4">
                         <div className="relative group flex-grow">
-                          <input 
-                            type="file" 
-                            accept="image/*" 
-                            onChange={handleVideoFileChange}
-                            className="absolute inset-0 opacity-0 cursor-pointer"
-                          />
+                          <input type="file" accept="image/*" onChange={handleVideoFileChange} className="absolute inset-0 opacity-0 cursor-pointer"/>
                           <div className="bg-white dark:bg-gray-800 border-2 border-dashed border-border-light rounded-[2rem] p-10 text-center group-hover:border-authority-blue transition-all">
                             {videoPreview ? (
                               <img src={videoPreview} className="h-24 mx-auto rounded-2xl object-cover shadow-2xl" alt="Preview" />
@@ -597,9 +565,7 @@ const AIServicePage = () => {
                           </div>
                         </div>
                         {videoPreview && (
-                          <button onClick={() => { setVideoFile(null); setVideoPreview(null); }} className="p-5 bg-red-50 text-red-500 rounded-[1.5rem] hover:bg-red-100 transition-colors shadow-lg active:scale-90">
-                            <X size={24} />
-                          </button>
+                          <button onClick={() => { setVideoFile(null); setVideoPreview(null); }} className="p-5 bg-red-50 text-red-500 rounded-[1.5rem] hover:bg-red-100 transition-colors shadow-lg active:scale-90"><X size={24} /></button>
                         )}
                       </div>
                     </div>
@@ -629,21 +595,14 @@ const AIServicePage = () => {
                       className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl hover:bg-steel-blue transition-all disabled:opacity-50 active:scale-95"
                     >
                       {isGeneratingVideo ? (
-                        <>
-                          <Loader2 className="animate-spin mr-3" size={24} />
-                          <span>Rendering...</span>
-                        </>
+                        <><Loader2 className="animate-spin mr-3" size={24} /><span>Rendering...</span></>
                       ) : (
-                        <>
-                          <Film className="mr-3" size={24} />
-                          <span>Bake Cinematic Asset</span>
-                        </>
+                        <><Film className="mr-3" size={24} /><span>Bake Cinematic Asset</span></>
                       )}
                     </button>
                   </div>
                 </div>
 
-                {/* Generation Output/Status */}
                 <div className="flex flex-col">
                   {isGeneratingVideo ? (
                     <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-dashed border-border-light p-16 text-center space-y-10 shadow-inner">
@@ -653,32 +612,23 @@ const AIServicePage = () => {
                       </div>
                       <div>
                         <h4 className="text-3xl font-black font-serif mb-4 leading-none tracking-tight">{genMessage}</h4>
-                        <p className="text-lg text-text-muted font-medium">Neural processing typically requires 120-180 seconds. <br/>High-fidelity encoding in progress.</p>
-                      </div>
-                      <div className="w-full bg-slate-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden shadow-sm">
-                        <div className="bg-authority-blue h-full w-1/2 animate-[loading_4s_ease-in-out_infinite]"></div>
+                        <p className="text-lg text-text-muted font-medium">Neural processing typically requires 120-180 seconds.</p>
                       </div>
                     </div>
                   ) : videoResult ? (
                     <div className="bg-black rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] relative group animate-scale-in">
                       <video src={videoResult} controls className="w-full h-full object-contain" />
-                      <div className="absolute top-10 left-10 flex space-x-3 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-500">
-                        <span className="bg-white/95 backdrop-blur-md px-6 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest text-authority-blue shadow-2xl">Master Production Asset</span>
-                      </div>
-                      <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-500 delay-75">
-                        <a href={videoResult} download="launchpath-master.mp4" className="p-6 bg-white rounded-[2rem] text-authority-blue shadow-[0_20px_40px_-5px_rgba(0,0,0,0.2)] hover:bg-slate-50 flex items-center space-x-3 active:scale-95 transition-all">
+                      <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href={videoResult} download="launchpath-master.mp4" className="p-6 bg-white rounded-[2rem] text-authority-blue shadow-2xl hover:bg-slate-50 flex items-center space-x-3 active:scale-95 transition-all">
                           <Download size={28} />
                           <span className="font-black uppercase tracking-widest text-sm">Export Media</span>
                         </a>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-border-light p-16 text-center opacity-40 stagger-item">
-                      <div className="p-8 bg-slate-100 dark:bg-gray-900 rounded-[2.5rem] mb-10">
-                        <Film className="w-20 h-20 text-text-muted" />
-                      </div>
+                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-border-light p-16 text-center opacity-40">
+                      <div className="p-8 bg-slate-100 dark:bg-gray-900 rounded-[2.5rem] mb-10"><Film className="w-20 h-20 text-text-muted" /></div>
                       <p className="text-2xl font-black font-serif tracking-tight mb-4 uppercase">Studio Offline</p>
-                      <p className="text-lg text-text-muted max-w-sm mx-auto font-medium leading-relaxed">Config your parameters and initiate neural link to visualize curriculum data.</p>
                     </div>
                   )}
                 </div>
@@ -688,10 +638,6 @@ const AIServicePage = () => {
         </div>
       </div>
       <style>{`
-        @keyframes loading {
-          0% { transform: translateX(-110%); }
-          100% { transform: translateX(310%); }
-        }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }

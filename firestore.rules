@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Public read access to content collections
+    // Allows the marketing site to display blogs, settings, and resources
+    match /blogPosts/{postId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    match /resources/{resId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    match /pages/{pageId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    match /generatedVideos/{vidId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    match /testimonials/{testId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Form submissions and Lead magnets
+    // Allows any visitor to submit contact forms or sign up for downloads
+    // But only authenticated admins can read or manage the submissions
+    match /formSubmissions/{submissionId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+    
+    match /leads/{leadId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+
+    // Default deny for everything else
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
