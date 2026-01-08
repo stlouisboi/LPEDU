@@ -124,7 +124,7 @@ const Header = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Learning Path', path: '/learning-path' },
+    { name: 'Curriculum', path: '/learning-path' },
     { name: 'Resources', path: '/resources' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
@@ -270,7 +270,7 @@ const Footer = () => {
             <ul className="space-y-4 text-text-muted dark:text-text-dark-muted text-sm font-bold">
               <li><Link to="/resources" className="hover:text-authority-blue transition-colors">Compliance Guides</Link></li>
               <li><Link to="/blog" className="hover:text-authority-blue transition-colors">Safety Ledger Blog</Link></li>
-              <li><Link to="/learning-path" className="hover:text-authority-blue transition-colors">90-Day Success Map</Link></li>
+              <li><Link to="/learning-path" className="hover:text-authority-blue transition-colors">Mastery Curriculum</Link></li>
               <li><Link to="/advisor" className="hover:text-authority-blue transition-colors">AI Advisor Tools</Link></li>
             </ul>
           </div>

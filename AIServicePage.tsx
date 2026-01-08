@@ -228,7 +228,7 @@ const AIServicePage = () => {
       setLiveTranscript(["Connecting to Live API..."]);
 
       const sessionPromise = ai.live.connect({
-        model: 'gemini-2.5-flash-native-audio-preview-09-2025',
+        model: 'gemini-2.5-flash-native-audio-preview-12-2025',
         callbacks: {
           onopen: () => {
             setLiveTranscript(prev => [...prev, "Connected! Start speaking."]);
@@ -254,7 +254,7 @@ const AIServicePage = () => {
               source.addEventListener('ended', () => liveSourcesRef.current.delete(source));
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
-              liveSourcesRef.current.add(source);
+              liveSourcesRef.add(source);
             }
             if (message.serverContent?.interrupted) {
               liveSourcesRef.current.forEach(s => {

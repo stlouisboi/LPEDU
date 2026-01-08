@@ -69,14 +69,12 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
 ];
 
 export const COURSE_MODULES: CourseModule[] = [
-  { id: 0, title: "Carrier Orientation & Professional Mindset", description: "Laying the ethical foundation. Transitioning from 'driver' to 'carrier owner'.", lessons: 4 },
-  { id: 1, title: "Authority & Business Infrastructure", description: "USDOT, MC, BOC-3, and the legal setup of your motor carrier.", lessons: 6 },
-  { id: 2, title: "Insurance & Fiscal Responsibility", description: "Liability, cargo, and financial filings required to keep your authority active.", lessons: 5 },
-  { id: 3, title: "The Drug & Alcohol Clearinghouse", description: "Mandatory enrollment, query requirements, and consortium setup.", lessons: 5 },
-  { id: 4, title: "Driver Qualification (DQ) Mastery", description: "Building and maintaining compliant files for yourself and your drivers.", lessons: 7 },
-  { id: 5, title: "Hours of Service & ELD Management", description: "The Part 395 rules, exemptions, and electronic logging device management.", lessons: 8 },
-  { id: 6, title: "Maintenance & Inspection Systems", description: "Implementing systematic maintenance and required periodic inspections.", lessons: 6 },
-  { id: 7, title: "The New Entrant Safety Audit", description: "Step-by-step preparation to ensure a 'Pass' rating in your first 12 months.", lessons: 5 }
+  { id: 0, title: "Foundation & Business Decision", description: "Is this business right for you? For-hire vs private carrier decision. Authority risk & reality assessment. Go/No-Go decision framework.", lessons: 4 },
+  { id: 1, title: "Authority Types & Regulatory Identity", description: "DOT vs MC authority. Interstate vs intrastate operations. Carrier vs broker distinction. Why box trucks aren't exempt.", lessons: 6 },
+  { id: 2, title: "FMCSA Compliance Systems", description: "Driver Qualification Files. Drug & Alcohol Clearinghouse. Hours of Service & ELD. Maintenance documentation. Required policies.", lessons: 7 },
+  { id: 3, title: "Insurance, Risk & Operational Exposure", description: "Auto, cargo, and liability insurance. Why new authority is expensive. Claim consequences and monitoring.", lessons: 5 },
+  { id: 4, title: "New Entrant Safety Audit Preparation", description: "What the audit is and when it happens. Conduct and requested documents. Common failure points and response strategies.", lessons: 5 },
+  { id: 5, title: "Operating Clean After Approval", description: "Ongoing compliance habits. Annual filings (UCR, MCS-150). CSA score monitoring. Red flags that trigger investigations.", lessons: 4 }
 ];
 
 export const INITIAL_BLOGS: BlogPost[] = [

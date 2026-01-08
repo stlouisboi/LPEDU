@@ -146,7 +146,7 @@ const EnrollPage = () => {
               </div>
 
               <ul className="space-y-4 mb-8 text-sm text-text-muted flex-grow font-medium">
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Full Access to 8 Modules</li>
+                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Full Access to 6 Modules</li>
                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Audit-Ready Templates</li>
                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Lifetime Updates</li>
               </ul>
@@ -258,7 +258,7 @@ const EnrollPage = () => {
                       : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
                   }`}
                   value={formData.email} 
-                  onChange={handleInputChange}
+                  onChange={handleInputChange} 
                   onBlur={() => handleBlur('email')}
                 />
                 {touched.email && (
@@ -295,7 +295,7 @@ const EnrollPage = () => {
                       : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
                   }`}
                   value={formData.password} 
-                  onChange={handleInputChange}
+                  onChange={handleInputChange} 
                   onBlur={() => handleBlur('password')}
                 />
                 {touched.password && (

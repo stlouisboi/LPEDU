@@ -45,9 +45,10 @@ const PHASES: PhaseData[] = [
     priority: "CRITICAL - Foundation",
     icon: <ClipboardList className="w-8 h-8" />,
     requirements: [
+      "Go/No-Go Business Framework Assessment",
       "USDOT & MC Number (21-day protest period)",
       "Process Agents (BOC-3) Filing",
-      "Drug & Alcohol Clearinghouse Enrollment"
+      "Clearinghouse Enrollment"
     ],
     color: "#1e3a5f",
     moduleIds: [0, 1]
@@ -61,10 +62,10 @@ const PHASES: PhaseData[] = [
     requirements: [
       "Primary Auto Liability ($750k Federal min)",
       "Cargo Insurance ($100k standard)",
-      "Heavy Vehicle Use Tax (Form 2290)"
+      "Understanding monitoring and claim exposure"
     ],
     color: "#475569",
-    moduleIds: [2]
+    moduleIds: [3]
   },
   {
     number: 3,
@@ -78,7 +79,7 @@ const PHASES: PhaseData[] = [
       "Hours of Service (HOS) & ELD Policy"
     ],
     color: "#0891b2",
-    moduleIds: [3, 4, 5, 6]
+    moduleIds: [2]
   },
   {
     number: 4,
@@ -87,12 +88,12 @@ const PHASES: PhaseData[] = [
     priority: "ADVANCED - Long-term Survival",
     icon: <Target className="w-8 h-8" />,
     requirements: [
-      "Internal 'Mock Audit' Performance",
-      "Quarterly Safety Self-Evaluations",
-      "Safety-First Hiring Practices"
+      "Pass New Entrant Safety Audit",
+      "Annual UCR & MCS-150 Updates",
+      "CSA Score & Investigation Shielding"
     ],
     color: "#ca8a04",
-    moduleIds: [7]
+    moduleIds: [4, 5]
   }
 ];
 
@@ -183,13 +184,13 @@ const LearningPathPage = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-reveal-up">
           <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-xl px-6 py-2.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-10 border border-white/20">
             <span className="text-signal-gold"><Star size={14} fill="currentColor" /></span>
-            <span>Structured Authority Roadmap</span>
+            <span>Mastery Curriculum Framework</span>
           </div>
           <h1 className="text-4xl md:text-7xl font-black mb-8 font-serif leading-tight tracking-tighter">
-            The 90-Day Carrier <br/><span className="text-signal-gold italic">Success Pathway</span>
+            The Mastery <br/><span className="text-signal-gold italic">Curriculum Pathway</span>
           </h1>
           <p className="text-lg md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-16 font-medium">
-            Building a motor carrier is a technical process. Follow our FMCSA-verified milestones to move from registration to audit-ready status without the expensive guesswork.
+            Building a motor carrier is a technical process. Follow our FMCSA-verified modules to move from registration to audit-ready status without the expensive guesswork.
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-12">
@@ -258,7 +259,7 @@ const LearningPathPage = () => {
 
                   {/* Modules for this phase */}
                   <div className="mb-12 space-y-5">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted/60">Module Roadmap</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted/60">Module Curriculum</p>
                     <div className="grid grid-cols-1 gap-4">
                        {phase.moduleIds.map(mid => {
                          const mod = COURSE_MODULES.find(m => m.id === mid);

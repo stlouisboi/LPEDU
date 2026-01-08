@@ -29,33 +29,41 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Mission */}
+      {/* Mission / Founder Story */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Lead Instructor" className="rounded-[3rem] shadow-2xl" />
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Founder Vince" className="rounded-[3rem] shadow-2xl" />
               <div className="absolute -bottom-10 -right-10 bg-authority-blue text-white p-8 rounded-3xl hidden md:block max-w-xs shadow-2xl border-4 border-signal-gold/20">
                 <Target className="text-signal-gold mb-4" size={32} />
-                <p className="font-bold text-lg leading-tight italic">"From 'trying to start' to 'operating a regulated company'."</p>
+                <p className="font-bold text-lg leading-tight italic">"Systems-first approach to carrier success."</p>
               </div>
             </div>
             <div>
-              <h2 className="text-3xl font-bold font-serif mb-8">Our Identity</h2>
-              <p className="text-lg text-text-muted dark:text-text-dark-muted mb-8 leading-relaxed">
-                Whether you're starting with a box truck, step van, or semi, LaunchPath provides the thinking framework, compliance systems, and operational clarity required to pass the new-entrant phase.
-              </p>
-              <p className="text-lg text-text-muted dark:text-text-dark-muted mb-12 leading-relaxed">
-                We don't teach "get-rich-quick" trucking or dispatching. We teach compliance-first education for owner-operators who want a foundation they can scale from, avoiding preventable shutdowns.
-              </p>
-              <div className="grid grid-cols-2 gap-8">
+              <h2 className="text-3xl font-bold font-serif mb-8">Who Built LaunchPath</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium">
+                  LaunchPath was founded by Vince, an OSHA safety professional who recognized the same pattern in trucking that exists across industries: operators failing not because of skill, but because of missing systems.
+                </p>
+                <p className="text-lg text-text-muted dark:text-text-dark-muted leading-relaxed">
+                  After studying FMCSA regulations and analyzing why new carriers fail audits, LaunchPath was built on one principle: compliance methodology matters more than industry experience.
+                </p>
+                <p className="text-lg text-text-muted dark:text-text-dark-muted leading-relaxed">
+                  This course teaches you how to choose the right authority, build FMCSA-compliant systems, and pass the New Entrant Safety Audit — so your business survives long enough to succeed.
+                </p>
+                <p className="text-2xl font-black font-serif italic text-authority-blue dark:text-white pt-4">
+                  "Not hustle. Not hype. Just verified compliance methodology."
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-8 mt-12">
                 <div className="flex flex-col">
                   <span className="text-4xl font-bold text-authority-blue dark:text-steel-blue mb-2">100%</span>
-                  <span className="text-sm text-text-muted uppercase font-bold tracking-widest">Vehicle Agnostic</span>
+                  <span className="text-sm text-text-muted uppercase font-bold tracking-widest">Systems-Based</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-4xl font-bold text-authority-blue dark:text-steel-blue mb-2">2025</span>
-                  <span className="text-sm text-text-muted uppercase font-bold tracking-widest">Updated Standards</span>
+                  <span className="text-4xl font-bold text-authority-blue dark:text-steel-blue mb-2">OSHA</span>
+                  <span className="text-sm text-text-muted uppercase font-bold tracking-widest">Safety Logic</span>
                 </div>
               </div>
             </div>
