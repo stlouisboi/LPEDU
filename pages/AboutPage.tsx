@@ -44,8 +44,8 @@ const AboutPage = () => {
                 </p>
               </div>
               <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-xl space-y-6">
-                <div className="aspect-square bg-slate-100 rounded-3xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Vince - Founder" className="w-full h-full object-cover" />
+                <div className="aspect-[3/4] bg-slate-100 rounded-3xl overflow-hidden shadow-inner">
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600" alt="Vince - Founder" className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <h4 className="font-black text-authority-blue uppercase tracking-tight">Vince</h4>

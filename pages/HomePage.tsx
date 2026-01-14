@@ -180,9 +180,8 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative group">
-              <div className="relative aspect-square md:h-[600px] bg-slate-800 rounded-[3rem] overflow-hidden border-4 border-white/10 shadow-2xl">
-                 {/* [Photo of Vince placeholder] */}
-                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Vince - Founder" className="w-full h-full object-cover grayscale contrast-125" />
+              <div className="relative aspect-[3/4] md:h-[600px] bg-slate-800 rounded-[3rem] overflow-hidden border-4 border-white/10 shadow-2xl">
+                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800" alt="Vince - Founder" className="w-full h-full object-cover grayscale contrast-125" />
                  <div className="absolute bottom-10 left-10 right-10 p-8 bg-authority-blue/90 backdrop-blur-md rounded-3xl border border-white/10">
                     <p className="text-xl font-bold font-serif italic mb-2">"Systems-first approach to carrier success."</p>
                     <p className="text-[10px] font-black uppercase tracking-widest text-signal-gold">Vince | LaunchPath Founder</p>
