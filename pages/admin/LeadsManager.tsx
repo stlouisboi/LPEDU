@@ -15,9 +15,7 @@ import {
   Download, 
   Mail, 
   User, 
-  X, 
   Loader2, 
-  Filter,
   Copy,
   CheckCircle2,
   Calendar,
@@ -25,14 +23,14 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
-  ArrowUpDown
+  ExternalLink
 } from 'lucide-react';
 
 interface LeadMagnet {
   id: string;
   firstName: string;
   email: string;
-  downloadedAt: Timestamp;
+  downloadedAt: Timestamp | any; // Handle potential raw dates or Timestamps
   source: string;
 }
 
@@ -67,10 +65,22 @@ const LeadsManager = () => {
     const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
+    const getSafeDate = (lead: LeadMagnet) => {
+      if (!lead.downloadedAt) return null;
+      if (typeof lead.downloadedAt.toDate === 'function') return lead.downloadedAt.toDate();
+      return new Date(lead.downloadedAt);
+    };
+
     return {
       total: leads.length,
-      thisWeek: leads.filter(l => l.downloadedAt.toDate() >= oneWeekAgo).length,
-      thisMonth: leads.filter(l => l.downloadedAt.toDate() >= firstOfMonth).length
+      thisWeek: leads.filter(l => {
+        const d = getSafeDate(l);
+        return d && d >= oneWeekAgo;
+      }).length,
+      thisMonth: leads.filter(l => {
+        const d = getSafeDate(l);
+        return d && d >= firstOfMonth;
+      }).length
     };
   }, [leads]);
 
@@ -100,12 +110,20 @@ const LeadsManager = () => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
+  const formatLeadDate = (lead: LeadMagnet) => {
+    if (!lead.downloadedAt) return "N/A";
+    const date = typeof lead.downloadedAt.toDate === 'function' 
+      ? lead.downloadedAt.toDate() 
+      : new Date(lead.downloadedAt);
+    return date.toLocaleString();
+  };
+
   const exportToCSV = () => {
     const headers = ['Name', 'Email', 'Downloaded At', 'Source'];
     const rows = leads.map(l => [
       l.firstName,
       l.email,
-      l.downloadedAt.toDate().toLocaleString(),
+      formatLeadDate(l),
       l.source
     ]);
 
@@ -134,12 +152,12 @@ const LeadsManager = () => {
   );
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-700">
+    <div className="space-y-8 animate-in fade-in duration-700 pb-20">
       {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
           <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Lead Submissions</h1>
-          <p className="text-text-muted mt-1">Monitor high-intent potential carrier leads.</p>
+          <p className="text-text-muted mt-1">Monitor high-intent potential carrier leads from risk maps and orientation tools.</p>
         </div>
         <button 
           onClick={exportToCSV}
@@ -169,14 +187,14 @@ const LeadsManager = () => {
         ))}
       </div>
 
-      {/* SEARCH & FILTERS */}
-      <div className="bg-white dark:bg-surface-dark p-6 rounded-3xl border border-border-light dark:border-border-dark flex flex-col md:flex-row gap-4 shadow-sm">
-        <div className="relative flex-grow">
+      {/* SEARCH */}
+      <div className="bg-white dark:bg-surface-dark p-6 rounded-3xl border border-border-light dark:border-border-dark shadow-sm">
+        <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
           <input 
             type="text" 
-            placeholder="Search leads by name, email or source..."
-            className="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl focus:ring-2 focus:ring-authority-blue outline-none transition-all"
+            placeholder="Search leads by name, email or source channel..."
+            className="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-xl focus:ring-2 focus:ring-authority-blue outline-none transition-all font-medium"
             value={searchTerm}
             onChange={e => { setSearchTerm(e.target.value); setCurrentPage(1); }}
           />
@@ -189,9 +207,9 @@ const LeadsManager = () => {
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-border-light bg-slate-50/50">
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Carrier Contact</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Downloaded At</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Source Channel</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Carrier Lead</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Time Captured</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Inbound Channel</th>
                 <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted text-right">Actions</th>
               </tr>
             </thead>
@@ -200,8 +218,8 @@ const LeadsManager = () => {
                 <tr key={lead.id} className="group hover:bg-slate-50 dark:hover:bg-gray-800/20 transition-colors">
                   <td className="px-8 py-6">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-authority-blue/5 text-authority-blue rounded-xl flex items-center justify-center font-bold">
-                        {lead.firstName?.[0] || 'L'}
+                      <div className="w-10 h-10 bg-authority-blue text-white rounded-xl flex items-center justify-center font-bold">
+                        {lead.firstName?.[0] || 'C'}
                       </div>
                       <div>
                         <h4 className="text-sm font-bold text-text-primary dark:text-white">{lead.firstName}</h4>
@@ -217,25 +235,20 @@ const LeadsManager = () => {
                     </div>
                   </td>
                   <td className="px-8 py-6">
-                    <div className="flex flex-col">
-                      <span className="text-xs font-bold text-text-primary dark:text-white">
-                        {lead.downloadedAt.toDate().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
-                      </span>
-                      <span className="text-[10px] text-text-muted font-mono">
-                        {lead.downloadedAt.toDate().toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
-                      </span>
-                    </div>
+                    <span className="text-xs font-bold text-text-primary dark:text-white">
+                      {formatLeadDate(lead)}
+                    </span>
                   </td>
                   <td className="px-8 py-6">
                     <span className="px-3 py-1 bg-slate-100 dark:bg-gray-800 rounded-full text-[10px] font-black uppercase tracking-widest text-text-muted">
-                      {lead.source.replace(/-/g, ' ')}
+                      {lead.source?.replace(/-/g, ' ') || 'Unknown'}
                     </span>
                   </td>
                   <td className="px-8 py-6 text-right">
                     <button 
                       onClick={() => handleDelete(lead.id)}
                       className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all active:scale-90"
-                      title="Delete Entry"
+                      title="Purge Record"
                     >
                       <Trash2 size={16} />
                     </button>
@@ -245,7 +258,7 @@ const LeadsManager = () => {
               {paginatedLeads.length === 0 && (
                 <tr>
                   <td colSpan={4} className="px-8 py-20 text-center text-text-muted italic text-sm">
-                    No matching leads found.
+                    No lead records matched your query.
                   </td>
                 </tr>
               )}
@@ -261,7 +274,7 @@ const LeadsManager = () => {
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-authority-blue text-white rounded-xl flex items-center justify-center font-bold">
-                  {lead.firstName?.[0]}
+                  {lead.firstName?.[0] || 'C'}
                 </div>
                 <div>
                   <h4 className="font-bold text-text-primary dark:text-white">{lead.firstName}</h4>
@@ -271,8 +284,8 @@ const LeadsManager = () => {
               <button onClick={() => handleDelete(lead.id)} className="p-2 text-red-400"><Trash2 size={18} /></button>
             </div>
             <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-border-dark">
-              <span className="text-[10px] font-black uppercase text-text-muted">{lead.source.replace(/-/g, ' ')}</span>
-              <span className="text-[10px] font-bold text-text-muted">{lead.downloadedAt.toDate().toLocaleDateString()}</span>
+              <span className="text-[10px] font-black uppercase text-text-muted">{lead.source?.replace(/-/g, ' ')}</span>
+              <span className="text-[10px] font-bold text-text-muted">{formatLeadDate(lead).split(',')[0]}</span>
             </div>
           </div>
         ))}

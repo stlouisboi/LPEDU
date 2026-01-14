@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -16,11 +15,11 @@ import { BlogPost, RoadmapStep, SiteSettings, CourseModule, Testimonial } from '
 export const INITIAL_SETTINGS: SiteSettings = {
   siteName: "LaunchPath™",
   tagline: "Accuracy Over Hype.™",
-  heroTitle: "Build Your Trucking Business the Right Way — From Day One",
-  heroSubtitle: "Compliance-first education for new owner-operators. Surviving your first 90 days and passed new entrant audits.",
+  heroTitle: "Build Your Trucking Business on The Four Pillars of Survival",
+  heroSubtitle: "Compliance-first systems for new owner-operators. Navigate your first 90 days and survive the critical 18-month New Entrant phase.",
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
-  metaDescription: "Professional carrier compliance education for new box truck owner-operators. Surviving your first 90 days and passing your new entrant audit.",
+  metaDescription: "Professional carrier compliance education for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,
   contact: {
@@ -69,12 +68,13 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
 ];
 
 export const COURSE_MODULES: CourseModule[] = [
-  { id: 0, title: "Foundation & Business Decision", description: "Is this business right for you? For-hire vs private carrier decision. Authority risk & reality assessment. Go/No-Go decision framework.", lessons: 4 },
-  { id: 1, title: "Authority Types & Regulatory Identity", description: "DOT vs MC authority. Interstate vs intrastate operations. Carrier vs broker distinction. Why box trucks aren't exempt.", lessons: 6 },
-  { id: 2, title: "FMCSA Compliance Systems", description: "Driver Qualification Files. Drug & Alcohol Clearinghouse. Hours of Service & ELD. Maintenance documentation. Required policies.", lessons: 7 },
-  { id: 3, title: "Insurance, Risk & Operational Exposure", description: "Auto, cargo, and liability insurance. Why new authority is expensive. Claim consequences and monitoring.", lessons: 5 },
-  { id: 4, title: "New Entrant Safety Audit Preparation", description: "What the audit is and when it happens. Conduct and requested documents. Common failure points and response strategies.", lessons: 5 },
-  { id: 5, title: "Operating Clean After Approval", description: "Ongoing compliance habits. Annual filings (UCR, MCS-150). CSA score monitoring. Red flags that trigger investigations.", lessons: 4 }
+  { id: 0, title: "The Mindset Module", description: "The foundation of your business. Go/No-Go decision framework, authority risk assessment, and operational reality check.", lessons: 6 },
+  { id: 1, title: "Business & Authority Setup", description: "Laying the legal foundation. DOT vs MC, interstate registration, and proper carrier identity setup.", lessons: 8 },
+  { id: 2, title: "Insurance Survival", description: "Navigating the highest expense. Coverage types, cancellation triggers, and claim management strategies.", lessons: 5 },
+  { id: 3, title: "Compliance Backbone", description: "The technical system. DQ files, Clearinghouse, HOS/ELD, and maintenance logs.", lessons: 10 },
+  { id: 4, title: "New Entrant Audit Preparation", description: "Surviving the federal investigation. Step-by-step document preparation and audit conduct.", lessons: 7 },
+  { id: 5, title: "Load Discipline & Cash Flow", description: "Managing the Money Loop. Solvent operations during the 30-60 day payment gap.", lessons: 6 },
+  { id: 6, title: "Stabilization & Long-Term Success", description: "Operating clean after approval. Annual filings, CSA score monitoring, and scaling with integrity.", lessons: 4 }
 ];
 
 export const INITIAL_BLOGS: BlogPost[] = [
@@ -86,7 +86,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     excerpt: "Understanding the difference between safety registration (USDOT) and operating authority (MC). Not every carrier needs both, but getting it wrong stops your business before it starts.",
     content: "<h2>The Safety vs. Business Distinction</h2><p>In the United States, the FMCSA uses two primary identifiers. The <strong>USDOT Number</strong> is your safety footprint—it tracks your inspections, crashes, and audit results. Every commercial vehicle over 10,001 lbs involved in interstate commerce needs one.</p><p>The <strong>MC Number</strong> (Motor Carrier authority) is different. It is about the <em>business</em> of hauling for hire. If you are a 'For-Hire' carrier moving freight for others across state lines, you need an MC number. If you only move your own goods, you are a private carrier and usually only need the USDOT number.</p>",
     publishedAt: "2025-01-10",
-    author: "Compliance Specialist John",
+    author: "Vince",
     image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
     status: 'published',
     tags: ['Authority', 'FMCSA', 'Setup']
@@ -97,54 +97,44 @@ export const ROADMAP_STEPS: RoadmapStep[] = [
   {
     id: 1,
     phase: "Phase I: The Foundation",
-    title: "Legal Setup & Authority",
-    description: "Laying the legal foundation for your motor carrier before you even think about turning a key.",
-    timeline: "Weeks 1-4",
-    difficulty: "Foundation",
+    title: "The 90-Day Containment Window",
+    description: "Setting the systems that determine if you survive the first 18 months of federal scrutiny.",
+    timeline: "Weeks 1-12",
+    difficulty: "Critical",
     details: [
       "Obtaining your USDOT & MC Number (21-day protest period)",
-      "Process Agents (BOC-3) Filing",
-      "Unified Carrier Registration (UCR)",
-      "Drug & Alcohol Clearinghouse owner-operator enrollment"
+      "BOC-3 Process Agent filing and UCR registration",
+      "Building the Compliance Backbone (DQ Files, Randoms, HOS)",
+      "Solving the Cash-Flow Oxygen problem"
     ],
     mistakes: [
-      "Starting work before authority is active",
-      "Using a residential address for public DOT records (privacy risk)",
-      "Forgetting to register as an employer in the Clearinghouse"
+      "Filing authority without an insurance strategy",
+      "Hauling loads before DQ files are complete",
+      "Ignoring the New Entrant Audit clock"
     ],
-    tools: ["FMCSA Portal", "BOC-3 Provider", "Clearinghouse Login"]
+    tools: ["FMCSA Portal", "Clearinghouse", "Safety Audit Preparation Kit"]
   }
 ];
 
 export const FEATURES = [
   {
-    title: "Authority & Registration",
-    desc: "Understand when you need a USDOT number, MC authority, and how to avoid registration mistakes that delay or shut down operations.",
+    title: "Authority Protection",
+    desc: "Keep your MC active and pass the New Entrant Audit without panic.",
     icon: <Truck className="w-6 h-6 text-authority-blue" />
   },
   {
-    title: "Insurance & Financial Responsibility",
-    desc: "Learn what coverage is legally required, what brokers actually expect, and how insurance lapses destroy authority.",
+    title: "Insurance Continuity",
+    desc: "Maintain coverage and avoid the cancellations that destroy authority.",
     icon: <ShieldCheck className="w-6 h-6 text-authority-blue" />
   },
   {
-    title: "New Entrant Audit Readiness",
-    desc: "Know what FMCSA looks for, what causes automatic failure, and how to prepare before the audit notice arrives.",
+    title: "Compliance Backbone",
+    desc: "Every file, every log, every policy—audit-ready from day one.",
     icon: <FileText className="w-6 h-6 text-authority-blue" />
   },
   {
-    title: "Driver Qualification Files",
-    desc: "Build and maintain compliant driver files — including when the driver is you.",
-    icon: <AlertCircle className="w-6 h-6 text-authority-blue" />
-  },
-  {
-    title: "Hours of Service & ELD Rules",
-    desc: "Understand when HOS rules apply, which exemptions are real, and how to avoid logbook and ELD violations.",
+    title: "Cash-Flow Oxygen",
+    desc: "Manage the 30-60 day money gap so you stay solvent while waiting on pay.",
     icon: <Clock className="w-6 h-6 text-authority-blue" />
-  },
-  {
-    title: "Maintenance & Safety Systems",
-    desc: "Learn what inspection and maintenance records auditors request and how to keep them audit-ready.",
-    icon: <Wrench className="w-6 h-6 text-authority-blue" />
   }
 ];

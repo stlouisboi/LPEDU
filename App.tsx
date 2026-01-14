@@ -6,20 +6,7 @@ import {
   Menu, 
   X, 
   ChevronRight, 
-  LogOut, 
-  ArrowRight,
-  Loader2,
-  Award,
-  ShieldCheck,
-  CheckCircle,
-  ShieldAlert,
-  FileText,
-  BadgeCheck,
-  Star,
-  Shield,
-  Phone,
-  Mail,
-  HelpCircle
+  Loader2
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -56,10 +43,10 @@ import BlogEditor from './pages/admin/BlogEditor';
 import ResourceManager from './pages/admin/ResourceManager';
 import FormManagement from './pages/admin/FormManagement';
 import SubmissionsList from './pages/admin/SubmissionsList';
+import LeadsManager from './pages/admin/LeadsManager';
 import SettingsManager from './pages/admin/SettingsManager';
 import VideoLab from './pages/admin/VideoLab';
 import InitializeDataPage from './pages/admin/InitializeDataPage';
-import LeadsManager from './pages/admin/LeadsManager';
 
 // Security
 import ProtectedRoute from './components/admin/ProtectedRoute';
@@ -89,7 +76,7 @@ export const useApp = () => {
 };
 
 const Header = () => {
-  const { theme, toggleTheme, settings } = useApp();
+  const { theme, toggleTheme } = useApp();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -146,16 +133,10 @@ const Header = () => {
           </nav>
 
           <div className="lg:hidden flex items-center space-x-4">
-            <button
-                onClick={toggleTheme}
-                className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800"
-              >
-                {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-              </button>
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="text-authority-blue dark:text-white"
-            >
+            <button onClick={toggleTheme} className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800">
+              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </button>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-authority-blue dark:text-white">
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
@@ -194,13 +175,12 @@ const Header = () => {
 };
 
 const Footer = () => {
-  const { settings } = useApp();
   const location = useLocation();
   if (location.pathname.startsWith('/admin')) return null;
   return (
     <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-12">
       <div className="max-w-7xl mx-auto px-4 text-center flex flex-col items-center space-y-6">
-         <Logo className="opacity-60 transition-all" />
+         <Logo className="opacity-60 transition-all grayscale hover:grayscale-0 hover:opacity-100" />
          <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">© {new Date().getFullYear()} LaunchPath™ Transportation EDU.</p>
       </div>
     </footer>
@@ -221,7 +201,6 @@ export default function App() {
       return;
     }
     
-    // Explicit settings listener with requested error string
     const settingsRef = doc(db, "settings", "general");
     const unsub = onSnapshot(settingsRef, (snap) => {
       if (snap.exists()) {
@@ -229,7 +208,6 @@ export default function App() {
       }
       setAppLoading(false);
     }, (error) => {
-      // FIX: Matches the user's specific error reporting request
       console.warn("App: Settings listener failed. Using defaults.", error.message);
       setAppLoading(false);
     });

@@ -6,25 +6,25 @@ interface LogoProps {
 }
 
 /**
- * Clean, text-based logo for LaunchPath.
- * Uses navy blue (#1e3a5f) which is defined as 'authority-blue' in the tailwind config.
+ * LaunchPath™ Text-Based Logo
+ * Professional, clean, and code-based.
+ * Uses navy blue (#1e3a5f) which is 'authority-blue' in tailwind.config.
  */
 const Logo: React.FC<LogoProps> = ({ className = "", light = false }) => {
-  // Theme logic for light/dark contexts
   const textColor = light ? 'text-white' : 'text-authority-blue';
   const boxBg = light ? 'bg-white' : 'bg-authority-blue';
   const boxText = light ? 'text-authority-blue' : 'text-white';
 
   return (
     <div className={`flex items-center space-x-2 select-none ${className}`}>
-      {/* The "L" Box - Iconography */}
-      <div className={`w-9 h-9 sm:w-10 sm:h-10 ${boxBg} rounded-lg flex items-center justify-center shrink-0 shadow-sm`}>
+      {/* Icon Box */}
+      <div className={`w-9 h-9 sm:w-10 sm:h-10 ${boxBg} rounded-lg flex items-center justify-center shrink-0 shadow-sm transition-transform hover:scale-105 duration-300`}>
         <span className={`${boxText} font-bold text-lg sm:text-xl`}>L</span>
       </div>
       
-      {/* The Brand Name Typography */}
+      {/* Brand Typography */}
       <span className={`${textColor} font-bold text-lg sm:text-xl tracking-tight whitespace-nowrap`}>
-        LaunchPath<sup className="text-[10px] sm:text-xs ml-0.5">™</sup>
+        LaunchPath<sup className="text-[10px] sm:text-xs ml-0.5 opacity-80">™</sup>
       </span>
     </div>
   );

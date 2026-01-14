@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -22,7 +21,9 @@ import {
   ChevronRight,
   ChevronDown,
   Calendar,
-  AlertTriangle
+  AlertTriangle,
+  FileText,
+  Scale
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -254,6 +255,43 @@ const LearningPathPage = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* NEW SECTION: TRUST PILLARS */}
+      <section className="py-32 bg-white dark:bg-primary-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3rem] border border-border-light dark:border-border-dark flex flex-col items-center text-center group hover:shadow-2xl transition-all">
+              <div className="w-20 h-20 bg-authority-blue text-white rounded-3xl flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform">
+                <Scale size={36} />
+              </div>
+              <h3 className="text-2xl font-black font-serif uppercase text-authority-blue dark:text-white mb-4 tracking-tight">Regulatory Accuracy</h3>
+              <p className="text-text-muted dark:text-text-dark-muted font-medium leading-relaxed">
+                Our curriculum is derived directly from the Federal Motor Carrier Safety Regulations (FMCSRs), ensuring you build your business on a foundation of actual law, not industry rumors or shortcuts.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3rem] border border-border-light dark:border-border-dark flex flex-col items-center text-center group hover:shadow-2xl transition-all">
+              <div className="w-20 h-20 bg-signal-gold text-authority-blue rounded-3xl flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform">
+                <FileText size={36} />
+              </div>
+              <h3 className="text-2xl font-black font-serif uppercase text-authority-blue dark:text-white mb-4 tracking-tight">Audit-Ready Templates</h3>
+              <p className="text-text-muted dark:text-text-dark-muted font-medium leading-relaxed">
+                We provide the exact forms FMCSA auditors look for, from Driver Qualification Files to Maintenance Logs. No more guessing what paperwork you need to keep your authority active.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3rem] border border-border-light dark:border-border-dark flex flex-col items-center text-center group hover:shadow-2xl transition-all">
+              <div className="w-20 h-20 bg-authority-blue text-white rounded-3xl flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform">
+                <Target size={36} />
+              </div>
+              <h3 className="text-2xl font-black font-serif uppercase text-authority-blue dark:text-white mb-4 tracking-tight">Survival-Focused</h3>
+              <p className="text-text-muted dark:text-text-dark-muted font-medium leading-relaxed">
+                We don't focus on the "get rich quick" side of trucking. We focus on the high-risk first 18 months, helping you implement systems that protect your MC number from federal scrutiny.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

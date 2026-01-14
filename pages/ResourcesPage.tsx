@@ -1,334 +1,287 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { 
   FileText, 
   Download, 
-  CheckCircle2, 
-  Play, 
   Lock, 
   ExternalLink, 
   ArrowRight, 
-  Loader2, 
   ShieldCheck, 
-  Calendar, 
-  AlertTriangle, 
-  ClipboardList, 
-  Search,
-  Zap,
+  Play, 
+  ChevronDown, 
+  CheckCircle2, 
+  AlertCircle,
   Globe,
-  Check,
-  User,
+  ClipboardList,
+  Calendar,
+  Search,
   Activity,
   Smartphone,
-  CheckCircle,
-  FileSearch,
-  BookOpen
+  Shield
 } from 'lucide-react';
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from '../firebase';
-import { useApp } from '../App';
 
 const ResourcesPage = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({ firstName: '', email: '' });
-  const [errors, setErrors] = useState<{firstName?: string, email?: string}>({});
-  const [loading, setLoading] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const validate = () => {
-    const newErrors: {firstName?: string, email?: string} = {};
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+  const quickGuides = [
+    {
+      title: "Pre-Authority Launch Checklist",
+      description: "Everything you need before activating your MC number.",
+      phase: "Phase 0: Orientation",
+      icon: <ClipboardList className="w-6 h-6" />,
+      buttonText: "Download PDF",
+      isPublic: true,
+      link: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FLaunchPathtm-First-90-Days-Overview.pdf?alt=media&token=95f49ef1-f594-4985-a534-68cd09750003"
+    },
+    {
+      title: "DQ File Required Documents",
+      description: "The 9 documents every driver file must contain.",
+      phase: "Phase 2: Safety & Compliance",
+      icon: <FileText className="w-6 h-6" />,
+      buttonText: "See What's Included",
+      isPublic: false
+    },
+    {
+      title: "Annual Filing Calendar 2025",
+      description: "UCR, MCS-150, 2290 — never miss a deadline.",
+      phase: "Phase 2–3: Compliance Operations",
+      icon: <Calendar className="w-6 h-6" />,
+      buttonText: "View Overview",
+      isPublic: false
+    },
+    {
+      title: "Roadside Inspection Prep",
+      description: "What inspectors check and how to be ready.",
+      phase: "Phase 2: Inspection Readiness",
+      icon: <ShieldCheck className="w-6 h-6" />,
+      buttonText: "View Overview",
+      isPublic: false
+    },
+    {
+      title: "CSA Score Quick Guide",
+      description: "Understand your SMS/CSA safety measurement scores.",
+      phase: "Phase 3: Risk & Reputation",
+      icon: <Search className="w-6 h-6" />,
+      buttonText: "See Inside LaunchPath",
+      isPublic: false
+    },
+    {
+      title: "Audit Trigger Events",
+      description: "What makes FMCSA schedule an investigation.",
+      phase: "Phase 2–3: Audit Survival",
+      icon: <AlertCircle className="w-6 h-6" />,
+      buttonText: "See Inside LaunchPath",
+      isPublic: false
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  ];
 
-  const handleLeadSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-    
-    setLoading(true);
-    try {
-      if (db) {
-        await addDoc(collection(db, "leadMagnets"), {
-          firstName: formData.firstName,
-          email: formData.email,
-          downloadedAt: serverTimestamp(),
-          source: "risk-map-resources"
-        });
-      }
-      setLoading(false);
-      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName)}`);
-    } catch (error) {
-      console.error("Resource lead capture failed:", error);
-      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName)}`);
-    }
+  const advancedPacks = [
+    "Complete DQ File Template Pack",
+    "New Entrant Audit Response Kit",
+    "Violation Severity Matrix",
+    "7-Day Authority Prep Email Course"
+  ];
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
   };
 
   return (
-    <div className="bg-primary-light dark:bg-primary-dark min-h-screen animate-in fade-in duration-700">
+    <div className="bg-[#fafaf9] min-h-screen font-sans text-slate-800">
       
-      {/* PAGE HEADER */}
-      <section className="pt-24 pb-16 text-center">
+      {/* 1. HERO SECTION */}
+      <section className="bg-white border-b border-slate-200 pt-24 pb-20 text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-black font-serif text-authority-blue dark:text-white tracking-tighter mb-6">
-            Free Compliance Tools & <br/><span className="text-signal-gold italic">Industry Resources</span>
-          </h1>
-          <p className="text-xl text-text-muted dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-            Checklists, guides, and references to help you research, prepare, and operate with confidence.
+          <h1 className="text-5xl md:text-6xl font-black text-authority-blue tracking-tight mb-6">Resources</h1>
+          <p className="text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
+            Orientation tools and guided references. Full implementation systems are taught inside LaunchPath.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <Link to="/learning-path" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-lg active:scale-95">
+              View Course Curriculum
+            </Link>
+            <Link to="/pricing" className="bg-white text-authority-blue border-2 border-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all active:scale-95">
+              See Enrollment Options
+            </Link>
+          </div>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+            Education only. No legal advice. No income guarantees.
           </p>
         </div>
       </section>
 
-      {/* SECTION 1: FEATURED DOWNLOAD */}
-      <section className="pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-signal-gold rounded-[3.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative bg-white dark:bg-surface-dark border-4 border-signal-gold rounded-[3rem] p-8 md:p-16 overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 p-8 opacity-5 rotate-12 scale-150 pointer-events-none">
-              <ShieldCheck size={200} className="text-authority-blue" />
+      {/* 2. QUICK REFERENCE GUIDES */}
+      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-black text-authority-blue uppercase tracking-tight mb-4 leading-none">Quick Reference Guides</h2>
+          <p className="text-lg text-slate-500 font-medium italic">Preview-level guides for orientation and research. Full templates and step-by-step implementation are inside LaunchPath.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {quickGuides.map((guide, i) => (
+            <div key={i} className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+              <div className="w-14 h-14 bg-authority-blue/5 text-authority-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                {guide.icon}
+              </div>
+              <div className="flex-grow">
+                <h3 className="text-xl font-black text-authority-blue uppercase tracking-tight mb-3 leading-tight">{guide.title}</h3>
+                <p className="text-sm text-slate-500 font-medium mb-4 leading-relaxed">{guide.description}</p>
+                <div className="inline-flex items-center text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 px-3 py-1 rounded-full mb-8">
+                  <Shield size={10} className="mr-1.5" /> {guide.phase}
+                </div>
+              </div>
+              
+              {guide.isPublic ? (
+                <a 
+                  href={guide.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 rounded-xl bg-authority-blue text-white font-black uppercase text-[10px] tracking-widest hover:bg-steel-blue transition-all flex items-center justify-center shadow-md active:scale-95"
+                >
+                  <Download size={14} className="mr-2" /> {guide.buttonText}
+                </a>
+              ) : (
+                <Link 
+                  to="/pricing"
+                  className="w-full py-4 rounded-xl border-2 border-slate-200 text-slate-400 font-black uppercase text-[10px] tracking-widest hover:border-authority-blue hover:text-authority-blue transition-all flex items-center justify-center"
+                >
+                  <Lock size={12} className="mr-2 opacity-50" /> {guide.buttonText}
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. ESSENTIAL COMPLIANCE CHECKLISTS (Locked) */}
+      <section className="bg-authority-blue py-24">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="bg-white rounded-[3.5rem] p-10 md:p-20 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-12 opacity-[0.03] rotate-12 scale-150 pointer-events-none">
+              <ShieldCheck size={300} className="text-authority-blue" />
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <span className="inline-flex items-center space-x-2 bg-signal-gold/10 text-signal-gold px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-signal-gold/20">
-                  <Zap size={12} fill="currentColor" />
-                  <span>🎯 MOST POPULAR RESOURCE</span>
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">
-                  First 90 Days Risk Map™
-                </h2>
-                <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-8">
-                  This diagnostic tool reveals the exact technical gaps FMCSA auditors look for in new entrant carriers. Identify your compliance vulnerabilities before they become violations.
-                </p>
-                <div className="flex items-center space-x-4 text-sm font-bold text-authority-blue dark:text-signal-gold">
-                  <CheckCircle2 size={18} />
-                  <span>Immediate Digital Delivery via LaunchPath Cloud</span>
-                </div>
+                <h2 className="text-3xl md:text-4xl font-black text-authority-blue uppercase tracking-tight mb-8 leading-none">Essential <br/><span className="text-signal-gold">Compliance Checklists</span></h2>
+                <ul className="space-y-4">
+                  {[
+                    "New Entrant Application Process (step-by-step)",
+                    "Insurance Shopping Checklist (coverage requirements)",
+                    "Clearinghouse Enrollment Steps",
+                    "First Day of Operations Checklist",
+                    "Mock Audit Self-Assessment"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center space-x-4 text-slate-600 font-bold">
+                      <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-
-              <div className="bg-slate-50 dark:bg-slate-900/50 p-8 md:p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark shadow-inner relative z-10">
-                <form onSubmit={handleLeadSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">First Name</label>
-                      <input 
-                        required
-                        type="text"
-                        placeholder="First Name"
-                        className={`w-full px-8 py-4 rounded-2xl bg-white dark:bg-gray-800 border-2 outline-none transition-all font-bold text-lg ${errors.firstName ? 'border-red-500' : 'border-slate-100 dark:border-border-dark focus:border-signal-gold'}`}
-                        value={formData.firstName}
-                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Authorized Link Destination</label>
-                      <input 
-                        required
-                        type="email"
-                        placeholder="your.email@address.com"
-                        className={`w-full px-8 py-4 rounded-2xl bg-white dark:bg-gray-800 border-2 outline-none transition-all font-bold text-lg ${errors.email ? 'border-red-500' : 'border-slate-100 dark:border-border-dark focus:border-signal-gold'}`}
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                  <button 
-                    disabled={loading}
-                    type="submit"
-                    className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-authority-blue hover:text-white transition-all shadow-xl disabled:opacity-50 active:scale-95 flex items-center justify-center group"
-                  >
-                    {loading ? <Loader2 className="animate-spin" size={24} /> : (
-                      <>
-                        <span>GET FREE DOWNLOAD</span>
-                        <Download size={18} className="ml-3 group-hover:translate-y-0.5 transition-transform" />
-                      </>
-                    )}
-                  </button>
-                  <p className="text-[9px] text-center text-text-muted uppercase tracking-widest font-black opacity-50 pt-2">
-                    We respect your inbox. No spam, just compliance guidance.
-                  </p>
-                </form>
+              <div className="text-center lg:text-right space-y-6">
+                <Link to="/pricing" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-2xl active:scale-95 group">
+                  <span>Included With LaunchPath Enrollment</span>
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                  These tools are designed to be used in sequence with training.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: FREE QUICK REFERENCE GUIDES */}
-      <section className="py-24 bg-white dark:bg-surface-dark border-y border-border-light dark:border-border-dark">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">Quick Reference Guides</h2>
-            <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium italic">No email required. Just download and use.</p>
-          </div>
+      {/* 4. COMPLIANCE CONCEPTS EXPLAINED SIMPLY */}
+      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <p className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue mb-4">Educational Previews</p>
+          <h2 className="text-3xl font-black text-authority-blue uppercase tracking-tight mb-4 leading-none">Concepts Explained Simply</h2>
+          <p className="text-lg text-slate-500 font-medium italic">Short videos that break down complex regulations.</p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Pre-Authority Launch Checklist", desc: "Everything you need before activating your MC number", icon: <ClipboardList /> },
-              { title: "DQ File Required Documents", desc: "The 9 documents every driver file must contain", icon: <FileText /> },
-              { title: "Annual Filing Calendar 2025", desc: "UCR, MCS-150, 2290 - never miss a deadline", icon: <Calendar /> },
-              { title: "Roadside Inspection Prep", desc: "What inspectors check and how to be ready", icon: <ShieldCheck /> },
-              { title: "CSA Score Quick Guide", desc: "Understanding your safety measurement scores", icon: <Search /> },
-              { title: "Audit Trigger Events", desc: "What makes FMCSA schedule an investigation", icon: <AlertTriangle /> },
-            ].map((card, i) => (
-              <div key={i} className="bg-slate-50 dark:bg-gray-900/50 p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark hover:shadow-xl transition-all group flex flex-col">
-                <div className="w-14 h-14 bg-authority-blue text-white rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                  {/* Fix: Explicitly cast ReactElement props to any to avoid property assignment errors during cloneElement */}
-                  {React.cloneElement(card.icon as React.ReactElement<any>, { size: 28 })}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { title: "DOT Number vs MC Authority", dur: "2:30", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600" },
+            { title: "The Drug & Alcohol Clearinghouse", dur: "3:15", img: "https://images.unsplash.com/photo-1579165466511-70e21ad10418?auto=format&fit=crop&q=80&w=600" },
+            { title: "Why 1 in 5 New Carriers Fail Their Audit", dur: "5:00", img: "https://images.unsplash.com/photo-1454165833767-0270a3599603?auto=format&fit=crop&q=80&w=600" },
+          ].map((video, i) => (
+            <div key={i} className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 group shadow-sm hover:shadow-xl transition-all">
+              <div className="relative aspect-video bg-slate-900 flex items-center justify-center overflow-hidden">
+                <img src={video.img} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" alt="" />
+                <div className="relative w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform cursor-pointer">
+                  <Play size={20} fill="currentColor" className="ml-1" />
                 </div>
-                <h3 className="text-xl font-black font-serif uppercase tracking-tight mb-3 text-authority-blue dark:text-white leading-tight">{card.title}</h3>
-                <p className="text-sm text-text-muted font-medium mb-8 flex-grow leading-relaxed">{card.desc}</p>
-                <button className="w-full py-4 rounded-xl border-2 border-authority-blue text-authority-blue dark:text-steel-blue font-black uppercase text-[10px] tracking-widest hover:bg-authority-blue hover:text-white transition-all flex items-center justify-center group">
-                  <Download size={14} className="mr-2 group-hover:translate-y-0.5 transition-transform" />
-                  DOWNLOAD PDF
+                <div className="absolute bottom-4 left-4 bg-black/60 px-3 py-1 rounded text-[10px] font-bold text-white uppercase tracking-widest">
+                  {video.dur}
+                </div>
+              </div>
+              <div className="p-8">
+                <h3 className="text-lg font-black uppercase text-authority-blue mb-4 leading-tight">{video.title}</h3>
+                <button className="text-authority-blue font-black uppercase tracking-widest text-[10px] flex items-center group/btn">
+                  Watch Now <ArrowRight size={14} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-12 pt-8 border-t border-slate-200 text-center">
+          <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+            Videos explain concepts. LaunchPath provides the complete system and templates.
+          </p>
         </div>
       </section>
 
-      {/* SECTION 3: COMPLIANCE CHECKLISTS */}
-      <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 rounded-[3.5rem] p-12 md:p-16 text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-12 opacity-10">
-            <CheckCircle2 size={180} />
-          </div>
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-black font-serif uppercase tracking-tight mb-8 leading-none">Essential <br/><span className="text-signal-gold">Compliance Checklists</span></h2>
-              <ul className="space-y-6">
-                {[
-                  "New Entrant Application Process (step-by-step)",
-                  "Insurance Shopping Checklist (coverage requirements)",
-                  "Clearinghouse Enrollment Steps",
-                  "First Day of Operations Checklist",
-                  "Mock Audit Self-Assessment"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center space-x-4">
-                    <div className="w-6 h-6 bg-signal-gold text-authority-blue rounded-full flex items-center justify-center flex-shrink-0">
-                      <Check size={14} strokeWidth={4} />
-                    </div>
-                    <span className="text-lg font-medium opacity-90">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="text-center lg:text-right">
-              <button className="inline-flex items-center space-x-3 bg-white text-authority-blue px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all shadow-2xl active:scale-95 group">
-                <Download size={20} className="group-hover:translate-y-0.5 transition-transform" />
-                <span>DOWNLOAD ALL CHECKLISTS (PDF PACK)</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: VIDEO EXPLAINERS */}
-      <section className="py-24 bg-slate-50 dark:bg-gray-900/50">
+      {/* 5. ADVANCED IMPLEMENTATION PACKS (Locked) */}
+      <section className="py-24 bg-slate-100 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">Compliance Concepts Explained Simply</h2>
-            <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium italic">Short videos that break down complex regulations</p>
+            <h2 className="text-3xl font-black text-authority-blue uppercase tracking-tight mb-4 leading-none">Advanced Implementation Packs</h2>
+            <p className="text-lg text-slate-500 font-medium italic">Professional-grade templates and guides designed for active carrier operations.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              { title: "DOT Number vs MC Authority", dur: "2:30", desc: "Why you might need one, both, or neither", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600" },
-              { title: "What Is the Drug & Alcohol Clearinghouse?", dur: "3:15", desc: "Mandatory enrollment and query requirements", img: "https://images.unsplash.com/photo-1579165466511-70e21ad10418?auto=format&fit=crop&q=80&w=600" },
-              { title: "Why 1 in 5 New Carriers Fail Their Audit", dur: "5:00", desc: "The most common violations and how to avoid them", img: "https://images.unsplash.com/photo-1454165833767-0270a3599603?auto=format&fit=crop&q=80&w=600" },
-            ].map((video, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark rounded-[2.5rem] overflow-hidden border border-border-light dark:border-border-dark group shadow-sm hover:shadow-2xl transition-all">
-                <div className="relative aspect-video bg-authority-blue flex items-center justify-center overflow-hidden">
-                  <img src={video.img} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" alt="" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-authority-blue/80 to-transparent"></div>
-                  <div className="relative w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform cursor-pointer">
-                    <Play size={24} fill="currentColor" className="text-authority-blue ml-1" />
-                  </div>
-                  <div className="absolute bottom-4 left-6 bg-black/40 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-black text-white uppercase tracking-widest">
-                    {video.dur}
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {advancedPacks.map((pack, i) => (
+              <div key={i} className="bg-white p-8 rounded-[2rem] border border-slate-200 flex flex-col items-center justify-center text-center group relative overflow-hidden shadow-sm">
+                <div className="mb-6 p-4 bg-slate-50 rounded-2xl text-slate-300">
+                  <Lock size={32} />
                 </div>
-                <div className="p-8">
-                  <h3 className="text-lg font-black uppercase tracking-tight text-authority-blue dark:text-white mb-3 leading-tight">{video.title}</h3>
-                  <p className="text-sm text-text-muted font-medium mb-6 leading-relaxed">{video.desc}</p>
-                  <button className="text-authority-blue dark:text-signal-gold font-black uppercase tracking-[0.2em] text-[10px] flex items-center hover:underline underline-offset-8">
-                    WATCH NOW <ArrowRight size={14} className="ml-2" />
-                  </button>
+                <h4 className="text-sm font-black uppercase tracking-tight text-slate-400 leading-tight">{pack}</h4>
+                <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                  <span className="bg-authority-blue text-white px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl">Course Access Required</span>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* SECTION 5: PREMIUM RESOURCE LIBRARY (Gated) */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-100 dark:bg-gray-800/50 rounded-[4rem] p-12 md:p-20 text-center border-2 border-dashed border-border-light">
-            <div className="mb-12">
-              <div className="w-20 h-20 bg-authority-blue text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
-                <Lock size={36} />
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">Advanced Implementation Packs</h2>
-              <p className="text-xl text-text-muted dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                Professional-grade templates and guides designed for active carrier operations.
-              </p>
+          <div className="bg-white border-2 border-dashed border-slate-300 rounded-[2.5rem] p-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <div>
+              <p className="text-xl font-black text-authority-blue uppercase tracking-tight mb-2 leading-none">Premium Implementation Systems</p>
+              <p className="text-slate-500 font-medium">Enroll in LaunchPath to unlock these professional assets and pass your audit with confidence.</p>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 text-left">
-              {[
-                { title: "Complete DQ File Template Pack", desc: "Every form, policy, and document for compliant driver files" },
-                { title: "New Entrant Audit Response Kit", desc: "Scripts, document organization, and what to say to auditors" },
-                { title: "Violation Severity Matrix", desc: "Which violations get you shut down vs. which ones don't" },
-                { title: "7-Day Authority Prep Email Course", desc: "Daily lessons on launching your authority correctly" },
-              ].map((p, i) => (
-                <div key={i} className="bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-border-light dark:border-border-dark flex flex-col group hover:shadow-xl transition-all">
-                  <div className="mb-6 text-text-muted opacity-20 group-hover:opacity-40 transition-opacity">
-                    <Lock size={40} />
-                  </div>
-                  <h4 className="text-sm font-black uppercase tracking-tight text-authority-blue dark:text-white mb-3 leading-tight">{p.title}</h4>
-                  <p className="text-xs text-text-muted font-bold leading-relaxed">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="max-w-xl mx-auto">
-              <div className="space-y-6">
-                <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-steel-blue">Enter your email to unlock all premium resources</p>
-                <form onSubmit={handleLeadSubmit} className="flex flex-col sm:flex-row gap-4">
-                  <input 
-                    required
-                    type="email" 
-                    placeholder="Enter your professional email"
-                    className="flex-grow px-8 py-5 rounded-2xl bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark outline-none focus:border-authority-blue transition-all font-bold"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                  <button 
-                    disabled={loading}
-                    className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl disabled:opacity-50 whitespace-nowrap flex items-center justify-center min-w-[160px]"
-                  >
-                    {loading ? <Loader2 className="animate-spin" size={20} /> : "GET ACCESS"}
-                  </button>
-                </form>
-              </div>
+            <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
+              <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] shadow-lg hover:bg-authority-blue hover:text-white transition-all">
+                See Enrollment Options
+              </Link>
+              <Link to="/learning-path" className="text-authority-blue font-bold text-[11px] uppercase tracking-widest hover:underline">
+                View Curriculum
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: OFFICIAL FMCSA RESOURCES */}
+      {/* 6 & 7. FEDERAL LINKS AND PROVIDERS */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          
+          {/* Left: Direct Links */}
           <div>
-            <h2 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-none">Direct Links to <br/><span className="text-signal-gold">Federal Systems</span></h2>
-            <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium mb-10 leading-relaxed">Bookmarkable links to official FMCSA tools you'll use daily to maintain your legal operating status.</p>
-            <div className="space-y-4">
+            <h2 className="text-2xl font-black text-authority-blue uppercase tracking-tight mb-4 leading-none">Direct Links to <br/><span className="text-signal-gold">Federal Systems</span></h2>
+            <p className="text-slate-500 font-medium mb-10 leading-relaxed">Official FMCSA portals you'll need for registration, monitoring, and compliance maintenance.</p>
+            <div className="grid grid-cols-1 gap-3">
               {[
                 { name: "FMCSA Portal (login/registration)", url: "https://portal.fmcsa.dot.gov/" },
                 { name: "Drug & Alcohol Clearinghouse Login", url: "https://clearinghouse.fmcsa.dot.gov/" },
@@ -342,78 +295,48 @@ const ResourcesPage = () => {
                   href={link.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-between p-6 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl hover:border-authority-blue hover:shadow-lg transition-all group shadow-sm"
+                  className="flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl hover:border-authority-blue hover:shadow-lg transition-all group"
                 >
-                  <span className="font-bold text-text-primary dark:text-white group-hover:text-authority-blue transition-colors">{link.name}</span>
-                  <ExternalLink size={18} className="text-text-muted group-hover:text-authority-blue group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <span className="font-bold text-slate-700 group-hover:text-authority-blue transition-colors">{link.name}</span>
+                  <ExternalLink size={18} className="text-slate-300 group-hover:text-authority-blue transition-all" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* SECTION 7: TRUSTED SERVICE PROVIDERS */}
-          <div className="animate-reveal-up" style={{ animationDelay: '0.2s' }}>
-            <h2 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-none">Vetted Industry <br/><span className="text-signal-gold">Service Providers</span></h2>
-            <p className="text-[10px] text-text-muted font-black uppercase tracking-[0.2em] mb-10">Disclaimer: LaunchPath doesn't receive commissions. These are services we've researched and recommend based on reliability.</p>
+          {/* Right: Providers */}
+          <div>
+            <h2 className="text-2xl font-black text-authority-blue uppercase tracking-tight mb-4 leading-none">Vetted Industry <br/><span className="text-signal-gold">Service Providers</span></h2>
+            <p className="text-slate-500 font-medium mb-10 leading-relaxed uppercase text-[10px] font-black tracking-widest opacity-60">LaunchPath doesn't receive commissions. These are recommended for reliability.</p>
             
-            <div className="space-y-12">
+            <div className="space-y-10">
               <div>
-                <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue border-b border-border-light pb-4 mb-6 flex items-center">
+                <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 border-b pb-3 mb-6 flex items-center">
                   <Globe size={14} className="mr-2" /> BOC-3 Process Agents
                 </h4>
-                <ul className="space-y-6">
-                  {[
-                    { name: "Process Agent Inc.", desc: "Fast 24-hour filing with nationwide coverage." },
-                    { name: "Truckers Report BOC-3", desc: "Long-standing agency with simple pricing model." },
-                    { name: "DAT BOC-3 Services", desc: "Integrated seamlessly with the DAT load board platform." }
-                  ].map((p, i) => (
-                    <li key={i}>
-                      <a href="#" className="font-bold text-sm hover:text-authority-blue transition-colors flex items-center justify-between group">
-                        <span>{p.name} <span className="block text-[11px] text-text-muted font-medium mt-1 uppercase tracking-tight">{p.desc}</span></span>
-                        <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </a>
-                    </li>
-                  ))}
+                <ul className="space-y-4">
+                  <li><a href="#" className="font-bold text-slate-700 hover:text-authority-blue transition-colors flex items-center justify-between group">Process Agent Inc. <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" /></a></li>
+                  <li><a href="#" className="font-bold text-slate-700 hover:text-authority-blue transition-colors flex items-center justify-between group">Truckers Report BOC-3 <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" /></a></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue border-b border-border-light pb-4 mb-6 flex items-center">
+                <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 border-b pb-3 mb-6 flex items-center">
                   <Activity size={14} className="mr-2" /> Drug Testing Consortiums
                 </h4>
-                <ul className="space-y-6">
-                  {[
-                    { name: "National Drug Screening", desc: "Large-scale consortium with clinics in every major city." },
-                    { name: "DISA Global Solutions", desc: "Full-service compliance with expert reporting and audits." },
-                    { name: "Labcorp Occupational Testing", desc: "Direct access to the largest diagnostic clinic network." }
-                  ].map((p, i) => (
-                    <li key={i}>
-                      <a href="#" className="font-bold text-sm hover:text-authority-blue transition-colors flex items-center justify-between group">
-                        <span>{p.name} <span className="block text-[11px] text-text-muted font-medium mt-1 uppercase tracking-tight">{p.desc}</span></span>
-                        <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </a>
-                    </li>
-                  ))}
+                <ul className="space-y-4">
+                  <li><a href="#" className="font-bold text-slate-700 hover:text-authority-blue transition-colors flex items-center justify-between group">National Drug Screening <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" /></a></li>
+                  <li><a href="#" className="font-bold text-slate-700 hover:text-authority-blue transition-colors flex items-center justify-between group">DISA Global Solutions <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" /></a></li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue border-b border-border-light pb-4 mb-6 flex items-center">
+                <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 border-b pb-3 mb-6 flex items-center">
                   <Smartphone size={14} className="mr-2" /> ELD Providers
                 </h4>
-                <ul className="space-y-6">
-                  {[
-                    { name: "Motive (formerly KeepTruckin)", desc: "Industry-leading software known for driver ease-of-use." },
-                    { name: "Samsara", desc: "High-end visual telematics and fleet management integration." },
-                    { name: "Geotab", desc: "Advanced vehicle tracking with deep mechanical diagnostics." }
-                  ].map((p, i) => (
-                    <li key={i}>
-                      <a href="#" className="font-bold text-sm hover:text-authority-blue transition-colors flex items-center justify-between group">
-                        <span>{p.name} <span className="block text-[11px] text-text-muted font-medium mt-1 uppercase tracking-tight">{p.desc}</span></span>
-                        <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </a>
-                    </li>
-                  ))}
+                <ul className="space-y-4">
+                  <li><a href="#" className="font-bold text-slate-700 hover:text-authority-blue transition-colors flex items-center justify-between group">Motive (Formerly KeepTruckin) <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" /></a></li>
+                  <li><a href="#" className="font-bold text-slate-700 hover:text-authority-blue transition-colors flex items-center justify-between group">Samsara <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" /></a></li>
                 </ul>
               </div>
             </div>
@@ -421,24 +344,54 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* BOTTOM CTA SECTION */}
-      <section className="py-32 bg-authority-blue text-white text-center relative overflow-hidden">
+      {/* 8. FAQ SECTION */}
+      <section className="py-24 max-w-3xl mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl font-black text-authority-blue uppercase tracking-tight leading-none">Resource FAQ</h2>
+        </div>
+        <div className="space-y-4">
+          {[
+            { 
+              q: "Why aren't all templates downloadable?", 
+              a: "Compliance tools work best in sequence. Many templates require technical background provided in the course to be used correctly. LaunchPath teaches the system behind the documents." 
+            },
+            { 
+              q: "Do I need LaunchPath to stay compliant?", 
+              a: "No. Federal regulations are public information. These orientation resources help you research. LaunchPath helps you implement a complete system faster and with less risk." 
+            }
+          ].map((faq, i) => (
+            <div key={i} className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+              <button 
+                onClick={() => toggleFaq(i)}
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"
+              >
+                <span className="font-bold text-slate-700">{faq.q}</span>
+                <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === i && (
+                <div className="p-6 pt-0 text-sm text-slate-500 font-medium leading-relaxed border-t border-slate-50 animate-in fade-in slide-in-from-top-2">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 9. FINAL CTA SECTION */}
+      <section className="bg-authority-blue py-32 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-authority-blue via-authority-blue to-steel-blue opacity-50"></div>
-        
         <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <h2 className="text-4xl md:text-7xl font-black font-serif uppercase tracking-tighter mb-6 leading-none">
-            Ready to Build Your <br/><span className="text-signal-gold italic">Compliance System?</span>
-          </h2>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 leading-none">Ready to build your <br/><span className="text-signal-gold italic text-white/90">compliance system?</span></h2>
           <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
-            Free resources are helpful for research. Complete LaunchPath systems keep your authority alive through federal scrutiny.
+            Orientation resources help you start. LaunchPath systems keep your authority alive through federal scrutiny.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link to="/learning-path" className="bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95 flex items-center">
-              VIEW COURSE CURRICULUM <ArrowRight size={16} className="ml-2" />
+            <Link to="/learning-path" className="bg-white text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold hover:text-authority-blue transition-all shadow-2xl active:scale-95 flex items-center">
+              View Course Curriculum
             </Link>
-            <Link to="/pricing" className="bg-transparent text-white border-2 border-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-authority-blue transition-all active:scale-95">
-              SEE INVESTMENT OPTIONS
+            <Link to="/pricing" className="bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95">
+              See Enrollment Options
             </Link>
           </div>
         </div>
