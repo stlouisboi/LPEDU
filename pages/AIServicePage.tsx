@@ -247,16 +247,16 @@ const AIServicePage = () => {
               const source = outCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outCtx.destination);
-              source.addEventListener('ended', () => liveSourcesRef.current.delete(source));
+              source.addEventListener('ended', () => liveSourcesRef.current?.delete(source));
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
-              liveSourcesRef.current.add(source);
+              liveSourcesRef.current?.add(source);
             }
             if (message.serverContent?.interrupted) {
-              liveSourcesRef.current.forEach(s => {
+              liveSourcesRef.current?.forEach(s => {
                 try { s.stop(); } catch(e) {}
               });
-              liveSourcesRef.current.clear();
+              liveSourcesRef.current?.clear();
               nextStartTimeRef.current = 0;
             }
           },
@@ -293,10 +293,10 @@ const AIServicePage = () => {
       liveAudioContextRef.current.output.close();
       liveAudioContextRef.current = null;
     }
-    liveSourcesRef.current.forEach(s => {
+    liveSourcesRef.current?.forEach(s => {
       try { s.stop(); } catch(e) {}
     });
-    liveSourcesRef.current.clear();
+    liveSourcesRef.current?.clear();
   };
 
   // --- VIDEO STUDIO ---
@@ -336,7 +336,7 @@ const AIServicePage = () => {
 
       let operation = await ai.models.generateVideos(config);
 
-      // Defensively polling operation status
+      // Defensively polling operation status following standard SDK pattern
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
         operation = await ai.operations.getVideosOperation({ operation: operation });

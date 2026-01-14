@@ -20,6 +20,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
   metaDescription: "Professional carrier compliance education for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
+  logoUrl: "https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/logo.png", 
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,
   contact: {
@@ -112,29 +113,11 @@ export const ROADMAP_STEPS: RoadmapStep[] = [
       "Hauling loads before DQ files are complete",
       "Ignoring the New Entrant Audit clock"
     ],
-    tools: ["FMCSA Portal", "Clearinghouse", "Safety Audit Preparation Kit"]
-  }
-];
-
-export const FEATURES = [
-  {
-    title: "Authority Protection",
-    desc: "Keep your MC active and pass the New Entrant Audit without panic.",
-    icon: <Truck className="w-6 h-6 text-authority-blue" />
-  },
-  {
-    title: "Insurance Continuity",
-    desc: "Maintain coverage and avoid the cancellations that destroy authority.",
-    icon: <ShieldCheck className="w-6 h-6 text-authority-blue" />
-  },
-  {
-    title: "Compliance Backbone",
-    desc: "Every file, every log, every policy—audit-ready from day one.",
-    icon: <FileText className="w-6 h-6 text-authority-blue" />
-  },
-  {
-    title: "Cash-Flow Oxygen",
-    desc: "Manage the 30-60 day money gap so you stay solvent while waiting on pay.",
-    icon: <Clock className="w-6 h-6 text-authority-blue" />
+    tools: [
+      "FMCSA Portal",
+      "BOC-3 Process Agent",
+      "UCR Registration System",
+      "Drug & Alcohol Clearinghouse"
+    ]
   }
 ];

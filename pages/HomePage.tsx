@@ -32,6 +32,26 @@ import {
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 
+const OSHABadgeSmall = () => (
+  <svg width="140" height="56" viewBox="0 0 160 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-md">
+    <rect width="160" height="64" rx="12" fill="white" fillOpacity="0.05" />
+    <rect x="1" y="1" width="158" height="62" rx="11" stroke="white" strokeOpacity="0.2" strokeWidth="2" />
+    <path d="M22 18C22 16.5 28 15 28 15C28 15 34 16.5 34 18V28C34 32 28 36 28 36C28 36 22 32 22 28V18Z" fill="#D4AF37" />
+    <text x="44" y="28" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">OSHA TRAINED</text>
+    <text x="44" y="42" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">PROFESSIONAL</text>
+  </svg>
+);
+
+const VeteranBadgeSmall = () => (
+  <svg width="140" height="56" viewBox="0 0 160 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-md">
+    <rect width="160" height="64" rx="12" fill="white" fillOpacity="0.05" />
+    <rect x="1" y="1" width="158" height="62" rx="11" stroke="white" strokeOpacity="0.2" strokeWidth="2" />
+    <path d="M28 16L30.5 22.5H37.5L32 26.5L34 33L28 29L22 33L24 26.5L18.5 22.5H25.5L28 16Z" fill="#D4AF37" />
+    <text x="44" y="28" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">VETERAN OWNED</text>
+    <text x="44" y="42" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">& OPERATED</text>
+  </svg>
+);
+
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', email: '' });
@@ -174,14 +194,15 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. FOUNDER CREDIBILITY SECTION */}
+      {/* 2. VALUE PROPOSITION STRIP / FOUNDER CREDIBILITY */}
       <section className="py-32 bg-authority-blue text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative group">
-              <div className="relative aspect-[3/4] md:h-[600px] bg-slate-800 rounded-[3rem] overflow-hidden border-4 border-white/10 shadow-2xl">
-                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800" alt="Vince - Founder" className="w-full h-full object-cover grayscale contrast-125" />
+              <div className="relative aspect-[4/5] md:h-[600px] bg-slate-800 rounded-[3rem] overflow-hidden border-4 border-white/10 shadow-2xl">
+                 {/* Portrait Updated to match the provided repo photo: bald, salt-and-pepper beard, black t-shirt */}
+                 <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince - LaunchPath Founder" className="w-full h-full object-cover grayscale contrast-125" />
                  <div className="absolute bottom-10 left-10 right-10 p-8 bg-authority-blue/90 backdrop-blur-md rounded-3xl border border-white/10">
                     <p className="text-xl font-bold font-serif italic mb-2">"Systems-first approach to carrier success."</p>
                     <p className="text-[10px] font-black uppercase tracking-widest text-signal-gold">Vince | LaunchPath Founder</p>
@@ -189,9 +210,16 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="space-y-10">
-              <h2 className="text-4xl lg:text-6xl font-black font-serif tracking-tighter leading-[0.95]">
-                Built by a Safety Professional Who <span className="text-signal-gold italic">Understands Systems</span>
-              </h2>
+              <div className="space-y-4">
+                <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold mb-4">
+                  <Star size={14} fill="currentColor" />
+                  <span>Built by Operators, For Operators</span>
+                </div>
+                <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter leading-[0.95] uppercase">
+                  Why LaunchPath <span className="text-signal-gold italic">Exists</span>
+                </h2>
+              </div>
+              
               <div className="space-y-6 text-xl text-white/70 leading-relaxed font-medium">
                 <p>
                   Hey y'all, I’m Vince. I’m a 53-year-old Veteran and an OSHA safety professional who recognized a pattern in the trucking industry that I’ve seen in heavy manufacturing for decades: <strong>operators fail not because of skill, but because of missing systems.</strong>
@@ -200,18 +228,21 @@ const HomePage: React.FC = () => {
                   I built LaunchPath because I got tired of seeing hardworking folks lose their authority because they followed "hustle hype" instead of federal law. My principle is simple: <span className="text-white font-black underline decoration-signal-gold decoration-4 underline-offset-8">compliance methodology matters more than industry experience.</span>
                 </p>
                 <p>
-                  I run this as a Kingdom business focused on stewardship and integrity. I walk with the Lord, and that means I ain't gonna sell you a get-rich-quick dream. I’m here to help you build something that lasts.
+                  I run this as a Kingdom business focused on stewardship and integrity. I walk with the Lord, and that means I ain't gonna sell you a get-rich-quick dream. <strong>Accuracy Over Hype.</strong> I'm here to help you build something that lasts.
                 </p>
               </div>
+              
               <div className="pt-8 border-t border-white/10">
-                 <div className="flex items-center space-x-6">
-                    <div className="flex items-center space-x-3 bg-white/5 px-6 py-3 rounded-2xl border border-white/10">
-                       <ShieldCheck className="text-signal-gold" size={24} />
-                       <span className="text-[11px] font-black uppercase tracking-[0.2em]">OSHA CERTIFIED</span>
+                 <div className="flex flex-wrap items-center gap-6">
+                    <div className="transition-transform hover:scale-105 duration-300">
+                      <VeteranBadgeSmall />
                     </div>
-                    <div className="flex items-center space-x-3 bg-white/5 px-6 py-3 rounded-2xl border border-white/10">
-                       <Star className="text-signal-gold" size={20} fill="currentColor" />
-                       <span className="text-[11px] font-black uppercase tracking-[0.2em]">VETERAN OWNED</span>
+                    <div className="transition-transform hover:scale-105 duration-300">
+                      <OSHABadgeSmall />
+                    </div>
+                    <div className="flex items-center space-x-3 bg-white/5 px-6 py-4 rounded-2xl border border-white/10">
+                       <ShieldCheck className="text-signal-gold" size={24} />
+                       <span className="text-[11px] font-black uppercase tracking-[0.2em]">Compliance-First Strategy</span>
                     </div>
                  </div>
               </div>
@@ -381,7 +412,8 @@ const HomePage: React.FC = () => {
       <section className="py-32 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="text-center mb-24">
-              <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter leading-none mb-6 text-authority-blue dark:text-white">Accuracy Over <span className="text-signal-gold italic">Hype</span></h2>
+              <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter leading-none mb-6 text-authority-blue dark:text-white uppercase">Accuracy Over <span className="text-signal-gold italic">Hype</span></h2>
+              <p className="text-lg text-text-muted font-black uppercase tracking-[0.2em]">Compliance methodology matters more than industry experience.</p>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -430,7 +462,7 @@ const HomePage: React.FC = () => {
       <section className="py-32 bg-slate-50 dark:bg-surface-dark border-y border-border-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
-             <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter mb-6 leading-none">Your Compliance Investment</h2>
+             <h2 className="text-4xl lg:text-7xl font-black font-serif tracking-tighter mb-6 leading-none text-authority-blue dark:text-white uppercase">Your Compliance Investment</h2>
              <p className="text-lg text-text-muted font-black uppercase tracking-widest text-authority-blue">Founding Cohort Pricing — Limited to First 20 Students</p>
           </div>
 
@@ -493,10 +525,25 @@ const HomePage: React.FC = () => {
             </div>
           </div>
           
-          <div className="text-center">
-             <p className="text-xs font-bold text-text-muted uppercase tracking-widest">
-               After Founding Cohort validation, regular pricing will be $497 / $1,297 / $1,997.
-             </p>
+          {/* URGENCY BANNER */}
+          <div className="max-w-5xl mx-auto mt-20 p-10 bg-gradient-to-br from-red-50 via-white to-red-50 dark:from-red-950/20 dark:via-surface-dark dark:to-red-950/20 border-4 border-dashed border-red-500/30 rounded-[3rem] text-center shadow-2xl animate-reveal-up relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-8 opacity-5 rotate-12 scale-150 pointer-events-none">
+                <AlertTriangle size={200} className="text-red-600" />
+             </div>
+             <div className="relative z-10">
+               <div className="flex items-center justify-center space-x-4 mb-6">
+                  <AlertTriangle className="text-red-600" size={32} />
+                  <h4 className="text-lg font-black uppercase tracking-[0.4em] text-red-600">Urgent: Price Increase Notice</h4>
+                  <AlertTriangle className="text-red-600" size={32} />
+               </div>
+               <p className="text-2xl md:text-4xl font-black text-authority-blue dark:text-white leading-tight mb-4">
+                 Founding Cohort validation ends soon. <br/>
+                 <span className="text-red-600 underline decoration-red-600/30 decoration-8 underline-offset-8">Regular pricing will be $497 / $1,297 / $1,997.</span>
+               </p>
+               <p className="text-sm font-black uppercase tracking-[0.2em] text-text-muted mt-6 bg-white dark:bg-gray-800 inline-block px-8 py-3 rounded-full border border-border-light shadow-sm">
+                 Lock in founding rates for the lifetime of your authority.
+               </p>
+             </div>
           </div>
         </div>
       </section>

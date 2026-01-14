@@ -1,4 +1,5 @@
 import React from 'react';
+import { useApp } from '../App';
 
 interface LogoProps {
   className?: string;
@@ -6,26 +7,31 @@ interface LogoProps {
 }
 
 /**
- * LaunchPath™ Text-Based Logo
- * Professional, clean, and code-based.
- * Uses navy blue (#1e3a5f) which is 'authority-blue' in tailwind.config.
+ * LaunchPath™ Professional Logo Component
+ * Uses the hosted image asset for consistent branding across environments.
  */
 const Logo: React.FC<LogoProps> = ({ className = "", light = false }) => {
-  const textColor = light ? 'text-white' : 'text-authority-blue';
-  const boxBg = light ? 'bg-white' : 'bg-authority-blue';
-  const boxText = light ? 'text-authority-blue' : 'text-white';
+  const app = useApp();
+  const siteName = app?.settings?.siteName || "LaunchPath";
+
+  // Use the official hosted logo asset from the provided repo
+  const logoSrc = "https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/logo.png";
 
   return (
-    <div className={`flex items-center space-x-2 select-none ${className}`}>
-      {/* Icon Box */}
-      <div className={`w-9 h-9 sm:w-10 sm:h-10 ${boxBg} rounded-lg flex items-center justify-center shrink-0 shadow-sm transition-transform hover:scale-105 duration-300`}>
-        <span className={`${boxText} font-bold text-lg sm:text-xl`}>L</span>
-      </div>
-      
-      {/* Brand Typography */}
-      <span className={`${textColor} font-bold text-lg sm:text-xl tracking-tight whitespace-nowrap`}>
-        LaunchPath<sup className="text-[10px] sm:text-xs ml-0.5 opacity-80">™</sup>
-      </span>
+    <div className={`flex items-center select-none ${className}`}>
+      <img 
+        src={logoSrc} 
+        alt={`${siteName} Logo`} 
+        className={`h-8 sm:h-12 w-auto object-contain transition-all duration-300 ${light ? 'brightness-0 invert' : ''}`}
+        onError={(e) => {
+          // Fallback if image fails to load
+          e.currentTarget.style.display = 'none';
+          const parent = e.currentTarget.parentElement;
+          if (parent) {
+            parent.innerHTML = `<span class="font-black text-xl tracking-tighter ${light ? 'text-white' : 'text-authority-blue'}">LaunchPath™</span>`;
+          }
+        }}
+      />
     </div>
   );
 };
