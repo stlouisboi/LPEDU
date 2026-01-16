@@ -100,7 +100,7 @@ const DownloadPage = () => {
               These guides show you the problems. LaunchPath gives you the solutions—step by step, system by system. Secure your authority today.
             </p>
             <Link 
-              to="/enroll" 
+              to="/pricing" 
               className="inline-flex items-center space-x-3 bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl active:scale-95 group"
             >
               <span>VIEW COURSE OPTIONS</span>

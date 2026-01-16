@@ -389,7 +389,7 @@ const LearningPathPage = () => {
 
               <div className="flex flex-col w-full space-y-4">
                 <Link 
-                  to="/enroll" 
+                  to="/pricing" 
                   className="bg-authority-blue text-white py-6 rounded-[1.5rem] font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center shadow-xl hover:bg-steel-blue transition-all active:scale-95"
                 >
                   View Enrollment Options

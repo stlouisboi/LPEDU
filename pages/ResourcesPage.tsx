@@ -179,7 +179,7 @@ const ResourcesPage = () => {
             <Link to="/learning-path" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-lg active:scale-95">
               View Course Curriculum
             </Link>
-            <Link to="/enroll" className="bg-white text-authority-blue border-2 border-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all active:scale-95">
+            <Link to="/pricing" className="bg-white text-authority-blue border-2 border-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all active:scale-95">
               See Enrollment Options
             </Link>
           </div>
@@ -230,7 +230,7 @@ const ResourcesPage = () => {
                 )
               ) : (
                 <Link 
-                  to="/enroll"
+                  to="/pricing"
                   className="w-full py-4 rounded-xl border-2 border-slate-200 text-slate-400 font-black uppercase text-[10px] tracking-widest hover:border-authority-blue hover:text-authority-blue transition-all flex items-center justify-center"
                 >
                   <Lock size={12} className="mr-2 opacity-50" /> {guide.buttonText}
@@ -356,7 +356,7 @@ const ResourcesPage = () => {
                 </ul>
               </div>
               <div className="text-center lg:text-right space-y-6">
-                <Link to="/enroll" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-2xl active:scale-95 group">
+                <Link to="/pricing" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-2xl active:scale-95 group">
                   <span>Included With LaunchPath Enrollment</span>
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -438,7 +438,7 @@ const ResourcesPage = () => {
               <p className="text-slate-500 font-medium">Enroll in LaunchPath to unlock these professional assets and pass your audit with confidence.</p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-              <Link to="/enroll" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] shadow-lg hover:bg-authority-blue hover:text-white transition-all">
+              <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] shadow-lg hover:bg-authority-blue hover:text-white transition-all">
                 See Enrollment Options
               </Link>
               <Link to="/learning-path" className="text-authority-blue font-bold text-[11px] uppercase tracking-widest hover:underline">
@@ -566,7 +566,7 @@ const ResourcesPage = () => {
             <Link to="/learning-path" className="bg-white text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold hover:text-authority-blue transition-all shadow-2xl active:scale-95 flex items-center">
               View Course Curriculum
             </Link>
-            <Link to="/enroll" className="bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95">
+            <Link to="/pricing" className="bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95">
               See Enrollment Options
             </Link>
           </div>

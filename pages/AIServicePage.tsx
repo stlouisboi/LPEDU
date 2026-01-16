@@ -2,8 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
   ShieldAlert, 
+  Book, 
+  Scale, 
   MessageCircle, 
   Mic, 
+  MicOff, 
   Volume2, 
   VolumeX,
   Video, 
@@ -11,10 +14,14 @@ import {
   Sparkles,
   Loader2,
   X,
+  Plus,
+  Play,
   Download,
   Film,
   Phone,
   PhoneOff,
+  AlertCircle,
+  Maximize2,
   Globe,
   MapPin,
   ExternalLink
@@ -159,7 +166,12 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: `You are the LaunchPath™ AI Advisor. Help visitors understand trucking compliance concepts at a high level. Explain risks, terminology, and decision considerations.
+          systemInstruction: `You are the LaunchPath™ AI Advisor.
+ROLE: You act as an educational guide and gatekeeper for LaunchPath, not as a consultant, regulator, dispatcher, broker, or advisor.
+CORE PURPOSE: Help visitors understand trucking compliance concepts at a high level. Explain risks, terminology, and decision considerations. Direct users to the appropriate LaunchPath program tier. Protect the boundaries of paid content and professional advice.
+NON-NEGOTIABLE RULES: Do NOT provide step-by-step instructions. Do NOT give personalized regulatory, legal, tax, insurance, or financial advice. Do NOT tell users exactly what forms to file, what boxes to check, or what decisions to make. Do NOT simulate audits, approvals, or filings. Do NOT provide execution details that replace enrollment in LaunchPath. Do NOT guarantee outcomes.
+ALLOWED BEHAVIOR: Explain concepts using "what," "why," and "risk" framing. Describe common mistakes and consequences at a high level. Use phrases like "At a high level...", "Educationally speaking...", "This is covered in LaunchPath under...", "The program teaches how to evaluate this decision safely...".
+BOUNDARY HANDLING: If asked for instructions or personalized guidance, respond with: 1) A brief educational explanation. 2) A clear boundary statement. 3) A redirection to LaunchPath or an appropriate tier.
 DISCLAIMER: "LaunchPath is an educational and coaching program only. This information is not legal, tax, financial, insurance, or regulatory advice."`,
           tools: [{ googleSearch: {} }],
           temperature: 0.3,
@@ -354,25 +366,11 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
         config.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      let initialOp = await ai.models.generateVideos(config);
-
-      // Defensively poll with clean object literal to avoid circular reference crashes in state updates
-      let operation = {
-        name: initialOp.name,
-        done: initialOp.done,
-        response: initialOp.response,
-        error: initialOp.error
-      } as any;
+      let operation = await ai.models.generateVideos(config);
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        const opResult = await ai.operations.getVideosOperation({ operation: { name: operation.name } as any });
-        operation = {
-          name: opResult.name,
-          done: opResult.done,
-          response: opResult.response,
-          error: opResult.error
-        } as any;
+        operation = await ai.operations.getVideosOperation({ operation: operation });
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
@@ -414,7 +412,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
     { label: "NC BIT", q: "What are North Carolina BIT inspection requirements?" },
     { label: "Texas DOT", q: "Do I need a TX DOT number if I have a Federal DOT?" },
     { label: "Indiana HUT", q: "How do I register for Indiana HUT?" },
-    { label: "State Filings", q: "Which states require weight-distance permits?" }
+    { label: "State Filings", q: "Which states require weight-distance permits or specific fuel tax registrations beyond IFTA?" }
   ];
 
   return (
@@ -459,6 +457,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                     }`}>
                       <div className="text-base leading-relaxed whitespace-pre-wrap font-medium">{m.content}</div>
                       
+                      {/* Sources Display */}
                       {m.sources && (
                         <div className="mt-6 pt-6 border-t border-border-light dark:border-border-dark">
                           <p className="text-[9px] font-black uppercase tracking-widest text-text-muted mb-3 flex items-center">
@@ -508,6 +507,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 )}
               </div>
               
+              {/* State Compliance Starter Area */}
               {messages.length === 1 && (
                 <div className="px-10 py-6 border-t border-border-light dark:border-border-dark bg-slate-50/30 dark:bg-gray-900/30">
                   <div className="flex items-center space-x-2 mb-4">
@@ -536,7 +536,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Ask about compliance concepts or regional rules..."
+                    placeholder="Ask about compliance concepts (e.g. 'What is a DQ file?') or regional rules..."
                     className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark pl-8 pr-24 py-6 rounded-[2.5rem] focus:ring-8 focus:ring-authority-blue/5 outline-none transition-all shadow-2xl font-bold"
                   />
                   <button 
@@ -546,6 +546,15 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                   >
                     <Send className="w-6 h-6" />
                   </button>
+                </div>
+                <div className="flex items-center justify-center space-x-6 mt-6">
+                   <p className="text-[9px] text-text-muted uppercase tracking-[0.4em] font-black flex items-center">
+                     <Globe size={12} className="mr-2 opacity-30" /> Multi-State Verification Active
+                   </p>
+                   <div className="h-4 w-px bg-border-light"></div>
+                   <p className="text-[9px] text-text-muted uppercase tracking-[0.4em] font-black">
+                     Powered by Gemini 3 Pro reasoning
+                   </p>
                 </div>
               </div>
             </>
@@ -566,7 +575,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 </div>
                 <h2 className="text-4xl font-black font-serif mb-6 tracking-tight leading-none">Voice Command Mode</h2>
                 <p className="text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium">
-                  Have a real-time, hands-free conversation with our AI Safety Officer.
+                  Have a real-time, hands-free conversation with our AI Safety Officer. Perfect for checking state regulations or audit procedures.
                 </p>
               </div>
 
@@ -616,6 +625,9 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 <div className="p-12 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 rounded-[3rem] text-center space-y-6 shadow-xl">
                   <ShieldAlert className="mx-auto text-amber-600" size={64} />
                   <h3 className="text-3xl font-black font-serif tracking-tight">Enterprise Cloud Access Required</h3>
+                  <p className="text-lg text-text-muted max-w-lg mx-auto font-medium">
+                    Veo 3.1 cinematic generation requires an authenticated API key for high-compute visual processing.
+                  </p>
                   <button 
                     onClick={selectApiKey}
                     className="bg-amber-600 text-white px-12 py-5 rounded-[1.5rem] font-black uppercase tracking-widest hover:bg-amber-700 transition-all shadow-xl active:scale-95"
@@ -634,7 +646,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                         rows={5}
                         value={videoPrompt}
                         onChange={(e) => setVideoPrompt(e.target.value)}
-                        placeholder="Describe scene for visualization..."
+                        placeholder="e.g. A wide-angle tracking shot of a white semi-truck navigating a tight urban intersection at dawn, 8k, photorealistic..."
                         className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-3xl p-8 text-base leading-relaxed outline-none focus:ring-8 focus:ring-authority-blue/5 transition-all shadow-sm font-bold"
                       />
                     </div>
@@ -660,6 +672,24 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                             <X size={24} />
                           </button>
                         )}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Frame Geometry</label>
+                      <div className="flex gap-4">
+                        {[
+                          { val: '16:9', label: 'Landscape' },
+                          { val: '9:16', label: 'Portrait' }
+                        ].map((dim) => (
+                          <button 
+                            key={dim.val}
+                            onClick={() => setAspectRatio(dim.val as any)}
+                            className={`flex-grow p-5 rounded-[1.5rem] border transition-all flex items-center justify-center space-x-3 active:scale-95 ${aspectRatio === dim.val ? 'bg-authority-blue text-white border-authority-blue shadow-xl' : 'bg-white border-border-light text-text-muted'}`}
+                          >
+                            <span className="text-[11px] font-black uppercase tracking-widest">{dim.label} {dim.val}</span>
+                          </button>
+                        ))}
                       </div>
                     </div>
 
@@ -689,11 +719,18 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                   ) : videoResult ? (
                     <div className="bg-black rounded-[4rem] overflow-hidden shadow-2xl relative group animate-scale-in h-full flex items-center justify-center">
                       <video src={videoResult} controls className="max-w-full max-h-full" />
+                      <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-500">
+                        <a href={videoResult} download="launchpath-master.mp4" className="p-6 bg-white rounded-[2rem] text-authority-blue shadow-2xl hover:bg-slate-50 flex items-center space-x-3 active:scale-95 transition-all">
+                          <Download size={28} />
+                          <span className="font-black uppercase tracking-widest text-sm">Export Media</span>
+                        </a>
+                      </div>
                     </div>
                   ) : (
                     <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-border-light p-16 text-center opacity-40">
                       <Film className="w-20 h-20 text-text-muted mb-10" />
                       <p className="text-2xl font-black font-serif tracking-tight mb-4 uppercase">Studio Offline</p>
+                      <p className="text-sm text-text-muted max-w-sm mx-auto font-medium">Config your parameters and initiate neural link to visualize curriculum data.</p>
                     </div>
                   )}
                 </div>
