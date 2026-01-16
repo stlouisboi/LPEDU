@@ -19,7 +19,10 @@ import {
   ImageIcon,
   CheckCircle2,
   AlertCircle,
-  ShieldAlert
+  ShieldAlert,
+  Info,
+  Server,
+  Activity
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 import { GeneratedVideo } from '../../types';
@@ -68,7 +71,6 @@ const VideoLab = () => {
     if (!db) return;
     const q = query(collection(db, "generatedVideos"));
     
-    // Added error handling to stop uncaught permission-denied errors
     const unsub = onSnapshot(q, (snap) => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as GeneratedVideo));
       setVideos(data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
@@ -141,11 +143,26 @@ const VideoLab = () => {
         config.image = { imageBytes: base64, mimeType: refFile.type };
       }
 
-      let operation = await ai.models.generateVideos(config);
+      let initialOp = await ai.models.generateVideos(config);
+      
+      let operation = {
+        name: initialOp.name,
+        done: initialOp.done,
+        response: initialOp.response,
+        error: initialOp.error
+      } as any;
 
       while (!operation.done) {
         await new Promise(r => setTimeout(r, 10000));
-        operation = await ai.operations.getVideosOperation({ operation: operation });
+        const opResult = await ai.operations.getVideosOperation({ 
+          operation: { name: operation.name } as any 
+        });
+        operation = {
+          name: opResult.name,
+          done: opResult.done,
+          response: opResult.response,
+          error: opResult.error
+        } as any;
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
@@ -192,7 +209,7 @@ const VideoLab = () => {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Curriculum Video Lab</h1>
+          <h1 className="text-3xl font-black font-serif text-authority-blue dark:text-white">Curriculum Video Lab</h1>
           <p className="text-text-muted mt-1">Manage cinematic visualizations and instructional media assets for the 8-module pathway.</p>
         </div>
         <button 
@@ -222,8 +239,9 @@ const VideoLab = () => {
               >
                 <Trash2 size={18} />
               </button>
-              <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-black text-white uppercase tracking-widest pointer-events-none">
-                {vid.storagePath?.includes('generated') ? 'Neural Synthesis' : 'Manual Archive'}
+              <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-black text-white uppercase tracking-widest pointer-events-none flex items-center space-x-1.5">
+                {vid.storagePath?.includes('generated') ? <Sparkles size={10} /> : <Server size={10} />}
+                <span>{vid.storagePath?.includes('generated') ? 'Neural Synthesis' : 'Manual Archive'}</span>
               </div>
             </div>
             <div className="p-8">
@@ -265,20 +283,20 @@ const VideoLab = () => {
               </div>
 
               {/* MODE SELECTOR */}
-              <div className="flex bg-slate-50 dark:bg-gray-900 p-2 rounded-[2.5rem] mb-12 max-w-md mx-auto md:mx-0 border border-border-light dark:border-border-dark">
+              <div className="flex bg-slate-50 dark:bg-gray-900 p-2 rounded-[2.5rem] mb-12 max-w-md mx-auto md:mx-0 border border-border-light dark:border-border-dark shadow-inner">
                 <button 
                   onClick={() => setProductionMode('ai')}
                   className={`flex-grow flex items-center justify-center space-x-3 py-4 rounded-[2rem] text-xs font-black uppercase tracking-widest transition-all ${productionMode === 'ai' ? 'bg-authority-blue text-white shadow-xl' : 'text-text-muted hover:text-authority-blue'}`}
                 >
                   <Sparkles size={16} />
-                  <span>Neural Synthesis</span>
+                  <span>AI Generation</span>
                 </button>
                 <button 
                   onClick={() => setProductionMode('manual')}
                   className={`flex-grow flex items-center justify-center space-x-3 py-4 rounded-[2rem] text-xs font-black uppercase tracking-widest transition-all ${productionMode === 'manual' ? 'bg-authority-blue text-white shadow-xl' : 'text-text-muted hover:text-authority-blue'}`}
                 >
                   <Upload size={16} />
-                  <span>Manual Archive</span>
+                  <span>Manual Upload</span>
                 </button>
               </div>
               
@@ -300,13 +318,13 @@ const VideoLab = () => {
 
                   <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-3 flex items-center">
-                      <Type size={14} className="mr-2 text-authority-blue" /> Production Title
+                      <Type size={14} className="mr-2 text-authority-blue" /> Production Title / Description
                     </label>
                     <div className="relative">
                       <input 
                         value={formData.title}
                         onChange={(e) => setFormData({...formData, title: e.target.value})}
-                        placeholder="e.g. DOT Audit: The Safety Meeting Scene"
+                        placeholder={productionMode === 'ai' ? "Describe scene for AI..." : "Internal title for this asset..."}
                         className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-3xl px-8 py-5 font-bold outline-none focus:ring-4 focus:ring-authority-blue/10 focus:border-authority-blue transition-all"
                       />
                     </div>
@@ -329,53 +347,77 @@ const VideoLab = () => {
                       </div>
                     </div>
                   )}
+
+                  {productionMode === 'manual' && (
+                    <div className="p-6 bg-blue-50 dark:bg-authority-blue/10 rounded-3xl border-2 border-dashed border-authority-blue/20">
+                        <div className="flex items-center space-x-3 mb-4 text-authority-blue dark:text-steel-blue">
+                           <Info size={18} />
+                           <h4 className="text-xs font-black uppercase tracking-widest">Optimized Video Pipeline</h4>
+                        </div>
+                        <p className="text-xs text-text-muted font-medium leading-relaxed mb-6">
+                           To ensure optimal streaming performance for students, please ensure your video files meet these professional benchmarks:
+                        </p>
+                        <ul className="space-y-3">
+                           <li className="flex items-center text-[10px] font-bold text-text-muted uppercase tracking-tight">
+                              <CheckCircle2 size={12} className="text-green-500 mr-2" /> H.264 or HEVC Compression
+                           </li>
+                           <li className="flex items-center text-[10px] font-bold text-text-muted uppercase tracking-tight">
+                              <CheckCircle2 size={12} className="text-green-500 mr-2" /> Maximum file size: 100MB
+                           </li>
+                           <li className="flex items-center text-[10px] font-bold text-text-muted uppercase tracking-tight">
+                              <CheckCircle2 size={12} className="text-green-500 mr-2" /> Web-Optimized (Fast Start)
+                           </li>
+                        </ul>
+                    </div>
+                  )}
                 </div>
 
                 {/* Right Column: Mode-Specific Actions */}
-                <div className="bg-slate-50 dark:bg-gray-900 rounded-[3rem] p-8 border-2 border-slate-100 dark:border-border-dark relative flex flex-col justify-center min-h-[400px]">
+                <div className="bg-slate-50 dark:bg-gray-900 rounded-[3rem] p-8 border-2 border-slate-100 dark:border-border-dark relative flex flex-col justify-center min-h-[400px] shadow-inner">
                   {productionMode === 'ai' ? (
                     <div className="space-y-6 animate-in fade-in duration-500">
                        {!hasApiKey ? (
-                          <div className="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-3xl border border-amber-100 text-center space-y-4">
-                             <ShieldAlert className="mx-auto text-amber-600" size={32} />
-                             <p className="text-xs font-bold text-amber-800 dark:text-amber-400">Enterprise authentication required for Veo Studio access.</p>
-                             <button onClick={selectApiKey} className="bg-amber-600 text-white px-6 py-2.5 rounded-xl font-black uppercase tracking-widest text-[10px] shadow-lg">Authorize Key</button>
+                          <div className="bg-amber-50 dark:bg-amber-900/10 p-10 rounded-[3rem] border-2 border-dashed border-amber-200 text-center space-y-6">
+                             <ShieldAlert className="mx-auto text-amber-600" size={48} />
+                             <p className="text-sm font-bold text-amber-800 dark:text-amber-400">Enterprise Cloud Access Required</p>
+                             <p className="text-[10px] text-amber-700/60 font-medium">Veo 3.1 cinematic generation requires an authenticated high-compute API key.</p>
+                             <button onClick={selectApiKey} className="w-full bg-amber-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-xl hover:bg-amber-700 transition-all">Authorize Key</button>
                           </div>
                        ) : (
                          <>
                           <div className="space-y-3">
                             <label className="text-[11px] font-black uppercase tracking-widest text-authority-blue flex items-center">
-                              <Sparkles size={16} className="mr-2" /> Visual Directives
+                              <Sparkles size={16} className="mr-2" /> Visual Neural Directive
                             </label>
                             <textarea 
-                              rows={4}
+                              rows={5}
                               value={formData.prompt}
                               onChange={(e) => setFormData({...formData, prompt: e.target.value})}
-                              placeholder="Describe the cinematic scene: Cinematic 8k tracking shot of a truck fleet at sunrise..."
+                              placeholder="Describe scene: Cinematic tracking shot of a truck fleet at dawn..."
                               className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-[2rem] p-6 text-sm font-bold focus:ring-4 focus:ring-authority-blue/10 transition-all outline-none"
                             />
                           </div>
 
                           <div className="space-y-3">
                             <label className="text-[11px] font-black uppercase tracking-widest text-authority-blue flex items-center">
-                              <ImageIcon size={16} className="mr-2" /> Reference Start Frame (Optional)
+                              <ImageIcon size={16} className="mr-2" /> Seed Image Frame (Optional)
                             </label>
                             <div className="flex items-center space-x-4">
                                <div className="flex-grow relative group cursor-pointer">
                                   <input type="file" accept="image/*" onChange={handleRefImageChange} className="absolute inset-0 opacity-0 cursor-pointer z-10" />
-                                  <div className="p-6 bg-white dark:bg-gray-800 border-2 border-dashed border-border-light rounded-3xl flex flex-col items-center justify-center text-center transition-all group-hover:border-authority-blue">
+                                  <div className="p-6 bg-white dark:bg-gray-800 border-2 border-dashed border-border-light rounded-3xl flex flex-col items-center justify-center text-center transition-all group-hover:border-authority-blue group-hover:bg-authority-blue/5">
                                      {refPreview ? (
-                                       <img src={refPreview} className="h-20 rounded-xl object-cover shadow-lg" alt="ref" />
+                                       <img src={refPreview} className="h-20 rounded-xl object-cover shadow-lg border-2 border-white" alt="ref" />
                                      ) : (
                                        <>
                                          <Upload size={24} className="text-text-muted mb-2 opacity-30" />
-                                         <span className="text-[10px] font-black text-text-muted uppercase">Bake From Base Image</span>
+                                         <span className="text-[10px] font-black text-text-muted uppercase">Upload Seed Frame</span>
                                        </>
                                      )}
                                   </div>
                                </div>
                                {refPreview && (
-                                 <button onClick={() => { setRefFile(null); setRefPreview(null); }} className="p-4 bg-red-50 text-red-500 rounded-2xl hover:bg-red-100 transition-all"><X size={20}/></button>
+                                 <button onClick={() => { setRefFile(null); setRefPreview(null); }} className="p-4 bg-red-50 text-red-500 rounded-2xl hover:bg-red-100 transition-all shadow-md"><X size={20}/></button>
                                )}
                             </div>
                           </div>
@@ -383,48 +425,50 @@ const VideoLab = () => {
                           <button 
                             onClick={generateAIVideo}
                             disabled={isGenerating || !formData.prompt}
-                            className="w-full h-20 bg-authority-blue text-white rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl active:scale-95 transition-all hover:bg-steel-blue disabled:opacity-30"
+                            className="w-full h-24 bg-authority-blue text-white rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl active:scale-95 transition-all hover:bg-steel-blue disabled:opacity-30"
                           >
                             {isGenerating ? (
                               <div className="flex flex-col items-center">
                                 <div className="flex items-center space-x-3 mb-1">
-                                  <Loader2 className="animate-spin" size={24} />
-                                  <span>Neural Bake In Progress</span>
+                                  <Loader2 className="animate-spin" size={28} />
+                                  <span className="text-lg">Neural Bake Active</span>
                                 </div>
-                                <span className="text-[8px] opacity-60 uppercase tracking-[0.4em]">{genMessage}</span>
+                                <span className="text-[8px] opacity-60 uppercase tracking-[0.5em]">{genMessage}</span>
                               </div>
                             ) : (
-                              <><Sparkles className="mr-3" /><span>Synthesize Asset</span></>
+                              <><Sparkles className="mr-3" size={24} /><span>Synthesize Visual Asset</span></>
                             )}
                           </button>
                          </>
                        )}
                     </div>
                   ) : (
-                    <div className="space-y-6 animate-in fade-in duration-500">
-                       <div className="text-center mb-6">
-                          <Film className="w-16 h-16 text-authority-blue mx-auto mb-4 opacity-40" />
-                          <h4 className="text-xl font-black font-serif uppercase text-authority-blue">Archive Production Sync</h4>
-                          <p className="text-xs text-text-muted font-medium mt-1">Upload and optimize local video files for curriculum streaming.</p>
+                    <div className="space-y-8 animate-in fade-in duration-500">
+                       <div className="text-center">
+                          <div className="w-20 h-20 bg-authority-blue/10 text-authority-blue rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                            <Film size={32} className="opacity-60" />
+                          </div>
+                          <h4 className="text-2xl font-black font-serif uppercase text-authority-blue dark:text-white tracking-tight">Manual Asset Archive</h4>
+                          <p className="text-xs text-text-muted font-medium mt-2 max-w-xs mx-auto">Select a pre-produced master file to link with this learning module.</p>
                        </div>
                        
-                       <VideoUploader 
-                          label="Upload Optimized Master File"
-                          onUploadComplete={handleManualUploadComplete}
-                        />
+                       <div className="p-2 bg-white dark:bg-gray-800 rounded-[2.5rem] shadow-xl border border-border-light">
+                          <VideoUploader 
+                            label="Stream Master Production File"
+                            onUploadComplete={handleManualUploadComplete}
+                          />
+                       </div>
 
-                        <div className="p-6 bg-blue-50 dark:bg-authority-blue/10 rounded-3xl border border-blue-100 dark:border-authority-blue/20">
-                           <div className="flex items-center space-x-3 mb-3">
-                              <CheckCircle2 size={16} className="text-authority-blue" />
-                              <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue">Production Requirements</span>
-                           </div>
-                           <ul className="space-y-2 text-[10px] font-bold text-text-muted uppercase tracking-tight">
-                              <li>• Max File Size: 100MB</li>
-                              <li>• Recommended Bitrate: 4-6 Mbps</li>
-                              <li>• Format: MP4 / HEVC / WebM</li>
-                              <li>• Resolution: 720p or 1080p</li>
-                           </ul>
-                        </div>
+                       <div className="flex items-center justify-center space-x-6 pt-4 grayscale opacity-40">
+                          <div className="flex items-center space-x-2">
+                             <Activity size={14} />
+                             <span className="text-[9px] font-black uppercase tracking-widest">Fast Delivery</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                             <Server size={14} />
+                             <span className="text-[9px] font-black uppercase tracking-widest">Secure CDN</span>
+                          </div>
+                       </div>
                     </div>
                   )}
                 </div>

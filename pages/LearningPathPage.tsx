@@ -23,11 +23,13 @@ import {
   Calendar,
   AlertTriangle,
   FileText,
-  Scale
+  Scale,
+  Lock
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { COURSE_MODULES } from '../constants';
+import { useAuth } from '../AuthContext';
 
 interface PhaseData {
   number: number;
@@ -40,6 +42,7 @@ interface PhaseData {
   moduleIds: number[];
   color: string;
   gradient: string;
+  downloadUrl?: string;
 }
 
 const PHASES: PhaseData[] = [
@@ -58,7 +61,8 @@ const PHASES: PhaseData[] = [
     ],
     moduleIds: [0, 1],
     color: "#1e3a5f",
-    gradient: "from-[#1e3a5f] to-[#2d527c]"
+    gradient: "from-[#1e3a5f] to-[#2d527c]",
+    downloadUrl: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FLaunchPathtm-First-90-Days-Overview.pdf?alt=media&token=95f49ef1-f594-4985-a534-68cd09750003"
   },
   {
     number: 2,
@@ -75,7 +79,8 @@ const PHASES: PhaseData[] = [
     ],
     moduleIds: [3],
     color: "#334155",
-    gradient: "from-[#334155] to-[#475569]"
+    gradient: "from-[#334155] to-[#475569]",
+    downloadUrl: "#"
   },
   {
     number: 3,
@@ -92,7 +97,8 @@ const PHASES: PhaseData[] = [
     ],
     moduleIds: [2],
     color: "#0891b2",
-    gradient: "from-[#0891b2] to-[#0e7490]"
+    gradient: "from-[#0891b2] to-[#0e7490]",
+    downloadUrl: "#"
   },
   {
     number: 4,
@@ -109,44 +115,34 @@ const PHASES: PhaseData[] = [
     ],
     moduleIds: [4, 5],
     color: "#d4af37",
-    gradient: "from-[#d4af37] to-[#e5c158]"
+    gradient: "from-[#d4af37] to-[#e5c158]",
+    downloadUrl: "#"
   }
 ];
 
 const LearningPathPage = () => {
+  const { currentUser } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
+  const [enrollmentModalOpen, setEnrollmentModalOpen] = useState(false);
   const [activePhase, setActivePhase] = useState<PhaseData | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '' });
+  
+  // Mock check for paid tier enrollment
+  // In a real app, this would check user.customClaims or a Firestore profile
+  const isEnrolled = !!(currentUser && currentUser.email?.includes('enrolled')); 
 
   const handleDownloadClick = (phase: PhaseData) => {
     setActivePhase(phase);
-    setModalOpen(true);
-    setSuccess(false);
-  };
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      if (db) {
-        await addDoc(collection(db, "leads"), {
-          ...formData,
-          phase: activePhase?.number,
-          source: "roadmap-download",
-          timestamp: serverTimestamp()
-        });
+    
+    if (isEnrolled) {
+      // User is enrolled, trigger immediate download
+      if (phase.downloadUrl && phase.downloadUrl !== '#') {
+        window.open(phase.downloadUrl, '_blank');
+      } else {
+        alert("This phase pack is being finalized. You will receive an email notification when it is ready for download.");
       }
-      setSuccess(true);
-      setTimeout(() => {
-        setModalOpen(false);
-        setFormData({ name: '', email: '' });
-      }, 3000);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+    } else {
+      // Access gate: User needs to enroll
+      setEnrollmentModalOpen(true);
     }
   };
 
@@ -248,6 +244,7 @@ const LearningPathPage = () => {
                     className="w-full py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] flex items-center justify-center space-x-3 text-white shadow-xl transition-all hover:scale-[1.02] active:scale-95 group"
                     style={{ backgroundColor: phase.color }}
                   >
+                    {!isEnrolled && <Lock className="w-4 h-4 mr-1 opacity-60" />}
                     <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
                     <span>Download Phase {phase.number} Pack</span>
                   </button>
@@ -338,80 +335,73 @@ const LearningPathPage = () => {
         </div>
       </section>
 
-      {/* 4. EMAIL CAPTURE MODAL */}
-      {modalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xl animate-in fade-in duration-500">
-          <div className="bg-white dark:bg-surface-dark p-8 md:p-16 rounded-[4rem] shadow-2xl border border-border-light dark:border-border-dark max-w-xl w-full relative animate-scale-in">
+      {/* 4. ENROLLMENT ACCESS GATE MODAL */}
+      {enrollmentModalOpen && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xl animate-in fade-in duration-500"
+          onClick={() => setEnrollmentModalOpen(false)}
+        >
+          <div 
+            className="bg-white dark:bg-surface-dark p-8 md:p-16 rounded-[4rem] shadow-2xl border border-border-light dark:border-border-dark max-w-xl w-full relative animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button 
-              onClick={() => setModalOpen(false)}
+              onClick={() => setEnrollmentModalOpen(false)}
               className="absolute top-10 right-10 p-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-90"
             >
               <X className="w-8 h-8" />
             </button>
             
-            {success ? (
-              <div className="text-center py-16">
-                <div className="w-24 h-24 bg-green-100 text-green-600 rounded-3xl flex items-center justify-center mx-auto mb-10">
-                  <CheckCircle className="w-12 h-12" />
-                </div>
-                <h3 className="text-4xl font-black font-serif mb-6 leading-none">Access Granted</h3>
-                <p className="text-lg text-text-muted font-bold uppercase tracking-widest">The Phase {activePhase?.number} Pack is arriving via secure email.</p>
+            <div className="flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-authority-blue/10 text-authority-blue rounded-3xl flex items-center justify-center mb-8">
+                <Lock className="w-10 h-10" />
               </div>
-            ) : (
-              <>
-                <div className="flex items-center space-x-5 mb-10">
-                  <div className="w-16 h-16 bg-authority-blue/10 text-authority-blue rounded-3xl flex items-center justify-center">
-                    <Mail className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h3 className="text-3xl font-black font-serif leading-none tracking-tight uppercase">Implementation Asset</h3>
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted mt-2">Strategic Resource Access</p>
-                  </div>
-                </div>
-
-                <h4 className="text-2xl font-black mb-4 font-serif text-authority-blue dark:text-white leading-tight uppercase">Get Your {activePhase?.title} Pack</h4>
-                <p className="text-lg text-text-muted mb-12 leading-relaxed font-medium">
-                  We'll send the checklists, provider lists, and guides for this phase directly to your inbox.
+              
+              <h3 className="text-3xl font-black font-serif leading-tight tracking-tight uppercase mb-4 text-authority-blue dark:text-white">
+                Phase Packs Included <br/>With Enrollment
+              </h3>
+              
+              <p className="text-lg text-text-muted font-bold uppercase tracking-widest mb-10 text-signal-gold">
+                Complete template libraries and implementation toolkits
+              </p>
+              
+              <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-100 dark:border-border-dark w-full text-left mb-10">
+                <p className="text-sm font-medium leading-relaxed text-text-primary dark:text-white mb-6 italic">
+                  "All Phase Pack downloads are included when you enroll in Self-Paced Fundamentals or higher."
                 </p>
+                
+                <p className="text-[11px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold mb-4">What you get:</p>
+                <ul className="space-y-3">
+                  {[
+                    "Complete DQ file templates",
+                    "HOS/ELD policy documents",
+                    "Maintenance tracking systems",
+                    "Compliance checklists",
+                    "Audit preparation tools"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center text-sm font-bold text-text-muted">
+                      <CheckCircle2 className="w-4 h-4 mr-3 text-green-500 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                <form onSubmit={handleFormSubmit} className="space-y-6">
-                  <input 
-                    type="text" 
-                    required
-                    placeholder="Full Legal Name" 
-                    className="w-full h-18 px-8 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-3xl outline-none focus:ring-8 focus:ring-authority-blue/5 focus:border-authority-blue transition-all font-black text-lg"
-                    value={formData.name}
-                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                  />
-                  <input 
-                    required
-                    type="email" 
-                    placeholder="Professional Email Address" 
-                    className="w-full h-18 px-8 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-3xl outline-none focus:ring-8 focus:ring-authority-blue/5 focus:border-authority-blue transition-all font-black text-lg"
-                    value={formData.email}
-                    onChange={e => setFormData({ ...formData, email: e.target.value })}
-                  />
-
-                  <button 
-                    disabled={loading}
-                    className="w-full h-20 bg-authority-blue text-white font-black uppercase tracking-[0.3em] rounded-3xl flex items-center justify-center group shadow-2xl hover:bg-steel-blue active:scale-95 transition-all disabled:opacity-50"
-                  >
-                    {loading ? (
-                      <Loader2 className="w-8 h-8 animate-spin" />
-                    ) : (
-                      <>
-                        <Download className="mr-3 w-6 h-6" />
-                        <span>Authorize Download</span>
-                      </>
-                    )}
-                  </button>
-                  
-                  <p className="text-[10px] text-center text-text-muted uppercase tracking-widest font-black opacity-40 pt-4">
-                    Secure transmission via LaunchPath Cloud Infrastructure
-                  </p>
-                </form>
-              </>
-            )}
+              <div className="flex flex-col w-full space-y-4">
+                <Link 
+                  to="/pricing" 
+                  className="bg-authority-blue text-white py-6 rounded-[1.5rem] font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center shadow-xl hover:bg-steel-blue transition-all active:scale-95"
+                >
+                  View Enrollment Options
+                </Link>
+                <Link 
+                  to="/about" 
+                  className="text-authority-blue dark:text-white font-black uppercase tracking-[0.2em] text-[10px] hover:underline underline-offset-4"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       )}

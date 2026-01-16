@@ -21,7 +21,10 @@ import {
   Phone,
   PhoneOff,
   AlertCircle,
-  Maximize2
+  Maximize2,
+  Globe,
+  MapPin,
+  ExternalLink
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, Type } from '@google/genai';
 
@@ -76,13 +79,19 @@ function createBlob(data: Float32Array) {
   };
 }
 
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+  audio?: string;
+  sources?: { uri: string; title: string }[];
+}
+
 const AIServicePage = () => {
-  // Tabs: 'chat', 'voice', 'video'
   const [activeTab, setActiveTab] = useState<'chat' | 'voice' | 'video'>('chat');
   
   // --- CHAT STATE ---
-  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, audio?: string}[]>([
-    { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm now powered by Gemini 3 Pro to handle complex regulatory questions. How can I help your carrier today?" }
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm now optimized for state-specific regulations in California, Texas, New York, and beyond. How can I help your carrier navigate local rules today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -124,7 +133,6 @@ const AIServicePage = () => {
     checkKey();
   }, []);
 
-  // Memory Check & Cleanup Effect
   useEffect(() => {
     return () => {
       if (audioContextRef.current) {
@@ -143,11 +151,12 @@ const AIServicePage = () => {
   }, [activeTab]);
 
   // --- CHAT HANDLERS ---
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  const handleSend = async (customInput?: string) => {
+    const textToSend = customInput || input;
+    if (!textToSend.trim() || isLoading) return;
 
-    const userMessage = input.trim();
-    setInput('');
+    const userMessage = textToSend.trim();
+    if (!customInput) setInput('');
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setIsLoading(true);
 
@@ -157,14 +166,31 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: "You are an expert FMCSA compliance consultant for LaunchPath. Your tone is authoritative, professional, and calm. Use Gemini 3 Pro's deep reasoning to answer complex trucking regulations. Focus on safety management, audits, and legal authority.",
-          temperature: 0.7,
+          systemInstruction: "You are an expert carrier compliance consultant for LaunchPath. You specialize in both Federal (FMCSA) and State-Specific regulations (e.g., California BIT/ARB, Texas DOT, New York HUT/OSC, etc.). Your tone is authoritative, concise, and professional. Always provide actionable steps. Use Google Search to verify current state statutes if needed. If explaining state rules, mention specific state agencies. Be brief but accurate.",
+          tools: [{ googleSearch: {} }],
+          temperature: 0.3,
         }
       });
 
       const aiResponse = response.text || "I apologize, I'm having trouble retrieving that information right now.";
-      setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
+      
+      const sources: { uri: string; title: string }[] = [];
+      const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
+      if (chunks) {
+        chunks.forEach((chunk: any) => {
+          if (chunk.web) {
+            sources.push({ uri: chunk.web.uri, title: chunk.web.title });
+          }
+        });
+      }
+
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: aiResponse,
+        sources: sources.length > 0 ? sources : undefined
+      }]);
     } catch (error) {
+      console.error("Chat error:", error);
       setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the advisory service." }]);
     } finally {
       setIsLoading(false);
@@ -247,16 +273,16 @@ const AIServicePage = () => {
               const source = outCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outCtx.destination);
-              source.addEventListener('ended', () => liveSourcesRef.current?.delete(source));
+              source.addEventListener('ended', () => liveSourcesRef.current.delete(source));
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
-              liveSourcesRef.current?.add(source);
+              liveSourcesRef.current.add(source);
             }
             if (message.serverContent?.interrupted) {
-              liveSourcesRef.current?.forEach(s => {
+              liveSourcesRef.current.forEach(s => {
                 try { s.stop(); } catch(e) {}
               });
-              liveSourcesRef.current?.clear();
+              liveSourcesRef.current.clear();
               nextStartTimeRef.current = 0;
             }
           },
@@ -268,7 +294,7 @@ const AIServicePage = () => {
         },
         config: {
           responseModalities: [Modality.AUDIO],
-          systemInstruction: "You are the LaunchPath Voice Assistant. Help owner-operators with FMCSA rules. Be brief and professional.",
+          systemInstruction: "You are the LaunchPath Voice Assistant. Help owner-operators with FMCSA and State rules. Be brief and professional.",
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } }
         }
       });
@@ -293,10 +319,10 @@ const AIServicePage = () => {
       liveAudioContextRef.current.output.close();
       liveAudioContextRef.current = null;
     }
-    liveSourcesRef.current?.forEach(s => {
+    liveSourcesRef.current.forEach(s => {
       try { s.stop(); } catch(e) {}
     });
-    liveSourcesRef.current?.clear();
+    liveSourcesRef.current.clear();
   };
 
   // --- VIDEO STUDIO ---
@@ -336,7 +362,6 @@ const AIServicePage = () => {
 
       let operation = await ai.models.generateVideos(config);
 
-      // Defensively polling operation status following standard SDK pattern
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
         operation = await ai.operations.getVideosOperation({ operation: operation });
@@ -354,7 +379,7 @@ const AIServicePage = () => {
         setHasApiKey(false);
         alert("Authorization expired. Please re-authorize your AI Studio API key.");
       } else {
-        alert("Video synthesis failed. Please check parameters and retry.");
+        alert("Video synthesis failed.");
       }
     } finally {
       clearInterval(interval);
@@ -376,6 +401,13 @@ const AIServicePage = () => {
       setHasApiKey(true);
     }
   };
+
+  const stateStarterQuestions = [
+    { label: "California BIT", q: "What are California BIT inspection requirements?" },
+    { label: "Texas DOT", q: "Do I need a TX DOT number if I have a Federal DOT?" },
+    { label: "New York HUT", q: "How do I register for New York HUT?" },
+    { label: "State Filings", q: "Which states require weight-distance permits or specific fuel tax registrations beyond IFTA?" }
+  ];
 
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-16 px-4">
@@ -418,6 +450,30 @@ const AIServicePage = () => {
                       : 'bg-slate-50 dark:bg-slate-900 text-text-primary dark:text-text-dark-primary rounded-[2.5rem] rounded-tl-none p-8 border border-border-light dark:border-border-dark shadow-sm'
                     }`}>
                       <div className="text-base leading-relaxed whitespace-pre-wrap font-medium">{m.content}</div>
+                      
+                      {/* Sources Display */}
+                      {m.sources && (
+                        <div className="mt-6 pt-6 border-t border-border-light dark:border-border-dark">
+                          <p className="text-[9px] font-black uppercase tracking-widest text-text-muted mb-3 flex items-center">
+                            <Globe size={12} className="mr-1.5" /> Regulatory References
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {m.sources.map((src, sIdx) => (
+                              <a 
+                                key={sIdx} 
+                                href={src.uri} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-3 py-1.5 bg-white dark:bg-gray-800 rounded-lg border border-border-light text-[10px] font-bold text-authority-blue hover:border-authority-blue transition-all"
+                              >
+                                <ExternalLink size={10} className="mr-1.5" />
+                                <span className="truncate max-w-[150px]">{src.title || 'Source'}</span>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
                       {m.role === 'assistant' && (
                         <button 
                           onClick={() => speakMessage(m.content, i)}
@@ -444,6 +500,29 @@ const AIServicePage = () => {
                   </div>
                 )}
               </div>
+              
+              {/* State Compliance Starter Area */}
+              {messages.length === 1 && (
+                <div className="px-10 py-6 border-t border-border-light dark:border-border-dark bg-slate-50/30 dark:bg-gray-900/30">
+                  <div className="flex items-center space-x-2 mb-4">
+                    <MapPin size={14} className="text-signal-gold" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-text-muted">Regional Compliance Deep-Dives</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    {stateStarterQuestions.map((chip, idx) => (
+                      <button 
+                        key={idx}
+                        onClick={() => handleSend(chip.q)}
+                        className="p-4 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl text-left hover:border-authority-blue hover:shadow-lg transition-all active:scale-95 group"
+                      >
+                        <p className="text-[9px] font-black text-authority-blue dark:text-signal-gold uppercase tracking-widest mb-1 group-hover:underline">{chip.label}</p>
+                        <p className="text-[10px] font-bold text-text-muted line-clamp-2 leading-snug">{chip.q}</p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="p-10 border-t border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-md">
                 <div className="relative max-w-4xl mx-auto">
                   <input 
@@ -451,16 +530,25 @@ const AIServicePage = () => {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Ask about DQ files, audits, or carrier regulations..."
+                    placeholder="Ask about state-specific rules (e.g. 'What is CA BIT?') or DQ files..."
                     className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark pl-8 pr-24 py-6 rounded-[2.5rem] focus:ring-8 focus:ring-authority-blue/5 outline-none transition-all shadow-2xl font-bold"
                   />
                   <button 
-                    onClick={handleSend}
+                    onClick={() => handleSend()}
                     disabled={isLoading}
                     className="absolute right-3 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue transition-all disabled:opacity-50 shadow-xl active:scale-95"
                   >
                     <Send className="w-6 h-6" />
                   </button>
+                </div>
+                <div className="flex items-center justify-center space-x-6 mt-6">
+                   <p className="text-[9px] text-text-muted uppercase tracking-[0.4em] font-black flex items-center">
+                     <Globe size={12} className="mr-2 opacity-30" /> Multi-State Verification Active
+                   </p>
+                   <div className="h-4 w-px bg-border-light"></div>
+                   <p className="text-[9px] text-text-muted uppercase tracking-[0.4em] font-black">
+                     Powered by Gemini 3 Pro reasoning
+                   </p>
                 </div>
               </div>
             </>
@@ -481,7 +569,7 @@ const AIServicePage = () => {
                 </div>
                 <h2 className="text-4xl font-black font-serif mb-6 tracking-tight leading-none">Voice Command Mode</h2>
                 <p className="text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium">
-                  Have a real-time, hands-free conversation with our AI Safety Officer.
+                  Have a real-time, hands-free conversation with our AI Safety Officer. Perfect for checking state regulations or audit procedures.
                 </p>
               </div>
 

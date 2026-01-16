@@ -1,7 +1,6 @@
-
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 // Using the configuration provided in the latest request
@@ -17,6 +16,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
-export const db = getFirestore(app);
+
+/**
+ * Initializing Firestore with Long Polling enabled.
+ * This resolves the "unavailable" error often seen when WebSockets are restricted 
+ * or when the client has trouble maintaining a persistent connection to the backend.
+ */
+export const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true,
+  useFetchStreams: false // Ensures maximum compatibility with various proxy environments
+});
+
 export const storage = getStorage(app);
 export const isFirebaseConfigured = true;

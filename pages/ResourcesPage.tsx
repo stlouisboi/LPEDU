@@ -17,13 +17,38 @@ import {
   Search,
   Activity,
   Smartphone,
-  Shield
+  Shield,
+  X,
+  Loader2,
+  Mail,
+  User
 } from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from '../firebase';
+
+interface QuickGuide {
+  title: string;
+  description: string;
+  phase: string;
+  icon: React.ReactNode;
+  buttonText: string;
+  isPublic: boolean;
+  requiresEmail?: boolean;
+  link?: string;
+}
 
 const ResourcesPage = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  
+  // Lead Capture State
+  const [selectedGuide, setSelectedGuide] = useState<QuickGuide | null>(null);
+  const [leadName, setLeadName] = useState('');
+  const [leadEmail, setLeadEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const quickGuides = [
+  const quickGuides: QuickGuide[] = [
     {
       title: "Pre-Authority Launch Checklist",
       description: "Everything you need before activating your MC number.",
@@ -31,6 +56,7 @@ const ResourcesPage = () => {
       icon: <ClipboardList className="w-6 h-6" />,
       buttonText: "Download PDF",
       isPublic: true,
+      requiresEmail: true, // Now gated by email
       link: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FLaunchPathtm-First-90-Days-Overview.pdf?alt=media&token=95f49ef1-f594-4985-a534-68cd09750003"
     },
     {
@@ -62,7 +88,7 @@ const ResourcesPage = () => {
       description: "Understand your SMS/CSA safety measurement scores.",
       phase: "Phase 3: Risk & Reputation",
       icon: <Search className="w-6 h-6" />,
-      buttonText: "See Inside LaunchPath",
+      buttonText: "See What's Included",
       isPublic: false
     },
     {
@@ -70,7 +96,7 @@ const ResourcesPage = () => {
       description: "What makes FMCSA schedule an investigation.",
       phase: "Phase 2–3: Audit Survival",
       icon: <AlertCircle className="w-6 h-6" />,
-      buttonText: "See Inside LaunchPath",
+      buttonText: "View Overview",
       isPublic: false
     }
   ];
@@ -84,6 +110,59 @@ const ResourcesPage = () => {
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError('');
+
+    if (!leadName.trim()) {
+      setFormError('Please enter your name.');
+      return;
+    }
+    if (!validateEmail(leadEmail)) {
+      setFormError('Please enter a valid email address.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      if (db) {
+        await addDoc(collection(db, "leadMagnets"), {
+          firstName: leadName,
+          email: leadEmail,
+          resourceTitle: selectedGuide?.title,
+          downloadedAt: serverTimestamp(),
+          source: "resources-page-gate"
+        });
+      }
+
+      // Success behavior
+      setShowSuccess(true);
+      setTimeout(() => {
+        if (selectedGuide?.link) {
+          window.open(selectedGuide.link, '_blank');
+        }
+        closeModal();
+      }, 1500);
+    } catch (err) {
+      console.error("Lead capture error:", err);
+      setFormError('System error. Please try again or contact support.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const closeModal = () => {
+    setSelectedGuide(null);
+    setLeadName('');
+    setLeadEmail('');
+    setFormError('');
+    setShowSuccess(false);
   };
 
   return (
@@ -132,14 +211,23 @@ const ResourcesPage = () => {
               </div>
               
               {guide.isPublic ? (
-                <a 
-                  href={guide.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 rounded-xl bg-authority-blue text-white font-black uppercase text-[10px] tracking-widest hover:bg-steel-blue transition-all flex items-center justify-center shadow-md active:scale-95"
-                >
-                  <Download size={14} className="mr-2" /> {guide.buttonText}
-                </a>
+                guide.requiresEmail ? (
+                  <button 
+                    onClick={() => setSelectedGuide(guide)}
+                    className="w-full py-4 rounded-xl bg-authority-blue text-white font-black uppercase text-[10px] tracking-widest hover:bg-steel-blue transition-all flex items-center justify-center shadow-md active:scale-95"
+                  >
+                    <Mail size={14} className="mr-2" /> {guide.buttonText}
+                  </button>
+                ) : (
+                  <a 
+                    href={guide.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 rounded-xl bg-authority-blue text-white font-black uppercase text-[10px] tracking-widest hover:bg-steel-blue transition-all flex items-center justify-center shadow-md active:scale-95"
+                  >
+                    <Download size={14} className="mr-2" /> {guide.buttonText}
+                  </a>
+                )
               ) : (
                 <Link 
                   to="/pricing"
@@ -152,6 +240,94 @@ const ResourcesPage = () => {
           ))}
         </div>
       </section>
+
+      {/* LEAD CAPTURE MODAL */}
+      {selectedGuide && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border border-slate-200 max-w-lg w-full relative animate-in zoom-in-95 duration-300">
+            <button 
+              onClick={closeModal}
+              className="absolute top-8 right-8 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <X size={24} />
+            </button>
+
+            <div className="text-center mb-10">
+              <div className="w-20 h-20 bg-authority-blue/5 text-authority-blue rounded-[2rem] flex items-center justify-center mx-auto mb-6">
+                <FileText size={32} />
+              </div>
+              <h3 className="text-2xl font-black text-authority-blue uppercase tracking-tight mb-3">Download Your Guide</h3>
+              <p className="text-slate-500 font-medium">Enter your details below to receive the <strong>{selectedGuide.title}</strong> and join our safety bulletins list.</p>
+            </div>
+
+            {showSuccess ? (
+              <div className="text-center py-10 animate-in fade-in zoom-in-95">
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle2 size={32} />
+                </div>
+                <p className="text-lg font-black text-authority-blue uppercase tracking-widest">Resource Ready!</p>
+                <p className="text-sm text-slate-500 mt-2 font-medium">Starting your download now...</p>
+              </div>
+            ) : (
+              <form onSubmit={handleLeadSubmit} className="space-y-6">
+                {formError && (
+                  <div className="p-4 bg-red-50 text-red-600 rounded-xl text-xs font-bold border border-red-100 flex items-center animate-in shake duration-300">
+                    <AlertCircle size={16} className="mr-2 flex-shrink-0" />
+                    {formError}
+                  </div>
+                )}
+                
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Full Name</label>
+                  <div className="relative">
+                    <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                    <input 
+                      required
+                      type="text" 
+                      placeholder="Jane Doe"
+                      className="w-full pl-12 pr-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-authority-blue outline-none font-bold transition-all"
+                      value={leadName}
+                      onChange={(e) => setLeadName(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Professional Email</label>
+                  <div className="relative">
+                    <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                    <input 
+                      required
+                      type="email" 
+                      placeholder="jane@carrier.com"
+                      className="w-full pl-12 pr-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-authority-blue outline-none font-bold transition-all"
+                      value={leadEmail}
+                      onChange={(e) => setLeadEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-5 rounded-[1.5rem] bg-authority-blue text-white font-black uppercase tracking-[0.2em] text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95 flex items-center justify-center disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="animate-spin mr-2" size={18} />
+                  ) : (
+                    <Download className="mr-2" size={18} />
+                  )}
+                  Secure Your Access
+                </button>
+                
+                <p className="text-[9px] text-center text-slate-400 uppercase tracking-widest font-bold">
+                  By downloading, you agree to receive education updates. <br/>We never sell your data to brokers or insurers.
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* 3. ESSENTIAL COMPLIANCE CHECKLISTS (Locked) */}
       <section className="bg-authority-blue py-24">

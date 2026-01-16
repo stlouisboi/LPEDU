@@ -56,24 +56,24 @@ const AboutPage = () => {
               </div>
               
               <div className="prose prose-lg text-slate-700 leading-relaxed font-medium max-w-none">
-                {/* Founder Photo - Floating Left as requested using hosted repository URL */}
+                {/* Founder Photo - Floating Left */}
                 <div className="float-left mr-8 mb-6 md:mb-4">
                   <img 
                     src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
-                    alt="Vince - LaunchPath Founder" 
+                    alt="Vince Lawrence - LaunchPath Founder" 
                     className="w-[250px] rounded-[8px] shadow-2xl border-4 border-white object-cover"
                   />
-                  <p className="text-[10px] font-black uppercase tracking-widest text-center mt-3 text-slate-400">Vince | Founder</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-center mt-3 text-slate-400">Vince Lawrence | Founder</p>
                 </div>
 
                 <p className="mb-6">
-                  Hey y'all, I'm Vince. I'm a 53-year-old Veteran and an OSHA safety professional who recognized a pattern in the trucking industry that I've seen in heavy manufacturing for decades: <strong>operators fail not because of skill, but because of missing systems.</strong>
+                  LaunchPath™ is a veteran-owned compliance education company founded by Vince Lawrence, a Navy disabled veteran. His professional background includes operational leadership as a supervisor and business unit manager, with responsibility for safety and compliance systems supporting approximately 1,200 employees. He has also served multiple years as an OSHA-certified safety coordinator, specializing in risk management and procedural discipline within regulated environments.
                 </p>
                 <p className="mb-6">
-                  I built LaunchPath because I got tired of seeing hardworking folks lose their authority because they followed "hustle hype" instead of federal law. My principle is simple: <span className="text-authority-blue font-black underline decoration-signal-gold decoration-4 underline-offset-4">compliance methodology matters more than industry experience.</span>
+                  LaunchPath is designed to address the regulatory and financial risks new carriers face during their critical early months of operation. As a Kingdom business, it is built on stewardship and integrity, prioritizing administrative accuracy and decision discipline over industry hype. The curriculum emphasizes the development of audit-ready compliance systems rather than driving instruction or dispatching services.
                 </p>
-                <p className="mb-6">
-                  I run this as a Kingdom business focused on stewardship and integrity. I walk with the Lord, and that means I ain't gonna sell you a get-rich-quick dream. I'm here to help you build something that lasts.
+                <p className="mb-6 italic text-slate-500">
+                  Information provided by LaunchPath is for educational purposes only and does not constitute legal, tax, financial, or insurance advice.
                 </p>
                 <div className="clear-both"></div>
               </div>
@@ -104,9 +104,9 @@ const AboutPage = () => {
                <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue mb-6">Expertise Focus</h4>
                <ul className="space-y-4">
                  {[
-                   { t: "OSHA Standards", d: "Deep technical safety knowledge" },
-                   { t: "Kingdom Values", d: "Integrity and stewardship first" },
-                   { t: "FMCSA Compliance", d: "Building the backbone of your authority" }
+                   { t: "OSHA Standards", d: "Technical safety protocols" },
+                   { t: "Kingdom Values", d: "Integrity and stewardship" },
+                   { t: "FMCSA Compliance", d: "Administrative backbone systems" }
                  ].map((item, idx) => (
                    <li key={idx} className="flex items-start space-x-3">
                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-signal-gold shrink-0"></div>
@@ -132,7 +132,7 @@ const AboutPage = () => {
                   "Unless the Lord builds the house, those who build it labor in vain." — Psalm 127:1
                 </p>
                 <p className="text-lg text-slate-600 font-medium leading-relaxed">
-                  I believe that your trucking business is more than a paycheck—it's a tool for stewardship. Building it on a foundation of integrity means doing things right the first time, even when the FMCSA isn't looking. We teach you how to build a business that can stand the weight of federal scrutiny and thrive for decades.
+                  Building a motor carrier on a foundation of integrity means prioritizing accuracy and regulatory discipline. We teach you how to implement systems that stand up to federal scrutiny, fostering a business culture centered on stewardship and long-term sustainability.
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center p-12 bg-slate-50 rounded-[3rem] border border-slate-200 text-center">

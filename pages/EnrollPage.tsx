@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
@@ -10,11 +9,15 @@ import {
   Video,
   AlertCircle,
   User,
+  // Fix: Added missing 'Users' import for Tier 2 Mastery icon
+  Users,
   Mail,
   ArrowRight,
   Target,
   Award,
-  BookOpen
+  BookOpen,
+  Scale,
+  FileText
 } from 'lucide-react';
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase';
@@ -100,111 +103,148 @@ const EnrollPage = () => {
     if (!validation.isValid) return;
 
     addFormSubmission({ type: 'Course Enrollment', ...formData, date: new Date().toISOString() });
-    alert("Enrollment successful! Please check your email for access instructions.");
+    alert("Enrollment request received. Please check your email for access instructions.");
     navigate('/'); 
   };
 
-  // Safe access to checkout URLs to prevent undefined property errors
-  const urls = settings?.checkoutUrls || { selfPaced: '', mastery: '', elite: '' };
-
   return (
-    <div className="bg-white dark:bg-primary-dark min-h-screen">
+    <div className="bg-primary-light dark:bg-primary-dark min-h-screen">
       
       {/* Hero Section */}
-      <section className="py-24 bg-primary-light dark:bg-surface-dark/30 text-center relative overflow-hidden">
+      <section className="py-24 bg-white dark:bg-surface-dark/30 text-center relative overflow-hidden border-b border-border-light dark:border-border-dark">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10 animate-reveal-up">
-          <div className="inline-flex items-center space-x-2 bg-authority-blue text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8">
-            <ShieldCheck className="w-3 h-3" />
-            <span>Official Carrier Mastery Curriculum</span>
+          <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-8 border border-authority-blue/10">
+            <BookOpen className="w-3 h-3 text-signal-gold" />
+            <span>Carrier Compliance Education Curriculum</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold font-serif mb-8 leading-tight text-authority-blue dark:text-white tracking-tighter">The Carrier Mastery Program</h1>
+          <h1 className="text-5xl md:text-7xl font-black font-serif mb-8 leading-[0.95] text-authority-blue dark:text-white tracking-tighter uppercase">
+            Carrier Operations <br/><span className="text-signal-gold">Education.</span>
+          </h1>
           <p className="text-xl text-text-muted dark:text-text-dark-muted mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-            From Authority Registration to Audit Readiness. Everything you need to build, protect, and scale your motor carrier in one structured system.
+            A structured implementation framework for new motor carriers. We teach the technical discipline required to navigate your first 90 days of operation.
           </p>
-          <a href="#pricing" className="bg-authority-blue text-white px-12 py-5 rounded-2xl text-xl font-bold shadow-2xl hover:bg-steel-blue transition-all active:scale-95">
-            Secure Your Spot →
-          </a>
+          
+          <div className="bg-slate-50 dark:bg-gray-800/50 p-6 rounded-3xl border border-border-light dark:border-border-dark max-w-xl mx-auto text-center">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text-muted">
+              LaunchPath is an educational program. Information provided does not constitute legal, tax, financial, insurance, or regulatory advice. No outcomes or approvals are guaranteed.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Pricing Tiers */}
-      <section id="pricing" className="py-24 border-b border-border-light dark:border-border-dark">
+      <section id="pricing" className="py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20 stagger-parent">
-            <h2 className="text-3xl md:text-5xl font-bold font-serif mb-6 stagger-item">Choose Your Level</h2>
-            <p className="text-text-muted font-medium stagger-item">Investment in your business's long-term survival.</p>
+          <div className="text-center mb-24 stagger-parent">
+            <h2 className="text-4xl md:text-6xl font-black font-serif mb-6 stagger-item text-authority-blue dark:text-white uppercase tracking-tight leading-none">Enrollment Options</h2>
+            <p className="text-xl text-text-muted font-medium stagger-item italic">Choose the level of educational support your operation requires.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Tier 1: Self-Paced */}
-            <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark flex flex-col hover:shadow-xl transition-all group">
-              <h3 className="text-2xl font-bold mb-4">Self-Paced</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Tier 1: Self-Paced Fundamentals */}
+            <div className="bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] border border-border-light dark:border-border-dark flex flex-col hover:shadow-2xl transition-all group h-full">
+              <div className="flex justify-between items-start mb-8">
+                <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white">Self-Paced <br/>Fundamentals</h3>
+                <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl text-authority-blue">
+                  <BookOpen size={24} />
+                </div>
+              </div>
               
-              <div className="text-center mb-6">
-                <div className="text-sm text-text-muted line-through mb-2">$597</div>
-                <div className="text-5xl font-bold text-authority-blue dark:text-white">$397</div>
+              <div className="mb-10">
+                <div className="flex items-baseline">
+                  <span className="text-xl font-bold text-signal-gold mr-1">$</span>
+                  <span className="text-6xl font-black tracking-tighter text-signal-gold">397</span>
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mt-2">Lifetime Curriculum Access</p>
               </div>
 
-              <ul className="space-y-4 mb-8 text-sm text-text-muted flex-grow font-medium">
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Full Access to 6 Modules</li>
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Audit-Ready Templates</li>
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Lifetime Updates</li>
+              <ul className="space-y-4 mb-12 text-sm text-text-muted flex-grow font-bold">
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Educational Implementation Modules</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Compliance Template Library</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Regulatory Filing Walkthroughs</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Ongoing Curriculum Updates</li>
               </ul>
 
-              <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold hover:bg-authority-blue hover:text-white transition-all mt-8 active:scale-95">Select Self-Paced</button>
+              <button className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all active:scale-95 shadow-xl">Select Fundamentals</button>
             </div>
 
-            {/* Tier 2: Mastery Bundle */}
-            <div className="bg-authority-blue text-white p-10 rounded-[2.5rem] shadow-2xl flex flex-col relative transform lg:scale-105 z-10 border-4 border-signal-gold/20">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[10px] px-4 py-1 rounded-full uppercase tracking-widest">Most Popular</div>
-              <h3 className="text-2xl font-bold mb-4">Mastery Bundle</h3>
+            {/* Tier 2: Implementation Mastery */}
+            <div className="bg-authority-blue text-white p-12 rounded-[3.5rem] shadow-[0_50px_100px_-20px_rgba(30,58,95,0.3)] flex flex-col relative transform lg:scale-105 z-10 border-4 border-signal-gold/20 h-full">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[10px] px-8 py-2 rounded-full uppercase tracking-widest shadow-xl">Capacity Based Access</div>
+              <div className="flex justify-between items-start mb-8">
+                <h3 className="text-2xl font-black uppercase tracking-tighter">Implementation <br/>Mastery</h3>
+                <div className="p-3 bg-white/10 rounded-2xl text-signal-gold">
+                  {/* Correctly using the Users icon which is now imported */}
+                  <Users size={24} />
+                </div>
+              </div>
               
-              <div className="text-center mb-6">
-                <div className="text-sm text-white/50 line-through mb-2">$1,197</div>
-                <div className="text-5xl font-bold text-white">$797</div>
+              <div className="mb-10">
+                <div className="flex items-baseline">
+                  <span className="text-xl font-bold text-signal-gold mr-1">$</span>
+                  <span className="text-6xl font-black tracking-tighter text-white">797</span>
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-white/50 mt-2">Curriculum + Group Education</p>
               </div>
 
-              <ul className="space-y-4 mb-8 text-sm opacity-90 flex-grow font-medium">
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-signal-gold" /> Everything in Self-Paced</li>
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-signal-gold" /> Weekly Group Q&A Calls</li>
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-signal-gold" /> Audit Readiness Certificate</li>
+              <ul className="space-y-4 mb-12 text-sm opacity-90 flex-grow font-bold">
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> Everything in Self-Paced Tier</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> Weekly Group Implementation Calls</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> Peer Document Review Sessions</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> Program Completion Certificate</li>
               </ul>
 
-              <button className="w-full bg-signal-gold text-authority-blue py-4 rounded-xl font-bold shadow-xl mt-8 active:scale-95 hover:bg-white transition-all">Start Mastery Now</button>
+              <button className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl active:scale-95 hover:bg-white transition-all">Start Implementation</button>
             </div>
 
-            {/* Tier 3: Concierge Elite */}
-            <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark flex flex-col hover:shadow-xl transition-all">
-              <h3 className="text-2xl font-bold mb-4">Concierge Elite</h3>
+            {/* Tier 3: Individualized Guided Review */}
+            <div className="bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] border border-border-light dark:border-border-dark flex flex-col hover:shadow-2xl transition-all h-full group">
+              <div className="flex justify-between items-start mb-8">
+                <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white">Individualized <br/>Guided Review</h3>
+                <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl text-authority-blue">
+                  <Scale size={24} />
+                </div>
+              </div>
               
-              <div className="text-center mb-6">
-                <div className="text-sm text-text-muted line-through mb-2">$1,997</div>
-                <div className="text-5xl font-bold text-authority-blue dark:text-white">$1,497</div>
+              <div className="mb-10">
+                <div className="flex items-baseline">
+                  <span className="text-xl font-bold text-signal-gold mr-1">$</span>
+                  <span className="text-6xl font-black tracking-tighter text-authority-blue dark:text-white">1,497</span>
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mt-2">High-Touch Individual Education</p>
               </div>
 
-              <ul className="space-y-4 mb-8 text-sm text-text-muted flex-grow font-medium">
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Everything in Mastery</li>
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> 1-on-1 Safety Consultation</li>
-                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-3 text-green-500" /> Custom Mock Safety Audit</li>
+              <ul className="space-y-4 mb-12 text-sm text-text-muted flex-grow font-bold">
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Everything in Mastery Tier</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Individual Process Review Sessions</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Student Document Educational Assessment</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> Custom Implementation Milestones</li>
               </ul>
 
-              <button className="w-full border-2 border-authority-blue py-4 rounded-xl font-bold mt-8 active:scale-95 hover:bg-authority-blue hover:text-white transition-all">Inquire About Elite</button>
+              <button className="w-full border-4 border-authority-blue py-5 rounded-2xl font-black uppercase tracking-widest text-xs active:scale-95 hover:bg-authority-blue hover:text-white transition-all">Inquire For Review</button>
             </div>
+          </div>
+
+          <div className="mt-20 p-10 bg-slate-50 dark:bg-gray-800/30 rounded-[3rem] border-2 border-dashed border-border-light text-center">
+            <p className="text-xs font-bold text-text-muted leading-relaxed uppercase tracking-widest">
+              Educational Access Only. LaunchPath provides procedural training and technical frameworks. We do not provide legal services, insurance brokerage, or guaranteed regulatory approvals.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Enrollment Form */}
-      <section className="py-24 bg-authority-blue text-white">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="text-center mb-12 animate-reveal-up">
-            <h2 className="text-4xl font-bold font-serif mb-4">Secure Enrollment Portal</h2>
-            <p className="opacity-70 font-medium">Verified by LaunchPath Safety Compliance Division</p>
+      <section className="py-32 bg-authority-blue text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
+        <div className="max-w-2xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-16 animate-reveal-up">
+            <h2 className="text-4xl font-black font-serif mb-4 uppercase tracking-tight">Secure Access Portal</h2>
+            <p className="opacity-70 font-bold uppercase tracking-widest text-[11px]">Identity verification and curriculum provisioning</p>
           </div>
-          <form onSubmit={handleEnroll} className="space-y-6 bg-white dark:bg-surface-dark p-12 rounded-[3rem] shadow-2xl text-text-primary dark:text-text-dark-primary animate-scale-in">
+          <form onSubmit={handleEnroll} className="space-y-6 bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] text-text-primary dark:text-text-dark-primary animate-scale-in">
             
-            {/* Full Name Field */}
             <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Full Legal Name</label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
                   <User size={18} />
@@ -212,35 +252,23 @@ const EnrollPage = () => {
                 <input 
                   required 
                   name="name"
-                  placeholder="Full Legal Name" 
-                  className={`w-full pl-12 pr-12 py-4 border rounded-2xl outline-none focus:ring-2 bg-white dark:bg-gray-800 transition-all font-bold ${
+                  placeholder="John Doe" 
+                  className={`w-full pl-12 pr-12 py-5 border-4 rounded-3xl outline-none focus:ring-0 bg-gray-50 dark:bg-gray-800 transition-all font-bold ${
                     touched.name 
                       ? validation.errors.name 
-                        ? 'border-red-500 focus:ring-red-200' 
-                        : 'border-green-500 focus:ring-green-200' 
-                      : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
+                        ? 'border-red-100' 
+                        : 'border-green-50' 
+                      : 'border-slate-50 dark:border-border-dark focus:border-authority-blue'
                   }`}
                   value={formData.name} 
                   onChange={handleInputChange} 
                   onBlur={() => handleBlur('name')}
                 />
-                {touched.name && (
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                    {validation.errors.name ? (
-                      <AlertCircle className="text-red-500" size={18} />
-                    ) : (
-                      <CheckCircle2 className="text-green-500" size={18} />
-                    )}
-                  </div>
-                )}
               </div>
-              {touched.name && validation.errors.name && (
-                <p className="text-xs text-red-500 font-bold ml-2 animate-in fade-in slide-in-from-top-1">{validation.errors.name}</p>
-              )}
             </div>
 
-            {/* Email Address Field */}
             <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Professional Email</label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
                   <Mail size={18} />
@@ -249,35 +277,23 @@ const EnrollPage = () => {
                   required 
                   name="email"
                   type="email" 
-                  placeholder="Professional Email Address" 
-                  className={`w-full pl-12 pr-12 py-4 border rounded-2xl outline-none focus:ring-2 bg-white dark:bg-gray-800 transition-all font-bold ${
+                  placeholder="name@carrier.com" 
+                  className={`w-full pl-12 pr-12 py-5 border-4 rounded-3xl outline-none focus:ring-0 bg-gray-50 dark:bg-gray-800 transition-all font-bold ${
                     touched.email 
                       ? validation.errors.email 
-                        ? 'border-red-500 focus:ring-red-200' 
-                        : 'border-green-500 focus:ring-green-200' 
-                      : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
+                        ? 'border-red-100' 
+                        : 'border-green-50' 
+                      : 'border-slate-50 dark:border-border-dark focus:border-authority-blue'
                   }`}
                   value={formData.email} 
                   onChange={handleInputChange} 
                   onBlur={() => handleBlur('email')}
                 />
-                {touched.email && (
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                    {validation.errors.email ? (
-                      <AlertCircle className="text-red-500" size={18} />
-                    ) : (
-                      <CheckCircle2 className="text-green-500" size={18} />
-                    )}
-                  </div>
-                )}
               </div>
-              {touched.email && validation.errors.email && (
-                <p className="text-xs text-red-500 font-bold ml-2 animate-in fade-in slide-in-from-top-1">{validation.errors.email}</p>
-              )}
             </div>
 
-            {/* Password Field */}
             <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Account Access Code</label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">
                   <Lock size={18} />
@@ -286,55 +302,62 @@ const EnrollPage = () => {
                   required 
                   name="password"
                   type="password" 
-                  placeholder="Create Master Password" 
-                  className={`w-full pl-12 pr-12 py-4 border rounded-2xl outline-none focus:ring-2 bg-white dark:bg-gray-800 transition-all font-bold ${
+                  placeholder="••••••••" 
+                  className={`w-full pl-12 pr-12 py-5 border-4 rounded-3xl outline-none focus:ring-0 bg-gray-50 dark:bg-gray-800 transition-all font-bold ${
                     touched.password 
                       ? validation.errors.password 
-                        ? 'border-red-500 focus:ring-red-200' 
-                        : 'border-green-500 focus:ring-green-200' 
-                      : 'border-border-light dark:border-border-dark focus:ring-authority-blue'
+                        ? 'border-red-100' 
+                        : 'border-green-50' 
+                      : 'border-slate-50 dark:border-border-dark focus:border-authority-blue'
                   }`}
                   value={formData.password} 
                   onChange={handleInputChange} 
                   onBlur={() => handleBlur('password')}
                 />
-                {touched.password && (
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                    {validation.errors.password ? (
-                      <AlertCircle className="text-red-500" size={18} />
-                    ) : (
-                      <CheckCircle2 className="text-green-500" size={18} />
-                    )}
-                  </div>
-                )}
-              </div>
-              <div className="flex justify-between items-center px-2">
-                {touched.password && validation.errors.password ? (
-                  <p className="text-xs text-red-500 font-bold animate-in fade-in slide-in-from-top-1">{validation.errors.password}</p>
-                ) : (
-                  <p className="text-[10px] text-text-muted font-black uppercase tracking-widest">Master access code</p>
-                )}
               </div>
             </div>
 
             <button 
               type="submit" 
               disabled={!validation.isValid}
-              className={`w-full py-5 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all ${
+              className={`w-full py-6 rounded-3xl font-black uppercase tracking-[0.3em] shadow-2xl transition-all text-xs ${
                 validation.isValid 
                   ? 'bg-signal-gold text-authority-blue hover:bg-authority-blue hover:text-white active:scale-[0.98]' 
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed grayscale'
               }`}
             >
-              Complete Enrollment
+              Initialize Enrollment
             </button>
 
-            <div className="flex items-center justify-center space-x-4 mt-8 opacity-40">
-               <ShieldCheck size={16} />
-               <p className="text-[10px] text-center uppercase tracking-widest font-black">256-bit SSL Encrypted • Compliance Verified</p>
+            <div className="flex flex-col items-center justify-center space-y-4 mt-8">
+               <div className="flex items-center space-x-3 opacity-30">
+                  <ShieldCheck size={16} />
+                  <p className="text-[9px] uppercase tracking-widest font-black">Secure Endpoint Verified</p>
+               </div>
+               <p className="text-[8px] text-center uppercase tracking-tighter text-text-muted font-bold max-w-xs leading-relaxed">
+                 By initializing enrollment, you acknowledge that LaunchPath is an educational program and not a professional advisory or legal service.
+               </p>
             </div>
           </form>
         </div>
+      </section>
+
+      {/* Trust Signatures */}
+      <section className="py-20 bg-white dark:bg-primary-dark">
+         <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-16 opacity-30 grayscale">
+            <div className="flex items-center space-x-3">
+               <Scale size={24} />
+               <span className="text-[10px] font-black uppercase tracking-[0.3em]">Compliance Focused</span>
+            </div>
+            <div className="flex items-center space-x-3">
+               <FileText size={24} />
+               <span className="text-[10px] font-black uppercase tracking-[0.3em]">Technical Curriculum</span>
+            </div>
+            <div className="flex items-center space-x-3">
+               <Target size={24} />
+               <span className="text-[10px] font-black uppercase tracking-[0.3em]">Audit Framework</span>
+            </div>
+         </div>
       </section>
 
     </div>
