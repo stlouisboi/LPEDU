@@ -234,18 +234,28 @@ const HomePage: React.FC = () => {
                 </h2>
               </div>
               
-              <div className="space-y-6 text-lg xl:text-xl text-white/70 leading-relaxed font-medium">
+              <div className="space-y-8 text-lg xl:text-xl text-white/70 leading-relaxed font-medium">
                 <p>
                   LaunchPath™ was built by Vince Lawrence, founder and operations-focused safety professional with experience overseeing compliance and safety systems supporting approximately 1,200 employees. His background includes supervisory leadership, business unit management, and work within regulated environments where procedural discipline and audit readiness matter.
                 </p>
+
+                <div className="space-y-6 py-6 border-y border-white/10">
+                  <p>
+                    Most new owner-operators don’t fail because they lack driving skill. They fail because <span className="text-white font-black">early business decisions quietly destabilize their authority, insurance, compliance standing, or cash flow</span> before they have time to recover.
+                  </p>
+                  <p>
+                    The trucking industry offers plenty of speed-focused solutions—fast authority setup, dispatching services, and revenue promises—but <span className="text-signal-gold font-black italic">very little education focused on risk containment</span> during the most dangerous first 90 days of ownership.
+                  </p>
+                  <p>
+                    <span className="text-white font-black underline decoration-signal-gold decoration-4 underline-offset-8">LaunchPath exists to fill that gap.</span> It is a 90-day owner-operator survival system designed to help new carriers slow down, establish audit-ready compliance practices, protect insurance continuity, and maintain cash-flow stability during their earliest months of operation.
+                  </p>
+                </div>
+
                 <p>
-                  LaunchPath reflects a systems-first approach grounded in stewardship and integrity. It is an educational program designed to help new owner-operators understand authority, insurance, compliance, and cash flow requirements during their first 90 days.
-                </p>
-                <p>
-                  Built as a Kingdom business, LaunchPath is established on the values of stewardship and integrity. We prioritize administrative accuracy and federal law to provide a technical foundation for new motor carriers. <span className="text-white font-black underline decoration-signal-gold decoration-4 underline-offset-8">Compliance methodology matters more than industry experience.</span>
+                  Built as a Kingdom business, LaunchPath is established on the values of stewardship and integrity. We prioritize administrative accuracy and federal law to provide a technical foundation for new motor carriers. <span className="text-white font-black">Compliance methodology matters more than industry experience.</span>
                 </p>
                 <p className="text-sm font-bold opacity-60">
-                  Information provided by LaunchPath is for educational purposes only and does not constitute legal, tax, or financial advice.
+                  LaunchPath is an educational and coaching program only. This information is not legal, tax, financial, insurance, or regulatory advice.
                 </p>
               </div>
               
