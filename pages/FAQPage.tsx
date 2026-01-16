@@ -56,7 +56,7 @@ const FAQPage = () => {
       questions: [
         {
           q: "What's the difference between the $797 and $1,497 tiers?",
-          a: "The $797 Mastery Bundle includes the curriculum and group support via weekly calls. The $1,497 Elite tier is where I get personally involved—I'll perform a mock audit of your files and give you 1-on-1 time to ensure your specific operation is bulletproof. Check the details on my /pricing page."
+          a: "The $797 Mastery Bundle includes the curriculum and group support via weekly calls. The $1,497 Elite tier is where I get personally involved—I'll perform a mock audit of your files and give you 1-on-1 time to ensure your specific operation is bulletproof. Check the details on my /enroll page."
         },
         {
           q: "Do you offer payment plans?",

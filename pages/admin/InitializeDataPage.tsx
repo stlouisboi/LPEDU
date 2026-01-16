@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Database, 
@@ -79,7 +78,7 @@ const InitializeDataPage = () => {
             headline: INITIAL_SETTINGS.heroTitle,
             subheadline: INITIAL_SETTINGS.heroSubtitle,
             imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200',
-            primaryCTA: { text: 'Start Learning', link: '/pricing' },
+            primaryCTA: { text: 'Start Learning', link: '/enroll' },
             secondaryCTA: { text: 'View Roadmap', link: '/learning-path' }
           },
           mission: {
@@ -265,7 +264,7 @@ const InitializeDataPage = () => {
       <div className="bg-authority-blue p-10 rounded-[3.5rem] text-white relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="max-w-xl">
+          <div className="max-xl">
             <h3 className="text-2xl font-bold font-serif mb-4 flex items-center">
               <RefreshCw className="mr-3 text-signal-gold" size={24} />
               Sync Protocol

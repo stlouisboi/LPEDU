@@ -11,7 +11,7 @@ interface Message {
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "I'm your FMCSA Quick-Advisor. Ask me anything about federal or state-specific compliance for box trucks and semi-trucks (CA, TX, NY, etc.). I'll keep it short and sweet." }
+    { role: 'assistant', content: "Hello! I'm the LaunchPath™ AI Advisor. I can help explain trucking compliance concepts and decision risks. How can I assist you today?" }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -43,7 +43,12 @@ const AIChatWidget = () => {
         model: 'gemini-3-flash-preview',
         contents: userMsg,
         config: {
-          systemInstruction: "You are the LaunchPath Quick-Advisor. Role: FMCSA and State-Specific Compliance Expert (CA, TX, NY, FL, etc.). Style: DIRECT, SHORT, SWEET. Provide specific regulatory guidance including CDL requirements, IRP/IFTA, and state-specific nuances (e.g., California BIT inspections, New York HUT, Texas DOT numbers). Use Google Search for accuracy. Maximum 3-4 sentences per response. Include bullet points for clarity.",
+          systemInstruction: `You are the LaunchPath™ AI Advisor.
+ROLE: You act as an educational guide and gatekeeper for LaunchPath.
+CORE PURPOSE: Help visitors understand trucking compliance concepts at a high level. Explain risks and terminology.
+NON-NEGOTIABLE RULES: Do NOT provide step-by-step instructions. Do NOT give personalized advice.
+ALLOWED BEHAVIOR: Use phrases like "At a high level...", "Educationally speaking...".
+DISCLAIMER: "LaunchPath is an educational and coaching program only. This information is not legal, tax, financial, insurance, or regulatory advice."`,
           tools: [{ googleSearch: {} }],
           temperature: 0.3,
         }
@@ -79,11 +84,11 @@ const AIChatWidget = () => {
   };
 
   const starterQuestions = [
-    "What are California BIT inspection requirements?",
+    "What are North Carolina BIT inspection requirements?",
     "Do I need a TX DOT number if I have a Federal DOT?",
-    "How do I register for New York HUT?",
-    "DQ file checklist?",
-    "HOS rules for box trucks?"
+    "How do I register for Indiana HUT?",
+    "What is a DQ file?",
+    "Compliance risks for new carriers?"
   ];
 
   return (
@@ -97,8 +102,8 @@ const AIChatWidget = () => {
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <h3 className="text-white font-black text-sm uppercase tracking-tighter leading-none">Quick-Advisor</h3>
-                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">State & Federal Support</p>
+                <h3 className="text-white font-black text-sm uppercase tracking-tighter leading-none">AI Advisor</h3>
+                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Educational Guidance</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-white transition-colors p-1">
@@ -151,7 +156,7 @@ const AIChatWidget = () => {
             <div className="p-4 grid grid-cols-1 gap-2 bg-white dark:bg-gray-900 border-t border-border-light dark:border-border-dark">
               <div className="flex items-center space-x-2 mb-1 px-1">
                 <Globe size={10} className="text-signal-gold" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-text-muted">Regional Regulations</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-text-muted">Common Inquiries</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {starterQuestions.map((q) => (
@@ -176,7 +181,7 @@ const AIChatWidget = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="State or Federal rule?"
+                placeholder="How can I help you understand?"
                 className="w-full bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark pl-5 pr-14 py-4 rounded-2xl outline-none focus:ring-4 focus:ring-authority-blue/5 text-sm font-bold placeholder:opacity-50"
               />
               <button 

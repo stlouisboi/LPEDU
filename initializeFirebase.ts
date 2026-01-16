@@ -1,4 +1,3 @@
-
 import { doc, getDoc, setDoc, collection, getDocs, writeBatch } from "firebase/firestore";
 import { db } from "./firebase";
 import { INITIAL_SETTINGS, INITIAL_BLOGS, INITIAL_TESTIMONIALS, COURSE_MODULES } from "./constants";
@@ -61,7 +60,7 @@ export const initializeFirebaseData = async (onLog: (log: InitLog) => void) => {
           headline: INITIAL_SETTINGS.heroTitle,
           subheadline: INITIAL_SETTINGS.heroSubtitle,
           imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200',
-          primaryCTA: { text: 'Start Learning', link: '/pricing' },
+          primaryCTA: { text: 'Start Learning', link: '/enroll' },
           secondaryCTA: { text: 'View Roadmap', link: '/learning-path' }
         },
         mission: {

@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
+import Logo from '../components/Logo';
 
 const OSHABadgeSmall = () => (
   <svg width="140" height="56" viewBox="0 0 160 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-md">
@@ -107,6 +108,11 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 text-center lg:text-left">
+              {/* Branding Logo integrated into Hero as requested */}
+              <div className="mb-10 inline-block">
+                <Logo className="mb-4" />
+              </div>
+              
               <div className="inline-flex items-center space-x-2 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-authority-blue mb-8">
                 <ShieldCheck size={14} className="text-signal-gold" />
                 <span>The Four Pillars Methodology</span>
@@ -121,8 +127,8 @@ const HomePage: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12">
-                <Link to="/pricing" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all flex items-center shadow-2xl active:scale-95">
-                  View Enrollment Options <ArrowRight className="ml-3" size={16} />
+                <Link to="/enroll" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all flex items-center shadow-2xl active:scale-95">
+                  Start Learning <ArrowRight className="ml-3" size={16} />
                 </Link>
                 <Link to="/learning-path" className="bg-white dark:bg-gray-800 text-authority-blue dark:text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 dark:hover:bg-gray-700 transition-all border border-border-light dark:border-border-dark flex items-center shadow-sm active:scale-95">
                   View My Roadmap
@@ -207,23 +213,23 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            {/* Image Column */}
-            <div className="lg:col-span-4 xl:col-span-3 flex flex-col items-center lg:items-start group">
-              <div className="relative h-[350px] w-full max-w-[300px] bg-white/5 rounded-[3rem] border border-white/10 p-5 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden">
+            {/* Image Column - Made Picture A Little Bigger */}
+            <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-center lg:items-start group">
+              <div className="relative h-[480px] w-full max-w-[400px] bg-white/5 rounded-[3rem] border border-white/10 p-5 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden">
                  <img 
                    src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
                    alt="Vince Lawrence - LaunchPath Founder" 
                    className="w-full h-full object-cover object-top rounded-[2rem] grayscale contrast-125 transition-transform duration-700 group-hover:scale-105" 
                  />
               </div>
-              <div className="mt-12 w-full max-w-[300px] p-6 bg-white/5 backdrop-blur-xl rounded-[1.5rem] border border-white/10 shadow-2xl">
+              <div className="mt-12 w-full max-w-[400px] p-6 bg-white/5 backdrop-blur-xl rounded-[1.5rem] border border-white/10 shadow-2xl">
                 <p className="text-base font-bold font-serif italic mb-1.5 text-white leading-tight">"Accuracy Over Hype."</p>
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">Vince Lawrence | Founder</p>
               </div>
             </div>
 
             {/* Content Column */}
-            <div className="lg:col-span-8 xl:col-span-9 space-y-8 xl:space-y-10">
+            <div className="lg:col-span-8 xl:col-span-8 space-y-8 xl:space-y-10">
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold mb-4">
                   <Star size={14} fill="currentColor" />
@@ -377,7 +383,7 @@ const HomePage: React.FC = () => {
              <p className="text-xl font-bold text-red-200 mb-10 max-w-4xl mx-auto leading-relaxed italic">
                "The DOT does not prioritize operational 'hustle'. They prioritize technical compliance. Build your backbone before you build your load volume."
              </p>
-             <Link to="/pricing" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all shadow-2xl active:scale-95 group">
+             <Link to="/enroll" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all shadow-2xl active:scale-95 group">
                 <span>INSTALL YOUR BACKBONE NOW</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
              </Link>
@@ -508,7 +514,7 @@ const HomePage: React.FC = () => {
                   <li key={j} className="flex items-start text-sm"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> {f}</li>
                 ))}
               </ul>
-              <Link to="/pricing" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center hover:bg-steel-blue transition-all shadow-xl active:scale-95">SELECT FUNDAMENTALS</Link>
+              <Link to="/enroll" className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center hover:bg-steel-blue transition-all shadow-xl active:scale-95">SELECT FUNDAMENTALS</Link>
             </div>
 
             {/* TIER 2 */}
@@ -534,7 +540,7 @@ const HomePage: React.FC = () => {
                   <li key={j} className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> {f}</li>
                 ))}
               </ul>
-              <Link to="/pricing" className="w-full bg-signal-gold text-authority-blue py-6 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center hover:bg-white transition-all shadow-2xl active:scale-95">START IMPLEMENTATION</Link>
+              <Link to="/enroll" className="w-full bg-signal-gold text-authority-blue py-6 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center hover:bg-white transition-all shadow-2xl active:scale-95">START IMPLEMENTATION</Link>
             </div>
 
             {/* TIER 3 */}
@@ -559,7 +565,7 @@ const HomePage: React.FC = () => {
                   <li key={j} className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> {f}</li>
                 ))}
               </ul>
-              <Link to="/pricing" className="w-full border-4 border-authority-blue text-authority-blue dark:text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center hover:bg-authority-blue hover:text-white transition-all shadow-xl active:scale-95">INQUIRE FOR REVIEW</Link>
+              <Link to="/enroll" className="w-full border-4 border-authority-blue text-authority-blue dark:text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-xs text-center hover:bg-authority-blue hover:text-white transition-all shadow-xl active:scale-95">INQUIRE FOR REVIEW</Link>
             </div>
           </div>
           
@@ -614,7 +620,7 @@ const HomePage: React.FC = () => {
            <h2 className="text-5xl lg:text-8xl font-black font-serif tracking-tighter mb-6 text-authority-blue dark:text-white leading-[0.9]">Implement Your <span className="text-signal-gold">Compliance Backbone.</span></h2>
            <p className="text-2xl lg:text-3xl text-text-muted dark:text-text-dark-muted mb-12 font-medium">Start the curriculum tonight. Build your technical framework tomorrow.</p>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-             <Link to="/pricing" className="inline-flex items-center space-x-5 bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] text-2xl font-black uppercase tracking-widest hover:bg-signal-gold transition-all shadow-2xl active:scale-95 group">
+             <Link to="/enroll" className="inline-flex items-center space-x-5 bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] text-2xl font-black uppercase tracking-widest hover:bg-signal-gold transition-all shadow-2xl active:scale-95 group">
                 <span>GET STARTED</span>
                 <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
              </Link>

@@ -5,7 +5,6 @@ import {
   Moon, 
   Menu, 
   X, 
-  ChevronRight, 
   Loader2
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
@@ -124,7 +123,7 @@ const Header = () => {
                 {theme === 'light' ? <Moon className="w-5 h-5 text-authority-blue" /> : <Sun className="w-5 h-5 text-signal-gold" />}
               </button>
               <Link
-                to="/pricing"
+                to="/enroll"
                 className="bg-authority-blue text-white px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-steel-blue transition-all shadow-md"
               >
                 Enroll
@@ -160,7 +159,7 @@ const Header = () => {
             ))}
             <div className="pt-4 border-t border-border-light mt-2">
               <Link
-                to="/pricing"
+                to="/enroll"
                 className="block w-full bg-authority-blue text-white py-4 rounded-xl text-center font-black uppercase tracking-widest"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -249,7 +248,8 @@ export default function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/legal" element={<LegalPage />} />
               <Route path="/advisor" element={<AIServicePage />} />
-              <Route path="/pricing" element={<EnrollPage />} />
+              <Route path="/enroll" element={<EnrollPage />} />
+              <Route path="/pricing" element={<Navigate to="/enroll" replace />} />
               <Route path="/modules/:id" element={<ModuleDetailPage />} />
               <Route path="/download/risk-map" element={<DownloadPage />} />
               <Route path="/admin/login" element={<AdminLogin />} />
