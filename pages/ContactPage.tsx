@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, ArrowRight, MessageSquare, Scale, Anchor, User } from 'lucide-react';
 import { collection, addDoc, doc, getDoc, serverTimestamp } from "firebase/firestore";
@@ -63,8 +64,8 @@ const ContactPage = () => {
             <div className="relative h-80 w-full overflow-hidden rounded-[3.5rem] shadow-2xl border-4 border-white dark:border-surface-dark group bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
               {!imgError ? (
                 <img 
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800" 
-                  alt="LaunchPath Support Specialist" 
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" 
+                  alt="LaunchPath Operational Guidance Center" 
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                   onError={() => setImgError(true)}
                 />

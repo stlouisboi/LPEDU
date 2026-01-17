@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -6,7 +7,15 @@ import {
   Menu, 
   X, 
   ChevronRight, 
-  Loader2
+  Loader2,
+  Linkedin,
+  Facebook,
+  Youtube,
+  Twitter,
+  ArrowRight,
+  ShieldCheck,
+  Award,
+  ExternalLink
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -175,15 +184,192 @@ const Header = () => {
   );
 };
 
+const VeteranBadge = () => (
+  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
+    <div className="flex items-center space-x-1 mb-1">
+      <Award size={14} className="text-signal-gold" fill="currentColor" />
+      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center">VETERAN OWNED</span>
+    </div>
+    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
+    <span className="text-[8px] font-bold text-white/60 uppercase text-center">U.S. VETERAN OWNED</span>
+  </div>
+);
+
+const OSHABadge = () => (
+  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
+    <div className="flex items-center space-x-1 mb-1">
+      <ShieldCheck size={14} className="text-signal-gold" />
+      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">OSHA-TRAINED</span>
+    </div>
+    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
+    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">SAFETY SYSTEMS BACKGROUND</span>
+  </div>
+);
+
 const Footer = () => {
   const location = useLocation();
   if (location.pathname.startsWith('/admin')) return null;
+
   return (
-    <footer className="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-12">
-      <div className="max-w-7xl mx-auto px-4 text-center flex flex-col items-center space-y-6">
-         <Logo className="opacity-60 transition-all grayscale hover:grayscale-0 hover:opacity-100" />
-         <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">© {new Date().getFullYear()} LaunchPath™ Transportation EDU.</p>
-      </div>
+    <footer className="w-full font-sans">
+      {/* SECTION 1: FINAL CALL TO ACTION */}
+      <section className="bg-[#1E3A5F]/90 dark:bg-authority-blue/40 py-[60px] border-t border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
+        <div className="max-w-[700px] mx-auto px-6 text-center relative z-10">
+          <h2 className="text-[28px] md:text-[32px] font-bold text-white mb-8 leading-tight">
+            Build your operational foundation.
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link 
+              to="/pricing" 
+              className="w-full sm:w-auto bg-signal-gold text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95"
+            >
+              Get Started
+            </Link>
+            <Link 
+              to="/download/risk-map" 
+              className="w-full sm:w-auto border-2 border-white text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all active:scale-95"
+            >
+              Download Risk Map
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2: FOOTER NAVIGATION */}
+      <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Navigation">
+            {/* COMPANY */}
+            <div>
+              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">COMPANY</h3>
+              <ul className="space-y-4">
+                {[
+                  { name: 'About LaunchPath', path: '/about' },
+                  { name: 'Contact Us', path: '/contact' },
+                  { name: 'Frequently Asked Questions', path: '/faq' },
+                  { name: 'Billing & Account Support', path: '/support' }
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* PROGRAM */}
+            <div>
+              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">PROGRAM</h3>
+              <ul className="space-y-4">
+                {[
+                  { name: 'Course Curriculum', path: '/learning-path' },
+                  { name: 'Enrollment Options', path: '/pricing' },
+                  { name: 'The Four Pillars', path: '/#pillars' },
+                  { name: 'Informational AI Support', path: '/advisor' }
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* RESOURCES */}
+            <div>
+              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">RESOURCES</h3>
+              <ul className="space-y-4">
+                {[
+                  { name: 'Knowledge Base', path: '/blog' },
+                  { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
+                  { name: 'Educational Downloads', path: '/resources' },
+                  { name: 'FMCSA Regulatory Links', path: '/resources' }
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* LEGAL */}
+            <div>
+              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">LEGAL</h3>
+              <ul className="space-y-4">
+                {[
+                  { name: 'Privacy Policy', path: '/legal' },
+                  { name: 'Terms of Service', path: '/legal' },
+                  { name: 'Refund Policy', path: '/faq' },
+                  { name: 'Educational Disclaimer', path: '/legal' }
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+      {/* SECTION 3: BOTTOM BAR */}
+      <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/10 py-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
+            
+            {/* LEFT SIDE: Identity & Disclaimer */}
+            <div className="flex-grow">
+              <div className="flex items-center gap-3 mb-4">
+                <Logo light className="h-8 grayscale-0 brightness-0 invert" />
+              </div>
+              <p className="text-[14px] text-white/60 mb-1">
+                © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.
+              </p>
+              <p className="text-[14px] font-medium text-white/70 mb-6 uppercase tracking-widest text-[10px]">
+                Veteran Owned & Operated. Dedicated to Operational Integrity.
+              </p>
+              <div className="max-w-[600px]">
+                <p className="text-[13px] text-white/50 leading-relaxed italic">
+                  LaunchPath is an educational platform providing informational training and resources for motor carrier operations. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice. LaunchPath does not provide regulatory representation or individual compliance consulting. Users are encouraged to consult with licensed professionals regarding specific legal and insurance requirements.
+                </p>
+              </div>
+            </div>
+
+            {/* RIGHT SIDE: Badges & Social */}
+            <div className="flex flex-col items-center lg:items-end shrink-0 w-full lg:w-auto">
+              <div className="flex flex-wrap justify-center lg:justify-end gap-6 mb-10">
+                <VeteranBadge />
+                <OSHABadge />
+              </div>
+              
+              <div className="flex items-center gap-8">
+                {[
+                  { icon: <Linkedin size={24} />, label: "LinkedIn", href: "#" },
+                  { icon: <Facebook size={24} />, label: "Facebook", href: "#" },
+                  { icon: <Youtube size={24} />, label: "YouTube", href: "#" },
+                  { icon: <Twitter size={24} />, label: "Twitter", href: "#" }
+                ].map((social) => (
+                  <a 
+                    key={social.label}
+                    href={social.href}
+                    aria-label={`Follow LaunchPath on ${social.label}`}
+                    className="text-white/60 hover:text-signal-gold transition-colors duration-300"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </footer>
   );
 };

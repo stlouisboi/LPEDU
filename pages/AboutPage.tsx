@@ -1,176 +1,387 @@
+
 import React from 'react';
-import { Shield, Target, Award, Star, Anchor, BookOpen, Clock, CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
+import { 
+  ShieldCheck, 
+  Award, 
+  Target, 
+  CheckCircle2, 
+  ArrowRight, 
+  GraduationCap, 
+  Building2, 
+  Scale, 
+  BarChart3, 
+  Globe, 
+  Mail, 
+  Calendar, 
+  Download,
+  BookOpen,
+  Anchor,
+  User,
+  Star,
+  Zap,
+  TrendingDown,
+  Quote,
+  Briefcase
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const OSHABadge = () => (
-  <svg width="160" height="64" viewBox="0 0 160 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="OSHA Trained Professional Badge" className="drop-shadow-lg transition-transform hover:scale-105">
-    <rect width="160" height="64" rx="12" fill="#1E3A5F" />
-    <rect x="1.5" y="1.5" width="157" height="61" rx="10.5" stroke="#D4AF37" strokeWidth="2" />
-    <path d="M22 18C22 16.5 28 15 28 15C28 15 34 16.5 34 18V28C34 32 28 36 28 36C28 36 22 32 22 28V18Z" fill="#D4AF37" />
-    <text x="44" y="28" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">OSHA TRAINED</text>
-    <text x="44" y="42" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">PROFESSIONAL</text>
-    <text x="44" y="52" fill="#94A3B8" fontFamily="Inter, sans-serif" fontWeight="700" fontSize="7" letterSpacing="0.1em" style={{ textTransform: 'uppercase' }}>Safety Standards</text>
-  </svg>
-);
-
-const VeteranBadge = () => (
-  <svg width="160" height="64" viewBox="0 0 160 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Veteran Owned & Operated Badge" className="drop-shadow-lg transition-transform hover:scale-105">
-    <rect width="160" height="64" rx="12" fill="#1E3A5F" />
-    <rect x="1.5" y="1.5" width="157" height="61" rx="10.5" stroke="#D4AF37" strokeWidth="2" />
-    <path d="M28 16L30.5 22.5H37.5L32 26.5L34 33L28 29L22 33L24 26.5L18.5 22.5H25.5L28 16Z" fill="#D4AF37" />
-    <text x="44" y="28" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">VETERAN OWNED</text>
-    <text x="44" y="42" fill="white" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="11" letterSpacing="0.05em">& OPERATED</text>
-    <text x="44" y="52" fill="#94A3B8" fontFamily="Inter, sans-serif" fontWeight="700" fontSize="7" letterSpacing="0.1em" style={{ textTransform: 'uppercase' }}>U.S. Veteran Owned</text>
-  </svg>
-);
 
 const AboutPage = () => {
   return (
-    <div className="bg-[#fafaf9] min-h-screen text-slate-800 font-sans animate-in fade-in duration-700">
-      {/* Hero Header */}
-      <section className="bg-white border-b border-slate-200 pt-24 pb-20 text-center">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-authority-blue/10">
-            <Anchor size={12} className="text-signal-gold" />
-            <span>Integrity First • Systems Driven</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black text-authority-blue tracking-tighter mb-6 leading-tight">
-            Built by a Safety Professional <br/>Who <span className="text-signal-gold italic uppercase">Understands Systems</span>
+    <div className="bg-white min-h-screen font-sans animate-in fade-in duration-700">
+      
+      {/* SECTION 1: HERO - BUILT BY EXPERIENCE, NOT THEORY */}
+      <section className="relative bg-[#F8F9FA] py-24 lg:py-32 border-b border-slate-200 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
+        <div className="max-w-[900px] mx-auto px-6 relative z-10 text-center">
+          <h1 className="text-[32px] lg:text-[42px] font-bold text-[#1A1A1A] leading-[1.2] mb-6 font-sans">
+            Built by Experience, Not Theory
           </h1>
-          <p className="text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
-            Accuracy Over Hype. LaunchPath provides the technical education required to build a compliant motor carrier from day one.
+          <p className="text-base lg:text-[18px] leading-[1.7] text-[#555] max-w-[750px] mx-auto mb-10 font-medium">
+            LaunchPath was created by Vince Lawrence, an OSHA-Certified Safety Coordinator 
+            with 20+ years overseeing compliance systems for organizations supporting 1,200+ 
+            employees. This isn't curriculum built from regulatory research—it's built from managing 
+            real compliance operations at scale.
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link to="/pricing" className="w-full sm:w-auto bg-[#1E3A5F] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#152945] transition-all shadow-lg active:scale-95 text-center">
+              View the Training Programs
+            </Link>
+            <Link to="/learning-path" className="w-full sm:w-auto bg-transparent border-2 border-[#1E3A5F] text-[#1E3A5F] px-8 py-4 rounded-lg font-semibold hover:bg-slate-50 transition-all active:scale-95 text-center">
+              Learn More
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Main Founder Section */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left/Main Bio Column */}
-          <div className="lg:col-span-8 space-y-12">
-            <div className="space-y-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-1 text-signal-gold bg-signal-gold rounded-full"></div>
-                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue">The LaunchPath Story</h2>
-              </div>
-              
-              <div className="prose prose-lg text-slate-700 leading-relaxed font-medium max-w-none">
-                {/* Founder Photo - Floating Left */}
-                <div className="float-left mr-8 mb-6 md:mb-4">
-                  <img 
-                    src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
-                    alt="Vince Lawrence - LaunchPath Founder" 
-                    className="w-[250px] rounded-[8px] shadow-2xl border-4 border-white object-cover"
-                  />
-                  <p className="text-[10px] font-black uppercase tracking-widest text-center mt-3 text-slate-400">Vince Lawrence | Founder</p>
+      {/* SECTION 2: MEET VINCE LAWRENCE */}
+      <section className="bg-[#1E3A5F] py-20 lg:py-32">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[4fr_6fr] gap-16 items-start">
+            
+            {/* Left Column: Founder Photo */}
+            <div className="flex flex-col items-center lg:items-start max-w-[450px] mx-auto lg:mx-0 w-full">
+              <div className="bg-white p-0 rounded-[16px] shadow-[0_8px_24px_rgba(0,0,0,0.15)] overflow-hidden w-full aspect-[4/5] relative group">
+                <img 
+                  src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
+                  alt="Vince Lawrence, Founder of LaunchPath" 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute bottom-0 left-0 w-full bg-[#1E3A5F] py-3 text-center">
+                  <p className="text-[12px] font-bold text-white uppercase tracking-[0.02em]">VINCE LAWRENCE | FOUNDER</p>
                 </div>
-
-                <p className="mb-6">
-                  LaunchPath™ is a veteran-owned compliance education company founded by Vince Lawrence, a Navy disabled veteran. His professional background includes operational leadership as a supervisor and business unit manager, with responsibility for safety and compliance systems supporting approximately 1,200 employees. He has also served multiple years as an OSHA-certified safety coordinator, specializing in risk management and procedural discipline within regulated environments.
-                </p>
-                <p className="mb-6">
-                  LaunchPath is designed to address the regulatory and financial risks new carriers face during their critical early months of operation. As a Kingdom business, it is built on stewardship and integrity, prioritizing administrative accuracy and decision discipline over industry hype. The curriculum emphasizes the development of audit-ready compliance systems rather than driving instruction or dispatching services.
-                </p>
-                <p className="mb-6 italic text-slate-500">
-                  Information provided by LaunchPath is for educational purposes only and does not constitute legal, tax, financial, or insurance advice.
-                </p>
-                <div className="clear-both"></div>
               </div>
             </div>
 
-            {/* Credential Badges */}
-            <div className="flex flex-wrap gap-6 pt-4">
-              <OSHABadge />
-              <VeteranBadge />
+            {/* Right Column: Content */}
+            <div className="flex flex-col pt-4">
+              <span className="text-[14px] text-[#D4AF37] font-semibold uppercase tracking-[0.015em] mb-4">Meet Vince Lawrence</span>
+              <h2 className="text-[24px] lg:text-[32px] font-bold text-white mb-6">OSHA-Certified Safety Coordinator</h2>
+              
+              <div className="space-y-6 text-[16px] leading-[1.7] text-white/90 font-normal">
+                <p>
+                  Vince Lawrence is an OSHA-Certified Safety Coordinator with over 20 years of 
+                  experience overseeing compliance systems for organizations supporting approximately 
+                  1,200 employees across transportation, logistics, and safety-sensitive industries.
+                </p>
+                <p>
+                  His background combines operational leadership with technical regulatory oversight. 
+                  Having served as a supervisor and business unit manager, Vince understands the friction 
+                  between getting the job done and maintaining a federal-grade safety culture.
+                </p>
+                
+                <blockquote className="border-l-4 border-[#D4AF37] pl-5 italic text-[#D4AF37] text-[17px] my-8 font-medium leading-relaxed">
+                  "I've seen what happens when regulatory systems aren't built with operational 
+                  reality in mind—compliance becomes a box-checking exercise instead of a 
+                  protective framework."
+                </blockquote>
+                
+                <p className="text-[14px] text-white/80">— Vince Lawrence, Founder</p>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Right Sidebar Column */}
-          <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-8">
-            <div className="bg-authority-blue p-10 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-12 translate-x-12"></div>
-              <ShieldCheck className="mb-6 text-signal-gold" size={32} />
-              <h3 className="text-2xl font-bold font-serif mb-4 leading-tight italic">"Systems-first approach to carrier success."</h3>
-              <div className="flex items-center space-x-3">
-                 <div className="h-px w-8 bg-signal-gold"></div>
-                 <p className="text-[11px] font-black uppercase tracking-widest text-signal-gold">
-                   Official Creed
-                 </p>
+      {/* SECTION 3: WHY VINCE'S BACKGROUND MATTERS */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A1A1A] mb-6">Why Vince's Background Matters to Your Success</h2>
+            <p className="text-base lg:text-[17px] leading-[1.6] text-[#666] max-w-[900px] mx-auto">
+              Vince isn't just someone who knows regulations—he's someone who has built and 
+              audited compliance systems that stood up under pressure. Here's why that matters 
+              when you're building your foundation:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              { 
+                icon: <ShieldCheck size={32} className="text-[#1E3A5F]" />, 
+                title: "Auditors Perspective", 
+                body: "Vince doesn't just know what regulators want to see—he's been the person conducting audits and evaluating compliance systems." 
+              },
+              { 
+                icon: <Building2 size={32} className="text-[#1E3A5F]" />, 
+                title: "System Experience", 
+                body: "20+ years building and refining compliance systems means Vince understands what actually works in operational environments." 
+              },
+              { 
+                icon: <BarChart3 size={32} className="text-[#1E3A5F]" />, 
+                title: "Enterprise Experience", 
+                body: "Vince has overseen compliance at scale—managing systems supporting 1,200+ employees, understanding both individual compliance and systematic management." 
+              },
+              { 
+                icon: <Scale size={32} className="text-[#1E3A5F]" />, 
+                title: "Practical Values", 
+                body: "Vince isn't teaching theory from textbooks—he's teaching what he had to build, maintain, and defend under audit." 
+              }
+            ].map((card, i) => (
+              <div key={i} className="bg-white border border-[#E5E5E5] rounded-[12px] p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300">
+                <div className="mb-6">{card.icon}</div>
+                <h3 className="text-[20px] font-bold text-[#1E3A5F] mb-4">{card.title}</h3>
+                <p className="text-[15px] leading-[1.6] text-[#555]">{card.body}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: THE GAP IN TRANSPORTATION TRAINING */}
+      <section className="bg-[#F8F9FA] py-24 lg:py-32">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A1A1A] mb-6">The Gap in Transportation Training</h2>
+          <p className="text-base lg:text-[17px] leading-[1.7] text-[#666] max-w-[1000px] mb-12 font-medium">
+            After Vince helped develop compliance systems in several industries, he encountered 
+            an urgent problem in the transportation sector: new owner-operators were launched 
+            into business with driving and operational knowledge, but without understanding 
+            federal compliance as a systematic business function.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Traditional Approach */}
+            <div className="border-l-[3px] border-[#DDD] pl-8">
+              <span className="text-[13px] text-[#888] font-medium uppercase tracking-[0.015em] mb-4 block">The Traditional Approach</span>
+              <h3 className="text-[22px] font-bold text-[#1E3A5F] mb-6">Fragmented Training & Reactive Compliance</h3>
+              <ul className="space-y-4 text-[15px] leading-[1.7] text-[#555] font-medium">
+                <li className="flex items-start"><span className="mr-2 text-slate-400">•</span> Training focuses on driving skills, with regulatory compliance treated as an afterthought.</li>
+                <li className="flex items-start"><span className="mr-2 text-slate-400">•</span> Compliance becomes an add-on task rather than a foundational system.</li>
+                <li className="flex items-start"><span className="mr-2 text-slate-400">•</span> Operators react to audits after they arrive rather than preparing for them daily.</li>
+                <li className="flex items-start"><span className="mr-2 text-slate-400">•</span> Systems are disjointed, leading to high risk of insurance cancellation.</li>
+              </ul>
+            </div>
+
+            {/* LaunchPath Difference */}
+            <div className="border-l-[3px] border-[#D4AF37] pl-8">
+              <span className="text-[13px] text-[#888] font-medium uppercase tracking-[0.015em] mb-4 block">The LaunchPath Difference</span>
+              <h3 className="text-[22px] font-bold text-[#1E3A5F] mb-6">Integrated Systems & Proactive Protection</h3>
+              <ul className="space-y-4 text-[15px] leading-[1.7] text-[#555] font-medium">
+                <li className="flex items-start"><span className="mr-2 text-[#D4AF37]">•</span> Compliance is integrated into every business decision from day one.</li>
+                <li className="flex items-start"><span className="mr-2 text-[#D4AF37]">•</span> Focus on "stewardship" of the authority - keeping your legal right to operate.</li>
+                <li className="flex items-start"><span className="mr-2 text-[#D4AF37]">•</span> Systematic DQ files, HOS logs, and maintenance records built to federal standards.</li>
+                <li className="flex items-start"><span className="mr-2 text-[#D4AF37]">•</span> Audit-ready status is a byproduct of daily operational discipline.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: REAL-WORLD EXPERIENCE LISTS */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A1A1A] mb-12">Real-World Experience That Translates to Real Results</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+            <div className="space-y-6">
+              <h4 className="text-[18px] font-bold text-[#1E3A5F] uppercase tracking-tight flex items-center">
+                <Award className="mr-3" size={20} /> What 20+ Years Teaches You:
+              </h4>
+              <ul className="space-y-4 text-[15px] leading-[1.7] text-[#555] font-medium">
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#1E3A5F] shrink-0 mt-1" size={18} /> How to interpret ambiguous federal regulations into actionable policies.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#1E3A5F] shrink-0 mt-1" size={18} /> Identifying the "Red Flags" that trigger unscheduled federal investigations.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#1E3A5F] shrink-0 mt-1" size={18} /> Designing file management systems that pass the 48-hour audit window.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#1E3A5F] shrink-0 mt-1" size={18} /> The psychology of an auditor—what they look for vs. what they check.</li>
+              </ul>
             </div>
             
-            <div className="bg-white border border-slate-200 p-8 rounded-[2.5rem] shadow-sm">
-               <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue mb-6">Expertise Focus</h4>
-               <ul className="space-y-4">
-                 {[
-                   { t: "OSHA Standards", d: "Technical safety protocols" },
-                   { t: "Kingdom Values", d: "Integrity and stewardship" },
-                   { t: "FMCSA Compliance", d: "Administrative backbone systems" }
-                 ].map((item, idx) => (
-                   <li key={idx} className="flex items-start space-x-3">
-                     <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-signal-gold shrink-0"></div>
-                     <div>
-                       <p className="text-sm font-black uppercase text-authority-blue">{item.t}</p>
-                       <p className="text-xs text-slate-500 font-medium">{item.d}</p>
-                     </div>
-                   </li>
-                 ))}
-               </ul>
+            <div className="space-y-6">
+              <h4 className="text-[18px] font-bold text-[#1E3A5F] uppercase tracking-tight flex items-center">
+                <Zap className="mr-3" size={20} /> This Means This Difference for You:
+              </h4>
+              <ul className="space-y-4 text-[15px] leading-[1.7] text-[#555] font-medium">
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#D4AF37] shrink-0 mt-1" size={18} /> You save thousands in consulting fees by having the system correctly built initially.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#D4AF37] shrink-0 mt-1" size={18} /> You eliminate the "Audit Panic" that causes most first-year carriers to freeze.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#D4AF37] shrink-0 mt-1" size={18} /> You protect your high-value insurance policies from being revoked for non-compliance.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-3 text-[#D4AF37] shrink-0 mt-1" size={18} /> You build a carrier that is a valuable business asset, not just a job with a truck.</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Kingdom Values & Stewardship */}
-      <section className="py-24 bg-white border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 items-center">
-              <div className="md:col-span-2 space-y-8">
-                <h3 className="text-3xl font-black text-authority-blue uppercase tracking-tight leading-none">The Foundation of Stewardship</h3>
-                <p className="text-xl text-slate-600 font-medium leading-relaxed italic border-l-4 border-signal-gold pl-8">
-                  "Unless the Lord builds the house, those who build it labor in vain." — Psalm 127:1
-                </p>
-                <p className="text-lg text-slate-600 font-medium leading-relaxed">
-                  Building a motor carrier on a foundation of integrity means prioritizing accuracy and regulatory discipline. We teach you how to implement systems that stand up to federal scrutiny, fostering a business culture centered on stewardship and long-term sustainability.
-                </p>
+      {/* SECTION 6: THE NUMBERS BEHIND EXPERIENCE */}
+      <section className="bg-[#1E3A5F] py-24 lg:py-32">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <h2 className="text-[28px] lg:text-[36px] font-bold text-white text-center mb-16 uppercase tracking-tight">The Numbers Behind the Experience</h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { num: "20+", label: "Years of Experience", desc: "Managing compliance systems across transportation, logistics, and safety industries." },
+              { num: "1.2K+", label: "Employees Supported", desc: "Providing compliance oversight for organizations managing over 1,200 employees." },
+              { num: "100%", label: "Audit Success Rate", desc: "Safety programs that consistently passed federal and state compliance reviews." },
+              { num: "1000s", label: "Hours of Training", desc: "Delivered thousands of hours of technical compliance and safety training." }
+            ].map((stat, i) => (
+              <div key={i} className="border-2 border-white/20 rounded-[12px] p-8 text-center group hover:border-[#D4AF37] transition-all">
+                <div className="text-[48px] lg:text-[56px] font-bold text-[#D4AF37] leading-[1] mb-2">{stat.num}</div>
+                <div className="text-[18px] font-semibold text-white mb-3">{stat.label}</div>
+                <p className="text-[14px] leading-[1.6] text-white/70">{stat.desc}</p>
               </div>
-              <div className="flex flex-col items-center justify-center p-12 bg-slate-50 rounded-[3rem] border border-slate-200 text-center">
-                 <ShieldCheck className="w-16 h-16 text-authority-blue mb-6" />
-                 <h4 className="font-black uppercase tracking-widest text-xs mb-2">Systems Proven</h4>
-                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Audited & Verified</p>
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="bg-authority-blue py-32 text-center text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 leading-tight">Ready to Build Your <br/><span className="text-signal-gold italic">Compliance Backbone?</span></h2>
-          <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
-            I’m ready to show you the systems behind the success. Let's get to work on building a sustainable carrier.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link to="/learning-path" className="bg-white text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold hover:text-authority-blue transition-all shadow-2xl active:scale-95 flex items-center">
-              View My Roadmap
-            </Link>
-            <Link to="/pricing" className="bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95">
-              See Enrollment Options
-            </Link>
+            ))}
           </div>
         </div>
       </section>
-      
-      {/* Footer Disclaimer */}
-      <footer className="bg-slate-50 py-10 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
-            LaunchPath Transportation EDU is an educational platform. Information provided does not constitute legal, tax, or financial advice.
+
+      {/* SECTION 7: MILITARY DISCIPLINE */}
+      <section className="bg-white py-24 lg:py-32 border-b border-slate-100">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[4fr_6fr] gap-16 items-center">
+            
+            <div className="bg-slate-50 rounded-[12px] p-12 shadow-[0_4px_16px_rgba(0,0,0,0.1)] relative overflow-hidden group border border-slate-100">
+              <div className="absolute inset-0 bg-authority-blue/5 mix-blend-overlay"></div>
+              <Anchor size={120} className="text-[#1E3A5F] opacity-10 absolute -bottom-4 -right-4 group-hover:rotate-12 transition-transform duration-700" />
+              <div className="relative z-10 text-center">
+                 <Star size={48} fill="#D4AF37" className="text-[#D4AF37] mx-auto mb-6" />
+                 <h4 className="text-[18px] font-black text-[#1E3A5F] uppercase tracking-widest leading-none">Navy Veteran</h4>
+                 <div className="w-12 h-1 bg-[#D4AF37] mx-auto my-4"></div>
+                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Founded on Military Precision</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <h2 className="text-[28px] lg:text-[32px] font-bold text-[#1A1A1A] mb-8 leading-tight">From Military Discipline to Transportation Excellence</h2>
+              <div className="space-y-6 text-[16px] leading-[1.7] text-[#555] font-medium">
+                <p>
+                  As a Navy veteran, Vince's approach to transportation compliance is rooted in the 
+                  principles of military precision and systems thinking. In the military, preparation 
+                  isn't optional—it's the difference between mission success and failure.
+                </p>
+                <p>
+                  Vince applies this same level of discipline to trucking. Most carriers fail because 
+                  they are "reacting" to the road. We teach you to "command" your operations through 
+                  standard operating procedures and rigorous administrative discipline.
+                </p>
+                <p>
+                  When you understand the *system*, you no longer fear the *regulator*. You operate 
+                  with the confidence that your foundation is solid.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: THE PHILOSOPHY BEHIND LAUNCHPATH */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A1A1A] mb-6 uppercase tracking-tight">The Philosophy Behind LaunchPath</h2>
+            <p className="text-base lg:text-[17px] leading-[1.6] text-[#666] max-w-[900px] mx-auto">
+              LaunchPath is built on a "System-First" philosophy. We believe that a trucking company is 
+              not a truck—it's a set of processes designed to protect an authority.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              { icon: <Scale size={28} className="text-[#D4AF37]" />, title: "Short-Term Foundations", body: "LaunchPath doesn't chase quick wins at the expense of long-term sustainability. We build the backbone first." },
+              { icon: <Target size={28} className="text-[#D4AF37]" />, title: "Systematic Approach", body: "Every LaunchPath module is designed to build actual systems, not just check boxes. We teach you HOW to manage." },
+              { icon: <BookOpen size={28} className="text-[#D4AF37]" />, title: "Real USDOT Application", body: "Vince doesn't teach theory—he teaches what federal auditors actually evaluate based on decades in the field." },
+              { icon: <ShieldCheck size={28} className="text-[#D4AF37]" />, title: "Long-Term Protection", body: "LaunchPath programs don't just help you launch—they help you sustain your authority for years of profitable operations." }
+            ].map((card, i) => (
+              <div key={i} className="bg-white border border-[#E5E5E5] rounded-[12px] p-8 hover:shadow-lg transition-all duration-300">
+                <div className="mb-4">{card.icon}</div>
+                <h3 className="text-[20px] font-bold text-[#1E3A5F] mb-4 uppercase tracking-tighter">{card.title}</h3>
+                <p className="text-[15px] leading-[1.6] text-[#555] font-medium">{card.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: WHAT KINGDOM-OPERATED ACTUALLY MEANS */}
+      <section className="bg-[#F8F9FA] py-24 lg:py-32">
+        <div className="max-w-[900px] mx-auto px-6 text-center">
+          <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A1A1A] mb-8 uppercase tracking-tight">What Kingdom-Operated Actually Means</h2>
+          
+          <div className="space-y-6 text-[17px] leading-[1.7] text-[#555] font-medium mb-16">
+            <p>
+              LaunchPath is a Kingdom business. This doesn't mean we only work with believers—it means we 
+              operate according to a specific set of biblical values: stewardship, truth, and excellence.
+            </p>
+            <p>
+              In business, this translates to Radical Integrity. We don't use hype to sell, we don't hide 
+              the risks of the industry, and we treat your investment in education with the respect it 
+              deserves. We view your success as our stewardship.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            {[
+              { icon: "📖", title: "Truth Over Hype", desc: "No false promises. No manipulation. We tell you exactly what it takes to survive the audit." },
+              { icon: "⚖️", title: "Stewardship", desc: "We don't see customers—we see people entrusted to us to help build their legacies." },
+              { icon: "🎯", title: "Systems Over Shortcuts", desc: "Kingdom principles produce sustainable operations. We reject the 'easy way' for the right way." }
+            ].map((col, i) => (
+              <div key={i} className="space-y-4 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <div className="text-3xl">{col.icon}</div>
+                <h4 className="text-[18px] font-bold text-[#1E3A5F] uppercase tracking-tighter">{col.title}</h4>
+                <p className="text-[14px] leading-[1.6] text-[#666]">{col.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10: READY TO BUILD YOUR FOUNDATION? */}
+      <section className="bg-[#1E3A5F] py-24 lg:py-32 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="max-w-[1100px] mx-auto px-6 relative z-10">
+          <h2 className="text-[32px] lg:text-[40px] font-bold text-white mb-6 uppercase tracking-tight">Ready to Build Your Foundation?</h2>
+          <p className="text-base lg:text-[18px] leading-[1.7] text-white/90 max-w-[800px] mx-auto mb-16 font-medium">
+            You've been entrusted with this business. Build it with the wisdom, order, and integrity it deserves. 
+            Vince and the LaunchPath system are ready to guide you.
           </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: <GraduationCap size={32} className="text-[#1E3A5F]" />, title: "Training Programs", desc: "Review our compliance-first curriculum.", btn: "View Programs", link: "/pricing" },
+              { icon: <Calendar size={32} className="text-[#1E3A5F]" />, title: "Consultation", desc: "Speak with us about your compliance needs.", btn: "Book a Call", link: "/contact" },
+              { icon: <Download size={32} className="text-[#1E3A5F]" />, title: "Free Resources", desc: "Get access to orientation templates.", btn: "Get Resources", link: "/resources" }
+            ].map((card, i) => (
+              <div key={i} className="bg-white rounded-[16px] p-8 text-center flex flex-col items-center shadow-2xl">
+                <div className="mb-6 p-4 bg-slate-50 rounded-2xl">{card.icon}</div>
+                <h4 className="text-[18px] font-bold text-[#1E3A5F] mb-3 uppercase tracking-tighter">{card.title}</h4>
+                <p className="text-[14px] text-[#666] mb-8 flex-grow leading-relaxed font-medium">{card.desc}</p>
+                <Link to={card.link} className="w-full bg-[#1E3A5F] text-white py-4 rounded-lg font-bold hover:bg-[#152945] transition-all text-xs uppercase tracking-widest active:scale-95 shadow-md">
+                  {card.btn}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER MINI */}
+      <footer className="bg-[#0D1B2E] py-12 border-t border-white/5">
+        <div className="max-w-[1200px] mx-auto px-6 text-center text-white/50 text-[13px]">
+          <p className="mb-6 font-medium">© {new Date().getFullYear()} LaunchPath Transportation EDU. All Rights Reserved. Education over shortcuts.</p>
+          <div className="flex justify-center space-x-8 font-bold uppercase tracking-widest text-[10px]">
+            <Link to="/pricing" className="hover:text-white transition-colors">Programs</Link>
+            <Link to="/learning-path" className="hover:text-white transition-colors">Roadmap</Link>
+            <Link to="/legal" className="hover:text-white transition-colors">Compliance Disclaimer</Link>
+          </div>
         </div>
       </footer>
+
     </div>
   );
 };
