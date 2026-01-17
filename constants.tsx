@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -69,13 +70,92 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
 ];
 
 export const COURSE_MODULES: CourseModule[] = [
-  { id: 0, title: "The Mindset Module", description: "The foundation of your business. Go/No-Go decision framework, authority risk assessment, and operational reality check.", lessons: 6 },
-  { id: 1, title: "Business & Authority Setup", description: "Laying the legal foundation. DOT vs MC, interstate registration, and proper carrier identity setup.", lessons: 8 },
-  { id: 2, title: "Insurance Survival", description: "Navigating the highest expense. Coverage types, cancellation triggers, and claim management strategies.", lessons: 5 },
-  { id: 3, title: "Compliance Backbone", description: "The technical system. DQ files, Clearinghouse, HOS/ELD, and maintenance logs.", lessons: 10 },
-  { id: 4, title: "New Entrant Audit Preparation", description: "Surviving the federal investigation. Step-by-step document preparation and audit conduct.", lessons: 7 },
-  { id: 5, title: "Load Discipline & Cash Flow", description: "Managing the Money Loop. Solvent operations during the 30-60 day payment gap.", lessons: 6 },
-  { id: 6, title: "Stabilization & Long-Term Success", description: "Operating clean after approval. Annual filings, CSA score monitoring, and scaling with integrity.", lessons: 4 }
+  { 
+    id: 0, 
+    title: "Ground 0: The Mindset Module", 
+    description: "The prerequisite foundation. Identify if you have the discipline required to operate before filing authority.", 
+    lessons: 6, 
+    duration: "2 Hours", 
+    resourcesCount: 3, 
+    toolsCount: 2,
+    pillar: "Authority",
+    difficulty: "Foundation",
+    reachTest: "If you fail to define your 'Why' and risk profile here, you will lose your investment before you even buy a truck."
+  },
+  { 
+    id: 1, 
+    title: "Business & Authority Setup", 
+    description: "Laying the legal foundation. DOT vs MC strategy and proper carrier identity configuration.", 
+    lessons: 8, 
+    duration: "4 Hours", 
+    resourcesCount: 5, 
+    toolsCount: 3,
+    pillar: "Authority",
+    difficulty: "Foundation",
+    reachTest: "Incorrect filing status or missing BOC-3s can lead to an immediate 21-day authority suspension."
+  },
+  { 
+    id: 2, 
+    title: "Insurance Survival", 
+    description: "Navigating your highest expense. Avoid cancellation triggers and manage coverage like a pro.", 
+    lessons: 5, 
+    duration: "3 Hours", 
+    resourcesCount: 4, 
+    toolsCount: 2,
+    pillar: "Insurance",
+    difficulty: "Critical",
+    reachTest: "One insurance cancellation due to non-disclosure can make your authority uninsurable for 3 years."
+  },
+  { 
+    id: 3, 
+    title: "Compliance Backbone", 
+    description: "The technical system. Building DQ files, Clearinghouse accounts, and HOS policies that pass inspections.", 
+    lessons: 10, 
+    duration: "6 Hours", 
+    resourcesCount: 12, 
+    toolsCount: 5,
+    pillar: "Compliance",
+    difficulty: "Critical",
+    reachTest: "Missing one pre-employment drug test results in an automatic 'Unsatisfactory' safety rating."
+  },
+  { 
+    id: 4, 
+    title: "New Entrant Audit Preparation", 
+    description: "Surviving the federal investigation. Step-by-step prep for the 48-hour audit window.", 
+    lessons: 7, 
+    duration: "4 Hours", 
+    resourcesCount: 8, 
+    toolsCount: 4,
+    pillar: "Compliance",
+    difficulty: "Critical",
+    warning: "80% FAIL RATE WITHOUT A SYSTEM",
+    reachTest: "Failing your New Entrant Audit results in permanent authority revocation and a business restart."
+  },
+  { 
+    id: 5, 
+    title: "Load Discipline & Cash Flow", 
+    description: "Managing the Money Loop. Solvent operations during the 30-60 day payment gap.", 
+    lessons: 6, 
+    duration: "3 Hours", 
+    resourcesCount: 5, 
+    toolsCount: 3,
+    pillar: "Cash-Flow",
+    isCritical: true,
+    difficulty: "Critical",
+    reachTest: "Cash-flow mismanagement is the #1 reason carriers with active loads go bankrupt in their first year."
+  },
+  { 
+    id: 6, 
+    title: "Stabilization & Long-Term Success", 
+    description: "Scaling with integrity. Annual filings, CSA score monitoring, and fleet expansion strategies.", 
+    lessons: 4, 
+    duration: "2 Hours", 
+    resourcesCount: 3, 
+    toolsCount: 2,
+    pillar: "Authority",
+    difficulty: "Advanced",
+    reachTest: "Ignoring your CSA scores after the first year will eventually spike your insurance by 400%."
+  }
 ];
 
 export const INITIAL_BLOGS: BlogPost[] = [

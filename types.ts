@@ -127,6 +127,14 @@ export interface CourseModule {
   title: string;
   description: string;
   lessons: number;
+  duration: string;
+  resourcesCount: number;
+  toolsCount: number;
+  pillar: 'Authority' | 'Insurance' | 'Compliance' | 'Cash-Flow';
+  reachTest: string;
+  isCritical?: boolean;
+  warning?: string;
+  difficulty: 'Foundation' | 'Moderate' | 'Critical' | 'Advanced';
 }
 
 export interface Testimonial {

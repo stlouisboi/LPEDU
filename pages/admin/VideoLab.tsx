@@ -210,7 +210,7 @@ const VideoLab = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-black font-serif text-authority-blue dark:text-white">Curriculum Video Lab</h1>
-          <p className="text-text-muted mt-1">Manage cinematic visualizations and instructional media assets for the 8-module pathway.</p>
+          <p className="text-text-muted mt-1">Manage cinematic visualizations and instructional media assets for the Ground 0 - Module 6 pathway.</p>
         </div>
         <button 
           onClick={() => { setShowModal(true); setProductionMode('ai'); }}
@@ -247,7 +247,7 @@ const VideoLab = () => {
             <div className="p-8">
                <div className="flex items-center space-x-2 mb-4">
                   <span className="bg-authority-blue/10 text-authority-blue dark:text-steel-blue px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border border-authority-blue/20">
-                    Module {vid.moduleId}
+                    {vid.moduleId === 0 ? 'Ground 0' : `Module ${vid.moduleId}`}
                   </span>
                   <span className="text-[10px] text-text-muted font-bold font-mono">
                     {new Date(vid.createdAt).toLocaleDateString()}
@@ -279,7 +279,7 @@ const VideoLab = () => {
                   <Settings2 className="mr-4 text-signal-gold" size={36} />
                   Asset Production Studio
                 </h2>
-                <p className="text-text-muted mt-2 text-lg font-medium">Link production-grade visuals to specific learning modules.</p>
+                <p className="text-text-muted mt-2 text-lg font-medium">Link production-grade visuals to Ground 0 or specific learning modules.</p>
               </div>
 
               {/* MODE SELECTOR */}
@@ -312,7 +312,7 @@ const VideoLab = () => {
                       onChange={(e) => setFormData({...formData, moduleId: parseInt(e.target.value)})}
                       className="w-full px-6 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-3xl font-black text-sm outline-none focus:ring-4 focus:ring-authority-blue/10 focus:border-authority-blue transition-all"
                     >
-                      {COURSE_MODULES.map(m => <option key={m.id} value={m.id}>Module {m.id}: {m.title}</option>)}
+                      {COURSE_MODULES.map(m => <option key={m.id} value={m.id}>{m.id === 0 ? 'Ground 0' : `Module ${m.id}`}: {m.title}</option>)}
                     </select>
                   </div>
 
@@ -449,7 +449,7 @@ const VideoLab = () => {
                             <Film size={32} className="opacity-60" />
                           </div>
                           <h4 className="text-2xl font-black font-serif uppercase text-authority-blue dark:text-white tracking-tight">Manual Asset Archive</h4>
-                          <p className="text-xs text-text-muted font-medium mt-2 max-w-xs mx-auto">Select a pre-produced master file to link with this learning module.</p>
+                          <p className="text-xs text-text-muted font-medium mt-2 max-w-xs mx-auto">Select a pre-produced master file to link with Ground 0 or Module 1-6.</p>
                        </div>
                        
                        <div className="p-2 bg-white dark:bg-gray-800 rounded-[2.5rem] shadow-xl border border-border-light">

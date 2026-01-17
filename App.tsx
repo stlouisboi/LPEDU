@@ -26,6 +26,7 @@ import BlogPostPage from './pages/BlogPostPage';
 import ResourcesPage from './pages/ResourcesPage';
 import FAQPage from './pages/FAQPage';
 import ContactPage from './pages/ContactPage';
+import SupportPage from './pages/SupportPage';
 import LegalPage from './pages/LegalPage';
 import AIServicePage from './pages/AIServicePage';
 import EnrollPage from './pages/EnrollPage';
@@ -247,6 +248,7 @@ export default function App() {
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/support" element={<SupportPage />} />
               <Route path="/legal" element={<LegalPage />} />
               <Route path="/advisor" element={<AIServicePage />} />
               <Route path="/pricing" element={<EnrollPage />} />

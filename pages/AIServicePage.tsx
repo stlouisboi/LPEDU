@@ -26,7 +26,7 @@ import {
   MapPin,
   ExternalLink
 } from 'lucide-react';
-import { GoogleGenAI, LiveServerMessage, Modality, Type } from '@google/genai';
+import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
 // --- AUDIO UTILS ---
 function decode(base64: string) {
@@ -279,12 +279,14 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
               const source = outCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outCtx.destination);
-              source.addEventListener('ended', () => liveSourcesRef.current.delete(source));
+              source.addEventListener('ended', () => {
+                if (liveSourcesRef.current) liveSourcesRef.current.delete(source);
+              });
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
-              liveSourcesRef.current.add(source);
+              if (liveSourcesRef.current) liveSourcesRef.current.add(source);
             }
-            if (message.serverContent?.interrupted) {
+            if (message.serverContent?.interrupted && liveSourcesRef.current) {
               liveSourcesRef.current.forEach(s => {
                 try { s.stop(); } catch(e) {}
               });
@@ -325,10 +327,12 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
       liveAudioContextRef.current.output.close();
       liveAudioContextRef.current = null;
     }
-    liveSourcesRef.current.forEach(s => {
-      try { s.stop(); } catch(e) {}
-    });
-    liveSourcesRef.current.clear();
+    if (liveSourcesRef.current) {
+      liveSourcesRef.current.forEach(s => {
+        try { s.stop(); } catch(e) {}
+      });
+      liveSourcesRef.current.clear();
+    }
   };
 
   // --- VIDEO STUDIO ---
@@ -337,10 +341,10 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
     
     setIsGeneratingVideo(true);
     setGenMessage("Initializing cinematic engine...");
-    const messages = ["Analyzing visual components...", "Rendering frame dynamics...", "Baking motion vectors...", "Optimizing output..."];
+    const reassuringMessages = ["Analyzing visual components...", "Rendering frame dynamics...", "Baking motion vectors...", "Optimizing output..."];
     let msgIdx = 0;
     const interval = setInterval(() => {
-      setGenMessage(messages[msgIdx % messages.length]);
+      setGenMessage(reassuringMessages[msgIdx % reassuringMessages.length]);
       msgIdx++;
     }, 8000);
 
@@ -366,11 +370,27 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
         config.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      let operation = await ai.models.generateVideos(config);
+      let initialOp = await ai.models.generateVideos(config);
+      
+      // Defensively wrap operation to prevent potential circular structures
+      let operation = {
+        name: initialOp.name,
+        done: initialOp.done,
+        response: initialOp.response,
+        error: initialOp.error
+      } as any;
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        operation = await ai.operations.getVideosOperation({ operation: operation });
+        const opResult = await ai.operations.getVideosOperation({ 
+          operation: { name: operation.name } as any 
+        });
+        operation = {
+          name: opResult.name,
+          done: opResult.done,
+          response: opResult.response,
+          error: opResult.error
+        } as any;
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;

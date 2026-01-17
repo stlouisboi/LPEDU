@@ -52,7 +52,7 @@ const ResourcesPage = () => {
     {
       title: "Pre-Authority Launch Checklist",
       description: "Everything you need before activating your MC number.",
-      phase: "Phase 0: Orientation",
+      phase: "Ground 0: Orientation",
       icon: <ClipboardList className="w-6 h-6" />,
       buttonText: "Download PDF",
       isPublic: true,
