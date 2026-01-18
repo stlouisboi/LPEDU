@@ -219,17 +219,17 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* SECTION 6: THE NUMBERS BEHIND EXPERIENCE */}
+      {/* SECTION 6: EXPERIENCE AND OPERATIONAL EXPOSURE */}
       <section className="bg-[#1E3A5F] py-24 lg:py-32">
         <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="text-[28px] lg:text-[36px] font-bold text-white text-center mb-16 uppercase tracking-tight">The Numbers Behind the Experience</h2>
+          <h2 className="text-[28px] lg:text-[36px] font-bold text-white text-center mb-16 uppercase tracking-tight">Experience and Operational Exposure</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { num: "20+", label: "Years of Experience", desc: "Managing compliance systems across transportation, logistics, and safety industries." },
-              { num: "1.2K+", label: "Employees Supported", desc: "Providing compliance oversight for organizations managing over 1,200 employees." },
-              { num: "100%", label: "Audit Success Rate", desc: "Safety programs that consistently passed federal and state compliance reviews." },
-              { num: "1000s", label: "Hours of Training", desc: "Delivered thousands of hours of technical compliance and safety training." }
+              { num: "20+", label: "Years of Exposure", desc: "Background in operational safety and systems management within regulated industries." },
+              { num: "1.2K+", label: "Personnel Supported", desc: "Experience managing safety workflows in prior leadership and supervisory roles." },
+              { num: "Active", label: "Audit Process Participation", desc: "Participation in federal and state compliance reviews throughout a 20-year career history." },
+              { num: "1,000s", label: "of Instructional Hours", desc: "Practical experience delivering safety-focused guidance and operational training." }
             ].map((stat, i) => (
               <div key={i} className="border-2 border-white/20 rounded-[12px] p-8 text-center group hover:border-[#D4AF37] transition-all">
                 <div className="text-[48px] lg:text-[56px] font-bold text-[#D4AF37] leading-[1] mb-2">{stat.num}</div>
@@ -241,38 +241,45 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* SECTION 7: MILITARY DISCIPLINE */}
-      <section className="bg-white py-24 lg:py-32 border-b border-slate-100">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-[4fr_6fr] gap-16 items-center">
+      {/* SECTION 7: MILITARY LEGACY & PRECISION */}
+      <section className="bg-authority-blue py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-16 items-center">
             
-            <div className="bg-slate-50 rounded-[12px] p-12 shadow-[0_4px_16px_rgba(0,0,0,0.1)] relative overflow-hidden group border border-slate-100">
-              <div className="absolute inset-0 bg-authority-blue/5 mix-blend-overlay"></div>
-              <Anchor size={120} className="text-[#1E3A5F] opacity-10 absolute -bottom-4 -right-4 group-hover:rotate-12 transition-transform duration-700" />
-              <div className="relative z-10 text-center">
-                 <Star size={48} fill="#D4AF37" className="text-[#D4AF37] mx-auto mb-6" />
-                 <h4 className="text-[18px] font-black text-[#1E3A5F] uppercase tracking-widest leading-none">Navy Veteran</h4>
-                 <div className="w-12 h-1 bg-[#D4AF37] mx-auto my-4"></div>
-                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Founded on Military Precision</p>
+            {/* The Badge Visual */}
+            <div className="relative flex justify-center">
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-signal-gold/30 flex items-center justify-center p-4 relative group">
+                <div className="absolute inset-0 rounded-full border-2 border-signal-gold animate-[ping_3s_linear_infinite] opacity-20"></div>
+                <div className="w-full h-full rounded-full border-8 border-signal-gold flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm shadow-2xl">
+                  <Anchor size={80} className="text-signal-gold mb-4 group-hover:rotate-12 transition-transform duration-700" />
+                  <div className="h-px w-24 bg-signal-gold/40 mb-4"></div>
+                  <h3 className="text-white font-black uppercase tracking-[0.3em] text-xs text-center leading-tight">U.S. Navy Veteran<br/>Owned</h3>
+                </div>
+                {/* Orbital Badge */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-authority-blue px-4 py-1 border border-signal-gold rounded-full text-[10px] font-black text-signal-gold uppercase tracking-widest">
+                  Est. Precision
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col">
-              <h2 className="text-[28px] lg:text-[32px] font-bold text-[#1A1A1A] mb-8 leading-tight">From Military Discipline to Transportation Excellence</h2>
-              <div className="space-y-6 text-[16px] leading-[1.7] text-[#555] font-medium">
+            <div className="flex flex-col text-white">
+              <div className="inline-flex items-center space-x-2 text-signal-gold font-black uppercase tracking-[0.3em] text-[10px] mb-6">
+                <Star size={12} fill="currentColor" />
+                <span>Founded on Military Discipline</span>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-black font-serif mb-8 leading-tight tracking-tighter uppercase">
+                Precision in Every <span className="text-signal-gold">System.</span>
+              </h2>
+              <div className="space-y-6 text-lg text-white/80 leading-relaxed font-medium">
                 <p>
-                  As a Navy veteran, Vince's approach to transportation compliance is rooted in the 
-                  principles of military precision and systems thinking. In the military, preparation 
-                  isn't optional—it's the difference between mission success and failure.
+                  As a Navy veteran, Vince Lawrence understands that operational success is built on standard operating procedures and rigorous administrative discipline. In the military, preparation isn't optional—it's the difference between mission success and failure.
                 </p>
                 <p>
-                  Vince applies this same level of discipline to trucking. Most carriers fail because 
-                  they are "reacting" to the road. We teach you to "command" your operations through 
-                  standard operating procedures and rigorous administrative discipline.
+                  LaunchPath applies this level of institutional discipline to the trucking industry. Most carriers fail because they are "reacting" to the road. We teach you to "command" your operation by building a foundation that doesn't just meet regulations—it survives them.
                 </p>
-                <p>
-                  When you understand the *system*, you no longer fear the *regulator*. You operate 
-                  with the confidence that your foundation is solid.
+                <p className="border-l-4 border-signal-gold pl-6 italic text-signal-gold/90">
+                  "When you understand the system, you no longer fear the regulator."
                 </p>
               </div>
             </div>
@@ -285,9 +292,8 @@ const AboutPage = () => {
         <div className="max-w-[1200px] mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
             <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A1A1A] mb-6 uppercase tracking-tight">The Philosophy Behind LaunchPath</h2>
-            <p className="text-base lg:text-[17px] leading-[1.6] text-[#666] max-w-[900px] mx-auto">
-              LaunchPath is built on a "System-First" philosophy. We believe that a trucking company is 
-              not a truck—it's a set of processes designed to protect an authority.
+            <p className="text-base lg:text-[17px] leading-[1.6] text-[#666] max-w-[900px] mx-auto font-medium italic">
+              The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen.
             </p>
           </div>
 

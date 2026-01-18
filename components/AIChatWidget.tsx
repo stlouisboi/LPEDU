@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, AlertCircle, Globe, ExternalLink } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
@@ -46,6 +47,7 @@ const AIChatWidget = () => {
           systemInstruction: `You are the LaunchPath™ AI Advisor.
 ROLE: You act as an educational guide and gatekeeper for LaunchPath.
 CORE PURPOSE: Help visitors understand trucking compliance concepts at a high level. Explain risks and terminology.
+THE FOUR PILLARS: "The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen." Always use this definition when asked about the Pillars.
 NON-NEGOTIABLE RULES: Do NOT provide step-by-step instructions. Do NOT give personalized advice.
 ALLOWED BEHAVIOR: Use phrases like "At a high level...", "Educationally speaking...".
 DISCLAIMER: "LaunchPath is an educational and coaching program only. This information is not legal, tax, financial, insurance, or regulatory advice."`,
@@ -84,9 +86,9 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
   };
 
   const starterQuestions = [
+    "What are The Four Pillars?",
     "What are North Carolina BIT inspection requirements?",
     "Do I need a TX DOT number if I have a Federal DOT?",
-    "How do I register for Indiana HUT?",
     "What is a DQ file?",
     "Compliance risks for new carriers?"
   ];

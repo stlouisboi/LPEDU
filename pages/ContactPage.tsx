@@ -1,9 +1,8 @@
 
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, ArrowRight, MessageSquare, Scale, Anchor, User } from 'lucide-react';
-import { collection, addDoc, doc, getDoc, serverTimestamp } from "firebase/firestore";
+import React, { useState } from 'react';
+import { Mail, Phone, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, ArrowRight, MessageSquare, Anchor, User, RefreshCw } from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
-import { FormSettings } from '../types';
 import { useNavigate, Link } from 'react-router-dom';
 
 const ContactPage = () => {
@@ -18,26 +17,44 @@ const ContactPage = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [imgError, setImgError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
+    setError(null);
     
     try {
-      if (db) {
-        await addDoc(collection(db, "formSubmissions"), {
-          ...formData,
-          type: 'Primary Contact',
-          status: 'unread',
-          createdAt: serverTimestamp()
-        });
+      if (!db) {
+        throw new Error("Cloud synchronization is currently offline. Please check your internet connection and try again.");
       }
+
+      // Basic validation check
+      if (formData.message.length < 10) {
+        throw new Error("Please provide more context in your message (minimum 10 characters) so our specialists can assist you accurately.");
+      }
+
+      await addDoc(collection(db, "formSubmissions"), {
+        ...formData,
+        type: 'Primary Contact',
+        status: 'unread',
+        createdAt: serverTimestamp()
+      });
+      
       setIsSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err: any) {
       console.error("Submission Error:", err);
-      // Fallback success for UI continuity if DB is flaky
-      setIsSubmitted(true);
+      
+      // Categorize error messages for better UX
+      if (err.message?.includes("offline") || err.code === 'unavailable') {
+        setError("Network connection issue detected. We are unable to reach the secure server. Please verify your connection or try again in a moment.");
+      } else if (err.code === 'permission-denied') {
+        setError("Our system encountered a security protocol restriction. Please refresh the page or contact support directly via email.");
+      } else {
+        setError(err.message || "An unexpected error occurred while transmitting your inquiry. Our technical team has been notified.");
+      }
     } finally {
       setSending(false);
     }
@@ -51,7 +68,7 @@ const ContactPage = () => {
         <div className="max-w-3xl mb-20 animate-reveal-up">
           <h1 className="text-5xl md:text-6xl font-black font-serif text-authority-blue dark:text-white mb-8 uppercase tracking-tight">Contact LaunchPath</h1>
           <p className="text-base md:text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium">
-            If you are navigating the critical first 90 days of your motor carrier authority or preparing for a New Entrant Safety Audit, we are here to provide clarity. LaunchPath serves owner-operators who prioritize technical precision and long-term sustainability over industry hype. Whether you have a specific question about our curriculum or need guidance on which compliance tool is right for your operation, your inquiry is welcome.
+            If you are navigating the critical first 90 days of your motor carrier authority or preparing for a New Entrant Safety Audit, we are here to provide clarity. LaunchPath serves owner-operators who prioritize technical precision and long-term sustainability over industry hype.
           </p>
         </div>
 
@@ -60,46 +77,44 @@ const ContactPage = () => {
           {/* LEFT COLUMN: GUIDANCE & BOUNDARIES */}
           <div className="lg:col-span-5 space-y-12 animate-in slide-in-from-left duration-700">
             
-            {/* OPERATOR IMAGE WITH FALLBACK */}
+            {/* UPDATED HERO IMAGE: Phone text/call */}
             <div className="relative h-80 w-full overflow-hidden rounded-[3.5rem] shadow-2xl border-4 border-white dark:border-surface-dark group bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
               {!imgError ? (
                 <img 
-                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" 
-                  alt="LaunchPath Operational Guidance Center" 
+                  src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&q=80&w=800" 
+                  alt="Contacting LaunchPath Operational Support" 
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                   onError={() => setImgError(true)}
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center text-text-muted opacity-40">
                   <User size={64} className="mb-4" />
-                  <p className="text-[10px] font-black uppercase tracking-widest">Operator Active</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest">Operator Connection Active</p>
                 </div>
               )}
               <div className="absolute inset-0 bg-authority-blue/10 mix-blend-overlay"></div>
               <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl">
                 <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue flex items-center">
-                  <div className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></div>
+                  <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
                   Operational Guidance Active
                 </p>
               </div>
             </div>
 
-            {/* PURPOSE STATEMENT */}
             <section className="space-y-6">
               <h2 className="text-sm font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold flex items-center">
                 <ShieldCheck size={20} className="mr-3" /> Our Purpose
               </h2>
               <div className="prose dark:prose-invert text-lg text-text-muted font-medium leading-relaxed space-y-4">
                 <p>
-                  LaunchPath is an educational platform and operational guidance service. Our mission is to equip you with the systems required to maintain a compliant and audit-ready business.
+                  LaunchPath is an educational platform. Our mission is to equip you with the systems required to maintain a compliant and audit-ready business.
                 </p>
                 <p className="border-l-4 border-signal-gold dark:border-signal-gold/50 pl-6 italic text-base">
-                  LaunchPath does not provide legal representation, tax advice, or insurance brokerage services. We do not file for FMCSA authority on behalf of carriers, nor do we provide dispatching or freight-brokering services.
+                  LaunchPath does not provide legal representation, tax advice, or insurance brokerage services.
                 </p>
               </div>
             </section>
 
-            {/* EXPECTATIONS & BOUNDARIES */}
             <section className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3rem] border border-border-light dark:border-border-dark space-y-8 shadow-sm">
               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-text-primary dark:text-white">Expectations & Boundaries</h3>
               <ul className="space-y-6">
@@ -109,29 +124,10 @@ const ContactPage = () => {
                 </li>
                 <li className="flex items-start space-x-4">
                   <div className="w-2 h-2 rounded-full bg-red-400 mt-2 shrink-0"></div>
-                  <p className="text-base font-bold text-text-muted">No emergency or enforcement-related support (roadside inspections/active audits).</p>
-                </li>
-                <li className="flex items-start space-x-4">
-                  <div className="w-2 h-2 rounded-full bg-slate-300 mt-2 shrink-0"></div>
-                  <p className="text-base font-bold text-text-muted">Education only. Our insights do not constitute legal or financial advice.</p>
+                  <p className="text-base font-bold text-text-muted">No emergency roadside or active audit enforcement support.</p>
                 </li>
               </ul>
             </section>
-
-            {/* TRUST POSITIONING */}
-            <section className="space-y-6">
-               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-authority-blue dark:text-signal-gold">The LaunchPath Standard</h3>
-               <p className="text-lg font-medium text-text-muted leading-relaxed">
-                We believe that a motor carrier’s success is built on structure, not hustle. By focusing on administrative accuracy and stewardship of your business decisions, you move from the chaos of "figuring it out" to the confidence of a verified system.
-               </p>
-            </section>
-
-            <div className="pt-8 border-t border-border-light dark:border-border-dark">
-              <Link to="/pricing" className="inline-flex items-center text-authority-blue dark:text-white font-black uppercase tracking-widest text-sm hover:underline underline-offset-8 group">
-                <span>Explore Educational Resources First</span>
-                <ArrowRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
           </div>
 
           {/* RIGHT COLUMN: CONTACT FORM */}
@@ -155,6 +151,24 @@ const ContactPage = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* ERROR ALERT BOX */}
+                  {error && (
+                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-6 rounded-3xl flex items-start space-x-4 animate-in slide-in-from-top-4 duration-300">
+                      <AlertCircle className="text-red-600 dark:text-red-400 shrink-0 mt-0.5" size={24} />
+                      <div className="flex-grow">
+                        <p className="text-sm font-black text-red-800 dark:text-red-300 uppercase tracking-widest mb-1">Transmission Error</p>
+                        <p className="text-sm font-medium text-red-700 dark:text-red-400 leading-relaxed">{error}</p>
+                        <button 
+                          type="button"
+                          onClick={() => handleSubmit({ preventDefault: () => {} } as any)}
+                          className="mt-3 inline-flex items-center text-xs font-black uppercase tracking-widest text-red-800 dark:text-red-300 hover:underline"
+                        >
+                          <RefreshCw size={12} className="mr-1.5" /> Try Again
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-2">Full Name</label>
@@ -266,7 +280,6 @@ const ContactPage = () => {
            </p>
         </div>
 
-        {/* MEMBER SUPPORT QUICK LINK */}
         <div className="mt-12 text-center">
            <Link to="/support" className="inline-flex items-center space-x-2 bg-slate-50 dark:bg-surface-dark px-6 py-3 rounded-full border border-border-light dark:border-border-dark text-[10px] font-black uppercase tracking-widest text-text-muted hover:text-authority-blue transition-all">
               <MessageSquare size={14} />

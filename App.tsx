@@ -212,30 +212,6 @@ const Footer = () => {
 
   return (
     <footer className="w-full font-sans">
-      {/* SECTION 1: FINAL CALL TO ACTION */}
-      <section className="bg-[#1E3A5F]/90 dark:bg-authority-blue/40 py-[60px] border-t border-white/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
-        <div className="max-w-[700px] mx-auto px-6 text-center relative z-10">
-          <h2 className="text-[28px] md:text-[32px] font-bold text-white mb-8 leading-tight">
-            Build your operational foundation.
-          </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link 
-              to="/pricing" 
-              className="w-full sm:w-auto bg-signal-gold text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95"
-            >
-              Get Started
-            </Link>
-            <Link 
-              to="/download/risk-map" 
-              className="w-full sm:w-auto border-2 border-white text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all active:scale-95"
-            >
-              Download Risk Map
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 2: FOOTER NAVIGATION */}
       <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
