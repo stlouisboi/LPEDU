@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
@@ -41,8 +40,8 @@ const DecisionWindow = () => (
           <ShieldCheck size={32} />
         </div>
         <div className="flex-grow">
-          <h3 className="text-xl font-black uppercase tracking-widest text-authority-blue dark:text-white mb-4">🛡️ 7-Day Decision Window</h3>
-          <div className="prose prose-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+          <h3 className="text-2xl font-black uppercase tracking-widest text-authority-blue dark:text-white mb-4">🛡️ 7-Day Decision Window</h3>
+          <div className="prose prose-base text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
             <p className="mb-4">
               LaunchPath does not offer a free trial, but we do offer a 7-day decision window. We believe in clarity, responsibility, and commitment.
             </p>
@@ -63,13 +62,13 @@ const ScopeClarity = () => (
   <section className="max-w-5xl mx-auto px-4 py-16">
     <div className="bg-white dark:bg-surface-dark rounded-[3rem] border border-border-light dark:border-border-dark p-10 md:p-16 shadow-sm overflow-hidden relative">
       <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What LaunchPath Is — and Is Not</h2>
-        <p className="text-text-muted mt-2 font-medium">Clear boundaries create successful partnerships.</p>
+        <h2 className="text-3xl md:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What LaunchPath Is — and Is Not</h2>
+        <p className="text-lg text-text-muted mt-2 font-medium">Clear boundaries create successful partnerships.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="space-y-6">
-          <h3 className="text-xs font-black uppercase tracking-widest text-green-600 flex items-center">
-            <Check size={16} className="mr-2" /> LaunchPath Is
+          <h3 className="text-sm font-black uppercase tracking-widest text-green-600 flex items-center">
+            <Check size={18} className="mr-2" /> LaunchPath Is
           </h3>
           <ul className="space-y-4">
             {[
@@ -77,16 +76,16 @@ const ScopeClarity = () => (
               "Structured systems for compliance, insurance continuity, and cash flow",
               "Federally-aligned operating roadmaps and templates"
             ].map((item, i) => (
-              <li key={i} className="flex items-start text-sm font-bold text-text-primary dark:text-text-dark-muted">
-                <CheckCircle2 size={18} className="text-green-500 shrink-0 mr-3 mt-0.5" />
+              <li key={i} className="flex items-start text-base font-bold text-text-primary dark:text-text-dark-muted">
+                <CheckCircle2 size={20} className="text-green-500 shrink-0 mr-3 mt-0.5" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
         <div className="space-y-6">
-          <h3 className="text-xs font-black uppercase tracking-widest text-red-500 flex items-center">
-            <X size={16} className="mr-2" /> LaunchPath Is Not
+          <h3 className="text-sm font-black uppercase tracking-widest text-red-500 flex items-center">
+            <X size={18} className="mr-2" /> LaunchPath Is Not
           </h3>
           <ul className="space-y-4">
             {[
@@ -94,8 +93,8 @@ const ScopeClarity = () => (
               "Legal, tax, or insurance advice",
               "Income or audit guarantees"
             ].map((item, i) => (
-              <li key={i} className="flex items-start text-sm font-bold text-text-muted">
-                <XCircle size={18} className="text-red-400 shrink-0 mr-3 mt-0.5" />
+              <li key={i} className="flex items-start text-base font-bold text-text-muted">
+                <XCircle size={20} className="text-red-400 shrink-0 mr-3 mt-0.5" />
                 {item}
               </li>
             ))}
@@ -109,8 +108,8 @@ const ScopeClarity = () => (
 const AfterEnrollment = () => (
   <section className="max-w-5xl mx-auto px-4 py-16">
     <div className="text-center mb-12">
-      <h2 className="text-2xl md:text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What Happens After You Enroll</h2>
-      <p className="text-text-muted mt-2 font-medium">No pressure. No urgency. Just clarity.</p>
+      <h2 className="text-3xl md:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What Happens After You Enroll</h2>
+      <p className="text-xl text-text-muted mt-2 font-medium">No pressure. No urgency. Just clarity.</p>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {[
@@ -118,10 +117,10 @@ const AfterEnrollment = () => (
         { step: "02", title: "Structured Release", desc: "Guided release of lessons and tools across the 90-day implementation system." },
         { step: "03", title: "Live Checkpoints", desc: "Live support and coaching calls based on your selected tier." }
       ].map((item, i) => (
-        <div key={i} className="bg-slate-50 dark:bg-gray-800/50 p-8 rounded-[2.5rem] border border-slate-100 dark:border-border-dark relative group">
-          <span className="text-4xl font-black text-authority-blue/10 dark:text-white/5 absolute top-6 right-8 group-hover:text-signal-gold/20 transition-colors">{item.step}</span>
-          <h4 className="text-lg font-black uppercase tracking-tight text-authority-blue dark:text-white mb-3">{item.title}</h4>
-          <p className="text-sm text-text-muted font-medium leading-relaxed">{item.desc}</p>
+        <div key={i} className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark relative group">
+          <span className="text-5xl font-black text-authority-blue/10 dark:text-white/5 absolute top-6 right-8 group-hover:text-signal-gold/20 transition-colors">{item.step}</span>
+          <h4 className="text-xl font-black uppercase tracking-tight text-authority-blue dark:text-white mb-4">{item.title}</h4>
+          <p className="text-base text-text-muted font-medium leading-relaxed">{item.desc}</p>
         </div>
       ))}
     </div>
@@ -137,7 +136,7 @@ const ROISection = () => (
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="bg-red-50 dark:bg-red-900/10 p-10 rounded-[3rem] border border-red-100 dark:border-red-900/20">
+        <div className="bg-red-50 dark:bg-red-950/20 p-10 rounded-[3rem] border border-red-100 dark:border-red-900/20">
           <h3 className="text-xl font-black uppercase tracking-widest text-red-700 mb-8 flex items-center">
             <TrendingDown className="mr-3" /> Avg. Cost of First-Year Failure
           </h3>
@@ -290,11 +289,11 @@ const FAQSection = () => {
               onClick={() => setOpenIdx(openIdx === i ? null : i)}
               className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
             >
-              <span className="font-black text-sm uppercase tracking-tight text-authority-blue dark:text-white">{faq.q}</span>
+              <span className="font-black text-base uppercase tracking-tight text-authority-blue dark:text-white">{faq.q}</span>
               <ChevronDown className={`w-5 h-5 text-text-muted transition-transform ${openIdx === i ? 'rotate-180' : ''}`} />
             </button>
             <div className={`transition-all duration-300 overflow-hidden ${openIdx === i ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-              <p className="p-6 pt-0 text-sm text-text-muted dark:text-text-dark-muted font-medium leading-relaxed border-t border-slate-50 dark:border-border-dark">
+              <p className="p-6 pt-0 text-base text-text-muted dark:text-text-dark-muted font-medium leading-relaxed border-t border-slate-50 dark:border-border-dark">
                 {faq.a}
               </p>
             </div>
@@ -308,18 +307,18 @@ const FAQSection = () => {
 const ComparisonTable = () => (
   <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="text-center mb-16">
-      <h2 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Feature Comparison</h2>
-      <p className="text-text-muted mt-2 font-medium">See exactly what's included in each tier</p>
+      <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Feature Comparison</h2>
+      <p className="text-xl text-text-muted mt-4 font-medium">See exactly what's included in each implementation tier</p>
     </div>
-    <div className="bg-white dark:bg-surface-dark rounded-[3rem] border border-border-light dark:border-border-dark overflow-hidden shadow-2xl">
+    <div className="bg-white dark:bg-surface-dark rounded-[3.5rem] border border-border-light dark:border-border-dark overflow-hidden shadow-2xl">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-slate-50 dark:bg-slate-800/50">
-              <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-text-muted">Feature</th>
-              <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white text-center">Tier 1</th>
-              <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-signal-gold text-center">Tier 2</th>
-              <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white text-center">Tier 3</th>
+              <th className="px-10 py-8 text-sm font-black uppercase tracking-[0.2em] text-text-muted">Feature</th>
+              <th className="px-10 py-8 text-base font-black uppercase tracking-[0.2em] text-authority-blue dark:text-white text-center">Tier 1</th>
+              <th className="px-10 py-8 text-base font-black uppercase tracking-[0.2em] text-signal-gold text-center">Tier 2</th>
+              <th className="px-10 py-8 text-base font-black uppercase tracking-[0.2em] text-authority-blue dark:text-white text-center">Tier 3</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border-light dark:divide-border-dark">
@@ -339,10 +338,10 @@ const ComparisonTable = () => (
               { f: "Quarterly Check-ins", t1: false, t2: false, t3: true },
             ].map((row, i) => (
               <tr key={i} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
-                <td className="px-8 py-4 text-xs font-bold text-text-primary dark:text-text-dark-muted">{row.f}</td>
-                <td className="px-8 py-4 text-center">{row.t1 ? <CheckCircle2 className="mx-auto text-green-500" size={18} /> : <XCircle className="mx-auto text-slate-200" size={18} />}</td>
-                <td className="px-8 py-4 text-center bg-signal-gold/5">{row.t2 ? <CheckCircle2 className="mx-auto text-signal-gold" size={18} /> : <XCircle className="mx-auto text-slate-200" size={18} />}</td>
-                <td className="px-8 py-4 text-center">{row.t3 ? <CheckCircle2 className="mx-auto text-authority-blue dark:text-white" size={18} /> : <XCircle className="mx-auto text-slate-200" size={18} />}</td>
+                <td className="px-10 py-6 text-lg font-bold text-text-primary dark:text-text-dark-muted">{row.f}</td>
+                <td className="px-10 py-6 text-center">{row.t1 ? <CheckCircle2 className="mx-auto text-green-500" size={28} /> : <XCircle className="mx-auto text-slate-200" size={28} />}</td>
+                <td className="px-10 py-6 text-center bg-signal-gold/5">{row.t2 ? <CheckCircle2 className="mx-auto text-signal-gold" size={28} /> : <XCircle className="mx-auto text-slate-200" size={28} />}</td>
+                <td className="px-10 py-6 text-center">{row.t3 ? <CheckCircle2 className="mx-auto text-authority-blue dark:text-white" size={28} /> : <XCircle className="mx-auto text-slate-200" size={28} />}</td>
               </tr>
             ))}
           </tbody>
@@ -520,7 +519,7 @@ const EnrollPage = () => {
         <div className="mt-16 text-center">
           <p className="text-sm font-bold text-text-muted max-w-xl mx-auto opacity-70">
             All enrollment is covered by our published refund policy. <br/>
-            No contracts. No forced upsells. No pressure.
+            No contracts. No pressure. Accuracy over hype.
           </p>
         </div>
       </section>

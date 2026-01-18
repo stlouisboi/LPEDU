@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -49,7 +48,7 @@ async function decodeAudioData(
   sampleRate: number,
   numChannels: number,
 ): Promise<AudioBuffer> {
-  // Fix: Handle Uint8Array views correctly on the underlying ArrayBuffer
+  // Correctly handle underlying buffer views for the Int16 raw PCM stream
   const dataInt16 = new Int16Array(data.buffer, data.byteOffset, data.byteLength / 2);
   const frameCount = dataInt16.length / numChannels;
   const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
@@ -351,7 +350,7 @@ const AIServicePage = () => {
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      let config: any = {
+      let generateConfig: any = {
         model: 'veo-3.1-fast-generate-preview',
         prompt: videoPrompt || "Professional trucking scene with cinematic lighting.",
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
@@ -363,23 +362,18 @@ const AIServicePage = () => {
           reader.onload = () => res((reader.result as string).split(',')[1]);
           reader.readAsDataURL(videoFile);
         });
-        config.image = { imageBytes: base64, mimeType: videoFile.type };
+        generateConfig.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      // Fix: Poll with minimal operation identifier to avoid circular structure crash
-      let opResponse = await ai.models.generateVideos(config);
-      let operation = { name: opResponse.name, done: opResponse.done };
+      // Added standard video generation and operation polling logic per SDK guidelines
+      let operation = await ai.models.generateVideos(generateConfig);
       
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        const updatedOp = await ai.operations.getVideosOperation({ operation: { name: operation.name } as any });
-        operation.done = updatedOp.done;
-        if (updatedOp.done) {
-          opResponse = updatedOp;
-        }
+        operation = await ai.operations.getVideosOperation({ operation: operation });
       }
 
-      const downloadLink = opResponse.response?.generatedVideos?.[0]?.video?.uri;
+      const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
       if (downloadLink) {
         const res = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
         const blob = await res.blob();
@@ -605,7 +599,7 @@ const AIServicePage = () => {
                 <div className="p-12 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 rounded-[3rem] text-center shadow-xl">
                   <ShieldAlert className="mx-auto text-amber-600 mb-6" size={64} />
                   <h3 className="text-3xl font-black font-serif mb-6">Cloud Authorization Required</h3>
-                  <button onClick={selectApiKey} className="bg-amber-600 text-white px-12 py-5 rounded-[1.5rem] font-black uppercase tracking-widest active:scale-95">Authorize API Key</button>
+                  <button onClick={selectApiKey} className="bg-amber-600 text-white px-12 py-5 rounded-[1.5rem] font-black uppercase tracking widest active:scale-95">Authorize API Key</button>
                 </div>
               )}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
