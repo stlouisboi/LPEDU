@@ -49,8 +49,7 @@ async function decodeAudioData(
   sampleRate: number,
   numChannels: number,
 ): Promise<AudioBuffer> {
-  // Fix: Handle Uint8Array views correctly on the underlying ArrayBuffer
-  const dataInt16 = new Int16Array(data.buffer, data.byteOffset, data.byteLength / 2);
+  const dataInt16 = new Int16Array(data.buffer);
   const frameCount = dataInt16.length / numChannels;
   const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
 
@@ -366,20 +365,13 @@ const AIServicePage = () => {
         config.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      // Fix: Poll with minimal operation identifier to avoid circular structure crash
-      let opResponse = await ai.models.generateVideos(config);
-      let operation = { name: opResponse.name, done: opResponse.done };
-      
+      let operation = await ai.models.generateVideos(config);
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        const updatedOp = await ai.operations.getVideosOperation({ operation: { name: operation.name } as any });
-        operation.done = updatedOp.done;
-        if (updatedOp.done) {
-          opResponse = updatedOp;
-        }
+        operation = await ai.operations.getVideosOperation({ operation: operation });
       }
 
-      const downloadLink = opResponse.response?.generatedVideos?.[0]?.video?.uri;
+      const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
       if (downloadLink) {
         const res = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
         const blob = await res.blob();

@@ -20,16 +20,7 @@ import {
   Loader2, 
   Filter
 } from 'lucide-react';
-
-interface ContactSubmission {
-  id: string;
-  fullName: string;
-  email: string;
-  message: string;
-  type: string;
-  status: 'unread' | 'read' | 'replied';
-  createdAt: any;
-}
+import { ContactSubmission } from '../../types';
 
 const SubmissionsList = () => {
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
@@ -46,11 +37,7 @@ const SubmissionsList = () => {
     const q = query(collection(db, "formSubmissions"));
     const unsub = onSnapshot(q, (snap) => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as ContactSubmission));
-      const sorted = data.sort((a, b) => {
-        const dateA = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
-        const dateB = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
-        return dateB.getTime() - dateA.getTime();
-      });
+      const sorted = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setSubmissions(sorted);
       setLoading(false);
     }, (error) => {
@@ -84,8 +71,9 @@ const SubmissionsList = () => {
 
   const filteredSubmissions = submissions.filter(sub => {
     const matchesSearch = 
-      (sub.fullName || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
-      (sub.email || '').toLowerCase().includes(searchTerm.toLowerCase());
+      sub.firstName?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      sub.lastName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      sub.email?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filter === 'all' || sub.status === filter;
     return matchesSearch && matchesFilter;
   });
@@ -97,7 +85,7 @@ const SubmissionsList = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Form Submissions</h1>
-          <p className="text-text-muted mt-1">Manage all inquiries from the contact and support pages.</p>
+          <p className="text-text-muted mt-1">Manage all inquiries from the contact page.</p>
         </div>
       </div>
 
@@ -156,7 +144,7 @@ const SubmissionsList = () => {
                        </div>
                        <div>
                           <h4 className={`text-sm font-bold ${sub.status === 'unread' ? 'text-authority-blue' : ''}`}>
-                            {sub.fullName || 'Anonymous User'}
+                            {sub.firstName} {sub.lastName}
                           </h4>
                           <p className="text-[10px] text-text-muted">{sub.email}</p>
                        </div>
@@ -174,7 +162,7 @@ const SubmissionsList = () => {
                     </span>
                   </td>
                   <td className="px-8 py-6 text-xs text-text-muted font-mono">
-                    {sub.createdAt?.toDate ? sub.createdAt.toDate().toLocaleDateString() : new Date(sub.createdAt).toLocaleDateString()}
+                    {new Date(sub.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-8 py-6 text-right">
                     <div className="flex justify-end space-x-2">
@@ -209,7 +197,7 @@ const SubmissionsList = () => {
                   <User size={32} />
                </div>
                <div>
-                  <h3 className="text-3xl font-bold font-serif leading-none">{selectedSub.fullName || 'Anonymous User'}</h3>
+                  <h3 className="text-3xl font-bold font-serif leading-none">{selectedSub.firstName} {selectedSub.lastName}</h3>
                   <div className="flex items-center space-x-4 mt-2 text-sm text-text-muted">
                      <span className="flex items-center"><Mail size={14} className="mr-1.5" /> {selectedSub.email}</span>
                   </div>
@@ -218,7 +206,7 @@ const SubmissionsList = () => {
 
             <div className="space-y-6">
                <div className="p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl border border-border-light">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-4">Message Content ({selectedSub.type})</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-4">Message Content</p>
                   <p className="text-lg leading-relaxed">{selectedSub.message}</p>
                </div>
 

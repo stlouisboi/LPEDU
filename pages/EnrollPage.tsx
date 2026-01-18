@@ -23,10 +23,7 @@ import {
   ShieldAlert,
   MessageSquare,
   Lock,
-  DollarSign,
-  Info,
-  Check,
-  X
+  DollarSign
 } from 'lucide-react';
 import Logo from '../components/Logo';
 
@@ -55,75 +52,6 @@ const DecisionWindow = () => (
           </div>
         </div>
       </div>
-    </div>
-  </section>
-);
-
-const ScopeClarity = () => (
-  <section className="max-w-5xl mx-auto px-4 py-16">
-    <div className="bg-white dark:bg-surface-dark rounded-[3rem] border border-border-light dark:border-border-dark p-10 md:p-16 shadow-sm overflow-hidden relative">
-      <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What LaunchPath Is — and Is Not</h2>
-        <p className="text-text-muted mt-2 font-medium">Clear boundaries create successful partnerships.</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-6">
-          <h3 className="text-xs font-black uppercase tracking-widest text-green-600 flex items-center">
-            <Check size={16} className="mr-2" /> LaunchPath Is
-          </h3>
-          <ul className="space-y-4">
-            {[
-              "Education and coaching focused on authority survival",
-              "Structured systems for compliance, insurance continuity, and cash flow",
-              "Federally-aligned operating roadmaps and templates"
-            ].map((item, i) => (
-              <li key={i} className="flex items-start text-sm font-bold text-text-primary dark:text-text-dark-muted">
-                <CheckCircle2 size={18} className="text-green-500 shrink-0 mr-3 mt-0.5" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="space-y-6">
-          <h3 className="text-xs font-black uppercase tracking-widest text-red-500 flex items-center">
-            <X size={16} className="mr-2" /> LaunchPath Is Not
-          </h3>
-          <ul className="space-y-4">
-            {[
-              "Dispatching or load finding service",
-              "Legal, tax, or insurance advice",
-              "Income or audit guarantees"
-            ].map((item, i) => (
-              <li key={i} className="flex items-start text-sm font-bold text-text-muted">
-                <XCircle size={18} className="text-red-400 shrink-0 mr-3 mt-0.5" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const AfterEnrollment = () => (
-  <section className="max-w-5xl mx-auto px-4 py-16">
-    <div className="text-center mb-12">
-      <h2 className="text-2xl md:text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What Happens After You Enroll</h2>
-      <p className="text-text-muted mt-2 font-medium">No pressure. No urgency. Just clarity.</p>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {[
-        { step: "01", title: "Instant Access", desc: "Immediate access to the LaunchPath student portal and orientation modules." },
-        { step: "02", title: "Structured Release", desc: "Guided release of lessons and tools across the 90-day implementation system." },
-        { step: "03", title: "Live Checkpoints", desc: "Live support and coaching calls based on your selected tier." }
-      ].map((item, i) => (
-        <div key={i} className="bg-slate-50 dark:bg-gray-800/50 p-8 rounded-[2.5rem] border border-slate-100 dark:border-border-dark relative group">
-          <span className="text-4xl font-black text-authority-blue/10 dark:text-white/5 absolute top-6 right-8 group-hover:text-signal-gold/20 transition-colors">{item.step}</span>
-          <h4 className="text-lg font-black uppercase tracking-tight text-authority-blue dark:text-white mb-3">{item.title}</h4>
-          <p className="text-sm text-text-muted font-medium leading-relaxed">{item.desc}</p>
-        </div>
-      ))}
     </div>
   </section>
 );
@@ -270,7 +198,7 @@ const FAQSection = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const faqs = [
     { q: "Can I upgrade from Tier 1 to Tier 2 later?", a: "Yes! Upgrade anytime and only pay the difference. Many students start with Tier 1 and upgrade once they experience the curriculum quality." },
-    { q: "What if I can't attend the live group calls?", a: "All calls are recorded and available within 24 hours. You'll never miss content due to scale conflicts." },
+    { q: "What if I can't attend the live group calls?", a: "All calls are recorded and available within 24 hours. You'll never miss content due to schedule conflicts." },
     { q: "Do I need to complete modules by a deadline?", a: "No deadlines. Access is lifetime. The 12-week cohort schedule is recommended for accountability, but you can go at your own pace." },
     { q: "What if I already filed my DOT authority?", a: "Perfect! You can skip sections you've completed and focus on what's next. Most students are at different stages - that's normal." },
     { q: "Is this course only for semi-truck operators?", a: "No. LaunchPath covers all commercial motor vehicles: box trucks, semi-trucks, hotshot, etc. The compliance requirements apply to all carriers." },
@@ -355,14 +283,6 @@ const ComparisonTable = () => (
 const EnrollPage = () => {
   const navigate = useNavigate();
 
-  const handleCTA = (tier: string) => {
-    if (tier === 'elite') {
-      navigate('/contact?topic=Elite+Oversight');
-    } else {
-      navigate(`/contact?topic=Enrollment+Inquiry&tier=${tier}`);
-    }
-  };
-
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen font-sans">
       {/* 1. HERO SECTION */}
@@ -376,11 +296,8 @@ const EnrollPage = () => {
           <h1 className="text-5xl md:text-[5.5rem] font-black font-serif mb-8 leading-[0.9] text-authority-blue dark:text-white tracking-tighter uppercase">
             Survive the First <br/><span className="text-signal-gold italic">18 Months.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-text-muted dark:text-text-dark-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p className="text-xl md:text-2xl text-text-muted dark:text-text-dark-muted mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
             Stop guessing and start operating with federal-grade confidence. Choose the implementation tier that fits your growth plan.
-          </p>
-          <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold opacity-80 mb-12">
-            Built by a veteran safety professional with real-world compliance oversight experience.
           </p>
         </div>
       </section>
@@ -394,15 +311,12 @@ const EnrollPage = () => {
             <div className="bg-red-50 text-red-600 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest self-start mb-6 border border-red-100">
               ⚠️ Self-Study Only - No Support
             </div>
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Self-Paced <br/>Foundations</h3>
+            <div className="flex justify-between items-start mb-8">
+              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Self-Paced <br/>Fundamentals</h3>
               <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl text-authority-blue">
                 <BookOpen size={24} />
               </div>
             </div>
-            <p className="text-sm text-authority-blue dark:text-white/70 font-bold mb-8 leading-relaxed italic">
-              Best for disciplined operators who want structured education and prefer to implement independently.
-            </p>
             <div className="mb-10">
               <div className="flex items-baseline">
                 <span className="text-xl font-bold text-slate-400 mr-1">$</span>
@@ -433,23 +347,24 @@ const EnrollPage = () => {
                 ))}
               </ul>
             </div>
-            <button onClick={() => handleCTA('foundations')} className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all active:scale-95 shadow-xl">Select Foundations</button>
+            <div className="mb-8 p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-border-dark">
+              <p className="text-top font-black uppercase tracking-widest text-text-muted mb-1">Best For:</p>
+              <p className="text-[11px] font-bold text-slate-500 italic">"Experienced operators who just need the curriculum, or DIY learners who prefer complete independence."</p>
+            </div>
+            <button className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all active:scale-95 shadow-xl">Select Foundations</button>
           </div>
 
           {/* TIER 2: IMPLEMENTATION MASTERY - RECOMMENDED */}
           <div className="lg:w-1/3 bg-white dark:bg-surface-dark p-10 rounded-[3.5rem] border-4 border-signal-gold flex flex-col relative z-20 shadow-[0_40px_100px_-20px_rgba(212,175,55,0.2)] transform lg:scale-110 order-1 lg:order-2">
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[11px] px-8 py-2 rounded-full uppercase tracking-[0.2em] shadow-xl whitespace-nowrap">
-              ⭐ Most Recommended
+              ⭐ Most Popular - 73% Choose This
             </div>
-            <div className="flex justify-between items-start mb-4 pt-4">
-              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Guided <br/>Implementation</h3>
+            <div className="flex justify-between items-start mb-8 pt-4">
+              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Implementation <br/>Mastery</h3>
               <div className="p-3 bg-signal-gold/10 rounded-2xl text-signal-gold">
                 <Zap size={24} fill="currentColor" />
               </div>
             </div>
-            <p className="text-sm text-authority-blue dark:text-white/70 font-bold mb-8 leading-relaxed italic">
-              Best for new authorities who want accountability, live guidance, and structured implementation during their first 90 days.
-            </p>
             <div className="mb-10">
               <div className="flex items-baseline">
                 <span className="text-xl font-bold text-signal-gold mr-1">$</span>
@@ -464,16 +379,44 @@ const EnrollPage = () => {
                 {[
                   "ALL 6 Web-Based Calculators",
                   "12 Weekly Live Coaching Calls",
+                  "Jan-March 2026 Cohort Access",
                   "Private Community (Slack)",
                   "Email Support (48hr Response)",
-                  "Interactive Decision & Planning Tools"
+                  "Live Call Recordings 24/7"
                 ].map((f, i) => (
                   <li key={i} className="flex items-start text-sm font-bold text-text-primary dark:text-text-dark-muted"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> {f}</li>
                 ))}
               </ul>
+              <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/10 rounded-2xl border border-green-100 dark:border-green-900/20">
+                <p className="text-[10px] font-black text-green-700 uppercase tracking-widest mb-3">🎁 Founding Bonuses:</p>
+                <ul className="space-y-2">
+                  <li className="text-[11px] font-bold text-green-800 flex items-center">✨ Audit Readiness Pack ($47)</li>
+                  <li className="text-[11px] font-bold text-green-800 flex items-center">✨ CSA Monitoring Guide ($97)</li>
+                </ul>
+              </div>
             </div>
 
-            <button onClick={() => handleCTA('implementation')} className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm shadow-2xl active:scale-95 hover:bg-authority-blue hover:text-white transition-all">Start Implementation →</button>
+            <div className="mb-8 space-y-4">
+              <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-border-dark">
+                <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-1">Best For:</p>
+                <p className="text-[11px] font-bold text-slate-500 italic">"New owner-operators who want implementation support, accountability, and access to professional tools."</p>
+              </div>
+              <div className="flex items-center justify-between px-2">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                  <span className="text-[10px] font-black text-red-600 uppercase tracking-widest">8 spots remaining</span>
+                </div>
+                <span className="text-[9px] font-black text-text-muted uppercase tracking-widest">Starts Feb 1, 2026</span>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <button className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm shadow-2xl active:scale-95 hover:bg-authority-blue hover:text-white transition-all">Start Implementation →</button>
+              <div className="flex justify-center items-center space-x-3 text-[9px] font-black text-text-muted uppercase tracking-widest">
+                <span>OR</span>
+                <span className="text-authority-blue underline decoration-signal-gold decoration-2">3 PAYMENTS OF $280/MO</span>
+              </div>
+            </div>
           </div>
 
           {/* TIER 3: ELITE GUIDED REVIEW */}
@@ -481,15 +424,12 @@ const EnrollPage = () => {
             <div className="bg-authority-blue text-white px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest self-start mb-6 shadow-md">
               🏆 Elite - Personal Attention
             </div>
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Elite <br/>Oversight</h3>
+            <div className="flex justify-between items-start mb-8">
+              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Elite <br/>Guided Review</h3>
               <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl text-authority-blue">
                 <Scale size={24} />
               </div>
             </div>
-            <p className="text-sm text-authority-blue dark:text-white/70 font-bold mb-8 leading-relaxed italic">
-              Best for operators who want direct review, mock audit preparation, and individualized oversight during launch.
-            </p>
             <div className="mb-10">
               <div className="flex items-baseline">
                 <span className="text-xl font-bold text-slate-400 mr-1">$</span>
@@ -512,41 +452,43 @@ const EnrollPage = () => {
                   <li key={i} className="flex items-start text-sm font-bold text-text-muted"><CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue shrink-0" /> {f}</li>
                 ))}
               </ul>
+              <div className="p-4 bg-amber-50 dark:bg-amber-900/10 rounded-2xl border border-amber-100 dark:border-amber-900/20">
+                <p className="text-[10px] font-black text-amber-700 uppercase tracking-widest flex items-center">
+                  <Clock size={12} className="mr-2" /> Limited to 5 students
+                </p>
+              </div>
             </div>
-            <button onClick={() => handleCTA('elite')} className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all active:scale-95 shadow-xl">Inquire For Review →</button>
+            <div className="mb-8 p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-border-dark">
+              <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-1">Best For:</p>
+              <p className="text-[11px] font-bold text-slate-500 italic">"High-value operators ($150K+ equipment investment) who want personal attention from Vince."</p>
+            </div>
+            <div className="space-y-3">
+              <button className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all active:scale-95 shadow-xl">Inquire For Review →</button>
+              <div className="flex justify-center items-center space-x-3 text-[9px] font-black text-text-muted uppercase tracking-widest">
+                <span>OR</span>
+                <span className="text-authority-blue">6 PAYMENTS OF $270/MO</span>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        <div className="mt-16 text-center">
-          <p className="text-sm font-bold text-text-muted max-w-xl mx-auto opacity-70">
-            All enrollment is covered by our published refund policy. <br/>
-            No contracts. No forced upsells. No pressure.
-          </p>
         </div>
       </section>
 
-      {/* SCOPE CLARITY */}
-      <ScopeClarity />
-
-      {/* AFTER ENROLLMENT */}
-      <AfterEnrollment />
-
-      {/* 5. ENROLLMENT FAQ */}
+      {/* 3. ENROLLMENT FAQ (ADDED UNDER PRICING CARDS) */}
       <FAQSection />
 
-      {/* 6. POLICY SECTION */}
+      {/* 4. POLICY SECTION */}
       <DecisionWindow />
 
-      {/* 7. COMPARISON SECTION */}
+      {/* 5. COMPARISON SECTION */}
       <ComparisonTable />
 
-      {/* 8. ROI SECTION */}
+      {/* 6. ROI SECTION */}
       <ROISection />
 
-      {/* 9. SOCIAL PROOF */}
+      {/* 7. SOCIAL PROOF */}
       <TestimonialsSection />
 
-      {/* 10. FINAL CTA */}
+      {/* 8. FINAL CTA */}
       <section className="bg-authority-blue py-32 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">

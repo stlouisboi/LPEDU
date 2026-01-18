@@ -7,12 +7,16 @@ import {
   ArrowRight, 
   Loader2,
   Anchor,
+  ChevronDown,
+  HelpCircle,
+  Clock,
+  UserCheck,
   Shield,
   ClipboardList,
   Wallet,
   Target,
   Files,
-  Activity
+  Quote
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -139,16 +143,12 @@ const HomePage: React.FC = () => {
                 <p className="mt-4 text-authority-blue dark:text-signal-gold font-bold">LaunchPath gives you a 90-day operating roadmap that takes you from authority setup to audit readiness — step by step.</p>
               </div>
 
-              <p className="mb-8 text-xs font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold opacity-80">
-                Built by a veteran safety professional with real-world compliance oversight experience.
-              </p>
-
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <Link to="/pricing" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#152945] transition-all flex items-center shadow-2xl group border-2 border-authority-blue">
-                  <span>Secure Your Authority →</span>
+                <Link to="/pricing" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#152945] transition-all flex items-center shadow-2xl">
+                  Begin With Clarity →
                 </Link>
-                <Link to="/learning-path" className="bg-white dark:bg-gray-800 text-authority-blue dark:text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all border-2 border-authority-blue dark:border-border-dark flex items-center shadow-sm">
-                  <span>Explore the 90-Day Path →</span>
+                <Link to="/learning-path" className="bg-white dark:bg-gray-800 text-authority-blue dark:text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all border border-border-light dark:border-border-dark flex items-center shadow-sm">
+                  View the 90-Day Roadmap →
                 </Link>
               </div>
             </div>
@@ -219,7 +219,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. OBSERVED PATTERNS — REFRAMED FOR COMPLIANCE AND PREMIUM AESTHETIC */}
+      {/* 4. SOCIAL PROOF — REDESIGNED PREMIUM TESTIMONIALS */}
       <section className="bg-gradient-to-b from-[#FAFBFC] to-[#F5F7FA] dark:from-[#020617] dark:to-[#0F172A] pt-24 pb-32 border-y border-border-light dark:border-border-dark overflow-hidden relative">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] dark:opacity-[0.01] pointer-events-none"></div>
@@ -227,84 +227,75 @@ const HomePage: React.FC = () => {
         <div className="max-w-[1300px] mx-auto px-6 md:px-12 relative z-10">
           <div className="text-center mb-24 stagger-parent">
             <p className="text-[11px] font-bold text-signal-gold uppercase tracking-[0.3em] mb-4 stagger-item">
-              Real Operators. Observed Patterns.
+              Real Operators. Real Stories.
             </p>
-            <h2 className="text-[36px] md:text-[48px] font-black text-[#1A1A1A] dark:text-white leading-[1.2] tracking-tight font-sans text-center mb-6 stagger-item">
+            <h2 className="text-[36px] md:text-[48px] font-black text-[#1A1A1A] dark:text-white leading-[1.1] tracking-tight font-sans uppercase stagger-item">
               What most new carriers realize <br/>
-              <span className="text-[#555] dark:text-text-dark-muted font-medium">after the reality sets in</span>
+              <span className="text-[#555] dark:text-text-dark-muted normal-case font-medium">after the reality sets in</span>
             </h2>
-            <p className="text-sm text-text-muted dark:text-text-dark-muted font-medium max-w-2xl mx-auto italic stagger-item">
-              The insights below reflect common administrative and operational challenges observed within the industry and are shared for educational awareness rather than as specific student testimonials.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
             {/* Card 1 */}
-            <article className="bg-white dark:bg-surface-dark rounded-[20px] p-12 shadow-[0_8px_32px_rgba(30,58,95,0.08)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.15)] hover:-translate-y-2 hover:border-l-4 hover:border-signal-gold border-l-0 transition-all duration-400 relative group animate-reveal-up overflow-hidden">
-              <span className="absolute -top-4 left-6 text-[72px] font-bold text-signal-gold opacity-20 pointer-events-none select-none">"</span>
-              <div className="relative pt-6">
-                <p className="text-[18px] leading-[1.8] text-[#333] dark:text-text-dark-primary font-normal mb-8 font-sans">
-                  I watched the videos and listened to drivers with years in the game. Still wasn't prepared for the <span className="font-semibold text-authority-blue dark:text-signal-gold/90">paperwork, the insurance costs, or the audit</span>. That's where it gets real.
+            <article className="bg-white dark:bg-surface-dark rounded-[20px] p-12 shadow-[0_8px_32px_rgba(30,58,95,0.06)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.12)] hover:-translate-y-2 hover:border-l-4 hover:border-signal-gold border-l-0 transition-all duration-500 relative group animate-reveal-up overflow-hidden">
+              <span className="absolute -top-4 left-6 text-[72px] font-black text-signal-gold opacity-20 pointer-events-none select-none">"</span>
+              <div className="relative">
+                <p className="text-[18px] leading-[1.8] text-[#333] dark:text-text-dark-primary font-normal mb-10 font-sans">
+                  I watched the videos and took advice from people in the game. Still wasn’t ready for the <span className="font-bold text-authority-blue dark:text-signal-gold/90">paperwork, the insurance costs, or the audit</span> pressure. That’s when it got real.
                 </p>
                 <div className="flex flex-col">
                   <div className="flex items-center space-x-2 mb-1">
-                    <div className="w-3 h-3 rounded-full bg-signal-gold/20 flex items-center justify-center">
-                       <div className="w-1.5 h-1.5 rounded-full bg-signal-gold"></div>
-                    </div>
-                    <span className="text-[16px] font-semibold text-authority-blue dark:text-white">Reported Experience</span>
+                    <CheckCircle2 size={12} className="text-signal-gold" />
+                    <span className="text-[16px] font-bold text-authority-blue dark:text-white">Marcus T.</span>
                   </div>
-                  <span className="text-[14px] text-[#888] font-normal tracking-wide">First-Year Owner-Operator Perspective</span>
+                  <span className="text-[14px] text-[#888] font-normal tracking-wide">First-Year Owner-Operator</span>
                 </div>
               </div>
             </article>
 
-            {/* Card 2 - Desktop Stagger */}
-            <article className="bg-white dark:bg-surface-dark rounded-[20px] p-12 shadow-[0_8px_32px_rgba(30,58,95,0.08)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.15)] hover:-translate-y-2 hover:border-l-4 hover:border-signal-gold border-l-0 transition-all duration-400 relative group animate-reveal-up md:mt-8 overflow-hidden">
-              <span className="absolute -top-4 left-6 text-[72px] font-bold text-signal-gold opacity-20 pointer-events-none select-none">"</span>
-              <div className="relative pt-6">
-                <p className="text-[18px] leading-[1.8] text-[#333] dark:text-text-dark-primary font-normal mb-8 font-sans">
-                  I did my homework—YouTube, groups, talking to drivers. Nobody explained that <span className="font-semibold text-authority-blue dark:text-signal-gold/90">one missed insurance payment</span> could shut the whole operation down.
+            {/* Card 2 - Center Stagger */}
+            <article className="bg-white dark:bg-surface-dark rounded-[20px] p-12 shadow-[0_8px_32px_rgba(30,58,95,0.06)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.12)] hover:-translate-y-2 hover:border-l-4 hover:border-signal-gold border-l-0 transition-all duration-500 relative group animate-reveal-up md:-mt-8 overflow-hidden">
+              <span className="absolute -top-4 left-6 text-[72px] font-black text-signal-gold opacity-20 pointer-events-none select-none">"</span>
+              <div className="relative">
+                <p className="text-[18px] leading-[1.8] text-[#333] dark:text-text-dark-primary font-normal mb-10 font-sans">
+                  I did my homework — YouTube, groups, talking to drivers. Nobody told me <span className="font-bold text-authority-blue dark:text-signal-gold/90">one missed insurance payment</span> can freeze the whole operation.
                 </p>
                 <div className="flex flex-col">
                   <div className="flex items-center space-x-2 mb-1">
-                    <div className="w-3 h-3 rounded-full bg-signal-gold/20 flex items-center justify-center">
-                       <div className="w-1.5 h-1.5 rounded-full bg-signal-gold"></div>
-                    </div>
-                    <span className="text-[16px] font-semibold text-authority-blue dark:text-white">Observed Industry Pattern</span>
+                    <CheckCircle2 size={12} className="text-signal-gold" />
+                    <span className="text-[16px] font-bold text-authority-blue dark:text-white">Keisha M.</span>
                   </div>
-                  <span className="text-[14px] text-[#888] font-normal tracking-wide">New Authority Holder Challenge</span>
+                  <span className="text-[14px] text-[#888] font-normal tracking-wide">New Authority</span>
                 </div>
               </div>
             </article>
 
             {/* Card 3 */}
-            <article className="bg-white dark:bg-surface-dark rounded-[20px] p-12 shadow-[0_8px_32px_rgba(30,58,95,0.08)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.15)] hover:-translate-y-2 hover:border-l-4 hover:border-signal-gold border-l-0 transition-all duration-400 relative group animate-reveal-up overflow-hidden">
-              <span className="absolute -top-4 left-6 text-[72px] font-bold text-signal-gold opacity-20 pointer-events-none select-none">"</span>
-              <div className="relative pt-6">
-                <p className="text-[18px] leading-[1.8] text-[#333] dark:text-text-dark-primary font-normal mb-8 font-sans">
-                  I came home, got my CDL, and thought I was ready. The <span className="font-semibold text-authority-blue dark:text-signal-gold/90">compliance side</span> almost sent me right back to where I started.
+            <article className="bg-white dark:bg-surface-dark rounded-[20px] p-12 shadow-[0_8px_32px_rgba(30,58,95,0.06)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.12)] hover:-translate-y-2 hover:border-l-4 hover:border-signal-gold border-l-0 transition-all duration-500 relative group animate-reveal-up overflow-hidden">
+              <span className="absolute -top-4 left-6 text-[72px] font-black text-signal-gold opacity-20 pointer-events-none select-none">"</span>
+              <div className="relative">
+                <p className="text-[18px] leading-[1.8] text-[#333] dark:text-text-dark-primary font-normal mb-10 font-sans">
+                  I came home, got my CDL, and thought I was ready. The <span className="font-bold text-authority-blue dark:text-signal-gold/90">compliance side</span> almost sent me right back to where I started.
                 </p>
                 <div className="flex flex-col">
                   <div className="flex items-center space-x-2 mb-1">
-                    <div className="w-3 h-3 rounded-full bg-signal-gold/20 flex items-center justify-center">
-                       <div className="w-1.5 h-1.5 rounded-full bg-signal-gold"></div>
-                    </div>
-                    <span className="text-[16px] font-semibold text-authority-blue dark:text-white">Common Hurdle</span>
+                    <CheckCircle2 size={12} className="text-signal-gold" />
+                    <span className="text-[16px] font-bold text-authority-blue dark:text-white">Chris P.</span>
                   </div>
-                  <span className="text-[14px] text-[#888] font-normal tracking-wide">Safety Audit Candidate Profile</span>
+                  <span className="text-[14px] text-[#888] font-normal tracking-wide">New Authority</span>
                 </div>
               </div>
             </article>
           </div>
 
-          {/* Bridge Section - Premium Treatment */}
-          <div className="max-w-[900px] mx-auto text-center mt-32 px-12 py-16 bg-authority-blue/[0.03] dark:bg-authority-blue/10 rounded-[16px]">
-            <h3 className="text-[24px] md:text-[28px] leading-[1.5] text-[#1A1A1A] dark:text-white font-semibold font-sans mb-6">
+          {/* Bridge Section */}
+          <div className="max-w-[900px] mx-auto text-center mt-32 px-12 py-16 bg-authority-blue/[0.03] dark:bg-authority-blue/10 rounded-[16px] border border-authority-blue/5">
+            <h3 className="text-[24px] md:text-[28px] leading-[1.5] text-[#1A1A1A] dark:text-white font-semibold font-sans mb-8">
               Most carriers don't fail from lack of hustle. <br className="hidden md:block" />
               They fail from lack of structure.
             </h3>
-            <p className="text-[18px] font-semibold text-authority-blue dark:text-signal-gold uppercase tracking-[0.01em]">
-              The Four Pillars Foundation exists to address these structural gaps.
+            <p className="text-[18px] font-black text-authority-blue dark:text-signal-gold uppercase tracking-[0.05em]">
+              The Four Pillars Foundation exists for the second group.
             </p>
           </div>
         </div>
@@ -436,7 +427,7 @@ const HomePage: React.FC = () => {
               <ul className="space-y-4 mb-12 flex-grow text-sm font-bold opacity-90">
                 <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> Everything in Tier 1</li>
                 <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> 12 Weekly Group Coaching Calls</li>
-                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> Interactive Decision & Planning Tools</li>
+                <li className="flex items-start"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> Interactive Compliance Tools</li>
               </ul>
               <Link to="/pricing" className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-widest text-xs text-center hover:bg-white transition-all shadow-2xl">Start Implementation</Link>
             </div>
