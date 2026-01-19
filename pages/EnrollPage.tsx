@@ -25,7 +25,10 @@ import {
   DollarSign,
   Info,
   Check,
-  X
+  X,
+  Sparkles,
+  Calendar,
+  MousePointer2
 } from 'lucide-react';
 import Logo from '../components/Logo';
 
@@ -106,23 +109,78 @@ const ScopeClarity = () => (
 );
 
 const AfterEnrollment = () => (
-  <section className="max-w-5xl mx-auto px-4 py-16">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What Happens After You Enroll</h2>
-      <p className="text-xl text-text-muted mt-2 font-medium">No pressure. No urgency. Just clarity.</p>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {[
-        { step: "01", title: "Instant Access", desc: "Immediate access to the LaunchPath student portal and orientation modules." },
-        { step: "02", title: "Structured Release", desc: "Guided release of lessons and tools across the 90-day implementation system." },
-        { step: "03", title: "Live Checkpoints", desc: "Live support and coaching calls based on your selected tier." }
-      ].map((item, i) => (
-        <div key={i} className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark relative group">
-          <span className="text-5xl font-black text-authority-blue/10 dark:text-white/5 absolute top-6 right-8 group-hover:text-signal-gold/20 transition-colors">{item.step}</span>
-          <h4 className="text-xl font-black uppercase tracking-tight text-authority-blue dark:text-white mb-4">{item.title}</h4>
-          <p className="text-base text-text-muted font-medium leading-relaxed">{item.desc}</p>
+  <section className="py-24 bg-slate-50 dark:bg-surface-dark/20 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-20 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-12 opacity-[0.03] pointer-events-none">
+          <Sparkles size={200} className="text-authority-blue" />
         </div>
-      ))}
+        <div className="inline-flex items-center space-x-2 text-authority-blue dark:text-signal-gold font-black uppercase tracking-[0.3em] text-[10px] mb-4">
+          <span>The Path to Peace of Mind</span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">
+          What Happens After You Enroll
+        </h2>
+        <p className="text-xl text-text-muted max-w-3xl mx-auto font-medium leading-relaxed">
+          The moment you join, the "guessing game" ends. You transition from uncertainty to a guided implementation sequence built for operational order.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+        {/* Connector Line (Desktop) */}
+        <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-200 dark:bg-slate-800 -translate-y-12 z-0"></div>
+
+        {[
+          { 
+            step: "01", 
+            title: "Instant Portal Access", 
+            icon: <Zap className="text-signal-gold" />, 
+            desc: "Breathe easier knowing the blueprint is in your hands. You'll receive an immediate login to our secure student dashboard where 'Ground 0' and the Phase 1 orientation modules are waiting.",
+            relief: "No waiting. Start securing your identity today."
+          },
+          { 
+            step: "02", 
+            title: "Guided 90-Day Release", 
+            icon: <Calendar className="text-authority-blue" />, 
+            desc: "We don't overwhelm you with everything at once. Lessons and tools are released in a proven sequence that matches the 90-day authority containment window.",
+            relief: "Focus on one pillar at a time without the noise."
+          },
+          { 
+            step: "03", 
+            title: "Live Support Checkpoints", 
+            icon: <Users className="text-signal-gold" />, 
+            desc: "Based on your tier, you'll be plugged into weekly group implementation calls or direct 1-on-1 sessions. You aren't building this carrier in isolation.",
+            relief: "Expert eyes on your compliance backbone."
+          }
+        ].map((item, i) => (
+          <div key={i} className="relative z-10 flex flex-col items-center text-center">
+            <div className="w-24 h-24 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl flex items-center justify-center mb-8 border border-border-light dark:border-border-dark group-hover:scale-105 transition-transform duration-500 relative">
+               <div className="absolute -top-3 -right-3 w-10 h-10 bg-authority-blue text-white rounded-2xl flex items-center justify-center font-black text-xs shadow-lg">{item.step}</div>
+               {item.icon}
+            </div>
+            <h4 className="text-2xl font-black uppercase tracking-tight text-authority-blue dark:text-white mb-4 leading-tight">{item.title}</h4>
+            <p className="text-base text-text-muted font-medium leading-relaxed mb-6 px-4">{item.desc}</p>
+            <div className="mt-auto inline-flex items-center space-x-2 px-4 py-2 bg-green-50 dark:bg-green-900/10 text-green-600 dark:text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100 dark:border-green-900/20">
+               <CheckCircle2 size={12} />
+               <span>{item.relief}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-20 text-center">
+        <div className="p-8 bg-white dark:bg-slate-900/50 rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-800 max-w-3xl mx-auto">
+          <p className="text-lg font-bold text-authority-blue dark:text-white italic">
+            "Most students feel the 'weight' lift off their shoulders within the first 20 minutes of watching Ground 0. Seeing the system makes the mountain feel like a staircase."
+          </p>
+          <div className="mt-4 flex items-center justify-center space-x-3 text-text-muted">
+            <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-800 overflow-hidden">
+               <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince" className="grayscale opacity-50" />
+            </div>
+            <span className="text-xs font-black uppercase tracking-widest">— Vince Lawrence, Safety Professional</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 );
@@ -131,7 +189,7 @@ const ROISection = () => (
   <section className="py-24 bg-white dark:bg-surface-dark border-y border-border-light dark:border-border-dark">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">💰 Investment vs Cost of Failure</h2>
+        <h2 className="text-3xl md:text-[3.5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-none">💰 Investment vs <br/>Cost of Failure</h2>
         <p className="text-lg text-text-muted font-medium">Why structured education is your carrier's cheapest insurance policy.</p>
       </div>
       
@@ -386,7 +444,7 @@ const EnrollPage = () => {
 
       {/* 2. PRICING CARDS SECTION */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-8 lg:gap-6">
+        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-8 lg:gap-6 mb-20">
           
           {/* TIER 1: SELF-PACED FUNDAMENTALS */}
           <div className="lg:w-1/3 bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-authority-blue/20 flex flex-col shadow-sm group hover:shadow-xl transition-all h-full order-2 lg:order-1 mt-8 lg:mt-12">
@@ -516,7 +574,7 @@ const EnrollPage = () => {
           </div>
         </div>
         
-        <div className="mt-16 text-center">
+        <div className="text-center">
           <p className="text-sm font-bold text-text-muted max-w-xl mx-auto opacity-70">
             All enrollment is covered by our published refund policy. <br/>
             No contracts. No pressure. Accuracy over hype.
@@ -524,11 +582,11 @@ const EnrollPage = () => {
         </div>
       </section>
 
+      {/* NEW: AFTER ENROLLMENT SECTION */}
+      <AfterEnrollment />
+
       {/* SCOPE CLARITY */}
       <ScopeClarity />
-
-      {/* AFTER ENROLLMENT */}
-      <AfterEnrollment />
 
       {/* 5. ENROLLMENT FAQ */}
       <FAQSection />
@@ -550,7 +608,7 @@ const EnrollPage = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <Logo light className="mx-auto mb-12 h-16 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-default" />
-          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-8 leading-tight">Build Your Carrier on <br/><span className="text-signal-gold italic">Systems, Not Shortcuts.</span></h2>
+          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-8 leading-tight">Build Your Carrier on <br/><span className="text-signal-gold italic text-white/90">Systems, Not Shortcuts.</span></h2>
           <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
             The road to carrier bankruptcy is paved with shortcuts. We teach you how to build a compliance backbone that stands up to federal scrutiny.
           </p>

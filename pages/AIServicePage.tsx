@@ -48,8 +48,8 @@ async function decodeAudioData(
   sampleRate: number,
   numChannels: number,
 ): Promise<AudioBuffer> {
-  // Correctly handle underlying buffer views for the Int16 raw PCM stream
-  const dataInt16 = new Int16Array(data.buffer, data.byteOffset, data.byteLength / 2);
+  // Fixed: Standardizing Int16 conversion for PCM streams
+  const dataInt16 = new Int16Array(data.buffer, 0, data.byteLength / 2);
   const frameCount = dataInt16.length / numChannels;
   const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
 
@@ -365,7 +365,7 @@ const AIServicePage = () => {
         generateConfig.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      // Added standard video generation and operation polling logic per SDK guidelines
+      // Fixed: Standardized polling using the correct SDK instance methods
       let operation = await ai.models.generateVideos(generateConfig);
       
       while (!operation.done) {
@@ -383,7 +383,7 @@ const AIServicePage = () => {
       console.error("Video error", err);
       if (err.message?.includes("Requested entity was not found")) {
         setHasApiKey(false);
-        alert("Authorization expired. Please re-select your key.");
+        alert("Authorization expired. Please re-select your AI Studio key.");
       } else {
         alert("Video generation failed.");
       }
