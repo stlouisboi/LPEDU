@@ -264,8 +264,8 @@ const HomePage: React.FC = () => {
           <div className="bg-authority-blue dark:bg-surface-dark rounded-[2.5rem] p-10 lg:p-20 border border-authority-blue dark:border-border-dark flex flex-col lg:flex-row items-center gap-16 shadow-[0_40px_100px_-30px_rgba(30,58,95,0.4)] overflow-hidden relative">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-48 -translate-y-48 blur-3xl"></div>
             
-            {/* Founder Image container - Reduced size by additional 30% for institutional balance */}
-            <div className="w-full max-w-[266px] shrink-0 animate-in fade-in duration-1000">
+            {/* Founder Image container - Reduced size by 30% for institutional scale as requested */}
+            <div className="w-full max-w-[186px] shrink-0 animate-in fade-in duration-1000">
               <div className="rounded-xl overflow-hidden shadow-2xl bg-slate-900 border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 flex items-center justify-center">
                 <img 
                   src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
@@ -277,8 +277,8 @@ const HomePage: React.FC = () => {
 
             <div className="flex-grow space-y-10 text-left text-white relative z-10">
               <div className="space-y-6">
-                {/* Updated Title */}
-                <h2 className="text-3xl lg:text-[44px] font-black font-serif uppercase tracking-tight leading-[1.1]">Founder & Senior EHS Coordinator — <br/>Vince Lawrence</h2>
+                {/* Updated Title - Reflecting Desert Storm Navy Service */}
+                <h2 className="text-3xl lg:text-[44px] font-black font-serif uppercase tracking-tight leading-[1.1]">Founder & Desert Storm Navy Veteran — <br/>Vince Lawrence</h2>
                 
                 <div className="flex flex-wrap items-center justify-start gap-4 py-2">
                   <VeteranBadgeSmall />
@@ -311,11 +311,11 @@ const HomePage: React.FC = () => {
                 <p className="text-signal-gold font-black uppercase tracking-[0.5em] text-[12px]">Strategic Defense Protocol</p>
               </div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-serif text-authority-blue dark:text-white mb-10 leading-[1.1] tracking-tighter uppercase">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white mb-10 leading-[1.1] tracking-tighter uppercase">
                 The <span className="text-signal-gold italic">Reach</span> Test
               </h2>
               
-              <p className="text-lg lg:text-xl text-text-muted dark:text-text-dark-muted leading-relaxed font-medium mb-12 max-w-3xl">
+              <p className="text-base lg:text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium mb-12 max-w-3xl">
                 Regulatory and operational threats attack your operating authority by reaching from four directions. LaunchPath systems are built to pass "The Reach Test"—ensuring your business remains structurally sound when federal pressure is applied.
               </p>
               
@@ -326,12 +326,12 @@ const HomePage: React.FC = () => {
                   { icon: <MoveLeft size={32} className="text-signal-gold" />, label: "THROUGH", sub: "Internal System Auditors", desc: "Data inconsistencies found during roadside inspections." },
                   { icon: <MoveUp size={32} className="text-signal-gold" />, label: "UNDER", sub: "Financial Foundation Collapse", desc: "Cash-flow deficits that compromise operational safety." }
                 ].map((item, i) => (
-                  <div key={i} className="group flex items-start space-x-6 bg-slate-50 dark:bg-slate-900/50 p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                  <div key={i} className="group flex items-start space-x-6 bg-slate-50 dark:bg-slate-900/50 p-8 rounded-[2.5rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                     <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm group-hover:scale-110 transition-transform">
                       {item.icon}
                     </div>
                     <div>
-                      <p className="text-[12px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-2">{item.label}</p>
+                      <p className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-2">{item.label}</p>
                       <p className="text-lg font-black text-text-primary dark:text-white leading-tight mb-3">{item.sub}</p>
                       <p className="text-xs text-text-muted leading-relaxed font-medium">{item.desc}</p>
                     </div>
@@ -594,7 +594,7 @@ const HomePage: React.FC = () => {
               ))}
             </ul>
             <div className="h-px w-full bg-slate-100 dark:bg-gray-800"></div>
-            <p className="text-sm text-text-muted dark:text-text-dark-muted font-bold leading-relaxed italic text-center">
+            <p className="text-sm text-text-muted dark:text-text-dark-muted font-bold font-serif leading-relaxed italic text-center">
               "This clarity protects both you and our institution. We teach the systems; you are responsible for implementing them with the support of licensed professionals when needed."
             </p>
           </div>

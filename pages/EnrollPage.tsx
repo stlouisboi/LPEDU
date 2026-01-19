@@ -575,7 +575,7 @@ const EnrollPage = () => {
         </div>
         
         <div className="text-center">
-          <p className="text-sm font-bold text-text-muted max-w-xl mx-auto opacity-70">
+          <p className="text-sm font-bold text-text-muted max-xl mx-auto opacity-70">
             All enrollment is covered by our published refund policy. <br/>
             No contracts. No pressure. Accuracy over hype.
           </p>
@@ -607,7 +607,7 @@ const EnrollPage = () => {
       <section className="bg-authority-blue py-32 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <Logo light className="mx-auto mb-12 h-16 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-default" />
+          <Logo light className="mx-auto mb-12 h-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-default" />
           <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-8 leading-tight">Build Your Carrier on <br/><span className="text-signal-gold italic text-white/90">Systems, Not Shortcuts.</span></h2>
           <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
             The road to carrier bankruptcy is paved with shortcuts. We teach you how to build a compliance backbone that stands up to federal scrutiny.

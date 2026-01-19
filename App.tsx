@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -109,7 +108,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24 sm:h-28">
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <Logo />
           </Link>
@@ -303,7 +302,7 @@ const Footer = () => {
             {/* LEFT SIDE: Identity & Disclaimer */}
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-4">
-                <Logo light className="h-8 grayscale-0 brightness-0 invert" />
+                <Logo light className="h-12 grayscale-0 brightness-0 invert" />
               </div>
               <p className="text-[14px] text-white/60 mb-1">
                 © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.

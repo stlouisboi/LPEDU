@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -36,12 +35,21 @@ const AboutPage = () => {
           <h1 className="text-[32px] lg:text-[42px] font-bold text-[#1A1A1A] leading-[1.2] mb-6 font-sans">
             Built by Experience, Not Theory
           </h1>
-          <p className="text-base lg:text-[18px] leading-[1.7] text-[#555] max-w-[750px] mx-auto mb-10 font-medium">
+          <p className="text-base lg:text-[18px] leading-[1.7] text-[#555] max-w-[750px] mx-auto mb-6 font-medium">
             LaunchPath was created by Vince Lawrence, an OSHA-Certified Safety Coordinator 
             with 20+ years overseeing compliance systems for organizations supporting 1,200+ 
             employees. This isn't curriculum built from regulatory research—it's built from managing 
             real compliance operations at scale.
           </p>
+          
+          {/* Kingdom Business Clarity with subtle 3D institutional styling */}
+          <p 
+            className="text-base lg:text-[18px] leading-[1.7] text-[#1E3A5F] max-w-[750px] mx-auto mb-10 font-bold"
+            style={{ textShadow: '0.5px 0.5px 0px rgba(0,0,0,0.15), 1px 1px 0px rgba(0,0,0,0.1)' }}
+          >
+            LaunchPath is a Kingdom-operated business — expressed through stewardship, restraint, truth, and respect for lawful authority.
+          </p>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/pricing" className="w-full sm:w-auto bg-[#1E3A5F] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#152945] transition-all shadow-lg active:scale-95 text-center">
               View the Training Programs
@@ -58,15 +66,15 @@ const AboutPage = () => {
         <div className="max-w-[1200px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[4fr_6fr] gap-16 items-start">
             
-            {/* Left Column: Founder Photo */}
-            <div className="flex flex-col items-center lg:items-start max-w-[450px] mx-auto lg:mx-0 w-full">
-              <div className="bg-white p-0 rounded-[16px] shadow-[0_8px_24px_rgba(0,0,0,0.15)] overflow-hidden w-full aspect-[4/5] relative group">
+            {/* Left Column: Founder Photo - Reduced size by 30% for institutional balance */}
+            <div className="flex flex-col items-center lg:items-start max-w-[315px] mx-auto lg:mx-0 w-full">
+              <div className="bg-white p-0 rounded-[16px] shadow-xl overflow-hidden w-full relative group">
                 <img 
                   src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
                   alt="Vince Lawrence, Founder of LaunchPath" 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 block"
                 />
-                <div className="absolute bottom-0 left-0 w-full bg-[#1E3A5F] py-3 text-center">
+                <div className="absolute bottom-0 left-0 w-full bg-[#1E3A5F]/90 backdrop-blur-sm py-3 text-center">
                   <p className="text-[12px] font-bold text-white uppercase tracking-[0.02em]">VINCE LAWRENCE | FOUNDER</p>
                 </div>
               </div>
@@ -273,7 +281,7 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-6 text-lg text-white/80 leading-relaxed font-medium">
                 <p>
-                  As a Navy veteran, Vince Lawrence understands that operational success is built on standard operating procedures and rigorous administrative discipline. In the military, preparation isn't optional—it's the difference between mission success and failure.
+                  As a Desert Storm Navy Veteran, Vince Lawrence understands that operational success is built on standard operating procedures and rigorous administrative discipline. In the military, preparation isn't optional—it's the difference between mission success and failure.
                 </p>
                 <p>
                   LaunchPath applies this level of institutional discipline to the trucking industry. Most carriers fail because they are "reacting" to the road. We teach you to "command" your operation by building a foundation that doesn't just meet regulations—it survives them.

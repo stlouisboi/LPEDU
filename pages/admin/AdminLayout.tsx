@@ -63,7 +63,7 @@ const AdminLayout = () => {
         <div className="h-full flex flex-col">
           <div className="p-6 border-b border-border-light dark:border-border-dark flex items-center justify-between">
             <Link to="/admin" className="flex items-center">
-              <Logo className="h-7" />
+              <Logo className="h-10" />
             </Link>
             <button className="lg:hidden p-2 hover:bg-slate-50 dark:hover:bg-gray-800 rounded-lg" onClick={() => setSidebarOpen(false)}>
               <X size={20} />

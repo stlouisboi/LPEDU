@@ -22,13 +22,13 @@ const Logo: React.FC<LogoProps> = ({ className = "", light = false }) => {
       <img 
         src={logoSrc} 
         alt={`${siteName} Logo`} 
-        className={`h-8 sm:h-12 w-auto object-contain transition-all duration-300 ${light ? 'brightness-0 invert' : ''}`}
+        className={`h-12 sm:h-[72px] w-auto object-contain transition-all duration-300 ${light ? 'brightness-0 invert' : ''}`}
         onError={(e) => {
           // Fallback if image fails to load
           e.currentTarget.style.display = 'none';
           const parent = e.currentTarget.parentElement;
           if (parent) {
-            parent.innerHTML = `<span class="font-black text-xl tracking-tighter ${light ? 'text-white' : 'text-authority-blue'}">LaunchPath™</span>`;
+            parent.innerHTML = `<span class="font-black text-2xl tracking-tighter ${light ? 'text-white' : 'text-authority-blue'}">LaunchPath™</span>`;
           }
         }}
       />
