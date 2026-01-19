@@ -75,49 +75,53 @@ const HomePage: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-white dark:bg-primary-dark font-sans text-authority-blue">
       
-      {/* 1. HERO SECTION - REFINED FOR CALM AUTHORITY */}
-      <section className="relative min-h-[85vh] flex items-center w-full bg-[#F8FAFC] dark:bg-primary-dark overflow-hidden border-b border-slate-200 dark:border-border-dark">
-        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#1e3a5f_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      {/* 1. HERO SECTION - ORIENTATION */}
+      <section className="relative min-h-[85vh] flex items-center w-full bg-authority-blue overflow-hidden border-none">
+        <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]"></div>
         
         <div className="max-w-[1400px] mx-auto px-6 sm:px-12 relative z-10 w-full py-20 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
             <div className="lg:col-span-7 text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide text-authority-blue dark:text-signal-gold mb-8 shadow-sm">
+              <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/10 px-4 py-2 rounded-full text-[13px] font-bold tracking-wide text-white dark:text-signal-gold mb-8 shadow-sm">
                 <span>⚖️ INTEGRITY FIRST • SYSTEMS DRIVEN</span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight text-authority-blue dark:text-white leading-[1.1] mb-8">
-                Protect Your <span className="text-signal-gold">Authority</span> With Order and Certainty.
+              <h1 className="text-4xl sm:text-5xl lg:text-[72px] font-black tracking-tight text-white leading-[1.0] mb-8">
+                Protect Your <br/><span className="text-signal-gold">Authority</span> <br className="lg:hidden" /> With Order <br className="hidden lg:block" /> and Certainty.
               </h1>
               
-              <div className="text-xl lg:text-[22px] text-slate-600 dark:text-text-dark-muted mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
-                <p>Clarity is the primary asset of a resilient carrier. We help you establish the systems required to lead your business with stewardship and maintain the integrity of your authority from day one.</p>
+              <div className="text-xl lg:text-[22px] text-white/80 mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+                <p>Clarity is the primary asset of a resilient motor carrier. We help you establish the systems required to lead your business with stewardship and maintain the integrity of your authority from day one.</p>
               </div>
 
-              <p className="text-lg text-slate-500 dark:text-slate-400 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg text-white/50 mb-10 font-medium italic leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                LaunchPath is the grown-up version of “How do I start this business correctly?” — with order, foresight, and stewardship.
+              </p>
+
+              <p className="text-lg text-white/60 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 LaunchPath provides a structured 90-day implementation sequence. We help you establish a resilient operating foundation on your own timeline, ensuring every system is aligned with professional standards.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
                 <Link 
                   to="/learning-path"
-                  className="group bg-transparent text-authority-blue border-2 border-authority-blue px-12 py-5 rounded-2xl font-black text-sm hover:bg-authority-blue/5 transition-all flex items-center active:scale-95 uppercase tracking-[0.2em]"
+                  className="group bg-transparent text-white border-2 border-white/30 px-12 py-5 rounded-2xl font-black text-sm hover:bg-white/5 hover:border-white transition-all flex items-center active:scale-95 uppercase tracking-[0.2em]"
                 >
                   Explore the Roadmap
                   <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <button 
                   onClick={() => document.getElementById('pillars')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-transparent text-slate-500 dark:text-slate-400 px-10 py-5 rounded-2xl font-black text-sm hover:text-authority-blue transition-all flex items-center active:scale-95 uppercase tracking-widest"
+                  className="bg-transparent text-white/50 hover:text-white px-10 py-5 rounded-2xl font-black text-sm transition-all flex items-center active:scale-95 uppercase tracking-widest"
                 >
-                  See How the System Works
+                  How the System Works
                 </button>
               </div>
             </div>
             
             <div id="risk-assessment" className="lg:col-span-5 relative">
-              <div className="relative bg-white dark:bg-surface-dark p-12 md:p-14 rounded-[4rem] border border-slate-200 dark:border-border-dark shadow-[0_50px_100px_-20px_rgba(30,58,95,0.15)] animate-in zoom-in duration-700">
+              <div className="relative bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[4rem] border border-slate-200 dark:border-border-dark shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] animate-in zoom-in duration-700">
                 <div className="absolute -top-4 -right-4 bg-authority-blue text-white p-4 rounded-[2rem] shadow-xl">
                   <Files size={32} className="text-signal-gold" />
                 </div>
@@ -173,10 +177,10 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-tight">
-              Most carriers don’t fail from lack of hustle. <br/>They fail from league of structure.
+              Most motor carriers do not fail from lack of effort. <br/>They fail from lack of structure.
             </h2>
             <p className="text-lg text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto font-medium leading-relaxed italic">
-              We have observed consistent patterns where enthusiasm for "launching" overlooks the systems required for "sustaining."
+              The following accounts reflect common patterns observed in the first year of operation, illustrating the systemic nature of these challenges.
             </p>
           </div>
 
@@ -205,7 +209,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE FOUR PILLARS FRAMEWORK */}
+      {/* 3. THE FOUR PILLARS FRAMEWORK - THE SYSTEM */}
       <section id="pillars" className="py-24 bg-slate-50 dark:bg-primary-dark border-y border-border-light dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -213,7 +217,7 @@ const HomePage: React.FC = () => {
               The Four Pillars Foundation
             </h2>
             <p className="text-lg text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto font-medium">
-              New carrier failure usually occurs when one of these four operational systems collapses. LaunchPath is built to reinforce all four.
+              New motor carrier failure usually occurs when one of these four operational systems collapses. LaunchPath is built to reinforce all four.
             </p>
           </div>
 
@@ -254,89 +258,116 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. FOUNDER SECTION - ADJUSTED FOR DARK BACKGROUND & FIT */}
+      {/* 4. FOUNDER SECTION - CREDIBILITY */}
       <section className="py-24 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
-          <div className="bg-authority-blue dark:bg-surface-dark rounded-[4rem] p-10 lg:p-20 border border-authority-blue dark:border-border-dark flex flex-col lg:flex-row items-center gap-16 shadow-[0_40px_100px_-30px_rgba(30,58,95,0.4)] overflow-hidden relative">
+          <div className="bg-authority-blue dark:bg-surface-dark rounded-[2.5rem] p-10 lg:p-20 border border-authority-blue dark:border-border-dark flex flex-col lg:flex-row items-center gap-16 shadow-[0_40px_100px_-30px_rgba(30,58,95,0.4)] overflow-hidden relative">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-48 -translate-y-48 blur-3xl"></div>
             
-            <div className="w-full max-w-[420px] shrink-0">
-              <div className="aspect-square sm:aspect-[4/5] rounded-[3.5rem] overflow-hidden shadow-2xl bg-slate-900 border-8 border-white/5 grayscale hover:grayscale-0 transition-all duration-1000">
+            {/* Founder Image container - Reduced size by additional 30% for institutional balance */}
+            <div className="w-full max-w-[266px] shrink-0 animate-in fade-in duration-1000">
+              <div className="rounded-xl overflow-hidden shadow-2xl bg-slate-900 border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 flex items-center justify-center">
                 <img 
                   src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
                   alt="Vince Lawrence" 
-                  className="w-full h-full object-cover object-top scale-105" 
+                  className="w-full h-auto object-contain block" 
                 />
               </div>
             </div>
 
-            <div className="flex-grow space-y-10 text-center lg:text-left text-white relative z-10">
+            <div className="flex-grow space-y-10 text-left text-white relative z-10">
               <div className="space-y-6">
-                <h2 className="text-3xl lg:text-[42px] font-black font-serif uppercase tracking-tight leading-[1.1]">Founder & Lead Safety Officer — Vince Lawrence</h2>
+                {/* Updated Title */}
+                <h2 className="text-3xl lg:text-[44px] font-black font-serif uppercase tracking-tight leading-[1.1]">Founder & Senior EHS Coordinator — <br/>Vince Lawrence</h2>
+                
+                <div className="flex flex-wrap items-center justify-start gap-4 py-2">
+                  <VeteranBadgeSmall />
+                  <KingdomBadgeSmall />
+                </div>
+
                 <p className="text-xl lg:text-2xl text-signal-gold font-medium leading-relaxed italic opacity-90">
-                  "OSHA-Certified Safety Professional with 20+ years of federal compliance oversight."
+                  "OSHA-Certified Safety Professional with 20+ years of system compliance oversight."
                 </p>
               </div>
 
               <div className="h-px bg-white/10 w-full lg:w-32"></div>
 
               <p className="text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                Vince Lawrence has overseen compliance systems for organizations supporting 1,200+ employees. LaunchPath translates this institutional experience into a systematic protective framework for small carriers.
+                Vince Lawrence has overseen compliance systems for organizations supporting 1,200+ employees. LaunchPath translates this institutional experience into a systematic protective framework for small motor carriers.
               </p>
-
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-                <VeteranBadgeSmall />
-                <KingdomBadgeSmall />
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. THE REACH TEST */}
-      <section className="py-24 bg-white dark:bg-primary-dark">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px] mb-6">Strategic Defense</p>
-              <h2 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white mb-8 leading-[1.1] tracking-tighter uppercase">The Reach Test</h2>
-              <p className="text-xl text-text-muted dark:text-text-dark-muted leading-relaxed font-medium mb-10">
-                Regulatory and operational threats attack your authority from four directions. LaunchPath systems are built to pass "The Reach Test"—ensuring your business remains structurally sound when regulatory pressure is applied.
+      {/* 5. THE REACH TEST - THREATS */}
+      <section className="py-32 bg-white dark:bg-primary-dark overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center space-x-3 mb-8">
+                <div className="h-px w-12 bg-signal-gold"></div>
+                <p className="text-signal-gold font-black uppercase tracking-[0.5em] text-[12px]">Strategic Defense Protocol</p>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-serif text-authority-blue dark:text-white mb-10 leading-[1.1] tracking-tighter uppercase">
+                The <span className="text-signal-gold italic">Reach</span> Test
+              </h2>
+              
+              <p className="text-lg lg:text-xl text-text-muted dark:text-text-dark-muted leading-relaxed font-medium mb-12 max-w-3xl">
+                Regulatory and operational threats attack your operating authority by reaching from four directions. LaunchPath systems are built to pass "The Reach Test"—ensuring your business remains structurally sound when federal pressure is applied.
               </p>
-              <div className="grid grid-cols-2 gap-6">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {[
-                  { icon: <MoveDown className="text-signal-gold" />, label: "OVER", sub: "FMCSA Regulatory Violations" },
-                  { icon: <MoveRight className="text-signal-gold" />, label: "AROUND", sub: "Insurance Cancellations" },
-                  { icon: <MoveLeft className="text-signal-gold" />, label: "THROUGH", sub: "Internal System Auditors" },
-                  { icon: <MoveUp className="text-signal-gold" />, label: "UNDER", sub: "Financial Foundation Collapse" }
+                  { icon: <MoveDown size={32} className="text-signal-gold" />, label: "OVER", sub: "FMCSA Regulatory Violations", desc: "Critical violations that bypass standard safety filters." },
+                  { icon: <MoveRight size={32} className="text-signal-gold" />, label: "AROUND", sub: "Insurance Cancellations", desc: "Administrative lapses that trigger sudden loss of coverage." },
+                  { icon: <MoveLeft size={32} className="text-signal-gold" />, label: "THROUGH", sub: "Internal System Auditors", desc: "Data inconsistencies found during roadside inspections." },
+                  { icon: <MoveUp size={32} className="text-signal-gold" />, label: "UNDER", sub: "Financial Foundation Collapse", desc: "Cash-flow deficits that compromise operational safety." }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-3 bg-slate-50 dark:bg-gray-800 p-6 rounded-2xl border border-slate-100 dark:border-border-dark shadow-sm">
-                    {item.icon}
+                  <div key={i} className="group flex items-start space-x-6 bg-slate-50 dark:bg-slate-900/50 p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm group-hover:scale-110 transition-transform">
+                      {item.icon}
+                    </div>
                     <div>
-                      <p className="text-[10px] font-black uppercase tracking-widest">{item.label}</p>
-                      <p className="text-xs font-bold text-text-muted dark:text-text-dark-muted">{item.sub}</p>
+                      <p className="text-[12px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-2">{item.label}</p>
+                      <p className="text-lg font-black text-text-primary dark:text-white leading-tight mb-3">{item.sub}</p>
+                      <p className="text-xs text-text-muted leading-relaxed font-medium">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-authority-blue p-12 rounded-[4rem] text-white shadow-2xl relative z-10">
-                <ShieldCheck size={48} className="text-signal-gold mb-8" />
-                <h3 className="text-3xl font-black font-serif uppercase tracking-tight mb-6">Built to Pass.</h3>
-                <p className="text-white/80 leading-relaxed mb-10 font-medium italic">
-                  "The Four Pillars exist to protect against threats that pass The Reach Test—the ones that can reach your operating authority and shut you down."
-                </p>
-                <div className="h-px w-full bg-white/10 mb-8"></div>
-                <p className="text-xs font-black uppercase tracking-widest text-signal-gold">Designed for survival in the first 18 months.</p>
+
+            <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
+              <div className="relative group w-full max-w-lg">
+                <div className="bg-authority-blue p-10 md:p-14 rounded-[3.5rem] text-white shadow-[0_40px_80px_-20px_rgba(30,58,95,0.3)] relative z-10 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-24 translate-x-24 blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
+                  
+                  <div className="relative z-20">
+                    <ShieldCheck size={56} className="text-signal-gold mb-8 group-hover:rotate-12 transition-transform duration-700" />
+                    <h3 className="text-3xl md:text-4xl font-black font-serif uppercase tracking-tight mb-6 leading-none">Built to <br/>Pass.</h3>
+                    <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-10 font-medium italic">
+                      "The Four Pillars exist to protect against threats that pass The Reach Test—the specific vectors that reach your operating authority and shut you down."
+                    </p>
+                    <div className="h-px w-full bg-white/20 mb-8"></div>
+                    <div className="flex items-center space-x-4">
+                      <Zap size={18} className="text-signal-gold" fill="currentColor" />
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">Designed for survival in the first 18 months.</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Decorative background rings - scaled down and opacity reduced */}
+                <div className="absolute -inset-4 border-[4px] border-signal-gold/5 rounded-[4rem] -rotate-3 z-0"></div>
+                <div className="absolute -inset-8 border border-authority-blue/5 rounded-[5rem] rotate-2 z-0"></div>
               </div>
-              <div className="absolute -inset-4 border-4 border-signal-gold/20 rounded-[4.5rem] -rotate-2"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. WHY LAUNCHPATH IS DIFFERENT */}
+      {/* 6. DIFFERENTIATION */}
       <section className="py-24 bg-slate-50 dark:bg-primary-dark border-y border-slate-200 dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -344,7 +375,7 @@ const HomePage: React.FC = () => {
               What Makes LaunchPath Different
             </h2>
             <p className="text-lg text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto font-medium leading-relaxed">
-              We provide a professional alternative to "hustle culture" trucking advice.
+              We provide a professional alternative to speculative trucking advice.
             </p>
           </div>
 
@@ -367,7 +398,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. CURRICULUM PREVIEW */}
+      {/* 7. CURRICULUM PREVIEW - PROGRAM */}
       <section className="py-24 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -414,7 +445,7 @@ const HomePage: React.FC = () => {
               Interactive Student Tools
             </h2>
             <p className="text-lg text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto font-medium">
-              Other courses give you PDFs. LaunchPath gives you professional financial software calculators.
+              Other courses give you static documents. LaunchPath gives you professional financial software calculators.
             </p>
           </div>
 
@@ -441,7 +472,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. WHO IT'S FOR / WHO IT'S NOT */}
+      {/* 9. WHO IT'S FOR / FIT */}
       <section className="py-24 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -452,7 +483,7 @@ const HomePage: React.FC = () => {
                    "CDL holders planning to obtain their own authority",
                    "New authorities in their first 90 days of operation",
                    "Lease-purchase drivers transitioning to independence",
-                   "Carriers who refuse to compromise integrity for shortcuts"
+                   "Motor carriers who refuse to compromise integrity for shortcuts"
                  ].map((item, i) => (
                    <li key={i} className="flex items-start space-x-4">
                      <Check className="text-green-500 shrink-0 mt-1" size={20} />
@@ -465,9 +496,9 @@ const HomePage: React.FC = () => {
                <h3 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">Who This Is NOT For</h3>
                <ul className="space-y-6">
                  {[
-                   "Experienced carriers (3+ years) looking for advanced logistics",
+                   "Experienced operators (3+ years) looking for advanced logistics",
                    "Anyone seeking dispatching or load-finding services",
-                   "Anyone looking for \"get rich quick\" promises",
+                   "Anyone looking for rapid financial promises",
                    "Anyone looking for legal, tax, or financial advice"
                  ].map((item, i) => (
                    <li key={i} className="flex items-start space-x-4">
@@ -481,12 +512,15 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 10. ENROLLMENT OPTIONS */}
+      {/* 10. ENROLLMENT OPTIONS - PRICING */}
       <section className="py-24 bg-slate-50 dark:bg-primary-dark">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">Choose Your Path</h2>
-          <p className="text-xl text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-12">
-            Every path starts with the same goal: protecting your legal right to operate. Choose the level of implementation support that fits your current needs.
+          <p className="text-xl text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-6">
+            Every path starts with the same goal: protecting your legal right to operate. 
+          </p>
+          <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-12">
+            Pricing structures reflect the selected level of implementation support required to integrate the LaunchPath system into your operation.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {[
@@ -508,7 +542,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 11. HOW IT WORKS */}
+      {/* 11. HOW IT WORKS - PROCESS */}
       <section className="py-24 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -526,7 +560,7 @@ const HomePage: React.FC = () => {
               { step: "04", title: "Stabilize", desc: "Transition into Module 6 to prepare for long-term operational sustainability." }
             ].map((step, i) => (
               <div key={i} className="relative p-10 bg-slate-50 dark:bg-surface-dark rounded-[2.5rem] border border-slate-100 dark:border-border-dark shadow-sm">
-                <span className="text-6xl font-black text-authority-blue/5 dark:text-white/5 absolute top-4 right-8">{step.step}</span>
+                <span className="text-6xl font-black text-authority-blue/5 absolute top-4 right-8">{step.step}</span>
                 <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 relative z-10 leading-none">{step.title}</h4>
                 <p className="text-sm text-text-muted dark:text-text-dark-muted leading-relaxed font-medium relative z-10">{step.desc}</p>
               </div>
@@ -535,7 +569,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 12. SCOPE CLARITY */}
+      {/* 12. SCOPE CLARITY - BOUNDARIES */}
       <section className="py-24 bg-slate-50 dark:bg-primary-dark border-y border-border-light dark:border-border-dark">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -575,7 +609,7 @@ const HomePage: React.FC = () => {
             Ready to Build Your Foundation?
           </h2>
           <p className="text-xl opacity-80 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-            LaunchPath is built on integrity, stewardship, and systematic thinking. We help serious carriers prepare for the reality of federal compliance—not the fantasy of easy money. Build your carrier on a foundation that lasts.
+            LaunchPath is built on integrity, stewardship, and systematic thinking. We help serious motor carriers prepare for the reality of federal compliance—not the speculation of easy money. Build your carrier on a foundation that lasts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link to="/pricing" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all shadow-2xl active:scale-95">
