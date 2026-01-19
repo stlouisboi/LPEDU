@@ -24,6 +24,20 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const VeteranBadgeSmall = () => (
+  <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/20 px-5 py-3 rounded-xl shadow-sm">
+    <Award size={18} className="text-[#D4AF37]" fill="currentColor" />
+    <span className="text-[10px] font-black uppercase tracking-[0.15em] text-white">Veteran Owned & Operated</span>
+  </div>
+);
+
+const KingdomBadgeSmall = () => (
+  <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/20 px-5 py-3 rounded-xl shadow-sm">
+    <Anchor size={18} className="text-[#D4AF37]" />
+    <span className="text-[10px] font-black uppercase tracking-[0.15em] text-white">Kingdom Operated</span>
+  </div>
+);
+
 const AboutPage = () => {
   return (
     <div className="bg-white min-h-screen font-sans animate-in fade-in duration-700">
@@ -66,8 +80,8 @@ const AboutPage = () => {
         <div className="max-w-[1200px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[4fr_6fr] gap-16 items-start">
             
-            {/* Left Column: Founder Photo - Reduced size by 30% for institutional balance */}
-            <div className="flex flex-col items-center lg:items-start max-w-[315px] mx-auto lg:mx-0 w-full">
+            {/* Left Column: Founder Photo - Scaled up by 30% per request (from 315px to 410px) */}
+            <div className="flex flex-col items-center lg:items-start max-w-[410px] mx-auto lg:mx-0 w-full">
               <div className="bg-white p-0 rounded-[16px] shadow-xl overflow-hidden w-full relative group">
                 <img 
                   src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
@@ -83,8 +97,13 @@ const AboutPage = () => {
             {/* Right Column: Content */}
             <div className="flex flex-col pt-4">
               <span className="text-[14px] text-[#D4AF37] font-semibold uppercase tracking-[0.015em] mb-4">Meet Vince Lawrence</span>
-              <h2 className="text-[24px] lg:text-[32px] font-bold text-white mb-6">OSHA-Certified Safety Coordinator</h2>
+              <h2 className="text-[24px] lg:text-[32px] font-bold text-white mb-8">OSHA-Certified Safety Coordinator</h2>
               
+              <div className="flex flex-wrap gap-4 mb-10">
+                <VeteranBadgeSmall />
+                <KingdomBadgeSmall />
+              </div>
+
               <div className="space-y-6 text-[16px] leading-[1.7] text-white/90 font-normal">
                 <p>
                   Vince Lawrence is an OSHA-Certified Safety Coordinator with over 20 years of 

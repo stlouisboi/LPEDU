@@ -32,20 +32,6 @@ import {
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 
-const VeteranBadgeSmall = () => (
-  <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 px-4 py-2.5 rounded-xl shadow-sm">
-    <Award size={16} className="text-signal-gold" fill="currentColor" />
-    <span className="text-[10px] font-black uppercase tracking-widest text-white">Veteran Owned</span>
-  </div>
-);
-
-const KingdomBadgeSmall = () => (
-  <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 px-4 py-2.5 rounded-xl shadow-sm">
-    <Anchor size={16} className="text-signal-gold" />
-    <span className="text-[10px] font-black uppercase tracking-widest text-white">Kingdom Operated</span>
-  </div>
-);
-
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', email: '' });
@@ -264,8 +250,8 @@ const HomePage: React.FC = () => {
           <div className="bg-authority-blue dark:bg-surface-dark rounded-[2.5rem] p-10 lg:p-20 border border-authority-blue dark:border-border-dark flex flex-col lg:flex-row items-center gap-16 shadow-[0_40px_100px_-30px_rgba(30,58,95,0.4)] overflow-hidden relative">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-48 -translate-y-48 blur-3xl"></div>
             
-            {/* Founder Image container - Reduced size by 30% for institutional scale as requested */}
-            <div className="w-full max-w-[186px] shrink-0 animate-in fade-in duration-1000">
+            {/* Founder Image container - Scaled up by 30% per request (from 186px to 242px) */}
+            <div className="w-full max-w-[242px] shrink-0 animate-in fade-in duration-1000">
               <div className="rounded-xl overflow-hidden shadow-2xl bg-slate-900 border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 flex items-center justify-center">
                 <img 
                   src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
@@ -280,11 +266,6 @@ const HomePage: React.FC = () => {
                 {/* Updated Title - Reflecting Desert Storm Navy Service */}
                 <h2 className="text-3xl lg:text-[44px] font-black font-serif uppercase tracking-tight leading-[1.1]">Founder & Desert Storm Navy Veteran — <br/>Vince Lawrence</h2>
                 
-                <div className="flex flex-wrap items-center justify-start gap-4 py-2">
-                  <VeteranBadgeSmall />
-                  <KingdomBadgeSmall />
-                </div>
-
                 <p className="text-xl lg:text-2xl text-signal-gold font-medium leading-relaxed italic opacity-90">
                   "OSHA-Certified Safety Professional with 20+ years of system compliance oversight."
                 </p>
