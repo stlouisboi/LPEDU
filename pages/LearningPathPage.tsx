@@ -40,7 +40,7 @@ const PHASES: PhaseData[] = [
     priority: "CRITICAL - Foundation",
     icon: <ClipboardList className="w-8 h-8" />,
     actions: [
-      "Go/No-Go Discipline Standard Assessment",
+      "Go/No-Go Business Framework Assessment",
       "USDOT & MC Number registration (21-day protest period)",
       "Process Agents (BOC-3) Filing",
       "Drug & Alcohol Clearinghouse Enrollment"
@@ -70,7 +70,7 @@ const PHASES: PhaseData[] = [
   },
   {
     number: 3,
-    title: "Phase 3: The Compliance Standard",
+    title: "Phase 3: The Compliance System",
     duration: "Week 6-Launch",
     label: "OPERATIONS READY",
     priority: "MODERATE - Audit Protection",
@@ -94,7 +94,7 @@ const PHASES: PhaseData[] = [
     priority: "ADVANCED - Long-term Survival",
     icon: <Target className="w-8 h-8" />,
     actions: [
-      "Prepare for New Entrant Safety Audit expectations",
+      "Prepare for New Entrant Safety Audit",
       "Annual UCR & MCS-150 Updates",
       "CSA Score Monitoring",
       "Investigation Red Flag Awareness"
@@ -109,12 +109,10 @@ const PHASES: PhaseData[] = [
 const LearningPathPage = () => {
   const { currentUser } = useAuth();
   const [enrollmentModalOpen, setEnrollmentModalOpen] = useState(false);
-  const [activePhase, setActivePhase] = useState<PhaseData | null>(null);
   
   const isEnrolled = !!(currentUser && currentUser.email?.includes('enrolled')); 
 
   const handleDownloadClick = (phase: PhaseData) => {
-    setActivePhase(phase);
     if (isEnrolled) {
       if (phase.downloadUrl && phase.downloadUrl !== '#') {
         window.open(phase.downloadUrl, '_blank');
@@ -138,10 +136,10 @@ const LearningPathPage = () => {
             <span>Implementation Timeline</span>
           </div>
           <h1 className="text-4xl md:text-7xl font-black mb-8 font-serif leading-tight tracking-tighter">
-            The LaunchPath 90-Day Operating Standard
+            The LaunchPath 90-Day Operating Roadmap
           </h1>
           <p className="text-lg md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed font-medium mb-12">
-            A federally-aligned implementation rhythm designed to protect your authority through your highest-risk window.
+            A federally-aligned implementation timeline designed to protect your authority through your highest-risk window.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button 
@@ -150,8 +148,8 @@ const LearningPathPage = () => {
             >
               Begin With the Risk Map →
             </button>
-            <Link to="/request-admission" className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/20 transition-all">
-              Request Admission →
+            <Link to="/pricing" className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/20 transition-all">
+              View Enrollment Details →
             </Link>
           </div>
         </div>
@@ -250,13 +248,13 @@ const LearningPathPage = () => {
               </div>
               <h3 className="text-2xl font-black font-serif uppercase text-authority-blue dark:text-white mb-4 tracking-tight">Survival-Focused</h3>
               <p className="text-text-muted font-medium leading-relaxed">
-                We focus on meeting expectations in high-risk phases to protect your legal right to operate.
+                We focus on the high-risk first 18 months to protect your MC number from revocation.
               </p>
             </div>
           </div>
           <div className="mt-16 text-center">
-            <Link to="/request-admission" className="inline-flex items-center space-x-5 bg-authority-blue text-white px-12 py-7 rounded-[2rem] text-xl font-black uppercase tracking-widest hover:bg-[#152945] transition-all shadow-xl active:scale-95">
-              <span>Request Admission →</span>
+            <Link to="/pricing" className="inline-flex items-center space-x-5 bg-authority-blue text-white px-12 py-7 rounded-[2rem] text-xl font-black uppercase tracking-widest hover:bg-[#152945] transition-all shadow-xl active:scale-95">
+              <span>Secure Full System Access →</span>
             </Link>
           </div>
         </div>
@@ -269,8 +267,8 @@ const LearningPathPage = () => {
               Stop Guessing. <br/><span className="text-signal-gold italic">Start Operating.</span>
            </h2>
            <div className="flex items-center justify-center pt-8">
-              <Link to="/request-admission" className="inline-flex items-center space-x-5 bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] text-2xl font-black uppercase tracking-widest hover:bg-[#152945] transition-all shadow-xl active:scale-95 group">
-                 <span>REQUEST ADMISSION →</span>
+              <Link to="/pricing" className="inline-flex items-center space-x-5 bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] text-2xl font-black uppercase tracking-widest hover:bg-[#152945] transition-all shadow-xl active:scale-95 group">
+                 <span>ENTER THE PATH →</span>
               </Link>
            </div>
         </div>
@@ -283,10 +281,10 @@ const LearningPathPage = () => {
             <button onClick={() => setEnrollmentModalOpen(false)} className="absolute top-10 right-10 p-3 rounded-full hover:bg-slate-100 transition-all"><X className="w-8 h-8" /></button>
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-authority-blue/10 text-authority-blue rounded-3xl flex items-center justify-center mb-8"><Lock className="w-10 h-10" /></div>
-              <h3 className="text-3xl font-black font-serif uppercase mb-4 text-authority-blue dark:text-white">Phase Packs Included with Admission</h3>
+              <h3 className="text-3xl font-black font-serif uppercase mb-4 text-authority-blue dark:text-white">Full System Access Required</h3>
               <p className="text-lg text-text-muted font-bold uppercase tracking-widest mb-10 text-signal-gold">Complete template libraries and implementation toolkits</p>
               <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl w-full text-left mb-10">
-                <p className="text-sm font-medium leading-relaxed mb-6 italic">"All Phase Pack downloads are included with LaunchPath admission."</p>
+                <p className="text-sm font-medium leading-relaxed mb-6 italic">"All Phase Pack downloads are included in the single Master Implementation enrollment."</p>
                 <p className="text-[11px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold mb-4">What you get:</p>
                 <ul className="space-y-3">
                   {["Complete DQ file templates", "HOS/ELD policy documents", "Maintenance tracking systems", "Compliance checklists", "Audit preparation tools"].map((item, i) => (
@@ -294,7 +292,7 @@ const LearningPathPage = () => {
                   ))}
                 </ul>
               </div>
-              <Link to="/request-admission" className="w-full bg-authority-blue text-white py-6 rounded-[1.5rem] font-black uppercase tracking-[0.2em] text-xs text-center shadow-xl">Request Admission</Link>
+              <Link to="/pricing" className="w-full bg-authority-blue text-white py-6 rounded-[1.5rem] font-black uppercase tracking-[0.2em] text-xs text-center shadow-xl">View Enrollment Details</Link>
             </div>
           </div>
         </div>

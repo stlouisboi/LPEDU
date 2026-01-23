@@ -5,19 +5,22 @@ import {
   Moon, 
   Menu, 
   X, 
+  ChevronRight, 
   Loader2,
   Linkedin,
   Facebook,
   Youtube,
   Twitter,
+  ArrowRight,
   ShieldCheck,
-  Award
+  Award,
+  ExternalLink
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
-import { INITIAL_SETTINGS } from './constants';
+import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider, useAuth } from './AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
@@ -26,15 +29,18 @@ import Logo from './components/Logo';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import LearningPathPage from './pages/LearningPathPage'; 
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import ResourcesPage from './pages/ResourcesPage';
 import FAQPage from './pages/FAQPage';
 import ContactPage from './pages/ContactPage';
-import RequestAdmissionPage from './pages/RequestAdmissionPage';
 import SupportPage from './pages/SupportPage';
 import LegalPage from './pages/LegalPage';
+import AIServicePage from './pages/AIServicePage';
 import EnrollPage from './pages/EnrollPage';
 import ModuleDetailPage from './pages/ModuleDetailPage';
 import DownloadPage from './pages/DownloadPage';
+import ReadinessPage from './pages/ReadinessPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -42,6 +48,8 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboardHome from './pages/admin/AdminDashboardHome';
 import PageList from './pages/admin/PageList';
 import HomePageEditor from './pages/admin/HomePageEditor';
+import BlogList from './pages/admin/BlogList';
+import BlogEditor from './pages/admin/BlogEditor';
 import ResourceManager from './pages/admin/ResourceManager';
 import FormManagement from './pages/admin/FormManagement';
 import SubmissionsList from './pages/admin/SubmissionsList';
@@ -88,6 +96,7 @@ const Header = () => {
 
   if (location.pathname.startsWith('/admin')) return null;
 
+  // Cleanup Directive: Restricting navigation to institutional standards
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -123,7 +132,7 @@ const Header = () => {
                 {theme === 'light' ? <Moon className="w-7 h-7 text-authority-blue" /> : <Sun className="w-7 h-7 text-signal-gold" />}
               </button>
               <Link
-                to="/request-admission"
+                to="/pricing"
                 className="bg-authority-blue text-white px-10 py-4 rounded-xl text-base font-black uppercase tracking-[0.2em] hover:bg-steel-blue transition-all shadow-xl active:scale-95"
               >
                 Admission
@@ -159,11 +168,11 @@ const Header = () => {
             ))}
             <div className="pt-8 border-t border-border-light mt-4">
               <Link
-                to="/request-admission"
+                to="/pricing"
                 className="block w-full bg-authority-blue text-white py-6 rounded-2xl text-center font-black uppercase tracking-[0.25em] text-xl shadow-xl"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Request Admission
+                Admission
               </Link>
             </div>
           </nav>
@@ -201,7 +210,7 @@ const Footer = () => {
 
   return (
     <footer className="w-full font-sans">
-      {/* SECTION 2: FOOTER NAVIGATION */}
+      {/* SECTION 2: FOOTER NAVIGATION - Cleaned up to match Admission Policy */}
       <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Navigation">
@@ -211,7 +220,6 @@ const Footer = () => {
               <ul className="space-y-4">
                 {[
                   { name: 'About LaunchPath', path: '/about' },
-                  { name: 'Contact Us', path: '/contact' },
                   { name: 'Frequently Asked Questions', path: '/faq' },
                   { name: 'Billing & Account Support', path: '/support' }
                 ].map((link) => (
@@ -230,7 +238,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {[
                   { name: 'Course Curriculum', path: '/learning-path' },
-                  { name: 'Request Admission', path: '/request-admission' },
+                  { name: 'Enrollment Admission', path: '/pricing' },
                   { name: 'The Four Pillars', path: '/#pillars' }
                 ].map((link) => (
                   <li key={link.name}>
@@ -249,7 +257,7 @@ const Footer = () => {
                 {[
                   { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
                   { name: 'Educational Downloads', path: '/resources' },
-                  { name: 'FMCSA Regulatory Links', path: '/resources' }
+                  { name: 'Readiness Calculator', path: '/readiness' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -340,7 +348,7 @@ const Footer = () => {
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
-  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [formSubmissions, setFormSubmissions] = useState<any[]>([]);
   const [appLoading, setAppLoading] = useState(true);
@@ -393,9 +401,9 @@ export default function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
+              <Route path="/readiness" element={<ReadinessPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
-              <Route path="/request-admission" element={<RequestAdmissionPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/legal" element={<LegalPage />} />
               <Route path="/pricing" element={<EnrollPage />} />
@@ -406,6 +414,9 @@ export default function App() {
                 <Route index element={<AdminDashboardHome />} />
                 <Route path="pages" element={<PageList />} />
                 <Route path="pages/home" element={<HomePageEditor />} />
+                <Route path="blog" element={<BlogList />} />
+                <Route path="blog/new" element={<BlogEditor />} />
+                <Route path="blog/edit/:id" element={<BlogEditor />} />
                 <Route path="resources" element={<ResourceManager />} />
                 <Route path="forms" element={<FormManagement />} />
                 <Route path="forms/submissions" element={<SubmissionsList />} />

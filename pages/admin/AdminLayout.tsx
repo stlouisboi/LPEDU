@@ -4,6 +4,7 @@ import { useAuth } from '../../AuthContext';
 import Logo from '../../components/Logo';
 import { 
   LayoutDashboard, 
+  FileText, 
   Download, 
   MessageSquare, 
   Settings, 
@@ -33,6 +34,7 @@ const AdminLayout = () => {
   const navItems = [
     { name: 'Dashboard', path: '/admin', icon: <LayoutDashboard size={20} /> },
     { name: 'Pages', path: '/admin/pages', icon: <Globe size={20} /> },
+    { name: 'Blog', path: '/admin/blog', icon: <FileText size={20} /> },
     { name: 'Leads', path: '/admin/leads', icon: <Users size={20} /> },
     { name: 'Video Lab', path: '/admin/video-lab', icon: <Video size={20} /> },
     { name: 'Resources', path: '/admin/resources', icon: <Download size={20} /> },

@@ -26,7 +26,7 @@ const DownloadPage = () => {
     },
     {
       title: "Owner-Operator Survival Blueprint",
-      description: "Complete roadmap for audit-ready operations. Learn what 75% of failed carriers wish they knew on day one.",
+      description: "Complete system for audit-proof operations. Learn what 75% of failed carriers wish they knew on day one.",
       icon: <ShieldCheck className="w-8 h-8" />,
       buttonText: "DOWNLOAD BLUEPRINT",
       link: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FLaunchPath_The_Owner-Operator_Survival_Blueprint%20(2).pdf?alt=media&token=2e42b7cb-e308-49f7-a12f-92dbd19edeca",
@@ -94,16 +94,16 @@ const DownloadPage = () => {
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl font-black font-serif uppercase tracking-tight mb-6">
-              Ready to Build Your <br/><span className="text-signal-gold italic">Complete Compliance standard?</span>
+              Ready to Build Your <br/><span className="text-signal-gold italic">Complete Compliance System?</span>
             </h2>
             <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-medium mb-12 leading-relaxed">
-              These guides show you the problems. LaunchPath gives you the standards—step by step, rhythm by rhythm. Secure your authority today.
+              These guides show you the problems. LaunchPath gives you the solutions—step by step, system by system. Secure your authority today.
             </p>
             <Link 
-              to="/request-admission" 
+              to="/pricing" 
               className="inline-flex items-center space-x-3 bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl active:scale-95 group"
             >
-              <span>REQUEST ADMISSION</span>
+              <span>VIEW COURSE OPTIONS</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
           </div>

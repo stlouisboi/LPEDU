@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -15,11 +16,11 @@ import { BlogPost, RoadmapStep, SiteSettings, CourseModule, Testimonial } from '
 export const INITIAL_SETTINGS: SiteSettings = {
   siteName: "LaunchPath™",
   tagline: "Accuracy Over Hype.™",
-  heroTitle: "Build Your Carrier on the Compliance Operating Standard",
-  heroSubtitle: "A disciplined 90-day sequence for new owner-operators. Navigate the critical early phase and meet federal audit expectations with order and certainty.",
+  heroTitle: "Build Your Trucking Business on The Four Pillars of Survival",
+  heroSubtitle: "Compliance-first systems for new owner-operators. Navigate your first 90 days and survive the critical 18-month New Entrant phase.",
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
-  metaDescription: "Professional carrier compliance operating standard for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
+  metaDescription: "Professional carrier compliance education for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
   logoUrl: "https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/logo.png", 
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,
@@ -52,27 +53,27 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
     id: '1',
     author: 'Marcus J.',
     role: 'Owner-Operator, MJ Logistics',
-    content: 'LaunchPath was the difference between keeping my authority and losing everything. Their DQ file logic helped me meet expectations during my first roadside inspection.'
+    content: 'LaunchPath was the difference between keeping my authority and losing everything. Their DQ file templates alone saved me during my first roadside inspection.'
   },
   {
     id: '2',
     author: 'Sarah Chen',
     role: 'Carrier Manager, NorthStar Hauling',
-    content: 'The most comprehensive compliance training I have ever seen. They don’t just tell you the rules; they show you how to implement the standard without the headache.'
+    content: 'The most comprehensive compliance training I have ever seen. They don’t just tell you the rules; they show you how to implement them without the headache.'
   },
   {
     id: '3',
     author: 'David Rodriguez',
     role: 'Box Truck Entrepreneur',
-    content: 'I was overwhelmed by DOT requirements until I found the 90-Day Operating Standard. Now, I feel confident and audit-ready every single morning.'
+    content: 'I was overwhelmed by DOT requirements until I found the 90-Day Success Roadmap. Now, I feel confident and audit-ready every single morning.'
   }
 ];
 
 export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 0, 
-    title: "Ground 0: The Discipline Standard", 
-    description: "The prerequisite foundation. Identify if you have the administrative discipline required to operate before filing authority.", 
+    title: "Ground 0: The Mindset Module", 
+    description: "The prerequisite foundation. Identify if you have the discipline required to operate before filing authority.", 
     lessons: 6, 
     duration: "2 Hours", 
     resourcesCount: 3, 
@@ -96,7 +97,7 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 2, 
     title: "Insurance Survival", 
-    description: "Navigating your highest expense. Avoid cancellation triggers and manage coverage like a professional.", 
+    description: "Navigating your highest expense. Avoid cancellation triggers and manage coverage like a pro.", 
     lessons: 5, 
     duration: "3 Hours", 
     resourcesCount: 4, 
@@ -108,7 +109,7 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 3, 
     title: "Compliance Backbone", 
-    description: "The technical standard. Building DQ files, Clearinghouse accounts, and HOS policies that meet inspection expectations.", 
+    description: "The technical system. Building DQ files, Clearinghouse accounts, and HOS policies that pass inspections.", 
     lessons: 10, 
     duration: "6 Hours", 
     resourcesCount: 12, 
@@ -120,14 +121,14 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 4, 
     title: "New Entrant Audit Preparation", 
-    description: "Meeting federal expectations. Step-by-step prep for the 48-hour audit window.", 
+    description: "Surviving the federal investigation. Step-by-step prep for the 48-hour audit window.", 
     lessons: 7, 
     duration: "4 Hours", 
     resourcesCount: 8, 
     toolsCount: 4,
     pillar: "Compliance",
     difficulty: "Critical",
-    warning: "80% FAILURE RATE WITHOUT A SYSTEM",
+    warning: "80% FAIL RATE WITHOUT A SYSTEM",
     reachTest: "Failing your New Entrant Audit results in permanent authority revocation and a business restart."
   },
   { 

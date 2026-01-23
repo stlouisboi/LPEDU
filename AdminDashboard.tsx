@@ -1,24 +1,35 @@
+
 import React, { useState } from 'react';
 import { 
   Settings, 
+  PenTool, 
+  Plus, 
+  Trash2, 
+  Save, 
+  Eye, 
   Video,
   BookOpen,
+  Mail,
   Loader2,
   Globe,
+  Palette,
+  Image as ImageIcon,
   ChevronRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useApp } from './App';
 import { useAuth } from './AuthContext';
+import { BlogPost, SiteSettings } from './types';
 
 // Specialized Sub-components
 import SettingsManager from './pages/admin/SettingsManager';
+import BlogList from './pages/admin/BlogList';
 import VideoLab from './pages/admin/VideoLab';
 
 const AdminDashboard = () => {
-  const { settings, updateSettings } = useApp();
+  const { settings, updateSettings, blogs } = useApp();
   const { currentUser } = useAuth();
-  const [activeTab, setActiveTab] = useState<'settings' | 'videos' | 'modules'>('settings');
+  const [activeTab, setActiveTab] = useState<'settings' | 'blogs' | 'videos' | 'modules'>('settings');
 
   if (!currentUser) {
     return (
@@ -35,6 +46,7 @@ const AdminDashboard = () => {
 
   const tabs = [
     { id: 'settings', label: 'Site Settings', icon: <Settings size={18} /> },
+    { id: 'blogs', label: 'Blog Management', icon: <PenTool size={18} /> },
     { id: 'videos', label: 'Video Library', icon: <Video size={18} /> },
     { id: 'modules', label: 'Course Modules', icon: <BookOpen size={18} /> },
   ];
@@ -89,6 +101,10 @@ const AdminDashboard = () => {
                   </Link>
                </div>
             </div>
+          )}
+
+          {activeTab === 'blogs' && (
+            <BlogList />
           )}
 
           {activeTab === 'videos' && (
