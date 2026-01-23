@@ -108,33 +108,33 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24 sm:h-28">
+        <div className="flex justify-between items-center h-32 sm:h-44">
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <Logo />
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-10">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-bold transition-all hover:text-authority-blue ${
-                  location.pathname === item.path ? 'text-authority-blue dark:text-signal-gold' : 'text-text-muted dark:text-text-dark-muted'
+                className={`text-lg font-black uppercase tracking-widest transition-all hover:text-authority-blue ${
+                  location.pathname === item.path ? 'text-authority-blue dark:text-signal-gold underline underline-offset-8 decoration-2' : 'text-text-muted dark:text-text-dark-muted'
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="flex items-center space-x-4 pl-4 border-l border-border-light dark:border-border-dark">
+            <div className="flex items-center space-x-6 pl-6 border-l border-border-light dark:border-border-dark">
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                className="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
               >
-                {theme === 'light' ? <Moon className="w-5 h-5 text-authority-blue" /> : <Sun className="w-5 h-5 text-signal-gold" />}
+                {theme === 'light' ? <Moon className="w-7 h-7 text-authority-blue" /> : <Sun className="w-7 h-7 text-signal-gold" />}
               </button>
               <Link
                 to="/pricing"
-                className="bg-authority-blue text-white px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest hover:bg-steel-blue transition-all shadow-md"
+                className="bg-authority-blue text-white px-10 py-4 rounded-xl text-base font-black uppercase tracking-[0.2em] hover:bg-steel-blue transition-all shadow-xl active:scale-95"
               >
                 Enroll
               </Link>
@@ -143,10 +143,10 @@ const Header = () => {
 
           <div className="lg:hidden flex items-center space-x-4">
             <button onClick={toggleTheme} className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800">
-              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              {theme === 'light' ? <Moon className="w-6 h-6" /> : <Sun className="w-6 h-6" />}
             </button>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-authority-blue dark:text-white">
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {isMenuOpen ? <X size={40} /> : <Menu size={40} />}
             </button>
           </div>
         </div>
@@ -154,23 +154,23 @@ const Header = () => {
 
       {isMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark animate-in slide-in-from-top duration-300">
-          <nav className="flex flex-col p-4 space-y-2">
+          <nav className="flex flex-col p-8 space-y-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`block p-4 rounded-xl font-bold ${
-                  location.pathname === item.path ? 'bg-authority-blue text-white' : 'text-text-muted hover:bg-slate-50 dark:hover:bg-slate-800'
+                className={`block p-6 rounded-2xl font-black text-2xl uppercase tracking-widest ${
+                  location.pathname === item.path ? 'bg-authority-blue text-white shadow-lg' : 'text-text-muted hover:bg-slate-50 dark:hover:bg-slate-800'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="pt-4 border-t border-border-light mt-2">
+            <div className="pt-8 border-t border-border-light mt-4">
               <Link
                 to="/pricing"
-                className="block w-full bg-authority-blue text-white py-4 rounded-xl text-center font-black uppercase tracking-widest"
+                className="block w-full bg-authority-blue text-white py-6 rounded-2xl text-center font-black uppercase tracking-[0.25em] text-xl shadow-xl"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Enroll Now

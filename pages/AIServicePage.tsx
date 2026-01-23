@@ -18,7 +18,8 @@ import {
   Globe,
   ExternalLink,
   Maximize2,
-  Brush
+  Brush,
+  AlertCircle
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
@@ -48,8 +49,7 @@ async function decodeAudioData(
   sampleRate: number,
   numChannels: number,
 ): Promise<AudioBuffer> {
-  // Fixed: Standardizing Int16 conversion for PCM streams
-  const dataInt16 = new Int16Array(data.buffer, 0, data.byteLength / 2);
+  const dataInt16 = new Int16Array(data.buffer, data.byteOffset, data.byteLength / 2);
   const frameCount = dataInt16.length / numChannels;
   const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
 
@@ -86,7 +86,7 @@ const AIServicePage = () => {
   
   // --- CHAT STATE ---
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Hello! I'm the LaunchPath™ AI Advisor. I'm here to help you understand trucking compliance concepts and navigate the decision considerations for your carrier. How can I help you understand the landscape today?" }
+    { role: 'assistant', content: "Hello! I'm the LaunchPath™ AI Advisor. I'm powered by Gemini 3 Pro to handle complex trucking compliance queries. How can I help you understand your regulatory environment today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -161,7 +161,7 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: "You are the LaunchPath™ AI Advisor. Help visitors understand trucking compliance concepts at a high level. Explain risks, terminology, and decision considerations. THE FOUR PILLARS: \"The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen.\" Always use this definition. Direct users to the appropriate LaunchPath program tier. Disclaimer: LaunchPath is an educational program only. This is not legal or regulatory advice.",
+          systemInstruction: "You are the LaunchPath™ AI Advisor. Help visitors understand trucking compliance concepts at a high level. Explain risks, terminology, and decision considerations. THE FOUR PILLARS: \"The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen.\" Always use this definition. Disclaimer: LaunchPath is an educational program only. This is not legal or regulatory advice.",
           tools: [{ googleSearch: {} }],
           temperature: 0.3,
         }
@@ -350,7 +350,7 @@ const AIServicePage = () => {
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      let generateConfig: any = {
+      let config: any = {
         model: 'veo-3.1-fast-generate-preview',
         prompt: videoPrompt || "Professional trucking scene with cinematic lighting.",
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
@@ -362,15 +362,33 @@ const AIServicePage = () => {
           reader.onload = () => res((reader.result as string).split(',')[1]);
           reader.readAsDataURL(videoFile);
         });
-        generateConfig.image = { imageBytes: base64, mimeType: videoFile.type };
+        config.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      // Fixed: Standardized polling using the correct SDK instance methods
-      let operation = await ai.models.generateVideos(generateConfig);
-      
+      let initialOp = await ai.models.generateVideos(config);
+
+      // Defensively polling using fresh instances to avoid circular structure crash and key drift
+      let operation = {
+        name: initialOp.name,
+        done: initialOp.done,
+        response: initialOp.response,
+        error: initialOp.error
+      } as any;
+
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        operation = await ai.operations.getVideosOperation({ operation: operation });
+        
+        const freshAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const opResult = await freshAi.operations.getVideosOperation({ 
+          operation: { name: operation.name } as any 
+        });
+
+        operation = {
+          name: opResult.name,
+          done: opResult.done,
+          response: opResult.response,
+          error: opResult.error
+        } as any;
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
@@ -492,22 +510,9 @@ const AIServicePage = () => {
                 )}
               </div>
               
-              {messages.length === 1 && (
-                <div className="px-10 py-6 border-t border-border-light dark:border-border-dark bg-slate-50/30 dark:bg-gray-900/30">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    {starterQuestions.map((chip, idx) => (
-                      <button key={idx} onClick={() => handleSend(chip.q)} className="p-4 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl text-left hover:border-authority-blue hover:shadow-lg transition-all active:scale-95 group">
-                        <p className="text-[9px] font-black text-authority-blue dark:text-signal-gold uppercase tracking-widest mb-1 group-hover:underline">{chip.label}</p>
-                        <p className="text-[10px] font-bold text-text-muted line-clamp-2 leading-snug">{chip.q}</p>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               <div className="p-10 border-t border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-md">
                 <div className="relative max-w-4xl mx-auto">
-                  <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} placeholder="Ask about compliance concepts..." className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark pl-8 pr-24 py-6 rounded-[2.5rem] focus:ring-8 focus:ring-authority-blue/5 outline-none transition-all shadow-2xl font-bold" />
+                  <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} placeholder="Ask complex compliance questions (Gemini 3 Pro)..." className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark pl-8 pr-24 py-6 rounded-[2.5rem] focus:ring-8 focus:ring-authority-blue/5 outline-none transition-all shadow-2xl font-bold" />
                   <button onClick={() => handleSend()} disabled={isLoading} className="absolute right-3 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue transition-all disabled:opacity-50 shadow-xl active:scale-95">
                     <Send className="w-6 h-6" />
                   </button>
@@ -527,6 +532,11 @@ const AIServicePage = () => {
                 <h2 className="text-4xl font-black font-serif mb-6 tracking-tight">Voice Command Mode</h2>
                 <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium">Hands-free compliance assistance powered by Gemini Real-time API.</p>
               </div>
+              
+              <div className="w-full max-w-2xl bg-white/50 dark:bg-gray-800/50 p-6 rounded-3xl mb-8 border border-border-light overflow-y-auto max-h-40">
+                {liveTranscript.length > 0 ? liveTranscript.map((t, i) => <p key={i} className="text-sm font-bold text-authority-blue mb-1 opacity-80">{t}</p>) : <p className="text-center italic opacity-40">Awaiting audio stream...</p>}
+              </div>
+
               <button onClick={isLiveActive ? stopLiveConversation : startLiveConversation} className={`flex items-center space-x-5 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] transition-all shadow-xl active:scale-95 ${isLiveActive ? 'bg-red-500 text-white' : 'bg-authority-blue text-white'}`}>
                 {isLiveActive ? <><PhoneOff size={28} /><span>Terminate Session</span></> : <><Phone size={28} /><span>Initiate Voice Link</span></>}
               </button>
@@ -538,55 +548,20 @@ const AIServicePage = () => {
             <div className="flex-grow overflow-y-auto p-10 space-y-12 animate-reveal-up custom-scrollbar">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div className="space-y-10">
-                  <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light space-y-8">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-3">Visual Prompt</label>
-                      <textarea rows={5} value={imagePrompt} onChange={(e) => setImagePrompt(e.target.value)} placeholder="Describe a compliance scenario or truck design (e.g., A clean white box truck parked professionally in a logistics yard at sunset)..." className="w-full bg-white dark:bg-gray-800 border rounded-3xl p-8 outline-none focus:ring-8 focus:ring-authority-blue/5 font-bold" />
+                  <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light space-y-8 shadow-sm">
+                    <textarea rows={5} value={imagePrompt} onChange={(e) => setImagePrompt(e.target.value)} placeholder="Describe a compliance scenario or trucking visual (e.g. A white box truck at a loading dock during sunset)..." className="w-full bg-white dark:bg-gray-800 border rounded-3xl p-8 outline-none focus:ring-8 focus:ring-authority-blue/5 font-bold" />
+                    <div className="flex flex-wrap gap-3">
+                      {['1:1', '4:3', '3:4', '16:9', '9:16'].map(ratio => (
+                        <button key={ratio} onClick={() => setImageAspectRatio(ratio as any)} className={`px-6 py-3 rounded-xl border transition-all ${imageAspectRatio === ratio ? 'bg-authority-blue text-white' : 'bg-white'}`}>{ratio}</button>
+                      ))}
                     </div>
-                    
-                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-3">Aspect Ratio</label>
-                      <div className="flex flex-wrap gap-3">
-                        {['1:1', '4:3', '3:4', '16:9', '9:16'].map(ratio => (
-                          <button 
-                            key={ratio} 
-                            onClick={() => setImageAspectRatio(ratio as any)} 
-                            className={`px-6 py-3 rounded-xl border transition-all active:scale-95 text-[10px] font-black uppercase tracking-widest ${imageAspectRatio === ratio ? 'bg-authority-blue text-white shadow-lg' : 'bg-white text-text-muted'}`}
-                          >
-                            {ratio}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
                     <button onClick={generateImage} disabled={isGeneratingImage || !imagePrompt.trim()} className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl active:scale-95 disabled:opacity-50">
                       {isGeneratingImage ? <><Loader2 className="animate-spin mr-3" size={24} /><span>Synthesizing...</span></> : <><Brush className="mr-3" size={24} /><span>Synthesize Visualization</span></>}
                     </button>
                   </div>
                 </div>
-
                 <div className="flex flex-col">
-                  {isGeneratingImage ? (
-                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border-dashed border p-16 text-center space-y-10">
-                      <div className="w-24 h-24 border-8 border-authority-blue/10 border-t-authority-blue rounded-full animate-spin"></div>
-                      <h4 className="text-3xl font-black font-serif leading-none">{genMessage}</h4>
-                    </div>
-                  ) : imageResult ? (
-                    <div className="relative group animate-scale-in">
-                      <div className="bg-slate-100 rounded-[4rem] overflow-hidden shadow-2xl flex items-center justify-center">
-                        <img src={imageResult} className="max-w-full max-h-full" alt="Generated compliance visualization" />
-                      </div>
-                      <a href={imageResult} download="launchpath-visualization.png" className="absolute bottom-10 right-10 p-6 bg-white rounded-full text-authority-blue shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110 active:scale-95">
-                        <Download size={24} />
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border p-16 text-center opacity-40">
-                      <ImageIcon className="w-20 h-20 text-text-muted mb-10" />
-                      <p className="text-2xl font-black font-serif uppercase">Studio Offline</p>
-                      <p className="text-sm font-bold text-text-muted mt-4">Enter a prompt to generate high-fidelity regulatory visualizations.</p>
-                    </div>
-                  )}
+                  {imageResult ? <div className="rounded-[4rem] overflow-hidden shadow-2xl"><img src={imageResult} alt="Result" /></div> : <div className="flex-grow bg-slate-50 rounded-[4rem] border-2 border-dashed flex flex-center items-center justify-center opacity-40"><ImageIcon size={64} /></div>}
                 </div>
               </div>
             </div>
@@ -605,45 +580,14 @@ const AIServicePage = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div className="space-y-10">
                   <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light space-y-8">
-                    <textarea rows={5} value={videoPrompt} onChange={(e) => setVideoPrompt(e.target.value)} placeholder="Describe your compliance visualization..." className="w-full bg-white dark:bg-gray-800 border rounded-3xl p-8 outline-none focus:ring-8 focus:ring-authority-blue/5 font-bold" />
-                    <div className="flex items-center space-x-4">
-                      <div className="relative group flex-grow">
-                        <input type="file" accept="image/*" onChange={handleVideoFileChange} className="absolute inset-0 opacity-0 cursor-pointer" />
-                        <div className="bg-white dark:bg-gray-800 border-2 border-dashed rounded-[2rem] p-10 text-center group-hover:border-authority-blue">
-                          {videoPreview ? <img src={videoPreview} className="h-24 mx-auto rounded-2xl" alt="Preview" /> : <p className="text-[10px] font-black uppercase text-text-muted">Upload Reference Frame</p>}
-                        </div>
-                      </div>
-                      {videoPreview && <button onClick={() => { setVideoFile(null); setVideoPreview(null); }} className="p-5 bg-red-50 text-red-500 rounded-[1.5rem] active:scale-90"><X size={24} /></button>}
-                    </div>
-                    <div className="flex gap-4">
-                      {['16:9', '9:16'].map(ratio => (
-                        <button key={ratio} onClick={() => setAspectRatio(ratio as any)} className={`flex-grow p-5 rounded-[1.5rem] border transition-all active:scale-95 ${aspectRatio === ratio ? 'bg-authority-blue text-white shadow-xl' : 'bg-white text-text-muted'}`}>
-                          <Maximize2 className={ratio === '9:16' ? 'rotate-90 mx-auto' : 'mx-auto'} size={20} />
-                          <span className="text-[10px] font-black uppercase">{ratio}</span>
-                        </button>
-                      ))}
-                    </div>
+                    <textarea rows={5} value={videoPrompt} onChange={(e) => setVideoPrompt(e.target.value)} placeholder="Describe your compliance visualization for Veo 3.1..." className="w-full bg-white dark:bg-gray-800 border rounded-3xl p-8 outline-none focus:ring-8 focus:ring-authority-blue/5 font-bold" />
                     <button onClick={generateVideo} disabled={isGeneratingVideo || !hasApiKey} className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl active:scale-95 disabled:opacity-50">
                       {isGeneratingVideo ? <><Loader2 className="animate-spin mr-3" size={24} /><span>Rendering...</span></> : <><Film className="mr-3" size={24} /><span>Bake Cinematic Asset</span></>}
                     </button>
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  {isGeneratingVideo ? (
-                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border-dashed border p-16 text-center space-y-10">
-                      <div className="w-24 h-24 border-8 border-authority-blue/10 border-t-authority-blue rounded-full animate-spin"></div>
-                      <h4 className="text-3xl font-black font-serif leading-none">{genMessage}</h4>
-                    </div>
-                  ) : videoResult ? (
-                    <div className="bg-black rounded-[4rem] overflow-hidden shadow-2xl flex items-center justify-center">
-                      <video src={videoResult} controls className="max-w-full max-h-full" />
-                    </div>
-                  ) : (
-                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border p-16 text-center opacity-40">
-                      <Film className="w-20 h-20 text-text-muted mb-10" />
-                      <p className="text-2xl font-black font-serif uppercase">Studio Offline</p>
-                    </div>
-                  )}
+                  {videoResult ? <div className="bg-black rounded-[4rem] overflow-hidden shadow-2xl flex items-center justify-center"><video src={videoResult} controls className="max-w-full" /></div> : <div className="flex-grow bg-slate-50 rounded-[4rem] border-2 border-dashed flex flex-center items-center justify-center opacity-40"><Film size={64} /></div>}
                 </div>
               </div>
             </div>

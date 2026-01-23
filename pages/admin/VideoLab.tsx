@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { collection, query, onSnapshot, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
@@ -86,7 +85,7 @@ const VideoLab = () => {
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      let generateConfig: any = {
+      let config: any = {
         model: 'veo-3.1-fast-generate-preview',
         prompt: `Professional cinematic trucking visualization: ${formData.prompt}`,
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: formData.aspectRatio }
@@ -98,13 +97,34 @@ const VideoLab = () => {
           reader.onload = () => res((reader.result as string).split(',')[1]);
           reader.readAsDataURL(refFile);
         });
-        generateConfig.image = { imageBytes: base64, mimeType: refFile.type };
+        config.image = { imageBytes: base64, mimeType: refFile.type };
       }
 
-      let operation = await ai.models.generateVideos(generateConfig);
+      let initialOp = await ai.models.generateVideos(config);
+      
+      // Clean and poll to avoid circular reference crashes in proxy environments
+      let operation = {
+        name: initialOp.name,
+        done: initialOp.done
+      } as any;
+
       while (!operation.done) {
         await new Promise(r => setTimeout(r, 10000));
-        operation = await ai.operations.getVideosOperation({ operation: operation });
+        
+        // Use a fresh instance for every polling call per guidelines
+        const freshAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const opResult = await freshAi.operations.getVideosOperation({ 
+          operation: { name: operation.name } as any 
+        });
+
+        operation = {
+          name: opResult.name,
+          done: opResult.done,
+          response: opResult.response,
+          error: opResult.error
+        };
+
+        if (operation.error) throw new Error(operation.error.message || "Synthesis error");
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
@@ -134,9 +154,9 @@ const VideoLab = () => {
       console.error("AI Gen Failed", e);
       if (e.message?.includes("Requested entity was not found")) {
         setHasApiKey(false);
-        alert("Re-authorization required.");
+        alert("Re-authorization required. Please re-select your key.");
       } else {
-        alert("Neural synthesis failed.");
+        alert("Neural synthesis failed. Please try a different prompt.");
       }
     } finally {
       clearInterval(msgInt);

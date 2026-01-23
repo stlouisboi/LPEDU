@@ -27,7 +27,14 @@ import {
   Target,
   Anchor,
   Star,
-  ChevronDown
+  ChevronDown,
+  ShieldAlert,
+  TrendingUp,
+  FileWarning,
+  FileSearch,
+  Activity,
+  // Fix: Add missing UserCheck import from lucide-react
+  UserCheck
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -81,7 +88,7 @@ const HomePage: React.FC = () => {
                 <p>Clarity is the primary asset of a resilient motor carrier. We help you establish the systems required to lead your business with stewardship and maintain the integrity of your authority from day one.</p>
               </div>
 
-              <p className="text-lg text-white/50 mb-10 font-medium italic leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg text-signal-gold mb-10 font-medium italic leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 LaunchPath is the grown-up version of “How do I start this business correctly?” — with order, foresight, and stewardship.
               </p>
 
@@ -158,6 +165,72 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* NEW SECTION: FRAMEWORK REVEAL */}
+      <section className="py-24 bg-white dark:bg-primary-dark">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="lg:col-span-6 space-y-8">
+              <div className="inline-flex items-center space-x-3">
+                <AlertTriangle className="text-red-600" size={24} />
+                <p className="text-red-600 font-black uppercase tracking-[0.4em] text-[11px]">Immediate Operational Threat</p>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-[1.1]">
+                The Risk Most <br/><span className="text-red-600">New Carriers</span> <br/>Never See.
+              </h2>
+              <div className="space-y-6 text-lg text-text-muted dark:text-text-dark-muted font-medium leading-relaxed max-w-xl">
+                <p>The first 90 days of a new operating authority are statistically the highest-risk period for permanent failure. During this window, regulators and insurers are monitoring your data for documentation gaps that the industry calls <span className="text-authority-blue dark:text-white font-bold">“The 16 Deadly Sins.”</span></p>
+                <p>These exposure points are the most common triggers behind unscheduled federal audits, sudden insurance cancellations, and immediate authority shutdowns. Most operators are focused on finding loads while their foundation is actively eroding.</p>
+              </div>
+            </div>
+            
+            <div className="lg:col-span-6 bg-slate-50 dark:bg-surface-dark p-10 md:p-12 rounded-[3.5rem] border border-slate-200 dark:border-border-dark shadow-sm">
+              <h3 className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">From Exposure to Protection</h3>
+              <p className="text-base text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-10">
+                To pass federal scrutiny and maintain insurance continuity, you must move from accidental exposure to active protection. The <span className="text-signal-gold font-bold italic">Four Pillars</span> are the structured documentation systems that auditors and insurers expect to see in a professional operation:
+              </p>
+              
+              <ul className="space-y-4 mb-10">
+                {[
+                  { label: "Drug & Alcohol", icon: <Activity size={18} /> },
+                  { label: "Driver Qualification", icon: <UserCheck size={18} /> },
+                  { label: "Insurance & Finance", icon: <Shield size={18} /> },
+                  { label: "Maintenance & Hours of Service", icon: <Clock size={18} /> }
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-2xl border border-slate-100 dark:border-border-dark shadow-sm">
+                    <div className="text-signal-gold">{item.icon}</div>
+                    <span className="font-black uppercase tracking-widest text-xs text-authority-blue dark:text-white">{item.label}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="p-6 bg-authority-blue/5 dark:bg-white/5 rounded-2xl border-l-4 border-signal-gold italic text-authority-blue dark:text-signal-gold font-medium">
+                “The 16 Deadly Sins reveal exposure. The Four Pillars are the refuge.”
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION: LEAD MAGNET CTA */}
+      <section className="py-20 bg-authority-blue relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
+          <h2 className="text-3xl md:text-5xl font-black font-serif text-white uppercase tracking-tight mb-6 leading-tight">
+            See Your Exposure Before the <br/><span className="text-signal-gold italic">Audit Letter Arrives.</span>
+          </h2>
+          <p className="text-xl text-white/80 font-medium mb-12 max-w-3xl mx-auto leading-relaxed">
+            The <span className="text-white font-bold">First 90 Days Risk Map™</span> is a diagnostic tool, not a training course. It provides immediate visibility into your current regulatory footprint, allowing you to identify the gaps that trigger a federal intervention before it happens.
+          </p>
+          <button 
+            onClick={() => document.getElementById('roadmap')?.scrollIntoView({ behavior: 'smooth' })}
+            className="inline-flex items-center space-x-4 bg-signal-gold text-authority-blue px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm hover:bg-white transition-all shadow-2xl active:scale-95 group"
+          >
+            <span>View the First 90 Days Risk Map</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+          </button>
+        </div>
+      </section>
+
       {/* 2. PROBLEM REALITY */}
       <section className="py-24 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6">
@@ -185,9 +258,9 @@ const HomePage: React.FC = () => {
                 author: "Chris P., New Authority"
               }
             ].map((card, i) => (
-              <div key={i} className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3rem] border border-border-light dark:border-border-dark flex flex-col">
-                <Quote className="text-signal-gold mb-6 opacity-30" size={32} />
-                <p className="text-base text-text-muted dark:text-text-dark-muted italic leading-relaxed mb-8 flex-grow">"{card.quote}"</p>
+              <div key={i} className="bg-red-50/40 dark:bg-red-900/10 p-10 rounded-[3rem] border border-red-100/60 dark:border-red-900/20 flex flex-col">
+                <Quote className="text-red-600 mb-6 opacity-40" size={32} />
+                <p className="text-[17px] text-slate-800 dark:text-slate-100 italic leading-relaxed mb-8 flex-grow">"{card.quote}"</p>
                 <p className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold">— {card.author}</p>
               </div>
             ))}
@@ -196,8 +269,8 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 3. THE FOUR PILLARS FRAMEWORK - THE SYSTEM */}
-      <section id="pillars" className="py-24 bg-slate-50 dark:bg-primary-dark border-y border-border-light dark:border-border-dark">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="roadmap" className="py-24 bg-slate-50 dark:bg-primary-dark border-y border-border-light dark:border-border-dark">
+        <div id="pillars" className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">
               The Four Pillars Foundation
