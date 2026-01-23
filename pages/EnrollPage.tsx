@@ -51,10 +51,10 @@ const DecisionWindow = () => (
               LaunchPath does not offer a free trial, but we do offer a 7-day decision window. We believe in clarity, responsibility, and commitment.
             </p>
             <p className="mb-4">
-              If within 7 days you determine the course is not aligned with where you are, you may request a refund.
+              If within 7 days you determine the implementation is not aligned with where you are, you may request a refund.
             </p>
             <p className="font-bold text-authority-blue dark:text-signal-gold">
-              After that period, all sales are final due to immediate access to proprietary content and tools.
+              After that period, all sales are final due to immediate access to proprietary system content and implementation tools.
             </p>
           </div>
         </div>
@@ -68,7 +68,7 @@ const ScopeClarity = () => (
     <div className="bg-white dark:bg-surface-dark rounded-[3rem] border border-border-light dark:border-border-dark p-10 md:p-16 shadow-sm overflow-hidden relative">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What LaunchPath Is — and Is Not</h2>
-        <p className="text-lg text-text-muted mt-2 font-medium">Clear boundaries create successful partnerships.</p>
+        <p className="text-lg text-text-muted mt-2 font-medium">Clear boundaries create successful implementation partnerships.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="space-y-6">
@@ -77,9 +77,9 @@ const ScopeClarity = () => (
           </h3>
           <ul className="space-y-4">
             {[
-              "Education and coaching focused on authority survival",
+              "System education and coaching focused on authority survival",
               "Structured systems for compliance, insurance continuity, and cash flow",
-              "Federally-aligned operating roadmaps and templates"
+              "Federally-aligned implementation roadmaps and templates"
             ].map((item, i) => (
               <li key={i} className="flex items-start text-base font-bold text-text-primary dark:text-text-dark-muted">
                 <CheckCircle2 size={20} className="text-green-500 shrink-0 mr-3 mt-0.5" />
@@ -121,10 +121,10 @@ const AfterEnrollment = () => (
           <span>The Path to Peace of Mind</span>
         </div>
         <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">
-          What Happens After You Enroll
+          What Happens After Admission
         </h2>
         <p className="text-xl text-text-muted max-w-3xl mx-auto font-medium leading-relaxed">
-          The moment you join, the "guessing game" ends. You transition from uncertainty to a guided implementation sequence built for operational order.
+          The moment you enter the system, the "guessing game" ends. You transition from uncertainty to a guided implementation sequence built for operational order.
         </p>
       </div>
 
@@ -135,21 +135,21 @@ const AfterEnrollment = () => (
             step: "01", 
             title: "Instant Portal Access", 
             icon: <Zap className="text-signal-gold" />, 
-            desc: "Breathe easier knowing the blueprint is in your hands. You'll receive an immediate login to our secure student dashboard where 'Ground 0' and the Phase 1 orientation modules are waiting.",
+            desc: "Breathe easier knowing the system blueprint is in your hands. You'll receive immediate login to our secure dashboard where 'Ground 0' and the Phase 1 implementation modules are waiting.",
             relief: "No waiting. Start securing your identity today."
           },
           { 
             step: "02", 
-            title: "Guided 90-Day Release", 
+            title: "Guided 90-Day Sequence", 
             icon: <Calendar className="text-authority-blue" />, 
-            desc: "We don't overwhelm you with everything at once. Lessons and tools are released in a proven sequence that matches the 90-day authority containment window.",
+            desc: "We don't overwhelm you with everything at once. System assets are released in a proven sequence that matches the 90-day authority containment window.",
             relief: "Focus on one pillar at a time without the noise."
           },
           { 
             step: "03", 
-            title: "Live Support Checkpoints", 
+            title: "Implementation Checkpoints", 
             icon: <Users className="text-signal-gold" />, 
-            desc: "You'll be plugged into weekly group implementation calls. You aren't building this carrier in isolation. Direct expert access is the standard.",
+            desc: "You'll be plugged into weekly group implementation calls. You aren't building this carrier in isolation. Expert access is the standard for admitted applicants.",
             relief: "Expert eyes on your compliance backbone."
           }
         ].map((item, i) => (
@@ -183,10 +183,10 @@ const EnrollPage = () => {
       {/* 1. HERO SECTION */}
       <section className="relative py-24 md:py-32 bg-white dark:bg-surface-dark/30 text-center border-b border-border-light dark:border-border-dark overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
-        <div className="max-w-5xl mx-auto px-4 relative z-10 animate-reveal-up">
+        <div className="max-w-[1400px] mx-auto px-4 relative z-10 animate-reveal-up">
           <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10 border border-authority-blue/10">
             <Award className="w-3.5 h-3.5 text-signal-gold" />
-            <span>One Standard. One Price. One System.</span>
+            <span>One Standard. One System. One Implementation.</span>
           </div>
           <h1 className="text-5xl md:text-[5.5rem] font-black font-serif mb-8 leading-[0.9] text-authority-blue dark:text-white tracking-tighter uppercase">
             Standard <br/><span className="text-signal-gold italic">Admission.</span>
@@ -200,41 +200,57 @@ const EnrollPage = () => {
       {/* 2. THE SINGLE OFFER SECTION */}
       <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-sm font-bold text-authority-blue dark:text-signal-gold mb-8 uppercase tracking-[0.3em]">
-          Pricing reflects the seriousness of the work and the standard required to operate compliantly.
+          Pricing reflects the seriousness of the implementation and the standard required to operate compliantly.
         </p>
         <div className="bg-white dark:bg-surface-dark rounded-[4rem] border-4 border-signal-gold shadow-[0_50px_100px_-20px_rgba(212,175,55,0.2)] overflow-hidden relative">
           
           <div className="grid grid-cols-1 lg:grid-cols-12">
             
-            {/* Left: Product Info */}
+            {/* Left: System Info */}
             <div className="lg:col-span-7 p-10 md:p-16 space-y-10">
               <div>
                 <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-signal-gold mb-4">The LaunchPath Standard</h2>
-                <h3 className="text-4xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none font-serif">Complete 90-Day <br/>Implementation</h3>
+                <h3 className="text-4xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none font-serif">Admission into the 90-Day <br/>Implementation Standard</h3>
               </div>
 
               <div className="space-y-6">
-                 <p className="text-lg text-text-muted font-bold leading-relaxed italic">"Everything you need to move from exposure to active, audit-proof protection."</p>
+                 <p className="text-lg text-text-muted font-bold leading-relaxed italic">"Everything you need to move from exposure to active, audit-proof protection through the system."</p>
                  
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
-                    {[
-                      "Ground 0 mindset verification",
-                      "All 6 Core Learning Modules",
-                      "46 Professional Video Lessons",
-                      "50+ Audit-Ready PDF Templates",
-                      "6 Interactive Financial Calculators",
-                      "12 Weekly Live Group Calls",
-                      "Private Member Community",
-                      "Direct Email Implementation Support",
-                      "Annual Renewal Trackers",
-                      "Lifetime Content Updates"
-                    ].map((f, i) => (
-                      <div key={i} className="flex items-center space-x-3">
-                        <CheckCircle2 className="text-green-500 shrink-0" size={18} />
-                        <span className="text-sm font-bold text-text-primary dark:text-text-dark-muted">{f}</span>
-                      </div>
-                    ))}
+                 <div className="space-y-4">
+                    <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold">What admission includes (non-optional):</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                      {[
+                        "Ground 0 eligibility verification",
+                        "All 6 Core Learning Modules",
+                        "46 Professional Video Lessons",
+                        "50+ Audit-Ready PDF Templates",
+                        "6 Interactive Financial Calculators",
+                        "12 Weekly Live Group Calls",
+                        "Cohort-based implementation environment",
+                        "Implementation support (not done-for-you)",
+                        "Annual Renewal Trackers",
+                        "Lifetime System Updates"
+                      ].map((f, i) => (
+                        <div key={i} className="flex items-center space-x-3">
+                          <CheckCircle2 className="text-green-500 shrink-0" size={18} />
+                          <span className="text-sm font-bold text-text-primary dark:text-text-dark-muted">{f}</span>
+                        </div>
+                      ))}
+                    </div>
                  </div>
+              </div>
+
+              {/* ONE STANDARD NOTICE BOX (CRITICAL ADMISSIONS GATE) */}
+              <div className="p-8 bg-slate-50 dark:bg-slate-900 border-l-4 border-authority-blue rounded-r-3xl">
+                <h4 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-4 flex items-center">
+                  <ShieldAlert size={16} className="mr-2" /> One Standard Notice
+                </h4>
+                <div className="text-[13px] font-bold text-text-muted dark:text-text-dark-muted leading-relaxed space-y-3">
+                  <p>LaunchPath operates under one implementation standard.</p>
+                  <p>We do not offer abbreviated, lite, or partial versions of the system.</p>
+                  <p>FMCSA audits do not adjust requirements based on experience level, time availability, or budget. Insurance underwriting does not either.</p>
+                  <p className="text-authority-blue dark:text-white">Admission reflects a commitment to complete the full implementation sequence as designed.</p>
+                </div>
               </div>
 
               <div className="pt-8 border-t border-slate-100 dark:border-border-dark flex items-center space-x-6">
@@ -256,15 +272,18 @@ const EnrollPage = () => {
               </div>
             </div>
 
-            {/* Right: Checkout Sidebar */}
+            {/* Right: Admission Sidebar */}
             <div className="lg:col-span-5 bg-slate-50 dark:bg-gray-900/50 p-10 md:p-16 flex flex-col justify-center border-l border-slate-100 dark:border-border-dark">
                <div className="mb-12">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted mb-4">Total Investment</p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted mb-4">Implementation Investment</p>
                   <div className="flex items-baseline">
                      <span className="text-3xl font-black text-signal-gold mr-1">$</span>
                      <span className="text-[5.5rem] font-black tracking-tighter text-authority-blue dark:text-white leading-none">1,500</span>
                   </div>
-                  <p className="text-sm font-bold text-text-muted mt-2">One-time payment. No recurring fees.</p>
+                  <p className="text-sm font-bold text-text-muted mt-4">One-time payment. No recurring fees.</p>
+                  <p className="text-[11px] font-bold text-text-muted uppercase tracking-widest mt-2 leading-relaxed">
+                    This is the current entry point. The standard investment will increase as the system matures.
+                  </p>
                </div>
 
                <div className="space-y-6">
@@ -272,14 +291,18 @@ const EnrollPage = () => {
                     onClick={handleEnroll}
                     className="w-full bg-signal-gold text-authority-blue py-7 rounded-2xl font-black uppercase tracking-[0.25em] text-sm shadow-[0_20px_50px_-10px_rgba(212,175,55,0.4)] hover:bg-authority-blue hover:text-white transition-all active:scale-95 flex items-center justify-center group"
                   >
-                    <span>Enroll Now</span>
+                    <span>Request Admission</span>
                     <ArrowRight className="ml-4 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                   </button>
                   
+                  <p className="text-[10px] font-bold text-text-muted uppercase text-center leading-relaxed px-4">
+                    Admission reflects readiness to complete the full 90-day implementation sequence.
+                  </p>
+
                   <div className="p-4 bg-white/50 dark:bg-black/20 rounded-xl flex items-start space-x-3">
                      <Info size={14} className="text-authority-blue mt-0.5" />
                      <p className="text-[10px] font-bold text-text-muted uppercase leading-relaxed">
-                        Secure checkout via Stripe. Immediate portal credentials issued upon successful transaction.
+                        Secure admission via Stripe. Immediate system credentials issued upon successful verification.
                      </p>
                   </div>
                </div>
@@ -287,24 +310,24 @@ const EnrollPage = () => {
           </div>
         </div>
         <p className="text-center text-xs font-black text-text-muted mt-12 uppercase tracking-[0.3em] leading-relaxed">
-          This is the current entry point. <br/>The full standard investment will increase as the system matures.
+          The full standard investment will increase as the implementation system matures.
         </p>
       </section>
 
       {/* 3. POLICY SECTION */}
       <DecisionWindow />
 
-      {/* 4. AFTER ENROLLMENT */}
+      {/* 4. AFTER ADMISSION */}
       <AfterEnrollment />
 
-      {/* 5. ROI & ACCOUNTS */}
+      {/* 5. ROI & IMPLEMENTATION ACCOUNTS */}
       <section className="py-32 bg-white dark:bg-surface-dark border-y border-border-light dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div>
                  <h2 className="text-3xl md:text-[3.5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8 leading-none">Cheaper Than <br/>A Failed Audit.</h2>
                  <p className="text-xl text-text-muted font-medium mb-10 leading-relaxed max-w-xl">
-                   The average cost of a carrier's first-year failure exceeds $50,000 in lost down payments and accumulated debt. LaunchPath is a systematic insurance policy for your business continuity.
+                   The average cost of a carrier's first-year failure exceeds $50,000 in lost down payments and accumulated debt. LaunchPath is a systematic insurance policy for your implementation continuity.
                  </p>
                  <div className="space-y-4">
                     {[
@@ -327,11 +350,11 @@ const EnrollPage = () => {
                  <Quote className="text-signal-gold/20 absolute top-10 right-10" size={80} />
                  <div className="relative z-10 space-y-10">
                     <p className="text-2xl font-medium italic leading-relaxed font-serif">
-                      "LaunchPath isn't a course you watch; it's a system you implement. By the time my audit letter arrived, I wasn't nervous. I just sent them the files we built in Module 3. Passed with zero findings."
+                      "LaunchPath isn't a standard course you watch; it's a system you implement. By the time my audit letter arrived, I wasn't nervous. I just sent them the files we built in the system. Passed with zero findings."
                     </p>
                     <div className="flex items-center space-x-4">
                        <div className="w-16 h-16 rounded-2xl bg-white/10 overflow-hidden">
-                          <img src="https://picsum.photos/seed/trucker/80/80" alt="Student" className="grayscale" />
+                          <img src="https://picsum.photos/seed/trucker/80/80" alt="Carrier" className="grayscale" />
                        </div>
                        <div>
                           <p className="font-black uppercase tracking-widest text-sm">Marcus T., Texas</p>
@@ -347,20 +370,20 @@ const EnrollPage = () => {
       {/* 6. SCOPE CLARITY */}
       <ScopeClarity />
 
-      {/* 7. FINAL CTA */}
+      {/* 7. FINAL ADMISSION CTA */}
       <section className="py-40 bg-authority-blue py-32 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div className="max-w-4xl mx-auto px-4 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-4 relative z-10">
           <Logo light className="mx-auto mb-12 h-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-default" />
           <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-8 leading-tight">Secure Your Authority. <br/><span className="text-signal-gold italic text-white/90">Build Your Legacy.</span></h2>
           <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
-            There is only one path to professional operating integrity. Join the carriers who build on systems, not shortcuts.
+            There is only one path to professional operating integrity. Join the carriers who build on systems, not shortcuts. Admission is granted to applicants prepared to complete the full implementation standard.
           </p>
           <button 
             onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
             className="bg-signal-gold text-authority-blue px-14 py-7 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-white transition-all shadow-[0_20px_50px_-10px_rgba(212,175,55,0.4)] active:scale-95"
           >
-            Start Your Master Implementation
+            Enter the Implementation Standard
           </button>
         </div>
       </section>

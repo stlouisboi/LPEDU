@@ -5,7 +5,7 @@ import {
   MessageCircle, 
   Mic, 
   Volume2, 
-  VolumeX,
+  VolumeX, 
   Video, 
   Image as ImageIcon,
   Sparkles,
@@ -24,6 +24,9 @@ import {
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
 // --- AUDIO UTILS ---
+/**
+ * Decodes base64 string to Uint8Array manually as per Gemini Live API requirements.
+ */
 function decode(base64: string) {
   const binaryString = atob(base64);
   const len = binaryString.length;
@@ -34,6 +37,9 @@ function decode(base64: string) {
   return bytes;
 }
 
+/**
+ * Encodes Uint8Array to base64 string manually as per Gemini Live API requirements.
+ */
 function encode(bytes: Uint8Array) {
   let binary = '';
   const len = bytes.byteLength;
@@ -43,13 +49,16 @@ function encode(bytes: Uint8Array) {
   return btoa(binary);
 }
 
+/**
+ * Guideline-compliant audio decoding for raw PCM streams from Gemini Live API.
+ */
 async function decodeAudioData(
   data: Uint8Array,
   ctx: AudioContext,
   sampleRate: number,
   numChannels: number,
 ): Promise<AudioBuffer> {
-  const dataInt16 = new Int16Array(data.buffer, data.byteOffset, data.byteLength / 2);
+  const dataInt16 = new Int16Array(data.buffer);
   const frameCount = dataInt16.length / numChannels;
   const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
 
@@ -62,6 +71,9 @@ async function decodeAudioData(
   return buffer;
 }
 
+/**
+ * Creates a blob object for PCM audio input to the Live API.
+ */
 function createBlob(data: Float32Array) {
   const l = data.length;
   const int16 = new Int16Array(l);
@@ -70,6 +82,7 @@ function createBlob(data: Float32Array) {
   }
   return {
     data: encode(new Uint8Array(int16.buffer)),
+    // The supported audio MIME type is 'audio/pcm'. Do not use other types.
     mimeType: 'audio/pcm;rate=16000',
   };
 }
@@ -156,6 +169,7 @@ const AIServicePage = () => {
     setIsLoading(true);
 
     try {
+      // Use process.env.API_KEY directly as required by guidelines
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-pro-preview',
@@ -167,9 +181,12 @@ const AIServicePage = () => {
         }
       });
 
+      // Correctly access generated text from response property
       const aiResponse = response.text || "I apologize, I'm having trouble retrieving that information right now.";
       const sources: { uri: string; title: string }[] = [];
       const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
+      
+      // Extract grounding URLs from chunks if search tool was used
       if (chunks) {
         chunks.forEach((chunk: any) => {
           if (chunk.web) sources.push({ uri: chunk.web.uri, title: chunk.web.title });
@@ -239,26 +256,28 @@ const AIServicePage = () => {
             setLiveTranscript(prev => [...prev, "Connected! Start speaking."]);
             const source = inputCtx.createMediaStreamSource(stream);
             const scriptProcessor = inputCtx.createScriptProcessor(4096, 1, 1);
-            scriptProcessor.onaudioprocess = (e) => {
-              const inputData = e.inputBuffer.getChannelData(0);
+            scriptProcessor.onaudioprocess = (audioProcessingEvent) => {
+              const inputData = audioProcessingEvent.inputBuffer.getChannelData(0);
               const pcmBlob = createBlob(inputData);
+              // Ensure sending data only after session promise resolves
               sessionPromise.then(session => session.sendRealtimeInput({ media: pcmBlob }));
             };
             source.connect(scriptProcessor);
             scriptProcessor.connect(inputCtx.destination);
           },
           onmessage: async (message: LiveServerMessage) => {
-            const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
-            if (base64Audio && liveAudioContextRef.current) {
+            const base64EncodedAudioString = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+            if (base64EncodedAudioString && liveAudioContextRef.current) {
               const outCtx = liveAudioContextRef.current.output;
               nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outCtx.currentTime);
-              const buffer = await decodeAudioData(decode(base64Audio), outCtx, 24000, 1);
+              const buffer = await decodeAudioData(decode(base64EncodedAudioString), outCtx, 24000, 1);
               const source = outCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outCtx.destination);
               source.addEventListener('ended', () => {
                 if (liveSourcesRef.current) liveSourcesRef.current.delete(source);
               });
+              // Schedule playback precisely
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
               if (liveSourcesRef.current) liveSourcesRef.current.add(source);
@@ -319,6 +338,7 @@ const AIServicePage = () => {
         }
       });
 
+      // Find the image part in the response parts array as per guidelines
       if (response.candidates?.[0]?.content?.parts) {
         for (const part of response.candidates[0].content.parts) {
           if (part.inlineData) {
@@ -367,7 +387,7 @@ const AIServicePage = () => {
 
       let initialOp = await ai.models.generateVideos(config);
 
-      // Defensively polling using fresh instances to avoid circular structure crash and key drift
+      // Manual clean of operation response to avoid circular structure crash in polling
       let operation = {
         name: initialOp.name,
         done: initialOp.done,
@@ -378,6 +398,7 @@ const AIServicePage = () => {
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
         
+        // Re-initialize client inside loop to avoid key drift and adhere to fresh-instance rules
         const freshAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
         const opResult = await freshAi.operations.getVideosOperation({ 
           operation: { name: operation.name } as any 
@@ -449,7 +470,9 @@ const AIServicePage = () => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center space-x-2 px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all whitespace-nowrap active:scale-95 ${
-                activeTab === tab.id ? 'bg-white text-authority-blue shadow-xl' : 'text-white/60 hover:text-white hover:bg-white/10'
+                activeTab === tab.id 
+                ? 'bg-white text-authority-blue shadow-xl' 
+                : 'text-white/60 hover:text-white hover:bg-white/10'
               }`}
             >
               {tab.icon}
@@ -464,32 +487,34 @@ const AIServicePage = () => {
           {/* --- ADVISOR CHAT --- */}
           {activeTab === 'chat' && (
             <>
-              <div ref={scrollRef} className="flex-grow overflow-y-auto p-10 space-y-10 scroll-smooth custom-scrollbar">
+              <div ref={scrollRef} className="flex-grow overflow-y-auto p-10 space-y-10 scroll-smooth">
                 {messages.map((m, i) => (
-                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-reveal-up`}>
+                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2`}>
                     <div className={`max-w-[80%] group relative ${
                       m.role === 'user' 
                       ? 'bg-authority-blue text-white rounded-[2.5rem] rounded-tr-none p-8 shadow-xl' 
                       : 'bg-slate-50 dark:bg-slate-900 text-text-primary dark:text-text-dark-primary rounded-[2.5rem] rounded-tl-none p-8 border border-border-light dark:border-border-dark shadow-sm'
                     }`}>
                       <div className="text-base leading-relaxed whitespace-pre-wrap font-medium">{m.content}</div>
+                      
                       {m.sources && (
-                        <div className="mt-6 pt-6 border-t border-border-light dark:border-border-dark">
-                          <p className="text-[9px] font-black uppercase tracking-widest text-text-muted mb-3 flex items-center">
-                            <Globe size={12} className="mr-1.5" /> Regulatory References
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            {m.sources.map((src, sIdx) => (
-                              <a key={sIdx} href={src.uri} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-3 py-1.5 bg-white dark:bg-gray-800 rounded-lg border border-border-light text-[10px] font-bold text-authority-blue hover:border-authority-blue transition-all">
-                                <ExternalLink size={10} className="mr-1.5" />
-                                <span className="truncate max-w-[150px]">{src.title || 'Source'}</span>
-                              </a>
-                            ))}
-                          </div>
+                        <div className="mt-6 pt-6 border-t border-border-light dark:border-border-dark flex flex-wrap gap-2">
+                          {m.sources.map((src, sIdx) => (
+                            <a key={sIdx} href={src.uri} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 bg-white dark:bg-gray-800 px-3 py-1.5 rounded-lg border border-border-light text-[9px] font-black uppercase tracking-widest hover:border-authority-blue transition-all">
+                              <Globe size={10} className="text-authority-blue" />
+                              <span>{src.title}</span>
+                            </a>
+                          ))}
                         </div>
                       )}
+
                       {m.role === 'assistant' && (
-                        <button onClick={() => speakMessage(m.content, i)} className={`mt-6 flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all py-2 px-4 rounded-xl border border-border-light dark:border-border-dark hover:bg-white dark:hover:bg-gray-800 ${isSpeaking === i ? 'text-signal-gold border-signal-gold animate-pulse shadow-lg' : 'text-authority-blue dark:text-signal-gold'}`}>
+                        <button 
+                          onClick={() => speakMessage(m.content, i)}
+                          className={`mt-6 flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all py-2 px-4 rounded-xl border border-border-light dark:border-border-dark hover:bg-white dark:hover:bg-gray-800 ${
+                            isSpeaking === i ? 'text-signal-gold border-signal-gold animate-pulse shadow-lg' : 'text-authority-blue dark:text-signal-gold'
+                          }`}
+                        >
                           {isSpeaking === i ? <Volume2 size={16} /> : <VolumeX size={16} />}
                           <span>{isSpeaking === i ? 'Advisor Speaking' : 'Read Guidance'}</span>
                         </button>
@@ -498,7 +523,7 @@ const AIServicePage = () => {
                   </div>
                 ))}
                 {isLoading && (
-                  <div className="flex justify-start animate-fade-in">
+                  <div className="flex justify-start">
                     <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-[2.5rem] rounded-tl-none border border-border-light shadow-sm">
                       <div className="flex space-x-3">
                         <div className="w-2.5 h-2.5 bg-authority-blue/40 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
@@ -509,11 +534,36 @@ const AIServicePage = () => {
                   </div>
                 )}
               </div>
-              
+
+              {messages.length === 1 && (
+                <div className="px-10 pb-6 flex flex-wrap gap-3">
+                  {starterQuestions.map((sq, idx) => (
+                    <button 
+                      key={idx} 
+                      onClick={() => handleSend(sq.q)}
+                      className="px-4 py-2 bg-slate-50 dark:bg-gray-800 border border-border-light rounded-xl text-xs font-bold text-authority-blue dark:text-signal-gold hover:border-authority-blue hover:bg-white transition-all shadow-sm"
+                    >
+                      {sq.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               <div className="p-10 border-t border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-md">
                 <div className="relative max-w-4xl mx-auto">
-                  <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} placeholder="Ask complex compliance questions (Gemini 3 Pro)..." className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark pl-8 pr-24 py-6 rounded-[2.5rem] focus:ring-8 focus:ring-authority-blue/5 outline-none transition-all shadow-2xl font-bold" />
-                  <button onClick={() => handleSend()} disabled={isLoading} className="absolute right-3 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue transition-all disabled:opacity-50 shadow-xl active:scale-95">
+                  <input 
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    placeholder="Ask about DQ files, audits, or carrier regulations..."
+                    className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark pl-8 pr-24 py-6 rounded-[2.5rem] focus:ring-8 focus:ring-authority-blue/5 outline-none transition-all shadow-2xl font-bold"
+                  />
+                  <button 
+                    onClick={() => handleSend()}
+                    disabled={isLoading}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue transition-all disabled:opacity-50 shadow-xl active:scale-95"
+                  >
                     <Send className="w-6 h-6" />
                   </button>
                 </div>
@@ -530,38 +580,104 @@ const AIServicePage = () => {
                   <Mic size={56} className={isLiveActive ? 'text-authority-blue' : 'text-text-muted opacity-30'} />
                 </div>
                 <h2 className="text-4xl font-black font-serif mb-6 tracking-tight">Voice Command Mode</h2>
-                <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium">Hands-free compliance assistance powered by Gemini Real-time API.</p>
-              </div>
-              
-              <div className="w-full max-w-2xl bg-white/50 dark:bg-gray-800/50 p-6 rounded-3xl mb-8 border border-border-light overflow-y-auto max-h-40">
-                {liveTranscript.length > 0 ? liveTranscript.map((t, i) => <p key={i} className="text-sm font-bold text-authority-blue mb-1 opacity-80">{t}</p>) : <p className="text-center italic opacity-40">Awaiting audio stream...</p>}
+                <p className="text-lg text-text-muted leading-relaxed font-medium">Hands-free compliance guidance via Live Audio API.</p>
               </div>
 
-              <button onClick={isLiveActive ? stopLiveConversation : startLiveConversation} className={`flex items-center space-x-5 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] transition-all shadow-xl active:scale-95 ${isLiveActive ? 'bg-red-500 text-white' : 'bg-authority-blue text-white'}`}>
-                {isLiveActive ? <><PhoneOff size={28} /><span>Terminate Session</span></> : <><Phone size={28} /><span>Initiate Voice Link</span></>}
+              <div className="w-full max-w-3xl bg-white dark:bg-gray-800 border border-border-light rounded-[3rem] p-10 mb-12 min-h-[180px] shadow-2xl flex flex-col">
+                <div className="flex items-center justify-between mb-6">
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted">Live Telemetry</p>
+                  {isLiveActive && <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>}
+                </div>
+                <div className="flex-grow space-y-4 overflow-y-auto max-h-[220px] pr-4 custom-scrollbar">
+                  {liveTranscript.length > 0 ? liveTranscript.map((t, idx) => (
+                    <div key={idx} className="text-base font-bold text-authority-blue dark:text-signal-gold">
+                      <span className="opacity-40 mr-3">//</span> {t}
+                    </div>
+                  )) : (
+                    <div className="h-full flex items-center justify-center opacity-40 italic">Start speaking to stream telemetry...</div>
+                  )}
+                </div>
+              </div>
+
+              <button
+                onClick={isLiveActive ? stopLiveConversation : startLiveConversation}
+                className={`flex items-center space-x-5 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] transition-all shadow-xl active:scale-95 ${
+                  isLiveActive ? 'bg-red-500 text-white' : 'bg-authority-blue text-white'
+                }`}
+              >
+                {isLiveActive ? <PhoneOff size={28} /> : <Phone size={28} />}
+                <span>{isLiveActive ? 'Terminate Session' : 'Initiate Voice Link'}</span>
               </button>
             </div>
           )}
 
           {/* --- IMAGE STUDIO --- */}
           {activeTab === 'image' && (
-            <div className="flex-grow overflow-y-auto p-10 space-y-12 animate-reveal-up custom-scrollbar">
+            <div className="flex-grow overflow-y-auto p-10 space-y-12">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div className="space-y-10">
                   <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light space-y-8 shadow-sm">
-                    <textarea rows={5} value={imagePrompt} onChange={(e) => setImagePrompt(e.target.value)} placeholder="Describe a compliance scenario or trucking visual (e.g. A white box truck at a loading dock during sunset)..." className="w-full bg-white dark:bg-gray-800 border rounded-3xl p-8 outline-none focus:ring-8 focus:ring-authority-blue/5 font-bold" />
-                    <div className="flex flex-wrap gap-3">
-                      {['1:1', '4:3', '3:4', '16:9', '9:16'].map(ratio => (
-                        <button key={ratio} onClick={() => setImageAspectRatio(ratio as any)} className={`px-6 py-3 rounded-xl border transition-all ${imageAspectRatio === ratio ? 'bg-authority-blue text-white' : 'bg-white'}`}>{ratio}</button>
-                      ))}
+                    <h3 className="text-2xl font-black font-serif">Synthesize Visuals</h3>
+                    
+                    <div className="space-y-4">
+                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Image Prompt</label>
+                      <textarea 
+                        rows={4}
+                        value={imagePrompt}
+                        onChange={(e) => setImagePrompt(e.target.value)}
+                        placeholder="Describe the professional trucking scene..."
+                        className="w-full bg-white dark:bg-gray-800 border border-border-light rounded-3xl p-8 text-base leading-relaxed outline-none focus:ring-8 focus:ring-authority-blue/5 transition-all shadow-sm font-bold"
+                      />
                     </div>
-                    <button onClick={generateImage} disabled={isGeneratingImage || !imagePrompt.trim()} className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl active:scale-95 disabled:opacity-50">
-                      {isGeneratingImage ? <><Loader2 className="animate-spin mr-3" size={24} /><span>Synthesizing...</span></> : <><Brush className="mr-3" size={24} /><span>Synthesize Visualization</span></>}
+
+                    <div className="space-y-4">
+                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Aspect Ratio</label>
+                      <div className="flex flex-wrap gap-3">
+                        {['1:1', '3:4', '4:3', '9:16', '16:9'].map((ratio) => (
+                          <button 
+                            key={ratio}
+                            onClick={() => setImageAspectRatio(ratio as any)}
+                            className={`px-6 py-3 rounded-xl border transition-all text-xs font-bold ${imageAspectRatio === ratio ? 'bg-authority-blue text-white border-authority-blue shadow-lg' : 'bg-white border-border-light text-text-muted'}`}
+                          >
+                            {ratio}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <button 
+                      onClick={generateImage}
+                      disabled={isGeneratingImage || !imagePrompt}
+                      className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl hover:bg-steel-blue transition-all disabled:opacity-50 active:scale-95"
+                    >
+                      {isGeneratingImage ? <Loader2 className="animate-spin mr-3" size={24} /> : <Sparkles className="mr-3" size={24} />}
+                      <span>Synthesize Image</span>
                     </button>
                   </div>
                 </div>
+
                 <div className="flex flex-col">
-                  {imageResult ? <div className="rounded-[4rem] overflow-hidden shadow-2xl"><img src={imageResult} alt="Result" /></div> : <div className="flex-grow bg-slate-50 rounded-[4rem] border-2 border-dashed flex flex-center items-center justify-center opacity-40"><ImageIcon size={64} /></div>}
+                  {isGeneratingImage ? (
+                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-dashed border-border-light p-16 text-center space-y-10 shadow-inner">
+                      <div className="w-20 h-20 border-8 border-authority-blue/10 border-t-authority-blue rounded-full animate-spin"></div>
+                      <h4 className="text-3xl font-black font-serif leading-none tracking-tight">{genMessage}</h4>
+                    </div>
+                  ) : imageResult ? (
+                    <div className="bg-white dark:bg-gray-800 rounded-[4rem] overflow-hidden shadow-2xl border border-border-light relative group animate-reveal-up">
+                      <img src={imageResult} className="w-full h-auto" alt="Generated" />
+                      <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href={imageResult} download="launchpath-visual.png" className="p-6 bg-white rounded-[2rem] text-authority-blue shadow-xl hover:bg-slate-50 flex items-center space-x-3 active:scale-95 transition-all">
+                          <Download size={28} />
+                          <span className="font-black uppercase tracking-widest text-sm">Download Asset</span>
+                        </a>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-border-light p-16 text-center opacity-40">
+                      <ImageIcon className="w-20 h-20 text-text-muted mb-10" />
+                      <p className="text-2xl font-black font-serif tracking-tight uppercase">Ready for Input</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -569,25 +685,93 @@ const AIServicePage = () => {
 
           {/* --- VIDEO STUDIO --- */}
           {activeTab === 'video' && (
-            <div className="flex-grow overflow-y-auto p-10 space-y-12 animate-reveal-up custom-scrollbar">
+            <div className="flex-grow overflow-y-auto p-10 space-y-12">
               {!hasApiKey && (
-                <div className="p-12 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 rounded-[3rem] text-center shadow-xl">
-                  <ShieldAlert className="mx-auto text-amber-600 mb-6" size={64} />
-                  <h3 className="text-3xl font-black font-serif mb-6">Cloud Authorization Required</h3>
-                  <button onClick={selectApiKey} className="bg-amber-600 text-white px-12 py-5 rounded-[1.5rem] font-black uppercase tracking widest active:scale-95">Authorize API Key</button>
+                <div className="p-12 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-[3rem] text-center space-y-6 shadow-xl">
+                  <ShieldAlert className="mx-auto text-amber-600" size={64} />
+                  <h3 className="text-3xl font-black font-serif tracking-tight">Cloud Access Authorization Required</h3>
+                  <button onClick={selectApiKey} className="bg-amber-600 text-white px-12 py-5 rounded-[1.5rem] font-black uppercase tracking-widest hover:bg-amber-700 transition-all shadow-xl active:scale-95">Authorize Key</button>
                 </div>
               )}
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div className="space-y-10">
-                  <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light space-y-8">
-                    <textarea rows={5} value={videoPrompt} onChange={(e) => setVideoPrompt(e.target.value)} placeholder="Describe your compliance visualization for Veo 3.1..." className="w-full bg-white dark:bg-gray-800 border rounded-3xl p-8 outline-none focus:ring-8 focus:ring-authority-blue/5 font-bold" />
-                    <button onClick={generateVideo} disabled={isGeneratingVideo || !hasApiKey} className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl active:scale-95 disabled:opacity-50">
-                      {isGeneratingVideo ? <><Loader2 className="animate-spin mr-3" size={24} /><span>Rendering...</span></> : <><Film className="mr-3" size={24} /><span>Bake Cinematic Asset</span></>}
+                  <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light space-y-8 shadow-sm">
+                    <h3 className="text-2xl font-black font-serif">Cinematic Directives</h3>
+                    
+                    <div className="space-y-4">
+                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Video Prompt</label>
+                      <textarea 
+                        rows={4}
+                        value={videoPrompt}
+                        onChange={(e) => setVideoPrompt(e.target.value)}
+                        placeholder="e.g. A white semi-truck driving on a mountain highway at sunset..."
+                        className="w-full bg-white dark:bg-gray-800 border border-border-light rounded-3xl p-8 text-base outline-none focus:ring-8 focus:ring-authority-blue/5 transition-all shadow-sm font-bold"
+                      />
+                    </div>
+
+                    <div className="space-y-4">
+                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Reference Frame</label>
+                      <div className="flex items-center space-x-4">
+                        <div className="relative group flex-grow">
+                          <input type="file" accept="image/*" onChange={handleVideoFileChange} className="absolute inset-0 opacity-0 cursor-pointer" />
+                          <div className="bg-white dark:bg-gray-800 border-2 border-dashed border-border-light rounded-[2rem] p-10 text-center group-hover:border-authority-blue transition-all">
+                            {videoPreview ? <img src={videoPreview} className="h-24 mx-auto rounded-2xl object-cover" alt="Preview" /> : <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">Upload Starting Frame</p>}
+                          </div>
+                        </div>
+                        {videoPreview && <button onClick={() => { setVideoFile(null); setVideoPreview(null); }} className="p-5 bg-red-50 text-red-500 rounded-full"><X /></button>}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Frame Geometry</label>
+                      <div className="flex gap-4">
+                        {['16:9', '9:16'].map((dim) => (
+                          <button 
+                            key={dim}
+                            onClick={() => setAspectRatio(dim as any)}
+                            className={`flex-grow p-5 rounded-[1.5rem] border transition-all text-[11px] font-black uppercase tracking-widest active:scale-95 ${aspectRatio === dim ? 'bg-authority-blue text-white border-authority-blue shadow-xl' : 'bg-white border-border-light text-text-muted'}`}
+                          >
+                            {dim} {dim === '16:9' ? 'Landscape' : 'Portrait'}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <button 
+                      onClick={generateVideo}
+                      disabled={isGeneratingVideo || !hasApiKey}
+                      className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl hover:bg-steel-blue transition-all disabled:opacity-50 active:scale-95"
+                    >
+                      {isGeneratingVideo ? <Loader2 className="animate-spin mr-3" size={24} /> : <Film className="mr-3" size={24} />}
+                      <span>Bake Cinematic Asset</span>
                     </button>
                   </div>
                 </div>
+
                 <div className="flex flex-col">
-                  {videoResult ? <div className="bg-black rounded-[4rem] overflow-hidden shadow-2xl flex items-center justify-center"><video src={videoResult} controls className="max-w-full" /></div> : <div className="flex-grow bg-slate-50 rounded-[4rem] border-2 border-dashed flex flex-center items-center justify-center opacity-40"><Film size={64} /></div>}
+                  {isGeneratingVideo ? (
+                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-dashed border-border-light p-16 text-center space-y-10 shadow-inner">
+                      <div className="w-24 h-24 border-8 border-authority-blue/10 border-t-authority-blue rounded-full animate-spin"></div>
+                      <h4 className="text-3xl font-black font-serif mb-4 tracking-tight">{genMessage}</h4>
+                      <p className="text-lg text-text-muted font-medium">Neural processing typically requires 120-180 seconds.</p>
+                    </div>
+                  ) : videoResult ? (
+                    <div className="bg-black rounded-[4rem] overflow-hidden shadow-2xl relative group animate-reveal-up">
+                      <video src={videoResult} controls className="w-full h-full object-contain" />
+                      <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href={videoResult} download="launchpath-master.mp4" className="p-6 bg-white rounded-[2rem] text-authority-blue shadow-xl hover:bg-slate-50 flex items-center space-x-3 active:scale-95 transition-all">
+                          <Download size={28} />
+                          <span className="font-black uppercase tracking-widest text-sm">Export Media</span>
+                        </a>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-border-light p-16 text-center opacity-40">
+                      <Film className="w-20 h-20 text-text-muted mb-10" />
+                      <p className="text-2xl font-black font-serif tracking-tight mb-4 uppercase">Studio Offline</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -597,6 +781,7 @@ const AIServicePage = () => {
       <style>{`
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1E293B; }
       `}</style>
     </div>
   );
