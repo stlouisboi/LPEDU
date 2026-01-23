@@ -99,7 +99,7 @@ const QUESTIONS: Question[] = [
     id: 'awareness',
     text: "How familiar are you with FMCSA regulations, DOT authority requirements, and the New Entrant Safety Audit?",
     options: [
-      { label: 'A', text: 'I\'ve never heard of most of this', points: 0, flag: 'RED' },
+      { label: 'A', text: 'I\'ve never heard of most of this', points: 0 },
       { label: 'B', text: 'I\'ve heard of it but don\'t understand the details', points: 1 },
       { label: 'C', text: 'I understand the basics but haven\'t studied the specifics', points: 2 },
       { label: 'D', text: 'I\'ve researched it and understand most requirements', points: 3 },
@@ -519,7 +519,6 @@ const ReadinessPage = () => {
                        answers[1] === 0 ? "Without at least one month of household expenses in reserve, any delay in revenue — which is common — could create immediate financial crisis. Building reserves first protects your household and your authority." :
                        answers[3] === 0 ? "The first 90 days require consistent attention to implement compliance systems, manage insurance requirements, and prepare for audit readiness. A few hours per week is not sufficient to build the documentation logic and preventive systems required." :
                        answers[2] === 1 ? "Starting a trucking business without household support creates pressure that compounds every operational challenge. Alignment before launch is not optional — it is foundational." :
-                       answers[5] === 0 ? "Launching without any familiarity with FMCSA regulations or the New Entrant Safety Audit places your authority at immediate risk. Compliance is not a secondary task—it is the legal framework that allows your business to exist." :
                        answers[6] === 0 ? "If a single setback would cause you to shut down, the volatility of the first year will be difficult to sustain. Building resilience — financial and psychological — before launch is essential." :
                        "Your current structural indicators suggest that launching an authority at this moment would carry an extremely high probability of preventable failure."}
                     </p>
