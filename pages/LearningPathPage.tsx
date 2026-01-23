@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   CheckCircle2, 
@@ -16,7 +16,8 @@ import {
   Lock,
   Activity,
   Layers,
-  ChevronRight
+  ChevronRight,
+  Truck as TruckIcon
 } from 'lucide-react';
 import { COURSE_MODULES } from '../constants';
 import { useAuth } from '../AuthContext';
@@ -111,6 +112,32 @@ const PHASES: PhaseData[] = [
 
 const LearningPathPage = () => {
   const [enrollmentModalOpen, setEnrollmentModalOpen] = useState(false);
+  const [truckProgress, setTruckProgress] = useState(0);
+  const roadmapRef = useRef<HTMLElement>(null);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!roadmapRef.current) return;
+      const element = roadmapRef.current;
+      const rect = element.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress through the roadmap container
+      // We aim for the truck to be at 0% when the container top reaches the middle of the screen
+      // and 100% when the container bottom reaches the middle of the screen.
+      const triggerPoint = windowHeight / 2;
+      const totalDist = rect.height;
+      const currentDist = triggerPoint - rect.top;
+      
+      let progress = (currentDist / totalDist) * 100;
+      progress = Math.max(0, Math.min(100, progress));
+      setTruckProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen animate-in fade-in duration-700">
@@ -140,26 +167,46 @@ const LearningPathPage = () => {
       </section>
 
       {/* Schematic Roadmap Section */}
-      <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section ref={roadmapRef} className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Abstract Implementation Path Line */}
-        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-authority-blue/20 via-authority-blue/40 to-authority-blue/10 dark:from-slate-800 dark:via-slate-600 dark:to-slate-800 -translate-x-1/2 z-0"></div>
+        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-authority-blue/20 via-authority-blue/40 to-authority-blue/10 dark:from-slate-800 dark:via-slate-600 dark:to-slate-800 -translate-x-1/2 z-0">
+          
+          {/* Animated Driving Truck (Tablet & Desktop Only) */}
+          <div 
+            className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-16 z-40 flex-col items-center transition-all duration-300 ease-out"
+            style={{ top: `${truckProgress}%` }}
+          >
+            {/* The Truck Body */}
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-signal-gold/20 rounded-full blur-xl animate-pulse opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="bg-authority-blue dark:bg-signal-gold text-white dark:text-authority-blue p-2.5 rounded-xl shadow-2xl rotate-180 border-2 border-white/20">
+                <TruckIcon size={24} fill="currentColor" />
+              </div>
+              {/* Exhaust particles logic or glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full flex flex-col items-center space-y-1 opacity-40">
+                <div className="w-1 h-1 bg-slate-300 rounded-full animate-ping"></div>
+                <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-ping [animation-delay:0.2s]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-48 relative z-10">
           {PHASES.map((phase, idx) => (
             <div key={phase.number} className={`relative flex flex-col md:flex-row items-start md:items-center ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
               
               {/* Checkpoint Node */}
-              <div className={`absolute left-8 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-white dark:bg-surface-dark border-4 ${phase.color.replace('text-', 'border-')} rounded-full z-20 shadow-2xl flex items-center justify-center`}>
+              <div className={`absolute left-8 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-white dark:bg-surface-dark border-4 ${phase.color.replace('text-', 'border-')} rounded-full z-20 shadow-2xl flex items-center justify-center transition-all duration-500 hover:scale-125`}>
                 <div className={`w-2 h-2 ${phase.accent} rounded-full`}></div>
               </div>
               
               {/* Horizontal Anchor Connector */}
               <div className={`hidden md:block absolute top-1/2 h-0.5 bg-authority-blue/10 dark:bg-slate-800 z-10 ${idx % 2 !== 0 ? 'right-1/2 w-16' : 'left-1/2 w-16'}`}></div>
 
-              {/* Schematic Phase Label */}
+              {/* Schematic Phase Label - Only Number Displayed */}
               <div className={`absolute left-0 md:left-1/2 -translate-x-1/2 -translate-y-24 flex flex-col items-center z-30`}>
-                <span className={`text-[11px] font-black tracking-[0.5em] ${phase.color} opacity-60 uppercase bg-primary-light dark:bg-primary-dark px-4 py-1 border border-slate-100 dark:border-slate-800 rounded-full shadow-sm`}>
-                  PROTO-ID: {phase.number}
+                <span className={`text-[12px] font-black tracking-[0.2em] ${phase.color} opacity-80 uppercase bg-primary-light dark:bg-primary-dark px-5 py-2 border border-slate-100 dark:border-slate-800 rounded-full shadow-sm`}>
+                  {phase.number}
                 </span>
               </div>
 
