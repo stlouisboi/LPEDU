@@ -1,168 +1,197 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   CheckCircle2, 
   XCircle,
-  ChevronDown,
-  Users,
-  Mail,
   ArrowRight,
-  Target,
-  Award,
-  BookOpen,
   Scale,
   FileText,
-  Calculator,
-  Zap,
-  Star,
-  Phone,
-  Clock,
-  TrendingDown,
   ShieldAlert,
-  MessageSquare,
   Lock,
-  DollarSign,
   Info,
   Check,
   X,
-  Sparkles,
   Calendar,
-  MousePointer2,
   Activity,
-  Quote
+  UserCheck,
+  ClipboardCheck,
+  AlertCircle,
+  Building2
 } from 'lucide-react';
-import Logo from '../components/Logo';
 
-const DecisionWindow = () => (
-  <section className="max-w-4xl mx-auto px-4 py-12">
-    <div className="bg-[#F8F9FA] dark:bg-slate-900 border-2 border-authority-blue rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
-      <div className="absolute top-0 right-0 p-8 opacity-5 rotate-12 scale-150 pointer-events-none">
-        <ShieldCheck size={200} className="text-authority-blue" />
+const InstitutionalHeader = () => (
+  <section className="relative py-20 bg-white border-b border-slate-200 overflow-hidden">
+    <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+      <div className="inline-flex items-center space-x-2 bg-slate-50 border border-slate-200 px-5 py-2 rounded-full mb-8">
+        <ShieldCheck size={14} className="text-authority-blue" />
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-authority-blue">Admission Protocol v3.1</span>
       </div>
-      <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
-        <div className="w-16 h-16 bg-authority-blue/10 text-authority-blue rounded-2xl flex items-center justify-center shrink-0">
-          <ShieldCheck size={32} />
-        </div>
-        <div className="flex-grow">
-          <h3 className="text-2xl font-black uppercase tracking-widest text-authority-blue dark:text-white mb-4">🛡️ 7-Day Decision Window</h3>
-          <div className="prose prose-base text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-            <p className="mb-4">
-              LaunchPath does not offer a free trial, but we do offer a 7-day decision window. We believe in clarity, responsibility, and commitment.
+      <h1 className="text-4xl md:text-5xl font-bold font-serif text-[#1A1A1A] uppercase tracking-tight mb-6">
+        System <span className="text-authority-blue">Admission</span> & Alignment
+      </h1>
+      <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+        Admission to the LaunchPath Standard is a formal alignment process. It is designed to verify that participating motor carriers possess the structural prerequisites required to install and maintain federally aligned safety management systems.
+      </p>
+    </div>
+  </section>
+);
+
+const PurposeOfAdmission = () => (
+  <section className="py-20 bg-[#F8F9FA] border-b border-slate-200">
+    <div className="max-w-5xl mx-auto px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div>
+          <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue mb-4">01. Purpose of Admission</h2>
+          <h3 className="text-2xl font-bold text-[#1A1A1A] mb-6 uppercase tracking-tight">Institutional Alignment</h3>
+          <div className="space-y-4 text-slate-600 font-medium leading-relaxed">
+            <p>
+              The LaunchPath Standard requires a specific level of administrative discipline and operational readiness. Admission serves as a filter to ensure that resources are allocated to carriers capable of meeting the Standard's documentation and procedural requirements.
             </p>
-            <p className="mb-4">
-              If within 7 days you determine the implementation is not aligned with where you are, you may request a refund.
-            </p>
-            <p className="font-bold text-authority-blue dark:text-signal-gold">
-              After that period, all sales are final due to immediate access to proprietary system content and implementation tools.
+            <p>
+              This process protects the integrity of the Operating Standard and ensures that participating entities are positioned to benefit from systematic compliance protocols rather than struggling with basic structural deficiencies.
             </p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-);
-
-const ScopeClarity = () => (
-  <section className="max-w-5xl mx-auto px-4 py-16">
-    <div className="bg-white dark:bg-surface-dark rounded-[3rem] border border-border-light dark:border-border-dark p-10 md:p-16 shadow-sm overflow-hidden relative">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What LaunchPath Is — and Is Not</h2>
-        <p className="text-lg text-text-muted mt-2 font-medium">Clear boundaries create successful implementation partnerships.</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-6">
-          <h3 className="text-sm font-black uppercase tracking-widest text-green-600 flex items-center">
-            <Check size={18} className="mr-2" /> LaunchPath Is
-          </h3>
-          <ul className="space-y-4">
-            {[
-              "System education and coaching focused on authority survival",
-              "Structured systems for compliance, insurance continuity, and cash flow",
-              "Federally-aligned implementation roadmaps and templates"
-            ].map((item, i) => (
-              <li key={i} className="flex items-start text-base font-bold text-text-primary dark:text-text-dark-muted">
-                <CheckCircle2 size={20} className="text-green-500 shrink-0 mr-3 mt-0.5" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="space-y-6">
-          <h3 className="text-sm font-black uppercase tracking-widest text-red-500 flex items-center">
-            <X size={18} className="mr-2" /> LaunchPath Is Not
-          </h3>
-          <ul className="space-y-4">
-            {[
-              "Dispatching or load finding service",
-              "Legal, tax, or insurance advice",
-              "Income or audit guarantees"
-            ].map((item, i) => (
-              <li key={i} className="flex items-start text-base font-bold text-text-muted">
-                <XCircle size={20} className="text-red-400 shrink-0 mr-3 mt-0.5" />
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+           <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
+              <ClipboardCheck className="text-authority-blue" size={24} />
+              <span className="text-sm font-black uppercase tracking-widest text-authority-blue">Standard Objectives</span>
+           </div>
+           <ul className="space-y-4">
+              {[
+                "Verification of carrier identity and authority status",
+                "Alignment with federal safety management frameworks",
+                "Installation of auditable documentation systems",
+                "Standardization of DQ and HOS workflows"
+              ].map((item, i) => (
+                <li key={i} className="flex items-start text-xs font-bold text-slate-500 uppercase tracking-tight">
+                  <Check size={14} className="text-authority-blue mr-3 mt-0.5 shrink-0" />
+                  {item}
+                </li>
+              ))}
+           </ul>
         </div>
       </div>
     </div>
   </section>
 );
 
-const AfterEnrollment = () => (
-  <section className="py-24 bg-slate-50 dark:bg-surface-dark/20 overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-20 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-12 opacity-[0.03] pointer-events-none">
-          <Sparkles size={200} className="text-authority-blue" />
+const EligibilitySection = () => (
+  <section className="py-20 bg-white">
+    <div className="max-w-5xl mx-auto px-6">
+      <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue mb-12 text-center">02. Eligibility & Criteria</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* ELIGIBLE */}
+        <div className="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100">
+          <div className="flex items-center space-x-3 mb-8">
+            <div className="p-2 bg-green-100 text-green-700 rounded-lg">
+              <UserCheck size={20} />
+            </div>
+            <h4 className="text-sm font-black uppercase tracking-widest text-slate-700">Qualified Entities</h4>
+          </div>
+          <ul className="space-y-5">
+            {[
+              "Owner-operators in the pre-filing or 90-day window",
+              "Carriers committed to institutional-grade documentation",
+              "Individuals with secured startup capital and reserves",
+              "Operators seeking a systematic operating standard"
+            ].map((item, i) => (
+              <li key={i} className="flex items-start text-sm font-bold text-slate-600">
+                <CheckCircle2 size={18} className="text-green-600 mr-3 mt-0.5 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="inline-flex items-center space-x-2 text-authority-blue dark:text-signal-gold font-black uppercase tracking-[0.3em] text-[10px] mb-4">
-          <span>The Path to Peace of Mind</span>
-        </div>
-        <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">
-          What Happens After Admission
-        </h2>
-        <p className="text-xl text-text-muted max-w-3xl mx-auto font-medium leading-relaxed">
-          The moment you enter the system, the "guessing game" ends. You transition from uncertainty to a guided implementation sequence built for operational order.
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-        <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-200 dark:bg-slate-800 -translate-y-12 z-0"></div>
+        {/* NOT ELIGIBLE */}
+        <div className="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100">
+          <div className="flex items-center space-x-3 mb-8">
+            <div className="p-2 bg-red-100 text-red-700 rounded-lg">
+              <ShieldAlert size={20} />
+            </div>
+            <h4 className="text-sm font-black uppercase tracking-widest text-slate-700">Exclusionary Criteria</h4>
+          </div>
+          <ul className="space-y-5">
+            {[
+              "Entities seeking dispatching or load-finding services",
+              "Applicants with insufficient operational capital",
+              "Requests for legal, tax, or insurance representation",
+              "Carriers unwilling to follow a sequenced protocol"
+            ].map((item, i) => (
+              <li key={i} className="flex items-start text-sm font-bold text-slate-400">
+                <XCircle size={18} className="text-red-400 mr-3 mt-0.5 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const ExpectationsSection = () => (
+  <section className="py-20 bg-[#F8F9FA] border-y border-slate-200">
+    <div className="max-w-5xl mx-auto px-6">
+      <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue mb-12 text-center">03. Expectations Under the Standard</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
           { 
-            step: "01", 
-            title: "Instant Portal Access", 
-            icon: <Zap className="text-signal-gold" />, 
-            desc: "Breathe easier knowing the system blueprint is in your hands. You'll receive immediate login to our secure dashboard where 'Ground 0' and the Phase 1 implementation modules are waiting.",
-            relief: "No waiting. Start securing your identity today."
+            title: "Administrative Discipline", 
+            icon: <FileText size={24} />, 
+            desc: "Participants must maintain precise, contemporaneous records of all safety-sensitive functions as defined by CFR Title 49." 
           },
           { 
-            step: "02", 
-            title: "Guided 90-Day Sequence", 
-            icon: <Calendar className="text-authority-blue" />, 
-            desc: "We don't overwhelm you with everything at once. System assets are released in a proven sequence that matches the 90-day authority containment window.",
-            relief: "Focus on one pillar at a time without the noise."
+            title: "Systematic Sequence", 
+            icon: <Activity size={24} />, 
+            desc: "The Standard must be implemented in the mandated order (Ground 0 through Module 6) to ensure logical system cohesion." 
           },
           { 
-            step: "03", 
-            title: "Implementation Checkpoints", 
-            icon: <Users className="text-signal-gold" />, 
-            desc: "You'll be plugged into weekly group implementation calls. You aren't building this carrier in isolation. Expert access is the standard for admitted applicants.",
-            relief: "Expert eyes on your compliance backbone."
+            title: "Individual Responsibility", 
+            icon: <Scale size={24} />, 
+            desc: "LaunchPath provides the framework; the carrier is solely responsible for the legal implementation and defense of their data." 
           }
-        ].map((item, i) => (
-          <div key={i} className="relative z-10 flex flex-col items-center text-center">
-            <div className="w-24 h-24 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl flex items-center justify-center mb-8 border border-border-light dark:border-border-dark group-hover:scale-105 transition-transform duration-500 relative">
-               <div className="absolute -top-3 -right-3 w-10 h-10 bg-authority-blue text-white rounded-2xl flex items-center justify-center font-black text-xs shadow-lg">{item.step}</div>
-               {item.icon}
-            </div>
-            <h4 className="text-2xl font-black uppercase tracking-tight text-authority-blue dark:text-white mb-4 leading-tight font-serif">{item.title}</h4>
-            <p className="text-base text-text-muted font-medium leading-relaxed mb-6 px-4">{item.desc}</p>
-            <div className="mt-auto inline-flex items-center space-x-2 px-4 py-2 bg-green-50 dark:bg-green-900/10 text-green-600 dark:text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100 dark:border-green-900/20">
-               <CheckCircle2 size={12} />
-               <span>{item.relief}</span>
+        ].map((box, i) => (
+          <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <div className="text-authority-blue mb-6">{box.icon}</div>
+            <h4 className="text-sm font-black uppercase tracking-widest text-authority-blue mb-4">{box.title}</h4>
+            <p className="text-xs text-slate-500 font-bold leading-relaxed">{box.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const AdmissionProcess = () => (
+  <section className="py-20 bg-white">
+    <div className="max-w-5xl mx-auto px-6">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
+        <div className="max-w-xl">
+          <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue mb-4">04. Admission Process</h2>
+          <h3 className="text-2xl font-bold text-[#1A1A1A] uppercase tracking-tight">Registry Verification</h3>
+        </div>
+        <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex items-center space-x-3">
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+          <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Registry Active</span>
+        </div>
+      </div>
+
+      <div className="space-y-6 max-w-3xl">
+        {[
+          { id: "Step 1", t: "Eligibility Assessment", d: "Completion of the Readiness Assessment to identify structural gaps." },
+          { id: "Step 2", t: "System Provisioning", d: "One-time implementation investment to activate system access." },
+          { id: "Step 3", t: "Standard Alignment", d: "Immediate issuance of Ground 0 onboarding and Phase 1 protocols." }
+        ].map((step, i) => (
+          <div key={i} className="flex items-start space-x-6 p-8 bg-slate-50 rounded-3xl border border-slate-100 group hover:border-authority-blue transition-all">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-authority-blue pt-1">{step.id}</span>
+            <div>
+              <h4 className="text-base font-bold text-slate-800 uppercase mb-2">{step.t}</h4>
+              <p className="text-sm text-slate-500 font-medium">{step.d}</p>
             </div>
           </div>
         ))}
@@ -171,231 +200,68 @@ const AfterEnrollment = () => (
   </section>
 );
 
-const EnrollPage = () => {
-  const navigate = useNavigate();
-
-  const handleEnroll = () => {
-    navigate('/contact?topic=Enrollment+Inquiry&tier=Implementation+Standard');
-  };
-
-  return (
-    <div className="bg-primary-light dark:bg-primary-dark min-h-screen font-sans">
-      {/* 1. HERO SECTION */}
-      <section className="relative py-24 md:py-32 bg-white dark:bg-surface-dark/30 text-center border-b border-border-light dark:border-border-dark overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
-        <div className="max-w-[1400px] mx-auto px-4 relative z-10 animate-reveal-up">
-          <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10 border border-authority-blue/10">
-            <Award className="w-3.5 h-3.5 text-signal-gold" />
-            <span>One Standard. One System. One Implementation.</span>
-          </div>
-          <h1 className="text-5xl md:text-[5.5rem] font-black font-serif mb-8 leading-[0.9] text-authority-blue dark:text-white tracking-tighter uppercase">
-            Standard <br/><span className="text-signal-gold italic">Admission.</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-text-muted dark:text-text-dark-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium">
-            Stop choosing between partial solutions. We provide the complete technical foundation required to survive the critical first 18 months of federal scrutiny.
-          </p>
-        </div>
-      </section>
-
-      {/* 2. THE SINGLE OFFER SECTION */}
-      <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-sm font-bold text-authority-blue dark:text-signal-gold mb-8 uppercase tracking-[0.3em]">
-          Pricing reflects the seriousness of the implementation and the standard required to operate compliantly.
-        </p>
-        <div className="bg-white dark:bg-surface-dark rounded-[4rem] border-4 border-signal-gold shadow-[0_50px_100px_-20px_rgba(212,175,55,0.2)] overflow-hidden relative">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            
-            {/* Left: System Info */}
-            <div className="lg:col-span-7 p-10 md:p-16 space-y-10">
-              <div>
-                <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-signal-gold mb-4">The LaunchPath Standard</h2>
-                <h3 className="text-4xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none font-serif">Admission into the 90-Day <br/>Implementation Standard</h3>
-              </div>
-
-              <div className="space-y-6">
-                 <p className="text-lg text-text-muted font-bold leading-relaxed italic">"Everything you need to move from exposure to active, audit-proof protection through the system."</p>
-                 
-                 <div className="space-y-4">
-                    <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold">What admission includes (non-optional):</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
-                      {[
-                        "Ground 0 eligibility verification",
-                        "All 6 Core Learning Modules",
-                        "46 Professional Video Lessons",
-                        "50+ Audit-Ready PDF Templates",
-                        "6 Interactive Financial Calculators",
-                        "12 Weekly Live Group Calls",
-                        "Cohort-based implementation environment",
-                        "Implementation support (not done-for-you)",
-                        "Annual Renewal Trackers",
-                        "Lifetime System Updates"
-                      ].map((f, i) => (
-                        <div key={i} className="flex items-center space-x-3">
-                          <CheckCircle2 className="text-green-500 shrink-0" size={18} />
-                          <span className="text-sm font-bold text-text-primary dark:text-text-dark-muted">{f}</span>
-                        </div>
-                      ))}
-                    </div>
-                 </div>
-              </div>
-
-              {/* ONE STANDARD NOTICE BOX (CRITICAL ADMISSIONS GATE) */}
-              <div className="p-8 bg-slate-50 dark:bg-slate-900 border-l-4 border-authority-blue rounded-r-3xl">
-                <h4 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-4 flex items-center">
-                  <ShieldAlert size={16} className="mr-2" /> One Standard Notice
-                </h4>
-                <div className="text-[13px] font-bold text-text-muted dark:text-text-dark-muted leading-relaxed space-y-3">
-                  <p>LaunchPath operates under one implementation standard.</p>
-                  <p>We do not offer abbreviated, lite, or partial versions of the system.</p>
-                  <p>FMCSA audits do not adjust requirements based on experience level, time availability, or budget. Insurance underwriting does not either.</p>
-                  <p className="text-authority-blue dark:text-white">Admission reflects a commitment to complete the full implementation sequence as designed.</p>
-                </div>
-              </div>
-
-              <div className="pt-8 border-t border-slate-100 dark:border-border-dark flex items-center space-x-6">
-                 <div className="flex items-center space-x-3">
-                    <ShieldCheck size={32} className="text-authority-blue dark:text-signal-gold" />
-                    <div className="leading-tight">
-                       <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">Status</p>
-                       <p className="text-sm font-black uppercase text-authority-blue dark:text-white">Audit Ready</p>
-                    </div>
-                 </div>
-                 <div className="h-10 w-px bg-slate-200"></div>
-                 <div className="flex items-center space-x-3">
-                    <Activity size={32} className="text-authority-blue dark:text-signal-gold" />
-                    <div className="leading-tight">
-                       <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">Sync</p>
-                       <p className="text-sm font-black uppercase text-authority-blue dark:text-white">Live Updates</p>
-                    </div>
-                 </div>
-              </div>
-            </div>
-
-            {/* Right: Admission Sidebar */}
-            <div className="lg:col-span-5 bg-slate-50 dark:bg-gray-900/50 p-10 md:p-16 flex flex-col justify-center border-l border-slate-100 dark:border-border-dark">
-               <div className="mb-12">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted mb-4">Implementation Investment</p>
-                  <div className="flex items-baseline">
-                     <span className="text-3xl font-black text-signal-gold mr-1">$</span>
-                     <span className="text-[5.5rem] font-black tracking-tighter text-authority-blue dark:text-white leading-none">1,500</span>
-                  </div>
-                  <p className="text-sm font-bold text-text-muted mt-4">One-time payment. No recurring fees.</p>
-                  <p className="text-[11px] font-bold text-text-muted uppercase tracking-widest mt-2 leading-relaxed">
-                    This is the current entry point. The standard investment will increase as the system matures.
-                  </p>
-               </div>
-
-               <div className="space-y-6">
-                  <button 
-                    onClick={handleEnroll}
-                    className="w-full bg-signal-gold text-authority-blue py-7 rounded-2xl font-black uppercase tracking-[0.25em] text-sm shadow-[0_20px_50px_-10px_rgba(212,175,55,0.4)] hover:bg-authority-blue hover:text-white transition-all active:scale-95 flex items-center justify-center group"
-                  >
-                    <span>Request Admission</span>
-                    <ArrowRight className="ml-4 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                  </button>
-                  
-                  <p className="text-[10px] font-bold text-text-muted uppercase text-center leading-relaxed px-4">
-                    Admission reflects readiness to complete the full 90-day implementation sequence.
-                  </p>
-
-                  <div className="p-4 bg-white/50 dark:bg-black/20 rounded-xl flex items-start space-x-3">
-                     <Info size={14} className="text-authority-blue mt-0.5" />
-                     <p className="text-[10px] font-bold text-text-muted uppercase leading-relaxed">
-                        Secure admission via Stripe. Immediate system credentials issued upon successful verification.
-                     </p>
-                  </div>
-               </div>
-            </div>
-          </div>
-        </div>
-        <p className="text-center text-xs font-black text-text-muted mt-12 uppercase tracking-[0.3em] leading-relaxed">
-          The full standard investment will increase as the implementation system matures.
-        </p>
-      </section>
-
-      {/* 3. POLICY SECTION */}
-      <DecisionWindow />
-
-      {/* 4. AFTER ADMISSION */}
-      <AfterEnrollment />
-
-      {/* 5. ROI & IMPLEMENTATION ACCOUNTS */}
-      <section className="py-32 bg-white dark:bg-surface-dark border-y border-border-light dark:border-border-dark">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              <div>
-                 <h2 className="text-3xl md:text-[3.5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8 leading-none">Cheaper Than <br/>A Failed Audit.</h2>
-                 <p className="text-xl text-text-muted font-medium mb-10 leading-relaxed max-w-xl">
-                   The average cost of a carrier's first-year failure exceeds $50,000 in lost down payments and accumulated debt. LaunchPath is a systematic insurance policy for your implementation continuity.
-                 </p>
-                 <div className="space-y-4">
-                    {[
-                      { t: "Avoid Insurance Cancellations", d: "Save up to $30k/yr in non-renewal premiums." },
-                      { t: "Pass New Entrant Audits", d: "Zero fines and protected operating authority." },
-                      { t: "Master Cash Flow Oxygen", d: "Maintain solvency during 60-day payment cycles." }
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-start space-x-4 p-5 bg-slate-50 dark:bg-gray-800 rounded-3xl border border-slate-100 dark:border-border-dark">
-                        <CheckCircle2 size={24} className="text-green-500 shrink-0" />
-                        <div>
-                          <p className="font-black uppercase tracking-tight text-authority-blue dark:text-white">{item.t}</p>
-                          <p className="text-sm text-text-muted font-bold mt-1">{item.d}</p>
-                        </div>
-                      </div>
-                    ))}
-                 </div>
-              </div>
-              
-              <div className="bg-authority-blue p-12 rounded-[4rem] text-white shadow-2xl relative overflow-hidden">
-                 <Quote className="text-signal-gold/20 absolute top-10 right-10" size={80} />
-                 <div className="relative z-10 space-y-10">
-                    <p className="text-2xl font-medium italic leading-relaxed font-serif">
-                      "LaunchPath isn't a standard course you watch; it's a system you implement. By the time my audit letter arrived, I wasn't nervous. I just sent them the files we built in the system. Passed with zero findings."
-                    </p>
-                    <div className="flex items-center space-x-4">
-                       <div className="w-16 h-16 rounded-2xl bg-white/10 overflow-hidden">
-                          <img src="https://picsum.photos/seed/trucker/80/80" alt="Carrier" className="grayscale" />
-                       </div>
-                       <div>
-                          <p className="font-black uppercase tracking-widest text-sm">Marcus T., Texas</p>
-                          <p className="text-[10px] font-bold text-signal-gold uppercase tracking-[0.2em]">6-Month Authority Owner</p>
-                       </div>
-                    </div>
-                 </div>
-              </div>
+const InvestmentNotice = () => (
+  <section className="py-20 bg-authority-blue text-white overflow-hidden">
+    <div className="max-w-4xl mx-auto px-6 relative z-10">
+      <div className="bg-white/5 border border-white/10 rounded-[3rem] p-10 md:p-16 text-center">
+        <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8">Administrative Investment</h2>
+        <div className="flex flex-col items-center mb-10">
+           <div className="flex items-baseline">
+             <span className="text-2xl font-bold mr-2 text-white/50">$</span>
+             <span className="text-[6rem] md:text-[8rem] font-black tracking-tighter leading-none">1,500</span>
            </div>
+           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 mt-4">One-Time Implementation Access Fee</p>
         </div>
-      </section>
-
-      {/* 6. SCOPE CLARITY */}
-      <ScopeClarity />
-
-      {/* 7. FINAL ADMISSION CTA */}
-      <section className="py-40 bg-authority-blue py-32 text-center text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div className="max-w-[1400px] mx-auto px-4 relative z-10">
-          <Logo light className="mx-auto mb-12 h-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-default" />
-          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-8 leading-tight">Secure Your Authority. <br/><span className="text-signal-gold italic text-white/90">Build Your Legacy.</span></h2>
-          <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
-            There is only one path to professional operating integrity. Join the carriers who build on systems, not shortcuts. Admission is granted to applicants prepared to complete the full implementation standard.
+        <div className="max-w-md mx-auto space-y-6">
+          <p className="text-sm text-white/60 font-medium leading-relaxed italic">
+            "The investment reflects the technical maturity of the Standard and the operational seriousness required for federal compliance."
           </p>
+          <div className="h-px bg-white/10 w-full"></div>
           <button 
-            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
-            className="bg-signal-gold text-authority-blue px-14 py-7 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-white transition-all shadow-[0_20px_50px_-10px_rgba(212,175,55,0.4)] active:scale-95"
+            onClick={() => window.location.href = '/#/contact?topic=System+Admission'}
+            className="w-full bg-white text-authority-blue py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold hover:text-white transition-all active:scale-95 shadow-2xl"
           >
-            Enter the Implementation Standard
+            Initiate Admission Request
           </button>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
+);
 
-      <footer className="bg-slate-50 dark:bg-primary-dark py-12 border-t border-border-light dark:border-border-dark">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-[10px] font-black uppercase tracking-widest text-text-muted leading-loose max-w-2xl mx-auto opacity-60">
-            © {new Date().getFullYear()} LaunchPath Transportation EDU. <br/>
-            Information provided by LaunchPath is for educational purposes only and does not constitute legal, tax, financial, or insurance advice. <br/>
-            Accuracy Over Hype. Dedicated to Operational Integrity.
-          </p>
+const GoverningPolicy = () => (
+  <section className="py-20 bg-white">
+    <div className="max-w-3xl mx-auto px-6">
+      <div className="p-8 border-l-4 border-authority-blue bg-slate-50 rounded-r-3xl">
+        <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue mb-6 flex items-center">
+          <Lock size={14} className="mr-2" /> Governing Policy
+        </h4>
+        <div className="space-y-4 text-xs font-bold text-slate-500 uppercase leading-relaxed tracking-wide">
+          <p>LaunchPath functions as a standards organization. We do not provide individualized consulting, legal representation, or financial advising.</p>
+          <p>Admission does not imply a guarantee of audit passage or operational profitability. All participants are subject to the 7-day review period after which access to the Standard is considered final.</p>
+          <p className="text-authority-blue">System credentials are strictly for the use of the admitted carrier and are non-transferable.</p>
         </div>
+      </div>
+    </div>
+  </section>
+);
+
+const EnrollPage = () => {
+  return (
+    <div className="bg-white min-h-screen font-sans animate-in fade-in duration-700">
+      <InstitutionalHeader />
+      <PurposeOfAdmission />
+      <EligibilitySection />
+      <ExpectationsSection />
+      <AdmissionProcess />
+      <InvestmentNotice />
+      <GoverningPolicy />
+      
+      {/* Institutional Footer */}
+      <footer className="bg-slate-50 py-12 border-t border-slate-200 text-center">
+        <p className="text-[9px] font-black uppercase tracking-[0.5em] text-slate-400">
+          LaunchPath Operating Standard // Office of Admissions // System Integrity Priority
+        </p>
       </footer>
     </div>
   );

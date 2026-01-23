@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -19,7 +20,8 @@ import {
   ExternalLink,
   Maximize2,
   Brush,
-  AlertCircle
+  AlertCircle,
+  Monitor
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 

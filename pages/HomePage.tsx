@@ -1,9 +1,10 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   ShieldCheck, 
   ArrowRight, 
-  Loader2,
+  Loader2, 
   Shield,
   Clock,
   Target,
@@ -39,7 +40,8 @@ import {
   Search,
   AlertTriangle,
   GraduationCap,
-  Bookmark
+  Bookmark,
+  Monitor
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -247,15 +249,16 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div id="sins-grid" className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-6xl mx-auto mb-20">
-            {deadlySins.map((sin, i) => (
-              <div key={i} className="group p-7 bg-white dark:bg-surface-dark border-4 border-slate-100 dark:border-border-dark rounded-[2rem] hover:border-authority-blue transition-all flex items-start space-x-8 shadow-sm">
-                <span className="text-lg font-black text-authority-blue/30 transition-colors pt-1">
-                  {i+1 < 10 ? '0'+(i+1) : (i+1)}
-                </span>
-                <p className="text-lg font-black text-authority-blue dark:text-text-dark-primary leading-tight">{sin}</p>
-              </div>
-            ))}
+          <div className="max-w-4xl mx-auto mb-12">
+            <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-8 text-center lg:text-left">FMCSA Enforcement Risks</h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mb-20">
+              {deadlySins.map((sin, i) => (
+                <li key={i} className="flex items-start space-x-3 text-lg font-bold text-authority-blue dark:text-text-dark-primary group">
+                  <div className="w-1.5 h-1.5 bg-red-600 rounded-full mt-2.5 shrink-0 group-hover:scale-125 transition-transform"></div>
+                  <span className="leading-tight">{sin}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="max-w-6xl mx-auto bg-authority-blue text-white p-14 lg:p-20 rounded-[5rem] shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 border-4 border-signal-gold/30">
@@ -739,13 +742,5 @@ const HomePage: React.FC = () => {
     </div>
   );
 };
-
-const Monitor = ({ size, className }: { size: number, className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <rect width="20" height="14" x="2" y="3" rx="2" ry="2"/>
-    <line x1="8" x2="16" y1="21" y2="21"/>
-    <line x1="12" x2="12" y1="17" y2="21"/>
-  </svg>
-);
 
 export default HomePage;

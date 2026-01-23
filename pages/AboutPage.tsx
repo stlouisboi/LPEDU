@@ -46,7 +46,7 @@ const AboutPage = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
         <div className="max-w-[900px] mx-auto px-6 relative z-10">
           <h1 className="text-[32px] lg:text-[42px] font-bold text-[#1A1A1A] leading-[1.2] mb-6 font-sans uppercase tracking-tight">
-            Institutional Statement of the LaunchPath Standard
+            Institutional Governance Mandate of the LaunchPath Standard
           </h1>
           <p className="text-base lg:text-[18px] leading-[1.7] text-[#555] max-w-[750px] mx-auto mb-10 font-medium">
             The LaunchPath Standard provides a systematic framework for documentation integrity and safety management systems. It is designed to address the critical administrative gap between the issuance of operating authority and the successful navigation of federal oversight.
@@ -285,7 +285,7 @@ const AboutPage = () => {
 
       {/* FOOTER MINI */}
       <footer className="bg-[#0D1B2E] py-12 border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 text-center text-white/50 text-[13px]">
+        <div className="max-w-1200px] mx-auto px-6 text-center text-white/50 text-[13px]">
           <p className="mb-6 font-medium">© {new Date().getFullYear()} LaunchPath Transportation EDU. All Rights Reserved. System Integrity Protocols Active.</p>
           <div className="flex justify-center space-x-8 font-bold uppercase tracking-widest text-[10px]">
             <Link to="/learning-path" className="hover:text-white transition-colors">Operating Path</Link>
