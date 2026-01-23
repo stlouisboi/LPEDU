@@ -33,11 +33,12 @@ import {
   FileWarning,
   FileSearch,
   Activity,
-  // Fix: Add missing UserCheck import from lucide-react
   UserCheck
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
+// Fix: Added missing Logo import
+import Logo from '../components/Logo';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -93,22 +94,22 @@ const HomePage: React.FC = () => {
               </p>
 
               <p className="text-lg text-white/60 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                LaunchPath provides a structured 90-day implementation sequence. We help you establish a resilient operating foundation on your own timeline, ensuring every system is aligned with professional standards.
+                LaunchPath provides a structured 90-day implementation rhythm. We help you establish a resilient operating foundation on your own timeline, ensuring every system is aligned with professional standards.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
                 <Link 
-                  to="/learning-path"
+                  to="/request-admission"
                   className="group bg-transparent text-white border-2 border-white/30 px-12 py-5 rounded-2xl font-black text-sm hover:bg-white/5 hover:border-white transition-all flex items-center active:scale-95 uppercase tracking-[0.2em]"
                 >
-                  Explore the Roadmap
+                  Request Admission
                   <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <button 
                   onClick={() => document.getElementById('pillars')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-transparent text-white/50 hover:text-white px-10 py-5 rounded-2xl font-black text-sm transition-all flex items-center active:scale-95 uppercase tracking-widest"
                 >
-                  How the System Works
+                  How the Standard Works
                 </button>
               </div>
             </div>
@@ -142,7 +143,7 @@ const HomePage: React.FC = () => {
                       type="email" 
                       required
                       placeholder="jane@carrier.com"
-                      className="w-full px-6 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 rounded-2xl outline-none transition-all font-bold text-text-primary dark:text-white shadow-sm focus:shadow-2xl"
+                      className="w-full px-6 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 rounded-2xl outline-none font-bold text-text-primary dark:text-white shadow-sm focus:shadow-2xl"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                     />
@@ -186,7 +187,7 @@ const HomePage: React.FC = () => {
             <div className="lg:col-span-6 bg-slate-50 dark:bg-surface-dark p-10 md:p-12 rounded-[3.5rem] border border-slate-200 dark:border-border-dark shadow-sm">
               <h3 className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">From Exposure to Protection</h3>
               <p className="text-base text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-10">
-                To pass federal scrutiny and maintain insurance continuity, you must move from accidental exposure to active protection. The <span className="text-signal-gold font-bold italic">Four Pillars</span> are the structured documentation systems that auditors and insurers expect to see in a professional operation:
+                To meet federal expectations and maintain insurance continuity, you must move from accidental exposure to active protection. The <span className="text-signal-gold font-bold italic">Four Pillars</span> are the structured documentation standards that auditors and insurers expect to see in a professional operation:
               </p>
               
               <ul className="space-y-4 mb-10">
@@ -276,7 +277,7 @@ const HomePage: React.FC = () => {
               The Four Pillars Foundation
             </h2>
             <p className="text-lg text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto font-medium">
-              New motor carrier failure usually occurs when one of these four operational systems collapses. LaunchPath is built to reinforce all four.
+              New motor carrier failure usually occurs when one of these four operational standards collapses. LaunchPath is built to reinforce all four.
             </p>
           </div>
 
@@ -285,7 +286,7 @@ const HomePage: React.FC = () => {
               { 
                 icon: <Building2 />, 
                 title: "Authority Protection", 
-                desc: "Managing DOT/MC violations, failed audits, and SMS scores. One collapsed pillar can suspend your authority overnight." 
+                desc: "Managing DOT/MC violations, audit expectations, and SMS scores. One collapsed pillar can suspend your authority overnight." 
               },
               { 
                 icon: <Shield />, 
@@ -323,7 +324,7 @@ const HomePage: React.FC = () => {
           <div className="bg-authority-blue dark:bg-surface-dark rounded-[2.5rem] p-10 lg:p-20 border border-authority-blue dark:border-border-dark flex flex-col lg:flex-row items-center gap-16 shadow-[0_40px_100px_-30px_rgba(30,58,95,0.4)] overflow-hidden relative">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-48 -translate-y-48 blur-3xl"></div>
             
-            {/* Founder Image container - Scaled up by 30% per request (from 186px to 242px) */}
+            {/* Founder Image container */}
             <div className="w-full max-w-[242px] shrink-0 animate-in fade-in duration-1000">
               <div className="rounded-xl overflow-hidden shadow-2xl bg-slate-900 border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 flex items-center justify-center">
                 <img 
@@ -336,18 +337,17 @@ const HomePage: React.FC = () => {
 
             <div className="flex-grow space-y-10 text-left text-white relative z-10">
               <div className="space-y-6">
-                {/* Updated Title - Reflecting Desert Storm Navy Service */}
                 <h2 className="text-3xl lg:text-[44px] font-black font-serif uppercase tracking-tight leading-[1.1]">Founder & Desert Storm Navy Veteran — <br/>Vince Lawrence</h2>
                 
                 <p className="text-xl lg:text-2xl text-signal-gold font-medium leading-relaxed italic opacity-90">
-                  "OSHA-Certified Safety Professional with 20+ years of system compliance oversight."
+                  "OSHA-Certified Safety Professional with 20+ years of compliance operating standards."
                 </p>
               </div>
 
               <div className="h-px bg-white/10 w-full lg:w-32"></div>
 
               <p className="text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                Vince Lawrence has overseen compliance systems for organizations supporting 1,200+ employees. LaunchPath translates this institutional experience into a systematic protective framework for small motor carriers.
+                Vince Lawrence has overseen compliance systems for organizations supporting 1,200+ employees. LaunchPath translates this institutional experience into a systematic protective standard for small motor carriers.
               </p>
             </div>
           </div>
@@ -370,7 +370,7 @@ const HomePage: React.FC = () => {
               </h2>
               
               <p className="text-base lg:text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium mb-12 max-w-3xl">
-                Regulatory and operational threats attack your operating authority by reaching from four directions. LaunchPath systems are built to pass "The Reach Test"—ensuring your business remains structurally sound when federal pressure is applied.
+                Regulatory and operational threats attack your operating authority by reaching from four directions. LaunchPath standards are built to meet the requirements of \"The Reach Test\"—ensuring your business remains structurally sound when federal pressure is applied.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -412,7 +412,6 @@ const HomePage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                {/* Decorative background rings - scaled down and opacity reduced */}
                 <div className="absolute -inset-4 border-[4px] border-signal-gold/5 rounded-[4rem] -rotate-3 z-0"></div>
                 <div className="absolute -inset-8 border border-authority-blue/5 rounded-[5rem] rotate-2 z-0"></div>
               </div>
@@ -440,7 +439,7 @@ const HomePage: React.FC = () => {
               { icon: <Award />, title: "Institutional Experience", desc: "Our curriculum is built on 20+ years of federal safety oversight." },
               { icon: <Calculator />, title: "Interactive Decision Tools", desc: "We replace static PDFs with professional-grade financial calculators." },
               { icon: <Anchor />, title: "Radical Integrity", desc: "As a Kingdom business, we value stewardship and truth over sales hype." },
-              { icon: <Target />, title: "Audit Ready", desc: "We focus on testing readiness, not just hoping for the best." }
+              { icon: <Target />, title: "Audit Ready", desc: "We focus on meeting audit expectations, not just hoping for the best." }
             ].map((diff, i) => (
               <div key={i} className="bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-border-light dark:border-border-dark shadow-sm">
                 <div className="text-authority-blue dark:text-signal-gold mb-6">{diff.icon}</div>
@@ -457,10 +456,10 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">
-              The LaunchPath 90-Day Survival System
+              The LaunchPath 90-Day Operating Standard
             </h2>
             <p className="text-lg text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto font-medium">
-              A structured program built on The Four Pillars—designed to stabilize your authority in the first 90 days.
+              A structured sequence built on The Four Pillars—designed to stabilize your authority in the first 90 days.
             </p>
           </div>
 
@@ -469,9 +468,9 @@ const HomePage: React.FC = () => {
               { id: "Ground 0", title: "Go/No-Go Readiness", outcome: "Verify operational discipline before filing" },
               { id: "Module 1", title: "Authority Protection", outcome: "Secure your DOT/MC credentials" },
               { id: "Module 2", title: "Insurance Continuity", outcome: "Manage the carrier-insurer relationship" },
-              { id: "Module 3", title: "Compliance Backbone", outcome: "Build audit-ready DQ and maintenance files" },
+              { id: "Module 3", title: "Compliance Backbone", outcome: "Meet audit expectations for DQ and maintenance files" },
               { id: "Module 4", title: "Cash-Flow Oxygen", outcome: "Master the 30-day solvency loop" },
-              { id: "Module 5", title: "Audit Readiness", outcome: "Pass the New Entrant Safety Audit" },
+              { id: "Module 5", title: "Audit Readiness", outcome: "Meet expectations for the New Entrant Safety Audit" },
               { id: "Module 6", title: "Stabilization & Scale", outcome: "Prepare for long-term fleet growth" }
             ].map((mod, i) => (
               <div key={i} className="bg-slate-50 dark:bg-surface-dark p-8 rounded-3xl border border-slate-200 dark:border-border-dark">
@@ -566,33 +565,25 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 10. ENROLLMENT OPTIONS - PRICING */}
+      {/* 10. ADMISSION SECTION */}
       <section className="py-24 bg-slate-50 dark:bg-primary-dark">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">Choose Your Path</h2>
+          <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">Request Admission</h2>
           <p className="text-xl text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-6">
-            Every path starts with the same goal: protecting your legal right to operate. 
+            LaunchPath operates under one standard. Enrollment is admission-based to ensure operational alignment.
           </p>
-          <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-12">
-            Pricing structures reflect the selected level of implementation support required to integrate the LaunchPath system into your operation.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            {[
-              { tier: "Foundation", price: "$397", desc: "Full curriculum access for independent learners." },
-              { tier: "Professional", price: "$797", desc: "Curriculum + Tools + Community Support." },
-              { tier: "Premium", price: "$1,497", desc: "High-touch 1-on-1 implementation and mock audits." }
-            ].map((p, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-slate-100 dark:border-border-dark shadow-sm">
-                 <h4 className="font-black uppercase tracking-tight text-authority-blue dark:text-white text-lg mb-2">{p.tier}</h4>
-                 <p className="text-2xl font-black text-signal-gold mb-4">{p.price}</p>
-                 <p className="text-xs text-text-muted dark:text-text-dark-muted font-bold">{p.desc}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 gap-6 mb-16">
+            <div className="bg-white dark:bg-surface-dark p-12 rounded-[4rem] border-4 border-authority-blue shadow-2xl relative overflow-hidden">
+              <Logo light className="absolute top-0 right-0 p-8 opacity-5 rotate-12 scale-150 pointer-events-none h-64" />
+              <h4 className="font-black uppercase tracking-tight text-authority-blue dark:text-white text-lg mb-2">The Compliance Operating Standard</h4>
+              <p className="text-7xl font-black text-authority-blue dark:text-white mb-4">$1,500</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-8">Founding Investment • Standard Investment $2,500</p>
+              <Link to="/request-admission" className="inline-flex items-center space-x-2 bg-authority-blue text-white px-14 py-6 rounded-[2rem] font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">
+                <span>Request Admission</span>
+                <ArrowRight size={16} />
+              </Link>
+            </div>
           </div>
-          <Link to="/pricing" className="inline-flex items-center space-x-2 bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl">
-            <span>View Full Pricing Details</span>
-            <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
 
@@ -608,9 +599,9 @@ const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { step: "01", title: "Start with Ground 0", desc: "Complete the Go/No-Go assessment to verify your business framework." },
+              { step: "01", title: "Start with Ground 0", desc: "Complete the Discipline Standard to verify your business framework." },
               { step: "02", title: "Build the Pillars", desc: "Implement Modules 1–4 to secure authority, insurance, and files." },
-              { step: "03", title: "Test Readiness", desc: "Use Module 5 to prepare for the federal New Entrant Safety Audit." },
+              { step: "03", title: "Meet Expectations", desc: "Use Module 5 to prepare for the federal New Entrant Safety Audit." },
               { step: "04", title: "Stabilize", desc: "Transition into Module 6 to prepare for long-term operational sustainability." }
             ].map((step, i) => (
               <div key={i} className="relative p-10 bg-slate-50 dark:bg-surface-dark rounded-[2.5rem] border border-slate-100 dark:border-border-dark shadow-sm">
@@ -649,7 +640,7 @@ const HomePage: React.FC = () => {
             </ul>
             <div className="h-px w-full bg-slate-100 dark:bg-gray-800"></div>
             <p className="text-sm text-text-muted dark:text-text-dark-muted font-bold font-serif leading-relaxed italic text-center">
-              "This clarity protects both you and our institution. We teach the systems; you are responsible for implementing them with the support of licensed professionals when needed."
+              "This clarity protects both you and our institution. We teach the standards; you are responsible for implementing them with the support of licensed professionals when needed."
             </p>
           </div>
         </div>
@@ -666,8 +657,8 @@ const HomePage: React.FC = () => {
             LaunchPath is built on integrity, stewardship, and systematic thinking. We help serious motor carriers prepare for the reality of federal compliance—not the speculation of easy money. Build your carrier on a foundation that lasts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link to="/pricing" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all shadow-2xl active:scale-95">
-              <span>Choose Your Path</span>
+            <Link to="/request-admission" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all shadow-2xl active:scale-95">
+              <span>Request Admission</span>
               <ArrowRight size={18} />
             </Link>
             <Link to="/contact" className="inline-flex items-center space-x-3 bg-transparent border-2 border-white text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all">

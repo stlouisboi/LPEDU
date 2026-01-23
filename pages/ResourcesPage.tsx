@@ -173,14 +173,14 @@ const ResourcesPage = () => {
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-5xl md:text-6xl font-black text-authority-blue tracking-tight mb-6">Resources</h1>
           <p className="text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
-            Orientation tools and guided references. Full implementation systems are taught inside LaunchPath.
+            Orientation tools and guided references. Full implementation standards are taught inside LaunchPath.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <Link to="/learning-path" className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-lg active:scale-95">
-              View Course Curriculum
+              View Operating Roadmap
             </Link>
-            <Link to="/pricing" className="bg-white text-authority-blue border-2 border-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all active:scale-95">
-              See Enrollment Options
+            <Link to="/request-admission" className="bg-white text-authority-blue border-2 border-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all active:scale-95">
+              Request Admission
             </Link>
           </div>
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -193,7 +193,7 @@ const ResourcesPage = () => {
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-black text-authority-blue uppercase tracking-tight mb-4 leading-none">Quick Reference Guides</h2>
-          <p className="text-lg text-slate-500 font-medium italic">Preview-level guides for orientation and research. Full templates and step-by-step implementation are inside LaunchPath.</p>
+          <p className="text-lg text-slate-500 font-medium italic">Preview-level guides for orientation and research. Full templates and step-by-step standards are inside LaunchPath.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -230,7 +230,7 @@ const ResourcesPage = () => {
                 )
               ) : (
                 <Link 
-                  to="/pricing"
+                  to="/request-admission"
                   className="w-full py-4 rounded-xl border-2 border-slate-200 text-slate-400 font-black uppercase text-[10px] tracking-widest hover:border-authority-blue hover:text-authority-blue transition-all flex items-center justify-center"
                 >
                   <Lock size={12} className="mr-2 opacity-50" /> {guide.buttonText}
@@ -257,7 +257,7 @@ const ResourcesPage = () => {
                 <FileText size={32} />
               </div>
               <h3 className="text-2xl font-black text-authority-blue uppercase tracking-tight mb-3">Download Your Guide</h3>
-              <p className="text-slate-500 font-medium">Enter your details below to receive the <strong>{selectedGuide.title}</strong> and join our safety bulletins list.</p>
+              <p className="text-slate-500 font-medium">Enter your details below to receive the <strong>{selectedGuide.title}</strong> and join our safety updates list.</p>
             </div>
 
             {showSuccess ? (
@@ -321,7 +321,7 @@ const ResourcesPage = () => {
                 </button>
                 
                 <p className="text-[9px] text-center text-slate-400 uppercase tracking-widest font-bold">
-                  By downloading, you agree to receive education updates. <br/>We never sell your data to brokers or insurers.
+                  By downloading, you agree to receive educational updates. <br/>We never sell your data to brokers or insurers.
                 </p>
               </form>
             )}
@@ -356,12 +356,12 @@ const ResourcesPage = () => {
                 </ul>
               </div>
               <div className="text-center lg:text-right space-y-6">
-                <Link to="/pricing" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-2xl active:scale-95 group">
-                  <span>Included With LaunchPath Enrollment</span>
+                <Link to="/request-admission" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-2xl active:scale-95 group">
+                  <span>Included with LaunchPath Admission</span>
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                  These tools are designed to be used in sequence with training.
+                  These tools are designed to be used in sequence with the Operating Standard.
                 </p>
               </div>
             </div>
@@ -405,7 +405,7 @@ const ResourcesPage = () => {
         
         <div className="mt-12 pt-8 border-t border-slate-200 text-center">
           <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-            Videos explain concepts. LaunchPath provides the complete system and templates.
+            Videos explain concepts. LaunchPath provides the complete standard and templates.
           </p>
         </div>
       </section>
@@ -426,7 +426,7 @@ const ResourcesPage = () => {
                 </div>
                 <h4 className="text-sm font-black uppercase tracking-tight text-slate-400 leading-tight">{pack}</h4>
                 <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
-                  <span className="bg-authority-blue text-white px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl">Course Access Required</span>
+                  <span className="bg-authority-blue text-white px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl">Admission Required</span>
                 </div>
               </div>
             ))}
@@ -434,15 +434,15 @@ const ResourcesPage = () => {
 
           <div className="bg-white border-2 border-dashed border-slate-300 rounded-[2.5rem] p-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div>
-              <p className="text-xl font-black text-authority-blue uppercase tracking-tight mb-2 leading-none">Premium Implementation Systems</p>
-              <p className="text-slate-500 font-medium">Enroll in LaunchPath to unlock these professional assets and pass your audit with confidence.</p>
+              <p className="text-xl font-black text-authority-blue uppercase tracking-tight mb-2 leading-none">Premium Implementation standards</p>
+              <p className="text-slate-500 font-medium">Request Admission to LaunchPath to unlock these professional assets and meet audit expectations with confidence.</p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-              <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] shadow-lg hover:bg-authority-blue hover:text-white transition-all">
-                See Enrollment Options
+              <Link to="/request-admission" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] shadow-lg hover:bg-authority-blue hover:text-white transition-all">
+                Request Admission
               </Link>
               <Link to="/learning-path" className="text-authority-blue font-bold text-[11px] uppercase tracking-widest hover:underline">
-                View Curriculum
+                View Roadmap
               </Link>
             </div>
           </div>
@@ -529,11 +529,11 @@ const ResourcesPage = () => {
           {[
             { 
               q: "Why aren't all templates downloadable?", 
-              a: "Compliance tools work best in sequence. Many templates require technical background provided in the course to be used correctly. LaunchPath teaches the system behind the documents." 
+              a: "Compliance tools work best in sequence. Many templates require technical background provided in the Operating Standard to be used correctly. LaunchPath teaches the standard behind the documents." 
             },
             { 
               q: "Do I need LaunchPath to stay compliant?", 
-              a: "No. Federal regulations are public information. These orientation resources help you research. LaunchPath helps you implement a complete system faster and with less risk." 
+              a: "No. Federal regulations are public information. These orientation resources help you research. LaunchPath helps you implement a complete standard faster and with less risk." 
             }
           ].map((faq, i) => (
             <div key={i} className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
@@ -558,16 +558,16 @@ const ResourcesPage = () => {
       <section className="bg-authority-blue py-32 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 leading-none">Ready to build your <br/><span className="text-signal-gold italic text-white/90">compliance system?</span></h2>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8 leading-none">Ready to build your <br/><span className="text-signal-gold italic text-white/90">compliance standard?</span></h2>
           <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
-            Orientation resources help you start. LaunchPath systems keep your authority alive through federal scrutiny.
+            Orientation resources help you start. LaunchPath standards keep your authority alive through federal scrutiny.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link to="/learning-path" className="bg-white text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold hover:text-authority-blue transition-all shadow-2xl active:scale-95 flex items-center">
-              View Course Curriculum
+              View Operating Roadmap
             </Link>
-            <Link to="/pricing" className="bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95">
-              See Enrollment Options
+            <Link to="/request-admission" className="bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-2xl active:scale-95">
+              Request Admission
             </Link>
           </div>
         </div>

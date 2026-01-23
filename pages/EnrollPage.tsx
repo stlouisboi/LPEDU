@@ -3,32 +3,22 @@ import { useNavigate, Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   CheckCircle2, 
-  XCircle,
-  ChevronDown,
-  Users,
-  Mail,
-  ArrowRight,
-  Target,
-  Award,
-  BookOpen,
-  Scale,
-  FileText,
-  Calculator,
-  Zap,
-  Star,
-  Phone,
-  Clock,
-  TrendingDown,
-  ShieldAlert,
-  MessageSquare,
-  Lock,
-  DollarSign,
-  Info,
+  ChevronDown, 
+  Users, 
+  ArrowRight, 
+  Award, 
+  BookOpen, 
+  ShieldAlert, 
+  MessageSquare, 
+  Zap, 
+  Star, 
+  Calendar,
   Check,
   X,
   Sparkles,
-  Calendar,
-  MousePointer2
+  Info,
+  TrendingDown,
+  Clock
 } from 'lucide-react';
 import Logo from '../components/Logo';
 
@@ -49,10 +39,10 @@ const DecisionWindow = () => (
               LaunchPath does not offer a free trial, but we do offer a 7-day decision window. We believe in clarity, responsibility, and commitment.
             </p>
             <p className="mb-4">
-              If within 7 days you determine the course is not aligned with where you are, you may request a refund.
+              If within 7 days you determine the standard is not aligned with your operational needs, you may request a refund.
             </p>
             <p className="font-bold text-authority-blue dark:text-signal-gold">
-              After that period, all sales are final due to immediate access to proprietary content and tools.
+              After that period, all investments are final due to immediate access to proprietary documentation and standards.
             </p>
           </div>
         </div>
@@ -76,8 +66,8 @@ const ScopeClarity = () => (
           <ul className="space-y-4">
             {[
               "Education and coaching focused on authority survival",
-              "Structured systems for compliance, insurance continuity, and cash flow",
-              "Federally-aligned operating roadmaps and templates"
+              "Structured standards for compliance, insurance continuity, and cash flow",
+              "Federally-aligned operating standards and templates"
             ].map((item, i) => (
               <li key={i} className="flex items-start text-base font-bold text-text-primary dark:text-text-dark-muted">
                 <CheckCircle2 size={20} className="text-green-500 shrink-0 mr-3 mt-0.5" />
@@ -94,10 +84,10 @@ const ScopeClarity = () => (
             {[
               "Dispatching or load finding service",
               "Legal, tax, or insurance advice",
-              "Income or audit guarantees"
+              "Individual representation in federal audits"
             ].map((item, i) => (
               <li key={i} className="flex items-start text-base font-bold text-text-muted">
-                <XCircle size={20} className="text-red-400 shrink-0 mr-3 mt-0.5" />
+                <ShieldAlert size={20} className="text-red-400 shrink-0 mr-3 mt-0.5" />
                 {item}
               </li>
             ))}
@@ -119,15 +109,14 @@ const AfterEnrollment = () => (
           <span>The Path to Peace of Mind</span>
         </div>
         <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">
-          What Happens After You Enroll
+          What Happens After Approval
         </h2>
         <p className="text-xl text-text-muted max-w-3xl mx-auto font-medium leading-relaxed">
-          The moment you join, the "guessing game" ends. You transition from uncertainty to a guided implementation sequence built for operational order.
+          Upon admission, the "guessing game" ends. You transition from uncertainty to a guided implementation rhythm built for operational order.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-        {/* Connector Line (Desktop) */}
         <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-200 dark:bg-slate-800 -translate-y-12 z-0"></div>
 
         {[
@@ -135,26 +124,26 @@ const AfterEnrollment = () => (
             step: "01", 
             title: "Instant Portal Access", 
             icon: <Zap className="text-signal-gold" />, 
-            desc: "Breathe easier knowing the blueprint is in your hands. You'll receive an immediate login to our secure student dashboard where 'Ground 0' and the Phase 1 orientation modules are waiting.",
+            desc: "Breathe easier knowing the standard is in your hands. You'll receive an immediate login to our secure student dashboard where Phase 1 orientation is waiting.",
             relief: "No waiting. Start securing your identity today."
           },
           { 
             step: "02", 
-            title: "Guided 90-Day Release", 
+            title: "90-Day Rhythm", 
             icon: <Calendar className="text-authority-blue" />, 
-            desc: "We don't overwhelm you with everything at once. Lessons and tools are released in a proven sequence that matches the 90-day authority containment window.",
+            desc: "We follow a proven sequence that matches the 90-day authority containment window. lessons and tools are provided in a rhythm designed to prevent overwhelm.",
             relief: "Focus on one pillar at a time without the noise."
           },
           { 
             step: "03", 
-            title: "Live Support Checkpoints", 
+            title: "Guided Checkpoints", 
             icon: <Users className="text-signal-gold" />, 
-            desc: "Based on your tier, you'll be plugged into weekly group implementation calls or direct 1-on-1 sessions. You aren't building this carrier in isolation.",
+            desc: "You will be plugged into implementation calls or sessions as dictated by the 90-day rhythm. You aren't building this carrier in isolation.",
             relief: "Expert eyes on your compliance backbone."
           }
         ].map((item, i) => (
           <div key={i} className="relative z-10 flex flex-col items-center text-center">
-            <div className="w-24 h-24 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl flex items-center justify-center mb-8 border border-border-light dark:border-border-dark group-hover:scale-105 transition-transform duration-500 relative">
+            <div className="w-24 h-24 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl flex items-center justify-center mb-8 border border-border-light dark:border-border-dark group relative">
                <div className="absolute -top-3 -right-3 w-10 h-10 bg-authority-blue text-white rounded-2xl flex items-center justify-center font-black text-xs shadow-lg">{item.step}</div>
                {item.icon}
             </div>
@@ -167,20 +156,6 @@ const AfterEnrollment = () => (
           </div>
         ))}
       </div>
-
-      <div className="mt-20 text-center">
-        <div className="p-8 bg-white dark:bg-slate-900/50 rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-800 max-w-3xl mx-auto">
-          <p className="text-lg font-bold text-authority-blue dark:text-white italic">
-            "Most students feel the 'weight' lift off their shoulders within the first 20 minutes of watching Ground 0. Seeing the system makes the mountain feel like a staircase."
-          </p>
-          <div className="mt-4 flex items-center justify-center space-x-3 text-text-muted">
-            <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-800 overflow-hidden">
-               <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince" className="grayscale opacity-50" />
-            </div>
-            <span className="text-xs font-black uppercase tracking-widest">— Vince Lawrence, Safety Professional</span>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 );
@@ -189,14 +164,14 @@ const ROISection = () => (
   <section className="py-24 bg-white dark:bg-surface-dark border-y border-border-light dark:border-border-dark">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-[3.5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-none">💰 Investment vs <br/>Cost of Failure</h2>
-        <p className="text-lg text-text-muted font-medium">Why structured education is your carrier's cheapest insurance policy.</p>
+        <h2 className="text-3xl md:text-[3.5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-none">Investment vs <br/>Cost of Failure</h2>
+        <p className="text-lg text-text-muted font-medium">One avoided compliance failure can offset the full investment.</p>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="bg-red-50 dark:bg-red-950/20 p-10 rounded-[3rem] border border-red-100 dark:border-red-900/20">
           <h3 className="text-xl font-black uppercase tracking-widest text-red-700 mb-8 flex items-center">
-            <TrendingDown className="mr-3" /> Avg. Cost of First-Year Failure
+            <TrendingDown className="mr-3" /> Average Cost of First-Year Failure
           </h3>
           <div className="space-y-6">
             <div className="flex justify-between items-center border-b border-red-200/50 pb-4">
@@ -211,40 +186,27 @@ const ROISection = () => (
               <span className="font-bold text-red-900/70">Living expenses during shutdown</span>
               <span className="font-black text-red-700">$15,000</span>
             </div>
-            <div className="flex justify-between items-center pt-4">
-              <span className="text-lg font-black text-red-800 uppercase tracking-tighter">Total Potential Loss</span>
-              <span className="text-3xl font-black text-red-600">$50,000+</span>
-            </div>
           </div>
         </div>
 
-        <div className="space-y-8">
-          <div className="p-8 bg-slate-50 dark:bg-slate-900 rounded-3xl border border-border-light dark:border-border-dark relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 bg-green-500 text-white text-[10px] font-black uppercase tracking-widest rounded-bl-2xl">Value Logic</div>
-            <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase mb-4">LaunchPath Investment: $797 (Tier 2)</h4>
-            <p className="text-3xl font-black text-green-600 mb-2">98.4% Risk Reduction</p>
-            <p className="text-sm font-bold text-text-muted">for only 1.6% of the cost of total business failure.</p>
-          </div>
-          
-          <div className="space-y-4">
-            <p className="text-xs font-black uppercase tracking-widest text-text-muted">ONE avoided mistake pays for the entire course:</p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { t: "Insurance cancellation", d: "$31,200/yr saved" },
-                { t: "Failed audit", d: "$10,000 saved" },
-                { t: "Unprofitable loads", d: "$3,000 saved" },
-                { t: "SMS violations", d: "$10,000+ saved" }
-              ].map((item, i) => (
-                <li key={i} className="flex items-start space-x-3 p-4 bg-white dark:bg-gray-800 rounded-2xl border border-border-light dark:border-border-dark shadow-sm">
-                  <CheckCircle2 size={18} className="text-green-500 shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-xs font-black text-authority-blue dark:text-white uppercase leading-tight">{item.t}</p>
-                    <p className="text-[10px] font-bold text-text-muted mt-1">{item.d}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="space-y-4">
+          <p className="text-xs font-black uppercase tracking-widest text-text-muted">A single error in documentation often leads to these financial impacts:</p>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { t: "Insurance cancellation", d: "$31,200/yr typical impact" },
+              { t: "Expectation gaps in audits", d: "$10,000 typical cost" },
+              { t: "Unprofitable load cycles", d: "$3,000 monthly loss" },
+              { t: "Critical SMS violations", d: "$10,000+ impact" }
+            ].map((item, i) => (
+              <li key={i} className="flex items-start space-x-3 p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl border border-border-light dark:border-border-dark shadow-sm">
+                <CheckCircle2 size={18} className="text-green-500 shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-xs font-black text-authority-blue dark:text-white uppercase leading-tight">{item.t}</p>
+                  <p className="text-[10px] font-bold text-text-muted mt-1">{item.d}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
@@ -257,27 +219,27 @@ const TestimonialsSection = () => (
       <div className="text-center mb-16">
         <div className="inline-flex items-center space-x-2 text-signal-gold font-black uppercase tracking-[0.3em] text-[10px] mb-4">
           <Star size={12} fill="currentColor" />
-          <span>Student Success Stories</span>
+          <span>Carrier Experience</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">What Students Say</h2>
+        <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Systematic Results</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
           {
-            quote: "LaunchPath saved me from the mistakes that bankrupted my friend's trucking company. The insurance module alone was worth 10x the price.",
+            quote: "LaunchPath saved me from the mistakes that bankrupted my friend's trucking company. The insurance logic was worth 10x the price.",
             author: "Marcus T., Georgia",
-            context: "Passed audit on first try",
+            context: "Met audit expectations on first try",
             img: "https://picsum.photos/seed/marcus/80/80"
           },
           {
-            quote: "Vince's approach is different. No hype about revenue - just straight talk about compliance and systems. That's exactly what I needed.",
+            quote: "Vince's approach is different. No hype about revenue - just straight talk about compliance and standards. That's exactly what I needed.",
             author: "Jennifer K., Texas",
             context: "6 months in business",
             img: "https://picsum.photos/seed/jennifer/80/80"
           },
           {
-            quote: "The mock audit (Tier 3) was intense but invaluable. When the real audit came, I was completely prepared. Passed with zero findings.",
+            quote: "The mock audit was intense but invaluable. When the real audit came, I was completely prepared. Met all federal expectations.",
             author: "David M., California",
             context: "Audit Status: SATISFACTORY",
             img: "https://picsum.photos/seed/david/80/80"
@@ -289,8 +251,8 @@ const TestimonialsSection = () => (
                 <img src={t.img} alt={t.author} className="w-full h-full object-cover" />
               </div>
               <div>
-                <p className="font-black text-authority-blue dark:text-white uppercase text-sm leading-tight">{t.author}</p>
-                <p className="text-[10px] font-bold text-signal-gold uppercase tracking-widest mt-1">{t.context}</p>
+                <p className="font-black text-authority-blue dark:text-white uppercase text-sm leading-none">{t.author}</p>
+                <p className="text-[10px] font-bold text-signal-gold uppercase tracking-widest mt-1.5">{t.context}</p>
               </div>
             </div>
             <p className="text-base text-text-muted dark:text-text-dark-muted font-medium italic leading-relaxed flex-grow">
@@ -302,43 +264,40 @@ const TestimonialsSection = () => (
           </div>
         ))}
       </div>
-
-      <div className="mt-16 flex flex-wrap justify-center items-center gap-8 opacity-60">
-        <div className="flex items-center space-x-2 text-authority-blue dark:text-white font-black uppercase text-[10px] tracking-widest">
-          <Star size={16} fill="currentColor" className="text-signal-gold" />
-          <span>4.9/5 Average Rating</span>
-        </div>
-        <div className="h-4 w-px bg-border-light hidden sm:block"></div>
-        <div className="flex items-center space-x-2 text-authority-blue dark:text-white font-black uppercase text-[10px] tracking-widest">
-          <CheckCircle2 size={16} className="text-green-500" />
-          <span>94% Success Rate</span>
-        </div>
-        <div className="h-4 w-px bg-border-light hidden sm:block"></div>
-        <div className="flex items-center space-x-2 text-authority-blue dark:text-white font-black uppercase text-[10px] tracking-widest">
-          <MessageSquare size={16} className="text-authority-blue" />
-          <span>47 Verified Reviews</span>
-        </div>
-      </div>
     </div>
   </section>
 );
 
 const FAQSection = () => {
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
   const faqs = [
-    { q: "Can I upgrade from Tier 1 to Tier 2 later?", a: "Yes! Upgrade anytime and only pay the difference. Many students start with Tier 1 and upgrade once they experience the curriculum quality." },
-    { q: "What if I can't attend the live group calls?", a: "All calls are recorded and available within 24 hours. You'll never miss content due to scale conflicts." },
-    { q: "Do I need to complete modules by a deadline?", a: "No deadlines. Access is lifetime. The 12-week cohort schedule is recommended for accountability, but you can go at your own pace." },
-    { q: "What if I already filed my DOT authority?", a: "Perfect! You can skip sections you've completed and focus on what's next. Most students are at different stages - that's normal." },
-    { q: "Is this course only for semi-truck operators?", a: "No. LaunchPath covers all commercial motor vehicles: box trucks, semi-trucks, hotshot, etc. The compliance requirements apply to all carriers." },
-    { q: "What's the difference between the 7-day window and a money-back guarantee?", a: "We don't offer unconditional refunds. Within 7 days, review the content and decide if it aligns with where you are. After 7 days, all sales are final due to immediate access to proprietary systems and tools. We believe in clarity and responsibility." }
+    { 
+      q: "How does admission work?", 
+      a: "We review fit first to ensure you are ready for the administrative discipline required. Once you request admission, we'll review your status and, if approved, send enrollment instructions for the current cohort." 
+    },
+    { 
+      q: "What happens after I’m approved?", 
+      a: "You’ll receive a secure link to confirm your investment and set up your student credentials. You'll get immediate access to Ground Zero and the Phase 1 implementation rhythm." 
+    },
+    { 
+      q: "Is LaunchPath self-paced?", 
+      a: "Yes, you have lifetime access to the curriculum. However, we follow a 90-day implementation rhythm for the live cohort to ensure carriers reach audit readiness within the federal window." 
+    },
+    { 
+      q: "Do you complete documents for carriers?", 
+      a: "No. LaunchPath is an educational and coaching institution. We teach you how to build and maintain your own standards so you aren't dependent on outside consultants for your authority's survival." 
+    },
+    { 
+      q: "What if I can't attend live checkpoints?", 
+      a: "All implementation calls are recorded and archived in the student portal. You can submit questions in advance and review the expert guidance on your own schedule." 
+    }
   ];
 
   return (
     <section className="py-24 max-w-4xl mx-auto px-4">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Enrollment FAQ</h2>
-        <p className="text-text-muted mt-2 font-medium">Quick answers to common program questions</p>
+        <h2 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Admission FAQ</h2>
+        <p className="text-text-muted mt-2 font-medium">Order and clarity for the admission process.</p>
       </div>
       <div className="space-y-4">
         {faqs.map((faq, i) => (
@@ -362,62 +321,11 @@ const FAQSection = () => {
   );
 };
 
-const ComparisonTable = () => (
-  <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Feature Comparison</h2>
-      <p className="text-xl text-text-muted mt-4 font-medium">See exactly what's included in each implementation tier</p>
-    </div>
-    <div className="bg-white dark:bg-surface-dark rounded-[3.5rem] border border-border-light dark:border-border-dark overflow-hidden shadow-2xl">
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-slate-50 dark:bg-slate-800/50">
-              <th className="px-10 py-8 text-sm font-black uppercase tracking-[0.2em] text-text-muted">Feature</th>
-              <th className="px-10 py-8 text-base font-black uppercase tracking-[0.2em] text-authority-blue dark:text-white text-center">Tier 1</th>
-              <th className="px-10 py-8 text-base font-black uppercase tracking-[0.2em] text-signal-gold text-center">Tier 2</th>
-              <th className="px-10 py-8 text-base font-black uppercase tracking-[0.2em] text-authority-blue dark:text-white text-center">Tier 3</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border-light dark:divide-border-dark">
-            {[
-              { f: "Ground 0 + Modules 1-6", t1: true, t2: true, t3: true },
-              { f: "46 Video Lessons (~7hrs)", t1: true, t2: true, t3: true },
-              { f: "50+ PDF Checklists", t1: true, t2: true, t3: true },
-              { f: "6 Excel Templates", t1: true, t2: true, t3: true },
-              { f: "Lifetime Access & Updates", t1: true, t2: true, t3: true },
-              { f: "Web-Based Calculators (6)", t1: false, t2: true, t3: true },
-              { f: "Weekly Group Calls (12)", t1: false, t2: true, t3: true },
-              { f: "Private Community", t1: false, t2: true, t3: true },
-              { f: "Email Support", t1: false, t2: true, t3: true },
-              { f: "1-on-1 Mock Audit", t1: false, t2: false, t3: true },
-              { f: "Direct Phone/Text", t1: false, t2: false, t3: true },
-              { f: "Priority Support (24hr)", t1: false, t2: false, t3: true },
-              { f: "Quarterly Check-ins", t1: false, t2: false, t3: true },
-            ].map((row, i) => (
-              <tr key={i} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
-                <td className="px-10 py-6 text-lg font-bold text-text-primary dark:text-text-dark-muted">{row.f}</td>
-                <td className="px-10 py-6 text-center">{row.t1 ? <CheckCircle2 className="mx-auto text-green-500" size={28} /> : <XCircle className="mx-auto text-slate-200" size={28} />}</td>
-                <td className="px-10 py-6 text-center bg-signal-gold/5">{row.t2 ? <CheckCircle2 className="mx-auto text-signal-gold" size={28} /> : <XCircle className="mx-auto text-slate-200" size={28} />}</td>
-                <td className="px-10 py-6 text-center">{row.t3 ? <CheckCircle2 className="mx-auto text-authority-blue dark:text-white" size={28} /> : <XCircle className="mx-auto text-slate-200" size={28} />}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-);
-
 const EnrollPage = () => {
   const navigate = useNavigate();
 
-  const handleCTA = (tier: string) => {
-    if (tier === 'elite') {
-      navigate('/contact?topic=Elite+Oversight');
-    } else {
-      navigate(`/contact?topic=Enrollment+Inquiry&tier=${tier}`);
-    }
+  const handleRequestAdmission = () => {
+    navigate('/request-admission');
   };
 
   return (
@@ -428,193 +336,119 @@ const EnrollPage = () => {
         <div className="max-w-5xl mx-auto px-4 relative z-10 animate-reveal-up">
           <div className="inline-flex items-center space-x-2 bg-authority-blue/5 text-authority-blue px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10 border border-authority-blue/10">
             <Award className="w-3.5 h-3.5 text-signal-gold" />
-            <span>Structured Implementation Pathway</span>
+            <span>The Compliance Operating Standard</span>
           </div>
           <h1 className="text-5xl md:text-[5.5rem] font-black font-serif mb-8 leading-[0.9] text-authority-blue dark:text-white tracking-tighter uppercase">
-            Survive the First <br/><span className="text-signal-gold italic">18 Months.</span>
+            One Standard. <br/><span className="text-signal-gold italic">One Path.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-text-muted dark:text-text-dark-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium">
-            Stop guessing and start operating with federal-grade confidence. Choose the implementation tier that fits your growth plan.
+          <p className="text-xl md:text-2xl text-text-muted dark:text-text-dark-muted mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
+            LaunchPath is not a collection of tips. It is an admission-based 90-day implementation rhythm built for operational integrity.
           </p>
-          <p className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold opacity-80 mb-12">
-            Built by a veteran safety professional with real-world compliance oversight experience.
-          </p>
+          <button 
+            onClick={handleRequestAdmission}
+            className="bg-authority-blue text-white px-14 py-6 rounded-[2rem] font-black uppercase tracking-[0.25em] text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 group"
+          >
+            Request Admission
+          </button>
         </div>
       </section>
 
-      {/* 2. PRICING CARDS SECTION */}
+      {/* 2. SINGLE PRICING BLOCK */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-8 lg:gap-6 mb-20">
-          
-          {/* TIER 1: SELF-PACED FUNDAMENTALS */}
-          <div className="lg:w-1/3 bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-authority-blue/20 flex flex-col shadow-sm group hover:shadow-xl transition-all h-full order-2 lg:order-1 mt-8 lg:mt-12">
-            <div className="bg-red-50 text-red-600 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest self-start mb-6 border border-red-100">
-              ⚠️ Self-Study Only - No Support
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white dark:bg-surface-dark p-10 md:p-16 rounded-[4rem] border-4 border-authority-blue shadow-[0_40px_100px_-20px_rgba(30,58,95,0.15)] relative overflow-hidden text-center">
+            <div className="absolute top-0 right-0 p-8 opacity-5 rotate-12 scale-150 pointer-events-none">
+              <Logo light className="h-64" />
             </div>
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Self-Paced <br/>Foundations</h3>
-              <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl text-authority-blue">
-                <BookOpen size={24} />
-              </div>
-            </div>
-            <p className="text-sm text-authority-blue dark:text-white/70 font-bold mb-8 leading-relaxed italic">
-              Best for disciplined operators who want structured education and prefer to implement independently.
+            
+            <h2 className="text-3xl md:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">
+              LaunchPath — The 90-Day Standard
+            </h2>
+            <p className="text-lg text-text-muted font-bold uppercase tracking-widest mb-12 text-signal-gold">
+              Admission-based enrollment
             </p>
-            <div className="mb-10">
-              <div className="flex items-baseline">
-                <span className="text-xl font-bold text-slate-400 mr-1">$</span>
-                <span className="text-6xl font-black tracking-tighter text-authority-blue dark:text-white">397</span>
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mt-2">Curriculum Access Only</p>
-            </div>
-            <div className="space-y-6 mb-12 flex-grow">
-              <p className="text-[11px] font-black uppercase tracking-widest text-text-muted">What's Included:</p>
-              <ul className="space-y-4">
-                {[
-                  "Ground 0 + Modules 1-6",
-                  "46 Video Lessons (~7 hours)",
-                  "50+ PDF Checklists",
-                  "6 Excel Master Templates",
-                  "Lifetime Curriculum Access",
-                  "All Future Updates Included"
-                ].map((f, i) => (
-                  <li key={i} className="flex items-start text-sm font-bold text-text-muted"><CheckCircle2 className="w-5 h-5 mr-3 text-green-500 shrink-0" /> {f}</li>
-                ))}
-                {[
-                  "NO Web-Based Calculators",
-                  "NO Live Coaching Calls",
-                  "NO Private Community",
-                  "NO Email Support"
-                ].map((f, i) => (
-                  <li key={i} className="flex items-start text-sm font-bold text-slate-300 dark:text-slate-600"><XCircle className="w-5 h-5 mr-3 text-slate-200 shrink-0" /> {f}</li>
-                ))}
-              </ul>
-            </div>
-            <button onClick={() => handleCTA('foundations')} className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all active:scale-95 shadow-xl">Select Foundations</button>
-          </div>
 
-          {/* TIER 2: IMPLEMENTATION MASTERY - RECOMMENDED */}
-          <div className="lg:w-1/3 bg-white dark:bg-surface-dark p-10 rounded-[3.5rem] border-4 border-signal-gold flex flex-col relative z-20 shadow-[0_40px_100px_-20px_rgba(212,175,55,0.2)] transform lg:scale-110 order-1 lg:order-2">
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-signal-gold text-authority-blue font-black text-[11px] px-8 py-2 rounded-full uppercase tracking-[0.2em] shadow-xl whitespace-nowrap">
-              ⭐ Most Recommended
-            </div>
-            <div className="flex justify-between items-start mb-4 pt-4">
-              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Guided <br/>Implementation</h3>
-              <div className="p-3 bg-signal-gold/10 rounded-2xl text-signal-gold">
-                <Zap size={24} fill="currentColor" />
+            <div className="mb-12">
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-2xl font-bold text-slate-400">$</span>
+                <span className="text-7xl font-black tracking-tighter text-authority-blue dark:text-white">1,500</span>
               </div>
-            </div>
-            <p className="text-sm text-authority-blue dark:text-white/70 font-bold mb-8 leading-relaxed italic">
-              Best for new authorities who want accountability, live guidance, and structured implementation during their first 90 days.
-            </p>
-            <div className="mb-10">
-              <div className="flex items-baseline">
-                <span className="text-xl font-bold text-signal-gold mr-1">$</span>
-                <span className="text-7xl font-black tracking-tighter text-authority-blue dark:text-white">797</span>
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-signal-gold mt-2">Curriculum + Group Education</p>
-            </div>
-            <div className="space-y-6 mb-12 flex-grow">
-              <p className="text-[11px] font-black uppercase tracking-widest text-text-muted">Premium Features:</p>
-              <ul className="space-y-4">
-                <li className="flex items-start text-sm font-black text-authority-blue dark:text-signal-gold"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> EVERYTHING IN TIER 1</li>
-                {[
-                  "ALL 6 Web-Based Calculators",
-                  "12 Weekly Live Coaching Calls",
-                  "Private Community (Slack)",
-                  "Email Support (48hr Response)",
-                  "Interactive Decision & Planning Tools"
-                ].map((f, i) => (
-                  <li key={i} className="flex items-start text-sm font-bold text-text-primary dark:text-text-dark-muted"><CheckCircle2 className="w-5 h-5 mr-3 text-signal-gold shrink-0" /> {f}</li>
-                ))}
-              </ul>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted mt-4">
+                Founding Investment • <span className="text-authority-blue dark:text-steel-blue underline">Standard Investment $2,500</span>
+              </p>
             </div>
 
-            <button onClick={() => handleCTA('implementation')} className="w-full bg-signal-gold text-authority-blue py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm shadow-2xl active:scale-95 hover:bg-authority-blue hover:text-white transition-all">Start Implementation →</button>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-12">
+              {[
+                "Structured 90-day implementation rhythm",
+                "Audit-ready documentation logic",
+                "Preventive systems mapped to real risk",
+                "Calm, disciplined expert guidance",
+                "Complete template & asset library",
+                "Lifetime curriculum access"
+              ].map((f, i) => (
+                <div key={i} className="flex items-start space-x-3">
+                  <CheckCircle2 size={20} className="text-authority-blue dark:text-signal-gold shrink-0 mt-0.5" />
+                  <span className="text-sm font-bold text-text-primary dark:text-text-dark-muted">{f}</span>
+                </div>
+              ))}
+            </div>
 
-          {/* TIER 3: ELITE GUIDED REVIEW */}
-          <div className="lg:w-1/3 bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-authority-blue flex flex-col shadow-sm group hover:shadow-xl transition-all h-full order-3 lg:order-3 mt-8 lg:mt-12">
-            <div className="bg-authority-blue text-white px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest self-start mb-6 shadow-md">
-              🏆 Elite - Personal Attention
+            <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 text-center mb-12">
+              <p className="text-[10px] font-black uppercase tracking-widest text-text-muted space-y-1">
+                <span className="block italic opacity-60">Professional Boundaries:</span>
+                <span className="block">• We do not represent carriers in audits</span>
+                <span className="block">• We do not complete documents on your behalf</span>
+                <span className="block">• We do not offer shortcuts or alternative paths</span>
+              </p>
             </div>
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white leading-none">Elite <br/>Oversight</h3>
-              <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl text-authority-blue">
-                <Scale size={24} />
-              </div>
-            </div>
-            <p className="text-sm text-authority-blue dark:text-white/70 font-bold mb-8 leading-relaxed italic">
-              Best for operators who want direct review, mock audit preparation, and individualized oversight during launch.
+
+            <button 
+              onClick={handleRequestAdmission}
+              className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-steel-blue transition-all active:scale-95"
+            >
+              Request Admission
+            </button>
+            <p className="mt-6 text-[10px] font-bold text-text-muted uppercase tracking-widest leading-relaxed">
+              We review fit first. If approved, you’ll receive enrollment instructions <br/>and confirm your investment.
             </p>
-            <div className="mb-10">
-              <div className="flex items-baseline">
-                <span className="text-xl font-bold text-slate-400 mr-1">$</span>
-                <span className="text-6xl font-black tracking-tighter text-authority-blue dark:text-white">1,497</span>
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-text-muted mt-2">High-Touch Individual Education</p>
-            </div>
-            <div className="space-y-6 mb-12 flex-grow">
-              <p className="text-[11px] font-black uppercase tracking-widest text-text-muted">Elite Features:</p>
-              <ul className="space-y-4">
-                <li className="flex items-start text-sm font-black text-authority-blue dark:text-white"><CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue shrink-0" /> EVERYTHING IN TIER 2</li>
-                {[
-                  "1-on-1 Mock New Entrant Audit",
-                  "90-Minute Audit Simulation",
-                  "Direct Phone/Text Access",
-                  "Priority Email (24hr Response)",
-                  "Quarterly 1-on-1 Check-ins",
-                  "Personalized Compliance Review"
-                ].map((f, i) => (
-                  <li key={i} className="flex items-start text-sm font-bold text-text-muted"><CheckCircle2 className="w-5 h-5 mr-3 text-authority-blue shrink-0" /> {f}</li>
-                ))}
-              </ul>
-            </div>
-            <button onClick={() => handleCTA('elite')} className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all active:scale-95 shadow-xl">Inquire For Review →</button>
           </div>
-        </div>
-        
-        <div className="text-center">
-          <p className="text-sm font-bold text-text-muted max-xl mx-auto opacity-70">
-            All enrollment is covered by our published refund policy. <br/>
-            No contracts. No pressure. Accuracy over hype.
-          </p>
         </div>
       </section>
 
-      {/* NEW: AFTER ENROLLMENT SECTION */}
+      {/* 3. AFTER ADMISSION SECTION */}
       <AfterEnrollment />
 
-      {/* SCOPE CLARITY */}
+      {/* 4. SCOPE CLARITY */}
       <ScopeClarity />
 
-      {/* 5. ENROLLMENT FAQ */}
+      {/* 5. ADMISSION FAQ */}
       <FAQSection />
 
       {/* 6. POLICY SECTION */}
       <DecisionWindow />
 
-      {/* 7. COMPARISON SECTION */}
-      <ComparisonTable />
-
-      {/* 8. ROI SECTION */}
+      {/* 7. ROI SECTION */}
       <ROISection />
 
-      {/* 9. SOCIAL PROOF */}
+      {/* 8. SOCIAL PROOF */}
       <TestimonialsSection />
 
-      {/* 10. FINAL CTA */}
+      {/* 9. FINAL CTA */}
       <section className="bg-authority-blue py-32 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <Logo light className="mx-auto mb-12 h-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-default" />
-          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-8 leading-tight">Build Your Carrier on <br/><span className="text-signal-gold italic text-white/90">Systems, Not Shortcuts.</span></h2>
+          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-8 leading-tight">Build Your Carrier on <br/><span className="text-signal-gold italic text-white/90">Order, Not Accidents.</span></h2>
           <p className="text-xl text-white/70 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
-            The road to carrier bankruptcy is paved with shortcuts. We teach you how to build a compliance backbone that stands up to federal scrutiny.
+            Shortcuts are the most expensive path in trucking. Request admission to the 90-day standard today.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="bg-signal-gold text-authority-blue px-14 py-7 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-white transition-all shadow-[0_20px_50px_-10px_rgba(212,175,55,0.4)] active:scale-95">
-              Secure Your Enrollment Today
+            <button 
+              onClick={handleRequestAdmission}
+              className="bg-signal-gold text-authority-blue px-14 py-7 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-white transition-all shadow-[0_20px_50px_-10px_rgba(212,175,55,0.4)] active:scale-95"
+            >
+              Request Admission
             </button>
           </div>
           <div className="mt-16 flex items-center justify-center space-x-6 grayscale opacity-40">
@@ -640,7 +474,7 @@ const EnrollPage = () => {
           <p className="text-[10px] font-black uppercase tracking-widest text-text-muted leading-loose max-w-2xl mx-auto opacity-60">
             © {new Date().getFullYear()} LaunchPath Transportation EDU. <br/>
             Information provided by LaunchPath is for educational purposes only and does not constitute legal, tax, financial, or insurance advice. <br/>
-            Accuracy Over Hype. Dedicated to Operational Integrity.
+            One Standard. Dedicated to Operational Integrity.
           </p>
         </div>
       </footer>

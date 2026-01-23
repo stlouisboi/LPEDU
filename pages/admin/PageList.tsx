@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, ArrowRight, Clock, CheckCircle } from 'lucide-react';
+import { Globe, ArrowRight, Clock } from 'lucide-react';
 
 const PageList = () => {
   const pages = [

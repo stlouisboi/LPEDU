@@ -5,22 +5,19 @@ import {
   Moon, 
   Menu, 
   X, 
-  ChevronRight, 
   Loader2,
   Linkedin,
   Facebook,
   Youtube,
   Twitter,
-  ArrowRight,
   ShieldCheck,
-  Award,
-  ExternalLink
+  Award
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
-import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
+import { INITIAL_SETTINGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
-import { AuthProvider, useAuth } from './AuthContext';
+import { AuthProvider } from './AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
@@ -29,14 +26,12 @@ import Logo from './components/Logo';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import LearningPathPage from './pages/LearningPathPage'; 
-import BlogPage from './pages/BlogPage';
-import BlogPostPage from './pages/BlogPostPage';
 import ResourcesPage from './pages/ResourcesPage';
 import FAQPage from './pages/FAQPage';
 import ContactPage from './pages/ContactPage';
+import RequestAdmissionPage from './pages/RequestAdmissionPage';
 import SupportPage from './pages/SupportPage';
 import LegalPage from './pages/LegalPage';
-import AIServicePage from './pages/AIServicePage';
 import EnrollPage from './pages/EnrollPage';
 import ModuleDetailPage from './pages/ModuleDetailPage';
 import DownloadPage from './pages/DownloadPage';
@@ -47,8 +42,6 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboardHome from './pages/admin/AdminDashboardHome';
 import PageList from './pages/admin/PageList';
 import HomePageEditor from './pages/admin/HomePageEditor';
-import BlogList from './pages/admin/BlogList';
-import BlogEditor from './pages/admin/BlogEditor';
 import ResourceManager from './pages/admin/ResourceManager';
 import FormManagement from './pages/admin/FormManagement';
 import SubmissionsList from './pages/admin/SubmissionsList';
@@ -99,10 +92,7 @@ const Header = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Roadmap', path: '/learning-path' },
-    { name: 'Resources', path: '/resources' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' },
-    { name: 'AI Advisor', path: '/advisor' }
+    { name: 'Resources', path: '/resources' }
   ];
 
   return (
@@ -133,10 +123,10 @@ const Header = () => {
                 {theme === 'light' ? <Moon className="w-7 h-7 text-authority-blue" /> : <Sun className="w-7 h-7 text-signal-gold" />}
               </button>
               <Link
-                to="/pricing"
+                to="/request-admission"
                 className="bg-authority-blue text-white px-10 py-4 rounded-xl text-base font-black uppercase tracking-[0.2em] hover:bg-steel-blue transition-all shadow-xl active:scale-95"
               >
-                Enroll
+                Admission
               </Link>
             </div>
           </nav>
@@ -169,11 +159,11 @@ const Header = () => {
             ))}
             <div className="pt-8 border-t border-border-light mt-4">
               <Link
-                to="/pricing"
+                to="/request-admission"
                 className="block w-full bg-authority-blue text-white py-6 rounded-2xl text-center font-black uppercase tracking-[0.25em] text-xl shadow-xl"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Enroll Now
+                Request Admission
               </Link>
             </div>
           </nav>
@@ -240,9 +230,8 @@ const Footer = () => {
               <ul className="space-y-4">
                 {[
                   { name: 'Course Curriculum', path: '/learning-path' },
-                  { name: 'Enrollment Options', path: '/pricing' },
-                  { name: 'The Four Pillars', path: '/#pillars' },
-                  { name: 'Informational AI Support', path: '/advisor' }
+                  { name: 'Request Admission', path: '/request-admission' },
+                  { name: 'The Four Pillars', path: '/#pillars' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -258,7 +247,6 @@ const Footer = () => {
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">RESOURCES</h3>
               <ul className="space-y-4">
                 {[
-                  { name: 'Knowledge Base', path: '/blog' },
                   { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
                   { name: 'Educational Downloads', path: '/resources' },
                   { name: 'FMCSA Regulatory Links', path: '/resources' }
@@ -352,7 +340,7 @@ const Footer = () => {
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
-  const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [formSubmissions, setFormSubmissions] = useState<any[]>([]);
   const [appLoading, setAppLoading] = useState(true);
@@ -404,14 +392,12 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/learning-path" element={<LearningPathPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/request-admission" element={<RequestAdmissionPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/legal" element={<LegalPage />} />
-              <Route path="/advisor" element={<AIServicePage />} />
               <Route path="/pricing" element={<EnrollPage />} />
               <Route path="/modules/:id" element={<ModuleDetailPage />} />
               <Route path="/download/risk-map" element={<DownloadPage />} />
@@ -420,9 +406,6 @@ export default function App() {
                 <Route index element={<AdminDashboardHome />} />
                 <Route path="pages" element={<PageList />} />
                 <Route path="pages/home" element={<HomePageEditor />} />
-                <Route path="blog" element={<BlogList />} />
-                <Route path="blog/new" element={<BlogEditor />} />
-                <Route path="blog/edit/:id" element={<BlogEditor />} />
                 <Route path="resources" element={<ResourceManager />} />
                 <Route path="forms" element={<FormManagement />} />
                 <Route path="forms/submissions" element={<SubmissionsList />} />

@@ -1,6 +1,5 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, AlertCircle, Globe, ExternalLink } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, Globe, ExternalLink } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
 interface Message {
@@ -12,7 +11,7 @@ interface Message {
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Hello! I'm the LaunchPath™ AI Advisor. I can help explain trucking compliance concepts and decision risks. How can I assist you today?" }
+    { role: 'assistant', content: "Compliance Reference Assistant active. I can provide educational information on FMCSA terms, concepts, and LaunchPath frameworks. How can I assist with your regulatory references today?" }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -44,19 +43,35 @@ const AIChatWidget = () => {
         model: 'gemini-3-flash-preview',
         contents: userMsg,
         config: {
-          systemInstruction: `You are the LaunchPath™ AI Advisor.
-ROLE: You act as an educational guide and gatekeeper for LaunchPath.
-CORE PURPOSE: Help visitors understand trucking compliance concepts at a high level. Explain risks and terminology.
-THE FOUR PILLARS: "The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen." Always use this definition when asked about the Pillars.
-NON-NEGOTIABLE RULES: Do NOT provide step-by-step instructions. Do NOT give personalized advice.
-ALLOWED BEHAVIOR: Use phrases like "At a high level...", "Educationally speaking...".
-DISCLAIMER: "LaunchPath is an educational and coaching program only. This information is not legal, tax, financial, insurance, or regulatory advice."`,
+          systemInstruction: `You are the LaunchPath™ Compliance Reference Assistant. 
+ROLE: Provide educational information on FMCSA terms, concepts, and LaunchPath frameworks (Risk Map, Four Pillars, 16 Deadly Sins).
+ALLOWED FUNCTIONS: 
+- Explain FMCSA terms and concepts.
+- Clarify LaunchPath frameworks.
+- Point users to correct modules or checklists.
+- Help users understand typical documentation expectations.
+- Assist with self-assessment and readiness checks.
+DISALLOWED FUNCTIONS:
+- DO NOT provide legal or financial advice.
+- DO NOT predict outcomes or success.
+- DO NOT make guarantees or promises.
+- DO NOT use motivational, emotional, or fear-based language.
+- DO NOT position yourself as a coach or decision-maker.
+VOICE & TONE: 
+- Sound calm, neutral, precise, conservative, and informational. 
+- Use phrases like "FMCSA typically expects...", "This is commonly reviewed during audits...", "If this is missing, it may be flagged...".
+- Avoid: "You should definitely...", "This will help you succeed...", "Don't worry, you're fine...".
+SAFETY BEHAVIOR:
+- Default to conservative interpretations.
+- Encourage consulting qualified professionals (attorneys, insurance agents) when appropriate.
+- Refer users back to LaunchPath documentation for implementation.
+- Include disclaimer: "This assistant provides educational information only and does not replace professional advice."`,
           tools: [{ googleSearch: {} }],
-          temperature: 0.3,
+          temperature: 0.2,
         }
       });
 
-      const assistantText = response.text || "Connection lost. Try again.";
+      const assistantText = response.text || "System timed out. Please retry.";
       
       const sources: { uri: string; title: string }[] = [];
       const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
@@ -74,10 +89,10 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
         sources: sources.length > 0 ? sources : undefined
       }]);
     } catch (err: any) {
-      console.error("AI Advisor Error:", err);
-      let errorMsg = "System offline. Check your connection.";
+      console.error("AI Assistant Error:", err);
+      let errorMsg = "Reference service offline. Please try later.";
       if (err.message === "API_KEY_MISSING") {
-        errorMsg = "AI service is currently unconfigured. Please contact support.";
+        errorMsg = "AI service is unconfigured. Please contact support.";
       }
       setMessages(prev => [...prev, { role: 'assistant', content: errorMsg }]);
     } finally {
@@ -86,11 +101,10 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
   };
 
   const starterQuestions = [
-    "What are The Four Pillars?",
-    "What are North Carolina BIT inspection requirements?",
-    "Do I need a TX DOT number if I have a Federal DOT?",
-    "What is a DQ file?",
-    "Compliance risks for new carriers?"
+    "Explain the Four Pillars",
+    "What is the 16 Deadly Sins framework?",
+    "Common expectations for DQ files?",
+    "How does the Risk Map function?"
   ];
 
   return (
@@ -104,8 +118,8 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <h3 className="text-white font-black text-sm uppercase tracking-tighter leading-none">AI Advisor</h3>
-                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Educational Guidance</p>
+                <h3 className="text-white font-black text-sm uppercase tracking-tighter leading-none">Compliance Assistant</h3>
+                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Reference Tool</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-white transition-colors p-1">
@@ -158,7 +172,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
             <div className="p-4 grid grid-cols-1 gap-2 bg-white dark:bg-gray-900 border-t border-border-light dark:border-border-dark">
               <div className="flex items-center space-x-2 mb-1 px-1">
                 <Globe size={10} className="text-signal-gold" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-text-muted">Common Inquiries</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-text-muted">Common References</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {starterQuestions.map((q) => (
@@ -183,7 +197,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="How can I help you understand?"
+                placeholder="Compliance reference inquiry..."
                 className="w-full bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark pl-5 pr-14 py-4 rounded-2xl outline-none focus:ring-4 focus:ring-authority-blue/5 text-sm font-bold placeholder:opacity-50"
               />
               <button 
@@ -194,6 +208,9 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 {loading ? <Loader2 className="animate-spin" size={18} /> : <Send size={18} />}
               </button>
             </div>
+            <p className="text-[8px] text-center text-text-muted uppercase font-bold mt-2">
+              Informational only. Not professional advice.
+            </p>
           </div>
         </div>
       ) : (
@@ -203,9 +220,9 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
         >
           <div className="absolute inset-0 rounded-[2rem] ring-4 ring-authority-blue/20 animate-pulse"></div>
           <div className="bg-signal-gold p-1.5 rounded-lg text-authority-blue group-hover:rotate-12 transition-transform shadow-sm">
-            <MessageCircle size={24} />
+            <ShieldCheck size={24} />
           </div>
-          <span className="font-black uppercase tracking-widest text-xs pr-2 hidden sm:block">Advisor AI</span>
+          <span className="font-black uppercase tracking-widest text-xs pr-2 hidden sm:block">Compliance Assistant</span>
         </button>
       )}
     </div>

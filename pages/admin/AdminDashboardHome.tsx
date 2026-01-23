@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, PlusCircle, AlertCircle, CheckCircle2, Loader2, ExternalLink, ChevronRight, Users } from 'lucide-react';
+import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, AlertCircle, CheckCircle2, Loader2, ExternalLink, ChevronRight, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
@@ -44,9 +44,9 @@ const AdminDashboardHome = () => {
 
   const quickActions = [
     { name: 'Edit Homepage', path: '/admin/pages/home', icon: <FileEdit size={18} /> },
-    { name: 'New Blog Post', path: '/admin/blog/new', icon: <PlusCircle size={18} /> },
     { name: 'Manage Leads', path: '/admin/leads', icon: <Users size={18} /> },
     { name: 'Upload Resource', path: '/admin/resources', icon: <Zap size={18} /> },
+    { name: 'System Settings', path: '/admin/settings', icon: <Settings size={18} /> },
   ];
 
   return (
@@ -179,5 +179,13 @@ const AdminDashboardHome = () => {
     </div>
   );
 };
+
+// Internal Settings icon helper for the list
+const Settings = ({ size }: { size: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
 
 export default AdminDashboardHome;
