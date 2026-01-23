@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -22,7 +23,8 @@ import {
   Scale,
   Zap,
   ShieldAlert,
-  Truck
+  Truck,
+  Lock
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -42,8 +44,8 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 'capital',
-    text: "How much capital do you have available to start your trucking business?",
-    helperText: "Include savings, available credit you're willing to use, and secured financing.",
+    text: "Preliminary capitalization assessment: Available startup capital?",
+    helperText: "Verified liquid assets, credit capacity, and secured financing components.",
     options: [
       { label: 'A', text: 'Less than $10,000', points: 0, flag: 'RED' },
       { label: 'B', text: '$10,000 – $19,999', points: 1, flag: 'YELLOW' },
@@ -54,7 +56,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'reserves',
-    text: "After startup costs, how many months of household expenses could you cover if you earned $0 from trucking?",
+    text: "Operational runway assessment: Post-startup household expense coverage?",
     options: [
       { label: 'A', text: 'Less than 1 month', points: 0, flag: 'RED' },
       { label: 'B', text: '1–2 months', points: 1, flag: 'YELLOW' },
@@ -65,56 +67,56 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'support',
-    text: "Does your spouse, partner, or household understand what starting a trucking business involves?",
+    text: "Stewardship alignment: Household understanding of operational demands?",
     options: [
-      { label: 'A', text: 'I haven\'t discussed it with them yet', points: 0, flag: 'YELLOW' },
-      { label: 'B', text: 'They\'re skeptical or opposed', points: 0, flag: 'RED' },
-      { label: 'C', text: 'They\'re supportive but don\'t fully understand the demands', points: 2 },
-      { label: 'D', text: 'They understand and support me, but we haven\'t planned for income disruption', points: 3 },
-      { label: 'E', text: 'They fully understand, support the decision, and we\'ve planned for variable income', points: 4 }
+      { label: 'A', text: 'Decision not yet disclosed to household', points: 0, flag: 'YELLOW' },
+      { label: 'B', text: 'Household opposition or critical skepticism', points: 0, flag: 'RED' },
+      { label: 'C', text: 'General support without technical understanding', points: 2 },
+      { label: 'D', text: 'Support present without income disruption plan', points: 3 },
+      { label: 'E', text: 'Full alignment with variable income contingency plan', points: 4 }
     ]
   },
   {
     id: 'time',
-    text: "How much time can you dedicate to building and running your trucking business in the first 90 days?",
+    text: "Administrative capacity: Weekly allocation for system implementation?",
     options: [
-      { label: 'A', text: 'A few hours per week (I have other full-time commitments)', points: 0, flag: 'RED' },
-      { label: 'B', text: 'Part-time (15–25 hours/week)', points: 1, flag: 'YELLOW' },
-      { label: 'C', text: 'Significant time (25–40 hours/week)', points: 3 },
-      { label: 'D', text: 'Full-time dedication (40+ hours/week)', points: 4 }
+      { label: 'A', text: 'Minimal allocation (Concurrent full-time commitment)', points: 0, flag: 'RED' },
+      { label: 'B', text: 'Partial allocation (15–25 hours/week)', points: 1, flag: 'YELLOW' },
+      { label: 'C', text: 'Substantial allocation (25–40 hours/week)', points: 3 },
+      { label: 'D', text: 'Primary dedication (40+ hours/week)', points: 4 }
     ]
   },
   {
     id: 'experience',
-    text: "What is your commercial driving experience?",
+    text: "Operational background: Verified commercial driving experience?",
     options: [
-      { label: 'A', text: 'No CDL yet — still researching', points: 0, flag: 'YELLOW' },
-      { label: 'B', text: 'CDL obtained, no commercial driving experience', points: 1 },
-      { label: 'C', text: 'Less than 1 year of commercial driving', points: 2 },
-      { label: 'D', text: '1–3 years of commercial driving', points: 3 },
-      { label: 'E', text: 'More than 3 years of commercial driving', points: 4 }
+      { label: 'A', text: 'Initial research phase (Pre-CDL)', points: 0, flag: 'YELLOW' },
+      { label: 'B', text: 'CDL obtained without commercial driving record', points: 1 },
+      { label: 'C', text: 'Less than 12 months commercial driving', points: 2 },
+      { label: 'D', text: '1–3 years commercial driving', points: 3 },
+      { label: 'E', text: 'Extensive background (3+ years)', points: 4 }
     ]
   },
   {
     id: 'awareness',
-    text: "How familiar are you with FMCSA regulations, DOT authority requirements, and the New Entrant Safety Audit?",
+    text: "Regulatory literacy: Understanding of 49 CFR and New Entrant Audit criteria?",
     options: [
-      { label: 'A', text: 'I\'ve never heard of most of this', points: 0 },
-      { label: 'B', text: 'I\'ve heard of it but don\'t understand the details', points: 1 },
-      { label: 'C', text: 'I understand the basics but haven\'t studied the specifics', points: 2 },
-      { label: 'D', text: 'I\'ve researched it and understand most requirements', points: 3 },
-      { label: 'E', text: 'I\'m confident in my knowledge of compliance requirements', points: 4 }
+      { label: 'A', text: 'Unfamiliar with federal regulatory criteria', points: 0 },
+      { label: 'B', text: 'General awareness without technical detail', points: 1 },
+      { label: 'C', text: 'Basic understanding of compliance frameworks', points: 2 },
+      { label: 'D', text: 'Advanced research into audit requirements', points: 3 },
+      { label: 'E', text: 'High literacy in compliance systems', points: 4 }
     ]
   },
   {
     id: 'risk',
-    text: "If you experienced a major setback in your first 90 days — loss of a contract, unexpected repair, insurance issue — how would you respond?",
+    text: "Risk mitigation profile: Response to significant operational setbacks?",
     options: [
-      { label: 'A', text: 'I would probably shut down and return to employment', points: 0, flag: 'RED' },
-      { label: 'B', text: 'I would struggle significantly and might not recover', points: 1, flag: 'YELLOW' },
-      { label: 'C', text: 'I would be stressed but could adapt with adjustments', points: 2 },
-      { label: 'D', text: 'I have contingency plans and could absorb the impact', points: 3 },
-      { label: 'E', text: 'I expect setbacks and have reserves and backup plans in place', points: 4 }
+      { label: 'A', text: 'Operational termination (Return to employment)', points: 0, flag: 'RED' },
+      { label: 'B', text: 'Significant struggle without recovery protocol', points: 1, flag: 'YELLOW' },
+      { label: 'C', text: 'Stress-driven adaptation and adjustment', points: 2 },
+      { label: 'D', text: 'Absorption via established contingency plans', points: 3 },
+      { label: 'E', text: 'Expected volatility managed via reserves and protocols', points: 4 }
     ]
   }
 ];
@@ -177,7 +179,6 @@ const ReadinessPage = () => {
       }
       setStep(9);
     } catch (error) {
-      console.error("Failed to save assessment", error);
       setStep(9);
     } finally {
       setLoading(false);
@@ -189,8 +190,8 @@ const ReadinessPage = () => {
     return (
       <div className="max-w-xl mx-auto mb-12">
         <div className="flex justify-between items-center mb-4">
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue">Question {step} of 7</span>
-          <span className="text-[10px] font-bold text-slate-400">{Math.round((step / 7) * 100)}% Complete</span>
+          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue">Classification Data {step} of 7</span>
+          <span className="text-[10px] font-bold text-slate-400">{Math.round((step / 7) * 100)}% Data Mapped</span>
         </div>
         <div className="w-full h-1.5 bg-slate-100 dark:bg-gray-800 rounded-full overflow-hidden">
           <div 
@@ -213,21 +214,21 @@ const ReadinessPage = () => {
               <ShieldCheck size={40} />
             </div>
             <h1 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-6 leading-none">
-              Are You Actually Ready to <br/><span className="text-signal-gold italic">Start a Trucking Business?</span>
+              Institutional <span className="text-signal-gold italic">Classification Assessment</span>
             </h1>
             <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed mb-12">
-              Answer 7 questions. 2 minutes. Find out if now is the right time — or if preparing first could protect your household and your investment.
+              Identification of structural readiness for carrier implementation. Results generate a preliminary risk exposure classification which may lead to approval, delay, or redirection.
             </p>
             <div className="space-y-6">
               <button 
                 onClick={handleNext}
                 className="bg-authority-blue text-white px-14 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.25em] text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 flex items-center mx-auto group"
               >
-                <span>Check My Readiness</span>
+                <span>Initiate Classification Assessment</span>
                 <ChevronRight className="ml-3 group-hover:translate-x-1 transition-transform" />
               </button>
               <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">
-                No spam. No sales pitch. Just an honest assessment.
+                Data used for preliminary classification purposes only.
               </p>
             </div>
           </div>
@@ -268,25 +269,25 @@ const ReadinessPage = () => {
             </div>
 
             <div className="flex justify-between items-center mt-auto">
-              <button onClick={handleBack} className="flex items-center space-x-2 text-slate-400 hover:text-authority-blue font-black uppercase tracking-[0.2em] text-[10px] transition-colors">
+              <button onClick={handleBack} className="flex items-center space-x-2 text-slate-400 hover:text-authority-blue font-black uppercase tracking-[0.2em] text-[10px] transition-all">
                 <ArrowLeft size={16} />
-                <span>Back</span>
+                <span>Reference Prior Data Point</span>
               </button>
             </div>
           </div>
         )}
 
-        {/* --- STEP 8: REVIEW & EMAIL --- */}
+        {/* --- STEP 8: REVIEW --- */}
         {step === 8 && (
           <div className="text-center animate-reveal-up flex-grow flex flex-col justify-center">
-            <div className="w-20 h-20 bg-green-50 text-green-600 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-green-100 shadow-lg">
+            <div className="w-20 h-20 bg-slate-50 text-authority-blue rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-slate-100 shadow-lg">
               <FileText size={40} />
             </div>
-            <h1 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight mb-6">
-              Your Results Are Ready
+            <h1 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight mb-6 leading-none">
+              Classification Data Ready
             </h1>
             <p className="text-lg text-slate-500 dark:text-text-dark-muted font-medium max-w-xl mx-auto mb-12">
-              Enter your email to view your readiness assessment. You'll also receive a permanent copy for your records.
+              Submit registry email to receive formal exposure classification and assessment result.
             </p>
 
             <form onSubmit={handleSubmit} className="max-w-md mx-auto w-full space-y-8">
@@ -314,21 +315,21 @@ const ReadinessPage = () => {
                   onChange={e => setConsent(e.target.checked)}
                 />
                 <label htmlFor="consent" className="text-xs text-slate-500 font-medium leading-relaxed cursor-pointer">
-                  I understand LaunchPath will email me information about compliance education. I can unsubscribe anytime.
+                  I acknowledge LaunchPath will provide educational compliance notifications. Communication can be terminated at any time.
                 </label>
               </div>
 
               <button 
                 type="submit"
                 disabled={loading || !consent}
-                className="w-full bg-authority-blue text-white py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all flex items-center justify-center disabled:opacity-50 active:scale-95"
+                className="w-full bg-authority-blue text-white py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-steel-blue transition-all flex items-center justify-center disabled:opacity-50 active:scale-95"
               >
                 {loading ? <Loader2 className="animate-spin mr-3" /> : <ArrowRight className="mr-3" />}
-                View My Results
+                View Classification
               </button>
 
               <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">
-                Your responses are used only to generate your assessment. <br/>We do not sell or share your information.
+                Assessment records are maintained in a secure registry.
               </p>
             </form>
           </div>
@@ -338,7 +339,6 @@ const ReadinessPage = () => {
         {step === 9 && (
           <div ref={resultsRef} className="animate-reveal-up space-y-12">
             
-            {/* GREEN RESULT */}
             {resultType === 'GREEN' && (
               <div className="space-y-12">
                 <div className="text-center">
@@ -346,23 +346,23 @@ const ReadinessPage = () => {
                     <ShieldCheck size={56} />
                   </div>
                   <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">
-                    You Appear <span className="text-green-600 italic">Ready.</span>
+                    Classification: <br/><span className="text-green-600 italic">READY.</span>
                   </h1>
                   <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                    Based on your responses, you have the foundational elements in place to begin building a compliant motor carrier operation.
+                    Assessment indicates the presence of structural prerequisites required for motor carrier operating standard implementation.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="bg-white dark:bg-surface-dark p-10 rounded-[3.5rem] border border-slate-100 shadow-sm">
-                    <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue mb-8">Verification Summary</h3>
+                    <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue mb-8">Verification Points</h3>
                     <ul className="space-y-6">
                       {[
-                        "Sufficient startup capital identified",
-                        "Adequate household reserves stabilized",
-                        "Time allocated for implementation",
-                        "Household alignment on decision",
-                        "Realistic expectations about setbacks"
+                        "Capitalization levels meet operational thresholds",
+                        "Household runway alignment verified",
+                        "Allocation capacity for administrative files",
+                        "Stewardship alignment documented",
+                        "Risk contingency awareness confirmed"
                       ].map((item, i) => (
                         <li key={i} className="flex items-start space-x-4">
                           <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={20} />
@@ -373,47 +373,33 @@ const ReadinessPage = () => {
                   </div>
                   <div className="bg-authority-blue text-white p-10 rounded-[3.5rem] relative overflow-hidden shadow-2xl">
                     <Target className="absolute -bottom-10 -right-10 text-white/5" size={200} />
-                    <h3 className="text-xs font-black uppercase tracking-[0.3em] text-signal-gold mb-6">What This Means</h3>
+                    <h3 className="text-xs font-black uppercase tracking-[0.3em] text-signal-gold mb-6">Classification Meaning</h3>
                     <p className="text-lg leading-relaxed font-medium italic mb-8">
-                      "You meet the baseline criteria for enrollment in LaunchPath. This does not guarantee success — it means you are not starting from a position of structural disadvantage."
+                      "Entity meets foundational criteria for admission. This indicates a baseline readiness for Technical Safety File installation."
                     </p>
                     <div className="h-px w-full bg-white/10 mb-8"></div>
                     <div className="flex items-center space-x-3 text-signal-gold">
                       <Zap size={18} />
-                      <span className="text-[10px] font-black uppercase tracking-widest">Enrollment Window: OPEN</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest">Enrollment Eligibility: CONFIRMED</span>
                     </div>
                   </div>
                 </div>
 
-                {yellowFlags > 0 && (
-                   <div className="p-8 bg-amber-50 dark:bg-amber-950/20 rounded-[2.5rem] border border-amber-200 flex items-start space-x-6">
-                      <AlertTriangle className="text-amber-600 shrink-0" size={32} />
-                      <div>
-                        <p className="text-sm font-black uppercase tracking-widest text-amber-800 dark:text-amber-400 mb-2">Soft Advisory</p>
-                        <p className="text-sm font-bold text-amber-700 dark:text-amber-300">Your overall readiness is strong, but some flagged items may require attention before enrollment to ensure maximum implementation speed.</p>
-                      </div>
-                   </div>
-                )}
-
                 <section className="py-16 text-center border-t border-slate-200">
-                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Review Admission Information</h2>
-                  <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto mb-10">
-                    LaunchPath operates on an admission-based enrollment model. Review the program structure, requirements, and expectations before proceeding.
-                  </p>
+                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Proceed to Admission</h2>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                     <Link to="/pricing" className="bg-authority-blue text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm hover:bg-steel-blue transition-all shadow-xl">
-                      View Admission Details
+                      Review Admission Details
                     </Link>
                     <button onClick={() => window.print()} className="flex items-center space-x-2 text-slate-400 hover:text-authority-blue font-bold uppercase tracking-widest text-[10px] transition-all">
                       <Printer size={16} />
-                      <span>Download Result (PDF)</span>
+                      <span>Formal PDF Result</span>
                     </button>
                   </div>
                 </section>
               </div>
             )}
 
-            {/* YELLOW RESULT */}
             {resultType === 'YELLOW' && (
               <div className="space-y-12">
                 <div className="text-center">
@@ -421,47 +407,47 @@ const ReadinessPage = () => {
                     <AlertCircle size={56} />
                   </div>
                   <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">
-                    Preparation <br/><span className="text-amber-600 italic">Recommended.</span>
+                    Classification: <br/><span className="text-amber-600 italic">PREPARATION REQ.</span>
                   </h1>
                   <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                    Based on your responses, you have some foundational elements in place — but gaps remain that could create unnecessary risk if not addressed first.
+                    Identified structural gaps create elevated risk. Addressing these indicators is recommended prior to system admission.
                   </p>
                 </div>
 
                 <div className="bg-white dark:bg-surface-dark p-12 rounded-[4rem] border border-slate-200 shadow-sm space-y-10">
                   <h3 className="text-sm font-black uppercase tracking-[0.4em] text-authority-blue flex items-center">
-                    <ShieldAlert className="mr-3 text-amber-600" size={20} /> Areas of Concern
+                    <ShieldAlert className="mr-3 text-amber-600" size={20} /> Identified Risk Indicators
                   </h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {answers[0] < 2 && (
                       <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
                         <Wallet className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Your startup capital is below the recommended threshold for most owner-operator launches.</p>
+                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Capitalization levels are below recommended thresholds for motor carrier launch.</p>
                       </div>
                     )}
                     {answers[1] < 2 && (
                       <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
                         <Briefcase className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Your household reserves may not provide adequate runway if revenue is delayed.</p>
+                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Runway indicators suggest vulnerability to anticipated revenue volatility.</p>
                       </div>
                     )}
                     {answers[2] < 2 && (
                       <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
                         <Users className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Your household may not fully understand the demands of this business model.</p>
+                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Stewardship alignment with household demands is not yet established.</p>
                       </div>
                     )}
                     {answers[3] < 2 && (
                       <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
                         <Clock className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Your available time may limit your ability to implement compliance systems properly.</p>
+                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Allocation capacity may limit the required implementation of documentation infrastructure.</p>
                       </div>
                     )}
                     {answers[4] < 2 && (
                       <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
                         <Truck size={24} className="text-amber-600 shrink-0" />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Limited commercial driving experience increases your operational learning curve.</p>
+                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Operational background suggests an accelerated learning curve for regulatory adherence.</p>
                       </div>
                     )}
                   </div>
@@ -469,31 +455,24 @@ const ReadinessPage = () => {
 
                 <div className="bg-authority-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden">
                   <Scale className="absolute -bottom-10 -left-10 text-white/5" size={250} />
-                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8">One Standard Policy</h3>
+                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8">One Standard Governance</h3>
                   <div className="prose prose-invert max-w-none text-lg leading-relaxed font-medium space-y-6">
-                    <p>LaunchPath does not offer a simplified or reduced version of compliance education.</p>
-                    <p>FMCSA does not conduct reduced audits. Insurance underwriters do not offer reduced scrutiny. Enforcement does not apply reduced consequences.</p>
-                    <p className="text-signal-gold italic">LaunchPath is built as one standard — a complete system that protects authority, supports audit readiness, and requires disciplined follow-through.</p>
-                    <p>If readiness gaps exist, the most responsible path is to address them first, then return when you can meet the standard.</p>
+                    <p>LaunchPath functions as a single standard. Regulatory requirements and underwriter scrutiny are not subject to reduction based on carrier circumstances.</p>
+                    <p className="text-signal-gold italic">System integrity requires addressing readiness gaps prior to operational commencement.</p>
                   </div>
                 </div>
 
                 <section className="py-16 text-center border-t border-slate-200">
-                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Prepare First. Return When Ready.</h2>
-                  <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Use the resources below to address your specific gaps. When your situation changes, retake this assessment.
-                  </p>
+                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Address Indicators. Return When Validated.</h2>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                     <Link to="/resources" className="bg-authority-blue text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm hover:bg-steel-blue transition-all shadow-xl">
-                      Download Preparation Guide
+                      Download Readiness Framework
                     </Link>
                   </div>
-                  <p className="mt-8 text-xs font-black uppercase tracking-[0.3em] text-slate-400">We will be here when you're ready.</p>
                 </section>
               </div>
             )}
 
-            {/* RED RESULT */}
             {resultType === 'RED' && (
               <div className="space-y-12">
                 <div className="text-center">
@@ -501,51 +480,44 @@ const ReadinessPage = () => {
                     <XCircle size={56} />
                   </div>
                   <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">
-                    Now Is Probably <br/><span className="text-red-700 italic">Not the Right Time.</span>
+                    Classification: <br/><span className="text-red-700 italic">NOT RECOMMENDED.</span>
                   </h1>
                   <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                    Based on your responses, launching a motor carrier operation right now would expose you to significant structural risk — not because of your ability, but because of your current circumstances.
+                    Assessments indicates significant structural risk. Operational launch at this stage would result in an extremely high probability of preventable failure.
                   </p>
                 </div>
 
                 <div className="bg-red-50/50 dark:bg-red-950/20 p-12 rounded-[4rem] border border-red-100 shadow-sm space-y-8">
                   <h3 className="text-sm font-black uppercase tracking-[0.4em] text-red-700 flex items-center">
-                    <ShieldAlert className="mr-3" size={20} /> Primary Concern
+                    <ShieldAlert className="mr-3 text-red-700" size={20} /> Critical Indicator
                   </h3>
                   
                   <div className="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-red-200">
                     <p className="text-xl font-bold text-authority-blue dark:text-white leading-relaxed">
-                      {answers[0] === 0 ? "Starting with less than $10,000 in available capital leaves no margin for the deposits, fees, insurance costs, and unexpected expenses that define the first 90 days. This is not a judgment of your potential — it is a structural reality." :
-                       answers[1] === 0 ? "Without at least one month of household expenses in reserve, any delay in revenue — which is common — could create immediate financial crisis. Building reserves first protects your household and your authority." :
-                       answers[3] === 0 ? "The first 90 days require consistent attention to implement compliance systems, manage insurance requirements, and prepare for audit readiness. A few hours per week is not sufficient to build the documentation logic and preventive systems required." :
-                       answers[2] === 1 ? "Starting a trucking business without household support creates pressure that compounds every operational challenge. Alignment before launch is not optional — it is foundational." :
-                       answers[6] === 0 ? "If a single setback would cause you to shut down, the volatility of the first year will be difficult to sustain. Building resilience — financial and psychological — before launch is essential." :
-                       "Your current structural indicators suggest that launching an authority at this moment would carry an extremely high probability of preventable failure."}
+                      {answers[0] === 0 ? "Capitalization under $10,000 provides no margin for mandated deposits, fees, and regulatory costs. This creates a position of structural disadvantage." :
+                       answers[1] === 0 ? "Absence of household reserve runway creates immediate risk to operational and household stability during revenue delays." :
+                       answers[3] === 0 ? "Time allocation capacity is insufficient to install and maintain the mandated Documentation Infrastructure required for authority survival." :
+                       "Current structural indicators suggest high exposure to operational failure."}
                     </p>
                   </div>
                 </div>
 
                 <div className="bg-authority-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden">
                   <AlertCircle className="absolute -top-10 -right-10 text-white/5" size={250} />
-                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8">One Standard Policy</h3>
+                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8">Operating Governance</h3>
                   <div className="prose prose-invert max-w-none text-lg leading-relaxed font-medium space-y-6">
-                    <p>LaunchPath does not offer a simplified version of compliance education, and we do not accept enrollment from individuals whose circumstances suggest premature launch.</p>
-                    <p className="text-signal-gold italic">This is not rejection. This is protection.</p>
-                    <p>We will not take your money when the structural conditions for success are not yet in place. We take stewardship seriously.</p>
+                    <p>Admission is denied to applicants whose structural conditions suggest premature launch. We prioritize stewardship over enrollment.</p>
+                    <p className="text-signal-gold italic">This is a protocol of protection, not rejection.</p>
                   </div>
                 </div>
 
                 <section className="py-16 text-center border-t border-slate-200">
-                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Build First. Return When Ready.</h2>
-                  <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
-                    The resources below address your specific situation. Use them to build your foundation. When circumstances change, retake this assessment.
-                  </p>
+                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Build Foundation. Return When Ready.</h2>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                     <Link to="/resources" className="bg-authority-blue text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm hover:bg-steel-blue transition-all shadow-xl">
-                      Download Foundation-Building Guide
+                      Download Foundation Framework
                     </Link>
                   </div>
-                  <p className="mt-8 text-xs font-black uppercase tracking-[0.3em] text-slate-400">We will be here when you're ready.</p>
                 </section>
               </div>
             )}
@@ -554,12 +526,6 @@ const ReadinessPage = () => {
         )}
 
       </div>
-
-      <style>{`
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
-        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1E293B; }
-      `}</style>
     </div>
   );
 };

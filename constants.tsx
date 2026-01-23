@@ -54,19 +54,19 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
     id: '1',
     author: 'Marcus J.',
     role: 'Owner-Operator, MJ Logistics',
-    content: 'LaunchPath was the difference between keeping my authority and losing everything. Their DQ file templates alone saved me during my first roadside inspection.'
+    content: 'LaunchPath provided the documentation infrastructure required to verify my safety footprint during my first roadside inspection.'
   },
   {
     id: '2',
     author: 'Sarah Chen',
     role: 'Carrier Manager, NorthStar Hauling',
-    content: 'The most comprehensive compliance training I have ever seen. They don’t just tell you the rules; they show you how to implement them without the headache.'
+    content: 'A rigorous compliance standard. These are not tips; they are the actual implementation protocols required for institutional stability.'
   },
   {
     id: '3',
     author: 'David Rodriguez',
     role: 'Box Truck Entrepreneur',
-    content: 'I was overwhelmed by DOT requirements until I found the 90-Day Success Roadmap. Now, I feel confident and audit-ready every single morning.'
+    content: 'I moved from administrative uncertainty to an audit-ready posture by following the 90-Day Operating Standard.'
   }
 ];
 
@@ -74,9 +74,9 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 0, 
     title: "Ground 0: The Discipline Standard", 
-    description: "The prerequisite foundation. Verify operational discipline and business framework before filing authority.", 
+    description: "Operating Asset: Preliminary framework verification. Evaluates carrier discipline before authority filing.", 
     lessons: 6, 
-    duration: "2 Hours", 
+    duration: "Protocol Assessment", 
     resourcesCount: 3, 
     toolsCount: 2,
     pillar: "Authority",
@@ -86,9 +86,9 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 1, 
     title: "Authority Protection Protocols", 
-    description: "Laying the legal foundation. USDOT vs MC strategy and proper carrier identity configuration.", 
+    description: "Operating Asset: Legal architecture for carrier identity. Documentation infrastructure for MC/DOT configuration.", 
     lessons: 8, 
-    duration: "4 Hours", 
+    duration: "Structural Setup", 
     resourcesCount: 5, 
     toolsCount: 3,
     pillar: "Authority",
@@ -98,9 +98,9 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 2, 
     title: "Insurance Continuity Systems", 
-    description: "Navigating primary liability and cargo coverage. Manage the carrier-insurer relationship like a pro.", 
+    description: "Operating Asset: Risk mitigation files. Standards for maintaining primary liability and cargo coverage continuity.", 
     lessons: 5, 
-    duration: "3 Hours", 
+    duration: "Risk Management", 
     resourcesCount: 4, 
     toolsCount: 2,
     pillar: "Insurance",
@@ -110,9 +110,9 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 3, 
     title: "Compliance Backbone Installation", 
-    description: "Technical safety management. Building DQ files, Clearinghouse accounts, and HOS policies that pass inspections.", 
+    description: "Operating Asset: Technical Safety Files. Installation of DQ files, Clearinghouse governance, and HOS protocols.", 
     lessons: 10, 
-    duration: "6 Hours", 
+    duration: "Technical Implementation", 
     resourcesCount: 12, 
     toolsCount: 5,
     pillar: "Compliance",
@@ -122,9 +122,9 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 4, 
     title: "Cash-Flow Oxygen Protocols", 
-    description: "Outcome: Establish 30-day operational solvency protocols during the initial payment gaps.", 
+    description: "Operating Asset: Financial solvency files. Documentation of operational reserves and payment cycle management.", 
     lessons: 6, 
-    duration: "3 Hours", 
+    duration: "Fiscal Stewardship", 
     resourcesCount: 5, 
     toolsCount: 3,
     pillar: "Cash-Flow",
@@ -135,9 +135,9 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 5, 
     title: "Audit Readiness Standards", 
-    description: "Surviving the federal New Entrant investigation. Formal preparation for the 48-hour audit window.", 
+    description: "Operating Asset: New Entrant investigation response kit. Preparation for the 48-hour federal audit window.", 
     lessons: 7, 
-    duration: "4 Hours", 
+    duration: "Audit Verification", 
     resourcesCount: 8, 
     toolsCount: 4,
     pillar: "Compliance",
@@ -148,9 +148,9 @@ export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 6, 
     title: "Stabilization & Scale Protocols", 
-    description: "Outcome: Formalize stabilization protocols for scalable operations and fleet expansion.", 
+    description: "Operating Asset: Advanced growth files. Standards for fleet expansion and multi-unit governance.", 
     lessons: 4, 
-    duration: "2 Hours", 
+    duration: "Operational Continuity", 
     resourcesCount: 3, 
     toolsCount: 2,
     pillar: "Authority",

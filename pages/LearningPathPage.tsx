@@ -158,7 +158,7 @@ const LearningPathPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link to="/pricing" className="group bg-white text-authority-blue px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold hover:text-white transition-all shadow-2xl active:scale-95 flex items-center">
-              Enter the System
+              Access Implementation Protocols
               <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -170,7 +170,7 @@ const LearningPathPage = () => {
         {/* Abstract Implementation Path Line */}
         <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-authority-blue/20 via-authority-blue/40 to-authority-blue/10 dark:from-slate-800 dark:via-slate-600 dark:to-slate-800 -translate-x-1/2 z-0">
           
-          {/* Animated Driving Truck (Tablet & Desktop Only) */}
+          {/* Animated Driving Truck */}
           <div 
             className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-16 z-40 flex-col items-center transition-all duration-300 ease-out"
             style={{ top: `${truckProgress}%` }}
@@ -179,10 +179,6 @@ const LearningPathPage = () => {
               <div className="absolute -inset-4 bg-signal-gold/20 rounded-full blur-xl animate-pulse opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="bg-authority-blue dark:bg-signal-gold text-white dark:text-authority-blue p-2.5 rounded-xl shadow-2xl rotate-180 border-2 border-white/20">
                 <TruckIcon size={24} fill="currentColor" />
-              </div>
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full flex flex-col items-center space-y-1 opacity-40">
-                <div className="w-1 h-1 bg-slate-300 rounded-full animate-ping"></div>
-                <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-ping [animation-delay:0.2s]"></div>
               </div>
             </div>
           </div>
@@ -197,10 +193,8 @@ const LearningPathPage = () => {
                 <div className={`w-2 h-2 ${phase.accent} rounded-full`}></div>
               </div>
               
-              {/* Horizontal Anchor Connector */}
               <div className={`hidden md:block absolute top-1/2 h-0.5 bg-authority-blue/10 dark:bg-slate-800 z-10 ${idx % 2 !== 0 ? 'right-1/2 w-16' : 'left-1/2 w-16'}`}></div>
 
-              {/* Schematic Phase Label - Only Number Displayed */}
               <div className={`absolute left-0 md:left-1/2 -translate-x-1/2 -translate-y-24 flex flex-col items-center z-30`}>
                 <span className={`text-[12px] font-black tracking-[0.2em] ${phase.color} opacity-80 uppercase bg-primary-light dark:bg-primary-dark px-5 py-2 border border-slate-100 dark:border-slate-800 rounded-full shadow-sm`}>
                   {phase.number}
@@ -211,7 +205,7 @@ const LearningPathPage = () => {
               
               {/* Implementation Card */}
               <div className="w-full md:w-[48%] pl-20 md:pl-0 animate-reveal-up" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <div className={`bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3rem] border-t-8 ${phase.color.replace('text-', 'border-')} border-x border-b border-slate-200 dark:border-border-dark shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden group hover:${phase.shadow} transition-all duration-700`}>
+                <div className={`bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3rem] border-t-8 ${phase.color.replace('text-', 'border-')} border-x border-b border-slate-200 dark:border-border-dark shadow-sm relative overflow-hidden group transition-all duration-700`}>
                   <div className={`absolute -top-10 -right-10 p-10 ${phase.color} opacity-[0.03] dark:opacity-[0.05] rotate-12 transition-transform duration-700 group-hover:rotate-0`}>
                     {React.cloneElement(phase.icon as React.ReactElement, { size: 180 })}
                   </div>
@@ -246,7 +240,7 @@ const LearningPathPage = () => {
                     className={`w-full py-5 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] flex items-center justify-center space-x-3 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-800 hover:${phase.accent} hover:text-white hover:${phase.color.replace('text-', 'border-')} transition-all relative z-10 shadow-sm active:scale-[0.98]`}
                   >
                     <Lock className="w-3.5 h-3.5 mr-2 opacity-50" />
-                    <span>View Procedural Protocol</span>
+                    <span>Access Implementation Protocols</span>
                   </button>
                 </div>
               </div>
@@ -255,36 +249,25 @@ const LearningPathPage = () => {
         </div>
       </section>
 
-      {/* Enhanced Schematic Completion Seal */}
+      {/* Institutional Completion Seal */}
       <section className="py-48 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(30,58,95,0.03),transparent_70%)]"></div>
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="flex flex-col items-center stagger-parent">
-            {/* Verified Badge Icon */}
             <div className="w-24 h-24 bg-white dark:bg-surface-dark rounded-[2.5rem] border-2 border-slate-100 dark:border-slate-800 flex items-center justify-center mb-10 shadow-2xl relative stagger-item">
-              <div className="absolute inset-0 bg-authority-blue/5 rounded-[2.5rem] animate-pulse"></div>
               <ShieldCheck size={44} className="text-authority-blue dark:text-signal-gold relative z-10" />
             </div>
 
-            {/* Verification Status */}
             <div className="inline-flex items-center space-x-3 bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20 px-5 py-2 rounded-full mb-8 stagger-item">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-green-600 dark:text-green-400">STATUS: SYSTEM STABLE</span>
             </div>
 
-            {/* The Specific Requested Text - Enhanced Wrapper */}
             <div className="relative py-12 px-8 border-y-2 border-slate-100 dark:border-slate-800 stagger-item">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary-light dark:bg-primary-dark px-6">
-                <Scale size={18} className="text-slate-300 dark:text-slate-700" />
-              </div>
               <p className="text-[13px] md:text-[15px] font-black uppercase tracking-[0.6em] text-authority-blue dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
                 End of Schematic Path <br className="md:hidden" />
                 <span className="hidden md:inline mx-2 text-slate-200 dark:text-slate-800 opacity-50">//</span> 
                 Implementation Sequence Complete
               </p>
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary-light dark:bg-primary-dark px-6">
-                <Scale size={18} className="text-slate-300 dark:text-slate-700" />
-              </div>
             </div>
 
             <p className="mt-12 text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase tracking-[0.25em] stagger-item">
@@ -303,8 +286,8 @@ const LearningPathPage = () => {
               <Lock size={40} className="text-authority-blue opacity-20" />
             </div>
             <h3 className="text-3xl font-black font-serif uppercase mb-6 text-authority-blue dark:text-white tracking-tight">Admission Required</h3>
-            <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium mb-12 leading-relaxed">Verification of admission is required to access structural assets and procedural walkthroughs.</p>
-            <Link to="/pricing" className="w-full block bg-authority-blue text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95">Review Admission Protocol</Link>
+            <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium mb-12 leading-relaxed">Classification verification is required to reference structural protocols and technical safety files.</p>
+            <Link to="/pricing" className="w-full block bg-authority-blue text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95">Initiate Admission Protocol</Link>
           </div>
         </div>
       )}

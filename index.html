@@ -52,7 +52,7 @@
               'surface-dark': '#0F172A',
               'text-primary': '#1F2933',
               'text-muted': '#64748B',
-              'text-dark-primary': '#E5E7EB',
+              'text-dark-primary': '#E2E8F0',
               'text-dark-muted': '#94A3B8',
               'border-light': '#CBD5E1',
               'border-dark': '#1E293B',
@@ -64,7 +64,7 @@
             },
             keyframes: {
               revealUp: {
-                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
               },
               fadeIn: {
@@ -72,19 +72,14 @@
                 '100%': { opacity: '1' },
               },
               scaleIn: {
-                '0%': { opacity: '0', transform: 'scale(0.95)' },
+                '0%': { opacity: '0', transform: 'scale(0.98)' },
                 '100%': { opacity: '1', transform: 'scale(1)' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0px)' },
-                '50%': { transform: 'translateY(-10px)' },
               }
             },
             animation: {
-              'reveal-up': 'revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-              'fade-in': 'fadeIn 0.5s ease-out forwards',
-              'scale-in': 'scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-              'float': 'float 6s ease-in-out infinite',
+              'reveal-up': 'revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'fade-in': 'fadeIn 0.8s ease-out forwards',
+              'scale-in': 'scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             }
           }
         }
@@ -92,30 +87,45 @@
     </script>
     <style>
       html { scroll-behavior: smooth; }
-      body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
-      h1, h2, h3, h4, h5, h6 { font-family: 'IBM Plex Sans', sans-serif; letter-spacing: -0.01em; }
+      body { 
+        font-family: 'Inter', sans-serif; 
+        -webkit-font-smoothing: antialiased; 
+        line-height: 1.75; 
+        text-rendering: optimizeLegibility;
+      }
+      h1, h2, h3, h4, h5, h6 { 
+        font-family: 'IBM Plex Sans', sans-serif; 
+        letter-spacing: -0.015em; 
+      }
       
+      /* Accessibility Focus States */
+      :focus-visible {
+        outline: 3px solid #d4af37;
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
       .quill { background: white; border-radius: 0.75rem; overflow: hidden; }
       .ql-toolbar { border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; }
       .ql-container { border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem; min-height: 200px; font-family: 'Inter', sans-serif; }
 
-      /* Institutional spacing */
+      /* Institutional spacing and readability */
       p, li { max-width: 75ch; }
 
-      /* Scrollbar Styling */
-      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      /* Reduced Glare Scrollbar */
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
       ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
-      .dark ::-webkit-scrollbar-thumb { background: #1E293B; }
+      ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+      .dark ::-webkit-scrollbar-thumb { background: #1E293B; border-color: #020617; }
       ::-webkit-scrollbar-thumb:hover { background: #1e3a5f; }
 
       .stagger-item { opacity: 0; }
-      .stagger-parent .stagger-item:nth-child(1) { animation: revealUp 0.6s 0.1s forwards; }
-      .stagger-parent .stagger-item:nth-child(2) { animation: revealUp 0.6s 0.2s forwards; }
-      .stagger-parent .stagger-item:nth-child(3) { animation: revealUp 0.6s 0.3s forwards; }
-      .stagger-parent .stagger-item:nth-child(4) { animation: revealUp 0.6s 0.4s forwards; }
-      .stagger-parent .stagger-item:nth-child(5) { animation: revealUp 0.6s 0.5s forwards; }
-      .stagger-parent .stagger-item:nth-child(6) { animation: revealUp 0.6s 0.6s forwards; }
+      .stagger-parent .stagger-item:nth-child(1) { animation: revealUp 0.8s 0.1s forwards; }
+      .stagger-parent .stagger-item:nth-child(2) { animation: revealUp 0.8s 0.2s forwards; }
+      .stagger-parent .stagger-item:nth-child(3) { animation: revealUp 0.8s 0.3s forwards; }
+      .stagger-parent .stagger-item:nth-child(4) { animation: revealUp 0.8s 0.4s forwards; }
+      .stagger-parent .stagger-item:nth-child(5) { animation: revealUp 0.8s 0.5s forwards; }
+      .stagger-parent .stagger-item:nth-child(6) { animation: revealUp 0.8s 0.6s forwards; }
     </style>
 <script type="importmap">
 {
@@ -134,7 +144,7 @@
 }
 </script>
 </head>
-<body class="bg-primary-light text-text-primary dark:bg-primary-dark dark:text-text-dark-primary transition-colors duration-300">
+<body class="bg-primary-light text-text-primary dark:bg-primary-dark dark:text-text-dark-primary transition-colors duration-500">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>

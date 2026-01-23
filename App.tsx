@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -14,7 +15,11 @@ import {
   ArrowRight,
   ShieldCheck,
   Award,
-  ExternalLink
+  ExternalLink,
+  Shield,
+  Anchor,
+  CheckCircle,
+  Lock
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -106,7 +111,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-32 sm:h-44">
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
@@ -128,8 +133,8 @@ const Header = () => {
             <div className="flex items-center space-x-6 pl-6 border-l border-border-light dark:border-border-dark">
               <button
                 onClick={toggleTheme}
-                className="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
-                aria-label="Toggle Theme"
+                className="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-signal-gold"
+                aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               >
                 {theme === 'light' ? <Moon className="w-7 h-7 text-authority-blue" /> : <Sun className="w-7 h-7 text-signal-gold" />}
               </button>
@@ -180,6 +185,28 @@ const VeteranBadge = () => (
   </div>
 );
 
+const SDVOSBBadge = () => (
+  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
+    <div className="flex items-center space-x-1 mb-1">
+      <Shield size={14} className="text-signal-gold" />
+      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">SDVOSB</span>
+    </div>
+    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
+    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">SERVICE-DISABLED VET</span>
+  </div>
+);
+
+const KingdomBadge = () => (
+  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
+    <div className="flex items-center space-x-1 mb-1">
+      <Anchor size={14} className="text-signal-gold" />
+      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">KINGDOM BUSINESS</span>
+    </div>
+    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
+    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">STEWARDSHIP FOCUSED</span>
+  </div>
+);
+
 const OSHABadge = () => (
   <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
     <div className="flex items-center space-x-1 mb-1">
@@ -187,7 +214,18 @@ const OSHABadge = () => (
       <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">OSHA-TRAINED</span>
     </div>
     <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
-    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">SAFETY SYSTEMS BACKGROUND</span>
+    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">SAFETY SYSTEMS</span>
+  </div>
+);
+
+const AuditReadyBadge = () => (
+  <div className="flex flex-col items-center justify-center p-3 border-2 border-emerald-500 bg-white rounded-xl w-[140px] shadow-lg">
+    <div className="flex items-center space-x-1 mb-1">
+      <CheckCircle size={14} className="text-emerald-600" />
+      <span className="text-[9px] font-black text-emerald-900 uppercase tracking-widest text-center leading-none">AUDIT READY</span>
+    </div>
+    <div className="h-px w-full bg-emerald-100 mb-1"></div>
+    <span className="text-[8px] font-bold text-emerald-700/60 uppercase text-center leading-none">FMCSA COMPLIANT</span>
   </div>
 );
 
@@ -197,8 +235,8 @@ const Footer = () => {
 
   return (
     <footer className="w-full font-sans">
-      {/* SECTION 2: FOOTER NAVIGATION - Cleaned up to match Governance Policy */}
-      <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5">
+      {/* SECTION 2: FOOTER NAVIGATION */}
+      <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5 transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Navigation">
             {/* FOUNDATION */}
@@ -275,7 +313,7 @@ const Footer = () => {
       </section>
 
       {/* SECTION 3: BOTTOM BAR */}
-      <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/10 py-10">
+      <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/10 py-10 transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
             
@@ -299,9 +337,20 @@ const Footer = () => {
 
             {/* RIGHT SIDE: Badges & Social */}
             <div className="flex flex-col items-center lg:items-end shrink-0 w-full lg:w-auto">
-              <div className="flex flex-wrap justify-center lg:justify-end gap-6 mb-10">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
                 <VeteranBadge />
+                <SDVOSBBadge />
+                <KingdomBadge />
                 <OSHABadge />
+                <AuditReadyBadge />
+                <div className="flex flex-col items-center justify-center p-3 border-2 border-white/20 bg-white/5 rounded-xl w-[140px] shadow-lg">
+                   <div className="flex items-center space-x-1 mb-1">
+                     <Lock size={14} className="text-signal-gold" />
+                     <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">SECURE SSL</span>
+                   </div>
+                   <div className="h-px w-full bg-white/10 mb-1"></div>
+                   <span className="text-[8px] font-bold text-white/40 uppercase text-center leading-none">256-BIT ENCRYPTED</span>
+                </div>
               </div>
               
               <div className="flex items-center gap-8">
@@ -330,12 +379,22 @@ const Footer = () => {
 };
 
 export default function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  });
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
   const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [formSubmissions, setFormSubmissions] = useState<any[]>([]);
   const [appLoading, setAppLoading] = useState(true);
+
+  useEffect(() => {
+    if (theme === 'dark') document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [theme]);
 
   useEffect(() => {
     if (!isFirebaseConfigured || !db) {
@@ -358,10 +417,7 @@ export default function App() {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    if (newTheme === 'dark') document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
   if (appLoading) return (
