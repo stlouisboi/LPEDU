@@ -48,22 +48,28 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
     try {
-      if (db) {
-        await addDoc(collection(db, "leadMagnets"), {
-          firstName: formData.firstName || 'Carrier',
-          email: formData.email,
-          downloadedAt: serverTimestamp(),
-          source: "risk-assessment-hero"
-        });
+      if (!db) {
+        throw new Error("Synchronization service is temporarily unavailable. Please check your connection.");
       }
+
+      await addDoc(collection(db, "leadMagnets"), {
+        firstName: formData.firstName || 'Carrier',
+        email: formData.email,
+        downloadedAt: serverTimestamp(),
+        source: "risk-assessment-hero"
+      });
+      
       navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`);
-    } catch (error) {
-      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`);
+    } catch (err: any) {
+      console.error("Submission Error:", err);
+      setError(err.message || "We encountered a technical issue transmitting your request. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -140,6 +146,12 @@ const HomePage: React.FC = () => {
                   Gain the visibility required for disciplined stewardship of your operating authority.
                 </p>
                 <form onSubmit={handleLeadSubmit} className="space-y-6">
+                  {error && (
+                    <div className="p-4 bg-red-50 border border-red-100 rounded-2xl flex items-start space-x-3 animate-in fade-in slide-in-from-top-2">
+                      <AlertCircle className="text-red-600 shrink-0 mt-0.5" size={16} />
+                      <p className="text-[11px] font-bold text-red-700 leading-tight">{error}</p>
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue ml-4">Full Legal Name</label>
                     <input 
@@ -467,32 +479,87 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9.5 INTERACTIVE STUDENT TOOLS */}
+      {/* 9.5 INTERACTIVE STUDENT TOOLS (ENHANCED SOFTWARE SUITE DESIGN) */}
       <section className="py-32 bg-slate-50 dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">Interactive Student Tools</h2>
-          <p className="text-lg text-text-muted font-bold max-w-2xl mx-auto mb-20 leading-relaxed italic">Other courses give you static documents. LaunchPath gives you professional financial software calculators.</p>
+          <div className="inline-flex items-center space-x-3 mb-8">
+            <div className="h-px w-8 bg-authority-blue opacity-20"></div>
+            <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Interactive <span className="text-signal-gold italic">Software Suite</span></h2>
+            <div className="h-px w-8 bg-authority-blue opacity-20"></div>
+          </div>
+          <p className="text-lg text-text-muted font-bold max-w-2xl mx-auto mb-20 leading-relaxed italic">
+            Static documents create gaps. Professional software creates certainty. LaunchPath students implementation using proprietary cloud tools.
+          </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
             {[
-              { t: "Cost-Per-Mile Calculator", d: "Know your 'break-even' before you book a load.", i: <Calculator size={32} /> },
-              { t: "True Cost of Ownership Tool", d: "Forecast maintenance and depreciation accurately.", i: <TrendingDown size={32} /> },
-              { t: "Premium Payment Tracker", d: "Maintain Pillar 2 (Insurance) with automated reminders.", i: <Calendar size={32} /> }
+              { 
+                t: "Cost-Per-Mile Calculator", 
+                d: "Verify your break-even floor across all variable and fixed operational costs.", 
+                i: <Calculator size={32} />,
+                out: "Break-Even CPM",
+                tag: "FISCAL STABILITY"
+              },
+              { 
+                t: "True Cost of Ownership Tool", 
+                d: "Dynamic maintenance and asset depreciation forecasting for multi-unit fleets.", 
+                i: <BarChart3 size={32} />,
+                out: "Asset Net Yield",
+                tag: "CAPITAL PROTECTION"
+              },
+              { 
+                t: "Pillar 2 Continuity Tracker", 
+                d: "Automated alert system for insurance premium cycles and MCS-150 biennial updates.", 
+                i: <Calendar size={32} />,
+                out: "Authority Health Score",
+                tag: "CONTINUITY"
+              }
             ].map((tool, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[4rem] border border-border-light shadow-sm group hover:shadow-xl transition-all flex flex-col items-center">
-                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform text-authority-blue">
-                  {tool.i}
+              <div key={i} className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] border-4 border-white dark:border-border-dark shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] group hover:shadow-[0_50px_100px_-20px_rgba(30,58,95,0.15)] transition-all duration-500 flex flex-col h-full relative overflow-hidden text-left">
+                {/* Software Branding Elements */}
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                  <Monitor size={120} />
                 </div>
-                <h3 className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-white mb-4">{tool.t}</h3>
-                <p className="text-xs text-text-muted font-bold leading-relaxed">{tool.d}</p>
+                
+                <div className="flex justify-between items-start mb-10">
+                  <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-3xl flex items-center justify-center text-authority-blue dark:text-signal-gold shadow-inner group-hover:scale-110 transition-transform duration-500">
+                    {tool.i}
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-green-500 bg-green-50 px-2.5 py-1 rounded-md mb-2 flex items-center">
+                      <Zap size={10} className="mr-1" /> CLOUD SYNCED
+                    </span>
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-300">LP-S0{i+1}</span>
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue/40 mb-3">{tool.tag}</h3>
+                  <h4 className="text-2xl font-black uppercase tracking-tight text-authority-blue dark:text-white leading-tight font-serif group-hover:text-signal-gold transition-colors">{tool.t}</h4>
+                </div>
+
+                <p className="text-sm text-text-muted font-bold leading-relaxed mb-10">{tool.d}</p>
+
+                <div className="mt-auto pt-8 border-t border-slate-50 dark:border-border-dark flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Primary Output</span>
+                    <span className="text-sm font-black text-authority-blue dark:text-white uppercase">{tool.out}</span>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-authority-blue/5 flex items-center justify-center text-authority-blue dark:text-signal-gold opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                    <ArrowRight size={20} />
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          <Link to="/resources" className="inline-flex items-center space-x-3 text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold hover:opacity-70 transition-opacity">
-            <span>Explore All Tools</span>
-            <ArrowRight size={14} />
-          </Link>
+          <div className="flex flex-col items-center">
+            <Link to="/resources" className="inline-flex items-center space-x-4 bg-white border-4 border-authority-blue text-authority-blue px-14 py-6 rounded-3xl font-black uppercase tracking-[0.25em] text-xs hover:bg-authority-blue hover:text-white transition-all shadow-xl active:scale-95 group">
+              <span>Access Master Suite</span>
+              <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+            </Link>
+            <p className="text-[10px] mt-8 font-black uppercase tracking-[0.4em] text-slate-400">Restricted to Admitted Members & Approved Authorities</p>
+          </div>
         </div>
       </section>
 
@@ -672,5 +739,13 @@ const HomePage: React.FC = () => {
     </div>
   );
 };
+
+const Monitor = ({ size, className }: { size: number, className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect width="20" height="14" x="2" y="3" rx="2" ry="2"/>
+    <line x1="8" x2="16" y1="21" y2="21"/>
+    <line x1="12" x2="12" y1="17" y2="21"/>
+  </svg>
+);
 
 export default HomePage;
