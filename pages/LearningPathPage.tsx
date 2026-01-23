@@ -17,7 +17,9 @@ import {
   Activity,
   Layers,
   ChevronRight,
-  Truck as TruckIcon
+  Truck as TruckIcon,
+  Shield,
+  Award
 } from 'lucide-react';
 import { COURSE_MODULES } from '../constants';
 import { useAuth } from '../AuthContext';
@@ -122,9 +124,6 @@ const LearningPathPage = () => {
       const rect = element.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
-      // Calculate scroll progress through the roadmap container
-      // We aim for the truck to be at 0% when the container top reaches the middle of the screen
-      // and 100% when the container bottom reaches the middle of the screen.
       const triggerPoint = windowHeight / 2;
       const totalDist = rect.height;
       const currentDist = triggerPoint - rect.top;
@@ -135,7 +134,7 @@ const LearningPathPage = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
+    handleScroll(); 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
@@ -176,13 +175,11 @@ const LearningPathPage = () => {
             className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-16 z-40 flex-col items-center transition-all duration-300 ease-out"
             style={{ top: `${truckProgress}%` }}
           >
-            {/* The Truck Body */}
             <div className="relative group">
               <div className="absolute -inset-4 bg-signal-gold/20 rounded-full blur-xl animate-pulse opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="bg-authority-blue dark:bg-signal-gold text-white dark:text-authority-blue p-2.5 rounded-xl shadow-2xl rotate-180 border-2 border-white/20">
                 <TruckIcon size={24} fill="currentColor" />
               </div>
-              {/* Exhaust particles logic or glow */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full flex flex-col items-center space-y-1 opacity-40">
                 <div className="w-1 h-1 bg-slate-300 rounded-full animate-ping"></div>
                 <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-ping [animation-delay:0.2s]"></div>
@@ -215,7 +212,6 @@ const LearningPathPage = () => {
               {/* Implementation Card */}
               <div className="w-full md:w-[48%] pl-20 md:pl-0 animate-reveal-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                 <div className={`bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3rem] border-t-8 ${phase.color.replace('text-', 'border-')} border-x border-b border-slate-200 dark:border-border-dark shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden group hover:${phase.shadow} transition-all duration-700`}>
-                  {/* Decorative Background Icon */}
                   <div className={`absolute -top-10 -right-10 p-10 ${phase.color} opacity-[0.03] dark:opacity-[0.05] rotate-12 transition-transform duration-700 group-hover:rotate-0`}>
                     {React.cloneElement(phase.icon as React.ReactElement, { size: 180 })}
                   </div>
@@ -259,6 +255,45 @@ const LearningPathPage = () => {
         </div>
       </section>
 
+      {/* Enhanced Schematic Completion Seal */}
+      <section className="py-48 px-4 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(30,58,95,0.03),transparent_70%)]"></div>
+        <div className="max-w-3xl mx-auto relative z-10">
+          <div className="flex flex-col items-center stagger-parent">
+            {/* Verified Badge Icon */}
+            <div className="w-24 h-24 bg-white dark:bg-surface-dark rounded-[2.5rem] border-2 border-slate-100 dark:border-slate-800 flex items-center justify-center mb-10 shadow-2xl relative stagger-item">
+              <div className="absolute inset-0 bg-authority-blue/5 rounded-[2.5rem] animate-pulse"></div>
+              <ShieldCheck size={44} className="text-authority-blue dark:text-signal-gold relative z-10" />
+            </div>
+
+            {/* Verification Status */}
+            <div className="inline-flex items-center space-x-3 bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20 px-5 py-2 rounded-full mb-8 stagger-item">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-green-600 dark:text-green-400">STATUS: SYSTEM STABLE</span>
+            </div>
+
+            {/* The Specific Requested Text - Enhanced Wrapper */}
+            <div className="relative py-12 px-8 border-y-2 border-slate-100 dark:border-slate-800 stagger-item">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary-light dark:bg-primary-dark px-6">
+                <Scale size={18} className="text-slate-300 dark:text-slate-700" />
+              </div>
+              <p className="text-[13px] md:text-[15px] font-black uppercase tracking-[0.6em] text-authority-blue dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
+                End of Schematic Path <br className="md:hidden" />
+                <span className="hidden md:inline mx-2 text-slate-200 dark:text-slate-800 opacity-50">//</span> 
+                Implementation Sequence Complete
+              </p>
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary-light dark:bg-primary-dark px-6">
+                <Scale size={18} className="text-slate-300 dark:text-slate-700" />
+              </div>
+            </div>
+
+            <p className="mt-12 text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase tracking-[0.25em] stagger-item">
+              LaunchPath Standard Operating Registry • Document Ref ID: LP-OP-90-V4
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Modal - Preservation of Admission Protocol */}
       {enrollmentModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in" onClick={() => setEnrollmentModalOpen(false)}>
@@ -273,17 +308,6 @@ const LearningPathPage = () => {
           </div>
         </div>
       )}
-
-      {/* Schematic Footer Note */}
-      <section className="py-32 text-center relative">
-         <div className="max-w-2xl mx-auto border-t border-slate-100 dark:border-slate-800 pt-16">
-           <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-300 dark:text-slate-800 flex items-center justify-center">
-             <Scale size={14} className="mr-4 opacity-50" />
-             <span>End of Schematic Path // Implementation Sequence Complete</span>
-             <Scale size={14} className="ml-4 opacity-50" />
-           </p>
-         </div>
-      </section>
     </div>
   );
 };

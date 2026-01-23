@@ -41,7 +41,10 @@ import {
   AlertTriangle,
   GraduationCap,
   Bookmark,
-  Monitor
+  Monitor,
+  ArrowDown,
+  ArrowUp,
+  ArrowLeft
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -390,7 +393,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. THE REACH TEST™ */}
+      {/* 7. THE REACH TEST™ (UPDATED TO MATCH IMAGE REFERENCE) */}
       <section id="reach-test" className="py-32 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
           <div className="inline-flex items-center space-x-6 text-authority-blue dark:text-signal-gold mb-10">
@@ -405,17 +408,42 @@ const HomePage: React.FC = () => {
             "Your business remains structurally sound under federal pressure."
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
              {[
-               { l: "Over", t: "FMCSA Regulatory Violations", i: <TrendingDown className="rotate-180" size={48} /> },
-               { l: "Around", t: "Insurance Cancellations", i: <Zap size={48} /> },
-               { l: "Through", t: "Internal System Auditors", i: <Search size={48} /> },
-               { l: "Under", t: "Financial Foundation Collapse", i: <DollarSign size={48} /> }
+               { 
+                 label: "OVER", 
+                 title: "FMCSA Regulatory Violations", 
+                 description: "Critical violations that bypass standard safety filters.",
+                 icon: <ArrowDown size={32} /> 
+               },
+               { 
+                 label: "AROUND", 
+                 title: "Insurance Cancellations", 
+                 description: "Administrative lapses that trigger sudden loss of coverage.",
+                 icon: <ArrowRight size={32} /> 
+               },
+               { 
+                 label: "THROUGH", 
+                 title: "Internal System Auditors", 
+                 description: "Data inconsistencies found during roadside inspections.",
+                 icon: <ArrowLeft size={32} /> 
+               },
+               { 
+                 label: "UNDER", 
+                 title: "Financial Foundation Collapse", 
+                 description: "Cash-flow deficits that compromise operational safety.",
+                 icon: <ArrowUp size={32} /> 
+               }
              ].map((item, i) => (
-               <div key={i} className="bg-slate-50 dark:bg-surface-dark p-14 rounded-[4rem] border-4 border-slate-100 flex flex-col items-center justify-center text-center group hover:bg-white hover:border-authority-blue transition-all shadow-lg">
-                  <div className="text-authority-blue dark:text-signal-gold mb-10 transition-transform group-hover:scale-125 duration-500">{item.i}</div>
-                  <h4 className="font-black text-2xl uppercase text-authority-blue dark:text-white mb-3">{item.t}</h4>
-                  <span className="text-[14px] font-black uppercase tracking-[0.6em] text-slate-400">{item.l}</span>
+               <div key={i} className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark flex items-start gap-8 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all hover:shadow-xl group">
+                  <div className="w-16 h-16 shrink-0 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center text-signal-gold group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue/60 dark:text-slate-400 mb-2 block">{item.label}</span>
+                    <h4 className="font-black text-xl lg:text-2xl uppercase text-authority-blue dark:text-white mb-3 leading-tight font-serif tracking-tight">{item.title}</h4>
+                    <p className="text-sm lg:text-base text-text-muted font-bold leading-relaxed">{item.description}</p>
+                  </div>
                </div>
              ))}
           </div>
@@ -746,5 +774,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-// Fixed the default export to match component name
 export default HomePage;

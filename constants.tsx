@@ -16,12 +16,13 @@ import { BlogPost, RoadmapStep, SiteSettings, CourseModule, Testimonial } from '
 export const INITIAL_SETTINGS: SiteSettings = {
   siteName: "LaunchPath™",
   tagline: "Accuracy Over Hype.™",
-  heroTitle: "Build Your Trucking Business on The Four Pillars of Survival",
-  heroSubtitle: "Compliance-first systems for new owner-operators. Navigate your first 90 days and survive the critical 18-month New Entrant phase.",
+  heroTitle: "Protect Your Authority With Order and Certainty.",
+  heroSubtitle: "Compliance-first systems for new motor carriers. Navigate the first 90 days and satisfy the critical 18-month New Entrant phase.",
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
   metaDescription: "Professional carrier compliance education for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
   logoUrl: "https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/logo.png", 
+  googleAnalyticsId: "G-LP-VET-2025",
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,
   contact: {
@@ -72,69 +73,56 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
 export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 0, 
-    title: "Ground 0: The Mindset Module", 
-    description: "The prerequisite foundation. Identify if you have the discipline required to operate before filing authority.", 
+    title: "Ground 0: The Discipline Standard", 
+    description: "The prerequisite foundation. Verify operational discipline and business framework before filing authority.", 
     lessons: 6, 
     duration: "2 Hours", 
     resourcesCount: 3, 
     toolsCount: 2,
     pillar: "Authority",
     difficulty: "Foundation",
-    reachTest: "If you fail to define your 'Why' and risk profile here, you will lose your investment before you even buy a truck."
+    reachTest: "Failure to define a rigorous risk profile here will result in loss of investment before operational commencement."
   },
   { 
     id: 1, 
-    title: "Business & Authority Setup", 
-    description: "Laying the legal foundation. DOT vs MC strategy and proper carrier identity configuration.", 
+    title: "Authority Protection Protocols", 
+    description: "Laying the legal foundation. USDOT vs MC strategy and proper carrier identity configuration.", 
     lessons: 8, 
     duration: "4 Hours", 
     resourcesCount: 5, 
     toolsCount: 3,
     pillar: "Authority",
     difficulty: "Foundation",
-    reachTest: "Incorrect filing status or missing BOC-3s can lead to an immediate 21-day authority suspension."
+    reachTest: "Incorrect filing status or missing BOC-3s results in immediate 21-day authority suspension."
   },
   { 
     id: 2, 
-    title: "Insurance Survival", 
-    description: "Navigating your highest expense. Avoid cancellation triggers and manage coverage like a pro.", 
+    title: "Insurance Continuity Systems", 
+    description: "Navigating primary liability and cargo coverage. Manage the carrier-insurer relationship like a pro.", 
     lessons: 5, 
     duration: "3 Hours", 
     resourcesCount: 4, 
     toolsCount: 2,
     pillar: "Insurance",
     difficulty: "Critical",
-    reachTest: "One insurance cancellation due to non-disclosure can make your authority uninsurable for 3 years."
+    reachTest: "One insurance cancellation due to non-disclosure can make an authority uninsurable for 36 months."
   },
   { 
     id: 3, 
-    title: "Compliance Backbone", 
-    description: "The technical system. Building DQ files, Clearinghouse accounts, and HOS policies that pass inspections.", 
+    title: "Compliance Backbone Installation", 
+    description: "Technical safety management. Building DQ files, Clearinghouse accounts, and HOS policies that pass inspections.", 
     lessons: 10, 
     duration: "6 Hours", 
     resourcesCount: 12, 
     toolsCount: 5,
     pillar: "Compliance",
     difficulty: "Critical",
-    reachTest: "Missing one pre-employment drug test results in an automatic 'Unsatisfactory' safety rating."
+    reachTest: "Missing one pre-employment drug test results in an automatic 'Unsatisfactory' federal safety rating."
   },
   { 
     id: 4, 
-    title: "New Entrant Audit Preparation", 
-    description: "Surviving the federal investigation. Step-by-step prep for the 48-hour audit window.", 
-    lessons: 7, 
-    duration: "4 Hours", 
-    resourcesCount: 8, 
-    toolsCount: 4,
-    pillar: "Compliance",
-    difficulty: "Critical",
-    warning: "80% FAIL RATE WITHOUT A SYSTEM",
-    reachTest: "Failing your New Entrant Audit results in permanent authority revocation and a business restart."
-  },
-  { 
-    id: 5, 
-    title: "Load Discipline & Cash Flow", 
-    description: "Managing the Money Loop. Solvent operations during the 30-60 day payment gap.", 
+    title: "Cash-Flow Oxygen Protocols", 
+    description: "Outcome: Establish 30-day operational solvency protocols during the initial payment gaps.", 
     lessons: 6, 
     duration: "3 Hours", 
     resourcesCount: 5, 
@@ -142,19 +130,32 @@ export const COURSE_MODULES: CourseModule[] = [
     pillar: "Cash-Flow",
     isCritical: true,
     difficulty: "Critical",
-    reachTest: "Cash-flow mismanagement is the #1 reason carriers with active loads go bankrupt in their first year."
+    reachTest: "Fiscal mismanagement is the primary driver of carrier bankruptcy during the first 12 months of operation."
+  },
+  { 
+    id: 5, 
+    title: "Audit Readiness Standards", 
+    description: "Surviving the federal New Entrant investigation. Formal preparation for the 48-hour audit window.", 
+    lessons: 7, 
+    duration: "4 Hours", 
+    resourcesCount: 8, 
+    toolsCount: 4,
+    pillar: "Compliance",
+    difficulty: "Critical",
+    warning: "80% FAIL RATE WITHOUT A SYSTEM",
+    reachTest: "Failing the New Entrant Audit results in permanent authority revocation and mandatory business restart."
   },
   { 
     id: 6, 
-    title: "Stabilization & Long-Term Success", 
-    description: "Scaling with integrity. Annual filings, CSA score monitoring, and fleet expansion strategies.", 
+    title: "Stabilization & Scale Protocols", 
+    description: "Outcome: Formalize stabilization protocols for scalable operations and fleet expansion.", 
     lessons: 4, 
     duration: "2 Hours", 
     resourcesCount: 3, 
     toolsCount: 2,
     pillar: "Authority",
     difficulty: "Advanced",
-    reachTest: "Ignoring your CSA scores after the first year will eventually spike your insurance by 400%."
+    reachTest: "Ignoring CSA score monitoring after the first year often leads to a 400% increase in premium costs."
   }
 ];
 
