@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -459,9 +460,9 @@ const HomePage: React.FC = () => {
                 { m: "Module 1", t: "Authority Protection", d: "Outcome: Secure your DOT/MC credentials." },
                 { m: "Module 2", t: "Insurance Continuity", d: "Outcome: Manage the carrier-insurer relationship." },
                 { m: "Module 3", t: "Compliance Backbone", d: "Outcome: Meet audit expectations for DQ and maintenance files." },
-                { m: "Module 4", t: "Cash-Flow Oxygen", d: "Outcome: Master the 30-day solvency loop." },
+                { m: "Module 4", t: "Cash-Flow Oxygen", d: "Outcome: Establish 30-day operational solvency protocols." },
                 { m: "Module 5", t: "Audit Readiness", d: "Outcome: Meet expectations for the new entrant safety audit." },
-                { m: "Module 6", t: "Stabilization & Scale", d: "Outcome: Prepare for long-term fleet growth." }
+                { m: "Module 6", t: "Stabilization & Scale", d: "Outcome: Formalize stabilization protocols for scalable operations." }
               ].map((mod, i) => (
                 <div key={i} className="relative pt-10">
                    <div className="absolute top-0 left-0 w-8 h-[2px] bg-signal-gold -translate-y-10"></div>
@@ -490,7 +491,7 @@ const HomePage: React.FC = () => {
             <div className="h-px w-8 bg-authority-blue opacity-20"></div>
           </div>
           <p className="text-lg text-text-muted font-bold max-w-2xl mx-auto mb-20 leading-relaxed italic">
-            Static documents create gaps. Professional software creates certainty. LaunchPath students implementation using proprietary cloud tools.
+            The LaunchPath standard replaces static documentation with dynamic operational tools designed for financial precision and regulatory transparency.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
@@ -598,7 +599,7 @@ const HomePage: React.FC = () => {
                   {[
                     "Experienced operators (2+ years) looking for advanced logistics",
                     "Anyone seeking dispatching or load-finding services",
-                    "Anyone looking for rapid financial promises",
+                    "Entities seeking speculative financial outcomes or expedited growth without regulatory discipline.",
                     "Anyone looking for legal, tax, or financial advice"
                   ].map((item, i) => (
                     <div key={i} className="flex items-start space-x-4 opacity-60">
@@ -629,6 +630,9 @@ const HomePage: React.FC = () => {
                      <span className="text-[10rem] font-black leading-none tracking-tighter drop-shadow-xl">1,500</span>
                   </div>
                   <p className="text-[14px] font-black uppercase tracking-[0.5em] text-slate-400 mt-10">One-Time Implementation Investment</p>
+                  <p className="text-[11px] font-bold text-slate-500 mt-4 max-w-md leading-relaxed">
+                    Current investment policy reflects the present system maturity; fees are subject to adjustment as additional institutional protocols are integrated.
+                  </p>
                </div>
                
                <div className="pt-10 flex flex-col items-center space-y-10">
