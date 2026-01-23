@@ -20,7 +20,6 @@ import {
   Loader2,
   Mail,
   Scale,
-  // Added missing Zap, ShieldAlert, and Truck icons to resolve compilation errors
   Zap,
   ShieldAlert,
   Truck
@@ -100,7 +99,7 @@ const QUESTIONS: Question[] = [
     id: 'awareness',
     text: "How familiar are you with FMCSA regulations, DOT authority requirements, and the New Entrant Safety Audit?",
     options: [
-      { label: 'A', text: 'I\'ve never heard of most of this', points: 0 },
+      { label: 'A', text: 'I\'ve never heard of most of this', points: 0, flag: 'RED' },
       { label: 'B', text: 'I\'ve heard of it but don\'t understand the details', points: 1 },
       { label: 'C', text: 'I understand the basics but haven\'t studied the specifics', points: 2 },
       { label: 'D', text: 'I\'ve researched it and understand most requirements', points: 3 },
@@ -121,7 +120,7 @@ const QUESTIONS: Question[] = [
 ];
 
 const ReadinessPage = () => {
-  const [step, setStep] = useState<number>(0); // 0: Intro, 1-7: Questions, 8: Review/Email, 9: Results
+  const [step, setStep] = useState<number>(0); 
   const [answers, setAnswers] = useState<number[]>(new Array(QUESTIONS.length).fill(-1));
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -169,9 +168,9 @@ const ReadinessPage = () => {
           resultType,
           answers: answers.map((a, i) => ({ 
             question: QUESTIONS[i].text, 
-            answer: QUESTIONS[i].options[a].text,
-            points: QUESTIONS[i].options[a].points,
-            flag: QUESTIONS[i].options[a].flag || null
+            answer: QUESTIONS[i].options[a]?.text || 'N/A',
+            points: QUESTIONS[i].options[a]?.points || 0,
+            flag: QUESTIONS[i].options[a]?.flag || null
           })),
           createdAt: serverTimestamp()
         });
@@ -179,7 +178,7 @@ const ReadinessPage = () => {
       setStep(9);
     } catch (error) {
       console.error("Failed to save assessment", error);
-      setStep(9); // Proceed anyway to show results
+      setStep(9);
     } finally {
       setLoading(false);
     }
@@ -360,7 +359,7 @@ const ReadinessPage = () => {
                     <ul className="space-y-6">
                       {[
                         "Sufficient startup capital identified",
-                        "Adequate household reserves stablized",
+                        "Adequate household reserves stabilized",
                         "Time allocated for implementation",
                         "Household alignment on decision",
                         "Realistic expectations about setbacks"
@@ -520,6 +519,7 @@ const ReadinessPage = () => {
                        answers[1] === 0 ? "Without at least one month of household expenses in reserve, any delay in revenue — which is common — could create immediate financial crisis. Building reserves first protects your household and your authority." :
                        answers[3] === 0 ? "The first 90 days require consistent attention to implement compliance systems, manage insurance requirements, and prepare for audit readiness. A few hours per week is not sufficient to build the documentation logic and preventive systems required." :
                        answers[2] === 1 ? "Starting a trucking business without household support creates pressure that compounds every operational challenge. Alignment before launch is not optional — it is foundational." :
+                       answers[5] === 0 ? "Launching without any familiarity with FMCSA regulations or the New Entrant Safety Audit places your authority at immediate risk. Compliance is not a secondary task—it is the legal framework that allows your business to exist." :
                        answers[6] === 0 ? "If a single setback would cause you to shut down, the volatility of the first year will be difficult to sustain. Building resilience — financial and psychological — before launch is essential." :
                        "Your current structural indicators suggest that launching an authority at this moment would carry an extremely high probability of preventable failure."}
                     </p>
@@ -538,7 +538,7 @@ const ReadinessPage = () => {
 
                 <section className="py-16 text-center border-t border-slate-200">
                   <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Build First. Return When Ready.</h2>
-                  <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto font-medium mb-10 leading-relaxed">
+                  <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
                     The resources below address your specific situation. Use them to build your foundation. When circumstances change, retake this assessment.
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

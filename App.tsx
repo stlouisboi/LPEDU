@@ -5,16 +5,13 @@ import {
   Moon, 
   Menu, 
   X, 
-  ChevronRight, 
   Loader2,
   Linkedin,
   Facebook,
   Youtube,
   Twitter,
-  ArrowRight,
   ShieldCheck,
-  Award,
-  ExternalLink
+  Award
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -29,14 +26,10 @@ import Logo from './components/Logo';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import LearningPathPage from './pages/LearningPathPage'; 
-import BlogPage from './pages/BlogPage';
-import BlogPostPage from './pages/BlogPostPage';
 import ResourcesPage from './pages/ResourcesPage';
-import FAQPage from './pages/FAQPage';
 import ContactPage from './pages/ContactPage';
 import SupportPage from './pages/SupportPage';
 import LegalPage from './pages/LegalPage';
-import AIServicePage from './pages/AIServicePage';
 import EnrollPage from './pages/EnrollPage';
 import ModuleDetailPage from './pages/ModuleDetailPage';
 import DownloadPage from './pages/DownloadPage';
@@ -96,12 +89,13 @@ const Header = () => {
 
   if (location.pathname.startsWith('/admin')) return null;
 
-  // Cleanup Directive: Restricting navigation to institutional standards
+  // GOVERNANCE: Approved Menu Only
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Roadmap', path: '/learning-path' },
-    { name: 'Resources', path: '/resources' }
+    { name: 'Resources', path: '/resources' },
+    { name: 'Admission', path: '/readiness' }
   ];
 
   return (
@@ -128,15 +122,10 @@ const Header = () => {
               <button
                 onClick={toggleTheme}
                 className="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                aria-label="Toggle Theme"
               >
                 {theme === 'light' ? <Moon className="w-7 h-7 text-authority-blue" /> : <Sun className="w-7 h-7 text-signal-gold" />}
               </button>
-              <Link
-                to="/pricing"
-                className="bg-authority-blue text-white px-10 py-4 rounded-xl text-base font-black uppercase tracking-[0.2em] hover:bg-steel-blue transition-all shadow-xl active:scale-95"
-              >
-                Admission
-              </Link>
             </div>
           </nav>
 
@@ -166,15 +155,6 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="pt-8 border-t border-border-light mt-4">
-              <Link
-                to="/pricing"
-                className="block w-full bg-authority-blue text-white py-6 rounded-2xl text-center font-black uppercase tracking-[0.25em] text-xl shadow-xl"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Admission
-              </Link>
-            </div>
           </nav>
         </div>
       )}
@@ -210,18 +190,15 @@ const Footer = () => {
 
   return (
     <footer className="w-full font-sans">
-      {/* SECTION 2: FOOTER NAVIGATION - Cleaned up to match Admission Policy */}
       <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Navigation">
-            {/* COMPANY */}
             <div>
-              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">COMPANY</h3>
+              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">FOUNDATION</h3>
               <ul className="space-y-4">
                 {[
-                  { name: 'About LaunchPath', path: '/about' },
-                  { name: 'Frequently Asked Questions', path: '/faq' },
-                  { name: 'Billing & Account Support', path: '/support' }
+                  { name: 'LaunchPath Home', path: '/' },
+                  { name: 'About the Standard', path: '/about' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -232,14 +209,12 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* PROGRAM */}
             <div>
-              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">PROGRAM</h3>
+              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">SYSTEM</h3>
               <ul className="space-y-4">
                 {[
-                  { name: 'Course Curriculum', path: '/learning-path' },
-                  { name: 'Enrollment Admission', path: '/pricing' },
-                  { name: 'The Four Pillars', path: '/#pillars' }
+                  { name: 'Operating Roadmap', path: '/learning-path' },
+                  { name: 'Admission Protocol', path: '/readiness' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -250,14 +225,12 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* RESOURCES */}
             <div>
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">RESOURCES</h3>
               <ul className="space-y-4">
                 {[
-                  { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
-                  { name: 'Educational Downloads', path: '/resources' },
-                  { name: 'Readiness Calculator', path: '/readiness' }
+                  { name: 'Safety Checklists', path: '/download/risk-map' },
+                  { name: 'System Assets', path: '/resources' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -268,15 +241,12 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* LEGAL */}
             <div>
-              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">LEGAL</h3>
+              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">GOVERNANCE</h3>
               <ul className="space-y-4">
                 {[
                   { name: 'Privacy Policy', path: '/legal' },
-                  { name: 'Terms of Service', path: '/legal' },
-                  { name: 'Refund Policy', path: '/faq' },
-                  { name: 'Educational Disclaimer', path: '/legal' }
+                  { name: 'Terms of Service', path: '/legal' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -290,15 +260,12 @@ const Footer = () => {
         </div>
       </section>
 
-      {/* SECTION 3: BOTTOM BAR */}
       <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/10 py-10">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
-            
-            {/* LEFT SIDE: Identity & Disclaimer */}
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-4">
-                <Logo light className="h-12 grayscale-0 brightness-0 invert" />
+                <Logo light className="h-12" />
               </div>
               <p className="text-[14px] text-white/60 mb-1">
                 © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.
@@ -308,18 +275,16 @@ const Footer = () => {
               </p>
               <div className="max-w-[600px]">
                 <p className="text-[13px] text-white/50 leading-relaxed italic">
-                  LaunchPath is an educational platform providing informational training and resources for motor carrier operations. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice. LaunchPath does not provide regulatory representation or individual compliance consulting. Users are encouraged to consult with licensed professionals regarding specific legal and insurance requirements.
+                  LaunchPath is an implementation standard providing informational training for motor carrier operations. Materials are for informational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice. LaunchPath does not provide regulatory representation.
                 </p>
               </div>
             </div>
 
-            {/* RIGHT SIDE: Badges & Social */}
             <div className="flex flex-col items-center lg:items-end shrink-0 w-full lg:w-auto">
               <div className="flex flex-wrap justify-center lg:justify-end gap-6 mb-10">
                 <VeteranBadge />
                 <OSHABadge />
               </div>
-              
               <div className="flex items-center gap-8">
                 {[
                   { icon: <Linkedin size={24} />, label: "LinkedIn", href: "#" },
@@ -358,18 +323,13 @@ export default function App() {
       setAppLoading(false);
       return;
     }
-    
     const settingsRef = doc(db, "settings", "general");
     const unsub = onSnapshot(settingsRef, (snap) => {
       if (snap.exists()) {
         setSettings(snap.data() as SiteSettings);
       }
       setAppLoading(false);
-    }, (error) => {
-      console.warn("App: Settings listener failed. Using defaults.", error.message);
-      setAppLoading(false);
-    });
-    
+    }, () => setAppLoading(false));
     return () => unsub();
   }, []);
 
@@ -402,9 +362,6 @@ export default function App() {
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/readiness" element={<ReadinessPage />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/support" element={<SupportPage />} />
               <Route path="/legal" element={<LegalPage />} />
               <Route path="/pricing" element={<EnrollPage />} />
               <Route path="/modules/:id" element={<ModuleDetailPage />} />

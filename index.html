@@ -29,7 +29,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
       tailwind.config = {
@@ -85,12 +85,15 @@
     </script>
     <style>
       html { scroll-behavior: smooth; }
-      body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-      h1, h2, h3, h4, h5, h6 { font-family: 'IBM Plex Sans', sans-serif; }
+      body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+      h1, h2, h3, h4, h5, h6 { font-family: 'IBM Plex Sans', sans-serif; letter-spacing: -0.01em; }
       
       .quill { background: white; border-radius: 0.75rem; overflow: hidden; }
       .ql-toolbar { border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; }
       .ql-container { border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem; min-height: 200px; font-family: 'Inter', sans-serif; }
+
+      /* Institutional spacing */
+      p, li { max-width: 75ch; }
 
       /* Scrollbar Styling */
       ::-webkit-scrollbar { width: 8px; height: 8px; }
