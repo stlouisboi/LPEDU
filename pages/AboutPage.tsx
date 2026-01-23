@@ -46,27 +46,21 @@ const AboutPage = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
         <div className="max-w-[900px] mx-auto px-6 relative z-10">
           <h1 className="text-[32px] lg:text-[42px] font-bold text-[#1A1A1A] leading-[1.2] mb-6 font-sans uppercase tracking-tight">
-            Institutional Governance Mandate of the LaunchPath Standard
+            Institutional Statement of the LaunchPath Standard
           </h1>
           <p className="text-base lg:text-[18px] leading-[1.7] text-[#555] max-w-[750px] mx-auto mb-10 font-medium">
             The LaunchPath Standard provides a systematic framework for documentation integrity and safety management systems. It is designed to address the critical administrative gap between the issuance of operating authority and the successful navigation of federal oversight.
           </p>
           
-          <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm max-w-2xl mx-auto mb-10">
+          <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm max-w-2xl mx-auto">
              <p className="text-[#1E3A5F] text-[16px] font-bold leading-relaxed">
-               Operating Governance: LaunchPath functions under a mandate of stewardship, documentation precision, and institutional accountability to lawful regulatory authorities.
+               Operating Governance: LaunchPath functions under a framework of stewardship, documentation precision, and institutional accountability to lawful regulatory authorities.
              </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/learning-path" className="w-full sm:w-auto bg-[#1E3A5F] text-white px-10 py-4 rounded-lg font-bold uppercase tracking-widest text-xs hover:bg-[#152945] transition-all shadow-lg active:scale-95">
-              Review Operating Protocols
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: THE GOVERNANCE ETHIC (NEW SECTION) */}
+      {/* SECTION 2: THE GOVERNANCE ETHIC */}
       <section className="bg-white py-24 lg:py-32 border-b border-slate-100">
         <div className="max-w-[1100px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 items-start">
@@ -283,9 +277,18 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* FINAL CLOSING MARKER */}
+      <section className="bg-white py-16 border-t border-slate-100 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-300 leading-relaxed">
+            End of Institutional Statement — The LaunchPath Standard is maintained under documented governance and subject to periodic review.
+          </p>
+        </div>
+      </section>
+
       {/* FOOTER MINI */}
       <footer className="bg-[#0D1B2E] py-12 border-t border-white/5">
-        <div className="max-w-1200px] mx-auto px-6 text-center text-white/50 text-[13px]">
+        <div className="max-w-[1200px] mx-auto px-6 text-center text-white/50 text-[13px]">
           <p className="mb-6 font-medium">© {new Date().getFullYear()} LaunchPath Transportation EDU. All Rights Reserved. System Integrity Protocols Active.</p>
           <div className="flex justify-center space-x-8 font-bold uppercase tracking-widest text-[10px]">
             <Link to="/learning-path" className="hover:text-white transition-colors">Operating Path</Link>

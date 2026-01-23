@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -172,13 +171,13 @@ const HomePage: React.FC = () => {
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                     />
                   </div>
-                  <button 
-                    disabled={loading} type="submit"
+                  <Link 
+                    to={`/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`}
                     className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-steel-blue transition-all flex items-center justify-center active:scale-[0.98] border-b-4 border-black/20"
                   >
-                    {loading ? <Loader2 className="animate-spin mr-3" size={24} /> : <MousePointer2 className="mr-3" size={20} />}
+                    <MousePointer2 className="mr-3" size={20} />
                     Create My Risk Map
-                  </button>
+                  </Link>
                   <p className="text-[10px] text-center text-slate-500 uppercase tracking-widest font-black">
                     Secure Protocol • Educational Resources Only
                   </p>
@@ -366,7 +365,7 @@ const HomePage: React.FC = () => {
                 </div>
 
                 <div className="space-y-6">
-                  <p className="text-xl md:text-2xl font-black italic text-signal-gold uppercase tracking-[0.1em] leading-tight">
+                  <p className="text-xl md:text-2xl font-black italic text-signal-gold uppercase tracking-[0.1em] font-bold leading-tight">
                     "OSHA-CERTIFIED SAFETY PROFESSIONAL WITH 20+ YEARS OF COMPLIANCE OPERATING STANDARDS."
                   </p>
                   
@@ -743,4 +742,5 @@ const HomePage: React.FC = () => {
   );
 };
 
+// Fixed the default export to match component name
 export default HomePage;

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -112,7 +113,7 @@ const LearningPathPage = () => {
             Implementation Path
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-4xl mx-auto leading-relaxed font-medium mb-12">
-            A schematic protocol for the installation of federally aligned safety management systems.
+            This roadmap outlines the standardized implementation sequence for carriers operating under the LaunchPath Standard.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link to="/pricing" className="bg-white/10 text-white border border-white/20 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/20 transition-all active:scale-95">
