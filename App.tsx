@@ -38,6 +38,7 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import ResourcesPage from './pages/ResourcesPage';
 import FAQPage from './pages/FAQPage';
+import ClarificationPage from './pages/ClarificationPage';
 import ContactPage from './pages/ContactPage';
 import SupportPage from './pages/SupportPage';
 import LegalPage from './pages/LegalPage';
@@ -105,6 +106,7 @@ const Header = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
+    { name: 'Clarification', path: '/clarification' },
     { name: 'Roadmap', path: '/learning-path' },
     { name: 'Resources', path: '/resources' },
     { name: 'Admission', path: '/readiness' }
@@ -245,7 +247,8 @@ const Footer = () => {
               <ul className="space-y-4">
                 {[
                   { name: 'LaunchPath Home', path: '/' },
-                  { name: 'About the Standard', path: '/about' }
+                  { name: 'About the Standard', path: '/about' },
+                  { name: 'Contact Us', path: '/contact' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -256,7 +259,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* PROGRAM */}
+            {/* SYSTEM */}
             <div>
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">SYSTEM</h3>
               <ul className="space-y-4">
@@ -280,7 +283,8 @@ const Footer = () => {
               <ul className="space-y-4">
                 {[
                   { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
-                  { name: 'Educational Downloads', path: '/resources' }
+                  { name: 'Educational Downloads', path: '/resources' },
+                  { name: 'Truth & Clarification', path: '/clarification' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -439,6 +443,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="/clarification" element={<ClarificationPage />} />
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/readiness" element={<ReadinessPage />} />

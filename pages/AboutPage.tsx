@@ -73,7 +73,7 @@ const AboutPage = () => {
                 Foundational Operating <span className="text-[#D4AF37]">Philosophy.</span>
               </h2>
               <p className="text-slate-500 font-medium leading-relaxed">
-                The LaunchPath Standard is governed by a rigorous ethic of fiduciary responsibility. We view operating authority not as a right of ownership, but as an entrusted function that requires continuous validation through administrative discipline.
+                The LaunchPath Standard is governed by a rigorous ethic of fiduciary responsibility. We move carriers from a state of Exposure to a state of Refuge through documented, verifiable compliance evidence. We view operating authority not as a right of ownership, but as an entrusted function that requires continuous validation through administrative discipline.
               </p>
             </div>
 
@@ -220,8 +220,11 @@ const AboutPage = () => {
       <section className="bg-[#F8F9FA] py-24 lg:py-32">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12">
           <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A1A1A] mb-8 uppercase tracking-tight">The LaunchPath Operating Standard</h2>
-          <p className="text-base lg:text-[17px] leading-[1.7] text-[#666] max-w-[1000px] mb-16 font-medium italic">
+          <p className="text-base lg:text-[17px] leading-[1.7] text-[#666] max-w-[1000px] mb-8 font-medium italic">
             "The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen."
+          </p>
+          <p className="text-sm text-slate-500 font-bold mb-16 uppercase tracking-widest leading-relaxed">
+            The LaunchPath standard is engineered to be installed within the first 90 days of authority. This standard is designed for early implementation, not later correction.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -261,7 +264,7 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-20">
             {[
               { icon: <Shield size={24} />, title: "Truth and Accuracy", desc: "The standard rejects speculative or hyper-promotional promises in favor of regulatory accuracy." },
               { icon: <Scale size={24} />, title: "Compliance Boundaries", desc: "Users are responsible for the individual implementation and defense of their compliance systems." },
@@ -273,6 +276,36 @@ const AboutPage = () => {
                 <p className="text-[14px] leading-[1.6] text-[#666]">{col.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Delivery Bridge */}
+          <div className="max-w-2xl mx-auto p-12 bg-slate-50 border border-slate-200 rounded-[3rem] text-center">
+            <h3 className="text-xl font-bold text-authority-blue uppercase tracking-tight mb-4">How the LaunchPath Standard Is Delivered Today</h3>
+            <p className="text-sm text-slate-600 font-medium mb-8 leading-relaxed">
+              The standard is delivered through a structured 90-Day Compliance Operating Standard for new motor carriers seeking administrative resilience.
+            </p>
+            <Link to="/pricing" className="inline-flex items-center text-authority-blue font-black uppercase tracking-widest text-[10px] hover:underline group">
+              View Admission protocol <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="mt-12">
+            <Link to="/contact" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-authority-blue transition-colors">
+              Technical or partnership inquiries
+            </Link>
+          </div>
+
+          {/* Bottom CTA Refinement */}
+          <div className="mt-24 pt-24 border-t border-slate-100 space-y-8 flex flex-col items-center">
+            <Link 
+              to="/pricing" 
+              className="bg-authority-blue text-white px-16 py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 inline-flex items-center"
+            >
+              Initiate Admission
+            </Link>
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+              Admission is selective and based on structural readiness verification.
+            </p>
           </div>
         </div>
       </section>

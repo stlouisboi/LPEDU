@@ -1,45 +1,75 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HelpCircle, ChevronDown, ArrowRight, BookOpen, UserCheck, CreditCard, ShieldCheck, Target, Heart, Scale, Clock, Award } from 'lucide-react';
+import { 
+  HelpCircle, 
+  ChevronDown, 
+  ArrowRight, 
+  CreditCard, 
+  ShieldCheck, 
+  Scale, 
+  Award,
+  ShieldAlert,
+  Lock,
+  Calendar,
+  Truck,
+  Building2,
+  DollarSign,
+  AlertTriangle,
+  FileText
+} from 'lucide-react';
 
 const FAQPage = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqData = [
     {
-      q: "Who is this course for?",
-      a: "LaunchPath is for new and aspiring owner-operators who want to build a trucking business with structure, discipline, and integrity. It’s designed for people preparing to file authority or operating in their first 12–18 months who want to avoid costly mistakes and survive the critical early phase.",
-      icon: <UserCheck size={18} />
-    },
-    {
-      q: "How is LaunchPath different from other trucking courses?",
-      a: "Most courses teach tasks. LaunchPath teaches order and survival systems. Instead of hype or shortcuts, we focus on: why carriers actually fail in the first year; how insurance, compliance, and cash flow interact; and how to keep authority, insurance, and revenue continuously active. This is not a CDL school or dispatcher course. It’s a business survival system.",
-      icon: <Award size={18} />
-    },
-    {
-      q: "Is this course faith-based?",
-      a: "Yes. LaunchPath is faith-based and principle-driven, built on stewardship, accountability, discipline, and integrity. You won’t be preached at, but biblical principles are applied to real business decisions.",
-      icon: <Heart size={18} />
-    },
-    {
-      q: "Do I need a CDL to take this course?",
-      a: "No. LaunchPath does not teach driving skills. It teaches how to operate and protect a trucking business under your own authority, whether you drive or manage drivers.",
-      icon: <Scale size={18} />
-    },
-    {
-      q: "How long do I have access to the curriculum?",
-      a: "You receive 12 months of access to the full curriculum, including updates to tools and resources as best practices evolve.",
-      icon: <Clock size={18} />
-    },
-    {
-      q: "What’s included in the Implementation Mastery tier?",
-      a: "Implementation Mastery includes: the full LaunchPath curriculum, live group coaching calls, and priority Q&A and real-world scenario walkthroughs. It’s for students who want support and accountability, not just information.",
-      icon: <ShieldCheck size={18} />
-    },
-    {
-      q: "Is there a risk-free trial?",
-      a: "LaunchPath does not offer a free trial, but we do offer a 7-day decision window. We believe in clarity, responsibility, and commitment. If within 7 days you determine the course is not aligned with where you are, you may request a refund. After that period, all sales are final due to immediate access to proprietary content and tools.",
+      q: "What if my insurance quote is higher than expected?",
+      a: `Insurance pricing for new authorities is strictly risk-based and market-driven. LaunchPath does not set, negotiate, or guarantee insurance rates. While high initial premiums are a financial hurdle, they do not invalidate the Operating Standard. 
+
+The Insurance Continuity pillar moves you from "Exposure" to "Refuge" through three technical disciplines:
+1. Systemic Documentation: Evidence underwriters require to verify safety posture.
+2. Safety Posture Implementation: Installing the "Compliance Backbone" to demonstrate lower risk.
+3. Renewal Discipline: Habits required to maintain coverage and improve long-term insurability.
+
+The LaunchPath Stance: We treat insurance as a fixed economic reality. If TCO analysis indicates the business model is non-viable, the Standard dictates a "Delay" in operations rather than a compromise in compliance.`,
       icon: <CreditCard size={18} />
+    },
+    {
+      q: "Does LaunchPath guarantee I will pass a New Entrant Safety Audit?",
+      a: `No. LaunchPath does not guarantee audit outcomes. Final determination is made solely by the FMCSA based on their independent investigation. 
+
+The 90-Day Survival System provides the Infrastructure required to manage obligations, but success depends on your daily execution. We focus on:
+1. The 16 Deadly Sins Framework: Identifying violations that trigger automatic failure.
+2. Documentation as Evidence of Refuge: Using the "DQ File Factory" and maintenance logs to prove intent and organization to investigators.
+
+The LaunchPath Stance: We provide Standardized Implementation Requirements; the carrier provides Operational Discipline. We don't sell a "pass"; we sell the institutional framework for carriers who refuse to operate in a state of Exposure.`,
+      icon: <ShieldAlert size={18} />
+    },
+    {
+      q: "How long does it take for my MC Number to become active?",
+      a: "Activation timelines vary based on filings, insurance submissions, and FMCSA processing. LaunchPath provides structure and sequencing, but does not control federal timelines. Delays are common and must be planned for within the first 90 days of authority.",
+      icon: <Calendar size={18} />
+    },
+    {
+      q: "Can I skip sections or move ahead before completing required steps?",
+      a: "No. LaunchPath progression is gated by verification checkpoints. Advancement requires submission and review against the LaunchPath Standard. This structure exists to protect authority, insurance continuity, and compliance integrity.",
+      icon: <Lock size={18} />
+    },
+    {
+      q: "Is LaunchPath intended for non-CDL box truck carriers?",
+      a: "Yes. The operating standard applies to all motor carriers operating commercial motor vehicles in interstate commerce, regardless of driver licensing class (CDL or non-CDL). Regulatory requirements for DQ files, HOS, and maintenance are consistent across both categories.",
+      icon: <Truck size={18} />
+    },
+    {
+      q: "Do I need to own a vehicle before beginning the program?",
+      a: "Ownership is not a prerequisite for enrollment. The standard covers entity structure and preliminary filing protocols that precede equipment acquisition. However, operational safety files must be completed once equipment and drivers are staged.",
+      icon: <Building2 size={18} />
+    },
+    {
+      q: "Is there a recurring monthly subscription fee?",
+      a: "LaunchPath operates on a system-access model. Once admitted, the carrier receives access to the implementation protocols and technical files required for the 90-day stabilization window. Check with the enrollment terminal for current pricing structures.",
+      icon: <DollarSign size={18} />
     }
   ];
 
@@ -52,10 +82,10 @@ const FAQPage = () => {
             <HelpCircle size={40} />
           </div>
           <h1 className="text-5xl md:text-6xl font-black mb-6 font-serif text-authority-blue dark:text-white tracking-tighter uppercase leading-none stagger-item">
-            The Compliance <span className="text-signal-gold italic">Answers</span>
+            Institutional <span className="text-signal-gold italic">Answers</span>
           </h1>
           <p className="text-xl text-slate-500 dark:text-text-dark-muted max-w-2xl mx-auto font-medium leading-relaxed stagger-item">
-            Clarity, structure, and a principled path forward. If you’re looking for shortcuts, this isn’t it.
+            Clarification on the LaunchPath Operating Standard, regulatory timelines, and administrative expectations.
           </p>
         </div>
 
@@ -69,7 +99,7 @@ const FAQPage = () => {
                 className={`group border rounded-[2rem] overflow-hidden transition-all duration-500 ${
                   isOpen 
                   ? 'border-authority-blue bg-white dark:bg-surface-dark shadow-2xl ring-1 ring-authority-blue/5' 
-                  : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:border-authority-blue/30 dark:hover:border-signal-gold/30 shadow-sm'
+                  : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:border-authority-blue/30 shadow-sm'
                 }`}
               >
                 <h3>
@@ -92,14 +122,13 @@ const FAQPage = () => {
                   </button>
                 </h3>
                 
-                {/* Smooth Height Transition using CSS Grid */}
                 <div 
                   className={`grid transition-all duration-500 ease-in-out ${
                     isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="p-8 pt-0 text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed border-t border-slate-50 dark:border-border-dark mt-2 animate-in slide-in-from-top-4 duration-500">
+                    <div className="p-8 pt-0 text-slate-500 dark:text-text-dark-muted font-bold leading-relaxed border-t border-slate-50 dark:border-border-dark mt-2 animate-in slide-in-from-top-4 duration-500">
                       <p className="text-base whitespace-pre-wrap">
                         {faq.a}
                       </p>
@@ -128,10 +157,10 @@ const FAQPage = () => {
                 Message Vince Directly
               </Link>
               <Link 
-                to="/advisor" 
+                to="/readiness" 
                 className="text-signal-gold font-black uppercase tracking-widest text-xs flex items-center hover:underline group"
               >
-                Ask Our AI Advisor 
+                Validate Readiness 
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

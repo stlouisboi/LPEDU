@@ -4,47 +4,32 @@ import { Link, useNavigate } from 'react-router-dom';
 import { 
   ShieldCheck, 
   ArrowRight, 
-  Loader2, 
   Shield,
-  Clock,
-  Target,
-  CheckCircle2,
   Activity,
   UserCheck,
   ShieldAlert,
-  FileText,
-  AlertCircle,
   FileWarning,
-  Scale,
-  Files,
-  Zap,
-  Layout,
-  Calculator,
-  Anchor,
-  Star,
-  Quote,
   Layers,
+  ChevronDown,
   ChevronRight,
-  TrendingDown,
   Lock,
-  BarChart3,
-  Calendar,
   MousePointer2,
-  Wrench,
-  DollarSign,
   Briefcase,
-  XCircle,
-  X,
-  Plus,
   Award,
-  Search,
   AlertTriangle,
-  GraduationCap,
-  Bookmark,
-  Monitor,
   ArrowDown,
   ArrowUp,
-  ArrowLeft
+  ArrowLeft,
+  AlertCircle,
+  Clock,
+  Calendar,
+  CreditCard,
+  Scale,
+  HelpCircle,
+  MoveDown,
+  MoveRight,
+  MoveLeft,
+  MoveUp
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -104,7 +89,7 @@ const HomePage: React.FC = () => {
       t: "Authority Protection", 
       focus: "Structural Fortress",
       d: "Move beyond basic filings. Establish a legal and operational foundation designed to withstand federal scrutiny and separate personal assets from business liability through proper authority setup, entity structure, and documentation discipline.", 
-      icon: <Anchor size={40} /> 
+      icon: <Briefcase size={40} /> 
     },
     { 
       t: "Insurance Continuity", 
@@ -126,18 +111,44 @@ const HomePage: React.FC = () => {
     }
   ];
 
+  const reachTests = [
+    {
+      label: "OVER",
+      title: "FMCSA REGULATORY VIOLATIONS",
+      desc: "Technical violations bypassing baseline administrative filters.",
+      icon: <MoveDown className="text-signal-gold" size={20} />
+    },
+    {
+      label: "AROUND",
+      title: "INSURANCE CANCELLATIONS",
+      desc: "Administrative lapses triggering automatic loss of coverage.",
+      icon: <MoveRight className="text-signal-gold" size={20} />
+    },
+    {
+      label: "THROUGH",
+      title: "INTERNAL SYSTEM AUDITORS",
+      desc: "Data inconsistencies identified during federal investigations.",
+      icon: <MoveLeft className="text-signal-gold" size={20} />
+    },
+    {
+      label: "UNDER",
+      title: "FINANCIAL FOUNDATION COLLAPSE",
+      desc: "Fiscal deficits compromising mandated safety operations.",
+      icon: <MoveUp className="text-signal-gold" size={20} />
+    }
+  ];
+
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-primary-light dark:bg-primary-dark font-sans text-authority-blue">
       
-      {/* 1. HERO SECTION: AUTHORITY / DISCIPLINE */}
+      {/* 1. HERO SECTION */}
       <section className="relative min-h-[90vh] flex items-center w-full bg-authority-blue overflow-hidden border-none py-20 lg:py-32">
         <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
             <div className="lg:col-span-7 text-center lg:text-left space-y-8">
-              <div className="inline-flex items-center space-x-2 bg-white/20 border-2 border-white/30 px-5 py-2.5 rounded-full text-[12px] font-black uppercase tracking-[0.2em] text-white shadow-lg uppercase">
+              <div className="inline-flex items-center space-x-2 bg-white/20 border-2 border-white/30 px-5 py-2.5 rounded-full text-[12px] font-black uppercase tracking-[0.2em] text-white shadow-lg">
                 <span>⚖️ Stewardship • Operational Integrity</span>
               </div>
               
@@ -145,15 +156,13 @@ const HomePage: React.FC = () => {
                 Protect Your <br/><span className="text-signal-gold italic">Authority</span> With <br/>Order and Certainty.
               </h1>
               
-              <div className="text-2xl text-white leading-relaxed max-w-xl mx-auto lg:mx-0 font-bold space-y-4">
+              <div className="text-2xl text-white leading-relaxed max-w-xl mx-auto lg:mx-0 font-bold space-y-6">
                 <p>Clarity is the primary asset of a resilient motor carrier. Establish systems that prioritize stewardship from operational day one.</p>
+                <p className="text-base font-black uppercase tracking-widest text-signal-gold opacity-90">Designed for first-time interstate motor carrier owner-operators in their first 90 days of authority.</p>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-4">
-                <Link 
-                  to="/readiness"
-                  className="w-full sm:w-auto bg-white text-authority-blue px-14 py-6 rounded-2xl font-black text-sm hover:bg-signal-gold hover:text-white transition-all flex items-center justify-center active:scale-95 uppercase tracking-[0.2em] shadow-2xl border-b-4 border-slate-200"
-                >
+                <Link to="/pricing" className="w-full sm:w-auto bg-white text-authority-blue px-14 py-6 rounded-2xl font-black text-sm hover:bg-signal-gold hover:text-white transition-all flex items-center justify-center active:scale-95 uppercase tracking-[0.2em] shadow-2xl border-b-4 border-slate-200">
                   Initiate Admission Protocol
                   <ArrowRight className="ml-3 w-5 h-5" />
                 </Link>
@@ -166,7 +175,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             
-            <div id="risk-assessment" className="lg:col-span-5 relative">
+            <div className="lg:col-span-5 relative">
               <div className="relative bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] border-4 border-authority-blue dark:border-border-dark shadow-[0_50px_100px_-20px_rgba(0,0,0,0.4)]">
                 <div className="absolute top-10 right-10 text-authority-blue opacity-20">
                   <ShieldAlert size={40} />
@@ -179,39 +188,33 @@ const HomePage: React.FC = () => {
                 </p>
                 <form onSubmit={handleLeadSubmit} className="space-y-6">
                   {error && (
-                    <div className="p-4 bg-red-50 border border-red-100 rounded-2xl flex items-start space-x-3 animate-in fade-in slide-in-from-top-2">
+                    <div className="p-4 bg-red-50 border border-red-100 rounded-2xl flex items-start space-x-3">
                       <AlertCircle className="text-red-600 shrink-0 mt-0.5" size={16} />
-                      <p className="text-[11px] font-bold text-red-700 leading-tight">{error}</p>
+                      <p className="text-[11px] font-bold text-red-700">{error}</p>
                     </div>
                   )}
                   <div className="space-y-2">
-                    <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue dark:text-text-dark-muted ml-4">Full Legal Name</label>
+                    <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue ml-4">Full Legal Name</label>
                     <input 
                       type="text" required placeholder="Jane Doe"
-                      className="w-full px-7 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark focus:border-authority-blue rounded-2xl outline-none transition-all font-black text-lg text-text-primary dark:text-white"
+                      className="w-full px-7 py-5 bg-slate-50 border-2 border-slate-200 rounded-2xl outline-none font-black text-lg"
                       value={formData.firstName}
                       onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue dark:text-text-dark-muted ml-4">Professional Email</label>
+                    <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue ml-4">Professional Email</label>
                     <input 
                       type="email" required placeholder="jane@carrier.com"
-                      className="w-full px-7 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark focus:border-authority-blue rounded-2xl outline-none transition-all font-black text-lg text-text-primary dark:text-white"
+                      className="w-full px-7 py-5 bg-slate-50 border-2 border-slate-200 rounded-2xl outline-none font-black text-lg"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                     />
                   </div>
-                  <button 
-                    type="submit"
-                    className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-steel-blue transition-all flex items-center justify-center active:scale-[0.98] border-b-4 border-black/20"
-                  >
+                  <button type="submit" className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-steel-blue transition-all flex items-center justify-center active:scale-[0.98]">
                     <MousePointer2 className="mr-3" size={20} />
                     Analyze Risk Profile
                   </button>
-                  <p className="text-[10px] text-center text-slate-500 uppercase tracking-widest font-black">
-                    Secure Protocol • Educational Data Mapping Only
-                  </p>
                 </form>
               </div>
             </div>
@@ -219,7 +222,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. EXPOSURE SECTION */}
+      {/* 2. EXPOSURE LOGIC SECTION */}
       <section id="logic" className="py-32 bg-primary-light dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -233,55 +236,35 @@ const HomePage: React.FC = () => {
               </h2>
               <div className="space-y-8 text-xl text-text-primary dark:text-text-dark-primary font-black leading-relaxed max-w-xl">
                 <p>The initial 90-day window represents a statistically significant risk period. Regulators analyze carrier data for specific administrative gaps classified as enforcement risks.</p>
-                <p className="text-text-muted dark:text-text-dark-muted font-bold">Standard operation requires technical infrastructure to mitigate identified regulatory exposure.</p>
               </div>
             </div>
 
             <div className="bg-white dark:bg-surface-dark p-10 lg:p-16 rounded-[4rem] border-4 border-slate-100 dark:border-border-dark shadow-xl space-y-12">
               <h3 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white leading-none">Identification & Alignment</h3>
-              <p className="text-lg text-text-primary dark:text-text-dark-primary font-black leading-relaxed">The <strong>Four Pillars</strong> represent the structured documentation protocols expected by federal auditors and insurance underwriters:</p>
-              
               <div className="space-y-4">
-                {[
-                  { t: "Drug & Alcohol Compliance", icon: <Briefcase size={24} /> },
-                  { t: "Driver Qualification Standards", icon: <UserCheck size={24} /> },
-                  { t: "Insurance & Fiscal Solvency", icon: <ShieldCheck size={24} /> },
-                  { t: "Maintenance & HOS Governance", icon: <Clock size={24} /> }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-5 p-6 bg-slate-50 dark:bg-gray-800/50 rounded-3xl border-2 border-slate-100 dark:border-border-dark shadow-md">
-                    <div className="text-authority-blue dark:text-signal-gold">{item.icon}</div>
-                    <span className="text-base font-black uppercase tracking-widest text-authority-blue dark:text-white">{item.t}</span>
+                {["Drug & Alcohol Compliance", "Driver Qualification Standards", "Insurance & Fiscal Solvency", "Maintenance & HOS Governance"].map((item, i) => (
+                  <div key={i} className="flex items-center space-x-5 p-6 bg-slate-50 dark:bg-gray-800/50 rounded-3xl border-2 border-slate-100 shadow-md">
+                    <ShieldCheck className="text-authority-blue dark:text-signal-gold" size={24} />
+                    <span className="text-base font-black uppercase tracking-widest text-authority-blue dark:text-white">{item}</span>
                   </div>
                 ))}
-              </div>
-
-              <div className="p-10 bg-authority-blue text-white rounded-[3rem] text-xl italic font-black leading-relaxed border-l-[12px] border-signal-gold shadow-2xl">
-                "Exposure identification precedes system installation. The Four Pillars are the Standard."
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. FMCSA ENFORCEMENT RISKS SECTION */}
-      <section id="deadly-sins" className="py-32 bg-slate-50 dark:bg-primary-dark">
+      {/* 3. THE 16 DEADLY SINS */}
+      <section className="py-32 bg-slate-50 dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <div className="w-20 h-20 bg-white dark:bg-gray-800 text-authority-blue rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-lg border-2 border-slate-200 dark:border-border-dark">
-              <FileWarning size={40} />
-            </div>
-            <h2 className="text-5xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-none">
-              FMCSA <br/>
-              <span className="text-signal-gold italic">ENFORCEMENT RISKS.</span>
+            <h2 className="text-5xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">
+              The 16 <br/><span className="text-red-600 italic">Deadly Sins.</span>
             </h2>
-            <p className="text-2xl text-text-primary dark:text-text-dark-primary max-w-4xl mx-auto font-black leading-relaxed">
-              Identify technical documentation gaps before they impact your safety record.
-            </p>
+            <p className="text-2xl text-text-primary dark:text-text-dark-primary font-black">FMCSA’s most common compliance failures.</p>
           </div>
-
-          <div className="max-w-4xl mx-auto mb-12">
-            <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-8 text-center lg:text-left uppercase">Regulatory Risk Classification</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-20 list-disc pl-5">
+          <div className="max-w-4xl mx-auto">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 list-disc pl-5">
               {enforcementRisks.map((risk, i) => (
                 <li key={i} className="text-lg font-bold text-authority-blue dark:text-text-dark-primary marker:text-red-600">
                   <span className="leading-tight">{risk}</span>
@@ -289,121 +272,88 @@ const HomePage: React.FC = () => {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
 
-          <div className="max-w-6xl mx-auto bg-authority-blue text-white p-14 lg:p-20 rounded-[5rem] shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 border-4 border-signal-gold/30">
-            <div className="absolute top-0 right-0 p-12 opacity-[0.05] rotate-12 scale-150 pointer-events-none">
-              <ShieldAlert size={300} className="text-white" />
+      {/* 4. THE FOUR PILLARS */}
+      <section id="pillars" className="py-32 bg-primary-light dark:bg-primary-dark">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-24">
+            <h2 className="text-5xl lg:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">The Four Pillars Foundation</h2>
+            <p className="text-2xl text-text-primary font-black">Structured Operating Standards for New Entrant Survival</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {pillars.map((pillar, i) => (
+              <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] border-4 border-slate-100 dark:border-border-dark shadow-xl hover:shadow-2xl transition-all flex flex-col h-full">
+                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-12 text-authority-blue dark:text-signal-gold">
+                  {pillar.icon}
+                </div>
+                <h3 className="text-2xl font-black uppercase font-serif text-authority-blue dark:text-white mb-2 leading-tight">{pillar.t}</h3>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-signal-gold mb-6">{pillar.focus}</p>
+                <p className="text-base font-bold leading-relaxed">{pillar.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. THE REACH TEST SECTION */}
+      <section className="py-32 bg-[#F8FAFC] dark:bg-primary-dark border-t border-slate-100 dark:border-border-dark">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-20 space-y-6">
+            <div className="flex items-center justify-center space-x-6">
+              <div className="h-[2px] w-16 bg-authority-blue/30"></div>
+              <span className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-slate-400">Risk Classification Protocol</span>
+              <div className="h-[2px] w-16 bg-authority-blue/30"></div>
             </div>
-            <div className="relative z-10 max-w-2xl text-center md:text-left">
-              <h3 className="text-4xl font-black font-serif mb-4 leading-tight uppercase tracking-tight">Systematic Mitigation <br/>of Identified Risks.</h3>
-              <p className="text-xl text-white/80 font-bold leading-relaxed italic">
-                "The LaunchPath Operating Standard establishes the documentation infrastructure required to satisfy institutional inspection criteria."
-              </p>
-            </div>
-            <Link to="/readiness" className="relative z-10 bg-white text-authority-blue px-16 py-7 rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-signal-gold hover:text-white transition-all shadow-2xl active:scale-95 whitespace-nowrap border-b-4 border-slate-200">
-              ANALYZE RISK PROFILE
+            
+            <h2 className="text-5xl md:text-8xl font-black font-serif text-authority-blue dark:text-white tracking-tighter uppercase leading-[0.85]">
+              THE <span className="text-signal-gold border-b-8 border-signal-gold">REACH</span> TEST™
+            </h2>
+            
+            <p className="text-xl md:text-2xl text-slate-800 dark:text-text-dark-primary font-black italic tracking-tight">
+              "Assessment of structural integrity under institutional pressure."
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {reachTests.map((test, i) => (
+              <div key={i} className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] shadow-sm border border-slate-100 dark:border-border-dark hover:shadow-xl transition-all duration-500 group flex items-start space-x-8">
+                <div className="bg-slate-50 dark:bg-gray-800 p-6 rounded-2xl group-hover:bg-authority-blue group-hover:text-white transition-colors">
+                  {test.icon}
+                </div>
+                <div className="space-y-3">
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">{test.label}</p>
+                  <h3 className="text-xl font-black font-serif text-authority-blue dark:text-white tracking-tight uppercase leading-tight">{test.title}</h3>
+                  <p className="text-base text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed">{test.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. TRUTH & CLARIFICATION BRIDGE */}
+      <section className="py-32 bg-white dark:bg-primary-dark border-t border-slate-100 dark:border-border-dark">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="w-16 h-16 bg-authority-blue text-signal-gold rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+            <HelpCircle size={32} />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">
+            Institutional <span className="text-signal-gold italic">Clarifications</span>
+          </h2>
+          <p className="text-lg text-slate-500 font-bold mt-4 uppercase tracking-widest max-w-2xl mx-auto">Truth over Marketing. Reality over Persuasion. Explore the technical requirements of authority.</p>
+          <div className="mt-12">
+            <Link to="/clarification" className="inline-flex items-center space-x-3 bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold hover:text-white transition-all shadow-xl active:scale-95 group">
+              <span>View System Realities</span>
+              <ChevronRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 5. THE FOUR PILLARS FOUNDATION */}
-      <section id="pillars" className="py-32 bg-primary-light dark:bg-primary-dark">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-24">
-            <h2 className="text-5xl lg:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">The Four Pillars Foundation</h2>
-            <p className="text-2xl text-text-primary dark:text-text-dark-primary max-w-3xl mx-auto font-black leading-relaxed">Structured Operating Standards for New Entrant Survival</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {pillars.map((pillar, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] border-4 border-slate-100 dark:border-border-dark shadow-xl hover:shadow-2xl transition-all group flex flex-col h-full">
-                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-12 group-hover:scale-110 transition-transform shadow-inner text-authority-blue dark:text-signal-gold">
-                  {pillar.icon}
-                </div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white mb-2 leading-tight font-serif">{pillar.t}</h3>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-signal-gold mb-6">{pillar.focus}</p>
-                <p className="text-base text-text-primary dark:text-text-dark-muted font-bold leading-relaxed mb-8">{pillar.d}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-24 max-w-4xl mx-auto bg-slate-50 dark:bg-surface-dark p-12 md:p-16 rounded-[4rem] border-4 border-slate-200 dark:border-border-dark shadow-lg text-center">
-            <h3 className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">REACH Test™ Admission Framing</h3>
-            <p className="text-xl text-text-muted dark:text-text-dark-muted font-bold leading-relaxed mb-12 italic">
-              “Admission into LaunchPath is determined by REACH Test™ results. This ensures carriers entering the standard have the financial readiness and risk tolerance required to implement it correctly.”
-            </p>
-            <div className="space-y-6">
-              <Link to="/readiness" className="bg-authority-blue text-white px-16 py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 inline-flex items-center">
-                Request Admission
-                <ArrowRight className="ml-3" />
-              </Link>
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
-                Admission is based on REACH Test™ results and alignment with the LaunchPath standard.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. THE REACH TEST™ */}
-      <section id="reach-test" className="py-32 bg-primary-light dark:bg-primary-dark overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-          <div className="inline-flex items-center space-x-6 text-authority-blue dark:text-signal-gold mb-10">
-             <div className="h-1.5 w-16 bg-current rounded-full"></div>
-             <span className="text-[14px] font-black uppercase tracking-[0.5em]">Risk Classification Protocol</span>
-             <div className="h-1.5 w-16 bg-current rounded-full"></div>
-          </div>
-          <h2 className="text-6xl lg:text-[100px] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none mb-14">
-             The <span className="text-signal-gold underline underline-offset-[20px] decoration-8">Reach</span> Test™
-          </h2>
-          <p className="text-3xl text-text-primary dark:text-text-dark-primary font-black max-w-5xl mx-auto leading-relaxed mb-24">
-            "Assessment of structural integrity under institutional pressure."
-          </p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
-             {[
-               { 
-                 label: "OVER", 
-                 title: "FMCSA Regulatory Violations", 
-                 description: "Technical violations bypassing baseline administrative filters.",
-                 icon: <ArrowDown size={32} /> 
-               },
-               { 
-                 label: "AROUND", 
-                 title: "Insurance Cancellations", 
-                 description: "Administrative lapses triggering automatic loss of coverage.",
-                 icon: <ArrowRight size={32} /> 
-               },
-               { 
-                 label: "THROUGH", 
-                 title: "Internal System Auditors", 
-                 description: "Data inconsistencies identified during federal investigations.",
-                 icon: <ArrowLeft size={32} /> 
-               },
-               { 
-                 label: "UNDER", 
-                 title: "Financial Foundation Collapse", 
-                 description: "Fiscal deficits compromising mandated safety operations.",
-                 icon: <ArrowUp size={32} /> 
-               }
-             ].map((item, i) => (
-               <div key={i} className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark flex items-start gap-8 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] transition-all hover:shadow-xl group">
-                  <div className="w-16 h-16 shrink-0 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center text-signal-gold group-hover:scale-110 transition-transform">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue/60 dark:text-slate-400 mb-2 block">{item.label}</span>
-                    <h4 className="font-black text-xl lg:text-2xl uppercase text-authority-blue dark:text-white mb-3 leading-tight font-serif tracking-tight">{item.title}</h4>
-                    <p className="text-sm lg:text-base text-text-muted dark:text-text-dark-muted font-bold leading-relaxed">{item.description}</p>
-                  </div>
-               </div>
-             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 11. FINAL CTA SECTION */}
+      {/* 7. FINAL CTA */}
       <section className="py-52 bg-authority-blue relative overflow-hidden text-center text-white border-t-[12px] border-signal-gold/40">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -414,16 +364,13 @@ const HomePage: React.FC = () => {
             Transition from administrative volatility to a standardized operating posture.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-12">
-            <Link to="/readiness" className="w-full sm:w-auto bg-white text-authority-blue px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-lg hover:bg-signal-gold hover:text-white transition-all shadow-2xl active:scale-95 border-b-8 border-slate-200">
-              Request Admission
+            <Link to="/pricing" className="w-full sm:w-auto bg-white text-authority-blue px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-lg hover:bg-signal-gold hover:text-white transition-all shadow-2xl active:scale-95 border-b-8 border-slate-200">
+              Initiate Admission Protocol
             </Link>
             <Link to="/contact" className="w-full sm:w-auto bg-transparent border-4 border-white/40 text-white px-16 py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-lg hover:border-white transition-all active:scale-95">
               Contact Technical Support
             </Link>
           </div>
-          <p className="mt-8 text-[11px] font-black uppercase tracking-[0.4em] text-white/40">
-            Admission is based on REACH Test™ results and alignment with the LaunchPath standard.
-          </p>
         </div>
       </section>
 
