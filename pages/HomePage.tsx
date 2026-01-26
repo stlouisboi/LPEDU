@@ -99,6 +99,33 @@ const HomePage: React.FC = () => {
     "Failure to document and report accidents within federal windows"
   ];
 
+  const pillars = [
+    { 
+      t: "Authority Protection", 
+      focus: "Structural Fortress",
+      d: "Move beyond basic filings. Establish a legal and operational foundation designed to withstand federal scrutiny and separate personal assets from business liability through proper authority setup, entity structure, and documentation discipline.", 
+      icon: <Anchor size={40} /> 
+    },
+    { 
+      t: "Insurance Continuity", 
+      focus: "Premium Stability",
+      d: "Eliminate the “30-Day Trap.” Install the documentation, safety processes, and renewal discipline insurance underwriters require to maintain continuous coverage and stabilize premiums during the highest-risk phase of a new authority.", 
+      icon: <Shield size={40} /> 
+    },
+    { 
+      t: "Compliance Backbone", 
+      focus: "The 16-Exposure Defense",
+      d: "Replace guesswork with documented compliance. LaunchPath installs the Exposure-vs-Refuge framework so driver qualification files, drug & alcohol programs, hours-of-service records, and maintenance documentation meet FMCSA audit expectations before enforcement begins.", 
+      icon: <Layers size={40} /> 
+    },
+    { 
+      t: "Cash-Flow Oxygen", 
+      focus: "True Cost Survival Math",
+      d: "Eliminate revenue blindness. Use the LaunchPath True Cost of Ownership (TCO) framework to identify real break-even thresholds, evaluate freight correctly, and avoid cash-flow decisions that force compliance shortcuts.", 
+      icon: <Activity size={40} /> 
+    }
+  ];
+
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-primary-light dark:bg-primary-dark font-sans text-authority-blue">
       
@@ -285,24 +312,36 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-24">
             <h2 className="text-5xl lg:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">The Four Pillars Foundation</h2>
-            <p className="text-2xl text-text-primary dark:text-text-dark-primary max-w-3xl mx-auto font-black leading-relaxed">Structural operating assets for administrative survival.</p>
+            <p className="text-2xl text-text-primary dark:text-text-dark-primary max-w-3xl mx-auto font-black leading-relaxed">Structured Operating Standards for New Entrant Survival</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { t: "Authority Protection", d: "Governance of MC/DOT violations, safety ratings, and SMS performance scores. Structural defense of credentials.", icon: <Anchor size={40} /> },
-              { t: "Insurance Continuity", d: "Documentation infrastructure for underwriter verification. Mitigates risk of cancellation due to administrative gaps.", icon: <Shield size={40} /> },
-              { t: "Compliance Backbone", d: "Standardized Technical Safety Files. Installation of auditable DQ, HOS, and maintenance records.", icon: <Layers size={40} /> },
-              { t: "Cash-Flow Oxygen", d: "Protocols for operational solvency. Managing the 30-day liquidity window required for authority stability.", icon: <Activity size={40} /> }
-            ].map((pillar, i) => (
+            {pillars.map((pillar, i) => (
               <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] border-4 border-slate-100 dark:border-border-dark shadow-xl hover:shadow-2xl transition-all group flex flex-col h-full">
                 <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-12 group-hover:scale-110 transition-transform shadow-inner text-authority-blue dark:text-signal-gold">
                   {pillar.icon}
                 </div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white mb-6 leading-tight font-serif">{pillar.t}</h3>
+                <h3 className="text-2xl font-black uppercase tracking-tighter text-authority-blue dark:text-white mb-2 leading-tight font-serif">{pillar.t}</h3>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-signal-gold mb-6">{pillar.focus}</p>
                 <p className="text-base text-text-primary dark:text-text-dark-muted font-bold leading-relaxed mb-8">{pillar.d}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-24 max-w-4xl mx-auto bg-slate-50 dark:bg-surface-dark p-12 md:p-16 rounded-[4rem] border-4 border-slate-200 dark:border-border-dark shadow-lg text-center">
+            <h3 className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">REACH Test™ Admission Framing</h3>
+            <p className="text-xl text-text-muted dark:text-text-dark-muted font-bold leading-relaxed mb-12 italic">
+              “Admission into LaunchPath is determined by REACH Test™ results. This ensures carriers entering the standard have the financial readiness and risk tolerance required to implement it correctly.”
+            </p>
+            <div className="space-y-6">
+              <Link to="/readiness" className="bg-authority-blue text-white px-16 py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 inline-flex items-center">
+                Request Admission
+                <ArrowRight className="ml-3" />
+              </Link>
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                Admission is based on REACH Test™ results and alignment with the LaunchPath standard.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -376,12 +415,15 @@ const HomePage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-12">
             <Link to="/readiness" className="w-full sm:w-auto bg-white text-authority-blue px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-lg hover:bg-signal-gold hover:text-white transition-all shadow-2xl active:scale-95 border-b-8 border-slate-200">
-              Initiate Admission Protocol
+              Request Admission
             </Link>
             <Link to="/contact" className="w-full sm:w-auto bg-transparent border-4 border-white/40 text-white px-16 py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-lg hover:border-white transition-all active:scale-95">
               Contact Technical Support
             </Link>
           </div>
+          <p className="mt-8 text-[11px] font-black uppercase tracking-[0.4em] text-white/40">
+            Admission is based on REACH Test™ results and alignment with the LaunchPath standard.
+          </p>
         </div>
       </section>
 
