@@ -41,7 +41,10 @@ import {
   Linkedin,
   Instagram,
   Share2,
-  Sparkles
+  Sparkles,
+  Unlock,
+  // Fix: Added missing Mail icon import to satisfy usage in component
+  Mail
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -53,6 +56,9 @@ const ResourcesPage = () => {
   const [leadEmail, setLeadEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  
+  // Orientation Modal State
+  const [isOrientationModalOpen, setIsOrientationModalOpen] = useState(false);
 
   // AI Image State
   const [generatedImages, setGeneratedImages] = useState<Record<string, string>>({});
@@ -239,17 +245,29 @@ const ResourcesPage = () => {
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">{item.sub}</p>
               <p className="text-base text-slate-500 dark:text-text-dark-muted font-medium mb-12 leading-relaxed flex-grow">{item.desc}</p>
               
-              <div className="mt-auto">
+              <div className="mt-auto pt-6 border-t border-slate-50 dark:border-white/5">
                 {item.isGated ? (
-                  <button 
-                    onClick={() => setSelectedGuide({title: item.title, link: item.link})}
-                    className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold hover:underline group-hover:translate-x-1 transition-transform"
-                  >
-                    <Download size={14} className="mr-3" /> Request Transfer
-                  </button>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] text-amber-600">
+                      <Lock size={12} />
+                      <span>Email Authentication Required</span>
+                    </div>
+                    <button 
+                      onClick={() => setSelectedGuide({title: item.title, link: item.link})}
+                      className="w-full bg-authority-blue text-white py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] shadow-lg hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group/btn"
+                    >
+                      <Download size={16} className="mr-3 group-hover/btn:translate-y-0.5 transition-transform" /> 
+                      Verify Email to Access
+                    </button>
+                  </div>
                 ) : (
-                  <Link to={item.link} className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold hover:underline group-hover:translate-x-1 transition-transform">
-                    <ArrowRight size={14} className="mr-3" /> Open Diagnostic
+                  <Link 
+                    to={item.link} 
+                    className="w-full bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-white border border-slate-200 dark:border-slate-700 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 transition-all active:scale-95 group/btn"
+                  >
+                    <Unlock size={16} className="mr-3" /> 
+                    Public Diagnostic 
+                    <ArrowRight size={14} className="ml-3 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 )}
                 <SocialShare title={item.title} />
@@ -362,12 +380,19 @@ const ResourcesPage = () => {
                   {tool.title}
                 </h4>
                 
-                <div className="w-full mt-auto">
+                <div className="w-full mt-auto pt-8 border-t border-slate-50 dark:border-white/5 space-y-4">
+                  <div className="flex items-center justify-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
+                    {/* Fixed: Use imported Mail icon on line 383 */}
+                    <Mail size={12} />
+                    <span>Registry Verification Required</span>
+                  </div>
                   <button 
                     onClick={() => setSelectedGuide({title: tool.title, link: "#"})}
-                    className="mx-auto text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 hover:text-authority-blue dark:hover:text-signal-gold transition-colors flex items-center group/btn"
+                    className="w-full bg-authority-blue text-white py-5 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group/btn"
                   >
-                    Access File <ChevronRight size={12} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                    <FileText size={18} className="mr-3" /> 
+                    Authorize Transfer
+                    <ChevronRight size={14} className="ml-3 group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                   <SocialShare title={tool.title} />
                 </div>
@@ -377,7 +402,7 @@ const ResourcesPage = () => {
           
           <div className="mt-20 p-12 bg-authority-blue/5 border border-authority-blue/10 rounded-[3.5rem] text-center max-w-4xl mx-auto">
             <p className="text-[14px] font-bold uppercase tracking-[0.3em] text-authority-blue/80 dark:text-text-dark-muted leading-relaxed">
-              Full systems, verification standards, and implementation protocols are provided inside LaunchPath.
+              Full systems, verification standards, and implementation protocols are provided inside LaunchPath Master Curriculum.
             </p>
           </div>
         </div>
@@ -510,7 +535,7 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 7. EDUCATION LIBRARY */}
+      {/* 7. EDUCATION LIBRARY - UPDATED INTERACTIVE SECTION */}
       <section className="py-40 max-w-7xl mx-auto px-6">
         <div className="mb-24 text-center">
           <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue mb-4">6. Education Library</p>
@@ -521,30 +546,60 @@ const ResourcesPage = () => {
           {[
             { 
               cat: "Compliance", 
-              items: ["Why Carriers Fail New Entrant Audits", "Recordkeeping Errors That Trigger Investigations"] 
+              items: [
+                { title: "Why Carriers Fail New Entrant Audits", link: "/resources/new-entrant-audit-failures" },
+                { title: "Recordkeeping Errors That Trigger Investigations", link: "/resources/recordkeeping-errors-investigations" }
+              ] 
             },
             { 
               cat: "Operations", 
-              items: ["Load Selection Risk Factors", "Cash Flow vs Revenue Illusions"] 
+              items: [
+                { title: "Load Selection Risk Factors", link: "/resources/load-selection-risk-factors" },
+                { title: "Cash Flow vs Revenue Illusions", link: "/resources/cash-flow-vs-revenue-illusions" }
+              ] 
             },
             { 
               cat: "Authority Protection", 
-              items: ["How Authority Gets Revoked", "Insurance Cancellation Triggers"] 
+              items: [
+                { title: "How Authority Gets Revoked", gated: true },
+                { title: "Insurance Cancellation Triggers", gated: true }
+              ] 
             },
             { 
               cat: "Leadership & Discipline", 
-              items: ["Order Before Expansion", "Decision-Making Under Pressure", "Patience as a Competitive Advantage"] 
+              items: [
+                { title: "Order Before Expansion", link: "/resources/order-before-expansion" },
+                { title: "Decision-Making Under Pressure", link: "/resources/decision-making-under-pressure" },
+                { title: "Patience as a Competitive Advantage", link: "/resources/patience-competitive-advantage" }
+              ] 
             }
           ].map((group, i) => (
             <div key={i} className="space-y-10 group">
               <h4 className="text-xs font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold border-b border-slate-100 dark:border-border-dark pb-6 group-hover:border-signal-gold transition-colors">{group.cat}</h4>
               <ul className="space-y-8">
                 {group.items.map((item, j) => (
-                  <li key={j} className="group/item cursor-pointer">
-                    <p className="text-sm font-bold text-slate-600 dark:text-text-dark-primary group-hover/item:text-authority-blue transition-colors leading-relaxed uppercase tracking-tight">
-                      {item}
-                    </p>
-                    <div className="w-0 group-hover/item:w-12 h-[2px] bg-authority-blue mt-3 transition-all duration-500 ease-out"></div>
+                  <li key={j} className="group/item">
+                    {item.gated ? (
+                      <button 
+                        onClick={() => setIsOrientationModalOpen(true)}
+                        className="text-left"
+                      >
+                        <div className="flex items-center gap-2">
+                           <p className="text-sm font-bold text-slate-600 dark:text-text-dark-primary group-hover/item:text-authority-blue transition-colors leading-relaxed uppercase tracking-tight">
+                            {item.title}
+                          </p>
+                          <Lock size={12} className="text-slate-300 mb-1" />
+                        </div>
+                        <div className="w-0 group-hover/item:w-12 h-[2px] bg-authority-blue mt-3 transition-all duration-500 ease-out"></div>
+                      </button>
+                    ) : (
+                      <Link to={item.link || "#"}>
+                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-primary group-hover/item:text-authority-blue transition-colors leading-relaxed uppercase tracking-tight">
+                          {item.title}
+                        </p>
+                        <div className="w-0 group-hover/item:w-12 h-[2px] bg-authority-blue mt-3 transition-all duration-500 ease-out"></div>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -658,6 +713,54 @@ const ResourcesPage = () => {
         </div>
       </section>
 
+      {/* ORIENTATION NOTICE MODAL (GATED CONTENT) */}
+      {isOrientationModalOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-primary-dark/80 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white dark:bg-surface-dark rounded-[4rem] p-12 md:p-16 border border-white/20 shadow-[0_60px_100px_-20px_rgba(0,0,0,0.8)] max-w-xl w-full relative animate-in zoom-in-95 duration-500">
+            <button 
+              onClick={() => setIsOrientationModalOpen(false)}
+              className="absolute top-10 right-10 p-3 text-slate-300 hover:text-authority-blue transition-colors"
+            >
+              <X size={28} />
+            </button>
+            <div className="text-center">
+              <div className="w-20 h-20 bg-authority-blue rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl border border-signal-gold/30">
+                <Lock size={32} className="text-signal-gold" />
+              </div>
+              <h3 className="text-4xl font-black text-authority-blue dark:text-white uppercase tracking-tighter mb-8 font-serif leading-none">Orientation Notice</h3>
+              
+              <div className="space-y-6 mb-12">
+                <p className="text-lg text-slate-600 dark:text-text-dark-primary leading-relaxed font-bold">
+                  This reference is part of LaunchPath’s structured implementation sequence.
+                </p>
+                <p className="text-base text-slate-500 dark:text-text-dark-muted leading-relaxed font-medium">
+                  Public access is limited to prevent misapplication of regulatory actions outside their proper order.
+                </p>
+                <div className="h-px w-16 bg-slate-100 dark:bg-white/10 mx-auto"></div>
+                <p className="text-sm italic text-authority-blue dark:text-signal-gold font-bold">
+                  Full execution guidance is available through Admission & Implementation.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <Link 
+                  to="/reach-test"
+                  className="bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95"
+                >
+                  Begin the REACH Test™
+                </Link>
+                <button 
+                  onClick={() => setIsOrientationModalOpen(false)}
+                  className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 hover:text-authority-blue transition-colors"
+                >
+                  Return to Resources
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* AUTHORIZATION MODAL */}
       {selectedGuide && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-authority-blue/60 backdrop-blur-2xl animate-in fade-in duration-500">
@@ -681,7 +784,11 @@ const ResourcesPage = () => {
                 </div>
                 <div className="space-y-3">
                   <label className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 ml-8 block">Registry Email</label>
-                  <input required type="email" placeholder="jane@carrier.com" className="w-full px-10 py-7 rounded-[2.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue outline-none font-bold transition-all text-authority-blue dark:text-white shadow-inner" value={leadEmail} onChange={(e) => setLeadEmail(e.target.value)} />
+                  {/* Fixed: Use imported Mail icon here too if desired, although the primary error was on line 383 */}
+                  <div className="relative">
+                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                    <input required type="email" placeholder="jane@carrier.com" className="w-full pl-16 pr-8 py-7 rounded-[2.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue outline-none font-bold transition-all text-authority-blue dark:text-white shadow-inner" value={leadEmail} onChange={(e) => setLeadEmail(e.target.value)} />
+                  </div>
                 </div>
                 <button type="submit" disabled={isSubmitting} className="w-full py-8 rounded-[3rem] bg-authority-blue text-white font-black uppercase tracking-[0.4em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-4 border-slate-900 mt-6 disabled:opacity-50">
                   {isSubmitting ? <Loader2 className="animate-spin mr-4" size={24} /> : <Download className="mr-4" size={20} />} Authorize Transfer

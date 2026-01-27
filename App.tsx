@@ -39,6 +39,7 @@ import LearningPathPage from './pages/LearningPathPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import ResourcesPage from './pages/ResourcesPage';
+import ReferenceBriefPage from './pages/ReferenceBriefPage';
 import FAQPage from './pages/FAQPage';
 import ClarificationPage from './pages/ClarificationPage';
 import ContactPage from './pages/ContactPage';
@@ -454,6 +455,7 @@ export default function App() {
               <Route path="/clarification" element={<ClarificationPage />} />
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
+              <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
               <Route path="/readiness" element={<ReadinessPage />} />
               <Route path="/reach-test" element={<ReachTestPage />} />
               <Route path="/portal" element={<PortalInterstitial />} />

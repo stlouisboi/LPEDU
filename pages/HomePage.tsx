@@ -300,35 +300,35 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Institutional Diagnostic Terminal - RESTORED WHITE CARD THEME */}
-            <div className="relative group animate-in slide-in-from-right duration-1000 w-full">
+            {/* Right: Institutional Diagnostic Terminal - FIXED OVERFLOW AND TYPOGRAPHY */}
+            <div className="relative group animate-in slide-in-from-right duration-1000 w-full flex justify-center lg:justify-end">
                {/* Terminal Backdrop Shadow/Glow */}
-               <div className="absolute -inset-20 bg-authority-blue/5 rounded-[8rem] blur-[120px] opacity-30"></div>
+               <div className="absolute -inset-10 lg:-inset-20 bg-authority-blue/10 rounded-[8rem] blur-[120px] opacity-30"></div>
                
                {/* Main Card Container */}
-               <div className="relative bg-white dark:bg-surface-dark border-[1px] border-slate-100 dark:border-border-dark p-12 lg:p-16 rounded-[4rem] shadow-2xl space-y-12 transition-all group-hover:shadow-[0_60px_100px_-20px_rgba(0,0,0,0.3)]">
+               <div className="relative w-full max-w-[560px] bg-white dark:bg-surface-dark border-[1px] border-slate-100 dark:border-border-dark p-8 lg:p-14 rounded-[4rem] shadow-2xl space-y-10 lg:space-y-12 transition-all group-hover:shadow-[0_60px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden">
                   
                   {/* Card Header */}
-                  <div className="space-y-3">
-                    <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter text-authority-blue dark:text-white font-serif leading-[1.1]">
-                      IDENTIFICATION <br/>& ALIGNMENT
+                  <div className="space-y-4">
+                    <h3 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-[1.05] break-words">
+                      IDENTIFICATION <br className="hidden sm:block" /> & ALIGNMENT
                     </h3>
-                    <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">System Registry Standard LP-01</p>
+                    <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">System Registry Standard LP-01</p>
                   </div>
                   
-                  {/* Compliance Rows - Redesigned to match reference image */}
-                  <div className="space-y-4">
+                  {/* Compliance Rows - Refined Spacing */}
+                  <div className="space-y-3 sm:space-y-4">
                     {[
                       "DRUG & ALCOHOL COMPLIANCE",
                       "DRIVER QUALIFICATION STANDARDS",
                       "INSURANCE & FISCAL SOLVENCY",
                       "MAINTENANCE & HOS GOVERNANCE"
                     ].map((text, i) => (
-                      <div key={i} className="flex items-center space-x-6 p-6 bg-white dark:bg-gray-800/40 rounded-[2rem] border border-slate-50 dark:border-border-dark shadow-sm hover:shadow-md hover:translate-x-1 transition-all duration-300">
-                         <div className="w-10 h-10 bg-slate-50 dark:bg-gray-700 border border-slate-100 dark:border-slate-600 rounded-xl flex items-center justify-center text-authority-blue dark:text-signal-gold shadow-inner" aria-hidden="true">
-                           <ShieldCheck size={20} />
+                      <div key={i} className="flex items-center space-x-4 sm:space-x-6 p-4 sm:p-6 bg-slate-50/50 dark:bg-gray-800/40 rounded-[1.75rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-md hover:translate-x-1 transition-all duration-300">
+                         <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white dark:bg-gray-700 border border-slate-100 dark:border-slate-600 rounded-xl flex items-center justify-center text-authority-blue dark:text-signal-gold shadow-inner shrink-0" aria-hidden="true">
+                           <ShieldCheck size={18} />
                          </div>
-                         <span className="text-sm lg:text-base font-black uppercase tracking-widest text-authority-blue dark:text-white leading-tight">
+                         <span className="text-xs sm:text-sm lg:text-[13px] xl:text-[14px] font-black uppercase tracking-widest text-authority-blue dark:text-white leading-tight">
                            {text}
                          </span>
                       </div>
@@ -336,17 +336,17 @@ const HomePage: React.FC = () => {
                   </div>
 
                   {/* Terminal Footer Info */}
-                  <div className="pt-8 border-t border-slate-50 dark:border-white/5 flex flex-col sm:flex-row justify-between gap-6 sm:items-end opacity-60">
+                  <div className="pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between gap-6 sm:items-end opacity-60">
                      <div className="flex items-center space-x-4">
-                        <div className="p-2 bg-slate-50 dark:bg-white/5 rounded-lg">
-                           <Lock size={16} className="text-slate-400" />
+                        <div className="p-2 bg-slate-100 dark:bg-white/5 rounded-lg">
+                           <Lock size={14} className="text-slate-500" />
                         </div>
                         <div className="space-y-1">
-                           <span className="block text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">Secure Protocol Active</span>
+                           <span className="block text-[9px] font-black uppercase tracking-[0.4em] text-slate-500">Secure Protocol Active</span>
                         </div>
                      </div>
-                     <div className="text-right">
-                        <span className="block text-[10px] font-black text-slate-400 tracking-[0.2em]">ADMIN_V_LAWRENCE // 2026</span>
+                     <div className="text-left sm:text-right">
+                        <span className="block text-[9px] font-black text-slate-500 tracking-[0.2em]">ADMIN_V_LAWRENCE // 2026</span>
                      </div>
                   </div>
                </div>
@@ -356,7 +356,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE 16 DEADLY SINS - RISK MATRIX (Moved above Pillars) */}
+      {/* 3. THE 16 DEADLY SINS - RISK MATRIX */}
       <section className="py-32 bg-slate-100 dark:bg-primary-dark border-y border-slate-200 dark:border-border-dark overflow-hidden" aria-labelledby="sins-heading">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
           
