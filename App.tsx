@@ -47,6 +47,7 @@ import EnrollPage from './pages/EnrollPage';
 import ModuleDetailPage from './pages/ModuleDetailPage';
 import DownloadPage from './pages/DownloadPage';
 import ReadinessPage from './pages/ReadinessPage';
+import PortalInterstitial from './pages/PortalInterstitial';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -102,74 +103,141 @@ const Header = () => {
 
   if (location.pathname.startsWith('/admin')) return null;
 
-  // GOVERNANCE: Approved Menu Items Only
   const navItems = [
-    { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Clarification', path: '/clarification' },
     { name: 'Roadmap', path: '/learning-path' },
-    { name: 'Resources', path: '/resources' },
-    { name: 'Admission', path: '/readiness' }
+    { name: 'Resources', path: '/resources' }
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-primary-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-32 sm:h-44">
-          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <Logo />
+    <header className="sticky top-0 z-[100] bg-white/90 dark:bg-primary-dark/90 backdrop-blur-2xl border-b border-slate-100 dark:border-border-dark transition-all duration-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="flex justify-between items-center h-16 sm:h-20 lg:h-24">
+          
+          {/* LOGO - Scaled for firm aesthetic */}
+          <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300">
+            <Logo className="h-8 sm:h-10 lg:h-12 w-auto" />
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-10">
+          {/* DESKTOP NAVIGATION */}
+          <nav className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-lg font-black uppercase tracking-widest transition-all hover:text-authority-blue ${
-                  location.pathname === item.path ? 'text-authority-blue dark:text-signal-gold underline underline-offset-8 decoration-2' : 'text-text-muted dark:text-text-dark-muted'
+                className={`px-4 py-2 text-[11px] font-black uppercase tracking-[0.25em] transition-all relative group ${
+                  location.pathname === item.path 
+                  ? 'text-authority-blue dark:text-signal-gold' 
+                  : 'text-text-muted dark:text-text-dark-muted hover:text-authority-blue'
                 }`}
               >
                 {item.name}
+                <span className={`absolute bottom-0 left-4 right-4 h-[1.5px] bg-signal-gold transition-transform duration-500 ${location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
               </Link>
             ))}
-            <div className="flex items-center space-x-6 pl-6 border-l border-border-light dark:border-border-dark">
+            
+            <div className="w-8 h-[1px] bg-slate-200 dark:bg-slate-700 mx-4 opacity-50" />
+
+            <div className="flex items-center space-x-4">
+              {/* Portal Access - Private Secondary Styling */}
+              <Link 
+                to="/portal" 
+                className="border border-signal-gold text-signal-gold bg-transparent px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold/5 transition-all active:scale-95"
+              >
+                <Lock size={12} className="mr-2" />
+                Portal Access
+              </Link>
+
+              {/* Admission - Primary Action Styling */}
+              <Link 
+                to="/readiness" 
+                className="bg-authority-blue text-white px-7 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.25em] hover:bg-steel-blue hover:shadow-lg transition-all active:scale-95 border border-white/10"
+              >
+                Admission
+              </Link>
+
               <button
                 onClick={toggleTheme}
-                className="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-signal-gold"
+                className="p-2.5 rounded-full bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-slate-700"
                 aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               >
-                {theme === 'light' ? <Moon className="w-7 h-7 text-authority-blue" /> : <Sun className="w-7 h-7 text-signal-gold" />}
+                {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
               </button>
             </div>
           </nav>
 
-          <div className="lg:hidden flex items-center space-x-4">
-            <button onClick={toggleTheme} className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800">
-              {theme === 'light' ? <Moon className="w-6 h-6" /> : <Sun className="w-6 h-6" />}
+          {/* MOBILE/TABLET CONTROLS */}
+          <div className="lg:hidden flex items-center space-x-3">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-slate-700"
+            >
+              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </button>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-authority-blue dark:text-white">
-              {isMenuOpen ? <X size={40} /> : <Menu size={40} />}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              className="p-2 bg-authority-blue text-white rounded-xl shadow-lg active:scale-90 transition-transform"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </div>
 
+      {/* MOBILE/TABLET OVERLAY */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-primary-dark border-b border-border-light dark:border-border-dark animate-in slide-in-from-top duration-300">
-          <nav className="flex flex-col p-8 space-y-4">
+        <div className="fixed inset-0 top-16 sm:top-20 bg-white dark:bg-primary-dark z-[99] lg:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto">
+          <div className="flex flex-col p-8 sm:p-12 space-y-4">
+            <Link 
+              to="/" 
+              onClick={() => setIsMenuOpen(false)}
+              className={`block p-6 rounded-[2rem] font-black text-2xl uppercase tracking-tighter transition-all ${
+                location.pathname === '/' ? 'bg-authority-blue text-white shadow-xl' : 'text-slate-400'
+              }`}
+            >
+              Home
+            </Link>
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`block p-6 rounded-2xl font-black text-2xl uppercase tracking-widest ${
-                  location.pathname === item.path ? 'bg-authority-blue text-white shadow-lg' : 'text-text-muted hover:bg-slate-50 dark:hover:bg-slate-800'
+                className={`block p-6 rounded-[2rem] font-black text-2xl uppercase tracking-tighter transition-all ${
+                  location.pathname === item.path ? 'bg-authority-blue text-white shadow-xl' : 'text-slate-800 dark:text-slate-200'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-          </nav>
+            
+            <div className="pt-8 space-y-4">
+              <Link 
+                to="/portal" 
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full text-center border-2 border-signal-gold text-signal-gold py-6 rounded-[2rem] text-lg font-black uppercase tracking-[0.2em]"
+              >
+                <Lock size={18} className="inline mr-2 -mt-1" />
+                Portal Access
+              </Link>
+              <Link 
+                to="/readiness" 
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full text-center bg-authority-blue text-white py-8 rounded-[2.5rem] text-lg font-black uppercase tracking-[0.2em] shadow-2xl"
+              >
+                Admission Protocol
+              </Link>
+            </div>
+            
+            <div className="pt-20 pb-8 flex flex-col items-center space-y-8 opacity-30">
+              <p className="text-[10px] font-black uppercase tracking-[0.5em] text-center">Institutional Standards Active</p>
+              <div className="flex space-x-10">
+                <Linkedin size={24} />
+                <Twitter size={24} />
+                <Youtube size={24} />
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </header>
@@ -447,6 +515,7 @@ export default function App() {
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/readiness" element={<ReadinessPage />} />
+              <Route path="/portal" element={<PortalInterstitial />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/support" element={<SupportPage />} />

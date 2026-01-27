@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -243,12 +242,14 @@ const LearningPathPage = () => {
                     
                     {/* Decorative Icon */}
                     <div className={`absolute -top-12 -right-12 p-10 ${phase.color} opacity-[0.03] dark:opacity-[0.07] transition-transform duration-1000 group-hover:rotate-12 group-hover:scale-150`}>
-                      {React.cloneElement(phase.icon as React.ReactElement, { size: 240 })}
+                      {/* Fix: cast icon to React.ReactElement<any> to resolve TypeScript error regarding 'size' prop mismatch */}
+                      {React.cloneElement(phase.icon as React.ReactElement<any>, { size: 240 })}
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-between items-start mb-12 relative z-10 gap-6">
                       <div className={`w-20 h-20 ${phase.bg} rounded-[2rem] flex items-center justify-center ${phase.color} shadow-inner transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-                        {React.cloneElement(phase.icon as React.ReactElement, { size: 36 })}
+                        {/* Fix: cast icon to React.ReactElement<any> to resolve TypeScript error regarding 'size' prop mismatch */}
+                        {React.cloneElement(phase.icon as React.ReactElement<any>, { size: 36 })}
                       </div>
                       <div className="flex flex-col items-start md:items-end text-left md:text-right">
                         <span className={`text-[14px] font-black tracking-[0.3em] px-6 py-2.5 rounded-full ${phase.bg} border border-slate-100 dark:border-slate-800 ${phase.color} uppercase mb-3 shadow-sm`}>
