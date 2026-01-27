@@ -48,6 +48,7 @@ import ModuleDetailPage from './pages/ModuleDetailPage';
 import DownloadPage from './pages/DownloadPage';
 import ReadinessPage from './pages/ReadinessPage';
 import PortalInterstitial from './pages/PortalInterstitial';
+import ReachTestPage from './pages/ReachTestPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -515,6 +516,7 @@ export default function App() {
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/readiness" element={<ReadinessPage />} />
+              <Route path="/reach-test" element={<ReachTestPage />} />
               <Route path="/portal" element={<PortalInterstitial />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />

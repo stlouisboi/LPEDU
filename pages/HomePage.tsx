@@ -399,6 +399,13 @@ const HomePage: React.FC = () => {
               </div>
             ))}
           </div>
+          
+          <div className="mt-16 text-center">
+            <Link to="/reach-test" className="inline-flex items-center space-x-3 bg-white border-2 border-authority-blue text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all shadow-sm active:scale-95 group">
+              <span>Technical Deep-Dive</span>
+              <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
 
