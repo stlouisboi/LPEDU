@@ -29,7 +29,9 @@ import {
   MoveDown,
   MoveRight,
   MoveLeft,
-  MoveUp
+  MoveUp,
+  Skull,
+  Zap
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -65,23 +67,43 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const enforcementRisks = [
-    "Lack of random drug program implementation",
-    "Deployment of drivers with positive drug test results",
-    "Operating with drivers lacking medical certification",
-    "Operation without verified insurance levels",
-    "Utilization of drivers with revoked or suspended licenses",
-    "Failure to conduct mandated pre-employment drug screening",
-    "Absence of maintained Driver Qualification (DQ) records",
-    "Failure to maintain Records of Duty Status (HOS)",
-    "Directing drivers to exceed federal hours of service limits",
-    "Dispatching vehicles in 'Out-of-Service' (OOS) conditions",
-    "Lack of verified daily vehicle inspection reports",
-    "Failure to register in the federal Drug & Alcohol Clearinghouse",
-    "Inaccurate or missing BOC-3 / UCR administrative filings",
-    "Neglecting mandatory previous employer background inquiries",
-    "Absence of a systematic equipment maintenance program",
-    "Failure to document and report accidents within federal windows"
+  const deadlySinsCategories = [
+    {
+      title: "Chemical Dependency Protocols",
+      sins: [
+        { id: "01", text: "Lack of random drug program implementation", impact: "Automatic Audit Failure" },
+        { id: "02", text: "Deployment of drivers with positive results", impact: "Authority Revocation" },
+        { id: "03", text: "Failure to register in Federal Clearinghouse", impact: "Regulatory Violation" },
+        { id: "04", text: "Omission of pre-employment screening", impact: "Critical Exposure" }
+      ]
+    },
+    {
+      title: "Driver Eligibility Standards",
+      sins: [
+        { id: "05", text: "Utilization of revoked or suspended licenses", impact: "Immediate Out-of-Service" },
+        { id: "06", text: "Drivers lacking valid medical certification", impact: "Safety Rating Downgrade" },
+        { id: "07", text: "Absence of maintained DQ file infrastructure", impact: "Audit Red Flag" },
+        { id: "08", text: "Neglecting previous employer background inquiries", impact: "Administrative Default" }
+      ]
+    },
+    {
+      title: "Operational Safety Controls",
+      sins: [
+        { id: "09", text: "Directing drivers to exceed HOS limits", impact: "Criminal Negligence Risk" },
+        { id: "10", text: "Dispatching vehicles in OOS conditions", impact: "Operational Termination" },
+        { id: "11", text: "Failure to maintain Records of Duty Status", impact: "Federal Fine Multiplier" },
+        { id: "12", text: "Lack of verified daily vehicle inspections", impact: "Structural Liability" }
+      ]
+    },
+    {
+      title: "Administrative Integrity",
+      sins: [
+        { id: "13", text: "Operation without verified insurance levels", impact: "Permanent Blacklist" },
+        { id: "14", text: "Inaccurate or missing BOC-3 / UCR filings", impact: "Administrative Suspension" },
+        { id: "15", text: "Absence of systematic maintenance program", impact: "Inspection Exposure" },
+        { id: "16", text: "Failure to report accidents within windows", impact: "Legal Default" }
+      ]
+    }
   ];
 
   const pillars = [
@@ -254,23 +276,69 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE 16 DEADLY SINS */}
-      <section className="py-32 bg-slate-50 dark:bg-primary-dark">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">
+      {/* 3. THE 16 DEADLY SINS - ENHANCED RISK MATRIX */}
+      <section className="py-32 bg-slate-100 dark:bg-primary-dark border-y border-slate-200 dark:border-border-dark overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
+          
+          <div className="flex flex-col items-center text-center mb-24 space-y-6">
+            <div className="inline-flex items-center space-x-3 bg-red-600 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-lg">
+              <Skull size={14} className="animate-pulse" />
+              <span>Enforcement Registry Landmines</span>
+            </div>
+            <h2 className="text-5xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9]">
               The 16 <br/><span className="text-red-600 italic">Deadly Sins.</span>
             </h2>
-            <p className="text-2xl text-text-primary dark:text-text-dark-primary font-black">FMCSA’s most common compliance failures.</p>
+            <p className="text-xl text-slate-500 dark:text-text-dark-muted font-bold max-w-2xl leading-relaxed">
+              These specific administrative gaps trigger 85% of New Entrant Audit failures. Identification and resolution are mandatory prerequisites for operational stability.
+            </p>
           </div>
-          <div className="max-w-4xl mx-auto">
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 list-disc pl-5">
-              {enforcementRisks.map((risk, i) => (
-                <li key={i} className="text-lg font-bold text-authority-blue dark:text-text-dark-primary marker:text-red-600">
-                  <span className="leading-tight">{risk}</span>
-                </li>
-              ))}
-            </ul>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {deadlySinsCategories.map((category, catIdx) => (
+              <div key={catIdx} className="space-y-8">
+                <div className="flex items-center space-x-4 border-b-2 border-slate-200 dark:border-border-dark pb-4">
+                  <div className="w-10 h-10 bg-authority-blue text-signal-gold rounded-xl flex items-center justify-center font-black">
+                    {catIdx + 1}
+                  </div>
+                  <h3 className="text-xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">{category.title}</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {category.sins.map((sin, sinIdx) => (
+                    <div key={sinIdx} className="group relative bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-slate-200 dark:border-border-dark shadow-sm hover:shadow-2xl hover:border-red-500/50 transition-all duration-500 flex flex-col justify-between overflow-hidden">
+                      {/* Sin Index BG */}
+                      <span className="absolute -top-4 -right-4 text-6xl font-black text-slate-50 dark:text-slate-800 pointer-events-none group-hover:text-red-50 transition-colors duration-500">
+                        {sin.id}
+                      </span>
+
+                      <div className="relative z-10 space-y-4">
+                        <p className="text-base font-bold text-slate-700 dark:text-text-dark-primary leading-tight uppercase tracking-tight">
+                          {sin.text}
+                        </p>
+                        <div className="inline-flex items-center space-x-2 px-3 py-1 bg-red-50 dark:bg-red-950/20 rounded-lg">
+                           <Zap size={10} className="text-red-600" />
+                           <span className="text-[9px] font-black uppercase tracking-widest text-red-700 dark:text-red-400">
+                             Impact: {sin.impact}
+                           </span>
+                        </div>
+                      </div>
+
+                      {/* Hazard Line */}
+                      <div className="absolute left-0 top-0 h-full w-1.5 bg-slate-100 dark:bg-gray-800 group-hover:bg-red-600 transition-colors duration-500"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Institutional Note */}
+          <div className="mt-24 p-10 bg-authority-blue rounded-[3rem] text-center relative overflow-hidden shadow-2xl">
+             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+             <p className="relative z-10 text-white text-lg font-black uppercase tracking-[0.2em] mb-4">Registry Warning</p>
+             <p className="relative z-10 text-white/70 max-w-3xl mx-auto font-medium leading-relaxed italic">
+               "The FMCSA does not grade on a curve. Each of these 16 items represents a critical system component. A failure in one often indicates a systemic collapse of safety management controls."
+             </p>
           </div>
         </div>
       </section>
