@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -19,7 +18,9 @@ import {
   Shield,
   Anchor,
   CheckCircle,
-  Lock
+  Lock,
+  Calculator,
+  Sparkles
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -49,6 +50,7 @@ import DownloadPage from './pages/DownloadPage';
 import ReadinessPage from './pages/ReadinessPage';
 import PortalInterstitial from './pages/PortalInterstitial';
 import ReachTestPage from './pages/ReachTestPage';
+import TCOCalculatorPage from './pages/TCOCalculatorPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -112,55 +114,57 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-[100] bg-white/90 dark:bg-primary-dark/90 backdrop-blur-2xl border-b border-slate-100 dark:border-border-dark transition-all duration-500">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <header className="sticky top-0 z-[100] bg-white dark:bg-primary-dark border-b border-slate-100 dark:border-border-dark transition-all duration-500" role="banner">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20 lg:h-24">
           
-          {/* LOGO - Scaled for firm aesthetic */}
-          <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300">
-            <Logo className="h-8 sm:h-10 lg:h-12 w-auto" />
+          <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300" aria-label="LaunchPath Home">
+            <Logo className="h-6 sm:h-8 lg:h-10 w-auto" />
           </Link>
 
-          {/* DESKTOP NAVIGATION */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`px-4 py-2 text-[11px] font-black uppercase tracking-[0.25em] transition-all relative group ${
-                  location.pathname === item.path 
-                  ? 'text-authority-blue dark:text-signal-gold' 
-                  : 'text-text-muted dark:text-text-dark-muted hover:text-authority-blue'
-                }`}
-              >
-                {item.name}
-                <span className={`absolute bottom-0 left-4 right-4 h-[1.5px] bg-signal-gold transition-transform duration-500 ${location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
-              </Link>
-            ))}
+          {/* DESKTOP NAVIGATION - EXACTLY MATCHING SCREENSHOT */}
+          <nav className="hidden xl:flex items-center" aria-label="Main Navigation">
+            <div className="flex items-center space-x-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-5 py-2 text-[11px] font-black uppercase tracking-[0.25em] transition-all relative ${
+                    location.pathname === item.path 
+                    ? 'text-authority-blue dark:text-signal-gold' 
+                    : 'text-slate-500 dark:text-text-dark-muted hover:text-authority-blue'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
             
-            <div className="w-8 h-[1px] bg-slate-200 dark:bg-slate-700 mx-4 opacity-50" />
+            {/* Visual Divider from Screenshot */}
+            <div className="w-[1.5px] h-6 bg-slate-200 dark:bg-slate-700 mx-6" aria-hidden="true" />
 
-            <div className="flex items-center space-x-4">
-              {/* Portal Access - Private Secondary Styling */}
+            <div className="flex items-center space-x-5">
+              {/* Portal Access - Gold Border Button */}
               <Link 
                 to="/portal" 
-                className="border border-signal-gold text-signal-gold bg-transparent px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold/5 transition-all active:scale-95"
+                className="border-2 border-signal-gold text-signal-gold px-7 py-3 rounded-full text-[11px] font-black uppercase tracking-[0.2em] flex items-center hover:bg-signal-gold/5 transition-all active:scale-95"
               >
-                <Lock size={12} className="mr-2" />
+                <Lock size={12} className="mr-2.5 -mt-0.5" />
                 Portal Access
               </Link>
 
-              {/* Admission - Primary Action Styling */}
+              {/* Admission - Solid Blue Button */}
               <Link 
                 to="/readiness" 
-                className="bg-authority-blue text-white px-7 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.25em] hover:bg-steel-blue hover:shadow-lg transition-all active:scale-95 border border-white/10"
+                className="bg-authority-blue text-white px-9 py-4 rounded-full text-[11px] font-black uppercase tracking-[0.2em] hover:bg-steel-blue hover:shadow-xl transition-all active:scale-95 shadow-lg"
               >
                 Admission
               </Link>
 
+              {/* Theme Toggle - Circular Button */}
               <button
                 onClick={toggleTheme}
-                className="p-2.5 rounded-full bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-slate-700"
+                className="p-3 rounded-full bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-slate-700 shadow-sm"
                 aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               >
                 {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
@@ -168,17 +172,20 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* MOBILE/TABLET CONTROLS */}
-          <div className="lg:hidden flex items-center space-x-3">
+          {/* TABLET/MOBILE CONTROLS */}
+          <div className="xl:hidden flex items-center space-x-3">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-slate-700"
+              aria-label="Toggle Dark Mode"
             >
               {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </button>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)} 
               className="p-2 bg-authority-blue text-white rounded-xl shadow-lg active:scale-90 transition-transform"
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle Menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -188,12 +195,12 @@ const Header = () => {
 
       {/* MOBILE/TABLET OVERLAY */}
       {isMenuOpen && (
-        <div className="fixed inset-0 top-16 sm:top-20 bg-white dark:bg-primary-dark z-[99] lg:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto">
-          <div className="flex flex-col p-8 sm:p-12 space-y-4">
+        <nav className="fixed inset-0 top-16 sm:top-20 bg-white dark:bg-primary-dark z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
+          <div className="flex flex-col p-8 sm:p-12 space-y-3">
             <Link 
               to="/" 
               onClick={() => setIsMenuOpen(false)}
-              className={`block p-6 rounded-[2rem] font-black text-2xl uppercase tracking-tighter transition-all ${
+              className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${
                 location.pathname === '/' ? 'bg-authority-blue text-white shadow-xl' : 'text-slate-400'
               }`}
             >
@@ -203,7 +210,7 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`block p-6 rounded-[2rem] font-black text-2xl uppercase tracking-tighter transition-all ${
+                className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${
                   location.pathname === item.path ? 'bg-authority-blue text-white shadow-xl' : 'text-slate-800 dark:text-slate-200'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
@@ -214,6 +221,15 @@ const Header = () => {
             
             <div className="pt-8 space-y-4">
               <Link 
+                to="/ai-advisor" 
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full text-center border-2 border-authority-blue text-authority-blue py-6 rounded-[2rem] text-lg font-black uppercase tracking-[0.2em]"
+              >
+                <Sparkles size={18} className="inline mr-2 -mt-1" />
+                AI Advisor
+              </Link>
+              
+              <Link 
                 to="/portal" 
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full text-center border-2 border-signal-gold text-signal-gold py-6 rounded-[2rem] text-lg font-black uppercase tracking-[0.2em]"
@@ -221,6 +237,7 @@ const Header = () => {
                 <Lock size={18} className="inline mr-2 -mt-1" />
                 Portal Access
               </Link>
+
               <Link 
                 to="/readiness" 
                 onClick={() => setIsMenuOpen(false)}
@@ -229,74 +246,32 @@ const Header = () => {
                 Admission Protocol
               </Link>
             </div>
-            
-            <div className="pt-20 pb-8 flex flex-col items-center space-y-8 opacity-30">
-              <p className="text-[10px] font-black uppercase tracking-[0.5em] text-center">Institutional Standards Active</p>
-              <div className="flex space-x-10">
-                <Linkedin size={24} />
-                <Twitter size={24} />
-                <Youtube size={24} />
-              </div>
-            </div>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
 };
 
 const VeteranBadge = () => (
-  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
+  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg" role="img" aria-label="U.S. Veteran Owned Business Badge">
     <div className="flex items-center space-x-1 mb-1">
-      <Award size={14} className="text-signal-gold" fill="currentColor" />
+      <Award size={14} className="text-signal-gold" fill="currentColor" aria-hidden="true" />
       <span className="text-[9px] font-black text-white uppercase tracking-widest text-center">VETERAN OWNED</span>
     </div>
-    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
+    <div className="h-px w-full bg-signal-gold/30 mb-1" aria-hidden="true"></div>
     <span className="text-[8px] font-bold text-white/60 uppercase text-center">U.S. VETERAN OWNED</span>
   </div>
 );
 
 const SDVOSBBadge = () => (
-  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
+  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg" role="img" aria-label="Service-Disabled Veteran-Owned Small Business Badge">
     <div className="flex items-center space-x-1 mb-1">
-      <Shield size={14} className="text-signal-gold" />
+      <Shield size={14} className="text-signal-gold" aria-hidden="true" />
       <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">SDVOSB</span>
     </div>
-    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
+    <div className="h-px w-full bg-signal-gold/30 mb-1" aria-hidden="true"></div>
     <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">SERVICE-DISABLED VET</span>
-  </div>
-);
-
-const KingdomBadge = () => (
-  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
-    <div className="flex items-center space-x-1 mb-1">
-      <Anchor size={14} className="text-signal-gold" />
-      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">KINGDOM BUSINESS</span>
-    </div>
-    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
-    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">STEWARDSHIP FOCUSED</span>
-  </div>
-);
-
-const OSHABadge = () => (
-  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg">
-    <div className="flex items-center space-x-1 mb-1">
-      <ShieldCheck size={14} className="text-signal-gold" />
-      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">OSHA-TRAINED</span>
-    </div>
-    <div className="h-px w-full bg-signal-gold/30 mb-1"></div>
-    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">SAFETY SYSTEMS</span>
-  </div>
-);
-
-const AuditReadyBadge = () => (
-  <div className="flex flex-col items-center justify-center p-3 border-2 border-emerald-500 bg-white rounded-xl w-[140px] shadow-lg">
-    <div className="flex items-center space-x-1 mb-1">
-      <CheckCircle size={14} className="text-emerald-600" />
-      <span className="text-[9px] font-black text-emerald-900 uppercase tracking-widest text-center leading-none">AUDIT READY</span>
-    </div>
-    <div className="h-px w-full bg-emerald-100 mb-1"></div>
-    <span className="text-[8px] font-bold text-emerald-700/60 uppercase text-center leading-none">FMCSA COMPLIANT</span>
   </div>
 );
 
@@ -305,11 +280,11 @@ const Footer = () => {
   if (location.pathname.startsWith('/admin')) return null;
 
   return (
-    <footer className="w-full font-sans">
+    <footer className="w-full font-sans" role="contentinfo">
       {/* SECTION 2: FOOTER NAVIGATION */}
       <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5 transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Navigation">
+          <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Site Map">
             {/* FOUNDATION */}
             <div>
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">FOUNDATION</h3>
@@ -335,7 +310,7 @@ const Footer = () => {
                 {[
                   { name: 'Operating Roadmap', path: '/learning-path' },
                   { name: 'Admission Protocol', path: '/readiness' },
-                  { name: 'The Four Pillars', path: '/#pillars' }
+                  { name: 'TCO Calculator', path: '/tools/tco-calculator' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
@@ -390,7 +365,6 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
             
-            {/* LEFT SIDE: Identity & Disclaimer */}
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-4">
                 <Logo light className="h-12 grayscale-0 brightness-0 invert" />
@@ -408,30 +382,18 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* RIGHT SIDE: Badges & Social */}
             <div className="flex flex-col items-center lg:items-end shrink-0 w-full lg:w-auto">
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
                 <VeteranBadge />
                 <SDVOSBBadge />
-                <KingdomBadge />
-                <OSHABadge />
-                <AuditReadyBadge />
-                <div className="flex flex-col items-center justify-center p-3 border-2 border-white/20 bg-white/5 rounded-xl w-[140px] shadow-lg">
-                   <div className="flex items-center space-x-1 mb-1">
-                     <Lock size={14} className="text-signal-gold" />
-                     <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">SECURE SSL</span>
-                   </div>
-                   <div className="h-px w-full bg-white/10 mb-1"></div>
-                   <span className="text-[8px] font-bold text-white/40 uppercase text-center leading-none">256-BIT ENCRYPTED</span>
-                </div>
               </div>
               
               <div className="flex items-center gap-8">
                 {[
-                  { icon: <Linkedin size={24} />, label: "LinkedIn", href: "#" },
-                  { icon: <Facebook size={24} />, label: "Facebook", href: "#" },
-                  { icon: <Youtube size={24} />, label: "YouTube", href: "#" },
-                  { icon: <Twitter size={24} />, label: "Twitter", href: "#" }
+                  { icon: <Linkedin size={24} aria-hidden="true" />, label: "LinkedIn", href: "#" },
+                  { icon: <Facebook size={24} aria-hidden="true" />, label: "Facebook", href: "#" },
+                  { icon: <Youtube size={24} aria-hidden="true" />, label: "YouTube", href: "#" },
+                  { icon: <Twitter size={24} aria-hidden="true" />, label: "Twitter", href: "#" }
                 ].map((social) => (
                   <a 
                     key={social.label}
@@ -495,7 +457,14 @@ export default function App() {
 
   if (appLoading) return (
     <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
-      <Loader2 className="animate-spin text-authority-blue" size={32} />
+      <div className="flex flex-col items-center gap-6">
+        <img 
+          src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/logo.png" 
+          alt="LaunchPath Loading" 
+          className="h-16 w-auto animate-pulse" 
+        />
+        <Loader2 className="animate-spin text-authority-blue" size={32} aria-label="Loading application..." />
+      </div>
     </div>
   );
 
@@ -508,7 +477,7 @@ export default function App() {
         <Router>
           <ScrollToTop />
           <Header />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow" role="main">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
@@ -522,9 +491,13 @@ export default function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/legal" element={<LegalPage />} />
+              <Route path="/ai-advisor" element={<AIServicePage />} />
               <Route path="/pricing" element={<EnrollPage />} />
+              <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
               <Route path="/modules/:id" element={<ModuleDetailPage />} />
               <Route path="/download/risk-map" element={<DownloadPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
                 <Route index element={<AdminDashboardHome />} />

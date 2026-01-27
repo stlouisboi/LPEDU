@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -180,7 +179,7 @@ const LearningPathPage = () => {
             <Navigation size={14} className="text-signal-gold mr-2" />
             <span className="text-white">Carrier Implementation Protocol</span>
           </div>
-          <h1 className="text-6xl md:text-[120px] font-black mb-8 font-serif uppercase tracking-tighter leading-[0.8] animate-reveal-up">
+          <h1 className="text-4xl md:text-5xl font-black mb-8 font-serif uppercase tracking-tighter leading-tight animate-reveal-up">
             The <span className="text-signal-gold italic">Roadmap.</span>
           </h1>
           <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed font-medium mb-12 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
@@ -316,7 +315,7 @@ const LearningPathPage = () => {
               <span className="text-[13px] font-black uppercase tracking-[0.5em] text-green-600 dark:text-green-400">SYSTEM STATUS: ARCHITECTED</span>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-12">
+            <h2 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-12">
               Operational <span className="text-signal-gold italic">Mastery.</span>
             </h2>
 

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
@@ -64,7 +63,6 @@ const EnrollPage = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err: any) {
       console.error("Enrollment Submission Failure:", err);
-      // Detailed error handling for better diagnosis
       if (err.message?.includes('database')) {
         setError({ message: "Database instance not found. Verify Firestore initialization.", code: "DB_NOT_FOUND" });
       } else if (err.code === 'permission-denied') {
@@ -87,7 +85,7 @@ const EnrollPage = () => {
             <ShieldCheck size={16} className="text-authority-blue" />
             <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue">Standard Admission Protocol v4.2</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter mb-8 leading-none">
+          <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter mb-8 leading-none">
             System <span className="text-signal-gold italic">Admission</span>
           </h1>
           <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -25,7 +24,7 @@ const ReachTestPage = () => {
             <Scale size={16} className="text-authority-blue" />
             <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue">Standard Diagnostic Protocol</span>
           </div>
-          <h1 className="text-5xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none mb-8">
+          <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight mb-8">
             The <span className="text-signal-gold italic">REACH</span> Test™
           </h1>
           <p className="text-xl md:text-2xl text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed italic">
@@ -140,7 +139,7 @@ const ReachTestPage = () => {
               </div>
             </div>
 
-            {/* Mechanics Preview (Section to come after note) */}
+            {/* Mechanics Preview */}
             <section className="bg-authority-blue text-white p-12 md:p-16 rounded-[4rem] shadow-2xl relative overflow-hidden">
               <Zap className="absolute -bottom-10 -right-10 text-white/5" size={300} />
               <div className="relative z-10 space-y-10">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -24,7 +23,10 @@ import {
   Zap,
   ShieldAlert,
   Truck,
-  Lock
+  Lock,
+  ExternalLink,
+  ClipboardCheck,
+  Home
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -121,6 +123,61 @@ const QUESTIONS: Question[] = [
   }
 ];
 
+const StewardshipAlignmentBlock = ({ status }: { status: 'Verified' | 'Unverified' | 'Misaligned' }) => {
+  const isGood = status === 'Verified';
+  
+  return (
+    <div className={`p-10 rounded-[3rem] border-2 transition-all ${
+      status === 'Verified' ? 'bg-green-50/30 border-green-100' :
+      status === 'Misaligned' ? 'bg-red-50/30 border-red-100 shadow-lg' :
+      'bg-amber-50/30 border-amber-100'
+    }`}>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+        <div className="space-y-1">
+          <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">
+            System Input Component
+          </h3>
+          <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight">
+            STEWARDSHIP ALIGNMENT — HOUSEHOLD OPERATING CONSENT
+          </h4>
+        </div>
+        <div className={`px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center shrink-0 ${
+          status === 'Verified' ? 'bg-green-600 text-white shadow-md' :
+          status === 'Misaligned' ? 'bg-red-600 text-white shadow-md animate-pulse' :
+          'bg-amber-500 text-white shadow-md'
+        }`}>
+          {status === 'Verified' ? <ShieldCheck size={14} className="mr-2" /> : <ShieldAlert size={14} className="mr-2" />}
+          Status: {status}
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <p className="text-sm font-medium text-slate-500 dark:text-text-dark-muted leading-relaxed">
+          {status === 'Verified' ? (
+            "Verification of household alignment confirmed. Strategic continuity is supported by documented contingency plans for variable operational income."
+          ) : status === 'Misaligned' ? (
+            "Critical operational exposure detected. Lack of household alignment creates systemic instability that typically manifests as administrative default during high-pressure cycles."
+          ) : (
+            "Baseline alignment is currently unverified or incomplete. The technical dependency of household consent must be satisfied to ensure long-term operational refuge."
+          )}
+        </p>
+
+        {!isGood && (
+          <div className="pt-4 border-t border-slate-100 dark:border-border-dark flex items-center">
+            <Link 
+              to="/resources" 
+              className="inline-flex items-center space-x-3 text-authority-blue dark:text-signal-gold font-black uppercase tracking-widest text-[11px] hover:underline group"
+            >
+              <span>Initiate Stewardship Alignment Review</span>
+              <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const ReadinessPage = () => {
   const [step, setStep] = useState<number>(0); 
   const [answers, setAnswers] = useState<number[]>(new Array(QUESTIONS.length).fill(-1));
@@ -147,6 +204,13 @@ const ReadinessPage = () => {
 
   const redFlags = answers.filter((ans, idx) => ans !== -1 && QUESTIONS[idx].options[ans].flag === 'RED').length;
   const yellowFlags = answers.filter((ans, idx) => ans !== -1 && QUESTIONS[idx].options[ans].flag === 'YELLOW').length;
+
+  const getStewardshipStatus = (): 'Verified' | 'Unverified' | 'Misaligned' => {
+    const ansIdx = answers[2];
+    if (ansIdx === 4) return 'Verified'; 
+    if (ansIdx === 1) return 'Misaligned'; 
+    return 'Unverified'; 
+  };
 
   let resultType: 'GREEN' | 'YELLOW' | 'RED' = 'GREEN';
   if (redFlags > 0 || totalScore < 14) {
@@ -213,7 +277,7 @@ const ReadinessPage = () => {
             <div className="w-20 h-20 bg-authority-blue/5 text-authority-blue rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-authority-blue/10">
               <ShieldCheck size={40} />
             </div>
-            <h1 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight mb-6 leading-none">
+            <h1 className="text-4xl lg:text-5xl font-black font-serif uppercase tracking-tight mb-6 leading-tight">
               Institutional <span className="text-signal-gold italic">Classification Assessment</span>
             </h1>
             <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed mb-12">
@@ -283,7 +347,7 @@ const ReadinessPage = () => {
             <div className="w-20 h-20 bg-slate-50 text-authority-blue rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-slate-100 shadow-lg">
               <FileText size={40} />
             </div>
-            <h1 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight mb-6 leading-none">
+            <h1 className="text-4xl lg:text-5xl font-black font-serif uppercase tracking-tight mb-6 leading-none">
               Classification Data Ready
             </h1>
             <p className="text-lg text-slate-500 dark:text-text-dark-muted font-medium max-w-xl mx-auto mb-12">
@@ -337,190 +401,121 @@ const ReadinessPage = () => {
 
         {/* --- STEP 9: RESULTS --- */}
         {step === 9 && (
-          <div ref={resultsRef} className="animate-reveal-up space-y-12">
+          <div ref={resultsRef} className="animate-reveal-up space-y-16 pb-20">
             
-            {resultType === 'GREEN' && (
-              <div className="space-y-12">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-green-50 text-green-600 rounded-[3rem] flex items-center justify-center mx-auto mb-10 border-4 border-green-100 shadow-2xl">
-                    <ShieldCheck size={56} />
-                  </div>
-                  <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6">
-                    Classification: <br/><span className="text-green-600 italic">READY.</span>
-                  </h1>
-                  <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                    Assessment indicates the presence of structural prerequisites required for motor carrier operating standard implementation.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-white dark:bg-surface-dark p-10 rounded-[3.5rem] border border-slate-100 shadow-sm">
-                    <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue mb-8">Verification Points</h3>
-                    <ul className="space-y-6">
-                      {[
-                        "Capitalization levels meet operational thresholds",
-                        "Household runway alignment verified",
-                        "Allocation capacity for administrative files",
-                        "Stewardship alignment documented",
-                        "Risk contingency awareness confirmed"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start space-x-4">
-                          <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={20} />
-                          <span className="text-sm font-bold text-slate-700 dark:text-text-dark-muted">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="bg-authority-blue text-white p-10 rounded-[3.5rem] relative overflow-hidden shadow-2xl">
-                    <Target className="absolute -bottom-10 -right-10 text-white/5" size={200} />
-                    <h3 className="text-xs font-black uppercase tracking-[0.3em] text-signal-gold mb-6">Classification Meaning</h3>
-                    <p className="text-lg leading-relaxed font-medium italic mb-8">
-                      "Entity meets foundational criteria for admission. This indicates a baseline readiness for Technical Safety File installation."
-                    </p>
-                    <div className="h-px w-full bg-white/10 mb-8"></div>
-                    <div className="flex items-center space-x-3 text-signal-gold">
-                      <Zap size={18} />
-                      <span className="text-[10px] font-black uppercase tracking-widest">Enrollment Eligibility: CONFIRMED</span>
-                    </div>
-                  </div>
-                </div>
-
-                <section className="py-16 text-center border-t border-slate-200">
-                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Proceed to Admission</h2>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <Link to="/pricing" className="bg-authority-blue text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm hover:bg-steel-blue transition-all shadow-xl">
-                      Review Admission Details
-                    </Link>
-                    <button onClick={() => window.print()} className="flex items-center space-x-2 text-slate-400 hover:text-authority-blue font-bold uppercase tracking-widest text-[10px] transition-all">
-                      <Printer size={16} />
-                      <span>Formal PDF Result</span>
-                    </button>
-                  </div>
-                </section>
+            {/* Header Classification Area */}
+            <div className="text-center">
+              <div className={`w-24 h-24 rounded-[3rem] flex items-center justify-center mx-auto mb-10 border-4 shadow-2xl ${
+                resultType === 'GREEN' ? 'bg-green-50 text-green-600 border-green-100' :
+                resultType === 'YELLOW' ? 'bg-amber-50 text-amber-600 border-amber-100' :
+                'bg-red-50 text-red-700 border-red-100'
+              }`}>
+                {resultType === 'GREEN' ? <ShieldCheck size={56} /> : 
+                 resultType === 'YELLOW' ? <AlertCircle size={56} /> : 
+                 <XCircle size={56} />}
               </div>
-            )}
+              <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">
+                Classification: <br/>
+                <span className={
+                  resultType === 'GREEN' ? 'text-green-600 italic' :
+                  resultType === 'YELLOW' ? 'text-amber-600 italic' :
+                  'text-red-700 italic'
+                }>
+                  {resultType === 'GREEN' ? 'READY.' : 
+                   resultType === 'YELLOW' ? 'PREPARATION REQ.' : 
+                   'NOT RECOMMENDED.'}
+                </span>
+              </h1>
+              <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
+                {resultType === 'GREEN' ? 
+                  "Assessment indicates the presence of structural prerequisites required for motor carrier operating standard implementation." :
+                 resultType === 'YELLOW' ?
+                  "Identified structural gaps create elevated risk. Addressing these indicators is recommended prior to system admission." :
+                  "Assessments indicates significant structural risk. Operational launch at this stage would result in an extremely high probability of preventable failure."
+                }
+              </p>
+            </div>
 
-            {resultType === 'YELLOW' && (
-              <div className="space-y-12">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-amber-50 text-amber-600 rounded-[3rem] flex items-center justify-center mx-auto mb-10 border-4 border-amber-100 shadow-2xl">
-                    <AlertCircle size={56} />
-                  </div>
-                  <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">
-                    Classification: <br/><span className="text-amber-600 italic">PREPARATION REQ.</span>
-                  </h1>
-                  <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                    Identified structural gaps create elevated risk. Addressing these indicators is recommended prior to system admission.
-                  </p>
-                </div>
-
-                <div className="bg-white dark:bg-surface-dark p-12 rounded-[4rem] border border-slate-200 shadow-sm space-y-10">
-                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-authority-blue flex items-center">
-                    <ShieldAlert className="mr-3 text-amber-600" size={20} /> Identified Risk Indicators
-                  </h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {answers[0] < 2 && (
-                      <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
-                        <Wallet className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Capitalization levels are below recommended thresholds for motor carrier launch.</p>
-                      </div>
-                    )}
-                    {answers[1] < 2 && (
-                      <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
-                        <Briefcase className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Runway indicators suggest vulnerability to anticipated revenue volatility.</p>
-                      </div>
-                    )}
-                    {answers[2] < 2 && (
-                      <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
-                        <Users className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Stewardship alignment with household demands is not yet established.</p>
-                      </div>
-                    )}
-                    {answers[3] < 2 && (
-                      <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
-                        <Clock className="text-amber-600 shrink-0" size={24} />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Allocation capacity may limit the required implementation of documentation infrastructure.</p>
-                      </div>
-                    )}
-                    {answers[4] < 2 && (
-                      <div className="flex items-start space-x-4 p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl">
-                        <Truck size={24} className="text-amber-600 shrink-0" />
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-muted">Operational background suggests an accelerated learning curve for regulatory adherence.</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="bg-authority-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden">
-                  <Scale className="absolute -bottom-10 -left-10 text-white/5" size={250} />
-                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8">One Standard Governance</h3>
-                  <div className="prose prose-invert max-w-none text-lg leading-relaxed font-medium space-y-6">
-                    <p>LaunchPath functions as a single standard. Regulatory requirements and underwriter scrutiny are not subject to reduction based on carrier circumstances.</p>
-                    <p className="text-signal-gold italic">System integrity requires addressing readiness gaps prior to operational commencement.</p>
-                  </div>
-                </div>
-
-                <section className="py-16 text-center border-t border-slate-200">
-                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Address Indicators. Return When Validated.</h2>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <Link to="/resources" className="bg-authority-blue text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm hover:bg-steel-blue transition-all shadow-xl">
-                      Download Readiness Framework
-                    </Link>
-                  </div>
-                </section>
+            {/* NEW: STEWARDSHIP ALIGNMENT VERIFICATION POINT */}
+            <section className="space-y-6">
+              <div className="flex items-center space-x-3 mb-2">
+                 <Home className="text-authority-blue" size={20} />
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-authority-blue">Institutional Verification Point</span>
               </div>
-            )}
+              <StewardshipAlignmentBlock status={getStewardshipStatus()} />
+            </section>
 
-            {resultType === 'RED' && (
-              <div className="space-y-12">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-red-50 text-red-700 rounded-[3rem] flex items-center justify-center mx-auto mb-10 border-4 border-red-100 shadow-2xl">
-                    <XCircle size={56} />
-                  </div>
-                  <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">
-                    Classification: <br/><span className="text-red-700 italic">NOT RECOMMENDED.</span>
-                  </h1>
-                  <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                    Assessments indicates significant structural risk. Operational launch at this stage would result in an extremely high probability of preventable failure.
-                  </p>
-                </div>
-
-                <div className="bg-red-50/50 dark:bg-red-950/20 p-12 rounded-[4rem] border border-red-100 shadow-sm space-y-8">
-                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-red-700 flex items-center">
-                    <ShieldAlert className="mr-3 text-red-700" size={20} /> Critical Indicator
-                  </h3>
-                  
-                  <div className="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-red-200">
-                    <p className="text-xl font-bold text-authority-blue dark:text-white leading-relaxed">
-                      {answers[0] === 0 ? "Capitalization under $10,000 provides no margin for mandated deposits, fees, and regulatory costs. This creates a position of structural disadvantage." :
-                       answers[1] === 0 ? "Absence of household reserve runway creates immediate risk to operational and household stability during revenue delays." :
-                       answers[3] === 0 ? "Time allocation capacity is insufficient to install and maintain the mandated Documentation Infrastructure required for authority survival." :
-                       "Current structural indicators suggest high exposure to operational failure."}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-authority-blue text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden">
-                  <AlertCircle className="absolute -top-10 -right-10 text-white/5" size={250} />
-                  <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8">Operating Governance</h3>
-                  <div className="prose prose-invert max-w-none text-lg leading-relaxed font-medium space-y-6">
-                    <p>Admission is denied to applicants whose structural conditions suggest premature launch. We prioritize stewardship over enrollment.</p>
-                    <p className="text-signal-gold italic">This is a protocol of protection, not rejection.</p>
-                  </div>
-                </div>
-
-                <section className="py-16 text-center border-t border-slate-200">
-                  <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-6">Build Foundation. Return When Ready.</h2>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <Link to="/resources" className="bg-authority-blue text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm hover:bg-steel-blue transition-all shadow-xl">
-                      Download Foundation Framework
-                    </Link>
-                  </div>
-                </section>
+            {/* Grid for Analysis Components */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="bg-white dark:bg-surface-dark p-10 rounded-[3.5rem] border border-slate-100 shadow-sm">
+                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue mb-8 flex items-center">
+                  <ClipboardCheck className="mr-3" size={16} /> Verification Points
+                </h3>
+                <ul className="space-y-6">
+                  {[
+                    { text: "Capitalization levels meeting thresholds", pass: answers[0] >= 2 },
+                    { text: "Household runway alignment verified", pass: answers[1] >= 2 },
+                    { text: "Allocation capacity for administrative files", pass: answers[3] >= 2 },
+                    { text: "Stewardship alignment documented", pass: answers[2] >= 2 },
+                    { text: "Risk contingency awareness confirmed", pass: answers[6] >= 2 }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start space-x-4">
+                      {item.pass ? (
+                        <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={20} />
+                      ) : (
+                        <ShieldAlert className="text-amber-500 shrink-0 mt-0.5" size={20} />
+                      )}
+                      <span className={`text-sm font-bold ${item.pass ? 'text-slate-700' : 'text-slate-400'} dark:text-text-dark-muted`}>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            )}
+              
+              <div className="bg-authority-blue text-white p-10 rounded-[3.5rem] relative overflow-hidden shadow-2xl flex flex-col">
+                <Target className="absolute -bottom-10 -right-10 text-white/5" size={200} />
+                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-signal-gold mb-6">Classification Meaning</h3>
+                <p className="text-lg leading-relaxed font-medium italic flex-grow">
+                  {resultType === 'GREEN' ? 
+                    "Entity meets foundational criteria for admission. This indicates a baseline readiness for Technical Safety File installation." :
+                   resultType === 'YELLOW' ?
+                    "Entity displays structural fragility. Admission to Phase-specific modules is restricted until risk indicators are addressed." :
+                    "Entity does not currently meet admission criteria. Strategic redirection to foundation-building protocols is required to maintain stewardship."
+                  }
+                </p>
+                <div className="h-px w-full bg-white/10 my-8"></div>
+                <div className="flex items-center space-x-3 text-signal-gold">
+                  <Zap size={18} />
+                  <span className="text-[10px] font-black uppercase tracking-widest">
+                    Registry Sync Status: {resultType === 'GREEN' ? 'ACTIVE' : 'HELD'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Actions */}
+            <section className="py-16 text-center border-t border-slate-100 dark:border-border-dark">
+              <h2 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-10">
+                {resultType === 'GREEN' ? 'Initiate Formal Admission' : 
+                 resultType === 'YELLOW' ? 'Address Gaps. Return When Validated.' : 
+                 'Strategic Redirection Required.'}
+              </h2>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+                {resultType === 'GREEN' ? (
+                  <Link to="/pricing" className="bg-authority-blue text-white px-16 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">
+                    Admission Terminal
+                  </Link>
+                ) : (
+                  <Link to="/resources" className="bg-authority-blue text-white px-16 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">
+                    Foundation Framework
+                  </Link>
+                )}
+                
+                <button onClick={() => window.print()} className="flex items-center space-x-2 text-slate-400 hover:text-authority-blue font-bold uppercase tracking-widest text-[10px] transition-all group">
+                  <Printer size={16} className="group-hover:scale-110 transition-transform" />
+                  <span>Generate Classification PDF</span>
+                </button>
+              </div>
+            </section>
 
           </div>
         )}

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, Phone, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, ArrowRight, MessageSquare, Anchor, User, RefreshCw, ChevronDown } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -56,7 +55,7 @@ const ContactPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="max-w-3xl mb-20 animate-reveal-up">
-          <h1 className="text-5xl md:text-6xl font-black font-serif text-authority-blue dark:text-white mb-8 uppercase tracking-tight">Contact LaunchPath</h1>
+          <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white mb-8 uppercase tracking-tight">Contact LaunchPath</h1>
           <p className="text-base md:text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium">
             If you are navigating the critical first 90 days of your operating authority or preparing for a New Entrant Safety Audit, we are here to provide clarity. LaunchPath serves carriers who prioritize technical precision and stewardship.
           </p>

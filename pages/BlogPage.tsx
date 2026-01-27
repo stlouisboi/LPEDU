@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, where, onSnapshot } from "firebase/firestore";
@@ -15,43 +14,6 @@ const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [usingFallback, setUsingFallback] = useState(true);
-
-  /* Firebase logic commented out temporarily 
-  useEffect(() => {
-    if (!db) {
-      setBlogs(INITIAL_BLOGS);
-      setLoading(false);
-      setUsingFallback(true);
-      return;
-    }
-    
-    const q = query(
-      collection(db, "blogPosts"), 
-      where("status", "==", "published")
-    );
-    
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as BlogPost[];
-      if (data.length === 0) {
-        setBlogs(INITIAL_BLOGS);
-      } else {
-        const sortedData = data.sort((a, b) => 
-          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-        );
-        setBlogs(sortedData);
-      }
-      setLoading(false);
-      setUsingFallback(false);
-    }, (err) => {
-      console.warn("Public Blog Fetch Error:", err.message);
-      setBlogs(INITIAL_BLOGS);
-      setLoading(false);
-      setUsingFallback(true);
-    });
-
-    return () => unsubscribe();
-  }, []);
-  */
 
   const categories: (BlogCategory | 'All')[] = [
     'All', 'Compliance', 'Audit', 'Authority', 'Insurance', 'HOS', 'ELD', 'Maintenance'
@@ -79,7 +41,7 @@ const BlogPage = () => {
         
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-5xl font-bold mb-6 font-serif">The Compliance Ledger</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6 font-serif">The Compliance Ledger</h1>
           <p className="text-xl text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto">
             Weekly deep-dives into the latest safety regulations, business ethics, and operational excellence.
           </p>

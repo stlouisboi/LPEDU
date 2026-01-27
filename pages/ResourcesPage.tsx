@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -25,7 +24,6 @@ import {
   User,
   Monitor,
   Volume2,
-  // Add Clock to fix "Cannot find name 'Clock'" error
   Clock
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -71,7 +69,7 @@ const ResourcesPage = () => {
       title: "DOT Status vs MC Authority Logic", 
       duration: "2:30", 
       thumbnail: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder for institutional asset
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", 
       description: "A technical breakdown of the administrative distinction between safety registration and commercial operating authority."
     },
     { 
@@ -188,7 +186,7 @@ const ResourcesPage = () => {
       {/* 1. INSTITUTIONAL HERO */}
       <section className="bg-white dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark pt-24 pb-20 text-center transition-colors duration-500">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-black text-authority-blue dark:text-white tracking-tight mb-6 uppercase">Institutional Resources</h1>
+          <h1 className="text-4xl lg:text-5xl font-black text-authority-blue dark:text-white tracking-tight mb-6 uppercase">Institutional Resources</h1>
           <p className="text-xl text-slate-600 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed mb-10">
             Orientation tools and reference documentation for motor carrier operations. Full system implementation and technical safety file installation are performed exclusively within the LaunchPath Standard environment.
           </p>
@@ -203,7 +201,7 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 2. FOUNDATIONAL REGULATORY CONTEXT (The Section from screenshot) */}
+      {/* 2. FOUNDATIONAL REGULATORY CONTEXT */}
       <section className="py-24 max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
           <p className="text-[12px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold">Institutional Briefings</p>
@@ -425,7 +423,7 @@ const ResourcesPage = () => {
       {/* 6. FINAL CTA */}
       <section className="bg-white dark:bg-primary-dark py-32 text-center relative overflow-hidden border-t border-slate-100 dark:border-border-dark">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-10 leading-none">Formalize <br/><span className="text-signal-gold italic">Your Operation</span></h2>
+          <h2 className="text-4xl lg:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-10 leading-none">Formalize <br/><span className="text-signal-gold italic">Your Operation</span></h2>
           <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium mb-16 max-w-2xl mx-auto leading-relaxed">
             Adoption of the Standard formalizes the long-term governance and structural resilience of your operating authority.
           </p>

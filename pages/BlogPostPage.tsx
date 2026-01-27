@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
@@ -20,30 +19,6 @@ const BlogPostPage = () => {
       if (foundPost.seoTitle) document.title = foundPost.seoTitle;
     }
     setLoading(false);
-
-    /* Firebase logic commented out temporarily
-    if (!db || !slug) return;
-    const fetchPost = async () => {
-      try {
-        const q = query(collection(db, "blogPosts"), where("slug", "==", slug), limit(1));
-        const snap = await getDocs(q);
-        if (!snap.empty) {
-          const postData = { id: snap.docs[0].id, ...snap.docs[0].data() } as BlogPost;
-          setPost(postData);
-          if (postData.seoTitle) document.title = postData.seoTitle;
-          const metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc && postData.seoDescription) {
-            metaDesc.setAttribute("content", postData.seoDescription);
-          }
-        }
-      } catch (err) {
-        console.error("Fetch Single Post Error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPost();
-    */
   }, [slug]);
 
   if (loading) {
@@ -86,7 +61,7 @@ const BlogPostPage = () => {
                 <Calendar className="w-3.5 h-3.5 mr-2" /> {new Date(post.publishedAt).toLocaleDateString()}
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white font-serif leading-tight drop-shadow-lg">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white font-serif leading-tight drop-shadow-lg uppercase tracking-tight">
               {post.title}
             </h1>
           </div>

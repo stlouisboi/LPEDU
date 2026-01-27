@@ -1,24 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <!-- Primary SEO -->
+    <!-- Primary SEO & Institutional Trust -->
     <title>FMCSA Compliance Training for New Box Truck Owner-Operators | LaunchPath™</title>
-    <meta name="description" content="Integrity-driven FMCSA compliance systems for new motor carriers. LaunchPath™ provides the systematic framework required to navigate the first 90 days and satisfy federal safety audits.">
+    <meta name="description" content="Integrity-driven FMCSA compliance systems for new motor carriers. LaunchPath™ provides the systematic framework required to navigate federal safety audits.">
     <link rel="canonical" href="https://launchpath.edu">
+    
+    <!-- Security Signals -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
     <!-- Open Graph / Social -->
     <meta property="og:title" content="LaunchPath™ | Institutional FMCSA Compliance Standard">
-    <meta property="og:description" content="Protect your authority with order and certainty. We provide the technical education required to survive the critical 18-month new entrant phase.">
+    <meta property="og:description" content="Protect your authority with order and certainty. Technical education for the 18-month new entrant phase.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://launchpath.edu">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Google Analytics Integration -->
+    <!-- Privacy-First Analytics Configuration -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LP-VET-2025"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -26,13 +29,14 @@
       gtag('js', new Date());
       gtag('config', 'G-LP-VET-2025', {
         'anonymize_ip': true,
+        'allow_google_signals': false,
+        'allow_ad_personalization_signals': false,
         'cookie_flags': 'SameSite=None;Secure'
       });
     </script>
 
-    <!-- Rich Text Editor CSS -->
+    <!-- Asset Foundation -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,25 +65,6 @@
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
               serif: ['IBM Plex Sans', 'sans-serif'],
-            },
-            keyframes: {
-              revealUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              scaleIn: {
-                '0%': { opacity: '0', transform: 'scale(0.98)' },
-                '100%': { opacity: '1', transform: 'scale(1)' },
-              }
-            },
-            animation: {
-              'reveal-up': 'revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-              'fade-in': 'fadeIn 0.8s ease-out forwards',
-              'scale-in': 'scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             }
           }
         }
@@ -91,41 +76,36 @@
         font-family: 'Inter', sans-serif; 
         -webkit-font-smoothing: antialiased; 
         line-height: 1.75; 
-        text-rendering: optimizeLegibility;
-      }
-      h1, h2, h3, h4, h5, h6 { 
-        font-family: 'IBM Plex Sans', sans-serif; 
-        letter-spacing: -0.015em; 
       }
       
       /* Accessibility Focus States */
       :focus-visible {
         outline: 3px solid #d4af37;
         outline-offset: 4px;
-        border-radius: 4px;
       }
 
-      .quill { background: white; border-radius: 0.75rem; overflow: hidden; }
-      .ql-toolbar { border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; }
-      .ql-container { border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem; min-height: 200px; font-family: 'Inter', sans-serif; }
-
-      /* Institutional spacing and readability */
-      p, li { max-width: 75ch; }
+      /* Skip Link for Keyboard Navigation */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #1e3a5f;
+        color: white;
+        padding: 8px;
+        z-index: 1000;
+        transition: top 0.3s;
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+      }
+      .skip-link:focus { top: 0; }
 
       /* Reduced Glare Scrollbar */
-      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar { width: 10px; }
       ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
-      .dark ::-webkit-scrollbar-thumb { background: #1E293B; border-color: #020617; }
-      ::-webkit-scrollbar-thumb:hover { background: #1e3a5f; }
-
-      .stagger-item { opacity: 0; }
-      .stagger-parent .stagger-item:nth-child(1) { animation: revealUp 0.8s 0.1s forwards; }
-      .stagger-parent .stagger-item:nth-child(2) { animation: revealUp 0.8s 0.2s forwards; }
-      .stagger-parent .stagger-item:nth-child(3) { animation: revealUp 0.8s 0.3s forwards; }
-      .stagger-parent .stagger-item:nth-child(4) { animation: revealUp 0.8s 0.4s forwards; }
-      .stagger-parent .stagger-item:nth-child(5) { animation: revealUp 0.8s 0.5s forwards; }
-      .stagger-parent .stagger-item:nth-child(6) { animation: revealUp 0.8s 0.6s forwards; }
+      .dark ::-webkit-scrollbar-thumb { background: #1E293B; }
     </style>
 <script type="importmap">
 {
@@ -145,6 +125,7 @@
 </script>
 </head>
 <body class="bg-primary-light text-text-primary dark:bg-primary-dark dark:text-text-dark-primary transition-colors duration-500">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>
