@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Database, 
@@ -157,9 +156,14 @@ const InitializeDataPage = () => {
             </div>
             <h3 className="text-xl font-bold font-serif">SECTION 1: Blog Posts</h3>
           </div>
-          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
-            Upload the archive of safety bulletins and compliance guides from the system constants.
-          </p>
+          <div className="mb-8 space-y-3">
+            <p className="text-sm text-text-muted leading-relaxed font-medium">
+              Upload the archive of safety bulletins and compliance guides from the system constants.
+            </p>
+            <p id="placeholder-image-task" className="text-sm text-text-muted leading-relaxed font-medium italic opacity-60">
+              Create placeholder images for articles.
+            </p>
+          </div>
           <div className="mt-auto space-y-4">
             {blogStatus && (
               <div className={`text-xs font-bold ${blogSuccess ? 'text-green-600' : 'text-authority-blue dark:text-signal-gold animate-pulse'}`}>

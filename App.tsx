@@ -173,7 +173,7 @@ const Header = () => {
           <div className="xl:hidden flex items-center space-x-3">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-slate-700"
+              className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-border-dark"
               aria-label="Toggle Dark Mode"
             >
               {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
@@ -216,15 +216,6 @@ const Header = () => {
             ))}
             
             <div className="pt-8 space-y-4">
-              <Link 
-                to="/ai-advisor" 
-                onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-center border-2 border-authority-blue text-authority-blue py-6 rounded-[2rem] text-lg font-black uppercase tracking-[0.2em]"
-              >
-                <Sparkles size={18} className="inline mr-2 -mt-1" />
-                AI Advisor
-              </Link>
-              
               <Link 
                 to="/portal" 
                 onClick={() => setIsMenuOpen(false)}

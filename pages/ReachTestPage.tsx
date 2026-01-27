@@ -21,7 +21,7 @@ import {
 
 const ReachTestPage = () => {
   return (
-    <div className="bg-[#fafaf9] dark:bg-primary-dark min-h-screen py-24 animate-in fade-in duration-700 font-sans">
+    <div className="bg-[#fafaf9] dark:bg-primary-dark min-h-screen py-24 animate-in fade-in duration-700 font-sans text-slate-800">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Institutional Header */}
@@ -191,28 +191,28 @@ const ReachTestPage = () => {
                     title: "Regulatory Violations", 
                     desc: "Technical violations that bypass baseline administrative filters, resulting in immediate federal scrutiny.", 
                     icon: <MoveDown className="text-signal-gold" />,
-                    anchor: "Conceptual Anchor: DOT vs MC Authority Logic"
+                    anchor: "DOT vs MC Authority Logic"
                   },
                   { 
                     label: "AROUND", 
                     title: "Underwriting Isolation", 
                     desc: "Administrative lapses that trigger insurance cancellation or premium spikes, isolating the carrier from the market.", 
                     icon: <MoveLeft className="text-signal-gold" />,
-                    anchor: "Conceptual Anchor: New Entrant Risk Analysis"
+                    anchor: "New Entrant Risk Analysis"
                   },
                   { 
                     label: "THROUGH", 
                     title: "Administrative Inconsistency", 
                     desc: "Data inconsistencies identified during federal investigations that prove a lack of safety management controls.", 
                     icon: <MoveRight className="text-signal-gold" />,
-                    anchor: "Conceptual Anchor: Clearinghouse Governance Logic"
+                    anchor: "Clearinghouse Governance Logic"
                   },
                   { 
                     label: "UNDER", 
                     title: "Structural Taxonomy", 
                     desc: "Fiscal deficits and management gaps that compromise mandated safety operations, causing the foundation to collapse.", 
                     icon: <MoveUp className="text-signal-gold" />,
-                    anchor: "Conceptual Anchor: 16 Deadly Sins Exposure Taxonomy"
+                    anchor: "16 Deadly Sins Exposure Taxonomy"
                   }
                 ].map((v, i) => (
                   <div key={i} className="flex space-x-8 group">
@@ -223,13 +223,59 @@ const ReachTestPage = () => {
                       <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">{v.label}</span>
                       <h4 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight mt-1 mb-2">{v.title}</h4>
                       <p className="text-base text-slate-500 font-medium leading-relaxed mb-3">{v.desc}</p>
-                      <p className="text-[9px] font-black uppercase tracking-widest text-authority-blue/60 dark:text-signal-gold/60 border-l-2 border-authority-blue/20 dark:border-signal-gold/20 pl-3">
-                        {v.anchor}
-                      </p>
+                      
+                      {/* Enhanced Conceptual Anchor Tag */}
+                      <div className="inline-flex items-center space-x-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2 rounded-xl mt-2 transition-all hover:bg-white hover:shadow-md cursor-help">
+                        <Anchor size={12} className="text-signal-gold" />
+                        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-authority-blue dark:text-signal-gold">
+                          Conceptual Anchor: <span className="underline decoration-signal-gold/30 underline-offset-4">{v.anchor}</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* INTEGRATED CONTEXTUAL GROUNDING SECTION */}
+            <div className="pt-16 border-t border-slate-100 dark:border-slate-800">
+               <div className="flex items-center space-x-4 mb-10">
+                 <div className="w-12 h-12 bg-authority-blue text-signal-gold rounded-2xl flex items-center justify-center shadow-lg">
+                    <Scale size={24} />
+                 </div>
+                 <div>
+                    <h3 className="text-xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Institutional Context</h3>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Contextual Grounding Anchors</p>
+                 </div>
+               </div>
+
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {[
+                    { 
+                      title: "DOT vs MC Authority Logic", 
+                      desc: "Understanding the hierarchical distinction between safety identification and operational permission.",
+                      link: "/clarification"
+                    },
+                    { 
+                      title: "Clearinghouse Governance Logic", 
+                      desc: "Analyzing the systemic flow of drug and alcohol compliance data through federal repositories.",
+                      link: "/learning-path"
+                    }
+                  ].map((anchor, idx) => (
+                    <div key={idx} className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-8 rounded-[2.5rem] shadow-sm group hover:shadow-xl transition-all duration-500 flex flex-col justify-between">
+                       <div>
+                          <div className="w-10 h-10 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                             <Anchor size={20} />
+                          </div>
+                          <h4 className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-white mb-3">{anchor.title}</h4>
+                          <p className="text-xs text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed mb-8">{anchor.desc}</p>
+                       </div>
+                       <Link to={anchor.link} className="inline-flex items-center text-[9px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:underline">
+                          View Resource Mapping <ArrowRight size={10} className="ml-2 transition-transform group-hover:translate-x-1" />
+                       </Link>
+                    </div>
+                  ))}
+               </div>
             </div>
 
             {/* Mechanics Preview */}
