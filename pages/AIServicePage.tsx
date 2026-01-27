@@ -1,21 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
+  ShieldAlert, 
   MessageCircle, 
   Mic, 
   Volume2, 
   VolumeX,
   Video, 
+  Image as ImageIcon,
   Sparkles,
   Loader2,
   X,
-  Download,
   Film,
   Phone,
   PhoneOff,
-  Globe,
-  Maximize2,
-  ShieldAlert
+  Maximize2
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
@@ -72,8 +71,8 @@ function createBlob(data: Float32Array) {
 
 const AIServicePage = () => {
   const [activeTab, setActiveTab] = useState<'chat' | 'voice' | 'video'>('chat');
-  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, sources?: any[]}[]>([
-    { role: 'assistant', content: "Hello! I'm the LaunchPath™ AI Advisor. Powered by Gemini 3 Pro for complex compliance reasoning. How can I help your carrier today?" }
+  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, audio?: string}[]>([
+    { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm powered by Gemini 3 Pro to handle complex regulatory questions. How can I help your carrier today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -124,30 +123,57 @@ const AIServicePage = () => {
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
-    const userMsg = input.trim();
+    const userMessage = input.trim();
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
+    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setIsLoading(true);
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-pro-preview',
-        contents: userMsg,
+        contents: userMessage,
         config: {
-          systemInstruction: "You are the LaunchPath™ AI Advisor. Provide high-level trucking compliance guidance. Neutral, institutional tone.",
-          tools: [{ googleSearch: {} }],
-          temperature: 0.3,
+          systemInstruction: "You are an expert FMCSA compliance consultant for LaunchPath. Authoritative, professional tone.",
+          temperature: 0.7,
         }
       });
-
-      const assistantText = response.text || "Connection error. Please try again.";
-      setMessages(prev => [...prev, { role: 'assistant', content: assistantText }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "Communication error." }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Reference service offline." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the advisory service." }]);
     } finally {
-      /* Fix: set isLoading to false to recover from loading state */
       setIsLoading(false);
+    }
+  };
+
+  const speakMessage = async (text: string, index: number) => {
+    if (isSpeaking === index) return;
+    setIsSpeaking(index);
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash-preview-tts",
+        contents: [{ parts: [{ text: `Read this professionally and calmly: ${text}` }] }],
+        config: {
+          responseModalities: [Modality.AUDIO],
+          speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } },
+        },
+      });
+      const base64Audio = response.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
+      if (base64Audio) {
+        if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
+          audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
+        }
+        const ctx = audioContextRef.current;
+        const audioBuffer = await decodeAudioData(decode(base64Audio), ctx, 24000, 1);
+        const source = ctx.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(ctx.destination);
+        source.onended = () => setIsSpeaking(null);
+        source.start();
+      }
+    } catch (err) {
+      setIsSpeaking(null);
     }
   };
 
@@ -160,7 +186,7 @@ const AIServicePage = () => {
       liveAudioContextRef.current = { input: inputCtx, output: outputCtx };
       nextStartTimeRef.current = 0;
       setIsLiveActive(true);
-      setLiveTranscript(["Connecting..."]);
+      setLiveTranscript(["Establishing Link..."]);
 
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-12-2025',
@@ -177,8 +203,8 @@ const AIServicePage = () => {
             source.connect(scriptProcessor);
             scriptProcessor.connect(inputCtx.destination);
           },
-          onmessage: async (msg: LiveServerMessage) => {
-            const base64Audio = msg.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+          onmessage: async (message: LiveServerMessage) => {
+            const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
             if (base64Audio && liveAudioContextRef.current) {
               const outCtx = liveAudioContextRef.current.output;
               nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outCtx.currentTime);
@@ -191,7 +217,7 @@ const AIServicePage = () => {
               nextStartTimeRef.current += buffer.duration;
               liveSourcesRef.current.add(source);
             }
-            if (msg.serverContent?.interrupted) {
+            if (message.serverContent?.interrupted) {
               liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
               liveSourcesRef.current.clear();
               nextStartTimeRef.current = 0;
@@ -207,7 +233,7 @@ const AIServicePage = () => {
       });
       liveSessionRef.current = sessionPromise;
     } catch (err) {
-      alert("Microphone access denied.");
+      alert("Microphone access is required.");
     }
   };
 
@@ -237,7 +263,6 @@ const AIServicePage = () => {
         prompt: videoPrompt || "Professional trucking cinematic animation.",
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
       };
-
       if (videoFile) {
         const reader = new FileReader();
         const base64 = await new Promise<string>((res) => {
@@ -248,10 +273,15 @@ const AIServicePage = () => {
       }
 
       let op = await ai.models.generateVideos(config);
+      let opName = op.name;
+
       while (!op.done) {
         await new Promise(r => setTimeout(r, 10000));
-        const opResult = await ai.operations.getVideosOperation({ operation: { name: op.name } as any });
-        op = { name: opResult.name, done: opResult.done, response: opResult.response, error: opResult.error } as any;
+        // Guideline: Create new GoogleGenAI instance for every polling call
+        const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const result = await pollAi.operations.getVideosOperation({ operation: { name: opName } as any });
+        op = { done: result.done, response: result.response, error: result.error, name: opName } as any;
+        if (op.error) throw new Error(op.error.message);
       }
 
       const link = op.response?.generatedVideos?.[0]?.video?.uri;
@@ -260,8 +290,11 @@ const AIServicePage = () => {
         const blob = await res.blob();
         setVideoResult(URL.createObjectURL(blob));
       }
-    } catch (err) {
-      alert("Synthesis failed.");
+    } catch (err: any) {
+      if (err.message?.includes("Requested entity was not found")) {
+        setHasApiKey(false);
+        alert("Re-authorization required.");
+      } else alert("Video generation failed.");
     } finally {
       setIsGeneratingVideo(false);
     }
@@ -269,8 +302,7 @@ const AIServicePage = () => {
 
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-16 px-4">
-      <div className="max-w-6xl mx-auto flex flex-col h-[85vh] bg-white dark:bg-surface-dark rounded-[3.5rem] border border-border-light shadow-2xl overflow-hidden relative">
-        
+      <div className="max-w-6xl mx-auto flex flex-col h-[85vh] bg-white dark:bg-surface-dark rounded-[3.5rem] border border-border-light dark:border-border-dark shadow-2xl overflow-hidden relative">
         <div className="flex bg-authority-blue p-2 sm:p-4 gap-2 sm:gap-4 shrink-0 overflow-x-auto no-scrollbar">
           {[
             { id: 'chat', label: 'AI Advisor', icon: <MessageCircle size={18} /> },
@@ -295,9 +327,15 @@ const AIServicePage = () => {
             <>
               <div ref={scrollRef} className="flex-grow overflow-y-auto p-10 space-y-10 scroll-smooth">
                 {messages.map((m, i) => (
-                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2`}>
+                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in`}>
                     <div className={`max-w-[80%] p-8 rounded-[2.5rem] ${m.role === 'user' ? 'bg-authority-blue text-white rounded-tr-none shadow-xl' : 'bg-slate-50 dark:bg-slate-900 border border-border-light rounded-tl-none'}`}>
                       <div className="text-base font-medium leading-relaxed">{m.content}</div>
+                      {m.role === 'assistant' && (
+                        <button onClick={() => speakMessage(m.content, i)} className={`mt-6 flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] py-2 px-4 rounded-xl border ${isSpeaking === i ? 'text-signal-gold border-signal-gold animate-pulse' : 'text-authority-blue border-border-light'}`}>
+                          {isSpeaking === i ? <Volume2 size={16} /> : <VolumeX size={16} />}
+                          <span>{isSpeaking === i ? 'Speaking' : 'Read Out'}</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -306,14 +344,10 @@ const AIServicePage = () => {
               <div className="p-10 border-t border-border-light bg-slate-50/50 backdrop-blur-md">
                 <div className="relative max-w-4xl mx-auto flex items-center space-x-4">
                   <input 
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Inquiry terminal..."
-                    className="flex-grow bg-white border border-border-light pl-8 pr-24 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold"
+                    type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    placeholder="Inquiry terminal..." className="flex-grow bg-white border border-border-light pl-8 pr-12 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold"
                   />
-                  <button onClick={handleSend} className="bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue active:scale-95 shadow-xl">
+                  <button onClick={handleSend} disabled={isLoading} className="bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue active:scale-95 shadow-xl disabled:opacity-50">
                     <Send className="w-6 h-6" />
                   </button>
                 </div>
@@ -322,20 +356,18 @@ const AIServicePage = () => {
           )}
 
           {activeTab === 'voice' && (
-            <div className="flex-grow flex flex-col items-center justify-center p-10">
+            <div className="flex-grow flex flex-col items-center justify-center p-10 bg-gradient-to-b from-transparent to-authority-blue/5">
               <div className="text-center mb-16">
                 <div className="w-32 h-32 bg-authority-blue/5 rounded-[3rem] flex items-center justify-center mx-auto mb-10 relative">
                   {isLiveActive && <div className="absolute inset-0 bg-authority-blue/10 rounded-[3rem] animate-ping"></div>}
                   <Mic size={56} className={isLiveActive ? 'text-authority-blue' : 'text-text-muted opacity-30'} />
                 </div>
                 <h2 className="text-4xl font-black font-serif uppercase">Voice Mode</h2>
-                <p className="text-lg text-text-muted mt-4">Low-latency compliance reference audio link.</p>
+                <p className="text-lg text-text-muted mt-4">Low-latency link established for audio commands.</p>
               </div>
               <button
                 onClick={isLiveActive ? stopLiveConversation : startLiveConversation}
-                className={`flex items-center space-x-5 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all ${
-                  isLiveActive ? 'bg-red-500 text-white' : 'bg-authority-blue text-white'
-                }`}
+                className={`flex items-center space-x-5 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all ${isLiveActive ? 'bg-red-500 text-white' : 'bg-authority-blue text-white'}`}
               >
                 {isLiveActive ? <PhoneOff size={28} /> : <Phone size={28} />}
                 <span>{isLiveActive ? 'Terminate Link' : 'Establish Link'}</span>
@@ -348,8 +380,8 @@ const AIServicePage = () => {
               {!hasApiKey ? (
                 <div className="p-12 bg-amber-50 rounded-[3rem] text-center space-y-6">
                   <ShieldAlert className="mx-auto text-amber-600" size={64} />
-                  <h3 className="text-3xl font-black uppercase">Authorization Required</h3>
-                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-12 py-5 rounded-2xl font-black uppercase shadow-xl">Authorize Studio Key</button>
+                  <h3 className="text-3xl font-black uppercase">Studio Auth Required</h3>
+                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-12 py-5 rounded-2xl font-black uppercase shadow-xl">Authorize Key</button>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -360,7 +392,7 @@ const AIServicePage = () => {
                         Synthesize Asset
                      </button>
                    </div>
-                   <div className="bg-slate-50 rounded-[3rem] flex items-center justify-center min-h-[400px] border border-dashed">
+                   <div className="bg-slate-50 rounded-[3rem] flex items-center justify-center min-h-[400px] border border-dashed relative">
                       {isGeneratingVideo ? <div className="text-center space-y-4"><Loader2 className="animate-spin mx-auto" /> <p className="font-bold uppercase tracking-widest text-[10px]">{genMessage}</p></div> : videoResult ? <video src={videoResult} controls className="w-full h-full rounded-[3rem] object-cover" /> : <p className="opacity-30 uppercase font-black tracking-widest text-sm">Studio Idle</p>}
                    </div>
                 </div>

@@ -26,7 +26,11 @@ import {
   Lock,
   ExternalLink,
   ClipboardCheck,
-  Home
+  Home,
+  CheckCircle,
+  Verified,
+  /* Added missing Award icon import */
+  Award
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -267,6 +271,13 @@ const ReadinessPage = () => {
     );
   };
 
+  const trustBadges = [
+    { icon: <ShieldAlert size={20} />, label: "FMCSA ALIGNED" },
+    { icon: <CheckCircle size={20} />, label: "AUDIT VERIFIED" },
+    { icon: <Award size={20} />, label: "VET-OWNED" },
+    { icon: <Verified size={20} />, label: "90-DAY STD" }
+  ];
+
   return (
     <div className="bg-[#fafaf9] dark:bg-primary-dark min-h-screen font-sans text-authority-blue">
       <div className="max-w-4xl mx-auto px-6 py-20 lg:py-32 min-h-screen flex flex-col">
@@ -277,7 +288,7 @@ const ReadinessPage = () => {
             <div className="w-20 h-20 bg-authority-blue/5 text-authority-blue rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-authority-blue/10">
               <ShieldCheck size={40} />
             </div>
-            <h1 className="text-4xl lg:text-5xl font-black font-serif uppercase tracking-tight mb-6 leading-tight">
+            <h1 className="text-6xl lg:text-7xl font-black font-serif uppercase tracking-tight mb-6 leading-tight">
               Institutional <span className="text-signal-gold italic">Classification Assessment</span>
             </h1>
             <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium max-w-2xl mx-auto leading-relaxed mb-12">
@@ -347,7 +358,7 @@ const ReadinessPage = () => {
             <div className="w-20 h-20 bg-slate-50 text-authority-blue rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-slate-100 shadow-lg">
               <FileText size={40} />
             </div>
-            <h1 className="text-4xl lg:text-5xl font-black font-serif uppercase tracking-tight mb-6 leading-none">
+            <h1 className="text-6xl lg:text-7xl font-black font-serif uppercase tracking-tight mb-6 leading-none">
               Classification Data Ready
             </h1>
             <p className="text-lg text-slate-500 dark:text-text-dark-muted font-medium max-w-xl mx-auto mb-12">
@@ -414,7 +425,7 @@ const ReadinessPage = () => {
                  resultType === 'YELLOW' ? <AlertCircle size={56} /> : 
                  <XCircle size={56} />}
               </div>
-              <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">
+              <h1 className="text-6xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none">
                 Classification: <br/>
                 <span className={
                   resultType === 'GREEN' ? 'text-green-600 italic' :
@@ -490,6 +501,16 @@ const ReadinessPage = () => {
                   </span>
                 </div>
               </div>
+            </div>
+
+            {/* TRUST SIGNALS - ADDED TO RESTORE BADGES */}
+            <div className="flex flex-wrap justify-center items-center gap-10 opacity-30 pt-8 grayscale border-t border-slate-100 dark:border-slate-800">
+              {trustBadges.map((badge, i) => (
+                <div key={i} className="flex items-center space-x-3">
+                  {badge.icon}
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em]">{badge.label}</span>
+                </div>
+              ))}
             </div>
 
             {/* Bottom Actions */}

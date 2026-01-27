@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   CheckCircle2, 
@@ -18,7 +17,7 @@ const DestinationPage = () => {
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-20 animate-in slide-in-from-bottom-4 duration-700">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 font-serif">The Owner-Operator Roadmap</h1>
+          <h1 className="text-6xl lg:text-7xl font-black mb-6 font-serif uppercase tracking-tight">The Owner-Operator Roadmap</h1>
           <p className="text-xl text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto">
             From "Just an Idea" to "Active & Compliant Carrier". Follow our verified path to navigate the complexities of FMCSA regulations.
           </p>
@@ -51,7 +50,7 @@ const DestinationPage = () => {
                         }`}
                       >
                         <div className="flex justify-between items-center mb-4">
-                          <h3 className="text-2xl font-bold font-serif">{step.title}</h3>
+                          <h3 className="text-2xl font-bold font-serif uppercase tracking-tight">{step.title}</h3>
                           {isActive ? <ChevronUp className="w-5 h-5 text-text-muted" /> : <ChevronDown className="w-5 h-5 text-text-muted" />}
                         </div>
                         <p className="text-text-muted dark:text-text-dark-muted mb-4">{step.description}</p>
@@ -107,11 +106,11 @@ const DestinationPage = () => {
 
         {/* Closing Thoughts */}
         <div className="mt-32 p-12 bg-white dark:bg-surface-dark rounded-[3rem] border border-border-light dark:border-border-dark text-center">
-          <h2 className="text-3xl font-bold mb-6 font-serif">The Journey Never Truly Ends</h2>
+          <h2 className="text-3xl font-black mb-6 font-serif uppercase tracking-tight">The Journey Never Truly Ends</h2>
           <p className="text-lg text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto leading-relaxed mb-10">
             Regulations change. FMCSA updates policies. New Entrant rules evolve. LaunchPath stays by your side with lifetime updates to our roadmap and resource library.
           </p>
-          <button className="bg-authority-blue text-white px-10 py-5 rounded-2xl text-xl font-bold hover:shadow-2xl transition-all">
+          <button className="bg-authority-blue text-white px-10 py-5 rounded-2xl text-lg font-black uppercase tracking-widest hover:shadow-2xl transition-all">
             Download the PDF Checklist
           </button>
         </div>

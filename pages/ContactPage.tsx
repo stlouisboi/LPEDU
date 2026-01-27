@@ -54,8 +54,8 @@ const ContactPage = () => {
     <div className="bg-[#F8FAFC] dark:bg-primary-dark min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="max-w-3xl mb-20 animate-reveal-up">
-          <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white mb-8 uppercase tracking-tight">Contact LaunchPath</h1>
+        <div className="max-w-4xl mb-20 animate-reveal-up">
+          <h1 className="text-6xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white mb-8 uppercase tracking-tight">Contact LaunchPath</h1>
           <p className="text-base md:text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium">
             If you are navigating the critical first 90 days of your operating authority or preparing for a New Entrant Safety Audit, we are here to provide clarity. LaunchPath serves carriers who prioritize technical precision and stewardship.
           </p>

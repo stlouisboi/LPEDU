@@ -1,16 +1,18 @@
-
 import React, { useEffect } from 'react';
 import { Lock, Loader2, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const PortalInterstitial = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Automatic redirection to Circle LMS/Community Environment
-      window.location.href = "https://community.launchpath.edu/login";
+      // Redirect to the internal authorized operator portal
+      navigate('/operator-portal');
     }, 2500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-primary-dark flex items-center justify-center px-6 animate-in fade-in duration-700">

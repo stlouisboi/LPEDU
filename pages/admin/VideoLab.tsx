@@ -9,16 +9,10 @@ import {
   Sparkles, 
   X, 
   Film,
-  Type,
-  Maximize2,
   Settings2,
-  Upload,
-  Layers,
   CheckCircle2,
-  ShieldAlert,
-  Info,
-  Server,
-  Activity
+  Zap,
+  Monitor
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 import { GeneratedVideo } from '../../types';
@@ -35,8 +29,6 @@ const VideoLab = () => {
   const [showModal, setShowModal] = useState(false);
   
   const [refFile, setRefFile] = useState<File | null>(null);
-  const [refPreview, setRefPreview] = useState<string | null>(null);
-
   const [formData, setFormData] = useState({
     title: '',
     prompt: '',
@@ -63,10 +55,7 @@ const VideoLab = () => {
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as GeneratedVideo));
       setVideos(data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
       setLoading(false);
-    }, (error) => {
-      console.error("VideoLab sync failed", error);
-      setLoading(false);
-    });
+    }, () => setLoading(false));
     return unsub;
   }, []);
 
@@ -100,34 +89,21 @@ const VideoLab = () => {
         config.image = { imageBytes: base64, mimeType: refFile.type };
       }
 
-      let initialOp = await ai.models.generateVideos(config);
-      
-      // Clean and poll to avoid circular reference crashes in proxy environments
-      let operation = {
-        name: initialOp.name,
-        done: initialOp.done
-      } as any;
+      let op = await ai.models.generateVideos(config);
+      let opName = op.name;
 
-      while (!operation.done) {
+      while (!op.done) {
         await new Promise(r => setTimeout(r, 10000));
-        
-        // Use a fresh instance for every polling call per guidelines
-        const freshAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        const opResult = await freshAi.operations.getVideosOperation({ 
-          operation: { name: operation.name } as any 
+        // Guideline: Use a fresh GoogleGenAI instance for every polling call
+        const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const result = await pollAi.operations.getVideosOperation({ 
+          operation: { name: opName } as any 
         });
-
-        operation = {
-          name: opResult.name,
-          done: opResult.done,
-          response: opResult.response,
-          error: opResult.error
-        };
-
-        if (operation.error) throw new Error(operation.error.message || "Synthesis error");
+        op = { done: result.done, response: result.response, error: result.error, name: opName } as any;
+        if (op.error) throw new Error(op.error.message || "Synthesis error");
       }
 
-      const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
+      const downloadLink = op.response?.generatedVideos?.[0]?.video?.uri;
       if (!downloadLink) throw new Error("Synthesis failure");
 
       const vidRes = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
@@ -149,15 +125,11 @@ const VideoLab = () => {
       setShowModal(false);
       setFormData({ ...formData, title: '', prompt: '' });
       setRefFile(null);
-      setRefPreview(null);
     } catch (e: any) {
-      console.error("AI Gen Failed", e);
       if (e.message?.includes("Requested entity was not found")) {
         setHasApiKey(false);
-        alert("Re-authorization required. Please re-select your key.");
-      } else {
-        alert("Neural synthesis failed. Please try a different prompt.");
-      }
+        alert("Re-authorization required.");
+      } else alert("Neural synthesis failed.");
     } finally {
       clearInterval(msgInt);
       setIsGenerating(false);
@@ -228,7 +200,7 @@ const VideoLab = () => {
                   </div>
                   <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-3">Title / Description</label>
-                    <input value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} placeholder="Production metadata..." className="w-full bg-slate-50 dark:bg-gray-800 border rounded-3xl px-8 py-5 font-bold focus:ring-4 focus:ring-authority-blue/10" />
+                    <input value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} placeholder="Production metadata..." className="w-full bg-slate-50 dark:bg-gray-800 border rounded-3xl px-8 py-5 font-bold" />
                   </div>
                 </div>
 

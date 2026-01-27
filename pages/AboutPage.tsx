@@ -46,8 +46,8 @@ const AboutPage = () => {
       {/* SECTION 1: PURPOSE OF THE LAUNCHPATH STANDARD */}
       <section className="relative bg-[#F8F9FA] py-24 lg:py-32 border-b border-slate-200 overflow-hidden text-center" aria-labelledby="about-intro">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5" aria-hidden="true"></div>
-        <div className="max-w-[900px] mx-auto px-6 relative z-10">
-          <h1 id="about-intro" className="text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight mb-6 font-sans uppercase tracking-tight">
+        <div className="max-w-[1000px] mx-auto px-6 relative z-10">
+          <h1 id="about-intro" className="text-6xl lg:text-7xl font-black text-[#1A1A1A] leading-tight mb-6 font-sans uppercase tracking-tight">
             Institutional Statement of the LaunchPath Standard
           </h1>
           <p className="text-base lg:text-[18px] leading-[1.7] text-[#555] max-w-[750px] mx-auto mb-10 font-medium">
@@ -62,7 +62,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* NEW: REACTIVE VS ALIGNMENT COMPARISON SECTION */}
+      {/* REACTIVE VS ALIGNMENT COMPARISON SECTION */}
       <section className="bg-white py-24 border-b border-slate-100">
         <div className="max-w-[1100px] mx-auto px-6">
           <div className="mb-16">
@@ -142,6 +142,9 @@ const AboutPage = () => {
               </h2>
               <p className="text-slate-500 font-medium leading-relaxed">
                 The LaunchPath Standard is governed by a rigorous ethic of fiduciary responsibility. We move carriers from a state of Exposure to a state of Refuge through documented, verifiable compliance evidence. We view operating authority not as a right of ownership, but as an entrusted function that requires continuous validation through administrative discipline.
+              </p>
+              <p className="text-[10px] text-slate-400 italic uppercase tracking-[0.3em] font-black">
+                “Pride leads to conflict; those who take advice are wise.” — Proverbs 13:10
               </p>
             </div>
 
@@ -241,10 +244,10 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* NEW: SCOPE OF THE STANDARD SECTION (As per screenshot) */}
+      {/* SCOPE OF THE STANDARD SECTION */}
       <section className="bg-white py-24 lg:py-40">
         <div className="max-w-[1100px] mx-auto px-6 text-center space-y-12">
-          <h2 className="text-4xl lg:text-5xl font-black text-[#1A1A1A] uppercase tracking-tighter">SCOPE OF THE STANDARD</h2>
+          <h2 className="text-6xl lg:text-7xl font-black text-[#1A1A1A] uppercase tracking-tighter">SCOPE OF THE STANDARD</h2>
           
           <p className="text-lg text-slate-500 font-medium max-w-4xl mx-auto leading-relaxed">
             LaunchPath is a standards organization and educational entity. We do not provide legal, tax, financial, or insurance advice. The standard is designed to assist carriers in meeting federal regulatory expectations through systematic documentation and operational discipline.

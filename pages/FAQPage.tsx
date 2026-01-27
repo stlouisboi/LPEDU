@@ -80,7 +80,7 @@ The LaunchPath Stance: We provide Standardized Implementation Requirements; the 
           <div className="w-20 h-20 bg-authority-blue text-signal-gold rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl stagger-item">
             <HelpCircle size={40} />
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black mb-6 font-serif text-authority-blue dark:text-white tracking-tighter uppercase leading-none stagger-item">
+          <h1 className="text-6xl lg:text-7xl font-black mb-6 font-serif text-authority-blue dark:text-white tracking-tighter uppercase leading-none stagger-item">
             Institutional <span className="text-signal-gold italic">Answers</span>
           </h1>
           <p className="text-xl text-slate-500 dark:text-text-dark-muted max-w-2xl mx-auto font-medium leading-relaxed stagger-item">

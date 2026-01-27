@@ -41,7 +41,7 @@ const BlogPage = () => {
         
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6 font-serif">The Compliance Ledger</h1>
+          <h1 className="text-6xl lg:text-7xl font-black mb-6 font-serif uppercase tracking-tight">The Compliance Ledger</h1>
           <p className="text-xl text-text-muted dark:text-text-dark-muted max-w-2xl mx-auto">
             Weekly deep-dives into the latest safety regulations, business ethics, and operational excellence.
           </p>
@@ -99,7 +99,7 @@ const BlogPage = () => {
                       <Calendar className="w-3 h-3 mr-1" /> {new Date(post.publishedAt).toLocaleDateString()}
                     </span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-authority-blue transition-colors font-serif leading-tight">
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-authority-blue transition-colors font-serif leading-tight uppercase tracking-tight">
                     <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   <p className="text-text-muted dark:text-text-dark-muted mb-6 line-clamp-3 leading-relaxed">
@@ -112,7 +112,7 @@ const BlogPage = () => {
                       </div>
                       <span className="text-xs font-bold">{post.author}</span>
                     </div>
-                    <Link to={`/blog/${post.slug}`} className="text-authority-blue font-bold flex items-center group-hover:translate-x-1 transition-transform">
+                    <Link to={`/blog/${post.slug}`} className="text-authority-blue font-bold flex items-center group-hover:translate-x-1 transition-transform uppercase tracking-widest text-[10px]">
                       Read More <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </div>

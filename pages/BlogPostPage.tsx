@@ -61,7 +61,7 @@ const BlogPostPage = () => {
                 <Calendar className="w-3.5 h-3.5 mr-2" /> {new Date(post.publishedAt).toLocaleDateString()}
               </div>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-bold text-white font-serif leading-tight drop-shadow-lg uppercase tracking-tight">
+            <h1 className="text-6xl lg:text-7xl font-black text-white font-serif leading-tight drop-shadow-lg uppercase tracking-tight">
               {post.title}
             </h1>
           </div>

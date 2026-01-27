@@ -44,7 +44,7 @@ const SupportPage = () => {
         </Link>
 
         <div className="mb-16 animate-reveal-up">
-          <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white mb-6 uppercase tracking-tight">Member Support</h1>
+          <h1 className="text-6xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white mb-6 uppercase tracking-tight">Member Support</h1>
           <p className="text-lg text-text-muted dark:text-text-dark-muted font-medium leading-relaxed max-w-2xl">
             Priority assistance for active LaunchPath members. Please use this portal for technical or account-related inquiries.
           </p>

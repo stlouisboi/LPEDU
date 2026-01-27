@@ -30,6 +30,7 @@ import { AuthProvider, useAuth } from './AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
+import TrustArchitecture from './components/TrustArchitecture';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -51,6 +52,7 @@ import ReadinessPage from './pages/ReadinessPage';
 import PortalInterstitial from './pages/PortalInterstitial';
 import ReachTestPage from './pages/ReachTestPage';
 import TCOCalculatorPage from './pages/TCOCalculatorPage';
+import OperatorPortal from './pages/OperatorPortal';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -122,7 +124,7 @@ const Header = () => {
             <Logo className="h-6 sm:h-8 lg:h-10 w-auto" />
           </Link>
 
-          {/* DESKTOP NAVIGATION - EXACTLY MATCHING SCREENSHOT */}
+          {/* DESKTOP NAVIGATION */}
           <nav className="hidden xl:flex items-center" aria-label="Main Navigation">
             <div className="flex items-center space-x-2">
               {navItems.map((item) => (
@@ -140,11 +142,9 @@ const Header = () => {
               ))}
             </div>
             
-            {/* Visual Divider from Screenshot */}
             <div className="w-[1.5px] h-6 bg-slate-200 dark:bg-slate-700 mx-6" aria-hidden="true" />
 
             <div className="flex items-center space-x-5">
-              {/* Portal Access - Gold Border Button */}
               <Link 
                 to="/portal" 
                 className="border-2 border-signal-gold text-signal-gold px-7 py-3 rounded-full text-[11px] font-black uppercase tracking-[0.2em] flex items-center hover:bg-signal-gold/5 transition-all active:scale-95"
@@ -153,7 +153,6 @@ const Header = () => {
                 Portal Access
               </Link>
 
-              {/* Admission - Solid Blue Button */}
               <Link 
                 to="/readiness" 
                 className="bg-authority-blue text-white px-9 py-4 rounded-full text-[11px] font-black uppercase tracking-[0.2em] hover:bg-steel-blue hover:shadow-xl transition-all active:scale-95 shadow-lg"
@@ -161,7 +160,6 @@ const Header = () => {
                 Admission
               </Link>
 
-              {/* Theme Toggle - Circular Button */}
               <button
                 onClick={toggleTheme}
                 className="p-3 rounded-full bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-slate-700 shadow-sm"
@@ -172,7 +170,6 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* TABLET/MOBILE CONTROLS */}
           <div className="xl:hidden flex items-center space-x-3">
             <button
               onClick={toggleTheme}
@@ -193,7 +190,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* MOBILE/TABLET OVERLAY */}
       {isMenuOpen && (
         <nav className="fixed inset-0 top-16 sm:top-20 bg-white dark:bg-primary-dark z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
           <div className="flex flex-col p-8 sm:p-12 space-y-3">
@@ -252,28 +248,6 @@ const Header = () => {
     </header>
   );
 };
-
-const VeteranBadge = () => (
-  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg" role="img" aria-label="U.S. Veteran Owned Business Badge">
-    <div className="flex items-center space-x-1 mb-1">
-      <Award size={14} className="text-signal-gold" fill="currentColor" aria-hidden="true" />
-      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center">VETERAN OWNED</span>
-    </div>
-    <div className="h-px w-full bg-signal-gold/30 mb-1" aria-hidden="true"></div>
-    <span className="text-[8px] font-bold text-white/60 uppercase text-center">U.S. VETERAN OWNED</span>
-  </div>
-);
-
-const SDVOSBBadge = () => (
-  <div className="flex flex-col items-center justify-center p-3 border-2 border-signal-gold bg-authority-blue rounded-xl w-[140px] shadow-lg" role="img" aria-label="Service-Disabled Veteran-Owned Small Business Badge">
-    <div className="flex items-center space-x-1 mb-1">
-      <Shield size={14} className="text-signal-gold" aria-hidden="true" />
-      <span className="text-[9px] font-black text-white uppercase tracking-widest text-center leading-none">SDVOSB</span>
-    </div>
-    <div className="h-px w-full bg-signal-gold/30 mb-1" aria-hidden="true"></div>
-    <span className="text-[8px] font-bold text-white/60 uppercase text-center leading-none">SERVICE-DISABLED VET</span>
-  </div>
-);
 
 const Footer = () => {
   const location = useLocation();
@@ -383,11 +357,6 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-col items-center lg:items-end shrink-0 w-full lg:w-auto">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
-                <VeteranBadge />
-                <SDVOSBBadge />
-              </div>
-              
               <div className="flex items-center gap-8">
                 {[
                   { icon: <Linkedin size={24} aria-hidden="true" />, label: "LinkedIn", href: "#" },
@@ -407,6 +376,16 @@ const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: GLOBAL TRUST ARCHITECTURE */}
+      <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/5 py-16 pb-24">
+        <div className="max-w-7xl mx-auto px-6">
+           <div className="text-center mb-10 opacity-40">
+             <p className="text-[9px] font-black text-white uppercase tracking-[0.5em]">Institutional Governance Standards</p>
+           </div>
+           <TrustArchitecture />
         </div>
       </section>
     </footer>
@@ -487,6 +466,7 @@ export default function App() {
               <Route path="/readiness" element={<ReadinessPage />} />
               <Route path="/reach-test" element={<ReachTestPage />} />
               <Route path="/portal" element={<PortalInterstitial />} />
+              <Route path="/operator-portal" element={<OperatorPortal />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/support" element={<SupportPage />} />
