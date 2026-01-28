@@ -58,17 +58,17 @@ const TCOCalculatorPage: React.FC = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const totals = useMemo(() => {
-    // Fix: Explicitly cast Object.values to number[] to resolve 'unknown' type arithmetic errors on lines 61, 68, and 69
-    const totalFixed = (Object.values(fixedCosts) as number[]).reduce((a, b) => a + b, 0);
-    const fuelPerMile = variableCosts.fuelPrice / variableCosts.mpg;
-    const totalVarPerMile = fuelPerMile + variableCosts.maintenance + variableCosts.tires + variableCosts.tolls;
+    // Ensuring numeric safety for reduce and arithmetic
+    const totalFixed = (Object.values(fixedCosts) as number[]).reduce((a, b) => a + (Number(b) || 0), 0);
+    const fuelPerMile = (Number(variableCosts.fuelPrice) || 0) / (Number(variableCosts.mpg) || 1);
+    const totalVarPerMile = fuelPerMile + (Number(variableCosts.maintenance) || 0) + (Number(variableCosts.tires) || 0) + (Number(variableCosts.tolls) || 0);
     
-    const paidMiles = operation.monthlyMiles * (1 - operation.deadheadPercentage / 100);
+    const paidMiles = operation.monthlyMiles * (1 - (Number(operation.deadheadPercentage) || 0) / 100);
     const actualGrossRevenue = paidMiles * operation.ratePerMile;
     const totalVarCosts = totalVarPerMile * operation.monthlyMiles;
     const netProfit = actualGrossRevenue - (totalFixed + totalVarCosts);
-    const cpm = (totalFixed + totalVarCosts) / operation.monthlyMiles;
-    const breakEvenRate = cpm / (1 - operation.deadheadPercentage / 100);
+    const cpm = (totalFixed + totalVarCosts) / (operation.monthlyMiles || 1);
+    const breakEvenRate = cpm / (1 - (Number(operation.deadheadPercentage) || 0) / 100);
 
     return {
       totalFixed,
@@ -129,7 +129,9 @@ const TCOCalculatorPage: React.FC = () => {
               { label: 'Total CPM', val: totals.cpm, unit: 'MI', icon: <Zap /> }
             ].map((stat, i) => (
               <div key={i} className="bg-[#0F172A] border border-white/5 rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-4 opacity-5"><stat.icon.type {...stat.icon.props} size={80} /></div>
+                <div className="absolute top-0 right-0 p-4 opacity-5">
+                   {React.cloneElement(stat.icon as React.ReactElement<any>, { size: 80 })}
+                </div>
                 <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">{stat.label}</p>
                 <div className="flex items-baseline gap-2">
                   <span className={`text-4xl font-black leading-none ${stat.color || 'text-white'}`}>${Math.abs(stat.val).toLocaleString(undefined, { maximumFractionDigits: 2 })}</span>

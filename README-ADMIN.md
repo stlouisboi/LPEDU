@@ -1,4 +1,3 @@
-
 # LaunchPath Admin Setup Instructions
 
 ## 1. Firebase Setup
@@ -10,45 +9,31 @@
 6. Register a Web App and copy the `firebaseConfig` details.
 
 ## 2. Firestore Security Rules
-Copy and paste these rules into the **Rules** tab of your Firestore Database to resolve "Missing or insufficient permissions" errors:
+Copy and paste these rules into the **Rules** tab of your Firestore Database to resolve "Missing or insufficient permissions" errors. This allows public users to submit forms while keeping your data safe from unauthorized reading:
 
 ```
+rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Publicly readable content for the marketing site
-    match /settings/{doc} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    match /pages/{doc} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    match /blogPosts/{doc} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    match /resources/{doc} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    match /generatedVideos/{doc} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    match /leads/{doc} {
-      allow create: if true;
-      allow read, update, delete: if request.auth != null;
-    }
+    // Public Content (Read-only for public, Write for Admin)
+    match /settings/{doc} { allow read: if true; allow write: if request.auth != null; }
+    match /pages/{doc} { allow read: if true; allow write: if request.auth != null; }
+    match /blogPosts/{doc} { allow read: if true; allow write: if request.auth != null; }
+    match /resources/{doc} { allow read: if true; allow write: if request.auth != null; }
+    match /courseModules/{doc} { allow read: if true; allow write: if request.auth != null; }
+    match /generatedVideos/{doc} { allow read: if true; allow write: if request.auth != null; }
+    match /testimonials/{doc} { allow read: if true; allow write: if request.auth != null; }
     
-    // Contact forms and lead captures (Public can create, only admin can manage)
-    match /formSubmissions/{doc} {
-      allow create: if true;
-      allow read, update, delete: if request.auth != null;
-    }
-    match /contacts/{doc} {
-      allow create: if true;
-      allow read, update, delete: if request.auth != null;
+    // Public Intake (Create for public, Full access for Admin)
+    match /admissionInquiries/{doc} { allow create: if true; allow read, write: if request.auth != null; }
+    match /readinessAssessments/{doc} { allow create: if true; allow read, write: if request.auth != null; }
+    match /leadMagnets/{doc} { allow create: if true; allow read, write: if request.auth != null; }
+    match /formSubmissions/{doc} { allow create: if true; allow read, write: if request.auth != null; }
+    match /contacts/{doc} { allow create: if true; allow read, write: if request.auth != null; }
+    
+    // Administrative Default
+    match /{document=**} {
+      allow read, write: if request.auth != null;
     }
   }
 }
@@ -61,8 +46,6 @@ For production-scale data, Firestore works best with composite indexes. If you s
 - **Field 1:** `status` (Ascending)
 - **Field 2:** `publishedAt` (Descending)
 - **Query Scope:** Collection
-
-*Note: The app currently uses client-side sorting as a workaround to prevent initial configuration errors.*
 
 ## 4. Environment Variables
 In your deployment environment (Vercel) or local `.env` file, map the following variables used in `firebase.ts`:

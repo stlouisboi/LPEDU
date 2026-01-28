@@ -66,40 +66,43 @@ const AboutPage = () => {
       <section className="bg-white py-24 border-b border-slate-100">
         <div className="max-w-[1100px] mx-auto px-6">
           <div className="mb-16">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1E3A5F] mb-4">Implementation Window</p>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#1E3A5F] mb-4">IMPLEMENTATION WINDOW</p>
             <p className="text-base font-bold text-slate-500 uppercase leading-relaxed max-w-3xl">
               THE LAUNCHPATH STANDARD IS ENGINEERED TO BE INSTALLED WITHIN THE FIRST 90 DAYS OF AUTHORITY. THIS STANDARD IS DESIGNED FOR EARLY IMPLEMENTATION, NOT LATER CORRECTION.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* Reactive side */}
+            {/* Left Column: REACTIVE CONDITIONS */}
             <div className="space-y-10">
               <div className="space-y-2 border-l-4 border-slate-200 pl-8 py-2">
-                <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">REACTIVE DEFICIENCIES</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">REACTIVE CONDITIONS</p>
                 <h3 className="text-2xl font-bold text-[#1A1A1A] uppercase tracking-tight">Disjointed Documentation</h3>
               </div>
               <ul className="space-y-6 text-slate-500 font-medium leading-relaxed">
                 <li className="flex items-start">
                   <span className="mr-4 text-slate-300">—</span>
-                  Fragmented safety records managed as post-facto tasks.
+                  Fixing files only after a mistake or inspection has already occurred.
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4 text-slate-300">—</span>
-                  Undocumented maintenance cycles creating roadside exposure.
+                  Maintenance performed but not documented, creating roadside exposure.
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4 text-slate-300">—</span>
-                  Reactive response to federal audit scheduling.
+                  Audit preparation that begins only after the notification letter arrives.
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4 text-slate-300">—</span>
-                  High volatility in insurance premium stability.
+                  Insurance volatility driven by fragmented records and perceived risk.
                 </li>
               </ul>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-12">
+                Indicators of a system built reactively instead of sequentially.
+              </p>
             </div>
 
-            {/* Alignment side */}
+            {/* Right Column: STANDARD ALIGNMENT */}
             <div className="space-y-10">
               <div className="space-y-2 border-l-4 border-[#D4AF37] pl-8 py-2">
                 <p className="text-[11px] font-black uppercase tracking-[0.4em] text-[#D4AF37]">STANDARD ALIGNMENT</p>
@@ -108,11 +111,11 @@ const AboutPage = () => {
               <ul className="space-y-6 text-[#1E3A5F] font-bold leading-relaxed">
                 <li className="flex items-start">
                   <span className="mr-4 text-[#D4AF37]">•</span>
-                  Integrated safety management systems installed at launch.
+                  Integrated safety systems installed before the first load moves.
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4 text-[#D4AF37]">•</span>
-                  Federally-aligned DQ and maintenance workflows.
+                  Federally aligned DQ and maintenance workflows built to inspection logic.
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4 text-[#D4AF37]">•</span>
@@ -120,10 +123,20 @@ const AboutPage = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4 text-[#D4AF37]">•</span>
-                  Enhanced insurer trust through transparent system records.
+                  Insurer trust established through transparent, organized system records.
                 </li>
               </ul>
+              <p className="text-[10px] font-bold text-[#1E3A5F]/40 uppercase tracking-widest pl-12">
+                Indicators of a system built before exposure.
+              </p>
             </div>
+          </div>
+
+          {/* Institutional Scripture Footer for Section */}
+          <div className="mt-20 pt-10 border-t border-slate-50 text-center">
+            <p className="text-[9px] text-slate-400 italic uppercase tracking-[0.4em] font-medium">
+              “A hard worker has plenty of food, but a person who chases fantasies has no sense.” — Proverbs 12:11
+            </p>
           </div>
         </div>
       </section>

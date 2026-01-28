@@ -30,27 +30,29 @@ const ReachTestPage = () => {
             <Scale size={16} className="text-authority-blue" />
             <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue">Standard Diagnostic Protocol</span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight mb-8">
+          <h1 className="text-4xl lg:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none mb-8">
             The <span className="text-signal-gold italic">REACH</span> Test™
           </h1>
           <p className="text-xl md:text-2xl text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed italic">
             "Assessment of structural integrity under institutional pressure."
           </p>
-          <p className="text-[10px] text-slate-400 italic mt-6 uppercase tracking-[0.4em]">
-            “Stay away from fools, for you won’t find knowledge on their lips. The prudent understand where they are going, but fools deceive themselves.” — Proverbs 14:7–8
+          <p className="text-[10px] text-slate-400 italic mt-6 uppercase tracking-[0.4em] font-medium">
+            “A hard worker has plenty of food, but a person who chases fantasies has no sense.” — Proverbs 12:11
           </p>
         </div>
 
         {/* Resource Usage Orientation Block */}
         <div className="max-w-4xl mx-auto mb-16 space-y-12">
-          <div className="bg-slate-50 dark:bg-gray-900/40 border border-slate-200 dark:border-slate-800 p-10 rounded-[3rem] shadow-sm relative overflow-hidden">
+          <div className="bg-white dark:bg-gray-900/40 border border-slate-200 dark:border-slate-800 p-10 rounded-[3rem] shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-[0.03]">
               <FileSearch size={120} />
             </div>
             
-            <div className="flex items-center space-x-3 mb-6 text-authority-blue">
-              <Info size={18} className="opacity-50" />
-              <span className="text-[11px] font-black uppercase tracking-[0.4em]">Resource Usage Orientation</span>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-3 text-authority-blue">
+                <Info size={18} className="opacity-50" />
+                <span className="text-[11px] font-black uppercase tracking-[0.4em]">Resource Usage Orientation</span>
+              </div>
             </div>
 
             <div className="space-y-6 relative z-10">
@@ -58,7 +60,7 @@ const ReachTestPage = () => {
                 The REACH Test™ is strictly a <span className="text-authority-blue dark:text-white underline decoration-signal-gold/30">diagnostic orientation instrument</span>. Results identify structural exposure but do not include corrective action plans.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4 pb-8">
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2 text-slate-400">
                     <FileText size={14} />
@@ -77,6 +79,12 @@ const ReachTestPage = () => {
                     Full execution occurs exclusively through the formal <span className="font-bold text-authority-blue dark:text-signal-gold">Admission & Implementation</span> phase, which unlocks guided interpretation, sequencing, and audit-aligned execution.
                   </p>
                 </div>
+              </div>
+
+              <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
+                <p className="text-[9px] text-slate-400 italic uppercase tracking-[0.3em]">
+                  “A hard worker has plenty of food, but a person who chases fantasies has no sense.” — Proverbs 12:11
+                </p>
               </div>
             </div>
           </div>
@@ -299,10 +307,15 @@ const ReachTestPage = () => {
                   </div>
                 </div>
 
-                <Link to="/readiness" className="bg-white text-authority-blue px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.25em] text-sm hover:bg-signal-gold hover:text-white transition-all shadow-xl active:scale-95 inline-flex items-center group">
-                  <span>Initiate Diagnosis</span>
-                  <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                <div className="flex flex-col items-center lg:items-start gap-8">
+                  <Link to="/readiness" className="bg-white text-authority-blue px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.25em] text-sm hover:bg-signal-gold hover:text-white transition-all shadow-xl active:scale-95 inline-flex items-center group">
+                    <span>Initiate Diagnosis</span>
+                    <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <p className="text-[9px] text-white/30 italic uppercase tracking-[0.3em] font-medium">
+                    “A hard worker has plenty of food, but a person who chases fantasies has no sense.” — Proverbs 12:11
+                  </p>
+                </div>
               </div>
             </section>
           </div>

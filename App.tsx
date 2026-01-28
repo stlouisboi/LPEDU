@@ -7,20 +7,7 @@ import {
   X, 
   ChevronRight, 
   Loader2,
-  Linkedin,
-  Facebook,
-  Youtube,
-  Twitter,
-  ArrowRight,
-  ShieldCheck,
-  Award,
-  ExternalLink,
-  Shield,
-  Anchor,
-  CheckCircle,
-  Lock,
-  Calculator,
-  Sparkles
+  Lock
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -30,7 +17,6 @@ import { AuthProvider, useAuth } from './AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
-import TrustArchitecture from './components/TrustArchitecture';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -58,7 +44,7 @@ import OperatorPortal from './pages/OperatorPortal';
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
-import AdminDashboardHome from './pages/admin/AdminDashboardHome';
+import AdminDashboard from './AdminDashboard'; // Use the tabbed dashboard
 import PageList from './pages/admin/PageList';
 import HomePageEditor from './pages/admin/HomePageEditor';
 import BlogList from './pages/admin/BlogList';
@@ -163,7 +149,7 @@ const Header = () => {
 
               <button
                 onClick={toggleTheme}
-                className="p-3 rounded-full bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-slate-700 shadow-sm"
+                className="p-3 rounded-full bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-border-dark shadow-sm"
                 aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               >
                 {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
@@ -229,7 +215,7 @@ const Header = () => {
               <Link 
                 to="/readiness" 
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-center bg-authority-blue text-white py-8 rounded-[2.5rem] text-lg font-black uppercase tracking-[0.2em] shadow-2xl"
+                className="block w-full text-center bg-authority-blue text-white py-8 rounded-[2rem] text-lg font-black uppercase tracking-[0.2em] shadow-2xl"
               >
                 Admission Protocol
               </Link>
@@ -247,11 +233,9 @@ const Footer = () => {
 
   return (
     <footer className="w-full font-sans" role="contentinfo">
-      {/* SECTION 2: FOOTER NAVIGATION */}
       <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5 transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Site Map">
-            {/* FOUNDATION */}
             <div>
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">FOUNDATION</h3>
               <ul className="space-y-4">
@@ -268,8 +252,6 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-
-            {/* SYSTEM */}
             <div>
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">SYSTEM</h3>
               <ul className="space-y-4">
@@ -286,8 +268,6 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-
-            {/* RESOURCES */}
             <div>
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">RESOURCES</h3>
               <ul className="space-y-4">
@@ -304,8 +284,6 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-
-            {/* LEGAL */}
             <div>
               <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">GOVERNANCE</h3>
               <ul className="space-y-4">
@@ -325,12 +303,9 @@ const Footer = () => {
           </nav>
         </div>
       </section>
-
-      {/* SECTION 3: BOTTOM BAR */}
       <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/10 py-10 transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
-            
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-4">
                 <Logo light className="h-12 grayscale-0 brightness-0 invert" />
@@ -343,41 +318,11 @@ const Footer = () => {
               </p>
               <div className="max-w-[600px]">
                 <p className="text-[13px] text-white/50 leading-relaxed italic">
-                  LaunchPath is an educational platform providing informational training and resources for motor carrier operations. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice. LaunchPath does not provide regulatory representation or individual compliance consulting. Users are encouraged to consult with licensed professionals regarding specific legal and insurance requirements.
+                  LaunchPath is an educational platform providing informational training and resources for motor carrier operations. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice.
                 </p>
               </div>
             </div>
-
-            <div className="flex flex-col items-center lg:items-end shrink-0 w-full lg:w-auto">
-              <div className="flex items-center gap-8">
-                {[
-                  { icon: <Linkedin size={24} aria-hidden="true" />, label: "LinkedIn", href: "#" },
-                  { icon: <Facebook size={24} aria-hidden="true" />, label: "Facebook", href: "#" },
-                  { icon: <Youtube size={24} aria-hidden="true" />, label: "YouTube", href: "#" },
-                  { icon: <Twitter size={24} aria-hidden="true" />, label: "Twitter", href: "#" }
-                ].map((social) => (
-                  <a 
-                    key={social.label}
-                    href={social.href}
-                    aria-label={`Follow LaunchPath on ${social.label}`}
-                    className="text-white/60 hover:text-signal-gold transition-colors duration-300"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: GLOBAL TRUST ARCHITECTURE */}
-      <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/5 py-16 pb-24">
-        <div className="max-w-7xl mx-auto px-6">
-           <div className="text-center mb-10 opacity-40">
-             <p className="text-[9px] font-black text-white uppercase tracking-[0.5em]">Institutional Governance Standards</p>
-           </div>
-           <TrustArchitecture />
         </div>
       </section>
     </footer>
@@ -407,7 +352,6 @@ export default function App() {
       setAppLoading(false);
       return;
     }
-    
     const settingsRef = doc(db, "settings", "general");
     const unsub = onSnapshot(settingsRef, (snap) => {
       if (snap.exists()) {
@@ -415,10 +359,9 @@ export default function App() {
       }
       setAppLoading(false);
     }, (error) => {
-      console.warn("App: Settings listener failed. Using defaults.", error.message);
+      console.warn("App: Settings listener failed.", error.message);
       setAppLoading(false);
     });
-    
     return () => unsub();
   }, []);
 
@@ -434,7 +377,7 @@ export default function App() {
           alt="LaunchPath Loading" 
           className="h-16 w-auto animate-pulse" 
         />
-        <Loader2 className="animate-spin text-authority-blue" size={32} aria-label="Loading application..." />
+        <Loader2 className="animate-spin text-authority-blue" size={32} />
       </div>
     </div>
   );
@@ -473,7 +416,7 @@ export default function App() {
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
-                <Route index element={<AdminDashboardHome />} />
+                <Route index element={<AdminDashboard />} />
                 <Route path="pages" element={<PageList />} />
                 <Route path="pages/home" element={<HomePageEditor />} />
                 <Route path="blog" element={<BlogList />} />

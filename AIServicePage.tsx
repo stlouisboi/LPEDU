@@ -2,11 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
   ShieldAlert, 
-  Book, 
-  Scale, 
   MessageCircle, 
   Mic, 
-  MicOff, 
   Volume2, 
   VolumeX,
   Video, 
@@ -14,16 +11,12 @@ import {
   Sparkles,
   Loader2,
   X,
-  Plus,
-  Play,
-  Download,
   Film,
   Phone,
   PhoneOff,
-  AlertCircle,
   Maximize2
 } from 'lucide-react';
-import { GoogleGenAI, LiveServerMessage, Modality, Type } from '@google/genai';
+import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
 
 // --- AUDIO UTILS ---
 function decode(base64: string) {
@@ -77,12 +70,9 @@ function createBlob(data: Float32Array) {
 }
 
 const AIServicePage = () => {
-  // Tabs: 'chat', 'voice', 'video'
   const [activeTab, setActiveTab] = useState<'chat' | 'voice' | 'video'>('chat');
-  
-  // --- CHAT STATE ---
   const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, audio?: string}[]>([
-    { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm now powered by Gemini 3 Pro to handle complex regulatory questions. How can I help your carrier today?" }
+    { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm powered by Gemini 3 Pro to handle complex regulatory questions. How can I help your carrier today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -90,7 +80,6 @@ const AIServicePage = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
-  // --- VOICE (LIVE API) STATE ---
   const [isLiveActive, setIsLiveActive] = useState(false);
   const [liveTranscript, setLiveTranscript] = useState<string[]>([]);
   const liveSessionRef = useRef<any>(null);
@@ -98,7 +87,6 @@ const AIServicePage = () => {
   const liveSourcesRef = useRef<Set<AudioBufferSourceNode>>(new Set());
   const nextStartTimeRef = useRef(0);
 
-  // --- VIDEO STATE ---
   const [videoPrompt, setVideoPrompt] = useState('');
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [videoPreview, setVideoPreview] = useState<string | null>(null);
@@ -109,9 +97,7 @@ const AIServicePage = () => {
   const [hasApiKey, setHasApiKey] = useState(false);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, liveTranscript]);
 
   useEffect(() => {
@@ -124,31 +110,19 @@ const AIServicePage = () => {
     checkKey();
   }, []);
 
-  // Memory Check & Cleanup Effect
   useEffect(() => {
     return () => {
-      // Close standard audio context
-      if (audioContextRef.current) {
-        audioContextRef.current.close();
-      }
-      // Stop live sessions
-      if (isLiveActive) {
-        stopLiveConversation();
-      }
+      if (audioContextRef.current) audioContextRef.current.close();
+      if (isLiveActive) stopLiveConversation();
     };
   }, [isLiveActive]);
 
-  // Handle cleanup when switching tabs
   useEffect(() => {
-    if (activeTab !== 'voice' && isLiveActive) {
-      stopLiveConversation();
-    }
+    if (activeTab !== 'voice' && isLiveActive) stopLiveConversation();
   }, [activeTab]);
 
-  // --- CHAT HANDLERS ---
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
-
     const userMessage = input.trim();
     setInput('');
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
@@ -160,13 +134,11 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: "You are an expert FMCSA compliance consultant for LaunchPath. Your tone is authoritative, professional, and calm. Use Gemini 3 Pro's deep reasoning to answer complex trucking regulations. Focus on safety management, audits, and legal authority.",
+          systemInstruction: "You are an expert FMCSA compliance consultant for LaunchPath. Authoritative, professional tone.",
           temperature: 0.7,
         }
       });
-
-      const aiResponse = response.text || "I apologize, I'm having trouble retrieving that information right now.";
-      setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "Communication error." }]);
     } catch (error) {
       setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the advisory service." }]);
     } finally {
@@ -177,7 +149,6 @@ const AIServicePage = () => {
   const speakMessage = async (text: string, index: number) => {
     if (isSpeaking === index) return;
     setIsSpeaking(index);
-    
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
@@ -185,15 +156,21 @@ const AIServicePage = () => {
         contents: [{ parts: [{ text: `Read this professionally and calmly: ${text}` }] }],
         config: {
           responseModalities: [Modality.AUDIO],
-          speechConfig: {
-            voiceConfig: {
-              prebuiltVoiceConfig: { voiceName: 'Kore' },
-            },
-          },
+          speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } },
         },
       });
 
-      const base64Audio = response.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
+      // Guideline: Iterate through parts to find audio modality
+      let base64Audio = '';
+      if (response.candidates?.[0]?.content?.parts) {
+        for (const part of response.candidates[0].content.parts) {
+          if (part.inlineData?.data) {
+            base64Audio = part.inlineData.data;
+            break;
+          }
+        }
+      }
+
       if (base64Audio) {
         if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
           audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
@@ -207,30 +184,26 @@ const AIServicePage = () => {
         source.start();
       }
     } catch (err) {
-      console.error("TTS failed", err);
       setIsSpeaking(null);
     }
   };
 
-  // --- LIVE AUDIO HANDLERS ---
   const startLiveConversation = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      
       const inputCtx = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
       const outputCtx = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
       liveAudioContextRef.current = { input: inputCtx, output: outputCtx };
-      
       nextStartTimeRef.current = 0;
       setIsLiveActive(true);
-      setLiveTranscript(["Connecting to Live API..."]);
+      setLiveTranscript(["Establishing Link..."]);
 
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-12-2025',
         callbacks: {
           onopen: () => {
-            setLiveTranscript(prev => [...prev, "Connected! Start speaking."]);
+            setLiveTranscript(prev => [...prev, "Link Established. Speak now."]);
             const source = inputCtx.createMediaStreamSource(stream);
             const scriptProcessor = inputCtx.createScriptProcessor(4096, 1, 1);
             scriptProcessor.onaudioprocess = (e) => {
@@ -242,7 +215,17 @@ const AIServicePage = () => {
             scriptProcessor.connect(inputCtx.destination);
           },
           onmessage: async (message: LiveServerMessage) => {
-            const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+            // Guideline: Iterate through parts to find audio
+            let base64Audio = '';
+            if (message.serverContent?.modelTurn?.parts) {
+              for (const part of message.serverContent.modelTurn.parts) {
+                if (part.inlineData?.data) {
+                  base64Audio = part.inlineData.data;
+                  break;
+                }
+              }
+            }
+
             if (base64Audio && liveAudioContextRef.current) {
               const outCtx = liveAudioContextRef.current.output;
               nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outCtx.currentTime);
@@ -250,93 +233,63 @@ const AIServicePage = () => {
               const source = outCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outCtx.destination);
-              source.addEventListener('ended', () => liveSourcesRef.current.delete(source));
+              source.addEventListener('ended', () => {
+                if (liveSourcesRef.current) liveSourcesRef.current.delete(source);
+              });
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
-              // Fix: Explicitly access .current property of the ref Set before adding the source node
               liveSourcesRef.current.add(source);
             }
             if (message.serverContent?.interrupted) {
-              liveSourcesRef.current.forEach(s => {
-                try { s.stop(); } catch(e) {}
-              });
-              liveSourcesRef.current.clear();
+              if (liveSourcesRef.current) {
+                liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
+                liveSourcesRef.current.clear();
+              }
               nextStartTimeRef.current = 0;
             }
           },
           onclose: () => setIsLiveActive(false),
-          onerror: (e) => {
-            console.error("Live Error", e);
-            setIsLiveActive(false);
-          }
+          onerror: () => setIsLiveActive(false)
         },
         config: {
           responseModalities: [Modality.AUDIO],
-          systemInstruction: "You are the LaunchPath Voice Assistant. Help owner-operators with FMCSA rules. Be brief and professional.",
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } }
         }
       });
-
       liveSessionRef.current = sessionPromise;
     } catch (err) {
-      console.error("Live Start Error", err);
-      alert("Microphone access is required for voice conversation.");
+      alert("Microphone access is required.");
     }
   };
 
   const stopLiveConversation = () => {
     if (liveSessionRef.current) {
-      liveSessionRef.current.then((s: any) => {
-        try { s.close(); } catch(e) {}
-      });
+      liveSessionRef.current.then((s: any) => { try { s.close(); } catch(e) {} });
     }
     setIsLiveActive(false);
     setLiveTranscript([]);
     if (liveAudioContextRef.current) {
-      liveAudioContextRef.current.input.close();
-      liveAudioContextRef.current.output.close();
+      liveAudioContextRef.current.input.close().catch(() => {});
+      liveAudioContextRef.current.output.close().catch(() => {});
       liveAudioContextRef.current = null;
     }
-    liveSourcesRef.current.forEach(s => {
-      try { s.stop(); } catch(e) {}
-    });
-    liveSourcesRef.current.clear();
-  };
-
-  // --- VIDEO GENERATION HANDLERS ---
-  const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setVideoFile(file);
-      setVideoPreview(URL.createObjectURL(file));
+    if (liveSourcesRef.current) {
+      liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
+      liveSourcesRef.current.clear();
     }
   };
 
   const generateVideo = async () => {
     if ((!videoPrompt && !videoFile) || isGeneratingVideo) return;
-    
     setIsGeneratingVideo(true);
-    setGenMessage("Initializing cinematic engine...");
-    const messages = ["Analyzing visual components...", "Rendering frame dynamics...", "Baking motion vectors...", "Optimizing output..."];
-    let msgIdx = 0;
-    const interval = setInterval(() => {
-      setGenMessage(messages[msgIdx % messages.length]);
-      msgIdx++;
-    }, 8000);
-
+    setGenMessage("Initializing production engine...");
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      
       let config: any = {
         model: 'veo-3.1-fast-generate-preview',
-        prompt: videoPrompt || "Animate this professional trucking scene with realistic motion and cinematic lighting.",
-        config: {
-          numberOfVideos: 1,
-          resolution: '720p',
-          aspectRatio: aspectRatio
-        }
+        prompt: videoPrompt || "Professional trucking cinematic animation.",
+        config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
       };
-
       if (videoFile) {
         const reader = new FileReader();
         const base64 = await new Promise<string>((res) => {
@@ -346,65 +299,37 @@ const AIServicePage = () => {
         config.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      let initialOp = await ai.models.generateVideos(config);
+      let op = await ai.models.generateVideos(config);
+      let opName = op.name;
 
-      // Clean the initial operation object to strip circular references
-      let operation = {
-        name: initialOp.name,
-        done: initialOp.done,
-        response: initialOp.response,
-        error: initialOp.error
-      } as any;
-
-      // Defensively polling using a cleaned object literal to avoid circular structure crash
-      while (!operation.done) {
-        await new Promise(resolve => setTimeout(resolve, 10000));
-        
-        const opResult = await ai.operations.getVideosOperation({ 
-          operation: { name: operation.name } as any 
-        });
-
-        // Re-clean the response at each step
-        operation = {
-          name: opResult.name,
-          done: opResult.done,
-          response: opResult.response,
-          error: opResult.error
-        } as any;
+      while (!op.done) {
+        await new Promise(r => setTimeout(r, 10000));
+        // Guideline: Create new GoogleGenAI instance for every polling call
+        const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const result = await pollAi.operations.getVideosOperation({ operation: { name: opName } as any });
+        op = { done: result.done, response: result.response, error: result.error, name: opName } as any;
+        if (op.error) throw new Error(op.error.message);
       }
 
-      const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
-      if (downloadLink) {
-        const res = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
+      const link = op.response?.generatedVideos?.[0]?.video?.uri;
+      if (link) {
+        const res = await fetch(`${link}&key=${process.env.API_KEY}`);
         const blob = await res.blob();
         setVideoResult(URL.createObjectURL(blob));
       }
     } catch (err: any) {
-      console.error("Video error", err);
       if (err.message?.includes("Requested entity was not found")) {
         setHasApiKey(false);
-        alert("Please re-select your AI Studio API key.");
-      } else {
-        alert("Video generation failed.");
-      }
+        alert("Re-authorization required.");
+      } else alert("Video generation failed.");
     } finally {
-      clearInterval(interval);
       setIsGeneratingVideo(false);
-    }
-  };
-
-  const selectApiKey = async () => {
-    if (window.aistudio) {
-      await window.aistudio.openSelectKey();
-      setHasApiKey(true);
     }
   };
 
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen py-16 px-4">
-      <div className="max-w-6xl mx-auto flex flex-col h-[85vh] bg-white dark:bg-surface-dark rounded-[3.5rem] border border-border-light dark:border-border-dark shadow-2xl overflow-hidden relative stagger-parent">
-        
-        {/* Navigation Tabs */}
+      <div className="max-w-6xl mx-auto flex flex-col h-[85vh] bg-white dark:bg-surface-dark rounded-[3.5rem] border border-border-light dark:border-border-dark shadow-2xl overflow-hidden relative">
         <div className="flex bg-authority-blue p-2 sm:p-4 gap-2 sm:gap-4 shrink-0 overflow-x-auto no-scrollbar">
           {[
             { id: 'chat', label: 'AI Advisor', icon: <MessageCircle size={18} /> },
@@ -415,9 +340,7 @@ const AIServicePage = () => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center space-x-2 px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all whitespace-nowrap active:scale-95 ${
-                activeTab === tab.id 
-                ? 'bg-white text-authority-blue shadow-xl' 
-                : 'text-white/60 hover:text-white hover:bg-white/10'
+                activeTab === tab.id ? 'bg-white text-authority-blue shadow-xl' : 'text-white/60 hover:text-white'
               }`}
             >
               {tab.icon}
@@ -426,298 +349,85 @@ const AIServicePage = () => {
           ))}
         </div>
 
-        {/* Dynamic Content Area */}
         <div className="flex-grow flex flex-col overflow-hidden">
-          
-          {/* --- ADVISOR CHAT --- */}
           {activeTab === 'chat' && (
             <>
               <div ref={scrollRef} className="flex-grow overflow-y-auto p-10 space-y-10 scroll-smooth">
                 {messages.map((m, i) => (
-                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-reveal-up`}>
-                    <div className={`max-w-[80%] group relative ${
-                      m.role === 'user' 
-                      ? 'bg-authority-blue text-white rounded-[2.5rem] rounded-tr-none p-8 shadow-xl' 
-                      : 'bg-slate-50 dark:bg-slate-900 text-text-primary dark:text-text-dark-primary rounded-[2.5rem] rounded-tl-none p-8 border border-border-light dark:border-border-dark shadow-sm'
-                    }`}>
-                      <div className="text-base leading-relaxed whitespace-pre-wrap font-medium">{m.content}</div>
+                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in`}>
+                    <div className={`max-w-[80%] p-8 rounded-[2.5rem] ${m.role === 'user' ? 'bg-authority-blue text-white rounded-tr-none shadow-xl' : 'bg-slate-50 dark:bg-slate-900 border border-border-light rounded-tl-none'}`}>
+                      <div className="text-base font-medium leading-relaxed">{m.content}</div>
                       {m.role === 'assistant' && (
-                        <button 
-                          onClick={() => speakMessage(m.content, i)}
-                          className={`mt-6 flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all py-2 px-4 rounded-xl border border-border-light dark:border-border-dark hover:bg-white dark:hover:bg-gray-800 ${
-                            isSpeaking === i ? 'text-signal-gold border-signal-gold animate-pulse shadow-lg' : 'text-authority-blue dark:text-signal-gold'
-                          }`}
-                        >
+                        <button onClick={() => speakMessage(m.content, i)} className={`mt-6 flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] py-2 px-4 rounded-xl border ${isSpeaking === i ? 'text-signal-gold border-signal-gold animate-pulse' : 'text-authority-blue border-border-light'}`}>
                           {isSpeaking === i ? <Volume2 size={16} /> : <VolumeX size={16} />}
-                          <span>{isSpeaking === i ? 'Advisor Speaking' : 'Read Guidance'}</span>
+                          <span>{isSpeaking === i ? 'Speaking' : 'Read Out'}</span>
                         </button>
                       )}
                     </div>
                   </div>
                 ))}
-                {isLoading && (
-                  <div className="flex justify-start animate-fade-in">
-                    <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-[2.5rem] rounded-tl-none border border-border-light shadow-sm">
-                      <div className="flex space-x-3">
-                        <div className="w-2.5 h-2.5 bg-authority-blue/40 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                        <div className="w-2.5 h-2.5 bg-authority-blue/40 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                        <div className="w-2.5 h-2.5 bg-authority-blue/40 rounded-full animate-bounce"></div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                {isLoading && <Loader2 className="animate-spin text-authority-blue mx-auto" />}
               </div>
-              <div className="p-10 border-t border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-md">
-                <div className="relative max-w-4xl mx-auto">
+              <div className="p-10 border-t border-border-light bg-slate-50/50 backdrop-blur-md">
+                <div className="relative max-w-4xl mx-auto flex items-center space-x-4">
                   <input 
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Ask about DQ files, audits, or carrier regulations..."
-                    className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark pl-8 pr-24 py-6 rounded-[2.5rem] focus:ring-8 focus:ring-authority-blue/5 outline-none transition-all shadow-2xl font-bold"
+                    type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    placeholder="Inquiry terminal..." className="flex-grow bg-white border border-border-light pl-8 pr-12 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold"
                   />
-                  <button 
-                    onClick={handleSend}
-                    disabled={isLoading}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue transition-all disabled:opacity-50 shadow-xl active:scale-95"
-                  >
+                  <button onClick={handleSend} disabled={isLoading} className="bg-authority-blue text-white p-4 rounded-3xl hover:bg-steel-blue active:scale-95 shadow-xl disabled:opacity-50">
                     <Send className="w-6 h-6" />
                   </button>
-                </div>
-                <div className="flex items-center justify-center space-x-4 mt-6">
-                   <div className="h-px bg-border-light flex-grow max-w-[100px]"></div>
-                   <p className="text-[9px] text-text-muted uppercase tracking-[0.4em] font-black">
-                     Powered by Gemini 3 Pro Deep Reasoning
-                   </p>
-                   <div className="h-px bg-border-light flex-grow max-w-[100px]"></div>
                 </div>
               </div>
             </>
           )}
 
-          {/* --- VOICE MODE --- */}
           {activeTab === 'voice' && (
             <div className="flex-grow flex flex-col items-center justify-center p-10 bg-gradient-to-b from-transparent to-authority-blue/5">
-              <div className="text-center max-w-xl mb-16 animate-reveal-up">
+              <div className="text-center mb-16">
                 <div className="w-32 h-32 bg-authority-blue/5 rounded-[3rem] flex items-center justify-center mx-auto mb-10 relative">
-                  {isLiveActive ? (
-                    <>
-                      <div className="absolute inset-0 bg-authority-blue/10 rounded-[3rem] animate-ping"></div>
-                      <div className="absolute inset-4 bg-authority-blue/20 rounded-[2rem] animate-pulse"></div>
-                    </>
-                  ) : null}
+                  {isLiveActive && <div className="absolute inset-0 bg-authority-blue/10 rounded-[3rem] animate-ping"></div>}
                   <Mic size={56} className={isLiveActive ? 'text-authority-blue' : 'text-text-muted opacity-30'} />
                 </div>
-                <h2 className="text-4xl font-black font-serif mb-6 tracking-tight leading-none">Voice Command Mode</h2>
-                <p className="text-lg text-text-muted dark:text-text-dark-muted leading-relaxed font-medium">
-                  Have a real-time, hands-free conversation with our AI Safety Officer. Perfect for in-cab compliance checks or procedural walkthroughs.
-                </p>
+                <h2 className="text-4xl font-black font-serif uppercase">Voice Mode</h2>
+                <p className="text-lg text-text-muted mt-4">Low-latency link established for audio commands.</p>
               </div>
-
-              <div className="w-full max-w-3xl bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-[3rem] p-10 mb-12 min-h-[180px] shadow-2xl flex flex-col animate-reveal-up" style={{ animationDelay: '0.1s' }}>
-                <div className="flex items-center justify-between mb-6">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted">Live Telemetry</p>
-                  {isLiveActive && <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>}
-                </div>
-                <div className="flex-grow space-y-4 overflow-y-auto max-h-[220px] pr-4 custom-scrollbar">
-                  {liveTranscript.length > 0 ? liveTranscript.map((t, idx) => (
-                    <div key={idx} className="text-base font-bold text-authority-blue dark:text-signal-gold animate-reveal-up">
-                      <span className="opacity-40 mr-3">//</span> {t}
-                    </div>
-                  )) : (
-                    <div className="h-full flex items-center justify-center opacity-40 italic font-medium">Session inactive. Start speaking to stream compliance data.</div>
-                  )}
-                </div>
-              </div>
-
               <button
                 onClick={isLiveActive ? stopLiveConversation : startLiveConversation}
-                className={`flex items-center space-x-5 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] transition-all shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)] hover:-translate-y-1 active:scale-95 ${
-                  isLiveActive 
-                  ? 'bg-red-500 text-white hover:bg-red-600' 
-                  : 'bg-authority-blue text-white hover:bg-steel-blue'
-                }`}
+                className={`flex items-center space-x-5 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all ${isLiveActive ? 'bg-red-500 text-white' : 'bg-authority-blue text-white'}`}
               >
-                {isLiveActive ? (
-                  <>
-                    <PhoneOff size={28} />
-                    <span>Terminate Session</span>
-                  </>
-                ) : (
-                  <>
-                    <Phone size={28} />
-                    <span>Initiate Voice Link</span>
-                  </>
-                )}
+                {isLiveActive ? <PhoneOff size={28} /> : <Phone size={28} />}
+                <span>{isLiveActive ? 'Terminate Link' : 'Establish Link'}</span>
               </button>
             </div>
           )}
 
-          {/* --- VIDEO STUDIO --- */}
           {activeTab === 'video' && (
-            <div className="flex-grow overflow-y-auto p-10 space-y-12 animate-reveal-up">
-              {!hasApiKey && (
-                <div className="p-12 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 rounded-[3rem] text-center space-y-6 shadow-xl">
+            <div className="flex-grow overflow-y-auto p-10">
+              {!hasApiKey ? (
+                <div className="p-12 bg-amber-50 rounded-[3rem] text-center space-y-6">
                   <ShieldAlert className="mx-auto text-amber-600" size={64} />
-                  <h3 className="text-3xl font-black font-serif tracking-tight">Enterprise Cloud Access Required</h3>
-                  <p className="text-lg text-text-muted max-w-lg mx-auto font-medium">
-                    Veo 3.1 cinematic generation requires an authenticated API key for high-compute visual processing.
-                  </p>
-                  <button 
-                    onClick={selectApiKey}
-                    className="bg-amber-600 text-white px-12 py-5 rounded-[1.5rem] font-black uppercase tracking-widest hover:bg-amber-700 transition-all shadow-xl active:scale-95"
-                  >
-                    Authorize Key
-                  </button>
+                  <h3 className="text-3xl font-black uppercase">Studio Auth Required</h3>
+                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-12 py-5 rounded-2xl font-black uppercase shadow-xl">Authorize Key</button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                   <div className="space-y-8">
+                     <textarea rows={5} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} placeholder="Visual directives..." className="w-full bg-slate-50 border p-8 rounded-3xl font-bold" />
+                     <button onClick={generateVideo} disabled={isGeneratingVideo} className="w-full py-6 rounded-[2rem] bg-authority-blue text-white font-black uppercase tracking-[0.2em] flex items-center justify-center shadow-xl active:scale-95 disabled:opacity-50">
+                        {isGeneratingVideo ? <Loader2 className="animate-spin mr-3" /> : <Film className="mr-3" />}
+                        Synthesize Asset
+                     </button>
+                   </div>
+                   <div className="bg-slate-50 rounded-[3rem] flex items-center justify-center min-h-[400px] border border-dashed relative">
+                      {isGeneratingVideo ? <div className="text-center space-y-4"><Loader2 className="animate-spin mx-auto" /> <p className="font-bold uppercase tracking-widest text-[10px]">{genMessage}</p></div> : videoResult ? <video src={videoResult} controls className="w-full h-full rounded-[3rem] object-cover" /> : <p className="opacity-30 uppercase font-black tracking-widest text-sm">Studio Idle</p>}
+                   </div>
                 </div>
               )}
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                {/* Generation Form */}
-                <div className="space-y-10">
-                  <div className="bg-slate-50 dark:bg-gray-800/50 p-10 rounded-[3.5rem] border border-border-light dark:border-border-dark space-y-8 shadow-sm">
-                    <div className="flex items-center space-x-4 mb-2">
-                       <div className="p-3 bg-signal-gold/10 text-signal-gold rounded-2xl">
-                          <Sparkles size={24} />
-                       </div>
-                       <h3 className="text-2xl font-black font-serif tracking-tight">Visual Directives</h3>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Cinematic Prompt</label>
-                      <textarea 
-                        rows={5}
-                        value={videoPrompt}
-                        onChange={(e) => setVideoPrompt(e.target.value)}
-                        placeholder="e.g. A wide-angle tracking shot of a white semi-truck navigating a tight urban intersection at dawn, 8k, photorealistic..."
-                        className="w-full bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-3xl p-8 text-base leading-relaxed outline-none focus:ring-8 focus:ring-authority-blue/5 transition-all shadow-sm font-bold"
-                      />
-                    </div>
-
-                    <div className="space-y-4">
-                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Base Visual (Optional)</label>
-                      <div className="flex items-center space-x-4">
-                        <div className="relative group flex-grow">
-                          <input 
-                            type="file" 
-                            accept="image/*" 
-                            onChange={handleVideoFileChange}
-                            className="absolute inset-0 opacity-0 cursor-pointer"
-                          />
-                          <div className="bg-white dark:bg-gray-800 border-2 border-dashed border-border-light rounded-[2rem] p-10 text-center group-hover:border-authority-blue transition-all">
-                            {videoPreview ? (
-                              <img src={videoPreview} className="h-24 mx-auto rounded-2xl object-cover shadow-2xl" alt="Preview" />
-                            ) : (
-                              <>
-                                <ImageIcon className="mx-auto text-text-muted mb-4 opacity-30" size={32} />
-                                <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">Upload Reference Frame</p>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        {videoPreview && (
-                          <button onClick={() => { setVideoFile(null); setVideoPreview(null); }} className="p-5 bg-red-50 text-red-500 rounded-[1.5rem] hover:bg-red-100 transition-colors shadow-lg active:scale-90">
-                            <X size={24} />
-                          </button>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <label className="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted/70 ml-2">Frame Geometry</label>
-                      <div className="flex gap-4">
-                        {[
-                          { val: '16:9', label: 'Landscape', icon: <Maximize2 size={20} /> },
-                          { val: '9:16', label: 'Portrait', icon: <Maximize2 size={20} className="rotate-90" /> }
-                        ].map((dim) => (
-                          <button 
-                            key={dim.val}
-                            onClick={() => setAspectRatio(dim.val as any)}
-                            className={`flex-grow p-5 rounded-[1.5rem] border transition-all flex items-center justify-center space-x-3 active:scale-95 ${aspectRatio === dim.val ? 'bg-authority-blue text-white border-authority-blue shadow-xl' : 'bg-white border-border-light text-text-muted'}`}
-                          >
-                            {dim.icon}
-                            <span className="text-[11px] font-black uppercase tracking-widest">{dim.label} {dim.val}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <button 
-                      onClick={generateVideo}
-                      disabled={isGeneratingVideo || !hasApiKey}
-                      className="w-full bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl hover:bg-steel-blue transition-all disabled:opacity-50 active:scale-95"
-                    >
-                      {isGeneratingVideo ? (
-                        <>
-                          <Loader2 className="animate-spin mr-3" size={24} />
-                          <span>Rendering...</span>
-                        </>
-                      ) : (
-                        <>
-                          <Film className="mr-3" size={24} />
-                          <span>Bake Cinematic Asset</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Generation Output/Status */}
-                <div className="flex flex-col">
-                  {isGeneratingVideo ? (
-                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-dashed border-border-light p-16 text-center space-y-10 shadow-inner">
-                      <div className="relative">
-                        <div className="w-24 h-24 border-8 border-authority-blue/10 border-t-authority-blue rounded-full animate-spin"></div>
-                        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-signal-gold animate-pulse" size={32} />
-                      </div>
-                      <div>
-                        <h4 className="text-3xl font-black font-serif mb-4 leading-none tracking-tight">{genMessage}</h4>
-                        <p className="text-lg text-text-muted font-medium">Neural processing typically requires 120-180 seconds. <br/>High-fidelity encoding in progress.</p>
-                      </div>
-                      <div className="w-full bg-slate-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden shadow-sm">
-                        <div className="bg-authority-blue h-full w-1/2 animate-[loading_4s_ease-in-out_infinite]"></div>
-                      </div>
-                    </div>
-                  ) : videoResult ? (
-                    <div className="bg-black rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] relative group animate-scale-in">
-                      <video src={videoResult} controls className="w-full h-full object-contain" />
-                      <div className="absolute top-10 left-10 flex space-x-3 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-500">
-                        <span className="bg-white/95 backdrop-blur-md px-6 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest text-authority-blue shadow-2xl">Master Production Asset</span>
-                      </div>
-                      <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-500 delay-75">
-                        <a href={videoResult} download="launchpath-master.mp4" className="p-6 bg-white rounded-[2rem] text-authority-blue shadow-[0_20px_40px_-5px_rgba(0,0,0,0.2)] hover:bg-slate-50 flex items-center space-x-3 active:scale-95 transition-all">
-                          <Download size={28} />
-                          <span className="font-black uppercase tracking-widest text-sm">Export Media</span>
-                        </a>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex-grow flex flex-col items-center justify-center bg-slate-50 dark:bg-gray-800/30 rounded-[4rem] border border-border-light p-16 text-center opacity-40 stagger-item">
-                      <div className="p-8 bg-slate-100 dark:bg-gray-900 rounded-[2.5rem] mb-10">
-                        <Film className="w-20 h-20 text-text-muted" />
-                      </div>
-                      <p className="text-2xl font-black font-serif tracking-tight mb-4 uppercase">Studio Offline</p>
-                      <p className="text-lg text-text-muted max-w-sm mx-auto font-medium leading-relaxed">Config your parameters and initiate neural link to visualize curriculum data.</p>
-                    </div>
-                  )}
-                </div>
-              </div>
             </div>
           )}
         </div>
       </div>
-      <style>{`
-        @keyframes loading {
-          0% { transform: translateX(-110%); }
-          100% { transform: translateX(310%); }
-        }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
-        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1E293B; }
-      `}</style>
     </div>
   );
 };
