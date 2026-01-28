@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -210,7 +211,7 @@ const HomePage: React.FC = () => {
             
             <div className="lg:col-span-5 relative">
               <div className="relative bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] border-4 border-authority-blue dark:border-border-dark shadow-[0_50px_100px_-20px_rgba(0,0,0,0.4)]">
-                <div className="absolute top-10 right-10 text-authority-blue opacity-20" aria-hidden="true">
+                <div className="absolute top-10 right-10 text-authority-blue dark:text-signal-gold opacity-20" aria-hidden="true">
                   <ShieldAlert size={40} />
                 </div>
                 <h2 className="text-3xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-2 leading-none font-serif">
@@ -227,21 +228,21 @@ const HomePage: React.FC = () => {
                     </div>
                   )}
                   <div className="space-y-2">
-                    <label htmlFor="hero-name" className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue ml-4">Full Legal Name</label>
+                    <label htmlFor="hero-name" className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue dark:text-signal-gold ml-4">Full Legal Name</label>
                     <input 
                       id="hero-name"
                       type="text" required placeholder="Jane Doe"
-                      className="w-full px-7 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark rounded-2xl outline-none font-black text-lg"
+                      className="w-full px-7 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark rounded-2xl outline-none font-black text-lg text-text-primary dark:text-white"
                       value={formData.firstName}
                       onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="hero-email" className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue ml-4">Professional Email</label>
+                    <label htmlFor="hero-email" className="block text-[11px] font-black uppercase tracking-[0.2em] text-authority-blue dark:text-signal-gold ml-4">Professional Email</label>
                     <input 
                       id="hero-email"
                       type="email" required placeholder="jane@carrier.com"
-                      className="w-full px-7 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark rounded-2xl outline-none font-black text-lg"
+                      className="w-full px-7 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-200 dark:border-border-dark rounded-2xl outline-none font-black text-lg text-text-primary dark:text-white"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                     />
@@ -300,23 +301,19 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Institutional Diagnostic Terminal - FIXED OVERFLOW AND TYPOGRAPHY */}
+            {/* Right: Institutional Diagnostic Terminal */}
             <div className="relative group animate-in slide-in-from-right duration-1000 w-full flex justify-center lg:justify-end">
-               {/* Terminal Backdrop Shadow/Glow */}
                <div className="absolute -inset-10 lg:-inset-20 bg-authority-blue/10 rounded-[8rem] blur-[120px] opacity-30"></div>
                
-               {/* Main Card Container */}
                <div className="relative w-full max-w-[560px] bg-white dark:bg-surface-dark border-[1px] border-slate-100 dark:border-border-dark p-8 lg:p-14 rounded-[4rem] shadow-2xl space-y-10 lg:space-y-12 transition-all group-hover:shadow-[0_60px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden">
                   
-                  {/* Card Header */}
                   <div className="space-y-4">
                     <h3 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-[1.05] break-words">
                       IDENTIFICATION <br className="hidden sm:block" /> & ALIGNMENT
                     </h3>
-                    <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">System Registry Standard LP-01</p>
+                    <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500">System Registry Standard LP-01</p>
                   </div>
                   
-                  {/* Compliance Rows - Refined Spacing */}
                   <div className="space-y-3 sm:space-y-4">
                     {[
                       "DRUG & ALCOHOL COMPLIANCE",
@@ -335,18 +332,17 @@ const HomePage: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Terminal Footer Info */}
                   <div className="pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between gap-6 sm:items-end opacity-60">
                      <div className="flex items-center space-x-4">
                         <div className="p-2 bg-slate-100 dark:bg-white/5 rounded-lg">
-                           <Lock size={14} className="text-slate-500" />
+                           <Lock size={14} className="text-slate-500 dark:text-text-dark-muted" />
                         </div>
                         <div className="space-y-1">
-                           <span className="block text-[9px] font-black uppercase tracking-[0.4em] text-slate-500">Secure Protocol Active</span>
+                           <span className="block text-[9px] font-black uppercase tracking-[0.4em] text-slate-500 dark:text-text-dark-muted">Secure Protocol Active</span>
                         </div>
                      </div>
                      <div className="text-left sm:text-right">
-                        <span className="block text-[9px] font-black text-slate-500 tracking-[0.2em]">ADMIN_V_LAWRENCE // 2026</span>
+                        <span className="block text-[9px] font-black text-slate-500 dark:text-text-dark-muted tracking-[0.2em]">ADMIN_V_LAWRENCE // 2026</span>
                      </div>
                   </div>
                </div>
@@ -380,7 +376,7 @@ const HomePage: React.FC = () => {
             {deadlySinsCategories.map((category, catIdx) => (
               <div key={catIdx} className="space-y-8">
                 <div className="flex items-center space-x-4 border-b-2 border-slate-200 dark:border-border-dark pb-4">
-                  <div className="w-10 h-10 bg-authority-blue text-signal-gold rounded-xl flex items-center justify-center font-black" aria-hidden="true">
+                  <div className="w-10 h-10 bg-authority-blue dark:bg-gray-800 text-signal-gold rounded-xl flex items-center justify-center font-black shadow-sm" aria-hidden="true">
                     {catIdx + 1}
                   </div>
                   <h3 className="text-xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">{category.title}</h3>
@@ -389,7 +385,7 @@ const HomePage: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {category.sins.map((sin, sinIdx) => (
                     <div key={sinIdx} className="group relative bg-white dark:bg-surface-dark p-8 rounded-[2rem] border border-slate-200 dark:border-border-dark shadow-sm hover:shadow-2xl hover:border-red-500/50 transition-all duration-500 flex flex-col justify-between overflow-hidden">
-                      <span className="absolute -top-4 -right-4 text-6xl font-black text-slate-50 dark:text-slate-800 pointer-events-none group-hover:text-red-50 transition-colors duration-500" aria-hidden="true">
+                      <span className="absolute -top-4 -right-4 text-6xl font-black text-slate-50 dark:text-slate-800 pointer-events-none group-hover:text-red-50 dark:group-hover:text-red-950 transition-colors duration-500" aria-hidden="true">
                         {sin.id}
                       </span>
 
@@ -397,9 +393,9 @@ const HomePage: React.FC = () => {
                         <p className="text-base font-bold text-slate-700 dark:text-text-dark-primary leading-tight uppercase tracking-tight">
                           {sin.text}
                         </p>
-                        <div className="inline-flex items-center space-x-2 px-3 py-1 bg-red-50 dark:bg-red-950/20 rounded-lg">
-                           <Zap size={10} className="text-red-600" aria-hidden="true" />
-                           <span className="text-[9px] font-black uppercase tracking-widest text-red-700 dark:text-red-400">
+                        <div className="inline-flex items-center space-x-2 px-3 py-1 bg-red-50 dark:bg-red-950/40 rounded-lg">
+                           <Zap size={10} className="text-red-600 dark:text-red-400" aria-hidden="true" />
+                           <span className="text-[9px] font-black uppercase tracking-widest text-red-700 dark:text-red-300">
                              Impact: {sin.impact}
                            </span>
                         </div>
@@ -433,7 +429,7 @@ const HomePage: React.FC = () => {
             </div>
             <h2 id="pillars-heading" className="text-6xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-8">The Four <span className="text-signal-gold italic">Pillars</span></h2>
             <p className="text-xl text-text-muted dark:text-text-dark-muted font-bold max-w-2xl mx-auto">Structured Operating Standards for New Entrant Survival.</p>
-            <p className="text-[10px] text-slate-400 italic mt-4 uppercase tracking-[0.25em]">
+            <p className="text-[10px] text-slate-400 dark:text-slate-500 italic mt-4 uppercase tracking-[0.25em]">
               “Work brings profit, but mere talk leads to poverty.” — Proverbs 14:23
             </p>
           </div>
@@ -441,12 +437,12 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {pillars.map((pillar, i) => (
               <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] border-4 border-slate-100 dark:border-border-dark shadow-xl hover:shadow-2xl transition-all flex flex-col h-full group">
-                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-12 text-authority-blue dark:text-signal-gold group-hover:scale-110 transition-transform" aria-hidden="true">
+                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-3xl flex items-center justify-center mb-12 text-authority-blue dark:text-signal-gold group-hover:scale-110 transition-transform shadow-sm" aria-hidden="true">
                   {pillar.icon}
                 </div>
                 <h3 className="text-2xl font-black uppercase font-serif text-authority-blue dark:text-white mb-2 leading-tight">{pillar.t}</h3>
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-signal-gold mb-8">{pillar.focus}</p>
-                <p className="text-base font-bold leading-relaxed mb-10 flex-grow text-slate-500 dark:text-text-dark-muted">{pillar.d}</p>
+                <p className="text-base font-bold leading-relaxed mb-10 flex-grow text-slate-500 dark:text-slate-400">{pillar.d}</p>
                 <Link to={pillar.link} className={`flex items-center justify-between w-full p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${pillar.isTool ? 'bg-signal-gold text-authority-blue shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold hover:bg-authority-blue hover:text-white'}`}>
                   <span>{pillar.isTool ? 'Launch Tool' : 'View Module'}</span>
                   <ArrowRight size={14} />
@@ -462,9 +458,9 @@ const HomePage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-20 space-y-6">
             <div className="flex items-center justify-center space-x-6">
-              <div className="h-[2px] w-16 bg-authority-blue/30" aria-hidden="true"></div>
+              <div className="h-[2px] w-16 bg-authority-blue/30 dark:bg-white/10" aria-hidden="true"></div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-slate-400">Risk Classification Protocol</span>
-              <div className="h-[2px] w-16 bg-authority-blue/30" aria-hidden="true"></div>
+              <div className="h-[2px] w-16 bg-authority-blue/30 dark:bg-white/10" aria-hidden="true"></div>
             </div>
             
             <h2 id="reach-heading" className="text-6xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white tracking-tighter uppercase leading-tight">
@@ -485,14 +481,14 @@ const HomePage: React.FC = () => {
                 <div className="space-y-3">
                   <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">{test.label}</p>
                   <h3 className="text-xl font-black font-serif text-authority-blue dark:text-white tracking-tight uppercase leading-tight">{test.title}</h3>
-                  <p className="text-base text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed">{test.desc}</p>
+                  <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{test.desc}</p>
                 </div>
               </div>
             ))}
           </div>
           
           <div className="mt-16 text-center">
-            <Link to="/reach-test" className="inline-flex items-center space-x-3 bg-white dark:bg-gray-800 border-2 border-authority-blue text-authority-blue dark:text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 transition-all shadow-sm active:scale-95 group">
+            <Link to="/reach-test" className="inline-flex items-center space-x-3 bg-white dark:bg-gray-800 border-2 border-authority-blue dark:border-signal-gold text-authority-blue dark:text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 dark:hover:bg-gray-700 transition-all shadow-sm active:scale-95 group">
               <span>Technical Deep-Dive</span>
               <ChevronRight className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </Link>

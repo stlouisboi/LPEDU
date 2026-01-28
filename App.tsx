@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -373,7 +374,7 @@ export default function App() {
     <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
       <div className="flex flex-col items-center gap-6">
         <img 
-          src="/Untitled (Website) (1).png" 
+          src="/blue.png" 
           alt="LaunchPath Loading" 
           className="h-16 w-auto animate-pulse" 
         />

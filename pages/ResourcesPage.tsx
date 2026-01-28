@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -43,7 +44,6 @@ import {
   Share2,
   Sparkles,
   Unlock,
-  // Fix: Added missing Mail icon import to satisfy usage in component
   Mail
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -138,8 +138,8 @@ const ResourcesPage = () => {
 
   const SocialShare = ({ title }: { title: string }) => (
     <div className="mt-8 pt-6 border-t border-slate-50 dark:border-white/5 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100">
-      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">Share Resource</span>
-      <div className="flex items-center space-x-3 text-slate-400">
+      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Share Resource</span>
+      <div className="flex items-center space-x-3 text-slate-400 dark:text-slate-500">
         <button title="Share on Facebook" className="hover:text-authority-blue dark:hover:text-signal-gold transition-colors"><Facebook size={14} /></button>
         <button title="Share on LinkedIn" className="hover:text-authority-blue dark:hover:text-signal-gold transition-colors"><Linkedin size={14} /></button>
         <button title="Share on Instagram" className="hover:text-authority-blue dark:hover:text-signal-gold transition-colors"><Instagram size={14} /></button>
@@ -155,8 +155,8 @@ const ResourcesPage = () => {
       <section className="bg-white dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark pt-32 pb-24 text-center">
         <div className="max-w-5xl mx-auto px-6">
           <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-6 py-2.5 rounded-full mb-10">
-            <Scale size={16} className="text-authority-blue" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue">Institutional Standards Repository</span>
+            <Scale size={16} className="text-authority-blue dark:text-signal-gold" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold">Institutional Standards Repository</span>
           </div>
           
           <h1 className="text-5xl lg:text-7xl font-black text-authority-blue dark:text-white tracking-tighter mb-4 uppercase leading-none font-serif">
@@ -167,13 +167,13 @@ const ResourcesPage = () => {
           </p>
           
           <div className="max-w-3xl mx-auto p-12 bg-slate-50 dark:bg-gray-900/50 border border-slate-200 dark:border-border-dark rounded-[3.5rem] text-left relative overflow-hidden shadow-sm">
-            <div className="absolute top-0 left-0 w-2 h-full bg-authority-blue"></div>
-            <h2 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue mb-6">Purpose Statement</h2>
+            <div className="absolute top-0 left-0 w-2 h-full bg-authority-blue dark:bg-signal-gold"></div>
+            <h2 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6">Purpose Statement</h2>
             <p className="text-lg text-slate-600 dark:text-text-dark-primary leading-relaxed mb-8 font-medium">
               LaunchPath resources are designed to support disciplined, compliance-first motor carrier operations. These materials provide education, orientation, and risk awareness — not shortcuts, legal representation, or revenue promises.
             </p>
             <div className="pt-8 border-t border-slate-200 dark:border-border-dark">
-              <p className="text-[11px] font-black text-red-600 uppercase tracking-[0.3em] flex items-center">
+              <p className="text-[11px] font-black text-red-600 dark:text-red-400 uppercase tracking-[0.3em] flex items-center">
                 <AlertTriangle size={14} className="mr-3 shrink-0" />
                 If you are looking for speed without structure, these resources are not for you.
               </p>
@@ -185,9 +185,9 @@ const ResourcesPage = () => {
       {/* 2. READINESS & RISK DIAGNOSTICS */}
       <section className="py-32 max-w-7xl mx-auto px-6">
         <div className="mb-20">
-          <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue mb-4">1. Readiness & Risk Diagnostics</p>
+          <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold mb-4">1. Readiness & Risk Diagnostics</p>
           <h2 className="text-4xl md:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tight font-serif mb-6">Know where you stand before you move.</h2>
-          <p className="text-lg text-slate-500 max-w-2xl font-medium leading-relaxed">These tools help operators identify exposure before mistakes become irreversible.</p>
+          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl font-medium leading-relaxed">These tools help operators identify exposure before mistakes become irreversible.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -224,7 +224,7 @@ const ResourcesPage = () => {
                   <img src={generatedImages[item.id]} className="w-full h-full object-cover animate-in fade-in duration-700" alt={item.title} />
                 ) : (
                   isGenerating[item.id] ? (
-                    <Loader2 className="animate-spin text-authority-blue" size={24} />
+                    <Loader2 className="animate-spin text-authority-blue dark:text-signal-gold" size={24} />
                   ) : (
                     React.cloneElement(item.icon as React.ReactElement, { size: 32 })
                   )
@@ -234,7 +234,7 @@ const ResourcesPage = () => {
               {!generatedImages[item.id] && !isGenerating[item.id] && (
                 <button 
                   onClick={() => handleGenerateAIImage(item.title, item.id)}
-                  className="absolute top-12 right-12 p-2 bg-authority-blue/5 hover:bg-authority-blue/10 text-authority-blue rounded-full transition-all opacity-0 group-hover:opacity-100"
+                  className="absolute top-12 right-12 p-2 bg-authority-blue/5 dark:bg-white/5 hover:bg-authority-blue/10 dark:hover:bg-white/10 text-authority-blue dark:text-signal-gold rounded-full transition-all opacity-0 group-hover:opacity-100"
                   title="Generate AI Visualization"
                 >
                   <Sparkles size={14} />
@@ -242,13 +242,13 @@ const ResourcesPage = () => {
               )}
 
               <h3 className="text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-2 leading-none font-serif">{item.title}</h3>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">{item.sub}</p>
-              <p className="text-base text-slate-500 dark:text-text-dark-muted font-medium mb-12 leading-relaxed flex-grow">{item.desc}</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 mb-8">{item.sub}</p>
+              <p className="text-base text-slate-500 dark:text-slate-400 font-medium mb-12 leading-relaxed flex-grow">{item.desc}</p>
               
               <div className="mt-auto pt-6 border-t border-slate-50 dark:border-white/5">
                 {item.isGated ? (
                   <div className="space-y-4">
-                    <div className="flex items-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] text-amber-600">
+                    <div className="flex items-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-500">
                       <Lock size={12} />
                       <span>Email Authentication Required</span>
                     </div>
@@ -263,7 +263,7 @@ const ResourcesPage = () => {
                 ) : (
                   <Link 
                     to={item.link} 
-                    className="w-full bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-white border border-slate-200 dark:border-slate-700 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 transition-all active:scale-95 group/btn"
+                    className="w-full bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-slate-700 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 transition-all active:scale-95 group/btn"
                   >
                     <Unlock size={16} className="mr-3" /> 
                     Public Diagnostic 
@@ -305,7 +305,6 @@ const ResourcesPage = () => {
             ))}
           </div>
 
-          {/* CONCEPTUAL ANCHOR INTEGRATION */}
           <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center space-x-5 group/anchor">
               <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center transition-all group-hover/anchor:bg-signal-gold group-hover/anchor:text-authority-blue">
@@ -325,16 +324,15 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 4. STARTER TEMPLATES & OPERATING TOOLS - ENHANCED CARDS */}
+      {/* 4. STARTER TEMPLATES & OPERATING TOOLS */}
       <section className="py-32 bg-slate-50/50 dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="mb-24">
-            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue mb-4">3. Starter Templates & Operating Tools</p>
+            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold mb-4">3. Starter Templates & Operating Tools</p>
             <h2 className="text-4xl md:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tight font-serif mb-6">Structure beats memory.</h2>
-            <p className="text-xl text-slate-500 max-w-2xl font-medium leading-relaxed">These tools introduce proper recordkeeping habits. They are not substitutes for a full compliance system.</p>
+            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl font-medium leading-relaxed">These tools introduce proper recordkeeping habits. They are not substitutes for a full compliance system.</p>
           </div>
 
-          {/* COMPLIANCE REFERENCE FLOATING BRANDING */}
           <div className="absolute top-0 right-6 hidden xl:block translate-y-12">
             <div className="bg-authority-blue text-white px-8 py-5 rounded-[2.5rem] shadow-2xl flex items-center space-x-4 border border-white/10 group hover:scale-105 transition-transform cursor-default">
                <div className="w-12 h-12 bg-signal-gold rounded-2xl flex items-center justify-center text-authority-blue shadow-lg group-hover:rotate-12 transition-transform">
@@ -359,7 +357,7 @@ const ResourcesPage = () => {
                     <img src={generatedImages[tool.id]} className="w-full h-full object-cover animate-in fade-in duration-700" alt={tool.title} />
                   ) : (
                     isGenerating[tool.id] ? (
-                      <Loader2 className="animate-spin text-authority-blue" size={32} />
+                      <Loader2 className="animate-spin text-authority-blue dark:text-signal-gold" size={32} />
                     ) : (
                       React.cloneElement(tool.icon as React.ReactElement, { size: 40 })
                     )
@@ -369,7 +367,7 @@ const ResourcesPage = () => {
                 {!generatedImages[tool.id] && !isGenerating[tool.id] && (
                   <button 
                     onClick={() => handleGenerateAIImage(tool.title, tool.id)}
-                    className="absolute top-12 right-12 p-3 bg-authority-blue/5 hover:bg-authority-blue/10 text-authority-blue rounded-full transition-all opacity-0 group-hover:opacity-100"
+                    className="absolute top-12 right-12 p-3 bg-authority-blue/5 dark:bg-white/5 hover:bg-authority-blue/10 dark:hover:bg-white/10 text-authority-blue dark:text-signal-gold rounded-full transition-all opacity-0 group-hover:opacity-100"
                     title="Generate AI Illustration"
                   >
                     <Sparkles size={16} />
@@ -381,8 +379,7 @@ const ResourcesPage = () => {
                 </h4>
                 
                 <div className="w-full mt-auto pt-8 border-t border-slate-50 dark:border-white/5 space-y-4">
-                  <div className="flex items-center justify-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    {/* Fixed: Use imported Mail icon on line 383 */}
+                  <div className="flex items-center justify-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
                     <Mail size={12} />
                     <span>Registry Verification Required</span>
                   </div>
@@ -399,25 +396,18 @@ const ResourcesPage = () => {
               </div>
             ))}
           </div>
-          
-          <div className="mt-20 p-12 bg-authority-blue/5 border border-authority-blue/10 rounded-[3.5rem] text-center max-w-4xl mx-auto">
-            <p className="text-[14px] font-bold uppercase tracking-[0.3em] text-authority-blue/80 dark:text-text-dark-muted leading-relaxed">
-              Full systems, verification standards, and implementation protocols are provided inside LaunchPath Master Curriculum.
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* 5. CALCULATORS & DECISION TOOLS - ENHANCED WITH CALIBRATION BANNER */}
+      {/* 5. CALCULATORS & DECISION TOOLS */}
       <section className="py-40 bg-white dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-20">
-            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue mb-4">4. Calculators & Decision Tools</p>
+            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold mb-4">4. Calculators & Decision Tools</p>
             <h2 className="text-4xl md:text-6xl font-black text-authority-blue dark:text-white uppercase tracking-tight font-serif mb-6 leading-none font-serif">Clarity before <br/><span className="text-signal-gold italic">commitment.</span></h2>
-            <p className="text-xl text-slate-500 max-w-2xl font-medium leading-relaxed">These tools are designed to slow decisions down — not speed them up.</p>
+            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl font-medium leading-relaxed">These tools are designed to slow decisions down — not speed them up.</p>
           </div>
 
-          {/* CALIBRATION BANNER FROM REFERENCE IMAGE */}
           <div className="bg-[#020617] p-10 md:p-16 rounded-[4rem] mb-16 shadow-2xl relative overflow-hidden group border border-white/5">
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none transition-transform duration-1000 group-hover:scale-110">
               <Calculator size={200} className="text-white" />
@@ -495,7 +485,7 @@ const ResourcesPage = () => {
                   </div>
 
                   <div className="space-y-8 pt-10 border-t border-red-200 dark:border-red-900/40">
-                    <h4 className="text-xs font-black uppercase tracking-[0.4em] text-red-600">Common Exposure Vectors Include:</h4>
+                    <h4 className="text-xs font-black uppercase tracking-[0.4em] text-red-600 dark:text-red-400">Common Exposure Vectors Include:</h4>
                     <ul className="space-y-6">
                       {[
                         "Fake FMCSA or DOT solicitation calls and mailers",
@@ -526,7 +516,7 @@ const ResourcesPage = () => {
                       "Any service promising to bypass fixed federal timelines or regulatory sequencing represents an <span className="text-red-600 font-black decoration-red-600/30 underline decoration-4">Around risk</span> and should be treated as a compliance threat."
                     </p>
                     <div className="pt-8 border-t border-slate-50 dark:border-white/5">
-                      <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">Patience is a Competitive Advantage.</p>
+                      <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500">Patience is a Competitive Advantage.</p>
                     </div>
                   </div>
                </div>
@@ -535,10 +525,10 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 7. EDUCATION LIBRARY - UPDATED INTERACTIVE SECTION */}
+      {/* 7. EDUCATION LIBRARY */}
       <section className="py-40 max-w-7xl mx-auto px-6">
         <div className="mb-24 text-center">
-          <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue mb-4">6. Education Library</p>
+          <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold mb-4">6. Education Library</p>
           <h2 className="text-4xl md:text-6xl font-black text-authority-blue dark:text-white uppercase tracking-tight font-serif leading-none">Short, serious, <br/>and operational.</h2>
         </div>
 
@@ -585,19 +575,19 @@ const ResourcesPage = () => {
                         className="text-left"
                       >
                         <div className="flex items-center gap-2">
-                           <p className="text-sm font-bold text-slate-600 dark:text-text-dark-primary group-hover/item:text-authority-blue transition-colors leading-relaxed uppercase tracking-tight">
+                           <p className="text-sm font-bold text-slate-600 dark:text-text-dark-primary group-hover/item:text-authority-blue dark:group-hover/item:text-signal-gold transition-colors leading-relaxed uppercase tracking-tight">
                             {item.title}
                           </p>
-                          <Lock size={12} className="text-slate-300 mb-1" />
+                          <Lock size={12} className="text-slate-300 dark:text-slate-600 mb-1" />
                         </div>
-                        <div className="w-0 group-hover/item:w-12 h-[2px] bg-authority-blue mt-3 transition-all duration-500 ease-out"></div>
+                        <div className="w-0 group-hover/item:w-12 h-[2px] bg-authority-blue dark:bg-signal-gold mt-3 transition-all duration-500 ease-out"></div>
                       </button>
                     ) : (
                       <Link to={item.link || "#"}>
-                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-primary group-hover/item:text-authority-blue transition-colors leading-relaxed uppercase tracking-tight">
+                        <p className="text-sm font-bold text-slate-600 dark:text-text-dark-primary group-hover/item:text-authority-blue dark:group-hover/item:text-signal-gold transition-colors leading-relaxed uppercase tracking-tight">
                           {item.title}
                         </p>
-                        <div className="w-0 group-hover/item:w-12 h-[2px] bg-authority-blue mt-3 transition-all duration-500 ease-out"></div>
+                        <div className="w-0 group-hover/item:w-12 h-[2px] bg-authority-blue dark:bg-signal-gold mt-3 transition-all duration-500 ease-out"></div>
                       </Link>
                     )}
                   </li>
@@ -612,9 +602,9 @@ const ResourcesPage = () => {
       <section className="py-40 bg-slate-50 dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-24">
-            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue mb-4">7. Field Lessons & Case Insights</p>
+            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold mb-4">7. Field Lessons & Case Insights</p>
             <h2 className="text-4xl md:text-6xl font-black text-authority-blue dark:text-white uppercase tracking-tight font-serif leading-none mb-8">Learn from outcomes, <br/><span className="text-signal-gold italic">not opinions.</span></h2>
-            <p className="text-xl text-slate-500 max-w-4xl font-medium leading-relaxed italic border-l-4 border-slate-200 pl-10">
+            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-4xl font-medium leading-relaxed italic border-l-4 border-slate-200 dark:border-white/10 pl-10">
               "These are not testimonials. They are structured Incident Case Reviews modeled after institutional safety reporting. Each focuses on decisions, sequencing, and regulatory consequence — not personalities."
             </p>
           </div>
@@ -627,19 +617,19 @@ const ResourcesPage = () => {
               { id: "CASE-REVIEW-014", title: "When Expansion Came Too Early", focus: "Structural Collapse" }
             ].map((caseStudy, i) => (
               <div key={i} className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-12 rounded-[3.5rem] shadow-sm relative group overflow-hidden transition-all hover:shadow-2xl hover:translate-x-1">
-                <div className="absolute -right-10 -bottom-10 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity duration-1000 rotate-12">
+                <div className="absolute -right-10 -bottom-10 opacity-[0.02] dark:opacity-[0.05] group-hover:opacity-[0.05] transition-opacity duration-1000 rotate-12">
                    <ShieldAlert size={200} />
                 </div>
                 <div className="flex justify-between items-center mb-10">
-                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 group-hover:text-authority-blue transition-colors duration-500">{caseStudy.id}</span>
-                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400 bg-slate-50 dark:bg-gray-800 px-4 py-2 rounded-full group-hover:bg-authority-blue group-hover:text-white transition-all duration-500 border border-slate-100">Outcome Review</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 dark:text-slate-700 group-hover:text-authority-blue dark:group-hover:text-signal-gold transition-colors duration-500">{caseStudy.id}</span>
+                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-gray-800 px-4 py-2 rounded-full group-hover:bg-authority-blue dark:group-hover:bg-signal-gold group-hover:text-white transition-all duration-500 border border-slate-100 dark:border-border-dark">Outcome Review</span>
                 </div>
                 <h4 className="text-2xl font-black uppercase text-authority-blue dark:text-white mb-8 tracking-tight leading-tight font-serif">{caseStudy.title}</h4>
-                <div className="flex items-center space-x-4 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+                <div className="flex items-center space-x-4 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">
                   <Target size={14} className="text-signal-gold" />
                   <span>Primary Anchor: {caseStudy.focus}</span>
                 </div>
-                <button className="mt-12 text-[10px] font-black uppercase tracking-[0.5em] text-authority-blue opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 flex items-center">
+                <button className="mt-12 text-[10px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 flex items-center">
                   Request Incident Report <ArrowRight size={12} className="ml-3" />
                 </button>
               </div>
@@ -686,27 +676,27 @@ const ResourcesPage = () => {
         </div>
         
         <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">9. When You’re Ready for Structured Implementation</p>
+          <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-600 mb-10">9. When You’re Ready for Structured Implementation</p>
           <h2 className="text-5xl lg:text-8xl font-black font-serif uppercase tracking-tighter text-authority-blue dark:text-white mb-12 leading-[0.9]">LaunchPath <span className="text-signal-gold italic">Implementation.</span></h2>
           <p className="text-xl text-slate-500 dark:text-text-dark-muted font-medium mb-20 max-w-3xl mx-auto leading-relaxed italic">
             "These resources are designed for orientation and awareness. Verified execution occurs through structured implementation."
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
-            <Link to="/reach-test" className="w-full sm:w-auto px-20 py-10 bg-authority-blue text-white rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs shadow-[0_30px_60px_-15px_rgba(30,58,95,0.4)] active:scale-95 transition-all group flex items-center justify-center border-b-4 border-slate-900">
+            <Link to="/reach-test" className="w-full sm:w-auto px-20 py-10 bg-authority-blue text-white rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs shadow-[0_30px_60px_-15px_rgba(30,58,95,0.4)] active:scale-95 transition-all group flex items-center justify-center border-b-4 border-slate-900 dark:border-black">
               → Begin the REACH Test™
             </Link>
-            <Link to="/learning-path" className="w-full sm:w-auto px-20 py-10 bg-white dark:bg-gray-800 text-authority-blue dark:text-white border-2 border-authority-blue rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs active:scale-95 shadow-xl hover:bg-slate-50">
+            <Link to="/learning-path" className="w-full sm:w-auto px-20 py-10 bg-white dark:bg-gray-800 text-authority-blue dark:text-white border-2 border-authority-blue dark:border-signal-gold rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs active:scale-95 shadow-xl hover:bg-slate-50">
               → View Program Overview
             </Link>
           </div>
           
           <div className="mt-40 space-y-8 max-w-lg mx-auto">
-            <div className="h-px w-20 bg-slate-200 mx-auto"></div>
-            <p className="text-sm font-bold text-slate-400 italic leading-relaxed">
+            <div className="h-px w-20 bg-slate-200 dark:bg-slate-800 mx-auto"></div>
+            <p className="text-sm font-bold text-slate-400 dark:text-slate-600 italic leading-relaxed">
               LaunchPath is built for operators who want to operate lawfully, deliberately, and with long-term integrity.
             </p>
-            <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300">
+            <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 dark:text-slate-700">
               LAUNCHPATH™ TRANSPORTATION EDU — SYSTEM REPOSITORY LP-RES-01
             </p>
           </div>
@@ -719,7 +709,7 @@ const ResourcesPage = () => {
           <div className="bg-white dark:bg-surface-dark rounded-[4rem] p-12 md:p-16 border border-white/20 shadow-[0_60px_100px_-20px_rgba(0,0,0,0.8)] max-w-xl w-full relative animate-in zoom-in-95 duration-500">
             <button 
               onClick={() => setIsOrientationModalOpen(false)}
-              className="absolute top-10 right-10 p-3 text-slate-300 hover:text-authority-blue transition-colors"
+              className="absolute top-10 right-10 p-3 text-slate-300 hover:text-authority-blue dark:hover:text-signal-gold transition-colors"
             >
               <X size={28} />
             </button>
@@ -751,7 +741,7 @@ const ResourcesPage = () => {
                 </Link>
                 <button 
                   onClick={() => setIsOrientationModalOpen(false)}
-                  className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 hover:text-authority-blue transition-colors"
+                  className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 hover:text-authority-blue dark:hover:text-signal-gold transition-colors"
                 >
                   Return to Resources
                 </button>
@@ -767,30 +757,29 @@ const ResourcesPage = () => {
           <div className="bg-white dark:bg-surface-dark rounded-[5rem] p-12 md:p-20 shadow-[0_60px_150px_-30px_rgba(0,0,0,0.6)] border border-white/20 max-w-xl w-full relative animate-in zoom-in-95 duration-500">
             <button onClick={closeModal} className="absolute top-12 right-12 p-4 text-slate-300 hover:text-slate-600 transition-colors transform hover:rotate-90 duration-500"><X size={32} /></button>
             <div className="text-center mb-16">
-              <div className="w-24 h-24 bg-authority-blue/5 text-authority-blue rounded-[3rem] flex items-center justify-center mx-auto mb-10 shadow-inner border border-authority-blue/10"><FileText size={40} /></div>
+              <div className="w-24 h-24 bg-authority-blue/5 dark:bg-white/5 text-authority-blue dark:text-signal-gold rounded-[3rem] flex items-center justify-center mx-auto mb-10 shadow-inner border border-authority-blue/10 dark:border-white/10"><FileText size={40} /></div>
               <h3 className="text-3xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-none font-serif">Administrative <br/>Verification</h3>
-              <p className="text-slate-500 font-medium text-lg leading-relaxed px-6">Registry credentials required to provision the <br/><strong className="text-authority-blue dark:text-white">{selectedGuide.title}</strong>.</p>
+              <p className="text-slate-500 dark:text-text-dark-muted font-medium text-lg leading-relaxed px-6">Registry credentials required to provision the <br/><strong className="text-authority-blue dark:text-white">{selectedGuide.title}</strong>.</p>
             </div>
             {showSuccess ? (
               <div className="text-center py-16">
                 <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg border border-green-100"><CheckCircle2 size={48} /></div>
-                <p className="text-xl font-black text-authority-blue uppercase tracking-[0.4em]">Link Verified</p>
+                <p className="text-xl font-black text-authority-blue dark:text-signal-gold uppercase tracking-[0.4em]">Link Verified</p>
               </div>
             ) : (
               <form onSubmit={handleLeadSubmit} className="space-y-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 ml-8 block">Full Legal Name</label>
-                  <input required placeholder="Jane Doe" className="w-full px-10 py-7 rounded-[2.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue outline-none font-bold transition-all text-authority-blue dark:text-white shadow-inner" value={leadName} onChange={(e) => setLeadName(e.target.value)} />
+                  <label className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-600 ml-8 block">Full Legal Name</label>
+                  <input required placeholder="Jane Doe" className="w-full px-10 py-7 rounded-[2.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue dark:focus:border-signal-gold outline-none font-bold transition-all text-authority-blue dark:text-white shadow-inner" value={leadName} onChange={(e) => setLeadName(e.target.value)} />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 ml-8 block">Registry Email</label>
-                  {/* Fixed: Use imported Mail icon here too if desired, although the primary error was on line 383 */}
+                  <label className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-600 ml-8 block">Registry Email</label>
                   <div className="relative">
-                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
-                    <input required type="email" placeholder="jane@carrier.com" className="w-full pl-16 pr-8 py-7 rounded-[2.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue outline-none font-bold transition-all text-authority-blue dark:text-white shadow-inner" value={leadEmail} onChange={(e) => setLeadEmail(e.target.value)} />
+                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 dark:text-slate-600" size={20} />
+                    <input required type="email" placeholder="jane@carrier.com" className="w-full pl-16 pr-8 py-7 rounded-[2.5rem] bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue dark:focus:border-signal-gold outline-none font-bold transition-all text-authority-blue dark:text-white shadow-inner" value={leadEmail} onChange={(e) => setLeadEmail(e.target.value)} />
                   </div>
                 </div>
-                <button type="submit" disabled={isSubmitting} className="w-full py-8 rounded-[3rem] bg-authority-blue text-white font-black uppercase tracking-[0.4em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-4 border-slate-900 mt-6 disabled:opacity-50">
+                <button type="submit" disabled={isSubmitting} className="w-full py-8 rounded-[3rem] bg-authority-blue text-white font-black uppercase tracking-[0.4em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-4 border-slate-900 dark:border-black mt-6 disabled:opacity-50">
                   {isSubmitting ? <Loader2 className="animate-spin mr-4" size={24} /> : <Download className="mr-4" size={20} />} Authorize Transfer
                 </button>
               </form>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -20,7 +21,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
   metaDescription: "Professional carrier compliance education for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
-  logoUrl: "/Untitled (Website) (1).png", 
+  logoUrl: "/blue.png", 
   googleAnalyticsId: "G-LP-VET-2025",
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,
