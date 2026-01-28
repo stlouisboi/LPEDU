@@ -21,7 +21,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
   metaDescription: "Professional carrier compliance education for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
-  logoUrl: "/blue.png", 
+  logoUrl: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b89d", 
   googleAnalyticsId: "G-LP-VET-2025",
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,

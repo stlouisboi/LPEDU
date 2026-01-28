@@ -106,10 +106,10 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-[100] bg-white dark:bg-primary-dark border-b border-slate-100 dark:border-border-dark transition-all duration-500" role="banner">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20 lg:h-24">
+        <div className="flex justify-between items-center h-24 sm:h-32">
           
           <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300" aria-label="LaunchPath Home">
-            <Logo className="h-6 sm:h-8 lg:h-10 w-auto" />
+            <Logo className="h-10 sm:h-14 lg:h-16 w-auto" />
           </Link>
 
           {/* DESKTOP NAVIGATION */}
@@ -179,7 +179,7 @@ const Header = () => {
       </div>
 
       {isMenuOpen && (
-        <nav className="fixed inset-0 top-16 sm:top-20 bg-white dark:bg-primary-dark z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
+        <nav className="fixed inset-0 top-24 sm:top-32 bg-white dark:bg-primary-dark z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
           <div className="flex flex-col p-8 sm:p-12 space-y-3">
             <Link 
               to="/" 
@@ -309,7 +309,7 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-4">
-                <Logo light={false} className="h-12 grayscale-0" />
+                <Logo light={true} className="h-16 grayscale-0" />
               </div>
               <p className="text-[14px] text-white/60 mb-1">
                 © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.
@@ -374,9 +374,12 @@ export default function App() {
     <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
       <div className="flex flex-col items-center gap-6">
         <img 
-          src="/blue.png" 
+          src={theme === 'dark' 
+            ? "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
+            : "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf"
+          } 
           alt="LaunchPath Loading" 
-          className="h-16 w-auto animate-pulse" 
+          className="h-20 w-auto animate-pulse" 
         />
         <Loader2 className="animate-spin text-authority-blue" size={32} />
       </div>
