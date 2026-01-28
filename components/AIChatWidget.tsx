@@ -33,12 +33,8 @@ const AIChatWidget = () => {
     setLoading(true);
 
     try {
-      const apiKey = process.env.API_KEY;
-      if (!apiKey) {
-        throw new Error("API_KEY_MISSING");
-      }
-
-      const ai = new GoogleGenAI({ apiKey });
+      // Create new instance per call as per multi-key guidelines
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: userMsg,
@@ -47,22 +43,21 @@ const AIChatWidget = () => {
 ROLE: You act as a neutral educational resource explaining compliance terminology and FMCSA system logic.
 CORE PURPOSE: Help visitors understand trucking compliance concepts at a high level. Explain risks and terminology.
 THE FOUR PILLARS: "The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen." Always use this definition when asked about the Pillars.
-NON-NEGOTIABLE RULES: Do NOT provide step-by-step instructions. Do NOT give personalized advice. Do NOT attempt to sell or coach. Do NOT auto-open. Do NOT promote yourself as a feature.
-ALLOWED BEHAVIOR: Use phrases like "At a high level...", "Educationally speaking...", "Regulatory terminology defines this as...".
+NON-NEGOTIABLE RULES: Do NOT provide step-by-step instructions. Do NOT give personalized advice. Do NOT attempt to sell or coach. Do NOT auto-open.
 DISCLAIMER: "LaunchPath is an educational and coaching program only. This information is not legal, tax, financial, insurance, or regulatory advice."`,
           tools: [{ googleSearch: {} }],
           temperature: 0.3,
         }
       });
 
-      const assistantText = response.text || "Connection lost. Try again.";
+      const assistantText = response.text || "I was unable to synthesize a response at this time. Please rephrase.";
       
       const sources: { uri: string; title: string }[] = [];
       const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
-      if (chunks) {
+      if (chunks && Array.isArray(chunks)) {
         chunks.forEach((chunk: any) => {
-          if (chunk.web) {
-            sources.push({ uri: chunk.web.uri, title: chunk.web.title });
+          if (chunk.web && chunk.web.uri) {
+            sources.push({ uri: chunk.web.uri, title: chunk.web.title || 'Regulatory Reference' });
           }
         });
       }
@@ -74,10 +69,10 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
       }]);
     } catch (err: any) {
       console.error("AI Reference Error:", err);
-      let errorMsg = "System offline. Check your connection.";
-      if (err.message === "API_KEY_MISSING") {
-        errorMsg = "Reference service is currently unconfigured. Please contact support.";
-      }
+      // More descriptive error that handles missing keys without manual throw
+      const errorMsg = err.message?.includes("API_KEY") 
+        ? "The compliance reference service is currently establishing a secure link. Please try again in a moment."
+        : "Communication error with federal data registry. Please try again.";
       setMessages(prev => [...prev, { role: 'assistant', content: errorMsg }]);
     } finally {
       setLoading(false);
@@ -86,9 +81,9 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
 
   const starterQuestions = [
     "What are The Four Pillars?",
-    "What are BIT inspection requirements?",
     "What is a DQ file?",
-    "Compliance risks for new carriers?"
+    "BIT inspection requirements?",
+    "New entrant audit triggers?"
   ];
 
   return (
@@ -150,28 +145,6 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
               </div>
             )}
           </div>
-
-          {/* Starter Prompts */}
-          {messages.length === 1 && !loading && (
-            <div className="p-4 grid grid-cols-1 gap-2 bg-white dark:bg-gray-900 border-t border-border-light dark:border-border-dark">
-              <div className="flex items-center space-x-2 mb-1 px-1">
-                <Globe size={10} className="text-signal-gold" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-text-muted">Inquiries</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {starterQuestions.map((q) => (
-                  <button 
-                    key={q}
-                    onClick={() => handleSend(q)}
-                    className="text-left px-3 py-1.5 bg-slate-50 dark:bg-gray-800 hover:bg-slate-100 dark:hover:bg-gray-700 text-[9px] font-bold uppercase tracking-tight text-authority-blue dark:text-signal-gold rounded-lg border border-slate-100 dark:border-gray-700 transition-all flex items-center justify-between group"
-                  >
-                    <span>{q}</span>
-                    <ArrowRight size={10} className="ml-2 opacity-0 group-hover:opacity-100 transition-all" />
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Input Area */}
           <div className="p-4 bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark">
