@@ -11,7 +11,7 @@ interface LogoProps {
  * LaunchPath™ Professional Logo Component
  * Renders the brand logo from site settings with theme-aware fallback.
  */
-const Logo: React.FC<LogoProps> = ({ className = "h-12", light }) => {
+const Logo: React.FC<LogoProps> = ({ className = "h-9", light }) => {
   const { settings, theme } = useApp();
   const siteName = settings?.siteName || "LaunchPath";
 

@@ -109,7 +109,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-24 sm:h-32">
           
           <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300" aria-label="LaunchPath Home">
-            <Logo className="h-10 sm:h-14 lg:h-16 w-auto" />
+            <Logo className="h-8 sm:h-12 w-auto" />
           </Link>
 
           {/* DESKTOP NAVIGATION */}
@@ -309,7 +309,7 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-4">
-                <Logo light={true} className="h-16 grayscale-0" />
+                <Logo light={true} className="h-12 grayscale-0" />
               </div>
               <p className="text-[14px] text-white/60 mb-1">
                 © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.
@@ -379,7 +379,7 @@ export default function App() {
             : "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf"
           } 
           alt="LaunchPath Loading" 
-          className="h-20 w-auto animate-pulse" 
+          className="h-16 w-auto animate-pulse" 
         />
         <Loader2 className="animate-spin text-authority-blue" size={32} />
       </div>
