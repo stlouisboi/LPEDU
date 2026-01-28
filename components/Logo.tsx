@@ -15,8 +15,8 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12", light }) => {
   const { settings, theme } = useApp();
   const siteName = settings?.siteName || "LaunchPath";
 
-  // Institutional Hosted Logo
-  const logoSrc = "https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/logo.png";
+  // Use the new local logo file provided by the user
+  const logoSrc = "/Untitled (Website) (1).png";
 
   // If 'light' prop is explicitly passed, use it. Otherwise, use 'light' mode if theme is dark.
   const isLightVersion = light !== undefined ? light : theme === 'dark';
@@ -28,6 +28,7 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12", light }) => {
         alt={`${siteName} Logo`} 
         className={`h-full w-auto object-contain transition-all duration-300 ${isLightVersion ? 'brightness-0 invert' : ''}`}
         onError={(e) => {
+          // If the image fails to load (e.g. file not uploaded yet), fallback to a high-quality text representation
           e.currentTarget.style.display = 'none';
           const parent = e.currentTarget.parentElement;
           if (parent) {

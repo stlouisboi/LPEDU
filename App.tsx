@@ -308,7 +308,7 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-4">
-                <Logo light className="h-12 grayscale-0 brightness-0 invert" />
+                <Logo light={false} className="h-12 grayscale-0" />
               </div>
               <p className="text-[14px] text-white/60 mb-1">
                 © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.
@@ -373,7 +373,7 @@ export default function App() {
     <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
       <div className="flex flex-col items-center gap-6">
         <img 
-          src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/logo.png" 
+          src="/Untitled (Website) (1).png" 
           alt="LaunchPath Loading" 
           className="h-16 w-auto animate-pulse" 
         />
