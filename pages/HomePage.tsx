@@ -619,8 +619,8 @@ const HomePage: React.FC = () => {
           </p>
 
           <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-12 animate-reveal-up" style={{ animationDelay: '0.2s' }}>
-            <Link to="/pricing" className="w-full lg:w-auto bg-white text-authority-blue px-10 py-6 sm:px-20 sm:py-8 rounded-2xl sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[11px] sm:text-base hover:bg-signal-gold hover:text-white transition-all shadow-2xl active:scale-95 border-b-[6px] sm:border-b-[10px] border-slate-200 leading-none">
-              Initiate Admission
+            <Link to="/pricing" className="w-full lg:w-auto bg-white text-authority-blue px-16 py-9 md:px-24 md:py-10 lg:px-36 lg:py-14 rounded-[2.5rem] md:rounded-[4rem] font-black uppercase tracking-[0.4em] text-xs sm:text-base lg:text-xl hover:bg-signal-gold hover:text-white transition-all shadow-[0_30px_70px_-15px_rgba(0,0,0,0.6)] active:scale-95 border border-slate-100 border-b-[10px] sm:border-b-[16px] border-b-slate-200 leading-none">
+              Initiate Admission Protocol
             </Link>
             <Link to="/contact" className="w-full lg:w-auto bg-transparent border-2 border-white/20 text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[11px] sm:text-base hover:border-white hover:bg-white/5 transition-all active:scale-95 backdrop-blur-md leading-none">
               Technical Support
