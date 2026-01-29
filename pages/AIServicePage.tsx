@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -119,7 +118,7 @@ const AIServicePage = () => {
       if (audioContextRef.current) audioContextRef.current.close().catch(() => {});
       if (isLiveActive) stopLiveConversation();
     };
-  }, [isLiveActive]);
+  }, []);
 
   useEffect(() => {
     if (activeTab !== 'voice' && isLiveActive) stopLiveConversation();
@@ -185,6 +184,8 @@ const AIServicePage = () => {
         source.connect(ctx.destination);
         source.onended = () => setIsSpeaking(null);
         source.start();
+      } else {
+        setIsSpeaking(null);
       }
     } catch (err) {
       setIsSpeaking(null);

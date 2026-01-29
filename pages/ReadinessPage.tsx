@@ -29,7 +29,6 @@ import {
   Home,
   CheckCircle,
   Verified,
-  /* Added missing Award icon import */
   Award
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -503,7 +502,7 @@ const ReadinessPage = () => {
               </div>
             </div>
 
-            {/* TRUST SIGNALS - ADDED TO RESTORE BADGES */}
+            {/* TRUST SIGNALS */}
             <div className="flex flex-wrap justify-center items-center gap-10 opacity-30 pt-8 grayscale border-t border-slate-100 dark:border-slate-800">
               {trustBadges.map((badge, i) => (
                 <div key={i} className="flex items-center space-x-3">

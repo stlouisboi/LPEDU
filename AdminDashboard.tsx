@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Settings, 
@@ -19,7 +18,6 @@ import {
 import { Link } from 'react-router-dom';
 import { useApp } from './App';
 import { useAuth } from './AuthContext';
-import { BlogPost, SiteSettings } from './types';
 
 // Specialized Sub-components
 import SettingsManager from './pages/admin/SettingsManager';

@@ -13,7 +13,8 @@ import {
   Facebook,
   Twitter,
   Linkedin,
-  Instagram
+  Instagram,
+  ShieldCheck
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -50,7 +51,7 @@ import OperatorPortal from './pages/OperatorPortal';
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
-import AdminDashboard from './AdminDashboard'; // Use the tabbed dashboard
+import AdminDashboard from './AdminDashboard'; 
 import PageList from './pages/admin/PageList';
 import HomePageEditor from './pages/admin/HomePageEditor';
 import BlogList from './pages/admin/BlogList';
@@ -110,11 +111,11 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-[100] bg-white dark:bg-primary-dark border-b border-slate-100 dark:border-border-dark transition-all duration-500" role="banner">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
+      <div className="max-w-[1800px] mx-auto px-6 sm:px-12">
         <div className="flex justify-between items-center h-24 sm:h-32">
           
           <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300" aria-label="LaunchPath Home">
-            <Logo className="h-8 sm:h-12 w-auto" />
+            <Logo className="h-10 sm:h-14 w-auto" />
           </Link>
 
           {/* DESKTOP NAVIGATION */}
@@ -124,41 +125,42 @@ const Header = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-5 py-2 text-[11px] font-black uppercase tracking-[0.25em] transition-all relative ${
+                  className={`px-6 py-3 text-[11px] font-black uppercase tracking-[0.3em] transition-all relative group ${
                     location.pathname === item.path 
                     ? 'text-authority-blue dark:text-signal-gold' 
                     : 'text-slate-500 dark:text-text-dark-muted hover:text-authority-blue'
                   }`}
                 >
                   {item.name}
+                  <span className={`absolute bottom-0 left-6 right-6 h-[2px] bg-authority-blue dark:bg-signal-gold transition-all duration-300 scale-x-0 group-hover:scale-x-100 ${location.pathname === item.path ? 'scale-x-100' : ''}`}></span>
                 </Link>
               ))}
             </div>
             
-            <div className="w-[1.5px] h-6 bg-slate-200 dark:bg-slate-700 mx-6" aria-hidden="true" />
+            <div className="w-[1.5px] h-8 bg-slate-200 dark:bg-slate-700 mx-8" aria-hidden="true" />
 
-            <div className="flex items-center space-x-5">
+            <div className="flex items-center space-x-6">
               <Link 
                 to="/portal" 
-                className="border-2 border-signal-gold text-signal-gold px-7 py-3 rounded-full text-[11px] font-black uppercase tracking-[0.2em] flex items-center hover:bg-signal-gold/5 transition-all active:scale-95"
+                className="border-2 border-signal-gold text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95 shadow-sm"
               >
-                <Lock size={12} className="mr-2.5 -mt-0.5" />
+                <Lock size={12} className="mr-3 -mt-0.5" />
                 Portal Access
               </Link>
 
               <Link 
                 to="/readiness" 
-                className="bg-authority-blue text-white px-9 py-4 rounded-full text-[11px] font-black uppercase tracking-[0.2em] hover:bg-steel-blue hover:shadow-xl transition-all active:scale-95 shadow-lg"
+                className="bg-authority-blue text-white px-10 py-4.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] hover:bg-steel-blue hover:shadow-2xl transition-all active:scale-95 shadow-xl border-b-4 border-slate-900"
               >
-                Admission
+                Admission Protocol
               </Link>
 
               <button
                 onClick={toggleTheme}
-                className="p-3 rounded-full bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-border-dark shadow-sm"
+                className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-border-dark shadow-sm"
                 aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               >
-                {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+                {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
               </button>
             </div>
           </nav>
@@ -166,14 +168,14 @@ const Header = () => {
           <div className="xl:hidden flex items-center space-x-3">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-border-dark"
+              className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-border-dark"
               aria-label="Toggle Dark Mode"
             >
-              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="p-2 bg-authority-blue text-white rounded-xl shadow-lg active:scale-90 transition-transform"
+              className="p-2.5 bg-authority-blue text-white rounded-xl shadow-lg active:scale-90 transition-transform"
               aria-expanded={isMenuOpen}
               aria-label="Toggle Menu"
             >
@@ -185,12 +187,12 @@ const Header = () => {
 
       {isMenuOpen && (
         <nav className="fixed inset-0 top-24 sm:top-32 bg-white dark:bg-primary-dark z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
-          <div className="flex flex-col p-8 sm:p-12 space-y-3">
+          <div className="flex flex-col p-8 sm:p-12 space-y-4">
             <Link 
               to="/" 
               onClick={() => setIsMenuOpen(false)}
-              className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${
-                location.pathname === '/' ? 'bg-authority-blue text-white shadow-xl' : 'text-slate-400'
+              className={`block p-6 rounded-[2.5rem] font-black text-2xl uppercase tracking-tighter transition-all ${
+                location.pathname === '/' ? 'bg-authority-blue text-white shadow-2xl' : 'text-slate-400'
               }`}
             >
               Home
@@ -199,8 +201,8 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${
-                  location.pathname === item.path ? 'bg-authority-blue text-white shadow-xl' : 'text-slate-800 dark:text-slate-200'
+                className={`block p-6 rounded-[2.5rem] font-black text-2xl uppercase tracking-tighter transition-all ${
+                  location.pathname === item.path ? 'bg-authority-blue text-white shadow-2xl' : 'text-slate-800 dark:text-slate-200'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -208,20 +210,20 @@ const Header = () => {
               </Link>
             ))}
             
-            <div className="pt-8 space-y-4">
+            <div className="pt-12 space-y-6">
               <Link 
                 to="/portal" 
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-center border-2 border-signal-gold text-signal-gold py-6 rounded-[2rem] text-lg font-black uppercase tracking-[0.2em]"
+                className="block w-full text-center border-2 border-signal-gold text-signal-gold py-7 rounded-[2.5rem] text-xl font-black uppercase tracking-[0.2em]"
               >
-                <Lock size={18} className="inline mr-2 -mt-1" />
+                <Lock size={20} className="inline mr-3 -mt-1" />
                 Portal Access
               </Link>
 
               <Link 
                 to="/readiness" 
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-center bg-authority-blue text-white py-8 rounded-[2rem] text-lg font-black uppercase tracking-[0.2em] shadow-2xl"
+                className="block w-full text-center bg-authority-blue text-white py-9 rounded-[2.5rem] text-xl font-black uppercase tracking-[0.2em] shadow-2xl border-b-8 border-slate-900"
               >
                 Admission Protocol
               </Link>
@@ -240,67 +242,79 @@ const Footer = () => {
 
   return (
     <footer className="w-full font-sans" role="contentinfo">
-      <section className="bg-authority-blue dark:bg-surface-dark py-12 md:py-20 border-t border-white/5 transition-colors duration-500">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12" aria-label="Footer Site Map">
-            <div>
-              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">FOUNDATION</h3>
-              <ul className="space-y-4">
+      <section className="bg-authority-blue dark:bg-surface-dark py-24 md:py-32 border-t border-white/5 transition-colors duration-500">
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
+          <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16" aria-label="Footer Site Map">
+            <div className="space-y-8">
+              <h3 className="text-[13px] font-black text-signal-gold uppercase tracking-[0.3em] mb-8 flex items-center">
+                  <span className="w-6 h-[1px] bg-signal-gold/40 mr-4"></span>
+                  FOUNDATION
+              </h3>
+              <ul className="space-y-5">
                 {[
                   { name: 'LaunchPath Home', path: '/' },
                   { name: 'About the Standard', path: '/about' },
                   { name: 'Contact Us', path: '/contact' }
                 ].map((link) => (
                   <li key={link.name}>
-                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                    <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
                       {link.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">SYSTEM</h3>
-              <ul className="space-y-4">
+            <div className="space-y-8">
+              <h3 className="text-[13px] font-black text-signal-gold uppercase tracking-[0.3em] mb-8 flex items-center">
+                  <span className="w-6 h-[1px] bg-signal-gold/40 mr-4"></span>
+                  SYSTEM
+              </h3>
+              <ul className="space-y-5">
                 {[
                   { name: 'Operating Roadmap', path: '/learning-path' },
                   { name: 'Admission Protocol', path: '/readiness' },
                   { name: 'TCO Calculator', path: '/tools/tco-calculator' }
                 ].map((link) => (
                   <li key={link.name}>
-                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                    <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
                       {link.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">RESOURCES</h3>
-              <ul className="space-y-4">
+            <div className="space-y-8">
+              <h3 className="text-[13px] font-black text-signal-gold uppercase tracking-[0.3em] mb-8 flex items-center">
+                  <span className="w-6 h-[1px] bg-signal-gold/40 mr-4"></span>
+                  RESOURCES
+              </h3>
+              <ul className="space-y-5">
                 {[
                   { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
                   { name: 'Educational Downloads', path: '/resources' },
                   { name: 'Truth & Clarification', path: '/clarification' }
                 ].map((link) => (
                   <li key={link.name}>
-                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                    <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
                       {link.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h3 className="text-[13px] font-bold text-signal-gold uppercase tracking-[0.02em] mb-6">GOVERNANCE</h3>
-              <ul className="space-y-4">
+            <div className="space-y-8">
+              <h3 className="text-[13px] font-black text-signal-gold uppercase tracking-[0.3em] mb-8 flex items-center">
+                  <span className="w-6 h-[1px] bg-signal-gold/40 mr-4"></span>
+                  GOVERNANCE
+              </h3>
+              <ul className="space-y-5">
                 {[
                   { name: 'Privacy Policy', path: '/legal' },
                   { name: 'Terms of Service', path: '/legal' },
                   { name: 'Educational Disclaimer', path: '/legal' }
                 ].map((link) => (
                   <li key={link.name}>
-                    <Link to={link.path} className="text-[15px] text-white/80 hover:text-signal-gold hover:underline transition-all duration-300">
+                    <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
                       {link.name}
                     </Link>
                   </li>
@@ -310,52 +324,76 @@ const Footer = () => {
           </nav>
         </div>
       </section>
-      <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/10 py-10 transition-colors duration-500">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
-            <div className="flex-grow">
-              <div className="flex items-center gap-3 mb-4">
-                <Logo light={true} className="h-12 grayscale-0" />
+
+      <section className="bg-authority-blue dark:bg-surface-dark border-t border-white/5 py-20 transition-colors duration-500">
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-16">
+            <div className="flex-grow space-y-8">
+              <div className="flex items-center gap-6">
+                <Logo light={true} className="h-16 grayscale-0" />
+                <div className="h-10 w-[1px] bg-white/20"></div>
+                <div className="flex items-center space-x-3 text-signal-gold/80">
+                    <ShieldCheck size={20} />
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em]">Integrity Standard Certified</span>
+                </div>
               </div>
-              <p className="text-[14px] text-white/60 mb-1">
-                © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.
-              </p>
-              <p className="text-[14px] font-medium text-white/70 mb-6 uppercase tracking-widest text-[10px]">
-                Veteran Owned & Operated. Dedicated to Operational Integrity.
-              </p>
-              <div className="max-w-[600px]">
-                <p className="text-[13px] text-white/50 leading-relaxed italic">
-                  LaunchPath is an educational platform providing informational training and resources for motor carrier operations. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice.
+              
+              <div className="space-y-2">
+                <p className="text-base text-white/60 font-bold uppercase tracking-[0.15em]">
+                    © {new Date().getFullYear()} LaunchPath™ Transportation EDU. All Rights Reserved.
+                </p>
+                <p className="text-sm font-black text-white/40 uppercase tracking-[0.4em]">
+                    Veteran Owned & Operated • Charlotte, NC • NC-2025-LP
+                </p>
+              </div>
+
+              <div className="max-w-[800px] p-8 bg-white/5 rounded-3xl border border-white/10">
+                <p className="text-sm text-white/50 leading-relaxed italic font-medium">
+                  LaunchPath is an institutional educational platform providing technical training and resources for motor carrier operations. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice. Success is contingent on individual operator execution and discipline.
                 </p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-6">
-              {settings.social.facebook && (
-                <a href={settings.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="Facebook">
-                  <Facebook size={20} />
-                </a>
-              )}
-              {settings.social.twitter && (
-                <a href={settings.social.twitter} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="Twitter">
-                  <Twitter size={20} />
-                </a>
-              )}
-              {settings.social.linkedin && (
-                <a href={settings.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="LinkedIn">
-                  <Linkedin size={20} />
-                </a>
-              )}
-              {settings.social.instagram && (
-                <a href={settings.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="Instagram">
-                  <Instagram size={20} />
-                </a>
-              )}
-              {settings.social.youtube && (
-                <a href={settings.social.youtube} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="YouTube">
-                  <Youtube size={20} />
-                </a>
-              )}
+            <div className="flex flex-col items-start lg:items-end gap-10">
+                <div className="flex items-center space-x-8">
+                {settings.social.facebook && (
+                    <a href={settings.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Facebook">
+                    <Facebook size={28} />
+                    </a>
+                )}
+                {settings.social.twitter && (
+                    <a href={settings.social.twitter} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Twitter">
+                    <Twitter size={28} />
+                    </a>
+                )}
+                {settings.social.linkedin && (
+                    <a href={settings.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="LinkedIn">
+                    <Linkedin size={28} />
+                    </a>
+                )}
+                {settings.social.instagram && (
+                    <a href={settings.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Instagram">
+                    <Instagram size={28} />
+                    </a>
+                )}
+                {settings.social.youtube && (
+                    <a href={settings.social.youtube} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="YouTube">
+                    <Youtube size={28} />
+                    </a>
+                )}
+                </div>
+                
+                <div className="flex flex-col items-start lg:items-end space-y-4">
+                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30">System Infrastructure</p>
+                    <div className="flex items-center gap-4">
+                        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black text-white/50 uppercase tracking-widest">
+                            SSL: ACTIVE
+                        </div>
+                        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black text-white/50 uppercase tracking-widest">
+                            CDN: STABLE
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
@@ -406,16 +444,19 @@ export default function App() {
 
   if (appLoading) return (
     <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center gap-10">
         <img 
           src={theme === 'dark' 
             ? "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
             : "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf"
           } 
           alt="LaunchPath Loading" 
-          className="h-16 w-auto animate-pulse" 
+          className="h-20 w-auto animate-pulse" 
         />
-        <Loader2 className="animate-spin text-authority-blue" size={32} />
+        <div className="flex flex-col items-center space-y-4">
+            <Loader2 className="animate-spin text-authority-blue" size={40} />
+            <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 animate-pulse">Initializing Secure Standard...</p>
+        </div>
       </div>
     </div>
   );
