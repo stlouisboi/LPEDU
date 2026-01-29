@@ -52,6 +52,7 @@ import { GoogleGenAI } from "@google/genai";
 
 const ResourcesPage = () => {
   const [selectedGuide, setSelectedGuide] = useState<{title: string, link: string} | null>(null);
+  const [isInstitutionalModalOpen, setIsInstitutionalModalOpen] = useState(false);
   const [leadName, setLeadName] = useState('');
   const [leadEmail, setLeadEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -324,7 +325,7 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 4. STARTER TEMPLATES & OPERATING TOOLS */}
+      {/* 4. STARTER TEMPLATES & OPERATING TOOLS - THE IMPLEMENTATION VAULT */}
       <section className="py-32 bg-slate-50/50 dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="mb-24">
@@ -380,11 +381,11 @@ const ResourcesPage = () => {
                 
                 <div className="w-full mt-auto pt-8 border-t border-slate-50 dark:border-white/5 space-y-4">
                   <div className="flex items-center justify-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                    <Mail size={12} />
-                    <span>Registry Verification Required</span>
+                    <Lock size={12} />
+                    <span>Sequence Verification Required</span>
                   </div>
                   <button 
-                    onClick={() => setSelectedGuide({title: tool.title, link: "#"})}
+                    onClick={() => setIsInstitutionalModalOpen(true)}
                     className="w-full bg-authority-blue text-white py-5 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group/btn"
                   >
                     <FileText size={18} className="mr-3" /> 
@@ -703,7 +704,76 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* ORIENTATION NOTICE MODAL (GATED CONTENT) */}
+      {/* INSTITUTIONAL FILTER MODAL (REPLACES PREVIOUS AUTHORIZE TRANSFER BEHAVIOR) */}
+      {isInstitutionalModalOpen && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-primary-dark/80 backdrop-blur-md animate-in fade-in duration-300" role="dialog" aria-modal="true">
+          <div className="bg-white dark:bg-surface-dark rounded-[4rem] p-12 md:p-16 border border-white/20 shadow-[0_60px_150px_-30px_rgba(0,0,0,0.8)] max-w-2xl w-full relative animate-in zoom-in-95 duration-500">
+            <button 
+              onClick={() => setIsInstitutionalModalOpen(false)}
+              className="absolute top-10 right-10 p-3 text-slate-300 hover:text-authority-blue dark:hover:text-signal-gold transition-colors"
+              aria-label="Close modal"
+            >
+              <X size={28} />
+            </button>
+            <div className="text-center">
+              <div className="w-20 h-20 bg-authority-blue rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl border border-signal-gold/30">
+                <Lock size={32} className="text-signal-gold" />
+              </div>
+              <h3 className="text-3xl font-black text-authority-blue dark:text-white uppercase tracking-tighter mb-2 font-serif leading-none">🔒 RESTRICTED ACCESS</h3>
+              <p className="text-lg font-black text-authority-blue dark:text-signal-gold uppercase tracking-widest mb-6">REGISTRY VERIFICATION REQUIRED</p>
+              
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500 mb-10">Standard ID: LP-RES-LOCK-01</p>
+
+              <div className="space-y-8 mb-14 text-left">
+                <p className="text-base text-slate-700 dark:text-text-dark-primary leading-relaxed font-bold">
+                  The asset you are attempting to access is a structural component of the LaunchPath Operating Standard™.
+                </p>
+                <p className="text-sm text-slate-500 dark:text-text-dark-muted leading-relaxed font-medium">
+                  These resources are not standalone templates. They are governed implementation assets that require verified Institutional Alignment to deploy correctly.
+                </p>
+                
+                <div className="space-y-6 pt-6 border-t border-slate-100 dark:border-white/5">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-authority-blue dark:text-signal-gold">To unlock this asset, the LaunchPath Standard requires the following sequence:</p>
+                  <div className="space-y-5">
+                    {[
+                      { step: "1. Initiate Diagnosis", text: "Complete the REACH Test™ Diagnostic to identify your entity’s specific exposure vectors." },
+                      { step: "2. Verify Admission", text: "Submit credentials for institutional review to confirm readiness and alignment." },
+                      { step: "3. Secure Implementation", text: "Once admitted, the full Implementation Vault—including all Driver Qualification, Maintenance, and Financial Control assets—will be authorized for transfer to your entity." }
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex flex-col space-y-1">
+                        <span className="text-[11px] font-black uppercase text-authority-blue dark:text-white">{item.step}</span>
+                        <span className="text-xs text-slate-500 dark:text-text-dark-muted font-medium">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-xs italic text-slate-400 dark:text-slate-500 mb-12 font-medium">
+                Access reflects readiness — not interest.
+              </p>
+
+              <div className="flex flex-col gap-4">
+                <Link 
+                  to="/reach-test"
+                  className="bg-authority-blue text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group"
+                >
+                  <span>INITIATE REACH TEST™ DIAGNOSIS</span>
+                  <ChevronRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button 
+                  onClick={() => setIsInstitutionalModalOpen(false)}
+                  className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 hover:text-authority-blue dark:hover:text-signal-gold transition-colors py-4"
+                >
+                  RETURN TO PUBLIC STANDARDS
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ORIENTATION NOTICE MODAL (EXISTING GATED CONTENT) */}
       {isOrientationModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-primary-dark/80 backdrop-blur-md animate-in fade-in duration-300">
           <div className="bg-white dark:bg-surface-dark rounded-[4rem] p-12 md:p-16 border border-white/20 shadow-[0_60px_100px_-20px_rgba(0,0,0,0.8)] max-w-xl w-full relative animate-in zoom-in-95 duration-500">
@@ -751,7 +821,7 @@ const ResourcesPage = () => {
         </div>
       )}
 
-      {/* AUTHORIZATION MODAL */}
+      {/* AUTHORIZATION MODAL (LEGACY EMAIL GATE) */}
       {selectedGuide && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-authority-blue/60 backdrop-blur-2xl animate-in fade-in duration-500">
           <div className="bg-white dark:bg-surface-dark rounded-[5rem] p-12 md:p-20 shadow-[0_60px_150px_-30px_rgba(0,0,0,0.6)] border border-white/20 max-w-xl w-full relative animate-in zoom-in-95 duration-500">

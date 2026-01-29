@@ -8,7 +8,12 @@ import {
   X, 
   ChevronRight, 
   Loader2,
-  Lock
+  Lock,
+  Youtube,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -229,6 +234,7 @@ const Header = () => {
 };
 
 const Footer = () => {
+  const { settings } = useApp();
   const location = useLocation();
   if (location.pathname.startsWith('/admin')) return null;
 
@@ -322,6 +328,34 @@ const Footer = () => {
                   LaunchPath is an educational platform providing informational training and resources for motor carrier operations. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice.
                 </p>
               </div>
+            </div>
+            
+            <div className="flex items-center space-x-6">
+              {settings.social.facebook && (
+                <a href={settings.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="Facebook">
+                  <Facebook size={20} />
+                </a>
+              )}
+              {settings.social.twitter && (
+                <a href={settings.social.twitter} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="Twitter">
+                  <Twitter size={20} />
+                </a>
+              )}
+              {settings.social.linkedin && (
+                <a href={settings.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="LinkedIn">
+                  <Linkedin size={20} />
+                </a>
+              )}
+              {settings.social.instagram && (
+                <a href={settings.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="Instagram">
+                  <Instagram size={20} />
+                </a>
+              )}
+              {settings.social.youtube && (
+                <a href={settings.social.youtube} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors" aria-label="YouTube">
+                  <Youtube size={20} />
+                </a>
+              )}
             </div>
           </div>
         </div>

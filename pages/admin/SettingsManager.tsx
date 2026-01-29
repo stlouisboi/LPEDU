@@ -8,6 +8,10 @@ import {
   Mail, 
   Phone, 
   Facebook, 
+  Twitter,
+  Linkedin,
+  Instagram,
+  Youtube,
   Search, 
   Loader2, 
   CheckCircle, 
@@ -17,7 +21,8 @@ import {
   Eye,
   Globe,
   Award,
-  ShieldCheck
+  ShieldCheck,
+  Link as LinkIcon
 } from 'lucide-react';
 import { SiteSettings } from '../../types';
 import MediaUploader from '../../components/admin/MediaUploader';
@@ -226,7 +231,6 @@ const SettingsManager = () => {
             </div>
           )}
           
-          {/* Other tabs remain consistent with form patterns */}
           {activeTab === 'contact' && (
             <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-8 animate-reveal-up">
                <h3 className="text-lg font-bold font-serif">Inbound Infrastructure</h3>
@@ -240,11 +244,129 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Support Phone Line</label>
+                    <input 
+                      value={settings.contact.phone}
+                      onChange={e => setSettings({...settings, contact: {...settings.contact, phone: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                    />
+                  </div>
+                  <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Headquarters Address</label>
                     <textarea 
                       rows={3}
                       value={settings.contact.address}
                       onChange={e => setSettings({...settings, contact: {...settings.contact, address: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                    />
+                  </div>
+               </div>
+            </div>
+          )}
+
+          {activeTab === 'social' && (
+            <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-8 animate-reveal-up">
+               <h3 className="text-lg font-bold font-serif">Social Media Channels</h3>
+               <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Facebook size={12} className="mr-2" /> Facebook URL</label>
+                    <input 
+                      value={settings.social.facebook || ''}
+                      onChange={e => setSettings({...settings, social: {...settings.social, facebook: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                      placeholder="https://facebook.com/..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Twitter size={12} className="mr-2" /> Twitter URL</label>
+                    <input 
+                      value={settings.social.twitter || ''}
+                      onChange={e => setSettings({...settings, social: {...settings.social, twitter: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                      placeholder="https://twitter.com/..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Linkedin size={12} className="mr-2" /> LinkedIn URL</label>
+                    <input 
+                      value={settings.social.linkedin || ''}
+                      onChange={e => setSettings({...settings, social: {...settings.social, linkedin: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                      placeholder="https://linkedin.com/company/..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Instagram size={12} className="mr-2" /> Instagram URL</label>
+                    <input 
+                      value={settings.social.instagram || ''}
+                      onChange={e => setSettings({...settings, social: {...settings.social, instagram: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                      placeholder="https://instagram.com/..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Youtube size={12} className="mr-2 text-red-600" /> YouTube Channel URL</label>
+                    <input 
+                      value={settings.social.youtube || ''}
+                      onChange={e => setSettings({...settings, social: {...settings.social, youtube: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold border-red-100 focus:border-red-500 transition-colors"
+                      placeholder="https://youtube.com/@..."
+                    />
+                  </div>
+               </div>
+            </div>
+          )}
+
+          {activeTab === 'checkout' && (
+            <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-8 animate-reveal-up">
+               <h3 className="text-lg font-bold font-serif">Checkout & Enrollment Links</h3>
+               <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Self-Paced Enrollment URL</label>
+                    <input 
+                      value={settings.checkoutUrls?.selfPaced || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: {...(settings.checkoutUrls || {selfPaced: '', mastery: '', elite: ''}), selfPaced: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Mastery Enrollment URL</label>
+                    <input 
+                      value={settings.checkoutUrls?.mastery || ''}
+                      onChange={e => setSettings({...settings, checkoutUrls: {...(settings.checkoutUrls || {selfPaced: '', mastery: '', elite: ''}), mastery: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                    />
+                  </div>
+               </div>
+            </div>
+          )}
+
+          {activeTab === 'seo' && (
+            <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-8 animate-reveal-up">
+               <h3 className="text-lg font-bold font-serif">SEO & Indexing Controls</h3>
+               <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Global Meta Description</label>
+                    <textarea 
+                      rows={4}
+                      value={settings.metaDescription}
+                      onChange={e => setSettings({...settings, metaDescription: e.target.value})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Google Analytics ID (G-XXXXXX)</label>
+                    <input 
+                      value={settings.googleAnalyticsId || ''}
+                      onChange={e => setSettings({...settings, googleAnalyticsId: e.target.value})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Default OG Image URL</label>
+                    <input 
+                      value={settings.seo.ogImage || ''}
+                      onChange={e => setSettings({...settings, seo: {...settings.seo, ogImage: e.target.value}})}
                       className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
                     />
                   </div>
@@ -267,6 +389,20 @@ const SettingsManager = () => {
                  <div className="h-20 w-full bg-white/5 rounded-xl"></div>
               </div>
            </div>
+
+           {activeTab === 'social' && (
+             <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
+                <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue mb-4">Footer Links Preview</h4>
+                <div className="flex items-center space-x-4 text-slate-400">
+                   {settings.social.facebook && <Facebook size={18} />}
+                   {settings.social.twitter && <Twitter size={18} />}
+                   {settings.social.linkedin && <Linkedin size={18} />}
+                   {settings.social.instagram && <Instagram size={18} />}
+                   {settings.social.youtube && <Youtube size={18} className="text-red-500" />}
+                </div>
+                <p className="text-[10px] mt-4 text-text-muted font-medium italic">YouTube link will display with the distinct brand accent.</p>
+             </div>
+           )}
         </div>
       </div>
     </div>
