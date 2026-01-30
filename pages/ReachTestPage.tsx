@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -122,20 +123,20 @@ const ReachTestPage = () => {
               
               {/* Vector Arrows */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 animate-bounce flex flex-col items-center">
-                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest mb-2">OVER</p>
+                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-[1em] mb-2">OVER</p>
                 <MoveDown size={40} className="text-authority-blue dark:text-signal-gold opacity-50" />
               </div>
               <div className="absolute right-0 top-1/2 translate-x-4 -translate-y-1/2 flex items-center">
                 <MoveLeft size={40} className="text-authority-blue dark:text-signal-gold opacity-50" />
-                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest ml-2">AROUND</p>
+                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-[1em] ml-2">AROUND</p>
               </div>
               <div className="absolute left-0 top-1/2 -translate-x-4 -translate-y-1/2 flex items-center">
-                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest mr-2">THROUGH</p>
+                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-[1em] mr-2">THROUGH</p>
                 <MoveRight size={40} className="text-authority-blue dark:text-signal-gold opacity-50" />
               </div>
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-4 flex flex-col items-center">
                 <MoveUp size={40} className="text-authority-blue dark:text-signal-gold opacity-50" />
-                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest mt-2">UNDER</p>
+                <p className="text-[10px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-[1em] mt-2">UNDER</p>
               </div>
               
               {/* Pulsing Circles */}
@@ -228,7 +229,7 @@ const ReachTestPage = () => {
                       {v.icon}
                     </div>
                     <div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">{v.label}</span>
+                      <span className="text-[10px] font-black uppercase tracking-[1em] text-authority-blue dark:text-signal-gold drop-shadow-sm">{v.label}</span>
                       <h4 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight mt-1 mb-2">{v.title}</h4>
                       <p className="text-base text-slate-500 font-medium leading-relaxed mb-3">{v.desc}</p>
                       

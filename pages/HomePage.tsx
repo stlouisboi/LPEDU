@@ -43,7 +43,13 @@ import {
   ClipboardList,
   Target,
   FileSearch,
-  Cpu
+  Cpu,
+  Trophy,
+  History,
+  XCircle,
+  AlertOctagon,
+  FileText,
+  MapPin
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -78,6 +84,37 @@ const HomePage: React.FC = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const getImpactData = (impact: string) => {
+    const terminal = ["Revocation", "Termination", "Suspension", "Audit Failure"];
+    const critical = ["OOS Event", "Downgrade", "Negligence", "Blacklist", "Legal Default"];
+    
+    if (terminal.includes(impact)) {
+      return {
+        color: "text-red-600 dark:text-red-400",
+        bg: "bg-red-50 dark:bg-red-950/40",
+        border: "border-red-100 dark:border-red-900/30",
+        icon: <Skull size={14} className="animate-pulse" />,
+        label: "TERMINAL"
+      };
+    }
+    if (critical.includes(impact)) {
+      return {
+        color: "text-orange-600 dark:text-orange-400",
+        bg: "bg-orange-50 dark:bg-orange-950/40",
+        border: "border-orange-100 dark:border-border-dark",
+        icon: <AlertOctagon size={14} />,
+        label: "CRITICAL"
+      };
+    }
+    return {
+      color: "text-amber-600 dark:text-amber-400",
+      bg: "bg-amber-50 dark:bg-amber-950/40",
+      border: "border-amber-100 dark:border-amber-900/30",
+      icon: <AlertCircle size={14} />,
+      label: "HIGH RISK"
+    };
   };
 
   const deadlySinsCategories = [
@@ -125,21 +162,33 @@ const HomePage: React.FC = () => {
       focus: "Structural Fortress",
       d: "Establish a legal foundation designed to withstand federal scrutiny and separate personal assets from liability.", 
       icon: <Briefcase />,
-      link: "/learning-path"
+      link: "/learning-path",
+      secondaryLink: "/clarification",
+      accent: "border-authority-blue",
+      bgHover: "hover:bg-authority-blue/5",
+      iconColor: "text-authority-blue"
     },
     { 
       t: "Insurance Continuity", 
       focus: "Premium Stability",
       d: "Eliminate the “30-Day Trap.” Install the documentation processes underwriters require to maintain coverage.", 
       icon: <Shield />,
-      link: "/clarification"
+      link: "/clarification",
+      secondaryLink: "/learning-path",
+      accent: "border-signal-gold",
+      bgHover: "hover:bg-signal-gold/5",
+      iconColor: "text-signal-gold"
     },
     { 
       t: "Compliance Backbone", 
       focus: "16-Exposure Defense",
       d: "Replace guesswork with documented compliance. Install the Exposure-vs-Refuge framework for DQ files.", 
       icon: <Layers />,
-      link: "/readiness"
+      link: "/readiness",
+      secondaryLink: "/resources",
+      accent: "border-steel-blue",
+      bgHover: "hover:bg-steel-blue/5",
+      iconColor: "text-steel-blue"
     },
     { 
       t: "Cash-Flow Oxygen", 
@@ -147,7 +196,11 @@ const HomePage: React.FC = () => {
       d: "Eliminate revenue blindness. Use the TCO framework to identify real break-even thresholds and profit.", 
       icon: <Calculator />,
       link: "/tools/tco-calculator",
-      isTool: true
+      secondaryLink: "/readiness",
+      isTool: true,
+      accent: "border-emerald-600",
+      bgHover: "hover:bg-emerald-600/5",
+      iconColor: "text-emerald-600"
     }
   ];
 
@@ -155,63 +208,63 @@ const HomePage: React.FC = () => {
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-primary-light dark:bg-primary-dark font-sans text-authority-blue leading-relaxed">
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[70vh] lg:min-h-[95vh] flex items-center w-full bg-authority-blue overflow-hidden py-24 lg:py-40">
+      <section className="relative min-h-[70vh] lg:min-h-screen flex items-center w-full bg-authority-blue overflow-hidden py-24 lg:py-56">
         <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]"></div>
         
         <div className="max-w-7xl mx-auto px-5 sm:px-10 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-            <div className="lg:col-span-7 text-center lg:text-left space-y-10 lg:space-y-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            <div className="lg:col-span-7 text-center lg:text-left space-y-12 lg:space-y-16">
               <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white shadow-xl animate-reveal-up mx-auto lg:mx-0">
                 <span className="flex h-2 w-2 rounded-full bg-signal-gold animate-pulse"></span>
                 <span>Institutional FMCSA Standard LP-2026</span>
               </div>
               
-              <h1 id="hero-heading" className="text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] font-black tracking-tight sm:tracking-tighter text-white leading-[1] sm:leading-[0.9] font-serif uppercase drop-shadow-sm animate-reveal-up">
+              <h1 id="hero-heading" className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-black tracking-tight sm:tracking-tighter text-white leading-[1] sm:leading-[0.85] font-serif uppercase drop-shadow-sm animate-reveal-up">
                 Protect Your <br className="hidden sm:block"/><span className="text-signal-gold italic">Authority</span> <br className="hidden sm:block"/>Before Mistakes <br className="hidden sm:block"/>Cost You.
               </h1>
               
-              <div className="text-base sm:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-bold space-y-8 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
-                <p>Establishing the systems required so paperwork, insurance, and federal audits do not shut your carrier down.</p>
-                <div className="pt-2 border-l-2 border-signal-gold/40 pl-6">
-                    <p className="text-sm sm:text-base font-bold text-white/70 italic leading-relaxed">
+              <div className="animate-reveal-up max-w-2xl mx-auto lg:mx-0 space-y-8" style={{ animationDelay: '0.1s' }}>
+                <div className="pt-2 border-l-4 border-signal-gold pl-8">
+                    <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-relaxed">
                       First-time interstate owner-operators in the initial 90-day authority window — a narrow season of instruction, preparation, and stewardship that determines whether the work will endure when inevitable pressure arrives.
                     </p>
                 </div>
+                <p className="text-sm sm:text-base font-black uppercase tracking-[0.3em] text-white/50">Establishment of order precedes the pursuit of momentum.</p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center lg:justify-start pt-4 animate-reveal-up" style={{ animationDelay: '0.2s' }}>
-                <Link to="/pricing" className="w-full sm:w-auto bg-white text-authority-blue px-10 py-6 rounded-2xl font-black text-xs hover:bg-signal-gold hover:text-white transition-all flex items-center justify-center active:scale-95 uppercase tracking-[0.2em] shadow-xl border-b-4 border-slate-200">
+              <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-6 animate-reveal-up" style={{ animationDelay: '0.2s' }}>
+                <Link to="/pricing" className="w-full sm:w-auto bg-white text-authority-blue px-12 py-7 rounded-2xl font-black text-xs hover:bg-signal-gold hover:text-white transition-all flex items-center justify-center active:scale-95 uppercase tracking-[0.2em] shadow-2xl border-b-4 border-slate-200">
                   Admission Protocol
                   <ArrowRight className="ml-3 w-4 h-4" />
                 </Link>
-                <Link to="/learning-path" className="w-full sm:w-auto bg-transparent border-2 border-white/30 text-white hover:border-white px-10 py-6 rounded-2xl font-black text-xs transition-all flex items-center justify-center uppercase tracking-[0.2em] backdrop-blur-sm">
+                <Link to="/learning-path" className="w-full sm:w-auto bg-transparent border-2 border-white/30 text-white hover:border-white px-12 py-7 rounded-2xl font-black text-xs transition-all flex items-center justify-center uppercase tracking-[0.2em] backdrop-blur-sm">
                   Reference Roadmap
                 </Link>
               </div>
             </div>
             
             <div className="lg:col-span-5 relative animate-reveal-up w-full max-w-lg mx-auto" style={{ animationDelay: '0.3s' }}>
-              <div className="relative bg-white dark:bg-surface-dark p-8 sm:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-t-4 border-signal-gold shadow-2xl">
-                <div className="absolute top-8 right-8 text-authority-blue dark:text-signal-gold opacity-10" aria-hidden="true">
-                  <ShieldAlert size={40} />
+              <div className="relative bg-white dark:bg-surface-dark p-8 sm:p-14 rounded-[3rem] md:rounded-[4rem] border-t-4 border-signal-gold shadow-2xl">
+                <div className="absolute top-10 right-10 text-authority-blue dark:text-signal-gold opacity-10" aria-hidden="true">
+                  <ShieldAlert size={48} />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-authority-blue dark:text-white uppercase tracking-tighter mb-2 leading-none font-serif">
-                  Analyze <br/><span className="text-signal-gold italic">Risk Profile™</span>
+                <h2 className="text-2xl sm:text-4xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-2 leading-[1.1] font-serif">
+                  Free <br/><span className="text-signal-gold italic">90-Day</span> <br/>Risk Map™
                 </h2>
-                <p className="text-[10px] text-text-muted dark:text-text-dark-muted mb-8 font-black uppercase tracking-[0.3em] leading-relaxed">
+                <p className="text-[10px] text-text-muted dark:text-text-dark-muted mb-10 font-black uppercase tracking-[0.3em] leading-relaxed">
                   Identification & Diagnostic
                 </p>
-                <form onSubmit={handleLeadSubmit} className="space-y-5">
+                <form onSubmit={handleLeadSubmit} className="space-y-6">
                   <div className="space-y-2">
                     <label htmlFor="hero-name" className="block text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 ml-4">Legal Name</label>
-                    <input id="hero-name" type="text" required placeholder="Jane Doe" className="w-full px-5 py-4 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-xl outline-none font-black text-base text-text-primary dark:text-white focus:border-authority-blue" value={formData.firstName} onChange={(e) => setFormData({...formData, firstName: e.target.value})} />
+                    <input id="hero-name" type="text" required placeholder="Jane Doe" className="w-full px-6 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-2xl outline-none font-black text-base text-text-primary dark:text-white focus:border-authority-blue shadow-inner" value={formData.firstName} onChange={(e) => setFormData({...formData, firstName: e.target.value})} />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="hero-email" className="block text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 ml-4">Registry Email</label>
-                    <input id="hero-email" type="email" required placeholder="jane@carrier.com" className="w-full px-5 py-4 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-xl outline-none font-black text-base text-text-primary dark:text-white focus:border-authority-blue" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                    <input id="hero-email" type="email" required placeholder="jane@carrier.com" className="w-full px-6 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-2xl outline-none font-black text-base text-text-primary dark:text-white focus:border-authority-blue shadow-inner" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                   </div>
-                  <button type="submit" className="w-full bg-authority-blue text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] shadow-xl hover:bg-steel-blue transition-all active:scale-[0.98] border-b-4 border-slate-900">
-                    Generate Diagnostic Results
+                  <button type="submit" className="w-full bg-authority-blue text-white py-6 rounded-[1.5rem] font-black uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-steel-blue transition-all active:scale-[0.98] border-b-4 border-slate-900 mt-4">
+                    View My Risk Map
                   </button>
                   <p className="text-[9px] text-center text-slate-300 uppercase tracking-widest font-bold">Registry Uplink Active</p>
                 </form>
@@ -221,7 +274,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. WHAT LAUNCHPATH IS */}
+      {/* 2. OPERATING DEFINITION */}
       <section className="py-32 lg:py-64 bg-white dark:bg-primary-dark">
         <div className="max-w-6xl mx-auto px-6 text-center">
             <h2 className="text-[10px] font-black uppercase tracking-[0.6em] text-authority-blue dark:text-signal-gold mb-16 sm:mb-20">The Operating Definition</h2>
@@ -238,20 +291,15 @@ const HomePage: React.FC = () => {
                     ].map((item, i) => (
                         <div key={i} className="space-y-4 sm:space-y-6">
                             <h3 className="text-xl sm:text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight">{item.t}</h3>
-                            <p className="text-base sm:text-lg text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed">{item.d}</p>
+                            <p className="text-lg sm:text-xl text-slate-600 dark:text-text-dark-muted font-extrabold leading-relaxed">{item.d}</p>
                         </div>
                     ))}
-                </div>
-                <div className="pt-16 sm:pt-24">
-                    <p className="text-xl sm:text-2xl lg:text-3xl text-slate-800 dark:text-white font-bold leading-relaxed max-w-3xl mx-auto italic">
-                        "We help you build the paperwork, systems, and habits that keep your authority alive."
-                    </p>
                 </div>
             </div>
         </div>
       </section>
 
-      {/* 3. STRUCTURE BEATS MEMORY - REFACTORED TO PILLARS CARDS */}
+      {/* 3. STRUCTURE BEATS MEMORY */}
       <section className="py-32 lg:py-64 bg-slate-50 dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark overflow-hidden relative">
         <div className="absolute inset-0 z-0 opacity-[0.01] pointer-events-none" aria-hidden="true">
            <Server size={1200} className="text-authority-blue absolute -left-1/4 top-0" />
@@ -267,28 +315,69 @@ const HomePage: React.FC = () => {
                     STRUCTURE BEATS <br className="hidden sm:block"/><span className="text-signal-gold italic underline decoration-signal-gold/20 decoration-[8px] sm:decoration-[16px] underline-offset-[12px] sm:underline-offset-[20px]">MEMORY.</span>
                 </h2>
                 <div className="space-y-6 pt-6">
-                    <p className="text-xl sm:text-3xl lg:text-4xl text-slate-700 dark:text-slate-300 font-bold leading-relaxed">
+                    <p className="text-xl sm:text-3xl lg:text-4xl text-slate-700 dark:text-slate-300 font-black leading-relaxed">
                         You shouldn’t have to remember everything to stay compliant. 
                     </p>
-                    <p className="text-base sm:text-lg lg:text-xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-3xl mx-auto">
-                        DOT, insurance companies, and auditors don’t care how busy you are—they care whether the paperwork is complete. When the system is solid, audits stop being emergencies.
+                    <p className="text-lg sm:text-xl lg:text-2xl text-slate-500 dark:text-slate-400 font-extrabold leading-relaxed max-w-3xl mx-auto">
+                        DOT, insurance companies, and auditors don’t care how busy you are—they care whether the paperwork is complete.
                     </p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
                 {pillars.map((pillar, i) => (
-                  <div key={i} className="bg-white dark:bg-surface-dark p-8 sm:p-12 rounded-[3rem] md:rounded-[4rem] border-2 border-slate-50 dark:border-border-dark shadow-xl hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] hover:translate-y-[-12px] transition-all duration-700 flex flex-col h-full group animate-reveal-up" style={{ animationDelay: `${i * 0.1}s` }}>
-                    <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-slate-50 dark:bg-gray-800 rounded-2xl md:rounded-[2.5rem] flex items-center justify-center mb-10 lg:mb-12 text-authority-blue dark:text-signal-gold group-hover:scale-110 group-hover:rotate-6 transition-all shadow-inner">
-                      {React.cloneElement(pillar.icon as React.ReactElement, { size: 40 })}
+                  <div 
+                    key={i} 
+                    className={`group bg-white dark:bg-surface-dark p-8 sm:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-t-[8px] ${pillar.accent} shadow-md hover:shadow-[0_40px_80px_-20px_rgba(30,58,95,0.15)] hover:-translate-y-4 transition-all duration-700 flex flex-col h-full relative overflow-hidden animate-reveal-up ${pillar.bgHover}`} 
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    <div className="absolute -top-4 -right-2 text-[10rem] font-black text-slate-50 dark:text-slate-800/10 pointer-events-none transition-colors group-hover:text-authority-blue/5 leading-none">
+                      {i + 1}
                     </div>
-                    <h3 className="text-2xl lg:text-3xl font-black uppercase font-serif text-authority-blue dark:text-white mb-2 leading-tight tracking-tight">{pillar.t}</h3>
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold mb-8 leading-none">{pillar.focus}</p>
-                    <p className="text-sm sm:text-base lg:text-lg font-bold leading-relaxed mb-10 flex-grow text-slate-500 dark:text-slate-400">{pillar.d}</p>
-                    <Link to={pillar.link} className={`flex items-center justify-between w-full p-6 lg:p-7 rounded-2xl sm:rounded-[2.5rem] text-[10px] font-black uppercase tracking-[0.3em] transition-all active:scale-95 ${pillar.isTool ? 'bg-signal-gold text-authority-blue shadow-lg border-b-4 border-amber-600' : 'bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold hover:bg-authority-blue hover:text-white border border-slate-100 dark:border-slate-700'}`}>
-                      <span>{pillar.isTool ? 'Initiate Engine' : 'View Module'}</span>
-                      <ArrowRight size={16} />
-                    </Link>
+
+                    <div className={`w-16 h-16 md:w-20 md:h-20 bg-slate-50 dark:bg-gray-800 rounded-2xl md:rounded-[2rem] flex items-center justify-center mb-10 lg:mb-12 ${pillar.iconColor} group-hover:scale-110 group-hover:rotate-6 transition-all shadow-inner relative z-10`}>
+                      {React.cloneElement(pillar.icon as React.ReactElement, { size: 36 })}
+                    </div>
+                    
+                    <div className="relative z-10 space-y-4 mb-8">
+                      <h3 className={`text-2xl lg:text-3xl font-black uppercase font-serif ${pillar.iconColor} dark:text-white leading-tight tracking-tight transition-colors`}>
+                        {pillar.t}
+                      </h3>
+                      <p className={`text-[13px] font-black uppercase tracking-[0.3em] flex items-center ${pillar.iconColor} opacity-90`}>
+                        <span className={`w-5 h-[2px] bg-current mr-2`}></span>
+                        {pillar.focus}
+                      </p>
+                    </div>
+
+                    <p className="text-lg sm:text-xl font-extrabold leading-relaxed mb-10 flex-grow text-slate-600 dark:text-slate-300 relative z-10">
+                      {pillar.d}
+                    </p>
+
+                    <div className="mt-auto space-y-6 relative z-10">
+                      <Link 
+                        to={pillar.link} 
+                        className={`group/btn flex items-center justify-between w-full p-6 lg:p-7 rounded-2xl sm:rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.4em] transition-all active:scale-95 shadow-xl hover:shadow-2xl border-b-8 ${
+                          pillar.isTool 
+                          ? 'bg-signal-gold text-authority-blue border-amber-600 hover:bg-white' 
+                          : 'bg-authority-blue text-white border-slate-900 hover:bg-steel-blue'
+                        }`}
+                      >
+                        <div className="flex items-center">
+                          {pillar.isTool ? <Cpu size={16} className="mr-3" /> : <MapPin size={16} className="mr-3" />}
+                          <span>{pillar.isTool ? 'Initiate Engine' : 'Implementation Map'}</span>
+                        </div>
+                        <ChevronRight size={18} className="group/btn:translate-x-2 transition-transform" />
+                      </Link>
+
+                      <Link 
+                        to={pillar.secondaryLink} 
+                        className="flex items-center justify-center space-x-2 w-full py-4 text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-authority-blue dark:hover:text-signal-gold transition-colors group/sec"
+                      >
+                        <FileText size={14} className="opacity-40 group-hover/sec:opacity-100" />
+                        <span>Technical Brief</span>
+                        <ArrowRight size={12} className="opacity-0 group-hover/sec:opacity-100 group-hover/sec:translate-x-1 transition-all" />
+                      </Link>
+                    </div>
                   </div>
                 ))}
             </div>
@@ -326,13 +415,10 @@ const HomePage: React.FC = () => {
               <div className="space-y-8 sm:space-y-12 max-w-xl mx-auto lg:mx-0">
                 <div className="flex space-x-6 sm:space-x-10 items-start text-left">
                    <div className="w-2 h-20 sm:h-32 bg-logo-red rounded-full shrink-0" aria-hidden="true"></div>
-                   <p className="text-xl sm:text-3xl lg:text-4xl font-black leading-tight text-white/90">
+                   <p className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight text-white/90">
                      The first 90 days are the most dangerous. Not because of driving—but because of paperwork gaps.
                    </p>
                 </div>
-                <p className="text-base sm:text-lg lg:text-xl text-slate-400 font-medium leading-relaxed border-l border-white/10 pl-6 sm:pl-10 ml-1 text-left">
-                  Regulators analyze carrier data for specific administrative gaps. Gaps trigger audits, insurance cancellations, and shutdowns. LaunchPath helps you see those risks before they turn into violations.
-                </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 text-left">
@@ -344,7 +430,7 @@ const HomePage: React.FC = () => {
                 ].map((risk, idx) => (
                     <div key={idx} className="flex items-center space-x-5 p-5 bg-white/5 rounded-2xl border border-white/10">
                         <div className="w-2 h-2 rounded-full bg-logo-red"></div>
-                        <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-white/70">{risk}</span>
+                        <span className="text-[11px] sm:text-[12px] font-extrabold uppercase tracking-widest text-white/90">{risk}</span>
                     </div>
                 ))}
               </div>
@@ -373,27 +459,14 @@ const HomePage: React.FC = () => {
                          <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white dark:bg-gray-700 border border-slate-100 dark:border-slate-600 rounded-xl sm:rounded-2xl flex items-center justify-center text-authority-blue dark:text-signal-gold shadow-inner shrink-0">
                            <ShieldCheck size={24} />
                          </div>
-                         <span className="text-xs sm:text-base lg:text-lg font-black uppercase tracking-[0.1em] sm:tracking-[0.15em] text-authority-blue dark:text-white leading-tight text-left">
+                         <span className="text-sm sm:text-lg lg:text-xl font-extrabold uppercase tracking-tight text-authority-blue dark:text-white leading-tight text-left">
                            {text}
                          </span>
                       </div>
                     ))}
                   </div>
-
-                  <div className="pt-10 sm:pt-12 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between gap-6 sm:items-end opacity-60">
-                     <div className="flex items-center justify-center sm:justify-start space-x-4">
-                        <div className="p-3 bg-slate-100 dark:bg-white/5 rounded-xl">
-                           <Lock size={18} className="text-slate-500 dark:text-text-dark-muted" />
-                        </div>
-                        <span className="block text-[9px] font-black uppercase tracking-[0.5em] text-slate-500 dark:text-text-dark-muted leading-none">Protocol Active</span>
-                     </div>
-                     <div className="text-center sm:text-right">
-                        <span className="block text-[9px] font-black text-slate-500 dark:text-text-dark-muted tracking-[0.3em]">ADMIN_V_LAWRENCE</span>
-                     </div>
-                  </div>
                </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -410,14 +483,6 @@ const HomePage: React.FC = () => {
             <h2 id="sins-heading" className="text-5xl sm:text-7xl lg:text-[8rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight sm:tracking-tighter leading-[1] sm:leading-[0.85] animate-reveal-up">
               The 16 <br/><span className="text-red-600 italic underline decoration-red-600/20 decoration-[8px] sm:decoration-[20px] underline-offset-[16px] sm:underline-offset-[28px]">Deadly Sins.</span>
             </h2>
-            <div className="max-w-4xl space-y-6 animate-reveal-up pt-12">
-                <p className="text-xl sm:text-3xl lg:text-4xl text-slate-500 dark:text-text-dark-muted font-bold leading-relaxed max-w-3xl mx-auto">
-                These specific administrative gaps trigger 85% of New Entrant Audit failures. Most shutdowns happen because small mistakes pile up.
-                </p>
-                <p className="text-[11px] text-red-600 font-black uppercase tracking-[0.4em] sm:tracking-[0.5em] italic leading-relaxed px-6 pt-6">
-                “Only simpletons believe everything they’re told… The wise are cautious and avoid danger.” — Proverbs 14:15–16
-                </p>
-            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-24">
@@ -431,44 +496,47 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                  {category.sins.map((sin, sinIdx) => (
-                    <div key={sinIdx} className="group relative bg-white dark:bg-surface-dark p-8 rounded-3xl md:rounded-[3.5rem] border border-slate-200 dark:border-border-dark shadow-sm hover:shadow-xl transition-all duration-700 flex flex-col justify-between overflow-hidden min-h-[160px] sm:min-h-[180px]">
-                      <span className="absolute -top-4 -right-4 text-6xl sm:text-8xl font-black text-slate-50 dark:text-slate-800/10 pointer-events-none transition-colors duration-700">
-                        {sin.id}
-                      </span>
+                  {category.sins.map((sin, sinIdx) => {
+                    const impactData = getImpactData(sin.impact);
+                    return (
+                      <div key={sinIdx} className={`group relative bg-white dark:bg-surface-dark p-8 rounded-3xl md:rounded-[3.5rem] border border-slate-200 dark:border-border-dark shadow-sm hover:shadow-xl transition-all duration-700 flex flex-col justify-between overflow-hidden min-h-[180px] sm:min-h-[220px]`}>
+                        <span className={`absolute -top-4 -right-4 text-6xl sm:text-8xl font-black ${impactData.color} opacity-5 group-hover:opacity-10 pointer-events-none transition-all duration-700`}>
+                          {sin.id}
+                        </span>
 
-                      <div className="relative z-10 space-y-4 sm:space-y-6">
-                        <p className="text-lg sm:text-xl lg:text-2xl font-black text-slate-800 dark:text-white leading-tight uppercase tracking-tight">
-                          {sin.text}
-                        </p>
-                        <div className="inline-flex items-center space-x-3 px-4 py-2 bg-red-50 dark:bg-red-950/40 rounded-xl border border-red-100 dark:border-red-900/30">
-                           <Zap size={14} className="text-red-600 dark:text-red-400" />
-                           <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.15em] text-red-700 dark:text-red-300">
-                             Impact: {sin.impact}
-                           </span>
+                        <div className="relative z-10 space-y-4">
+                          <p className="text-lg sm:text-xl lg:text-2xl font-black text-slate-800 dark:text-white leading-tight uppercase tracking-tight group-hover:text-authority-blue transition-colors">
+                            {sin.text}
+                          </p>
                         </div>
-                      </div>
 
-                      <div className="absolute left-0 top-0 h-full w-1.5 bg-slate-100 dark:bg-gray-800 group-hover:bg-red-600 transition-colors duration-700"></div>
-                    </div>
-                  ))}
+                        <div className={`relative z-10 mt-6 pt-4 border-t border-slate-50 dark:border-white/5`}>
+                          <div className={`inline-flex items-center space-x-3 px-5 py-2.5 rounded-2xl border ${impactData.bg} ${impactData.color} ${impactData.border} shadow-sm group-hover:scale-105 transition-transform duration-500`}>
+                             {impactData.icon}
+                             <div className="flex flex-col">
+                               <span className="text-[9px] font-black uppercase tracking-[0.2em] opacity-80 leading-none mb-1">
+                                 {impactData.label}
+                               </span>
+                               <span className="text-[11px] sm:text-[12px] font-black uppercase tracking-[0.1em] leading-none">
+                                 {sin.impact}
+                               </span>
+                             </div>
+                          </div>
+                        </div>
+
+                        <div className={`absolute left-0 top-0 h-full w-2 bg-slate-100 dark:bg-gray-800 group-hover:w-3 transition-all duration-700 ${sin.impact === 'Revocation' || sin.impact === 'Audit Failure' ? 'group-hover:bg-red-600' : 'group-hover:bg-orange-500'}`}></div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-24 sm:mt-40 p-10 sm:p-20 bg-authority-blue rounded-[4rem] sm:rounded-[6rem] text-center relative overflow-hidden shadow-2xl animate-reveal-up mx-auto max-w-6xl">
-             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
-             <p className="relative z-10 text-white text-lg sm:text-xl font-black uppercase tracking-[0.4em] sm:tracking-[0.6em] mb-8 leading-none">Registry Analysis Guideline</p>
-             <p className="relative z-10 text-white/80 max-w-4xl mx-auto text-base sm:text-xl lg:text-2xl font-medium leading-relaxed italic border-l-8 border-signal-gold pl-8 sm:pl-16 text-left sm:text-center">
-               "The FMCSA does not grade on a curve. Each of these 16 items represents a critical system component. Fixes happen inside the system — identification is the first step toward stewardship."
-             </p>
           </div>
         </div>
       </section>
 
       {/* 6. THE REACH TEST */}
-      <section className="py-32 lg:py-64 bg-[#F8FAFC] dark:bg-primary-dark border-t border-slate-100 dark:border-border-dark">
+      <section className="py-32 lg:py-64 bg-[#F8FAFC] dark:bg-primary-dark border-t border-slate-100 dark:border-border-dark overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 sm:px-10">
           <div className="text-center mb-24 sm:mb-32 space-y-10 sm:space-y-16 animate-reveal-up">
             <div className="flex items-center justify-center space-x-6 sm:space-x-12">
@@ -480,30 +548,36 @@ const HomePage: React.FC = () => {
             <h2 className="text-5xl sm:text-7xl lg:text-[10rem] font-black font-serif text-authority-blue dark:text-white tracking-tight sm:tracking-tighter uppercase leading-[1] sm:leading-[0.8]">
               THE <span className="text-signal-gold italic border-b-[8px] sm:border-b-[24px] border-signal-gold/30 rounded-full px-4 sm:px-8 pb-2">REACH</span> TEST™
             </h2>
-            
-            <div className="max-w-4xl mx-auto space-y-8 sm:space-y-12">
-                <p className="text-2xl sm:text-4xl lg:text-5xl text-slate-800 dark:text-text-dark-primary font-black italic tracking-tight leading-relaxed px-6">
-                "A readiness check to see if your business can survive audits, insurance reviews, and real-world pressure."
-                </p>
-                <p className="text-lg sm:text-xl lg:text-2xl text-slate-500 font-medium leading-relaxed px-6 max-w-3xl mx-auto">Before you file authority or start running loads, we help you answer one question: <br className="hidden sm:block"/><span className="text-authority-blue dark:text-white font-bold underline decoration-signal-gold/30 underline-offset-8">Is the system ready — or am I guessing?</span></p>
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16">
             {[
-                { l: "OVER", t: "Regulatory Scrutiny", d: "Identifying paperwork gaps that lead to automatic audit failure.", i: <MoveDown /> },
-                { l: "AROUND", t: "Insurance Lapses", d: "Spotting administrative shortcuts that trigger non-renewals.", i: <MoveRight /> },
-                { l: "THROUGH", t: "System Inconsistency", d: "Finding data conflicts that signal a loss of safety control.", i: <MoveLeft /> },
-                { l: "UNDER", t: "Financial Collapse", d: "Calculating break-even points to ensure fiscal survival.", i: <MoveUp /> }
+                { l: "OVER", t: "Regulatory Scrutiny", d: "Identifying paperwork gaps that lead to automatic audit failure.", i: <MoveDown />, anim: "group-hover:translate-y-4" },
+                { l: "AROUND", t: "Insurance Lapses", d: "Spotting administrative shortcuts that trigger non-renewals.", i: <MoveRight />, anim: "group-hover:translate-x-4" },
+                { l: "THROUGH", t: "System Inconsistency", d: "Finding data conflicts that signal a loss of safety control.", i: <MoveLeft />, anim: "group-hover:-translate-x-4" },
+                { l: "UNDER", t: "Financial Collapse", d: "Calculating break-even points to ensure fiscal survival.", i: <MoveUp />, anim: "group-hover:-translate-y-4" }
             ].map((test, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-10 sm:p-16 rounded-[3.5rem] md:rounded-[5rem] shadow-sm border border-slate-100 dark:border-border-dark hover:shadow-2xl hover:translate-y-[-12px] transition-all duration-700 group flex items-start space-x-10 sm:space-x-16 animate-reveal-up" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="bg-slate-50 dark:bg-gray-800 p-8 sm:p-12 rounded-2xl sm:rounded-[3rem] group-hover:bg-authority-blue group-hover:text-white transition-all duration-500 shrink-0 shadow-inner">
-                  {React.cloneElement(test.i as React.ReactElement, { size: 40, className: 'text-signal-gold group-hover:text-white transition-colors' })}
+              <div key={i} className="bg-white dark:bg-surface-dark p-10 sm:p-16 rounded-[3.5rem] md:rounded-[5rem] shadow-sm border border-slate-100 dark:border-border-dark hover:shadow-[0_80px_100px_-50px_rgba(30,58,95,0.2)] hover:translate-y-[-16px] transition-all duration-700 group flex items-start space-x-10 sm:space-x-16 animate-reveal-up" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="relative shrink-0">
+                  <div className="absolute inset-0 bg-signal-gold/20 rounded-full scale-0 group-hover:scale-150 group-hover:opacity-0 transition-all duration-1000"></div>
+                  
+                  <div className={`bg-slate-50 dark:bg-gray-800 p-8 sm:p-12 rounded-2xl sm:rounded-[3rem] group-hover:bg-authority-blue transition-all duration-500 shadow-inner relative z-10`}>
+                    <div className={`transition-all duration-500 ${test.anim}`}>
+                      {React.cloneElement(test.i as React.ReactElement, { 
+                        size: 40, 
+                        className: 'text-signal-gold group-hover:text-white transition-colors' 
+                      })}
+                    </div>
+                  </div>
                 </div>
+                
                 <div className="space-y-4 sm:space-y-6 text-left pt-2">
-                  <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 group-hover:text-signal-gold transition-colors leading-none">{test.l}</p>
-                  <h3 className="text-2xl sm:text-4xl font-black font-serif text-authority-blue dark:text-white tracking-tight uppercase leading-none">{test.t}</h3>
-                  <p className="text-base sm:text-lg lg:text-xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{test.d}</p>
+                  <div className="flex items-center space-x-3">
+                    <p className="text-[12px] font-black uppercase tracking-[1em] text-authority-blue dark:text-signal-gold transition-colors leading-none">{test.l}</p>
+                    <div className="h-1 flex-grow bg-slate-50 dark:bg-gray-800 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></div>
+                  </div>
+                  <h3 className="text-2xl sm:text-4xl font-black font-serif text-authority-blue dark:text-white tracking-tight uppercase leading-none group-hover:text-signal-gold transition-colors">{test.t}</h3>
+                  <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 font-extrabold leading-relaxed group-hover:text-slate-800 dark:group-hover:text-slate-100 transition-colors">{test.d}</p>
                 </div>
               </div>
             ))}
@@ -511,7 +585,10 @@ const HomePage: React.FC = () => {
           
           <div className="mt-24 sm:mt-40 text-center animate-reveal-up">
             <Link to="/readiness" className="group inline-flex items-center space-x-6 sm:space-x-8 bg-authority-blue text-white px-12 py-7 sm:px-20 sm:py-10 rounded-[2.5rem] sm:rounded-[3.5rem] font-black uppercase tracking-[0.4em] sm:tracking-[0.6em] text-[12px] sm:text-[14px] hover:bg-steel-blue transition-all shadow-2xl active:scale-95 border-b-8 border-slate-900">
-              <MousePointer2 className="group-hover:rotate-12 transition-transform" size={24} />
+              <div className="relative">
+                <MousePointer2 className="group-hover:rotate-12 transition-transform" size={24} />
+                <div className="absolute -inset-2 bg-white/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+              </div>
               <span>Analyze Risk Profile</span>
               <ChevronRight className="group-hover:translate-x-3 transition-transform" size={24} />
             </Link>
@@ -526,21 +603,7 @@ const HomePage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-40 items-center">
                 <div className="space-y-14 lg:space-y-20 animate-reveal-up text-center lg:text-left">
                     <h2 className="text-5xl sm:text-7xl lg:text-[7rem] font-black font-serif uppercase tracking-tight sm:tracking-tighter leading-none">Who This <br className="hidden sm:block"/><span className="text-signal-gold italic">Is For.</span></h2>
-                    <p className="text-xl sm:text-2xl lg:text-3xl text-white/80 font-bold leading-relaxed max-w-2xl mx-auto lg:mx-0">LaunchPath is for operators who want to run legally from the start and take audits seriously.</p>
-                    <div className="space-y-6 sm:space-y-10 text-left max-w-xl mx-auto lg:mx-0">
-                        {[
-                            "Operators who prioritize stability",
-                            "Carriers who refuse shortcuts",
-                            "Stewards who value order"
-                        ].map((text, i) => (
-                            <div key={i} className="flex items-center space-x-6 sm:space-x-8 group">
-                                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/10 rounded-2xl sm:rounded-[2.5rem] flex items-center justify-center group-hover:bg-signal-gold group-hover:text-authority-blue transition-all shrink-0">
-                                    <CheckCircle size={32} />
-                                </div>
-                                <span className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-tight leading-tight">{text}</span>
-                            </div>
-                        ))}
-                    </div>
+                    <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-extrabold leading-relaxed max-w-2xl mx-auto lg:mx-0">LaunchPath is for operators who want to run legally from the start and take audits seriously.</p>
                 </div>
                 <div className="bg-white/5 border border-white/20 p-12 sm:p-20 lg:p-24 rounded-[4rem] lg:rounded-[6rem] backdrop-blur-xl animate-reveal-up mt-16 lg:mt-0" style={{ animationDelay: '0.2s' }}>
                     <div className="text-center space-y-10 sm:space-y-16">
@@ -548,7 +611,7 @@ const HomePage: React.FC = () => {
                             <ShieldAlert size={64} className="sm:size-[80px]" />
                         </div>
                         <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black font-serif uppercase tracking-tight text-signal-gold leading-none">Not for Seekers of Shortcuts</h3>
-                        <p className="text-lg sm:text-2xl font-medium text-white/60 leading-relaxed italic px-8">"This is NOT for people looking to rush loads or bypass federal sequencing. We build on systems, not gambles."</p>
+                        <p className="text-xl sm:text-2xl font-extrabold text-white/90 leading-relaxed italic px-8">"This is NOT for people looking to rush loads or bypass federal sequencing. We build on systems, not gambles."</p>
                         <div className="h-px w-20 sm:w-32 bg-white/20 mx-auto"></div>
                         <p className="text-[10px] sm:text-[12px] font-black uppercase tracking-[0.5em] text-white/40">LaunchPath Exclusion Policy V4.0</p>
                     </div>
@@ -557,22 +620,17 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. FINAL CTA - MAXIMUM PROMINENCE */}
+      {/* 9. FINAL CTA */}
       <section className="py-40 lg:py-64 bg-[#020617] relative overflow-hidden text-center text-white border-t-[10px] sm:border-t-[24px] border-signal-gold/20">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] lg:w-[1200px] h-[600px] sm:h-[900px] lg:h-[1200px] bg-authority-blue/10 rounded-full blur-[150px] sm:blur-[300px] pointer-events-none"></div>
         
         <div className="max-w-6xl mx-auto px-6 relative z-10 space-y-16 sm:space-y-24">
           <div className="space-y-6 animate-reveal-up">
             <h2 className="text-5xl sm:text-8xl lg:text-[11rem] font-black font-serif mb-6 leading-[1] sm:leading-[0.8] tracking-tight sm:tracking-tighter uppercase">
                 Build Your <br className="sm:hidden"/><span className="text-signal-gold italic">Carrier</span> <br className="hidden sm:block"/>on Systems.
             </h2>
-            <p className="text-[10px] sm:text-[14px] font-black uppercase tracking-[0.5em] sm:tracking-[1em] text-signal-gold/60 leading-none">Transition From Operational Volatility</p>
+            <p className="text-[12px] sm:text-[16px] font-black uppercase tracking-[0.5em] sm:tracking-[1em] text-signal-gold leading-none">Transition From Operational Volatility</p>
           </div>
-
-          <p className="text-xl sm:text-3xl lg:text-4xl text-white/80 font-black mb-20 sm:mb-32 max-w-5xl mx-auto leading-tight italic px-8">
-            "You don’t need another checklist. <br className="hidden sm:block"/>You need to know whether you’re ready to operate."
-          </p>
 
           <div className="flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-16 animate-reveal-up" style={{ animationDelay: '0.2s' }}>
             <Link 
@@ -581,19 +639,6 @@ const HomePage: React.FC = () => {
             >
               Initiate Admission Protocol
             </Link>
-            <Link 
-              to="/contact" 
-              className="w-full lg:w-auto bg-transparent border-4 border-white/20 text-white px-16 py-10 md:px-24 md:py-12 lg:px-32 lg:py-16 rounded-[3rem] md:rounded-[5rem] font-black uppercase tracking-[0.5em] text-sm sm:text-lg hover:border-white hover:bg-white/5 transition-all active:scale-95 backdrop-blur-md leading-none"
-            >
-              Technical Support
-            </Link>
-          </div>
-
-          <div className="pt-24 sm:pt-40 opacity-30 px-10">
-            <p className="text-[9px] sm:text-[11px] font-black uppercase tracking-[0.8em] sm:tracking-[1.5em] mb-6">Protocol LP-FINAL-2026</p>
-            <p className="text-[10px] sm:text-[13px] font-medium italic max-w-3xl mx-auto leading-relaxed">
-              LaunchPath is an educational platform. Materials are for training purposes only and do not constitute legal, tax, or financial advice.
-            </p>
           </div>
         </div>
       </section>

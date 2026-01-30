@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { 
   Calculator, 
@@ -9,7 +10,10 @@ import {
   Sparkles, 
   Loader2, 
   Save, 
-  Printer 
+  Printer,
+  Info,
+  TrendingDown,
+  Wrench
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
@@ -58,9 +62,8 @@ const TCOCalculatorPage: React.FC = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const totals = useMemo(() => {
-    // Ensuring numeric safety and sanitizing inputs to positive values
     const totalFixed = (Object.values(fixedCosts) as number[]).reduce((a, b) => a + Math.max(0, Number(b) || 0), 0);
-    const fuelPerMile = (Math.max(0, Number(variableCosts.fuelPrice) || 0)) / (Math.max(1, Number(variableCosts.mpg) || 1));
+    const fuelPerMile = (Math.max(0, Number(variableCosts.fuelPrice) || 0)) / (Math.max(0.1, Number(variableCosts.mpg) || 1));
     const totalVarPerMile = fuelPerMile + (Number(variableCosts.maintenance) || 0) + (Number(variableCosts.tires) || 0) + (Number(variableCosts.tolls) || 0);
     
     const safeDeadhead = Math.min(99.9, Math.max(0, Number(operation.deadheadPercentage) || 0));
@@ -72,7 +75,6 @@ const TCOCalculatorPage: React.FC = () => {
     const netProfit = actualGrossRevenue - (totalFixed + totalVarCosts);
     const cpm = (totalFixed + totalVarCosts) / (Math.max(1, Number(operation.monthlyMiles) || 1));
     
-    // Safety check for break-even rate calculation
     const breakEvenRate = paidMilesFactor > 0 ? (cpm / paidMilesFactor) : 99.99;
 
     return {
@@ -146,7 +148,7 @@ const TCOCalculatorPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="bg-[#0F172A] border border-white/5 rounded-[3rem] p-10 space-y-12">
+          <div className="bg-[#0F172A] border border-white/5 rounded-[3rem] p-10 space-y-16">
             <section>
               <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8 border-b border-white/5 pb-4 flex items-center"><ShieldAlert className="mr-3" size={18} /> Fixed Structural Costs</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -163,19 +165,51 @@ const TCOCalculatorPage: React.FC = () => {
             </section>
 
             <section>
+              <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8 border-b border-white/5 pb-4 flex items-center"><Wrench className="mr-3" size={18} /> Variable Operating Costs</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Fuel Price (Avg)</label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">$</span>
+                    <input type="number" step="0.01" className="w-full bg-[#020617] border border-white/10 rounded-2xl py-4 pl-10 pr-6 text-white font-black text-lg focus:border-signal-gold outline-none" value={variableCosts.fuelPrice} onChange={(e) => setVariableCosts({...variableCosts, fuelPrice: parseFloat(e.target.value) || 0})} />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">MPG Target</label>
+                  <input type="number" step="0.1" className="w-full bg-[#020617] border border-white/10 rounded-2xl py-4 px-6 text-white font-black text-lg focus:border-signal-gold outline-none" value={variableCosts.mpg} onChange={(e) => setVariableCosts({...variableCosts, mpg: parseFloat(e.target.value) || 0})} />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Maintenance / Mi</label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">$</span>
+                    <input type="number" step="0.01" className="w-full bg-[#020617] border border-white/10 rounded-2xl py-4 pl-10 pr-6 text-white font-black text-lg focus:border-signal-gold outline-none" value={variableCosts.maintenance} onChange={(e) => setVariableCosts({...variableCosts, maintenance: parseFloat(e.target.value) || 0})} />
+                  </div>
+                  <div className="flex items-start gap-2 p-3 bg-white/5 rounded-xl">
+                    <Info size={14} className="text-signal-gold shrink-0 mt-0.5" />
+                    <p className="text-[9px] font-bold text-slate-500 uppercase leading-relaxed italic">Directly impacts total CPM. Covers wear, tier degradation, and unplanned mechanical failure reserves.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
               <h3 className="text-sm font-black uppercase tracking-[0.4em] text-signal-gold mb-8 border-b border-white/5 pb-4 flex items-center"><Target className="mr-3" size={18} /> Performance Goals</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Target Miles</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Total Monthly Miles</label>
                   <input type="number" className="w-full bg-[#020617] border border-white/10 rounded-2xl py-4 px-6 text-white font-black text-lg focus:border-signal-gold outline-none" value={operation.monthlyMiles} onChange={(e) => setOperation({...operation, monthlyMiles: parseInt(e.target.value) || 0})} />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Avg. RPM</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Gross Avg. RPM</label>
                   <input type="number" step="0.05" className="w-full bg-[#020617] border border-white/10 rounded-2xl py-4 px-6 text-white font-black text-lg focus:border-signal-gold outline-none" value={operation.ratePerMile} onChange={(e) => setOperation({...operation, ratePerMile: parseFloat(e.target.value) || 0})} />
                 </div>
                 <div className="space-y-3">
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Deadhead %</label>
                   <input type="number" className="w-full bg-[#020617] border border-white/10 rounded-2xl py-4 px-6 text-white font-black text-lg focus:border-signal-gold outline-none" value={operation.deadheadPercentage} onChange={(e) => setOperation({...operation, deadheadPercentage: parseInt(e.target.value) || 0})} />
+                  <div className="flex items-start gap-2 p-3 bg-white/5 rounded-xl border border-white/5">
+                    <TrendingDown size={14} className="text-red-400 shrink-0 mt-0.5" />
+                    <p className="text-[9px] font-bold text-slate-500 uppercase leading-relaxed italic">Miles driven unpaid. High deadhead reduces your paid revenue capacity and forces a higher break-even RPM requirement.</p>
+                  </div>
                 </div>
               </div>
             </section>
@@ -185,20 +219,30 @@ const TCOCalculatorPage: React.FC = () => {
         <div className="lg:col-span-4 space-y-10">
           <div className="bg-[#1E3A5F] rounded-[3rem] p-10 shadow-2xl relative overflow-hidden border border-white/10">
              <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12"><Sparkles size={120} /></div>
-             <h3 className="text-xl font-black font-serif uppercase text-white mb-4">Synthesis</h3>
+             <h3 className="text-xl font-black font-serif uppercase text-white mb-4">Strategic Review</h3>
              {isAnalyzing ? (
                <div className="py-12 flex flex-col items-center justify-center space-y-6 bg-black/20 rounded-[2rem]">
                  <Loader2 className="animate-spin text-signal-gold" size={40} />
-                 <p className="text-[10px] font-black uppercase tracking-widest text-white animate-pulse">Analyzing...</p>
+                 <p className="text-[10px] font-black uppercase tracking-widest text-white animate-pulse">Neural Financial Sync...</p>
                </div>
              ) : aiAnalysis ? (
                <div className="space-y-6 animate-in fade-in">
                   <div className="p-6 bg-[#020617] rounded-[2rem] border border-white/10 text-xs leading-loose text-slate-300 font-medium whitespace-pre-wrap">{aiAnalysis}</div>
-                  <button onClick={performAIAnalysis} className="w-full py-4 bg-white/10 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-white/20">Re-Analyze</button>
+                  <button onClick={performAIAnalysis} className="w-full py-4 bg-white/10 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-white/20">Refresh Analysis</button>
                </div>
              ) : (
-               <button onClick={performAIAnalysis} className="w-full bg-signal-gold text-authority-blue py-6 rounded-[2rem] font-black uppercase tracking-widest text-[11px] shadow-2xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center group"><Sparkles className="mr-3 group-hover:rotate-12 transition-transform" size={20} />Initiate Review</button>
+               <button onClick={performAIAnalysis} className="w-full bg-signal-gold text-authority-blue py-6 rounded-[2rem] font-black uppercase tracking-widest text-[11px] shadow-2xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center group"><Sparkles className="mr-3 group-hover:rotate-12 transition-transform" size={20} />Synthesize Economic Forecast</button>
              )}
+          </div>
+
+          <div className="p-10 bg-white/5 border border-white/10 rounded-[3rem] space-y-6">
+             <div className="flex items-center gap-3">
+               <Info className="text-signal-gold" size={18} />
+               <h4 className="text-[10px] font-black uppercase tracking-widest">Operating Guideline</h4>
+             </div>
+             <p className="text-xs text-slate-400 font-medium leading-relaxed italic">
+               "Revenue without an understanding of cost-per-mile is simply busy-work. Institutional carriers track these variables to maintain fiscal oxygen during market volatility."
+             </p>
           </div>
         </div>
       </div>

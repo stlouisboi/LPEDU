@@ -20,19 +20,21 @@ const ClarificationPage = () => {
       icon: <CreditCard size={20} />,
       content: (
         <div className="space-y-6">
-          <p>Insurance pricing for new authorities in 2026 is strictly risk-based and market-driven. It is critical for applicants to understand that LaunchPath does not set, negotiate, or guarantee insurance rates.</p>
-          <p>While high initial premiums can be a significant financial hurdle, they do not invalidate the LaunchPath Operating Standard. Instead, the Insurance Continuity pillar is designed to move you from a state of "Exposure" to a state of "Refuge" through specific technical disciplines:</p>
-          <ul className="space-y-4 ml-4">
+          <p className="text-lg sm:text-xl font-extrabold leading-relaxed text-slate-700 dark:text-text-dark-primary">Insurance pricing for new authorities in 2026 is strictly risk-based and market-driven. It is critical for applicants to understand that LaunchPath does not set, negotiate, or guarantee insurance rates.</p>
+          <p className="text-base sm:text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed">While high initial premiums can be a significant financial hurdle, they do not invalidate the LaunchPath Operating Standard. Instead, the Insurance Continuity pillar is designed to move you from a state of "Exposure" to a state of "Refuge" through specific technical disciplines:</p>
+          <ul className="space-y-6 ml-4">
             <li className="flex items-start">
-              <span className="font-black mr-2">Systemic Documentation:</span> Building the evidence-based files that underwriters require to verify your safety posture.
+              <span className="font-black text-authority-blue dark:text-signal-gold mr-3 shrink-0">•</span>
+              <span className="text-base sm:text-lg font-extrabold text-slate-600 dark:text-slate-300">Systemic Documentation: Building the evidence-based files that underwriters require to verify your safety posture.</span>
             </li>
             <li className="flex items-start">
-              <span className="font-black mr-2">Safety Posture Implementation:</span> Installing the "Compliance Backbone" framework to demonstrate to insurers that you are a lower-risk bet than the average new entrant.
+              <span className="font-black text-authority-blue dark:text-signal-gold mr-3 shrink-0">•</span>
+              <span className="text-base sm:text-lg font-extrabold text-slate-600 dark:text-slate-300">Safety Posture Implementation: Installing the "Compliance Backbone" framework to demonstrate to insurers that you are a lower-risk bet than the average new entrant.</span>
             </li>
           </ul>
-          <div className="mt-8 p-6 bg-slate-50 dark:bg-gray-800 rounded-2xl border-l-4 border-authority-blue">
-            <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold mb-2">The LaunchPath Stance</h4>
-            <p className="text-sm italic font-medium">We treat insurance as a fixed economic reality. If your TCO Economic Analysis indicates that your quotes make the business model non-viable, the LaunchPath Standard dictates a "Delay" in operations rather than a compromise in compliance.</p>
+          <div className="mt-8 p-8 bg-slate-50 dark:bg-gray-800 rounded-3xl border-l-8 border-authority-blue">
+            <h4 className="text-[12px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-4">The LaunchPath Stance</h4>
+            <p className="text-base sm:text-lg italic font-extrabold leading-relaxed text-slate-700 dark:text-slate-200">"We treat insurance as a fixed economic reality. If your TCO Economic Analysis indicates that your quotes make the business model non-viable, the LaunchPath Standard dictates a 'Delay' in operations rather than a compromise in compliance."</p>
           </div>
         </div>
       )
@@ -42,14 +44,16 @@ const ClarificationPage = () => {
       icon: <ShieldAlert size={20} />,
       content: (
         <div className="space-y-6">
-          <p>No. LaunchPath does not guarantee the outcome of a federal or state safety audit. The final determination of your safety rating is made solely by the FMCSA based on their independent investigation.</p>
-          <p>The 90-Day Survival System provides the infrastructure to manage your regulatory obligations, but your success depends entirely on your execution. Our Compliance Backbone focuses on:</p>
-          <ul className="space-y-4 ml-4">
+          <p className="text-lg sm:text-xl font-extrabold leading-relaxed text-slate-700 dark:text-text-dark-primary">No. LaunchPath does not guarantee the outcome of a federal or state safety audit. The final determination of your safety rating is made solely by the FMCSA based on their independent investigation.</p>
+          <p className="text-base sm:text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed">The 90-Day Survival System provides the infrastructure to manage your regulatory obligations, but your success depends entirely on your execution. Our Compliance Backbone focuses on:</p>
+          <ul className="space-y-6 ml-4">
             <li className="flex items-start">
-              <span className="font-black mr-2">The 16 Deadly Sins:</span> Cheklists needed to identify and address violations that lead to automatic failure.
+              <span className="font-black text-red-600 mr-3 shrink-0">•</span>
+              <span className="text-base sm:text-lg font-extrabold text-slate-600 dark:text-slate-300">The 16 Deadly Sins: Checklists needed to identify and address violations that lead to automatic failure.</span>
             </li>
             <li className="flex items-start">
-              <span className="font-black mr-2">Evidence of Refuge:</span> The "DQ File Factory" required to prove organizational intent to investigators.
+              <span className="font-black text-red-600 mr-3 shrink-0">•</span>
+              <span className="text-base sm:text-lg font-extrabold text-slate-600 dark:text-slate-300">Evidence of Refuge: The "DQ File Factory" required to prove organizational intent to investigators.</span>
             </li>
           </ul>
         </div>
@@ -59,20 +63,14 @@ const ClarificationPage = () => {
       q: "How long does it take for my MC number to become active?",
       icon: <Calendar size={20} />,
       content: (
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold opacity-60">The Reality</h4>
-            <p>Federal processing timelines are fixed and non-negotiable. The standard waiting period for a new Motor Carrier (MC) number is generally 21 days. This timeframe includes the mandatory 10-day public protest period and administrative processing by the FMCSA.</p>
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400">The Reality</h4>
+            <p className="text-lg sm:text-xl font-extrabold leading-relaxed text-slate-700 dark:text-text-dark-primary">Federal processing timelines are fixed and non-negotiable. The standard waiting period for a new Motor Carrier (MC) number is generally 21 days. This timeframe includes the mandatory 10-day public protest period and administrative processing by the FMCSA.</p>
           </div>
-          
-          <div className="p-5 bg-slate-50 dark:bg-gray-800 rounded-2xl border-l-4 border-authority-blue">
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-authority-blue mb-2">The LaunchPath Stance</h4>
-            <p className="text-sm font-medium italic">We do not attempt to bypass federal administrative requirements.</p>
-          </div>
-
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold opacity-60">Strategic Utilization</h4>
-            <p>Within the 90-Day Survival System, this 21-day window is intentionally utilized for Phase 2: Authority Hardening. This ensures that your "Compliance Backbone" and DQ File Factory are fully operational before your authority is granted, preventing early-stage regulatory exposure.</p>
+          <div className="p-8 bg-authority-blue text-white rounded-3xl border-l-8 border-signal-gold">
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-signal-gold mb-3">The LaunchPath Stance</h4>
+            <p className="text-base sm:text-lg font-extrabold italic leading-relaxed">"We do not attempt to bypass federal administrative requirements."</p>
           </div>
         </div>
       )
@@ -81,26 +79,20 @@ const ClarificationPage = () => {
       q: "Can I skip sections or move ahead before completing required steps?",
       icon: <Lock size={20} />,
       content: (
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold opacity-60">The Reality</h4>
-            <p className="font-bold">No. LaunchPath is an engineered Implementation Path, not a collection of elective tutorials.</p>
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400">The Requirement</h4>
+            <p className="text-lg sm:text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight">No. LaunchPath is an engineered Implementation Path, not a collection of elective tutorials.</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-            <div className="space-y-2">
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-authority-blue">Structural Integrity</h4>
-              <p className="text-sm leading-relaxed">The program is built on a Systematic Path Implementation where each milestone provides the necessary "Refuge" required to safely navigate the next phase.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="space-y-3 p-6 bg-slate-50 dark:bg-gray-800 rounded-2xl">
+              <h4 className="text-[11px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold">Structural Integrity</h4>
+              <p className="text-base font-extrabold leading-relaxed text-slate-600 dark:text-slate-300">The program is built on a Systematic Path Implementation where each milestone provides the necessary "Refuge" required to safely navigate the next phase.</p>
             </div>
-            <div className="space-y-2">
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-authority-blue">Mandatory Progression</h4>
-              <p className="text-sm leading-relaxed">Each student must pass defined Verification Points—such as the TCO Economic Analysis and Stewardship Alignment—before the next level of the standard is unlocked.</p>
+            <div className="space-y-3 p-6 bg-slate-50 dark:bg-gray-800 rounded-2xl">
+              <h4 className="text-[11px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold">Mandatory Progression</h4>
+              <p className="text-base font-extrabold leading-relaxed text-slate-600 dark:text-slate-300">Each student must pass defined Verification Points—such as the TCO Economic Analysis and Stewardship Alignment—before the next level is unlocked.</p>
             </div>
-          </div>
-
-          <div className="mt-4 p-6 bg-red-50/50 dark:bg-red-950/20 rounded-2xl border-l-4 border-red-600">
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-red-600 mb-2">Risk Prevention</h4>
-            <p className="text-sm font-medium">Skipping foundational steps introduces "Operational Instability" and "Underwriting Isolation," the very risks this standard was built to eliminate. Success in this program requires a commitment to <span className="font-black text-authority-blue dark:text-white underline decoration-signal-gold/50 decoration-2">Order and Certainty</span> over speed.</p>
           </div>
         </div>
       )
@@ -110,64 +102,30 @@ const ClarificationPage = () => {
   return (
     <div className="bg-[#fafaf9] dark:bg-primary-dark min-h-screen py-24 animate-in fade-in duration-700">
       <div className="max-w-4xl mx-auto px-6">
-        
         <div className="text-center mb-24">
-          <div className="w-16 h-16 bg-authority-blue rounded-2xl flex items-center justify-center mx-auto mb-10 shadow-xl border border-white/10">
-             <HelpCircle size={32} className="text-signal-gold" />
+          <div className="w-20 h-20 bg-authority-blue rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl border border-white/10">
+             <HelpCircle size={40} className="text-signal-gold" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">
+          <h1 className="text-4xl md:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-4">
             Institutional <span className="text-signal-gold italic">Clarifications</span>
           </h1>
-          <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500">
-            Truth over Marketing. Reality over Persuasion.
-          </p>
+          <p className="text-[12px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-600">Truth over Marketing. Reality over Persuasion.</p>
         </div>
 
         <div className="space-y-6">
           {clarifications.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <div 
-                key={idx} 
-                className={`group bg-white dark:bg-surface-dark border rounded-[2.5rem] overflow-hidden transition-all duration-500 ${
-                  isOpen 
-                  ? 'border-authority-blue shadow-2xl ring-1 ring-authority-blue/5' 
-                  : 'border-slate-100 dark:border-border-dark shadow-sm hover:border-authority-blue/20'
-                }`}
-              >
-                <button 
-                  onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between p-8 text-left focus:outline-none"
-                >
+              <div key={idx} className={`group bg-white dark:bg-surface-dark border rounded-[3rem] overflow-hidden transition-all duration-500 ${isOpen ? 'border-authority-blue shadow-2xl ring-1 ring-authority-blue/5' : 'border-slate-100 dark:border-border-dark shadow-sm hover:border-authority-blue/20'}`}>
+                <button onClick={() => setOpenIndex(isOpen ? null : idx)} className="w-full flex items-center justify-between p-10 text-left focus:outline-none">
                   <div className="flex items-center space-x-6">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 ${
-                      isOpen ? 'bg-authority-blue text-signal-gold shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'
-                    }`}>
-                      {item.icon}
-                    </div>
-                    <span className={`text-lg font-black uppercase tracking-tight transition-colors duration-300 ${
-                      isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'
-                    }`}>
-                      {item.q}
-                    </span>
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-authority-blue text-signal-gold shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'}`}>{item.icon}</div>
+                    <span className={`text-xl font-black uppercase tracking-tight transition-colors duration-300 ${isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'}`}>{item.q}</span>
                   </div>
-                  <div className={`p-2 rounded-full transition-all duration-500 ${
-                    isOpen ? 'bg-authority-blue text-white rotate-180 shadow-lg' : 'bg-slate-100 dark:bg-gray-800 text-slate-300 group-hover:bg-slate-200'
-                  }`}>
-                    <ChevronDown className="w-5 h-5" />
-                  </div>
+                  <ChevronDown className={`w-6 h-6 transition-all duration-500 ${isOpen ? 'rotate-180 text-authority-blue' : 'text-slate-300'}`} />
                 </button>
-                
-                <div 
-                  className={`grid transition-all duration-500 ease-in-out ${
-                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="p-8 pt-0 text-slate-500 dark:text-text-dark-muted font-bold text-base leading-relaxed border-t border-slate-50 dark:border-border-dark mt-4 animate-in slide-in-from-top-4 duration-500">
-                      {item.content}
-                    </div>
-                  </div>
+                <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                  <div className="overflow-hidden"><div className="p-10 pt-0 border-t border-slate-50 dark:border-border-dark mt-4 animate-in slide-in-from-top-4 duration-500">{item.content}</div></div>
                 </div>
               </div>
             );
@@ -175,13 +133,10 @@ const ClarificationPage = () => {
         </div>
 
         <div className="mt-20 text-center space-y-12">
-          <Link to="/faq" className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-slate-500 hover:text-signal-gold transition-colors block">
-            View All Technical Answers
-          </Link>
+          <Link to="/faq" className="text-[12px] font-black uppercase tracking-[0.5em] text-slate-400 hover:text-authority-blue transition-colors">View All Technical Answers</Link>
           <div className="pt-20 border-t border-slate-100 dark:border-slate-800">
-             <Link to="/readiness" className="bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95 inline-flex items-center">
-               Initiate Admission Protocol
-               <ArrowRight className="ml-4" size={18} />
+             <Link to="/readiness" className="bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[12px] hover:bg-steel-blue transition-all shadow-2xl active:scale-95 inline-flex items-center group">
+               Initiate Admission Protocol<ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
              </Link>
           </div>
         </div>
