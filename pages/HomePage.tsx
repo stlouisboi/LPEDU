@@ -49,7 +49,8 @@ import {
   XCircle,
   AlertOctagon,
   FileText,
-  MapPin
+  MapPin,
+  Loader2
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -65,22 +66,43 @@ const HomePage: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    
     try {
-      if (!db) {
-        throw new Error("Synchronization service is temporarily unavailable. Please check your connection.");
+      // 1. Synchronize with Firebase (Internal Leads Management)
+      if (db) {
+        await addDoc(collection(db, "leadMagnets"), {
+          firstName: formData.firstName || 'Carrier',
+          email: formData.email,
+          downloadedAt: serverTimestamp(),
+          source: "risk-assessment-hero"
+        });
       }
 
-      await addDoc(collection(db, "leadMagnets"), {
-        firstName: formData.firstName || 'Carrier',
-        email: formData.email,
-        downloadedAt: serverTimestamp(),
-        source: "risk-assessment-hero"
-      });
-      
+      // 2. Synchronize with MailerLite (Email Automation)
+      // Account ID provided by user script: 1989508
+      const MAILERLITE_ACCOUNT_ID = "1989508"; 
+      const MAILERLITE_FORM_ID = process.env.VITE_MAILERLITE_FORM_ID;
+
+      if (MAILERLITE_ACCOUNT_ID && MAILERLITE_FORM_ID) {
+        const mlFormData = new FormData();
+        mlFormData.append('fields[name]', formData.firstName);
+        mlFormData.append('fields[email]', formData.email);
+        
+        // This hits the MailerLite form submission endpoint via background fetch
+        // This is the correct way to handle a custom React form with MailerLite
+        await fetch(`https://assets.mailerlite.com/jsonp/${MAILERLITE_ACCOUNT_ID}/forms/${MAILERLITE_FORM_ID}/subscribe`, {
+          method: 'POST',
+          body: mlFormData,
+          mode: 'no-cors'
+        });
+      }
+
+      // 3. Navigation
       navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`);
     } catch (err: any) {
       console.error("Submission Error:", err);
-      setError(err.message || "We encountered a technical issue transmitting your request. Please try again.");
+      // Fallback: Still proceed to the download page to ensure user experience isn't broken
+      navigate(`/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`);
     } finally {
       setLoading(false);
     }
@@ -263,8 +285,8 @@ const HomePage: React.FC = () => {
                     <label htmlFor="hero-email" className="block text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 ml-4">Registry Email</label>
                     <input id="hero-email" type="email" required placeholder="jane@carrier.com" className="w-full px-6 py-5 bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark rounded-2xl outline-none font-black text-base text-text-primary dark:text-white focus:border-authority-blue shadow-inner" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                   </div>
-                  <button type="submit" className="w-full bg-authority-blue text-white py-6 rounded-[1.5rem] font-black uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-steel-blue transition-all active:scale-[0.98] border-b-4 border-slate-900 mt-4">
-                    View My Risk Map
+                  <button type="submit" disabled={loading} className="w-full bg-authority-blue text-white py-6 rounded-[1.5rem] font-black uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-steel-blue transition-all active:scale-[0.98] border-b-4 border-slate-900 mt-4 disabled:opacity-50">
+                    {loading ? <Loader2 className="animate-spin mx-auto" size={16} /> : "View My Risk Map"}
                   </button>
                   <p className="text-[9px] text-center text-slate-300 uppercase tracking-widest font-bold">Registry Uplink Active</p>
                 </form>
