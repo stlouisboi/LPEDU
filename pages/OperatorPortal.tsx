@@ -9,8 +9,6 @@ import {
   Shield, 
   Plus, 
   Trash2, 
-  CheckSquare, 
-  Square,
   ClipboardList
 } from 'lucide-react';
 import ConfirmationModal from '../components/ConfirmationModal';
@@ -20,6 +18,37 @@ interface Task {
   text: string;
   completed: boolean;
 }
+
+const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
+  return (
+    <div className={`relative w-6 h-6 rounded-lg border-2 transition-all duration-500 flex items-center justify-center overflow-hidden shrink-0 ${
+      checked 
+        ? 'bg-green-500 border-green-500 scale-110 shadow-lg shadow-green-500/20' 
+        : 'bg-transparent border-slate-200 dark:border-slate-700'
+    }`}>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={`w-3.5 h-3.5 text-white transition-all duration-500 ${
+          checked ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <path
+          d="M20 6L9 17L4 12"
+          style={{
+            strokeDasharray: 40,
+            strokeDashoffset: checked ? 0 : 40,
+            transition: 'stroke-dashoffset 0.6s cubic-bezier(0.65, 0, 0.35, 1)'
+          }}
+        />
+      </svg>
+    </div>
+  );
+};
 
 const OperatorPortal: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([
@@ -146,12 +175,8 @@ const OperatorPortal: React.FC = () => {
                     className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-900/50 border border-slate-100 dark:border-border-dark rounded-2xl group transition-all hover:bg-white dark:hover:bg-gray-800"
                   >
                     <div className="flex items-center space-x-4 flex-grow cursor-pointer" onClick={() => toggleTask(task.id)}>
-                      {task.completed ? (
-                        <CheckSquare className="text-green-500" size={20} />
-                      ) : (
-                        <Square className="text-slate-300" size={20} />
-                      )}
-                      <span className={`text-sm font-bold ${task.completed ? 'text-slate-300 line-through' : 'text-slate-700 dark:text-slate-200'}`}>
+                      <AnimatedCheckmark checked={task.completed} />
+                      <span className={`text-sm font-bold transition-all duration-300 ${task.completed ? 'text-slate-300 line-through' : 'text-slate-700 dark:text-slate-200'}`}>
                         {task.text}
                       </span>
                     </div>

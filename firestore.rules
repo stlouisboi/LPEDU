@@ -1,9 +1,9 @@
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
     // PUBLIC READ ACCESS: Global site configuration and content
-    // These are read-only for visitors, write-restricted to authenticated admins
     match /settings/{docId} {
       allow read: if true;
       allow write: if request.auth != null;
@@ -39,30 +39,29 @@ service cloud.firestore {
       allow write: if request.auth != null;
     }
     
-    // PUBLIC CREATE ACCESS: Lead generation, Assessments, and Admission Inquiries
-    // Must allow 'create' for unauthenticated users to submit forms
+    // PUBLIC CREATE ACCESS: Lead generation with basic validation
     match /admissionInquiries/{inquiryId} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasAll(['email', 'legalName']);
       allow read, update, delete: if request.auth != null;
     }
     
     match /readinessAssessments/{assessmentId} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasAll(['email', 'totalScore']);
       allow read, update, delete: if request.auth != null;
     }
     
     match /leadMagnets/{leadId} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasAll(['email', 'firstName']);
       allow read, update, delete: if request.auth != null;
     }
     
     match /formSubmissions/{submissionId} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasAll(['email', 'message']);
       allow read, update, delete: if request.auth != null;
     }
     
     match /contacts/{contactId} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasAll(['email', 'fullName']);
       allow read, update, delete: if request.auth != null;
     }
 
@@ -72,7 +71,7 @@ service cloud.firestore {
       allow write: if request.auth != null;
     }
 
-    // ADMIN ACCESS: Default catch-all for any other collections
+    // ADMIN ACCESS: Default catch-all
     match /{document=**} {
       allow read, write: if request.auth != null;
     }

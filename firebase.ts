@@ -1,31 +1,41 @@
-import { initializeApp } from "firebase/app";
+
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { initializeFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// Using process.env instead of import.meta.env as it is defined in vite.config.ts
 const firebaseConfig = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY || "AIzaSyAwyNphud5bBuijVMTBJFByebsv_bnRS5Q",
-  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN || "lpedu-d9bb2.firebaseapp.com",
-  projectId: process.env.VITE_FIREBASE_PROJECT_ID || "lpedu-d9bb2",
-  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET || "lpedu-d9bb2.firebasestorage.app",
-  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "689793698366",
-  appId: process.env.VITE_FIREBASE_APP_ID || "1:689793698366:web:fe4637f707bfa997205f6f"
+  apiKey: (process.env as any).VITE_FIREBASE_API_KEY,
+  authDomain: (process.env as any).VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: (process.env as any).VITE_FIREBASE_PROJECT_ID,
+  storageBucket: (process.env as any).VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: (process.env as any).VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: (process.env as any).VITE_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
+// Defensive check to ensure we don't initialize Firebase with missing or placeholder keys
+export const isFirebaseConfigured = 
+  !!firebaseConfig.apiKey && 
+  firebaseConfig.apiKey !== "undefined" && 
+  firebaseConfig.apiKey !== "";
 
-export const auth = getAuth(app);
+let app;
+let auth: any = null;
+let db: any = null;
+let storage: any = null;
 
-/**
- * Initializing Firestore with Long Polling enabled.
- * This resolves the "unavailable" error often seen when WebSockets are restricted 
- * or when the client has trouble maintaining a persistent connection to the backend.
- */
-export const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true,
-  useFetchStreams: false 
-});
+if (isFirebaseConfigured) {
+  try {
+    app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+    auth = getAuth(app);
+    db = initializeFirestore(app, {
+      experimentalForceLongPolling: true,
+      useFetchStreams: false 
+    });
+    storage = getStorage(app);
+  } catch (err) {
+    console.warn("Firebase initialization skipped or failed:", err);
+  }
+}
 
-export const storage = getStorage(app);
-export const isFirebaseConfigured = true;
+export { auth, db, storage };

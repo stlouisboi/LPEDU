@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -115,10 +116,12 @@ const AIServicePage = () => {
 
   useEffect(() => {
     return () => {
-      if (audioContextRef.current) audioContextRef.current.close().catch(() => {});
+      if (audioContextRef.current) {
+        audioContextRef.current.close().catch(() => {});
+      }
       if (isLiveActive) stopLiveConversation();
     };
-  }, []);
+  }, [isLiveActive]);
 
   useEffect(() => {
     if (activeTab !== 'voice' && isLiveActive) stopLiveConversation();
@@ -141,9 +144,9 @@ const AIServicePage = () => {
           temperature: 0.7,
         }
       });
-      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "Communication error with neural advisor." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "Neural logic fault detected." }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the advisory service. Please check your network link." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the neural advisory service." }]);
     } finally {
       setIsLoading(false);
     }
@@ -255,12 +258,12 @@ const AIServicePage = () => {
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } },
-          systemInstruction: 'You are the LaunchPath Compliance Expert. Keep responses professional, authoritative, and concise.'
+          systemInstruction: 'You are the LaunchPath Compliance Expert. Professional, authoritative, and concise.'
         }
       });
       liveSessionRef.current = sessionPromise;
     } catch (err) {
-      alert("Microphone access is required for Voice Mode.");
+      alert("Microphone access is mandatory for Voice Mode.");
     }
   };
 
@@ -288,7 +291,7 @@ const AIServicePage = () => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       let config: any = {
         model: 'veo-3.1-fast-generate-preview',
-        prompt: videoPrompt || "Cinematic professional trucking operation, high resolution, soft lighting.",
+        prompt: videoPrompt || "Professional trucking fleet visualization.",
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
       };
       if (videoFile) {
@@ -320,9 +323,9 @@ const AIServicePage = () => {
     } catch (err: any) {
       if (err.message?.includes("Requested entity was not found")) {
         setHasApiKey(false);
-        alert("Session expired. Please re-authorize your Studio key.");
+        alert("Session expired. Re-authorization mandatory.");
       } else {
-        alert("Video synthesis failed. Please check your prompt or reference file.");
+        alert("Synthesis failure. Check directives.");
       }
     } finally {
       setIsGeneratingVideo(false);
@@ -371,7 +374,7 @@ const AIServicePage = () => {
              <Zap className="text-signal-gold mb-4" size={24} />
              <h3 className="text-lg font-bold font-serif mb-2">System Status</h3>
              <p className="text-[11px] font-medium text-white/60 leading-relaxed uppercase tracking-widest">
-               Authorized link active for project lpedu-d9bb2. Advisor training updated to 49 CFR standards.
+               Uplink active. Advisor training synchronized to 49 CFR standards.
              </p>
           </div>
         </aside>
@@ -442,7 +445,7 @@ const AIServicePage = () => {
                   <div className="relative flex-grow">
                     <input 
                       type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                      placeholder="Input regulatory inquiry or system command..." className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark pl-8 pr-16 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold transition-all"
+                      placeholder="Input regulatory inquiry..." className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark pl-8 pr-16 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold transition-all"
                     />
                     <Sparkles className="absolute right-6 top-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold opacity-20" size={24} />
                   </div>
@@ -481,7 +484,7 @@ const AIServicePage = () => {
               </button>
               <div className="mt-16 flex items-center space-x-4 opacity-40 dark:opacity-60 dark:text-white">
                  <Lock size={14} />
-                 <p className="text-[10px] font-black uppercase tracking-widest">End-to-end encrypted neural channel active</p>
+                 <p className="text-[10px] font-black uppercase tracking-widest">Encrypted neural channel active</p>
               </div>
             </div>
           )}
@@ -494,10 +497,10 @@ const AIServicePage = () => {
                   <div className="space-y-4">
                     <h3 className="text-4xl font-black uppercase tracking-tighter text-amber-800 dark:text-amber-400 font-serif">Studio Auth Required</h3>
                     <p className="text-lg font-medium text-amber-700/80 dark:text-amber-300/80 leading-relaxed">
-                      High-fidelity video synthesis requires a validated Google AI Studio billing key.
+                      Synthesis requires a validated Google AI Studio key.
                     </p>
                   </div>
-                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-14 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-amber-700 active:scale-95 transition-all">Authorize Terminal Key</button>
+                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-14 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-amber-700 active:scale-95 transition-all">Authorize Key</button>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -506,7 +509,7 @@ const AIServicePage = () => {
                        <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6">Production Directives</h3>
                        <textarea 
                         rows={8} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} 
-                        placeholder="Describe the cinematic visualization (e.g. A fleet of white box trucks driving through a glowing blue digital representation of an interstate at sunset...)" 
+                        placeholder="Describe the cinematic visualization..." 
                         className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark p-8 rounded-[3rem] font-bold text-sm text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold outline-none shadow-inner" 
                        />
                      </div>
@@ -525,7 +528,7 @@ const AIServicePage = () => {
                         </div>
                      </div>
 
-                     <button onClick={generateVideo} disabled={isGeneratingVideo} className="w-full py-10 rounded-[2.5rem] bg-authority-blue text-white font-black uppercase tracking-[0.3em] text-xs flex items-center justify-center shadow-[0_20px_50px_-15px_rgba(30,58,95,0.4)] hover:bg-steel-blue active:scale-95 disabled:opacity-50 group border-b-8 border-slate-900 dark:border-black">
+                     <button onClick={generateVideo} disabled={isGeneratingVideo} className="w-full py-10 rounded-[2.5rem] bg-authority-blue text-white font-black uppercase tracking-[0.3em] text-xs flex items-center justify-center shadow-lg hover:bg-steel-blue active:scale-95 disabled:opacity-50 group border-b-8 border-slate-900">
                         {isGeneratingVideo ? <Loader2 className="animate-spin mr-4" size={24} /> : <Film className="mr-4 group-hover:rotate-12 transition-transform" size={24} />}
                         Synthesize Digital Asset
                      </button>
@@ -542,21 +545,17 @@ const AIServicePage = () => {
                             </div>
                             <div className="space-y-2">
                                <p className="font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold animate-pulse">{genMessage}</p>
-                               <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Veo 3.1 Neural Engine • Pipeline: V-01</p>
+                               <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Veo 3.1 Neural Engine</p>
                             </div>
                           </div>
                         ) : videoResult ? (
                           <div className="w-full h-full relative group/vid">
                             <video src={videoResult} controls className="w-full h-full object-cover" />
-                            <div className="absolute top-6 left-6 opacity-0 group-hover/vid:opacity-100 transition-opacity">
-                               <span className="bg-white/90 dark:bg-black/90 backdrop-blur-md px-4 py-2 rounded-xl text-[10px] font-black text-authority-blue dark:text-signal-gold uppercase shadow-lg border dark:border-white/10">Neural Render v1.4</span>
-                            </div>
                           </div>
                         ) : (
                           <div className="text-center p-12 opacity-30 group-hover:opacity-50 transition-opacity dark:text-white">
                              <Film size={80} className="mx-auto mb-6" />
-                             <p className="uppercase font-black tracking-[0.4em] text-sm">Studio Terminal Idle</p>
-                             <p className="text-[10px] mt-4 font-bold max-w-[200px] mx-auto uppercase leading-relaxed">Waiting for production directive... Input prompt to initialize synthesis.</p>
+                             <p className="uppercase font-black tracking-[0.4em] text-sm">Terminal Idle</p>
                           </div>
                         )}
                       </div>
@@ -567,13 +566,6 @@ const AIServicePage = () => {
           )}
         </main>
       </div>
-      
-      <div className="mt-12 text-center max-w-4xl mx-auto">
-         <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-600 leading-relaxed">
-           LaunchPath Neural Advisory Service • Compliance Integrity Protocols Active • Powered by Gemini 3 Pro
-         </p>
-      </div>
-
     </div>
   );
 };

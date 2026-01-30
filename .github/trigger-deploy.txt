@@ -1,5 +1,0 @@
-Trigger deploy: chore: trigger firebase hosting deploy
-Triggered by: stlouisboi
-Date: 2026-01-30T00:00:00Z
-
-This file is a no-op marker to trigger the Firebase Hosting deploy workflow on push to main.
