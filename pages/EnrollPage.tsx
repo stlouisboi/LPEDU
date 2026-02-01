@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
@@ -102,7 +103,7 @@ const EnrollPage: React.FC = () => {
               </div>
             </div>
 
-            {/* 2. THE INVESTMENT SECTION (FILTRATION MECHANISM) */}
+            {/* 2. THE INVESTMENT SECTION */}
             <div className="bg-[#0f172a] p-12 md:p-16 rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-white/5">
               <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
                  <Activity size={180} className="text-white" />
@@ -114,9 +115,6 @@ const EnrollPage: React.FC = () => {
                   <p className="text-xl text-white font-bold leading-relaxed max-w-2xl">
                     Entry into the LaunchPath Standard Implementation Environment requires a one-time implementation investment.
                   </p>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed max-w-2xl">
-                    This investment covers the installation of compliance and safety management systems, structured sequencing, and verified operational standards.
-                  </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -126,41 +124,14 @@ const EnrollPage: React.FC = () => {
                        <span className="text-4xl font-black text-white">$2,500</span>
                        <span className="text-[10px] font-bold text-signal-gold uppercase tracking-widest">Early Access</span>
                     </div>
-                    <p className="text-[11px] text-slate-400 leading-relaxed italic">
-                      This tier is designed to validate system execution and student behavior. It reflects early-stage institutional tooling and feedback participation.
-                    </p>
                   </div>
 
                   <div className="p-8 bg-white/[0.02] rounded-3xl border border-white/5 space-y-4 opacity-60 grayscale">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Future Standard</p>
                     <div className="flex items-baseline gap-2">
                        <span className="text-4xl font-black text-slate-400">$3,500</span>
-                       <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Standard Tier</span>
                     </div>
-                    <p className="text-[11px] text-slate-500 leading-relaxed italic">
-                      The full Institutional Standard price will move to this tier in the next implementation cycle.
-                    </p>
                   </div>
-                </div>
-
-                <div className="space-y-6 pt-6 border-t border-white/5">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">SYSTEM INCLUSIONS</h4>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-10">
-                    {[
-                      "Ground 0 qualification framework",
-                      "Core safety management installation",
-                      "Driver Qualification (DQ) file systems",
-                      "Authority protection safeguards",
-                      "90-Day implementation sequence",
-                      "Vetted institutional service links",
-                      "Private operator cohort access"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start space-x-3 text-xs font-bold text-slate-300 uppercase tracking-tight">
-                        <Zap size={14} className="text-signal-gold shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             </div>
@@ -173,35 +144,16 @@ const EnrollPage: React.FC = () => {
                   <div className="space-y-2">
                     <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold">IMPORTANT CLARIFICATION</h4>
                     <p className="text-sm font-medium text-slate-500 leading-relaxed italic">
-                      LaunchPath does not provide legal, tax, insurance, or regulatory representation. Execution responsibility remains with the motor carrier. LaunchPath provides structure, sequencing, and verification standards.
+                      LaunchPath does not provide legal, tax, insurance, or regulatory representation. Execution responsibility remains with the motor carrier.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <button className="w-full bg-authority-blue text-white py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-4 border-slate-900 group">
-                  PROCEED TO SECURE IMPLEMENTATION ACCESS
-                  <ArrowRight size={18} className="ml-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <p className="text-[9px] text-center text-slate-400 uppercase tracking-[0.4em] font-black">
-                  Capital Readiness Verification v4.2
-                </p>
-              </div>
-
-              <div className="pt-10 text-center">
-                 <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 mb-6">OPTIONAL ADMISSION CLARIFICATION CALL</h4>
-                 <p className="text-sm text-slate-500 font-medium leading-relaxed max-w-xl mx-auto mb-8 italic">
-                   For operators who want confirmation before proceeding, a brief clarification call is available. This call is optional and is not a sales call. Its purpose is to confirm alignment and expectations.
-                 </p>
-                 <button className="inline-flex items-center space-x-3 px-10 py-5 bg-white border border-slate-200 text-authority-blue rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-slate-50 transition-all active:scale-95 shadow-sm">
-                    <span>REQUEST OPTIONAL CLARIFICATION CALL</span>
-                 </button>
-              </div>
-            </div>
-
-            <div className="text-center pt-16">
-              <Link to="/" className="text-[10px] font-black uppercase tracking-widest text-slate-300 hover:text-authority-blue transition-colors">Return to Institutional Repository</Link>
+              <button className="w-full bg-authority-blue text-white py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-4 border-slate-900 group">
+                PROCEED TO SECURE IMPLEMENTATION ACCESS
+                <ArrowRight size={18} className="ml-4 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </section>
@@ -211,7 +163,6 @@ const EnrollPage: React.FC = () => {
 
   return (
     <div className="bg-[#fafaf9] dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-700">
-      {/* 1. INSTITUTIONAL HEADER */}
       <section className="relative pt-32 pb-40 bg-white dark:bg-primary-dark border-b border-slate-100 dark:border-slate-800 overflow-hidden text-center">
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-5xl mx-auto px-6 relative z-10">
@@ -228,10 +179,10 @@ const EnrollPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. CLASSIFICATION GATE / FORM */}
+      {/* 2. CLASSIFICATION GATE / FORM - ENHANCED VISIBILITY */}
       <section className="py-32 relative -mt-16 z-20">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white dark:bg-surface-dark p-12 md:p-16 rounded-[4.5rem] shadow-[0_40px_100px_-30px_rgba(30,58,95,0.15)] border border-white dark:border-border-dark relative overflow-hidden">
+          <div className="bg-white dark:bg-surface-dark p-12 md:p-16 rounded-[4.5rem] shadow-[0_40px_100px_-30px_rgba(30,58,95,0.15)] border border-slate-100 dark:border-white/10 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-3 h-full bg-signal-gold/40"></div>
             
             <div className="flex items-center justify-between mb-12">
@@ -240,24 +191,12 @@ const EnrollPage: React.FC = () => {
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-10">
-              {error && (
-                <div className="bg-red-50 dark:bg-red-950/20 border-2 border-red-100 dark:border-red-900/50 p-6 rounded-3xl flex items-start space-x-4 animate-in slide-in-from-top-4 duration-300">
-                  <div className="bg-red-500 text-white p-1.5 rounded-lg shadow-md">
-                    <AlertTriangle size={18} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-black uppercase tracking-widest text-red-700 dark:text-red-400 mb-1">System Verification Fault</p>
-                    <p className="text-[13px] font-bold text-red-600/80 dark:text-red-300/80 leading-relaxed">{error.message}</p>
-                  </div>
-                </div>
-              )}
-
               <div className="space-y-3">
                 <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 ml-4 block">Carrier Operating Status</label>
                 <div className="relative group">
                   <select 
                     required
-                    className="w-full px-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-gray-800/50 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none font-bold text-base appearance-none cursor-pointer transition-all shadow-inner"
+                    className="w-full px-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/5 outline-none font-bold text-base appearance-none cursor-pointer transition-all shadow-inner dark:text-white"
                     value={formData.carrierStatus}
                     onChange={e => setFormData({...formData, carrierStatus: e.target.value})}
                   >
@@ -277,7 +216,7 @@ const EnrollPage: React.FC = () => {
                     <input 
                       required 
                       placeholder="e.g. Integrity Hauling LLC"
-                      className="w-full pl-16 pr-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-gray-800/50 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none font-bold text-base transition-all shadow-inner"
+                      className="w-full pl-16 pr-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/5 outline-none font-bold text-base transition-all shadow-inner dark:text-white"
                       value={formData.legalName}
                       onChange={e => setFormData({...formData, legalName: e.target.value})}
                     />
@@ -291,7 +230,7 @@ const EnrollPage: React.FC = () => {
                       required 
                       type="email"
                       placeholder="legal@carrier.com"
-                      className="w-full pl-16 pr-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-gray-800/50 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none font-bold text-base transition-all shadow-inner"
+                      className="w-full pl-16 pr-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/5 outline-none font-bold text-base transition-all shadow-inner dark:text-white"
                       value={formData.email}
                       onChange={e => setFormData({...formData, email: e.target.value})}
                     />
@@ -299,37 +238,12 @@ const EnrollPage: React.FC = () => {
                 </div>
               </div>
 
-              {formData.carrierStatus === 'Existing Carrier' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 animate-in slide-in-from-top-4 duration-500">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 ml-4 block">USDOT Number</label>
-                    <input 
-                      required 
-                      placeholder="Required Field"
-                      className="w-full px-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-gray-800/50 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-bold text-base transition-all shadow-inner"
-                      value={formData.dotNumber}
-                      onChange={e => setFormData({...formData, dotNumber: e.target.value})}
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 ml-4 block">MC Number</label>
-                    <input 
-                      required 
-                      placeholder="Required Field"
-                      className="w-full px-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-gray-800/50 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-bold text-base transition-all shadow-inner"
-                      value={formData.mcNumber}
-                      onChange={e => setFormData({...formData, mcNumber: e.target.value})}
-                    />
-                  </div>
-                </div>
-              )}
-
               <div className="space-y-3">
                 <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 ml-4 block">Capital Liquidity Verification</label>
                 <div className="relative group">
                   <select 
                     required
-                    className="w-full px-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-gray-800/50 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none font-bold text-base appearance-none cursor-pointer transition-all shadow-inner"
+                    className="w-full px-8 py-6 rounded-[2rem] bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/5 outline-none font-bold text-base appearance-none cursor-pointer transition-all shadow-inner dark:text-white"
                     value={formData.capitalStatus}
                     onChange={e => setFormData({...formData, capitalStatus: e.target.value})}
                   >

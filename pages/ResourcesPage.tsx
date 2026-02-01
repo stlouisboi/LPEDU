@@ -106,7 +106,7 @@ const ResourcesPage = () => {
       {/* HERO */}
       <section className="bg-white dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark pt-24 sm:pt-32 pb-16 sm:pb-24 text-center px-5">
         <div className="max-w-5xl mx-auto">
-          <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full mb-8">
+          <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full mb-8 shadow-sm">
             <Scale size={14} className="text-authority-blue dark:text-signal-gold" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold">Standards Repository</span>
           </div>
@@ -127,7 +127,7 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 1. READINESS DIAGNOSTICS */}
+      {/* 1. READINESS DIAGNOSTICS - ENHANCED CARDS */}
       <section className="py-20 lg:py-32 max-w-7xl mx-auto px-5 sm:px-10">
         <div className="mb-12 sm:mb-20 text-center sm:text-left">
           <p className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-3">01. Readiness Diagnostics</p>
@@ -140,8 +140,8 @@ const ResourcesPage = () => {
             { id: "diag-2", title: "90 Days Risk Map™", sub: "VISUAL SCHEMATIC", desc: "Visual breakdown of common failure points during early carrier operations.", icon: <Activity />, isGated: true, link: "#" },
             { id: "diag-3", title: "Survival Scorecard", sub: "QUICK EVALUATION", desc: "Binary evaluation of financial and compliance viability markers.", icon: <ClipboardList />, link: "/readiness" }
           ].map((item, i) => (
-            <div key={item.id} className="bg-white dark:bg-surface-dark p-8 sm:p-12 rounded-[2.5rem] sm:rounded-[3.5rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl transition-all group flex flex-col relative overflow-hidden">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-inner">
+            <div key={item.id} className="bg-white dark:bg-surface-dark p-8 sm:p-12 rounded-[3rem] border border-slate-100 dark:border-white/5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] dark:shadow-none hover:shadow-2xl transition-all duration-500 group flex flex-col relative overflow-hidden hover:-translate-y-2">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform">
                 {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-2 font-serif leading-none">{item.title}</h3>
@@ -150,11 +150,11 @@ const ResourcesPage = () => {
               
               <div className="mt-auto pt-6 border-t border-slate-50 dark:border-white/5">
                 {item.isGated ? (
-                  <button onClick={() => setSelectedGuide({title: item.title, link: item.link})} className="w-full bg-authority-blue text-white py-4 rounded-2xl font-black uppercase tracking-widest text-[9px] shadow-lg active:scale-95 flex items-center justify-center">
+                  <button onClick={() => setSelectedGuide({title: item.title, link: item.link})} className="w-full bg-authority-blue text-white py-4 rounded-2xl font-black uppercase tracking-widest text-[9px] shadow-lg active:scale-95 flex items-center justify-center hover:bg-steel-blue transition-colors">
                     <Download size={14} className="mr-2" /> Verify to Access
                   </button>
                 ) : (
-                  <Link to={item.link} className="w-full bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold py-4 rounded-2xl font-black uppercase tracking-widest text-[9px] flex items-center justify-center hover:bg-white active:scale-95 border border-slate-200 dark:border-slate-700">
+                  <Link to={item.link} className="w-full bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold py-4 rounded-2xl font-black uppercase tracking-widest text-[9px] flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 active:scale-95 border border-slate-200 dark:border-slate-700 transition-all">
                     <Unlock size={14} className="mr-2" /> Open Diagnostic
                   </Link>
                 )}
@@ -164,7 +164,7 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 2. STARTER TEMPLATES */}
+      {/* 2. STARTER TEMPLATES - ENHANCED CARDS */}
       <section className="py-20 lg:py-32 bg-slate-50/50 dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto px-5 sm:px-10">
           <div className="mb-16 text-center sm:text-left">
@@ -179,20 +179,20 @@ const ResourcesPage = () => {
               { id: "t3", title: "Accident Quick Form", focus: "FIELD DOCUMENTATION", icon: <FileWarning />, d: "Critical protocol for documenting operational incidents." },
               { id: "t4", title: "Daily Activity Log", focus: "ADMINISTRATIVE HABIT", icon: <Clock />, d: "Governance tool for consistent daily record keeping." }
             ].map((tool) => (
-              <div key={tool.id} className="bg-white dark:bg-surface-dark p-8 sm:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:shadow-xl transition-all relative">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[1.5rem] sm:rounded-[2rem] flex items-center justify-center mb-6 sm:mb-10 shadow-inner">
+              <div key={tool.id} className="bg-white dark:bg-surface-dark p-8 sm:p-12 rounded-[3.5rem] border border-slate-100 dark:border-white/5 flex flex-col items-center text-center group hover:shadow-2xl transition-all duration-500 relative hover:-translate-y-1">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[2rem] flex items-center justify-center mb-6 sm:mb-10 shadow-inner group-hover:scale-110 transition-all duration-500">
                   {React.cloneElement(tool.icon as React.ReactElement, { size: 32 })}
                 </div>
                 <h4 className="text-xl sm:text-2xl font-black text-authority-blue dark:text-white uppercase leading-tight mb-1 max-w-xs tracking-tight font-serif">
                   {tool.title}
                 </h4>
                 <p className="text-[12px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6">{tool.focus}</p>
-                <p className="text-lg sm:text-xl font-extrabold text-slate-500 dark:text-slate-400 mb-10 leading-relaxed max-w-sm">
+                <p className="text-lg sm:text-xl font-extrabold text-slate-500 dark:text-slate-400 mb-10 leading-relaxed max-w-sm flex-grow">
                   {tool.d}
                 </p>
                 <button 
                   onClick={() => setIsInstitutionalModalOpen(true)}
-                  className="w-full bg-authority-blue text-white py-5 rounded-[1.5rem] sm:rounded-[2rem] font-black uppercase tracking-widest text-[10px] shadow-xl hover:bg-steel-blue active:scale-95"
+                  className="w-full bg-authority-blue text-white py-5 rounded-[2rem] font-black uppercase tracking-widest text-[10px] shadow-xl hover:bg-steel-blue active:scale-95 transition-all"
                 >
                   Authorize Transfer
                 </button>
@@ -202,7 +202,7 @@ const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 3. EDUCATIONAL REFERENCE BRIEFS - RESTORED & TYPOGRAPHY ENHANCED */}
+      {/* 3. EDUCATIONAL REFERENCE BRIEFS - ENHANCED CARDS */}
       <section className="py-20 lg:py-32 max-w-7xl mx-auto px-5 sm:px-10">
         <div className="mb-16 text-center sm:text-left">
           <p className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-3">03. Reference Library</p>
@@ -214,13 +214,13 @@ const ResourcesPage = () => {
             <Link 
               key={brief.id} 
               to={`/resources/${brief.id}`}
-              className="bg-white dark:bg-surface-dark p-8 sm:p-10 rounded-[2.5rem] border border-slate-100 dark:border-border-dark flex flex-col group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden"
+              className="bg-white dark:bg-surface-dark p-8 sm:p-10 rounded-[2.5rem] border border-slate-100 dark:border-white/5 flex flex-col group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden shadow-sm"
             >
-              <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
+              <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity duration-700">
                 <BookMarked size={100} />
               </div>
               
-              <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-inner">
                 <FileText size={20} />
               </div>
               
@@ -229,7 +229,7 @@ const ResourcesPage = () => {
               </h3>
               
               <p className="text-[12px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6 flex items-center">
-                <span className="w-4 h-[2px] bg-slate-200 mr-2"></span>
+                <span className="w-4 h-[2px] bg-slate-200 dark:bg-slate-700 mr-2 group-hover:w-6 transition-all"></span>
                 {brief.focus}
               </p>
               
@@ -238,7 +238,7 @@ const ResourcesPage = () => {
               </p>
               
               <div className="mt-auto flex items-center text-[9px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold group-hover:translate-x-2 transition-transform">
-                Read Technical Brief <ArrowRight size={14} className="ml-2" />
+                Read Technical Brief <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
           ))}
@@ -253,8 +253,8 @@ const ResourcesPage = () => {
       {/* MODAL Gateways */}
       {isInstitutionalModalOpen && (
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-primary-dark/80 backdrop-blur-md">
-          <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-14 border border-white/20 shadow-2xl max-w-2xl w-full relative animate-in zoom-in-95 max-h-[90vh] overflow-y-auto">
-            <button onClick={() => setIsInstitutionalModalOpen(false)} className="absolute top-8 right-8 p-2 text-slate-400 hover:text-authority-blue"><X size={24} /></button>
+          <div className="bg-white dark:bg-surface-dark rounded-[3.5rem] sm:rounded-[4rem] p-8 sm:p-14 border border-white/20 shadow-2xl max-w-2xl w-full relative animate-in zoom-in-95 max-h-[90vh] overflow-y-auto">
+            <button onClick={() => setIsInstitutionalModalOpen(false)} className="absolute top-8 right-8 p-2 text-slate-400 hover:text-authority-blue transition-colors"><X size={24} /></button>
             <div className="text-center space-y-8">
               <div className="w-20 h-20 bg-authority-blue rounded-3xl flex items-center justify-center mx-auto shadow-xl border border-signal-gold/30">
                 <Lock size={32} className="text-signal-gold" />
@@ -271,7 +271,7 @@ const ResourcesPage = () => {
                   <div className="text-lg font-extrabold text-slate-500">3. Secure Implementation Access</div>
                 </div>
               </div>
-              <Link to="/reach-test" className="block w-full bg-authority-blue text-white py-6 rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-steel-blue active:scale-95">
+              <Link to="/reach-test" className="block w-full bg-authority-blue text-white py-6 rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-steel-blue active:scale-95 transition-all">
                 Initiate Diagnosis
               </Link>
             </div>

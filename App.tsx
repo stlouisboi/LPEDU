@@ -118,39 +118,39 @@ const Header = () => {
             <Logo className="h-10 sm:h-14 w-auto" />
           </Link>
 
-          {/* DESKTOP NAVIGATION */}
-          <nav className="hidden xl:flex items-center" aria-label="Main Navigation">
-            <div className="flex items-center space-x-2">
+          {/* DESKTOP NAVIGATION - Visible from lg screens with optimized font scaling */}
+          <nav className="hidden lg:flex items-center" aria-label="Main Navigation">
+            <div className="flex items-center lg:space-x-1 xl:space-x-2">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-6 py-3 text-[11px] font-black uppercase tracking-[0.3em] transition-all relative group ${
+                  className={`px-3 xl:px-6 py-3 lg:text-[9px] xl:text-[11px] font-black uppercase lg:tracking-[0.15em] xl:tracking-[0.3em] transition-all relative group ${
                     location.pathname === item.path 
                     ? 'text-authority-blue dark:text-signal-gold' 
                     : 'text-slate-500 dark:text-text-dark-muted hover:text-authority-blue'
                   }`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-6 right-6 h-[2px] bg-authority-blue dark:bg-signal-gold transition-all duration-300 scale-x-0 group-hover:scale-x-100 ${location.pathname === item.path ? 'scale-x-100' : ''}`}></span>
+                  <span className={`absolute bottom-0 left-3 xl:left-6 right-3 xl:right-6 h-[2px] bg-authority-blue dark:bg-signal-gold transition-all duration-300 scale-x-0 group-hover:scale-x-100 ${location.pathname === item.path ? 'scale-x-100' : ''}`}></span>
                 </Link>
               ))}
             </div>
             
-            <div className="w-[1.5px] h-8 bg-slate-200 dark:bg-slate-700 mx-8" aria-hidden="true" />
+            <div className="w-[1px] h-8 bg-slate-200 dark:bg-slate-700 lg:mx-4 xl:mx-8" aria-hidden="true" />
 
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center lg:space-x-4 xl:space-x-6">
               <Link 
                 to="/portal" 
-                className="border-2 border-signal-gold text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95 shadow-sm"
+                className="border-2 border-signal-gold text-signal-gold lg:px-5 xl:px-8 py-3.5 rounded-2xl lg:text-[9px] xl:text-[11px] font-black uppercase lg:tracking-[0.15em] xl:tracking-[0.25em] flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95 shadow-sm whitespace-nowrap"
               >
-                <Lock size={12} className="mr-3 -mt-0.5" />
+                <Lock size={12} className="mr-2 xl:mr-3 -mt-0.5" />
                 Portal Access
               </Link>
 
               <Link 
                 to="/readiness" 
-                className="bg-authority-blue text-white px-10 py-4.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] hover:bg-steel-blue hover:shadow-2xl transition-all active:scale-95 shadow-xl border-b-4 border-slate-900"
+                className="bg-authority-blue text-white lg:px-6 xl:px-10 py-4.5 rounded-2xl lg:text-[9px] xl:text-[11px] font-black uppercase lg:tracking-[0.15em] xl:tracking-[0.25em] hover:bg-steel-blue hover:shadow-2xl transition-all active:scale-95 shadow-xl border-b-4 border-slate-900 whitespace-nowrap"
               >
                 Admission Protocol
               </Link>
@@ -165,7 +165,7 @@ const Header = () => {
             </div>
           </nav>
 
-          <div className="xl:hidden flex items-center space-x-3">
+          <div className="lg:hidden flex items-center space-x-3">
             <button
               onClick={toggleTheme}
               className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-border-dark"
@@ -186,7 +186,7 @@ const Header = () => {
       </div>
 
       {isMenuOpen && (
-        <nav className="fixed inset-0 top-24 sm:top-32 bg-white dark:bg-primary-dark z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
+        <nav className="fixed inset-0 top-24 sm:top-32 bg-white dark:bg-primary-dark z-[99] lg:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
           <div className="flex flex-col p-8 sm:p-12 space-y-4">
             <Link 
               to="/" 
@@ -386,10 +386,10 @@ const Footer = () => {
                 <div className="flex flex-col items-start lg:items-end space-y-4">
                     <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30">System Infrastructure</p>
                     <div className="flex items-center gap-4">
-                        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black text-white/50 uppercase tracking-widest">
-                            SSL: ACTIVE
+                        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black text-white/50 uppercase tracking-[0.1em]">
+                            SSL: ENCRYPTED
                         </div>
-                        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black text-white/50 uppercase tracking-widest">
+                        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black text-white/50 uppercase tracking-[0.1em]">
                             CDN: STABLE
                         </div>
                     </div>

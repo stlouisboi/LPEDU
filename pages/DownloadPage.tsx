@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { 
@@ -22,7 +23,8 @@ const DownloadPage = () => {
       icon: <FileText className="w-8 h-8" />,
       buttonText: "DOWNLOAD RISK MAP™",
       link: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FLaunchPathtm-First-90-Days-Overview.pdf?alt=media&token=95f49ef1-f594-4985-a534-68cd09750003",
-      bonus: false
+      bonus: false,
+      type: 'PDF'
     },
     {
       title: "Owner-Operator Survival Blueprint",
@@ -30,7 +32,8 @@ const DownloadPage = () => {
       icon: <ShieldCheck className="w-8 h-8" />,
       buttonText: "DOWNLOAD BLUEPRINT",
       link: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FLaunchPath_The_Owner-Operator_Survival_Blueprint%20(2).pdf?alt=media&token=2e42b7cb-e308-49f7-a12f-92dbd19edeca",
-      bonus: true
+      bonus: true,
+      type: 'PDF'
     }
   ];
 
@@ -67,9 +70,14 @@ const DownloadPage = () => {
                   {item.icon}
                 </div>
                 
-                <h3 className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase mb-4 leading-tight">
-                  {item.title}
-                </h3>
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase leading-tight">
+                    {item.title}
+                  </h3>
+                  <span className="bg-slate-100 dark:bg-slate-800 text-[9px] font-black px-2 py-1 rounded text-text-muted">
+                    {item.type}
+                  </span>
+                </div>
                 
                 <p className="text-text-muted dark:text-text-dark-muted font-medium leading-relaxed mb-10 flex-grow">
                   {item.description}
