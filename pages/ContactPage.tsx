@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, Phone, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, ArrowRight, MessageSquare, Anchor, User, RefreshCw, ChevronDown } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -84,10 +83,25 @@ const ContactPage = () => {
                 </p>
               </div>
             </div>
+
+            <section className="space-y-6 px-4">
+              <h2 className="text-sm font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold flex items-center">
+                <ShieldCheck size={20} className="mr-3" /> Operational Integrity
+              </h2>
+              <div className="prose dark:prose-invert text-lg text-text-muted font-medium leading-relaxed space-y-4">
+                <p>
+                  LaunchPath provides the technical foundation required to navigate federal scrutiny with confidence.
+                </p>
+                <div className="h-px w-20 bg-signal-gold/30 my-8"></div>
+                <p className="italic text-base text-authority-blue/70 dark:text-signal-gold/70">
+                  "Establishing order before seeking momentum."
+                </p>
+              </div>
+            </section>
           </div>
 
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(30,58,95,0.1)] border border-slate-100 dark:border-white/10 relative overflow-hidden">
+            <div className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(30,58,95,0.1)] border border-slate-100 dark:border-border-dark relative overflow-hidden">
               {isSubmitted ? (
                 <div className="text-center py-20 animate-scale-in">
                    <div className="w-24 h-24 bg-green-50 text-green-600 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-lg border border-green-100">
@@ -97,27 +111,35 @@ const ContactPage = () => {
                    <p className="text-text-muted max-w-sm mx-auto font-medium leading-relaxed mb-12">
                      A compliance specialist will review your inquiry and respond within one business day.
                    </p>
+                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-steel-blue transition-all shadow-xl active:scale-95">New Inquiry</button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-10">
+                  {error && (
+                    <div className="bg-red-50 border border-red-100 p-6 rounded-3xl flex items-start space-x-4 animate-in slide-in-from-top-4">
+                      <AlertCircle className="text-red-600 shrink-0 mt-0.5" size={24} />
+                      <p className="text-sm font-bold text-red-700 leading-relaxed">{error}</p>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 ml-4 block">Full Legal Name</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-text-dark-muted ml-4 block">Full Legal Name</label>
                       <input 
                         required 
                         placeholder="e.g. Jane Doe" 
-                        className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:bg-white dark:focus:bg-slate-900 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300 dark:placeholder:text-white/20"
+                        className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300"
                         value={formData.fullName} 
                         onChange={e => setFormData({...formData, fullName: e.target.value})} 
                       />
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 ml-4 block">Professional Email</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-text-dark-muted ml-4 block">Professional Email</label>
                       <input 
                         required 
                         type="email" 
                         placeholder="jane@carrier.com" 
-                        className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:bg-white dark:focus:bg-slate-900 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300 dark:placeholder:text-white/20"
+                        className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300"
                         value={formData.email} 
                         onChange={e => setFormData({...formData, email: e.target.value})} 
                       />
@@ -125,22 +147,60 @@ const ContactPage = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 ml-4 block">Motor Carrier Name</label>
+                    <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-text-dark-muted ml-4 block">Motor Carrier Name</label>
                     <input 
                       placeholder="e.g. Integrity Logistics LLC" 
-                      className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:bg-white dark:focus:bg-slate-900 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300 dark:placeholder:text-white/20"
+                      className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300"
                       value={formData.businessName} 
                       onChange={e => setFormData({...formData, businessName: e.target.value})} 
                     />
                   </div>
 
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-text-dark-muted ml-4 block">Current Phase</label>
+                      <div className="relative group">
+                        <select 
+                          required
+                          className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white appearance-none cursor-pointer"
+                          value={formData.currentStatus}
+                          onChange={e => setFormData({...formData, currentStatus: e.target.value})}
+                        >
+                          <option value="">Select Phase</option>
+                          <option value="New Authority">First 90 Days</option>
+                          <option value="Existing Carrier">Active Operator</option>
+                          <option value="Pre-Filing">Pre-Filing Stage</option>
+                        </select>
+                        <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none group-hover:text-authority-blue transition-colors" size={18} />
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-text-dark-muted ml-4 block">Primary Inquiry Area</label>
+                      <div className="relative group">
+                        <select 
+                          required
+                          className="w-full px-7 py-5 rounded-2xl bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 outline-none font-bold transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white appearance-none cursor-pointer"
+                          value={formData.areaOfInterest}
+                          onChange={e => setFormData({...formData, areaOfInterest: e.target.value})}
+                        >
+                          <option value="">Select Category</option>
+                          <option value="Compliance Systems">The Four Pillars</option>
+                          <option value="Audit Prep">New Entrant Audit</option>
+                          <option value="Training">Training Programs</option>
+                          <option value="General">General Inquiry</option>
+                        </select>
+                        <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none group-hover:text-authority-blue transition-colors" size={18} />
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 ml-4 block">Detailed Context</label>
+                    <label className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-text-dark-muted ml-4 block">Detailed Context</label>
                     <textarea 
                       required 
                       rows={6} 
                       placeholder="How can our specialists assist you today?" 
-                      className="w-full px-7 py-5 rounded-3xl bg-slate-50 dark:bg-slate-900/80 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold focus:bg-white dark:focus:bg-slate-900 outline-none font-medium transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300 dark:placeholder:text-white/20 leading-relaxed resize-none"
+                      className="w-full px-7 py-5 rounded-3xl bg-slate-50 dark:bg-gray-800 border-2 border-transparent focus:border-authority-blue focus:bg-white dark:focus:bg-gray-700 outline-none font-medium transition-all shadow-sm focus:shadow-2xl text-text-primary dark:text-white placeholder:text-slate-300 leading-relaxed resize-none"
                       value={formData.message} 
                       onChange={e => setFormData({...formData, message: e.target.value})} 
                     />
@@ -154,11 +214,36 @@ const ContactPage = () => {
                     {sending ? <Loader2 className="animate-spin mr-4" size={24} /> : <Send className="mr-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />} 
                     Secure Inquiry Link
                   </button>
+                  
+                  <p className="text-[9px] text-center text-slate-400 dark:text-text-dark-muted uppercase tracking-[0.3em] font-black opacity-60">
+                    High-Trust Environment • Administrative Protocol Active
+                  </p>
                 </form>
               )}
             </div>
           </div>
         </div>
+
+        <div className="mt-40 pt-20 border-t border-border-light dark:border-border-dark text-center space-y-8">
+           <div className="flex items-center justify-center space-x-8 text-authority-blue dark:text-signal-gold opacity-20">
+              <Anchor size={28} />
+              <div className="h-px w-40 bg-current"></div>
+              <Anchor size={28} />
+           </div>
+           <div className="max-w-2xl mx-auto space-y-4">
+             <p className="text-[13px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-text-dark-muted">
+               Built on Stewardship.
+             </p>
+           </div>
+        </div>
+
+        <div className="mt-16 text-center">
+           <Link to="/support" className="inline-flex items-center space-x-3 bg-white dark:bg-surface-dark px-12 py-5 rounded-full border border-slate-200 dark:border-border-dark text-[11px] font-black uppercase tracking-[0.2em] text-text-muted hover:text-authority-blue hover:shadow-xl transition-all active:scale-95 shadow-sm">
+              <MessageSquare size={16} />
+              <span>Priority Member Support (Paid Enrollees)</span>
+           </Link>
+        </div>
+
       </div>
     </div>
   );

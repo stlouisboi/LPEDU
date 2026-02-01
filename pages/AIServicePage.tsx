@@ -10,13 +10,17 @@ import {
   Video, 
   Image as ImageIcon,
   Sparkles,
-  Loader2, 
+  Loader2,
+  X,
   Film,
   Phone,
   PhoneOff,
+  Maximize2,
+  Lock,
+  Zap,
   Bot,
   User,
-  Lock
+  ArrowRight
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, GenerateContentResponse } from '@google/genai';
 
@@ -334,7 +338,7 @@ const AIServicePage = () => {
         
         {/* Sidebar Nav */}
         <aside className="lg:col-span-3 space-y-6">
-          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border border-slate-200 dark:border-white/10 shadow-xl">
+          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border border-slate-200 dark:border-border-dark shadow-xl">
             <h2 className="text-sm font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-8 flex items-center">
               <Bot size={18} className="mr-3" /> Neural Advisors
             </h2>
@@ -350,10 +354,10 @@ const AIServicePage = () => {
                   className={`w-full text-left p-5 rounded-3xl transition-all flex items-center space-x-4 border-2 ${
                     activeTab === tab.id 
                     ? 'bg-authority-blue border-authority-blue text-white shadow-2xl scale-[1.02]' 
-                    : 'bg-slate-50 dark:bg-slate-900 border-transparent text-text-muted dark:text-text-dark-muted hover:border-slate-200 dark:hover:border-white/10'
+                    : 'bg-slate-50 dark:bg-gray-800 border-transparent text-text-muted dark:text-text-dark-muted hover:border-slate-200 dark:hover:border-gray-700'
                   }`}
                 >
-                  <div className={`p-3 rounded-2xl ${activeTab === tab.id ? 'bg-white/20' : 'bg-white dark:bg-gray-800 shadow-sm'}`}>
+                  <div className={`p-3 rounded-2xl ${activeTab === tab.id ? 'bg-white/20' : 'bg-white dark:bg-gray-700 shadow-sm'}`}>
                     {tab.icon}
                   </div>
                   <div>
@@ -364,10 +368,19 @@ const AIServicePage = () => {
               ))}
             </nav>
           </div>
+
+          <div className="bg-authority-blue p-8 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16"></div>
+             <Zap className="text-signal-gold mb-4" size={24} />
+             <h3 className="text-lg font-bold font-serif mb-2">System Status</h3>
+             <p className="text-[11px] font-medium text-white/60 leading-relaxed uppercase tracking-widest">
+               Uplink active. Advisor training synchronized to 49 CFR standards.
+             </p>
+          </div>
         </aside>
 
         {/* Main Interface */}
-        <main className="lg:col-span-9 bg-white dark:bg-surface-dark rounded-[4rem] border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col relative">
+        <main className="lg:col-span-9 bg-white dark:bg-surface-dark rounded-[4rem] border border-slate-200 dark:border-border-dark shadow-2xl overflow-hidden flex flex-col relative">
           
           {activeTab === 'chat' && (
             <>
@@ -383,23 +396,56 @@ const AIServicePage = () => {
                       <div className={`p-8 rounded-[2.5rem] ${
                         m.role === 'user' 
                         ? 'bg-authority-blue text-white rounded-tr-none shadow-xl' 
-                        : 'bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-white/10 rounded-tl-none'
+                        : 'bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-border-dark rounded-tl-none'
                       }`}>
                         <div className="text-base font-medium leading-relaxed prose dark:prose-invert max-w-none">
                           {m.content.split('\n').map((line, li) => <p key={li} className="mb-2 last:mb-0">{line}</p>)}
                         </div>
+                        {m.role === 'assistant' && (
+                          <button 
+                            onClick={() => speakMessage(m.content, i)} 
+                            className={`mt-6 flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] py-2.5 px-5 rounded-xl border transition-all ${
+                              isSpeaking === i 
+                              ? 'text-signal-gold border-signal-gold bg-signal-gold/5 animate-pulse' 
+                              : 'text-authority-blue border-slate-200 dark:border-border-dark dark:text-signal-gold hover:bg-slate-100 dark:hover:bg-gray-800'
+                            }`}
+                          >
+                            {isSpeaking === i ? <Volume2 size={16} /> : <VolumeX size={16} />}
+                            <span>{isSpeaking === i ? 'Advisor Speaking' : 'Listen to Brief'}</span>
+                          </button>
+                        )}
                       </div>
+                      {m.role === 'user' && (
+                        <div className="w-10 h-10 bg-slate-100 dark:bg-gray-800 rounded-xl flex items-center justify-center text-authority-blue dark:text-signal-gold shrink-0 shadow-sm border border-slate-200 dark:border-border-dark">
+                          <User size={20} />
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
+                {isLoading && (
+                  <div className="flex justify-start animate-in fade-in">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-10 h-10 bg-authority-blue/10 rounded-xl flex items-center justify-center text-authority-blue shrink-0 animate-pulse">
+                        <Bot size={20} />
+                      </div>
+                      <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-[2.5rem] rounded-tl-none border border-slate-100 dark:border-border-dark shadow-inner">
+                        <div className="flex space-x-2">
+                           <div className="w-2 h-2 bg-authority-blue rounded-full animate-bounce"></div>
+                           <div className="w-2 h-2 bg-authority-blue rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                           <div className="w-2 h-2 bg-authority-blue rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="p-10 bg-slate-50/50 dark:bg-gray-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-white/10">
+              <div className="p-10 bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-xl border-t border-slate-200 dark:border-border-dark">
                 <div className="max-w-4xl mx-auto flex items-center space-x-5">
                   <div className="relative flex-grow">
                     <input 
                       type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                      placeholder="Input regulatory inquiry..." 
-                      className="w-full bg-white dark:bg-slate-950 border-2 border-slate-100 dark:border-white/10 pl-8 pr-16 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/5 transition-all dark:placeholder:text-white/20"
+                      placeholder="Input regulatory inquiry..." className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark pl-8 pr-16 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold transition-all"
                     />
                     <Sparkles className="absolute right-6 top-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold opacity-20" size={24} />
                   </div>
@@ -415,9 +461,10 @@ const AIServicePage = () => {
             <div className="flex-grow flex flex-col items-center justify-center p-20 bg-gradient-to-b from-transparent to-authority-blue/[0.02]">
               <div className="text-center mb-16 space-y-10">
                 <div className="relative inline-block">
-                  <div className={`w-40 h-40 rounded-[4rem] flex items-center justify-center mx-auto transition-all duration-700 border-4 ${isLiveActive ? 'bg-authority-blue border-signal-gold shadow-[0_0_50px_rgba(212,175,55,0.3)]' : 'bg-slate-50 dark:bg-gray-800 border-slate-100 dark:border-white/10'}`}>
+                  <div className={`w-40 h-40 rounded-[4rem] flex items-center justify-center mx-auto transition-all duration-700 border-4 ${isLiveActive ? 'bg-authority-blue border-signal-gold shadow-[0_0_50px_rgba(212,175,55,0.3)]' : 'bg-slate-50 dark:bg-gray-800 border-slate-100 dark:border-border-dark'}`}>
                     <Mic size={64} className={isLiveActive ? 'text-white' : 'text-text-muted opacity-30 dark:opacity-50'} />
                   </div>
+                  {isLiveActive && <div className="absolute inset-0 bg-signal-gold/20 rounded-[4rem] animate-ping"></div>}
                 </div>
                 <div>
                   <h2 className="text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Voice Terminal</h2>
@@ -435,6 +482,10 @@ const AIServicePage = () => {
                 {isLiveActive ? <PhoneOff size={24} /> : <Phone size={24} />}
                 <span>{isLiveActive ? 'Terminate Uplink' : 'Establish Advisory Link'}</span>
               </button>
+              <div className="mt-16 flex items-center space-x-4 opacity-40 dark:opacity-60 dark:text-white">
+                 <Lock size={14} />
+                 <p className="text-[10px] font-black uppercase tracking-widest">Encrypted neural channel active</p>
+              </div>
             </div>
           )}
 
@@ -443,20 +494,71 @@ const AIServicePage = () => {
               {!hasApiKey ? (
                 <div className="max-w-2xl mx-auto p-16 bg-amber-50 dark:bg-amber-950/20 rounded-[4rem] text-center space-y-10 border border-amber-200 dark:border-amber-900/40 shadow-xl mt-12">
                   <ShieldAlert className="mx-auto text-amber-600" size={80} />
+                  <div className="space-y-4">
+                    <h3 className="text-4xl font-black uppercase tracking-tighter text-amber-800 dark:text-amber-400 font-serif">Studio Auth Required</h3>
+                    <p className="text-lg font-medium text-amber-700/80 dark:text-amber-300/80 leading-relaxed">
+                      Synthesis requires a validated Google AI Studio key.
+                    </p>
+                  </div>
                   <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-14 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-amber-700 active:scale-95 transition-all">Authorize Key</button>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                    <div className="space-y-10">
-                     <textarea 
+                     <div>
+                       <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6">Production Directives</h3>
+                       <textarea 
                         rows={8} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} 
                         placeholder="Describe the cinematic visualization..." 
-                        className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-slate-100 dark:border-white/10 p-8 rounded-[3rem] font-bold text-sm text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/5 outline-none shadow-inner dark:placeholder:text-white/20" 
-                     />
+                        className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark p-8 rounded-[3rem] font-bold text-sm text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold outline-none shadow-inner" 
+                       />
+                     </div>
+                     
+                     <div className="space-y-6">
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500">Cinematic Aspect Ratio</h3>
+                        <div className="flex gap-4">
+                          {(['16:9', '9:16'] as const).map(ratio => (
+                            <button 
+                              key={ratio} onClick={() => setAspectRatio(ratio)}
+                              className={`flex-grow py-4 rounded-2xl font-black border-2 transition-all ${aspectRatio === ratio ? 'bg-authority-blue border-authority-blue text-white shadow-lg' : 'bg-white dark:bg-gray-800 border-slate-100 dark:border-border-dark text-slate-400 dark:text-slate-500 hover:border-authority-blue'}`}
+                            >
+                              {ratio === '16:9' ? 'Landscape (16:9)' : 'Portrait (9:16)'}
+                            </button>
+                          ))}
+                        </div>
+                     </div>
+
                      <button onClick={generateVideo} disabled={isGeneratingVideo} className="w-full py-10 rounded-[2.5rem] bg-authority-blue text-white font-black uppercase tracking-[0.3em] text-xs flex items-center justify-center shadow-lg hover:bg-steel-blue active:scale-95 disabled:opacity-50 group border-b-8 border-slate-900">
                         {isGeneratingVideo ? <Loader2 className="animate-spin mr-4" size={24} /> : <Film className="mr-4 group-hover:rotate-12 transition-transform" size={24} />}
                         Synthesize Digital Asset
                      </button>
+                   </div>
+                   
+                   <div className="space-y-6">
+                      <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6">Synthesis Monitor</h3>
+                      <div className="bg-slate-50 dark:bg-gray-800 rounded-[4rem] border-2 border-dashed border-slate-200 dark:border-border-dark flex flex-col items-center justify-center min-h-[500px] relative overflow-hidden group shadow-inner">
+                        {isGeneratingVideo ? (
+                          <div className="text-center space-y-6 px-10 animate-in fade-in">
+                            <div className="relative">
+                              <div className="w-24 h-24 bg-authority-blue/5 rounded-full border-4 border-authority-blue border-t-transparent dark:border-signal-gold dark:border-t-transparent animate-spin mx-auto"></div>
+                              <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold" />
+                            </div>
+                            <div className="space-y-2">
+                               <p className="font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold animate-pulse">{genMessage}</p>
+                               <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Veo 3.1 Neural Engine</p>
+                            </div>
+                          </div>
+                        ) : videoResult ? (
+                          <div className="w-full h-full relative group/vid">
+                            <video src={videoResult} controls className="w-full h-full object-cover" />
+                          </div>
+                        ) : (
+                          <div className="text-center p-12 opacity-30 group-hover:opacity-50 transition-opacity dark:text-white">
+                             <Film size={80} className="mx-auto mb-6" />
+                             <p className="uppercase font-black tracking-[0.4em] text-sm">Terminal Idle</p>
+                          </div>
+                        )}
+                      </div>
                    </div>
                 </div>
               )}

@@ -51,15 +51,15 @@ const InstitutionalBadge = ({ icon: Icon, label, variant = 'gold' }: { icon: any
 
 const AboutPage = () => {
   return (
-    <div className="bg-white dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-700 overflow-x-hidden transition-colors text-text-primary dark:text-text-dark-primary">
+    <div className="bg-white dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-700 overflow-x-hidden transition-colors">
       
       {/* SECTION 1: PURPOSE */}
       <section className="relative bg-[#F8F9FA] dark:bg-surface-dark py-20 lg:py-40 border-b border-slate-200 dark:border-border-dark overflow-hidden text-center">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5" aria-hidden="true"></div>
         <div className="max-w-[1000px] mx-auto px-6 relative z-10">
           <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-6 py-2.5 rounded-full mb-10 shadow-sm">
-            <Scale size={16} className="text-authority-blue dark:text-signal-gold" />
-            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-white">Institutional Statement LP-ST-01</span>
+            <Scale size={16} className="text-authority-blue" />
+            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue">Institutional Statement LP-ST-01</span>
           </div>
           <h1 id="about-intro" className="text-4xl sm:text-6xl lg:text-[8rem] font-black text-[#1A1A1A] dark:text-white leading-[0.85] mb-10 font-sans uppercase tracking-tighter">
             The Standard <br/><span className="text-signal-gold italic">LaunchPath</span>
@@ -190,7 +190,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* SECTION 4: CUSTODIANSHIP */}
+      {/* SECTION 4: CUSTODIANSHIP (FOUNDER - LAYOUT REFINED) */}
       <section className="bg-[#0c1a2d] dark:bg-primary-dark py-24 lg:py-60 transition-all relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-authority-blue to-transparent"></div>
@@ -198,7 +198,7 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[4.5fr_5.5fr] gap-20 lg:gap-24 items-start">
             
-            {/* COLUMN 1: Visual Anchor */}
+            {/* COLUMN 1: Visual Anchor & Quote Box */}
             <div className="w-full space-y-12">
               <div className="max-w-[520px] mx-auto lg:mx-0 w-full relative group">
                 <div className="absolute -inset-10 bg-authority-blue/30 rounded-[5rem] blur-[100px] opacity-40 group-hover:opacity-70 transition-opacity"></div>
@@ -213,7 +213,7 @@ const AboutPage = () => {
                 </div>
               </div>
 
-              {/* QUOTE BOX */}
+              {/* QUOTE BOX - NOW UNDER PICTURE */}
               <div className="border-l-8 border-signal-gold pl-12 space-y-6 bg-white/5 p-12 rounded-[3.5rem] shadow-inner max-w-[520px] mx-auto lg:mx-0 animate-in fade-in slide-in-from-bottom-4">
                 <Quote className="text-signal-gold/40 mb-2" size={56} />
                 <p className="italic text-white font-black leading-relaxed text-left text-2xl sm:text-3xl font-serif">
@@ -222,7 +222,7 @@ const AboutPage = () => {
               </div>
             </div>
 
-            {/* COLUMN 2: Narrative */}
+            {/* COLUMN 2: Narrative & Trust Credentials */}
             <div className="flex flex-col space-y-12 text-center lg:text-left pt-12">
               <div className="space-y-6">
                 <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full mb-2 mx-auto lg:mx-0">
@@ -243,7 +243,7 @@ const AboutPage = () => {
                 </p>
               </div>
 
-              {/* TRUST BADGES */}
+              {/* TRUST BADGES - NOW UNDER LAST PARAGRAPH */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-8 border-t border-white/5">
                 <InstitutionalBadge icon={Award} label="U.S. Navy Veteran" variant="gold" />
                 <InstitutionalBadge icon={ShieldCheck} label="OSHA-Certified" variant="gold" />
@@ -269,8 +269,8 @@ const AboutPage = () => {
               { i: <Scale />, t: "BOUNDARIES", d: "Maintaining a clear separation between educational guidance and legal advice." },
               { i: <Target />, t: "STEWARDSHIP", d: "Treating every carrier operation as a legacy entrusted to the operator's care." }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white dark:bg-surface-dark border-2 border-slate-100 dark:border-white/5 rounded-[3.5rem] p-12 shadow-sm text-left space-y-6 hover:shadow-xl transition-all">
-                <div className="text-authority-blue dark:text-signal-gold p-4 bg-slate-50 dark:bg-white/5 rounded-2xl w-fit">{React.cloneElement(item.i as React.ReactElement, { size: 28 })}</div>
+              <div key={idx} className="bg-white dark:bg-primary-dark border-2 border-slate-100 dark:border-border-dark rounded-[3.5rem] p-12 shadow-sm text-left space-y-6 hover:shadow-xl transition-all">
+                <div className="text-authority-blue dark:text-signal-gold p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl w-fit">{React.cloneElement(item.i as React.ReactElement, { size: 28 })}</div>
                 <h3 className="text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight">{item.t}</h3>
                 <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-extrabold">{item.d}</p>
               </div>

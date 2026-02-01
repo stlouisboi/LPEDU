@@ -9,9 +9,7 @@ import {
   Shield, 
   Plus, 
   Trash2, 
-  ClipboardList,
-  Lock,
-  Target
+  ClipboardList
 } from 'lucide-react';
 import ConfirmationModal from '../components/ConfirmationModal';
 
@@ -93,7 +91,7 @@ const OperatorPortal: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#f8f9fc] dark:bg-primary-dark min-h-screen">
+    <div className="bg-primary-light dark:bg-primary-dark min-h-screen">
       {/* Protocol Block at the Top */}
       <RemediationProtocol />
 
@@ -101,9 +99,9 @@ const OperatorPortal: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 gap-6">
           <div>
             <h1 className="text-3xl sm:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Operator Dashboard</h1>
-            <p className="text-text-muted mt-1 uppercase text-[9px] font-black tracking-widest">Registry ID: LP-AUTH-7729 // SECURE_UPLINK_STABLE</p>
+            <p className="text-text-muted mt-1 uppercase text-[10px] font-black tracking-widest">Registry ID: LP-AUTH-7729 // SECURE_UPLINK_STABLE</p>
           </div>
-          <div className="flex items-center space-x-3 bg-white dark:bg-surface-dark px-5 py-3 border border-slate-100 dark:border-white/10 rounded-2xl shadow-sm transition-all hover:shadow-md">
+          <div className="flex items-center space-x-3 bg-white dark:bg-surface-dark px-5 py-3 border border-slate-100 dark:border-border-dark rounded-2xl shadow-sm">
             <Shield size={16} className="text-signal-gold" />
             <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white">Active Authority Standard</span>
           </div>
@@ -113,21 +111,21 @@ const OperatorPortal: React.FC = () => {
           {/* Implementation Sequence */}
           <div className="lg:col-span-8 space-y-12">
             <section>
-              <div className="flex justify-between items-end mb-8 px-2">
+              <div className="flex justify-between items-end mb-8">
                 <h2 className="text-xs font-black uppercase tracking-[0.4em] text-slate-400 flex items-center">
                   <Layout size={16} className="mr-3" /> Implementation Sequence
                 </h2>
               </div>
               
-              <div className="grid grid-cols-1 gap-5">
+              <div className="grid grid-cols-1 gap-4">
                 {COURSE_MODULES.map((module) => (
                   <Link 
                     key={module.id} 
                     to={`/modules/${module.id}`}
-                    className="flex items-center justify-between p-8 bg-white dark:bg-surface-dark border border-slate-100 dark:border-white/10 rounded-[2.5rem] hover:shadow-2xl hover:-translate-y-1 transition-all group shadow-sm"
+                    className="flex items-center justify-between p-8 bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark rounded-[2.5rem] hover:shadow-2xl hover:translate-x-2 transition-all group"
                   >
                     <div className="flex items-center space-x-8">
-                      <div className="w-14 h-14 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center font-black text-authority-blue dark:text-signal-gold shadow-inner text-lg group-hover:scale-110 transition-transform">
+                      <div className="w-14 h-14 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center font-black text-authority-blue dark:text-signal-gold shadow-inner text-lg">
                         {module.id}
                       </div>
                       <div>
@@ -137,16 +135,16 @@ const OperatorPortal: React.FC = () => {
                         <p className="text-[10px] font-black text-text-muted uppercase tracking-widest mt-1">{module.pillar} • {module.duration}</p>
                       </div>
                     </div>
-                    <div className="w-10 h-10 bg-slate-50 dark:bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-authority-blue group-hover:text-white transition-all shadow-sm">
-                      <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
+                    <div className="w-10 h-10 bg-slate-50 dark:bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-authority-blue group-hover:text-white transition-all">
+                      <ChevronRight size={18} />
                     </div>
                   </Link>
                 ))}
               </div>
             </section>
 
-            {/* Task Registry Section - ENHANCED CARD */}
-            <section className="bg-gradient-to-br from-white to-slate-50 dark:from-surface-dark dark:to-[#0f172a] rounded-[3.5rem] p-10 md:p-14 border border-slate-100 dark:border-white/5 shadow-xl">
+            {/* Task Registry Section */}
+            <section className="bg-white dark:bg-surface-dark rounded-[3.5rem] p-10 md:p-14 border border-slate-100 dark:border-border-dark shadow-sm">
               <div className="flex items-center justify-between mb-10">
                 <h2 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold flex items-center">
                   <ClipboardList size={18} className="mr-3" /> Task Registry
@@ -160,11 +158,11 @@ const OperatorPortal: React.FC = () => {
                   value={newTaskText}
                   onChange={(e) => setNewTaskText(e.target.value)}
                   placeholder="Input custom compliance task..."
-                  className="flex-grow bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue dark:focus:border-signal-gold outline-none rounded-2xl px-6 py-4 font-bold text-sm transition-all shadow-inner dark:text-white"
+                  className="flex-grow bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue dark:focus:border-signal-gold outline-none rounded-2xl px-6 py-4 font-bold text-sm transition-all shadow-inner"
                 />
                 <button 
                   type="submit"
-                  className="bg-authority-blue text-white px-8 rounded-2xl hover:bg-steel-blue transition-all active:scale-95 shadow-lg flex items-center justify-center"
+                  className="bg-authority-blue text-white px-6 rounded-2xl hover:bg-steel-blue transition-all active:scale-95 shadow-lg flex items-center"
                 >
                   <Plus size={20} />
                 </button>
@@ -174,24 +172,24 @@ const OperatorPortal: React.FC = () => {
                 {tasks.map((task) => (
                   <div 
                     key={task.id} 
-                    className="flex items-center justify-between p-6 bg-white dark:bg-[#111827] border border-slate-100 dark:border-white/5 rounded-2xl group transition-all hover:shadow-md hover:bg-slate-50 dark:hover:bg-gray-800"
+                    className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-900/50 border border-slate-100 dark:border-border-dark rounded-2xl group transition-all hover:bg-white dark:hover:bg-gray-800"
                   >
-                    <div className="flex items-center space-x-5 flex-grow cursor-pointer" onClick={() => toggleTask(task.id)}>
+                    <div className="flex items-center space-x-4 flex-grow cursor-pointer" onClick={() => toggleTask(task.id)}>
                       <AnimatedCheckmark checked={task.completed} />
-                      <span className={`text-sm font-bold transition-all duration-300 ${task.completed ? 'text-slate-300 line-through italic' : 'text-slate-700 dark:text-slate-200'}`}>
+                      <span className={`text-sm font-bold transition-all duration-300 ${task.completed ? 'text-slate-300 line-through' : 'text-slate-700 dark:text-slate-200'}`}>
                         {task.text}
                       </span>
                     </div>
                     <button 
                       onClick={() => openDeleteConfirm(task.id)}
-                      className="p-2 text-slate-300 hover:text-red-500 transition-all opacity-0 group-hover:opacity-100"
+                      className="p-2 text-slate-300 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
                     >
                       <Trash2 size={18} />
                     </button>
                   </div>
                 ))}
                 {tasks.length === 0 && (
-                  <div className="text-center py-16 opacity-30">
+                  <div className="text-center py-12 opacity-30">
                     <ClipboardList size={48} className="mx-auto mb-4" />
                     <p className="text-[10px] font-black uppercase tracking-widest">Registry Empty</p>
                   </div>
@@ -202,8 +200,8 @@ const OperatorPortal: React.FC = () => {
 
           {/* Sidebar Status */}
           <div className="lg:col-span-4 space-y-8">
-            <div className="bg-authority-blue p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-24 translate-x-24 group-hover:scale-110 transition-transform duration-700"></div>
+            <div className="bg-authority-blue p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-24 translate-x-24"></div>
               <h3 className="text-2xl font-bold font-serif mb-8 uppercase tracking-tight text-signal-gold">System Integrity</h3>
               <div className="space-y-8">
                 {[
@@ -212,7 +210,7 @@ const OperatorPortal: React.FC = () => {
                   { label: "DQ File Framework", status: "In Progress" },
                   { label: "MCS-150 Update", status: "Pending" }
                 ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-center border-b border-white/10 pb-5 last:border-0">
+                  <div key={i} className="flex justify-between items-center border-b border-white/10 pb-5">
                     <span className="text-[11px] font-black uppercase tracking-widest opacity-60">{item.label}</span>
                     <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-lg ${
                       item.status === 'Verified' ? 'bg-green-500/20 text-green-400' : 
@@ -231,37 +229,22 @@ const OperatorPortal: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-10 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all duration-500">
-               <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-8">Quick Links</h3>
+            <div className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-10 rounded-[3rem] shadow-sm">
+               <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-6">Quick Links</h3>
                <div className="space-y-4">
-                  <Link to="/ai-advisor" className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-800 rounded-2xl hover:bg-authority-blue hover:text-white transition-all group shadow-sm">
+                  <Link to="/ai-advisor" className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-800 rounded-2xl hover:bg-authority-blue hover:text-white transition-all group">
                     <span className="text-[10px] font-black uppercase tracking-widest">Neural Advisor</span>
-                    <ChevronRight size={14} className="opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    <ChevronRight size={14} className="opacity-30 group-hover:opacity-100" />
                   </Link>
-                  <Link to="/tools/tco-calculator" className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-800 rounded-2xl hover:bg-authority-blue hover:text-white transition-all group shadow-sm">
+                  <Link to="/tools/tco-calculator" className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-800 rounded-2xl hover:bg-authority-blue hover:text-white transition-all group">
                     <span className="text-[10px] font-black uppercase tracking-widest">TCO Economic Engine</span>
-                    <ChevronRight size={14} className="opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    <ChevronRight size={14} className="opacity-30 group-hover:opacity-100" />
                   </Link>
                </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Footer System Infrastructure */}
-      <footer className="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100 dark:border-white/5 text-center flex flex-col md:flex-row justify-between items-center gap-6">
-        <p className="text-[10px] font-black text-slate-300 dark:text-white/20 uppercase tracking-[0.4em]">© 2026 Operator Authorized Environment</p>
-        <div className="flex items-center space-x-6 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
-           <div className="flex items-center space-x-2">
-              <Lock size={12} className="text-signal-gold/50" />
-              <span>SSL: ENCRYPTED</span>
-           </div>
-           <div className="flex items-center space-x-2">
-              <Target size={12} className="text-signal-gold/50" />
-              <span>NC-2026-LP-SYS</span>
-           </div>
-        </div>
-      </footer>
 
       <ConfirmationModal 
         isOpen={isModalOpen}

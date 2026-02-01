@@ -1,15 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from '../firebase';
-import { Calendar, User, ChevronLeft, Share2, Bookmark, Loader2, ShieldAlert, Twitter, Linkedin } from 'lucide-react';
+import { Calendar, User, ChevronLeft, Share2, Bookmark, Loader2, ShieldAlert } from 'lucide-react';
 import { BlogPost } from '../types';
 import { INITIAL_BLOGS } from '../constants';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
-  // Fixed syntax error on line 12: removed duplicate assignment and closing bracket
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -43,8 +41,6 @@ const BlogPostPage = () => {
       </div>
     );
   }
-
-  const shareUrl = window.location.href;
 
   return (
     <div className="bg-white dark:bg-primary-dark min-h-screen">
@@ -87,7 +83,6 @@ const BlogPostPage = () => {
               dangerouslySetInnerHTML={{ __html: post.content }} 
             />
             
-            {/* Author Section */}
             <div className="mt-20 p-8 bg-slate-50 dark:bg-surface-dark rounded-[2.5rem] border border-border-light dark:border-border-dark flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-slate-200 rounded-2xl overflow-hidden shadow-sm">
@@ -100,42 +95,10 @@ const BlogPostPage = () => {
               </div>
               <div className="flex space-x-3">
                 <button className="p-4 bg-white dark:bg-gray-800 rounded-2xl hover:bg-slate-100 dark:hover:bg-gray-700 transition-all border border-border-light dark:border-border-dark shadow-sm">
-                  <Bookmark className="w-5 h-5 text-steel-blue" />
+                  <Share2 className="w-5 h-5 text-steel-blue" />
                 </button>
-              </div>
-            </div>
-
-            {/* Social Sharing Section */}
-            <div className="mt-8 flex items-center space-x-6 px-4 animate-in fade-in duration-700 slide-in-from-bottom-2">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted dark:text-slate-500">Distribute Standard:</span>
-              <div className="flex space-x-4">
-                <a 
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(shareUrl)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 bg-slate-50 dark:bg-gray-800 text-slate-500 dark:text-slate-400 rounded-xl hover:text-white hover:bg-[#1DA1F2] dark:hover:bg-[#1DA1F2] border border-border-light dark:border-border-dark shadow-sm transition-all hover:-translate-y-1 active:scale-95"
-                  aria-label="Share on Twitter"
-                >
-                  <Twitter size={18} />
-                </a>
-                <a 
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3.5 bg-slate-50 dark:bg-gray-800 text-slate-500 dark:text-slate-400 rounded-xl hover:text-white hover:bg-[#0A66C2] dark:hover:bg-[#0A66C2] border border-border-light dark:border-border-dark shadow-sm transition-all hover:-translate-y-1 active:scale-95"
-                  aria-label="Share on LinkedIn"
-                >
-                  <Linkedin size={18} />
-                </a>
-                <button 
-                  onClick={() => {
-                    navigator.clipboard.writeText(shareUrl);
-                    alert("Registry link copied to clipboard.");
-                  }}
-                  className="p-3.5 bg-slate-50 dark:bg-gray-800 text-slate-500 dark:text-slate-400 rounded-xl hover:text-white hover:bg-authority-blue border border-border-light dark:border-border-dark shadow-sm transition-all hover:-translate-y-1 active:scale-95"
-                  aria-label="Copy Link"
-                >
-                  <Share2 size={18} />
+                <button className="p-4 bg-white dark:bg-gray-800 rounded-2xl hover:bg-slate-100 dark:hover:bg-gray-700 transition-all border border-border-light dark:border-border-dark shadow-sm">
+                  <Bookmark className="w-5 h-5 text-steel-blue" />
                 </button>
               </div>
             </div>
