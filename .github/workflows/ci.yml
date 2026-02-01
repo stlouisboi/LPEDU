@@ -15,10 +15,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '${{ matrix.node }}'
-          cache: 'npm'            # optional: set to 'npm', 'pnpm', or 'yarn'
-
+          
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run tests
         run: npm test
