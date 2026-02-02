@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -7,7 +6,7 @@ import {
   Menu, 
   X, 
   ChevronRight, 
-  Loader2,
+  Loader2, 
   Lock,
   Youtube,
   Facebook,
@@ -104,9 +103,10 @@ const Header = () => {
 
   const navItems = [
     { name: 'About', path: '/about' },
-    { name: 'Clarification', path: '/clarification' },
-    { name: 'Roadmap', path: '/learning-path' },
-    { name: 'Resources', path: '/resources' }
+    { name: 'Program', path: '/learning-path' },
+    { name: 'Resources', path: '/resources' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'FAQ', path: '/faq' }
   ];
 
   return (
@@ -254,6 +254,7 @@ const Footer = () => {
                 {[
                   { name: 'LaunchPath Home', path: '/' },
                   { name: 'About the Standard', path: '/about' },
+                  { name: 'Institutional Clarifications', path: '/clarification' },
                   { name: 'Contact Us', path: '/contact' }
                 ].map((link) => (
                   <li key={link.name}>
@@ -292,7 +293,8 @@ const Footer = () => {
                 {[
                   { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
                   { name: 'Educational Downloads', path: '/resources' },
-                  { name: 'Truth & Clarification', path: '/clarification' }
+                  { name: 'FAQ', path: '/faq' },
+                  { name: 'Blog', path: '/blog' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
