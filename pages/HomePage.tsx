@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -253,7 +254,7 @@ const HomePage: React.FC = () => {
               <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA (Federal Safety) Standard</span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-black leading-[0.95] md:leading-[0.9] tracking-tighter uppercase font-serif">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-black leading-[0.95] md:leading-[0.9] tracking-tighter uppercase font-serif text-authority-blue dark:text-white">
               PROTECT YOUR <br/><span className="italic text-signal-gold">AUTHORITY</span> WITH <br/>ABSOLUTE ORDER.
             </h1>
             
@@ -299,7 +300,7 @@ const HomePage: React.FC = () => {
                       required 
                       value={formData.firstName}
                       onChange={e => setFormData({...formData, firstName: e.target.value})}
-                      className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm" 
+                      className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm dark:text-white" 
                       placeholder="Your Name" 
                     />
                   </div>
@@ -310,7 +311,7 @@ const HomePage: React.FC = () => {
                       type="email"
                       value={formData.email}
                       onChange={e => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm" 
+                      className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm dark:text-white" 
                       placeholder="your@email.com" 
                     />
                   </div>
@@ -329,7 +330,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 2. FAILURE IS A SETUP PROBLEM */}
-      <section className="py-24 md:py-32 lg:py-64 bg-authority-blue text-white relative overflow-hidden">
+      <section className="py-24 md:py-32 lg:py-64 bg-authority-blue dark:bg-surface-dark text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-center">
           

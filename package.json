@@ -12,8 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node -e \"if(process.env.VERCEL!=='1'){require('child_process').execSync('npx react-snap',{stdio:'inherit'})} else {console.log('Skipping react-snap on Vercel.')}\"",
-
+    "postbuild": "react-snap",
     "preview": "vite preview"
   },
   "dependencies": {
