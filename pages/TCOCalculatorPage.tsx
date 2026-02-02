@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Calculator, 
   DollarSign, 
@@ -13,7 +13,9 @@ import {
   Printer,
   Info,
   TrendingDown,
-  Wrench
+  Wrench,
+  FileDown,
+  CheckCircle2
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
@@ -60,6 +62,22 @@ const TCOCalculatorPage: React.FC = () => {
 
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+
+  // Load saved profile on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('launchpath_tco_profile');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.fixedCosts) setFixedCosts(parsed.fixedCosts);
+        if (parsed.variableCosts) setVariableCosts(parsed.variableCosts);
+        if (parsed.operation) setOperation(parsed.operation);
+      } catch (e) {
+        console.error("Failed to restore TCO profile", e);
+      }
+    }
+  }, []);
 
   const totals = useMemo(() => {
     const totalFixed = (Object.values(fixedCosts) as number[]).reduce((a, b) => a + Math.max(0, Number(b) || 0), 0);
@@ -88,6 +106,55 @@ const TCOCalculatorPage: React.FC = () => {
       grossRevenue: (Number(operation.monthlyMiles) || 0) * (Number(operation.ratePerMile) || 0)
     };
   }, [fixedCosts, variableCosts, operation]);
+
+  const handleSaveProfile = () => {
+    setSaveStatus('saving');
+    const profile = { fixedCosts, variableCosts, operation };
+    localStorage.setItem('launchpath_tco_profile', JSON.stringify(profile));
+    
+    setTimeout(() => {
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus('idle'), 2000);
+    }, 600);
+  };
+
+  const exportCSV = () => {
+    const rows = [
+      ['Category', 'Item', 'Value'],
+      ['Fixed Costs', 'Truck Payment', fixedCosts.truckPayment],
+      ['Fixed Costs', 'Insurance', fixedCosts.insurance],
+      ['Fixed Costs', 'Permits', fixedCosts.permits],
+      ['Fixed Costs', 'Parking', fixedCosts.parking],
+      ['Fixed Costs', 'Software', fixedCosts.software],
+      ['Fixed Costs', 'Other', fixedCosts.other],
+      ['', '', ''],
+      ['Variable Costs', 'Fuel Price', variableCosts.fuelPrice],
+      ['Variable Costs', 'MPG Target', variableCosts.mpg],
+      ['Variable Costs', 'Maintenance/mi', variableCosts.maintenance],
+      ['Variable Costs', 'Tires/mi', variableCosts.tires],
+      ['Variable Costs', 'Tolls/mi', variableCosts.tolls],
+      ['', '', ''],
+      ['Operational', 'Monthly Miles', operation.monthlyMiles],
+      ['Operational', 'Rate Per Mile', operation.ratePerMile],
+      ['Operational', 'Deadhead %', operation.deadheadPercentage],
+      ['', '', ''],
+      ['Totals', 'Monthly Fixed Overhead', totals.totalFixed],
+      ['Totals', 'Total CPM', totals.cpm.toFixed(4)],
+      ['Totals', 'Break-Even RPM', totals.breakEvenRate.toFixed(4)],
+      ['Totals', 'Actual Gross Revenue', totals.actualGrossRevenue.toFixed(2)],
+      ['Totals', 'Net Profit', totals.netProfit.toFixed(2)],
+      ['Totals', 'Profit Margin %', totals.margin.toFixed(2)]
+    ];
+
+    const csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `LaunchPath_TCO_Export_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const performAIAnalysis = async () => {
     setIsAnalyzing(true);
@@ -129,9 +196,34 @@ const TCOCalculatorPage: React.FC = () => {
             <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Pillar 4 // Cash-Flow Oxygen</p>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <button onClick={() => window.print()} className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-all"><Printer size={18} /></button>
-          <button className="flex items-center gap-2 px-5 py-2.5 bg-signal-gold text-authority-blue rounded-xl text-[10px] font-black uppercase tracking-widest shadow-xl active:scale-95"><Save size={14} />Save Profile</button>
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={exportCSV}
+            title="Export CSV Data"
+            className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-all flex items-center gap-2"
+          >
+            <FileDown size={18} />
+            <span className="text-[9px] font-black uppercase tracking-widest hidden sm:inline">Export CSV</span>
+          </button>
+          <button onClick={() => window.print()} title="Print/PDF" className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-all">
+            <Printer size={18} />
+          </button>
+          <button 
+            onClick={handleSaveProfile}
+            disabled={saveStatus !== 'idle'}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all ${
+              saveStatus === 'saved' ? 'bg-green-600 text-white' : 'bg-signal-gold text-authority-blue'
+            }`}
+          >
+            {saveStatus === 'saving' ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : saveStatus === 'saved' ? (
+              <CheckCircle2 size={14} />
+            ) : (
+              <Save size={14} />
+            )}
+            {saveStatus === 'saved' ? 'Profile Saved' : 'Save Profile'}
+          </button>
         </div>
       </div>
 
