@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -251,7 +250,7 @@ const HomePage: React.FC = () => {
           <div className="lg:col-span-7 space-y-8 md:space-y-12 animate-reveal-up">
             <div className="inline-flex items-center space-x-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full">
               <span className="flex h-2 w-2 rounded-full bg-signal-gold animate-pulse"></span>
-              <span className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA (Federal Safety) Standard</span>
+              <span className="text-xs sm:text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA (Federal Safety) Standard</span>
             </div>
             
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-black leading-[0.95] md:leading-[0.9] tracking-tighter uppercase font-serif text-authority-blue dark:text-white">
@@ -295,7 +294,7 @@ const HomePage: React.FC = () => {
                 
                 <form onSubmit={handleLeadSubmit} className="space-y-6 md:space-y-8">
                   <div className="space-y-2">
-                    <label className="text-[11px] md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">FULL NAME</label>
+                    <label className="text-xs md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">FULL NAME</label>
                     <input 
                       required 
                       value={formData.firstName}
@@ -305,7 +304,7 @@ const HomePage: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[11px] md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">EMAIL</label>
+                    <label className="text-xs md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">EMAIL</label>
                     <input 
                       required 
                       type="email"
@@ -680,10 +679,10 @@ const HomePage: React.FC = () => {
                         {sin.text}
                       </h4>
                       
-                      <div className={`inline-flex items-center space-x-2 px-3 py-1.5 rounded-full text-[11px] sm:text-[9px] font-black uppercase tracking-widest border ${
-                        sin.severity === 'TERMINAL' ? 'bg-red-50 text-red-600 border-red-100' : 
-                        sin.severity === 'CRITICAL' ? 'bg-orange-50 text-orange-600 border-orange-100' : 
-                        'bg-amber-50 text-amber-600 border-amber-100'
+                      <div className={`inline-flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
+                        sin.severity === 'TERMINAL' ? 'bg-red-50 text-red-600 border-red-100 dark:bg-red-900/40 dark:text-red-400 dark:border-red-800' : 
+                        sin.severity === 'CRITICAL' ? 'bg-orange-50 text-orange-600 border-orange-100 dark:bg-orange-900/60 dark:text-orange-300 dark:border-orange-700' : 
+                        'bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-900/60 dark:text-amber-300 dark:border-amber-700'
                       }`}>
                         {sin.severity === 'TERMINAL' ? <Skull size={10} className="animate-pulse" /> : 
                          sin.severity === 'CRITICAL' ? <AlertOctagon size={10} /> : 
@@ -896,7 +895,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <div className="border-l-4 border-signal-gold pl-6 py-2">
                   <p className="text-base sm:text-lg text-slate-400 font-bold leading-relaxed italic">
-                    "LaunchPath was built from direct experience watching new motor carriers fail — not from lack of effort, but from lack of systems."
+                    "LaunchPath was built from direct experience watching new motor carriers fail — not from lack of effort, but from look of systems."
                   </p>
                 </div>
               </div>
@@ -929,13 +928,13 @@ const HomePage: React.FC = () => {
       <section className="py-24 md:py-32 lg:py-48 bg-slate-50 dark:bg-primary-dark transition-colors">
         <div className="max-w-7xl mx-auto px-6">
           <header className="text-center mb-16 lg:mb-24 space-y-4">
-            <p className="text-xs sm:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-slate-400">QUALIFICATION PARAMETERS</p>
+            <p className="text-xs sm:text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">QUALIFICATION PARAMETERS</p>
             <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">
               WHO THIS <br/><span className="text-signal-gold italic">IS FOR.</span>
             </h2>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { 
                 icon: <Truck size={32} />, 
@@ -951,6 +950,11 @@ const HomePage: React.FC = () => {
                 icon: <Users size={32} />, 
                 title: "Safety Managers", 
                 desc: "Personnel responsible for maintaining carrier documentation integrity and federal compliance files." 
+              },
+              { 
+                icon: <ShieldCheck size={32} />, 
+                title: "Insurance Partners", 
+                desc: "Agencies and underwriters seeking pre-qualified, compliance-educated new entrants with documented safety posture." 
               }
             ].map((item, idx) => (
               <article key={idx} className="bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm flex flex-col group hover:shadow-xl transition-all duration-500">
