@@ -93,17 +93,25 @@ const TCOCalculatorPage: React.FC = () => {
     setIsAnalyzing(true);
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const prompt = `Analyze this trucking carrier's financial profile:
-      Fixed: $${totals.totalFixed}, Var: $${totals.totalVarPerMile.toFixed(2)}/mi, Miles: ${operation.monthlyMiles}, RPM: $${operation.ratePerMile.toFixed(2)}, Deadhead: ${operation.deadheadPercentage}%.
-      Net Profit: $${totals.netProfit.toFixed(2)}. Suggest 3 tactical adjustments in a professional institutional tone. Focus on sustainability and compliance-first reinvestment.`;
+      const prompt = `Perform a high-precision economic analysis for a trucking carrier:
+      OPERATING DATA:
+      - Monthly Fixed Overhead: $${totals.totalFixed}
+      - Variable CPM: $${totals.totalVarPerMile.toFixed(2)}
+      - Utilization: ${operation.monthlyMiles} miles/mo
+      - Market Rate: $${operation.ratePerMile.toFixed(2)}/mi
+      - Deadhead Factor: ${operation.deadheadPercentage}%
+      - Projected Net Profit: $${totals.netProfit.toFixed(2)}
+      
+      TASK: Provide a sophisticated tactical review in an institutional tone. Highlight structural vulnerabilities and suggest 3 high-impact adjustments for sustainability.`;
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-3-pro-preview',
         contents: prompt
       });
-      setAiAnalysis(response.text || "Analysis complete. Recommendation: Maintain current reserve levels.");
+      setAiAnalysis(response.text || "Analysis complete. Suggestion: Audit variable expense leaks.");
     } catch (err) {
-      setAiAnalysis("Analysis service interrupted. However, your current data indicates a net margin of " + totals.margin.toFixed(1) + "%. Adjust operating variables and try again.");
+      console.error("AI Analysis Error:", err);
+      setAiAnalysis("Neural synchronization failed. Note: Current data shows a net margin of " + totals.margin.toFixed(1) + "%. Verify overhead variables.");
     } finally {
       setIsAnalyzing(false);
     }
@@ -223,7 +231,7 @@ const TCOCalculatorPage: React.FC = () => {
              {isAnalyzing ? (
                <div className="py-12 flex flex-col items-center justify-center space-y-6 bg-black/20 rounded-[2rem]">
                  <Loader2 className="animate-spin text-signal-gold" size={40} />
-                 <p className="text-[10px] font-black uppercase tracking-widest text-white animate-pulse">Neural Financial Sync...</p>
+                 <p className="text-[10px] font-black uppercase tracking-widest text-white animate-pulse">Neural Economic Analysis...</p>
                </div>
              ) : aiAnalysis ? (
                <div className="space-y-6 animate-in fade-in">

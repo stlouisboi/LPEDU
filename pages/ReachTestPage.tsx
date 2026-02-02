@@ -38,7 +38,7 @@ const ReachTestPage = () => {
             "Assessment of structural integrity under institutional pressure."
           </p>
           <p className="text-[10px] text-slate-400 italic mt-6 uppercase tracking-[0.4em] font-medium">
-            “A hard worker has plenty of food, but a person who chases fantasies has no sense.” — Proverbs 12:11
+            Wisdom before movement. Discipline before expansion.
           </p>
         </div>
 
@@ -58,7 +58,7 @@ const ReachTestPage = () => {
 
             <div className="space-y-6 relative z-10">
               <p className="text-base font-semibold text-slate-700 dark:text-slate-300 leading-relaxed max-w-3xl">
-                The REACH Test™ is strictly a <span className="text-authority-blue dark:text-white underline decoration-signal-gold/30">diagnostic orientation instrument</span>. Results identify structural exposure but do not include corrective action plans.
+                The REACH Test™ is strictly a <span className="text-authority-blue dark:text-white underline decoration-signal-gold/30">diagnostic instrument</span>. It identifies where your structural stewardship is misaligned with federal standards.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4 pb-8">
@@ -68,7 +68,7 @@ const ReachTestPage = () => {
                     <h4 className="text-[10px] font-black uppercase tracking-widest">Diagnostic Output</h4>
                   </div>
                   <p className="text-sm text-slate-500 dark:text-text-dark-muted leading-relaxed">
-                    Results identify primary <span className="font-bold text-slate-700 dark:text-slate-300">structural exposure vectors</span> within the carrier entity. Documented templates and remediation sequences remain restricted to the authorized portal.
+                    Results reveal <span className="font-bold text-slate-700 dark:text-slate-300">exposure vectors</span> within the carrier entity. Documentation templates and corrective sequencing remain restricted to the authorized portal.
                   </p>
                 </div>
                 <div className="space-y-3 border-l-2 border-slate-100 dark:border-slate-800 pl-8">
@@ -77,14 +77,14 @@ const ReachTestPage = () => {
                     <h4 className="text-[10px] font-black uppercase tracking-widest">Remediation Protocol</h4>
                   </div>
                   <p className="text-sm text-slate-500 dark:text-text-dark-muted leading-relaxed">
-                    Full execution occurs exclusively through the formal <span className="font-bold text-authority-blue dark:text-signal-gold">Admission & Implementation</span> phase, which unlocks guided interpretation, sequencing, and audit-aligned execution.
+                    Implementation tools are unlocked exclusively through the formal <span className="font-bold text-authority-blue dark:text-signal-gold">Admission</span> phase, which transitions operators from identifying risk to active remediation.
                   </p>
                 </div>
               </div>
 
               <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
                 <p className="text-[9px] text-slate-400 italic uppercase tracking-[0.3em]">
-                  “A hard worker has plenty of food, but a person who chases fantasies has no sense.” — Proverbs 12:11
+                  Stewardship is the active maintenance of order.
                 </p>
               </div>
             </div>
@@ -95,11 +95,11 @@ const ReachTestPage = () => {
             <div className="flex items-center justify-center space-x-4 w-full max-w-2xl">
               <div className="h-[1px] flex-grow bg-slate-200 dark:bg-slate-800"></div>
               <div className="flex items-center space-x-8 text-[9px] font-black uppercase tracking-[0.5em] text-slate-500">
-                <span className="text-authority-blue">01. Orientation</span>
+                <span className="text-authority-blue">01. Diagnostic</span>
                 <ChevronRight size={12} className="opacity-30" />
-                <span>02. Exposure Identification</span>
+                <span>02. Admission Review</span>
                 <ChevronRight size={12} className="opacity-30" />
-                <span>03. Admission & Implementation</span>
+                <span>03. System Implementation</span>
               </div>
               <div className="h-[1px] flex-grow bg-slate-200 dark:bg-slate-800"></div>
             </div>
@@ -166,13 +166,10 @@ const ReachTestPage = () => {
               <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-8">Founder’s Note</h4>
               <div className="space-y-6 text-sm font-medium text-slate-600 dark:text-text-dark-muted leading-[1.8] italic">
                 <p>
-                  "As a safety professional, my approach to carrier compliance is rooted in the OSHA concept of 'engineering controls.' In high-risk environments, we do not rely on hope or human memory; we build systems that physically prevent failure."
+                  "We do not rely on hope or human memory; we build engineering controls that prevent failure before it occurs. Stewardship requires the active maintenance of order."
                 </p>
                 <p>
-                  "The REACH Test™ was developed to identify the primary vectors through which a motor carrier’s structural integrity is compromised. Whether a risk moves 'Over' baseline filings or 'Through' data gaps, the engineering logic remains the same: stewardship is the active maintenance of order."
-                </p>
-                <p>
-                  "This diagnostic is designed to reveal where your infrastructure is failing to provide refuge before a federal auditor identifies the same gap."
+                  "The REACH Test™ was developed to identify the vectors through which a motor carrier’s structural integrity is compromised. It reveals where your infrastructure fails to provide refuge before a federal auditor identifies the gap."
                 </p>
               </div>
               <div className="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800">
@@ -190,7 +187,7 @@ const ReachTestPage = () => {
             <div className="space-y-8 prose dark:prose-invert max-w-none">
               <h2 className="text-3xl font-black font-serif uppercase text-authority-blue dark:text-white leading-none border-b border-slate-100 pb-6">Vector Analysis Protocol</h2>
               <p className="text-lg text-slate-500 font-medium leading-relaxed">
-                The REACH Test™ evaluates failure vectors within the New Entrant phase. Diagnostic findings map to these conceptual anchors:
+                The REACH Test™ evaluates structural alignment across the carrier entity. Diagnostic findings map to these conceptual anchors:
               </p>
               
               <div className="grid grid-cols-1 gap-12 mt-12">
@@ -198,28 +195,28 @@ const ReachTestPage = () => {
                   { 
                     label: "OVER", 
                     title: "Regulatory Violations", 
-                    desc: "Technical violations that bypass baseline administrative filters, resulting in immediate federal scrutiny.", 
+                    desc: "Technical violations that bypass administrative filters, resulting in automatic federal investigation.", 
                     icon: <MoveDown className="text-signal-gold" />,
                     anchor: "DOT vs MC Authority Logic"
                   },
                   { 
                     label: "AROUND", 
                     title: "Underwriting Isolation", 
-                    desc: "Administrative lapses that trigger insurance cancellation or premium spikes, isolating the carrier from the market.", 
+                    desc: "Administrative lapses that trigger insurance cancellation, isolating the carrier from the market.", 
                     icon: <MoveLeft className="text-signal-gold" />,
                     anchor: "New Entrant Risk Analysis"
                   },
                   { 
                     label: "THROUGH", 
                     title: "Administrative Inconsistency", 
-                    desc: "Data inconsistencies identified during federal investigations that prove a lack of safety management controls.", 
+                    desc: "Conflicting data identified during federal audits that prove a lack of systematic control.", 
                     icon: <MoveRight className="text-signal-gold" />,
                     anchor: "Clearinghouse Governance Logic"
                   },
                   { 
                     label: "UNDER", 
                     title: "Structural Taxonomy", 
-                    desc: "Fiscal deficits and management gaps that compromise mandated safety operations, causing the foundation to collapse.", 
+                    desc: "Fiscal deficits and management gaps that compromise the mandated safety operation.", 
                     icon: <MoveUp className="text-signal-gold" />,
                     anchor: "16 Deadly Sins Exposure Taxonomy"
                   }
@@ -233,7 +230,6 @@ const ReachTestPage = () => {
                       <h4 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight mt-1 mb-2">{v.title}</h4>
                       <p className="text-base text-slate-500 font-medium leading-relaxed mb-3">{v.desc}</p>
                       
-                      {/* Enhanced Conceptual Anchor Tag */}
                       <div className="inline-flex items-center space-x-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2 rounded-xl mt-2 transition-all hover:bg-white hover:shadow-md cursor-help">
                         <Anchor size={12} className="text-signal-gold" />
                         <span className="text-[9px] font-black uppercase tracking-[0.2em] text-authority-blue dark:text-signal-gold">
@@ -254,20 +250,20 @@ const ReachTestPage = () => {
                  </div>
                  <div>
                     <h3 className="text-xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Institutional Context</h3>
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Contextual Grounding Anchors</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Diagnostic Orientation Only</p>
                  </div>
                </div>
 
                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {[
                     { 
-                      title: "DOT vs MC Authority Logic", 
-                      desc: "Understanding the hierarchical distinction between safety identification and operational permission.",
+                      title: "Authority Logic Brief", 
+                      desc: "Analyzing the distinction between safety identification and operational permission.",
                       link: "/clarification"
                     },
                     { 
-                      title: "Clearinghouse Governance Logic", 
-                      desc: "Analyzing the systemic flow of drug and alcohol compliance data through federal repositories.",
+                      title: "Clearinghouse Governance", 
+                      desc: "Evaluating the systematic flow of compliance data through federal repositories.",
                       link: "/learning-path"
                     }
                   ].map((anchor, idx) => (
@@ -280,21 +276,21 @@ const ReachTestPage = () => {
                           <p className="text-xs text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed mb-8">{anchor.desc}</p>
                        </div>
                        <Link to={anchor.link} className="inline-flex items-center text-[9px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:underline">
-                          View Resource Mapping <ArrowRight size={10} className="ml-2 transition-transform group-hover:translate-x-1" />
+                          View Orientation Mapping <ArrowRight size={10} className="ml-2 transition-transform group-hover:translate-x-1" />
                        </Link>
                     </div>
                   ))}
                </div>
             </div>
 
-            {/* Mechanics Preview */}
+            {/* Transition Logic Section */}
             <section className="bg-authority-blue text-white p-12 md:p-16 rounded-[4rem] shadow-2xl relative overflow-hidden border-t-[10px] border-signal-gold/30">
               <Zap className="absolute -bottom-10 -right-10 text-white/5" size={300} />
               <div className="relative z-10 space-y-10">
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-black font-serif uppercase tracking-tight text-signal-gold leading-none">Diagnostic Scopes</h3>
+                  <h3 className="text-2xl font-black font-serif uppercase tracking-tight text-signal-gold leading-none">Diagnostic Completion</h3>
                   <p className="text-lg opacity-70 font-medium leading-relaxed">
-                    Assessment scoring is based on weighted data points. Results map to exposure levels within the LaunchPath Registry.
+                    Completion of the REACH Test™ marks the end of the Orientation phase. Corrective actions and systematic implementation are restricted to the Admission phase.
                   </p>
                 </div>
                 
@@ -303,18 +299,18 @@ const ReachTestPage = () => {
                   <div className="space-y-2">
                     <p className="text-xs font-black uppercase tracking-widest text-signal-gold">Access Protocol</p>
                     <p className="text-sm font-medium leading-relaxed opacity-70 italic">
-                      Corrective algorithms and remediation templates remain restricted. Formal admission unlocks guided interpretation, sequencing, and audit-aligned implementation of results.
+                      Corrective algorithms and remediation tools are gated. Formal Admission is required to transition from identification to active system installation.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex flex-col items-center lg:items-start gap-8">
                   <Link to="/readiness" className="bg-white text-authority-blue px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.25em] text-sm hover:bg-signal-gold hover:text-white transition-all shadow-xl active:scale-95 inline-flex items-center group">
-                    <span>Initiate Diagnosis</span>
+                    <span>Initiate Diagnostic Assessment</span>
                     <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <p className="text-[9px] text-white/30 italic uppercase tracking-[0.3em] font-medium">
-                    “A hard worker has plenty of food, but a person who chases fantasies has no sense.” — Proverbs 12:11
+                    Verified Stewardship before Operational Movement.
                   </p>
                 </div>
               </div>

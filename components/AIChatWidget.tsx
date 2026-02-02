@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, Globe, ExternalLink } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
@@ -33,7 +34,7 @@ const AIChatWidget = () => {
     setLoading(true);
 
     try {
-      // Create new instance per call as per multi-key guidelines
+      // Create new instance per call for maximum compatibility with dynamic API key updates
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
@@ -50,7 +51,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
         }
       });
 
-      const assistantText = response.text || "I was unable to synthesize a response at this time. Please rephrase.";
+      const assistantText = response.text || "I was unable to synthesize a response. Please rephrase your inquiry.";
       
       const sources: { uri: string; title: string }[] = [];
       const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
@@ -69,22 +70,12 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
       }]);
     } catch (err: any) {
       console.error("AI Reference Error:", err);
-      // More descriptive error that handles missing keys without manual throw
-      const errorMsg = err.message?.includes("API_KEY") 
-        ? "The compliance reference service is currently establishing a secure link. Please try again in a moment."
-        : "Communication error with federal data registry. Please try again.";
+      const errorMsg = "The compliance reference service is currently establishing a secure link. Please retry your inquiry in a moment.";
       setMessages(prev => [...prev, { role: 'assistant', content: errorMsg }]);
     } finally {
       setLoading(false);
     }
   };
-
-  const starterQuestions = [
-    "What are The Four Pillars?",
-    "What is a DQ file?",
-    "BIT inspection requirements?",
-    "New entrant audit triggers?"
-  ];
 
   return (
     <div className="fixed bottom-6 right-6 z-[100] font-sans">

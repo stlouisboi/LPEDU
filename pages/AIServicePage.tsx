@@ -303,18 +303,20 @@ const AIServicePage = () => {
         config.image = { imageBytes: base64, mimeType: videoFile.type };
       }
 
-      let op = await ai.models.generateVideos(config);
-      let opName = op.name;
+      let operation = await ai.models.generateVideos(config);
 
-      while (!op.done) {
-        await new Promise(r => setTimeout(r, 10000));
+      while (!operation.done) {
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        // New instance for updated API key access
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        const result = await pollAi.operations.getVideosOperation({ operation: { name: opName } as any });
-        op = { done: result.done, response: result.response, error: result.error, name: opName } as any;
-        if (op.error) throw new Error(op.error.message);
+        operation = await pollAi.operations.getVideosOperation({ operation: operation });
       }
 
-      const link = op.response?.generatedVideos?.[0]?.video?.uri;
+      if (operation.error) {
+        throw new Error(operation.error.message || "Synthesis failure.");
+      }
+
+      const link = operation.response?.generatedVideos?.[0]?.video?.uri;
       if (link) {
         const res = await fetch(`${link}&key=${process.env.API_KEY}`);
         const blob = await res.blob();
@@ -325,6 +327,7 @@ const AIServicePage = () => {
         setHasApiKey(false);
         alert("Session expired. Re-authorization mandatory.");
       } else {
+        console.error("Video Generation Error:", err);
         alert("Synthesis failure. Check directives.");
       }
     } finally {

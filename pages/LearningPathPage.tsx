@@ -22,7 +22,9 @@ import {
   Award,
   Zap,
   Clock,
-  Navigation
+  Navigation,
+  ShieldAlert,
+  Anchor
 } from 'lucide-react';
 import { COURSE_MODULES } from '../constants';
 
@@ -46,13 +48,13 @@ interface PhaseData {
 const PHASES: PhaseData[] = [
   {
     number: 1,
-    title: "The Enrollment Shield",
-    duration: "Weeks 1-4",
-    label: "PHASE: INITIAL",
-    priority: "CRITICAL",
-    icon: <ClipboardList />,
-    actions: ["Business Framework Assessment", "USDOT & MC Registration", "BOC-3 Filing", "Clearinghouse Enrollment"],
-    moduleIds: [0, 1],
+    title: "Ground 0: The Stewardship Standard",
+    duration: "Week 0-1",
+    label: "PHASE: EDUCATION",
+    priority: "FOUNDATIONAL",
+    icon: <Anchor />,
+    actions: ["Stewardship Alignment Verification", "Household Capacity Assessment", "Systemic Risk Literacy", "Economic Analysis Logic"],
+    moduleIds: [0],
     color: "text-blue-600",
     accent: "bg-blue-600",
     glow: "group-hover:shadow-blue-500/20",
@@ -62,13 +64,13 @@ const PHASES: PhaseData[] = [
   },
   {
     number: 2,
-    title: "Authority Hardening",
-    duration: "Weeks 4-6",
-    label: "PHASE: STRUCTURAL",
+    title: "The Enrollment Shield",
+    duration: "Weeks 1-4",
+    label: "PHASE: ADMISSION & INTAKE",
     priority: "CRITICAL",
-    icon: <ShieldCheck />,
-    actions: ["Primary Liability Protocol", "Cargo Coverage Standards", "Fiscal Solvency Loop"],
-    moduleIds: [3],
+    icon: <ClipboardList />,
+    actions: ["Formal Admission Protocol", "USDOT & MC Implementation", "BOC-3 Filing Safeguards", "Clearinghouse Enrollment"],
+    moduleIds: [1],
     color: "text-amber-500",
     accent: "bg-amber-500",
     glow: "group-hover:shadow-amber-500/20",
@@ -78,13 +80,13 @@ const PHASES: PhaseData[] = [
   },
   {
     number: 3,
-    title: "The DQ File Factory",
-    duration: "Week 6-Launch",
-    label: "PHASE: OPERATIONAL",
-    priority: "MODERATE",
-    icon: <Files />,
-    actions: ["DQ File Implementation", "Maintenance Workflow", "HOS & ELD Policies"],
-    moduleIds: [2],
+    title: "Authority Hardening",
+    duration: "Weeks 4-6",
+    label: "PHASE: IMPLEMENTATION",
+    priority: "CRITICAL",
+    icon: <ShieldCheck />,
+    actions: ["Primary Liability Protocol", "Cargo Coverage Standards", "Fiscal Solvency Loop"],
+    moduleIds: [3],
     color: "text-emerald-600",
     accent: "bg-emerald-600",
     glow: "group-hover:shadow-emerald-500/20",
@@ -94,13 +96,13 @@ const PHASES: PhaseData[] = [
   },
   {
     number: 4,
-    title: "Systematic Maintenance",
-    duration: "Months 1-12",
-    label: "PHASE: MONITORING",
-    priority: "ADVANCED",
-    icon: <Layers />,
-    actions: ["Mock Audit Prep", "Annual Filing Cycle", "CSA Score Management"],
-    moduleIds: [4, 5],
+    title: "The DQ File Factory",
+    duration: "Week 6-Launch",
+    label: "PHASE: OPERATIONAL",
+    priority: "MANDATORY",
+    icon: <Files />,
+    actions: ["DQ File Implementation", "Maintenance Workflow", "HOS & ELD Policies"],
+    moduleIds: [2],
     color: "text-indigo-600",
     accent: "bg-indigo-600",
     glow: "group-hover:shadow-indigo-500/20",
@@ -110,13 +112,13 @@ const PHASES: PhaseData[] = [
   },
   {
     number: 5,
-    title: "Log Integrity Logic",
-    duration: "Continuous",
+    title: "Stabilization Loop",
+    duration: "Months 1-12",
     label: "PHASE: GOVERNANCE",
-    priority: "CRITICAL",
+    priority: "ADVANCED",
     icon: <Activity />,
-    actions: ["ELD Data Verification", "HOS Violation Audits", "Falsification Prevention Systems"],
-    moduleIds: [6],
+    actions: ["Mock Audit Verification", "CSA Score Management", "ELD Data Auditing"],
+    moduleIds: [4, 5, 6],
     color: "text-rose-600",
     accent: "bg-rose-600",
     glow: "group-hover:shadow-rose-500/20",
@@ -125,6 +127,39 @@ const PHASES: PhaseData[] = [
     gradient: "from-rose-600/10 to-transparent"
   }
 ];
+
+const TransitionProtocol = () => (
+  <div className="max-w-4xl mx-auto my-32 px-6">
+    <div className="bg-authority-blue border-l-[12px] border-signal-gold p-10 md:p-14 rounded-[3.5rem] shadow-2xl relative overflow-hidden text-white">
+      <div className="absolute top-0 right-0 p-8 opacity-5">
+        <Lock size={120} />
+      </div>
+      <div className="relative z-10 space-y-8">
+        <div className="space-y-2">
+          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">TRANSITION PROTOCOL LP-TP-01</p>
+          <h3 className="text-3xl font-black font-serif uppercase tracking-tight">Education → Admission → Implementation</h3>
+        </div>
+        <p className="text-lg font-medium text-slate-300 leading-relaxed max-w-2xl">
+          Successful navigation of the Ground 0 roadmap marks the end of the <span className="text-white underline decoration-signal-gold/40">Education phase</span>. Active remediation tools and systematic implementation are restricted to the Admission phase.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-white/10">
+          <div className="space-y-2">
+            <h4 className="text-[11px] font-black uppercase tracking-widest text-signal-gold">Education Phase</h4>
+            <p className="text-sm text-slate-400 font-medium">Diagnostic awareness, risk literacy, and stewardship alignment assessment.</p>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-[11px] font-black uppercase tracking-widest text-signal-gold">Admission & Implementation</h4>
+            <p className="text-sm text-slate-400 font-medium">Permission-based access to corrective actions, templates, and execution tools.</p>
+          </div>
+        </div>
+        <Link to="/pricing" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl hover:bg-signal-gold hover:text-white transition-all active:scale-95 group">
+          <span>Authorize Phase Transition</span>
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </div>
+    </div>
+  </div>
+);
 
 const CheckpointGate = ({ label, sub }: { label: string, sub: string }) => (
   <div className="relative flex flex-col items-center justify-center py-24 z-30">
@@ -136,7 +171,7 @@ const CheckpointGate = ({ label, sub }: { label: string, sub: string }) => (
       <p className="text-[12px] font-black text-signal-gold mb-6 uppercase tracking-wider">{sub}</p>
       <div className="h-[1px] bg-white/10 mb-6 w-full"></div>
       <p className="text-[14px] font-extrabold leading-relaxed text-white/90 italic px-4">
-        “Access to operational implementation is restricted until documentation verification is logged.”
+        “Stewardship requires verified alignment before the authorizing of operational movement.”
       </p>
     </div>
   </div>
@@ -173,13 +208,13 @@ const LearningPathPage = () => {
         <div className="max-w-5xl mx-auto px-4 relative z-10">
           <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.4em] mb-12 border border-white/10 shadow-2xl animate-reveal-up">
             <Navigation size={14} className="text-signal-gold mr-2" />
-            <span className="text-white">Carrier Implementation Protocol</span>
+            <span className="text-white">Carrier Implementation Sequence</span>
           </div>
           <h1 className="text-6xl lg:text-7xl font-black mb-8 font-serif uppercase tracking-tighter leading-tight animate-reveal-up">
             The <span className="text-signal-gold italic">Roadmap.</span>
           </h1>
           <p className="text-2xl md:text-3xl text-white font-extrabold max-w-4xl mx-auto leading-relaxed mb-12 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
-            A disciplined, multi-phase sequence engineered for absolute administrative stability.
+            A disciplined multi-phase framework engineered for administrative stabilization and stewardship.
           </p>
         </div>
       </section>
@@ -221,7 +256,7 @@ const LearningPathPage = () => {
                     <div className="mb-10 relative z-10">
                       <h3 className="text-3xl md:text-4xl font-black font-serif mb-3 uppercase text-authority-blue dark:text-white tracking-tighter">{phase.title}</h3>
                       <div className="inline-flex items-center space-x-2 text-[11px] font-black uppercase tracking-widest text-slate-400">
-                        <Zap size={14} className={phase.color} /><span>Protocol Priority: {phase.priority}</span>
+                        <Zap size={14} className={phase.color} /><span>Standard Priority: {phase.priority}</span>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 gap-6 mb-12 relative z-10">
@@ -232,14 +267,15 @@ const LearningPathPage = () => {
                         </div>
                       ))}
                     </div>
-                    <button onClick={() => setEnrollmentModalOpen(true)} className="w-full py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] flex items-center justify-center space-x-3 bg-slate-50 dark:bg-gray-800 text-slate-500 hover:bg-authority-blue hover:text-white transition-all active:scale-95 group/btn border dark:border-border-dark shadow-sm">
-                      <Lock size={16} /><span>Access Phase Protocols</span>
-                    </button>
+                    <Link to={phase.number === 1 ? "/readiness" : "/pricing"} className="w-full py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] flex items-center justify-center space-x-3 bg-slate-50 dark:bg-gray-800 text-slate-500 hover:bg-authority-blue hover:text-white transition-all active:scale-95 group/btn border dark:border-border-dark shadow-sm">
+                      <Lock size={16} /><span>{phase.number === 1 ? "Begin Diagnostic Phase" : "Access Implementation Logic"}</span>
+                    </Link>
                   </div>
                 </div>
               </div>
-              {idx === 1 && <CheckpointGate label="Gate 1 – Institutional Setup" sub="Authority & Insurance Verification" />}
-              {idx === 3 && <CheckpointGate label="Gate 2 – Operational Launch" sub="Safety System Validation" />}
+              {idx === 0 && <TransitionProtocol />}
+              {idx === 1 && <CheckpointGate label="Admission Review" sub="Authority & Alignment Verification" />}
+              {idx === 3 && <CheckpointGate label="System Validation" sub="Safety Protocol Verification" />}
             </React.Fragment>
           ))}
         </div>
@@ -252,9 +288,9 @@ const LearningPathPage = () => {
             </div>
             <h2 className="text-6xl lg:text-7xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-12">Operational <span className="text-signal-gold italic">Mastery.</span></h2>
             <p className="text-xl sm:text-2xl font-extrabold text-slate-400 dark:text-slate-600 uppercase tracking-[0.3em] mb-16 max-w-3xl leading-relaxed">
-              Successful transition from administrative exposure to systematic operating posture verified.
+              Transitioning from administrative exposure to systematic operating posture.
             </p>
-            <Link to="/pricing" className="bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] hover:bg-steel-blue transition-all shadow-2xl active:scale-95 flex items-center group">
+            <Link to="/readiness" className="bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] hover:bg-steel-blue transition-all shadow-2xl active:scale-95 flex items-center group">
               Initiate Admission Protocol<ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
             </Link>
         </div>
