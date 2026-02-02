@@ -675,14 +675,14 @@ const HomePage: React.FC = () => {
                       }`}></div>
                       <span className="absolute -top-4 -right-4 text-6xl font-black opacity-5 text-slate-900 dark:text-white">{sin.id}</span>
                       
-                      <h4 className="text-lg font-black text-slate-800 dark:text-text-dark-primary uppercase tracking-tight leading-tight mb-8">
+                      <h4 className="text-xl font-black text-slate-800 dark:text-text-dark-primary uppercase tracking-tight leading-tight mb-8">
                         {sin.text}
                       </h4>
                       
                       <div className={`inline-flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
                         sin.severity === 'TERMINAL' ? 'bg-red-50 text-red-600 border-red-100 dark:bg-red-900/40 dark:text-red-400 dark:border-red-800' : 
-                        sin.severity === 'CRITICAL' ? 'bg-orange-50 text-orange-600 border-orange-100 dark:bg-orange-900/60 dark:text-orange-300 dark:border-orange-700' : 
-                        'bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-900/60 dark:text-amber-300 dark:border-amber-700'
+                        sin.severity === 'CRITICAL' ? 'bg-orange-50 text-orange-600 border-orange-100 dark:text-orange-300 dark:bg-orange-900/60 dark:border-orange-700' : 
+                        'bg-amber-50 text-amber-600 border-amber-100 dark:text-amber-300 dark:bg-amber-900/60 dark:border-amber-700'
                       }`}>
                         {sin.severity === 'TERMINAL' ? <Skull size={10} className="animate-pulse" /> : 
                          sin.severity === 'CRITICAL' ? <AlertOctagon size={10} /> : 
