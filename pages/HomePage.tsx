@@ -38,7 +38,7 @@ import { db } from '../firebase';
 
 const FAQItem: React.FC<{ question: string; answer: string; isOpen: boolean; onClick: () => void }> = ({ question, answer, isOpen, onClick }) => {
   return (
-    <div className={`border-b border-slate-200 dark:border-border-dark last:border-0 transition-all duration-500 overflow-hidden`}>
+    <div className="border-b border-slate-200 dark:border-border-dark last:border-0 transition-all duration-500 overflow-hidden">
       <button 
         onClick={onClick}
         className="w-full flex items-center justify-between py-8 text-left focus:outline-none group"
@@ -141,7 +141,7 @@ const HomePage: React.FC = () => {
   return (
     <div id="main-content" className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
-      {/* SECTION 1: INSTITUTIONAL HERO */}
+      {/* SECTION 1: HERO */}
       <section className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(#1e3a5f_0.5px,transparent_0.5px)] [background-size:32px:32px] opacity-[0.03]"></div>
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -165,17 +165,17 @@ const HomePage: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 pt-4">
+            <nav className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 pt-4">
               <Link to="/reach-test" className="w-full sm:w-auto bg-authority-blue text-white px-8 md:px-12 py-5 md:py-6 rounded-xl md:rounded-2xl font-black text-xs hover:bg-steel-blue transition-all flex items-center justify-center active:scale-95 uppercase tracking-[0.3em] shadow-2xl border-b-4 border-slate-900">
                 Take the REACH Test™
               </Link>
               <Link to="/about" className="w-full sm:w-auto bg-transparent border-2 border-authority-blue/20 dark:border-white/20 text-authority-blue dark:text-white px-8 md:px-12 py-5 md:py-6 rounded-xl md:rounded-2xl font-black text-xs hover:bg-slate-50 dark:hover:bg-white/5 transition-all flex items-center justify-center active:scale-95 uppercase tracking-[0.3em]">
                 Review Program Standard
               </Link>
-            </div>
+            </nav>
           </div>
 
-          <div className="lg:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
+          <aside className="lg:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
             <div className="bg-white dark:bg-surface-dark p-8 md:p-12 lg:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-[0_40px_80px_-20px_rgba(30,58,95,0.15)] border border-slate-100 dark:border-border-dark relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-6 md:p-10 opacity-[0.03] group-hover:scale-110 transition-transform">
                 <ShieldAlert size={180} />
@@ -193,7 +193,7 @@ const HomePage: React.FC = () => {
                 
                 <form onSubmit={handleLeadSubmit} className="space-y-6 md:space-y-8">
                   <div className="space-y-2">
-                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">FULL NAME</label>
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-500 ml-4">FULL NAME</label>
                     <input 
                       required 
                       value={formData.firstName}
@@ -203,7 +203,7 @@ const HomePage: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">EMAIL</label>
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-500 ml-4">EMAIL</label>
                     <input 
                       required 
                       type="email"
@@ -223,7 +223,7 @@ const HomePage: React.FC = () => {
                 </form>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
@@ -232,7 +232,7 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-center">
           
-          <div className="lg:col-span-7 space-y-8 md:space-y-12">
+          <article className="lg:col-span-7 space-y-8 md:space-y-12">
             <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full">
               <ShieldAlert size={16} className="text-signal-gold" />
               <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em]">STRUCTURAL RISK EXPOSURE</span>
@@ -253,14 +253,14 @@ const HomePage: React.FC = () => {
                 FIND YOUR COMPLIANCE GAPS
               </Link>
             </div>
-          </div>
+          </article>
 
-          <div className="lg:col-span-5 relative w-full">
+          <aside className="lg:col-span-5 relative w-full">
             <div className="absolute inset-0 hidden md:flex items-center justify-center opacity-20 scale-150 pointer-events-none">
                <Fingerprint size={400} strokeWidth={0.5} />
             </div>
             <div className="bg-white p-8 md:p-12 lg:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl relative z-10 text-authority-blue w-full">
-               <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight mb-1 md:mb-2">IDENTIFICATION & ALIGNMENT</h3>
+               <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight mb-1 md:mb-10">IDENTIFICATION & ALIGNMENT</h3>
                <div className="space-y-4 md:space-y-5">
                   {[
                     "DQ (DRIVER QUALIFICATION) FILE INTEGRITY",
@@ -279,22 +279,22 @@ const HomePage: React.FC = () => {
                   ))}
                </div>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
       {/* SECTION 3: WHY LAUNCHPATH EXISTS */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="text-center mb-16 md:mb-32 space-y-6">
-            <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-300 dark:text-slate-700">FOUNDATIONAL PURPOSE LP-PURPOSE-01</p>
+          <header className="text-center mb-16 md:mb-32 space-y-6">
+            <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-300 dark:text-slate-700">FOUNDATIONAL PURPOSE</p>
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white tracking-tighter uppercase">
               WHY <span className="text-signal-gold italic">LAUNCHPATH</span> EXISTS.
             </h2>
-          </div>
+          </header>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-start">
-            <div className="space-y-12">
+            <article className="space-y-12">
               <div className="space-y-8">
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white leading-[0.95]">
                   Most new motor carriers don’t fail because they lack effort. <br/>
@@ -314,9 +314,9 @@ const HomePage: React.FC = () => {
                   This leads to preventable shutdowns — not because operators are careless, but because they were never given a clear, disciplined pathway.
                 </p>
               </div>
-            </div>
+            </article>
 
-            <div className="bg-authority-blue dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] md:rounded-[5rem] shadow-2xl relative overflow-hidden border-b-[12px] border-slate-900">
+            <aside className="bg-authority-blue dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] md:rounded-[5rem] shadow-2xl relative overflow-hidden border-b-[12px] border-slate-900">
               <div className="absolute top-0 right-0 p-12 opacity-5 text-white">
                 <Target size={200} />
               </div>
@@ -352,7 +352,7 @@ const HomePage: React.FC = () => {
                    <p className="text-xl font-black font-serif italic text-white uppercase tracking-tight">The goal is not speed. <br/>The goal is continuity.</p>
                 </div>
                 
-                <div className="pt-10 border-t border-white/10 space-y-5">
+                <footer className="pt-10 border-t border-white/10 space-y-5">
                    <p className="text-[9px] font-black uppercase tracking-widest text-slate-500">OPERATOR VALUE ALIGNMENT:</p>
                    <div className="flex flex-col space-y-3">
                       {["Long-term operation over fast entry", "Structure over hustle", "Clarity over noise", "Stewardship over shortcuts"].map((v, i) => (
@@ -362,9 +362,9 @@ const HomePage: React.FC = () => {
                         </div>
                       ))}
                    </div>
-                </div>
+                </footer>
               </div>
-            </div>
+            </aside>
           </div>
 
           <div className="mt-24 md:mt-40 text-center pt-20 border-t-8 border-authority-blue/5 dark:border-white/5">
@@ -380,7 +380,7 @@ const HomePage: React.FC = () => {
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
             
-            <div className="lg:col-span-6 space-y-10 animate-reveal-up">
+            <article className="lg:col-span-6 space-y-10 animate-reveal-up">
               <div className="inline-flex items-center space-x-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-5 py-2.5 rounded-full shadow-sm">
                 <MapIcon size={16} className="text-authority-blue dark:text-signal-gold" />
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-white">YOUR FIRST 90 DAYS</span>
@@ -412,26 +412,21 @@ const HomePage: React.FC = () => {
                   <ArrowRight size={20} className="ml-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
-            </div>
+            </article>
 
-            <div className="lg:col-span-6">
+            <aside className="lg:col-span-6">
               <div className="bg-authority-blue dark:bg-surface-dark p-12 rounded-[5rem] border-4 border-white/10 shadow-[0_60px_120px_-40px_rgba(30,58,95,0.4)] relative overflow-hidden flex flex-col items-center justify-center min-h-[600px] group">
-                {/* Tactical Radar Visual */}
                 <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px:24px]"></div>
                 
                 <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
-                   {/* Radar Sweeps */}
                    <div className="absolute inset-0 border-2 border-white/5 rounded-full"></div>
                    <div className="absolute inset-16 border border-white/5 rounded-full"></div>
                    <div className="absolute inset-32 border border-white/10 rounded-full"></div>
                    
-                   {/* Spinning Sweep */}
                    <div className="absolute inset-0 bg-gradient-to-tr from-signal-gold/20 to-transparent rounded-full animate-[spin_4s_linear_infinite] origin-center opacity-40"></div>
                    
-                   {/* Tactical Nodes */}
                    <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.5)]"></div>
                    <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-signal-gold rounded-full animate-pulse [animation-delay:1s] shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
-                   <div className="absolute top-1/2 left-1/12 w-2 h-2 bg-white rounded-full animate-pulse [animation-delay:2s]"></div>
                    
                    <div className="relative z-10 text-center space-y-6">
                       <div className="w-28 h-28 bg-white/5 backdrop-blur-md rounded-[2.5rem] flex items-center justify-center mx-auto shadow-2xl border-2 border-white/10 group-hover:scale-110 transition-transform duration-700">
@@ -442,34 +437,23 @@ const HomePage: React.FC = () => {
                         <p className="text-xs font-bold text-signal-gold uppercase tracking-widest">Identifying Structural Gaps</p>
                       </div>
                    </div>
-                   
-                   {/* Axis Labels */}
-                   <div className="absolute top-4 left-1/2 -translate-x-1/2 text-[9px] font-black text-white/20 uppercase tracking-widest">Authority Vector</div>
-                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9px] font-black text-white/20 uppercase tracking-widest">Fiscal Stability</div>
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 -rotate-90 text-[9px] font-black text-white/20 uppercase tracking-widest">Insurance Logic</div>
-                   <div className="absolute right-4 top-1/2 -translate-y-1/2 rotate-90 text-[9px] font-black text-white/20 uppercase tracking-widest">Compliance Integrity</div>
-                </div>
-                
-                <div className="absolute bottom-10 left-0 w-full text-center px-12">
-                   <div className="h-px w-full bg-white/10 mb-6"></div>
-                   <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30">System Linkage: NC-MAP-STABLE-2025</p>
                 </div>
               </div>
-            </div>
+            </aside>
 
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: THE FOUR PILLARS (STRUCTURAL LOGIC) */}
+      {/* SECTION 4: THE FOUR PILLARS */}
       <section className="py-24 md:py-32 lg:py-56 bg-white dark:bg-primary-dark transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="text-center mb-16 md:mb-24 space-y-6">
+          <header className="text-center mb-16 md:mb-24 space-y-6">
              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
                THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
              </h2>
              <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">THE OPERATIONAL FRAMEWORK</p>
-          </div>
+          </header>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
              {[
@@ -498,7 +482,7 @@ const HomePage: React.FC = () => {
                  desc: "Stop guessing your profit. Use the TCO (Total Cost of Operating) system to find your real break-even point."
                }
              ].map((pillar, i) => (
-               <div key={i} className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col text-center group hover:shadow-2xl transition-all duration-500">
+               <article key={i} className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col text-center group hover:shadow-2xl transition-all duration-500">
                   <div className="w-14 h-14 md:w-16 md:h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl md:rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-inner group-hover:scale-110 transition-transform">
                     {React.cloneElement(pillar.icon as React.ReactElement, { size: 24 })}
                   </div>
@@ -509,7 +493,7 @@ const HomePage: React.FC = () => {
                   <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
                     {pillar.desc}
                   </p>
-               </div>
+               </article>
              ))}
           </div>
         </div>
@@ -520,14 +504,14 @@ const HomePage: React.FC = () => {
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-start">
             <div className="space-y-12">
-              <div className="space-y-6">
+              <header className="space-y-6">
                 <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
                   WHAT'S <span className="text-signal-gold italic">INSIDE</span> THE PROGRAM.
                 </h2>
                 <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">
                   6 MODULES | 46 LESSONS | 50+ DOWNLOADS
                 </p>
-              </div>
+              </header>
               
               <div className="space-y-8">
                 {modules.map((mod, i) => (
@@ -538,25 +522,25 @@ const HomePage: React.FC = () => {
                        </div>
                        {i < 6 && <div className="w-0.5 h-full bg-slate-200 dark:bg-white/5 my-2"></div>}
                     </div>
-                    <div className="space-y-1">
+                    <article className="space-y-1">
                       <h4 className="text-[10px] font-black text-signal-gold uppercase tracking-widest">{mod.n}</h4>
                       <h3 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight font-serif">{mod.t}</h3>
                       <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-xl">{mod.d}</p>
-                    </div>
+                    </article>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-authority-blue dark:bg-surface-dark p-10 md:p-16 rounded-[4rem] md:rounded-[5rem] shadow-2xl relative overflow-hidden border-b-[12px] border-slate-900 group">
+            <aside className="bg-authority-blue dark:bg-surface-dark p-10 md:p-16 rounded-[4rem] md:rounded-[5rem] shadow-2xl relative overflow-hidden border-b-[12px] border-slate-900 group">
               <div className="absolute top-0 right-0 p-12 opacity-5 text-white">
                 <CheckCircle2 size={200} />
               </div>
               <div className="relative z-10 space-y-10">
-                <div className="flex items-center space-x-4">
+                <header className="flex items-center space-x-4">
                    <ShieldCheck size={28} className="text-signal-gold" />
                    <h4 className="text-xs font-black uppercase tracking-[0.4em] text-white">WHAT YOU WALK AWAY WITH</h4>
-                </div>
+                </header>
                 
                 <ul className="space-y-8">
                   {[
@@ -574,20 +558,13 @@ const HomePage: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-
-                <div className="pt-10">
-                   <Link to="/readiness" className="inline-flex items-center justify-center w-full bg-white text-authority-blue px-10 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-signal-gold hover:text-white transition-all active:scale-95 group/walk">
-                     <span>Validate My Readiness</span>
-                     <ArrowRight size={16} className="ml-4 group-hover/walk:translate-x-1 transition-transform" />
-                   </Link>
-                </div>
               </div>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* SECTION 5: THE REACH TEST™ (TECHNICAL DIAGNOSTIC) */}
+      {/* SECTION 5: THE REACH TEST™ */}
       <section className="py-20 md:py-32 lg:py-56 bg-white dark:bg-primary-dark relative overflow-hidden">
         <div className="absolute top-0 right-0 p-24 opacity-[0.02] pointer-events-none">
           <Activity size={400} />
@@ -614,7 +591,7 @@ const HomePage: React.FC = () => {
               { l: "THROUGH", t: "SYSTEM GAPS", d: "Finding data errors that show a lack of control over your safety.", i: <MoveLeft /> },
               { l: "UNDER", t: "FISCAL STABILITY", d: "Calculating your break-even point to make sure your business survives.", i: <MoveUp /> }
             ].map((vector, i) => (
-              <div key={i} className="flex flex-col items-center p-10 md:p-12 bg-white dark:bg-surface-dark rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark text-center group hover:shadow-2xl transition-all">
+              <article key={i} className="flex flex-col items-center p-10 md:p-12 bg-white dark:bg-surface-dark rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark text-center group hover:shadow-2xl transition-all">
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center text-authority-blue dark:text-signal-gold shadow-sm shrink-0 mb-8 group-hover:scale-110 transition-transform">
                   {React.cloneElement(vector.i as React.ReactElement, { size: 24 })}
                 </div>
@@ -623,7 +600,7 @@ const HomePage: React.FC = () => {
                   <h4 className="text-xl font-black uppercase tracking-tight text-authority-blue dark:text-white">{vector.t}</h4>
                   <p className="text-sm font-bold text-slate-500 leading-relaxed">{vector.d}</p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
@@ -645,13 +622,13 @@ const HomePage: React.FC = () => {
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black font-serif uppercase tracking-tight leading-none">
             PURPOSE-DRIVEN <br/><span className="text-signal-gold italic">STEWARDSHIP.</span>
           </h2>
-          <div className="p-10 md:p-16 bg-white/5 border border-white/10 rounded-[4rem] md:rounded-[5rem] backdrop-blur-md relative overflow-hidden group">
+          <article className="p-10 md:p-16 bg-white/5 border border-white/10 rounded-[4rem] md:rounded-[5rem] backdrop-blur-md relative overflow-hidden group">
             <Quote className="text-signal-gold opacity-40 mb-8 mx-auto" size={56} />
             <p className="text-2xl md:text-4xl font-black font-serif italic text-white leading-tight mb-10 max-w-2xl mx-auto uppercase tracking-tight">
               True profit is the result of hard work and the responsible management of what you have been given.
             </p>
             <div className="h-2 w-16 bg-signal-gold mx-auto opacity-30"></div>
-          </div>
+          </article>
           <p className="text-xl md:text-2xl font-bold text-white/60 leading-relaxed max-w-2xl mx-auto">
             Your business is a responsibility to your family and your future. We build the systems that protect both.
           </p>
@@ -661,23 +638,23 @@ const HomePage: React.FC = () => {
       {/* NEW SECTION 2: MEET THE INSTRUCTOR */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark transition-colors">
         <div className="max-w-[1200px] mx-auto px-6 text-center space-y-12">
-          <div className="space-y-4">
+          <header className="space-y-4">
             <p className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold">PROGRAM DIRECTOR</p>
-            <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">VINCE</h2>
+            <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">VINCE</h2>
             <p className="text-lg font-bold text-slate-400 uppercase tracking-widest">Founder, LaunchPath Transportation EDU</p>
-          </div>
+          </header>
 
-          <div className="relative inline-block mb-8">
+          <aside className="relative inline-block mb-8">
              <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-slate-100 dark:bg-surface-dark border-[8px] border-authority-blue/5 dark:border-white/5 flex items-center justify-center shadow-2xl relative overflow-hidden group mx-auto">
-                <UserIcon size={120} className="text-authority-blue/10 dark:text-white/10" />
+                <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince Lawrence" className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" />
                 <div className="absolute inset-0 bg-gradient-to-t from-authority-blue/20 to-transparent"></div>
              </div>
              <div className="absolute -bottom-4 -right-4 bg-signal-gold p-4 rounded-2xl shadow-xl border-4 border-white dark:border-primary-dark group-hover:rotate-12 transition-transform">
                 <ShieldCheck className="text-authority-blue" size={32} />
              </div>
-          </div>
+          </aside>
 
-          <div className="max-w-3xl mx-auto space-y-10">
+          <article className="max-w-3xl mx-auto space-y-10">
             <p className="text-xl sm:text-2xl font-bold text-slate-600 dark:text-slate-300 leading-relaxed">
               20+ years of federal compliance management supporting organizations with 1,200+ employees. OSHA-certified safety coordination across regulated operations. Veteran-owned business operator.
             </p>
@@ -698,17 +675,17 @@ const HomePage: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </article>
         </div>
       </section>
 
       {/* NEW SECTION 3: FAQ */}
       <section className="py-24 md:py-48 bg-slate-50 dark:bg-surface-dark transition-colors border-y border-slate-100 dark:border-white/5">
         <div className="max-w-[1000px] mx-auto px-6">
-          <div className="text-center mb-20 space-y-4">
+          <header className="text-center mb-20 space-y-4">
              <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">CLARIFICATION TERMINAL</p>
              <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">COMMON <span className="text-signal-gold italic">QUESTIONS.</span></h2>
-          </div>
+          </header>
 
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
@@ -721,32 +698,25 @@ const HomePage: React.FC = () => {
               />
             ))}
           </div>
-
-          <div className="mt-16 text-center pt-16 border-t border-slate-200 dark:border-white/10">
-             <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8 italic">STILL HAVE TECHNICAL INQUIRIES?</p>
-             <Link to="/contact" className="inline-flex items-center text-authority-blue dark:text-signal-gold font-black uppercase tracking-[0.2em] text-xs hover:underline group">
-                MESSAGE VINCE DIRECTLY <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
-             </Link>
-          </div>
         </div>
       </section>
 
-      {/* SECTION 7: ADMISSION PROTOCOL (THE CLOSE) */}
+      {/* SECTION 7: ADMISSION PROTOCOL */}
       <section className="py-24 md:py-48 lg:py-64 bg-white dark:bg-primary-dark text-center border-t border-slate-50 dark:border-border-dark">
         <div className="max-w-[1400px] mx-auto px-6 space-y-16 md:space-y-24">
-          <div className="space-y-8">
+          <header className="space-y-8">
             <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9]">
               BUILD YOUR <br/><span className="text-signal-gold italic underline decoration-authority-blue/5 dark:decoration-white/5 underline-offset-[24px]">CARRIER</span> <br/>ON SYSTEMS.
             </h2>
-          </div>
+          </header>
           
-          <div className="max-w-3xl mx-auto p-12 bg-slate-50 dark:bg-gray-800/50 rounded-[4rem] border-4 border-dashed border-slate-200 dark:border-slate-700 shadow-inner">
+          <article className="max-w-3xl mx-auto p-12 bg-slate-50 dark:bg-gray-800/50 rounded-[4rem] border-4 border-dashed border-slate-200 dark:border-slate-700 shadow-inner">
              <p className="text-xl font-bold text-slate-600 dark:text-slate-400 leading-relaxed italic uppercase tracking-tight text-center">
                "YOU ARE ADMITTED ONLY AFTER WE VERIFY THAT YOUR BUSINESS IS POSITIONED FOR SUCCESS WITHIN OUR STANDARDS."
              </p>
-          </div>
+          </article>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-10">
+          <nav className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-10">
              <Link to="/readiness" className="w-full sm:w-auto bg-authority-blue text-white px-12 md:px-20 py-7 md:py-10 rounded-[2rem] md:rounded-[3rem] font-black uppercase tracking-[0.4em] text-[11px] md:text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 inline-flex items-center justify-center border-b-[12px] border-slate-900 group">
                APPLY FOR ADMISSION
                <ArrowRight size={20} className="ml-5 group-hover:translate-x-2 transition-transform" />
@@ -754,7 +724,7 @@ const HomePage: React.FC = () => {
              <Link to="/about" className="text-slate-400 font-black uppercase tracking-[0.3em] text-[11px] hover:text-authority-blue transition-colors">
                 Review Program Standard
              </Link>
-          </div>
+          </nav>
         </div>
       </section>
 
