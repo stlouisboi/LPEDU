@@ -102,35 +102,35 @@ const HomePage: React.FC = () => {
   const faqs = [
     {
       q: "Who is this program for?",
-      a: "LaunchPath is designed for new motor carriers within their first 90 days of operating authority — box truck operators (10,001–26,000 lbs GVWR) and semi-truck operators (26,001+ lbs GVWR) running 1 to 3 trucks. If you are preparing to file for your DOT and MC numbers or have recently received them, this program is built for you."
+      a: "LaunchPath is for new trucking businesses just starting out. It is specifically designed for box truck and semi-truck owner-operators running 1 to 3 units. Whether you are about to file for your DOT and MC numbers or just received them, this program is built for you."
     },
     {
       q: "Do I need a CDL to take this program?",
-      a: "No. LaunchPath covers compliance requirements for both CDL and non-CDL operations. Box truck operators under 26,000 lbs GVWR typically do not need a CDL. The program teaches the regulatory framework for both lanes."
+      a: "No. LaunchPath covers the rules for both CDL and non-CDL operations. Box truck operators under 26,000 lbs generally do not need a CDL, and we show you the safety requirements for both types of hauling."
     },
     {
       q: "Is this legal or tax advice?",
-      a: "No. LaunchPath is an educational program. All content provides compliance frameworks and operational systems. You should verify all regulatory, legal, tax, and insurance decisions with licensed professionals — attorneys, CPAs, and insurance agents — who can advise on your specific situation."
+      a: "No. LaunchPath is an educational program. We provide compliance systems and operational setup steps. You should verify all legal, tax, and insurance decisions with your own licensed professionals who can advise on your specific situation."
     },
     {
       q: "What if I take Ground 0 and decide I am not ready?",
-      a: "That is exactly what Ground 0 is designed to do. If your decision is WAIT, you receive an improvement plan template and a scheduled reassessment date. If your decision is NO-GO, the program helps you close the loop with clarity. Choosing not to proceed is not failure — it is stewardship."
+      a: "That is exactly what Ground 0 is designed to do. It helps you verify your business readiness and alignment with our standards before you commit further. If you decide to wait, you receive a clear plan to get ready. Choosing to wait is a smart business decision, not a failure."
     },
     {
       q: "How long do I have access to the course materials?",
-      a: "You will have access for 12 months from your enrollment date, including all updates made during that period."
+      a: "You will have access for 12 months from your enrollment date. This includes all updates we make to the program during that time."
     },
     {
       q: "Is there a payment plan?",
-      a: "Payment plan options are available and will be discussed during the admission review process."
+      a: "Yes, payment plan options are available. We can discuss these with you during the admission review process."
     },
     {
       q: "What makes this different from other trucking courses?",
-      a: "Most programs tell you how to get started. LaunchPath builds the compliance systems that keep you operating. The curriculum is built on 20+ years of federal compliance management experience, organized around four structural pillars — Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen — with every lesson verified against current FMCSA regulations (49 CFR)."
+      a: "Most programs only tell you how to start. LaunchPath shows you how to stay in business. We help you build four specific systems: protecting your authority, keeping your insurance, managing safety files, and tracking your actual profit. Everything is based on current federal safety regulations."
     },
     {
       q: "Can I get a refund?",
-      a: "Refund terms are provided during the admission review process before enrollment is finalized."
+      a: "Refund terms are provided clearly during the admission review process before you finalize your enrollment."
     }
   ];
 
@@ -199,7 +199,7 @@ const HomePage: React.FC = () => {
                 
                 <form onSubmit={handleLeadSubmit} className="space-y-6 md:space-y-8">
                   <div className="space-y-2">
-                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-500 ml-4">FULL NAME</label>
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">FULL NAME</label>
                     <input 
                       required 
                       value={formData.firstName}
@@ -209,7 +209,7 @@ const HomePage: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-500 ml-4">EMAIL</label>
+                    <label className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">EMAIL</label>
                     <input 
                       required 
                       type="email"
