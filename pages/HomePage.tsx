@@ -35,37 +35,69 @@ import {
   Users,
   Truck,
   HelpCircle,
-  MessageCircle
+  MessageCircle,
+  Skull,
+  AlertOctagon,
+  AlertCircle,
+  ClipboardCheck,
+  Cpu,
+  FileText,
+  DollarSign,
+  // Added missing CreditCard icon import
+  CreditCard
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 
-const FAQItem: React.FC<{ question: string; answer: string; isOpen: boolean; onClick: () => void }> = ({ question, answer, isOpen, onClick }) => {
+const FAQItem: React.FC<{ 
+  question: string; 
+  answer: string; 
+  isOpen: boolean; 
+  icon: React.ReactNode;
+  onClick: () => void 
+}> = ({ question, answer, isOpen, icon, onClick }) => {
   return (
-    <article className="border-b border-slate-200 dark:border-border-dark last:border-0 transition-all duration-500 overflow-hidden">
+    <article className={`border transition-all duration-500 rounded-[2rem] overflow-hidden ${
+      isOpen 
+      ? 'border-authority-blue bg-white dark:bg-surface-dark shadow-2xl ring-1 ring-authority-blue/5' 
+      : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark shadow-sm hover:border-authority-blue/30'
+    }`}>
       <h3>
         <button 
           onClick={onClick}
-          className="w-full flex items-center justify-between py-8 text-left focus:outline-none group"
+          className="w-full flex items-center justify-between p-8 text-left focus:outline-none group"
           aria-expanded={isOpen}
         >
-          <span className={`text-lg font-black tracking-tight uppercase transition-colors duration-300 ${isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'}`}>
-            {question}
-          </span>
-          <div className={`p-2 rounded-full transition-all duration-500 ${isOpen ? 'bg-authority-blue text-white rotate-180 shadow-lg' : 'bg-slate-100 dark:bg-gray-800 text-slate-400 group-hover:bg-slate-200'}`}>
+          <div className="flex items-center space-x-6">
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 ${
+              isOpen ? 'bg-authority-blue text-signal-gold shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'
+            }`}>
+              {icon}
+            </div>
+            <span className={`text-lg font-black tracking-tight uppercase transition-colors duration-300 ${
+              isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'
+            }`}>
+              {question}
+            </span>
+          </div>
+          <div className={`p-2 rounded-full transition-all duration-500 ${
+            isOpen ? 'bg-authority-blue text-white rotate-180 shadow-lg' : 'bg-slate-100 dark:bg-gray-800 text-slate-400 group-hover:bg-slate-200'
+          }`}>
             <ChevronDown className="w-5 h-5" />
           </div>
         </button>
       </h3>
       <div 
         className={`grid transition-all duration-500 ease-in-out ${
-          isOpen ? 'grid-rows-[1fr] opacity-100 mb-8' : 'grid-rows-[0fr] opacity-0'
+          isOpen ? 'grid-rows-[1fr] opacity-100 pb-8' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
-          <p className="text-slate-500 dark:text-text-dark-muted font-bold leading-relaxed">
-            {answer}
-          </p>
+          <div className="px-8 pt-0 text-slate-500 dark:text-text-dark-muted font-bold leading-relaxed border-t border-slate-50 dark:border-border-dark mt-2 pt-6">
+            <p className="text-base whitespace-pre-wrap">
+              {answer}
+            </p>
+          </div>
         </div>
       </div>
     </article>
@@ -76,7 +108,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [loading, setLoading] = useState(false);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [faqOpen, setFaqOpen] = useState<number | null>(0);
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,38 +132,101 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const faqs = [
+  const sinsData = [
     {
-      q: "Who is this program for?",
-      a: "LaunchPath is for new trucking businesses just starting out. It is specifically designed for box truck and semi-truck owner-operators running 1 to 3 units. Whether you are about to file for your DOT and MC numbers or just received them, this program is built for you."
+      category: "CHEMICAL DEPENDENCY",
+      items: [
+        { id: "01", text: "Lack of random drug program", impact: "Audit Failure", severity: "TERMINAL" },
+        { id: "02", text: "Positive driver results", impact: "Revocation", severity: "TERMINAL" },
+        { id: "03", text: "Federal Clearinghouse error", impact: "Violation", severity: "HIGH RISK" },
+        { id: "04", text: "Omission of screening", impact: "Exposure", severity: "HIGH RISK" }
+      ]
     },
     {
-      q: "Do I need a CDL to take this program?",
-      a: "No. LaunchPath covers the rules for both CDL and non-CDL operations. Box truck operators under 26,000 lbs generally do not need a CDL, and we show you the safety requirements for both types of hauling."
+      category: "DRIVER ELIGIBILITY",
+      items: [
+        { id: "05", text: "Revoked license use", impact: "OOS Event", severity: "CRITICAL" },
+        { id: "06", text: "Invalid medical certs", impact: "Downgrade", severity: "CRITICAL" },
+        { id: "07", text: "No DQ file framework", impact: "Audit Red Flag", severity: "HIGH RISK" },
+        { id: "08", text: "Missing background inquiries", impact: "Default", severity: "HIGH RISK" }
+      ]
     },
     {
-      q: "Is this legal or tax advice?",
-      a: "No. LaunchPath is an educational program. We provide compliance systems and operational setup steps. You should verify all legal, tax, and insurance decisions with your own licensed professionals who can advise on your specific situation."
+      category: "OPERATIONAL SAFETY",
+      items: [
+        { id: "09", text: "Exceeding HOS limits", impact: "Negligence", severity: "CRITICAL" },
+        { id: "10", text: "Dispatching OOS vehicles", impact: "Termination", severity: "TERMINAL" },
+        { id: "11", text: "Poor duty status records", impact: "Multiplier", severity: "HIGH RISK" },
+        { id: "12", text: "No vehicle inspections", impact: "Liability", severity: "HIGH RISK" }
+      ]
     },
     {
-      q: "What if I take Ground 0 and decide I am not ready?",
-      a: "That is exactly what Ground 0 is designed to do. It helps you verify your business readiness and alignment with our standards before you commit further. If you decide to wait, you receive a clear plan to get ready. Choosing to wait is a smart business decision, not a failure."
+      category: "ADMIN INTEGRITY",
+      items: [
+        { id: "13", text: "Unverified insurance levels", impact: "Blacklist", severity: "CRITICAL" },
+        { id: "14", text: "Missing filings (BOC-3)", impact: "Suspension", severity: "TERMINAL" },
+        { id: "15", text: "No maintenance program", impact: "Exposure", severity: "HIGH RISK" },
+        { id: "16", text: "Late accident reporting", impact: "Legal Default", severity: "CRITICAL" }
+      ]
+    }
+  ];
+
+  const toolsData = [
+    { 
+      title: "TCO Calculator", 
+      desc: "Break-even analysis and cost-per-mile modeling for operational survival math.", 
+      icon: <Calculator size={24} className="text-emerald-600" />,
+      bg: "bg-emerald-50",
+      link: "/tools/tco-calculator"
+    },
+    { 
+      title: "Readiness Assessment", 
+      desc: "Scored evaluation of your compliance posture before you begin operations.", 
+      icon: <ClipboardCheck size={24} className="text-authority-blue" />,
+      bg: "bg-blue-50",
+      link: "/readiness"
+    },
+    { 
+      title: "Compliance Reference", 
+      desc: "AI-powered regulatory reference assistant for FMCSA terminology and system logic.", 
+      icon: <Cpu size={24} className="text-signal-gold" />,
+      bg: "bg-amber-50",
+      link: "/ai-advisor"
+    },
+    { 
+      title: "Resource Library", 
+      desc: "Implementation templates, regulatory references, and vetted service provider directory.", 
+      icon: <FileText size={24} className="text-slate-600" />,
+      bg: "bg-slate-100",
+      link: "/resources"
+    }
+  ];
+
+  const homepageFaqs = [
+    {
+      q: "Does LaunchPath guarantee I will pass a New Entrant Safety Audit?",
+      a: "No. LaunchPath does not guarantee audit outcomes. Final determination is made solely by the FMCSA based on their independent investigation. We provide the institutional framework and documentation systems. The carrier provides the operational discipline. We don't sell a 'pass' — we sell the infrastructure for carriers who refuse to operate in a state of exposure.",
+      icon: <ShieldAlert size={20} />
     },
     {
-      q: "How long do I have access to the course materials?",
-      a: "You will have access for 12 months from your enrollment date. This includes all updates we make to the program during that time."
+      q: "What if my insurance quote is higher than expected?",
+      a: "Insurance pricing for new authorities is risk-based and market-driven. LaunchPath does not set, negotiate, or guarantee rates. The Insurance Continuity pillar moves you from exposure to refuge through systematic documentation, safety posture implementation, and renewal discipline. If TCO analysis indicates the business model is non-viable, the Standard dictates a delay in operations rather than a compromise in compliance.",
+      icon: <CreditCard size={20} />
     },
     {
-      q: "Is there a payment plan?",
-      a: "Yes, payment plan options are available. We can discuss these with you during the admission review process."
+      q: "Is LaunchPath for non-CDL box truck carriers?",
+      a: "Yes. The operating standard applies to all motor carriers operating commercial motor vehicles in interstate commerce, regardless of driver licensing class. Regulatory requirements for DQ files, HOS, and maintenance are consistent across CDL and non-CDL categories.",
+      icon: <Truck size={20} />
     },
     {
-      q: "What makes this different from other trucking courses?",
-      a: "Most programs only tell you how to start. LaunchPath shows you how to stay in business. We help you build four specific systems: protecting your authority, keeping your insurance, managing safety files, and tracking your actual profit. Everything is based on current federal safety regulations."
+      q: "Can I skip sections or move ahead before completing required steps?",
+      a: "No. LaunchPath progression is gated by verification checkpoints. Advancement requires submission and review against the LaunchPath Standard. This structure exists to protect authority, insurance continuity, and compliance integrity.",
+      icon: <Lock size={20} />
     },
     {
-      q: "Can I get a refund?",
-      a: "Refund terms are provided clearly during the admission review process before you finalize your enrollment."
+      q: "Is there a recurring monthly subscription fee?",
+      a: "LaunchPath operates on a single-access admission model. Once admitted, you receive access to the full implementation system and technical files required for the 90-day stabilization window. One standard. One path. One price.",
+      icon: <DollarSign size={20} />
     }
   ];
 
@@ -159,8 +254,8 @@ const HomePage: React.FC = () => {
               <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA (Federal Safety) Standard</span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-black leading-[0.95] md:leading-[0.9] tracking-tighter uppercase font-serif">
-              PROTECT <br/>YOUR <br/><span className="italic text-signal-gold">AUTHORITY</span> <br/>WITH ORDER <br/>AND CERTAINTY.
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-black leading-[0.95] md:leading-[0.9] tracking-tighter uppercase font-serif">
+              PROTECT YOUR <br/><span className="italic text-signal-gold">AUTHORITY</span> WITH <br/>ABSOLUTE ORDER.
             </h1>
             
             <div className="max-w-2xl border-l-4 md:border-l-8 border-authority-blue dark:border-signal-gold pl-6 md:pl-10 py-2">
@@ -264,14 +359,11 @@ const HomePage: React.FC = () => {
             </div>
           </article>
 
-          {/* ENHANCED CARD COMPONENT */}
           <aside className="lg:col-span-5 relative w-full group/card-wrapper">
-            {/* Background Fingerprint Graphic */}
             <div className="absolute inset-0 hidden md:flex items-center justify-center opacity-10 scale-[1.7] pointer-events-none group-hover/card-wrapper:scale-[1.8] group-hover/card-wrapper:opacity-20 transition-all duration-1000">
                <Fingerprint size={400} strokeWidth={0.5} className="text-white" />
             </div>
 
-            {/* The Main Identification Card */}
             <div className="bg-white rounded-[3.5rem] md:rounded-[4.5rem] p-10 md:p-14 lg:p-16 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] border border-white/20 relative z-10 text-authority-blue w-full hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5">
                
                <header className="mb-10 md:mb-12">
@@ -307,7 +399,6 @@ const HomePage: React.FC = () => {
                   ))}
                </div>
 
-               {/* Design Overlap: Compliance Reference Widget */}
                <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 z-20">
                   <div className="bg-[#1E3A5F] p-1 rounded-[2.5rem] shadow-2xl ring-8 ring-authority-blue group-hover/card-wrapper:scale-110 transition-transform duration-500">
                     <div className="bg-[#1E3A5F] flex items-center space-x-4 pr-10 py-5 pl-5 rounded-[2rem] border border-white/10">
@@ -487,11 +578,11 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. STRUCTURE BEATS MEMORY (THE FOUR PILLARS) */}
+      {/* 4. THE FOUR PILLARS */}
       <section className="py-24 md:py-32 lg:py-56 bg-white dark:bg-primary-dark transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-24 space-y-6">
-             <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
+             <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
                THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
              </h2>
              <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">THE OPERATIONAL FRAMEWORK</p>
@@ -541,7 +632,70 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. THE 16 DEADLY SINS (WHAT'S INSIDE) */}
+      {/* NEW: SECTION A: THE 16 DEADLY SINS */}
+      <section className="bg-slate-100 dark:bg-primary-dark py-24 lg:py-40 border-t border-b border-slate-200 dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-5 sm:px-10 animate-reveal-up">
+          <header className="text-center mb-16 md:mb-24 space-y-8">
+            <div className="inline-flex items-center space-x-3 bg-red-600 text-white px-8 py-3 rounded-full shadow-xl">
+              <Skull size={14} className="animate-pulse" />
+              <span className="text-[10px] font-black uppercase tracking-[0.5em]">Registry Warning: Audit Failure Vectors</span>
+            </div>
+            <h2 className="text-5xl sm:text-7xl lg:text-[8rem] font-black font-serif tracking-tight leading-[0.85] text-authority-blue dark:text-white uppercase">
+              THE 16 <br/><span className="text-red-600 italic underline decoration-red-600/20 decoration-[8px] underline-offset-[16px]">DEADLY SINS.</span>
+            </h2>
+            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 font-extrabold max-w-3xl mx-auto leading-relaxed">
+              Over 30 audit-level violations mapped to their regulatory consequence — categorized by exposure severity.
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {sinsData.map((cat, catIdx) => (
+              <div key={catIdx} className="space-y-8" style={{ animationDelay: `${catIdx * 0.1}s` }}>
+                <div className="flex items-center space-x-5 border-b-2 border-slate-200 dark:border-border-dark pb-6">
+                  <div className="bg-authority-blue text-signal-gold rounded-xl w-12 h-12 flex items-center justify-center font-black">
+                    0{catIdx + 1}
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">
+                    {cat.category}
+                  </h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {cat.items.map((sin, sinIdx) => (
+                    <div key={sinIdx} className="bg-white dark:bg-surface-dark p-8 rounded-3xl border border-slate-200 dark:border-border-dark shadow-sm hover:shadow-xl transition-all duration-500 group overflow-hidden relative">
+                      <div className={`absolute left-0 top-0 h-full w-2 bg-slate-100 transition-all ${
+                        sin.severity === 'TERMINAL' ? 'group-hover:bg-red-600 group-hover:w-3' : 
+                        sin.severity === 'CRITICAL' ? 'group-hover:bg-orange-500 group-hover:w-3' : 
+                        'group-hover:bg-amber-500 group-hover:w-3'
+                      }`}></div>
+                      <span className="absolute -top-4 -right-4 text-6xl font-black opacity-5 text-slate-900 dark:text-white">{sin.id}</span>
+                      
+                      <h4 className="text-lg font-black text-slate-800 dark:text-text-dark-primary uppercase tracking-tight leading-tight mb-8">
+                        {sin.text}
+                      </h4>
+                      
+                      <div className={`inline-flex items-center space-x-2 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border ${
+                        sin.severity === 'TERMINAL' ? 'bg-red-50 text-red-600 border-red-100' : 
+                        sin.severity === 'CRITICAL' ? 'bg-orange-50 text-orange-600 border-orange-100' : 
+                        'bg-amber-50 text-amber-600 border-amber-100'
+                      }`}>
+                        {sin.severity === 'TERMINAL' ? <Skull size={10} className="animate-pulse" /> : 
+                         sin.severity === 'CRITICAL' ? <AlertOctagon size={10} /> : 
+                         <AlertCircle size={10} />}
+                        <span>{sin.severity}</span>
+                        <span className="opacity-30">|</span>
+                        <span>{sin.impact}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. THE 16 DEADLY SINS (WHAT'S INSIDE) - RE-LABELED AS WHAT'S INSIDE THE PROGRAM */}
       <section className="py-24 md:py-48 bg-slate-50 dark:bg-primary-dark transition-colors overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-start">
@@ -613,7 +767,7 @@ const HomePage: React.FC = () => {
         </div>
         <div className="max-w-[1400px] mx-auto px-6 text-center">
           <p className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.6em] text-slate-300 mb-8 md:mb-12">TECHNICAL READINESS ASSESSMENT</p>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-serif text-authority-blue dark:text-white mb-8 md:mb-12 uppercase tracking-tighter">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black font-serif text-authority-blue dark:text-white mb-8 md:mb-12 uppercase tracking-tighter">
             THE <span className="text-signal-gold italic">REACH</span> TEST™
           </h2>
           <article className="max-w-2xl mx-auto mb-20">
@@ -651,6 +805,41 @@ const HomePage: React.FC = () => {
               TAKE THE REACH TEST™ <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
             </Link>
           </nav>
+        </div>
+      </section>
+
+      {/* NEW: SECTION B: INTERACTIVE TOOLS STRIP */}
+      <section className="py-20 lg:py-28 bg-white dark:bg-primary-dark border-t border-slate-100 dark:border-border-dark transition-colors">
+        <div className="max-w-6xl mx-auto px-5 sm:px-10 animate-reveal-up">
+          <header className="text-center mb-16 space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.6em] text-authority-blue dark:text-signal-gold">Integrated Compliance Tools</p>
+            <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">
+              Built-In <span className="text-signal-gold italic">Systems.</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-400 font-extrabold max-w-2xl mx-auto leading-relaxed">
+              More than curriculum. LaunchPath includes working tools designed for real carrier operations.
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {toolsData.map((tool, idx) => (
+              <Link 
+                key={idx} 
+                to={tool.link}
+                className="bg-slate-50 dark:bg-surface-dark p-6 sm:p-8 rounded-[2rem] border border-slate-100 dark:border-border-dark hover:shadow-lg hover:-translate-y-2 transition-all duration-500 group text-center flex flex-col items-center"
+              >
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 shadow-inner ${tool.bg}`}>
+                  {tool.icon}
+                </div>
+                <h4 className="text-sm font-black uppercase tracking-[0.15em] text-authority-blue dark:text-white">
+                  {tool.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold leading-relaxed mt-2">
+                  {tool.desc}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -767,36 +956,35 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 8.5 FREQUENTLY ASKED QUESTIONS */}
-      <section className="py-24 md:py-32 lg:py-56 bg-white dark:bg-primary-dark transition-colors border-t border-slate-50 dark:border-border-dark">
-        <div className="max-w-4xl mx-auto px-6">
-          <header className="text-center mb-16 lg:mb-24 space-y-6">
-             <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-6 py-2.5 rounded-full mx-auto shadow-sm">
-                <HelpCircle size={16} className="text-authority-blue" />
-                <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue">Institutional FAQ</span>
-             </div>
-             <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">
-               FREQUENTLY <br/><span className="text-signal-gold italic">ASKED</span> QUESTIONS.
-             </h2>
+      {/* NEW: SECTION C: FAQ (HOMEPAGE VERSION) */}
+      <section className="py-24 lg:py-40 bg-[#F8FAFC] dark:bg-surface-dark transition-colors border-t border-slate-200 dark:border-border-dark">
+        <div className="max-w-4xl mx-auto px-5 sm:px-10">
+          <header className="text-center mb-16 space-y-6">
+            <div className="bg-authority-blue text-signal-gold rounded-2xl p-4 shadow-xl mx-auto w-16 h-16 flex items-center justify-center">
+              <HelpCircle size={32} />
+            </div>
+            <h2 className="text-4xl sm:text-6xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">
+              Common <br/><span className="text-signal-gold italic">Questions.</span>
+            </h2>
           </header>
 
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
+          <div className="space-y-6 animate-reveal-up">
+            {homepageFaqs.map((faq, idx) => (
               <FAQItem 
                 key={idx}
                 question={faq.q}
                 answer={faq.a}
-                isOpen={openFaqIndex === idx}
-                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                icon={faq.icon}
+                isOpen={faqOpen === idx}
+                onClick={() => setFaqOpen(faqOpen === idx ? null : idx)}
               />
             ))}
           </div>
 
-          <div className="mt-20 text-center">
-            <p className="text-sm font-bold text-slate-400 mb-8 uppercase tracking-widest">Still Need Clarity?</p>
-            <Link to="/contact" className="inline-flex items-center text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue hover:text-signal-gold transition-colors group">
-              <span>Message an Advisor</span>
-              <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
+          <div className="mt-12 text-center">
+            <Link to="/faq" className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:text-signal-gold dark:hover:text-white transition-colors inline-flex items-center space-x-2 group">
+              <span>View Full Institutional FAQ</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
