@@ -43,7 +43,6 @@ import {
   Cpu,
   FileText,
   DollarSign,
-  // Added missing CreditCard icon import
   CreditCard
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -329,7 +328,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. OPERATING DEFINITION */}
+      {/* 2. FAILURE IS A SETUP PROBLEM */}
       <section className="py-24 md:py-32 lg:py-64 bg-authority-blue text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-center">
@@ -416,7 +415,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. RISKS UNDERESTIMATED */}
+      {/* 3. WHY LAUNCHPATH EXISTS */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-32 space-y-6">
@@ -508,7 +507,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3.5. YOUR FIRST 90 DAYS, MAPPED */}
+      {/* 4. YOUR FIRST 90 DAYS, MAPPED */}
       <section className="py-24 md:py-48 bg-slate-50 dark:bg-primary-dark overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
@@ -578,7 +577,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. THE FOUR PILLARS */}
+      {/* 5. THE FOUR PILLARS */}
       <section className="py-24 md:py-32 lg:py-56 bg-white dark:bg-primary-dark transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-24 space-y-6">
@@ -632,7 +631,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* NEW: SECTION A: THE 16 DEADLY SINS */}
+      {/* 6. THE 16 DEADLY SINS */}
       <section className="bg-slate-100 dark:bg-primary-dark py-24 lg:py-40 border-t border-b border-slate-200 dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-5 sm:px-10 animate-reveal-up">
           <header className="text-center mb-16 md:mb-24 space-y-8">
@@ -695,7 +694,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. THE 16 DEADLY SINS (WHAT'S INSIDE) - RE-LABELED AS WHAT'S INSIDE THE PROGRAM */}
+      {/* 7. WHAT'S INSIDE THE PROGRAM */}
       <section className="py-24 md:py-48 bg-slate-50 dark:bg-primary-dark transition-colors overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-start">
@@ -760,7 +759,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. THE REACH TEST™ */}
+      {/* 8. THE REACH TEST™ */}
       <section className="py-20 md:py-32 lg:py-56 bg-white dark:bg-primary-dark relative overflow-hidden">
         <div className="absolute top-0 right-0 p-24 opacity-[0.02] pointer-events-none">
           <Activity size={400} />
@@ -808,7 +807,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* NEW: SECTION B: INTERACTIVE TOOLS STRIP */}
+      {/* 9. INTERACTIVE TOOLS STRIP */}
       <section className="py-20 lg:py-28 bg-white dark:bg-primary-dark border-t border-slate-100 dark:border-border-dark transition-colors">
         <div className="max-w-6xl mx-auto px-5 sm:px-10 animate-reveal-up">
           <header className="text-center mb-16 space-y-4">
@@ -843,17 +842,16 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. FOUNDER CREDIBILITY */}
+      {/* 10. FOUNDER CREDIBILITY */}
       <section className="bg-[#0c1a2d] py-24 lg:py-40 relative overflow-hidden animate-reveal-up">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none" aria-hidden="true"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             
-            {/* Left Column: Photo */}
             <div className="lg:col-span-4 flex justify-center lg:justify-start">
               <div className="relative group max-w-[320px] w-full">
                 <div className="absolute -inset-4 bg-authority-blue/30 rounded-[4rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                <div className="bg-authority-blue dark:bg-surface-dark rounded-[3.5rem] shadow-2xl overflow-hidden relative border-[10px] border-[#162a44] group-hover:border-authority-blue transition-all duration-700 aspect-square sm:aspect-auto">
+                <div className="bg-authority-blue dark:bg-surface-dark rounded-[3.5rem] shadow-2xl overflow-hidden relative border-[12px] border-[#162a44] group-hover:border-authority-blue transition-all duration-700 aspect-square sm:aspect-auto">
                   <img 
                     src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
                     alt="Vince Lawrence" 
@@ -866,7 +864,6 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Credentials */}
             <div className="lg:col-span-8 space-y-8 text-center lg:text-left">
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full mx-auto lg:mx-0 shadow-sm">
@@ -916,7 +913,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 8. WHO THIS IS FOR */}
+      {/* 11. WHO THIS IS FOR */}
       <section className="py-24 md:py-32 lg:py-48 bg-slate-50 dark:bg-primary-dark transition-colors">
         <div className="max-w-7xl mx-auto px-6">
           <header className="text-center mb-16 lg:mb-24 space-y-4">
@@ -956,7 +953,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* NEW: SECTION C: FAQ (HOMEPAGE VERSION) */}
+      {/* 12. FAQ */}
       <section className="py-24 lg:py-40 bg-[#F8FAFC] dark:bg-surface-dark transition-colors border-t border-slate-200 dark:border-border-dark">
         <div className="max-w-4xl mx-auto px-5 sm:px-10">
           <header className="text-center mb-16 space-y-6">
@@ -990,7 +987,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. FINAL CTA (ADMISSION PROTOCOL) */}
+      {/* 13. FINAL CTA (ADMISSION PROTOCOL) */}
       <section className="py-24 md:py-48 lg:py-64 bg-[#F8F9FA] dark:bg-primary-dark text-center border-t border-slate-50 dark:border-border-dark">
         <div className="max-w-[1400px] mx-auto px-6 space-y-16 md:space-y-24">
           <header className="space-y-8">
@@ -1019,7 +1016,7 @@ const HomePage: React.FC = () => {
 
       {/* FOOTER METADATA */}
       <footer className="bg-slate-50 dark:bg-surface-dark py-12 border-t border-slate-100 dark:border-border-dark text-center">
-         <p className="text-[9px] font-black uppercase tracking-[0.8em] text-slate-300 dark:text-slate-600 italic">SYSTEM REGISTRY IDENTIFIER: NC-LP-V4.2 — END OF REPOSITORY BRIEF</p>
+         <p className="text-[9px] font-black uppercase tracking-[0.8em] text-slate-300 dark:text-slate-600 italic">SYSTEM REGISTRY IDENTIFIER: NC-LP-V4.5 — END OF REPOSITORY BRIEF</p>
       </footer>
 
     </div>
