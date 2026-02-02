@@ -33,8 +33,9 @@ import {
   ChevronDown,
   Award,
   Users,
-  // Fix: Added missing Truck icon to lucide-react imports
-  Truck
+  Truck,
+  HelpCircle,
+  MessageCircle
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -75,7 +76,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [loading, setLoading] = useState(false);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -249,7 +250,7 @@ const HomePage: React.FC = () => {
             </h2>
             
             <div className="max-w-xl border-l-4 md:border-l-8 border-signal-gold pl-6 md:pl-10 py-2">
-              <p className="text-lg md:text-xl lg:text-2xl font-black uppercase leading-tight mb-6 md:mb-8 tracking-tight">
+              <p className="text-lg md:text-xl lg:text-2xl font-black uppercase leading-tight mb-6 md:mb-8 tracking-tight text-white/90">
                 Most carrier failures happen because systems are not set up correctly. Small mistakes in your paperwork today create major risks during your first 18 months.
               </p>
               <p className="text-sm md:text-base opacity-80 leading-relaxed mb-10">
@@ -263,12 +264,23 @@ const HomePage: React.FC = () => {
             </div>
           </article>
 
-          <aside className="lg:col-span-5 relative w-full">
-            <div className="absolute inset-0 hidden md:flex items-center justify-center opacity-20 scale-150 pointer-events-none">
-               <Fingerprint size={400} strokeWidth={0.5} />
+          {/* ENHANCED CARD COMPONENT */}
+          <aside className="lg:col-span-5 relative w-full group/card-wrapper">
+            {/* Background Fingerprint Graphic */}
+            <div className="absolute inset-0 hidden md:flex items-center justify-center opacity-10 scale-[1.7] pointer-events-none group-hover/card-wrapper:scale-[1.8] group-hover/card-wrapper:opacity-20 transition-all duration-1000">
+               <Fingerprint size={400} strokeWidth={0.5} className="text-white" />
             </div>
-            <div className="bg-white p-8 md:p-12 lg:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl relative z-10 text-authority-blue w-full">
-               <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight mb-1 md:mb-10">IDENTIFICATION & ALIGNMENT</h3>
+
+            {/* The Main Identification Card */}
+            <div className="bg-white rounded-[3.5rem] md:rounded-[4.5rem] p-10 md:p-14 lg:p-16 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] border border-white/20 relative z-10 text-authority-blue w-full hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5">
+               
+               <header className="mb-10 md:mb-12">
+                 <h3 className="text-2xl md:text-3xl font-black font-serif uppercase tracking-tight leading-[1.1] text-[#1E3A5F]">
+                   IDENTIFICATION & <br/>ALIGNMENT
+                 </h3>
+                 <div className="h-1.5 w-16 bg-signal-gold mt-6 rounded-full"></div>
+               </header>
+
                <div className="space-y-4 md:space-y-5">
                   {[
                     "DQ (DRIVER QUALIFICATION) FILE INTEGRITY",
@@ -276,15 +288,37 @@ const HomePage: React.FC = () => {
                     "INSURANCE CONTINUITY",
                     "MAINTENANCE GOVERNANCE"
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between p-4 md:p-6 bg-slate-50 rounded-xl md:rounded-2xl border border-slate-100 group">
-                       <div className="flex items-center space-x-4 md:space-x-5">
-                          <div className="w-4 h-4 md:w-5 md:h-5 rounded border-2 border-slate-200 flex items-center justify-center group-hover:border-signal-gold transition-colors">
-                            <CheckCircle2 size={10} className="text-signal-gold" />
+                    <div 
+                      key={i} 
+                      className="flex items-center justify-between p-5 md:p-7 bg-[#F8FAFC] rounded-[1.5rem] md:rounded-[2rem] border border-slate-100 group/item hover:bg-white hover:shadow-xl hover:border-authority-blue/10 transition-all duration-300"
+                    >
+                       <div className="flex items-center space-x-5 md:space-x-7">
+                          <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl border-2 border-slate-200 flex items-center justify-center group-hover/item:border-signal-gold group-hover/item:bg-signal-gold/5 transition-all duration-300 shadow-sm">
+                            <div className="relative">
+                              <ShieldCheck size={20} className="text-slate-300 group-hover/item:text-signal-gold group-hover/item:scale-110 transition-all duration-300" />
+                              <div className="absolute inset-0 bg-signal-gold rounded-full opacity-0 group-hover/item:animate-ping group-hover/item:opacity-20"></div>
+                            </div>
                           </div>
-                          <span className="text-[8px] md:text-[10px] font-black uppercase tracking-widest">{item}</span>
+                          <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.15em] text-slate-700 leading-tight group-hover/item:text-authority-blue transition-colors">
+                            {item}
+                          </span>
                        </div>
                     </div>
                   ))}
+               </div>
+
+               {/* Design Overlap: Compliance Reference Widget */}
+               <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 z-20">
+                  <div className="bg-[#1E3A5F] p-1 rounded-[2.5rem] shadow-2xl ring-8 ring-authority-blue group-hover/card-wrapper:scale-110 transition-transform duration-500">
+                    <div className="bg-[#1E3A5F] flex items-center space-x-4 pr-10 py-5 pl-5 rounded-[2rem] border border-white/10">
+                       <div className="w-12 h-12 bg-signal-gold rounded-2xl flex items-center justify-center text-authority-blue shadow-lg">
+                          <MessageCircle size={24} fill="currentColor" className="opacity-80" />
+                       </div>
+                       <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap">
+                         COMPLIANCE REFERENCE
+                       </span>
+                    </div>
+                  </div>
                </div>
             </div>
           </aside>
@@ -468,26 +502,26 @@ const HomePage: React.FC = () => {
                {
                  icon: <Briefcase />,
                  title: "AUTHORITY PROTECTION",
-                 tagline: "STRUCTURAL FORTRESS",
-                 desc: "Move beyond basic filings. Build a business foundation that can withstand federal audits."
+                 tagline: "STRUCTURAL STEWARDSHIP",
+                 desc: "Managing federal authority as an entrusted asset. Build a foundation that survives scrutiny through absolute administrative order."
                },
                {
                  icon: <Shield />,
                  title: "INSURANCE CONTINUITY",
-                 tagline: "PREMIUM STABILITY",
-                 desc: "Avoid the renewal trap. Set up the safety files that insurance companies need to keep you covered."
+                 tagline: "RISK RESPONSIBILITY",
+                 desc: "Protecting your right to operate. Maintain permanent coverage by documenting safety as a non-negotiable operational discipline."
                },
                {
                  icon: <Layers />,
                  title: "COMPLIANCE BACKBONE",
-                 tagline: "SAFETY DEFENSE",
-                 desc: "Replace guesswork with documented proof. Manage DQ files and logs to federal (49 CFR) standards."
+                 tagline: "SYSTEMIC INTEGRITY",
+                 desc: "Executing federal standards with precision. Replace human memory with verifiable systems that prove your compliance daily."
                },
                {
                  icon: <Calculator />,
                  title: "CASH-FLOW OXYGEN",
-                 tagline: "TCO SURVIVAL MATH",
-                 desc: "Stop guessing your profit. Use the TCO (Total Cost of Operating) system to find your real break-even point."
+                 tagline: "FISCAL STEWARDSHIP",
+                 desc: "Securing the mission through economic truth. Use TCO math to ensure your business remains solvent, stable, and viable."
                }
              ].map((pillar, i) => (
                <article key={i} className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col text-center group hover:shadow-2xl transition-all duration-500">
@@ -733,8 +767,43 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* 8.5 FREQUENTLY ASKED QUESTIONS */}
+      <section className="py-24 md:py-32 lg:py-56 bg-white dark:bg-primary-dark transition-colors border-t border-slate-50 dark:border-border-dark">
+        <div className="max-w-4xl mx-auto px-6">
+          <header className="text-center mb-16 lg:mb-24 space-y-6">
+             <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-6 py-2.5 rounded-full mx-auto shadow-sm">
+                <HelpCircle size={16} className="text-authority-blue" />
+                <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue">Institutional FAQ</span>
+             </div>
+             <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">
+               FREQUENTLY <br/><span className="text-signal-gold italic">ASKED</span> QUESTIONS.
+             </h2>
+          </header>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <FAQItem 
+                key={idx}
+                question={faq.q}
+                answer={faq.a}
+                isOpen={openFaqIndex === idx}
+                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+              />
+            ))}
+          </div>
+
+          <div className="mt-20 text-center">
+            <p className="text-sm font-bold text-slate-400 mb-8 uppercase tracking-widest">Still Need Clarity?</p>
+            <Link to="/contact" className="inline-flex items-center text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue hover:text-signal-gold transition-colors group">
+              <span>Message an Advisor</span>
+              <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* 9. FINAL CTA (ADMISSION PROTOCOL) */}
-      <section className="py-24 md:py-48 lg:py-64 bg-white dark:bg-primary-dark text-center border-t border-slate-50 dark:border-border-dark">
+      <section className="py-24 md:py-48 lg:py-64 bg-[#F8F9FA] dark:bg-primary-dark text-center border-t border-slate-50 dark:border-border-dark">
         <div className="max-w-[1400px] mx-auto px-6 space-y-16 md:space-y-24">
           <header className="space-y-8">
             <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9]">
@@ -742,7 +811,7 @@ const HomePage: React.FC = () => {
             </h2>
           </header>
           
-          <article className="max-w-3xl mx-auto p-12 bg-slate-50 dark:bg-gray-800/50 rounded-[4rem] border-4 border-dashed border-slate-200 dark:border-slate-700 shadow-inner">
+          <article className="max-w-3xl mx-auto p-12 bg-white dark:bg-gray-800/50 rounded-[4rem] border-4 border-dashed border-slate-200 dark:border-slate-700 shadow-inner">
              <p className="text-xl font-bold text-slate-600 dark:text-slate-400 leading-relaxed italic uppercase tracking-tight text-center">
                "YOU ARE ADMITTED ONLY AFTER WE VERIFY THAT YOUR BUSINESS IS POSITIONED FOR SUCCESS WITHIN OUR STANDARDS."
              </p>
