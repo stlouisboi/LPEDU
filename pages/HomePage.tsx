@@ -31,25 +31,31 @@ import {
   Plus,
   Minus,
   ChevronDown,
-  Award
+  Award,
+  Users,
+  // Fix: Added missing Truck icon to lucide-react imports
+  Truck
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 
 const FAQItem: React.FC<{ question: string; answer: string; isOpen: boolean; onClick: () => void }> = ({ question, answer, isOpen, onClick }) => {
   return (
-    <div className="border-b border-slate-200 dark:border-border-dark last:border-0 transition-all duration-500 overflow-hidden">
-      <button 
-        onClick={onClick}
-        className="w-full flex items-center justify-between py-8 text-left focus:outline-none group"
-      >
-        <span className={`text-lg font-black tracking-tight uppercase transition-colors duration-300 ${isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'}`}>
-          {question}
-        </span>
-        <div className={`p-2 rounded-full transition-all duration-500 ${isOpen ? 'bg-authority-blue text-white rotate-180 shadow-lg' : 'bg-slate-100 dark:bg-gray-800 text-slate-400 group-hover:bg-slate-200'}`}>
-          <ChevronDown className="w-5 h-5" />
-        </div>
-      </button>
+    <article className="border-b border-slate-200 dark:border-border-dark last:border-0 transition-all duration-500 overflow-hidden">
+      <h3>
+        <button 
+          onClick={onClick}
+          className="w-full flex items-center justify-between py-8 text-left focus:outline-none group"
+          aria-expanded={isOpen}
+        >
+          <span className={`text-lg font-black tracking-tight uppercase transition-colors duration-300 ${isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'}`}>
+            {question}
+          </span>
+          <div className={`p-2 rounded-full transition-all duration-500 ${isOpen ? 'bg-authority-blue text-white rotate-180 shadow-lg' : 'bg-slate-100 dark:bg-gray-800 text-slate-400 group-hover:bg-slate-200'}`}>
+            <ChevronDown className="w-5 h-5" />
+          </div>
+        </button>
+      </h3>
       <div 
         className={`grid transition-all duration-500 ease-in-out ${
           isOpen ? 'grid-rows-[1fr] opacity-100 mb-8' : 'grid-rows-[0fr] opacity-0'
@@ -61,7 +67,7 @@ const FAQItem: React.FC<{ question: string; answer: string; isOpen: boolean; onC
           </p>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -141,7 +147,7 @@ const HomePage: React.FC = () => {
   return (
     <div id="main-content" className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
-      {/* SECTION 1: HERO */}
+      {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(#1e3a5f_0.5px,transparent_0.5px)] [background-size:32px:32px] opacity-[0.03]"></div>
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -181,7 +187,7 @@ const HomePage: React.FC = () => {
                 <ShieldAlert size={180} />
               </div>
               <div className="relative z-10">
-                <div className="flex justify-between items-start mb-8 md:mb-12">
+                <header className="flex justify-between items-start mb-8 md:mb-12">
                    <div>
                      <h3 className="text-xs md:text-sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-[0.4em] mb-1 md:mb-2">FORMAL</h3>
                      <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">ADMISSION <br/>INQUIRY</h3>
@@ -189,7 +195,7 @@ const HomePage: React.FC = () => {
                    <div className="w-8 h-8 md:w-10 md:h-10 border border-slate-200 dark:border-white/10 rounded-full flex items-center justify-center text-slate-300">
                      <Lock size={14} />
                    </div>
-                </div>
+                </header>
                 
                 <form onSubmit={handleLeadSubmit} className="space-y-6 md:space-y-8">
                   <div className="space-y-2">
@@ -227,7 +233,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 2: THE REALITY OF RISK */}
+      {/* 2. OPERATING DEFINITION */}
       <section className="py-24 md:py-32 lg:py-64 bg-authority-blue text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-center">
@@ -249,9 +255,11 @@ const HomePage: React.FC = () => {
               <p className="text-sm md:text-base opacity-80 leading-relaxed mb-10">
                 A single documentation gap today creates a risk that insurance companies and federal auditors will eventually find. LaunchPath provides the safety of verified systems.
               </p>
-              <Link to="/reach-test" className="bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-signal-gold hover:text-white transition-all shadow-xl inline-flex items-center">
-                FIND YOUR COMPLIANCE GAPS
-              </Link>
+              <nav>
+                <Link to="/reach-test" className="bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-signal-gold hover:text-white transition-all shadow-xl inline-flex items-center">
+                  FIND YOUR COMPLIANCE GAPS
+                </Link>
+              </nav>
             </div>
           </article>
 
@@ -283,7 +291,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 3: WHY LAUNCHPATH EXISTS */}
+      {/* 3. RISKS UNDERESTIMATED */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-32 space-y-6">
@@ -321,10 +329,10 @@ const HomePage: React.FC = () => {
                 <Target size={200} />
               </div>
               <div className="relative z-10">
-                <div className="flex items-center space-x-4 mb-10">
+                <header className="flex items-center space-x-4 mb-10">
                    <ShieldCheck size={28} className="text-signal-gold" />
                    <h4 className="text-xs font-black uppercase tracking-[0.4em] text-white">THE OPERATING STANDARD</h4>
-                </div>
+                </header>
                 
                 <p className="text-lg font-bold text-slate-300 mb-12 leading-relaxed">
                   LaunchPath is not a course and not a shortcut. It is a compliance-first operating standard designed to:
@@ -375,16 +383,16 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 3.5: YOUR FIRST 90 DAYS, MAPPED */}
+      {/* 3.5. YOUR FIRST 90 DAYS, MAPPED */}
       <section className="py-24 md:py-48 bg-slate-50 dark:bg-primary-dark overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
             
             <article className="lg:col-span-6 space-y-10 animate-reveal-up">
-              <div className="inline-flex items-center space-x-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-5 py-2.5 rounded-full shadow-sm">
+              <header className="inline-flex items-center space-x-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-5 py-2.5 rounded-full shadow-sm">
                 <MapIcon size={16} className="text-authority-blue dark:text-signal-gold" />
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-white">YOUR FIRST 90 DAYS</span>
-              </div>
+              </header>
               
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9]">
                 YOUR FIRST <br/><span className="text-signal-gold italic">90 DAYS,</span> <br/>MAPPED.
@@ -406,12 +414,12 @@ const HomePage: React.FC = () => {
                  </p>
               </div>
 
-              <div className="pt-8">
+              <nav className="pt-8">
                 <Link to="/reach-test" className="inline-flex items-center justify-center bg-authority-blue text-white px-14 py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 border-b-8 border-slate-900 group">
                   <span>Generate Risk Map Diagnostic</span>
                   <ArrowRight size={20} className="ml-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
-              </div>
+              </nav>
             </article>
 
             <aside className="lg:col-span-6">
@@ -445,7 +453,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 4: THE FOUR PILLARS */}
+      {/* 4. STRUCTURE BEATS MEMORY (THE FOUR PILLARS) */}
       <section className="py-24 md:py-32 lg:py-56 bg-white dark:bg-primary-dark transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-24 space-y-6">
@@ -499,7 +507,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* NEW SECTION 1: WHAT'S INSIDE THE PROGRAM */}
+      {/* 5. THE 16 DEADLY SINS (WHAT'S INSIDE) */}
       <section className="py-24 md:py-48 bg-slate-50 dark:bg-primary-dark transition-colors overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-start">
@@ -564,7 +572,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 5: THE REACH TEST™ */}
+      {/* 6. THE REACH TEST™ */}
       <section className="py-20 md:py-32 lg:py-56 bg-white dark:bg-primary-dark relative overflow-hidden">
         <div className="absolute top-0 right-0 p-24 opacity-[0.02] pointer-events-none">
           <Activity size={400} />
@@ -574,7 +582,7 @@ const HomePage: React.FC = () => {
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-serif text-authority-blue dark:text-white mb-8 md:mb-12 uppercase tracking-tighter">
             THE <span className="text-signal-gold italic">REACH</span> TEST™
           </h2>
-          <div className="max-w-2xl mx-auto mb-20">
+          <article className="max-w-2xl mx-auto mb-20">
             <p className="text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed mb-10">
               The REACH Test™ is a diagnostic tool used to find where your business is at risk. It is the first step of our Education phase.
             </p>
@@ -582,7 +590,7 @@ const HomePage: React.FC = () => {
                <ShieldAlert size={18} className="text-amber-600 mr-4" />
                <span className="text-[11px] font-black uppercase text-amber-800 dark:text-amber-400 tracking-widest leading-none">DIAGNOSTIC ASSESSMENT ONLY — NOT AN IMPLEMENTATION</span>
             </div>
-          </div>
+          </article>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-[1400px] mx-auto">
             {[
@@ -604,104 +612,128 @@ const HomePage: React.FC = () => {
             ))}
           </div>
 
-          <div className="mt-24">
+          <nav className="mt-24">
             <Link to="/reach-test" className="bg-authority-blue text-white px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 border-b-8 border-slate-900 inline-flex items-center group">
               TAKE THE REACH TEST™ <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
             </Link>
-          </div>
+          </nav>
         </div>
       </section>
 
-      {/* SECTION 6: STEWARDSHIP & ALIGNMENT */}
-      <section className="py-24 md:py-48 bg-authority-blue text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-16">
-          <div className="w-24 h-24 bg-white/10 rounded-[3rem] flex items-center justify-center mx-auto backdrop-blur-xl border border-white/20 shadow-2xl">
-            <Anchor className="text-signal-gold" size={44} />
-          </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black font-serif uppercase tracking-tight leading-none">
-            PURPOSE-DRIVEN <br/><span className="text-signal-gold italic">STEWARDSHIP.</span>
-          </h2>
-          <article className="p-10 md:p-16 bg-white/5 border border-white/10 rounded-[4rem] md:rounded-[5rem] backdrop-blur-md relative overflow-hidden group">
-            <Quote className="text-signal-gold opacity-40 mb-8 mx-auto" size={56} />
-            <p className="text-2xl md:text-4xl font-black font-serif italic text-white leading-tight mb-10 max-w-2xl mx-auto uppercase tracking-tight">
-              True profit is the result of hard work and the responsible management of what you have been given.
-            </p>
-            <div className="h-2 w-16 bg-signal-gold mx-auto opacity-30"></div>
-          </article>
-          <p className="text-xl md:text-2xl font-bold text-white/60 leading-relaxed max-w-2xl mx-auto">
-            Your business is a responsibility to your family and your future. We build the systems that protect both.
-          </p>
-        </div>
-      </section>
-
-      {/* NEW SECTION 2: MEET THE INSTRUCTOR */}
-      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark transition-colors">
-        <div className="max-w-[1200px] mx-auto px-6 text-center space-y-12">
-          <header className="space-y-4">
-            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold">PROGRAM DIRECTOR</p>
-            <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">VINCE</h2>
-            <p className="text-lg font-bold text-slate-400 uppercase tracking-widest">Founder, LaunchPath Transportation EDU</p>
-          </header>
-
-          <aside className="relative inline-block mb-8">
-             <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-slate-100 dark:bg-surface-dark border-[8px] border-authority-blue/5 dark:border-white/5 flex items-center justify-center shadow-2xl relative overflow-hidden group mx-auto">
-                <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince Lawrence" className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" />
-                <div className="absolute inset-0 bg-gradient-to-t from-authority-blue/20 to-transparent"></div>
-             </div>
-             <div className="absolute -bottom-4 -right-4 bg-signal-gold p-4 rounded-2xl shadow-xl border-4 border-white dark:border-primary-dark group-hover:rotate-12 transition-transform">
-                <ShieldCheck className="text-authority-blue" size={32} />
-             </div>
-          </aside>
-
-          <article className="max-w-3xl mx-auto space-y-10">
-            <p className="text-xl sm:text-2xl font-bold text-slate-600 dark:text-slate-300 leading-relaxed">
-              20+ years of federal compliance management supporting organizations with 1,200+ employees. OSHA-certified safety coordination across regulated operations. Veteran-owned business operator.
-            </p>
-            <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
-              LaunchPath was built from direct experience watching new motor carriers fail — not from lack of effort, but from lack of systems. This program exists to close that gap with institutional-grade compliance education designed specifically for owner-operators running 1 to 3 trucks.
-            </p>
+      {/* 7. FOUNDER CREDIBILITY */}
+      <section className="bg-[#0c1a2d] py-24 lg:py-40 relative overflow-hidden animate-reveal-up">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none" aria-hidden="true"></div>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             
-            <div className="flex flex-wrap justify-center gap-4 pt-6">
-              {[
-                "20+ Years Federal Compliance",
-                "OSHA Safety Certified",
-                "Veteran-Owned & Operated",
-                "1,200+ Employee Compliance Management"
-              ].map((cred, i) => (
-                <div key={i} className="flex items-center space-x-3 px-6 py-3 bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-full shadow-sm">
-                   <div className="w-1.5 h-1.5 rounded-full bg-signal-gold shrink-0"></div>
-                   <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white">{cred}</span>
+            {/* Left Column: Photo */}
+            <div className="lg:col-span-4 flex justify-center lg:justify-start">
+              <div className="relative group max-w-[320px] w-full">
+                <div className="absolute -inset-4 bg-authority-blue/30 rounded-[4rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="bg-authority-blue dark:bg-surface-dark rounded-[3.5rem] shadow-2xl overflow-hidden relative border-[10px] border-[#162a44] group-hover:border-authority-blue transition-all duration-700 aspect-square sm:aspect-auto">
+                  <img 
+                    src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
+                    alt="Vince Lawrence" 
+                    className="w-full h-auto grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-[1.02] group-hover:scale-100" 
+                  />
                 </div>
-              ))}
+                <div className="absolute -bottom-4 -right-4 bg-signal-gold p-4 rounded-2xl shadow-xl border-4 border-[#0c1a2d] z-20 group-hover:rotate-12 transition-transform">
+                  <ShieldCheck className="text-authority-blue" size={28} />
+                </div>
+              </div>
             </div>
-          </article>
+
+            {/* Right Column: Credentials */}
+            <div className="lg:col-span-8 space-y-8 text-center lg:text-left">
+              <div className="space-y-4">
+                <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full mx-auto lg:mx-0 shadow-sm">
+                  <Zap size={14} className="text-signal-gold" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/70">SYSTEM CUSTODIAN</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-serif uppercase tracking-tight text-white leading-none">
+                  Vince Lawrence
+                </h2>
+                <p className="text-sm font-black uppercase tracking-[0.3em] text-signal-gold">
+                  Founder, LaunchPath Transportation EDU
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <p className="text-lg sm:text-xl text-slate-300 font-extrabold leading-relaxed">
+                  20+ years of federal compliance management supporting organizations with 1,200+ employees. OSHA-certified safety coordination across regulated operations. U.S. Navy veteran.
+                </p>
+                <div className="border-l-4 border-signal-gold pl-6 py-2">
+                  <p className="text-base sm:text-lg text-slate-400 font-bold leading-relaxed italic">
+                    "LaunchPath was built from direct experience watching new motor carriers fail — not from lack of effort, but from lack of systems."
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 pt-4">
+                {[
+                  { icon: <Award size={14} />, label: "U.S. Navy Veteran" },
+                  { icon: <ShieldCheck size={14} />, label: "OSHA-Certified" },
+                  { icon: <Target size={14} />, label: "20+ Years Federal Compliance" }
+                ].map((badge, i) => (
+                  <div key={i} className="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/50 hover:bg-white/10 transition-colors">
+                    {badge.icon}
+                    <span>{badge.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-6">
+                <Link to="/about" className="inline-flex items-center text-[11px] font-black uppercase tracking-[0.3em] text-white/60 hover:text-signal-gold transition-colors group">
+                  <span>Read Full Background</span>
+                  <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* NEW SECTION 3: FAQ */}
-      <section className="py-24 md:py-48 bg-slate-50 dark:bg-surface-dark transition-colors border-y border-slate-100 dark:border-white/5">
-        <div className="max-w-[1000px] mx-auto px-6">
-          <header className="text-center mb-20 space-y-4">
-             <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">CLARIFICATION TERMINAL</p>
-             <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">COMMON <span className="text-signal-gold italic">QUESTIONS.</span></h2>
+      {/* 8. WHO THIS IS FOR */}
+      <section className="py-24 md:py-32 lg:py-48 bg-slate-50 dark:bg-primary-dark transition-colors">
+        <div className="max-w-7xl mx-auto px-6">
+          <header className="text-center mb-16 lg:mb-24 space-y-4">
+            <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">QUALIFICATION PARAMETERS</p>
+            <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">
+              WHO THIS <br/><span className="text-signal-gold italic">IS FOR.</span>
+            </h2>
           </header>
 
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <FAQItem 
-                key={idx}
-                question={faq.q}
-                answer={faq.a}
-                isOpen={openFaqIndex === idx}
-                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-              />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { 
+                icon: <Truck size={32} />, 
+                title: "Box Truck Operators", 
+                desc: "Carriers operating CMVs between 10,001–26,000 lbs GVWR. CDL and Non-CDL lanes included." 
+              },
+              { 
+                icon: <Briefcase size={32} />, 
+                title: "Semi-Truck Startups", 
+                desc: "New motor carriers running 1–3 units who prioritize long-term operating authority protection." 
+              },
+              { 
+                icon: <Users size={32} />, 
+                title: "Safety Managers", 
+                desc: "Personnel responsible for maintaining carrier documentation integrity and federal compliance files." 
+              }
+            ].map((item, idx) => (
+              <article key={idx} className="bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm flex flex-col group hover:shadow-xl transition-all duration-500">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-bold uppercase tracking-tight text-authority-blue dark:text-white mb-4 font-serif">{item.title}</h3>
+                <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SECTION 7: ADMISSION PROTOCOL */}
+      {/* 9. FINAL CTA (ADMISSION PROTOCOL) */}
       <section className="py-24 md:py-48 lg:py-64 bg-white dark:bg-primary-dark text-center border-t border-slate-50 dark:border-border-dark">
         <div className="max-w-[1400px] mx-auto px-6 space-y-16 md:space-y-24">
           <header className="space-y-8">

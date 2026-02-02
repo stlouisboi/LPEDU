@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   Shield,
@@ -97,10 +96,10 @@ const AboutPage = () => {
                 <h3 className="text-3xl sm:text-4xl font-black text-[#1A1A1A] dark:text-white uppercase tracking-tight font-serif">Disjointed Operations</h3>
               </div>
               <ul className="space-y-8 text-lg sm:text-xl lg:text-2xl text-slate-600 dark:text-slate-400 font-extrabold leading-relaxed">
-                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Fixing safety files only after a mistake has already occurred.</li>
-                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Maintenance performed physically but never documented for DOT.</li>
-                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Audit preparation starting only after a notification arrives.</li>
-                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Insurance volatility driven by fragmented and unverified records.</li>
+                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Fixes safety files only after incidents occur.</li>
+                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Skips DOT documentation for physical maintenance.</li>
+                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Delays audit preparation until federal notification.</li>
+                <li className="flex items-start"><XCircle className="mr-5 text-red-300 shrink-0 mt-1" size={24} />Triggers insurance volatility via fragmented records.</li>
               </ul>
             </div>
 
@@ -111,10 +110,10 @@ const AboutPage = () => {
                 <h3 className="text-3xl sm:text-4xl font-black text-[#1E3A5F] dark:text-white uppercase tracking-tight font-serif">Systematic Protection</h3>
               </div>
               <ul className="space-y-8 text-lg sm:text-xl lg:text-2xl text-[#1E3A5F] dark:text-text-dark-primary font-black leading-relaxed">
-                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Integrated safety systems installed before operational commencement.</li>
-                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Federally aligned DQ and maintenance workflows active daily.</li>
-                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Audit-ready posture maintained through consistent discipline.</li>
-                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Insurer trust established through documented transparency.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Installs integrated safety systems before launch.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Executes federally-aligned DQ workflows daily.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Maintains audit-ready posture via consistent discipline.</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-5 text-[#D4AF37] shrink-0 mt-1" size={24} />Establishes insurer trust through transparent records.</li>
               </ul>
             </div>
           </div>
@@ -140,10 +139,10 @@ const AboutPage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-14">
               {[
-                { i: <Anchor />, t: "Entrusted Authority", d: "Rejecting the 'Owner' mindset for the 'Steward' mindset. Federal authority is a responsibility to be managed, not a right to be abused." },
-                { i: <ClipboardCheck />, t: "Integrity as Currency", d: "Documentation is a proxy for truth. We treat record-keeping with absolute precision because underwriters and auditors value accuracy above all." },
-                { i: <ShieldCheck />, t: "Radical Accountability", d: "Rejecting operational shortcuts even when they appear invisible to federal systems. We do the right work when no one is inspecting." },
-                { i: <TrendingDown className="rotate-180" />, t: "Disciplined Restraint", d: "Stability and administrative maturity are absolute prerequisites to commercial expansion. We build deep before we build wide." }
+                { i: <Anchor />, t: "Entrusted Authority", d: "Prioritizes stewardship over ownership mindsets. Federal authority is a responsibility to be managed, not a right to be abused." },
+                { i: <ClipboardCheck />, t: "Integrity as Currency", d: "Treats precise record-keeping as absolute truth. We treat documentation with precision because auditors value accuracy above all." },
+                { i: <ShieldCheck />, t: "Radical Accountability", d: "Rejects shortcuts in favor of invisible discipline. We execute the right work even when no one is inspecting." },
+                { i: <TrendingDown className="rotate-180" />, t: "Disciplined Restraint", d: "Builds administrative maturity before commercial expansion. Stability is an absolute prerequisite to fleet growth." }
               ].map((item, idx) => (
                 <div key={idx} className="group bg-white dark:bg-primary-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
                   <div className="p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl w-fit text-[#1E3A5F] dark:text-signal-gold mb-8 group-hover:bg-authority-blue group-hover:text-white transition-colors">
@@ -174,9 +173,9 @@ const AboutPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
              {[
-               { t: "Legal Advice", d: "LaunchPath is an educational and coaching platform. We do not provide legal, tax, or regulatory representation. Success is contingent on operator execution." },
-               { t: "Shortcut Services", d: "We do not sell 'speed.' We do not bypass federal timelines or administrative sequencing. We do not sell easy passes for safety audits." },
-               { t: "Insurance Brokerage", d: "We do not set, negotiate, or guarantee insurance rates. We build the documentation systems that make you more insurable to the market." }
+               { t: "Legal Advice", d: "Provides educational structure; does not represent carriers legally or provide regulatory representation." },
+               { t: "Shortcut Services", d: "Enforces federal sequencing; rejects administrative workarounds or easy passes for safety audits." },
+               { t: "Insurance Brokerage", d: "Develops documentation systems; does not negotiate rates, guarantee premiums, or sell policies." }
              ].map((box, i) => (
                <div key={i} className="bg-white/5 border border-white/10 p-10 lg:p-14 rounded-[4rem] backdrop-blur-xl relative overflow-hidden group">
                   <div className="absolute top-0 right-0 p-8 opacity-5">
@@ -265,14 +264,14 @@ const AboutPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 pt-12">
             {[
-              { i: <Shield />, t: "TRUTH", d: "Rejecting speculative revenue promises for technical regulatory accuracy." },
-              { i: <Scale />, t: "BOUNDARIES", d: "Maintaining a clear separation between educational guidance and legal advice." },
-              { i: <Target />, t: "STEWARDSHIP", d: "Treating every carrier operation as a legacy entrusted to the operator's care." }
+              { i: <Shield />, t: "TRUTH", d: "Prioritizes technical regulatory accuracy over speculative revenue promises." },
+              { i: <Scale />, t: "BOUNDARIES", d: "Enforces a clear separation between educational guidance and legal advice." },
+              { i: <Target />, t: "STEWARDSHIP", d: "Treats carrier operations as legacy assets entrusted to the operator's care." }
             ].map((item, idx) => (
               <div key={idx} className="bg-white dark:bg-primary-dark border-2 border-slate-100 dark:border-border-dark rounded-[3.5rem] p-12 shadow-sm text-left space-y-6 hover:shadow-xl transition-all">
                 <div className="text-authority-blue dark:text-signal-gold p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl w-fit">{React.cloneElement(item.i as React.ReactElement, { size: 28 })}</div>
                 <h3 className="text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight">{item.t}</h3>
-                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-extrabold">{item.d}</p>
+                <p className="text-lg text-slate-600 text-slate-400 leading-relaxed font-extrabold">{item.d}</p>
               </div>
             ))}
           </div>
