@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -13,7 +14,9 @@ import {
   Twitter,
   Linkedin,
   Instagram,
-  ShieldCheck
+  ShieldCheck,
+  User as UserIcon,
+  LayoutDashboard
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -92,6 +95,7 @@ export const useApp = () => {
 
 const Header = () => {
   const { theme, toggleTheme } = useApp();
+  const { currentUser } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -140,13 +144,23 @@ const Header = () => {
             <div className="w-[1.5px] h-8 bg-slate-200 dark:bg-slate-700 mx-8" aria-hidden="true" />
 
             <div className="flex items-center space-x-6">
-              <Link 
-                to="/portal" 
-                className="border-2 border-signal-gold text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95 shadow-sm"
-              >
-                <Lock size={12} className="mr-3 -mt-0.5" />
-                Portal Access
-              </Link>
+              {currentUser ? (
+                <Link 
+                  to="/operator-portal" 
+                  className="bg-white dark:bg-surface-dark border-2 border-authority-blue text-authority-blue dark:border-signal-gold dark:text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-authority-blue hover:text-white dark:hover:bg-signal-gold dark:hover:text-authority-blue transition-all active:scale-95 shadow-sm"
+                >
+                  <LayoutDashboard size={12} className="mr-3 -mt-0.5" />
+                  My Portal
+                </Link>
+              ) : (
+                <Link 
+                  to="/portal" 
+                  className="border-2 border-signal-gold text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95 shadow-sm"
+                >
+                  <Lock size={12} className="mr-3 -mt-0.5" />
+                  Portal Access
+                </Link>
+              )}
 
               <Link 
                 to="/readiness" 
@@ -212,12 +226,11 @@ const Header = () => {
             
             <div className="pt-12 space-y-6">
               <Link 
-                to="/portal" 
+                to={currentUser ? "/operator-portal" : "/portal"} 
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full text-center border-2 border-signal-gold text-signal-gold py-7 rounded-[2.5rem] text-xl font-black uppercase tracking-[0.2em]"
               >
-                <Lock size={20} className="inline mr-3 -mt-1" />
-                Portal Access
+                {currentUser ? <><LayoutDashboard size={20} className="inline mr-3 -mt-1" /> My Portal</> : <><Lock size={20} className="inline mr-3 -mt-1" /> Portal Access</>}
               </Link>
 
               <Link 

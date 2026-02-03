@@ -172,6 +172,32 @@ export const INITIAL_BLOGS: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
     status: 'published',
     tags: ['Authority', 'FMCSA', 'Setup']
+  },
+  {
+    id: "audit-1",
+    title: "The 48-Hour New Entrant Window: Are You Ready?",
+    slug: "new-entrant-audit-readiness",
+    category: "Audit",
+    excerpt: "When the FMCSA calls for your safety audit, you typically have 48 hours to upload your documentation. This is not the time to start building your files.",
+    content: "<h2>The Clock is Ticking</h2><p>New motor carriers are under a microscopic lens for the first 18 months. The New Entrant Safety Audit is the 'final exam' of this period. If you fail, your authority is revoked, and you must start the entire process over—including a new MC number and potentially higher insurance premiums.</p><p>Key items auditors look for: proof of controlled substance testing, current MCS-150 updates, and a complete Driver Qualification (DQ) file for every operator.</p>",
+    publishedAt: "2025-01-15",
+    author: "Vince",
+    image: "https://images.unsplash.com/photo-1454165833767-02654e59637c?auto=format&fit=crop&q=80&w=800",
+    status: 'published',
+    tags: ['Audit', 'Safety', 'FMCSA']
+  },
+  {
+    id: "insurance-1",
+    title: "Avoiding the Insurance 'Ghosting' Trap",
+    slug: "avoiding-insurance-cancellation",
+    category: "Insurance",
+    excerpt: "Insurance companies are dropping new carriers at record rates. Learn the 3 red flags that trigger an immediate policy cancellation.",
+    content: "<h2>Continuity is Key</h2><p>For a new carrier, an insurance cancellation is often a death sentence. Most providers will not touch a carrier that has had a policy revoked within the last 3 years. To avoid this: 1. Disclose all driver records upfront. 2. Never allow a payment to lapse. 3. Maintain active safety policies from Day 1.</p>",
+    publishedAt: "2025-01-20",
+    author: "Vince",
+    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&q=80&w=800",
+    status: 'published',
+    tags: ['Insurance', 'Risk', 'Continuity']
   }
 ];
 

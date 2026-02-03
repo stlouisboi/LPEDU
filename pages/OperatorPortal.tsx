@@ -9,9 +9,14 @@ import {
   Shield, 
   Plus, 
   Trash2, 
-  ClipboardList
+  ClipboardList,
+  Calendar,
+  Clock,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import ConfirmationModal from '../components/ConfirmationModal';
+import { useAuth } from '../AuthContext';
 
 interface Task {
   id: string;
@@ -51,6 +56,7 @@ const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
 };
 
 const OperatorPortal: React.FC = () => {
+  const { currentUser } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([
     { id: '1', text: 'Update MCS-150 form details', completed: true },
     { id: '2', text: 'Verify BOC-3 process agent filing', completed: false },
@@ -90,6 +96,14 @@ const OperatorPortal: React.FC = () => {
     }
   };
 
+  const timelineDays = [
+    { day: "Day 1", label: "Authority Grant", status: "complete" },
+    { day: "Day 21", label: "Protocol Lock", status: "complete" },
+    { day: "Day 30", label: "DQ Verification", status: "active" },
+    { day: "Day 60", label: "Maintenance Audit", status: "pending" },
+    { day: "Day 90", label: "Stabilization", status: "pending" },
+  ];
+
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen">
       {/* Protocol Block at the Top */}
@@ -98,7 +112,9 @@ const OperatorPortal: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 gap-6">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Operator Dashboard</h1>
+            <h1 className="text-3xl sm:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">
+              Operator Dashboard {currentUser?.displayName ? `// ${currentUser.displayName}` : ''}
+            </h1>
             <p className="text-text-muted mt-1 uppercase text-[10px] font-black tracking-widest">Registry ID: LP-AUTH-7729 // SECURE_UPLINK_STABLE</p>
           </div>
           <div className="flex items-center space-x-3 bg-white dark:bg-surface-dark px-5 py-3 border border-slate-100 dark:border-border-dark rounded-2xl shadow-sm">
@@ -106,6 +122,36 @@ const OperatorPortal: React.FC = () => {
             <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white">Active Authority Standard</span>
           </div>
         </div>
+
+        {/* 90-Day Timeline Visualizer */}
+        <section className="mb-20">
+          <div className="bg-white dark:bg-surface-dark rounded-[3rem] p-10 border border-slate-100 dark:border-border-dark shadow-sm overflow-hidden relative">
+            <div className="absolute top-0 right-0 p-8 opacity-5 text-authority-blue">
+               <Calendar size={120} />
+            </div>
+            <h2 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold flex items-center mb-12">
+              <Clock size={16} className="mr-3" /> 90-Day Compliance Timeline
+            </h2>
+            <div className="relative flex flex-wrap lg:flex-nowrap justify-between gap-8">
+               <div className="absolute top-5 left-0 w-full h-1 bg-slate-100 dark:bg-slate-800 z-0 hidden lg:block"></div>
+               {timelineDays.map((step, i) => (
+                 <div key={i} className="relative z-10 flex flex-col items-center text-center space-y-4 group">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all duration-500 ${
+                      step.status === 'complete' ? 'bg-green-500 border-green-500 text-white' :
+                      step.status === 'active' ? 'bg-authority-blue border-authority-blue text-white shadow-[0_0_20px_rgba(30,58,95,0.4)] animate-pulse' :
+                      'bg-white dark:bg-gray-800 border-slate-200 dark:border-slate-700 text-slate-300'
+                    }`}>
+                      {step.status === 'complete' ? <CheckCircle2 size={20} /> : <span className="text-xs font-black">{i + 1}</span>}
+                    </div>
+                    <div>
+                       <p className={`text-[9px] font-black uppercase tracking-widest ${step.status === 'active' ? 'text-authority-blue dark:text-signal-gold' : 'text-text-muted'}`}>{step.day}</p>
+                       <p className="text-xs font-bold uppercase mt-1 text-text-primary dark:text-white">{step.label}</p>
+                    </div>
+                 </div>
+               ))}
+            </div>
+          </div>
+        </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Implementation Sequence */}
