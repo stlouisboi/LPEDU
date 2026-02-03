@@ -39,7 +39,9 @@ import {
   X,
   MessageSquare,
   BookOpen,
-  Building
+  Building,
+  Cpu,
+  Workflow
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -919,64 +921,85 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. WHO THIS IS FOR (Enhanced with Parallax) */}
-      <section ref={whoThisIsForRef} className="py-24 md:py-32 bg-[#F8FAFC] dark:bg-primary-dark transition-colors overflow-hidden">
+      {/* 9. WHO THIS IS FOR (Qualification / Identity Focus) */}
+      <section ref={whoThisIsForRef} className="py-24 md:py-32 bg-slate-100 dark:bg-[#020617] transition-colors overflow-hidden border-y border-slate-200 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-6">
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">QUALIFICATION PARAMETERS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-[5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
-               WHO THIS <span className="text-signal-gold italic">IS FOR.</span>
-             </h2>
-          </header>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 md:mb-24 gap-12">
+            <header className="space-y-6">
+               <div className="inline-flex items-center px-4 py-1.5 bg-authority-blue text-white rounded-lg text-[10px] font-black uppercase tracking-widest">QUALIFICATION PARAMETERS</div>
+               <h2 className="text-4xl sm:text-6xl md:text-[5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
+                 WHO THIS <span className="text-signal-gold italic">IS FOR.</span>
+               </h2>
+            </header>
+            <div className="lg:max-w-md border-l-4 border-signal-gold pl-8">
+              <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
+                LaunchPath is engineered for specific operator profiles who prioritize structural safety over speculative growth.
+              </p>
+            </div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               { 
                 title: "BOX TRUCK OPERATORS", 
                 icon: <Truck size={36} />, 
-                desc: "Carriers operating CMVs between 10,001–26,000 lbs GVWR. CDL and Non-CDL lanes included." 
+                tag: "Local & Interstate",
+                desc: "Carriers operating CMVs between 10,001–26,000 lbs GVWR. CDL and Non-CDL lanes included. Focusing on high-integrity last-mile and middle-mile logistics." 
               },
               { 
                 title: "SEMI-TRUCK STARTUPS", 
                 icon: <Building size={36} />, 
-                desc: "New motor carriers running 1–3 units who prioritize long-term operating authority protection." 
+                tag: "Class 8 Equipment",
+                desc: "New motor carriers running 1–3 units who prioritize long-term operating authority protection. Ideal for former company drivers transitioning to stewardship." 
               },
               { 
                 title: "SAFETY MANAGERS", 
-                icon: <Users size={36} />, 
-                desc: "Personnel responsible for maintaining carrier documentation integrity and federal compliance files." 
+                icon: <UserCheck size={36} />, 
+                tag: "Administrative Control",
+                desc: "Personnel responsible for maintaining carrier documentation integrity and federal compliance files. Systematizing the back-office standard." 
               },
               { 
                 title: "INSURANCE PARTNERS", 
                 icon: <ShieldCheck size={36} />, 
-                desc: "Agencies and underwriters seeking pre-qualified, compliance-educated new entrants with documented safety posture." 
+                tag: "Risk Mitigation",
+                desc: "Agencies and underwriters seeking pre-qualified, compliance-educated new entrants with documented safety posture and permanent audit-ready status." 
               }
             ].map((card, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-authority-blue/20 transition-all duration-500 flex flex-col items-center text-center group">
+              <div key={i} className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] border border-slate-200 dark:border-border-dark shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:border-authority-blue transition-all duration-700 flex flex-col sm:flex-row gap-10 group">
                 <div 
-                  className="w-20 h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-3xl flex items-center justify-center mb-10 shadow-inner group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold transition-all duration-500"
+                  className="w-24 h-24 sm:w-32 sm:h-32 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[2.5rem] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold transition-all duration-500 shrink-0"
                   style={{ transform: `translateY(${parallaxOffset}px)` }}
                 >
                   {card.icon}
                 </div>
-                <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-tight h-12 flex items-center">{card.title}</h4>
-                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-signal-gold bg-signal-gold/10 px-3 py-1 rounded-md">{card.tag}</span>
+                  </div>
+                  <h4 className="text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight leading-tight">{card.title}</h4>
+                  <p className="text-base font-medium text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 10. BUILT-IN SYSTEMS (Enhanced with Parallax) */}
-      <section ref={systemsRef} className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-6">
+      {/* 10. BUILT-IN SYSTEMS (Technical / Modular Focus) */}
+      <section ref={systemsRef} className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark overflow-hidden relative">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+        
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
           <header className="text-center mb-16 md:mb-28 space-y-6">
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">INTEGRATED COMPLIANCE TOOLS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-[5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
+             <div className="inline-flex items-center space-x-2 text-authority-blue dark:text-signal-gold opacity-50">
+               <Cpu size={14} />
+               <span className="text-[10px] font-black uppercase tracking-[0.4em]">Integrated Compliance Infrastructure</span>
+             </div>
+             <h2 className="text-4xl sm:text-6xl md:text-[5.5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
                BUILT-IN <span className="text-signal-gold italic">SYSTEMS.</span>
              </h2>
              <p className="text-xl md:text-2xl font-bold text-slate-500 max-w-2xl mx-auto leading-relaxed mt-8">
-               More than curriculum. LaunchPath includes working tools designed for real carrier operations.
+               More than curriculum. LaunchPath includes high-fidelity tools designed for real-world carrier orchestration.
              </p>
           </header>
 
@@ -985,53 +1008,82 @@ const HomePage: React.FC = () => {
               { 
                 title: "TCO CALCULATOR", 
                 icon: <Calculator size={32} />, 
-                desc: "Break-even analysis and cost-per-mile modeling for operational survival math.", 
+                tagline: "FISCAL_ANALYSIS_V4",
+                desc: "Break-even analysis and cost-per-mile modeling for operational survival math. Remove revenue speculation.", 
                 link: "/tools/tco-preview", 
                 badge: "ENROLLED" 
               },
               { 
                 title: "READINESS ASSESSMENT", 
                 icon: <ClipboardCheck size={32} />, 
-                desc: "Scored evaluation of your compliance posture before you begin operations.", 
+                tagline: "DIAGNOSTIC_UPLINK",
+                desc: "Scored evaluation of your compliance posture before you begin operations. Identify terminal gaps early.", 
                 link: "/readiness", 
                 badge: "FREE" 
               },
               { 
                 title: "COMPLIANCE ASSISTANT", 
                 icon: <MessageSquare size={32} />, 
-                desc: "AI-powered regulatory reference assistant for FMCSA terminology and system logic.", 
+                tagline: "NEURAL_ADVISOR",
+                desc: "AI-powered regulatory reference assistant for FMCSA terminology, 49 CFR logic, and system navigation.", 
                 link: "/ai-advisor", 
                 badge: "FREE" 
               },
               { 
                 title: "RESOURCE LIBRARY", 
                 icon: <BookOpen size={32} />, 
-                desc: "Implementation templates, regulatory references, and vetted service provider directory.", 
+                tagline: "TECHNICAL_ARCHIVE",
+                desc: "Implementation templates, regulatory references, and vetted service provider directory for immediate usage.", 
                 link: "/resources", 
                 badge: "FREE" 
               }
             ].map((sys, i) => (
-              <div key={i} className="bg-[#F8FAFC] dark:bg-surface-dark p-12 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 hover:border-authority-blue/20 transition-all duration-500">
-                <div className={`absolute top-8 right-8 px-4 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] shadow-sm ${
-                  sys.badge === 'ENROLLED' 
-                    ? 'bg-authority-blue text-white' 
-                    : 'bg-emerald-100 text-emerald-700'
-                }`}>
-                  {sys.badge}
+              <div key={i} className="bg-slate-50/50 dark:bg-surface-dark/50 p-10 rounded-[3rem] border-2 border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-[0_40px_80px_-20px_rgba(30,58,95,0.15)] hover:-translate-y-2 hover:border-authority-blue/20 transition-all duration-500 backdrop-blur-sm">
+                {/* System ID Tag */}
+                <div className="flex items-center justify-between mb-10">
+                  <div className="flex items-center space-x-2">
+                    <Workflow size={12} className="text-slate-400 group-hover:text-authority-blue transition-colors" />
+                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{sys.tagline}</span>
+                  </div>
+                  <div className={`px-4 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] shadow-sm z-10 ${
+                    sys.badge === 'ENROLLED' 
+                      ? 'bg-authority-blue text-white' 
+                      : 'bg-emerald-100 text-emerald-700'
+                  }`}>
+                    {sys.badge}
+                  </div>
                 </div>
+
                 <div 
-                  className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-12 shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold"
+                  className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-10 shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold relative z-10"
                   style={{ transform: `translateY(${systemsParallaxOffset}px)` }}
                 >
                   {sys.icon}
                 </div>
-                <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-tight min-h-[3rem] flex items-center">{sys.title}</h4>
-                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-12 flex-grow leading-relaxed">{sys.desc}</p>
-                <Link to={sys.link} className="flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:opacity-70 transition-opacity">
-                  ACCESS TOOL <ArrowRight size={14} className="ml-3 transition-transform group-hover:translate-x-2" />
-                </Link>
+                
+                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-tight min-h-[3rem] flex items-center relative z-10 transition-colors group-hover:text-authority-blue dark:group-hover:text-signal-gold">{sys.title}</h4>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-12 flex-grow leading-relaxed relative z-10">{sys.desc}</p>
+                
+                <div className="mt-auto pt-6 border-t border-slate-200 dark:border-border-dark relative z-10">
+                  <Link to={sys.link} className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:opacity-70 transition-all group/link">
+                    <span>EXECUTE SYSTEM ACCESS</span> 
+                    <ArrowRight size={14} className="transition-transform group-hover/link:translate-x-2" />
+                  </Link>
+                </div>
+
+                {/* Technical Corner Accents */}
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-slate-200 dark:border-border-dark rounded-tr-[3rem] transition-colors group-hover:border-authority-blue/30"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-slate-200 dark:border-border-dark rounded-bl-[3rem] transition-colors group-hover:border-authority-blue/30"></div>
               </div>
             ))}
+          </div>
+          
+          <div className="mt-20 flex justify-center opacity-30">
+            <div className="flex items-center space-x-4">
+              <div className="h-px w-24 bg-slate-300"></div>
+              <span className="text-[10px] font-black uppercase tracking-[0.5em]">Modular Integrated Environment Active</span>
+              <div className="h-px w-24 bg-slate-300"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -1097,7 +1149,7 @@ const HomePage: React.FC = () => {
       {/* 12. FINAL CTA */}
       <section className="py-24 md:py-48 bg-[#0c1a2d] text-white overflow-hidden relative transition-colors">
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-5xl mx-auto px-6 text-center relative z-10 space-y-12">
+        <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-12">
            <header className="space-y-6">
               <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">
                 BUILD YOUR CARRIER LIKE A <br/><span className="text-signal-gold italic">CARRIER EXECUTIVE.</span>

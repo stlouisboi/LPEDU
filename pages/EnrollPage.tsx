@@ -17,7 +17,9 @@ import {
   Activity,
   Zap,
   Info,
-  ChevronRight
+  ChevronRight,
+  XCircle,
+  DollarSign
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -78,7 +80,7 @@ const EnrollPage: React.FC = () => {
 
             {/* 1. ADMISSION APPROVED HEADER */}
             <div className="bg-white dark:bg-surface-dark p-12 md:p-16 rounded-[3.5rem] shadow-sm border border-slate-100 dark:border-border-dark relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-10 opacity-[0.03] pointer-events-none">
+              <div className="absolute top-0 right-0 p-10 opacity-[0.03] pointer-none">
                 <ShieldCheck size={240} className="text-authority-blue" />
               </div>
               
@@ -107,7 +109,7 @@ const EnrollPage: React.FC = () => {
 
             {/* 2. THE INVESTMENT SECTION (FILTRATION MECHANISM) */}
             <div className="bg-[#0f172a] p-12 md:p-16 rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-white/5">
-              <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+              <div className="absolute top-0 right-0 p-12 opacity-5 pointer-none">
                  <Activity size={180} className="text-white" />
               </div>
               
@@ -231,8 +233,100 @@ const EnrollPage: React.FC = () => {
         </div>
       </section>
 
+      {/* NEW: INVESTMENT SECTION */}
+      <section className="py-20 lg:py-32 bg-white dark:bg-primary-dark">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-border-dark rounded-[4rem] p-10 md:p-20 shadow-sm relative overflow-hidden">
+            <p className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-4">ENROLLMENT INVESTMENT</p>
+            
+            <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-6 mb-12">
+              <div className="space-y-2">
+                <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white leading-none">
+                  ONE-TIME <br/><span className="text-signal-gold italic">ADMISSION.</span>
+                </h2>
+                <p className="text-lg font-bold text-slate-500 uppercase tracking-widest">
+                  Single payment. Lifetime access. No recurring fees.
+                </p>
+              </div>
+              <div className="text-left md:text-right">
+                <span className="text-6xl md:text-8xl font-black text-authority-blue dark:text-white leading-none">$2500</span>
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mt-2">USD // Institutional Tier</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 border-t border-slate-200 dark:border-white/5 pt-16">
+              {/* Included */}
+              <div className="space-y-8">
+                 <h3 className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold flex items-center">
+                   <CheckCircle2 size={16} className="mr-3" /> WHAT'S INCLUDED
+                 </h3>
+                 <div className="space-y-4">
+                   {[
+                     "Full 90-Day Implementation Curriculum",
+                     "All Four Pillar Module Access",
+                     "16 Deadly Sins Framework + Guards",
+                     "TCO Calculator (Margin Master)",
+                     "DQ File Templates & Documentation Systems",
+                     "Drug & Alcohol Program Templates",
+                     "Maintenance Governance System",
+                     "Compliance Assistant Access",
+                     "Resource Library (Templates, Checklists, References)",
+                     "Implementation Calendar",
+                     "Lifetime Updates"
+                   ].map((item, i) => (
+                     <div key={i} className="flex items-center space-x-4 text-sm font-bold text-slate-600 dark:text-text-dark-muted">
+                       <div className="w-1.5 h-1.5 rounded-full bg-signal-gold shrink-0"></div>
+                       <span>{item}</span>
+                     </div>
+                   ))}
+                 </div>
+              </div>
+
+              {/* Not Included */}
+              <div className="space-y-8">
+                 <h3 className="text-xs font-black uppercase tracking-[0.3em] text-red-600 flex items-center">
+                   <XCircle size={16} className="mr-3" /> WHAT'S NOT INCLUDED
+                 </h3>
+                 <div className="space-y-4">
+                   {[
+                     "Legal advice or representation",
+                     "Dispatch services or load booking",
+                     "Insurance brokerage or policy sales",
+                     "Guaranteed audit outcomes"
+                   ].map((item, i) => (
+                     <div key={i} className="flex items-center space-x-4 text-sm font-medium text-slate-400 italic">
+                       <div className="w-1 h-1 rounded-full bg-slate-200 shrink-0"></div>
+                       <span>{item}</span>
+                     </div>
+                   ))}
+                 </div>
+                 
+                 <div className="pt-8 border-t border-slate-200 dark:border-white/5">
+                   <p className="text-sm font-bold text-slate-500 leading-relaxed italic">
+                     LaunchPath is a one-time investment in infrastructure — not a subscription to content. You're building systems that protect your authority for years, not renting access to videos.
+                   </p>
+                 </div>
+              </div>
+            </div>
+
+            <div className="mt-20 pt-10 border-t border-slate-100 dark:border-white/5 flex flex-col items-center">
+              <a 
+                href="#admission-terminal" 
+                className="inline-flex items-center space-x-4 bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group border-b-4 border-slate-900 mb-8"
+              >
+                <span>BEGIN ADMISSION SEQUENCE</span>
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                Questions before enrolling? Contact us at <span className="text-authority-blue dark:text-signal-gold font-black">contact@launchpathedu.com</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 2. CLASSIFICATION GATE / FORM */}
-      <section className="py-32 relative -mt-16 z-20">
+      <section id="admission-terminal" className="py-32 relative z-20">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-white dark:bg-surface-dark p-12 md:p-16 rounded-[4.5rem] shadow-[0_40px_100px_-30px_rgba(30,58,95,0.15)] border border-white dark:border-border-dark relative overflow-hidden">
             <div className="absolute top-0 left-0 w-3 h-full bg-signal-gold/40"></div>
