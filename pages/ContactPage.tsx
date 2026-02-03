@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, MessageSquare, Anchor, User, ChevronDown, Building2 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -82,10 +81,10 @@ const ContactPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full mb-8">
             <Anchor size={14} className="text-authority-blue" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue">Contact</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue">CONTACT</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white mb-6 uppercase tracking-tighter leading-none">
-            Get In <span className="text-signal-gold italic">Touch.</span>
+            GET IN <span className="text-signal-gold italic">TOUCH.</span>
           </h1>
           <p className="text-xl text-slate-500 dark:text-text-dark-muted max-w-2xl font-bold leading-relaxed">
             Questions about enrollment, compliance, or the program? We respond within 24-48 hours.
@@ -100,15 +99,15 @@ const ContactPage = () => {
           <div className="lg:col-span-5 h-full">
             <div className="relative h-full min-h-[600px] w-full rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white dark:border-surface-dark group">
               <img 
-                src="https://images.unsplash.com/photo-1586191582151-f73872dfd183?auto=format&fit=crop&q=80&w=1200" 
-                alt="Owner Operator making a call from truck cab" 
-                className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
+                src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Fcall%20or%20text.png?alt=media&token=72ce99f3-0c26-401a-822f-2ce3835b2848" 
+                alt="Professional carrier operator in cab" 
+                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-authority-blue/80 via-transparent to-transparent"></div>
               
               <div className="absolute bottom-12 left-12 right-12 space-y-4">
                 <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-[2.5rem] shadow-2xl">
-                  <h3 className="text-white text-2xl font-black font-serif uppercase tracking-tight mb-2">Questions?</h3>
+                  <h3 className="text-white text-2xl font-black font-serif uppercase tracking-tight mb-2">QUESTIONS?</h3>
                   <p className="text-white/70 text-sm font-medium leading-relaxed italic">
                     "We're here to help you get started."
                   </p>
@@ -131,11 +130,11 @@ const ContactPage = () => {
                    <div className="w-24 h-24 bg-green-50 text-green-600 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-lg border border-green-100">
                       <CheckCircle size={48} />
                    </div>
-                   <h2 className="text-4xl font-black font-serif mb-6 uppercase tracking-tight text-authority-blue dark:text-white">Uplink Secured</h2>
+                   <h2 className="text-4xl font-black font-serif mb-6 uppercase tracking-tight text-authority-blue dark:text-white">Inquiry Secured</h2>
                    <p className="text-slate-500 dark:text-slate-400 max-w-sm mx-auto font-bold leading-relaxed mb-12">
-                     A compliance specialist has been notified. Expect a formal response within one business day.
+                     A specialist has been notified. Expect a response within 24-48 hours.
                    </p>
-                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">Send New Message</button>
+                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">SEND NEW MESSAGE</button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -223,12 +222,10 @@ const ContactPage = () => {
                     className="w-full bg-authority-blue text-white font-black uppercase tracking-[0.4em] py-8 rounded-[2rem] shadow-[0_25px_50px_-12px_rgba(30,58,95,0.3)] hover:bg-steel-blue hover:shadow-[0_25px_60px_-12px_rgba(30,58,95,0.4)] transition-all flex items-center justify-center disabled:opacity-50 active:scale-95 group border-b-8 border-slate-900"
                   >
                     {sending ? <Loader2 className="animate-spin mr-4" size={24} /> : <Send className="mr-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />} 
-                    Send Message
+                    SEND MESSAGE
                   </button>
                   
                   <div className="pt-8 flex flex-col items-center space-y-4">
-                    <p className="text-[9px] text-slate-400 uppercase tracking-[0.4em] font-black opacity-60">High-Trust Environment • Administrative Protocol Active</p>
-                    
                     <a href="mailto:contact@launchpathedu.com" className="text-xs font-bold text-authority-blue hover:text-signal-gold transition-colors flex items-center">
                       <Mail size={14} className="mr-2" /> Or email us directly: contact@launchpathedu.com
                     </a>
@@ -236,7 +233,7 @@ const ContactPage = () => {
                     <div className="h-px w-20 bg-slate-100 dark:bg-border-dark mt-2"></div>
                     
                     <Link to="/support" className="text-[10px] font-black uppercase tracking-widest text-authority-blue hover:text-signal-gold transition-colors flex items-center">
-                      <MessageSquare size={12} className="mr-2" /> Member Support Portal (Paid Enrollees)
+                      <MessageSquare size={12} className="mr-2" /> Member Support Portal
                     </Link>
                   </div>
                 </form>
