@@ -25,31 +25,59 @@ interface Task {
 
 const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
   return (
-    <div className={`relative w-6 h-6 rounded-lg border-2 transition-all duration-500 flex items-center justify-center overflow-hidden shrink-0 ${
-      checked 
-        ? 'bg-green-500 border-green-500 scale-110 shadow-lg shadow-green-500/20' 
-        : 'bg-transparent border-slate-200 dark:border-slate-700'
-    }`}>
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={`w-3.5 h-3.5 text-white transition-all duration-500 ${
-          checked ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
-        <path
-          d="M20 6L9 17L4 12"
-          style={{
-            strokeDasharray: 40,
-            strokeDashoffset: checked ? 0 : 40,
-            transition: 'stroke-dashoffset 0.6s cubic-bezier(0.65, 0, 0.35, 1)'
-          }}
-        />
-      </svg>
+    <div className="relative shrink-0">
+      {/* Sparkle Burst effect on completion */}
+      {checked && (
+        <div className="absolute inset-0 pointer-events-none overflow-visible">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-signal-gold rounded-full"
+              style={{
+                top: '50%',
+                left: '50%',
+                opacity: 0,
+                transform: `rotate(${i * 45}deg) translateY(-14px)`,
+                animation: `sparkle-burst 0.8s ease-out forwards ${i * 0.05}s`
+              }}
+            />
+          ))}
+        </div>
+      )}
+      
+      <div className={`relative w-6 h-6 rounded-lg border-2 transition-all duration-500 flex items-center justify-center overflow-hidden ${
+        checked 
+          ? 'bg-green-500 border-green-500 scale-110 shadow-lg shadow-green-500/20' 
+          : 'bg-transparent border-slate-200 dark:border-slate-700'
+      }`}>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`w-3.5 h-3.5 text-white transition-all duration-500 ${
+            checked ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 -rotate-45'
+          }`}
+        >
+          <path
+            d="M20 6L9 17L4 12"
+            style={{
+              strokeDasharray: 40,
+              strokeDashoffset: checked ? 0 : 40,
+              transition: 'stroke-dashoffset 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s'
+            }}
+          />
+        </svg>
+      </div>
+
+      <style>{`
+        @keyframes sparkle-burst {
+          0% { transform: rotate(var(--rotation)) translateY(0); opacity: 1; }
+          100% { transform: rotate(var(--rotation)) translateY(-24px) scale(0); opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 };

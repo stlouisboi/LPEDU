@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, Globe, ExternalLink } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
@@ -12,7 +11,7 @@ interface Message {
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Hello! I am the LaunchPath™ Compliance Reference Assistant. I can help explain trucking compliance terminology and FMCSA system logic. How can I assist your high-level understanding today?" }
+    { role: 'assistant', content: "Hello! I am the LaunchPath™ Compliance Assistant. I can help explain trucking compliance terminology and FMCSA system logic. How can I assist your high-level understanding today?" }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -40,7 +39,7 @@ const AIChatWidget = () => {
         model: 'gemini-3-flash-preview',
         contents: userMsg,
         config: {
-          systemInstruction: `You are the LaunchPath™ Compliance Reference Assistant.
+          systemInstruction: `You are the LaunchPath™ Compliance Assistant.
 ROLE: You act as a neutral educational resource explaining compliance terminology and FMCSA system logic.
 CORE PURPOSE: Help visitors understand trucking compliance concepts at a high level. Explain risks and terminology.
 THE FOUR PILLARS: "The Four Pillars are the four operational systems that determine whether a new carrier keeps its authority active: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen." Always use this definition when asked about the Pillars.
@@ -70,7 +69,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
       }]);
     } catch (err: any) {
       console.error("AI Reference Error:", err);
-      const errorMsg = "The compliance reference service is currently establishing a secure link. Please retry your inquiry in a moment.";
+      const errorMsg = "The compliance assistant service is currently establishing a secure link. Please retry your inquiry in a moment.";
       setMessages(prev => [...prev, { role: 'assistant', content: errorMsg }]);
     } finally {
       setLoading(false);
@@ -88,11 +87,11 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <h3 className="text-white font-black text-sm uppercase tracking-tighter leading-none">Compliance Reference</h3>
-                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Assistant</p>
+                <h3 className="text-white font-black text-sm uppercase tracking-tighter leading-none">Compliance Assistant</h3>
+                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Advisor</p>
               </div>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-white transition-colors p-1">
+            <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-white transition-colors p-1" aria-label="Close Compliance Assistant">
               <X size={20} />
             </button>
           </div>
@@ -147,11 +146,13 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Terminology search..."
                 className="w-full bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark pl-5 pr-14 py-4 rounded-2xl outline-none focus:ring-4 focus:ring-authority-blue/5 text-sm font-bold placeholder:opacity-50"
+                aria-label="Compliance Assistant inquiry input"
               />
               <button 
                 onClick={() => handleSend()}
                 disabled={loading || !input.trim()}
                 className="absolute right-2 top-1/2 -translate-y-1/2 bg-authority-blue text-white p-2.5 rounded-xl hover:bg-steel-blue transition-all disabled:opacity-30 disabled:grayscale shadow-lg active:scale-95"
+                aria-label="Send message to Compliance Assistant"
               >
                 {loading ? <Loader2 className="animate-spin" size={18} /> : <Send size={18} />}
               </button>
@@ -162,12 +163,13 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
         <button 
           onClick={() => setIsOpen(true)}
           className="bg-authority-blue text-white p-5 rounded-[2rem] shadow-[0_20px_50px_-10px_rgba(30,58,95,0.4)] hover:scale-110 active:scale-95 transition-all flex items-center space-x-3 group border border-white/10 relative"
+          aria-label="Open Compliance Assistant chat"
         >
           <div className="absolute inset-0 rounded-[2rem] ring-4 ring-authority-blue/20 animate-pulse"></div>
           <div className="bg-signal-gold p-1.5 rounded-lg text-authority-blue group-hover:rotate-12 transition-transform shadow-sm">
             <MessageCircle size={24} />
           </div>
-          <span className="font-black uppercase tracking-widest text-xs pr-2 hidden sm:block">Compliance Reference</span>
+          <span className="font-black uppercase tracking-widest text-xs pr-2 hidden sm:block">Compliance Assistant</span>
         </button>
       )}
     </div>

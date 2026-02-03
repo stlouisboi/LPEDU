@@ -240,7 +240,7 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div id="main-content" className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
+    <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex items-center pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-48 bg-white dark:bg-primary-dark overflow-hidden">
@@ -331,9 +331,9 @@ const HomePage: React.FC = () => {
       {/* 2. FAILURE IS A SETUP PROBLEM */}
       <section className="py-24 md:py-32 lg:py-64 bg-authority-blue dark:bg-surface-dark text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-center">
+        <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center">
           
-          <article className="lg:col-span-7 space-y-8 md:space-y-12">
+          <article className="space-y-8 md:space-y-12 w-full">
             <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full">
               <ShieldAlert size={16} className="text-signal-gold" />
               <span className="text-xs font-black uppercase tracking-widest md:tracking-[0.4em]">STRUCTURAL RISK EXPOSURE</span>
@@ -343,11 +343,11 @@ const HomePage: React.FC = () => {
               FAILURE IS <br/>A <span className="text-signal-gold italic">SETUP</span> <br/>PROBLEM.
             </h2>
             
-            <div className="max-w-xl border-l-4 md:border-l-8 border-signal-gold pl-6 md:pl-10 py-2">
+            <div className="max-w-2xl mx-auto border-l-4 md:border-l-0 md:border-t-4 border-signal-gold pl-6 md:pl-0 pt-6 py-2">
               <p className="text-lg md:text-xl lg:text-2xl font-black uppercase leading-tight mb-6 md:mb-8 tracking-tight text-white/90">
                 Most carrier failures happen because systems are not set up correctly. Small mistakes in your paperwork today create major risks during your first 18 months.
               </p>
-              <p className="text-sm md:text-base opacity-80 leading-relaxed mb-10">
+              <p className="text-sm md:text-base opacity-80 leading-relaxed mb-10 max-w-xl mx-auto">
                 A single documentation gap today creates a risk that insurance companies and federal auditors will eventually find. LaunchPath provides the safety of verified systems.
               </p>
               <nav>
@@ -357,61 +357,6 @@ const HomePage: React.FC = () => {
               </nav>
             </div>
           </article>
-
-          <aside className="lg:col-span-5 relative w-full group/card-wrapper">
-            <div className="absolute inset-0 hidden md:flex items-center justify-center opacity-10 scale-[1.7] pointer-events-none group-hover/card-wrapper:scale-[1.8] group-hover/card-wrapper:opacity-20 transition-all duration-1000">
-               <Fingerprint size={400} strokeWidth={0.5} className="text-white" />
-            </div>
-
-            <div className="bg-white rounded-[3.5rem] md:rounded-[4.5rem] p-10 md:p-14 lg:p-16 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] border border-white/20 relative z-10 text-authority-blue w-full hover:-translate-y-2 transition-all duration-500 ring-1 ring-black/5">
-               
-               <header className="mb-10 md:mb-12">
-                 <h3 className="text-2xl md:text-3xl font-black font-serif uppercase tracking-tight leading-[1.1] text-[#1E3A5F]">
-                   IDENTIFICATION & <br/>ALIGNMENT
-                 </h3>
-                 <div className="h-1.5 w-16 bg-signal-gold mt-6 rounded-full"></div>
-               </header>
-
-               <div className="space-y-4 md:space-y-5">
-                  {[
-                    "DQ (DRIVER QUALIFICATION) FILE INTEGRITY",
-                    "ENFORCEMENT RESPONSE",
-                    "INSURANCE CONTINUITY",
-                    "MAINTENANCE GOVERNANCE"
-                  ].map((item, i) => (
-                    <div 
-                      key={i} 
-                      className="flex items-center justify-between p-5 md:p-7 bg-[#F8FAFC] rounded-[1.5rem] md:rounded-[2rem] border border-slate-100 group/item hover:bg-white hover:shadow-xl hover:border-authority-blue/10 transition-all duration-300"
-                    >
-                       <div className="flex items-center space-x-5 md:space-x-7">
-                          <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl border-2 border-slate-200 flex items-center justify-center group-hover/item:border-signal-gold group-hover/item:bg-signal-gold/5 transition-all duration-300 shadow-sm">
-                            <div className="relative">
-                              <ShieldCheck size={20} className="text-slate-300 group-hover/item:text-signal-gold group-hover/item:scale-110 transition-all duration-300" />
-                              <div className="absolute inset-0 bg-signal-gold rounded-full opacity-0 group-hover/item:animate-ping group-hover/item:opacity-20"></div>
-                            </div>
-                          </div>
-                          <span className="text-xs font-black uppercase tracking-widest text-slate-700 leading-tight group-hover/item:text-authority-blue transition-colors">
-                            {item}
-                          </span>
-                       </div>
-                    </div>
-                  ))}
-               </div>
-
-               <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 z-20">
-                  <div className="bg-[#1E3A5F] p-1 rounded-[2.5rem] shadow-2xl ring-8 ring-authority-blue group-hover/card-wrapper:scale-110 transition-transform duration-500">
-                    <div className="bg-[#1E3A5F] flex items-center space-x-4 pr-10 py-5 pl-5 rounded-[2rem] border border-white/10">
-                       <div className="w-12 h-12 bg-signal-gold rounded-2xl flex items-center justify-center text-authority-blue shadow-lg">
-                          <MessageCircle size={24} fill="currentColor" className="opacity-80" />
-                       </div>
-                       <span className="text-xs font-black uppercase tracking-widest text-white whitespace-nowrap">
-                         COMPLIANCE REFERENCE
-                       </span>
-                    </div>
-                  </div>
-               </div>
-            </div>
-          </aside>
         </div>
       </section>
 
