@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
+import RemediationProtocolBlock from '../components/RemediationProtocolBlock';
 
 const EnrollPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -73,6 +74,8 @@ const EnrollPage: React.FC = () => {
         <section className="py-24">
           <div className="max-w-4xl mx-auto px-6 space-y-10">
             
+            <RemediationProtocolBlock />
+
             {/* 1. ADMISSION APPROVED HEADER */}
             <div className="bg-white dark:bg-surface-dark p-12 md:p-16 rounded-[3.5rem] shadow-sm border border-slate-100 dark:border-border-dark relative overflow-hidden">
               <div className="absolute top-0 right-0 p-10 opacity-[0.03] pointer-events-none">

@@ -114,12 +114,12 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-[100] bg-white dark:bg-primary-dark border-b border-slate-100 dark:border-border-dark transition-all duration-500" role="banner">
+    <header className="sticky top-0 z-[100] bg-authority-blue border-b border-white/10 transition-all duration-500 text-signal-gold" role="banner">
       <div className="max-w-[1800px] mx-auto px-6 sm:px-12">
         <div className="flex justify-between items-center h-24 sm:h-32">
           
           <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300" aria-label="LaunchPath Home">
-            <Logo className="h-10 sm:h-14 w-auto" />
+            <Logo light={true} className="h-10 sm:h-14 w-auto" />
           </Link>
 
           {/* DESKTOP NAVIGATION */}
@@ -131,23 +131,23 @@ const Header = () => {
                   to={item.path}
                   className={`px-6 py-3 text-[11px] font-black uppercase tracking-[0.3em] transition-all relative group ${
                     location.pathname === item.path 
-                    ? 'text-authority-blue dark:text-signal-gold' 
-                    : 'text-slate-500 dark:text-text-dark-muted hover:text-authority-blue'
+                    ? 'text-white' 
+                    : 'text-signal-gold/70 hover:text-white'
                   }`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-6 right-6 h-[2px] bg-authority-blue dark:bg-signal-gold transition-all duration-300 scale-x-0 group-hover:scale-x-100 ${location.pathname === item.path ? 'scale-x-100' : ''}`}></span>
+                  <span className={`absolute bottom-0 left-6 right-6 h-[2px] bg-signal-gold transition-all duration-300 scale-x-0 group-hover:scale-x-100 ${location.pathname === item.path ? 'scale-x-100' : ''}`}></span>
                 </Link>
               ))}
             </div>
             
-            <div className="w-[1.5px] h-8 bg-slate-200 dark:bg-slate-700 mx-8" aria-hidden="true" />
+            <div className="w-[1.5px] h-8 bg-white/10 mx-8" aria-hidden="true" />
 
             <div className="flex items-center space-x-6">
               {currentUser ? (
                 <Link 
                   to="/operator-portal" 
-                  className="bg-white dark:bg-surface-dark border-2 border-authority-blue text-authority-blue dark:border-signal-gold dark:text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-authority-blue hover:text-white dark:hover:bg-signal-gold dark:hover:text-authority-blue transition-all active:scale-95 shadow-sm"
+                  className="bg-white/5 border-2 border-white/20 text-white px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-white hover:text-authority-blue transition-all active:scale-95 shadow-sm"
                 >
                   <LayoutDashboard size={12} className="mr-3 -mt-0.5" />
                   My Portal
@@ -164,14 +164,14 @@ const Header = () => {
 
               <Link 
                 to="/readiness" 
-                className="bg-authority-blue text-white px-10 py-4.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] hover:bg-steel-blue hover:shadow-2xl transition-all active:scale-95 shadow-xl border-b-4 border-slate-900"
+                className="bg-signal-gold text-authority-blue px-10 py-4.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] hover:bg-white hover:shadow-2xl transition-all active:scale-95 shadow-xl border-b-4 border-slate-900"
               >
                 Admission Protocol
               </Link>
 
               <button
                 onClick={toggleTheme}
-                className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 text-authority-blue dark:text-signal-gold hover:scale-110 transition-all border border-slate-200 dark:border-border-dark shadow-sm"
+                className="p-3.5 rounded-2xl bg-white/5 text-signal-gold hover:scale-110 transition-all border border-white/10 shadow-sm"
                 aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               >
                 {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
@@ -182,14 +182,14 @@ const Header = () => {
           <div className="xl:hidden flex items-center space-x-3">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-authority-blue dark:text-signal-gold border border-slate-200 dark:border-border-dark"
+              className="p-2.5 rounded-xl bg-white/10 text-signal-gold border border-white/10"
               aria-label="Toggle Dark Mode"
             >
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="p-2.5 bg-authority-blue text-white rounded-xl shadow-lg active:scale-90 transition-transform"
+              className="p-2.5 bg-signal-gold text-authority-blue rounded-xl shadow-lg active:scale-90 transition-transform"
               aria-expanded={isMenuOpen}
               aria-label="Toggle Menu"
             >
@@ -200,13 +200,13 @@ const Header = () => {
       </div>
 
       {isMenuOpen && (
-        <nav className="fixed inset-0 top-24 sm:top-32 bg-white dark:bg-primary-dark z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
+        <nav className="fixed inset-0 top-24 sm:top-32 bg-authority-blue z-[99] xl:hidden animate-in fade-in slide-in-from-top-4 duration-500 overflow-y-auto" aria-label="Mobile Navigation">
           <div className="flex flex-col p-8 sm:p-12 space-y-4">
             <Link 
               to="/" 
               onClick={() => setIsMenuOpen(false)}
               className={`block p-6 rounded-[2.5rem] font-black text-2xl uppercase tracking-tighter transition-all ${
-                location.pathname === '/' ? 'bg-authority-blue text-white shadow-2xl' : 'text-slate-400'
+                location.pathname === '/' ? 'bg-white text-authority-blue shadow-2xl' : 'text-white/40'
               }`}
             >
               Home
@@ -216,7 +216,7 @@ const Header = () => {
                 key={item.path}
                 to={item.path}
                 className={`block p-6 rounded-[2.5rem] font-black text-2xl uppercase tracking-tighter transition-all ${
-                  location.pathname === item.path ? 'bg-authority-blue text-white shadow-2xl' : 'text-slate-800 dark:text-slate-200'
+                  location.pathname === item.path ? 'bg-white text-authority-blue shadow-2xl' : 'text-signal-gold'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -236,7 +236,7 @@ const Header = () => {
               <Link 
                 to="/readiness" 
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-center bg-authority-blue text-white py-9 rounded-[2.5rem] text-xl font-black uppercase tracking-[0.2em] shadow-2xl border-b-8 border-slate-900"
+                className="block w-full text-center bg-signal-gold text-authority-blue py-9 rounded-[2.5rem] text-xl font-black uppercase tracking-[0.2em] shadow-2xl border-b-8 border-slate-900"
               >
                 Admission Protocol
               </Link>

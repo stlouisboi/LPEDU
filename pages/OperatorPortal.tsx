@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import RemediationProtocol from '../components/RemediationProtocol';
+import RemediationProtocolBlock from '../components/RemediationProtocolBlock';
 import { COURSE_MODULES } from '../constants';
 import { Link } from 'react-router-dom';
 import { 
@@ -106,8 +105,8 @@ const OperatorPortal: React.FC = () => {
 
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen">
-      {/* Protocol Block at the Top */}
-      <RemediationProtocol />
+      {/* Remediation Protocol Block as the first section */}
+      <RemediationProtocolBlock />
 
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 gap-6">
