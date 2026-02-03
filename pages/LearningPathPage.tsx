@@ -211,7 +211,7 @@ const LearningPathPage = () => {
             <span className="text-white">Carrier Implementation Sequence</span>
           </div>
           <h1 className="text-6xl lg:text-7xl font-black mb-8 font-serif uppercase tracking-tighter leading-tight animate-reveal-up">
-            The <span className="text-signal-gold italic">Roadmap.</span>
+            The <span className="text-signal-gold italic">Program</span> Roadmap
           </h1>
           <p className="text-2xl md:text-3xl text-white font-extrabold max-w-4xl mx-auto leading-relaxed mb-12 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
             A disciplined multi-phase framework engineered for administrative stabilization and stewardship.
