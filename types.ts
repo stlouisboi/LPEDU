@@ -63,10 +63,10 @@ export interface BlogPost {
 export type BlogCategory = 
   | 'Authority' 
   | 'Audit' 
-  | 'Clearinghouse' 
   | 'Insurance' 
-  | 'HOS' 
-  | 'ELD' 
+  | 'DQ Files' 
+  | 'Drug & Alcohol' 
+  | 'Hours of Service' 
   | 'Maintenance'
   | 'Compliance';
 

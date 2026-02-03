@@ -161,6 +161,19 @@ export const COURSE_MODULES: CourseModule[] = [
 
 export const INITIAL_BLOGS: BlogPost[] = [
   {
+    id: "maint-1",
+    title: "Navigating Truck Maintenance: From Breakdown Fixes to Disciplined Stewardship",
+    slug: "navigating-truck-maintenance-disciplined-stewardship",
+    category: "Maintenance",
+    excerpt: "Moving from reactive repairs to a disciplined preventive maintenance program is the foundation of carrier longevity and safety compliance.",
+    content: "<h2>Maintenance vs. Repair: The Stewardship Distinction</h2><p>Many new motor carriers quietly assume maintenance and repair are the same thing. In the rush to book freight and keep the wheels turning, they slip into a “fix it when it fails” pattern. The truck becomes a tool that only deserves attention when it is already down. That mindset treats maintenance as an interruption to business—when in reality, it is the foundation of it.</p><h2>The Risk of Operating in Repair Mode</h2><p>When you operate reactively, your schedule and cash flow are controlled by the equipment, not by you. A failure on the road is almost never just the cost of a part. It often brings roadside service fees, tow bills, missed delivery windows, and a higher chance of inspections and Out‑of‑Service orders. Missed intervals and incomplete documentation are exactly what show up in failed safety audits. Stewardship of your equipment is not just about keeping the truck moving; it is about preserving the order that keeps you compliant and operating over time.</p><h2>Repair vs. Preventive Maintenance</h2><p>Orderly operation begins with a different way of thinking. Repair reacts to failure. Preventive maintenance works to prevent it. A disciplined maintenance program focuses on predictability—scheduling service by miles or time instead of warning lights or breakdowns. It treats pre‑trip and post‑trip inspections as legal documents, not optional chores. Preventive maintenance is less about perfection and more about consistency.</p><h2>Building a Maintenance Escrow</h2><p>Financial stewardship is the second pillar of disciplined maintenance. New carriers get into trouble when they treat gross revenue as take‑home pay. Stable operations treat maintenance as a fixed operating expense that is funded every mile the truck moves. Many successful carriers use a maintenance escrow—a dedicated account funded at a set rate per mile, often around 0.15 per mile or higher. The objective is simple: keep normal operating costs from turning into business‑ending crises.</p><h2>Maintenance Records and Compliance</h2><p>Compliance is not optional for a carrier that wants to keep its authority. Regulators require documented proof of systematic inspection, repair, and maintenance for every vehicle you operate. Core records include vehicle identification details, dates and descriptions of inspections and repairs, and evidence that you follow a structured maintenance schedule. Disciplined carriers move toward a unified operating system where mileage, loads, and maintenance history stay connected, reducing clerical errors and audit exposure.</p><h2>A Stabilizing Perspective</h2><p>Trucking is a marathon, not a sprint. The carriers that survive their first year are rarely the ones chasing the highest spot rates or squeezing every mile out of worn‑out equipment. They are the carriers that prioritize order, stewardship, and consistent process. When you follow a disciplined preventive maintenance schedule and fund your maintenance escrow every mile, you protect your safety record, your equipment, your authority, and your future.</p>",
+    publishedAt: "2025-01-25",
+    author: "Vince",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+    status: 'published',
+    tags: ['Maintenance', 'FMCSA', 'Stewardship']
+  },
+  {
     id: "auth-1",
     title: "USDOT vs. MC Number: Do You Really Need Both?",
     slug: "usdot-vs-mc-number-differences",
@@ -204,7 +217,6 @@ export const INITIAL_BLOGS: BlogPost[] = [
 export const ROADMAP_STEPS: RoadmapStep[] = [
   {
     id: 1,
-    // Fix: Removed 'prefix' property as it is not a known property of type 'RoadmapStep'
     phase: "Phase I: The Foundation",
     title: "The 90-Day Containment Window",
     description: "Setting the systems that determine if you survive the first 18 months of federal scrutiny.",
