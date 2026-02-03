@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -17,25 +17,15 @@ import {
   Zap,
   Activity,
   ShieldAlert,
-  Fingerprint,
   XCircle,
-  Quote,
-  Scale,
-  Anchor,
   ShieldCheck,
   Map as MapIcon,
-  Compass,
   Target,
   Radar,
-  User as UserIcon,
-  Plus,
-  Minus,
   ChevronDown,
   Award,
-  Users,
   Truck,
   HelpCircle,
-  MessageCircle,
   Skull,
   AlertOctagon,
   AlertCircle,
@@ -43,10 +33,13 @@ import {
   Cpu,
   FileText,
   DollarSign,
-  CreditCard
+  CreditCard,
+  // Added Users icon import to fix compilation error on line 923
+  Users
 } from 'lucide-react';
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp, doc, onSnapshot } from "firebase/firestore";
+import { db, isFirebaseConfigured } from '../firebase';
+import { HomepageContent } from '../types';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -108,6 +101,25 @@ const HomePage: React.FC = () => {
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [loading, setLoading] = useState(false);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
+  
+  // Dynamic Content State
+  const [dynamicContent, setDynamicContent] = useState<HomepageContent | null>(null);
+
+  useEffect(() => {
+    if (!isFirebaseConfigured || !db) return;
+
+    // Listen to live homepage edits from the Admin Command Center
+    const homeRef = doc(db, "pages", "home_live");
+    const unsubscribe = onSnapshot(homeRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setDynamicContent(docSnap.data() as HomepageContent);
+      }
+    }, (err) => {
+      console.warn("HomePage: Live sync restricted or offline.", err.message);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -186,7 +198,7 @@ const HomePage: React.FC = () => {
       link: "/readiness"
     },
     { 
-      title: "Compliance Reference", 
+      title: "Compliance Assistant", 
       desc: "AI-powered regulatory reference assistant for FMCSA terminology and system logic.", 
       icon: <Cpu size={24} className="text-signal-gold" />,
       bg: "bg-amber-50",
@@ -239,6 +251,16 @@ const HomePage: React.FC = () => {
     { n: "MODULE 6", t: "STABILIZATION & GROWTH", d: "Transitioning from survival mode to sustainable, repeatable operations." }
   ];
 
+  // Helper to get headline with fallback to static
+  const getHeadline = () => {
+    if (dynamicContent?.hero?.headline) return dynamicContent.hero.headline;
+    return (
+      <>
+        PROTECT YOUR <br/><span className="italic text-signal-gold">AUTHORITY</span> WITH <br/>ABSOLUTE ORDER.
+      </>
+    );
+  };
+
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
@@ -254,12 +276,12 @@ const HomePage: React.FC = () => {
             </div>
             
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-black leading-[0.95] md:leading-[0.9] tracking-tighter uppercase font-serif text-authority-blue dark:text-white">
-              PROTECT YOUR <br/><span className="italic text-signal-gold">AUTHORITY</span> WITH <br/>ABSOLUTE ORDER.
+              {getHeadline()}
             </h1>
             
             <div className="max-w-2xl border-l-4 md:border-l-8 border-authority-blue dark:border-signal-gold pl-6 md:pl-10 py-2">
               <p className="text-lg md:text-xl font-black uppercase text-authority-blue dark:text-white leading-tight mb-6 tracking-tight">
-                LaunchPath is a structured setup standard for new motor carriers. We verify your business readiness (stewardship) before you begin hauling.
+                {dynamicContent?.hero?.subheadline || "LaunchPath is a structured setup standard for new motor carriers. We verify your business readiness (stewardship) before you begin hauling."}
               </p>
               <p className="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest md:tracking-[0.4em] leading-relaxed max-w-xl">
                 IT IS A STRUCTURED SYSTEM FOR DOCUMENTATION INTEGRITY AND SAFETY MANAGEMENT.
@@ -281,6 +303,14 @@ const HomePage: React.FC = () => {
               <div className="absolute top-0 right-0 p-6 md:p-10 opacity-[0.03] group-hover:scale-110 transition-transform">
                 <ShieldAlert size={180} />
               </div>
+              
+              {/* Optional Hero Image Placeholder from Admin */}
+              {dynamicContent?.hero?.imageUrl && (
+                <div className="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition-opacity">
+                   <img src={dynamicContent.hero.imageUrl} className="w-full h-full object-cover grayscale" alt="Fleet Visualization" />
+                </div>
+              )}
+
               <div className="relative z-10">
                 <header className="flex justify-between items-start mb-8 md:mb-12">
                    <div>

@@ -77,7 +77,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] font-sans">
+    <div className="fixed bottom-6 right-6 z-[100] font-sans hidden lg:block">
       {isOpen ? (
         <div className="bg-white dark:bg-surface-dark w-[350px] sm:w-[400px] h-[550px] rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] border border-border-light dark:border-border-dark flex flex-col overflow-hidden animate-scale-in">
           {/* Header */}
