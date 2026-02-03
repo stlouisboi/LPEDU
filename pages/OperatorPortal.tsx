@@ -12,7 +12,8 @@ import {
   Calendar,
   Clock,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Filter
 } from 'lucide-react';
 import ConfirmationModal from '../components/ConfirmationModal';
 import { useAuth } from '../AuthContext';
@@ -91,6 +92,7 @@ const OperatorPortal: React.FC = () => {
   ]);
   
   const [newTaskText, setNewTaskText] = useState('');
+  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState<string | null>(null);
 
@@ -122,6 +124,12 @@ const OperatorPortal: React.FC = () => {
       setTaskToDelete(null);
     }
   };
+
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'active') return !task.completed;
+    if (filter === 'completed') return task.completed;
+    return true;
+  });
 
   const timelineDays = [
     { day: "Day 1", label: "Authority Grant", status: "complete" },
@@ -225,7 +233,7 @@ const OperatorPortal: React.FC = () => {
                 <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Operator Personalized</span>
               </div>
 
-              <form onSubmit={addTask} className="mb-10 flex gap-4">
+              <form onSubmit={addTask} className="mb-8 flex gap-4">
                 <input 
                   type="text" 
                   value={newTaskText}
@@ -241,8 +249,25 @@ const OperatorPortal: React.FC = () => {
                 </button>
               </form>
 
+              {/* Filter Tabs */}
+              <div className="flex items-center space-x-1 p-1 bg-slate-50 dark:bg-gray-900 rounded-2xl mb-8 w-fit border border-slate-100 dark:border-border-dark">
+                {(['all', 'active', 'completed'] as const).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                      filter === f 
+                        ? 'bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold shadow-sm' 
+                        : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+
               <div className="space-y-3">
-                {tasks.map((task) => (
+                {filteredTasks.map((task) => (
                   <div 
                     key={task.id} 
                     className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-900/50 border border-slate-100 dark:border-border-dark rounded-2xl group transition-all hover:bg-white dark:hover:bg-gray-800"
@@ -261,10 +286,12 @@ const OperatorPortal: React.FC = () => {
                     </button>
                   </div>
                 ))}
-                {tasks.length === 0 && (
+                {filteredTasks.length === 0 && (
                   <div className="text-center py-12 opacity-30">
                     <ClipboardList size={48} className="mx-auto mb-4" />
-                    <p className="text-[10px] font-black uppercase tracking-widest">Registry Empty</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest">
+                      {filter === 'all' ? 'Registry Empty' : `No ${filter} tasks`}
+                    </p>
                   </div>
                 )}
               </div>
