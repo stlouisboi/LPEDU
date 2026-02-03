@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Mail, Phone, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, ArrowRight, MessageSquare, Anchor, User, ChevronDown, Building2, Globe } from 'lucide-react';
+import { Mail, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, MessageSquare, Anchor, User, ChevronDown, Building2 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
@@ -82,13 +82,13 @@ const ContactPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-4 py-2 rounded-full mb-8">
             <Anchor size={14} className="text-authority-blue" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue">Institutional Connection</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue">Contact</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white mb-6 uppercase tracking-tighter leading-none">
-            Direct <span className="text-signal-gold italic">Advisory</span> Link
+            Get In <span className="text-signal-gold italic">Touch.</span>
           </h1>
           <p className="text-xl text-slate-500 dark:text-text-dark-muted max-w-2xl font-bold leading-relaxed">
-            Secure communication channel for motor carriers entering the 90-Day Stabilization Window.
+            Questions about enrollment, compliance, or the program? We respond within 24-48 hours.
           </p>
         </div>
       </section>
@@ -108,9 +108,9 @@ const ContactPage = () => {
               
               <div className="absolute bottom-12 left-12 right-12 space-y-4">
                 <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-[2.5rem] shadow-2xl">
-                  <h3 className="text-white text-2xl font-black font-serif uppercase tracking-tight mb-2">Operating Integrity</h3>
+                  <h3 className="text-white text-2xl font-black font-serif uppercase tracking-tight mb-2">Questions?</h3>
                   <p className="text-white/70 text-sm font-medium leading-relaxed italic">
-                    "Stewardship is the prerequisite for momentum. We help you establish order before you seek scale."
+                    "We're here to help you get started."
                   </p>
                 </div>
                 <div className="flex items-center space-x-4 px-6">
@@ -132,10 +132,10 @@ const ContactPage = () => {
                       <CheckCircle size={48} />
                    </div>
                    <h2 className="text-4xl font-black font-serif mb-6 uppercase tracking-tight text-authority-blue dark:text-white">Uplink Secured</h2>
-                   <p className="text-slate-500 max-w-sm mx-auto font-bold leading-relaxed mb-12">
+                   <p className="text-slate-500 dark:text-slate-400 max-w-sm mx-auto font-bold leading-relaxed mb-12">
                      A compliance specialist has been notified. Expect a formal response within one business day.
                    </p>
-                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">Send New Inquiry</button>
+                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">Send New Message</button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -223,12 +223,18 @@ const ContactPage = () => {
                     className="w-full bg-authority-blue text-white font-black uppercase tracking-[0.4em] py-8 rounded-[2rem] shadow-[0_25px_50px_-12px_rgba(30,58,95,0.3)] hover:bg-steel-blue hover:shadow-[0_25px_60px_-12px_rgba(30,58,95,0.4)] transition-all flex items-center justify-center disabled:opacity-50 active:scale-95 group border-b-8 border-slate-900"
                   >
                     {sending ? <Loader2 className="animate-spin mr-4" size={24} /> : <Send className="mr-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />} 
-                    Establish Advisory Connection
+                    Send Message
                   </button>
                   
                   <div className="pt-8 flex flex-col items-center space-y-4">
                     <p className="text-[9px] text-slate-400 uppercase tracking-[0.4em] font-black opacity-60">High-Trust Environment • Administrative Protocol Active</p>
-                    <div className="h-px w-20 bg-slate-100 dark:bg-border-dark"></div>
+                    
+                    <a href="mailto:contact@launchpathedu.com" className="text-xs font-bold text-authority-blue hover:text-signal-gold transition-colors flex items-center">
+                      <Mail size={14} className="mr-2" /> Or email us directly: contact@launchpathedu.com
+                    </a>
+
+                    <div className="h-px w-20 bg-slate-100 dark:bg-border-dark mt-2"></div>
+                    
                     <Link to="/support" className="text-[10px] font-black uppercase tracking-widest text-authority-blue hover:text-signal-gold transition-colors flex items-center">
                       <MessageSquare size={12} className="mr-2" /> Member Support Portal (Paid Enrollees)
                     </Link>
