@@ -49,7 +49,8 @@ const InstitutionalLabel = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const SectionHeading = ({ title, subtitle, centered = false }: { title: string; subtitle: string; centered?: boolean }) => (
+// Fix: Changed title and subtitle to React.ReactNode to handle JSX content and resolve children requirement errors
+const SectionHeading = ({ title, subtitle, centered = false }: { title: React.ReactNode; subtitle: React.ReactNode; centered?: boolean }) => (
   <div className={`space-y-6 ${centered ? 'text-center mx-auto' : 'text-left'}`}>
     <InstitutionalLabel>{subtitle}</InstitutionalLabel>
     <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white tracking-tighter uppercase leading-[0.9]">
