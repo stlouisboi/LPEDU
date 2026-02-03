@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { collection, query, onSnapshot, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
@@ -105,7 +104,7 @@ const VideoLab = () => {
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // Use a new instance to ensure we use the latest key from the environment
+        // Requirement: New GoogleGenAI instance for every poll
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
         operation = await pollAi.operations.getVideosOperation({ operation: operation });
       }
@@ -117,7 +116,6 @@ const VideoLab = () => {
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
       if (!downloadLink) throw new Error("Generated video link missing.");
 
-      // Fetch the video bytes using the current API key
       const vidRes = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
       const blob = await vidRes.blob();
       const vidPath = `generated/${Date.now()}.mp4`;

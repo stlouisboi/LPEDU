@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -165,7 +164,7 @@ const AIServicePage = () => {
     setIsSpeaking(index);
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const response = await ai.models.generateContent({
+      const response: GenerateContentResponse = await ai.models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
         contents: [{ parts: [{ text: `Read this professionally and calmly: ${text}` }] }],
         config: {
@@ -319,7 +318,7 @@ const AIServicePage = () => {
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // Use new instance for each polling call to satisfy key update requirements
+        // Requirement: Create a new instance right before making a polling API call
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
         operation = await pollAi.operations.getVideosOperation({ operation: operation });
       }
@@ -328,9 +327,9 @@ const AIServicePage = () => {
         throw new Error(operation.error.message || "Synthesis failure.");
       }
 
-      const link = operation.response?.generatedVideos?.[0]?.video?.uri;
-      if (link) {
-        const res = await fetch(`${link}&key=${process.env.API_KEY}`);
+      const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
+      if (downloadLink) {
+        const res = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
         const blob = await res.blob();
         setVideoResult(URL.createObjectURL(blob));
       }

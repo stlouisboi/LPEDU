@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -37,11 +36,12 @@ import {
   HardDrive,
   Fingerprint,
   Gavel,
-  X
+  X,
+  MessageSquare,
+  BookOpen
 } from 'lucide-react';
-import { collection, addDoc, serverTimestamp, doc, onSnapshot } from "firebase/firestore";
-import { db, isFirebaseConfigured } from '../firebase';
-import { HomepageContent } from '../types';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from '../firebase';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -103,19 +103,20 @@ const HomePage: React.FC = () => {
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [loading, setLoading] = useState(false);
   const [selectedSinId, setSelectedSinId] = useState<string | null>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  const handleLeadSubmit = async (e: React.FormEvent) => {
+  const handleRiskMapSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const destination = `/readiness?name=${encodeURIComponent(formData.firstName || 'Carrier')}`;
+    const destination = `/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`;
 
     try {
       if (db) {
-        await addDoc(collection(db, "admissionInquiries"), {
+        await addDoc(collection(db, "leadMagnets"), {
           firstName: formData.firstName || 'Carrier',
           email: formData.email,
           downloadedAt: serverTimestamp(),
-          source: "homepage-hero-form"
+          source: "homepage-hero-risk-map"
         });
       }
       navigate(destination);
@@ -386,40 +387,40 @@ const HomePage: React.FC = () => {
           <aside className="lg:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
             <div className="bg-white dark:bg-surface-dark p-8 md:p-12 lg:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-[0_40px_80px_-20px_rgba(30,58,95,0.15)] border border-slate-100 dark:border-border-dark relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-6 md:p-10 opacity-[0.03] group-hover:scale-110 transition-transform">
-                <ShieldAlert size={180} />
+                <FileWarning size={180} />
               </div>
               
               <div className="relative z-10">
                 <header className="flex justify-between items-start mb-8 md:mb-12">
                    <div>
-                     <h3 className="text-xs md:text-sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest md:tracking-[0.4em] mb-1 md:mb-2">FORMAL</h3>
-                     <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">ADMISSION <br/>INQUIRY</h3>
+                     <h3 className="text-xs md:text-sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest md:tracking-[0.4em] mb-1 md:mb-2">FREE 90-DAY</h3>
+                     <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">RISK MAP™ <br/>DIAGNOSTIC</h3>
                    </div>
                    <div className="w-8 h-8 md:w-10 md:h-10 border border-slate-200 dark:border-white/10 rounded-full flex items-center justify-center text-slate-300">
                      <Lock size={14} />
                    </div>
                 </header>
                 
-                <form onSubmit={handleLeadSubmit} className="space-y-6 md:space-y-8">
+                <form onSubmit={handleRiskMapSubmit} className="space-y-6 md:space-y-8">
                   <div className="space-y-2">
-                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">FULL NAME</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">LEGAL NAME</label>
                     <input 
                       required 
                       value={formData.firstName}
                       onChange={e => setFormData({...formData, firstName: e.target.value})}
                       className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm dark:text-white" 
-                      placeholder="Your Name" 
+                      placeholder="Jane Doe" 
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">EMAIL</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">REGISTRY EMAIL</label>
                     <input 
                       required 
                       type="email"
                       value={formData.email}
                       onChange={e => setFormData({...formData, email: e.target.value})}
                       className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm dark:text-white" 
-                      placeholder="your@email.com" 
+                      placeholder="jane@carrier.com" 
                     />
                   </div>
                   <button 
@@ -427,9 +428,17 @@ const HomePage: React.FC = () => {
                     className="w-full bg-authority-blue text-white py-5 md:py-7 rounded-xl md:rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group border-b-4 border-slate-900"
                   >
                     {loading ? <Loader2 className="animate-spin mr-3" /> : <ChevronRight className="mr-3" size={18} />}
-                    REQUEST PROGRAM INFORMATION
+                    VIEW MY RISK MAP
                   </button>
                 </form>
+                <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 space-y-2">
+                   <p className="text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold flex items-center">
+                     <ShieldCheck size={12} className="mr-2" /> REGISTRY UPLINK ACTIVE
+                   </p>
+                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">
+                     Orientation only. No corrective actions provided.
+                   </p>
+                </div>
               </div>
             </div>
           </aside>
@@ -536,7 +545,138 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. THE 16 DEADLY SINS - REORGANIZED MATRIX */}
+      {/* 4. THE STANDARD */}
+      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <article className="space-y-12">
+              <header className="space-y-6">
+                <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE STANDARD</p>
+                <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
+                  ORDER BEFORE <br/><span className="text-signal-gold italic">REVENUE.</span>
+                </h2>
+              </header>
+              <div className="space-y-8 text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p>LaunchPath is a 90-day compliance infrastructure system for new interstate motor carriers.</p>
+                <p>We don't teach you how to book loads. We don't promise revenue outcomes. We don't sell dispatch services or insurance policies.</p>
+                <p>We install the documentation systems, verification workflows, and audit-ready file structures that keep your authority protected, your insurance stable, and your operation defensible when federal oversight arrives.</p>
+                <p className="text-authority-blue dark:text-white font-black italic">This is what separates a carrier executive from a driver with a dream.</p>
+              </div>
+            </article>
+
+            <aside className="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border-t-8 border-red-500/30 space-y-8 shadow-sm">
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-red-600">REACTIVE APPROACH</h4>
+                  <ul className="space-y-4 text-sm font-bold text-slate-500 leading-relaxed">
+                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Fixing files after incidents</li>
+                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Skipping DOT maintenance logs</li>
+                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Waiting for federal audit alerts</li>
+                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Segmented, messy documentation</li>
+                  </ul>
+               </div>
+               <div className="bg-authority-blue p-10 rounded-[3rem] border-t-8 border-signal-gold space-y-8 shadow-2xl">
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">SYSTEMATIC APPROACH</h4>
+                  <ul className="space-y-4 text-sm font-bold text-white leading-relaxed">
+                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Pre-launch safety installation</li>
+                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Daily-executed DQ workflows</li>
+                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Permanent audit-ready posture</li>
+                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Integrated, defensible record systems</li>
+                  </ul>
+               </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. THIS IS NOT FOR EVERYONE (Restored Boundaries) */}
+      <section className="py-24 md:py-40 bg-[#0c1a2d] text-white overflow-hidden transition-colors relative">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-12 relative z-10">
+          <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-6 py-2 rounded-full mb-4">
+             <ShieldAlert size={14} className="text-red-500" />
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">BOUNDARIES</span>
+          </div>
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">
+            THIS IS NOT FOR <br/><span className="text-red-600 italic">EVERYONE.</span>
+          </h2>
+          <div className="h-px w-24 bg-red-600/30 mx-auto"></div>
+          <div className="space-y-8 text-xl md:text-2xl font-bold text-slate-400 leading-relaxed text-left max-w-3xl mx-auto border-l-4 border-red-600/20 pl-8">
+            <p>If you're looking for a course on how to make money in trucking — this isn't it.</p>
+            <p>If you want dispatch training or load board strategies — we don't offer that.</p>
+            <p>If you're hoping for a motivational speaker to tell you it's going to be easy — wrong room.</p>
+            <p className="text-white italic">LaunchPath is for owner-operators who understand that their authority is a federal license to be audited — and they want to be ready when it happens.</p>
+            <p className="text-slate-500">If that's not you, no hard feelings. If it is — keep reading.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. THE FOUR PILLARS */}
+      <section className="py-24 md:py-32 bg-[#020617] border-b border-white/5 transition-colors">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <header className="text-center mb-16 md:mb-24 space-y-6">
+             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE FRAMEWORK</p>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-tight">
+               THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
+             </h2>
+             <p className="text-xl md:text-2xl font-bold text-slate-400 max-w-2xl mx-auto leading-relaxed">
+               The systems that keep you operating.
+             </p>
+          </header>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+             {[
+               {
+                 icon: <Briefcase />,
+                 title: "AUTHORITY PROTECTION",
+                 tagline: "STRUCTURAL STEWARDSHIP",
+                 desc: "Managing federal authority as an entrusted asset. Build a foundation that survives scrutiny through absolute administrative order.",
+                 link: "/modules/1"
+               },
+               {
+                 icon: <Shield />,
+                 title: "INSURANCE CONTINUITY",
+                 tagline: "RISK RESPONSIBILITY",
+                 desc: "Protecting your right to operate. Maintain permanent coverage by documenting safety as a non-negotiable operational discipline.",
+                 link: "/modules/2"
+               },
+               {
+                 icon: <Layers />,
+                 title: "COMPLIANCE BACKBONE",
+                 tagline: "SYSTEMIC INTEGRITY",
+                 desc: "Executing federal standards with precision. Replace human memory with verifiable systems that prove your compliance daily.",
+                 link: "/modules/3"
+               },
+               {
+                 icon: <Calculator />,
+                 title: "CASH-FLOW OXYGEN",
+                 tagline: "FISCAL STEWARDSHIP",
+                 desc: "Securing the mission through economic truth. Use TCO math to ensure your business remains solvent, stable, and viable.",
+                 link: "/tools/tco-preview"
+               }
+             ].map((pillar, i) => (
+               <article key={i} className="bg-white/[0.03] p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
+                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 28 })}
+                  </div>
+                  <h3 className="text-2xl font-black text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8 opacity-70">{pillar.tagline}</p>
+                  <p className="text-base font-bold text-slate-400 leading-relaxed mb-10 flex-grow">
+                    {pillar.desc}
+                  </p>
+                  <Link to={pillar.link} className="inline-flex items-center justify-center space-x-2 text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold hover:text-white transition-all group/btn">
+                    <span>EXPLORE MODULE</span>
+                    <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
+               </article>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. THE 16 DEADLY SINS */}
       <section id="exposure-matrix" className="bg-[#020617] py-24 lg:py-48 border-y border-white/5 transition-colors relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 relative z-10">
@@ -617,67 +757,30 @@ const HomePage: React.FC = () => {
                              </div>
                           </div>
                        </div>
-
-                       {/* MOBILE ACCORDION CONTENT */}
-                       <div className={`sm:hidden grid transition-all duration-500 ease-in-out overflow-hidden mt-6 border-t border-white/10 pt-6 ${selectedSinId === item.id ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                          <div className="overflow-hidden space-y-8">
-                             <div>
-                               <h5 className="text-[11px] font-black text-signal-gold uppercase tracking-widest mb-3">The Violation</h5>
-                               <p className="text-sm font-bold text-slate-300 leading-relaxed">{item.violation}</p>
-                             </div>
-                             <div>
-                               <h5 className="text-[11px] font-black text-signal-gold uppercase tracking-widest mb-3">The Consequence</h5>
-                               <p className="text-sm font-bold text-slate-300 leading-relaxed">{item.consequence}</p>
-                             </div>
-                             <div>
-                               <h5 className="text-[11px] font-black text-signal-gold uppercase tracking-widest mb-3">The Guard</h5>
-                               <p className="text-sm font-bold text-slate-300 leading-relaxed">{item.detailedGuard}</p>
-                             </div>
-                             <Link to={`/modules/${item.moduleId}`} className="flex items-center text-xs font-black text-signal-gold uppercase tracking-widest group/link">
-                                View {item.module} <ArrowRight size={14} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
-                             </Link>
-                          </div>
-                       </div>
                     </article>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-          
-          <div className="mt-32 text-center">
-             <div className="p-10 bg-white/5 border border-white/10 rounded-[3rem] shadow-2xl inline-flex flex-col items-center max-w-xl mx-auto backdrop-blur-md">
-                <p className="text-lg font-bold text-slate-400 mb-8 italic">"Investigators aren't looking for excuses. They are looking for documented evidence of systemic control."</p>
-                <Link to="/readiness" className="bg-red-600 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-red-600 transition-all shadow-xl active:scale-95 flex items-center group border-b-4 border-red-900">
-                  INITIATE DIAGNOSTIC PROTOCOL
-                  <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
-                </Link>
-             </div>
-          </div>
         </div>
       </section>
 
-      {/* DESKTOP/TABLET MODAL OVERLAY */}
+      {/* DESKTOP/TABLET MODAL OVERLAY (SIN DETAIL) */}
       {selectedSinId && selectedSin && (
         <div 
           className="hidden sm:flex fixed inset-0 z-[200] items-center justify-center p-8 md:p-12 animate-in fade-in duration-300"
           onClick={() => setSelectedSinId(null)}
         >
           <div className="absolute inset-0 bg-[#0c1a2d]/90 backdrop-blur-xl"></div>
-          
           <div 
             className="relative bg-white dark:bg-[#020617] border border-white/10 w-full max-w-[90%] lg:max-w-[60%] rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[85vh] animate-in zoom-in-95 duration-500"
             onClick={(e) => e.stopPropagation()}
           >
-            <button 
-              onClick={() => setSelectedSinId(null)}
-              className="absolute top-10 right-10 p-3 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-authority-blue dark:text-white rounded-2xl transition-all z-20 group"
-            >
+            <button onClick={() => setSelectedSinId(null)} className="absolute top-10 right-10 p-3 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-authority-blue dark:text-white rounded-2xl transition-all z-20 group">
               <X size={24} className="group-hover:rotate-90 transition-transform" />
             </button>
-
             <div className="absolute top-0 left-0 w-full h-2 bg-red-600"></div>
-            
             <header className="p-12 md:p-16 border-b border-slate-100 dark:border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 bg-slate-50 dark:bg-transparent">
                <div className="space-y-4">
                   <div className="flex items-center space-x-4">
@@ -689,7 +792,6 @@ const HomePage: React.FC = () => {
                     {selectedSin.text}
                   </h3>
                </div>
-               
                <div className={`px-5 py-2.5 rounded-xl flex items-center space-x-3 border ${
                   selectedSin.severity === 'TERMINAL' 
                   ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_20px_rgba(239,68,68,0.2)]' 
@@ -701,7 +803,6 @@ const HomePage: React.FC = () => {
                   <span className="text-xs font-black uppercase tracking-widest">{selectedSin.severity}</span>
                </div>
             </header>
-
             <div className="flex-grow overflow-y-auto p-12 md:p-16 scroll-smooth custom-scrollbar bg-white dark:bg-transparent">
                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                   <div className="space-y-12">
@@ -713,7 +814,6 @@ const HomePage: React.FC = () => {
                            {selectedSin.violation}
                         </p>
                      </section>
-
                      <section className="space-y-4">
                         <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold flex items-center">
                            <AlertCircle size={16} className="mr-3" /> The Consequence
@@ -723,7 +823,6 @@ const HomePage: React.FC = () => {
                         </p>
                      </section>
                   </div>
-
                   <div className="space-y-12">
                      <section className="space-y-4">
                         <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-emerald-600 dark:text-emerald-400 flex items-center">
@@ -733,7 +832,6 @@ const HomePage: React.FC = () => {
                            {selectedSin.detailedGuard}
                         </p>
                      </section>
-
                      <section className="bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/5 rounded-3xl p-8 space-y-6">
                         <div className="flex items-center space-x-3 text-authority-blue dark:text-signal-gold">
                            <Layers size={20} />
@@ -742,10 +840,7 @@ const HomePage: React.FC = () => {
                         <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-relaxed">
                            This exposure vector is systematically neutralized within <span className="text-authority-blue dark:text-white">{selectedSin.module}</span>.
                         </p>
-                        <Link 
-                          to={`/modules/${selectedSin.moduleId}`}
-                          className="inline-flex items-center space-x-3 bg-authority-blue text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-steel-blue transition-all group/btn"
-                        >
+                        <Link to={`/modules/${selectedSin.moduleId}`} className="inline-flex items-center space-x-3 bg-authority-blue text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-steel-blue transition-all group/btn">
                            <span>VIEW MODULE INSTRUCTIONS</span>
                            <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                         </Link>
@@ -756,115 +851,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* 5. THE FOUR PILLARS SECTION (ENHANCED & RELOCATED) */}
-      <section className="py-24 md:py-32 bg-[#020617] border-b border-white/5 transition-colors">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-6">
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE FRAMEWORK</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-tight">
-               THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
-             </h2>
-             <p className="text-xl md:text-2xl font-bold text-slate-400 max-w-2xl mx-auto leading-relaxed">
-               The systems that keep you operating.
-             </p>
-          </header>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
-             {[
-               {
-                 icon: <Briefcase />,
-                 title: "AUTHORITY PROTECTION",
-                 tagline: "STRUCTURAL STEWARDSHIP",
-                 desc: "Managing federal authority as an entrusted asset. Build a foundation that survives scrutiny through absolute administrative order.",
-                 link: "/modules/1"
-               },
-               {
-                 icon: <Shield />,
-                 title: "INSURANCE CONTINUITY",
-                 tagline: "RISK RESPONSIBILITY",
-                 desc: "Protecting your right to operate. Maintain permanent coverage by documenting safety as a non-negotiable operational discipline.",
-                 link: "/modules/2"
-               },
-               {
-                 icon: <Layers />,
-                 title: "COMPLIANCE BACKBONE",
-                 tagline: "SYSTEMIC INTEGRITY",
-                 desc: "Executing federal standards with precision. Replace human memory with verifiable systems that prove your compliance daily.",
-                 link: "/modules/3"
-               },
-               {
-                 icon: <Calculator />,
-                 title: "CASH-FLOW OXYGEN",
-                 tagline: "FISCAL STEWARDSHIP",
-                 desc: "Securing the mission through economic truth. Use TCO math to ensure your business remains solvent, stable, and viable.",
-                 link: "/modules/4"
-               }
-             ].map((pillar, i) => (
-               <article key={i} className="bg-white/[0.03] p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 28 })}
-                  </div>
-                  <h3 className="text-2xl font-black text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8 opacity-70">{pillar.tagline}</p>
-                  <p className="text-base font-bold text-slate-400 leading-relaxed mb-10 flex-grow">
-                    {pillar.desc}
-                  </p>
-                  <Link to={pillar.link} className="inline-flex items-center justify-center space-x-2 text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold hover:text-white transition-all group/btn">
-                    <span>EXPLORE MODULE</span>
-                    <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-               </article>
-             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. THE STANDARD */}
-      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <article className="space-y-12">
-              <header className="space-y-6">
-                <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE STANDARD</p>
-                <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
-                  ORDER BEFORE <br/><span className="text-signal-gold italic">REVENUE.</span>
-                </h2>
-              </header>
-              <div className="space-y-8 text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
-                <p>LaunchPath is a 90-day compliance infrastructure system for new interstate motor carriers.</p>
-                <p>We don't teach you how to book loads. We don't promise revenue outcomes. We don't sell dispatch services or insurance policies.</p>
-                <p>We install the documentation systems, verification workflows, and audit-ready file structures that keep your authority protected, your insurance stable, and your operation defensible when federal oversight arrives.</p>
-                <p className="text-authority-blue dark:text-white font-black italic">This is what separates a carrier executive from a driver with a dream.</p>
-              </div>
-            </article>
-
-            <aside className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               <div className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border-t-8 border-red-500/30 space-y-8 shadow-sm">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-red-600">REACTIVE APPROACH</h4>
-                  <ul className="space-y-4 text-sm font-bold text-slate-500 leading-relaxed">
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Fixing files after incidents</li>
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Skipping DOT maintenance logs</li>
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Waiting for federal audit alerts</li>
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Segmented, messy documentation</li>
-                  </ul>
-               </div>
-               <div className="bg-authority-blue p-10 rounded-[3rem] border-t-8 border-signal-gold space-y-8 shadow-2xl">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">SYSTEMATIC APPROACH</h4>
-                  <ul className="space-y-4 text-sm font-bold text-white leading-relaxed">
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Pre-launch safety installation</li>
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Daily-executed DQ workflows</li>
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Permanent audit-ready posture</li>
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Integrated, defensible record systems</li>
-                  </ul>
-               </div>
-            </aside>
-          </div>
-        </div>
-      </section>
 
       {/* 8. THE REACH TEST */}
       <section className="py-24 md:py-48 bg-authority-blue text-white overflow-hidden transition-colors">
@@ -897,6 +883,171 @@ const HomePage: React.FC = () => {
                   </p>
                </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. WHO THIS IS FOR (Restored) */}
+      <section className="py-24 md:py-32 bg-slate-50 dark:bg-primary-dark transition-colors">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <header className="text-center mb-16 md:mb-24 space-y-4">
+             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">QUALIFICATION PARAMETERS</p>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">
+               WHO THIS <span className="text-signal-gold italic">IS FOR.</span>
+             </h2>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { 
+                title: "BOX TRUCK OPERATORS", 
+                icon: <Truck size={32} />, 
+                desc: "Carriers operating CMVs between 10,001–26,000 lbs GVWR. CDL and Non-CDL lanes included." 
+              },
+              { 
+                title: "SEMI-TRUCK STARTUPS", 
+                icon: <Briefcase size={32} />, 
+                desc: "New motor carriers running 1–3 units who prioritize long-term operating authority protection." 
+              },
+              { 
+                title: "SAFETY MANAGERS", 
+                icon: <Users size={32} />, 
+                desc: "Personnel responsible for maintaining carrier documentation integrity and federal compliance files." 
+              },
+              { 
+                title: "INSURANCE PARTNERS", 
+                icon: <ShieldCheck size={32} />, 
+                desc: "Agencies and underwriters seeking pre-qualified, compliance-educated new entrants with documented safety posture." 
+              }
+            ].map((card, i) => (
+              <div key={i} className="bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl transition-all group">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform">
+                  {card.icon}
+                </div>
+                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-4 font-serif leading-tight">{card.title}</h4>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. BUILT-IN SYSTEMS (Restored) */}
+      <section className="py-24 md:py-32 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <header className="text-center mb-16 md:mb-24 space-y-4">
+             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">INTEGRATED COMPLIANCE TOOLS</p>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">
+               BUILT-IN <span className="text-signal-gold italic">SYSTEMS.</span>
+             </h2>
+             <p className="text-xl md:text-2xl font-bold text-slate-500 max-w-2xl mx-auto leading-relaxed">
+               More than curriculum. LaunchPath includes working tools designed for real carrier operations.
+             </p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { 
+                title: "TCO CALCULATOR", 
+                icon: <Calculator />, 
+                desc: "Break-even analysis and cost-per-mile modeling for operational survival math.", 
+                link: "/tools/tco-preview", 
+                badge: "ENROLLED" 
+              },
+              { 
+                title: "READINESS ASSESSMENT", 
+                icon: <ClipboardCheck />, 
+                desc: "Scored evaluation of your compliance posture before you begin operations.", 
+                link: "/readiness", 
+                badge: "FREE" 
+              },
+              { 
+                title: "COMPLIANCE ASSISTANT", 
+                icon: <MessageSquare />, 
+                desc: "AI-powered regulatory reference assistant for FMCSA terminology and system logic.", 
+                link: "#", 
+                badge: "FREE" 
+              },
+              { 
+                title: "RESOURCE LIBRARY", 
+                icon: <BookOpen />, 
+                desc: "Implementation templates, regulatory references, and vetted service provider directory.", 
+                link: "/resources", 
+                badge: "FREE" 
+              }
+            ].map((sys, i) => (
+              <Link to={sys.link} key={i} className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all">
+                <div className={`absolute top-6 right-6 px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest ${sys.badge === 'ENROLLED' ? 'bg-authority-blue text-white' : 'bg-green-100 text-green-700'}`}>
+                  {sys.badge}
+                </div>
+                <div className="w-14 h-14 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform">
+                  {React.cloneElement(sys.icon as React.ReactElement, { size: 24 })}
+                </div>
+                <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-4 font-serif leading-tight">{sys.title}</h4>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-8 flex-grow">{sys.desc}</p>
+                <div className="flex items-center text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold group-hover:translate-x-1 transition-transform">
+                  Access Tool <ArrowRight size={14} className="ml-2" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 11. COMMON QUESTIONS (Restored FAQ) */}
+      <section className="py-24 md:py-32 bg-white dark:bg-primary-dark overflow-hidden transition-colors">
+        <div className="max-w-4xl mx-auto px-6">
+          <header className="text-center mb-20 space-y-4">
+             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">FAQS</p>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">
+               COMMON <span className="text-signal-gold italic">QUESTIONS.</span>
+             </h2>
+          </header>
+
+          <div className="space-y-4">
+            {[
+              {
+                q: "Does LaunchPath guarantee I will pass a new entrant safety audit?",
+                a: "No. LaunchPath does not guarantee audit outcomes. Final determination is made solely by the FMCSA based on their independent investigation. We provide the institutional framework and documentation systems. The carrier provides the operational discipline. We don't sell a 'pass' — we sell the infrastructure for carriers who refuse to operate in a state of exposure.",
+                icon: <ShieldAlert size={18} />
+              },
+              {
+                q: "What if my insurance quote is higher than expected?",
+                a: "Insurance pricing is based on factors outside our control — your location, commodity, driving history, and market conditions. LaunchPath teaches you how to present your operation professionally to underwriters, but we cannot influence premium rates.",
+                icon: <CreditCard size={18} />
+              },
+              {
+                q: "Is LaunchPath for non-CDL box truck carriers?",
+                a: "Yes. LaunchPath covers all interstate motor carriers operating CMVs over 10,001 lbs GVWR, including non-CDL operations between 10,001–26,000 lbs.",
+                icon: <Truck size={18} />
+              },
+              {
+                q: "Can I skip sections or move ahead before completing required steps?",
+                a: "No. The curriculum follows a sequential implementation calendar. Each phase builds on the previous. Skipping creates gaps in your compliance infrastructure.",
+                icon: <Lock size={18} />
+              },
+              {
+                q: "Is there a recurring monthly subscription fee?",
+                a: "No. Enrollment is a one-time fee with lifetime access to the curriculum and tools.",
+                icon: <DollarSign size={18} />
+              }
+            ].map((faq, idx) => (
+              <FAQItem 
+                key={idx} 
+                question={faq.q} 
+                answer={faq.a} 
+                icon={faq.icon} 
+                isOpen={openFaqIndex === idx} 
+                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)} 
+              />
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link to="/faq" className="inline-flex items-center text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:underline group">
+               <span>VIEW FULL INSTITUTIONAL FAQ</span>
+               <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>

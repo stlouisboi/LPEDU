@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -48,6 +47,7 @@ import ReadinessPage from './pages/ReadinessPage';
 import PortalInterstitial from './pages/PortalInterstitial';
 import ReachTestPage from './pages/ReachTestPage';
 import TCOCalculatorPage from './pages/TCOCalculatorPage';
+import TCOPreviewPage from './pages/TCOPreviewPage';
 import OperatorPortal from './pages/OperatorPortal';
 
 // Admin Pages
@@ -271,9 +271,8 @@ const Footer = () => {
               <ul className="space-y-5">
                 {[
                   { name: 'LaunchPath Home', path: '/' },
-                  { name: 'About the Standard', path: '/about' },
-                  { name: 'Institutional Clarifications', path: '/clarification' },
-                  { name: 'Contact Us', path: '/contact' }
+                  { name: 'About', path: '/about' },
+                  { name: 'Contact', path: '/contact' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
@@ -290,9 +289,9 @@ const Footer = () => {
               </h3>
               <ul className="space-y-5">
                 {[
-                  { name: 'Operating Roadmap', path: '/learning-path' },
-                  { name: 'Admission Protocol', path: '/readiness' },
-                  { name: 'TCO Calculator', path: '/tools/tco-calculator' }
+                  { name: 'Program Roadmap', path: '/learning-path' },
+                  { name: 'Admission Protocol', path: '/pricing' },
+                  { name: 'TCO Calculator', path: '/tools/tco-preview' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
@@ -309,8 +308,8 @@ const Footer = () => {
               </h3>
               <ul className="space-y-5">
                 {[
-                  { name: 'FMCSA Safety Checklists', path: '/download/risk-map' },
-                  { name: 'Educational Downloads', path: '/resources' },
+                  { name: 'REACH Test', path: '/readiness' },
+                  { name: 'Resources', path: '/resources' },
                   { name: 'FAQ', path: '/faq' },
                   { name: 'Blog', path: '/blog' }
                 ].map((link) => (
@@ -329,9 +328,9 @@ const Footer = () => {
               </h3>
               <ul className="space-y-5">
                 {[
-                  { name: 'Privacy Policy', path: '/legal' },
-                  { name: 'Terms of Service', path: '/legal' },
-                  { name: 'Educational Disclaimer', path: '/legal' }
+                  { name: 'Privacy Policy', path: '/legal/privacy' },
+                  { name: 'Terms of Service', path: '/legal/terms' },
+                  { name: 'Educational Disclaimer', path: '/legal/disclaimer' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
@@ -508,7 +507,9 @@ export default function App() {
               <Route path="/legal" element={<LegalPage />} />
               <Route path="/ai-advisor" element={<AIServicePage />} />
               <Route path="/pricing" element={<EnrollPage />} />
-              <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
+              <Route path="/tools/tco-calculator" element={<TCOPreviewPage />} />
+              <Route path="/tools/tco-preview" element={<TCOPreviewPage />} />
+              <Route path="/authorized/tco-calculator" element={<ProtectedRoute><TCOCalculatorPage /></ProtectedRoute>} />
               <Route path="/modules/:id" element={<ModuleDetailPage />} />
               <Route path="/download/risk-map" element={<DownloadPage />} />
               <Route path="/blog" element={<BlogPage />} />

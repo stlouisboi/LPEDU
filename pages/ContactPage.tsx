@@ -100,7 +100,7 @@ const ContactPage = () => {
             <div className="relative h-full min-h-[600px] w-full rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white dark:border-surface-dark group">
               <img 
                 src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Fcall%20or%20text.png?alt=media&token=72ce99f3-0c26-401a-822f-2ce3835b2848" 
-                alt="Professional carrier operator in cab" 
+                alt="Professional carrier operator" 
                 className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-authority-blue/80 via-transparent to-transparent"></div>
@@ -134,7 +134,7 @@ const ContactPage = () => {
                    <p className="text-slate-500 dark:text-slate-400 max-w-sm mx-auto font-bold leading-relaxed mb-12">
                      A specialist has been notified. Expect a response within 24-48 hours.
                    </p>
-                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">SEND NEW MESSAGE</button>
+                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-steel-blue transition-all shadow-xl active:scale-95">SEND MESSAGE</button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -227,7 +227,7 @@ const ContactPage = () => {
                   
                   <div className="pt-8 flex flex-col items-center space-y-4">
                     <a href="mailto:contact@launchpathedu.com" className="text-xs font-bold text-authority-blue hover:text-signal-gold transition-colors flex items-center">
-                      <Mail size={14} className="mr-2" /> Or email us directly: contact@launchpathedu.com
+                      <Mail size={14} className="mr-2" /> contact@launchpathedu.com
                     </a>
 
                     <div className="h-px w-20 bg-slate-100 dark:bg-border-dark mt-2"></div>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, Globe, ExternalLink } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenAI, GenerateContentResponse } from '@google/genai';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -33,9 +33,9 @@ const AIChatWidget = () => {
     setLoading(true);
 
     try {
-      // Create new instance per call for maximum compatibility with dynamic API key updates
+      // Requirement: Create new instance right before call for key robustness
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const response = await ai.models.generateContent({
+      const response: GenerateContentResponse = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: userMsg,
         config: {

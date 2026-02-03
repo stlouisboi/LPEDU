@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { collection, query, where, onSnapshot, addDoc } from "firebase/firestore";
@@ -6,7 +5,6 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from '../firebase';
 import { COURSE_MODULES } from '../constants';
 import { GeneratedVideo } from '../types';
-// Added missing Clock and FileText imports
 import { 
   ChevronLeft, 
   Video, 
@@ -26,6 +24,19 @@ import {
   FileText
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
+
+// Hoisted Helper Components
+function LayoutDashboardIcon({ size, className }: { size: number, className?: string }) {
+  return <BookOpen size={size} className={className} />;
+}
+
+function MonitorIcon({ size, className }: { size: number, className?: string }) {
+  return <Video size={size} className={className} />;
+}
+
+function CloseIcon({ size, className }: { size: number, className?: string }) {
+  return <Play size={size} className={`rotate-45 ${className}`} />;
+}
 
 const ModuleDetailPage = () => {
   const { id } = useParams();
@@ -98,7 +109,7 @@ const ModuleDetailPage = () => {
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // Use fresh instance for polling per guidelines
+        // Requirement: New instance per polling call
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
         operation = await pollAi.operations.getVideosOperation({ operation });
       }
@@ -110,7 +121,6 @@ const ModuleDetailPage = () => {
         const res = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
         const blob = await res.blob();
         
-        // Internal Archive Logic (Admin only technically, but here for demonstration)
         const vidPath = `curriculum_videos/module_${moduleId}_${Date.now()}.mp4`;
         const storageRef = ref(storage, vidPath);
         await uploadBytes(storageRef, blob);
@@ -132,8 +142,9 @@ const ModuleDetailPage = () => {
       console.error("Visual Synthesis Failure:", err);
       if (err.message?.includes("Requested entity was not found")) {
         setHasApiKey(false);
+        alert("Session authorization expired. Re-authorization mandatory.");
       } else {
-        alert("Synthesis Terminal Error: Verify visual directives and API key capacity.");
+        alert("Synthesis Terminal Error: Verify visual directives.");
       }
     } finally {
       clearInterval(msgInterval);
@@ -141,19 +152,17 @@ const ModuleDetailPage = () => {
     }
   };
 
-  if (!module) return <div>Module not found.</div>;
+  if (!module) return <div className="p-20 text-center">Module not found in registry.</div>;
 
   return (
     <div className="bg-[#FAF9F6] dark:bg-primary-dark min-h-screen pt-24 pb-32 font-sans selection:bg-authority-blue/10">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12">
         
-        {/* Navigation Breadcrumb */}
         <Link to="/learning-path" className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-authority-blue transition-colors mb-12 group">
           <ChevronLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
           Back to Roadmap
         </Link>
 
-        {/* Module Header */}
         <header className="mb-16 space-y-6">
            <div className="flex items-center space-x-4">
               <span className="bg-authority-blue text-signal-gold px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg">
@@ -172,17 +181,14 @@ const ModuleDetailPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
            
-           {/* Primary Content Column */}
            <div className="lg:col-span-8 space-y-12">
-              
-              {/* Module Metadata Card */}
               <div className="bg-white dark:bg-surface-dark rounded-[3.5rem] p-10 md:p-14 border border-slate-100 dark:border-border-dark shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-12 opacity-[0.03] text-authority-blue">
                    <BookOpen size={160} />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-10 relative z-10">
                    {[
-                     { label: 'Lessons', val: module.lessons, icon: <LayoutDashboard size={16} /> },
+                     { label: 'Lessons', val: module.lessons, icon: <BookOpen size={16} /> },
                      { label: 'Status', val: module.duration, icon: <Clock size={16} /> },
                      { label: 'Difficulty', val: module.difficulty, icon: <Zap size={16} /> },
                      { label: 'Assets', val: `${module.resourcesCount} Files`, icon: <FileText size={16} /> }
@@ -207,7 +213,6 @@ const ModuleDetailPage = () => {
                 </div>
               </div>
 
-              {/* Neural Concept Visualizer Section */}
               <section className="bg-[#020617] rounded-[4rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl border border-white/5">
                 <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
                 
@@ -285,12 +290,12 @@ const ModuleDetailPage = () => {
                                onClick={() => setNewVideoUrl(null)}
                                className="absolute top-6 right-6 p-2 bg-black/50 rounded-full hover:bg-red-500 transition-colors"
                              >
-                               <X size={16} />
+                               <CloseIcon size={16} />
                              </button>
                            </div>
                          ) : (
                            <div className="opacity-20 group-hover/monitor:opacity-40 transition-opacity">
-                              <Monitor size={80} className="mx-auto mb-6" />
+                              <MonitorIcon size={80} className="mx-auto mb-6" />
                               <p className="text-[10px] font-black uppercase tracking-[0.4em]">Synthesis Terminal Idle</p>
                            </div>
                          )}
@@ -311,7 +316,6 @@ const ModuleDetailPage = () => {
               </section>
            </div>
 
-           {/* Sidebar: Media & Lessons */}
            <div className="lg:col-span-4 space-y-12">
               <aside>
                 <div className="flex items-center justify-between mb-8">
@@ -369,10 +373,5 @@ const ModuleDetailPage = () => {
     </div>
   );
 };
-
-// Simplified sub-components for internal use
-const LayoutDashboard = ({ size, className }: { size: number, className?: string }) => <BookOpen size={size} className={className} />;
-const Monitor = ({ size, className }: { size: number, className?: string }) => <Video size={size} className={className} />;
-const X = ({ size, className }: { size: number, className?: string }) => <Play size={size} className={`rotate-45 ${className}`} />;
 
 export default ModuleDetailPage;
