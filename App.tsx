@@ -10,9 +10,10 @@ import {
   Lock,
   Youtube,
   Facebook,
+  Twitter,
   Linkedin,
-  ShieldCheck,
-  Music2
+  Instagram,
+  ShieldCheck
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -362,14 +363,19 @@ const Footer = () => {
                     <Facebook size={28} />
                     </a>
                 )}
+                {settings.social.twitter && (
+                    <a href={settings.social.twitter} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Twitter">
+                    <Twitter size={28} />
+                    </a>
+                )}
                 {settings.social.linkedin && (
                     <a href={settings.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="LinkedIn">
                     <Linkedin size={28} />
                     </a>
                 )}
-                {settings.social.tiktok && (
-                    <a href={settings.social.tiktok} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="TikTok">
-                    <Music2 size={28} />
+                {settings.social.instagram && (
+                    <a href={settings.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Instagram">
+                    <Instagram size={28} />
                     </a>
                 )}
                 {settings.social.youtube && (

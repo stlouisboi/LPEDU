@@ -1,4 +1,5 @@
-import React;
+
+import React from 'react';
 import { 
   ShieldCheck, 
   FileText, 
@@ -32,9 +33,10 @@ export const INITIAL_SETTINGS: SiteSettings = {
   },
   social: {
     facebook: "https://facebook.com/launchpath",
+    twitter: "https://twitter.com/launchpath",
     linkedin: "https://linkedin.com/company/launchpath",
-    youtube: "https://youtube.com/@launchpath",
-    tiktok: "https://www.tiktok.com/@launchpath"
+    instagram: "https://instagram.com/launchpath",
+    youtube: "https://youtube.com/@launchpath"
   },
   checkoutUrls: {
     selfPaced: "",

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -8,7 +9,9 @@ import {
   Mail, 
   Phone, 
   Facebook, 
+  Twitter,
   Linkedin,
+  Instagram,
   Youtube,
   Search, 
   Loader2, 
@@ -23,8 +26,7 @@ import {
   Link as LinkIcon,
   Sparkles,
   Command,
-  Shield,
-  Music2
+  Shield
 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { SiteSettings } from '../../types';
@@ -381,6 +383,15 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Twitter size={12} className="mr-2" /> Twitter URL</label>
+                    <input 
+                      value={settings.social.twitter || ''}
+                      onChange={e => setSettings({...settings, social: {...settings.social, twitter: e.target.value}})}
+                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
+                      placeholder="https://twitter.com/..."
+                    />
+                  </div>
+                  <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Linkedin size={12} className="mr-2" /> LinkedIn URL</label>
                     <input 
                       value={settings.social.linkedin || ''}
@@ -390,12 +401,12 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Music2 size={12} className="mr-2" /> TikTok URL</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Instagram size={12} className="mr-2" /> Instagram URL</label>
                     <input 
-                      value={settings.social.tiktok || ''}
-                      onChange={e => setSettings({...settings, social: {...settings.social, tiktok: e.target.value}})}
+                      value={settings.social.instagram || ''}
+                      onChange={e => setSettings({...settings, social: {...settings.social, instagram: e.target.value}})}
                       className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
-                      placeholder="https://tiktok.com/@..."
+                      placeholder="https://instagram.com/..."
                     />
                   </div>
                   <div className="space-y-2">
@@ -489,8 +500,9 @@ const SettingsManager = () => {
                 <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue mb-4">Footer Links Preview</h4>
                 <div className="flex items-center space-x-4 text-slate-400">
                    {settings.social.facebook && <Facebook size={18} />}
+                   {settings.social.twitter && <Twitter size={18} />}
                    {settings.social.linkedin && <Linkedin size={18} />}
-                   {settings.social.tiktok && <Music2 size={18} />}
+                   {settings.social.instagram && <Instagram size={18} />}
                    {settings.social.youtube && <Youtube size={18} className="text-red-500" />}
                 </div>
                 <p className="text-[10px] mt-4 text-text-muted font-medium italic">YouTube link will display with the distinct brand accent.</p>

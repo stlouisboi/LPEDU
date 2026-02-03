@@ -1,3 +1,4 @@
+
 export interface Resource {
   id: string;
   name: string;
@@ -91,9 +92,10 @@ export interface SiteSettings {
   };
   social: {
     facebook?: string;
+    twitter?: string;
     linkedin?: string;
+    instagram?: string;
     youtube?: string;
-    tiktok?: string;
   };
   checkoutUrls?: {
     selfPaced: string;

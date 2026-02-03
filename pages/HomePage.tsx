@@ -235,7 +235,7 @@ const HomePage: React.FC = () => {
     { n: "MODULE 2", t: "INSURANCE & RISK MANAGEMENT", d: "Required coverages, policy shopping, cancellation prevention." },
     { n: "MODULE 3", t: "THE 16 DEADLY SINS", d: "The most common compliance exposures that cause audit failure and enforcement action." },
     { n: "MODULE 4", t: "AUDIT VERIFICATION", d: "New Entrant Safety Audit preparation, documentation review, and readiness verification." },
-    { n: "MODULE 5", t: "LOAD DISCIPSIINE & CASH FLOW", d: "True cost per mile calculation and financial sustainability systems." },
+    { n: "MODULE 5", t: "LOAD DISCIPLINE & CASH FLOW", d: "True cost per mile calculation and financial sustainability systems." },
     { n: "MODULE 6", t: "STABILIZATION & GROWTH", d: "Transitioning from survival mode to sustainable, repeatable operations." }
   ];
 
@@ -250,7 +250,7 @@ const HomePage: React.FC = () => {
           <div className="lg:col-span-7 space-y-8 md:space-y-12 animate-reveal-up">
             <div className="inline-flex items-center space-x-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full">
               <span className="flex h-2 w-2 rounded-full bg-signal-gold animate-pulse"></span>
-              <span className="text-xs sm:text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA (Federal Safety) Standard</span>
+              <span className="text-xs md:text-[10px] font-black uppercase tracking-widest md:tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA (Federal Safety) Standard</span>
             </div>
             
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-black leading-[0.95] md:leading-[0.9] tracking-tighter uppercase font-serif text-authority-blue dark:text-white">
@@ -261,7 +261,7 @@ const HomePage: React.FC = () => {
               <p className="text-lg md:text-xl font-black uppercase text-authority-blue dark:text-white leading-tight mb-6 tracking-tight">
                 LaunchPath is a structured setup standard for new motor carriers. We verify your business readiness (stewardship) before you begin hauling.
               </p>
-              <p className="text-xs md:text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] md:tracking-[0.4em] leading-relaxed max-w-xl">
+              <p className="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest md:tracking-[0.4em] leading-relaxed max-w-xl">
                 IT IS A STRUCTURED SYSTEM FOR DOCUMENTATION INTEGRITY AND SAFETY MANAGEMENT.
               </p>
             </div>
@@ -284,7 +284,7 @@ const HomePage: React.FC = () => {
               <div className="relative z-10">
                 <header className="flex justify-between items-start mb-8 md:mb-12">
                    <div>
-                     <h3 className="text-xs md:text-sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-[0.4em] mb-1 md:mb-2">FORMAL</h3>
+                     <h3 className="text-xs md:text-sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest md:tracking-[0.4em] mb-1 md:mb-2">FORMAL</h3>
                      <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">ADMISSION <br/>INQUIRY</h3>
                    </div>
                    <div className="w-8 h-8 md:w-10 md:h-10 border border-slate-200 dark:border-white/10 rounded-full flex items-center justify-center text-slate-300">
@@ -294,7 +294,7 @@ const HomePage: React.FC = () => {
                 
                 <form onSubmit={handleLeadSubmit} className="space-y-6 md:space-y-8">
                   <div className="space-y-2">
-                    <label className="text-xs md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">FULL NAME</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">FULL NAME</label>
                     <input 
                       required 
                       value={formData.firstName}
@@ -304,7 +304,7 @@ const HomePage: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs md:text-[9px] font-black uppercase tracking-widest text-slate-400 ml-4">EMAIL</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">EMAIL</label>
                     <input 
                       required 
                       type="email"
@@ -336,7 +336,7 @@ const HomePage: React.FC = () => {
           <article className="lg:col-span-7 space-y-8 md:space-y-12">
             <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full">
               <ShieldAlert size={16} className="text-signal-gold" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em]">STRUCTURAL RISK EXPOSURE</span>
+              <span className="text-xs font-black uppercase tracking-widest md:tracking-[0.4em]">STRUCTURAL RISK EXPOSURE</span>
             </div>
             
             <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-serif leading-[0.95] md:leading-[0.85] tracking-tighter uppercase">
@@ -390,7 +390,7 @@ const HomePage: React.FC = () => {
                               <div className="absolute inset-0 bg-signal-gold rounded-full opacity-0 group-hover/item:animate-ping group-hover/item:opacity-20"></div>
                             </div>
                           </div>
-                          <span className="text-xs md:text-[11px] font-black uppercase tracking-[0.15em] text-slate-700 leading-tight group-hover/item:text-authority-blue transition-colors">
+                          <span className="text-xs font-black uppercase tracking-widest text-slate-700 leading-tight group-hover/item:text-authority-blue transition-colors">
                             {item}
                           </span>
                        </div>
@@ -404,7 +404,7 @@ const HomePage: React.FC = () => {
                        <div className="w-12 h-12 bg-signal-gold rounded-2xl flex items-center justify-center text-authority-blue shadow-lg">
                           <MessageCircle size={24} fill="currentColor" className="opacity-80" />
                        </div>
-                       <span className="text-xs sm:text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap">
+                       <span className="text-xs font-black uppercase tracking-widest text-white whitespace-nowrap">
                          COMPLIANCE REFERENCE
                        </span>
                     </div>
@@ -419,7 +419,7 @@ const HomePage: React.FC = () => {
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-32 space-y-6">
-            <p className="text-xs sm:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.6em] text-slate-300 dark:text-slate-700">FOUNDATIONAL PURPOSE</p>
+            <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.6em] text-slate-300 dark:text-slate-700">FOUNDATIONAL PURPOSE</p>
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white tracking-tighter uppercase">
               WHY <span className="text-signal-gold italic">LAUNCHPATH</span> EXISTS.
             </h2>
@@ -439,10 +439,10 @@ const HomePage: React.FC = () => {
               </div>
               
               <div className="space-y-6 pt-10 border-t-4 border-slate-100 dark:border-white/5">
-                <p className="text-base md:text-lg text-slate-500 dark:text-slate-300 font-medium leading-relaxed">
+                <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                   New carriers are often encouraged to move fast without full system readiness. They receive fragmented advice and incomplete guidance, and are told to address compliance after they begin operating.
                 </p>
-                <p className="text-base md:text-lg text-slate-500 dark:text-slate-300 font-medium leading-relaxed">
+                <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                   This leads to preventable shutdowns — not because operators are careless, but because they were never given a clear, disciplined pathway.
                 </p>
               </div>
@@ -455,7 +455,7 @@ const HomePage: React.FC = () => {
               <div className="relative z-10">
                 <header className="flex items-center space-x-4 mb-10">
                    <ShieldCheck size={28} className="text-signal-gold" />
-                   <h4 className="text-xs font-black uppercase tracking-[0.4em] text-white">THE OPERATING STANDARD</h4>
+                   <h4 className="text-xs font-black uppercase tracking-widest md:tracking-[0.4em] text-white">THE OPERATING STANDARD</h4>
                 </header>
                 
                 <p className="text-lg font-bold text-slate-300 mb-12 leading-relaxed">
@@ -480,17 +480,17 @@ const HomePage: React.FC = () => {
                 </ul>
 
                 <div className="p-8 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm mb-12">
-                   <p className="text-xs sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-signal-gold mb-4">// MISSION PARADIGM</p>
+                   <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.4em] text-signal-gold mb-4">// MISSION PARADIGM</p>
                    <p className="text-xl font-black font-serif italic text-white uppercase tracking-tight">The goal is not speed. <br/>The goal is continuity.</p>
                 </div>
                 
                 <footer className="pt-10 border-t border-white/10 space-y-5">
-                   <p className="text-[11px] sm:text-[9px] font-black uppercase tracking-widest text-slate-500">OPERATOR VALUE ALIGNMENT:</p>
+                   <p className="text-xs font-black uppercase tracking-widest text-slate-500">OPERATOR VALUE ALIGNMENT:</p>
                    <div className="flex flex-col space-y-3">
                       {["Long-term operation over fast entry", "Structure over hustle", "Clarity over noise", "Stewardship over shortcuts"].map((v, i) => (
                         <div key={i} className="flex items-center space-x-3">
                            <CheckCircle2 size={12} className="text-signal-gold opacity-50" />
-                           <span className="text-xs sm:text-[11px] font-black uppercase tracking-widest text-slate-300">{v}</span>
+                           <span className="text-xs font-black uppercase tracking-widest text-slate-300">{v}</span>
                         </div>
                       ))}
                    </div>
@@ -515,7 +515,7 @@ const HomePage: React.FC = () => {
             <article className="lg:col-span-6 space-y-10 animate-reveal-up">
               <header className="inline-flex items-center space-x-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-5 py-2.5 rounded-full shadow-sm">
                 <MapIcon size={16} className="text-authority-blue dark:text-signal-gold" />
-                <span className="text-xs sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-authority-blue dark:text-white">YOUR FIRST 90 DAYS</span>
+                <span className="text-xs font-black uppercase tracking-widest sm:tracking-[0.4em] text-authority-blue dark:text-white">YOUR FIRST 90 DAYS</span>
               </header>
               
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9]">
@@ -532,8 +532,8 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="p-8 bg-white dark:bg-surface-dark border-l-[12px] border-signal-gold rounded-r-[3rem] shadow-sm">
-                 <p className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-4">SYSTEMIC BOUNDARY</p>
-                 <p className="text-base text-slate-600 dark:text-slate-300 font-bold leading-relaxed">
+                 <p className="text-xs font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold mb-4">SYSTEMIC BOUNDARY</p>
+                 <p className="text-base text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
                    This map is not a plan. It is a diagnostic orientation. Results identify exposure areas only — not corrective actions. Implementation begins after Admission & Verification.
                  </p>
               </div>
@@ -565,7 +565,7 @@ const HomePage: React.FC = () => {
                         <Radar size={48} className="text-signal-gold" />
                       </div>
                       <div className="space-y-2">
-                        <p className="text-xs sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.5em] text-slate-400 group-hover:text-white transition-colors">DIAGNOSTIC SCAN ACTIVE</p>
+                        <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.5em] text-slate-400 group-hover:text-white transition-colors">DIAGNOSTIC SCAN ACTIVE</p>
                         <p className="text-xs font-bold text-signal-gold uppercase tracking-widest">Identifying Structural Gaps</p>
                       </div>
                    </div>
@@ -584,7 +584,7 @@ const HomePage: React.FC = () => {
              <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
                THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
              </h2>
-             <p className="text-xs sm:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-slate-400">THE OPERATIONAL FRAMEWORK</p>
+             <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.5em] text-slate-400">THE OPERATIONAL FRAMEWORK</p>
           </header>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
@@ -622,12 +622,12 @@ const HomePage: React.FC = () => {
                   <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase leading-tight mb-2 font-serif tracking-tight">
                     {pillar.title}
                   </h3>
-                  <p className="text-[11px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-signal-gold mb-6">{pillar.tagline}</p>
-                  <p className="text-base font-bold text-slate-500 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs font-black uppercase tracking-widest text-signal-gold mb-6">{pillar.tagline}</p>
+                  <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
                     {pillar.desc}
                   </p>
                   {pillar.hookLine && (
-                    <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-600/70 dark:text-emerald-300/70 italic mt-4">
+                    <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-600/70 dark:text-emerald-400/70 italic mt-4">
                       {pillar.hookLine}
                     </p>
                   )}
@@ -643,12 +643,12 @@ const HomePage: React.FC = () => {
           <header className="text-center mb-16 md:mb-24 space-y-8">
             <div className="inline-flex items-center space-x-3 bg-red-600 text-white px-8 py-3 rounded-full shadow-xl">
               <Skull size={14} className="animate-pulse" />
-              <span className="text-xs sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.5em]">Registry Warning: Audit Failure Vectors</span>
+              <span className="text-xs font-black uppercase tracking-widest sm:tracking-[0.5em]">Registry Warning: Audit Failure Vectors</span>
             </div>
             <h2 className="text-5xl sm:text-7xl lg:text-[8rem] font-black font-serif tracking-tight leading-[0.85] text-authority-blue dark:text-white uppercase">
               THE 16 <br/><span className="text-red-600 italic underline decoration-red-600/20 decoration-[8px] underline-offset-[16px]">DEADLY SINS.</span>
             </h2>
-            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 font-extrabold max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 font-extrabold max-w-3xl mx-auto leading-relaxed">
               Over 30 audit-level violations mapped to their regulatory consequence — categorized by exposure severity.
             </p>
           </header>
@@ -675,14 +675,14 @@ const HomePage: React.FC = () => {
                       }`}></div>
                       <span className="absolute -top-4 -right-4 text-6xl font-black opacity-5 text-slate-900 dark:text-white">{sin.id}</span>
                       
-                      <h4 className="text-2xl font-black text-slate-800 dark:text-text-dark-primary uppercase tracking-tight leading-tight mb-8">
+                      <h4 className="text-lg font-black text-slate-800 dark:text-text-dark-primary uppercase tracking-tight leading-tight mb-8">
                         {sin.text}
                       </h4>
                       
                       <div className={`inline-flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
                         sin.severity === 'TERMINAL' ? 'bg-red-50 text-red-600 border-red-100 dark:bg-red-900/40 dark:text-red-400 dark:border-red-800' : 
-                        sin.severity === 'CRITICAL' ? 'bg-orange-50 text-orange-600 border-orange-100 dark:text-orange-300 dark:bg-orange-900/60 dark:border-orange-700' : 
-                        'bg-amber-50 text-amber-600 border-amber-100 dark:text-amber-300 dark:bg-amber-900/60 dark:border-amber-700'
+                        sin.severity === 'CRITICAL' ? 'bg-orange-50 text-orange-600 border-orange-100 dark:bg-orange-900/60 dark:text-orange-300 dark:border-orange-700' : 
+                        'bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-900/60 dark:text-amber-300 dark:border-amber-700'
                       }`}>
                         {sin.severity === 'TERMINAL' ? <Skull size={10} className="animate-pulse" /> : 
                          sin.severity === 'CRITICAL' ? <AlertOctagon size={10} /> : 
@@ -709,7 +709,7 @@ const HomePage: React.FC = () => {
                 <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
                   WHAT'S <span className="text-signal-gold italic">INSIDE</span> THE PROGRAM.
                 </h2>
-                <p className="text-xs sm:text-[11px] font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-slate-400">
+                <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.5em] text-slate-400">
                   6 MODULES | 46 LESSONS | 50+ DOWNLOADS
                 </p>
               </header>
@@ -719,14 +719,14 @@ const HomePage: React.FC = () => {
                   <div key={i} className="flex space-x-6">
                     <div className="flex flex-col items-center">
                        <div className="w-10 h-10 rounded-full bg-authority-blue dark:bg-white/10 flex items-center justify-center text-white dark:text-signal-gold text-xs font-black shrink-0 shadow-lg">
-                          <span className="text-xs sm:text-[10px]">{i}</span>
+                          <span className="text-xs">{i}</span>
                        </div>
                        {i < 6 && <div className="w-0.5 h-full bg-slate-200 dark:bg-white/5 my-2"></div>}
                     </div>
                     <article className="space-y-1">
-                      <h4 className="text-xs sm:text-[10px] font-black text-signal-gold uppercase tracking-widest">{mod.n}</h4>
+                      <h4 className="text-xs font-black text-signal-gold uppercase tracking-widest">{mod.n}</h4>
                       <h3 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight font-serif">{mod.t}</h3>
-                      <p className="text-base text-slate-500 dark:text-slate-300 font-medium leading-relaxed max-w-xl">{mod.d}</p>
+                      <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-xl">{mod.d}</p>
                     </article>
                   </div>
                 ))}
@@ -740,7 +740,7 @@ const HomePage: React.FC = () => {
               <div className="relative z-10 space-y-10">
                 <header className="flex items-center space-x-4">
                    <ShieldCheck size={28} className="text-signal-gold" />
-                   <h4 className="text-xs font-black uppercase tracking-[0.4em] text-white">WHAT YOU WALK AWAY WITH</h4>
+                   <h4 className="text-xs font-black uppercase tracking-widest md:tracking-[0.4em] text-white">WHAT YOU WALK AWAY WITH</h4>
                 </header>
                 
                 <ul className="space-y-8">
@@ -771,7 +771,7 @@ const HomePage: React.FC = () => {
           <Activity size={400} />
         </div>
         <div className="max-w-[1400px] mx-auto px-6 text-center">
-          <p className="text-xs md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.6em] text-slate-300 mb-8 md:mb-12">TECHNICAL READINESS ASSESSMENT</p>
+          <p className="text-xs font-black uppercase tracking-widest md:tracking-[0.6em] text-slate-300 mb-8 md:mb-12">TECHNICAL READINESS ASSESSMENT</p>
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[8rem] font-black font-serif text-authority-blue dark:text-white mb-8 md:mb-12 uppercase tracking-tighter">
             THE <span className="text-signal-gold italic">REACH</span> TEST™
           </h2>
@@ -781,12 +781,12 @@ const HomePage: React.FC = () => {
           </p>
 
           <article className="max-w-2xl mx-auto mb-20">
-            <p className="text-xl font-bold text-slate-500 dark:text-slate-300 leading-relaxed mb-10">
+            <p className="text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed mb-10">
               The REACH Test™ is a diagnostic tool used to find where your business is at risk. It is the first step of our Education phase.
             </p>
             <div className="inline-flex items-center px-8 py-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl mb-12">
                <ShieldAlert size={18} className="text-amber-600 mr-4" />
-               <span className="text-xs sm:text-[11px] font-black uppercase text-amber-800 dark:text-amber-400 tracking-widest leading-none">DIAGNOSTIC ASSESSMENT ONLY — NOT AN IMPLEMENTATION</span>
+               <span className="text-xs font-black uppercase text-amber-800 dark:text-amber-400 tracking-widest leading-none">DIAGNOSTIC ASSESSMENT ONLY — NOT AN IMPLEMENTATION</span>
             </div>
           </article>
 
@@ -802,7 +802,7 @@ const HomePage: React.FC = () => {
                   {React.cloneElement(vector.i as React.ReactElement, { size: 24 })}
                 </div>
                 <div className="space-y-3">
-                  <p className="text-xs md:text-[9px] font-black uppercase text-slate-400 tracking-[0.3em] md:tracking-[0.5em]">{vector.l}</p>
+                  <p className="text-xs font-black uppercase text-slate-400 tracking-widest md:tracking-[0.5em]">{vector.l}</p>
                   <h4 className="text-xl font-black uppercase tracking-tight text-authority-blue dark:text-white">{vector.t}</h4>
                   <p className="text-sm font-bold text-slate-500 leading-relaxed">{vector.d}</p>
                 </div>
@@ -822,11 +822,11 @@ const HomePage: React.FC = () => {
       <section className="py-20 lg:py-28 bg-white dark:bg-primary-dark border-t border-slate-100 dark:border-border-dark transition-colors">
         <div className="max-w-6xl mx-auto px-5 sm:px-10 animate-reveal-up">
           <header className="text-center mb-16 space-y-4">
-            <p className="text-xs sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.6em] text-authority-blue dark:text-signal-gold">Integrated Compliance Tools</p>
+            <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.6em] text-authority-blue dark:text-signal-gold">Integrated Compliance Tools</p>
             <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">
               Built-In <span className="text-signal-gold italic">Systems.</span>
             </h2>
-            <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-300 font-extrabold max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-400 font-extrabold max-w-2xl mx-auto leading-relaxed">
               More than curriculum. LaunchPath includes working tools designed for real carrier operations.
             </p>
           </header>
@@ -879,7 +879,7 @@ const HomePage: React.FC = () => {
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full mx-auto lg:mx-0 shadow-sm">
                   <Zap size={14} className="text-signal-gold" />
-                  <span className="text-xs sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/70">SYSTEM CUSTODIAN</span>
+                  <span className="text-xs font-black uppercase tracking-widest sm:tracking-[0.3em] text-white/70">SYSTEM CUSTODIAN</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-serif uppercase tracking-tight text-white leading-none">
                   Vince Lawrence
@@ -906,7 +906,7 @@ const HomePage: React.FC = () => {
                   { icon: <ShieldCheck size={14} />, label: "OSHA-Certified" },
                   { icon: <Target size={14} />, label: "20+ Years Federal Compliance" }
                 ].map((badge, i) => (
-                  <div key={i} className="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs sm:text-[10px] font-black uppercase tracking-[0.2em] text-white/50 hover:bg-white/10 transition-colors">
+                  <div key={i} className="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest text-white/50 hover:bg-white/10 transition-colors">
                     {badge.icon}
                     <span>{badge.label}</span>
                   </div>
@@ -914,7 +914,7 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="pt-6">
-                <Link to="/about" className="inline-flex items-center text-xs sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/60 hover:text-signal-gold transition-colors group">
+                <Link to="/about" className="inline-flex items-center text-xs font-black uppercase tracking-widest sm:tracking-[0.3em] text-white/60 hover:text-signal-gold transition-colors group">
                   <span>Read Full Background</span>
                   <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -928,7 +928,7 @@ const HomePage: React.FC = () => {
       <section className="py-24 md:py-32 lg:py-48 bg-slate-50 dark:bg-primary-dark transition-colors">
         <div className="max-w-7xl mx-auto px-6">
           <header className="text-center mb-16 lg:mb-24 space-y-4">
-            <p className="text-xs sm:text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">QUALIFICATION PARAMETERS</p>
+            <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.5em] text-slate-400">QUALIFICATION PARAMETERS</p>
             <h2 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter">
               WHO THIS <br/><span className="text-signal-gold italic">IS FOR.</span>
             </h2>
@@ -962,7 +962,7 @@ const HomePage: React.FC = () => {
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold uppercase tracking-tight text-authority-blue dark:text-white mb-4 font-serif">{item.title}</h3>
-                <p className="text-base text-slate-500 dark:text-slate-300 font-medium leading-relaxed">{item.desc}</p>
+                <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
               </article>
             ))}
           </div>
@@ -995,7 +995,7 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <Link to="/faq" className="text-xs sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:text-signal-gold dark:hover:text-white transition-colors inline-flex items-center space-x-2 group">
+            <Link to="/faq" className="text-xs font-black uppercase tracking-widest sm:tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:text-signal-gold dark:hover:text-white transition-colors inline-flex items-center space-x-2 group">
               <span>View Full Institutional FAQ</span>
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -1013,17 +1013,17 @@ const HomePage: React.FC = () => {
           </header>
           
           <article className="max-w-3xl mx-auto p-12 bg-white dark:bg-gray-800/50 rounded-[4rem] border-4 border-dashed border-slate-200 dark:border-slate-700 shadow-inner">
-             <p className="text-xl font-bold text-slate-600 dark:text-slate-300 leading-relaxed italic uppercase tracking-tight text-center">
+             <p className="text-xl font-bold text-slate-600 dark:text-slate-400 leading-relaxed italic uppercase tracking-tight text-center">
                "YOU ARE ADMITTED ONLY AFTER WE VERIFY THAT YOUR BUSINESS IS POSITIONED FOR SUCCESS WITHIN OUR STANDARDS."
              </p>
           </article>
 
           <nav className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-10">
-             <Link to="/readiness" className="w-full sm:w-auto bg-authority-blue text-white px-12 md:px-20 py-7 md:py-10 rounded-[2rem] md:rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs md:text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 inline-flex items-center justify-center border-b-[12px] border-slate-900 group">
+             <Link to="/readiness" className="w-full sm:w-auto bg-authority-blue text-white px-12 md:px-20 py-7 md:py-10 rounded-[2rem] md:rounded-[3rem] font-black uppercase tracking-widest md:tracking-[0.4em] text-xs md:text-sm hover:bg-steel-blue transition-all shadow-2xl active:scale-95 inline-flex items-center justify-center border-b-[12px] border-slate-900 group">
                APPLY FOR ADMISSION
                <ArrowRight size={20} className="ml-5 group-hover:translate-x-2 transition-transform" />
              </Link>
-             <Link to="/about" className="text-xs sm:text-[11px] text-slate-400 font-black uppercase tracking-[0.3em] hover:text-authority-blue transition-colors">
+             <Link to="/about" className="text-xs font-black uppercase tracking-widest md:tracking-[0.3em] hover:text-authority-blue transition-colors">
                 Review Program Standard
              </Link>
           </nav>
@@ -1032,7 +1032,7 @@ const HomePage: React.FC = () => {
 
       {/* FOOTER METADATA */}
       <footer className="bg-slate-50 dark:bg-surface-dark py-12 border-t border-slate-100 dark:border-border-dark text-center">
-         <p className="text-[11px] sm:text-[9px] font-black uppercase tracking-[0.3em] sm:tracking-[0.8em] text-slate-300 dark:text-slate-600 italic">SYSTEM REGISTRY IDENTIFIER: NC-LP-V4.5 — END OF REPOSITORY BRIEF</p>
+         <p className="text-xs font-black uppercase tracking-widest sm:tracking-[0.8em] text-slate-300 dark:text-slate-600 italic">SYSTEM REGISTRY IDENTIFIER: NC-LP-V4.5 — END OF REPOSITORY BRIEF</p>
       </footer>
 
     </div>
