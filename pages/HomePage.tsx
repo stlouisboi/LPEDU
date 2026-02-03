@@ -30,7 +30,9 @@ import {
   UserCheck,
   Scale,
   Anchor,
-  User
+  User,
+  ExternalLink,
+  ShieldX
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp, doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../firebase';
@@ -44,7 +46,7 @@ const FAQItem: React.FC<{
   onClick: () => void 
 }> = ({ question, answer, isOpen, icon, onClick }) => {
   return (
-    <article className={`border transition-all duration-500 rounded-[2rem] overflow-hidden ${
+    <article className={`border transition-all duration-500 rounded-[2.5rem] overflow-hidden ${
       isOpen 
       ? 'border-authority-blue bg-white dark:bg-surface-dark shadow-2xl ring-1 ring-authority-blue/5' 
       : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark shadow-sm hover:border-authority-blue/30'
@@ -478,21 +480,24 @@ const HomePage: React.FC = () => {
                  hookLine: "Run your numbers before you commit."
                }
              ].map((pillar, i) => (
-               <article key={i} className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col text-center group hover:shadow-2xl transition-all duration-500">
-                  <div className="w-14 h-14 md:w-16 md:h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl md:rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-inner group-hover:scale-110 transition-transform">
-                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 24 })}
+               <article key={i} className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(30,58,95,0.12)] transition-all duration-700 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
+                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 28 })}
                   </div>
-                  <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase leading-tight mb-2 font-serif tracking-tight">
+                  <h3 className="text-2xl font-black text-authority-blue dark:text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs font-black uppercase tracking-widest text-signal-gold mb-6">{pillar.tagline}</p>
-                  <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8 opacity-70">{pillar.tagline}</p>
+                  <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
                     {pillar.desc}
                   </p>
                   {pillar.hookLine && (
-                    <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-600/70 dark:text-emerald-400/70 italic mt-4">
-                      {pillar.hookLine}
-                    </p>
+                    <div className="mt-auto pt-6 border-t border-slate-50 dark:border-border-dark">
+                      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-600 dark:text-emerald-400 italic">
+                        {pillar.hookLine}
+                      </p>
+                    </div>
                   )}
                </article>
              ))}
@@ -500,46 +505,56 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. THE 16 DEADLY SINS */}
-      <section id="exposure-patterns" className="bg-slate-100 dark:bg-primary-dark py-24 lg:py-40 border-t border-b border-slate-200 dark:border-border-dark transition-colors">
-        <div className="max-w-7xl mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-6">
-             <div className="w-20 h-20 bg-red-500 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-red-500/20">
-               <ShieldAlert size={40} />
+      {/* 7. THE 16 DEADLY SINS - ENHANCED STRUCTURE */}
+      <section id="exposure-patterns" className="bg-slate-100 dark:bg-[#020617] py-24 lg:py-48 border-y border-slate-200 dark:border-border-dark transition-colors relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+          <header className="text-center mb-24 md:mb-32 space-y-8 stagger-parent">
+             <div className="w-24 h-24 bg-red-600 text-white rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-red-600/30 animate-reveal-up border-4 border-white/20">
+               <ShieldX size={48} />
              </div>
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-red-600">THE EXPOSURE TAXONOMY</p>
-             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
+             <p className="text-[11px] font-black uppercase tracking-[0.8em] text-red-600 animate-reveal-up">THE EXPOSURE TAXONOMY</p>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9] animate-reveal-up">
                THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER EXPOSURE.</span>
              </h2>
-             <p className="text-xl font-bold text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-               Most motor carriers SATISFACTORILY fail before they complete month 18. These are the specific patterns federal auditors and insurance providers use to identify high-risk operations.
+             <div className="h-1.5 w-32 bg-red-600/20 mx-auto rounded-full mt-12 animate-reveal-up"></div>
+             <p className="text-xl md:text-2xl font-bold text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed animate-reveal-up">
+               Institutional audits are predictable. Most new carriers fail because they ignore these 16 specific patterns used by FMCSA investigators to identify high-risk operations.
              </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {sinsData.map((category, idx) => (
-              <div key={idx} className="space-y-6">
-                <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold bg-slate-50 dark:bg-gray-800 p-4 rounded-xl border border-slate-100 dark:border-border-dark text-center shadow-sm">
-                  {category.category}
-                </h4>
-                <div className="space-y-4">
+              <div key={idx} className="space-y-8">
+                <div className="flex flex-col items-center mb-10">
+                   <h4 className="text-[12px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-4 text-center">
+                     {category.category}
+                   </h4>
+                   <div className="h-px w-16 bg-slate-300 dark:bg-border-dark"></div>
+                </div>
+                <div className="space-y-6">
                   {category.items.map((item) => (
-                    <article key={item.id} className="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
-                       <div className="absolute top-0 right-0 p-2 opacity-5 text-red-600 group-hover:scale-125 transition-transform">
-                          <ShieldAlert size={40} />
+                    <article key={item.id} className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-slate-200 dark:border-border-dark shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-2xl hover:translate-y-[-4px] transition-all duration-500 group relative overflow-hidden">
+                       <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 text-red-600 group-hover:scale-150 transition-all duration-700">
+                          <ShieldAlert size={60} />
                        </div>
-                       <header className="flex items-center space-x-3 mb-3">
-                          <span className="text-[10px] font-black text-red-400">{item.id}</span>
-                          <h5 className="text-sm font-black text-authority-blue dark:text-white uppercase leading-tight">{item.text}</h5>
+                       
+                       <header className="flex items-center space-x-4 mb-6">
+                          <span className="text-xs font-black text-red-500/40 font-mono tracking-tighter group-hover:text-red-500 transition-colors">{item.id}</span>
+                          <h5 className="text-base font-black text-authority-blue dark:text-white uppercase leading-tight tracking-tight group-hover:text-red-600 transition-colors">{item.text}</h5>
                        </header>
-                       <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-50 dark:border-border-dark">
-                          <div className="space-y-1">
-                             <p className="text-[8px] font-black uppercase text-slate-400 tracking-widest">IMPACT</p>
-                             <p className="text-[10px] font-black text-slate-600 dark:text-slate-400 uppercase tracking-tight">{item.impact}</p>
+
+                       <div className="space-y-4 pt-6 border-t border-slate-50 dark:border-border-dark">
+                          <div className="flex justify-between items-center">
+                             <p className="text-[9px] font-black uppercase text-slate-400 tracking-widest">RESULT</p>
+                             <p className="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">{item.impact}</p>
                           </div>
-                          <div className="text-right space-y-1">
-                             <p className="text-[8px] font-black uppercase text-slate-400 tracking-widest">SEVERITY</p>
-                             <p className={`text-[10px] font-black uppercase tracking-tight ${item.severity === 'TERMINAL' ? 'text-red-600' : 'text-amber-500'}`}>{item.severity}</p>
+                          <div className="flex justify-between items-center">
+                             <p className="text-[9px] font-black uppercase text-slate-400 tracking-widest">SEVERITY</p>
+                             <div className={`flex items-center space-x-2 px-2.5 py-1 rounded-lg ${item.severity === 'TERMINAL' ? 'bg-red-50 text-red-600' : 'bg-amber-50 text-amber-600'}`}>
+                                <Zap size={10} className="fill-current" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">{item.severity}</span>
+                             </div>
                           </div>
                        </div>
                     </article>
@@ -547,6 +562,16 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+          
+          <div className="mt-32 text-center">
+             <div className="p-8 bg-authority-blue dark:bg-surface-dark border border-white/5 rounded-[3rem] shadow-2xl inline-flex flex-col items-center max-w-xl mx-auto">
+                <p className="text-lg font-bold text-slate-300 mb-8 italic">"Auditors aren't looking for effort. They are looking for documented evidence of refuge."</p>
+                <Link to="/readiness" className="bg-signal-gold text-authority-blue px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-xl active:scale-95 flex items-center group">
+                  INITIATE DIAGNOSTIC PROTOCOL
+                  <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                </Link>
+             </div>
           </div>
         </div>
       </section>
@@ -586,27 +611,31 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. WHO THIS IS FOR */}
-      <section className="py-24 md:py-32 lg:py-48 bg-white dark:bg-primary-dark transition-colors">
+      {/* 9. WHO THIS IS FOR - ENHANCED CARDS */}
+      <section className="py-24 md:py-32 lg:py-48 bg-white dark:bg-primary-dark transition-colors relative">
         <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-6">
+          <header className="text-center mb-24 md:mb-32 space-y-6">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">QUALIFICATION PARAMETERS</p>
              <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
                WHO THIS <span className="text-signal-gold italic">IS FOR.</span>
              </h2>
+             <div className="h-1 w-24 bg-authority-blue dark:bg-signal-gold mx-auto rounded-full"></div>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Truck size={32} />, title: "Box Truck Operators", desc: "Non-CDL or CDL units operating in interstate commerce requiring strict DQ and HOS systems." },
-              { icon: <Briefcase size={32} />, title: "Semi-Truck Startups", desc: "New Class 8 authorities entering the 18-month New Entrant Audit window." },
-              { icon: <Shield size={32} />, title: "Safety Managers", desc: "Professionals tasked with cleaning up authority files before an insurance or federal audit." },
-              { icon: <Users size={32} />, title: "Insurance Partners", desc: "Underwriters who want to see their carriers operating within a documented safety standard." }
+              { icon: <Truck size={32} />, title: "Box Truck Operators", desc: "Non-CDL or CDL units operating in interstate commerce requiring strict DQ and HOS systems.", tag: "SMALL CARRIER" },
+              { icon: <Briefcase size={32} />, title: "Semi-Truck Startups", desc: "New Class 8 authorities entering the 18-month New Entrant Audit window.", tag: "CLASS 8" },
+              { icon: <Shield size={32} />, title: "Safety Managers", desc: "Professionals tasked with cleaning up authority files before an insurance or federal audit.", tag: "MANAGEMENT" },
+              { icon: <Users size={32} />, title: "Insurance Partners", desc: "Underwriters who want to see their carriers operating within a documented safety standard.", tag: "UNDERWRITING" }
             ].map((card, i) => (
-              <div key={i} className="p-10 rounded-[3rem] bg-slate-50 dark:bg-surface-dark border border-slate-100 dark:border-border-dark flex flex-col items-center text-center shadow-sm">
-                <div className="text-authority-blue dark:text-signal-gold mb-8">{card.icon}</div>
-                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 font-serif">{card.title}</h4>
-                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
+              <div key={i} className="p-12 rounded-[3.5rem] bg-slate-50 dark:bg-surface-dark border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:bg-white dark:hover:bg-[#020617] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] hover:scale-[1.02] transition-all duration-700">
+                <div className="w-20 h-20 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[2rem] flex items-center justify-center mb-10 shadow-sm border border-slate-100 dark:border-border-dark group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
+                  {React.cloneElement(card.icon as React.ReactElement, { size: 36 })}
+                </div>
+                <p className="text-[9px] font-black uppercase tracking-[0.4em] text-signal-gold mb-4 opacity-60">{card.tag}</p>
+                <h4 className="text-2xl font-black text-authority-blue dark:text-white uppercase mb-6 font-serif tracking-tight">{card.title}</h4>
+                <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
