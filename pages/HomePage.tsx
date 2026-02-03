@@ -32,7 +32,11 @@ import {
   Anchor,
   User,
   ExternalLink,
-  ShieldX
+  ShieldX,
+  FileWarning,
+  HardDrive,
+  Fingerprint,
+  Gavel
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp, doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../firebase';
@@ -121,41 +125,53 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const sinsData = [
+  const riskDomains = [
     {
-      category: "CHEMICAL DEPENDENCY",
+      domain: "Substance Governance",
+      id: "DOMAIN_01",
+      icon: <FileWarning className="text-red-500" />,
+      description: "Evaluation of chemical dependency protocols and federal clearinghouse alignment.",
       items: [
-        { id: "01", text: "Lack of random drug program", impact: "Audit Failure", severity: "TERMINAL" },
-        { id: "02", text: "Positive driver results", impact: "Revocation", severity: "TERMINAL" },
-        { id: "03", text: "Federal Clearinghouse error", impact: "Violation", severity: "HIGH RISK" },
-        { id: "04", text: "Omission of screening", impact: "Exposure", severity: "HIGH RISK" }
+        { id: "01", text: "Absence of random pool enrollment", impact: "Audit Default", severity: "TERMINAL", guard: "Pool Guard Protocol" },
+        { id: "02", text: "Positive driver results (Unmanaged)", impact: "Immediate Revocation", severity: "TERMINAL", guard: "Refuge Transition" },
+        { id: "03", text: "Clearinghouse query failure", impact: "Operating Ban", severity: "CRITICAL", guard: "Registry Sync" },
+        { id: "04", text: "Omission of pre-employment test", impact: "Strict Liability", severity: "HIGH RISK", guard: "Gatekeeper Flow" }
       ]
     },
     {
-      category: "DRIVER ELIGIBILITY",
+      domain: "Human Capital Compliance",
+      id: "DOMAIN_02",
+      icon: <Fingerprint className="text-amber-500" />,
+      description: "Integrity verification of driver qualification files and licensing credentials.",
       items: [
-        { id: "05", text: "Revoked license use", impact: "OOS Event", severity: "CRITICAL" },
-        { id: "06", text: "Invalid medical certs", impact: "Downgrade", severity: "CRITICAL" },
-        { id: "07", text: "No DQ file framework", impact: "Audit Red Flag", severity: "HIGH RISK" },
-        { id: "08", text: "Missing background inquiries", impact: "Default", severity: "HIGH RISK" }
+        { id: "05", text: "Revoked/Expired license usage", impact: "OOS Event", severity: "TERMINAL", guard: "License Monitor" },
+        { id: "06", text: "Missing Med-Cert verification", impact: "Driver Downgrade", severity: "CRITICAL", guard: "Med-Check standard" },
+        { id: "07", text: "Fragmented DQ File framework", impact: "Audit Red Flag", severity: "HIGH RISK", guard: "File Factory v4" },
+        { id: "08", text: "Omitted background inquiries", impact: "Negligent Entrustment", severity: "CRITICAL", guard: "History Vault" }
       ]
     },
     {
-      category: "OPERATIONAL SAFETY",
+      domain: "Operational Control",
+      id: "DOMAIN_03",
+      icon: <Gavel className="text-slate-500" />,
+      description: "Direct management of hours-of-service and equipment maintenance standards.",
       items: [
-        { id: "09", text: "Exceeding HOS limits", impact: "Negligence", severity: "CRITICAL" },
-        { id: "10", text: "Dispatching OOS vehicles", impact: "Termination", severity: "TERMINAL" },
-        { id: "11", text: "Poor duty status records", impact: "Multiplier", severity: "HIGH RISK" },
-        { id: "12", text: "No vehicle inspections", impact: "Liability", severity: "HIGH RISK" }
+        { id: "09", text: "Falsification of HOS records", impact: "Criminal Default", severity: "TERMINAL", guard: "ELD Integrity" },
+        { id: "10", text: "Dispatching OOS vehicles", impact: "Authority Seizure", severity: "TERMINAL", guard: "Asset Shield" },
+        { id: "11", text: "Deficient roadside history (CSA)", impact: "Premium Spike", severity: "HIGH RISK", guard: "CSA Watcher" },
+        { id: "12", text: "No systematic maintenance log", impact: "Liability Default", severity: "CRITICAL", guard: "Log Master" }
       ]
     },
     {
-      category: "ADMIN INTEGRITY",
+      domain: "Administrative Stewardship",
+      id: "DOMAIN_04",
+      icon: <HardDrive className="text-blue-500" />,
+      description: "Governance of federal filings, insurance continuity, and corporate entity integrity.",
       items: [
-        { id: "13", text: "Unverified insurance levels", impact: "Blacklist", severity: "CRITICAL" },
-        { id: "14", text: "Missing filings (BOC-3)", impact: "Suspension", severity: "TERMINAL" },
-        { id: "15", text: "No maintenance program", impact: "Exposure", severity: "HIGH RISK" },
-        { id: "16", text: "Late accident reporting", impact: "Legal Default", severity: "CRITICAL" }
+        { id: "13", text: "Insurance coverage lapse", impact: "Authority Termination", severity: "TERMINAL", guard: "Continuity Lock" },
+        { id: "14", text: "Failure to update MCS-150", impact: "Administrative Revocation", severity: "CRITICAL", guard: "Biannual Sync" },
+        { id: "15", text: "BOC-3 Process Agent omission", impact: "Filing Suspension", severity: "HIGH RISK", guard: "Legal Link" },
+        { id: "16", text: "Late incident/accident reporting", impact: "Legal Default", severity: "CRITICAL", guard: "Post-Crash Flow" }
       ]
     }
   ];
@@ -360,8 +376,8 @@ const HomePage: React.FC = () => {
             </div>
             
             <nav className="pt-12">
-              <a href="#exposure-patterns" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group">
-                <span>SEE THE 16 EXPOSURE PATTERNS</span>
+              <a href="#exposure-matrix" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group">
+                <span>OPEN EXPOSURE MATRIX</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
             </nav>
@@ -369,8 +385,104 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. THE STANDARD */}
-      <section className="py-24 md:py-48 bg-slate-50 dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
+      {/* 4. THE 16 DEADLY SINS - REORGANIZED MATRIX */}
+      <section id="exposure-matrix" className="bg-[#020617] py-24 lg:py-48 border-y border-white/5 transition-colors relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+          <header className="text-center mb-24 md:mb-32 space-y-8 animate-reveal-up">
+             <div className="w-24 h-24 bg-red-600/10 text-red-500 rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl border-2 border-red-500/20">
+               <ShieldX size={48} />
+             </div>
+             <p className="text-[11px] font-black uppercase tracking-[0.8em] text-red-500">THE EXPOSURE TAXONOMY</p>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-[0.9]">
+               THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span>
+             </h2>
+             <div className="h-1.5 w-32 bg-red-600/20 mx-auto rounded-full mt-12"></div>
+             <p className="text-xl md:text-2xl font-bold text-slate-400 max-w-3xl mx-auto leading-relaxed">
+               Most new carriers fail because they ignore these 16 specific patterns used by FMCSA investigators to identify high-risk operations.
+             </p>
+          </header>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {riskDomains.map((domain, domainIdx) => (
+              <div key={domainIdx} className="space-y-10 animate-reveal-up" style={{ animationDelay: `${domainIdx * 0.1}s` }}>
+                <header className="flex items-center justify-between border-b border-white/10 pb-6">
+                   <div className="flex items-center space-x-5">
+                      <div className="p-3 bg-white/5 rounded-xl border border-white/10">
+                        {domain.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-black text-white uppercase tracking-tight font-serif">{domain.domain}</h3>
+                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest mt-1">{domain.id} // SECURE_ARCHIVE</p>
+                      </div>
+                   </div>
+                   <div className="hidden sm:block text-right">
+                      <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Active Vectors</p>
+                      <p className="text-lg font-black text-white">0{domain.items.length}</p>
+                   </div>
+                </header>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {domain.items.map((item) => (
+                    <article key={item.id} className="bg-white/[0.02] border border-white/5 p-8 rounded-[2.5rem] group hover:bg-white/[0.05] hover:border-red-500/30 transition-all duration-500 relative overflow-hidden">
+                       <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 text-red-600 group-hover:scale-150 transition-all duration-700">
+                          <ShieldAlert size={64} />
+                       </div>
+                       
+                       <header className="flex items-center space-x-3 mb-6">
+                          <span className="text-xs font-black text-slate-700 font-mono tracking-tighter group-hover:text-red-500 transition-colors">{item.id}</span>
+                          <h4 className="text-base font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors">{item.text}</h4>
+                       </header>
+
+                       <div className="space-y-6 pt-6 border-t border-white/5">
+                          <div className="flex justify-between items-center">
+                             <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">RESULT</p>
+                             <p className="text-[10px] font-black text-slate-300 uppercase tracking-tight">{item.impact}</p>
+                          </div>
+                          
+                          <div className="flex justify-between items-center">
+                             <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">GUARD</p>
+                             <div className="flex items-center space-x-1.5 text-emerald-400">
+                                <ShieldCheck size={10} />
+                                <span className="text-[10px] font-black uppercase tracking-tight">{item.guard}</span>
+                             </div>
+                          </div>
+
+                          <div className="flex justify-between items-center pt-2">
+                             <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">SEVERITY</p>
+                             <div className={`px-2.5 py-1 rounded-lg flex items-center space-x-2 border ${
+                               item.severity === 'TERMINAL' 
+                               ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.2)]' 
+                               : item.severity === 'CRITICAL' 
+                               ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' 
+                               : 'bg-slate-500/10 border-slate-500/30 text-slate-400'
+                             }`}>
+                                <Zap size={10} className="fill-current" />
+                                <span className="text-[9px] font-black uppercase tracking-widest">{item.severity}</span>
+                             </div>
+                          </div>
+                       </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-32 text-center">
+             <div className="p-10 bg-white/5 border border-white/10 rounded-[3rem] shadow-2xl inline-flex flex-col items-center max-w-xl mx-auto backdrop-blur-md">
+                <p className="text-lg font-bold text-slate-400 mb-8 italic">"Investigators aren't looking for excuses. They are looking for documented evidence of systemic control."</p>
+                <Link to="/readiness" className="bg-red-600 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-red-600 transition-all shadow-xl active:scale-95 flex items-center group border-b-4 border-red-900">
+                  INITIATE DIAGNOSTIC PROTOCOL
+                  <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                </Link>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. THE STANDARD */}
+      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <article className="space-y-12">
@@ -408,33 +520,6 @@ const HomePage: React.FC = () => {
                   </ul>
                </div>
             </aside>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. BOUNDARIES */}
-      <section className="py-24 md:py-48 bg-[#0c1a2d] text-white overflow-hidden transition-colors">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-12">
-          <header className="space-y-6">
-            <p className="text-[11px] font-black uppercase tracking-[0.6em] text-signal-gold">BOUNDARIES</p>
-            <h2 className="text-4xl sm:text-6xl font-black font-serif uppercase tracking-tight leading-none">
-              THIS IS NOT <br/><span className="italic">FOR EVERYONE.</span>
-            </h2>
-          </header>
-          
-          <div className="space-y-10 text-xl font-medium text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            <p>If you're looking for a course on how to make money in trucking — <span className="text-white font-black">this isn't it.</span></p>
-            <p>If you want dispatch training or load board strategies — <span className="text-white font-black">we don't offer that.</span></p>
-            <p>If you're hoping for a motivational speaker to tell you it's going to be easy — <span className="text-white font-black text-red-400">wrong room.</span></p>
-            
-            <div className="h-px w-20 bg-white/10 mx-auto my-12"></div>
-            
-            <p className="text-2xl font-black uppercase tracking-tight text-white">
-              LaunchPath is for owner-operators who understand that their authority is a federal license to be audited — and they want to be ready when it happens.
-            </p>
-            <p className="text-sm font-bold text-slate-500 uppercase tracking-widest pt-8">
-              If that's not you, no hard feelings. If it is — keep reading.
-            </p>
           </div>
         </div>
       </section>
@@ -505,77 +590,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. THE 16 DEADLY SINS - ENHANCED STRUCTURE */}
-      <section id="exposure-patterns" className="bg-slate-100 dark:bg-[#020617] py-24 lg:py-48 border-y border-slate-200 dark:border-border-dark transition-colors relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[1600px] mx-auto px-6 relative z-10">
-          <header className="text-center mb-24 md:mb-32 space-y-8 stagger-parent">
-             <div className="w-24 h-24 bg-red-600 text-white rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-red-600/30 animate-reveal-up border-4 border-white/20">
-               <ShieldX size={48} />
-             </div>
-             <p className="text-[11px] font-black uppercase tracking-[0.8em] text-red-600 animate-reveal-up">THE EXPOSURE TAXONOMY</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9] animate-reveal-up">
-               THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER EXPOSURE.</span>
-             </h2>
-             <div className="h-1.5 w-32 bg-red-600/20 mx-auto rounded-full mt-12 animate-reveal-up"></div>
-             <p className="text-xl md:text-2xl font-bold text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed animate-reveal-up">
-               Institutional audits are predictable. Most new carriers fail because they ignore these 16 specific patterns used by FMCSA investigators to identify high-risk operations.
-             </p>
-          </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {sinsData.map((category, idx) => (
-              <div key={idx} className="space-y-8">
-                <div className="flex flex-col items-center mb-10">
-                   <h4 className="text-[12px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-4 text-center">
-                     {category.category}
-                   </h4>
-                   <div className="h-px w-16 bg-slate-300 dark:bg-border-dark"></div>
-                </div>
-                <div className="space-y-6">
-                  {category.items.map((item) => (
-                    <article key={item.id} className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-slate-200 dark:border-border-dark shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-2xl hover:translate-y-[-4px] transition-all duration-500 group relative overflow-hidden">
-                       <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 text-red-600 group-hover:scale-150 transition-all duration-700">
-                          <ShieldAlert size={60} />
-                       </div>
-                       
-                       <header className="flex items-center space-x-4 mb-6">
-                          <span className="text-xs font-black text-red-500/40 font-mono tracking-tighter group-hover:text-red-500 transition-colors">{item.id}</span>
-                          <h5 className="text-base font-black text-authority-blue dark:text-white uppercase leading-tight tracking-tight group-hover:text-red-600 transition-colors">{item.text}</h5>
-                       </header>
-
-                       <div className="space-y-4 pt-6 border-t border-slate-50 dark:border-border-dark">
-                          <div className="flex justify-between items-center">
-                             <p className="text-[9px] font-black uppercase text-slate-400 tracking-widest">RESULT</p>
-                             <p className="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-tight">{item.impact}</p>
-                          </div>
-                          <div className="flex justify-between items-center">
-                             <p className="text-[9px] font-black uppercase text-slate-400 tracking-widest">SEVERITY</p>
-                             <div className={`flex items-center space-x-2 px-2.5 py-1 rounded-lg ${item.severity === 'TERMINAL' ? 'bg-red-50 text-red-600' : 'bg-amber-50 text-amber-600'}`}>
-                                <Zap size={10} className="fill-current" />
-                                <span className="text-[10px] font-black uppercase tracking-widest">{item.severity}</span>
-                             </div>
-                          </div>
-                       </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-32 text-center">
-             <div className="p-8 bg-authority-blue dark:bg-surface-dark border border-white/5 rounded-[3rem] shadow-2xl inline-flex flex-col items-center max-w-xl mx-auto">
-                <p className="text-lg font-bold text-slate-300 mb-8 italic">"Auditors aren't looking for effort. They are looking for documented evidence of refuge."</p>
-                <Link to="/readiness" className="bg-signal-gold text-authority-blue px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-xl active:scale-95 flex items-center group">
-                  INITIATE DIAGNOSTIC PROTOCOL
-                  <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
-                </Link>
-             </div>
-          </div>
-        </div>
-      </section>
-
       {/* 8. THE REACH TEST */}
       <section className="py-24 md:py-48 bg-authority-blue text-white overflow-hidden transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
@@ -607,102 +621,6 @@ const HomePage: React.FC = () => {
                   </p>
                </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. WHO THIS IS FOR - ENHANCED CARDS */}
-      <section className="py-24 md:py-32 lg:py-48 bg-white dark:bg-primary-dark transition-colors relative">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-24 md:mb-32 space-y-6">
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">QUALIFICATION PARAMETERS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
-               WHO THIS <span className="text-signal-gold italic">IS FOR.</span>
-             </h2>
-             <div className="h-1 w-24 bg-authority-blue dark:bg-signal-gold mx-auto rounded-full"></div>
-          </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { icon: <Truck size={32} />, title: "Box Truck Operators", desc: "Non-CDL or CDL units operating in interstate commerce requiring strict DQ and HOS systems.", tag: "SMALL CARRIER" },
-              { icon: <Briefcase size={32} />, title: "Semi-Truck Startups", desc: "New Class 8 authorities entering the 18-month New Entrant Audit window.", tag: "CLASS 8" },
-              { icon: <Shield size={32} />, title: "Safety Managers", desc: "Professionals tasked with cleaning up authority files before an insurance or federal audit.", tag: "MANAGEMENT" },
-              { icon: <Users size={32} />, title: "Insurance Partners", desc: "Underwriters who want to see their carriers operating within a documented safety standard.", tag: "UNDERWRITING" }
-            ].map((card, i) => (
-              <div key={i} className="p-12 rounded-[3.5rem] bg-slate-50 dark:bg-surface-dark border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:bg-white dark:hover:bg-[#020617] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] hover:scale-[1.02] transition-all duration-700">
-                <div className="w-20 h-20 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[2rem] flex items-center justify-center mb-10 shadow-sm border border-slate-100 dark:border-border-dark group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                  {React.cloneElement(card.icon as React.ReactElement, { size: 36 })}
-                </div>
-                <p className="text-[9px] font-black uppercase tracking-[0.4em] text-signal-gold mb-4 opacity-60">{card.tag}</p>
-                <h4 className="text-2xl font-black text-authority-blue dark:text-white uppercase mb-6 font-serif tracking-tight">{card.title}</h4>
-                <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 10. BUILT-IN SYSTEMS */}
-      <section className="py-24 md:py-32 lg:py-48 bg-slate-50 dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark transition-colors">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-6">
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">INTEGRATED COMPLIANCE TOOLS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
-               BUILT-IN <span className="text-signal-gold italic">SYSTEMS.</span>
-             </h2>
-             <p className="text-xl font-bold text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-               More than curriculum. LaunchPath includes working tools designed for real carrier operations.
-             </p>
-          </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {[
-              { id: "t1", title: "TCO Calculator", icon: <Calculator />, link: "/tools/tco-calculator" },
-              { id: "t2", title: "Readiness Assessment", icon: <ClipboardCheck />, link: "/readiness" },
-              { id: "t3", title: "Compliance Assistant", icon: <ShieldCheck />, link: "/ai-advisor" },
-              { id: "t4", title: "Resource Library", icon: <FileText />, link: "/resources" }
-            ].map((tool) => (
-              <Link key={tool.id} to={tool.link} className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark flex flex-col items-center group hover:shadow-2xl transition-all">
-                <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform">
-                  {React.cloneElement(tool.icon as React.ReactElement, { size: 24 })}
-                </div>
-                <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase font-serif tracking-tight">{tool.title}</h4>
-                <div className="mt-6 flex items-center text-[9px] font-black text-signal-gold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                  Open Tool <ArrowRight size={10} className="ml-2" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 11. COMMON QUESTIONS */}
-      <section className="py-24 md:py-32 lg:py-48 bg-white dark:bg-primary-dark transition-colors">
-        <div className="max-w-4xl mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-6">
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">SUPPORT & CLARITY</p>
-             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
-               COMMON <span className="text-signal-gold italic">QUESTIONS.</span>
-             </h2>
-          </header>
-
-          <div className="space-y-4">
-            {homepageFaqs.map((faq, idx) => (
-              <FAQItem 
-                key={idx}
-                question={faq.q}
-                answer={faq.a}
-                icon={faq.icon}
-                isOpen={faqOpen === idx}
-                onClick={() => setFaqOpen(faqOpen === idx ? null : idx)}
-              />
-            ))}
-          </div>
-
-          <div className="mt-16 text-center">
-             <Link to="/faq" className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:underline">
-               VIEW FULL INSTITUTIONAL FAQ
-             </Link>
           </div>
         </div>
       </section>
