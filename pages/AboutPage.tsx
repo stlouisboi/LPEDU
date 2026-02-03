@@ -162,7 +162,7 @@ const AboutPage = () => {
                 A Kingdom <br/><span className="text-signal-gold italic">Stewardship</span> <br/>Philosophy.
               </h2>
               <p className="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                We view operating authority as an entrusted function. We move carriers from a state of exposure to a state of refuge through documented evidence of discipline.
+                We view operating authority as an entrusted function. We move carriers from a state of exposure to a state of refuge through documented evidence of discipline. LaunchPath is built on timeless principles of wisdom, order, and stewardship — not trends, hype, or shortcuts.
               </p>
             </div>
 

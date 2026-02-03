@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -105,6 +105,37 @@ const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [selectedSinId, setSelectedSinId] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  
+  // Parallax tracking state
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [systemsParallaxOffset, setSystemsParallaxOffset] = useState(0);
+  const whoThisIsForRef = useRef<HTMLElement>(null);
+  const systemsRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+
+      if (whoThisIsForRef.current) {
+        const rect = whoThisIsForRef.current.getBoundingClientRect();
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          const offset = ((rect.top + rect.height / 2) - windowHeight / 2) * 0.05;
+          setParallaxOffset(offset);
+        }
+      }
+
+      if (systemsRef.current) {
+        const rect = systemsRef.current.getBoundingClientRect();
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          const offset = ((rect.top + rect.height / 2) - windowHeight / 2) * 0.05;
+          setSystemsParallaxOffset(offset);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleRiskMapSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -888,8 +919,8 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. WHO THIS IS FOR (Enhanced) */}
-      <section className="py-24 md:py-32 bg-[#F8FAFC] dark:bg-primary-dark transition-colors">
+      {/* 9. WHO THIS IS FOR (Enhanced with Parallax) */}
+      <section ref={whoThisIsForRef} className="py-24 md:py-32 bg-[#F8FAFC] dark:bg-primary-dark transition-colors overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-24 space-y-6">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">QUALIFICATION PARAMETERS</p>
@@ -921,8 +952,11 @@ const HomePage: React.FC = () => {
                 desc: "Agencies and underwriters seeking pre-qualified, compliance-educated new entrants with documented safety posture." 
               }
             ].map((card, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group">
-                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-3xl flex items-center justify-center mb-10 shadow-inner group-hover:scale-110 transition-transform">
+              <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-authority-blue/20 transition-all duration-500 flex flex-col items-center text-center group">
+                <div 
+                  className="w-20 h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-3xl flex items-center justify-center mb-10 shadow-inner group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold transition-all duration-500"
+                  style={{ transform: `translateY(${parallaxOffset}px)` }}
+                >
                   {card.icon}
                 </div>
                 <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-tight h-12 flex items-center">{card.title}</h4>
@@ -933,8 +967,8 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 10. BUILT-IN SYSTEMS (Enhanced) */}
-      <section className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark">
+      {/* 10. BUILT-IN SYSTEMS (Enhanced with Parallax) */}
+      <section ref={systemsRef} className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-28 space-y-6">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">INTEGRATED COMPLIANCE TOOLS</p>
@@ -977,7 +1011,7 @@ const HomePage: React.FC = () => {
                 badge: "FREE" 
               }
             ].map((sys, i) => (
-              <div key={i} className="bg-[#F8FAFC] dark:bg-surface-dark p-12 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-[0_30px_60px_-15px_rgba(30,58,95,0.1)] transition-all duration-500">
+              <div key={i} className="bg-[#F8FAFC] dark:bg-surface-dark p-12 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-[0_30px_60px_-15px_rgba(30,58,95,0.1)] hover:-translate-y-2 transition-all duration-500">
                 <div className={`absolute top-8 right-8 px-4 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] shadow-sm ${
                   sys.badge === 'ENROLLED' 
                     ? 'bg-authority-blue text-white' 
@@ -985,7 +1019,10 @@ const HomePage: React.FC = () => {
                 }`}>
                   {sys.badge}
                 </div>
-                <div className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-12 shadow-sm transition-transform group-hover:-translate-y-1">
+                <div 
+                  className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-12 shadow-sm transition-transform group-hover:-translate-y-1"
+                  style={{ transform: `translateY(${systemsParallaxOffset}px)` }}
+                >
                   {sys.icon}
                 </div>
                 <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-tight min-h-[3rem] flex items-center">{sys.title}</h4>
