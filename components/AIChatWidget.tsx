@@ -1,8 +1,6 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, Globe, ExternalLink } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
-import { useLocation } from 'react-router-dom';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -11,7 +9,6 @@ interface Message {
 }
 
 const AIChatWidget = () => {
-  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: "Hello! I am the LaunchPath™ Compliance Assistant. I can help explain trucking compliance terminology and FMCSA system logic. How can I assist your high-level understanding today?" }
@@ -25,8 +22,6 @@ const AIChatWidget = () => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isOpen]);
-
-  if (location.pathname === '/portal') return null;
 
   const handleSend = async (customInput?: string) => {
     const textToSend = customInput || input;
