@@ -1011,7 +1011,7 @@ const HomePage: React.FC = () => {
                 badge: "FREE" 
               }
             ].map((sys, i) => (
-              <div key={i} className="bg-[#F8FAFC] dark:bg-surface-dark p-12 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-[0_30px_60px_-15px_rgba(30,58,95,0.1)] hover:-translate-y-2 transition-all duration-500">
+              <div key={i} className="bg-[#F8FAFC] dark:bg-surface-dark p-12 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 hover:border-authority-blue/20 transition-all duration-500">
                 <div className={`absolute top-8 right-8 px-4 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] shadow-sm ${
                   sys.badge === 'ENROLLED' 
                     ? 'bg-authority-blue text-white' 
@@ -1020,7 +1020,7 @@ const HomePage: React.FC = () => {
                   {sys.badge}
                 </div>
                 <div 
-                  className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-12 shadow-sm transition-transform group-hover:-translate-y-1"
+                  className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-12 shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold"
                   style={{ transform: `translateY(${systemsParallaxOffset}px)` }}
                 >
                   {sys.icon}
