@@ -757,7 +757,73 @@ const HomePage: React.FC = () => {
         </div>
       )}
 
-      {/* 5. THE STANDARD */}
+      {/* 5. THE FOUR PILLARS SECTION (ENHANCED & RELOCATED) */}
+      <section className="py-24 md:py-32 bg-[#020617] border-b border-white/5 transition-colors">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <header className="text-center mb-16 md:mb-24 space-y-6">
+             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE FRAMEWORK</p>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-tight">
+               THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
+             </h2>
+             <p className="text-xl md:text-2xl font-bold text-slate-400 max-w-2xl mx-auto leading-relaxed">
+               The systems that keep you operating.
+             </p>
+          </header>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+             {[
+               {
+                 icon: <Briefcase />,
+                 title: "AUTHORITY PROTECTION",
+                 tagline: "STRUCTURAL STEWARDSHIP",
+                 desc: "Managing federal authority as an entrusted asset. Build a foundation that survives scrutiny through absolute administrative order.",
+                 link: "/modules/1"
+               },
+               {
+                 icon: <Shield />,
+                 title: "INSURANCE CONTINUITY",
+                 tagline: "RISK RESPONSIBILITY",
+                 desc: "Protecting your right to operate. Maintain permanent coverage by documenting safety as a non-negotiable operational discipline.",
+                 link: "/modules/2"
+               },
+               {
+                 icon: <Layers />,
+                 title: "COMPLIANCE BACKBONE",
+                 tagline: "SYSTEMIC INTEGRITY",
+                 desc: "Executing federal standards with precision. Replace human memory with verifiable systems that prove your compliance daily.",
+                 link: "/modules/3"
+               },
+               {
+                 icon: <Calculator />,
+                 title: "CASH-FLOW OXYGEN",
+                 tagline: "FISCAL STEWARDSHIP",
+                 desc: "Securing the mission through economic truth. Use TCO math to ensure your business remains solvent, stable, and viable.",
+                 link: "/modules/4"
+               }
+             ].map((pillar, i) => (
+               <article key={i} className="bg-white/[0.03] p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
+                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 28 })}
+                  </div>
+                  <h3 className="text-2xl font-black text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8 opacity-70">{pillar.tagline}</p>
+                  <p className="text-base font-bold text-slate-400 leading-relaxed mb-10 flex-grow">
+                    {pillar.desc}
+                  </p>
+                  <Link to={pillar.link} className="inline-flex items-center justify-center space-x-2 text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold hover:text-white transition-all group/btn">
+                    <span>EXPLORE MODULE</span>
+                    <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
+               </article>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. THE STANDARD */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
@@ -796,72 +862,6 @@ const HomePage: React.FC = () => {
                   </ul>
                </div>
             </aside>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. THE FOUR PILLARS */}
-      <section className="py-24 md:py-32 lg:py-48 bg-white dark:bg-primary-dark transition-colors">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-6">
-             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE FRAMEWORK</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-tight">
-               THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
-             </h2>
-             <p className="text-xl md:text-2xl font-bold text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-               The systems that keep you operating.
-             </p>
-          </header>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
-             {[
-               {
-                 icon: <Briefcase />,
-                 title: "AUTHORITY PROTECTION",
-                 tagline: "STRUCTURAL STEWARDSHIP",
-                 desc: "Managing federal authority as an entrusted asset. Build a foundation that survives scrutiny through absolute administrative order."
-               },
-               {
-                 icon: <Shield />,
-                 title: "INSURANCE CONTINUITY",
-                 tagline: "RISK RESPONSIBILITY",
-                 desc: "Protecting your right to operate. Maintain permanent coverage by documenting safety as a non-negotiable operational discipline."
-               },
-               {
-                 icon: <Layers />,
-                 title: "COMPLIANCE BACKBONE",
-                 tagline: "SYSTEMIC INTEGRITY",
-                 desc: "Executing federal standards with precision. Replace human memory with verifiable systems that prove your compliance daily."
-               },
-               {
-                 icon: <Calculator />,
-                 title: "CASH-FLOW OXYGEN",
-                 tagline: "FISCAL STEWARDSHIP",
-                 desc: "Securing the mission through economic truth. Use TCO math to ensure your business remains solvent, stable, and viable.",
-                 hookLine: "Run your numbers before you commit."
-               }
-             ].map((pillar, i) => (
-               <article key={i} className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(30,58,95,0.12)] transition-all duration-700 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 28 })}
-                  </div>
-                  <h3 className="text-2xl font-black text-authority-blue dark:text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8 opacity-70">{pillar.tagline}</p>
-                  <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
-                    {pillar.desc}
-                  </p>
-                  {pillar.hookLine && (
-                    <div className="mt-auto pt-6 border-t border-slate-50 dark:border-border-dark">
-                      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-600 dark:text-emerald-400 italic">
-                        {pillar.hookLine}
-                      </p>
-                    </div>
-                  )}
-               </article>
-             ))}
           </div>
         </div>
       </section>

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Mail, Phone, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, ArrowRight, MessageSquare, Anchor, User, ChevronDown, Building2, Globe } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -99,8 +100,8 @@ const ContactPage = () => {
           <div className="lg:col-span-5 h-full">
             <div className="relative h-full min-h-[600px] w-full rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white dark:border-surface-dark group">
               <img 
-                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200" 
-                alt="Carrier Operations" 
+                src="https://images.unsplash.com/photo-1586191582151-f73872dfd183?auto=format&fit=crop&q=80&w=1200" 
+                alt="Owner Operator making a call from truck cab" 
                 className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-authority-blue/80 via-transparent to-transparent"></div>
