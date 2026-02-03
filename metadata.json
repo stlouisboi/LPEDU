@@ -1,9 +1,8 @@
 {
-  "name": "LaunchPath™ | Institutional Carrier Standard",
-  "description": "The premium regulatory framework for new motor carriers. Protecting authority through systematic stewardship and the Four Pillars of Compliance.",
+  "name": "LaunchPath Edu Transportation- Compliance-First Guidance for New Owner-Operators",
+  "description": "A premium educational platform for aspiring box truck and small carrier owner-operators, focusing on FMCSA compliance and long-term business ethics. Now featuring advanced AI-driven regulatory tools.",
   "requestFramePermissions": [
     "camera",
-    "microphone",
-    "geolocation"
+    "microphone"
   ]
 }
