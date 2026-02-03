@@ -439,10 +439,10 @@ const HomePage: React.FC = () => {
               </div>
               
               <div className="space-y-6 pt-10 border-t-4 border-slate-100 dark:border-white/5">
-                <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                <p className="text-base md:text-lg text-slate-500 dark:text-slate-300 font-medium leading-relaxed">
                   New carriers are often encouraged to move fast without full system readiness. They receive fragmented advice and incomplete guidance, and are told to address compliance after they begin operating.
                 </p>
-                <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                <p className="text-base md:text-lg text-slate-500 dark:text-slate-300 font-medium leading-relaxed">
                   This leads to preventable shutdowns — not because operators are careless, but because they were never given a clear, disciplined pathway.
                 </p>
               </div>
@@ -533,7 +533,7 @@ const HomePage: React.FC = () => {
 
               <div className="p-8 bg-white dark:bg-surface-dark border-l-[12px] border-signal-gold rounded-r-[3rem] shadow-sm">
                  <p className="text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-4">SYSTEMIC BOUNDARY</p>
-                 <p className="text-base text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
+                 <p className="text-base text-slate-600 dark:text-slate-300 font-bold leading-relaxed">
                    This map is not a plan. It is a diagnostic orientation. Results identify exposure areas only — not corrective actions. Implementation begins after Admission & Verification.
                  </p>
               </div>
@@ -623,11 +623,11 @@ const HomePage: React.FC = () => {
                     {pillar.title}
                   </h3>
                   <p className="text-[11px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-signal-gold mb-6">{pillar.tagline}</p>
-                  <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-base font-bold text-slate-500 dark:text-slate-300 leading-relaxed">
                     {pillar.desc}
                   </p>
                   {pillar.hookLine && (
-                    <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-600/70 dark:text-emerald-400/70 italic mt-4">
+                    <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-600/70 dark:text-emerald-300/70 italic mt-4">
                       {pillar.hookLine}
                     </p>
                   )}
@@ -648,7 +648,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-5xl sm:text-7xl lg:text-[8rem] font-black font-serif tracking-tight leading-[0.85] text-authority-blue dark:text-white uppercase">
               THE 16 <br/><span className="text-red-600 italic underline decoration-red-600/20 decoration-[8px] underline-offset-[16px]">DEADLY SINS.</span>
             </h2>
-            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 font-extrabold max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 font-extrabold max-w-3xl mx-auto leading-relaxed">
               Over 30 audit-level violations mapped to their regulatory consequence — categorized by exposure severity.
             </p>
           </header>
@@ -675,7 +675,7 @@ const HomePage: React.FC = () => {
                       }`}></div>
                       <span className="absolute -top-4 -right-4 text-6xl font-black opacity-5 text-slate-900 dark:text-white">{sin.id}</span>
                       
-                      <h4 className="text-xl font-black text-slate-800 dark:text-text-dark-primary uppercase tracking-tight leading-tight mb-8">
+                      <h4 className="text-2xl font-black text-slate-800 dark:text-text-dark-primary uppercase tracking-tight leading-tight mb-8">
                         {sin.text}
                       </h4>
                       
@@ -726,7 +726,7 @@ const HomePage: React.FC = () => {
                     <article className="space-y-1">
                       <h4 className="text-xs sm:text-[10px] font-black text-signal-gold uppercase tracking-widest">{mod.n}</h4>
                       <h3 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight font-serif">{mod.t}</h3>
-                      <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-xl">{mod.d}</p>
+                      <p className="text-base text-slate-500 dark:text-slate-300 font-medium leading-relaxed max-w-xl">{mod.d}</p>
                     </article>
                   </div>
                 ))}
@@ -781,7 +781,7 @@ const HomePage: React.FC = () => {
           </p>
 
           <article className="max-w-2xl mx-auto mb-20">
-            <p className="text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed mb-10">
+            <p className="text-xl font-bold text-slate-500 dark:text-slate-300 leading-relaxed mb-10">
               The REACH Test™ is a diagnostic tool used to find where your business is at risk. It is the first step of our Education phase.
             </p>
             <div className="inline-flex items-center px-8 py-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl mb-12">
@@ -826,7 +826,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">
               Built-In <span className="text-signal-gold italic">Systems.</span>
             </h2>
-            <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-400 font-extrabold max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-300 font-extrabold max-w-2xl mx-auto leading-relaxed">
               More than curriculum. LaunchPath includes working tools designed for real carrier operations.
             </p>
           </header>
@@ -962,7 +962,7 @@ const HomePage: React.FC = () => {
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold uppercase tracking-tight text-authority-blue dark:text-white mb-4 font-serif">{item.title}</h3>
-                <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+                <p className="text-base text-slate-500 dark:text-slate-300 font-medium leading-relaxed">{item.desc}</p>
               </article>
             ))}
           </div>
@@ -1013,7 +1013,7 @@ const HomePage: React.FC = () => {
           </header>
           
           <article className="max-w-3xl mx-auto p-12 bg-white dark:bg-gray-800/50 rounded-[4rem] border-4 border-dashed border-slate-200 dark:border-slate-700 shadow-inner">
-             <p className="text-xl font-bold text-slate-600 dark:text-slate-400 leading-relaxed italic uppercase tracking-tight text-center">
+             <p className="text-xl font-bold text-slate-600 dark:text-slate-300 leading-relaxed italic uppercase tracking-tight text-center">
                "YOU ARE ADMITTED ONLY AFTER WE VERIFY THAT YOUR BUSINESS IS POSITIONED FOR SUCCESS WITHIN OUR STANDARDS."
              </p>
           </article>
