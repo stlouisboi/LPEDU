@@ -235,7 +235,7 @@ const HomePage: React.FC = () => {
     { n: "MODULE 2", t: "INSURANCE & RISK MANAGEMENT", d: "Required coverages, policy shopping, cancellation prevention." },
     { n: "MODULE 3", t: "THE 16 DEADLY SINS", d: "The most common compliance exposures that cause audit failure and enforcement action." },
     { n: "MODULE 4", t: "AUDIT VERIFICATION", d: "New Entrant Safety Audit preparation, documentation review, and readiness verification." },
-    { n: "MODULE 5", t: "LOAD DISCIPLINE & CASH FLOW", d: "True cost per mile calculation and financial sustainability systems." },
+    { n: "MODULE 5", t: "LOAD DISCIPSIINE & CASH FLOW", d: "True cost per mile calculation and financial sustainability systems." },
     { n: "MODULE 6", t: "STABILIZATION & GROWTH", d: "Transitioning from survival mode to sustainable, repeatable operations." }
   ];
 
