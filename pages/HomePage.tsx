@@ -38,7 +38,8 @@ import {
   Gavel,
   X,
   MessageSquare,
-  BookOpen
+  BookOpen,
+  Building
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -887,12 +888,12 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. WHO THIS IS FOR (Restored) */}
-      <section className="py-24 md:py-32 bg-slate-50 dark:bg-primary-dark transition-colors">
+      {/* 9. WHO THIS IS FOR (Enhanced) */}
+      <section className="py-24 md:py-32 bg-[#F8FAFC] dark:bg-primary-dark transition-colors">
         <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-4">
+          <header className="text-center mb-16 md:mb-24 space-y-6">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">QUALIFICATION PARAMETERS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">
+             <h2 className="text-4xl sm:text-6xl md:text-[5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
                WHO THIS <span className="text-signal-gold italic">IS FOR.</span>
              </h2>
           </header>
@@ -901,30 +902,30 @@ const HomePage: React.FC = () => {
             {[
               { 
                 title: "BOX TRUCK OPERATORS", 
-                icon: <Truck size={32} />, 
+                icon: <Truck size={36} />, 
                 desc: "Carriers operating CMVs between 10,001–26,000 lbs GVWR. CDL and Non-CDL lanes included." 
               },
               { 
                 title: "SEMI-TRUCK STARTUPS", 
-                icon: <Briefcase size={32} />, 
+                icon: <Building size={36} />, 
                 desc: "New motor carriers running 1–3 units who prioritize long-term operating authority protection." 
               },
               { 
                 title: "SAFETY MANAGERS", 
-                icon: <Users size={32} />, 
+                icon: <Users size={36} />, 
                 desc: "Personnel responsible for maintaining carrier documentation integrity and federal compliance files." 
               },
               { 
                 title: "INSURANCE PARTNERS", 
-                icon: <ShieldCheck size={32} />, 
+                icon: <ShieldCheck size={36} />, 
                 desc: "Agencies and underwriters seeking pre-qualified, compliance-educated new entrants with documented safety posture." 
               }
             ].map((card, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl transition-all group">
-                <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform">
+              <div key={i} className="bg-white dark:bg-surface-dark p-12 rounded-[3rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group">
+                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-3xl flex items-center justify-center mb-10 shadow-inner group-hover:scale-110 transition-transform">
                   {card.icon}
                 </div>
-                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-4 font-serif leading-tight">{card.title}</h4>
+                <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-tight h-12 flex items-center">{card.title}</h4>
                 <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
               </div>
             ))}
@@ -932,63 +933,67 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 10. BUILT-IN SYSTEMS (Restored) */}
-      <section className="py-24 md:py-32 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark">
+      {/* 10. BUILT-IN SYSTEMS (Enhanced) */}
+      <section className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark">
         <div className="max-w-[1400px] mx-auto px-6">
-          <header className="text-center mb-16 md:mb-24 space-y-4">
+          <header className="text-center mb-16 md:mb-28 space-y-6">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">INTEGRATED COMPLIANCE TOOLS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">
+             <h2 className="text-4xl sm:text-6xl md:text-[5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
                BUILT-IN <span className="text-signal-gold italic">SYSTEMS.</span>
              </h2>
-             <p className="text-xl md:text-2xl font-bold text-slate-500 max-w-2xl mx-auto leading-relaxed">
+             <p className="text-xl md:text-2xl font-bold text-slate-500 max-w-2xl mx-auto leading-relaxed mt-8">
                More than curriculum. LaunchPath includes working tools designed for real carrier operations.
              </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {[
               { 
                 title: "TCO CALCULATOR", 
-                icon: <Calculator />, 
+                icon: <Calculator size={32} />, 
                 desc: "Break-even analysis and cost-per-mile modeling for operational survival math.", 
                 link: "/tools/tco-preview", 
                 badge: "ENROLLED" 
               },
               { 
                 title: "READINESS ASSESSMENT", 
-                icon: <ClipboardCheck />, 
+                icon: <ClipboardCheck size={32} />, 
                 desc: "Scored evaluation of your compliance posture before you begin operations.", 
                 link: "/readiness", 
                 badge: "FREE" 
               },
               { 
                 title: "COMPLIANCE ASSISTANT", 
-                icon: <MessageSquare />, 
+                icon: <MessageSquare size={32} />, 
                 desc: "AI-powered regulatory reference assistant for FMCSA terminology and system logic.", 
-                link: "#", 
+                link: "/ai-advisor", 
                 badge: "FREE" 
               },
               { 
                 title: "RESOURCE LIBRARY", 
-                icon: <BookOpen />, 
+                icon: <BookOpen size={32} />, 
                 desc: "Implementation templates, regulatory references, and vetted service provider directory.", 
                 link: "/resources", 
                 badge: "FREE" 
               }
             ].map((sys, i) => (
-              <Link to={sys.link} key={i} className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all">
-                <div className={`absolute top-6 right-6 px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest ${sys.badge === 'ENROLLED' ? 'bg-authority-blue text-white' : 'bg-green-100 text-green-700'}`}>
+              <div key={i} className="bg-[#F8FAFC] dark:bg-surface-dark p-12 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-[0_30px_60px_-15px_rgba(30,58,95,0.1)] transition-all duration-500">
+                <div className={`absolute top-8 right-8 px-4 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] shadow-sm ${
+                  sys.badge === 'ENROLLED' 
+                    ? 'bg-authority-blue text-white' 
+                    : 'bg-emerald-100 text-emerald-700'
+                }`}>
                   {sys.badge}
                 </div>
-                <div className="w-14 h-14 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform">
-                  {React.cloneElement(sys.icon as React.ReactElement, { size: 24 })}
+                <div className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-12 shadow-sm transition-transform group-hover:-translate-y-1">
+                  {sys.icon}
                 </div>
-                <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-4 font-serif leading-tight">{sys.title}</h4>
-                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-8 flex-grow">{sys.desc}</p>
-                <div className="flex items-center text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold group-hover:translate-x-1 transition-transform">
-                  Access Tool <ArrowRight size={14} className="ml-2" />
-                </div>
-              </Link>
+                <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 leading-tight min-h-[3rem] flex items-center">{sys.title}</h4>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-12 flex-grow leading-relaxed">{sys.desc}</p>
+                <Link to={sys.link} className="flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:opacity-70 transition-opacity">
+                  ACCESS TOOL <ArrowRight size={14} className="ml-3 transition-transform group-hover:translate-x-2" />
+                </Link>
+              </div>
             ))}
           </div>
         </div>
