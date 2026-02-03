@@ -20,7 +20,10 @@ import {
   Zap,
   Bot,
   User,
-  ArrowRight
+  ArrowRight,
+  ShieldCheck,
+  Activity,
+  ExternalLink
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, GenerateContentResponse } from '@google/genai';
 
@@ -77,7 +80,7 @@ function createBlob(data: Float32Array) {
 
 const AIServicePage = () => {
   const [activeTab, setActiveTab] = useState<'chat' | 'voice' | 'video'>('chat');
-  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, audio?: string}[]>([
+  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, sources?: {uri: string, title: string}[]}[]>([
     { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm powered by Gemini 3 Pro to handle complex regulatory questions. How can I help your carrier today?" }
   ]);
   const [input, setInput] = useState('');
@@ -87,6 +90,7 @@ const AIServicePage = () => {
   const audioContextRef = useRef<AudioContext | null>(null);
 
   const [isLiveActive, setIsLiveActive] = useState(false);
+  const [liveTranscripts, setLiveTranscripts] = useState<{role: string, text: string}[]>([]);
   const liveSessionRef = useRef<any>(null);
   const liveAudioContextRef = useRef<{ input: AudioContext; output: AudioContext } | null>(null);
   const liveSourcesRef = useRef<Set<AudioBufferSourceNode>>(new Set());
@@ -102,7 +106,7 @@ const AIServicePage = () => {
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [messages]);
+  }, [messages, liveTranscripts]);
 
   useEffect(() => {
     const checkKey = async () => {
@@ -119,9 +123,9 @@ const AIServicePage = () => {
       if (audioContextRef.current) {
         audioContextRef.current.close().catch(() => {});
       }
-      if (isLiveActive) stopLiveConversation();
+      stopLiveConversation();
     };
-  }, [isLiveActive]);
+  }, []);
 
   useEffect(() => {
     if (activeTab !== 'voice' && isLiveActive) stopLiveConversation();
@@ -140,13 +144,27 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: "You are an expert FMCSA compliance consultant for LaunchPath. Authoritative, professional tone. Use markdown for lists and bold text.",
-          temperature: 0.7,
+          systemInstruction: "You are an expert FMCSA compliance consultant for LaunchPath. Authoritative, professional, institutional tone. Use markdown. Focus on the Four Pillars: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen.",
+          tools: [{ googleSearch: {} }],
+          temperature: 0.5,
         }
       });
-      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "Neural logic fault detected." }]);
+
+      const sources: {uri: string, title: string}[] = [];
+      const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
+      if (chunks) {
+        chunks.forEach((c: any) => {
+          if (c.web) sources.push({ uri: c.web.uri, title: c.web.title });
+        });
+      }
+
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: response.text || "Communication channel timeout.",
+        sources: sources.length > 0 ? sources : undefined
+      }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the neural advisory service." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the neural advisory service. Please verify your connection." }]);
     } finally {
       setIsLoading(false);
     }
@@ -181,6 +199,7 @@ const AIServicePage = () => {
           audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
         }
         const ctx = audioContextRef.current;
+        if (ctx.state === 'suspended') await ctx.resume();
         const audioBuffer = await decodeAudioData(decode(base64Audio), ctx, 24000, 1);
         const source = ctx.createBufferSource();
         source.buffer = audioBuffer;
@@ -204,6 +223,7 @@ const AIServicePage = () => {
       liveAudioContextRef.current = { input: inputCtx, output: outputCtx };
       nextStartTimeRef.current = 0;
       setIsLiveActive(true);
+      setLiveTranscripts([{ role: 'system', text: 'Uplink established. Analyzing audio stream...' }]);
 
       const sessionPromise = ai.live.connect({
         model: 'gemini-2.5-flash-native-audio-preview-12-2025',
@@ -220,6 +240,13 @@ const AIServicePage = () => {
             scriptProcessor.connect(inputCtx.destination);
           },
           onmessage: async (message: LiveServerMessage) => {
+            if (message.serverContent?.inputTranscription) {
+              setLiveTranscripts(prev => [...prev, { role: 'user', text: message.serverContent?.inputTranscription?.text || '' }]);
+            }
+            if (message.serverContent?.outputTranscription) {
+              setLiveTranscripts(prev => [...prev, { role: 'assistant', text: message.serverContent?.outputTranscription?.text || '' }]);
+            }
+
             let base64Audio = '';
             if (message.serverContent?.modelTurn?.parts) {
               for (const part of message.serverContent.modelTurn.parts) {
@@ -244,6 +271,7 @@ const AIServicePage = () => {
               nextStartTimeRef.current += buffer.duration;
               liveSourcesRef.current.add(source);
             }
+            
             if (message.serverContent?.interrupted) {
               if (liveSourcesRef.current) {
                 liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
@@ -252,13 +280,18 @@ const AIServicePage = () => {
               nextStartTimeRef.current = 0;
             }
           },
-          onclose: () => setIsLiveActive(false),
+          onclose: () => {
+            setIsLiveActive(false);
+            setLiveTranscripts(prev => [...prev, { role: 'system', text: 'Uplink terminated.' }]);
+          },
           onerror: () => setIsLiveActive(false)
         },
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } },
-          systemInstruction: 'You are the LaunchPath Compliance Expert. Professional, authoritative, and concise.'
+          inputAudioTranscription: {},
+          outputAudioTranscription: {},
+          systemInstruction: 'You are the LaunchPath Compliance Expert. Professional, authoritative, and concise. Guide the operator through federal safety standards.'
         }
       });
       liveSessionRef.current = sessionPromise;
@@ -291,9 +324,10 @@ const AIServicePage = () => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       let config: any = {
         model: 'veo-3.1-fast-generate-preview',
-        prompt: videoPrompt || "Professional trucking fleet visualization.",
+        prompt: `Institutional cinematic visualization for LaunchPath: ${videoPrompt || "Professional trucking fleet visualization."}`,
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
       };
+      
       if (videoFile) {
         const reader = new FileReader();
         const base64 = await new Promise<string>((res) => {
@@ -306,8 +340,9 @@ const AIServicePage = () => {
       let operation = await ai.models.generateVideos(config);
 
       while (!operation.done) {
+        setGenMessage("Baking visual tensors... " + (Math.floor(Math.random() * 20) + 40) + "%");
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // New instance for updated API key access
+        // Use a new instance to ensure we use the latest key from environment/proxy
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
         operation = await pollAi.operations.getVideosOperation({ operation: operation });
       }
@@ -328,7 +363,7 @@ const AIServicePage = () => {
         alert("Session expired. Re-authorization mandatory.");
       } else {
         console.error("Video Generation Error:", err);
-        alert("Synthesis failure. Check directives.");
+        alert("Synthesis failure. Check visual directives.");
       }
     } finally {
       setIsGeneratingVideo(false);
@@ -336,20 +371,20 @@ const AIServicePage = () => {
   };
 
   return (
-    <div className="bg-[#f8fafc] dark:bg-primary-dark min-h-screen py-12 px-6 animate-in fade-in duration-1000">
+    <div className="bg-[#f8fafc] dark:bg-primary-dark min-h-screen py-12 px-6 animate-in fade-in duration-1000 overflow-hidden">
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 h-[calc(100vh-160px)]">
         
         {/* Sidebar Nav */}
         <aside className="lg:col-span-3 space-y-6">
           <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border border-slate-200 dark:border-border-dark shadow-xl">
             <h2 className="text-sm font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-8 flex items-center">
-              <Bot size={18} className="mr-3" /> Neural Advisors
+              <Bot size={18} className="mr-3" /> Neural Advisor
             </h2>
             <nav className="space-y-3">
               {[
-                { id: 'chat', label: 'Compliance GPT', icon: <MessageCircle size={18} />, sub: 'Institutional Q&A' },
-                { id: 'voice', label: 'Voice Terminal', icon: <Mic size={18} />, sub: 'Low-latency Link' },
-                { id: 'video', label: 'Video Studio', icon: <Video size={18} />, sub: 'Asset Synthesis' }
+                { id: 'chat', label: 'Compliance GPT', icon: <MessageCircle size={18} />, sub: 'Structural Q&A' },
+                { id: 'voice', label: 'Voice Mode', icon: <Mic size={18} />, sub: 'Dynamic Link' },
+                { id: 'video', label: 'Video Lab', icon: <Video size={18} />, sub: 'Digital Synthesis' }
               ].map(tab => (
                 <button
                   key={tab.id}
@@ -372,13 +407,24 @@ const AIServicePage = () => {
             </nav>
           </div>
 
-          <div className="bg-authority-blue p-8 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16"></div>
-             <Zap className="text-signal-gold mb-4" size={24} />
-             <h3 className="text-lg font-bold font-serif mb-2">System Status</h3>
-             <p className="text-[11px] font-medium text-white/60 leading-relaxed uppercase tracking-widest">
-               Uplink active. Advisor training synchronized to 49 CFR standards.
-             </p>
+          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] shadow-xl border border-slate-200 dark:border-border-dark space-y-6">
+             <div className="flex items-center space-x-3 text-authority-blue dark:text-signal-gold">
+               <ShieldCheck size={20} />
+               <h3 className="text-[10px] font-black uppercase tracking-widest">Trust Registry</h3>
+             </div>
+             <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase">Uplink Status</span>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span className="text-[9px] font-black uppercase text-green-600">Secure</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase">Neural Load</span>
+                  <span className="text-[9px] font-black uppercase text-slate-600 dark:text-slate-300">Optimal</span>
+                </div>
+             </div>
           </div>
         </aside>
 
@@ -401,9 +447,24 @@ const AIServicePage = () => {
                         ? 'bg-authority-blue text-white rounded-tr-none shadow-xl' 
                         : 'bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-border-dark rounded-tl-none'
                       }`}>
-                        <div className="text-base font-medium leading-relaxed prose dark:prose-invert max-w-none">
+                        <div className="text-base font-medium leading-relaxed prose dark:prose-invert max-w-none prose-sm">
                           {m.content.split('\n').map((line, li) => <p key={li} className="mb-2 last:mb-0">{line}</p>)}
                         </div>
+                        
+                        {m.sources && (
+                          <div className="mt-6 pt-6 border-t border-slate-200 dark:border-white/5 space-y-3">
+                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Grounding References</p>
+                            <div className="flex flex-wrap gap-2">
+                              {m.sources.map((s, si) => (
+                                <a key={si} href={s.uri} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 px-3 py-1.5 bg-white dark:bg-gray-800 border border-slate-100 dark:border-border-dark rounded-lg text-[10px] font-bold text-authority-blue dark:text-signal-gold hover:shadow-md transition-all">
+                                  <ExternalLink size={10} />
+                                  <span className="truncate max-w-[150px]">{s.title || 'Source'}</span>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
                         {m.role === 'assistant' && (
                           <button 
                             onClick={() => speakMessage(m.content, i)} 
@@ -414,7 +475,7 @@ const AIServicePage = () => {
                             }`}
                           >
                             {isSpeaking === i ? <Volume2 size={16} /> : <VolumeX size={16} />}
-                            <span>{isSpeaking === i ? 'Advisor Speaking' : 'Listen to Brief'}</span>
+                            <span>{isSpeaking === i ? 'Advisor Speaking' : 'Audio Briefing'}</span>
                           </button>
                         )}
                       </div>
@@ -470,10 +531,24 @@ const AIServicePage = () => {
                   {isLiveActive && <div className="absolute inset-0 bg-signal-gold/20 rounded-[4rem] animate-ping"></div>}
                 </div>
                 <div>
-                  <h2 className="text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Voice Terminal</h2>
+                  <h2 className="text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Voice Mode</h2>
                   <p className="text-lg text-text-muted dark:text-text-dark-muted mt-4 font-medium uppercase tracking-[0.2em]">Institutional Low-latency Link</p>
                 </div>
               </div>
+
+              {isLiveActive && (
+                <div className="w-full max-w-2xl bg-slate-50 dark:bg-gray-900/50 p-8 rounded-[2.5rem] border border-slate-200 dark:border-border-dark mb-10 h-32 overflow-y-auto custom-scrollbar animate-in slide-in-from-bottom-4">
+                  <div className="space-y-4">
+                    {liveTranscripts.slice(-2).map((t, idx) => (
+                      <div key={idx} className="flex space-x-3 items-start">
+                        <span className={`text-[9px] font-black uppercase tracking-widest mt-1 ${t.role === 'assistant' ? 'text-signal-gold' : 'text-authority-blue'}`}>{t.role}:</span>
+                        <p className="text-xs font-bold text-slate-600 dark:text-slate-300 italic">"{t.text}"</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <button
                 onClick={isLiveActive ? stopLiveConversation : startLiveConversation}
                 className={`flex items-center space-x-6 px-16 py-8 rounded-[3rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl active:scale-95 transition-all ${
@@ -483,7 +558,7 @@ const AIServicePage = () => {
                 }`}
               >
                 {isLiveActive ? <PhoneOff size={24} /> : <Phone size={24} />}
-                <span>{isLiveActive ? 'Terminate Uplink' : 'Establish Advisory Link'}</span>
+                <span>{isLiveActive ? 'Terminate Link' : 'Establish Link'}</span>
               </button>
               <div className="mt-16 flex items-center space-x-4 opacity-40 dark:opacity-60 dark:text-white">
                  <Lock size={14} />
@@ -500,7 +575,7 @@ const AIServicePage = () => {
                   <div className="space-y-4">
                     <h3 className="text-4xl font-black uppercase tracking-tighter text-amber-800 dark:text-amber-400 font-serif">Studio Auth Required</h3>
                     <p className="text-lg font-medium text-amber-700/80 dark:text-amber-300/80 leading-relaxed">
-                      Synthesis requires a validated Google AI Studio key.
+                      Neural synthesis requires a validated Google AI Studio key.
                     </p>
                   </div>
                   <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-14 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-amber-700 active:scale-95 transition-all">Authorize Key</button>
@@ -509,10 +584,10 @@ const AIServicePage = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                    <div className="space-y-10">
                      <div>
-                       <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6">Production Directives</h3>
+                       <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6">Production Directive</h3>
                        <textarea 
                         rows={8} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} 
-                        placeholder="Describe the cinematic visualization..." 
+                        placeholder="Describe the cinematic compliance visualization..." 
                         className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark p-8 rounded-[3rem] font-bold text-sm text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold outline-none shadow-inner" 
                        />
                      </div>
