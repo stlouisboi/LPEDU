@@ -129,14 +129,19 @@ const Header = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-6 py-3 text-[11px] font-black uppercase tracking-[0.3em] transition-all relative group ${
+                  className={`px-6 py-3 text-[11px] font-black uppercase tracking-[0.3em] transition-all relative group filter ${
                     location.pathname === item.path 
-                    ? 'text-white' 
-                    : 'text-signal-gold/70 hover:text-white'
+                    ? 'text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]' 
+                    : 'text-signal-gold/70 hover:text-white hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]'
                   }`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-6 right-6 h-[2px] bg-signal-gold transition-all duration-300 scale-x-0 group-hover:scale-x-100 ${location.pathname === item.path ? 'scale-x-100' : ''}`}></span>
+                  {/* Enhanced Underline: Thicker and Persistent on Active/Hover */}
+                  <span className={`absolute bottom-0 left-6 right-6 h-[3px] bg-signal-gold transition-all duration-300 origin-center ${
+                    location.pathname === item.path 
+                    ? 'scale-x-100 opacity-100 shadow-[0_0_10px_rgba(198,146,42,0.8)]' 
+                    : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
+                  }`}></span>
                 </Link>
               ))}
             </div>
@@ -147,7 +152,7 @@ const Header = () => {
               {currentUser ? (
                 <Link 
                   to="/operator-portal" 
-                  className="bg-white/5 border-2 border-white/20 text-white px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-white hover:text-authority-blue transition-all active:scale-95 shadow-sm"
+                  className="bg-white/5 border-2 border-white/20 text-white px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-white hover:text-authority-blue hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all active:scale-95 shadow-sm"
                 >
                   <LayoutDashboard size={12} className="mr-3 -mt-0.5" />
                   My Portal
@@ -155,7 +160,7 @@ const Header = () => {
               ) : (
                 <Link 
                   to="/portal" 
-                  className="border-2 border-signal-gold text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95 shadow-sm"
+                  className="border-2 border-signal-gold text-signal-gold px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] flex items-center hover:bg-signal-gold hover:text-authority-blue hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all active:scale-95 shadow-sm"
                 >
                   <Lock size={12} className="mr-3 -mt-0.5" />
                   Portal Access

@@ -27,7 +27,7 @@ interface PhaseData {
   duration: string;
   icon: React.ReactNode;
   colorClass: string;
-  accentClass: string;
+  bgClass: string;
   borderClass: string;
 }
 
@@ -38,9 +38,9 @@ const PHASES: PhaseData[] = [
     subtitle: "Business Setup & Authority Registration",
     description: "Establish your legal structure, obtain your operating authority, and understand your federal obligations.",
     duration: "Weeks 1-3",
-    icon: <Anchor />,
+    icon: <Anchor size={24} />,
     colorClass: "text-authority-blue",
-    accentClass: "bg-authority-blue",
+    bgClass: "bg-authority-blue/10",
     borderClass: "border-authority-blue"
   },
   {
@@ -49,9 +49,9 @@ const PHASES: PhaseData[] = [
     subtitle: "Insurance & Risk Management",
     description: "Secure proper coverage, understand policy requirements, and build your insurance file.",
     duration: "Weeks 4-6",
-    icon: <Shield />,
+    icon: <Shield size={24} />,
     colorClass: "text-signal-gold",
-    accentClass: "bg-signal-gold",
+    bgClass: "bg-signal-gold/10",
     borderClass: "border-signal-gold"
   },
   {
@@ -60,9 +60,9 @@ const PHASES: PhaseData[] = [
     subtitle: "Driver Qualification & Compliance Files",
     description: "Build audit-ready DQ files, drug and alcohol programs, and maintenance systems.",
     duration: "Weeks 6-10",
-    icon: <FileText />,
+    icon: <FileText size={24} />,
     colorClass: "text-steel-blue",
-    accentClass: "bg-steel-blue",
+    bgClass: "bg-steel-blue/10",
     borderClass: "border-steel-blue"
   },
   {
@@ -71,18 +71,36 @@ const PHASES: PhaseData[] = [
     subtitle: "Ongoing Compliance & Audit Readiness",
     description: "Implement verification workflows that keep your files current and inspection-ready.",
     duration: "Week 12+",
-    icon: <CheckCircle2 />,
+    icon: <CheckCircle2 size={24} />,
     colorClass: "text-green-600",
-    accentClass: "bg-green-600",
+    bgClass: "bg-green-600/10",
     borderClass: "border-green-600"
   }
 ];
 
+/**
+ * Reusable Checkpoint component to visually separate curriculum phases.
+ * Indicates a mandatory verification gate in the operating standard.
+ */
 const CheckpointGate = ({ label }: { label: string }) => (
-  <div className="relative flex flex-col items-center justify-center py-16 z-30">
-    <div className="bg-authority-blue border border-white/10 text-white px-8 py-4 rounded-full shadow-xl flex items-center space-x-3">
-      <Lock size={14} className="text-signal-gold" />
-      <span className="text-[10px] font-black uppercase tracking-[0.3em]">{label}</span>
+  <div className="relative flex flex-col items-center justify-center py-20 z-30">
+    {/* Progress line continuation bridge */}
+    <div className="absolute top-0 bottom-0 left-8 md:left-1/2 w-px bg-slate-200 dark:bg-slate-800 -translate-x-1/2"></div>
+    
+    <div className="relative group">
+      {/* Halo Effect on Interaction */}
+      <div className="absolute -inset-4 bg-signal-gold/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      
+      <div className="relative bg-authority-blue dark:bg-surface-dark border-2 border-signal-gold/30 text-white px-10 py-5 rounded-[2rem] shadow-2xl flex items-center space-x-5 transition-all duration-500 hover:scale-105 hover:border-signal-gold group">
+        <div className="bg-signal-gold/20 p-2.5 rounded-xl transition-colors group-hover:bg-signal-gold group-hover:text-authority-blue">
+          <Lock size={18} className="text-signal-gold group-hover:text-inherit" />
+        </div>
+        
+        <div className="flex flex-col items-start">
+          <p className="text-[9px] font-black uppercase tracking-[0.4em] text-signal-gold/60 leading-none mb-1.5">Verification Gate</p>
+          <p className="text-xs font-black uppercase tracking-[0.25em] text-white leading-none">{label}</p>
+        </div>
+      </div>
     </div>
   </div>
 );
@@ -148,17 +166,25 @@ const LearningPathPage = () => {
           {PHASES.map((phase, idx) => (
             <React.Fragment key={phase.number}>
               <div className={`relative flex flex-col md:flex-row items-start md:items-center ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                {/* Dot marker on line */}
-                <div className={`absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-surface-dark border-2 ${phase.borderClass} rounded-full z-20 shadow-sm`}></div>
+                {/* Dot marker on line with distinct accent color */}
+                <div className={`absolute left-8 md:left-1/2 -translate-x-1/2 w-5 h-5 bg-white dark:bg-surface-dark border-4 ${phase.borderClass} rounded-full z-20 shadow-md`}></div>
                 
                 <div className="hidden md:block md:w-[45%]"></div>
                 
                 <div className="w-full md:w-[48%] pl-20 md:pl-0 animate-reveal-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                   <div className={`group bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[2.5rem] border-t-8 ${phase.borderClass} shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden`}>
-                    <div className="flex justify-between items-start mb-6">
-                      <span className={`text-4xl md:text-5xl font-black ${phase.colorClass} opacity-20 font-serif`}>{phase.number}</span>
-                      <div className="flex items-center space-x-2 text-slate-400 font-black uppercase text-[10px] tracking-widest bg-slate-50 dark:bg-gray-800 px-3 py-1.5 rounded-lg">
-                        <Clock size={12} /><span>{phase.duration}</span>
+                    
+                    <div className="flex justify-between items-start mb-8">
+                      <div className="flex flex-col">
+                        <span className={`text-4xl md:text-5xl font-black ${phase.colorClass} opacity-20 font-serif leading-none`}>{phase.number}</span>
+                        <div className="mt-4 flex items-center space-x-2 text-slate-400 font-black uppercase text-[10px] tracking-widest bg-slate-50 dark:bg-gray-800 px-3 py-1.5 rounded-lg w-fit">
+                          <Clock size={12} /><span>{phase.duration}</span>
+                        </div>
+                      </div>
+                      
+                      {/* Integrated Phase Icon with Accent Color */}
+                      <div className={`w-14 h-14 rounded-2xl ${phase.bgClass} ${phase.colorClass} flex items-center justify-center shadow-inner transition-transform group-hover:scale-110 duration-500`}>
+                        {phase.icon}
                       </div>
                     </div>
                     
@@ -167,17 +193,27 @@ const LearningPathPage = () => {
                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{phase.subtitle}</p>
                     </div>
                     
-                    <p className="text-base text-slate-600 dark:text-text-dark-muted font-medium leading-relaxed mb-8">
+                    <p className="text-base text-slate-600 dark:text-text-dark-muted font-medium leading-relaxed mb-10">
                       {phase.description}
                     </p>
                     
-                    <Link to="/pricing" className="inline-flex items-center text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold hover:translate-x-1 transition-transform">
+                    <Link to="/pricing" className={`inline-flex items-center text-[10px] font-black uppercase tracking-widest ${phase.colorClass} hover:translate-x-1 transition-transform`}>
                       View Phase Details <ChevronRight size={14} className="ml-1" />
                     </Link>
                   </div>
                 </div>
               </div>
-              {idx < PHASES.length - 1 && <CheckpointGate label="System Validation" />}
+              
+              {/* Placement of reusable CheckpointGate component */}
+              {idx < PHASES.length - 1 && (
+                <CheckpointGate 
+                  label={
+                    idx === 0 ? "Legal Authority Lock" : 
+                    idx === 1 ? "Insurance Coverage Audit" : 
+                    "Compliance File Verification"
+                  } 
+                />
+              )}
             </React.Fragment>
           ))}
         </div>
@@ -195,17 +231,17 @@ const LearningPathPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { title: "Complete DQ Files", desc: "Digital and physical system for driver qualifications." },
-              { title: "Drug & Alcohol Program", desc: "Full Clearinghouse enrollment and random testing setup." },
-              { title: "Maintenance System", desc: "Audit-ready equipment inspection and record tracking." },
-              { title: "Underwriter File", desc: "Documentation infrastructure that satisfies insurers." }
+              { title: "Complete DQ Files", desc: "Digital and physical system for driver qualifications.", color: "text-authority-blue" },
+              { title: "Drug & Alcohol Program", desc: "Full Clearinghouse enrollment and random testing setup.", color: "text-signal-gold" },
+              { title: "Maintenance System", desc: "Audit-ready equipment inspection and record tracking.", color: "text-steel-blue" },
+              { title: "Underwriter File", desc: "Documentation infrastructure that satisfies insurers.", color: "text-green-600" }
             ].map((outcome, i) => (
               <div key={i} className="bg-white dark:bg-primary-dark p-8 rounded-3xl border border-slate-100 dark:border-border-dark flex items-start space-x-5 group hover:shadow-lg transition-all">
-                <div className="p-3 bg-green-50 dark:bg-green-900/20 text-green-600 rounded-xl group-hover:scale-110 transition-transform">
+                <div className={`p-3 bg-slate-50 dark:bg-gray-800 rounded-xl group-hover:scale-110 transition-transform ${outcome.color}`}>
                   <ShieldCheck size={24} />
                 </div>
                 <div>
-                  <h4 className="font-black text-authority-blue dark:text-white uppercase tracking-tight text-sm mb-1">{outcome.title}</h4>
+                  <h4 className={`font-black uppercase tracking-tight text-sm mb-1 ${outcome.color}`}>{outcome.title}</h4>
                   <p className="text-xs text-slate-500 font-medium">{outcome.desc}</p>
                 </div>
               </div>

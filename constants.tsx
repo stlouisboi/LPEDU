@@ -182,7 +182,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     content: "<h2>The Clock is Ticking</h2><p>New motor carriers are under a microscopic lens for the first 18 months. The New Entrant Safety Audit is the 'final exam' of this period. If you fail, your authority is revoked, and you must start the entire process over—including a new MC number and potentially higher insurance premiums.</p><p>Key items auditors look for: proof of controlled substance testing, current MCS-150 updates, and a complete Driver Qualification (DQ) file for every operator.</p>",
     publishedAt: "2025-01-15",
     author: "Vince",
-    image: "https://images.unsplash.com/photo-1454165833767-02654e59637c?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800",
     status: 'published',
     tags: ['Audit', 'Safety', 'FMCSA']
   },
@@ -204,6 +204,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
 export const ROADMAP_STEPS: RoadmapStep[] = [
   {
     id: 1,
+    // Fix: Removed 'prefix' property as it is not a known property of type 'RoadmapStep'
     phase: "Phase I: The Foundation",
     title: "The 90-Day Containment Window",
     description: "Setting the systems that determine if you survive the first 18 months of federal scrutiny.",
