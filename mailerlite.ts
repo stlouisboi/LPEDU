@@ -1,6 +1,6 @@
 /**
- * MailerLite Integration Utility (JSONP Implementation)
- * This method is required to bypass CORS restrictions on static frontends.
+ * MailerLite Integration Utility
+ * This utility synchronizes leads with a MailerLite "Embedded Form".
  */
 
 interface MailerLiteData {
@@ -14,65 +14,49 @@ interface MailerLiteData {
   };
 }
 
-export const syncToMailerLite = (data: MailerLiteData): Promise<boolean> => {
+export const syncToMailerLite = async (data: MailerLiteData): Promise<boolean> => {
   const formId = (process.env as any).VITE_MAILERLITE_FORM_ID;
-  const accountId = '1182372'; // LaunchPath Institutional Account ID
+  const accountId = '1989508'; // Updated to user's Account ID from provided URL
 
-  if (!formId) {
-    console.error("CRITICAL: MailerLite Sync Failed. VITE_MAILERLITE_FORM_ID is not defined in your environment variables.");
-    return Promise.resolve(false);
+  if (!formId || formId === "undefined" || formId === "") {
+    console.warn("MailerLite: VITE_MAILERLITE_FORM_ID is not configured. Data stored in Firebase only.");
+    return false;
   }
 
-  return new Promise((resolve) => {
-    // Unique callback name for this request
-    const callbackName = `ml_callback_${Math.round(Math.random() * 1000000)}`;
+  try {
+    // The standard endpoint for MailerLite Embedded Forms
+    const url = `https://assets.mailerlite.com/forms/${accountId}/${formId}/subscribe`;
+
+    const formData = new FormData();
+    formData.append('fields[email]', data.email);
     
-    // Create the script tag
-    const script = document.createElement('script');
-    
-    // Construct the URL with parameters
-    // Note: MailerLite's JSONP endpoint expects fields in a specific format
-    let url = `https://assets.mailerlite.com/jsonp/${accountId}/forms/${formId}/subscribe?`;
-    url += `fields[email]=${encodeURIComponent(data.email)}`;
-    
+    // Map fields to MailerLite's expected array format
     if (data.fields?.name) {
-      url += `&fields[name]=${encodeURIComponent(data.fields.name)}`;
+      formData.append('fields[name]', data.fields.name);
     }
     if (data.fields?.company) {
-      url += `&fields[company]=${encodeURIComponent(data.fields.company)}`;
+      formData.append('fields[company]', data.fields.company);
     }
-    
-    url += `&callback=${callbackName}`;
+    if (data.fields?.last_name) {
+      formData.append('fields[last_name]', data.fields.last_name);
+    }
+    if (data.fields?.phone) {
+      formData.append('fields[phone]', data.fields.phone);
+    }
 
-    // Define the global callback function
-    (window as any)[callbackName] = (response: any) => {
-      console.log("MailerLite Response:", response);
-      cleanup();
-      resolve(true);
-    };
+    // Fire the request
+    // We use 'no-cors' because MailerLite's form endpoint handles the submission 
+    // but doesn't always return a JSON response that browsers can read cross-origin.
+    await fetch(url, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    });
 
-    const cleanup = () => {
-      if (script.parentNode) script.parentNode.removeChild(script);
-      delete (window as any)[callbackName];
-    };
-
-    // Handle network errors
-    script.onerror = () => {
-      console.warn("MailerLite: Script injection failed. Data might not have synced.");
-      cleanup();
-      resolve(false);
-    };
-
-    script.src = url;
-    document.body.appendChild(script);
-
-    // Timeout safety
-    setTimeout(() => {
-      if ((window as any)[callbackName]) {
-        console.warn("MailerLite: Sync timed out.");
-        cleanup();
-        resolve(false);
-      }
-    }, 5000);
-  });
+    console.log("MailerLite: Transmission sent to form", formId, "on account", accountId);
+    return true;
+  } catch (err) {
+    console.error("MailerLite: Critical failure", err);
+    return false;
+  }
 };

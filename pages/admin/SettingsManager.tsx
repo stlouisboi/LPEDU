@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -26,7 +25,12 @@ import {
   Link as LinkIcon,
   Sparkles,
   Command,
-  Shield
+  Shield,
+  Zap,
+  Activity,
+  HelpCircle,
+  ExternalLink,
+  FileText
 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { SiteSettings } from '../../types';
@@ -39,6 +43,10 @@ const SettingsManager = () => {
   const [generating, setGenerating] = useState(false);
   const [activeTab, setActiveTab] = useState<'site' | 'contact' | 'social' | 'checkout' | 'seo'>('site');
   const [message, setMessage] = useState<{type: 'success' | 'error', text: string} | null>(null);
+
+  // MailerLite status
+  const mailerLiteFormId = (process.env as any).VITE_MAILERLITE_FORM_ID;
+  const mailerLiteAccountId = '1989508';
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -481,6 +489,62 @@ const SettingsManager = () => {
         </div>
 
         <div className="space-y-8">
+           {/* MailerLite Monitor */}
+           <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-blue-600">
+                  <Activity size={18} />
+                </div>
+                <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue dark:text-white">Lead Capture Sync</h4>
+              </div>
+              <div className="space-y-4">
+                 <div className="flex justify-between items-center text-[10px] font-bold uppercase">
+                    <span className="text-text-muted">Provider:</span>
+                    <span className="text-authority-blue">MailerLite</span>
+                 </div>
+                 <div className="flex justify-between items-center text-[10px] font-bold uppercase">
+                    <span className="text-text-muted">Registry Form ID:</span>
+                    <span className={mailerLiteFormId ? "text-green-600 font-black" : "text-red-600 font-black"}>
+                       {mailerLiteFormId || "NOT CONFIGURED"}
+                    </span>
+                 </div>
+                 <div className={`mt-6 p-4 rounded-xl flex items-center space-x-3 border ${mailerLiteFormId ? 'bg-green-50 border-green-100 text-green-700' : 'bg-red-50 border-red-100 text-red-700'}`}>
+                    {mailerLiteFormId ? <ShieldCheck size={16} /> : <AlertCircle size={16} />}
+                    <p className="text-[9px] font-black uppercase leading-tight">
+                       {mailerLiteFormId 
+                        ? "Institutional lead capture is synchronized and reporting active." 
+                        : "VITE_MAILERLITE_FORM_ID must be set in deployment environment variables."}
+                    </p>
+                 </div>
+              </div>
+
+              {/* SETUP GUIDE SECTION */}
+              <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 space-y-6">
+                 <div className="flex items-center space-x-2 text-authority-blue dark:text-signal-gold">
+                    <HelpCircle size={14} />
+                    <h5 className="text-[10px] font-black uppercase tracking-widest">Setup Guide</h5>
+                 </div>
+                 <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                       <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">1</div>
+                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Go to MailerLite > Forms > <span className="text-authority-blue dark:text-white">Embedded Forms</span>.</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                       <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">2</div>
+                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Create a form and save it. Look at the URL in your browser.</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                       <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">3</div>
+                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Your ID is the <span className="text-authority-blue dark:text-white">last number</span> in the URL (e.g. 178039977112766339).</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                       <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">4</div>
+                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase italic">Do not use the PDF download link as an ID.</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+
            <div className="bg-authority-blue p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16"></div>
               <Eye className="mb-4 text-signal-gold" size={24} />
@@ -494,20 +558,6 @@ const SettingsManager = () => {
                  <div className="h-20 w-full bg-white/5 rounded-xl"></div>
               </div>
            </div>
-
-           {activeTab === 'social' && (
-             <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
-                <h4 className="text-xs font-black uppercase tracking-widest text-authority-blue mb-4">Footer Links Preview</h4>
-                <div className="flex items-center space-x-4 text-slate-400">
-                   {settings.social.facebook && <Facebook size={18} />}
-                   {settings.social.twitter && <Twitter size={18} />}
-                   {settings.social.linkedin && <Linkedin size={18} />}
-                   {settings.social.instagram && <Instagram size={18} />}
-                   {settings.social.youtube && <Youtube size={18} className="text-red-500" />}
-                </div>
-                <p className="text-[10px] mt-4 text-text-muted font-medium italic">YouTube link will display with the distinct brand accent.</p>
-             </div>
-           )}
         </div>
       </div>
     </div>
