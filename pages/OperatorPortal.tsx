@@ -8,6 +8,9 @@ import {
   Shield, 
   Plus, 
   Trash2, 
+  Edit2,
+  Check,
+  X,
   ClipboardList,
   Calendar,
   Clock,
@@ -27,7 +30,6 @@ interface Task {
 const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
   return (
     <div className="relative shrink-0">
-      {/* Sparkle Burst effect on completion */}
       {checked && (
         <div className="absolute inset-0 pointer-events-none overflow-visible">
           {[...Array(8)].map((_, i) => (
@@ -92,6 +94,8 @@ const OperatorPortal: React.FC = () => {
   ]);
   
   const [newTaskText, setNewTaskText] = useState('');
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+  const [editingTaskText, setEditingTaskText] = useState('');
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState<string | null>(null);
@@ -110,6 +114,23 @@ const OperatorPortal: React.FC = () => {
 
   const toggleTask = (id: string) => {
     setTasks(tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+  };
+
+  const startEditing = (task: Task) => {
+    setEditingTaskId(task.id);
+    setEditingTaskText(task.text);
+  };
+
+  const saveEdit = () => {
+    if (!editingTaskId || !editingTaskText.trim()) return;
+    setTasks(tasks.map(t => t.id === editingTaskId ? { ...t, text: editingTaskText.trim() } : t));
+    setEditingTaskId(null);
+    setEditingTaskText('');
+  };
+
+  const cancelEdit = () => {
+    setEditingTaskId(null);
+    setEditingTaskText('');
   };
 
   const openDeleteConfirm = (id: string) => {
@@ -141,13 +162,12 @@ const OperatorPortal: React.FC = () => {
 
   return (
     <div className="bg-primary-light dark:bg-primary-dark min-h-screen">
-      {/* Remediation Protocol Block as the first section */}
       <RemediationProtocolBlock />
 
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 gap-6">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-black text-authority-blue dark:text-white uppercase tracking-tight">
               Operator Dashboard {currentUser?.displayName ? `// ${currentUser.displayName}` : ''}
             </h1>
             <p className="text-text-muted mt-1 uppercase text-[10px] font-black tracking-widest">Registry ID: LP-AUTH-7729 // SECURE_UPLINK_STABLE</p>
@@ -158,7 +178,6 @@ const OperatorPortal: React.FC = () => {
           </div>
         </div>
 
-        {/* 90-Day Timeline Visualizer */}
         <section className="mb-20">
           <div className="bg-white dark:bg-surface-dark rounded-[3rem] p-10 border border-slate-100 dark:border-border-dark shadow-sm overflow-hidden relative">
             <div className="absolute top-0 right-0 p-8 opacity-5 text-authority-blue">
@@ -189,7 +208,6 @@ const OperatorPortal: React.FC = () => {
         </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Implementation Sequence */}
           <div className="lg:col-span-8 space-y-12">
             <section>
               <div className="flex justify-between items-end mb-8">
@@ -210,7 +228,7 @@ const OperatorPortal: React.FC = () => {
                         {module.id}
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight group-hover:text-signal-gold transition-colors font-serif">
+                        <h3 className="text-xl font-bold text-authority-blue dark:text-white uppercase tracking-tight group-hover:text-signal-gold transition-colors">
                           {module.title}
                         </h3>
                         <p className="text-[10px] font-black text-text-muted uppercase tracking-widest mt-1">{module.pillar} • {module.duration}</p>
@@ -224,7 +242,6 @@ const OperatorPortal: React.FC = () => {
               </div>
             </section>
 
-            {/* Task Registry Section */}
             <section className="bg-white dark:bg-surface-dark rounded-[3.5rem] p-10 md:p-14 border border-slate-100 dark:border-border-dark shadow-sm">
               <div className="flex items-center justify-between mb-10">
                 <h2 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold flex items-center">
@@ -249,7 +266,6 @@ const OperatorPortal: React.FC = () => {
                 </button>
               </form>
 
-              {/* Filter Tabs */}
               <div className="flex items-center space-x-1 p-1 bg-slate-50 dark:bg-gray-900 rounded-2xl mb-8 w-fit border border-slate-100 dark:border-border-dark">
                 {(['all', 'active', 'completed'] as const).map((f) => (
                   <button
@@ -272,18 +288,50 @@ const OperatorPortal: React.FC = () => {
                     key={task.id} 
                     className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-900/50 border border-slate-100 dark:border-border-dark rounded-2xl group transition-all hover:bg-white dark:hover:bg-gray-800"
                   >
-                    <div className="flex items-center space-x-4 flex-grow cursor-pointer" onClick={() => toggleTask(task.id)}>
-                      <AnimatedCheckmark checked={task.completed} />
-                      <span className={`text-sm font-bold transition-all duration-300 ${task.completed ? 'text-slate-300 line-through' : 'text-slate-700 dark:text-slate-200'}`}>
-                        {task.text}
-                      </span>
-                    </div>
-                    <button 
-                      onClick={() => openDeleteConfirm(task.id)}
-                      className="p-2 text-slate-300 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
-                    >
-                      <Trash2 size={18} />
-                    </button>
+                    {editingTaskId === task.id ? (
+                      <div className="flex items-center space-x-4 flex-grow pr-4">
+                        <input 
+                          autoFocus
+                          type="text"
+                          value={editingTaskText}
+                          onChange={(e) => setEditingTaskText(e.target.value)}
+                          className="flex-grow bg-white dark:bg-gray-700 border-2 border-authority-blue rounded-xl px-4 py-2 text-sm font-bold shadow-sm outline-none"
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') saveEdit();
+                            if (e.key === 'Escape') cancelEdit();
+                          }}
+                        />
+                        <div className="flex items-center space-x-2">
+                           <button onClick={saveEdit} className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 shadow-sm"><Check size={16} /></button>
+                           <button onClick={cancelEdit} className="p-2 bg-slate-200 dark:bg-slate-600 text-slate-600 dark:text-slate-200 rounded-lg hover:bg-slate-300"><X size={16} /></button>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex items-center space-x-4 flex-grow cursor-pointer" onClick={() => toggleTask(task.id)}>
+                          <AnimatedCheckmark checked={task.completed} />
+                          <span className={`text-sm font-bold transition-all duration-300 ${task.completed ? 'text-slate-300 line-through' : 'text-slate-700 dark:text-slate-200'}`}>
+                            {task.text}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button 
+                            onClick={() => startEditing(task)}
+                            className="p-2 text-slate-400 hover:text-authority-blue transition-colors"
+                            title="Edit Task"
+                          >
+                            <Edit2 size={16} />
+                          </button>
+                          <button 
+                            onClick={() => openDeleteConfirm(task.id)}
+                            className="p-2 text-slate-400 hover:text-red-500 transition-colors"
+                            title="Delete Task"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </>
+                    )}
                   </div>
                 ))}
                 {filteredTasks.length === 0 && (
@@ -298,11 +346,10 @@ const OperatorPortal: React.FC = () => {
             </section>
           </div>
 
-          {/* Sidebar Status */}
           <div className="lg:col-span-4 space-y-8">
             <div className="bg-authority-blue p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-24 translate-x-24"></div>
-              <h3 className="text-2xl font-bold font-serif mb-8 uppercase tracking-tight text-signal-gold">System Integrity</h3>
+              <h3 className="text-2xl font-bold mb-8 uppercase tracking-tight text-signal-gold">System Integrity</h3>
               <div className="space-y-8">
                 {[
                   { label: "BOC-3 Filing", status: "Verified" },

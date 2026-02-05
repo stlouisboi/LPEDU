@@ -44,7 +44,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <script>
       tailwind.config = {
@@ -53,8 +53,8 @@
           extend: {
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],
-              display: ['Montserrat', 'sans-serif'],
-              serif: ['Lora', 'serif'],
+              display: ['Inter', 'sans-serif'],
+              mono: ['IBM Plex Sans', 'monospace'],
             },
             colors: {
               'authority-blue': '#1e3a5f',
@@ -80,16 +80,13 @@
       }
       .dark body { background: #020617; }
       
-      h1, h2, h3, h4, .font-serif {
-        font-family: 'Lora', serif;
-      }
-      
-      .font-display {
-        font-family: 'Montserrat', sans-serif;
+      h1, h2, h3, h4 {
+        font-weight: 900;
+        letter-spacing: -0.02em;
       }
 
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      .boot-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: 'Montserrat', sans-serif; }
+      .boot-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: 'Inter', sans-serif; }
       .spinner { width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top: 3px solid #C6922A; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
       
       .custom-scrollbar::-webkit-scrollbar { width: 6px; }
