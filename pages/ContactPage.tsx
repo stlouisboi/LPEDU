@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Mail, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, MessageSquare, Anchor, User, ChevronDown, Building2 } from 'lucide-react';
+import { Mail, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, MessageSquare, Anchor, User, ChevronDown, Building2, RefreshCw } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
+import { syncToMailerLite } from '../mailerlite';
 
 const FloatingInput = ({ label, icon: Icon, ...props }: any) => {
   const [focused, setFocused] = useState(false);
@@ -46,6 +47,7 @@ const ContactPage = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -54,6 +56,7 @@ const ContactPage = () => {
     setError(null);
     
     try {
+      // 1. Firebase Synchronization
       if (!db) {
         throw new Error("Cloud synchronization is currently offline. Please verify connection.");
       }
@@ -65,12 +68,23 @@ const ContactPage = () => {
         createdAt: serverTimestamp()
       });
       
+      // 2. MailerLite Synchronization
+      setSyncing(true);
+      await syncToMailerLite({
+        email: formData.email,
+        fields: {
+          name: formData.fullName,
+          company: formData.businessName
+        }
+      });
+
       setIsSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err: any) {
       setError(err.message || "An unexpected error occurred while transmitting your inquiry.");
     } finally {
       setSending(false);
+      setSyncing(false);
     }
   };
 
@@ -221,8 +235,17 @@ const ContactPage = () => {
                     disabled={sending} 
                     className="w-full bg-authority-blue text-white font-black uppercase tracking-[0.4em] py-8 rounded-[2rem] shadow-[0_25px_50px_-12px_rgba(30,58,95,0.3)] hover:bg-steel-blue hover:shadow-[0_25px_60px_-12px_rgba(30,58,95,0.4)] transition-all flex items-center justify-center disabled:opacity-50 active:scale-95 group border-b-8 border-slate-900"
                   >
-                    {sending ? <Loader2 className="animate-spin mr-4" size={24} /> : <Send className="mr-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />} 
-                    SEND MESSAGE
+                    {sending ? (
+                      <span className="flex items-center">
+                        {syncing ? <RefreshCw className="animate-spin mr-4" size={24} /> : <Loader2 className="animate-spin mr-4" size={24} />}
+                        {syncing ? 'SYNCHRONIZING...' : 'PROCESSING...'}
+                      </span>
+                    ) : (
+                      <>
+                        <Send className="mr-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />
+                        SEND MESSAGE
+                      </>
+                    )}
                   </button>
                   
                   <div className="pt-8 flex flex-col items-center space-y-4">

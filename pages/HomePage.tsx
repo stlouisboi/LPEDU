@@ -41,10 +41,12 @@ import {
   BookOpen,
   Building,
   Cpu,
-  Workflow
+  Workflow,
+  RefreshCw
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
+import { syncToMailerLite } from '../mailerlite';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -105,6 +107,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [loading, setLoading] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const [selectedSinId, setSelectedSinId] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   
@@ -145,6 +148,7 @@ const HomePage: React.FC = () => {
     const destination = `/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`;
 
     try {
+      // 1. Save to Firestore Knowledge Base
       if (db) {
         await addDoc(collection(db, "leadMagnets"), {
           firstName: formData.firstName || 'Carrier',
@@ -153,11 +157,26 @@ const HomePage: React.FC = () => {
           source: "homepage-hero-risk-map"
         });
       }
+
+      // 2. Synchronize with MailerLite Automation
+      setSyncing(true);
+      const syncResult = await syncToMailerLite({
+        email: formData.email,
+        fields: { name: formData.firstName }
+      });
+      
+      console.log("MailerLite Capture Status:", syncResult ? "Initiated" : "Bypassed");
+
+      // Give a tiny moment for the request to flush before navigating
+      await new Promise(r => setTimeout(r, 500));
+
       navigate(destination);
     } catch (err) {
+      console.error("Submission Sequence Error:", err);
       navigate(destination);
     } finally {
       setLoading(false);
+      setSyncing(false);
     }
   };
 
@@ -461,8 +480,17 @@ const HomePage: React.FC = () => {
                     disabled={loading}
                     className="w-full bg-authority-blue text-white py-5 md:py-7 rounded-xl md:rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group border-b-4 border-slate-900"
                   >
-                    {loading ? <Loader2 className="animate-spin mr-3" /> : <ChevronRight className="mr-3" size={18} />}
-                    VIEW MY RISK MAP
+                    {loading ? (
+                      <span className="flex items-center">
+                        {syncing ? <RefreshCw className="animate-spin mr-3" size={18} /> : <Loader2 className="animate-spin mr-3" size={18} />}
+                        {syncing ? 'SYNCHRONIZING...' : 'AUTHORIZING...'}
+                      </span>
+                    ) : (
+                      <>
+                        <ChevronRight className="mr-3" size={18} />
+                        VIEW MY RISK MAP
+                      </>
+                    )}
                   </button>
                 </form>
                 <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 space-y-2">
@@ -480,7 +508,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 2. FOUNDER SECTION: VINCE LAWRENCE */}
-      <section className="py-24 bg-slate-50 dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
+      <section className="py-24 bg-slate-50 dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             
@@ -580,7 +608,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 4. THE STANDARD */}
-      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
+      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors duration-300">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <article className="space-y-12">
@@ -623,7 +651,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 5. THIS IS NOT FOR EVERYONE (Restored Boundaries) */}
-      <section className="py-24 md:py-40 bg-[#0c1a2d] text-white overflow-hidden transition-colors relative">
+      <section className="py-24 md:py-40 bg-[#0c1a2d] text-white overflow-hidden transition-colors duration-300 relative">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-4xl mx-auto px-6 text-center space-y-12 relative z-10">
           <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-6 py-2 rounded-full mb-4">
@@ -645,7 +673,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 6. THE FOUR PILLARS */}
-      <section className="py-24 md:py-32 bg-[#020617] border-b border-white/5 transition-colors">
+      <section className="py-24 md:py-32 bg-[#020617] border-b border-white/5 transition-colors duration-300">
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-24 space-y-6">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE FRAMEWORK</p>
@@ -711,7 +739,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 7. THE 16 DEADLY SINS */}
-      <section id="exposure-matrix" className="bg-[#020617] py-24 lg:py-48 border-y border-white/5 transition-colors relative overflow-hidden">
+      <section id="exposure-matrix" className="bg-[#020617] py-24 lg:py-48 border-y border-white/5 transition-colors duration-300 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 relative z-10">
           <header className="text-center mb-24 md:mb-32 space-y-8 animate-reveal-up">
@@ -887,7 +915,7 @@ const HomePage: React.FC = () => {
       )}
 
       {/* 8. THE REACH TEST */}
-      <section className="py-24 md:py-48 bg-authority-blue text-white overflow-hidden transition-colors">
+      <section className="py-24 md:py-48 bg-authority-blue text-white overflow-hidden transition-colors duration-300">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div className="space-y-12 animate-reveal-up">
@@ -922,7 +950,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 9. WHO THIS IS FOR (Qualification / Identity Focus) */}
-      <section ref={whoThisIsForRef} className="py-24 md:py-32 bg-slate-100 dark:bg-[#020617] transition-colors overflow-hidden border-y border-slate-200 dark:border-white/5">
+      <section ref={whoThisIsForRef} className="py-24 md:py-32 bg-slate-100 dark:bg-[#020617] transition-colors duration-300 overflow-hidden border-y border-slate-200 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 md:mb-24 gap-12">
             <header className="space-y-6">
@@ -986,7 +1014,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 10. BUILT-IN SYSTEMS (Technical / Modular Focus) */}
-      <section ref={systemsRef} className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors border-y border-slate-100 dark:border-border-dark overflow-hidden relative">
+      <section ref={systemsRef} className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors duration-300 border-y border-slate-100 dark:border-border-dark overflow-hidden relative">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
         
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -1089,7 +1117,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 11. COMMON QUESTIONS (Restored FAQ) */}
-      <section className="py-24 md:py-32 bg-white dark:bg-primary-dark overflow-hidden transition-colors">
+      <section className="py-24 md:py-32 bg-white dark:bg-primary-dark overflow-hidden transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-6">
           <header className="text-center mb-20 space-y-4">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">FAQS</p>
@@ -1147,7 +1175,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 12. FINAL CTA */}
-      <section className="py-24 md:py-48 bg-[#0c1a2d] text-white overflow-hidden relative transition-colors">
+      <section className="py-24 md:py-48 bg-[#0c1a2d] text-white overflow-hidden relative transition-colors duration-300">
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-12">
            <header className="space-y-6">

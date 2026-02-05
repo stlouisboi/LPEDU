@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -29,10 +28,12 @@ import {
   ExternalLink,
   Globe,
   Gavel,
-  CheckCircle
+  CheckCircle,
+  RefreshCw
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
+import { syncToMailerLite } from '../mailerlite';
 
 const AccessBadge = ({ type }: { type: 'FREE' | 'MEMBERS' }) => (
   <div className={`absolute top-6 right-6 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${
@@ -50,6 +51,7 @@ const ResourcesPage = () => {
   const [leadName, setLeadName] = useState('');
   const [leadEmail, setLeadEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showAllBriefs, setShowAllBriefs] = useState(false);
 
@@ -57,6 +59,7 @@ const ResourcesPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
+      // 1. Firebase Knowledge Base
       if (db) {
         await addDoc(collection(db, "leadMagnets"), {
           firstName: leadName,
@@ -66,6 +69,14 @@ const ResourcesPage = () => {
           source: "resource-page-lead"
         });
       }
+      
+      // 2. MailerLite Sync
+      setSyncing(true);
+      await syncToMailerLite({
+        email: leadEmail,
+        fields: { name: leadName, company: 'Resource Requester' }
+      });
+
       setShowSuccess(true);
       
       setTimeout(() => {
@@ -81,6 +92,7 @@ const ResourcesPage = () => {
       alert("Submission failed. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
+      setSyncing(false);
     }
   };
 
@@ -390,8 +402,17 @@ const ResourcesPage = () => {
                       disabled={isSubmitting}
                       className="w-full bg-authority-blue text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-4 border-slate-900 group"
                     >
-                      {isSubmitting ? <Loader2 className="animate-spin mr-3" /> : <Download className="mr-3 group-hover:translate-y-0.5 transition-transform" size={18} />}
-                      Download Resource
+                      {isSubmitting ? (
+                        <span className="flex items-center">
+                          {syncing ? <RefreshCw className="animate-spin mr-3" size={18} /> : <Loader2 className="animate-spin mr-3" size={18} />}
+                          {syncing ? 'SYNCHRONIZING...' : 'AUTHORIZING...'}
+                        </span>
+                      ) : (
+                        <>
+                          <Download className="mr-3 group-hover:translate-y-0.5 transition-transform" size={18} />
+                          Download Resource
+                        </>
+                      )}
                     </button>
                     <p className="text-[9px] text-center text-slate-400 uppercase tracking-widest mt-6 font-black opacity-60">System Registry Access Protocol v4.5</p>
                   </div>
