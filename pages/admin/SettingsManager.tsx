@@ -535,7 +535,7 @@ const SettingsManager = () => {
                     </div>
                     <div className="flex items-start gap-3">
                        <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">3</div>
-                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Your ID is the <span className="text-authority-blue dark:text-white">last number</span in the URL (e.g. 178039977112766339).</p>
+                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Your ID is the <span className="text-authority-blue dark:text-white">last number</span> in the URL (e.g. 178039977112766339).</p>
                     </div>
                     <div className="flex items-start gap-3">
                        <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">4</div>
