@@ -136,7 +136,6 @@ const Header = () => {
                   }`}
                 >
                   {item.name}
-                  {/* Enhanced Underline: Thicker and Persistent on Active/Hover */}
                   <span className={`absolute bottom-0 left-6 right-6 h-[3px] bg-signal-gold transition-all duration-300 origin-center ${
                     location.pathname === item.path 
                     ? 'scale-x-100 opacity-100 shadow-[0_0_10px_rgba(198,146,42,0.8)]' 
@@ -441,20 +440,33 @@ export default function App() {
 
   useEffect(() => {
     if (!isFirebaseConfigured || !db) {
+      // Fallback for missing Firebase config: stop loading and use defaults
       setAppLoading(false);
       return;
     }
+    
+    // Set a timeout to prevent infinite loading if Firebase hangs
+    const loadTimeout = setTimeout(() => {
+      setAppLoading(false);
+    }, 5000);
+
     const settingsRef = doc(db, "settings", "general");
     const unsub = onSnapshot(settingsRef, (snap) => {
       if (snap.exists()) {
         setSettings(snap.data() as SiteSettings);
       }
+      clearTimeout(loadTimeout);
       setAppLoading(false);
     }, (error) => {
       console.warn("App: Settings listener failed.", error.message);
+      clearTimeout(loadTimeout);
       setAppLoading(false);
     });
-    return () => unsub();
+    
+    return () => {
+      unsub();
+      clearTimeout(loadTimeout);
+    };
   }, []);
 
   const toggleTheme = () => {
