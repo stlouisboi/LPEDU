@@ -527,7 +527,7 @@ const SettingsManager = () => {
                  <div className="space-y-4">
                     <div className="flex items-start gap-3">
                        <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">1</div>
-                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Go to MailerLite &amp;gt; Forms &amp;gt; <span className="text-authority-blue dark:text-white">Embedded Forms</span>.</p>
+                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Go to MailerLite &gt; Forms &gt; <span className="text-authority-blue dark:text-white">Embedded Forms</span>.</p>
                     </div>
                     <div className="flex items-start gap-3">
                        <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">2</div>
