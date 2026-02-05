@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -446,7 +447,7 @@ const HomePage: React.FC = () => {
               <div className="relative z-10">
                 <header className="flex justify-between items-start mb-8 md:mb-12">
                    <div>
-                     <h3 className="text-xs md:text-sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest md:tracking-[0.4em] mb-1 md:mb-2">FREE 90-DAY</h3>
+                     <h3 className="text-xs md:sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest md:tracking-[0.4em] mb-1 md:mb-2">FREE 90-DAY</h3>
                      <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">RISK MAP™ <br/>DIAGNOSTIC</h3>
                    </div>
                    <div className="w-8 h-8 md:w-10 md:h-10 border border-slate-200 dark:border-white/10 rounded-full flex items-center justify-center text-slate-300">
@@ -719,7 +720,8 @@ const HomePage: React.FC = () => {
                <article key={i} className="bg-white/[0.03] p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="w-16 h-16 md:w-20 md:h-20 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 28 })}
+                    {/* Fixed type error in React.cloneElement by casting icon to React.ReactElement<any> to allow passing 'size' prop. */}
+                    {React.cloneElement(pillar.icon as React.ReactElement<any>, { size: 28 })}
                   </div>
                   <h3 className="text-2xl font-black text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
                     {pillar.title}

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -131,7 +132,7 @@ const ResourcesPage = () => {
       {/* HEADER & ORIENTATION */}
       <section className="pt-24 sm:pt-32 pb-16 text-center px-6">
         <div className="max-w-5xl mx-auto space-y-8">
-          <div className="inline-flex items-center space-x-3 bg-authority-blue/5 px-4 py-2 rounded-full border border-authority-blue/10">
+          <div className="inline-flex items-center space-x-3 bg-authority-blue/5 px-4 py-2 rounded-full mb-8">
             <Scale size={14} className="text-authority-blue" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue">The Standard Library</span>
           </div>
@@ -243,7 +244,8 @@ const ResourcesPage = () => {
               <div key={tool.id} className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:shadow-xl transition-all relative">
                 <AccessBadge type={tool.badge as any} />
                 <div className="w-14 h-14 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform">
-                  {React.cloneElement(tool.icon as React.ReactElement, { size: 24 })}
+                  {/* Fixed type error in React.cloneElement by casting icon to React.ReactElement<any> to allow passing 'size' prop. */}
+                  {React.cloneElement(tool.icon as React.ReactElement<any>, { size: 24 })}
                 </div>
                 <h4 className="text-lg font-black text-authority-blue dark:text-white uppercase font-serif mb-4 leading-tight">{tool.title}</h4>
                 <p className="text-sm text-slate-500 font-bold mb-10 flex-grow">{tool.d}</p>
