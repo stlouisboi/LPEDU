@@ -3,7 +3,6 @@ import { Mail, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, MessageSqua
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
-import { syncToMailerLite } from '../mailerlite';
 
 const FloatingInput = ({ label, icon: Icon, ...props }: any) => {
   const [focused, setFocused] = useState(false);
@@ -72,17 +71,7 @@ const ContactPage = () => {
   downloadedAt: serverTimestamp()
 });
       
-      // 2. MailerLite Synchronization
-      setSyncing(true);
-      await syncToMailerLite({
-        email: formData.email,
-        fields: {
-          name: formData.fullName,
-          company: formData.businessName
-        }
-      });
-
-      setIsSubmitted(true);
+        setIsSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err: any) {
       setError(err.message || "An unexpected error occurred while transmitting your inquiry.");
