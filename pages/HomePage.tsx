@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -43,7 +42,11 @@ import {
   Building,
   Cpu,
   Workflow,
-  RefreshCw
+  RefreshCw,
+  Terminal,
+  Search,
+  FileSearch,
+  Scan
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -108,48 +111,34 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [loading, setLoading] = useState(false);
-  const [syncing, setSyncing] = useState(false);
+  const [scanState, setScanState] = useState<'idle' | 'scanning' | 'syncing' | 'complete'>('idle');
+  const [scanLog, setScanLog] = useState<string[]>([]);
   const [selectedSinId, setSelectedSinId] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   
-  // Parallax tracking state
-  const [parallaxOffset, setParallaxOffset] = useState(0);
-  const [systemsParallaxOffset, setSystemsParallaxOffset] = useState(0);
-  const whoThisIsForRef = useRef<HTMLElement>(null);
-  const systemsRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-
-      if (whoThisIsForRef.current) {
-        const rect = whoThisIsForRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight && rect.bottom > 0) {
-          const offset = ((rect.top + rect.height / 2) - windowHeight / 2) * 0.05;
-          setParallaxOffset(offset);
-        }
-      }
-
-      if (systemsRef.current) {
-        const rect = systemsRef.current.getBoundingClientRect();
-        if (rect.top < windowHeight && rect.bottom > 0) {
-          const offset = ((rect.top + rect.height / 2) - windowHeight / 2) * 0.05;
-          setSystemsParallaxOffset(offset);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scanSteps = [
+    "INITIALIZING_NEURAL_UPLINK...",
+    "MAPPING_EXPOSURE_VECTORS...",
+    "CROSS_REFERENCING_49_CFR_PART_382...",
+    "IDENTIFYING_AUTHORITY_GAP_PATTERNS...",
+    "SEQUENCING_90_DAY_REMEDIATION...",
+    "AUTHORIZATION_GRANTED."
+  ];
 
   const handleRiskMapSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setScanState('scanning');
+    
+    for (let i = 0; i < scanSteps.length; i++) {
+      setScanLog(prev => [...prev, scanSteps[i]]);
+      await new Promise(r => setTimeout(r, 600));
+    }
+
+    setScanState('syncing');
     const destination = `/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`;
 
     try {
-      // 1. Save to Firestore Knowledge Base
       if (db) {
         await addDoc(collection(db, "leadMagnets"), {
           firstName: formData.firstName || 'Carrier',
@@ -159,25 +148,19 @@ const HomePage: React.FC = () => {
         });
       }
 
-      // 2. Synchronize with MailerLite Automation
-      setSyncing(true);
-      const syncResult = await syncToMailerLite({
+      await syncToMailerLite({
         email: formData.email,
         fields: { name: formData.firstName }
       });
       
-      console.log("MailerLite Capture Status:", syncResult ? "Initiated" : "Bypassed");
-
-      // Give a tiny moment for the request to flush before navigating
+      setScanState('complete');
       await new Promise(r => setTimeout(r, 500));
-
       navigate(destination);
     } catch (err) {
       console.error("Submission Sequence Error:", err);
       navigate(destination);
     } finally {
       setLoading(false);
-      setSyncing(false);
     }
   };
 
@@ -188,54 +171,10 @@ const HomePage: React.FC = () => {
       icon: <FileWarning className="text-red-500" />,
       description: "Evaluation of chemical dependency protocols and federal clearinghouse alignment.",
       items: [
-        { 
-          id: "01", 
-          text: "Absence of random pool enrollment", 
-          impact: "Audit Default", 
-          severity: "TERMINAL", 
-          guard: "Random Testing Enrollment",
-          violation: "Failing to enroll in a DOT-compliant random drug and alcohol testing consortium.",
-          consequence: "Automatic audit failure. Operating without random testing is an immediate violation of 49 CFR Part 382.",
-          detailedGuard: "We guide you through consortium selection and enrollment verification.",
-          module: "Module 2 — Drug & Alcohol Compliance",
-          moduleId: 2
-        },
-        { 
-          id: "02", 
-          text: "Positive driver results (Unmanaged)", 
-          impact: "Immediate Revocation", 
-          severity: "TERMINAL", 
-          guard: "Results Management System",
-          violation: "No documented protocol for handling positive drug/alcohol test results.",
-          consequence: "Immediate revocation risk. Improper handling of positive results creates federal liability.",
-          detailedGuard: "Step-by-step protocol for managing positive results and return-to-duty process.",
-          module: "Module 2 — Drug & Alcohol Compliance",
-          moduleId: 2
-        },
-        { 
-          id: "03", 
-          text: "Clearinghouse query failure", 
-          impact: "Operating Ban", 
-          severity: "CRITICAL", 
-          guard: "Clearinghouse Query Process",
-          violation: "Not conducting required FMCSA Drug & Alcohol Clearinghouse queries on drivers.",
-          consequence: "Operating ban. Pre-employment and annual queries are mandatory for all CDL drivers.",
-          detailedGuard: "Automated reminders and documentation workflow.",
-          module: "Module 2 — Drug & Alcohol Compliance",
-          moduleId: 2
-        },
-        { 
-          id: "04", 
-          text: "Omission of pre-employment test", 
-          impact: "Strict Liability", 
-          severity: "HIGH RISK", 
-          guard: "Pre-Employment Screening",
-          violation: "Allowing a driver to operate without a documented pre-employment drug test.",
-          consequence: "Strict liability. You are liable for any incident involving an untested driver.",
-          detailedGuard: "Checklist and verification system before any driver operates.",
-          module: "Module 2 — Drug & Alcohol Compliance",
-          moduleId: 2
-        }
+        { id: "01", text: "Absence of random pool enrollment", impact: "Audit Default", severity: "TERMINAL", guard: "Random Testing Enrollment", violation: "Failing to enroll in a DOT-compliant random drug and alcohol testing consortium.", consequence: "Automatic audit failure. Operating without random testing is an immediate violation of 49 CFR Part 382.", detailedGuard: "We guide you through consortium selection and enrollment verification.", module: "Module 2 — Drug & Alcohol Compliance", moduleId: 2 },
+        { id: "02", text: "Positive driver results (Unmanaged)", impact: "Immediate Revocation", severity: "TERMINAL", guard: "Results Management System", violation: "No documented protocol for handling positive drug/alcohol test results.", consequence: "Immediate revocation risk. Improper handling of positive results creates federal liability.", detailedGuard: "Step-by-step protocol for managing positive results and return-to-duty process.", module: "Module 2 — Drug & Alcohol Compliance", moduleId: 2 },
+        { id: "03", text: "Clearinghouse query failure", impact: "Operating Ban", severity: "CRITICAL", guard: "Clearinghouse Query Process", violation: "Not conducting required FMCSA Drug & Alcohol Clearinghouse queries on drivers.", consequence: "Operating ban. Pre-employment and annual queries are mandatory for all CDL drivers.", detailedGuard: "Automated reminders and documentation workflow.", module: "Module 2 — Drug & Alcohol Compliance", moduleId: 2 },
+        { id: "04", text: "Omission of pre-employment test", impact: "Strict Liability", severity: "HIGH RISK", guard: "Pre-Employment Screening", violation: "Allowing a driver to operate without a documented pre-employment drug test.", consequence: "Strict liability. You are liable for any incident involving an untested driver.", detailedGuard: "Checklist and verification system before any driver operates.", module: "Module 2 — Drug & Alcohol Compliance", moduleId: 2 }
       ]
     },
     {
@@ -244,54 +183,10 @@ const HomePage: React.FC = () => {
       icon: <Fingerprint className="text-amber-500" />,
       description: "Integrity verification of driver qualification files and licensing credentials.",
       items: [
-        { 
-          id: "05", 
-          text: "Revoked/Expired license usage", 
-          impact: "OOS Event", 
-          severity: "TERMINAL", 
-          guard: "License Verification Workflow",
-          violation: "Allowing a driver to operate with an expired, suspended, or revoked CDL.",
-          consequence: "Out-of-service event. Vehicle and driver placed OOS, potential authority suspension.",
-          detailedGuard: "Periodic license checks with documentation.",
-          module: "Module 3 — Driver Qualification Files",
-          moduleId: 3
-        },
-        { 
-          id: "06", 
-          text: "Missing Med-Cert verification", 
-          impact: "Driver Downgrade", 
-          severity: "CRITICAL", 
-          guard: "Medical Certificate Tracking",
-          violation: "No valid medical certificate on file or failure to verify medical status.",
-          consequence: "Driver downgrade. FMCSA automatically downgrades CDL without valid med cert.",
-          detailedGuard: "Expiration alerts and verification documentation.",
-          module: "Module 3 — Driver Qualification Files",
-          moduleId: 3
-        },
-        { 
-          id: "07", 
-          text: "Fragmented DQ File framework", 
-          impact: "Audit Red Flag", 
-          severity: "HIGH RISK", 
-          guard: "DQ File Builder",
-          violation: "Incomplete or disorganized Driver Qualification files missing required documents.",
-          consequence: "Audit red flag. Incomplete DQ files are the #1 finding in new entrant audits.",
-          detailedGuard: "Complete file structure with all required elements.",
-          module: "Module 3 — Driver Qualification Files",
-          moduleId: 3
-        },
-        { 
-          id: "08", 
-          text: "Omitted background inquiries", 
-          impact: "Negligent Entrustment", 
-          severity: "CRITICAL", 
-          guard: "Background Check Protocol",
-          violation: "Failing to conduct and document required background checks and employment verification.",
-          consequence: "Negligent entrustment liability. You're liable if you didn't verify driver history.",
-          detailedGuard: "Required inquiries checklist and documentation templates.",
-          module: "Module 3 — Driver Qualification Files",
-          moduleId: 3
-        }
+        { id: "05", text: "Revoked/Expired license usage", impact: "OOS Event", severity: "TERMINAL", guard: "License Verification Workflow", violation: "Allowing a driver to operate with an expired, suspended, or revoked CDL.", consequence: "Out-of-service event. Vehicle and driver placed OOS, potential authority suspension.", detailedGuard: "Periodic license checks with documentation.", module: "Module 3 — Driver Qualification Files", moduleId: 3 },
+        { id: "06", text: "Missing Med-Cert verification", impact: "Driver Downgrade", severity: "CRITICAL", guard: "Medical Certificate Tracking", violation: "No valid medical certificate on file or failure to verify medical status.", consequence: "Driver downgrade. FMCSA automatically downgrades CDL without valid med cert.", detailedGuard: "Expiration alerts and verification documentation.", module: "Module 3 — Driver Qualification Files", moduleId: 3 },
+        { id: "07", text: "Fragmented DQ File framework", impact: "Audit Red Flag", severity: "HIGH RISK", guard: "DQ File Builder", violation: "Incomplete or disorganized Driver Qualification files missing required documents.", consequence: "Audit red flag. Incomplete DQ files are the #1 finding in new entrant audits.", detailedGuard: "Complete file structure with all required elements.", module: "Module 3 — Driver Qualification Files", moduleId: 3 },
+        { id: "08", text: "Omitted background inquiries", impact: "Negligent Entrustment", severity: "CRITICAL", guard: "Background Check Protocol", violation: "Failing to conduct and document required background checks and employment verification.", consequence: "Negligent entrustment liability. You're liable if you didn't verify driver history.", detailedGuard: "Required inquiries checklist and documentation templates.", module: "Module 3 — Driver Qualification Files", moduleId: 3 }
       ]
     },
     {
@@ -300,54 +195,10 @@ const HomePage: React.FC = () => {
       icon: <Gavel className="text-slate-500" />,
       description: "Direct management of hours-of-service and equipment maintenance standards.",
       items: [
-        { 
-          id: "09", 
-          text: "Falsification of HOS records", 
-          impact: "Criminal Default", 
-          severity: "TERMINAL", 
-          guard: "Hours of Service Compliance",
-          violation: "Inaccurate or falsified Hours of Service records.",
-          consequence: "Criminal liability. Falsification is a federal offense with personal liability.",
-          detailedGuard: "ELD best practices and accurate record-keeping.",
-          module: "Module 4 — Operational Compliance",
-          moduleId: 4
-        },
-        { 
-          id: "10", 
-          text: "Dispatching OOS vehicles", 
-          impact: "Authority Seizure", 
-          severity: "TERMINAL", 
-          guard: "Vehicle Inspection System",
-          violation: "Operating a vehicle that has been placed out-of-service.",
-          consequence: "Authority seizure. Immediate suspension of operating authority.",
-          detailedGuard: "Pre/post-trip inspection protocols and OOS tracking.",
-          module: "Module 4 — Operational Compliance",
-          moduleId: 4
-        },
-        { 
-          id: "11", 
-          text: "Deficient roadside history (CSA)", 
-          impact: "Premium Spike", 
-          severity: "HIGH RISK", 
-          guard: "Safety Score Monitoring",
-          violation: "Pattern of roadside inspection violations affecting CSA scores.",
-          consequence: "Insurance premium spikes. High CSA scores trigger non-renewal or rate increases.",
-          detailedGuard: "CSA tracking and violation response protocols.",
-          module: "Module 4 — Operational Compliance",
-          moduleId: 4
-        },
-        { 
-          id: "12", 
-          text: "No systematic maintenance log", 
-          impact: "Liability Default", 
-          severity: "CRITICAL", 
-          guard: "Maintenance Documentation",
-          violation: "Missing or incomplete vehicle maintenance documentation.",
-          consequence: "Liability default. No maintenance records = automatic liability in any incident.",
-          detailedGuard: "Systematic logging and record retention.",
-          module: "Module 4 — Operational Compliance",
-          moduleId: 4
-        }
+        { id: "09", text: "Falsification of HOS records", impact: "Criminal Default", severity: "TERMINAL", guard: "Hours of Service Compliance", violation: "Inaccurate or falsified Hours of Service records.", consequence: "Criminal liability. Falsification is a federal offense with personal liability.", detailedGuard: "ELD best practices and accurate record-keeping.", module: "Module 4 — Operational Compliance", moduleId: 4 },
+        { id: "10", text: "Dispatching OOS vehicles", impact: "Authority Seizure", severity: "TERMINAL", guard: "Vehicle Inspection System", violation: "Operating a vehicle that has been placed out-of-service.", consequence: "Authority seizure. Immediate suspension of operating authority.", detailedGuard: "Pre/post-trip inspection protocols and OOS tracking.", module: "Module 4 — Operational Compliance", moduleId: 4 },
+        { id: "11", text: "Deficient roadside history (CSA)", impact: "Premium Spike", severity: "HIGH RISK", guard: "Safety Score Monitoring", violation: "Pattern of roadside inspection violations affecting CSA scores.", consequence: "Insurance premium spikes. High CSA scores trigger non-renewal or rate increases.", detailedGuard: "CSA tracking and violation response protocols.", module: "Module 4 — Operational Compliance", moduleId: 4 },
+        { id: "12", text: "No systematic maintenance log", impact: "Liability Default", severity: "CRITICAL", guard: "Maintenance Documentation", violation: "Missing or incomplete vehicle maintenance documentation.", consequence: "Liability default. No maintenance records = automatic liability in any incident.", detailedGuard: "Systematic logging and record retention.", module: "Module 4 — Operational Compliance", moduleId: 4 }
       ]
     },
     {
@@ -356,54 +207,10 @@ const HomePage: React.FC = () => {
       icon: <HardDrive className="text-blue-500" />,
       description: "Governance of federal filings, insurance continuity, and corporate entity integrity.",
       items: [
-        { 
-          id: "13", 
-          text: "Insurance coverage lapse", 
-          impact: "Authority Termination", 
-          severity: "TERMINAL", 
-          guard: "Insurance Monitoring System",
-          violation: "Operating without continuous, valid insurance coverage.",
-          consequence: "Authority termination. FMCSA revokes authority immediately upon coverage lapse.",
-          detailedGuard: "Coverage tracking and renewal alerts.",
-          module: "Module 1 — Authority & Insurance Setup",
-          moduleId: 1
-        },
-        { 
-          id: "14", 
-          text: "Failure to update MCS-150", 
-          impact: "Administrative Revocation", 
-          severity: "CRITICAL", 
-          guard: "MCS-150 Update Protocol",
-          violation: "Not filing biennial MCS-150 update with FMCSA.",
-          consequence: "Administrative revocation. Authority deactivated for failure to update.",
-          detailedGuard: "Biennial reminder system and filing verification.",
-          module: "Module 1 — Authority & Insurance Setup",
-          moduleId: 1
-        },
-        { 
-          id: "15", 
-          text: "BOC-3 Process Agent omission", 
-          impact: "Filing Suspension", 
-          severity: "HIGH RISK", 
-          guard: "BOC-3 Process Agent Filing",
-          violation: "No designated process agent on file with FMCSA.",
-          consequence: "Filing suspension. Cannot maintain active authority without BOC-3.",
-          detailedGuard: "Setup verification and maintenance.",
-          module: "Module 1 — Authority & Insurance Setup",
-          moduleId: 1
-        },
-        { 
-          id: "16", 
-          text: "Late incident/accident reporting", 
-          impact: "Legal Default", 
-          severity: "CRITICAL", 
-          guard: "Accident Reporting Protocol",
-          violation: "Failing to report recordable accidents within required timeframes.",
-          consequence: "Legal default. Late reporting creates liability exposure and audit findings.",
-          detailedGuard: "Step-by-step incident response and documentation.",
-          module: "Module 4 — Operational Compliance",
-          moduleId: 4
-        }
+        { id: "13", text: "Insurance coverage lapse", impact: "Authority Termination", severity: "TERMINAL", guard: "Insurance Monitoring System", violation: "Operating without continuous, valid insurance coverage.", consequence: "Authority termination. FMCSA revokes authority immediately upon coverage lapse.", detailedGuard: "Coverage tracking and renewal alerts.", module: "Module 1 — Authority & Insurance Setup", moduleId: 1 },
+        { id: "14", text: "Failure to update MCS-150", impact: "Administrative Revocation", severity: "CRITICAL", guard: "MCS-150 Update Protocol", violation: "Not filing biennial MCS-150 update with FMCSA.", consequence: "Administrative revocation. Authority deactivated for failure to update.", detailedGuard: "Biennial reminder system and filing verification.", module: "Module 1 — Authority & Insurance Setup", moduleId: 1 },
+        { id: "15", text: "BOC-3 Process Agent omission", impact: "Filing Suspension", severity: "HIGH RISK", guard: "BOC-3 Process Agent Filing", violation: "No designated process agent on file with FMCSA.", consequence: "Filing suspension. Cannot maintain active authority without BOC-3.", detailedGuard: "Setup verification and maintenance.", module: "Module 1 — Authority & Insurance Setup", moduleId: 1 },
+        { id: "16", text: "Late incident/accident reporting", impact: "Legal Default", severity: "CRITICAL", guard: "Accident Reporting Protocol", violation: "Failing to report recordable accidents within required timeframes.", consequence: "Legal default. Late reporting creates liability exposure and audit findings.", detailedGuard: "Step-by-step incident response and documentation.", module: "Module 4 — Operational Compliance", moduleId: 4 }
       ]
     }
   ];
@@ -428,79 +235,96 @@ const HomePage: React.FC = () => {
               PROTECT YOUR <br/><span className="italic text-signal-gold">AUTHORITY</span> WITH <br/>ORDER AND CERTAINTY.
             </h1>
             
-            <div className="max-w-2xl border-l-4 md:border-l-8 border-authority-blue dark:border-signal-gold pl-6 md:pl-10 py-2">
-              <p className="hidden md:block text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed">
-                Your authority is active. Your insurance is bound. And right now, your documentation has gaps that federal auditors and insurance underwriters will find before you do. LaunchPath installs the infrastructure that closes those gaps — within your first 90 days, before exposure becomes violation.
-              </p>
-              <p className="md:hidden text-lg font-bold text-slate-700 dark:text-slate-300 leading-tight">
-                Most new carriers satisfactorily establish their compliance infrastructure within the first 90 days — or inherit the consequences for 18 months.
+            <div className="max-w-xl border-l-4 md:border-l-8 border-authority-blue dark:border-signal-gold pl-6 md:pl-10 py-2">
+              <p className="text-lg md:text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed">
+                Most new carriers satisfactorily establish their compliance infrastructure within the first 90 days — or inherit the consequences for 18 months. LaunchPath installs the infrastructure that closes those gaps.
               </p>
             </div>
           </div>
 
           <aside className="lg:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
-            <div className="bg-white dark:bg-surface-dark p-8 md:p-12 lg:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-[0_40px_80px_-20px_rgba(30,58,95,0.15)] border border-slate-100 dark:border-border-dark relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-6 md:p-10 opacity-[0.03] group-hover:scale-110 transition-transform">
-                <FileWarning size={180} />
-              </div>
+            <div className="bg-white dark:bg-surface-dark p-8 md:p-12 lg:p-14 rounded-[3.5rem] shadow-[0_40px_100px_-20px_rgba(30,58,95,0.12)] border border-slate-100 dark:border-white/5 relative overflow-hidden group">
+              {/* Glow decoration */}
+              <div className="absolute -top-12 -right-12 w-48 h-48 bg-signal-gold/5 blur-[80px] rounded-full"></div>
               
               <div className="relative z-10">
-                <header className="flex justify-between items-start mb-8 md:mb-12">
-                   <div>
-                     <h3 className="text-xs md:sm font-black uppercase text-authority-blue dark:text-signal-gold tracking-widest md:tracking-[0.4em] mb-1 md:mb-2">FREE 90-DAY</h3>
-                     <h3 className="text-xl md:text-2xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">RISK MAP™ <br/>DIAGNOSTIC</h3>
-                   </div>
-                   <div className="w-8 h-8 md:w-10 md:h-10 border border-slate-200 dark:border-white/10 rounded-full flex items-center justify-center text-slate-300">
-                     <Lock size={14} />
-                   </div>
-                </header>
-                
-                <form onSubmit={handleRiskMapSubmit} className="space-y-6 md:space-y-8">
-                  <div className="space-y-2">
-                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">LEGAL NAME</label>
-                    <input 
-                      required 
-                      value={formData.firstName}
-                      onChange={e => setFormData({...formData, firstName: e.target.value})}
-                      className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm dark:text-white" 
-                      placeholder="Jane Doe" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-4">REGISTRY EMAIL</label>
-                    <input 
-                      required 
-                      type="email"
-                      value={formData.email}
-                      onChange={e => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-slate-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-authority-blue outline-none px-6 md:px-7 py-4 md:py-5 rounded-xl md:rounded-2xl font-bold transition-all shadow-inner text-sm dark:text-white" 
-                      placeholder="jane@carrier.com" 
-                    />
-                  </div>
-                  <button 
-                    disabled={loading}
-                    className="w-full bg-authority-blue text-white py-5 md:py-7 rounded-xl md:rounded-2xl font-black uppercase tracking-[0.3em] text-xs shadow-xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group border-b-4 border-slate-900"
-                  >
-                    {loading ? (
-                      <span className="flex items-center">
-                        {syncing ? <RefreshCw className="animate-spin mr-3" size={18} /> : <Loader2 className="animate-spin mr-3" size={18} />}
-                        {syncing ? 'SYNCHRONIZING...' : 'AUTHORIZING...'}
-                      </span>
-                    ) : (
-                      <>
-                        <ChevronRight className="mr-3" size={18} />
+                {scanState === 'idle' ? (
+                  <>
+                    <header className="mb-10 md:mb-12">
+                         {/* Standalone FREE text */}
+                         <div className="inline-block bg-signal-gold text-authority-blue px-5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.4em] mb-4 shadow-lg">
+                           FREE
+                         </div>
+                         {/* Massive 90 DAY RISK MAP together */}
+                         <h3 className="text-4xl md:text-5xl lg:text-[4.2rem] font-black font-serif uppercase tracking-tighter text-authority-blue dark:text-white leading-[0.85] drop-shadow-sm">
+                           90 DAY <br/>
+                           <span className="text-signal-gold italic">RISK MAP</span>
+                         </h3>
+                         <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mt-4">Diagnostic Orientation Terminal</p>
+                    </header>
+                    
+                    <form onSubmit={handleRiskMapSubmit} className="space-y-6 md:space-y-8">
+                      <div className="space-y-2.5">
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 ml-2">LEGAL ENTITY NAME</label>
+                        <input 
+                          required 
+                          value={formData.firstName}
+                          onChange={e => setFormData({...formData, firstName: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-white/5 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
+                          placeholder="JANE DOE" 
+                        />
+                      </div>
+                      <div className="space-y-2.5">
+                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 ml-2">REGISTRY EMAIL</label>
+                        <input 
+                          required 
+                          type="email"
+                          value={formData.email}
+                          onChange={e => setFormData({...formData, email: e.target.value})}
+                          className="w-full bg-slate-50 dark:bg-white/5 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
+                          placeholder="JANE@CARRIER.COM" 
+                        />
+                      </div>
+                      <button 
+                        type="submit"
+                        className="w-full bg-authority-blue text-white py-6 md:py-7 rounded-[2rem] font-black uppercase tracking-[0.35em] text-xs shadow-xl hover:bg-steel-blue transition-all active:scale-[0.98] flex items-center justify-center group border-b-8 border-slate-900"
+                      >
+                        <ChevronRight className="mr-3 group-hover:translate-x-1 transition-transform" size={18} />
                         VIEW MY RISK MAP
-                      </>
-                    )}
-                  </button>
-                </form>
-                <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 space-y-2">
-                   <p className="text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold flex items-center">
-                     <ShieldCheck size={12} className="mr-2" /> REGISTRY UPLINK ACTIVE
-                   </p>
-                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">
-                     Orientation only. No corrective actions provided.
-                   </p>
+                      </button>
+                    </form>
+                  </>
+                ) : (
+                  <div className="py-12 md:py-20 text-center space-y-10 animate-in fade-in zoom-in-95 duration-500">
+                    <div className="relative inline-block">
+                       <div className="w-20 h-20 md:w-28 md:h-28 rounded-full border-4 border-authority-blue/10 border-t-authority-blue animate-spin"></div>
+                       <Terminal className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold" size={28} />
+                    </div>
+                    <div className="space-y-4">
+                       <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-widest font-serif italic">
+                         {scanState === 'scanning' ? 'Synthesizing Exposure...' : 'Finalizing Registry...'}
+                       </h3>
+                       <div className="max-w-[260px] mx-auto bg-slate-50 dark:bg-black/40 rounded-2xl p-4 border border-slate-100 dark:border-white/10 font-mono text-[9px] text-authority-blue dark:text-emerald-500 text-left h-32 overflow-hidden relative shadow-inner">
+                         <div className="space-y-1">
+                           {scanLog.map((log, i) => (
+                             <div key={i} className="animate-in slide-in-from-left-2 duration-300">
+                               <span className="opacity-40">[{new Date().toLocaleTimeString([], {hour12:false})}]</span> {log}
+                             </div>
+                           ))}
+                         </div>
+                         <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-slate-50 dark:from-black/80 to-transparent"></div>
+                       </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-12 pt-8 border-t border-slate-100 dark:border-white/5 space-y-4">
+                   <div className="flex items-center justify-between">
+                     <p className="text-[9px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-emerald-500 flex items-center">
+                       <ShieldCheck size={14} className="mr-2" /> UPLINK ACTIVE
+                     </p>
+                     <p className="text-[8px] font-black text-slate-300 uppercase tracking-widest">LP-SYS-V4.2</p>
+                   </div>
                 </div>
               </div>
             </div>
@@ -508,7 +332,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. FOUNDER SECTION: VINCE LAWRENCE */}
+      {/* 2. FOUNDER SECTION */}
       <section className="py-24 bg-slate-50 dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -539,7 +363,7 @@ const HomePage: React.FC = () => {
                   Vince Lawrence.
                 </h1>
                 <p className="text-lg font-bold text-slate-500 dark:text-slate-400 mt-4 leading-relaxed">
-                  20+ years of federal compliance management supporting organizations with 1,200+ employees. OSHA-certified safety coordination across regulated operations. U.S. Navy veteran.
+                  20+ years of federal compliance management supporting organizations with 1,200+ employees. OSHA-certified safety coordination. U.S. Navy veteran.
                 </p>
               </div>
 
@@ -575,7 +399,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE PATTERN (The Wound) */}
+      {/* 3. THE PATTERN */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <header className="mb-16 space-y-8">
@@ -591,10 +415,7 @@ const HomePage: React.FC = () => {
                 New carriers don't fail because they can't drive or can't find freight. They fail because no one taught them what happens when their Driver Qualification file is incomplete during an insurance audit. Or when their drug and alcohol program doesn't meet federal specifications. Or when their maintenance records can't survive a Level I inspection.
               </p>
               <p>
-                These aren't edge cases. They're patterns. The same 16 compliance failures — exposed over and over — that end careers in month 14, month 9, month 6.
-              </p>
-              <p>
-                By then, the insurance is cancelled. The authority is revoked. And the dream costs $40,000 to try again.
+                By the time they call us, the insurance is cancelled. The authority is revoked. And the dream costs $40,000 to try again.
               </p>
             </div>
             
@@ -621,8 +442,7 @@ const HomePage: React.FC = () => {
               </header>
               <div className="space-y-8 text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
                 <p>LaunchPath is a 90-day compliance infrastructure system for new interstate motor carriers.</p>
-                <p>We don't teach you how to book loads. We don't promise revenue outcomes. We don't sell dispatch services or insurance policies.</p>
-                <p>We install the documentation systems, verification workflows, and audit-ready file structures that keep your authority protected, your insurance stable, and your operation defensible when federal oversight arrives.</p>
+                <p>We don't teach you how to book loads. We install the documentation systems, verification workflows, and audit-ready file structures that keep your authority protected when federal oversight arrives.</p>
                 <p className="text-authority-blue dark:text-white font-black italic">This is what separates a carrier executive from a driver with a dream.</p>
               </div>
             </article>
@@ -651,7 +471,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. THIS IS NOT FOR EVERYONE (Restored Boundaries) */}
+      {/* 5. THIS IS NOT FOR EVERYONE */}
       <section className="py-24 md:py-40 bg-[#0c1a2d] text-white overflow-hidden transition-colors duration-300 relative">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-4xl mx-auto px-6 text-center space-y-12 relative z-10">
@@ -666,9 +486,7 @@ const HomePage: React.FC = () => {
           <div className="space-y-8 text-xl md:text-2xl font-bold text-slate-400 leading-relaxed text-left max-w-3xl mx-auto border-l-4 border-red-600/20 pl-8">
             <p>If you're looking for a course on how to make money in trucking — this isn't it.</p>
             <p>If you want dispatch training or load board strategies — we don't offer that.</p>
-            <p>If you're hoping for a motivational speaker to tell you it's going to be easy — wrong room.</p>
             <p className="text-white italic">LaunchPath is for owner-operators who understand that their authority is a federal license to be audited — and they want to be ready when it happens.</p>
-            <p className="text-slate-500">If that's not you, no hard feelings. If it is — keep reading.</p>
           </div>
         </div>
       </section>
@@ -688,39 +506,14 @@ const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
              {[
-               {
-                 icon: <Briefcase />,
-                 title: "AUTHORITY PROTECTION",
-                 tagline: "STRUCTURAL STEWARDSHIP",
-                 desc: "Managing federal authority as an entrusted asset. Build a foundation that survives scrutiny through absolute administrative order.",
-                 link: "/modules/1"
-               },
-               {
-                 icon: <Shield />,
-                 title: "INSURANCE CONTINUITY",
-                 tagline: "RISK RESPONSIBILITY",
-                 desc: "Protecting your right to operate. Maintain permanent coverage by documenting safety as a non-negotiable operational discipline.",
-                 link: "/modules/2"
-               },
-               {
-                 icon: <Layers />,
-                 title: "COMPLIANCE BACKBONE",
-                 tagline: "SYSTEMIC INTEGRITY",
-                 desc: "Executing federal standards with precision. Replace human memory with verifiable systems that prove your compliance daily.",
-                 link: "/modules/3"
-               },
-               {
-                 icon: <Calculator />,
-                 title: "CASH-FLOW OXYGEN",
-                 tagline: "FISCAL STEWARDSHIP",
-                 desc: "Securing the mission through economic truth. Use TCO math to ensure your business remains solvent, stable, and viable.",
-                 link: "/tools/tco-preview"
-               }
+               { icon: <Briefcase />, title: "AUTHORITY PROTECTION", tagline: "STRUCTURAL STEWARDSHIP", desc: "Managing federal authority as an entrusted asset. Build a foundation that survives scrutiny.", link: "/modules/1" },
+               { icon: <Shield />, title: "INSURANCE CONTINUITY", tagline: "RISK RESPONSIBILITY", desc: "Protecting your right to operate. Maintain permanent coverage via documented safety.", link: "/modules/2" },
+               { icon: <Layers />, title: "COMPLIANCE BACKBONE", tagline: "SYSTEMIC INTEGRITY", desc: "Executing federal standards with precision. Replace human memory with verifiable systems.", link: "/modules/3" },
+               { icon: <Calculator />, title: "CASH-FLOW OXYGEN", tagline: "FISCAL STEWARDSHIP", desc: "Securing the mission through economic truth. Use TCO math to ensure solvency.", link: "/tools/tco-preview" }
              ].map((pillar, i) => (
                <article key={i} className="bg-white/[0.03] p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="w-16 h-16 md:w-20 md:h-20 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                    {/* Fixed type error in React.cloneElement by casting icon to React.ReactElement<any> to allow passing 'size' prop. */}
                     {React.cloneElement(pillar.icon as React.ReactElement<any>, { size: 28 })}
                   </div>
                   <h3 className="text-2xl font-black text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
@@ -787,18 +580,15 @@ const HomePage: React.FC = () => {
                        <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 text-red-600 group-hover:scale-150 transition-all duration-700">
                           <ShieldAlert size={64} />
                        </div>
-                       
                        <header className="flex items-center space-x-3 mb-6">
                           <span className="text-xs font-black text-slate-700 font-mono tracking-tighter group-hover:text-red-500 transition-colors">{item.id}</span>
                           <h4 className="text-base font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors">{item.text}</h4>
                        </header>
-
                        <div className="space-y-6 pt-6 border-t border-white/5">
                           <div className="flex justify-between items-center">
                              <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">RESULT</p>
                              <p className="text-[11px] font-black text-slate-300 uppercase tracking-tight">{item.impact}</p>
                           </div>
-                          
                           <div className="flex justify-between items-center">
                              <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">GUARD</p>
                              <div className="flex items-center space-x-1.5 text-emerald-400">
@@ -806,15 +596,10 @@ const HomePage: React.FC = () => {
                                 <span className="text-[11px] font-black uppercase tracking-tight">{item.guard}</span>
                              </div>
                           </div>
-
                           <div className="flex justify-between items-center pt-2">
                              <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">SEVERITY</p>
                              <div className={`px-2.5 py-1 rounded-lg flex items-center space-x-2 border ${
-                               item.severity === 'TERMINAL' 
-                               ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.2)]' 
-                               : item.severity === 'CRITICAL' 
-                               ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' 
-                               : 'bg-slate-500/10 border-slate-500/30 text-slate-400'
+                               item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : item.severity === 'CRITICAL' ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' : 'bg-slate-500/10 border-slate-500/30 text-slate-400'
                              }`}>
                                 <Zap size={10} className="fill-current" />
                                 <span className="text-[11px] font-black uppercase tracking-widest">{item.severity}</span>
@@ -830,84 +615,46 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* DESKTOP/TABLET MODAL OVERLAY (SIN DETAIL) */}
+      {/* SIN DETAIL MODAL */}
       {selectedSinId && selectedSin && (
-        <div 
-          className="hidden sm:flex fixed inset-0 z-[200] items-center justify-center p-8 md:p-12 animate-in fade-in duration-300"
-          onClick={() => setSelectedSinId(null)}
-        >
+        <div className="hidden sm:flex fixed inset-0 z-[200] items-center justify-center p-8 md:p-12 animate-in fade-in duration-300" onClick={() => setSelectedSinId(null)}>
           <div className="absolute inset-0 bg-[#0c1a2d]/90 backdrop-blur-xl"></div>
-          <div 
-            className="relative bg-white dark:bg-[#020617] border border-white/10 w-full max-w-[90%] lg:max-w-[60%] rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[85vh] animate-in zoom-in-95 duration-500"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button onClick={() => setSelectedSinId(null)} className="absolute top-10 right-10 p-3 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-authority-blue dark:text-white rounded-2xl transition-all z-20 group">
+          <div className="relative bg-white dark:bg-[#020617] border border-white/10 w-full max-w-[90%] lg:max-w-[60%] rounded-[4rem] shadow-2xl overflow-hidden flex flex-col max-h-[85vh] animate-in zoom-in-95 duration-500" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setSelectedSinId(null)} className="absolute top-10 right-10 p-3 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 rounded-2xl transition-all z-20 group">
               <X size={24} className="group-hover:rotate-90 transition-transform" />
             </button>
             <div className="absolute top-0 left-0 w-full h-2 bg-red-600"></div>
-            <header className="p-12 md:p-16 border-b border-slate-100 dark:border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 bg-slate-50 dark:bg-transparent">
+            <header className="p-12 md:p-16 border-b border-slate-100 dark:border-white/5 bg-slate-50 dark:bg-transparent">
                <div className="space-y-4">
                   <div className="flex items-center space-x-4">
                     <span className="text-2xl font-black text-red-600 font-mono tracking-tighter">{selectedSin.id}</span>
                     <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20"></div>
                     <span className="text-sm font-black text-slate-500 uppercase tracking-[0.4em]">Sin Specification</span>
                   </div>
-                  <h3 className="text-4xl lg:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.95] font-serif">
-                    {selectedSin.text}
-                  </h3>
-               </div>
-               <div className={`px-5 py-2.5 rounded-xl flex items-center space-x-3 border ${
-                  selectedSin.severity === 'TERMINAL' 
-                  ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_20px_rgba(239,68,68,0.2)]' 
-                  : selectedSin.severity === 'CRITICAL' 
-                  ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' 
-                  : 'bg-slate-500/10 border-slate-500/30 text-slate-400'
-               }`}>
-                  <Zap size={18} className="fill-current" />
-                  <span className="text-xs font-black uppercase tracking-widest">{selectedSin.severity}</span>
+                  <h3 className="text-4xl lg:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.95] font-serif">{selectedSin.text}</h3>
                </div>
             </header>
-            <div className="flex-grow overflow-y-auto p-12 md:p-16 scroll-smooth custom-scrollbar bg-white dark:bg-transparent">
+            <div className="flex-grow overflow-y-auto p-12 md:p-16 scroll-smooth custom-scrollbar">
                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                   <div className="space-y-12">
                      <section className="space-y-4">
-                        <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold flex items-center">
-                           <ShieldX size={16} className="mr-3" /> The Violation
-                        </h4>
-                        <p className="text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed border-l-4 border-red-600/30 pl-8 py-2">
-                           {selectedSin.violation}
-                        </p>
+                        <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold flex items-center"><ShieldX size={16} className="mr-3" /> The Violation</h4>
+                        <p className="text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed border-l-4 border-red-600/30 pl-8 py-2">{selectedSin.violation}</p>
                      </section>
                      <section className="space-y-4">
-                        <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold flex items-center">
-                           <AlertCircle size={16} className="mr-3" /> The Consequence
-                        </h4>
-                        <p className="text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed border-l-4 border-red-600/30 pl-8 py-2">
-                           {selectedSin.consequence}
-                        </p>
+                        <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold flex items-center"><AlertCircle size={16} className="mr-3" /> The Consequence</h4>
+                        <p className="text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed border-l-4 border-red-600/30 pl-8 py-2">{selectedSin.consequence}</p>
                      </section>
                   </div>
                   <div className="space-y-12">
                      <section className="space-y-4">
-                        <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-emerald-600 dark:text-emerald-400 flex items-center">
-                           <ShieldCheck size={16} className="mr-3" /> The Remediation Guard
-                        </h4>
-                        <p className="text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500/30 pl-8 py-2">
-                           {selectedSin.detailedGuard}
-                        </p>
+                        <h4 className="text-[11px] font-black uppercase tracking-[0.5em] text-emerald-600 flex items-center"><ShieldCheck size={16} className="mr-3" /> The Remediation Guard</h4>
+                        <p className="text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed border-l-4 border-emerald-500/30 pl-8 py-2">{selectedSin.detailedGuard}</p>
                      </section>
                      <section className="bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/5 rounded-3xl p-8 space-y-6">
-                        <div className="flex items-center space-x-3 text-authority-blue dark:text-signal-gold">
-                           <Layers size={20} />
-                           <h4 className="text-[11px] font-black uppercase tracking-widest">Curriculum Alignment</h4>
-                        </div>
-                        <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-relaxed">
-                           This exposure vector is systematically neutralized within <span className="text-authority-blue dark:text-white">{selectedSin.module}</span>.
-                        </p>
-                        <Link to={`/modules/${selectedSin.moduleId}`} className="inline-flex items-center space-x-3 bg-authority-blue text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-steel-blue transition-all group/btn">
-                           <span>VIEW MODULE INSTRUCTIONS</span>
-                           <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                        </Link>
+                        <div className="flex items-center space-x-3 text-authority-blue dark:text-signal-gold"><Layers size={20} /> <h4 className="text-[11px] font-black uppercase tracking-widest">Curriculum Alignment</h4></div>
+                        <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-relaxed">This exposure vector is systematically neutralized within <span className="text-authority-blue dark:text-white">{selectedSin.module}</span>.</p>
+                        <Link to={`/modules/${selectedSin.moduleId}`} className="inline-flex items-center space-x-3 bg-authority-blue text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-steel-blue transition-all group/btn"><span>VIEW MODULE</span> <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" /></Link>
                      </section>
                   </div>
                </div>
@@ -923,255 +670,39 @@ const HomePage: React.FC = () => {
             <div className="space-y-12 animate-reveal-up">
               <header className="space-y-6">
                 <p className="text-[11px] font-black uppercase tracking-[0.6em] text-signal-gold">FREE DIAGNOSTIC</p>
-                <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">
-                  THE <span className="text-signal-gold italic">REACH TEST™</span>
-                </h2>
-                <p className="text-xl md:text-2xl font-medium text-slate-300 leading-relaxed max-w-xl">
-                  Find out where you're exposed.
-                </p>
+                <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">THE <span className="text-signal-gold italic">REACH TEST™</span></h2>
+                <p className="text-xl md:text-2xl font-medium text-slate-300 leading-relaxed max-w-xl">Find out where you're exposed.</p>
               </header>
-              <Link to="/readiness" className="inline-flex items-center space-x-4 bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-white transition-all active:scale-95 group">
-                <span>INITIATE REACH TEST™</span>
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <Link to="/readiness" className="inline-flex items-center space-x-4 bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-white transition-all active:scale-95 group"><span>INITIATE REACH TEST™</span> <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></Link>
             </div>
             <div className="relative group">
-               <div className="absolute -inset-10 bg-signal-gold/10 rounded-full blur-3xl group-hover:scale-110 transition-transform"></div>
                <div className="relative bg-white/5 border border-white/10 rounded-[4rem] p-12 md:p-20 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center">
-                  <div className="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center mb-10 border border-white/20">
-                     <Target className="text-signal-gold" size={48} />
-                  </div>
+                  <div className="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center mb-10 border border-white/20"><Target className="text-signal-gold" size={48} /></div>
                   <h3 className="text-2xl font-black font-serif uppercase tracking-tight mb-4 text-signal-gold">Diagnostic Logic</h3>
-                  <p className="text-lg font-medium text-white/60 leading-relaxed italic max-w-xs">
-                    Analysis includes: Household Runway, Admin Capacity, and Capital Stewardship Mapping.
-                  </p>
+                  <p className="text-lg font-medium text-white/60 leading-relaxed italic max-w-xs">Analysis includes: Household Runway, Admin Capacity, and Capital Stewardship Mapping.</p>
                </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 9. WHO THIS IS FOR (Qualification / Identity Focus) */}
-      <section ref={whoThisIsForRef} className="py-24 md:py-32 bg-slate-100 dark:bg-[#020617] transition-colors duration-300 overflow-hidden border-y border-slate-200 dark:border-white/5">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 md:mb-24 gap-12">
-            <header className="space-y-6">
-               <div className="inline-flex items-center px-4 py-1.5 bg-authority-blue text-white rounded-lg text-[10px] font-black uppercase tracking-widest">QUALIFICATION PARAMETERS</div>
-               <h2 className="text-4xl sm:text-6xl md:text-[5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
-                 WHO THIS <span className="text-signal-gold italic">IS FOR.</span>
-               </h2>
-            </header>
-            <div className="lg:max-w-md border-l-4 border-signal-gold pl-8">
-              <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
-                LaunchPath is engineered for specific operator profiles who prioritize structural safety over speculative growth.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              { 
-                title: "BOX TRUCK OPERATORS", 
-                icon: <Truck size={36} />, 
-                tag: "Local & Interstate",
-                desc: "Carriers operating CMVs between 10,001–26,000 lbs GVWR. CDL and Non-CDL lanes included. Focusing on high-integrity last-mile and middle-mile logistics." 
-              },
-              { 
-                title: "SEMI-TRUCK STARTUPS", 
-                icon: <Building size={36} />, 
-                tag: "Class 8 Equipment",
-                desc: "New motor carriers running 1–3 units who prioritize long-term operating authority protection. Ideal for former company drivers transitioning to stewardship." 
-              },
-              { 
-                title: "SAFETY MANAGERS", 
-                icon: <UserCheck size={36} />, 
-                tag: "Administrative Control",
-                desc: "Personnel responsible for maintaining carrier documentation integrity and federal compliance files. Systematizing the back-office standard." 
-              },
-              { 
-                title: "INSURANCE PARTNERS", 
-                icon: <ShieldCheck size={36} />, 
-                tag: "Risk Mitigation",
-                desc: "Agencies and underwriters seeking pre-qualified, compliance-educated new entrants with documented safety posture and permanent audit-ready status." 
-              }
-            ].map((card, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[3.5rem] border border-slate-200 dark:border-border-dark shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:border-authority-blue transition-all duration-700 flex flex-col sm:flex-row gap-10 group">
-                <div 
-                  className="w-24 h-24 sm:w-32 sm:h-32 bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-[2.5rem] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold transition-all duration-500 shrink-0"
-                  style={{ transform: `translateY(${parallaxOffset}px)` }}
-                >
-                  {card.icon}
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-signal-gold bg-signal-gold/10 px-3 py-1 rounded-md">{card.tag}</span>
-                  </div>
-                  <h4 className="text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight leading-tight">{card.title}</h4>
-                  <p className="text-base font-medium text-slate-500 dark:text-slate-400 leading-relaxed">{card.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 10. BUILT-IN SYSTEMS (Technical / Modular Focus) */}
-      <section ref={systemsRef} className="py-24 md:py-40 bg-white dark:bg-primary-dark transition-colors duration-300 border-y border-slate-100 dark:border-border-dark overflow-hidden relative">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
-        
-        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-          <header className="text-center mb-16 md:mb-28 space-y-6">
-             <div className="inline-flex items-center space-x-2 text-authority-blue dark:text-signal-gold opacity-50">
-               <Cpu size={14} />
-               <span className="text-[10px] font-black uppercase tracking-[0.4em]">Integrated Compliance Infrastructure</span>
-             </div>
-             <h2 className="text-4xl sm:text-6xl md:text-[5.5rem] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
-               BUILT-IN <span className="text-signal-gold italic">SYSTEMS.</span>
-             </h2>
-             <p className="text-xl md:text-2xl font-bold text-slate-500 max-w-2xl mx-auto leading-relaxed mt-8">
-               More than curriculum. LaunchPath includes high-fidelity tools designed for real-world carrier orchestration.
-             </p>
-          </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {[
-              { 
-                title: "TCO CALCULATOR", 
-                icon: <Calculator size={32} />, 
-                tagline: "FISCAL_ANALYSIS_V4",
-                desc: "Break-even analysis and cost-per-mile modeling for operational survival math. Remove revenue speculation.", 
-                link: "/tools/tco-preview", 
-                badge: "ENROLLED" 
-              },
-              { 
-                title: "READINESS ASSESSMENT", 
-                icon: <ClipboardCheck size={32} />, 
-                tagline: "DIAGNOSTIC_UPLINK",
-                desc: "Scored evaluation of your compliance posture before you begin operations. Identify terminal gaps early.", 
-                link: "/readiness", 
-                badge: "FREE" 
-              },
-              { 
-                title: "COMPLIANCE ASSISTANT", 
-                icon: <MessageSquare size={32} />, 
-                tagline: "NEURAL_ADVISOR",
-                desc: "AI-powered regulatory reference assistant for FMCSA terminology, 49 CFR logic, and system navigation.", 
-                link: "/ai-advisor", 
-                badge: "FREE" 
-              },
-              { 
-                title: "RESOURCE LIBRARY", 
-                icon: <BookOpen size={32} />, 
-                tagline: "TECHNICAL_ARCHIVE",
-                desc: "Implementation templates, regulatory references, and vetted service provider directory for immediate usage.", 
-                link: "/resources", 
-                badge: "FREE" 
-              }
-            ].map((sys, i) => (
-              <div key={i} className="bg-slate-50/50 dark:bg-surface-dark/50 p-10 rounded-[3rem] border-2 border-slate-100 dark:border-border-dark flex flex-col relative overflow-hidden group hover:shadow-[0_40px_80px_-20px_rgba(30,58,95,0.15)] hover:-translate-y-2 hover:border-authority-blue/20 transition-all duration-500 backdrop-blur-sm">
-                {/* System ID Tag */}
-                <div className="flex items-center justify-between mb-10">
-                  <div className="flex items-center space-x-2">
-                    <Workflow size={12} className="text-slate-400 group-hover:text-authority-blue transition-colors" />
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{sys.tagline}</span>
-                  </div>
-                  <div className={`px-4 py-1 rounded-full text-[8px] font-black uppercase tracking-[0.2em] shadow-sm z-10 ${
-                    sys.badge === 'ENROLLED' 
-                      ? 'bg-authority-blue text-white' 
-                      : 'bg-emerald-100 text-emerald-700'
-                  }`}>
-                    {sys.badge}
-                  </div>
-                </div>
-
-                <div 
-                  className="w-16 h-16 bg-white dark:bg-gray-800 text-authority-blue dark:text-signal-gold rounded-2xl flex items-center justify-center mb-10 shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-authority-blue group-hover:text-signal-gold relative z-10"
-                  style={{ transform: `translateY(${systemsParallaxOffset}px)` }}
-                >
-                  {sys.icon}
-                </div>
-                
-                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-4 leading-tight min-h-[3rem] flex items-center relative z-10 transition-colors group-hover:text-authority-blue dark:group-hover:text-signal-gold">{sys.title}</h4>
-                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-12 flex-grow leading-relaxed relative z-10">{sys.desc}</p>
-                
-                <div className="mt-auto pt-6 border-t border-slate-200 dark:border-border-dark relative z-10">
-                  <Link to={sys.link} className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:opacity-70 transition-all group/link">
-                    <span>EXECUTE SYSTEM ACCESS</span> 
-                    <ArrowRight size={14} className="transition-transform group-hover/link:translate-x-2" />
-                  </Link>
-                </div>
-
-                {/* Technical Corner Accents */}
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-slate-200 dark:border-border-dark rounded-tr-[3rem] transition-colors group-hover:border-authority-blue/30"></div>
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-slate-200 dark:border-border-dark rounded-bl-[3rem] transition-colors group-hover:border-authority-blue/30"></div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-20 flex justify-center opacity-30">
-            <div className="flex items-center space-x-4">
-              <div className="h-px w-24 bg-slate-300"></div>
-              <span className="text-[10px] font-black uppercase tracking-[0.5em]">Modular Integrated Environment Active</span>
-              <div className="h-px w-24 bg-slate-300"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 11. COMMON QUESTIONS (Restored FAQ) */}
+      {/* 11. COMMON QUESTIONS */}
       <section className="py-24 md:py-32 bg-white dark:bg-primary-dark overflow-hidden transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-6">
           <header className="text-center mb-20 space-y-4">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">FAQS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">
-               COMMON <span className="text-signal-gold italic">QUESTIONS.</span>
-             </h2>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">COMMON <span className="text-signal-gold italic">QUESTIONS.</span></h2>
           </header>
-
           <div className="space-y-4">
             {[
-              {
-                q: "Does LaunchPath guarantee I will pass a new entrant safety audit?",
-                a: "No. LaunchPath does not guarantee audit outcomes. Final determination is made solely by the FMCSA based on their independent investigation. We provide the institutional framework and documentation systems. The carrier provides the operational discipline. We don't sell a 'pass' — we sell the infrastructure for carriers who refuse to operate in a state of exposure.",
-                icon: <ShieldAlert size={18} />
-              },
-              {
-                q: "What if my insurance quote is higher than expected?",
-                a: "Insurance pricing is based on factors outside our control — your location, commodity, driving history, and market conditions. LaunchPath teaches you how to present your operation professionally to underwriters, but we cannot influence premium rates.",
-                icon: <CreditCard size={18} />
-              },
-              {
-                q: "Is LaunchPath for non-CDL box truck carriers?",
-                a: "Yes. LaunchPath covers all interstate motor carriers operating CMVs over 10,001 lbs GVWR, including non-CDL operations between 10,001–26,000 lbs.",
-                icon: <Truck size={18} />
-              },
-              {
-                q: "Can I skip sections or move ahead before completing required steps?",
-                a: "No. The curriculum follows a sequential implementation calendar. Each phase builds on the previous. Skipping creates gaps in your compliance infrastructure.",
-                icon: <Lock size={18} />
-              },
-              {
-                q: "Is there a recurring monthly subscription fee?",
-                a: "No. Enrollment is a one-time fee with lifetime access to the curriculum and tools.",
-                icon: <DollarSign size={18} />
-              }
+              { q: "Does LaunchPath guarantee I will pass a new entrant safety audit?", a: "No. LaunchPath does not guarantee audit outcomes. Final determination is made solely by the FMCSA based on their independent investigation. We provide the institutional framework and documentation systems.", icon: <ShieldAlert size={18} /> },
+              { q: "What if my insurance quote is higher than expected?", a: "Insurance pricing is based on factors outside our control — your location, commodity, driving history, and market conditions. LaunchPath teaches you how to present your operation professionally to underwriters.", icon: <CreditCard size={18} /> },
+              { q: "Is LaunchPath for non-CDL box truck carriers?", a: "Yes. LaunchPath covers all interstate motor carriers operating CMVs over 10,001 lbs GVWR, including non-CDL operations.", icon: <Truck size={18} /> },
+              { q: "Can I skip sections or move ahead?", a: "No. The curriculum follows a sequential implementation calendar. Each phase builds on the previous. Skipping creates gaps in your compliance infrastructure.", icon: <Lock size={18} /> },
+              { q: "Is there a recurring monthly subscription fee?", a: "No. Enrollment is a one-time fee with lifetime access to the curriculum and tools.", icon: <DollarSign size={18} /> }
             ].map((faq, idx) => (
-              <FAQItem 
-                key={idx} 
-                question={faq.q} 
-                answer={faq.a} 
-                icon={faq.icon} 
-                isOpen={openFaqIndex === idx} 
-                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)} 
-              />
+              <FAQItem key={idx} question={faq.q} answer={faq.a} icon={faq.icon} isOpen={openFaqIndex === idx} onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)} />
             ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link to="/faq" className="inline-flex items-center text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:underline group">
-               <span>VIEW FULL INSTITUTIONAL FAQ</span>
-               <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
           </div>
         </div>
       </section>
@@ -1181,31 +712,14 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-12">
            <header className="space-y-6">
-              <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">
-                BUILD YOUR CARRIER LIKE A <br/><span className="text-signal-gold italic">CARRIER EXECUTIVE.</span>
-              </h2>
-              <div className="h-1.5 w-24 bg-signal-gold mx-auto rounded-full mb-10"></div>
-              <p className="text-xl md:text-2xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">
-                You didn't get your authority to hope you don't get audited. You got it to build something that lasts. LaunchPath gives you the infrastructure to operate with the same documentation discipline as carriers 10x your size.
-              </p>
-              <p className="text-lg md:text-xl font-black text-signal-gold uppercase tracking-[0.2em] mt-8">
-                The first 90 days determine the next 18 months. Start with order.
-              </p>
+              <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">BUILD YOUR CARRIER LIKE A <br/><span className="text-signal-gold italic">CARRIER EXECUTIVE.</span></h2>
+              <p className="text-xl md:text-2xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">You didn't get your authority to hope you don't get audited. You got it to build something that lasts. LaunchPath gives you the infrastructure to operate with discipline.</p>
            </header>
-
            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10">
-              <Link to="/readiness" className="w-full sm:w-auto bg-signal-gold text-authority-blue px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center group">
-                 TAKE THE REACH TEST™
-                 <ArrowRight size={20} className="ml-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link to="/pricing" className="w-full sm:w-auto border-2 border-white/20 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/5 transition-all flex items-center justify-center">
-                 VIEW ADMISSION PROTOCOL
-              </Link>
+              <Link to="/readiness" className="w-full sm:w-auto bg-signal-gold text-authority-blue px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center group">TAKE THE REACH TEST™ <ArrowRight size={20} className="ml-4 group-hover:translate-x-1 transition-transform" /></Link>
+              <Link to="/pricing" className="w-full sm:w-auto border-2 border-white/20 px-14 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/5 transition-all flex items-center justify-center">VIEW ADMISSION PROTOCOL</Link>
            </div>
-           
-           <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 pt-16">
-              VETERAN OWNED & OPERATED • ACCURACY OVER HYPE.™
-           </p>
+           <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 pt-16">VETERAN OWNED & OPERATED • ACCURACY OVER HYPE.™</p>
         </div>
       </section>
     </div>
