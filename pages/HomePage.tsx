@@ -184,7 +184,7 @@ const HomePage: React.FC = () => {
       description: "Integrity verification of driver qualification files and licensing credentials.",
       items: [
         { id: "05", text: "Revoked/Expired license usage", impact: "OOS Event", severity: "TERMINAL", guard: "License Verification Workflow", violation: "Allowing a driver to operate with an expired, suspended, or revoked CDL.", consequence: "Out-of-service event. Vehicle and driver placed OOS, potential authority suspension.", detailedGuard: "Periodic license checks with documentation.", module: "Module 3 — Driver Qualification Files", moduleId: 3 },
-        { id: "06", text: "Missing Med-Cert verification", impact: "Driver Downgrade", severity: "CRITICAL", guard: "Medical Certificate Tracking", violation: "No valid medical certificate on file or failure to verify medical status.", consequence: "Driver downgrade. FMCSA automatically downgrades CDL without valid med cert.", detailedGuard: "Expiration alerts and verification documentation.", module: "Module 3 — Driver Qualification Files", moduleId: 3 },
+        { id: "06", text: "Missing Med-Cert verification", impact: "Driver Down grade", severity: "CRITICAL", guard: "Medical Certificate Tracking", violation: "No valid medical certificate on file or failure to verify medical status.", consequence: "Driver downgrade. FMCSA automatically downgrades CDL without valid med cert.", detailedGuard: "Expiration alerts and verification documentation.", module: "Module 3 — Driver Qualification Files", moduleId: 3 },
         { id: "07", text: "Fragmented DQ File framework", impact: "Audit Red Flag", severity: "HIGH RISK", guard: "DQ File Builder", violation: "Incomplete or disorganized Driver Qualification files missing required documents.", consequence: "Audit red flag. Incomplete DQ files are the #1 finding in new entrant audits.", detailedGuard: "Complete file structure with all required elements.", module: "Module 3 — Driver Qualification Files", moduleId: 3 },
         { id: "08", text: "Omitted background inquiries", impact: "Negligent Entrustment", severity: "CRITICAL", guard: "Background Check Protocol", violation: "Failing to conduct and document required background checks and employment verification.", consequence: "Negligent entrustment liability. You're liable if you didn't verify driver history.", detailedGuard: "Required inquiries checklist and documentation templates.", module: "Module 3 — Driver Qualification Files", moduleId: 3 }
       ]
@@ -244,18 +244,15 @@ const HomePage: React.FC = () => {
 
           <aside className="lg:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
             <div className="bg-white dark:bg-surface-dark p-8 md:p-12 lg:p-14 rounded-[3.5rem] shadow-[0_40px_100px_-20px_rgba(30,58,95,0.12)] border border-slate-100 dark:border-white/5 relative overflow-hidden group">
-              {/* Glow decoration */}
               <div className="absolute -top-12 -right-12 w-48 h-48 bg-signal-gold/5 blur-[80px] rounded-full"></div>
               
               <div className="relative z-10">
                 {scanState === 'idle' ? (
                   <>
                     <header className="mb-10 md:mb-12">
-                         {/* Standalone FREE text */}
                          <div className="inline-block bg-signal-gold text-authority-blue px-5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.4em] mb-4 shadow-lg">
                            FREE
                          </div>
-                         {/* Massive 90 DAY RISK MAP together */}
                          <h3 className="text-4xl md:text-5xl lg:text-[4.2rem] font-black font-serif uppercase tracking-tighter text-authority-blue dark:text-white leading-[0.85] drop-shadow-sm">
                            90 DAY <br/>
                            <span className="text-signal-gold italic">RISK MAP</span>
@@ -270,7 +267,7 @@ const HomePage: React.FC = () => {
                           required 
                           value={formData.firstName}
                           onChange={e => setFormData({...formData, firstName: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-white/5 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
+                          className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
                           placeholder="JANE DOE" 
                         />
                       </div>
@@ -281,7 +278,7 @@ const HomePage: React.FC = () => {
                           type="email"
                           value={formData.email}
                           onChange={e => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-white/5 border-2 border-slate-100 dark:border-white/10 focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
+                          className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
                           placeholder="JANE@CARRIER.COM" 
                         />
                       </div>
@@ -356,7 +353,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-7 space-y-10">
               <div>
                 <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-4">FOUNDER & LEAD ADVISOR</h2>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-black font-serif text-authority-blue dark:text-white leading-tight uppercase tracking-tight">
@@ -367,28 +364,24 @@ const HomePage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
-                <div className="max-w-[600px] p-8 bg-white dark:bg-gray-800/50 rounded-[2.5rem] border border-slate-100 dark:border-border-dark relative shadow-sm">
-                   <p className="text-xl font-medium text-slate-700 dark:text-slate-200 italic leading-relaxed">
-                    "LaunchPath was built from direct experience watching new motor carriers fail — not from lack of effort, but from lack of systems."
-                   </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {[
-                    { icon: <ShieldCheck size={18} className="text-signal-gold" />, text: "U.S. NAVY VETERAN" },
-                    { icon: <Shield size={18} className="text-signal-gold" />, text: "OSHA-CERTIFIED" },
-                    { icon: <Briefcase size={18} className="text-signal-gold" />, text: "20+ YRS COMPLIANCE" }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center space-x-3 bg-white dark:bg-gray-800 px-4 py-3 rounded-xl border border-slate-100 dark:border-border-dark shadow-sm">
+              <div className="space-y-4">
+                {[
+                  { icon: <ShieldCheck size={18} />, text: "U.S. NAVY VETERAN" },
+                  { icon: <Shield size={18} />, text: "OSHA-CERTIFIED" },
+                  { icon: <Briefcase size={18} />, text: "20+ YRS COMPLIANCE" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center space-x-6 bg-white dark:bg-gray-800 px-8 py-6 rounded-[2rem] border border-slate-100 dark:border-border-dark shadow-sm hover:shadow-md hover:border-authority-blue/20 transition-all group cursor-default">
+                    <div className="text-signal-gold transition-transform group-hover:scale-110 duration-300">
                       {item.icon}
-                      <span className="text-[9px] font-black uppercase tracking-widest text-authority-blue dark:text-white">{item.text}</span>
                     </div>
-                  ))}
-                </div>
+                    <span className="text-[13px] font-black uppercase tracking-[0.25em] text-authority-blue dark:text-white">
+                      {item.text}
+                    </span>
+                  </div>
+                ))}
               </div>
 
-              <div className="pt-6">
+              <div className="pt-4">
                 <Link to="/about" className="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold hover:underline group">
                   <span>READ FULL BACKGROUND</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -471,22 +464,72 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. THIS IS NOT FOR EVERYONE */}
-      <section className="py-24 md:py-40 bg-[#0c1a2d] text-white overflow-hidden transition-colors duration-300 relative">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-12 relative z-10">
-          <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-6 py-2 rounded-full mb-4">
-             <ShieldAlert size={14} className="text-red-500" />
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">BOUNDARIES</span>
-          </div>
-          <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">
-            THIS IS NOT FOR <br/><span className="text-red-600 italic">EVERYONE.</span>
-          </h2>
-          <div className="h-px w-24 bg-red-600/30 mx-auto"></div>
-          <div className="space-y-8 text-xl md:text-2xl font-bold text-slate-400 leading-relaxed text-left max-w-3xl mx-auto border-l-4 border-red-600/20 pl-8">
-            <p>If you're looking for a course on how to make money in trucking — this isn't it.</p>
-            <p>If you want dispatch training or load board strategies — we don't offer that.</p>
-            <p className="text-white italic">LaunchPath is for owner-operators who understand that their authority is a federal license to be audited — and they want to be ready when it happens.</p>
+      {/* 5. SYSTEM ACCESS WARNING (REWRITTEN FOR FRICTION & FILTERING) */}
+      <section className="py-24 md:py-40 bg-[#0c1a2d] text-white overflow-hidden transition-colors duration-300 relative border-y-[12px] border-authority-blue">
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            {/* Qualification Headline */}
+            <div className="lg:col-span-6 space-y-8">
+              <div className="inline-flex items-center space-x-3 bg-red-600/10 border border-red-600/30 px-6 py-2 rounded-full mb-4">
+                 <ShieldAlert size={14} className="text-red-500" />
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-red-400">ENTRY CRITERIA REQUIRED</span>
+              </div>
+              <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9]">
+                SYSTEM ACCESS <br/><span className="text-red-600 italic">WARNING.</span>
+              </h2>
+              <div className="h-2 w-32 bg-red-600"></div>
+              <p className="text-xl md:text-2xl font-bold text-slate-300 leading-relaxed max-w-xl">
+                The LaunchPath Operating Standard™ is not an elective course. It is an engineered 90-day implementation system for serious carriers.
+              </p>
+              <div className="bg-white/5 border-l-4 border-red-600 p-8 rounded-r-3xl max-w-xl">
+                <p className="text-base text-slate-400 font-medium leading-relaxed italic">
+                  "If you are looking for a 'side-hustle' or passive income in transportation, do not proceed. This program requires a commitment to documentation, OSHA-level safety discipline, and fiscal transparency."
+                </p>
+              </div>
+            </div>
+
+            {/* Friction Filters Grid */}
+            <div className="lg:col-span-6 grid grid-cols-1 gap-6">
+              {[
+                { 
+                  icon: <DollarSign className="text-red-600" />, 
+                  title: "CAPITAL FILTER", 
+                  desc: "Admission requires a $3,500 one-time implementation investment. This serves as a barrier against those seeking shortcuts and ensures every carrier in the cohort is financially capitalized for federal compliance." 
+                },
+                { 
+                  icon: <FileSearch className="text-red-600" />, 
+                  title: "DOCUMENTATION COMMITMENT", 
+                  desc: "You will be required to execute rigorous record-keeping protocols for DQ files, maintenance logs, and drug programs. If you are not prepared to maintain a clinical documentation standard, you will fail our verification points." 
+                },
+                { 
+                  icon: <Activity className="text-red-600" />, 
+                  title: "SYSTEMS OVER HUSTLE", 
+                  desc: "We prioritize administrative order over 'load board hustle.' LaunchPath is built for those who value long-term authority protection and insurance continuity over short-term revenue gains." 
+                }
+              ].map((filter, i) => (
+                <div key={i} className="bg-white/[0.03] border border-white/10 p-8 rounded-[2.5rem] group hover:bg-white/[0.05] transition-all">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="p-3 bg-red-600/10 rounded-xl">{filter.icon}</div>
+                    <h4 className="text-lg font-black uppercase tracking-widest text-white font-serif">{filter.title}</h4>
+                  </div>
+                  <p className="text-sm text-slate-400 font-bold leading-relaxed">{filter.desc}</p>
+                </div>
+              ))}
+              
+              <div className="pt-8">
+                <Link to="/readiness" className="w-full bg-red-600 text-white py-10 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center group border-b-8 border-slate-900">
+                  <ChevronRight className="mr-4 group-hover:translate-x-1 transition-transform" />
+                  VALIDATE MY ELIGIBILITY
+                </Link>
+                <p className="text-[9px] text-center text-slate-500 uppercase tracking-[0.3em] mt-6 font-black">
+                  Carrier Executive Admission Protocol — Revision V4.2
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
