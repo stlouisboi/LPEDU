@@ -32,9 +32,9 @@ export const INITIAL_SETTINGS: SiteSettings = {
     hours: "Mon-Fri: 9am - 6pm EST"
   },
   social: {
-    facebook: "https://facebook.com/launchpath",
-    linkedin: "https://linkedin.com/company/launchpath",
-    youtube: "https://youtube.com/@launchpath",
+    facebook: "https://www.facebook.com/LaunchPath90Days/",
+    linkedin: "https://www.linkedin.com/in/vincenttlawrence/",
+    youtube: "https://www.youtube.com/@LaunchPath-s1p",
     tiktok: "https://tiktok.com/@launchpath"
   },
   checkoutUrls: {
