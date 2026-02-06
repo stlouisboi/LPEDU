@@ -440,23 +440,24 @@ const HomePage: React.FC = () => {
               </div>
             </article>
 
-            <aside className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               <div className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border-t-8 border-red-500/30 space-y-8 shadow-sm">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-red-600">REACTIVE APPROACH</h4>
-                  <ul className="space-y-4 text-sm font-bold text-slate-500 leading-relaxed">
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Fixing files after incidents</li>
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Skipping DOT maintenance logs</li>
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Waiting for federal audit alerts</li>
-                     <li className="flex items-start"><XCircle size={16} className="text-red-400 mr-3 mt-0.5 shrink-0" /> Segmented, messy documentation</li>
+            <aside className="grid grid-cols-1 md:grid-cols-2 gap-10">
+               <div className="bg-white dark:bg-primary-dark p-10 md:p-12 rounded-[3.5rem] border-t-8 border-red-500/40 shadow-[0_20px_60px_-15px_rgba(239,68,68,0.1)] space-y-10">
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-red-600">REACTIVE APPROACH</h4>
+                  <ul className="space-y-5 text-[15px] font-black text-slate-500 leading-relaxed">
+                     <li className="flex items-center"><XCircle size={18} className="text-red-500 mr-4 shrink-0" /> Fixing files after incidents</li>
+                     <li className="flex items-center"><XCircle size={18} className="text-red-500 mr-4 shrink-0" /> Skipping DOT maintenance logs</li>
+                     <li className="flex items-center"><XCircle size={18} className="text-red-500 mr-4 shrink-0" /> Waiting for federal audit alerts</li>
+                     <li className="flex items-center"><XCircle size={18} className="text-red-500 mr-4 shrink-0" /> Segmented, messy documentation</li>
                   </ul>
                </div>
-               <div className="bg-authority-blue p-10 rounded-[3rem] border-t-8 border-signal-gold space-y-8 shadow-2xl">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">SYSTEMATIC APPROACH</h4>
-                  <ul className="space-y-4 text-sm font-bold text-white leading-relaxed">
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Pre-launch safety installation</li>
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Daily-executed DQ workflows</li>
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Permanent audit-ready posture</li>
-                     <li className="flex items-start"><CheckCircle2 size={16} className="text-signal-gold mr-3 mt-0.5 shrink-0" /> Integrated, defensible record systems</li>
+               <div className="bg-[#1e3a5f] p-10 md:p-12 rounded-[3.5rem] border-t-8 border-signal-gold shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] space-y-10 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-signal-gold/5 rounded-full -translate-y-16 translate-x-16 blur-2xl"></div>
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">SYSTEMATIC APPROACH</h4>
+                  <ul className="space-y-5 text-[15px] font-black text-white leading-relaxed">
+                     <li className="flex items-center"><CheckCircle2 size={18} className="text-signal-gold mr-4 shrink-0" /> Pre-launch safety installation</li>
+                     <li className="flex items-center"><CheckCircle2 size={18} className="text-signal-gold mr-4 shrink-0" /> Daily-executed DQ workflows</li>
+                     <li className="flex items-center"><CheckCircle2 size={18} className="text-signal-gold mr-4 shrink-0" /> Permanent audit-ready posture</li>
+                     <li className="flex items-center"><CheckCircle2 size={18} className="text-signal-gold mr-4 shrink-0" /> Integrated, defensible record systems</li>
                   </ul>
                </div>
             </aside>
