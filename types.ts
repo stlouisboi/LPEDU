@@ -92,9 +92,7 @@ export interface SiteSettings {
   };
   social: {
     facebook?: string;
-    twitter?: string;
     linkedin?: string;
-    instagram?: string;
     youtube?: string;
   };
   checkoutUrls?: {

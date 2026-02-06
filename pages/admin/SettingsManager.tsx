@@ -8,9 +8,7 @@ import {
   Mail, 
   Phone, 
   Facebook, 
-  Twitter,
   Linkedin,
-  Instagram,
   Youtube,
   Search, 
   Loader2, 
@@ -391,30 +389,12 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Twitter size={12} className="mr-2" /> Twitter URL</label>
-                    <input 
-                      value={settings.social.twitter || ''}
-                      onChange={e => setSettings({...settings, social: {...settings.social, twitter: e.target.value}})}
-                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
-                      placeholder="https://twitter.com/..."
-                    />
-                  </div>
-                  <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Linkedin size={12} className="mr-2" /> LinkedIn URL</label>
                     <input 
                       value={settings.social.linkedin || ''}
                       onChange={e => setSettings({...settings, social: {...settings.social, linkedin: e.target.value}})}
                       className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
                       placeholder="https://linkedin.com/company/..."
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Instagram size={12} className="mr-2" /> Instagram URL</label>
-                    <input 
-                      value={settings.social.instagram || ''}
-                      onChange={e => setSettings({...settings, social: {...settings.social, instagram: e.target.value}})}
-                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
-                      placeholder="https://instagram.com/..."
                     />
                   </div>
                   <div className="space-y-2">

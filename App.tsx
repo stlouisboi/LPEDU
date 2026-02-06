@@ -10,9 +10,7 @@ import {
   Lock,
   Youtube,
   Facebook,
-  Twitter,
   Linkedin,
-  Instagram,
   ShieldCheck,
   User as UserIcon,
   LayoutDashboard
@@ -379,19 +377,9 @@ const Footer = () => {
                     <Facebook size={28} />
                     </a>
                 )}
-                {settings.social.twitter && (
-                    <a href={settings.social.twitter} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Twitter">
-                    <Twitter size={28} />
-                    </a>
-                )}
                 {settings.social.linkedin && (
                     <a href={settings.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="LinkedIn">
                     <Linkedin size={28} />
-                    </a>
-                )}
-                {settings.social.instagram && (
-                    <a href={settings.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Instagram">
-                    <Instagram size={28} />
                     </a>
                 )}
                 {settings.social.youtube && (

@@ -33,9 +33,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   },
   social: {
     facebook: "https://facebook.com/launchpath",
-    twitter: "https://twitter.com/launchpath",
     linkedin: "https://linkedin.com/company/launchpath",
-    instagram: "https://instagram.com/launchpath",
     youtube: "https://youtube.com/@launchpath"
   },
   checkoutUrls: {
