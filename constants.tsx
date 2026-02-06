@@ -160,6 +160,95 @@ export const COURSE_MODULES: CourseModule[] = [
 
 export const INITIAL_BLOGS: BlogPost[] = [
   {
+    id: "auth-1",
+    title: "USDOT vs. MC Number: Do You Really Need Both?",
+    slug: "usdot-vs-mc-number-differences",
+    category: "Authority",
+    excerpt: "Regulatory Directive: Distinguishing between safety registration and commercial operating authority to prevent equipment seizure.",
+    content: `
+      <p style="font-size: 14px; color: #64748b; font-style: italic; margin-bottom: 30px;">Subtitle: How to Not Get Your Truck Impounded in Week One.</p>
+
+      <h3>I. THE ADMINISTRATIVE ALPHABET SOUP</h3>
+      <p>In the world of trucking, the FMCSA loves a good acronym. But for a new carrier, the "alphabet soup" of registrations can feel like a coordinated effort to keep you from actually making money. The biggest point of confusion is usually the USDOT Number and the MC Number.</p>
+      
+      <p>Think of this as the difference between a Driver's License and a Business Permit. One says you're safe enough to be on the road; the other says you're legally allowed to get paid for it. <b>Confusion here is the primary vector for authority revocation before your first 90-day cycle is complete.</b></p>
+
+      <h3>II. THE USDOT NUMBER: YOUR UNIVERSAL SAFETY DNA</h3>
+      <p>Your USDOT Number is like a permanent record for your truck. It’s the identifier the FMCSA uses to track your <b>"Safety DNA"</b>—accidents, inspections, and that one time you forgot to secure a load.</p>
+      <ul>
+        <li><b>Who Needs It:</b> Basically everyone. If your truck is over 10,001 lbs and you’re crossing state lines, you need one.</li>
+        <li><b>The Vibe:</b> It’s a tracking device. It doesn't give you permission to bill anyone; it just gives the DOT a place to file your <b>16 Deadly Sins</b>.</li>
+      </ul>
+
+      <h3>III. THE MC NUMBER: YOUR "FOR-HIRE" GOLDEN TICKET</h3>
+      <p>The MC Number (Operating Authority) is where the money is. This is the government giving you the green light to haul someone else’s property for cash. Without this, <b>you aren't a business—you're just a guy with a very expensive, very large hobby.</b></p>
+
+      <h3>IV. EXECUTIVE COMPARISON MATRIX</h3>
+      <div style="overflow-x: auto; margin: 30px 0;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; border: 1px solid #e2e8f0;">
+          <thead>
+            <tr style="background-color: #1e3a5f; color: white;">
+              <th style="padding: 15px; border: 1px solid #334155;">FEATURE</th>
+              <th style="padding: 15px; border: 1px solid #334155;">USDOT NUMBER</th>
+              <th style="padding: 15px; border: 1px solid #334155;">MC NUMBER</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Translation</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">"I'm a safe operator."</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">"I'm a paid professional."</td>
+            </tr>
+            <tr style="background-color: #f8fafc;">
+              <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Requirement</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">Interstate Commerce.</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">For-Hire Freight.</td>
+            </tr>
+            <tr>
+              <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Analogy</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">Your Social Security Number.</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">Your Business License.</td>
+            </tr>
+            <tr style="background-color: #f8fafc;">
+              <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Pillar Impact</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">Tracks your <b>Compliance Backbone</b>.</td>
+              <td style="padding: 15px; border: 1px solid #e2e8f0;">Protects <b>Authority Protection</b>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <blockquote style="background: #fefce8; border-left: 5px solid #C6922A; padding: 20px; margin: 30px 0;">
+        <h4 style="margin-top: 0; color: #854d0e; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Executive Callout: The "Private Carrier" Trap</h4>
+        <p style="margin-bottom: 0;">If you haul your own tools to a job site, you're a private carrier. If you haul a pallet for a neighbor for $50, you just committed an unauthorized for-hire operation. <b>Accuracy Over Hype: Get both or stay home.</b></p>
+      </blockquote>
+
+      <h3>V. PRE-TRIP RISK INSPECTION: "WINGIN' IT"</h3>
+      <p>If you try to operate a for-hire business with only a DOT number, you’re basically inviting the FMCSA to audit you out of existence. Note the following failure vectors:</p>
+      <ul style="list-style: none; padding-left: 0;">
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ef4444;">[ ]</span>
+          <b>The "Tow-Away" Special:</b> Your truck gets parked by state enforcement, and your driver gets a very long, very expensive Uber ride home.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ef4444;">[ ]</span>
+          <b>The Insurance Blacklist:</b> Your insurance company hates surprises. If you don't have an MC number, <b>they might treat your claim like a suggestion rather than a contract.</b> This terminates your <b>Insurance Continuity</b>.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ef4444;">[ ]</span>
+          <b>Broker Rejection:</b> Professional brokers won't even look at you. Operating without an MC number is <b>the fastest way to starve your Cash-Flow Oxygen.</b>
+        </li>
+      </ul>
+
+      <p style="font-size: 10px; color: #94a3b8; margin-top: 50px; border-top: 1px solid #e2e8f0; pt-20;">END OF TECHNICAL BRIEF — REFERENCE LP-AUTH-V2.1</p>
+    `,
+    publishedAt: "2025-01-10",
+    author: "Vince Lawrence",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
+    status: 'published',
+    tags: ['Authority', 'FMCSA', 'Setup', 'Pillars']
+  },
+  {
     id: "maint-1",
     title: "Navigating Truck Maintenance: From Breakdown Fixes to Disciplined Stewardship",
     slug: "navigating-truck-maintenance-disciplined-stewardship",
@@ -216,19 +305,6 @@ export const INITIAL_BLOGS: BlogPost[] = [
     image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FTruck%20Maintenace%20Blog.png?alt=media&token=39afb41c-297a-4968-961c-bdaec93b3fbb",
     status: 'published',
     tags: ['Maintenance', 'FMCSA', 'Stewardship', 'Compliance']
-  },
-  {
-    id: "auth-1",
-    title: "USDOT vs. MC Number: Do You Really Need Both?",
-    slug: "usdot-vs-mc-number-differences",
-    category: "Authority",
-    excerpt: "Understanding the difference between safety registration (USDOT) and operating authority (MC). Not every carrier needs both, but getting it wrong stops your business before it starts.",
-    content: "<h2>The Safety vs. Business Distinction</h2><p>In the United States, the FMCSA uses two primary identifiers. The <strong>USDOT Number</strong> is your safety footprint—it tracks your inspections, crashes, and audit results. Every commercial vehicle over 10,001 lbs involved in interstate commerce needs one.</p><p>The <strong>MC Number</strong> (Motor Carrier authority) is different. It is about the <em>business</em> of hauling for hire. If you are a 'For-Hire' carrier moving freight for others across state lines, you need an MC number. If you only move your own goods, you are a private carrier and usually only need the USDOT number.</p>",
-    publishedAt: "2025-01-10",
-    author: "Vince",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
-    status: 'published',
-    tags: ['Authority', 'FMCSA', 'Setup']
   },
   {
     id: "audit-1",
