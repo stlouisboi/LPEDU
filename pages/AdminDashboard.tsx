@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Settings, 
@@ -13,11 +12,12 @@ import {
   Loader2,
   Globe,
   Palette,
-  Image as ImageIcon
+  ImageIcon,
+  ChevronRight
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useApp } from '../App';
 import { useAuth } from '../AuthContext';
-import { BlogPost, SiteSettings } from '../types';
 
 // Specialized Sub-components
 import SettingsManager from './admin/SettingsManager';
@@ -36,7 +36,7 @@ const AdminDashboard = () => {
           <Settings className="w-16 h-16 text-authority-blue mx-auto mb-6" />
           <h1 className="text-3xl font-bold font-serif mb-4">Access Denied</h1>
           <p className="text-text-muted mb-8">You must be logged in as an administrator to view this command center.</p>
-          <a href="/#/admin/login" className="bg-authority-blue text-white px-8 py-3 rounded-xl font-bold inline-block">Go to Login</a>
+          <Link to="/admin/login" className="bg-authority-blue text-white px-8 py-3 rounded-xl font-bold inline-block">Go to Login</Link>
         </div>
       </div>
     );
@@ -93,10 +93,10 @@ const AdminDashboard = () => {
                   <Globe className="mb-6 text-signal-gold" size={32} />
                   <h3 className="text-2xl font-bold font-serif mb-4">Homepage Interface Editor</h3>
                   <p className="opacity-70 max-w-xl mb-8 leading-relaxed font-medium">Control the headline, mission statement, and hero visuals seen by all visitors. Powered by high-fidelity neural image synthesis.</p>
-                  <a href="/#/admin/pages/home" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all">
+                  <Link to="/admin/pages/home" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all">
                     <span>Open Visual Editor</span>
                     <ChevronRight size={16} />
-                  </a>
+                  </Link>
                </div>
             </div>
           )}
@@ -139,11 +139,5 @@ const AdminDashboard = () => {
     </div>
   );
 };
-
-const ChevronRight = ({ size, className }: { size: number; className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M9 18l6-6-6-6" />
-  </svg>
-);
 
 export default AdminDashboard;

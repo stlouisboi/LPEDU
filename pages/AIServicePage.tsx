@@ -20,7 +20,8 @@ import {
   Bot,
   User,
   ArrowRight,
-  Terminal
+  Terminal,
+  RefreshCw
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, GenerateContentResponse } from '@google/genai';
 
@@ -123,7 +124,7 @@ const AIServicePage = () => {
 
   useEffect(() => {
     return () => {
-      if (audioContextRef.current) {
+      if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
         audioContextRef.current.close().catch(() => {});
       }
       if (isLiveActive) stopLiveConversation();
@@ -369,7 +370,7 @@ const AIServicePage = () => {
                   className={`w-full text-left p-5 rounded-3xl transition-all flex items-center space-x-4 border-2 ${
                     activeTab === tab.id 
                     ? 'bg-authority-blue border-authority-blue text-white shadow-2xl scale-[1.02]' 
-                    : 'bg-slate-50 dark:bg-gray-800 border-transparent text-text-muted dark:text-text-dark-muted hover:border-slate-200 dark:hover:border-gray-700'
+                    : 'bg-slate-50 dark:bg-gray-800 border-transparent text-text-muted dark:text-text-dark-muted hover:border-slate-200 dark:hover:bg-gray-700'
                   }`}
                 >
                   <div className={`p-3 rounded-2xl ${activeTab === tab.id ? 'bg-white/20' : 'bg-white dark:bg-gray-700 shadow-sm'}`}>

@@ -53,7 +53,7 @@ import OperatorPortal from './pages/OperatorPortal';
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
-import AdminDashboard from './AdminDashboard'; 
+import AdminDashboard from './pages/admin/AdminDashboardHome'; 
 import PageList from './pages/admin/PageList';
 import HomePageEditor from './pages/admin/HomePageEditor';
 import BlogList from './pages/admin/BlogList';
