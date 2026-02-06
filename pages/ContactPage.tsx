@@ -61,12 +61,16 @@ const ContactPage = () => {
         throw new Error("Cloud synchronization is currently offline. Please verify connection.");
       }
 
-      await addDoc(collection(db, "formSubmissions"), {
-        ...formData,
-        type: 'Primary Contact',
-        status: 'unread',
-        createdAt: serverTimestamp()
-      });
+    await addDoc(collection(db, "leadMagnets"), {
+  email: formData.email,
+  firstName: formData.fullName,
+  company: formData.businessName,
+  currentStatus: formData.currentStatus,
+  areaOfInterest: formData.areaOfInterest,
+  message: formData.message,
+  source: "contact-form",
+  downloadedAt: serverTimestamp()
+});
       
       // 2. MailerLite Synchronization
       setSyncing(true);
