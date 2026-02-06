@@ -174,7 +174,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
       <p>Think of this as the difference between a Driver's License and a Business Permit. One says you're safe enough to be on the road; the other says you're legally allowed to get paid for it. <b>Confusion here is the primary vector for authority revocation before your first 90-day cycle is complete.</b></p>
 
       <h3>II. THE USDOT NUMBER: YOUR UNIVERSAL SAFETY DNA</h3>
-      <p>Your USDOT Number is like a permanent record for your truck. It’s the identifier the FMCSA uses to track your <b>"Safety DNA"</b>—accidents, inspections, and that one time you forgot to secure a load.</p>
+      <p>Your USDOT Number is like a permanent record for your truck. It’s the identifier the FMCSA used to track your <b>"Safety DNA"</b>—accidents, inspections, and that one time you forgot to secure a load.</p>
       <ul>
         <li><b>Who Needs It:</b> Basically everyone. If your truck is over 10,001 lbs and you’re crossing state lines, you need one.</li>
         <li><b>The Vibe:</b> It’s a tracking device. It doesn't give you permission to bill anyone; it just gives the DOT a place to file your <b>16 Deadly Sins</b>.</li>
@@ -244,7 +244,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-01-10",
     author: "Vince Lawrence",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FMC%20and%20DOT%20number.png?alt=media&token=7c24b499-79c5-4ea8-94ab-c835fa5f6a09",
     status: 'published',
     tags: ['Authority', 'FMCSA', 'Setup', 'Pillars']
   },
