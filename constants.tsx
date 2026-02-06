@@ -21,7 +21,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
   metaDescription: "Professional carrier compliance education for new owner-operators. Focus on the Four Pillars: Authority, Insurance, Compliance, and Cash-Flow.",
-  logoUrl: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b89d", 
+  logoUrl: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf", 
   googleAnalyticsId: "G-LP-VET-2025",
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,
@@ -165,13 +165,58 @@ export const INITIAL_BLOGS: BlogPost[] = [
     title: "Navigating Truck Maintenance: From Breakdown Fixes to Disciplined Stewardship",
     slug: "navigating-truck-maintenance-disciplined-stewardship",
     category: "Maintenance",
-    excerpt: "Moving from reactive repairs to a disciplined preventive maintenance program is the foundation of carrier longevity and safety compliance.",
-    content: "<h2>Maintenance vs. Repair: The Stewardship Distinction</h2><p>Many new motor carriers quietly assume maintenance and repair are the same thing. In the rush to book freight and keep the wheels turning, they slip into a “fix it when it fails” pattern. The truck becomes a tool that only deserves attention when it is already down. That mindset treats maintenance as an interruption to business—when in reality, it is the foundation of it.</p><h2>The Risk of Operating in Repair Mode</h2><p>When you operate reactively, your schedule and cash flow are controlled by the equipment, not by you. A failure on the road is almost never just the cost of a part. It often brings roadside service fees, tow bills, missed delivery windows, and a higher chance of inspections and Out‑of‑Service orders. Missed intervals and incomplete documentation are exactly what show up in failed safety audits. Stewardship of your equipment is not just about keeping the truck moving; it is about preserving the order that keeps you compliant and operating over time.</p><h2>Repair vs. Preventive Maintenance</h2><p>Orderly operation begins with a different way of thinking. Repair reacts to failure. Preventive maintenance works to prevent it. A disciplined maintenance program focuses on predictability—scheduling service by miles or time instead of warning lights or breakdowns. It treats pre‑trip and post‑trip inspections as legal documents, not optional chores. Preventive maintenance is less about perfection and more about consistency.</p><h2>Building a Maintenance Escrow</h2><p>Financial stewardship is the second pillar of disciplined maintenance. New carriers get into trouble when they treat gross revenue as take‑home pay. Stable operations treat maintenance as a fixed operating expense that is funded every mile the truck moves. Many successful carriers use a maintenance escrow—a dedicated account funded at a set rate per mile, often around 0.15 per mile or higher. The objective is simple: keep normal operating costs from turning into business‑ending crises.</p><h2>Maintenance Records and Compliance</h2><p>Compliance is not optional for a carrier that wants to keep its authority. Regulators require documented proof of systematic inspection, repair, and maintenance for every vehicle you operate. Core records include vehicle identification details, dates and descriptions of inspections and repairs, and evidence that you follow a structured maintenance schedule. Disciplined carriers move toward a unified operating system where mileage, loads, and maintenance history stay connected, reducing clerical errors and audit exposure.</p><h2>A Stabilizing Perspective</h2><p>Trucking is a marathon, not a sprint. The carriers that survive their first year are rarely the ones chasing the highest spot rates or squeezing every mile out of worn‑out equipment. They are the carriers that prioritize order, stewardship, and consistent process. When you follow a disciplined preventive maintenance schedule and fund your maintenance escrow every mile, you protect your safety record, your equipment, your authority, and your future.</p>",
+    excerpt: "Technical Directive: Moving from reactive repairs to a disciplined preventive maintenance program is the foundation of carrier longevity and safety compliance.",
+    content: `
+      <h3>I. STEWARDSHIP DISTINCTION: MAINTENANCE VS. REPAIR</h3>
+      <p>Many new motor carriers quietly assume maintenance and repair are interchangeable. In the pursuit of freight revenue, they slip into a “fix it when it fails” pattern. This mindset treats maintenance as an interruption to business—when in reality, it is the <b>Compliance</b> foundation of it.</p>
+      
+      <div style="background: #f1f5f9; padding: 25px; border-radius: 15px; margin: 20px 0; border: 1px solid #e2e8f0;">
+        <h4 style="margin-top:0; font-size: 12px; letter-spacing: 0.1em; color: #1e3a5f;">OPERATIONAL MATRIX</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 10px;"><b>REPAIR:</b> Reactive behavior triggered by equipment failure. Result: Unplanned downtime and <b>Cash-Flow</b> depletion.</li>
+          <li><b>MAINTENANCE:</b> Proactive stewardship triggered by time or mileage. Result: Predictable uptime and <b>Authority</b> protection.</li>
+        </ul>
+      </div>
+
+      <h3>II. RISK PROFILE: THE "REPAIR MODE" VECTOR</h3>
+      <p>Operating reactively places your schedule and <b>Cash-Flow</b> under the control of the equipment, not the executive. A failure in transit is rarely just the cost of a component. It carries cumulative exposure:</p>
+      <ul>
+        <li>Roadside service premiums and heavy-duty towing fees.</li>
+        <li>Forfeited revenue due to missed delivery windows.</li>
+        <li>Heightened probability of Out-of-Service (OOS) orders during roadside inspections.</li>
+      </ul>
+      <p>Missed service intervals and disjointed documentation are primary findings in failed federal <b>Compliance</b> audits.</p>
+
+      <h3>III. PREVENTIVE MAINTENANCE ARCHITECTURE</h3>
+      <p>Orderly operation requires a shift in cognitive discipline. Preventive maintenance focuses on <b>predictability</b>—scheduling service based on technical data rather than warning lights.</p>
+      <ul>
+        <li><b>Legal Validity:</b> Pre-trip and post-trip inspections are treated as legal certifications, not administrative chores.</li>
+        <li><b>Systemic Consistency:</b> Preventive maintenance is less about mechanical perfection and more about documented reliability.</li>
+      </ul>
+
+      <blockquote style="background: #1e3a5f; color: white; padding: 30px; border-left: 10px solid #C6922A; border-radius: 0 20px 20px 0; margin: 40px 0;">
+        <h4 style="color: #C6922A; margin-top: 0; text-transform: uppercase; font-size: 14px; letter-spacing: 0.2em;">Executive Financial Alert: The Maintenance Escrow</h4>
+        <p style="font-size: 18px; margin-bottom: 0;"><b>DO NOT TREAT GROSS REVENUE AS TAKE-HOME PAY.</b> Stable operations treat maintenance as a fixed operating expense. Successful carriers utilize a dedicated <b>Maintenance Escrow</b> funded at a minimum rate of <b>$0.15 per mile</b>. This protocol prevents normal wear-and-tear from escalating into a terminal business crisis.</p>
+      </blockquote>
+
+      <h3>IV. REGULATORY MINIMUMS (FMCSA COMPLIANCE)</h3>
+      <p><b>Compliance</b> is non-negotiable for a carrier intending to preserve its <b>Authority</b>. Regulators require verifiable proof of a systematic inspection program for every asset in the fleet. Mandatory records include:</p>
+      <ul>
+        <li><b>Asset Identification:</b> VIN, make, model, year, and company ID.</li>
+        <li><b>Service Ledger:</b> Dates and detailed descriptions of all inspections, repairs, and maintenance.</li>
+        <li><b>Structure Evidence:</b> Proof that the carrier follows a defined, recurring maintenance schedule.</li>
+      </ul>
+
+      <h3>V. STEWARDSHIP PERSPECTIVE</h3>
+      <p>Transportation is a marathon. Carriers that survive the 18-month New Entrant window are rarely those chasing spot rates with worn equipment. They are the carriers that prioritize <b>Order</b>, <b>Stewardship</b>, and <b>Systematic Process</b>. When you fund your escrow every mile and execute your maintenance program with discipline, you protect your safety record, your equipment, your <b>Authority</b>, and your future.</p>
+      
+      <p style="font-size: 10px; color: #94a3b8; margin-top: 50px; border-top: 1px solid #e2e8f0; pt-20;">END OF TECHNICAL BRIEF — REFERENCE LP-MAINT-V1.2</p>
+    `,
     publishedAt: "2025-01-25",
-    author: "Vince",
+    author: "Vince Lawrence",
     image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
     status: 'published',
-    tags: ['Maintenance', 'FMCSA', 'Stewardship']
+    tags: ['Maintenance', 'FMCSA', 'Stewardship', 'Compliance']
   },
   {
     id: "auth-1",

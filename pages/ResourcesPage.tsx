@@ -131,7 +131,7 @@ const ResourcesPage = () => {
       
       {/* Enhanced Dynamic System Background Decor */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] dark:opacity-[0.05] [background-size:32px_32px] [background-image:radial-gradient(#1e3a5f_1px,transparent_1px)]"></div>
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] dark:opacity-[0.05] [background-size:32px:32px] [background-image:radial-gradient(#1e3a5f_1px,transparent_1px)]"></div>
         <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-signal-gold/10 blur-[150px] rounded-full animate-pulse"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-authority-blue/20 blur-[150px] rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
@@ -492,5 +492,18 @@ const ResourcesPage = () => {
         </div>
       )}
 
-      {/* Footer Meta */}
-      <section className="py-24 bg-white dark:bg-primary-dark text-center border-t border-slate-100 dark:border-white/5 transition-all duration-500">
+      {/* Dynamic Terminal Signature - Local Instance */}
+      <section className="py-24 bg-[#020617] text-center border-t border-white/5 transition-all duration-500 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px:32px]"></div>
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <div className="w-12 h-1 bg-slate-800 mx-auto mb-10 rounded-full"></div>
+          <p className="text-[11px] font-black uppercase tracking-[0.85em] text-slate-500 italic">
+            REFERENCE LIBRARY REGISTRY: LP-RES-V4.5 — INSTITUTIONAL STANDARDS ACTIVE
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default ResourcesPage;

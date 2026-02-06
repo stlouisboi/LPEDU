@@ -416,6 +416,22 @@ const Footer = () => {
           </div>
         </div>
       </section>
+
+      {/* SYSTEM TERMINAL SIGNATURE SECTION */}
+      <section className="bg-[#020617] py-20 border-t border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px:32px]"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 text-center relative z-10">
+           <div className="w-12 h-1 bg-slate-800 mx-auto mb-10 rounded-full"></div>
+           <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.6em] sm:tracking-[0.85em] text-slate-500 leading-relaxed italic drop-shadow-sm">
+             {location.pathname.includes('resources') 
+               ? "REFERENCE LIBRARY REGISTRY: LP-RES-V4.5 — INSTITUTIONAL STANDARDS ACTIVE"
+               : location.pathname.includes('learning')
+               ? "CURRICULUM ARCHIVE REGISTRY: LP-EDU-V7.1 — VERIFIED PATHWAY ACTIVE"
+               : "CARRIER OPERATING STANDARD: LP-SYS-V4.2 — INSTITUTIONAL INTEGRITY ACTIVE"
+             }
+           </p>
+        </div>
+      </section>
     </footer>
   );
 };
