@@ -222,17 +222,17 @@ const HomePage: React.FC = () => {
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-white dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
       {/* 1. HERO SECTION */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-48 bg-white dark:bg-primary-dark overflow-hidden">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 xl:pt-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(#1e3a5f_0.5px,transparent_0.5px)] [background-size:32px:32px] opacity-[0.03]"></div>
-        <div className="max-w-[1600px] mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-12 grid grid-cols-1 xl:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          <div className="lg:col-span-7 space-y-8 md:space-y-10 animate-reveal-up">
+          <div className="xl:col-span-7 space-y-8 md:space-y-10 animate-reveal-up">
             <div className="inline-flex items-center space-x-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full">
               <span className="flex h-2 w-2 rounded-full bg-signal-gold animate-pulse"></span>
               <span className="text-xs md:text-[10px] font-black uppercase tracking-widest md:tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA Standard</span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-[7.5rem] font-black leading-[1.1] md:leading-[0.95] xl:leading-[0.85] tracking-tighter uppercase font-serif text-authority-blue dark:text-white break-words">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-[7.5rem] font-black leading-[1.1] md:leading-[0.95] xl:leading-[0.85] tracking-tighter uppercase font-serif text-authority-blue dark:text-white break-words">
               PROTECT YOUR <br className="hidden sm:block"/><span className="italic text-signal-gold">AUTHORITY</span> WITH <br className="hidden sm:block"/>ORDER AND CERTAINTY.
             </h1>
             
@@ -243,8 +243,8 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <aside className="lg:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
-            <div className="bg-white dark:bg-surface-dark p-8 md:p-8 lg:p-14 rounded-[3.5rem] shadow-[0_40px_100px_-20px_rgba(30,58,95,0.12)] border border-slate-100 dark:border-white/5 relative overflow-hidden group">
+          <aside className="xl:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
+            <div className="bg-white dark:bg-surface-dark p-8 md:p-12 lg:p-10 xl:p-14 rounded-[3.5rem] shadow-[0_40px_100px_-20px_rgba(30,58,95,0.12)] border border-slate-100 dark:border-white/5 relative overflow-hidden group">
               <div className="absolute -top-12 -right-12 w-48 h-48 bg-signal-gold/5 blur-[80px] rounded-full"></div>
               
               <div className="relative z-10">
@@ -254,7 +254,7 @@ const HomePage: React.FC = () => {
                          <div className="inline-block bg-signal-gold text-authority-blue px-5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.4em] mb-4 shadow-lg">
                            FREE
                          </div>
-                         <h3 className="text-4xl md:text-5xl lg:text-[3.8rem] xl:text-[4.2rem] font-black font-serif uppercase tracking-tighter text-authority-blue dark:text-white leading-[1.1] md:leading-[0.85] drop-shadow-sm">
+                         <h3 className="text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[4.2rem] font-black font-serif uppercase tracking-tighter text-authority-blue dark:text-white leading-[1.1] md:leading-[0.85] drop-shadow-sm">
                            90 DAY <br className="hidden md:block"/>
                            <span className="text-signal-gold italic">RISK MAP</span>
                          </h3>
