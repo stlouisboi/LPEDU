@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,6 +79,8 @@
         font-family: 'Inter', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
       .dark body { background: #020617; }
       
@@ -85,6 +88,7 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
         letter-spacing: -0.02em;
+        hyphens: auto;
       }
 
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -102,6 +106,11 @@
       .dark .ql-stroke { stroke: #94a3b8 !important; }
       .dark .ql-fill { fill: #94a3b8 !important; }
       .dark .ql-picker { color: #94a3b8 !important; }
+
+      /* Fix for massive tracking overflowing on small tablets */
+      .tracking-widest, .tracking-[0.4em], .tracking-[0.5em], .tracking-[0.6em] {
+        overflow-wrap: anywhere;
+      }
     </style>
 </head>
 <body class="dark:bg-primary-dark">
