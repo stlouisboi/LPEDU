@@ -7,7 +7,7 @@ import {
   AlertCircle, 
   Clock, 
   Wrench,
-  Search,
+  Search, 
   BookOpen,
   Route
 } from 'lucide-react';
@@ -34,7 +34,8 @@ export const INITIAL_SETTINGS: SiteSettings = {
   social: {
     facebook: "https://facebook.com/launchpath",
     linkedin: "https://linkedin.com/company/launchpath",
-    youtube: "https://youtube.com/@launchpath"
+    youtube: "https://youtube.com/@launchpath",
+    tiktok: "https://tiktok.com/@launchpath"
   },
   checkoutUrls: {
     selfPaced: "",
@@ -166,7 +167,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     excerpt: "Technical Directive: Moving from reactive repairs to a disciplined preventive maintenance program is the foundation of carrier longevity and safety compliance.",
     content: `
       <h3>I. STEWARDSHIP DISTINCTION: MAINTENANCE VS. REPAIR</h3>
-      <p>Many new motor carriers quietly assume maintenance and repair are interchangeable. In the pursuit of freight revenue, they slip into a “fix it when it fails” pattern. This mindset treats maintenance as an interruption to business—when in reality, it is the <b>Compliance</b> foundation of it.</p>
+      <p>Many new motor carriers quietly assume maintenance and repair are interchangeable. In the pursuit of freight revenue, they slip into a “fix it when it fails” pattern. This mindset treats maintenance as an initialization to business—when in reality, it is the <b>Compliance</b> foundation of it.</p>
       
       <div style="background: #f1f5f9; padding: 25px; border-radius: 15px; margin: 20px 0; border: 1px solid #e2e8f0;">
         <h4 style="margin-top:0; font-size: 12px; letter-spacing: 0.1em; color: #1e3a5f;">OPERATIONAL MATRIX</h4>
@@ -212,7 +213,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-01-25",
     author: "Vince Lawrence",
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FTruck%20Maintenace%20Blog.png?alt=media&token=39afb41c-297a-4968-961c-bdaec93b3fbb",
     status: 'published',
     tags: ['Maintenance', 'FMCSA', 'Stewardship', 'Compliance']
   },

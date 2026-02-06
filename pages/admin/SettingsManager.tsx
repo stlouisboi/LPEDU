@@ -28,7 +28,8 @@ import {
   Activity,
   HelpCircle,
   ExternalLink,
-  FileText
+  FileText,
+  Music
 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { SiteSettings } from '../../types';
@@ -377,34 +378,48 @@ const SettingsManager = () => {
 
           {activeTab === 'social' && (
             <div className="bg-white dark:bg-surface-dark p-10 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm space-y-8 animate-reveal-up">
-               <h3 className="text-lg font-bold font-serif">Social Media Channels</h3>
-               <div className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Facebook size={12} className="mr-2" /> Facebook URL</label>
-                    <input 
-                      value={settings.social.facebook || ''}
-                      onChange={e => setSettings({...settings, social: {...settings.social, facebook: e.target.value}})}
-                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
-                      placeholder="https://facebook.com/..."
-                    />
+               <h3 className="text-lg font-bold font-serif">Social Network Connectivity</h3>
+               <div className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Facebook size={14} className="mr-2 text-[#1877F2]" /> Facebook</label>
+                      <input 
+                        value={settings.social.facebook || ''}
+                        onChange={e => setSettings({...settings, social: {...settings.social, facebook: e.target.value}})}
+                        className="w-full px-6 py-4 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl font-bold text-sm"
+                        placeholder="https://facebook.com/..."
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Linkedin size={14} className="mr-2 text-[#0A66C2]" /> LinkedIn</label>
+                      <input 
+                        value={settings.social.linkedin || ''}
+                        onChange={e => setSettings({...settings, social: {...settings.social, linkedin: e.target.value}})}
+                        className="w-full px-6 py-4 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl font-bold text-sm"
+                        placeholder="https://linkedin.com/company/..."
+                      />
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Linkedin size={12} className="mr-2" /> LinkedIn URL</label>
-                    <input 
-                      value={settings.social.linkedin || ''}
-                      onChange={e => setSettings({...settings, social: {...settings.social, linkedin: e.target.value}})}
-                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold"
-                      placeholder="https://linkedin.com/company/..."
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Youtube size={12} className="mr-2 text-red-600" /> YouTube Channel URL</label>
-                    <input 
-                      value={settings.social.youtube || ''}
-                      onChange={e => setSettings({...settings, social: {...settings.social, youtube: e.target.value}})}
-                      className="w-full px-6 py-4 bg-slate-50 border border-border-light rounded-2xl font-bold border-red-100 focus:border-red-500 transition-colors"
-                      placeholder="https://youtube.com/@..."
-                    />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Youtube size={14} className="mr-2 text-[#FF0000]" /> YouTube</label>
+                      <input 
+                        value={settings.social.youtube || ''}
+                        onChange={e => setSettings({...settings, social: {...settings.social, youtube: e.target.value}})}
+                        className="w-full px-6 py-4 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl font-bold text-sm"
+                        placeholder="https://youtube.com/@..."
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center"><Music size={14} className="mr-2 text-pink-500" /> TikTok</label>
+                      <input 
+                        value={settings.social.tiktok || ''}
+                        onChange={e => setSettings({...settings, social: {...settings.social, tiktok: e.target.value}})}
+                        className="w-full px-6 py-4 bg-slate-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl font-bold text-sm"
+                        placeholder="https://tiktok.com/@..."
+                      />
+                    </div>
                   </div>
                </div>
             </div>

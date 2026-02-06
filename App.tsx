@@ -13,7 +13,8 @@ import {
   Linkedin,
   ShieldCheck,
   User as UserIcon,
-  LayoutDashboard
+  LayoutDashboard,
+  Music
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -371,20 +372,33 @@ const Footer = () => {
             </div>
             
             <div className="flex flex-col items-start lg:items-end gap-10">
-                <div className="flex items-center space-x-8">
+                <div className="flex flex-wrap items-center gap-4">
                 {settings.social.facebook && (
-                    <a href={settings.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="Facebook">
-                    <Facebook size={28} />
+                    <a href={settings.social.facebook} target="_blank" rel="noopener noreferrer" 
+                       className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white/40 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:-translate-y-1 transition-all duration-300 shadow-sm" 
+                       aria-label="Facebook">
+                      <Facebook size={22} />
                     </a>
                 )}
                 {settings.social.linkedin && (
-                    <a href={settings.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="LinkedIn">
-                    <Linkedin size={28} />
+                    <a href={settings.social.linkedin} target="_blank" rel="noopener noreferrer" 
+                       className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white/40 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:-translate-y-1 transition-all duration-300 shadow-sm" 
+                       aria-label="LinkedIn">
+                      <Linkedin size={22} />
                     </a>
                 )}
                 {settings.social.youtube && (
-                    <a href={settings.social.youtube} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-signal-gold hover:scale-125 transition-all duration-300" aria-label="YouTube">
-                    <Youtube size={28} />
+                    <a href={settings.social.youtube} target="_blank" rel="noopener noreferrer" 
+                       className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white/40 hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] hover:-translate-y-1 transition-all duration-300 shadow-sm" 
+                       aria-label="YouTube">
+                      <Youtube size={22} />
+                    </a>
+                )}
+                {settings.social.tiktok && (
+                    <a href={settings.social.tiktok} target="_blank" rel="noopener noreferrer" 
+                       className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white/40 hover:bg-[#000000] hover:text-white hover:border-white/40 hover:-translate-y-1 transition-all duration-300 shadow-sm" 
+                       aria-label="TikTok">
+                      <Music size={22} />
                     </a>
                 )}
                 </div>

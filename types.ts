@@ -94,6 +94,7 @@ export interface SiteSettings {
     facebook?: string;
     linkedin?: string;
     youtube?: string;
+    tiktok?: string;
   };
   checkoutUrls?: {
     selfPaced: string;
