@@ -22,7 +22,7 @@ const AboutPage = () => {
   return (
     <div className="bg-white dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-700 overflow-x-hidden transition-colors">
       
-      {/* SECTION 1: WHO (Credentials & Founder) */}
+      {/* SECTION 1: WHO (Founder) */}
       <section className="pt-24 pb-20 lg:pt-32 lg:pb-32 bg-slate-50 dark:bg-surface-dark border-b border-slate-100 dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -97,7 +97,49 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* SECTION 3: WHY (The Standard Comparison) */}
+      {/* SECTION 3: INSTITUTIONAL SCOPE (Foundation of Truth) */}
+      <section className="py-24 lg:py-32 bg-white dark:bg-primary-dark overflow-hidden transition-colors">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20 space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500">Institutional Scope</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
+              The Foundation of <span className="text-signal-gold italic">Truth.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { 
+                icon: <Shield size={24} className="text-authority-blue dark:text-signal-gold" />, 
+                title: "TRUTH", 
+                desc: "We prioritize technical regulatory accuracy over speculative revenue promises and marketing hype." 
+              },
+              { 
+                icon: <Scale size={24} className="text-authority-blue dark:text-signal-gold" />, 
+                title: "BOUNDARIES", 
+                desc: "We enforce a clear separation between systematic educational guidance and specific legal advice." 
+              },
+              { 
+                icon: <Target size={24} className="text-authority-blue dark:text-signal-gold" />, 
+                title: "STEWARDSHIP", 
+                desc: "We treat carrier operations as high-value legacy assets entrusted to the care of the owner-operator." 
+              }
+            ].map((card, i) => (
+              <div key={i} className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-12 rounded-[3.5rem] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                <div className="w-14 h-14 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center mb-10 shadow-inner group-hover:scale-110 transition-transform">
+                  {card.icon}
+                </div>
+                <h3 className="text-2xl font-black text-authority-blue dark:text-white uppercase tracking-tight mb-6 font-serif">{card.title}</h3>
+                <p className="text-base font-bold text-slate-500 dark:text-slate-400 leading-relaxed">
+                  {card.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: WHY (The Standard Comparison) */}
       <section className="py-24 lg:py-32 bg-[#F8F9FA] dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20 space-y-4">
@@ -149,7 +191,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* SECTION 4: PHILOSOPHY (Stewardship) */}
+      {/* SECTION 5: PHILOSOPHY (Stewardship) */}
       <section className="py-24 lg:py-40 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -183,56 +225,53 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* SECTION 5: WHAT WE ARE NOT */}
-      <section className="bg-authority-blue py-24 lg:py-32 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-signal-gold mb-4">Boundaries</h2>
-            <h3 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight">What We Are Not.</h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { t: "Legal Advice", d: "LaunchPath is an educational entity. We do not provide legal representation or regulatory defense." },
-              { t: "Dispatch Services", d: "We teach you how to choose loads based on risk factors, but we do not broker or dispatch freight." },
-              { t: "Insurance Brokerage", d: "We build safety files that insurers love, but we do not sell policies or negotiate individual rates." }
-            ].map((box, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-10 rounded-[3rem] backdrop-blur-xl relative overflow-hidden group">
-                <h4 className="text-xl font-black uppercase tracking-tight text-signal-gold mb-6 border-b border-white/10 pb-4">{box.t}</h4>
-                <p className="text-base leading-relaxed text-white/80 font-medium">{box.d}</p>
+      {/* SECTION 6: INSTITUTIONAL BIOGRAPHY (Additive Verification) */}
+      <section className="py-24 lg:py-32 bg-slate-50 dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="bg-white dark:bg-primary-dark rounded-[3.5rem] p-10 md:p-16 border border-slate-200 dark:border-border-dark shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-12 opacity-[0.03] text-authority-blue pointer-events-none">
+              <Scale size={200} />
+            </div>
+            
+            <div className="relative z-10 space-y-10">
+              <div className="space-y-4">
+                <div className="inline-flex items-center space-x-3 bg-authority-blue text-white px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest">
+                  <ShieldCheck size={14} className="text-signal-gold" />
+                  <span>Institutional Biography</span>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Founder Verification</h3>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* SECTION 6: SCOPE OF EDUCATION */}
-      <section className="bg-white dark:bg-primary-dark py-24 lg:py-32 transition-colors">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 mb-4">Institutional Scope</h2>
-            <h3 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">The Foundation of Truth.</h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { i: <Shield size={28} />, t: "Truth", d: "We prioritize technical regulatory accuracy over speculative revenue promises and marketing hype." },
-              { i: <Scale size={28} />, t: "Boundaries", d: "We enforce a clear separation between systematic educational guidance and specific legal advice." },
-              { i: <Target size={28} />, t: "Stewardship", d: "We treat carrier operations as high-value legacy assets entrusted to the care of the owner-operator." }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white dark:bg-surface-dark border-2 border-slate-100 dark:border-border-dark rounded-[3.5rem] p-10 shadow-sm hover:shadow-xl transition-all space-y-6">
-                <div className="text-authority-blue dark:text-signal-gold p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl w-fit">{item.i}</div>
-                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight">{item.t}</h4>
-                <p className="text-base text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.d}</p>
+              <div className="prose prose-lg dark:prose-invert max-w-none">
+                <p className="text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                  Vince Lawrence is the Founder of LaunchPath and a recognized authority in industrial safety and operational governance. His professional tenure encompasses over two decades of manufacturing leadership, including roles as Supervisor and Business Unit Manager. As an OSHA-certified safety coordinator, Lawrence developed high-stakes safety protocols that now serve as the structural foundation for LaunchPath’s "Compliance Backbone" and "Insurance Continuity" pillars.
+                </p>
+                <p className="text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                  Bridging the gap between industrial safety and motor carrier compliance, Lawrence applies a rigorous, veteran-led stewardship to the logistics industry. His background in managing large-scale federal safety standards ensures that the LaunchPath system provides carriers with the same precision required by industrial manufacturing auditors. Driven by a philosophy of Kingdom Stewardship and his status as a U.S. Navy veteran, he is dedicated to establishing an institutional standard for the next generation of owner-operators—prioritizing technical accuracy over administrative speculation.
+                </p>
               </div>
-            ))}
+
+              <div className="pt-8 border-t border-slate-100 dark:border-white/5 flex flex-wrap gap-6 items-center">
+                 <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 rounded-full bg-signal-gold"></div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Veteran-Led Stewardship</span>
+                 </div>
+                 <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 rounded-full bg-signal-gold"></div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">OSHA Safety Standard</span>
+                 </div>
+                 <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 rounded-full bg-signal-gold"></div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Audit-Verified Logic</span>
+                 </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* SECTION 7: CTA */}
-      <section className="py-32 bg-slate-50 dark:bg-surface-dark border-t border-slate-200 dark:border-border-dark">
+      <section className="py-32 bg-white dark:bg-primary-dark border-t border-slate-200 dark:border-border-dark">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-12">
           <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Ready to Begin?</h2>
           <p className="text-xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
