@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -48,6 +49,7 @@ import ReachTestPage from './pages/ReachTestPage';
 import TCOCalculatorPage from './pages/TCOCalculatorPage';
 import TCOPreviewPage from './pages/TCOPreviewPage';
 import OperatorPortal from './pages/OperatorPortal';
+import ExposureMatrixPage from './pages/ExposureMatrixPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -531,6 +533,7 @@ export default function App() {
               <Route path="/reach-test" element={<ReachTestPage />} />
               <Route path="/portal" element={<PortalInterstitial />} />
               <Route path="/operator-portal" element={<OperatorPortal />} />
+              <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/support" element={<SupportPage />} />

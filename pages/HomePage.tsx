@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -75,7 +76,6 @@ const FAQItem: React.FC<{
             <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center transition-all duration-500 ${
               isOpen ? 'bg-authority-blue text-signal-gold shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'
             }`}>
-              {/* Fix: cast icon to ReactElement<any> to allow 'size' prop */}
               {React.cloneElement(icon as React.ReactElement<any>, { size: 24 })}
             </div>
             <span className={`text-xl sm:text-2xl font-black tracking-tight uppercase transition-colors duration-300 ${
@@ -254,7 +254,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-white dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
-      {/* 1. HERO SECTION - REFINED FOR RESPONSIVENESS */}
+      {/* 1. HERO SECTION */}
       <section className="relative pt-20 pb-16 md:pt-32 md:pb-24 lg:pt-40 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(#1e3a5f_0.5px,transparent_0.5px)] [background-size:32px:32px] opacity-[0.03]"></div>
         <div className="max-w-[1700px] mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -453,10 +453,13 @@ const HomePage: React.FC = () => {
             </div>
             
             <nav className="pt-12">
-              <a href="#exposure-matrix" className="inline-flex items-center space-x-6 bg-authority-blue text-white px-12 sm:px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[20px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group border-b-[8px] border-slate-900">
+              <Link 
+                to="/exposure-matrix" 
+                className="inline-flex items-center space-x-6 bg-authority-blue text-white px-12 sm:px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[20px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group border-b-[8px] border-slate-900"
+              >
                 <span>OPEN EXPOSURE MATRIX</span>
                 <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
-              </a>
+              </Link>
             </nav>
           </div>
         </div>
@@ -559,7 +562,6 @@ const HomePage: React.FC = () => {
               ].map((filter, i) => (
                 <div key={i} className="bg-white/[0.03] border border-white/10 p-10 sm:p-12 rounded-[2.5rem] sm:rounded-[3.5rem] group hover:bg-white/[0.05] transition-all">
                   <div className="flex items-center space-x-6 mb-6">
-                    {/* Fix: cast filter.icon to ReactElement<any> to allow 'size' prop */}
                     <div className="p-4 bg-red-600/10 rounded-2xl">{React.cloneElement(filter.icon as React.ReactElement<any>, { size: 28 })}</div>
                     <h4 className="text-[24px] font-black uppercase tracking-widest text-white font-serif">{filter.title}</h4>
                   </div>
@@ -605,7 +607,6 @@ const HomePage: React.FC = () => {
                <article key={i} className="bg-white/[0.03] p-10 sm:p-14 md:p-16 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-signal-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="w-20 h-20 md:w-28 md:h-28 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 sm:mb-12 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                    {/* Fix: cast pillar.icon to ReactElement<any> to allow 'size' prop */}
                     {React.cloneElement(pillar.icon as React.ReactElement<any>, { size: 40 })}
                   </div>
                   <h3 className="text-[24px] sm:text-[28px] font-black text-white uppercase leading-tight mb-4 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
@@ -649,7 +650,6 @@ const HomePage: React.FC = () => {
                 <header className="flex items-center justify-between border-b border-white/10 pb-10">
                    <div className="flex items-center space-x-8">
                       <div className="p-5 bg-white/5 rounded-2xl border border-white/10">
-                        {/* Fix: cast domain.icon to ReactElement<any> to allow 'size' prop */}
                         {React.cloneElement(domain.icon as React.ReactElement<any>, { size: 32 })}
                       </div>
                       <div>
