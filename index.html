@@ -68,6 +68,20 @@
               'primary-dark': '#020617',
               'surface-dark': '#0F172A',
               'border-dark': '#1E293B'
+            },
+            animation: {
+              'reveal-up': 'revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+              'fade-in': 'fadeIn 1s ease-out forwards',
+            },
+            keyframes: {
+              revealUp: {
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              }
             }
           }
         }
@@ -115,6 +129,17 @@
       /* Mobile Container Adjustment */
       .max-w-7xl { width: 90%; margin-left: auto; margin-right: auto; }
       @media (min-width: 1280px) { .max-w-7xl { max-width: 80rem; width: 100%; } }
+
+      /* Reveal State */
+      .reveal-hidden {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
       /* Quill Editor Dark Mode Polish */
       .dark .ql-toolbar { background: #1e293b; border-color: #334155 !important; }

@@ -116,6 +116,27 @@ const HomePage: React.FC = () => {
   const [selectedSinId, setSelectedSinId] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   
+  // Animation triggers
+  const [isStandardVisible, setIsStandardVisible] = useState(false);
+  const standardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsStandardVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (standardRef.current) {
+      observer.observe(standardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const scanSteps = [
     "INITIALIZING_NEURAL_UPLINK...",
     "MAPPING_EXPOSURE_VECTORS...",
@@ -232,7 +253,7 @@ const HomePage: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-              <h1 className="text-[48px] sm:text-[64px] md:text-[7rem] lg:text-[8.5rem] font-black leading-[0.85] tracking-tighter uppercase font-serif text-authority-blue dark:text-white break-words">
+              <h1 className="text-[40px] sm:text-[52px] md:text-[64px] lg:text-[5.5rem] font-black leading-[0.85] tracking-tighter uppercase font-serif text-authority-blue dark:text-white break-words">
                 PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span><br/>WITH <br/>ORDER <br/>AND <br/>CERTAINTY.
               </h1>
             </div>
@@ -429,7 +450,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 4. THE STANDARD */}
-      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors duration-300">
+      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors duration-300" ref={standardRef}>
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <article className="space-y-10 md:space-y-14">
@@ -447,7 +468,11 @@ const HomePage: React.FC = () => {
             </article>
 
             <aside className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-               <div className="bg-white dark:bg-primary-dark p-10 sm:p-12 md:p-14 rounded-[3.5rem] border-t-[12px] border-red-500/40 shadow-[0_20px_60px_-15px_rgba(239,68,68,0.1)] space-y-10">
+               <div 
+                className={`bg-white dark:bg-primary-dark p-10 sm:p-12 md:p-14 rounded-[3.5rem] border-t-[12px] border-red-500/40 shadow-[0_20px_60px_-15px_rgba(239,68,68,0.1)] space-y-10 transform transition-all duration-1000 ${
+                  isStandardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
+               >
                   <h4 className="text-[12px] font-black uppercase tracking-[0.4em] text-red-600">REACTIVE APPROACH</h4>
                   <ul className="space-y-6 text-[18px] font-black text-slate-500 leading-relaxed">
                      <li className="flex items-center"><XCircle size={24} className="text-red-500 mr-5 shrink-0" /> Fixing files after incidents</li>
@@ -456,7 +481,11 @@ const HomePage: React.FC = () => {
                      <li className="flex items-center"><XCircle size={24} className="text-red-500 mr-5 shrink-0" /> Segmented, messy documentation</li>
                   </ul>
                </div>
-               <div className="bg-[#1e3a5f] p-10 sm:p-12 md:p-14 rounded-[3.5rem] border-t-[12px] border-signal-gold shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] space-y-10 relative overflow-hidden group">
+               <div 
+                className={`bg-[#1e3a5f] p-10 sm:p-12 md:p-14 rounded-[3.5rem] border-t-[12px] border-signal-gold shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] space-y-10 relative overflow-hidden group transform transition-all duration-1000 delay-300 ${
+                  isStandardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
+               >
                   <div className="absolute top-0 right-0 w-40 h-40 bg-signal-gold/5 rounded-full -translate-y-16 translate-x-16 blur-2xl"></div>
                   <h4 className="text-[12px] font-black uppercase tracking-[0.4em] text-signal-gold">SYSTEMATIC APPROACH</h4>
                   <ul className="space-y-6 text-[18px] font-black text-white leading-relaxed">
