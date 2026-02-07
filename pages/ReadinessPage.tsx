@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -49,19 +50,18 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 'capital',
-    text: "Capitalization: Available startup capital?",
-    helperText: "Verified liquid assets and credit capacity.",
+    text: "How much cash do you have available to start?",
     options: [
       { label: 'A', text: 'Less than $10,000', points: 0, flag: 'RED' },
-      { label: 'B', text: '$10,000 – $19,999', points: 1, flag: 'YELLOW' },
-      { label: 'C', text: '$20,000 – $34,999', points: 2 },
+      { label: 'B', text: '$10,000 – $20,000', points: 1, flag: 'YELLOW' },
+      { label: 'C', text: '$20,000 – $35,000', points: 2 },
       { label: 'D', text: '$35,000 – $50,000', points: 3 },
       { label: 'E', text: 'More than $50,000', points: 4 }
     ]
   },
   {
     id: 'reserves',
-    text: "Runway: Household expense coverage?",
+    text: "How long can your household cover bills without business income?",
     options: [
       { label: 'A', text: 'Less than 1 month', points: 0, flag: 'RED' },
       { label: 'B', text: '1–2 months', points: 1, flag: 'YELLOW' },
@@ -72,23 +72,24 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'support',
-    text: "Stewardship: Household alignment?",
+    text: "Does your household support this decision?",
     options: [
-      { label: 'A', text: 'Not yet disclosed', points: 0, flag: 'YELLOW' },
-      { label: 'B', text: 'Household opposition', points: 0, flag: 'RED' },
-      { label: 'C', text: 'General support', points: 2 },
-      { label: 'D', text: 'Support without plan', points: 3 },
-      { label: 'E', text: 'Full alignment', points: 4 }
+      { label: 'A', text: "Haven't told them yet", points: 0, flag: 'YELLOW' },
+      { label: 'B', text: "They're against it", points: 0, flag: 'RED' },
+      { label: 'C', text: "They're okay with it", points: 2 },
+      { label: 'D', text: "They support it but we haven't planned together", points: 3 },
+      { label: 'E', text: "Fully aligned — we've discussed and planned together", points: 4 }
     ]
   },
   {
     id: 'time',
-    text: "Capacity: Weekly hours for admin?",
+    text: "How many hours per week can you spend on admin and compliance (not driving)?",
     options: [
-      { label: 'A', text: 'Minimal (<10h)', points: 0, flag: 'RED' },
-      { label: 'B', text: 'Partial (15–25h)', points: 1, flag: 'YELLOW' },
-      { label: 'C', text: 'Substantial (25–40h)', points: 3 },
-      { label: 'D', text: 'Primary (40h+)', points: 4 }
+      { label: 'A', text: 'Less than 10 hours', points: 0, flag: 'RED' },
+      { label: 'B', text: '10–20 hours', points: 1, flag: 'YELLOW' },
+      { label: 'C', text: '20–30 hours', points: 2 },
+      { label: 'D', text: '30–40 hours', points: 3 },
+      { label: 'E', text: '40+ hours', points: 4 }
     ]
   },
   {
@@ -104,24 +105,24 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'awareness',
-    text: "Literacy: Federal audit criteria understanding?",
+    text: "How familiar are you with FMCSA audit requirements?",
     options: [
-      { label: 'A', text: 'Unfamiliar', points: 0 },
-      { label: 'B', text: 'General awareness', points: 1 },
-      { label: 'C', text: 'Basic framework knowledge', points: 2 },
-      { label: 'D', text: 'Advanced research', points: 3 },
-      { label: 'E', text: 'High literacy', points: 4 }
+      { label: 'A', text: "I don't know what that means", points: 0 },
+      { label: 'B', text: "I've heard of it but haven't studied it", points: 1 },
+      { label: 'C', text: 'I understand the basics', points: 2 },
+      { label: 'D', text: "I've researched it in detail", points: 3 },
+      { label: 'E', text: 'I could explain it to someone else', points: 4 }
     ]
   },
   {
     id: 'risk',
-    text: "Risk: Response to major setbacks?",
+    text: "If you had a $5,000 unexpected expense in month two, what happens?",
     options: [
-      { label: 'A', text: 'Operational termination', points: 0, flag: 'RED' },
-      { label: 'B', text: 'Significant struggle', points: 1, flag: 'YELLOW' },
-      { label: 'C', text: 'Driven adaptation', points: 2 },
-      { label: 'D', text: 'Absorption via plan', points: 3 },
-      { label: 'E', text: 'Expected volatility managed', points: 4 }
+      { label: 'A', text: "I'd have to shut down", points: 0, flag: 'RED' },
+      { label: 'B', text: 'It would be a serious problem', points: 1, flag: 'YELLOW' },
+      { label: 'C', text: "I'd figure it out somehow", points: 2 },
+      { label: 'D', text: 'I have a plan for this', points: 3 },
+      { label: 'E', text: "That's already budgeted — I expect setbacks", points: 4 }
     ]
   }
 ];
@@ -192,7 +193,7 @@ const ReadinessPage = () => {
         {step === 0 && (
           <div className="text-center animate-reveal-up flex-grow flex flex-col justify-center">
             <ShieldCheck size={48} className="mx-auto mb-8 text-authority-blue/20" />
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black font-serif uppercase tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black font-serif uppercase tracking-tight mb-6 text-authority-blue dark:text-white">
               Classification <span className="text-signal-gold italic">Assessment</span>
             </h1>
             <p className="text-base sm:text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
@@ -214,12 +215,12 @@ const ReadinessPage = () => {
               </div>
               <div className="h-1 bg-slate-100 rounded-full overflow-hidden"><div className="h-full bg-authority-blue transition-all" style={{width:`${(step/7)*100}%`}}></div></div>
             </div>
-            <h2 className="text-xl sm:text-3xl font-black font-serif uppercase mb-8 leading-tight">{QUESTIONS[step-1].text}</h2>
+            <h2 className="text-xl sm:text-3xl font-black font-serif uppercase mb-8 leading-tight text-authority-blue dark:text-white">{QUESTIONS[step-1].text}</h2>
             <div className="space-y-3 sm:space-y-4 mb-12">
               {QUESTIONS[step-1].options.map((opt, i) => (
-                <button key={i} onClick={() => { const n=[...answers]; n[step-1]=i; setAnswers(n); setTimeout(()=>setStep(step+1), 300); }} className="w-full text-left p-5 sm:p-6 rounded-2xl border-2 border-slate-100 bg-white hover:border-authority-blue transition-all flex items-center">
-                  <span className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 rounded-lg flex items-center justify-center mr-4 text-xs font-black">{opt.label}</span>
-                  <span className="text-sm sm:text-lg font-bold">{opt.text}</span>
+                <button key={i} onClick={() => { const n=[...answers]; n[step-1]=i; setAnswers(n); setTimeout(()=>setStep(step+1), 300); }} className="w-full text-left p-5 sm:p-6 rounded-2xl border-2 border-slate-100 bg-white hover:border-authority-blue transition-all flex items-center group">
+                  <span className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 rounded-lg flex items-center justify-center mr-4 text-xs font-black group-hover:bg-authority-blue group-hover:text-white transition-colors">{opt.label}</span>
+                  <span className="text-base sm:text-lg font-bold text-authority-blue">{opt.text}</span>
                 </button>
               ))}
             </div>
@@ -230,9 +231,9 @@ const ReadinessPage = () => {
         {/* REVIEW 8 */}
         {step === 8 && (
           <div className="text-center animate-reveal-up flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
-            <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase mb-6">Results Ready</h2>
+            <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase mb-6 text-authority-blue dark:text-white">Results Ready</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <input required type="email" placeholder="Registry Email" className="w-full px-6 py-4 rounded-xl border-2 border-slate-100 focus:border-authority-blue outline-none font-bold" value={email} onChange={e=>setEmail(e.target.value)} />
+              <input required type="email" placeholder="Enter your email to see your results" className="w-full px-6 py-4 rounded-xl border-2 border-slate-100 focus:border-authority-blue outline-none font-bold placeholder:text-slate-400 text-authority-blue" value={email} onChange={e=>setEmail(e.target.value)} />
               <div className="flex items-start text-left space-x-3">
                 <input type="checkbox" className="mt-1" checked={consent} onChange={e=>setConsent(e.target.checked)} />
                 <span className="text-[10px] text-slate-500 font-medium">I acknowledge that results are for educational purposes.</span>
@@ -251,17 +252,17 @@ const ReadinessPage = () => {
               <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl ${resultType==='GREEN'?'bg-green-50 text-green-600':resultType==='YELLOW'?'bg-amber-50 text-amber-600':'bg-red-50 text-red-700'}`}>
                 {resultType==='GREEN'?<ShieldCheck size={48}/>:resultType==='YELLOW'?<AlertCircle size={48}/>:<XCircle size={48}/>}
               </div>
-              <h1 className="text-3xl sm:text-6xl font-black font-serif text-authority-blue uppercase leading-tight">
+              <h1 className="text-3xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase leading-tight">
                 Classification: <br/><span className={resultType==='GREEN'?'text-green-600':resultType==='YELLOW'?'text-amber-600':'text-red-700'}>{resultType==='GREEN'?'READY.':resultType==='YELLOW'?'PREPARATION REQ.':'NOT RECOMMENDED.'}</span>
               </h1>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
-              <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-100 shadow-sm">
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-authority-blue mb-6">Verification Points</h3>
+              <div className="bg-white dark:bg-surface-dark p-8 sm:p-10 rounded-3xl border border-slate-100 dark:border-border-dark shadow-sm">
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold mb-6">Verification Points</h3>
                 <ul className="space-y-4">
                   {["Capitalization", "Household runway", "Admin capacity", "Stewardship alignment"].map((text, i) => (
-                    <li key={i} className="flex items-center space-x-3 text-sm font-bold text-slate-500"><CheckCircle size={16} className="text-green-500" /> <span>{text}</span></li>
+                    <li key={i} className="flex items-center space-x-3 text-sm font-bold text-slate-500 dark:text-text-dark-muted"><CheckCircle size={16} className="text-green-500" /> <span>{text}</span></li>
                   ))}
                 </ul>
               </div>
@@ -271,7 +272,7 @@ const ReadinessPage = () => {
               </div>
             </div>
 
-            <div className="text-center pt-8 border-t border-slate-100">
+            <div className="text-center pt-8 border-t border-slate-100 dark:border-border-dark">
               <Link to={resultType==='GREEN'?'/pricing':'/resources'} className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl inline-block">
                 {resultType==='GREEN'?'Initiate Admission':'View Resources'}
               </Link>
