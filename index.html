@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +53,9 @@
         darkMode: 'class',
         theme: {
           extend: {
+            fontSize: {
+              'base': ['18px', '1.6'], // LaunchPath Standard Body
+            },
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],
               display: ['Montserrat', 'sans-serif'],
@@ -76,12 +80,24 @@
         padding: 0; 
         background: #F8FAFC; 
         font-family: 'Inter', sans-serif;
+        font-size: 18px; /* Executive Legibility Baseline */
+        line-height: 1.6;
+        letter-spacing: 0.01em;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       .dark body { background: #020617; }
       
-      h1, h2, h3, h4, .font-display {
+      h1 { font-size: 48px; font-weight: 900; }
+      @media (min-width: 640px) { h1 { font-size: 64px; } }
+      
+      h2 { font-size: 32px; font-weight: 800; }
+      @media (min-width: 640px) { h2 { font-size: 40px; } }
+      
+      h3 { font-size: 24px; font-weight: 800; }
+      @media (min-width: 640px) { h3 { font-size: 28px; } }
+
+      .font-display {
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
         letter-spacing: -0.02em;
@@ -95,6 +111,10 @@
       .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
       .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
       .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
+
+      /* Mobile Container Adjustment */
+      .max-w-7xl { width: 90%; margin-left: auto; margin-right: auto; }
+      @media (min-width: 1280px) { .max-w-7xl { max-width: 80rem; width: 100%; } }
 
       /* Quill Editor Dark Mode Polish */
       .dark .ql-toolbar { background: #1e293b; border-color: #334155 !important; }
