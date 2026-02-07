@@ -13,6 +13,18 @@ const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
 
+  useEffect(() => {
+    document.title = "Blog | LaunchPath Compliance Insights";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "Practical guidance on FMCSA compliance, insurance continuity, and carrier operations. No hype. No shortcuts. Just what you need to know.");
+    update('meta[property="og:title"]', "Blog | LaunchPath Compliance Insights");
+    update('meta[property="og:description"]', "Compliance guidance for new motor carriers. Accuracy over hype.");
+    update('meta[property="og:type"]', "website");
+  }, []);
+
   const categories: (BlogCategory | 'All')[] = [
     'All', 
     'Compliance', 

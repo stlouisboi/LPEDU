@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Calculator, 
@@ -63,6 +62,18 @@ const TCOCalculatorPage: React.FC = () => {
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+
+  useEffect(() => {
+    document.title = "TCO Calculator | Know Your Cost Per Mile";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "Calculate your true cost per mile, break-even rate, and monthly net. The math most carriers skip. Know your numbers before you accept the load.");
+    update('meta[property="og:title"]', "TCO Calculator | LaunchPath");
+    update('meta[property="og:description"]', "True cost of ownership calculator for owner-operators. Know your numbers.");
+    update('meta[property="og:type"]', "website");
+  }, []);
 
   // Load saved profile on mount
   useEffect(() => {

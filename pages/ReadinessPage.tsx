@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -155,6 +154,18 @@ const ReadinessPage = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [consent, setConsent] = useState(false);
+
+  useEffect(() => {
+    document.title = "Readiness Assessment | LaunchPath Carrier Diagnostic";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "Are you ready to launch? Evaluate your capital, household alignment, and compliance posture before you file for authority. Know where you stand.");
+    update('meta[property="og:title"]', "Readiness Assessment | LaunchPath");
+    update('meta[property="og:description"]', "Evaluate your readiness across the Four Pillars before you launch. GO, WAIT, or NO-GO.");
+    update('meta[property="og:type"]', "website");
+  }, []);
 
   const totalScore = answers.reduce((acc, curr, idx) => curr === -1 ? acc : acc + QUESTIONS[idx].options[curr].points, 0);
   const redFlags = answers.filter((ans, idx) => ans !== -1 && QUESTIONS[idx].options[ans].flag === 'RED').length;

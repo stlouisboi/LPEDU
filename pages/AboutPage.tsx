@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   Shield,
   ShieldCheck, 
@@ -30,6 +30,18 @@ import { Link } from 'react-router-dom';
 import Logo from '../components/Logo';
 
 const AboutPage = () => {
+  useEffect(() => {
+    document.title = "About | LaunchPath Transportation Education";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "Built on 20+ years of safety and compliance oversight. LaunchPath provides institutional-grade training for new motor carriers. Systems over shortcuts.");
+    update('meta[property="og:title"]', "About | LaunchPath Transportation Education");
+    update('meta[property="og:description"]', "Veteran-owned compliance education. 20+ years of safety oversight experience.");
+    update('meta[property="og:type"]', "website");
+  }, []);
+
   return (
     <div className="bg-white dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-1000 overflow-x-hidden transition-colors selection:bg-authority-blue/10">
       

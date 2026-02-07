@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -109,6 +108,18 @@ const LearningPathPage = () => {
   const [truckProgress, setTruckProgress] = useState(0);
   const roadmapRef = useRef<HTMLElement>(null);
   
+  useEffect(() => {
+    document.title = "The Roadmap | LaunchPath Owner-Operator Training";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "A 90-day implementation path from authority activation to audit readiness. Insurance, documentation, compliance systems. Order before revenue.");
+    update('meta[property="og:title"]', "The Roadmap | LaunchPath Owner-Operator Training");
+    update('meta[property="og:description"]', "Seven modules. 90 days. Build the compliance foundation that keeps your authority active.");
+    update('meta[property="og:type"]', "website");
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!roadmapRef.current) return;

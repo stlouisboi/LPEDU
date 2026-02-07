@@ -75,7 +75,8 @@ const FAQItem: React.FC<{
             <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center transition-all duration-500 ${
               isOpen ? 'bg-authority-blue text-signal-gold shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'
             }`}>
-              {React.cloneElement(icon as React.ReactElement, { size: 24 })}
+              {/* Fix: cast icon to ReactElement<any> to allow 'size' prop */}
+              {React.cloneElement(icon as React.ReactElement<any>, { size: 24 })}
             </div>
             <span className={`text-xl sm:text-2xl font-black tracking-tight uppercase transition-colors duration-300 ${
               isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'
@@ -119,6 +120,18 @@ const HomePage: React.FC = () => {
   // Animation triggers
   const [isStandardVisible, setIsStandardVisible] = useState(false);
   const standardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.title = "LaunchPath | 90-Day Owner-Operator Survival System";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "LaunchPath is a 90-day compliance system for new motor carriers. Build audit-ready documentation and protect your authority. Accuracy over hype.");
+    update('meta[property="og:title"]', "LaunchPath | 90-Day Owner-Operator Survival System");
+    update('meta[property="og:description"]', "Compliance-first education for new motor carriers. Build audit-ready systems before your first load.");
+    update('meta[property="og:type"]', "website");
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -546,7 +559,8 @@ const HomePage: React.FC = () => {
               ].map((filter, i) => (
                 <div key={i} className="bg-white/[0.03] border border-white/10 p-10 sm:p-12 rounded-[2.5rem] sm:rounded-[3.5rem] group hover:bg-white/[0.05] transition-all">
                   <div className="flex items-center space-x-6 mb-6">
-                    <div className="p-4 bg-red-600/10 rounded-2xl">{React.cloneElement(filter.icon as React.ReactElement, { size: 28 })}</div>
+                    {/* Fix: cast filter.icon to ReactElement<any> to allow 'size' prop */}
+                    <div className="p-4 bg-red-600/10 rounded-2xl">{React.cloneElement(filter.icon as React.ReactElement<any>, { size: 28 })}</div>
                     <h4 className="text-[24px] font-black uppercase tracking-widest text-white font-serif">{filter.title}</h4>
                   </div>
                   <p className="text-[18px] text-slate-400 font-bold leading-[1.6]">{filter.desc}</p>
@@ -591,7 +605,8 @@ const HomePage: React.FC = () => {
                <article key={i} className="bg-white/[0.03] p-10 sm:p-14 md:p-16 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-signal-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="w-20 h-20 md:w-28 md:h-28 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 sm:mb-12 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                    {React.cloneElement(pillar.icon as React.ReactElement, { size: 40 })}
+                    {/* Fix: cast pillar.icon to ReactElement<any> to allow 'size' prop */}
+                    {React.cloneElement(pillar.icon as React.ReactElement<any>, { size: 40 })}
                   </div>
                   <h3 className="text-[24px] sm:text-[28px] font-black text-white uppercase leading-tight mb-4 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
                     {pillar.title}
@@ -634,7 +649,8 @@ const HomePage: React.FC = () => {
                 <header className="flex items-center justify-between border-b border-white/10 pb-10">
                    <div className="flex items-center space-x-8">
                       <div className="p-5 bg-white/5 rounded-2xl border border-white/10">
-                        {React.cloneElement(domain.icon as React.ReactElement, { size: 32 })}
+                        {/* Fix: cast domain.icon to ReactElement<any> to allow 'size' prop */}
+                        {React.cloneElement(domain.icon as React.ReactElement<any>, { size: 32 })}
                       </div>
                       <div>
                         <h3 className="text-[28px] sm:text-[32px] font-black text-white uppercase tracking-tight font-serif">{domain.domain}</h3>

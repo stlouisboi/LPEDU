@@ -17,10 +17,10 @@ export const INITIAL_SETTINGS: SiteSettings = {
   siteName: "LaunchPath™",
   tagline: "Accuracy Over Hype.™",
   heroTitle: "Protect Your Authority With Order and Certainty.",
-  heroSubtitle: "Institutional compliance systems for CDL and Non-CDL motor carriers. Navigate the first 90 days and satisfy the 18-month New Entrant phase.",
+  heroSubtitle: "Compliance-first systems for new motor carriers. Navigate the first 90 days and satisfy the critical 18-month New Entrant phase.",
   primaryColor: "#1e3a5f",
   secondaryColor: "#d4af37",
-  metaDescription: "Professional carrier compliance education for CDL and Non-CDL owner-operators. The institutional standard for Authority, Insurance, Compliance, and Cash-Flow.",
+  metaDescription: "LaunchPath is a 90-day compliance system for new motor carriers. Build audit-ready documentation and protect your authority. Accuracy over hype.",
   logoUrl: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf", 
   googleAnalyticsId: "G-LP-VET-2025",
   showVeteranBadge: true,
@@ -43,7 +43,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
     elite: ""
   },
   seo: {
-    titleFormat: "{{pageTitle}} | LaunchPath™ CDL & Non-CDL Operating Standard",
+    titleFormat: "{{pageTitle}} | LaunchPath™",
     twitterCard: "summary_large_image"
   }
 };
@@ -52,20 +52,20 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
   {
     id: '1',
     author: 'Marcus J.',
-    role: 'Class A Owner-Operator, MJ Logistics',
-    content: 'LaunchPath provided the Class A documentation infrastructure required to verify my safety footprint during my first roadside inspection.'
+    role: 'Owner-Operator, MJ Logistics',
+    content: 'LaunchPath provided the documentation infrastructure required to verify my safety footprint during my first roadside inspection.'
   },
   {
     id: '2',
     author: 'Sarah Chen',
-    role: 'CDL Fleet Manager, NorthStar Hauling',
-    content: 'A rigorous compliance standard. These are not tips; they are the actual implementation protocols required for institutional fleet stability.'
+    role: 'Carrier Manager, NorthStar Hauling',
+    content: 'A rigorous compliance standard. These are not tips; they are the actual implementation protocols required for institutional stability.'
   },
   {
     id: '3',
     author: 'David Rodriguez',
-    role: 'Non-CDL Box Truck Operator',
-    content: 'I moved from administrative uncertainty to an audit-ready posture by following the 90-Day Operating Standard for my box truck entity.'
+    role: 'Box Truck Entrepreneur',
+    content: 'I moved from administrative uncertainty to an audit-ready posture by following the 90-Day Operating Standard.'
   }
 ];
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, ShieldCheck, Send, CheckCircle, Loader2, AlertCircle, MessageSquare, Anchor, User, ChevronDown, Building2, RefreshCw } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -49,6 +49,18 @@ const ContactPage = () => {
   const [sending, setSending] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.title = "Contact | LaunchPath Support";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "Questions about the program or your compliance readiness? Reach out. We respond to serious inquiries from serious operators.");
+    update('meta[property="og:title"]', "Contact | LaunchPath Support");
+    update('meta[property="og:description"]', "Questions about LaunchPath? Contact us.");
+    update('meta[property="og:type"]', "website");
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

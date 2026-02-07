@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FileText, 
@@ -60,6 +60,18 @@ const ResourcesPage = () => {
   const [syncing, setSyncing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showAllBriefs, setShowAllBriefs] = useState(false);
+
+  useEffect(() => {
+    document.title = "Resources | LaunchPath Compliance Downloads";
+    const update = (selector: string, content: string, attr = 'content') => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, content);
+    };
+    update('meta[name="description"]', "DQ file checklists, maintenance templates, and compliance documentation. Practical tools for new motor carriers. Download and implement.");
+    update('meta[property="og:title"]', "Resources | LaunchPath Compliance Downloads");
+    update('meta[property="og:description"]', "Checklists, templates, and calculators for owner-operators building audit-ready systems.");
+    update('meta[property="og:type"]', "website");
+  }, []);
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -151,7 +163,7 @@ const ResourcesPage = () => {
             </span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto animate-reveal-up" style={{ animationDelay: '0.1s' }}>
+          <p className="text-xl sm:text-2xl text-slate-500 dark:text-text-dark-muted font-bold max-w-2xl mx-auto animate-reveal-up" style={{ animationDelay: '0.1s' }}>
             Technical assets and diagnostic tools for motor carrier governance.
           </p>
 
