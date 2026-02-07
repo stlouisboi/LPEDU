@@ -473,7 +473,7 @@ const HomePage: React.FC = () => {
                   isStandardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                >
-                  <h4 className="text-[12px] font-black uppercase tracking-[0.4em] text-red-600">REACTIVE APPROACH</h4>
+                  <h4 className="text-[20px] font-black uppercase tracking-[0.4em] text-red-600">REACTIVE APPROACH</h4>
                   <ul className="space-y-6 text-[18px] font-black text-slate-500 leading-relaxed">
                      <li className="flex items-center"><XCircle size={24} className="text-red-500 mr-5 shrink-0" /> Fixing files after incidents</li>
                      <li className="flex items-center"><XCircle size={24} className="text-red-500 mr-5 shrink-0" /> Skipping DOT maintenance logs</li>
@@ -487,7 +487,7 @@ const HomePage: React.FC = () => {
                 }`}
                >
                   <div className="absolute top-0 right-0 w-40 h-40 bg-signal-gold/5 rounded-full -translate-y-16 translate-x-16 blur-2xl"></div>
-                  <h4 className="text-[12px] font-black uppercase tracking-[0.4em] text-signal-gold">SYSTEMATIC APPROACH</h4>
+                  <h4 className="text-[20px] font-black uppercase tracking-[0.4em] text-signal-gold">SYSTEMATIC APPROACH</h4>
                   <ul className="space-y-6 text-[18px] font-black text-white leading-relaxed">
                      <li className="flex items-center"><CheckCircle2 size={24} className="text-signal-gold mr-5 shrink-0" /> Pre-launch safety installation</li>
                      <li className="flex items-center"><CheckCircle2 size={24} className="text-signal-gold mr-5 shrink-0" /> Daily-executed DQ workflows</li>

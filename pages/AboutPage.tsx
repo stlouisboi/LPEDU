@@ -243,73 +243,77 @@ const AboutPage = () => {
       {/* SECTION 6: FOUNDER VERIFICATION (Institutional Biography) */}
       <section className="py-24 lg:py-56 bg-[#0c1a2d] text-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-[#020617] rounded-[4rem] p-12 md:p-20 lg:p-28 shadow-[0_80px_160px_-40px_rgba(0,0,0,0.8)] relative overflow-hidden border border-white/5 group/bio">
+          {/* Adjusted padding on md to prevent squishing */}
+          <div className="bg-[#020617] rounded-[4rem] p-8 md:p-14 lg:p-28 shadow-[0_80px_160px_-40px_rgba(0,0,0,0.8)] relative overflow-hidden border border-white/5 group/bio">
             <div className="absolute top-0 right-0 p-16 opacity-[0.03] text-authority-blue pointer-events-none group-hover/bio:scale-110 transition-transform duration-1000">
               <ScaleIcon size={400} />
             </div>
             
-            <div className="relative z-10 space-y-24">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-16">
-                <div className="space-y-10">
-                  <div className="inline-flex items-center space-x-5 bg-authority-blue text-white px-8 py-4 rounded-2xl text-[12px] font-black uppercase tracking-widest shadow-lg border border-white/5">
+            <div className="relative z-10 space-y-20 lg:space-y-24">
+              {/* Header layout: Changed gap and font size for tablet parity */}
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 lg:gap-16">
+                <div className="space-y-6 lg:space-y-10">
+                  <div className="inline-flex items-center space-x-5 bg-authority-blue text-white px-6 py-3 lg:px-8 lg:py-4 rounded-2xl text-[10px] lg:text-[12px] font-black uppercase tracking-widest shadow-lg border border-white/5">
                     <ShieldCheck size={20} className="text-signal-gold" />
                     <span>INSTITUTIONAL BIOGRAPHY // VL-20Y-CERT</span>
                   </div>
-                  <h3 className="text-[48px] sm:text-[64px] md:text-[80px] font-black font-serif uppercase tracking-tighter leading-none">FOUNDER <br/><span className="text-signal-gold italic">VERIFICATION.</span></h3>
+                  {/* Reduced md font size from 80px to 56px to fix overlap */}
+                  <h3 className="text-[40px] sm:text-[48px] md:text-[56px] lg:text-[80px] font-black font-serif uppercase tracking-tighter leading-[0.95]">FOUNDER <br/><span className="text-signal-gold italic">VERIFICATION.</span></h3>
                 </div>
-                <div className="text-left md:text-right space-y-2">
-                   <p className="text-[12px] font-black uppercase tracking-widest text-white/20">ISSUE REGISTRY</p>
-                   <p className="text-[18px] font-mono font-bold text-white/40">NC-2025-LP-STND</p>
+                <div className="text-left md:text-right space-y-1 lg:space-y-2 shrink-0">
+                   <p className="text-[10px] lg:text-[12px] font-black uppercase tracking-widest text-white/20">ISSUE REGISTRY</p>
+                   <p className="text-base lg:text-[18px] font-mono font-bold text-white/40">NC-2025-LP-STND</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-                <div className="lg:col-span-8 space-y-12">
-                  <div className="prose prose-xl prose-invert max-w-none space-y-12">
-                    <p className="text-white/80 font-bold leading-[1.6] text-[20px] sm:text-[24px]">
+              {/* Grid: Extended stacking to xl breakpoint to avoid cramped 2-column on iPad landscape */}
+              <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 lg:gap-24">
+                <div className="xl:col-span-8 space-y-12">
+                  <div className="prose prose-xl prose-invert max-w-none space-y-10 lg:space-y-12">
+                    <p className="text-white/80 font-bold leading-[1.6] text-[18px] sm:text-[20px] md:text-[24px]">
                       Vince Lawrence is the Founder of LaunchPath and a recognized authority in industrial safety and operational governance. His professional tenure encompasses over two decades of manufacturing leadership, including roles as Supervisor and Business Unit Manager. 
                     </p>
-                    <p className="text-white/50 font-medium leading-[1.6] text-[18px] sm:text-[20px]">
+                    <p className="text-white/50 font-medium leading-[1.6] text-[16px] sm:text-[18px] md:text-[20px]">
                       As an OSHA-certified safety coordinator, Lawrence developed high-stakes safety protocols that now serve as the structural foundation for LaunchPath’s "Compliance Backbone" and "Insurance Continuity" pillars. Bridging the gap between industrial safety and motor carrier compliance, he applies a rigorous, veteran-led stewardship to the logistics industry. 
                     </p>
-                    <p className="text-white/50 font-medium leading-[1.6] text-[18px] sm:text-[20px]">
+                    <p className="text-white/50 font-medium leading-[1.6] text-[16px] sm:text-[18px] md:text-[20px]">
                       His background in managing large-scale federal safety standards ensures that the LaunchPath system provides carriers with the same precision required by industrial manufacturing auditors. Driven by a philosophy of Kingdom Stewardship and his status as a U.S. Navy veteran, Lawrence is dedicated to establishing an institutional standard for the next generation of owner-operators—prioritizing technical accuracy over administrative speculation.
                     </p>
                   </div>
                   
-                  <div className="pt-16 border-t border-white/5 flex flex-wrap gap-12 items-center opacity-30">
+                  <div className="pt-12 lg:pt-16 border-t border-white/5 flex flex-wrap gap-8 lg:gap-12 items-center opacity-30">
                     {["VETERAN-LED STEWARDSHIP", "OSHA SAFETY STANDARD", "AUDIT-VERIFIED LOGIC"].map((label, i) => (
-                      <div key={i} className="flex items-center space-x-4">
-                        <div className="w-3 h-3 rounded-full bg-signal-gold"></div>
-                        <span className="text-[12px] font-black uppercase tracking-widest">{label}</span>
+                      <div key={i} className="flex items-center space-x-3 lg:space-x-4">
+                        <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-signal-gold"></div>
+                        <span className="text-[10px] lg:text-[12px] font-black uppercase tracking-widest">{label}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="lg:col-span-4 space-y-16">
-                   <div className="space-y-8">
-                      <h4 className="text-[13px] font-black uppercase tracking-[0.4em] text-signal-gold">CORE CREDENTIALS</h4>
-                      <div className="space-y-4">
+                <div className="xl:col-span-4 space-y-12 lg:space-y-16">
+                   <div className="space-y-6 lg:space-y-8">
+                      <h4 className="text-[10px] lg:text-[13px] font-black uppercase tracking-[0.4em] text-signal-gold">CORE CREDENTIALS</h4>
+                      <div className="space-y-3 lg:space-y-4">
                          {[
                            { icon: <History size={20} />, t: "20+ YEAR TENURE" },
                            { icon: <Shield size={20} />, t: "OSHA CERTIFIED" },
                            { icon: <Gavel size={20} />, t: "FED COMPLIANCE EXPERT" },
                            { icon: <Fingerprint size={20} />, t: "U.S. NAVY VETERAN" }
                          ].map((cred, i) => (
-                           <div key={i} className="flex items-center space-x-6 p-7 bg-white/[0.03] rounded-[2rem] border border-white/10 group/item hover:bg-white/[0.07] transition-all">
-                              <div className="text-signal-gold group-hover/item:scale-110 transition-transform">{cred.icon}</div>
-                              <span className="text-[16px] font-black uppercase tracking-widest">{cred.t}</span>
+                           <div key={i} className="flex items-center space-x-5 lg:space-x-6 p-5 lg:p-7 bg-white/[0.03] rounded-[1.5rem] lg:rounded-[2rem] border border-white/10 group/item hover:bg-white/[0.07] transition-all">
+                              <div className="text-signal-gold group-hover/item:scale-110 transition-transform shrink-0">{cred.icon}</div>
+                              <span className="text-[14px] lg:text-[16px] font-black uppercase tracking-widest">{cred.t}</span>
                            </div>
                          ))}
                       </div>
                    </div>
                    
-                   <div className="p-12 bg-white/[0.03] rounded-[3rem] border-2 border-dashed border-white/10 text-center space-y-10">
+                   <div className="p-8 lg:p-12 bg-white/[0.03] rounded-[2.5rem] lg:rounded-[3rem] border-2 border-dashed border-white/10 text-center space-y-8 lg:space-y-10">
                       <div className="flex justify-center">
-                        <Logo light={true} className="h-16 grayscale opacity-40" />
+                        <Logo light={true} className="h-12 lg:h-16 grayscale opacity-40" />
                       </div>
-                      <p className="text-[12px] font-black text-white/30 uppercase tracking-[0.3em] leading-relaxed">MASTER STANDARD <br/>AUTHENTICATED</p>
+                      <p className="text-[10px] lg:text-[12px] font-black text-white/30 uppercase tracking-[0.3em] leading-relaxed">MASTER STANDARD <br/>AUTHENTICATED</p>
                    </div>
                 </div>
               </div>
