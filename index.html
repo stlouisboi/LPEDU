@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,8 +78,6 @@
         font-family: 'Inter', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        overflow-wrap: break-word;
-        word-break: break-word;
       }
       .dark body { background: #020617; }
       
@@ -88,7 +85,6 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
         letter-spacing: -0.02em;
-        hyphens: auto;
       }
 
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -100,17 +96,12 @@
       .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
       .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
 
-      /* Fix for massive tracking overflowing on small tablets */
-      .tracking-widest, .tracking-[0.4em], .tracking-[0.5em], .tracking-[0.6em] {
-        overflow-wrap: anywhere;
-      }
-      
-      /* Global overflow prevention for headers */
-      h1, h2, h3 {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        word-break: break-word;
-      }
+      /* Quill Editor Dark Mode Polish */
+      .dark .ql-toolbar { background: #1e293b; border-color: #334155 !important; }
+      .dark .ql-container { background: #0f172a; border-color: #334155 !important; color: #f1f5f9; }
+      .dark .ql-stroke { stroke: #94a3b8 !important; }
+      .dark .ql-fill { fill: #94a3b8 !important; }
+      .dark .ql-picker { color: #94a3b8 !important; }
     </style>
 </head>
 <body class="dark:bg-primary-dark">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -221,107 +220,113 @@ const HomePage: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-white dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 xl:pt-48 bg-white dark:bg-primary-dark overflow-hidden">
+      {/* 1. HERO SECTION - REDESIGNED TO MATCH REFERENCE IMAGE */}
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(#1e3a5f_0.5px,transparent_0.5px)] [background-size:32px:32px] opacity-[0.03]"></div>
-        <div className="max-w-[1600px] mx-auto px-6 sm:px-12 grid grid-cols-1 xl:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="max-w-[1700px] mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           
-          <div className="xl:col-span-7 space-y-8 md:space-y-10 animate-reveal-up">
-            <div className="inline-flex items-center space-x-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full">
-              <span className="flex h-2 w-2 rounded-full bg-signal-gold animate-pulse"></span>
-              <span className="text-xs md:text-[10px] font-black uppercase tracking-widest md:tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA Standard</span>
+          <div className="lg:col-span-7 space-y-12 animate-reveal-up">
+            <div className="inline-flex items-center space-x-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-5 py-2.5 rounded-full">
+              <span className="flex h-2 w-2 rounded-full bg-signal-gold"></span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-white">Institutional FMCSA Standard</span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-[7.5rem] font-black leading-[1.1] md:leading-[0.95] xl:leading-[0.85] tracking-tighter uppercase font-serif text-authority-blue dark:text-white break-words">
-              PROTECT YOUR <br className="hidden sm:block"/><span className="italic text-signal-gold">AUTHORITY</span> WITH <br className="hidden sm:block"/>ORDER AND CERTAINTY.
-            </h1>
+            <div className="space-y-2">
+              <h1 className="text-[4rem] sm:text-[6rem] md:text-[7.5rem] lg:text-[8.5rem] font-black leading-[0.82] tracking-tighter uppercase font-serif text-authority-blue dark:text-white break-words">
+                PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span><br/>WITH <br/>ORDER <br/>AND <br/>CERTAINTY.
+              </h1>
+            </div>
             
-            <div className="max-w-xl border-l-4 md:border-l-8 border-authority-blue dark:border-signal-gold pl-6 md:pl-10 py-2">
-              <p className="text-lg md:text-xl font-bold text-slate-700 dark:text-slate-300 leading-relaxed">
+            <div className="max-w-xl border-l-[12px] border-authority-blue dark:border-signal-gold pl-10 py-4">
+              <p className="text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-300 leading-[1.4]">
                 Most new carriers satisfactorily establish their compliance infrastructure within the first 90 days — or inherit the consequences for 18 months. LaunchPath installs the infrastructure that closes those gaps.
               </p>
             </div>
           </div>
 
-          <aside className="xl:col-span-5 animate-reveal-up w-full" style={{ animationDelay: '0.2s' }}>
-            <div className="bg-white dark:bg-surface-dark p-8 md:p-12 lg:p-10 xl:p-14 rounded-[3.5rem] shadow-[0_40px_100px_-20px_rgba(30,58,95,0.12)] border border-slate-100 dark:border-white/5 relative overflow-hidden group">
-              <div className="absolute -top-12 -right-12 w-48 h-48 bg-signal-gold/5 blur-[80px] rounded-full"></div>
+          <aside className="lg:col-span-5 animate-reveal-up w-full sticky top-40" style={{ animationDelay: '0.2s' }}>
+            <div className="bg-white dark:bg-surface-dark p-10 md:p-14 lg:p-16 rounded-[4rem] shadow-[0_60px_120px_-30px_rgba(30,58,95,0.15)] border border-slate-100 dark:border-white/5 relative overflow-hidden group min-h-[700px] flex flex-col">
+              <div className="absolute top-10 left-10">
+                <div className="bg-signal-gold text-authority-blue px-6 py-2 rounded-full text-[12px] font-black uppercase tracking-[0.4em] shadow-lg">
+                  FREE
+                </div>
+              </div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col flex-grow">
                 {scanState === 'idle' ? (
                   <>
-                    <header className="mb-10 md:mb-12">
-                         <div className="inline-block bg-signal-gold text-authority-blue px-5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.4em] mb-4 shadow-lg">
-                           FREE
-                         </div>
-                         <h3 className="text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[4.2rem] font-black font-serif uppercase tracking-tighter text-authority-blue dark:text-white leading-[1.1] md:leading-[0.85] drop-shadow-sm">
-                           90 DAY <br className="hidden md:block"/>
+                    <header className="mb-16 mt-16">
+                         <h3 className="text-[5rem] sm:text-[6rem] md:text-[6.5rem] font-black font-serif uppercase tracking-tighter text-authority-blue dark:text-white leading-[0.8] drop-shadow-sm">
+                           90 DAY <br/>
                            <span className="text-signal-gold italic">RISK MAP</span>
                          </h3>
-                         <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mt-4">Diagnostic Orientation Terminal</p>
+                         <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 mt-8 border-t border-slate-100 pt-6">Diagnostic Orientation Terminal</p>
                     </header>
                     
-                    <form onSubmit={handleRiskMapSubmit} className="space-y-6 md:space-y-8">
-                      <div className="space-y-2.5">
-                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 ml-2">LEGAL ENTITY NAME</label>
+                    <form onSubmit={handleRiskMapSubmit} className="space-y-8 flex-grow">
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 ml-4">LEGAL ENTITY NAME</label>
                         <input 
                           required 
                           value={formData.firstName}
                           onChange={e => setFormData({...formData, firstName: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
+                          className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none px-8 py-6 rounded-3xl font-black text-lg transition-all text-authority-blue dark:text-white placeholder:text-slate-300 shadow-inner" 
                           placeholder="JANE DOE" 
                         />
                       </div>
-                      <div className="space-y-2.5">
-                        <label className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 ml-2">REGISTRY EMAIL</label>
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 ml-4">REGISTRY EMAIL</label>
                         <input 
                           required 
                           type="email"
                           value={formData.email}
                           onChange={e => setFormData({...formData, email: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none px-6 py-4 md:py-5 rounded-2xl font-black text-base transition-all text-authority-blue dark:text-white placeholder:text-slate-300" 
+                          className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue dark:focus:border-signal-gold outline-none px-8 py-6 rounded-3xl font-black text-lg transition-all text-authority-blue dark:text-white placeholder:text-slate-300 shadow-inner" 
                           placeholder="JANE@CARRIER.COM" 
                         />
                       </div>
-                      <button 
-                        type="submit"
-                        className="w-full bg-authority-blue text-white py-6 md:py-7 rounded-[2rem] font-black uppercase tracking-[0.35em] text-xs shadow-xl hover:bg-steel-blue transition-all active:scale-[0.98] flex items-center justify-center group border-b-8 border-slate-900"
-                      >
-                        <ChevronRight className="mr-3 group-hover:translate-x-1 transition-transform" size={18} />
-                        VIEW MY RISK MAP
-                      </button>
+                      
+                      <div className="pt-8">
+                        <button 
+                          type="submit"
+                          className="w-full bg-authority-blue text-white py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[13px] shadow-[0_20px_50px_-10px_rgba(30,58,95,0.4)] hover:bg-steel-blue transition-all active:scale-[0.98] flex items-center justify-center group border-b-[12px] border-slate-900"
+                        >
+                          <ChevronRight className="mr-3 group-hover:translate-x-2 transition-transform" size={24} />
+                          VIEW MY RISK MAP
+                        </button>
+                      </div>
                     </form>
                   </>
                 ) : (
-                  <div className="py-12 md:py-20 text-center space-y-10 animate-in fade-in zoom-in-95 duration-500">
+                  <div className="py-20 text-center space-y-12 animate-in fade-in zoom-in-95 duration-500">
                     <div className="relative inline-block">
-                       <div className="w-20 h-20 md:w-28 md:h-28 rounded-full border-4 border-authority-blue/10 border-t-authority-blue animate-spin"></div>
-                       <Terminal className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold" size={28} />
+                       <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-8 border-authority-blue/10 border-t-authority-blue animate-spin"></div>
+                       <Terminal className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold" size={32} />
                     </div>
-                    <div className="space-y-4">
-                       <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-widest font-serif italic">
+                    <div className="space-y-6">
+                       <h3 className="text-2xl font-black text-authority-blue dark:text-white uppercase tracking-widest font-serif italic">
                          {scanState === 'scanning' ? 'Synthesizing Exposure...' : 'Finalizing Registry...'}
                        </h3>
-                       <div className="max-w-[260px] mx-auto bg-slate-50 dark:bg-black/40 rounded-2xl p-4 border border-slate-100 dark:border-white/10 font-mono text-[9px] text-authority-blue dark:text-emerald-500 text-left h-32 overflow-hidden relative shadow-inner">
-                         <div className="space-y-1">
+                       <div className="max-w-[300px] mx-auto bg-slate-50 dark:bg-black/40 rounded-3xl p-6 border border-slate-100 dark:border-white/10 font-mono text-[10px] text-authority-blue dark:text-emerald-500 text-left h-40 overflow-hidden relative shadow-inner">
+                         <div className="space-y-2">
                            {scanLog.map((log, i) => (
                              <div key={i} className="animate-in slide-in-from-left-2 duration-300">
                                <span className="opacity-40">[{new Date().toLocaleTimeString([], {hour12:false})}]</span> {log}
                              </div>
                            ))}
                          </div>
-                         <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-slate-50 dark:from-black/80 to-transparent"></div>
+                         <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-slate-50 dark:from-black/80 to-transparent"></div>
                        </div>
                     </div>
                   </div>
                 )}
 
-                <div className="mt-12 pt-8 border-t border-slate-100 dark:border-white/5 space-y-4">
+                <div className="mt-auto pt-10 border-t border-slate-100 dark:border-white/5 space-y-5">
                    <div className="flex items-center justify-between">
-                     <p className="text-[9px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-emerald-500 flex items-center">
-                       <ShieldCheck size={14} className="mr-2" /> UPLINK ACTIVE
+                     <p className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-emerald-500 flex items-center">
+                       <ShieldCheck size={18} className="mr-3" /> UPLINK ACTIVE
                      </p>
-                     <p className="text-[8px] font-black text-slate-300 uppercase tracking-widest">LP-SYS-V4.2</p>
+                     <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">LP-SYS-V4.2</p>
                    </div>
                 </div>
               </div>
@@ -442,7 +447,7 @@ const HomePage: React.FC = () => {
             </article>
 
             <aside className="grid grid-cols-1 md:grid-cols-2 gap-10">
-               <div className="bg-white dark:bg-primary-dark p-8 md:p-10 lg:p-12 rounded-[3.5rem] border-t-8 border-red-500/40 shadow-[0_20px_60px_-15px_rgba(239,68,68,0.1)] space-y-10">
+               <div className="bg-white dark:bg-primary-dark p-10 md:p-12 rounded-[3.5rem] border-t-8 border-red-500/40 shadow-[0_20px_60px_-15px_rgba(239,68,68,0.1)] space-y-10">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-red-600">REACTIVE APPROACH</h4>
                   <ul className="space-y-5 text-[15px] font-black text-slate-500 leading-relaxed">
                      <li className="flex items-center"><XCircle size={18} className="text-red-500 mr-4 shrink-0" /> Fixing files after incidents</li>
@@ -451,7 +456,7 @@ const HomePage: React.FC = () => {
                      <li className="flex items-center"><XCircle size={18} className="text-red-500 mr-4 shrink-0" /> Segmented, messy documentation</li>
                   </ul>
                </div>
-               <div className="bg-[#1e3a5f] p-8 md:p-10 lg:p-12 rounded-[3.5rem] border-t-8 border-signal-gold shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] space-y-10 relative overflow-hidden group">
+               <div className="bg-[#1e3a5f] p-10 md:p-12 rounded-[3.5rem] border-t-8 border-signal-gold shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] space-y-10 relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-signal-gold/5 rounded-full -translate-y-16 translate-x-16 blur-2xl"></div>
                   <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">SYSTEMATIC APPROACH</h4>
                   <ul className="space-y-5 text-[15px] font-black text-white leading-relaxed">
@@ -466,7 +471,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. SYSTEM ACCESS WARNING */}
+      {/* 5. SYSTEM ACCESS WARNING (REWRITTEN FOR FRICTION & FILTERING) */}
       <section className="py-24 md:py-40 bg-[#0c1a2d] text-white overflow-hidden transition-colors duration-300 relative border-y-[12px] border-authority-blue">
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         
@@ -479,8 +484,8 @@ const HomePage: React.FC = () => {
                  <ShieldAlert size={14} className="text-red-500" />
                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-red-400">ENTRY CRITERIA REQUIRED</span>
               </div>
-              <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9] break-words">
-                SYSTEM ACCESS <br className="hidden md:block"/><span className="text-red-600 italic">WARNING.</span>
+              <h2 className="text-4xl sm:text-6xl md:text-[6rem] font-black font-serif uppercase tracking-tighter leading-[0.9]">
+                SYSTEM ACCESS <br/><span className="text-red-600 italic">WARNING.</span>
               </h2>
               <div className="h-2 w-32 bg-red-600"></div>
               <p className="text-xl md:text-2xl font-bold text-slate-300 leading-relaxed max-w-xl">
@@ -499,7 +504,7 @@ const HomePage: React.FC = () => {
                 { 
                   icon: <DollarSign className="text-red-600" />, 
                   title: "CAPITAL FILTER", 
-                  desc: "Admission requires a $3,500 one-time implementation investment. This serves as a barrier against those seeking shortcuts and ensures every carrier in the cohort is financially capitalized for federal compliance." 
+                  desc: "Admission requires a $2,500 one-time implementation investment. This serves as a barrier against those seeking shortcuts and ensures every carrier in the cohort is financially capitalized for federal compliance." 
                 },
                 { 
                   icon: <FileSearch className="text-red-600" />, 
@@ -512,7 +517,7 @@ const HomePage: React.FC = () => {
                   desc: "We prioritize administrative order over 'load board hustle.' LaunchPath is built for those who value long-term authority protection and insurance continuity over short-term revenue gains." 
                 }
               ].map((filter, i) => (
-                <div key={i} className="bg-white/[0.03] border border-white/10 p-8 md:p-8 rounded-[2.5rem] group hover:bg-white/[0.05] transition-all">
+                <div key={i} className="bg-white/[0.03] border border-white/10 p-8 rounded-[2.5rem] group hover:bg-white/[0.05] transition-all">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="p-3 bg-red-600/10 rounded-xl">{filter.icon}</div>
                     <h4 className="text-lg font-black uppercase tracking-widest text-white font-serif">{filter.title}</h4>
@@ -522,7 +527,7 @@ const HomePage: React.FC = () => {
               ))}
               
               <div className="pt-8">
-                <Link to="/readiness" className="w-full bg-red-600 text-white py-8 md:py-10 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center group border-b-8 border-slate-900">
+                <Link to="/readiness" className="w-full bg-red-600 text-white py-10 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center group border-b-8 border-slate-900">
                   <ChevronRight className="mr-4 group-hover:translate-x-1 transition-transform" />
                   VALIDATE MY ELIGIBILITY
                 </Link>
@@ -541,7 +546,7 @@ const HomePage: React.FC = () => {
         <div className="max-w-[1400px] mx-auto px-6">
           <header className="text-center mb-16 md:mb-24 space-y-6">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE FRAMEWORK</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-tight break-words">
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-tight">
                THE FOUR <span className="text-signal-gold italic">PILLARS.</span>
              </h2>
              <p className="text-xl md:text-2xl font-bold text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -556,15 +561,15 @@ const HomePage: React.FC = () => {
                { icon: <Layers />, title: "COMPLIANCE BACKBONE", tagline: "SYSTEMIC INTEGRITY", desc: "Executing federal standards with precision. Replace human memory with verifiable systems.", link: "/modules/3" },
                { icon: <Calculator />, title: "CASH-FLOW OXYGEN", tagline: "FISCAL STEWARDSHIP", desc: "Securing the mission through economic truth. Use TCO math to ensure solvency.", link: "/tools/tco-preview" }
              ].map((pillar, i) => (
-               <article key={i} className="bg-white/[0.03] p-8 md:p-10 xl:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
+               <article key={i} className="bg-white/[0.03] p-10 md:p-14 rounded-[3.5rem] md:rounded-[4.5rem] border border-white/10 flex flex-col text-center group hover:shadow-[0_40px_100px_-20px_rgba(198,146,42,0.1)] transition-all duration-700 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-signal-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="w-16 h-16 md:w-20 md:h-20 bg-white/5 text-signal-gold rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
                     {React.cloneElement(pillar.icon as React.ReactElement<any>, { size: 28 })}
                   </div>
-                  <h3 className="text-2xl font-black text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors break-words">
+                  <h3 className="text-2xl font-black text-white uppercase leading-tight mb-2 font-serif tracking-tight group-hover:text-signal-gold transition-colors">
                     {pillar.title}
                   </h3>
-                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8 opacity-70 break-words">{pillar.tagline}</p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8 opacity-70">{pillar.tagline}</p>
                   <p className="text-base font-bold text-slate-400 leading-relaxed mb-10 flex-grow">
                     {pillar.desc}
                   </p>
@@ -587,8 +592,8 @@ const HomePage: React.FC = () => {
                <ShieldX size={48} />
              </div>
              <p className="text-[11px] font-black uppercase tracking-[0.8em] text-red-500">THE EXPOSURE TAXONOMY</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-[0.9] break-words">
-               THE 16 DEADLY SINS OF <br className="hidden md:block"/><span className="text-red-600 italic">CARRIER FAILURE.</span>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-white uppercase tracking-tighter leading-[0.9]">
+               THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span>
              </h2>
              <div className="h-1.5 w-32 bg-red-600/20 mx-auto rounded-full mt-12"></div>
              <p className="text-xl md:text-2xl font-bold text-slate-400 max-w-3xl mx-auto leading-relaxed">
@@ -605,8 +610,8 @@ const HomePage: React.FC = () => {
                         {domain.icon}
                       </div>
                       <div>
-                        <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight font-serif">{domain.domain}</h3>
-                        <p className="text-[10px] font-black text-white/80 uppercase tracking-widest mt-1 break-all">{domain.id} // SECURE_ARCHIVE</p>
+                        <h3 className="text-2xl font-black text-white uppercase tracking-tight font-serif">{domain.domain}</h3>
+                        <p className="text-[10px] font-black text-white/80 uppercase tracking-widest mt-1">{domain.id} // SECURE_ARCHIVE</p>
                       </div>
                    </div>
                    <div className="hidden sm:block text-right">
@@ -620,30 +625,30 @@ const HomePage: React.FC = () => {
                     <article 
                       key={item.id} 
                       onClick={() => setSelectedSinId(selectedSinId === item.id ? null : item.id)}
-                      className={`bg-white/[0.02] border border-white/5 p-6 md:p-8 rounded-[2.5rem] group hover:bg-white/[0.05] hover:border-red-500/30 transition-all duration-500 relative overflow-hidden cursor-pointer ${selectedSinId === item.id ? 'ring-2 ring-red-500/50 bg-white/[0.05]' : ''}`}
+                      className={`bg-white/[0.02] border border-white/5 p-8 rounded-[2.5rem] group hover:bg-white/[0.05] hover:border-red-500/30 transition-all duration-500 relative overflow-hidden cursor-pointer ${selectedSinId === item.id ? 'ring-2 ring-red-500/50 bg-white/[0.05]' : ''}`}
                     >
                        <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 text-red-600 group-hover:scale-150 transition-all duration-700">
                           <ShieldAlert size={64} />
                        </div>
                        <header className="flex items-center space-x-3 mb-6">
                           <span className="text-xs font-black text-slate-700 font-mono tracking-tighter group-hover:text-red-500 transition-colors">{item.id}</span>
-                          <h4 className="text-base font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors break-words">{item.text}</h4>
+                          <h4 className="text-base font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors">{item.text}</h4>
                        </header>
                        <div className="space-y-6 pt-6 border-t border-white/5">
                           <div className="flex justify-between items-center">
-                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest mr-2 shrink-0">RESULT</p>
-                             <p className="text-[11px] font-black text-slate-300 uppercase tracking-tight text-right">{item.impact}</p>
+                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">RESULT</p>
+                             <p className="text-[11px] font-black text-slate-300 uppercase tracking-tight">{item.impact}</p>
                           </div>
                           <div className="flex justify-between items-center">
-                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest mr-2 shrink-0">GUARD</p>
-                             <div className="flex items-center space-x-1.5 text-emerald-400 text-right">
+                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">GUARD</p>
+                             <div className="flex items-center space-x-1.5 text-emerald-400">
                                 <ShieldCheck size={10} />
                                 <span className="text-[11px] font-black uppercase tracking-tight">{item.guard}</span>
                              </div>
                           </div>
                           <div className="flex justify-between items-center pt-2">
-                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest mr-2 shrink-0">SEVERITY</p>
-                             <div className={`px-2.5 py-1 rounded-lg flex items-center space-x-2 border shrink-0 ${
+                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">SEVERITY</p>
+                             <div className={`px-2.5 py-1 rounded-lg flex items-center space-x-2 border ${
                                item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : item.severity === 'CRITICAL' ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' : 'bg-slate-500/10 border-slate-500/30 text-slate-400'
                              }`}>
                                 <Zap size={10} className="fill-current" />
@@ -676,7 +681,7 @@ const HomePage: React.FC = () => {
                     <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20"></div>
                     <span className="text-sm font-black text-slate-500 uppercase tracking-[0.4em]">Sin Specification</span>
                   </div>
-                  <h3 className="text-4xl lg:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.95] font-serif break-words">{selectedSin.text}</h3>
+                  <h3 className="text-4xl lg:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.95] font-serif">{selectedSin.text}</h3>
                </div>
             </header>
             <div className="flex-grow overflow-y-auto p-12 md:p-16 scroll-smooth custom-scrollbar">
@@ -715,7 +720,7 @@ const HomePage: React.FC = () => {
             <div className="space-y-12 animate-reveal-up">
               <header className="space-y-6">
                 <p className="text-[11px] font-black uppercase tracking-[0.6em] text-signal-gold">FREE DIAGNOSTIC</p>
-                <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none break-words">THE <span className="text-signal-gold italic">REACH TEST™</span></h2>
+                <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">THE <span className="text-signal-gold italic">REACH TEST™</span></h2>
                 <p className="text-xl md:text-2xl font-medium text-slate-300 leading-relaxed max-w-xl">Find out where you're exposed.</p>
               </header>
               <Link to="/readiness" className="inline-flex items-center space-x-4 bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-white transition-all active:scale-95 group"><span>INITIATE REACH TEST™</span> <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></Link>
@@ -736,7 +741,7 @@ const HomePage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-6">
           <header className="text-center mb-20 space-y-4">
              <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">FAQS</p>
-             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none break-words">COMMON <span className="text-signal-gold italic">QUESTIONS.</span></h2>
+             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">COMMON <span className="text-signal-gold italic">QUESTIONS.</span></h2>
           </header>
           <div className="space-y-4">
             {[
@@ -757,7 +762,7 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-12">
            <header className="space-y-6">
-              <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none break-words">BUILD YOUR CARRIER LIKE A <br className="hidden sm:block"/><span className="text-signal-gold italic">CARRIER EXECUTIVE.</span></h2>
+              <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tight leading-none">BUILD YOUR CARRIER LIKE A <br/><span className="text-signal-gold italic">CARRIER EXECUTIVE.</span></h2>
               <p className="text-xl md:text-2xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">You didn't get your authority to hope you don't get audited. You got it to build something that lasts. LaunchPath gives you the infrastructure to operate with discipline.</p>
            </header>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10">
