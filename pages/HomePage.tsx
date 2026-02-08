@@ -3,52 +3,31 @@ import { Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowRight, 
   Shield,
-  Layers,
   ChevronRight,
   Briefcase,
   Calculator,
-  Loader2,
   CheckCircle2,
   Lock,
   Zap,
   Activity,
   ShieldAlert,
-  XCircle,
-  ShieldCheck,
-  Target,
   ChevronDown,
   Award,
   Truck,
-  HelpCircle,
-  AlertCircle,
-  ClipboardCheck,
-  FileText,
-  DollarSign,
-  CreditCard,
-  Users,
-  UserCheck,
-  Scale,
-  Anchor,
-  User,
-  ExternalLink,
   ShieldX,
   FileWarning,
   HardDrive,
   Fingerprint,
   Gavel,
-  X,
-  MessageSquare,
-  BookOpen,
-  Building,
-  Cpu,
-  Workflow,
-  RefreshCw,
   Terminal,
-  Search,
   FileSearch,
-  Scan,
-  TrendingUp,
-  BarChart3
+  ClipboardCheck,
+  UserCheck,
+  BarChart3,
+  Target,
+  ShieldCheck,
+  // Fix: Added missing DollarSign icon import
+  DollarSign
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -64,8 +43,8 @@ const FAQItem: React.FC<{
   return (
     <article className={`border transition-all duration-500 rounded-[2.5rem] overflow-hidden ${
       isOpen 
-      ? 'border-authority-blue bg-white dark:bg-surface-dark shadow-2xl ring-1 ring-authority-blue/5' 
-      : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark shadow-sm hover:border-authority-blue/30'
+      ? 'border-[#002244] bg-white dark:bg-surface-dark shadow-2xl ring-1 ring-[#002244]/5' 
+      : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark shadow-sm hover:border-[#002244]/30'
     }`}>
       <h3>
         <button 
@@ -116,7 +95,11 @@ const HomePage: React.FC = () => {
   const [scanState, setScanState] = useState<'idle' | 'scanning' | 'syncing' | 'complete'>('idle');
   const [scanLog, setScanLog] = useState<string[]>([]);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  
+
+  useEffect(() => {
+    document.title = "LaunchPath | 90-Day Owner-Operator Survival System";
+  }, []);
+
   const scanSteps = [
     "INITIALIZING_NEURAL_UPLINK...",
     "MAPPING_EXPOSURE_VECTORS...",
@@ -215,9 +198,9 @@ const HomePage: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans leading-relaxed selection:bg-[#C5A059]/20">
       
-      {/* TASK 1: HERO RESTRUCTURE - 60/40 SPLIT-SCREEN "RISK MAP™" */}
-      <section className="relative min-h-[95vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">
-        {/* LEFT COLUMN: THE UPLINK (60%) */}
+      {/* 1. HERO SECTION - SPLIT SCREEN "RISK MAP™" */}
+      <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">
+        {/* LEFT COLUMN: BRAND & AUTHORITY (60%) */}
         <div className="w-full lg:w-[60%] bg-[#002244] text-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
           
@@ -307,11 +290,11 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* TASK 1: THE "WHY" - FOUNDER NARRATIVE */}
+      {/* 2. THE "WHY" - FOUNDER NARRATIVE */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-            <div className="lg:col-span-5 space-y-12">
+            <div className="lg:col-span-5">
               <div className="relative group max-w-[480px]">
                 <div className="bg-[#002244] rounded-[4rem] shadow-2xl overflow-hidden relative border-[12px] border-[#FAF9F6]">
                   <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince Lawrence" className="w-full h-auto grayscale opacity-95 group-hover:grayscale-0 transition-all duration-1000 object-top" />
@@ -338,25 +321,18 @@ const HomePage: React.FC = () => {
                   I spent 25 years in manufacturing leadership and 7 years in the U.S. Navy. In those environments, <span className="text-[#002244] dark:text-white font-black">systems weren't elective; they were survival.</span>
                 </p>
                 <p>
-                  When I moved into motor carrier operations, I saw good men—hard workers with clean records—lose their authority in 90 days. Not because they couldn't drive, but because the industry sold them <span className="text-[#C5A059] font-black italic">"hustle"</span> while the FMCSA demanded <span className="text-[#C5A059] font-black">"infrastructure."</span>
+                  When I moved into motor carrier operations, I saw good men—hard workers with clean records—who lost their authority in 90 days. Not because they couldn't drive, but because the industry sold them <span className="text-[#C5A059] font-black italic">"hustle"</span> while the FMCSA demanded <span className="text-[#C5A059] font-black">"infrastructure."</span>
                 </p>
                 <p className="text-3xl font-black text-[#002244] dark:text-white font-serif tracking-tight leading-tight">
                   I refuse to reverse the order of wisdom. <br/><span className="text-[#C5A059] italic">Order precedes revenue.</span>
                 </p>
-              </div>
-
-              <div className="pt-10">
-                <Link to="/about" className="inline-flex items-center space-x-3 text-xs font-black uppercase tracking-[0.4em] text-[#002244] dark:text-[#C5A059] hover:underline group">
-                  <span>READ THE FULL TECHNICAL BRIEF</span>
-                  <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TASK 1: THE FILTER - SYSTEM ACCESS WARNING */}
+      {/* 3. THE FILTER - SYSTEM ACCESS WARNING */}
       <section className="py-24 md:py-48 bg-[#002244] text-white relative overflow-hidden border-y-[15px] border-[#C5A059]/10">
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -405,12 +381,12 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* TASK 1: THE ANATOMY OF FAILURE - 16 DEADLY SINS */}
-      <section id="exposure-matrix" className="bg-[#020617] py-24 lg:py-48 border-y border-white/5 relative overflow-hidden">
+      {/* 4. THE ANATOMY OF FAILURE - 16 DEADLY SINS */}
+      <section id="exposure-matrix" className="bg-[#020617] py-24 lg:py-48 border-y border-white/5 relative overflow-hidden transition-colors duration-300">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 relative z-10">
           
-          <header className="mb-32 flex flex-col items-center text-center space-y-8">
+          <header className="mb-24 lg:mb-40 flex flex-col items-center text-center space-y-8 animate-reveal-up">
              <div className="w-24 h-24 bg-red-600/10 text-red-500 rounded-[2.5rem] flex items-center justify-center mb-10 border-2 border-red-500/20 shadow-[0_0_50px_rgba(220,38,38,0.2)]">
                <ShieldX size={40} />
              </div>
@@ -421,14 +397,14 @@ const HomePage: React.FC = () => {
                 </h2>
              </div>
              <p className="text-2xl font-bold text-slate-500 max-w-4xl leading-relaxed uppercase tracking-tight">
-               IDENTIFICATION OF THE FAILURE PATTERNS USED BY FMCSA INVESTIGATORS TO INITIATE ENFORCEMENT.
+               IDENTIFICATION OF HIGH-PROBABILITY FAILURE PATTERNS USED BY FMCSA INVESTIGATORS TO INITIATE REMEDIAL ENFORCEMENT ACTIONS.
              </p>
           </header>
 
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-20">
             {riskDomains.map((domain, dIdx) => (
               <div key={dIdx} className="space-y-12 animate-reveal-up" style={{ animationDelay: `${dIdx * 0.1}s` }}>
-                <header className="flex items-center justify-between border-b border-white/10 pb-8">
+                <header className="flex items-center justify-between border-b border-white/10 pb-10">
                    <div className="flex items-center space-x-6">
                       <div className="w-16 h-16 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center shadow-inner">
                         {React.cloneElement(domain.icon as React.ReactElement<any>, { size: 32 })}
@@ -440,22 +416,22 @@ const HomePage: React.FC = () => {
                    </div>
                    <div className="hidden sm:flex flex-col items-end">
                       <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Active Vectors</p>
-                      <p className="text-5xl font-black text-white font-mono">04</p>
+                      <p className="text-5xl font-black text-white font-mono leading-none">04</p>
                    </div>
                 </header>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {domain.items.map((item) => (
-                    <article key={item.id} className="bg-[#0c1a2d] border border-white/5 p-10 rounded-[3rem] flex flex-col space-y-10 group hover:border-[#C5A059]/40 transition-all duration-500 shadow-2xl relative overflow-hidden">
+                    <article key={item.id} className="bg-[#0c1a2d] border border-white/5 p-10 rounded-[3rem] flex flex-col space-y-10 group hover:border-red-500/30 transition-all duration-500 shadow-2xl relative overflow-hidden">
                        <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity">
                           <Terminal size={100} />
                        </div>
-                       <header className="space-y-4">
-                          <span className="text-[10px] font-black text-slate-600 font-mono tracking-tighter block">{item.id}</span>
-                          <h4 className="text-xl font-black text-white uppercase leading-tight tracking-tight group-hover:text-[#C5A059] transition-colors min-h-[60px]">{item.text}</h4>
+                       <header className="space-y-4 relative z-10">
+                          <span className="text-[11px] font-black text-slate-600 font-mono tracking-tighter block">{item.id}</span>
+                          <h4 className="text-[19px] font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors h-[50px]">{item.text}</h4>
                        </header>
                        
-                       <div className="space-y-6 flex-grow">
+                       <div className="space-y-8 flex-grow relative z-10">
                           <div className="flex justify-between items-end border-b border-white/[0.03] pb-4">
                              <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Result</p>
                              <p className="text-sm font-black text-slate-200 uppercase tracking-tight">{item.result}</p>
@@ -465,11 +441,11 @@ const HomePage: React.FC = () => {
                                 <ShieldCheck size={14} className="text-emerald-500" />
                                 <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Guard</p>
                              </div>
-                             <p className="text-[10px] font-black text-emerald-400 uppercase tracking-tighter text-right leading-none max-w-[150px]">{item.guard}</p>
+                             <p className="text-[11px] font-black text-emerald-400 uppercase tracking-tighter text-right leading-none max-w-[150px]">{item.guard}</p>
                           </div>
                           <div className="flex justify-between items-center pt-2">
                              <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Severity</p>
-                             <div className={`px-5 py-2 rounded-xl flex items-center space-x-3 border ${item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500' : 'bg-amber-500/10 border-amber-500/30 text-amber-500'}`}>
+                             <div className={`px-5 py-2.5 rounded-xl flex items-center space-x-3 border ${item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.1)]' : 'bg-amber-500/10 border-amber-500/30 text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.1)]'}`}>
                                 <Zap size={14} className="fill-current" />
                                 <span className="text-[11px] font-black uppercase tracking-[0.2em]">{item.severity}</span>
                              </div>
@@ -481,16 +457,10 @@ const HomePage: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="mt-32 text-center">
-             <Link to="/reach-test" className="inline-flex items-center space-x-6 bg-red-600 text-white px-16 py-8 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_40px_100px_-20px_rgba(220,38,38,0.4)] hover:bg-red-700 transition-all active:scale-95 group border-b-[12px] border-slate-900">
-               <span>INITIATE REACH TEST™ DIAGNOSIS</span>
-               <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
-             </Link>
-          </div>
         </div>
       </section>
 
-      {/* TASK 2: THE TRANSFORMATION - CARRIER EXECUTIVE STANDARD */}
+      {/* 5. THE TRANSFORMATION - CARRIER EXECUTIVE STANDARD */}
       <section className="py-24 md:py-48 bg-[#FAF9F6] dark:bg-surface-dark transition-colors">
         <div className="max-w-[1600px] mx-auto px-6">
           <header className="text-center mb-32 space-y-8 animate-reveal-up">
@@ -539,7 +509,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* TASK 3: THE "MATH OF SURVIVAL" - TCO ANCHOR */}
+      {/* 6. THE "MATH OF SURVIVAL" - TCO ANCHOR */}
       <section className="py-24 md:py-48 bg-[#C5A059] text-[#002244] relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -547,7 +517,7 @@ const HomePage: React.FC = () => {
             <div className="space-y-12">
                <div className="inline-flex items-center space-x-4 bg-[#002244]/10 border border-[#002244]/20 px-8 py-3 rounded-full">
                   <Calculator size={24} />
-                  <span className="text-sm font-black uppercase tracking-[0.5em]">Pillar 04: Cash-Flow Oxygen</span>
+                  <span className="text-sm font-black uppercase tracking-[0.5em]">OPERATIONAL STEWARDSHIP</span>
                </div>
                <h2 className="text-6xl md:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85]">
                  THE MATH OF <br/><span className="text-white italic">SURVIVAL.</span>
@@ -580,7 +550,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 11. FAQS */}
+      {/* 7. FAQS */}
       <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden transition-colors duration-300">
         <div className="max-w-[90%] md:max-w-5xl mx-auto px-6">
           <header className="text-center mb-32 space-y-10">
@@ -590,7 +560,7 @@ const HomePage: React.FC = () => {
           <div className="space-y-6">
             {[
               { q: "Does LaunchPath guarantee I will pass a new entrant safety audit?", a: "No. LaunchPath does not guarantee audit outcomes. Final determination is made solely by the FMCSA based on their independent investigation. We provide the institutional framework and documentation systems.", icon: <ShieldAlert size={18} /> },
-              { q: "What if my insurance quote is higher than expected?", a: "Insurance pricing is based on factors outside our control — your location, commodity, driving history, and market conditions. LaunchPath teaches you how to present your operation professionally to underwriters.", icon: <CreditCard size={18} /> },
+              { q: "What if my insurance quote is higher than expected?", a: "Insurance pricing is based on factors outside our control — your location, commodity, driving history, and market conditions. LaunchPath teaches you how to present your operation professionally to underwriters.", icon: <Award size={18} /> },
               { q: "Is LaunchPath for non-CDL box truck carriers?", a: "Yes. LaunchPath covers all interstate motor carriers operating CMVs over 10,001 lbs GVWR, including non-CDL operations.", icon: <Truck size={18} /> },
               { q: "Can I skip sections or move ahead?", a: "No. The curriculum follows a sequential implementation calendar. Each phase builds on the previous. Skipping creates gaps in your compliance infrastructure.", icon: <Lock size={18} /> },
               { q: "Is there a recurring monthly subscription fee?", a: "No. Enrollment is a one-time fee with lifetime access to the curriculum and tools.", icon: <DollarSign size={18} /> }
@@ -601,7 +571,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 12. FINAL CTA */}
+      {/* 8. FINAL CTA */}
       <section className="py-24 md:py-48 bg-[#002244] text-white overflow-hidden relative transition-colors duration-300">
         <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-16">
@@ -610,7 +580,7 @@ const HomePage: React.FC = () => {
               <p className="text-2xl md:text-3xl text-slate-300 font-medium max-w-4xl mx-auto leading-[1.6]">You didn't get your authority to hope you don't get audited. You got it to build something that lasts. LaunchPath gives you the infrastructure to operate with discipline.</p>
            </header>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-10 pt-10">
-              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.4)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-[12px] border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={32} className="ml-5 group-hover:translate-x-2 transition-transform" /></Link>
+              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.4)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={32} className="ml-5 group-hover:translate-x-2 transition-transform" /></Link>
               <Link to="/pricing" className="w-full sm:w-auto border-4 border-white/20 px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] hover:bg-white/5 transition-all flex items-center justify-center">VIEW ADMISSION PROTOCOL</Link>
            </div>
            

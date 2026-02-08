@@ -160,6 +160,58 @@ export const COURSE_MODULES: CourseModule[] = [
 
 export const INITIAL_BLOGS: BlogPost[] = [
   {
+    id: "audit-1",
+    title: "THE 48-HOUR NEW ENTRANT WINDOW: ARE YOU READY?",
+    slug: "new-entrant-audit-readiness",
+    category: "Audit",
+    excerpt: "The New Entrant Safety Audit is the 'final exam' for your first 18 months. Failure results in immediate authority revocation. Are your files guarded?",
+    content: `
+      <div style="background: #002244; color: #ffffff; padding: 40px; border-radius: 30px; margin-bottom: 40px; border-left: 10px solid #C5A059;">
+        <h3 style="color: #C5A059; margin-top: 0; font-family: Montserrat, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px;">The Safety Architect Perspective</h3>
+        <p style="font-size: 20px; font-weight: 700; line-height: 1.6; margin-bottom: 0;">
+          "In my 25 years of manufacturing leadership and 5 years as an OSHA-certified safety coordinator, I used a principle called the <b>Reach Test</b>. If a hazard could be reached during normal operations, the system failed. The FMCSA audit is the industry's Reach Test. If they can reach a defect in your files in 48 hours, your authority is dead."
+        </p>
+      </div>
+
+      <h3>I. THE FINAL EXAM OF THE NEW ENTRANT PHASE</h3>
+      <p>In the world of interstate commerce, the FMCSA doesn't just take your word for it. The first 18 months of your operation is a probationary period known as the New Entrant phase. The "final exam" of this period is the Safety Audit.</p>
+      
+      <p>When the notification arrives, you typically have <b>exactly 48 hours</b> to upload your digital records to the federal portal. This is not a request; it is a directive. It is the clinical assessment of your <b>Compliance Backbone</b>.</p>
+
+      <h3>II. THE COST OF FAILURE: TERMINAL EXPOSURE</h3>
+      <p>Failure in a New Entrant Audit isn't just a "fix-it" ticket. It is a terminal event for most carriers. The consequences are explicit and non-negotiable:</p>
+      <ul style="list-style: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 30px; position: relative;"><span style="position: absolute; left: 0; color: #ef4444;">●</span><b>Immediate Authority Revocation:</b> Your MC number is terminated.</li>
+        <li style="margin-bottom: 12px; padding-left: 30px; position: relative;"><span style="position: absolute; left: 0; color: #ef4444;">●</span><b>Administrative Restart:</b> You must start the filing process from zero, including new fees and waiting periods.</li>
+        <li style="margin-bottom: 12px; padding-left: 30px; position: relative;"><span style="position: absolute; left: 0; color: #ef4444;">●</span><b>Insurance Volatility:</b> Underwriters treat a failed audit as a critical risk factor, often leading to 300% premium spikes or total non-renewal.</li>
+      </ul>
+
+      <div style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 30px; border-radius: 20px; margin: 40px 0;">
+        <h4 style="margin-top: 0; color: #002244; font-family: Montserrat, sans-serif; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 20px;">The Mandatory Documentation List</h4>
+        <ul style="margin-bottom: 0;">
+          <li style="margin-bottom: 15px;"><b>Proof of Controlled Substance Testing:</b> Evidence of pre-employment negatives and active consortium enrollment.</li>
+          <li style="margin-bottom: 15px;"><b>Current MCS-150 Updates:</b> Verification that your carrier identity matches your operational reality.</li>
+          <li style="margin-bottom: 15px;"><b>Complete Driver Qualification (DQ) Files:</b> A clinical record for every operator including MVRs, medical certs, and applications.</li>
+        </ul>
+      </div>
+
+      <h3>III. ELIMINATING THE REACHABLE HAZARD</h3>
+      <p>If you are waiting for the audit notification to start building your files, you have already failed the Reach Test. The LaunchPath Operating Standard installs the documentation infrastructure <i>before</i> you book your first load, ensuring that when the 48-hour clock starts, you are simply providing evidence of an already established system.</p>
+
+      <div style="text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #e2e8f0;">
+        <p style="font-family: Montserrat, sans-serif; font-style: italic; font-size: 24px; color: #002244; font-weight: 800; max-width: 600px; margin: 0 auto;">
+          “By wisdom a house is built, and by understanding it is established; by knowledge the rooms are filled with all precious and pleasant riches.”
+        </p>
+        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— Proverbs 24:3–4</p>
+      </div>
+    `,
+    publishedAt: "2025-01-28",
+    author: "Vince Lawrence",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Fcall%20or%20text.png?alt=media&token=72ce99f3-0c26-401a-822f-2ce3835b2848",
+    status: 'published',
+    tags: ['Audit', 'FMCSA', 'Compliance', 'Reach Test']
+  },
+  {
     id: "auth-1",
     title: "USDOT vs. MC Number: Do You Really Need Both?",
     slug: "usdot-vs-mc-number-differences",
@@ -244,7 +296,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-01-10",
     author: "Vince Lawrence",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FMC%20and%20DOT%20number.png?alt=media&token=7c24b499-79c5-4ea8-94ab-c835fa5f6a09",
     status: 'published',
     tags: ['Authority', 'FMCSA', 'Setup', 'Pillars']
   },
@@ -305,19 +357,6 @@ export const INITIAL_BLOGS: BlogPost[] = [
     image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FTruck%20Maintenace%20Blog.png?alt=media&token=39afb41c-297a-4968-961c-bdaec93b3fbb",
     status: 'published',
     tags: ['Maintenance', 'FMCSA', 'Stewardship', 'Compliance']
-  },
-  {
-    id: "audit-1",
-    title: "The 48-Hour New Entrant Window: Are You Ready?",
-    slug: "new-entrant-audit-readiness",
-    category: "Audit",
-    excerpt: "When the FMCSA calls for your safety audit, you typically have 48 hours to upload your documentation. This is not the time to start building your files.",
-    content: "<h2>The Clock is Ticking</h2><p>New motor carriers are under a microscopic lens for the first 18 months. The New Entrant Safety Audit is the 'final exam' of this period. If you fail, your authority is revoked, and you must start the entire process over—including a new MC number and potentially higher insurance premiums.</p><p>Key items auditors look for: proof of controlled substance testing, current MCS-150 updates, and a complete Driver Qualification (DQ) file for every operator.</p>",
-    publishedAt: "2025-01-15",
-    author: "Vince",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800",
-    status: 'published',
-    tags: ['Audit', 'Safety', 'FMCSA']
   },
   {
     id: "insurance-1",

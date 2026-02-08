@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
@@ -46,10 +47,12 @@ const BlogPostPage = () => {
     <div className="bg-white dark:bg-primary-dark min-h-screen">
       {/* Hero Header */}
       <div className="relative h-[65vh] min-h-[450px]">
-        <img src={post.image || 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=1200'} alt={post.title} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/30 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
-          <div className="max-w-4xl mx-auto">
+        <a href={post.image} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-zoom-in">
+          <img src={post.image || 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=1200'} alt={post.title} className="w-full h-full object-cover" />
+        </a>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/30 to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 pointer-events-none">
+          <div className="max-w-4xl mx-auto pointer-events-auto">
             <Link to="/blog" className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors font-bold uppercase tracking-widest text-[10px]">
               <ChevronLeft className="w-4 h-4 mr-1" /> Back to Compliance Ledger
             </Link>
@@ -117,17 +120,19 @@ const BlogPostPage = () => {
               </div>
             </div>
             
-            <div className="p-8 bg-authority-blue text-white rounded-[2rem] shadow-xl relative overflow-hidden">
+            <div className="p-8 bg-[#002244] text-white rounded-[2rem] shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -translate-y-10 translate-x-10"></div>
-              <h4 className="font-bold text-xl mb-4 leading-tight">Stay Audit Ready</h4>
-              <p className="text-sm text-white/70 mb-8 leading-relaxed font-medium">Join 5,000+ carriers receiving weekly safety bulletins directly from FMCSA sources.</p>
+              <h4 className="font-black font-serif text-xl mb-4 leading-tight uppercase tracking-tight text-[#C5A059]">Stay Audit Ready</h4>
+              <p className="text-sm text-white/70 mb-8 leading-relaxed font-medium">
+                Don't play Russian Roulette with your authority. Join 5,000+ carriers receiving the weekly LaunchPath Compliance Ledger.
+              </p>
               <div className="space-y-3">
                 <input 
                   type="email" 
                   placeholder="your@email.com" 
                   className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30 placeholder:text-white/40"
                 />
-                <button className="w-full bg-signal-gold text-authority-blue font-black uppercase tracking-widest text-xs py-4 rounded-xl hover:bg-white transition-all shadow-lg">
+                <button className="w-full bg-[#C5A059] text-[#002244] font-black uppercase tracking-[0.2em] text-[10px] py-4 rounded-xl hover:bg-white transition-all shadow-lg border-b-4 border-[#8e7340]">
                   Get Bulletins
                 </button>
               </div>

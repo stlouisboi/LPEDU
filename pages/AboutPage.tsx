@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -16,7 +17,11 @@ import {
   ShieldAlert,
   ChevronRight,
   Anchor,
-  BookOpen
+  BookOpen,
+  CheckCircle2,
+  XCircle,
+  Briefcase,
+  Lock
 } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
@@ -27,7 +32,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-[#FAF9F6] dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-700 transition-colors selection:bg-[#C5A059]/30">
       
-      {/* TASK 1: HERO RESTRUCTURE - 60/40 EXECUTIVE ENTRANCE */}
+      {/* HERO SECTION - 60/40 EXECUTIVE ENTRANCE */}
       <section className="relative min-h-[95vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">
         {/* LEFT COLUMN: THE NARRATIVE (60%) */}
         <div className="w-full lg:w-[60%] bg-[#002244] text-white p-8 md:p-16 lg:p-24 xl:p-32 flex flex-col justify-center relative">
@@ -48,7 +53,7 @@ const AboutPage: React.FC = () => {
               </h1>
             </div>
 
-            <div className="space-y-8 text-lg md:text-xl text-white/80 font-medium leading-relaxed max-w-xl">
+            <div className="space-y-8 text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
               <p>
                 I spent 25 years in manufacturing leadership—serving as a supervisor and business unit manager—and 5 years as a certified OSHA safety coordinator. Before that, I served 7 years in the U.S. Navy. In those high-stakes environments, <span className="text-white font-black">systems weren't just paperwork; they were the difference between a productive shift and a catastrophic failure.</span>
               </p>
@@ -84,75 +89,139 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* TASK 2: "CLARITY OF PURPOSE" (AFFIRMATIVE REFINEMENT) */}
-      <section className="py-24 md:py-40 bg-white dark:bg-primary-dark">
+      {/* CLARITY OF PURPOSE SECTION */}
+      <section className="py-32 md:py-56 bg-white dark:bg-primary-dark">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="text-center mb-24 space-y-6 animate-reveal-up">
-            <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">THE OPERATING BOUNDARIES</p>
-            <h2 className="text-4xl md:text-6xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter">CLARITY OF <span className="text-[#C5A059] italic">PURPOSE.</span></h2>
-            <div className="h-1.5 w-24 bg-[#C5A059] mx-auto rounded-full"></div>
+          <div className="text-center mb-32 space-y-8 animate-reveal-up">
+            <p className="text-[11px] font-black uppercase tracking-[1em] text-slate-400">OPERATIONAL PARAMETERS</p>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
+              CLARITY OF <span className="text-[#C5A059] italic">PURPOSE.</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
+              Precision definition of institutional boundaries. We build infrastructure; we do not provide legal or commercial services.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 xl:gap-16">
             {[
               { 
-                icon: <ShieldAlert size={32} className="text-[#C5A059]" />, 
-                title: "LEGAL CLARITY", 
-                body: "LaunchPath provides regulatory education and compliance architecture—not legal representation or counsel.",
-                role: "We build the compliance backbone that prevents the audit. Legal counsel represents you after the system has failed.",
-                provide: ["49 CFR regulatory interpretation", "Audit preparation frameworks", "Compliance infrastructure design"],
-                exclude: ["Legal representation", "Courtroom defense", "Legal opinions or counsel"]
+                icon: <Gavel size={36} className="text-[#C5A059]" />, 
+                title: "LEGAL BOUNDARIES", 
+                subtitle: "Regulatory Architecture",
+                body: "LaunchPath is an educational standard providing 49 CFR interpretation and technical compliance frameworks.",
+                guard: "Prevents unauthorized practice through strict technical separation.",
+                provide: [
+                  "Technical safety file architecture",
+                  "Federal regulation interpretation",
+                  "Audit-readiness verification"
+                ],
+                exclude: [
+                  "Legal representation/counsel",
+                  "Attorney-client privilege",
+                  "Courtroom defense services"
+                ]
               },
               { 
-                icon: <Zap size={32} className="text-[#C5A059]" />, 
-                title: "OPERATIONAL CLARITY", 
-                body: "LaunchPath designs authority infrastructure and carrier governance systems—not daily dispatch operations or load procurement.",
-                role: "We build the foundation that makes you a \"Preferred Carrier\" for high-paying contracts. Dispatchers handle the daily load execution.",
-                provide: ["Authority protection systems", "Preferred carrier positioning", "Compliance readiness frameworks"],
-                exclude: ["Daily dispatch services", "Load board access", "Freight brokerage or shipper negotiations"]
+                icon: <Briefcase size={36} className="text-[#C5A059]" />, 
+                title: "OPERATIONAL BOUNDARIES", 
+                subtitle: "Authority Governance",
+                body: "We engineer the governance systems that protect your authority. We do not operate your fleet on a daily basis.",
+                guard: "Protects carrier independence by maintaining administrative distance.",
+                provide: [
+                  "Authority protection protocols",
+                  "Preferred carrier positioning",
+                  "Systemic record governance"
+                ],
+                exclude: [
+                  "Daily dispatch operations",
+                  "Load procurement/negotiation",
+                  "Direct shipper recruitment"
+                ]
               },
               { 
-                icon: <ShieldX size={32} className="text-[#C5A059]" />, 
-                title: "INSURANCE CLARITY", 
-                body: "LaunchPath teaches insurance risk management and continuity protection—not policy sales or underwriting.",
-                role: "We show you how to build an \"un-cancelable\" safety profile. Insurance brokers provide the actual policies at the lowest premiums your profile commands.",
-                provide: ["Insurance continuity protocols", "Risk management education", "Safety profile optimization"],
-                exclude: ["Insurance policy sales", "Underwriting services", "Binding or issuing coverage"]
+                icon: <Shield size={36} className="text-[#C5A059]" />, 
+                title: "INSURANCE BOUNDARIES", 
+                subtitle: "Risk Mitigation",
+                body: "We show you how to build a risk profile that underwriters value. We do not sell or issue insurance policies.",
+                guard: "Eliminates conflicts of interest in coverage procurement.",
+                provide: [
+                  "Insurance continuity systems",
+                  "Underwriter evidence packages",
+                  "Risk profile optimization"
+                ],
+                exclude: [
+                  "Policy binding or issuance",
+                  "Underwriting final decisions",
+                  "Premium financing or brokerage"
+                ]
               }
             ].map((card, i) => (
-              <div key={i} className="bg-[#002244] p-10 md:p-12 lg:p-14 rounded-[4rem] border border-white/5 shadow-2xl space-y-8 flex flex-col group hover:scale-[1.02] transition-all duration-500 animate-reveal-up" style={{ animationDelay: `${i * 0.15}s` }}>
-                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-[#C5A059]/20 group-hover:border-[#C5A059]/60 transition-all shadow-inner group-hover:rotate-6">
-                  {card.icon}
-                </div>
-                <div className="space-y-6 flex-grow">
-                  <h3 className="text-2xl font-black font-serif text-[#C5A059] uppercase tracking-tight leading-tight">{card.title}</h3>
-                  <div className="space-y-4">
-                    <p className="text-white text-base font-bold leading-relaxed">{card.body}</p>
-                    <p className="text-white/60 text-sm italic font-medium leading-relaxed border-l-2 border-[#C5A059]/40 pl-4">{card.role}</p>
+              <div key={i} className="bg-[#002244] rounded-[4rem] border border-white/5 shadow-2xl flex flex-col group hover:-translate-y-2 transition-all duration-700 animate-reveal-up overflow-hidden" style={{ animationDelay: `${i * 0.1}s` }}>
+                {/* Header Decoration */}
+                <div className="h-2 w-full bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent"></div>
+                
+                <div className="p-10 lg:p-16 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-10">
+                    <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center border border-white/10 group-hover:bg-[#C5A059] group-hover:text-[#002244] transition-all duration-500 shadow-inner group-hover:rotate-6">
+                      {card.icon}
+                    </div>
+                    <div className="flex items-center space-x-2 text-[#C5A059]/40 group-hover:text-[#C5A059] transition-colors">
+                      <Lock size={16} />
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em]">Institutional Guard</span>
+                    </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 gap-6 pt-4 border-t border-white/5">
-                    <div className="space-y-3">
-                      <p className="text-[9px] font-black text-emerald-400 uppercase tracking-widest">What We Provide</p>
-                      <ul className="space-y-1.5">
+                  <div className="space-y-4 mb-10">
+                    <h3 className="text-3xl font-black font-serif text-white uppercase tracking-tight leading-tight">{card.title}</h3>
+                    <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.4em]">{card.subtitle}</p>
+                  </div>
+                  
+                  <p className="text-[19px] font-bold text-white/90 leading-relaxed mb-10 flex-grow uppercase tracking-tight">
+                    {card.body}
+                  </p>
+
+                  <div className="bg-white/5 p-6 rounded-2xl border border-white/10 mb-12 italic text-sm text-[#C5A059] font-medium leading-relaxed">
+                    <div className="flex items-center gap-2 mb-2">
+                      <ShieldCheck size={14} />
+                      <span className="text-[9px] font-black uppercase tracking-widest">Safeguard Protocol</span>
+                    </div>
+                    "{card.guard}"
+                  </div>
+                  
+                  <div className="space-y-12 pt-10 border-t border-white/5">
+                    <div className="space-y-6">
+                      <p className="text-[11px] font-black text-emerald-400 uppercase tracking-[0.4em] flex items-center gap-3">
+                        <CheckCircle2 size={16} /> Institutional Scope
+                      </p>
+                      <ul className="space-y-4">
                         {card.provide.map((item, idx) => (
-                          <li key={idx} className="text-[11px] text-white/70 font-bold uppercase tracking-tighter flex items-center gap-2">
-                            <span className="w-1 h-1 bg-emerald-400 rounded-full"></span> {item}
+                          <li key={idx} className="text-[15px] font-black text-white/90 uppercase tracking-tighter flex items-center gap-4">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
+                            {item}
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="space-y-3">
-                      <p className="text-[9px] font-black text-red-400 uppercase tracking-widest">What We Don't Provide</p>
-                      <ul className="space-y-1.5">
+
+                    <div className="space-y-6">
+                      <p className="text-[11px] font-black text-red-400 uppercase tracking-[0.4em] flex items-center gap-3">
+                        <XCircle size={16} /> Formal Exclusions
+                      </p>
+                      <ul className="space-y-4">
                         {card.exclude.map((item, idx) => (
-                          <li key={idx} className="text-[11px] text-white/40 font-bold uppercase tracking-tighter flex items-center gap-2">
-                            <span className="w-1 h-1 bg-white/20 rounded-full"></span> {item}
+                          <li key={idx} className="text-[15px] font-bold text-white/40 uppercase tracking-tighter flex items-center gap-4">
+                            <div className="w-1.5 h-1.5 bg-white/10 rounded-full"></div>
+                            {item}
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
+                </div>
+                
+                {/* Footer Signature */}
+                <div className="bg-black/30 p-8 text-center border-t border-white/5">
+                  <p className="text-[9px] font-black text-white/20 uppercase tracking-[0.6em]">System Protocol Registry v4.5 // AUTH_GATE</p>
                 </div>
               </div>
             ))}
@@ -160,7 +229,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* TASK 3: THE REACH TEST (PAYOFF ADDITION) */}
+      {/* THE REACH TEST SECTION */}
       <section className="py-24 md:py-48 bg-[#fafaf9] dark:bg-surface-dark border-y border-[#002244]/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -176,14 +245,14 @@ const AboutPage: React.FC = () => {
                 </h2>
               </div>
               
-              <div className="space-y-10 text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-bold leading-relaxed">
+              <div className="space-y-10 text-xl md:text-[22px] text-slate-600 dark:text-slate-300 font-bold leading-relaxed">
                 <p>
                   In my years as an OSHA safety coordinator, we used a principle called the <span className="text-[#002244] dark:text-white underline decoration-[#C5A059] underline-offset-8 decoration-4">"Reach Test."</span> 
                 </p>
                 <p>
                   It was a binary assessment: Could a hazard be reached during normal operations? If a hand could reach a blade, the system was a failure.
                 </p>
-                <p className="text-3xl font-black text-[#002244] dark:text-white font-serif tracking-tight leading-tight">
+                <p className="text-3xl md:text-4xl font-black text-[#002244] dark:text-white font-serif tracking-tight leading-tight">
                   "If an auditor can reach a defect in your paperwork, the system has failed."
                 </p>
               </div>
@@ -230,7 +299,7 @@ const AboutPage: React.FC = () => {
             </div>
           </div>
 
-          {/* THE REACH TEST PAYOFF (NEW SECTION) */}
+          {/* THE REACH TEST PAYOFF */}
           <div className="max-w-4xl mx-auto space-y-8 animate-reveal-up border-t border-slate-100 dark:border-white/5 pt-16">
             <div className="space-y-8 text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-bold leading-relaxed">
               <p>
@@ -271,7 +340,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* TASK 4: INSTITUTIONAL LEGACY (OPENING SENTENCE REFINEMENT) */}
+      {/* INSTITUTIONAL LEGACY SECTION */}
       <section className="py-24 md:py-48 bg-[#002244] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(#C5A059_0.5px,transparent_0.5px)] [background-size:40px_40px] opacity-[0.03]"></div>
         <div className="max-w-7xl mx-auto px-8 relative z-10">
