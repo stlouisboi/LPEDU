@@ -13,7 +13,11 @@ import {
   Shield,
   Gavel,
   XCircle,
-  CheckCircle2
+  CheckCircle2,
+  Lock,
+  Terminal,
+  FileSearch,
+  Sparkles
 } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
@@ -70,33 +74,92 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* 2. THE STORY: WHY LAUNCHPATH EXISTS */}
-      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
-        <div className="max-w-[700px] mx-auto px-6 space-y-16">
+      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden border-b border-slate-100 dark:border-white/5">
+        <div className="max-w-[750px] mx-auto px-6 space-y-16">
           <div className="text-center space-y-6">
             <p className="text-[12px] font-black uppercase tracking-[0.6em] text-slate-400">THE GENESIS</p>
-            <h2 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Why LaunchPath <span className="text-signal-gold italic">Exists.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">
+              Why LaunchPath <span className="text-signal-gold italic">Exists.</span>
+            </h2>
+            <p className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mt-2 opacity-60">Built on wisdom. Established with understanding. Designed for endurance.</p>
           </div>
           
-          <div className="space-y-10 text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-            <p>
-              LaunchPath didn’t begin as a business idea. It began as a <span className="text-authority-blue dark:text-white font-black">pause.</span>
-            </p>
-            <p>
-              I had the technical knowledge. I understood systems, compliance, responsibility, and risk. From the outside, starting a trucking operation made sense. But what stopped me wasn’t fear or lack of information—it was alignment.
-            </p>
-            
-            <div className="p-10 bg-slate-50 dark:bg-white/5 rounded-[3rem] border-l-8 border-signal-gold my-12 shadow-inner">
-              <p className="text-2xl md:text-3xl font-black italic font-serif text-authority-blue dark:text-white leading-tight mb-0">
-                "What a business produces is a reflection of what’s been formed inside the person building it."
+          <div className="space-y-12 text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            {/* PART 1: THE ORIGIN */}
+            <div className="space-y-6">
+              <p>
+                I spent 25 years in manufacturing leadership—serving as a supervisor, team leader, and business unit manager—and 5 years as a certified OSHA safety coordinator. Before that, I served 7 years in the U.S. Navy. In those environments, systems weren't just paperwork; they were the difference between a productive shift and a catastrophic failure.
+              </p>
+              <p>
+                When I transitioned into the motor carrier space, I saw my own company drivers trying to make the leap to owner-operator, along with many friends who attempted the same. These were good men—hard workers with clean records—who lost their authority in 90 days. Not because they couldn't drive, but because the industry sold them "hustle" while the FMCSA demanded "compliance infrastructure."
+              </p>
+              <p>
+                I watched them discover, too late, that insurance lapses kill faster than cash flow problems and that Drug & Alcohol Consortium enrollment wasn't optional. That a single Crash Preventability determination could cost them their insurance, their contracts, and their operating authority in 72 hours.
               </p>
             </div>
 
-            <p>
-              In trucking, I watched capable, motivated people produce chaos, stress, and short-lived success—not because they were careless, but because they were trained with the wrong deposits early on: urgency over understanding, shortcuts over structure, and noise over wisdom.
-            </p>
-            <p>
-              I didn’t stop because I couldn’t build. I stopped because I refused to build something that wasn’t <span className="text-authority-blue dark:text-white font-black italic">established.</span> Instead of asking “How fast can I start?” I asked a different question: <strong>What must be true before I do?</strong>
-            </p>
+            {/* PART 2: THE REACH TEST */}
+            <div className="space-y-8">
+              <div className="border-l-4 border-signal-gold pl-8 py-2 bg-slate-50 dark:bg-white/5 rounded-r-[2rem]">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Terminal size={14} className="text-signal-gold" />
+                  <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold">The Safety Architect Principle</h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300">
+                  In my years as an OSHA safety coordinator, we used a principle called the <span className="text-authority-blue dark:text-white font-black">"Reach Test."</span> It was a clinical assessment: Could a hazard be reached during normal operations? If a hand could reach a blade, the system was a failure.
+                </p>
+              </div>
+              <p>
+                I apply that same industrial rigor to motor carrier authority.
+              </p>
+              <p>
+                Most new operators think they are safe because they drive carefully, but they fail the Reach Test of compliance. They leave "hazards" within reach of federal auditors: unorganized Driver Qualification Files, "Pending" Clearinghouse statuses, or 24-hour gaps in insurance coverage.
+              </p>
+              <p>
+                If an auditor can reach a violation in your paperwork, they can reach into your bank account—or shut you down entirely.
+              </p>
+              
+              <div className="p-10 md:p-14 bg-authority-blue text-white rounded-[3rem] shadow-2xl relative overflow-hidden text-center group">
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-signal-gold"></div>
+                <p className="text-2xl md:text-3xl font-black italic font-serif leading-tight relative z-10 group-hover:scale-[1.02] transition-transform duration-500">
+                  "You will not fail because I hid the exposure from you to make the marketing easier."
+                </p>
+                <div className="mt-8 flex items-center justify-center space-x-3 opacity-60">
+                   <div className="h-px w-8 bg-signal-gold"></div>
+                   <p className="text-[10px] font-black uppercase tracking-[0.4em]">The LaunchPath Commitment</p>
+                   <div className="h-px w-8 bg-signal-gold"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* PART 3: ARCHITECTURAL INSTRUCTION */}
+            <div className="space-y-8">
+              <p>
+                LaunchPath exists because I refuse to reverse the order of wisdom found in Proverbs 24:3-4:
+              </p>
+              <div className="py-10 border-y border-slate-100 dark:border-white/5 text-center px-4">
+                <p className="text-2xl md:text-3xl font-black font-serif italic text-authority-blue dark:text-white leading-snug max-w-2xl mx-auto">
+                  "By wisdom a house is built, and by understanding it is established; by knowledge the rooms are filled with all precious and pleasant riches."
+                </p>
+              </div>
+              <p>
+                This is not motivational copy. This is architectural instruction: <span className="text-authority-blue dark:text-white font-black underline decoration-signal-gold/40 underline-offset-4">Wisdom and understanding before the rooms are filled with riches.</span>
+              </p>
+              <p>
+                This platform is built on a stewardship obligation. You'll understand what FMCSA considers a "serious violation" before your first load. You'll see the 16 audit failure points that destroy 90% of new carriers—and you'll build the compliance backbone that survives them.
+              </p>
+              <p>
+                If you want "10 trucks in 10 months" content, there are hundreds of educators selling that vision. They're not wrong for building it. Their audience wants it.
+              </p>
+              <p className="text-xl md:text-2xl font-black text-authority-blue dark:text-white">
+                But if you are the operator who understands that <span className="text-signal-gold">protection comes before profit</span>, and that authority preservation is the foundation revenue gets built on—then LaunchPath is designed for you.
+              </p>
+              <p className="text-3xl font-black uppercase tracking-tight text-authority-blue dark:text-white pt-6 leading-tight">
+                Not as an alternative approach. <br/>
+                <span className="text-signal-gold drop-shadow-sm italic">As the institutional standard.</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>

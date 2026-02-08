@@ -248,8 +248,6 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  const selectedSin = riskDomains.flatMap(d => d.items).find(i => i.id === selectedSinId);
-
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-white dark:bg-primary-dark font-sans text-authority-blue leading-relaxed selection:bg-signal-gold/20">
       
@@ -452,13 +450,13 @@ const HomePage: React.FC = () => {
             </div>
             
             <nav className="pt-12">
-              <Link 
-                to="/exposure-matrix" 
+              <a 
+                href="#exposure-matrix" 
                 className="inline-flex items-center space-x-6 bg-authority-blue text-white px-12 sm:px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[20px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group border-b-[8px] border-slate-900"
               >
                 <span>OPEN EXPOSURE MATRIX</span>
                 <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
-              </Link>
+              </a>
             </nav>
           </div>
         </div>
@@ -664,41 +662,75 @@ const HomePage: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {domain.items.map((item) => (
-                    <article 
+                    <div 
                       key={item.id} 
+                      className="group perspective-[1500px] h-[450px] cursor-pointer"
                       onClick={() => setSelectedSinId(selectedSinId === item.id ? null : item.id)}
-                      className={`bg-white/[0.02] border border-white/5 p-8 sm:p-10 rounded-[3rem] group hover:bg-white/[0.05] hover:border-red-500/30 transition-all duration-500 relative overflow-hidden cursor-pointer ${selectedSinId === item.id ? 'ring-4 ring-red-500/50 bg-white/[0.05]' : ''}`}
                     >
-                       <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-10 text-red-600 group-hover:scale-150 transition-all duration-700">
-                          <ShieldAlert size={80} />
-                       </div>
-                       <header className="flex items-center space-x-5 mb-8">
-                          <span className="text-[12px] font-black text-slate-700 font-mono tracking-tighter group-hover:text-red-500 transition-colors">{item.id}</span>
-                          <h4 className="text-[18px] sm:text-[20px] font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors">{item.text}</h4>
-                       </header>
-                       <div className="space-y-6 pt-8 border-t border-white/5">
-                          <div className="flex justify-between items-center">
-                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">RESULT</p>
-                             <p className="text-[13px] font-black text-slate-300 uppercase tracking-tight">{item.impact}</p>
-                          </div>
-                          <div className="flex justify-between items-center">
-                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">GUARD</p>
-                             <div className="flex items-center space-x-2 text-emerald-400">
-                                <ShieldCheck size={14} />
-                                <span className="text-[13px] font-black uppercase tracking-tight">{item.guard}</span>
-                             </div>
-                          </div>
-                          <div className="flex justify-between items-center pt-4">
-                             <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">SEVERITY</p>
-                             <div className={`px-4 py-1.5 rounded-xl flex items-center space-x-3 border ${
-                               item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : item.severity === 'CRITICAL' ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' : 'bg-slate-500/10 border-slate-500/30 text-slate-400'
-                             }`}>
-                                <Zap size={14} className="fill-current" />
-                                <span className="text-[11px] font-black uppercase tracking-widest">{item.severity}</span>
-                             </div>
-                          </div>
-                       </div>
-                    </article>
+                      <div className={`relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] ${selectedSinId === item.id ? '[transform:rotateY(180deg)]' : ''}`}>
+                        
+                        {/* FRONT FACE */}
+                        <article className="absolute inset-0 bg-white/[0.02] border border-white/5 p-8 sm:p-10 rounded-[3rem] group-hover:bg-white/[0.05] group-hover:border-red-500/30 transition-all duration-500 backface-hidden flex flex-col">
+                           <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-10 text-red-600 group-hover:scale-150 transition-all duration-700">
+                              <ShieldAlert size={80} />
+                           </div>
+                           <header className="flex items-center space-x-5 mb-8">
+                              <span className="text-[12px] font-black text-slate-700 font-mono tracking-tighter group-hover:text-red-500 transition-colors">{item.id}</span>
+                              <h4 className="text-[18px] sm:text-[20px] font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors">{item.text}</h4>
+                           </header>
+                           <div className="space-y-6 pt-8 border-t border-white/5 mt-auto">
+                              <div className="flex justify-between items-center">
+                                 <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">RESULT</p>
+                                 <p className="text-[13px] font-black text-slate-300 uppercase tracking-tight">{item.impact}</p>
+                              </div>
+                              <div className="flex justify-between items-center pt-4">
+                                 <p className="text-[11px] font-black uppercase text-slate-500 tracking-widest">SEVERITY</p>
+                                 <div className={`px-4 py-1.5 rounded-xl flex items-center space-x-3 border ${
+                                   item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : item.severity === 'CRITICAL' ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' : 'bg-slate-500/10 border-slate-500/30 text-slate-400'
+                                 }`}>
+                                    <Zap size={14} className="fill-current" />
+                                    <span className="text-[11px] font-black uppercase tracking-widest">{item.severity}</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+
+                        {/* BACK FACE */}
+                        <article className="absolute inset-0 bg-[#0c1a2d] border-2 border-signal-gold/50 p-8 sm:p-10 rounded-[3rem] [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                           <div className="space-y-6">
+                              <div className="flex items-center space-x-3 text-red-500">
+                                 <ShieldAlert size={18} />
+                                 <p className="text-[10px] font-black uppercase tracking-[0.4em]">Federal Violation</p>
+                              </div>
+                              <p className="text-sm font-bold text-slate-300 leading-relaxed italic">
+                                "{item.violation}"
+                              </p>
+                              
+                              <div className="pt-6 border-t border-white/10 space-y-4">
+                                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">Consequence</p>
+                                 <p className="text-sm font-medium text-slate-400 leading-relaxed">
+                                    {item.consequence}
+                                 </p>
+                              </div>
+                           </div>
+
+                           <div className="mt-auto space-y-4">
+                              <div className="flex items-center space-x-3 text-emerald-400">
+                                 <ShieldCheck size={16} />
+                                 <p className="text-[10px] font-black uppercase tracking-widest">{item.guard}</p>
+                              </div>
+                              <Link 
+                                to={`/modules/${item.moduleId}`} 
+                                onClick={(e) => e.stopPropagation()}
+                                className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-2xl text-[9px] font-black uppercase tracking-[0.3em] flex items-center justify-center hover:bg-signal-gold hover:text-authority-blue transition-all"
+                              >
+                                Access Remediation <ArrowRight size={12} className="ml-2" />
+                              </Link>
+                           </div>
+                        </article>
+
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
