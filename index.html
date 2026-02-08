@@ -59,7 +59,7 @@
         theme: {
           extend: {
             fontSize: {
-              'base': ['18px', '1.6'], // LaunchPath Standard Body
+              'base': ['18px', '1.65'], // LaunchPath Endurance Standard Body
             },
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -100,20 +100,31 @@
         background: #F8FAFC; 
         font-family: 'Inter', sans-serif;
         font-size: 18px; /* Executive Legibility Baseline */
-        line-height: 1.6;
+        line-height: 1.65; /* Endurance Standard */
         letter-spacing: 0.01em;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       .dark body { background: #020617; }
       
-      h1 { font-size: 48px; font-weight: 900; }
+      /* Paragraph Breathing Standard */
+      p { margin-bottom: 24px; }
+      p:last-child { margin-bottom: 0; }
+
+      /* Legibility Container Constraint */
+      .legibility-container {
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      h1 { font-size: 48px; font-weight: 900; line-height: 1.1; }
       @media (min-width: 640px) { h1 { font-size: 64px; } }
       
-      h2 { font-size: 32px; font-weight: 800; }
+      h2 { font-size: 32px; font-weight: 800; line-height: 1.2; }
       @media (min-width: 640px) { h2 { font-size: 40px; } }
       
-      h3 { font-size: 24px; font-weight: 800; }
+      h3 { font-size: 24px; font-weight: 800; line-height: 1.3; }
       @media (min-width: 640px) { h3 { font-size: 28px; } }
 
       .font-display {

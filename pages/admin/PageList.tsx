@@ -23,7 +23,7 @@ const PageList = () => {
         {pages.map((page) => (
           <Link 
             key={page.id} 
-            to={`/admin/pages/${page.id}`}
+            to={page.id === 'home' ? '/admin/pages/home' : `/admin/pages/${page.id}`}
             className="flex items-center justify-between p-6 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-2xl hover:shadow-xl transition-all group"
           >
             <div className="flex items-center space-x-6">

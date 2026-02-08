@@ -1,35 +1,14 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   ArrowRight, 
   ArrowLeft, 
-  CheckCircle2, 
-  AlertTriangle, 
   AlertCircle, 
   XCircle, 
-  Shield, 
-  Target,
-  FileText,
-  Clock,
-  Briefcase,
-  Wallet,
-  Users,
-  Printer,
-  ChevronRight,
-  Loader2,
-  Mail,
-  Scale,
-  Zap,
-  ShieldAlert,
-  Truck,
-  Lock,
-  ExternalLink,
-  ClipboardCheck,
-  Home,
+  ChevronRight, 
+  Loader2, 
   CheckCircle,
-  Verified,
   Award
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -83,7 +62,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'time',
-    text: "How many hours per week can you spend on admin and compliance (not driving)?",
+    text: "How many hours per week can you spend on admin and compliance?",
     options: [
       { label: 'A', text: 'Less than 10 hours', points: 0, flag: 'RED' },
       { label: 'B', text: '10–20 hours', points: 1, flag: 'YELLOW' },
@@ -94,7 +73,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'experience',
-    text: "Background: Commercial driving record?",
+    text: "What is your commercial driving background?",
     options: [
       { label: 'A', text: 'Initial phase (Pre-CDL)', points: 0, flag: 'YELLOW' },
       { label: 'B', text: 'CDL, no record', points: 1 },
@@ -127,28 +106,6 @@ const QUESTIONS: Question[] = [
   }
 ];
 
-const StewardshipAlignmentBlock = ({ status }: { status: 'Verified' | 'Unverified' | 'Misaligned' }) => (
-  <div className={`p-6 sm:p-10 rounded-3xl sm:rounded-[3rem] border-2 ${
-    status === 'Verified' ? 'bg-green-50/30 border-green-100' :
-    status === 'Misaligned' ? 'bg-red-50/30 border-red-100' : 'bg-amber-50/30 border-amber-100'
-  }`}>
-    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
-      <div>
-        <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-1">System Component</h3>
-        <h4 className="text-lg font-black text-authority-blue uppercase leading-tight">STEWARDSHIP ALIGNMENT</h4>
-      </div>
-      <div className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest flex items-center w-fit ${
-        status === 'Verified' ? 'bg-green-600 text-white' : status === 'Misaligned' ? 'bg-red-600 text-white' : 'bg-amber-500 text-white'
-      }`}>
-        {status}
-      </div>
-    </div>
-    <p className="text-sm font-medium text-slate-500 leading-relaxed">
-      {status === 'Verified' ? "Alignment confirmed. Strategic continuity supported." : "Operational exposure detected or unverified. Address before launch."}
-    </p>
-  </div>
-);
-
 const ReadinessPage = () => {
   const [step, setStep] = useState<number>(0); 
   const [answers, setAnswers] = useState<number[]>(new Array(QUESTIONS.length).fill(-1));
@@ -158,14 +115,6 @@ const ReadinessPage = () => {
 
   useEffect(() => {
     document.title = "Readiness Assessment | LaunchPath Carrier Diagnostic";
-    const update = (selector: string, content: string, attr = 'content') => {
-      const el = document.querySelector(selector);
-      if (el) el.setAttribute(attr, content);
-    };
-    update('meta[name="description"]', "Are you ready to launch? Evaluate your capital, household alignment, and compliance posture before you file for authority. Know where you stand.");
-    update('meta[property="og:title"]', "Readiness Assessment | LaunchPath");
-    update('meta[property="og:description"]', "Evaluate your readiness across the Four Pillars before you launch. GO, WAIT, or NO-GO.");
-    update('meta[property="og:type"]', "website");
   }, []);
 
   const totalScore = answers.reduce((acc, curr, idx) => curr === -1 ? acc : acc + QUESTIONS[idx].options[curr].points, 0);
@@ -187,95 +136,164 @@ const ReadinessPage = () => {
 
   return (
     <div className="bg-[#fafaf9] dark:bg-primary-dark min-h-screen font-sans text-authority-blue overflow-x-hidden">
-      <div className="max-w-4xl mx-auto px-5 py-12 sm:py-24 min-h-[80vh] flex flex-col">
+      <div className="max-w-[800px] mx-auto px-5 py-12 sm:py-24 min-h-[80vh] flex flex-col">
         
-        {/* STEP 0 */}
+        {/* PROGRESS BAR (Functional Standard) */}
+        {step >= 1 && step <= 7 && (
+          <div className="w-full mb-12 animate-in fade-in duration-500">
+             <div className="flex justify-between items-end mb-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Diagnostic Phase</p>
+                <p className="text-sm font-black text-authority-blue dark:text-signal-gold">{Math.round((step / 7) * 100)}% Complete</p>
+             </div>
+             <div className="h-2 bg-slate-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                <div className="h-full bg-authority-blue dark:bg-signal-gold transition-all duration-700 ease-out shadow-[0_0_15px_rgba(30,58,95,0.3)]" style={{ width: `${(step / 7) * 100}%` }}></div>
+             </div>
+          </div>
+        )}
+
+        {/* STEP 0: INTRODUCTION */}
         {step === 0 && (
-          <div className="text-center animate-reveal-up flex-grow flex flex-col justify-center">
-            <ShieldCheck size={48} className="mx-auto mb-8 text-authority-blue/20" />
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black font-serif uppercase tracking-tight mb-6 text-authority-blue dark:text-white">
-              Classification <span className="text-signal-gold italic">Assessment</span>
+          <div className="text-center animate-reveal-up flex-grow flex flex-col justify-center legibility-container">
+            <div className="w-24 h-24 bg-authority-blue/5 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 shadow-inner">
+               <ShieldCheck size={48} className="text-authority-blue dark:text-signal-gold" />
+            </div>
+            <h1 className="text-4xl sm:text-6xl font-black font-serif uppercase tracking-tight mb-8 text-authority-blue dark:text-white">
+              Carrier <span className="text-signal-gold italic">Diagnostic</span>
             </h1>
-            <p className="text-base sm:text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
-              Evaluates structural readiness for carrier implementation. results map to risk exposure levels.
+            <p className="text-xl text-slate-500 dark:text-slate-400 font-bold leading-relaxed mb-12">
+              Before you file for authority, identify the exposure points that could bankrupt your operation in the first 90 days. Accuracy over ambition.
             </p>
-            <button onClick={() => setStep(1)} className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl mx-auto flex items-center active:scale-95">
-              Initiate Assessment <ChevronRight className="ml-2" size={16} />
+            <button 
+              onClick={() => setStep(1)} 
+              className="bg-authority-blue text-white px-16 py-7 rounded-[2rem] font-black uppercase tracking-widest text-sm shadow-2xl hover:bg-steel-blue transition-all active:scale-95 mx-auto flex items-center border-b-8 border-slate-900"
+            >
+              Initiate Diagnostic Sequence <ChevronRight className="ml-3" size={20} />
             </button>
           </div>
         )}
 
-        {/* QUESTIONS 1-7 */}
+        {/* SINGLE TASK QUESTIONS */}
         {step >= 1 && step <= 7 && (
-          <div className="animate-reveal-up flex-grow">
-            <div className="max-w-xl mx-auto mb-8 sm:mb-12">
-              <div className="flex justify-between text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-                <span>Step {step} of 7</span>
-                <span>{Math.round((step / 7) * 100)}% Complete</span>
-              </div>
-              <div className="h-1 bg-slate-100 rounded-full overflow-hidden"><div className="h-full bg-authority-blue transition-all" style={{width:`${(step/7)*100}%`}}></div></div>
-            </div>
-            <h2 className="text-xl sm:text-3xl font-black font-serif uppercase mb-8 leading-tight text-authority-blue dark:text-white">{QUESTIONS[step-1].text}</h2>
-            <div className="space-y-3 sm:space-y-4 mb-12">
+          <div className="animate-in fade-in slide-in-from-right-4 duration-500 flex-grow legibility-container">
+            <h2 className="text-2xl sm:text-4xl font-black font-serif uppercase mb-12 leading-tight text-authority-blue dark:text-white">
+              {QUESTIONS[step-1].text}
+            </h2>
+            <div className="space-y-4 mb-16">
               {QUESTIONS[step-1].options.map((opt, i) => (
-                <button key={i} onClick={() => { const n=[...answers]; n[step-1]=i; setAnswers(n); setTimeout(()=>setStep(step+1), 300); }} className="w-full text-left p-5 sm:p-6 rounded-2xl border-2 border-slate-100 bg-white hover:border-authority-blue transition-all flex items-center group">
-                  <span className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 rounded-lg flex items-center justify-center mr-4 text-xs font-black group-hover:bg-authority-blue group-hover:text-white transition-colors">{opt.label}</span>
-                  <span className="text-base sm:text-lg font-bold text-authority-blue">{opt.text}</span>
+                <button 
+                  key={i} 
+                  onClick={() => { const n=[...answers]; n[step-1]=i; setAnswers(n); setTimeout(()=>setStep(step+1), 400); }} 
+                  className="w-full text-left p-6 sm:p-8 rounded-[2.5rem] border-2 border-slate-100 dark:border-border-dark bg-white dark:bg-surface-dark hover:border-authority-blue dark:hover:border-signal-gold transition-all flex items-center group shadow-sm hover:shadow-xl"
+                >
+                  <span className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center mr-6 text-sm font-black group-hover:bg-authority-blue group-hover:text-white transition-colors">{opt.label}</span>
+                  <span className="text-lg sm:text-xl font-bold text-authority-blue dark:text-white leading-relaxed">{opt.text}</span>
                 </button>
               ))}
             </div>
-            <button onClick={() => setStep(step-1)} className="text-[10px] font-black uppercase text-slate-300 flex items-center hover:text-authority-blue"><ArrowLeft size={12} className="mr-2" /> Back</button>
+            <button 
+              onClick={() => setStep(step-1)} 
+              className="text-[10px] font-black uppercase tracking-widest text-slate-300 hover:text-authority-blue flex items-center transition-colors"
+            >
+              <ArrowLeft size={16} className="mr-2" /> Back to Previous Step
+            </button>
           </div>
         )}
 
-        {/* REVIEW 8 */}
+        {/* REVIEW & EMAIL CAPTURE */}
         {step === 8 && (
-          <div className="text-center animate-reveal-up flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
-            <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase mb-6 text-authority-blue dark:text-white">Results Ready</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <input required type="email" placeholder="Enter your email to see your results" className="w-full px-6 py-4 rounded-xl border-2 border-slate-100 focus:border-authority-blue outline-none font-bold placeholder:text-slate-400 text-authority-blue" value={email} onChange={e=>setEmail(e.target.value)} />
-              <div className="flex items-start text-left space-x-3">
-                <input type="checkbox" className="mt-1" checked={consent} onChange={e=>setConsent(e.target.checked)} />
-                <span className="text-[10px] text-slate-500 font-medium">I acknowledge that results are for educational purposes.</span>
+          <div className="text-center animate-in fade-in duration-500 flex-grow flex flex-col justify-center legibility-container">
+            <div className="w-20 h-20 bg-green-50 rounded-3xl flex items-center justify-center mx-auto mb-10 text-green-600 shadow-sm border border-green-100">
+               <CheckCircle size={40} />
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase mb-8 text-authority-blue dark:text-white">Diagnostic Ready</h2>
+            <p className="text-lg text-slate-500 dark:text-slate-400 font-bold mb-12">Submit your credentials to authorize the release of your structural classification.</p>
+            
+            <form onSubmit={handleSubmit} className="space-y-8 max-w-md mx-auto w-full">
+              <div className="space-y-2 text-left">
+                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Professional Email Address</label>
+                <input 
+                  required 
+                  type="email" 
+                  placeholder="legal@carrier.com" 
+                  className="w-full px-8 py-5 rounded-[2rem] border-2 border-slate-100 dark:border-border-dark bg-white dark:bg-gray-800 focus:border-authority-blue outline-none font-black text-lg placeholder:text-slate-300 dark:text-white shadow-inner" 
+                  value={email} 
+                  onChange={e=>setEmail(e.target.value)} 
+                />
               </div>
-              <button disabled={loading || !consent} className="w-full bg-authority-blue text-white py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl disabled:opacity-50">
-                {loading ? <Loader2 className="animate-spin mx-auto" /> : "View Classification"}
+              <div className="flex items-start text-left space-x-4 p-4 bg-slate-50 dark:bg-gray-900 rounded-2xl border border-slate-100 dark:border-border-dark">
+                <input 
+                  type="checkbox" 
+                  className="mt-1.5 w-5 h-5 rounded accent-authority-blue cursor-pointer" 
+                  checked={consent} 
+                  onChange={e=>setConsent(e.target.checked)} 
+                />
+                <span className="text-[11px] text-slate-500 font-bold leading-relaxed uppercase tracking-tighter">I acknowledge that this assessment is for educational guidance only and does not constitute a legal audit result.</span>
+              </div>
+              <button 
+                disabled={loading || !consent} 
+                className="w-full bg-authority-blue text-white py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl disabled:opacity-50 hover:bg-steel-blue transition-all border-b-8 border-slate-900"
+              >
+                {loading ? <Loader2 className="animate-spin mx-auto" /> : "Authorize Classification Result"}
               </button>
             </form>
           </div>
         )}
 
-        {/* RESULTS 9 */}
+        {/* RESULTS PAGE */}
         {step === 9 && (
-          <div className="animate-reveal-up space-y-12 sm:space-y-16 pb-12 sm:pb-20">
+          <div className="animate-reveal-up space-y-12 sm:space-y-20 pb-20 legibility-container">
             <div className="text-center">
-              <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl ${resultType==='GREEN'?'bg-green-50 text-green-600':resultType==='YELLOW'?'bg-amber-50 text-amber-600':'bg-red-50 text-red-700'}`}>
-                {resultType==='GREEN'?<ShieldCheck size={48}/>:resultType==='YELLOW'?<AlertCircle size={48}/>:<XCircle size={48}/>}
+              <div className={`w-24 h-24 sm:w-32 sm:h-32 rounded-[3.5rem] flex items-center justify-center mx-auto mb-10 shadow-2xl transition-all duration-1000 ${resultType==='GREEN'?'bg-green-50 text-green-600':resultType==='YELLOW'?'bg-amber-50 text-amber-600':'bg-red-50 text-red-700'}`}>
+                {resultType==='GREEN'?<ShieldCheck size={64}/>:resultType==='YELLOW'?<AlertCircle size={64}/>:<XCircle size={64}/>}
               </div>
-              <h1 className="text-3xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase leading-tight">
-                Classification: <br/><span className={resultType==='GREEN'?'text-green-600':resultType==='YELLOW'?'text-amber-600':'text-red-700'}>{resultType==='GREEN'?'READY.':resultType==='YELLOW'?'PREPARATION REQ.':'NOT RECOMMENDED.'}</span>
+              <h1 className="text-4xl sm:text-6xl font-black font-serif text-authority-blue dark:text-white uppercase leading-none tracking-tighter">
+                Classification: <br/>
+                <span className={resultType==='GREEN'?'text-green-600':resultType==='YELLOW'?'text-amber-600':'text-red-700'}>
+                  {resultType==='GREEN'?'READY TO LAUNCH.':resultType==='YELLOW'?'PREPARATION REQUIRED.':'NOT RECOMMENDED.'}
+                </span>
               </h1>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
-              <div className="bg-white dark:bg-surface-dark p-8 sm:p-10 rounded-3xl border border-slate-100 dark:border-border-dark shadow-sm">
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold mb-6">Verification Points</h3>
-                <ul className="space-y-4">
-                  {["Capitalization", "Household runway", "Admin capacity", "Stewardship alignment"].map((text, i) => (
-                    <li key={i} className="flex items-center space-x-3 text-sm font-bold text-slate-500 dark:text-text-dark-muted"><CheckCircle size={16} className="text-green-500" /> <span>{text}</span></li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-authority-blue text-white p-8 sm:p-10 rounded-3xl shadow-2xl">
-                 <h3 className="text-[10px] font-black uppercase text-signal-gold mb-4">Meaning</h3>
-                 <p className="text-base sm:text-lg leading-relaxed font-medium italic">{resultType==='GREEN'?"Entity meets foundational criteria for admission.":"Entity displays structural fragility. Redirection recommended."}</p>
-              </div>
+            <div className="bg-white dark:bg-surface-dark p-10 md:p-14 rounded-[4rem] border border-slate-100 dark:border-border-dark shadow-sm space-y-12">
+               <div className="space-y-4">
+                  <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold flex items-center">
+                    <CheckCircle size={16} className="mr-3" /> Diagnostic Summary
+                  </h3>
+                  <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed italic">
+                    {resultType === 'GREEN' 
+                      ? "Your structural entity displays high stewardship alignment and sufficient capital reserves for a Tier 1 launch." 
+                      : resultType === 'YELLOW'
+                      ? "Exposure vectors detected in capital or household alignment. Corrective action required before authority activation."
+                      : "Critical failure points detected in solvency and admin capacity. Immediate strategic pivot recommended."}
+                  </p>
+               </div>
+
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 border-t border-slate-50 dark:border-white/5">
+                  <div className="space-y-2">
+                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Calculated Score</p>
+                     <p className="text-3xl font-black text-authority-blue dark:text-white uppercase tracking-tighter">{totalScore} / 28</p>
+                  </div>
+                  <div className="space-y-2">
+                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Risk Flags</p>
+                     <p className={`text-3xl font-black uppercase tracking-tighter ${redFlags > 0 ? 'text-red-600' : 'text-green-600'}`}>{redFlags} Red // {yellowFlags} Yellow</p>
+                  </div>
+               </div>
             </div>
 
-            <div className="text-center pt-8 border-t border-slate-100 dark:border-border-dark">
-              <Link to={resultType==='GREEN'?'/pricing':'/resources'} className="bg-authority-blue text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl inline-block">
-                {resultType==='GREEN'?'Initiate Admission':'View Resources'}
-              </Link>
+            <div className="pt-12 flex flex-col items-center gap-10">
+               <div className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl">
+                  <Link to={resultType==='GREEN'?'/pricing':'/resources'} className="flex-grow bg-authority-blue text-white px-12 py-7 rounded-[2rem] font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 text-center border-b-8 border-slate-900">
+                    {resultType==='GREEN'?'Initiate Admission Sequence':'Access Remediation Resources'}
+                  </Link>
+                  <button onClick={() => window.print()} className="px-10 py-7 rounded-[2rem] border-4 border-slate-100 dark:border-border-dark text-authority-blue dark:text-white font-black uppercase tracking-widest text-[11px] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm">
+                    Print Certification
+                  </button>
+               </div>
+               
+               <div className="flex items-center space-x-4 opacity-30">
+                  <Award size={20} />
+                  <p className="text-[10px] font-black uppercase tracking-[0.5em]">Verified Registry ID: LP-READY-STND</p>
+               </div>
             </div>
           </div>
         )}

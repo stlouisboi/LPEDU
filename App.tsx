@@ -49,7 +49,6 @@ import ReachTestPage from './pages/ReachTestPage';
 import TCOCalculatorPage from './pages/TCOCalculatorPage';
 import TCOPreviewPage from './pages/TCOPreviewPage';
 import OperatorPortal from './pages/OperatorPortal';
-import ExposureMatrixPage from './pages/ExposureMatrixPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -460,12 +459,10 @@ export default function App() {
 
   useEffect(() => {
     if (!isFirebaseConfigured || !db) {
-      // Fallback for missing Firebase config: stop loading and use defaults
       setAppLoading(false);
       return;
     }
     
-    // Set a timeout to prevent infinite loading if Firebase hangs
     const loadTimeout = setTimeout(() => {
       setAppLoading(false);
     }, 5000);
@@ -533,14 +530,13 @@ export default function App() {
               <Route path="/reach-test" element={<ReachTestPage />} />
               <Route path="/portal" element={<PortalInterstitial />} />
               <Route path="/operator-portal" element={<OperatorPortal />} />
-              <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/legal" element={<LegalPage />} />
               <Route path="/ai-advisor" element={<AIServicePage />} />
               <Route path="/pricing" element={<EnrollPage />} />
-              <Route path="/tools/tco-calculator" element={<TCOPreviewPage />} />
+              <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
               <Route path="/tools/tco-preview" element={<TCOPreviewPage />} />
               <Route path="/authorized/tco-calculator" element={<ProtectedRoute><TCOCalculatorPage /></ProtectedRoute>} />
               <Route path="/modules/:id" element={<ModuleDetailPage />} />

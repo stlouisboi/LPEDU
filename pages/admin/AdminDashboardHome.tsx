@@ -1,10 +1,31 @@
+
 import React, { useState, useEffect } from 'react';
-import { BarChart3, MessageSquare, Download, ArrowUpRight, Zap, FileEdit, PlusCircle, AlertCircle, CheckCircle2, Loader2, ExternalLink, ChevronRight, Users } from 'lucide-react';
+import { 
+  BarChart3, 
+  MessageSquare, 
+  Download, 
+  ArrowUpRight, 
+  Zap, 
+  FileEdit, 
+  PlusCircle, 
+  AlertCircle, 
+  CheckCircle2, 
+  Loader2, 
+  ExternalLink, 
+  ChevronRight, 
+  Users,
+  Settings,
+  Globe,
+  BookOpen
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
+import { useAuth } from '../../AuthContext';
+import SettingsManager from './SettingsManager';
 
 const AdminDashboardHome = () => {
+  const { currentUser } = useAuth();
   const [dbStatus, setDbStatus] = useState<'checking' | 'active' | 'api-disabled' | 'not-found' | 'error'>('checking');
 
   useEffect(() => {
@@ -14,23 +35,13 @@ const AdminDashboardHome = () => {
         return;
       }
       try {
-        // Attempt a light check on the global settings doc
         const snap = await getDoc(doc(db, "settings", "general"));
-        if (snap.exists()) {
-          setDbStatus('active');
-        } else {
-          // Doc doesn't exist, but API responded (so it is active)
-          setDbStatus('active');
-        }
+        setDbStatus(snap.exists() ? 'active' : 'active'); // If we got a response, it's active
       } catch (err: any) {
         console.error("Dashboard Health Check Error:", err);
-        if (err.code === 'permission-denied') {
-          setDbStatus('api-disabled');
-        } else if (err.code === 'not-found' || err.message?.includes('database (default) does not exist')) {
-          setDbStatus('not-found');
-        } else {
-          setDbStatus('error');
-        }
+        if (err.code === 'permission-denied') setDbStatus('api-disabled');
+        else if (err.code === 'not-found' || err.message?.includes('database (default) does not exist')) setDbStatus('not-found');
+        else setDbStatus('error');
       }
     };
     checkHealth();
@@ -62,73 +73,18 @@ const AdminDashboardHome = () => {
           {dbStatus === 'checking' && <Loader2 size={14} className="animate-spin text-authority-blue" />}
           {dbStatus === 'active' && <CheckCircle2 size={14} className="text-green-500" />}
           {(dbStatus === 'api-disabled' || dbStatus === 'not-found') && <AlertCircle size={14} className="text-red-500" />}
-          {dbStatus === 'error' && <AlertCircle size={14} className="text-amber-500" />}
-          <span className={`text-xs font-bold ${
-            dbStatus === 'active' ? 'text-green-600' : 
-            (dbStatus === 'api-disabled' || dbStatus === 'not-found') ? 'text-red-600' : 'text-text-muted'
-          }`}>
-            {dbStatus === 'checking' ? 'Connecting...' : 
-             dbStatus === 'active' ? 'Operational' : 
-             dbStatus === 'not-found' ? 'Database Not Found' :
-             dbStatus === 'api-disabled' ? 'API Disabled' : 'Configuration Required'}
+          <span className={`text-xs font-bold ${dbStatus === 'active' ? 'text-green-600' : 'text-red-600'}`}>
+            {dbStatus === 'checking' ? 'Connecting...' : dbStatus === 'active' ? 'Operational' : 'Action Required'}
           </span>
         </div>
       </div>
-
-      {dbStatus === 'not-found' && (
-        <div className="bg-red-50 dark:bg-red-950/20 p-8 rounded-[2.5rem] border border-red-200 dark:border-red-900/50 flex flex-col items-center text-center gap-6 animate-in zoom-in-95 duration-500 shadow-xl">
-          <div className="p-4 bg-red-100 dark:bg-red-900/40 rounded-3xl text-red-600">
-            <AlertCircle size={32} />
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold text-red-800 dark:text-red-400 font-serif">Firestore Database Missing</h3>
-            <p className="text-red-700/80 dark:text-red-300/80 mt-2 max-w-xl mx-auto leading-relaxed">
-              The Cloud Firestore database instance has not been created yet. You must initialize it in the Google Cloud console.
-            </p>
-          </div>
-          <a 
-            href="https://console.cloud.google.com/datastore/setup?project=lpedu-d9bb2" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="bg-red-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center hover:bg-red-700 transition-all shadow-lg hover:shadow-xl"
-          >
-            Create Firestore Database Now <ExternalLink size={18} className="ml-2" />
-          </a>
-        </div>
-      )}
-
-      {dbStatus === 'api-disabled' && (
-        <div className="bg-amber-50 dark:bg-amber-950/20 p-8 rounded-[2.5rem] border border-amber-200 dark:border-amber-900/50 flex flex-col md:flex-row items-center justify-between gap-6 animate-in zoom-in-95 duration-300 shadow-lg">
-          <div className="flex items-center space-x-5">
-            <div className="p-4 bg-amber-100 dark:bg-amber-900/40 rounded-3xl text-amber-600">
-              <AlertCircle size={28} />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-amber-800 dark:text-amber-400 font-serif">Cloud Firestore API Disabled</h3>
-              <p className="text-sm text-amber-700/80 dark:text-amber-300/80 mt-1">The API is not enabled for project <span className="font-mono bg-white/50 px-1 rounded">lpedu-d9bb2</span>.</p>
-            </div>
-          </div>
-          <a 
-            href="https://console.cloud.google.com/apis/library/firestore.googleapis.com?project=lpedu-d9bb2" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="whitespace-nowrap bg-amber-600 text-white px-6 py-3 rounded-xl font-bold flex items-center hover:bg-amber-700 transition-all shadow-md"
-          >
-            Enable API Now <ExternalLink size={16} className="ml-2" />
-          </a>
-        </div>
-      )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {stats.map((stat, i) => (
           <div key={i} className="bg-white dark:bg-surface-dark p-6 rounded-3xl border border-border-light dark:border-border-dark shadow-sm">
             <div className="flex justify-between items-start mb-4">
-              <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl">
-                {stat.icon}
-              </div>
-              <span className="text-xs font-bold text-green-500 flex items-center">
-                {stat.trend} <ArrowUpRight size={12} className="ml-1" />
-              </span>
+              <div className="p-3 bg-slate-50 dark:bg-gray-800 rounded-2xl">{stat.icon}</div>
+              <span className="text-xs font-bold text-green-500 flex items-center">{stat.trend} <ArrowUpRight size={12} className="ml-1" /></span>
             </div>
             <p className="text-3xl font-black font-serif text-authority-blue dark:text-white">{stat.value}</p>
             <p className="text-xs font-bold uppercase tracking-widest text-text-muted mt-1">{stat.label}</p>
@@ -147,9 +103,7 @@ const AdminDashboardHome = () => {
                 className="flex items-center justify-between p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl hover:bg-authority-blue hover:text-white transition-all group"
               >
                 <div className="flex items-center space-x-4">
-                  <div className="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm group-hover:text-authority-blue">
-                    {action.icon}
-                  </div>
+                  <div className="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm group-hover:text-authority-blue">{action.icon}</div>
                   <span className="font-bold text-sm">{action.name}</span>
                 </div>
                 <ChevronRight size={16} />
@@ -158,22 +112,15 @@ const AdminDashboardHome = () => {
           </div>
         </div>
 
-        <div className="bg-authority-blue p-8 rounded-[2.5rem] text-white relative overflow-hidden flex flex-col justify-center shadow-2xl">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-signal-gold opacity-10 rounded-full -translate-y-12 translate-x-12 blur-2xl"></div>
-          <div className="relative z-10">
-            <h3 className="text-2xl font-bold font-serif mb-4 leading-tight">System Status: <br/>{dbStatus === 'active' ? 'Operational' : (dbStatus === 'not-found' || dbStatus === 'api-disabled') ? 'Action Required' : 'Checking...'}</h3>
-            <p className="text-white/70 text-sm leading-relaxed mb-6">
-              {dbStatus === 'not-found' 
-                ? "The database instance for project lpedu-d9bb2 hasn't been created yet. Follow the instructional alerts above to finalize setup." 
-                : dbStatus === 'api-disabled'
-                ? "Connectivity is blocked because the required Google APIs are not enabled for your project."
-                : "Secure Cloud, Storage, and Authentication systems are reporting optimal health for the LaunchPath infrastructure."}
-            </p>
-            <Link to="/admin/settings" className="inline-flex items-center space-x-2 text-signal-gold font-bold hover:underline group">
-              <span>System Settings</span>
-              <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </Link>
-          </div>
+        <div className="bg-authority-blue p-10 rounded-[3.5rem] text-white shadow-2xl relative overflow-hidden flex flex-col justify-center">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold opacity-10 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
+          <Globe className="mb-6 text-signal-gold" size={32} />
+          <h3 className="text-2xl font-bold font-serif mb-4">Site Settings Hub</h3>
+          <p className="opacity-70 leading-relaxed font-medium mb-8">Manage global brand identity, SEO, and contact parameters from one clinical terminal.</p>
+          <Link to="/admin/settings" className="inline-flex items-center space-x-3 bg-white text-authority-blue px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-signal-gold transition-all">
+            <span>Open System Settings</span>
+            <ChevronRight size={16} />
+          </Link>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { collection, query, where, onSnapshot, addDoc } from "firebase/firestore";
@@ -109,9 +110,9 @@ const ModuleDetailPage = () => {
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // Requirement: New instance per polling call
+        // Requirement: Create a new instance right before making a polling API call
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        operation = await pollAi.operations.getVideosOperation({ operation });
+        operation = await pollAi.operations.getVideosOperation({ operation: operation });
       }
 
       if (operation.error) throw new Error(operation.error.message);

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { collection, query, onSnapshot, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
@@ -12,13 +13,20 @@ import {
   Settings2,
   CheckCircle2,
   Zap,
-  Monitor
+  Monitor,
+  Calendar,
+  FileText
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 import { GeneratedVideo } from '../../types';
 import { COURSE_MODULES } from '../../constants';
 import VideoUploader from '../../components/admin/VideoUploader';
 
+/**
+ * Video Studio Lab - Neural Curriculum Asset Synthesis
+ * This component manages the generation and archival of educational video assets
+ * using the Veo 3.1 Neural Engine.
+ */
 const VideoLab = () => {
   const [videos, setVideos] = useState<GeneratedVideo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -71,6 +79,10 @@ const VideoLab = () => {
     }
   };
 
+  /**
+   * Generates a video using Veo 3.1 model.
+   * Following @google/genai guidelines for Video Generation and API key management.
+   */
   const generateAIVideo = async () => {
     if (!formData.prompt || isGenerating) return;
     setIsGenerating(true);
@@ -80,6 +92,7 @@ const VideoLab = () => {
     }, 12000);
 
     try {
+      // Guideline: Create a new GoogleGenAI instance right before making an API call
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       let config: any = {
         model: 'veo-3.1-fast-generate-preview',
@@ -104,7 +117,7 @@ const VideoLab = () => {
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // Requirement: New GoogleGenAI instance for every poll
+        // Guideline: Create a new instance right before making a polling API call
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
         operation = await pollAi.operations.getVideosOperation({ operation: operation });
       }
@@ -116,6 +129,7 @@ const VideoLab = () => {
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
       if (!downloadLink) throw new Error("Generated video link missing.");
 
+      // Fetch the generated MP4 using the API key as required by guidelines
       const vidRes = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
       const blob = await vidRes.blob();
       const vidPath = `generated/${Date.now()}.mp4`;
@@ -198,11 +212,23 @@ const VideoLab = () => {
                 <Trash2 size={18} />
               </button>
             </div>
-            <div className="p-8">
-              <span className="bg-authority-blue/10 text-authority-blue dark:text-signal-gold px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
-                {vid.moduleId === 0 ? 'Ground 0' : `Module ${vid.moduleId}`}
-              </span>
-              <h4 className="font-bold text-sm text-text-primary dark:text-white mt-4 line-clamp-2 leading-relaxed">{vid.prompt}</h4>
+            <div className="p-8 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="bg-authority-blue/10 text-authority-blue dark:text-signal-gold px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
+                  {vid.moduleId === 0 ? 'Ground 0' : `Module ${vid.moduleId}`}
+                </span>
+                <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                  <Calendar size={10} />
+                  <span>{new Date(vid.createdAt).toLocaleDateString()}</span>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-slate-400">
+                  <FileText size={12} />
+                  <p className="text-[9px] font-black uppercase tracking-widest">Description</p>
+                </div>
+                <h4 className="font-bold text-sm text-text-primary dark:text-white line-clamp-2 leading-relaxed italic">"{vid.prompt}"</h4>
+              </div>
             </div>
           </div>
         ))}
@@ -215,38 +241,129 @@ const VideoLab = () => {
               <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white flex items-center mb-10"><Settings2 className="mr-4 text-signal-gold" size={36} />Production Studio</h2>
 
               <div className="flex bg-slate-50 dark:bg-gray-900 p-2 rounded-[2.5rem] mb-12 max-w-md border shadow-inner border-slate-100 dark:border-border-dark">
-                <button onClick={() => setProductionMode('ai')} className={`flex-grow py-4 rounded-[2rem] text-xs font-black uppercase tracking-widest transition-all ${productionMode === 'ai' ? 'bg-authority-blue text-white shadow-xl' : 'text-text-muted dark:text-text-dark-muted'}`}>AI Generation</button>
-                <button onClick={() => setProductionMode('manual')} className={`flex-grow py-4 rounded-[2rem] text-xs font-black uppercase tracking-widest transition-all ${productionMode === 'manual' ? 'bg-authority-blue text-white shadow-xl' : 'text-text-muted dark:text-text-dark-muted'}`}>Manual Upload</button>
+                <button 
+                  onClick={() => setProductionMode('ai')}
+                  className={`flex-grow py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${productionMode === 'ai' ? 'bg-white dark:bg-gray-800 text-authority-blue shadow-md' : 'text-text-muted'}`}
+                >
+                  AI Synthesis
+                </button>
+                <button 
+                  onClick={() => setProductionMode('manual')}
+                  className={`flex-grow py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${productionMode === 'manual' ? 'bg-white dark:bg-gray-800 text-authority-blue shadow-md' : 'text-text-muted'}`}
+                >
+                  Manual Archive
+                </button>
               </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div className="space-y-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-3">Target Module</label>
-                    <select value={formData.moduleId} onChange={(e) => setFormData({...formData, moduleId: parseInt(e.target.value)})} className="w-full px-6 py-5 bg-slate-50 dark:bg-gray-800 border dark:border-border-dark rounded-3xl font-black text-sm outline-none focus:ring-4 focus:ring-authority-blue/10">
-                      {COURSE_MODULES.map(m => <option key={m.id} value={m.id}>{m.id === 0 ? 'Ground 0' : `Module ${m.id}`}: {m.title}</option>)}
-                    </select>
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-3">Asset Title</label>
-                    <input value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} placeholder="Archive label..." className="w-full bg-slate-50 dark:bg-gray-800 border dark:border-border-dark border-slate-100 rounded-3xl px-8 py-5 font-bold" />
-                  </div>
-                </div>
 
-                <div className="bg-slate-50 dark:bg-gray-900 rounded-[3rem] p-8 border border-slate-100 dark:border-border-dark relative flex flex-col justify-center min-h-[400px] shadow-inner">
-                  {productionMode === 'ai' ? (
-                    <div className="space-y-6">
-                       {!hasApiKey ? <button onClick={selectApiKey} className="w-full bg-amber-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest shadow-xl hover:bg-amber-700 transition-all">Authorize Terminal Key</button> : 
-                       <>
-                          <textarea rows={5} value={formData.prompt} onChange={(e) => setFormData({...formData, prompt: e.target.value})} placeholder="Describe cinematic directive..." className="w-full bg-white dark:bg-gray-800 border dark:border-border-dark rounded-[2rem] p-6 text-sm font-bold shadow-sm" />
-                          <button onClick={generateAIVideo} disabled={isGenerating || !formData.prompt} className="w-full h-24 bg-authority-blue text-white rounded-[2rem] font-black uppercase tracking-[0.3em] flex items-center justify-center shadow-2xl active:scale-95 disabled:opacity-30 border-b-4 border-slate-900">
-                            {isGenerating ? <><Loader2 className="animate-spin mr-3" size={28} /><span>Neural Synthesis Active</span></> : <><Sparkles className="mr-3" size={24} /><span>Synthesize Visual</span></>}
-                          </button>
-                       </>}
-                    </div>
-                  ) : <VideoUploader onUploadComplete={handleManualUploadComplete} />}
+              {productionMode === 'ai' ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                   <div className="space-y-10">
+                      <div className="space-y-4">
+                         <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Visual Directive (Prompt)</label>
+                         <textarea 
+                           rows={6}
+                           value={formData.prompt}
+                           onChange={e => setFormData({ ...formData, prompt: e.target.value })}
+                           placeholder="Describe the cinematic visualization..."
+                           className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-3xl p-6 font-bold text-sm"
+                         />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-8">
+                         <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Aspect Ratio</label>
+                            <select 
+                              value={formData.aspectRatio}
+                              onChange={e => setFormData({ ...formData, aspectRatio: e.target.value as any })}
+                              className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-xs appearance-none cursor-pointer"
+                            >
+                               <option value="16:9">Landscape (16:9)</option>
+                               <option value="9:16">Portrait (9:16)</option>
+                            </select>
+                         </div>
+                         <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Module Association</label>
+                            <select 
+                              value={formData.moduleId}
+                              onChange={e => setFormData({ ...formData, moduleId: parseInt(e.target.value) })}
+                              className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-xs appearance-none cursor-pointer"
+                            >
+                               {COURSE_MODULES.map(m => (
+                                 <option key={m.id} value={m.id}>{m.title}</option>
+                               ))}
+                            </select>
+                         </div>
+                      </div>
+
+                      <div className="space-y-4">
+                         <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Reference Frame (Optional)</label>
+                         <input 
+                           type="file" 
+                           accept="image/*"
+                           onChange={e => setRefFile(e.target.files?.[0] || null)}
+                           className="w-full text-xs file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-authority-blue file:text-white"
+                         />
+                      </div>
+
+                      {!hasApiKey ? (
+                        <button 
+                          onClick={selectApiKey}
+                          className="w-full py-8 rounded-[2.5rem] bg-amber-600 text-white font-black uppercase tracking-widest text-xs shadow-xl active:scale-95 transition-all"
+                        >
+                          Authorize Studio Key
+                        </button>
+                      ) : (
+                        <button 
+                          onClick={generateAIVideo}
+                          disabled={isGenerating || !formData.prompt}
+                          className="w-full py-8 rounded-[2.5rem] bg-authority-blue text-white font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 shadow-xl active:scale-95 disabled:opacity-50 transition-all border-b-8 border-slate-900 group"
+                        >
+                           {isGenerating ? <Loader2 className="animate-spin" size={20} /> : <Sparkles size={20} />}
+                           {isGenerating ? 'Synthesizing...' : 'Initialize Synthesis'}
+                        </button>
+                      )}
+                   </div>
+
+                   <div className="bg-slate-50 dark:bg-gray-900 rounded-[3.5rem] flex flex-col items-center justify-center text-center p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden group/mon shadow-inner">
+                      {isGenerating ? (
+                        <div className="space-y-6 animate-pulse">
+                           <div className="w-20 h-20 bg-authority-blue/10 rounded-full border-4 border-authority-blue border-t-transparent animate-spin mx-auto"></div>
+                           <p className="font-black uppercase tracking-widest text-authority-blue">{genMessage}</p>
+                        </div>
+                      ) : (
+                        <div className="opacity-20 group-hover/mon:opacity-40 transition-opacity">
+                           <Monitor size={80} className="mx-auto mb-6" />
+                           <p className="font-black uppercase tracking-widest text-sm">Synthesis Monitor Idle</p>
+                        </div>
+                      )}
+                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="max-w-2xl mx-auto space-y-10">
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Asset Label</label>
+                      <input 
+                        value={formData.title}
+                        onChange={e => setFormData({ ...formData, title: e.target.value })}
+                        placeholder="e.g. Module 3 Safety Brief"
+                        className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-sm shadow-inner"
+                      />
+                   </div>
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Module Target</label>
+                      <select 
+                        value={formData.moduleId}
+                        onChange={e => setFormData({ ...formData, moduleId: parseInt(e.target.value) })}
+                        className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-sm appearance-none cursor-pointer"
+                      >
+                         {COURSE_MODULES.map(m => (
+                           <option key={m.id} value={m.id}>{m.title}</option>
+                         ))}
+                      </select>
+                   </div>
+                   <VideoUploader onUploadComplete={handleManualUploadComplete} label="Primary Curriculum Upload" />
+                </div>
+              )}
            </div>
         </div>
       )}
@@ -254,4 +371,5 @@ const VideoLab = () => {
   );
 };
 
+// Fixed the missing default export causing errors in App.tsx and AdminDashboard.tsx
 export default VideoLab;

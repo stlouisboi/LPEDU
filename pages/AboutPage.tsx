@@ -1,413 +1,346 @@
 import React, { useEffect } from 'react';
-import { 
-  Shield,
-  ShieldCheck, 
-  Award, 
-  Target, 
-  CheckCircle2, 
-  ArrowRight, 
-  Scale, 
-  Anchor, 
-  Zap, 
-  XCircle, 
-  ShieldAlert,
-  FileText,
-  Briefcase,
-  Activity,
-  UserCheck,
-  ChevronRight,
-  Fingerprint,
-  Gavel,
-  History,
-  Lock,
-  Bookmark,
-  Scale as ScaleIcon,
-  Ban,
-  Gavel as GavelIcon,
-  AlertOctagon
-} from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Logo from '../components/Logo';
+import { 
+  ShieldCheck, 
+  ArrowRight, 
+  Award, 
+  Anchor, 
+  Clock, 
+  Users, 
+  History,
+  Scale,
+  Briefcase,
+  Shield,
+  Gavel,
+  XCircle,
+  CheckCircle2
+} from 'lucide-react';
 
-const AboutPage = () => {
+const AboutPage: React.FC = () => {
   useEffect(() => {
     document.title = "About | LaunchPath Transportation Education";
-    const update = (selector: string, content: string, attr = 'content') => {
-      const el = document.querySelector(selector);
-      if (el) el.setAttribute(attr, content);
-    };
-    update('meta[name="description"]', "Built on 20+ years of safety and compliance oversight. LaunchPath provides institutional-grade training for new motor carriers. Systems over shortcuts.");
-    update('meta[property="og:title"]', "About | LaunchPath Transportation Education");
-    update('meta[property="og:description"]', "Veteran-owned compliance education. 20+ years of safety oversight experience.");
-    update('meta[property="og:type"]', "website");
   }, []);
 
   return (
-    <div className="bg-white dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-1000 overflow-x-hidden transition-colors selection:bg-authority-blue/10">
+    <div className="bg-white dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-700 transition-colors selection:bg-authority-blue/10">
       
-      {/* SECTION 1: FOUNDER HERO (Built on Factual Experience) */}
-      <section className="relative pt-24 pb-20 lg:pt-40 lg:pb-40 bg-[#0c1a2d] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[90%] lg:max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center relative z-10">
+      {/* 1. HERO: ESTABLISHED WITH UNDERSTANDING */}
+      <section className="relative pt-24 pb-20 md:pt-32 md:pb-40 overflow-hidden border-b border-slate-100 dark:border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(#1e3a5f_0.5px,transparent_0.5px)] [background-size:32px:32px] opacity-[0.03]"></div>
+        <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-10 animate-reveal-up legibility-container">
+            <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-6 py-2.5 rounded-full w-fit">
+              <span className="flex h-2 w-2 rounded-full bg-signal-gold animate-pulse"></span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-white">Institutional Mission</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.85]">
+              BUILT ON WISDOM. <br/>
+              <span className="text-signal-gold italic">ESTABLISHED</span> <br/>
+              WITH UNDERSTANDING.
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-xl leading-relaxed">
+              Compliance-first guidance for owner-operators who want to build something that lasts.
+            </p>
+            <div className="pt-4 flex flex-wrap gap-6">
+              <Link to="/readiness" className="inline-flex items-center space-x-4 bg-authority-blue text-white px-10 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 group border-b-8 border-slate-900">
+                <span>Begin Diagnosis Sequence</span>
+                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </div>
+          </div>
           
-          <div className="lg:col-span-5 relative group">
-            <div className="bg-[#1e3a5f] rounded-[3rem] p-1.5 shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)] relative overflow-hidden transition-transform duration-700 group-hover:-translate-y-2">
-              <img 
-                src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
-                alt="Vince Lawrence" 
-                className="w-full h-auto grayscale opacity-90 rounded-[2.8rem] transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105" 
-              />
-              <div className="absolute bottom-10 left-0 w-full flex justify-center">
-                 <div className="bg-authority-blue/90 backdrop-blur-md px-10 py-4 rounded-2xl border border-white/10 shadow-2xl">
-                    <p className="text-[12px] font-black text-signal-gold uppercase tracking-[0.4em]">VINCE LAWRENCE | FOUNDER</p>
-                 </div>
-              </div>
-              <div className="absolute -bottom-6 right-10 bg-signal-gold p-6 rounded-2xl shadow-2xl z-20 group-hover:rotate-12 transition-transform duration-500">
-                <Bookmark className="text-authority-blue fill-current" size={40} />
-              </div>
+          <div className="relative hidden lg:block">
+            <div className="bg-slate-50 dark:bg-surface-dark border-8 border-white dark:border-border-dark rounded-[4rem] shadow-2xl overflow-hidden aspect-[4/5] relative group">
+               <img 
+                 src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
+                 alt="LaunchPath Founder" 
+                 className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-1000 object-top"
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-authority-blue via-transparent to-transparent opacity-60"></div>
+               <div className="absolute bottom-10 left-10">
+                  <p className="text-[10px] font-black text-signal-gold uppercase tracking-[0.5em] mb-2">Founder & Lead Advisor</p>
+                  <p className="text-2xl font-black text-white uppercase tracking-tight">Vince Lawrence</p>
+               </div>
             </div>
-          </div>
-
-          <div className="lg:col-span-7 space-y-12">
-            <div className="space-y-6">
-              <p className="text-[13px] font-black uppercase tracking-[0.4em] text-signal-gold">WHO'S BEHIND LAUNCHPATH</p>
-              <h1 className="text-[48px] sm:text-[64px] md:text-[5.5rem] font-black font-serif leading-[0.85] uppercase tracking-tighter text-white">
-                BUILT ON <br/>FACTUAL <br/><span className="text-signal-gold">EXPERIENCE.</span>
-              </h1>
-            </div>
-
-            <div className="inline-flex items-center space-x-4 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl shadow-inner backdrop-blur-md">
-              <ShieldCheck size={24} className="text-signal-gold" />
-              <span className="text-[14px] font-black uppercase tracking-widest text-slate-300">Veteran-Owned Business</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
-              {[
-                { icon: <Briefcase size={28} />, text: "25+ Years Manufacturing & Operations Leadership" },
-                { icon: <Shield size={28} />, text: "OSHA-Certified Safety Coordinator" },
-                { icon: <Activity size={28} />, text: "Federal Compliance Background" },
-                { icon: <UserCheck size={28} />, text: "Stewardship-First Approach" }
-              ].map((item, i) => (
-                <div key={i} className="flex items-center space-x-6 p-6 bg-white/[0.03] border border-white/5 rounded-[2rem] transition-all duration-300 hover:bg-white/[0.07] hover:border-white/10 group/item">
-                  <div className="shrink-0 text-signal-gold group-hover/item:scale-110 transition-transform duration-300">{item.icon}</div>
-                  <p className="text-[14px] font-black uppercase tracking-widest text-white/70 leading-tight group-hover/item:text-white transition-colors">{item.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="pt-10 border-t border-white/5 max-w-2xl">
-              <p className="text-[20px] text-white/60 font-medium leading-[1.6] italic">
-                LaunchPath was developed from direct experience watching motor carriers fail due to a lack of systems rather than a lack of effort. Our mission is to standardize administrative order for the modern owner-operator.
-              </p>
+            <div className="absolute -bottom-10 -right-10 bg-signal-gold p-8 rounded-3xl shadow-2xl border-4 border-white dark:border-surface-dark transform hover:rotate-12 transition-transform cursor-default">
+               <ShieldCheck size={48} className="text-authority-blue" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: WHAT LAUNCHPATH IS */}
-      <section className="py-24 bg-white dark:bg-primary-dark">
-        <div className="max-w-[90%] md:max-w-4xl mx-auto text-center space-y-12">
-          <p className="text-[13px] font-black uppercase tracking-[0.4em] text-slate-400">WHAT LAUNCHPATH IS</p>
-          <h2 className="text-[32px] md:text-[40px] font-extrabold text-authority-blue dark:text-white leading-[1.6] tracking-tight">
-            LaunchPath is a 90-day compliance education system for new interstate motor carriers. We teach owner-operators how to build documentation systems that satisfy federal auditors and insurance underwriters — before mistakes become violations.
-          </h2>
-          <div className="h-2 w-32 bg-signal-gold mx-auto rounded-full"></div>
-        </div>
-      </section>
-
-      {/* SECTION 3: THE STANDARD (Systematic Protection) */}
-      <section className="py-24 lg:py-40 bg-[#0c1a2d] text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-authority-blue/20 blur-[150px] rounded-full pointer-events-none"></div>
+      {/* 2. THE STORY: WHY LAUNCHPATH EXISTS */}
+      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
+        <div className="max-w-[700px] mx-auto px-6 space-y-16">
+          <div className="text-center space-y-6">
+            <p className="text-[12px] font-black uppercase tracking-[0.6em] text-slate-400">THE GENESIS</p>
+            <h2 className="text-4xl md:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Why LaunchPath <span className="text-signal-gold italic">Exists.</span></h2>
+          </div>
           
-          <div className="text-center mb-32 space-y-6 relative z-10">
-            <p className="text-[13px] font-black uppercase tracking-[0.4em] text-signal-gold">THE STANDARD</p>
-            <h2 className="text-[40px] sm:text-[64px] md:text-[80px] font-black font-serif uppercase tracking-tighter leading-none text-white">
-              SYSTEMATIC PROTECTION.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
-            {/* RED PATH CARD */}
-            <div className="bg-[#1e3a5f]/20 border border-red-500/10 rounded-[3.5rem] p-10 md:p-16 lg:p-20 space-y-16 relative overflow-hidden group hover:shadow-[0_40px_80px_-20px_rgba(239,68,68,0.15)] transition-all duration-700">
-               <div className="absolute top-0 left-0 w-full h-3 bg-red-500 shadow-[0_2px_10px_rgba(239,68,68,0.5)]"></div>
-               <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-[13px] font-black uppercase tracking-[0.4em] text-red-400 mb-6">THE "WINGING IT" TRAP</h4>
-                    <p className="text-[32px] md:text-[40px] font-black font-serif uppercase tracking-tight text-white leading-none">THE REACTIVE TRAP.</p>
-                  </div>
-                  <XCircle size={48} className="text-red-500/30 group-hover:text-red-500 transition-colors duration-500" />
-               </div>
-               <ul className="space-y-10">
-                  {[
-                    { action: "Reactive Filing", result: "Terminal Violations" },
-                    { action: "Skipping Logs", result: "Equipment Exposure" },
-                    { action: "Audit Scrambling", result: "Authority Deactivation" },
-                    { action: "Messy Records", result: "Insurance Volatility" }
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center group/li transition-all duration-300">
-                      <XCircle className="text-red-400 mr-6 shrink-0 group-hover/li:scale-110 transition-transform" size={28} />
-                      <p className="text-[20px] md:text-[22px] leading-none text-white">
-                        <span className="font-black">{item.action}</span>
-                        <span className="mx-4 text-red-400 opacity-60">→</span>
-                        <span className="font-normal text-white/70">{item.result}</span>
-                      </p>
-                    </li>
-                  ))}
-               </ul>
-            </div>
-
-            {/* GOLD PATH CARD */}
-            <div className="bg-authority-blue border border-signal-gold/10 rounded-[3.5rem] p-10 md:p-16 lg:p-20 space-y-16 relative overflow-hidden group shadow-[0_60px_120px_-30px_rgba(0,0,0,0.5)] hover:shadow-[0_80px_150px_-30px_rgba(198,146,42,0.15)] transition-all duration-700 hover:-translate-y-2">
-               <div className="absolute top-0 left-0 w-full h-3 bg-signal-gold shadow-[0_2px_10px_rgba(198,146,42,0.5)]"></div>
-               <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-[13px] font-black uppercase tracking-[0.4em] text-signal-gold mb-6">THE SYSTEM OF ORDER</h4>
-                    <p className="text-[32px] md:text-[40px] font-black font-serif uppercase tracking-tight text-white leading-none">THE PROACTIVE STANDARD.</p>
-                  </div>
-                  <CheckCircle2 size={48} className="text-signal-gold/30 group-hover:text-signal-gold transition-colors duration-500" />
-               </div>
-               <ul className="space-y-10">
-                  {[
-                    { action: "Pre-Launch Installation", result: "Absolute System Control" },
-                    { action: "Daily DQ Workflows", result: "Permanent Authority Shield" },
-                    { action: "Audit-Ready Posture", result: "Non-Stop Operational Certainty" },
-                    { action: "Clinical Transparency", result: "Sustained Insurance Continuity" }
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center group/li transition-all duration-300">
-                      <CheckCircle2 className="text-signal-gold mr-6 shrink-0 group-hover/li:scale-110 transition-transform" size={28} />
-                      <p className="text-[20px] md:text-[22px] leading-none text-white">
-                        <span className="font-black">{item.action}</span>
-                        <span className="mx-4 text-signal-gold opacity-60">→</span>
-                        <span className="font-normal text-white/70">{item.result}</span>
-                      </p>
-                    </li>
-                  ))}
-               </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: KINGDOM STEWARDSHIP PHILOSOPHY */}
-      <section className="py-24 lg:py-48 bg-[#0c1a2d] text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-            <div className="lg:col-span-5 space-y-10 lg:sticky lg:top-40">
-              <div className="inline-flex items-center space-x-4 bg-white/5 border border-white/10 px-8 py-3 rounded-full shadow-lg">
-                <Anchor size={20} className="text-signal-gold" />
-                <span className="text-[12px] font-black uppercase tracking-[0.4em] text-signal-gold">STEWARDSHIP ETHIC</span>
-              </div>
-              <h2 className="text-[40px] sm:text-[56px] md:text-[64px] font-black font-serif uppercase tracking-tighter leading-[0.95]">
-                A KINGDOM <br/><span className="text-signal-gold">STEWARDSHIP</span> <br/>PHILOSOPHY.
-              </h2>
-              <p className="text-[20px] text-white/50 font-medium leading-[1.6] max-w-md">
-                We view operating authority as an entrusted function. We move carriers from a state of exposure to a state of refuge through documented evidence of discipline. LaunchPath is built on timeless principles of wisdom, order, and stewardship — not trends, hype, or shortcuts.
-              </p>
-            </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-              {[
-                { title: "ENTRUSTED AUTHORITY", desc: "Federal authority is a responsibility to be managed, not a right to be abused." },
-                { title: "INTEGRITY AS CURRENCY", desc: "We treat documentation with precision because auditors value accuracy above all." },
-                { title: "RADICAL ACCOUNTABILITY", desc: "We execute the right work even when no one is inspecting our files." },
-                { title: "DISCIPLINED RESTRAINT", desc: "Stability is an absolute prerequisite to commercial fleet growth." }
-              ].map((card, i) => (
-                <div key={i} className="bg-white/5 border border-white/10 p-12 rounded-[3.5rem] space-y-8 hover:bg-white/[0.08] transition-all group shadow-xl">
-                   <h4 className="text-[24px] font-black uppercase tracking-tight text-signal-gold group-hover:scale-105 transition-transform origin-left">{card.title}</h4>
-                   <p className="text-[18px] text-white/60 font-medium leading-[1.6]">{card.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: WHAT WE ARE NOT (Boundaries) */}
-      <section className="py-24 lg:py-48 bg-authority-blue text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-6 text-center space-y-24 relative z-10">
-          <div className="space-y-6">
-             <p className="text-[13px] font-black uppercase tracking-[0.4em] text-signal-gold">BOUNDARIES</p>
-             <h2 className="text-[48px] sm:text-[64px] md:text-[80px] font-black font-serif uppercase tracking-tight leading-none text-white">WHAT WE <br/><span className="text-white/20">ARE NOT.</span></h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10">
-            {[
-              { title: "LEGAL ADVICE", icon: <Ban size={32} />, desc: "LaunchPath is an educational entity. We do not provide legal representation or regulatory defense." },
-              { title: "DISPATCH SERVICES", icon: <ArrowRight size={32} />, desc: "We teach you how to choose loads based on risk factors, but we do not broker or dispatch freight." },
-              { title: "INSURANCE BROKERAGE", icon: <Ban size={32} />, desc: "We build safety files that insurers love, but we do not sell policies or negotiate individual rates." }
-            ].map((card, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-12 md:p-16 rounded-[4rem] text-left space-y-12 group hover:bg-white/[0.08] transition-all duration-700 shadow-2xl backdrop-blur-xl hover:-translate-y-2">
-                 <div className="w-20 h-20 bg-white/5 rounded-[2rem] flex items-center justify-center text-signal-gold shadow-inner group-hover:bg-signal-gold group-hover:text-authority-blue transition-all duration-500">
-                    {card.icon}
-                 </div>
-                 <div className="space-y-8">
-                    <h4 className="text-[28px] font-black uppercase tracking-tight text-signal-gold border-b-2 border-white/10 pb-8 group-hover:border-signal-gold/40 transition-colors">{card.title}</h4>
-                    <p className="text-[18px] text-white/70 font-medium leading-[1.6] group-hover:text-white transition-colors">{card.desc}</p>
-                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 6: FOUNDER VERIFICATION (Institutional Biography) */}
-      <section className="py-24 lg:py-56 bg-[#0c1a2d] text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Adjusted padding on md to prevent squishing */}
-          <div className="bg-[#020617] rounded-[4rem] p-8 md:p-14 lg:p-28 shadow-[0_80px_160px_-40px_rgba(0,0,0,0.8)] relative overflow-hidden border border-white/5 group/bio">
-            <div className="absolute top-0 right-0 p-16 opacity-[0.03] text-authority-blue pointer-events-none group-hover/bio:scale-110 transition-transform duration-1000">
-              <ScaleIcon size={400} />
-            </div>
+          <div className="space-y-10 text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+            <p>
+              LaunchPath didn’t begin as a business idea. It began as a <span className="text-authority-blue dark:text-white font-black">pause.</span>
+            </p>
+            <p>
+              I had the technical knowledge. I understood systems, compliance, responsibility, and risk. From the outside, starting a trucking operation made sense. But what stopped me wasn’t fear or lack of information—it was alignment.
+            </p>
             
-            <div className="relative z-10 space-y-20 lg:space-y-24">
-              {/* Header layout: Changed gap and font size for tablet parity */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 lg:gap-16">
-                <div className="space-y-6 lg:space-y-10">
-                  <div className="inline-flex items-center space-x-5 bg-authority-blue text-white px-6 py-3 lg:px-8 lg:py-4 rounded-2xl text-[10px] lg:text-[12px] font-black uppercase tracking-widest shadow-lg border border-white/5">
-                    <ShieldCheck size={20} className="text-signal-gold" />
-                    <span>INSTITUTIONAL BIOGRAPHY // VL-20Y-CERT</span>
-                  </div>
-                  {/* Reduced md font size from 80px to 56px to fix overlap */}
-                  <h3 className="text-[40px] sm:text-[48px] md:text-[56px] lg:text-[80px] font-black font-serif uppercase tracking-tighter leading-[0.95]">FOUNDER <br/><span className="text-signal-gold italic">VERIFICATION.</span></h3>
-                </div>
-                <div className="text-left md:text-right space-y-1 lg:space-y-2 shrink-0">
-                   <p className="text-[10px] lg:text-[12px] font-black uppercase tracking-widest text-white/20">ISSUE REGISTRY</p>
-                   <p className="text-base lg:text-[18px] font-mono font-bold text-white/40">NC-2025-LP-STND</p>
-                </div>
-              </div>
-
-              {/* Grid: Extended stacking to xl breakpoint to avoid cramped 2-column on iPad landscape */}
-              <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 lg:gap-24">
-                <div className="xl:col-span-8 space-y-12">
-                  <div className="prose prose-xl prose-invert max-w-none space-y-10 lg:space-y-12">
-                    <p className="text-white/80 font-bold leading-[1.6] text-[18px] sm:text-[20px] md:text-[24px]">
-                      Vince Lawrence is the Founder of LaunchPath and a recognized authority in industrial safety and operational governance. His professional tenure encompasses over two decades of manufacturing leadership, including roles as Supervisor and Business Unit Manager. 
-                    </p>
-                    <p className="text-white/50 font-medium leading-[1.6] text-[16px] sm:text-[18px] md:text-[20px]">
-                      As an OSHA-certified safety coordinator, Lawrence developed high-stakes safety protocols that now serve as the structural foundation for LaunchPath’s "Compliance Backbone" and "Insurance Continuity" pillars. Bridging the gap between industrial safety and motor carrier compliance, he applies a rigorous, veteran-led stewardship to the logistics industry. 
-                    </p>
-                    <p className="text-white/50 font-medium leading-[1.6] text-[16px] sm:text-[18px] md:text-[20px]">
-                      His background in managing large-scale federal safety standards ensures that the LaunchPath system provides carriers with the same precision required by industrial manufacturing auditors. Driven by a philosophy of Kingdom Stewardship and his status as a U.S. Navy veteran, Lawrence is dedicated to establishing an institutional standard for the next generation of owner-operators—prioritizing technical accuracy over administrative speculation.
-                    </p>
-                  </div>
-                  
-                  <div className="pt-12 lg:pt-16 border-t border-white/5 flex flex-wrap gap-8 lg:gap-12 items-center opacity-30">
-                    {["VETERAN-LED STEWARDSHIP", "OSHA SAFETY STANDARD", "AUDIT-VERIFIED LOGIC"].map((label, i) => (
-                      <div key={i} className="flex items-center space-x-3 lg:space-x-4">
-                        <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-signal-gold"></div>
-                        <span className="text-[10px] lg:text-[12px] font-black uppercase tracking-widest">{label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="xl:col-span-4 space-y-12 lg:space-y-16">
-                   <div className="space-y-6 lg:space-y-8">
-                      <h4 className="text-[10px] lg:text-[13px] font-black uppercase tracking-[0.4em] text-signal-gold">CORE CREDENTIALS</h4>
-                      <div className="space-y-3 lg:space-y-4">
-                         {[
-                           { icon: <History size={20} />, t: "20+ YEAR TENURE" },
-                           { icon: <Shield size={20} />, t: "OSHA CERTIFIED" },
-                           { icon: <Gavel size={20} />, t: "FED COMPLIANCE EXPERT" },
-                           { icon: <Fingerprint size={20} />, t: "U.S. NAVY VETERAN" }
-                         ].map((cred, i) => (
-                           <div key={i} className="flex items-center space-x-5 lg:space-x-6 p-5 lg:p-7 bg-white/[0.03] rounded-[1.5rem] lg:rounded-[2rem] border border-white/10 group/item hover:bg-white/[0.07] transition-all">
-                              <div className="text-signal-gold group-hover/item:scale-110 transition-transform shrink-0">{cred.icon}</div>
-                              <span className="text-[14px] lg:text-[16px] font-black uppercase tracking-widest">{cred.t}</span>
-                           </div>
-                         ))}
-                      </div>
-                   </div>
-                   
-                   <div className="p-8 lg:p-12 bg-white/[0.03] rounded-[2.5rem] lg:rounded-[3rem] border-2 border-dashed border-white/10 text-center space-y-8 lg:space-y-10">
-                      <div className="flex justify-center">
-                        <Logo light={true} className="h-12 lg:h-16 grayscale opacity-40" />
-                      </div>
-                      <p className="text-[10px] lg:text-[12px] font-black text-white/30 uppercase tracking-[0.3em] leading-relaxed">MASTER STANDARD <br/>AUTHENTICATED</p>
-                   </div>
-                </div>
-              </div>
+            <div className="p-10 bg-slate-50 dark:bg-white/5 rounded-[3rem] border-l-8 border-signal-gold my-12 shadow-inner">
+              <p className="text-2xl md:text-3xl font-black italic font-serif text-authority-blue dark:text-white leading-tight mb-0">
+                "What a business produces is a reflection of what’s been formed inside the person building it."
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* SECTION 7: INSTITUTIONAL SCOPE (Foundation of Truth) */}
-      <section className="py-24 lg:py-56 bg-[#fafaf9] dark:bg-primary-dark transition-colors duration-500">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-32 space-y-6">
-            <p className="text-[13px] font-black uppercase tracking-[0.4em] text-slate-400">INSTITUTIONAL SCOPE</p>
-            <h2 className="text-[48px] sm:text-[64px] md:text-[80px] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
-              THE FOUNDATION OF <span className="text-signal-gold">TRUTH.</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-12">
-            {[
-              { 
-                icon: <Shield size={40} className="text-authority-blue dark:text-signal-gold" />, 
-                title: "TRUTH", 
-                desc: "We prioritize technical regulatory accuracy over speculative revenue promises and marketing hype." 
-              },
-              { 
-                icon: <Scale size={40} className="text-authority-blue dark:text-signal-gold" />, 
-                title: "BOUNDARIES", 
-                desc: "We enforce a clear separation between systematic educational guidance and specific legal advice." 
-              },
-              { 
-                icon: <Target size={40} className="text-authority-blue dark:text-signal-gold" />, 
-                title: "STEWARDSHIP", 
-                desc: "We treat carrier operations as high-value legacy assets entrusted to the care of the owner-operator." 
-              }
-            ].map((card, i) => (
-              <div key={i} className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-16 rounded-[4rem] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-700 flex flex-col h-full group">
-                <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-[2rem] flex items-center justify-center mb-12 shadow-inner group-hover:scale-110 group-hover:bg-authority-blue group-hover:text-white transition-all duration-500">
-                  {card.icon}
-                </div>
-                <h3 className="text-[28px] font-black text-authority-blue dark:text-white uppercase tracking-tight mb-10 font-serif leading-none">{card.title}</h3>
-                <p className="text-[20px] font-bold text-slate-500 dark:text-slate-400 leading-[1.6]">
-                  {card.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 8: READY TO BEGIN? (CTA) */}
-      <section className="py-32 lg:py-64 bg-white dark:bg-primary-dark border-t border-slate-100 dark:border-white/5 overflow-hidden transition-colors duration-500">
-        <div className="max-w-[90%] md:max-w-5xl mx-auto text-center space-y-24">
-          <div className="space-y-10">
-            <h2 className="text-[48px] sm:text-[64px] md:text-[100px] font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">READY TO <span className="text-signal-gold italic">BEGIN?</span></h2>
-            <p className="text-[20px] sm:text-[24px] text-slate-500 dark:text-slate-400 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-[0.2em]">
-              Choose your next step in the LaunchPath verification sequence.
+            <p>
+              In trucking, I watched capable, motivated people produce chaos, stress, and short-lived success—not because they were careless, but because they were trained with the wrong deposits early on: urgency over understanding, shortcuts over structure, and noise over wisdom.
+            </p>
+            <p>
+              I didn’t stop because I couldn’t build. I stopped because I refused to build something that wasn’t <span className="text-authority-blue dark:text-white font-black italic">established.</span> Instead of asking “How fast can I start?” I asked a different question: <strong>What must be true before I do?</strong>
             </p>
           </div>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
-            <Link 
-              to="/readiness" 
-              className="w-full sm:w-auto bg-authority-blue text-white px-16 py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-[20px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-[12px] border-slate-900 group"
-            >
-              TAKE THE REACH TEST™
-              <ArrowRight size={28} className="ml-5 group-hover:translate-x-2 transition-transform" />
-            </Link>
-            <Link 
-              to="/learning-path" 
-              className="w-full sm:w-auto bg-white dark:bg-gray-800 border-4 border-authority-blue/20 dark:border-white/10 text-authority-blue dark:text-white px-16 py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-[20px] hover:bg-slate-50 dark:hover:bg-gray-700 transition-all flex items-center justify-center shadow-lg"
-            >
-              VIEW THE PROGRAM
-            </Link>
-          </div>
-          
-          <p className="text-[13px] font-black uppercase tracking-[0.6em] text-slate-300 dark:text-slate-700 mt-24 italic">
-            END OF INSTITUTIONAL STATEMENT — REVISION V4.2
-          </p>
         </div>
       </section>
 
+      {/* 3. BUILT ON FACTUAL EXPERIENCE */}
+      <section className="py-24 md:py-48 bg-authority-blue text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div className="space-y-12 legibility-container mx-0">
+              <div className="space-y-6">
+                <p className="text-[12px] font-black uppercase tracking-[0.5em] text-signal-gold">THE ANCHOR</p>
+                <h2 className="text-5xl md:text-7xl font-black font-serif uppercase leading-[0.9] tracking-tighter">
+                  BUILT ON <br/><span className="text-signal-gold italic">FACTUAL</span> <br/>EXPERIENCE.
+                </h2>
+              </div>
+              <p className="text-xl text-white/70 font-medium leading-relaxed max-w-xl">
+                LaunchPath is the distillation of over two decades of high-stakes operational governance. We treat your authority with the same clinical precision I used for major institutional manufacturing fleets.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {[
+                  { label: "20+ YEARS", sub: "FEDERAL COMPLIANCE MANAGEMENT", icon: <Clock size={20} /> },
+                  { label: "U.S. NAVY", sub: "VETERAN (HONORABLE)", icon: <Anchor size={20} /> },
+                  { label: "OSHA-CERTIFIED", sub: "SAFETY COORDINATION", icon: <ShieldCheck size={20} /> },
+                  { label: "1,200+ STAFF", sub: "RISK MITIGATION OVERSIGHT", icon: <Users size={20} /> }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start space-x-5 group">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-signal-gold group-hover:bg-white/10 transition-all shadow-inner">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-black uppercase tracking-widest text-white">{item.label}</h4>
+                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50 leading-relaxed mt-1">{item.sub}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative group">
+              <div className="bg-[#020617] p-12 md:p-16 rounded-[4rem] border-b-[12px] border-signal-gold shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-10 opacity-5">
+                   <Briefcase size={200} />
+                </div>
+                <div className="relative z-10 space-y-12">
+                   <h3 className="text-[11px] font-black uppercase tracking-[0.5em] text-signal-gold">MASTER CUSTODIAN ID: LP-VLAW-01</h3>
+                   <div className="space-y-6">
+                      <p className="text-2xl font-black font-serif uppercase tracking-tight text-white italic">"You do not rise to the level of ambition. You fall to the level of preparation."</p>
+                      <div className="h-1 w-20 bg-signal-gold"></div>
+                   </div>
+                   <p className="text-white/60 font-medium leading-relaxed italic mb-0">
+                     "That is why LaunchPath is deliberate, structured, and sometimes uncomfortable. It asks people to slow down, count the cost, and confront reality early—because reality always collects its debt."
+                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. A KINGDOM STEWARDSHIP PHILOSOPHY */}
+      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+            <div className="space-y-12 legibility-container mx-0">
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-3 text-authority-blue dark:text-signal-gold">
+                  <Anchor size={20} />
+                  <span className="text-[12px] font-black uppercase tracking-[0.4em]">STEWARDSHIP ETHIC</span>
+                </div>
+                <h2 className="text-5xl md:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase leading-[0.9] tracking-tighter">
+                  A KINGDOM <br/><span className="text-signal-gold italic">STEWARDSHIP</span> <br/>PHILOSOPHY.
+                </h2>
+              </div>
+              <div className="space-y-8">
+                <p className="text-2xl font-black font-serif text-authority-blue dark:text-white italic leading-tight">
+                  “A good person produces good things from the treasury of a good heart…” <br/>— Luke 6:45
+                </p>
+                <p className="text-lg text-slate-500 font-medium leading-relaxed max-w-lg mb-0">
+                  What a business produces over time reflects what was deposited at the beginning—its training, systems, discipline, and standards. LaunchPath exists to help operators make the right deposits early.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              {[
+                { title: "ENTRUSTED ASSETS", desc: "We view operating authority as an entrusted function to be managed with integrity." },
+                { title: "SYSTEMIC ORDER", desc: "Stability is an absolute prerequisite to commercial fleet growth." },
+                { title: "RADICAL TRUTH", desc: "We prioritize technical accuracy over speculative revenue promises." },
+                { title: "DISCIPLINED RESTRAINT", desc: "Clarity before commitment. Compliance before acceleration." }
+              ].map((item, i) => (
+                <div key={i} className="space-y-6 p-10 bg-slate-50 dark:bg-surface-dark rounded-[3rem] border border-slate-100 dark:border-border-dark group hover:shadow-xl transition-all">
+                  <h4 className="text-sm font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold">{item.title}</h4>
+                  <p className="text-sm text-slate-400 font-medium leading-relaxed uppercase tracking-tighter mb-0">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SYSTEMATIC PROTECTION: THE STANDARDS */}
+      <section className="py-24 md:py-48 bg-slate-50 dark:bg-surface-dark border-y border-slate-100 dark:border-border-dark overflow-hidden transition-colors">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="text-center mb-24 space-y-4">
+            <p className="text-[12px] font-black uppercase tracking-[0.6em] text-slate-400">THE STANDARD</p>
+            <h2 className="text-6xl md:text-8xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
+              SYSTEMATIC <br/><span className="text-signal-gold italic">PROTECTION.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-[1000px] mx-auto">
+            {/* The Reactive Trap */}
+            <div className="bg-white dark:bg-primary-dark p-12 md:p-16 rounded-[4rem] border-t-[12px] border-red-500 shadow-xl relative flex flex-col group">
+              <div className="absolute top-10 right-10 opacity-10">
+                <XCircle size={64} className="text-red-500" />
+              </div>
+              <p className="text-[11px] font-black uppercase tracking-[0.4em] text-red-500 mb-8">THE "WINGING IT" TRAP</p>
+              <h3 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight mb-12">THE <br/><span className="text-red-600">REACTIVE</span> <br/>TRAP.</h3>
+              <ul className="space-y-8 flex-grow">
+                {[
+                  { l: "Reactive Filing", r: "Violations" },
+                  { l: "Audit Scrambling", r: "Deactivation" },
+                  { l: "Messy Records", r: "Volatility" }
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center justify-between text-sm font-black uppercase tracking-widest text-slate-400">
+                    <div className="flex items-center">
+                      <XCircle size={18} className="text-red-500 mr-4" />
+                      <span>{item.l}</span>
+                    </div>
+                    <ArrowRight size={14} className="mx-4 opacity-30" />
+                    <span className="text-slate-800 dark:text-slate-200">{item.r}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* The Proactive Standard */}
+            <div className="bg-authority-blue p-12 md:p-16 rounded-[4rem] border-t-[12px] border-signal-gold shadow-2xl relative flex flex-col group overflow-hidden text-white">
+              <div className="absolute top-10 right-10 opacity-20">
+                <CheckCircle2 size={64} className="text-signal-gold" />
+              </div>
+              <p className="text-[11px] font-black uppercase tracking-[0.4em] text-signal-gold mb-8">THE SYSTEM OF ORDER</p>
+              <h3 className="text-4xl font-black font-serif uppercase tracking-tight mb-12">THE <br/><span className="text-signal-gold">PROACTIVE</span> <br/>STANDARD.</h3>
+              <ul className="space-y-8 flex-grow">
+                {[
+                  { l: "Pre-Launch Installation", r: "System Control" },
+                  { l: "Audit-Ready Posture", r: "Operational Certainty" },
+                  { l: "Clinical Transparency", r: "Insurance Continuity" }
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center justify-between text-sm font-black uppercase tracking-widest text-white/40">
+                    <div className="flex items-center">
+                      <CheckCircle2 size={18} className="text-signal-gold mr-4" />
+                      <span>{item.l}</span>
+                    </div>
+                    <ArrowRight size={14} className="mx-4 opacity-30" />
+                    <span className="text-white">{item.r}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-24 text-center legibility-container">
+             <p className="text-2xl font-black font-serif text-authority-blue dark:text-white uppercase leading-tight italic">
+               “By wisdom a house is built, and through understanding it is established.” <br/>— Proverbs 24:3–4
+             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FOUNDER VERIFICATION BIO */}
+      <section className="py-24 md:py-48 bg-[#020617] text-white">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
+            <div className="lg:col-span-4 space-y-12">
+               <div className="relative group">
+                 <div className="bg-white/5 border-4 border-white/10 rounded-[4rem] overflow-hidden shadow-2xl">
+                   <img 
+                    src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
+                    alt="Vince Lawrence" 
+                    className="w-full grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700" 
+                   />
+                 </div>
+                 <div className="absolute -bottom-6 -right-6 bg-signal-gold p-6 rounded-3xl shadow-xl border-4 border-[#020617] group-hover:rotate-12 transition-transform">
+                   <Award size={40} className="text-authority-blue" />
+                 </div>
+               </div>
+               <div className="space-y-6">
+                 <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">CORE CREDENTIALS</h4>
+                 {[
+                   { icon: <Clock size={16} />, text: "20+ YEAR TENURE" },
+                   { icon: <ShieldCheck size={16} />, text: "OSHA CERTIFIED" },
+                   { icon: <Gavel size={16} />, text: "FED COMPLIANCE EXPERT" },
+                   { icon: <Users size={16} />, text: "U.S. NAVY VETERAN" }
+                 ].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-4 p-5 border border-white/10 rounded-2xl bg-white/5 hover:bg-white/10 transition-all">
+                       <div className="text-signal-gold">{item.icon}</div>
+                       <span className="text-[11px] font-black uppercase tracking-[0.25em]">{item.text}</span>
+                    </div>
+                 ))}
+               </div>
+            </div>
+
+            <div className="lg:col-span-8 space-y-16 legibility-container mx-0">
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-3 bg-white/10 border border-white/20 px-6 py-2.5 rounded-full">
+                  <ShieldCheck size={14} className="text-signal-gold" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em]">INSTITUTIONAL BIOGRAPHY // VL-20Y-CERT</span>
+                </div>
+                <h2 className="text-6xl md:text-8xl font-black font-serif uppercase tracking-tighter leading-none">
+                  FOUNDER <br/><span className="text-signal-gold italic">VERIFICATION.</span>
+                </h2>
+              </div>
+
+              <div className="space-y-10 text-lg md:text-xl text-white/60 font-medium leading-relaxed max-w-[700px]">
+                <p>
+                  Vince Lawrence is the Founder of LaunchPath and a recognized authority in industrial safety and operational governance. His background in managing large-scale federal safety standards ensures that the LaunchPath system provides carriers with the same precision required by industrial manufacturing auditors.
+                </p>
+                <p>
+                  As an OSHA-certified safety coordinator, Lawrence applies a rigorous, veteran-led stewardship to the logistics industry. Driven by a philosophy of Kingdom Stewardship and his status as a U.S. Navy veteran, Lawrence is dedicated to establishing an institutional standard for the next generation of owner-operators—prioritizing technical accuracy over administrative speculation.
+                </p>
+              </div>
+
+              <div className="p-12 border-2 border-dashed border-white/10 rounded-[3rem] text-center max-w-[700px]">
+                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 mb-0">MASTER STANDARD AUTHENTICATED</p>
+              </div>
+              
+              <div className="pt-12">
+                 <Link to="/readiness" className="bg-white text-authority-blue px-14 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[12px] shadow-2xl hover:bg-signal-gold transition-all active:scale-95 inline-flex items-center group border-b-8 border-slate-300">
+                    Request Admission Interview <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
+                 </Link>
+                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mt-10">LaunchPath is selective by design. Admission begins with alignment, not payment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER ANCHOR */}
+      <section className="py-24 bg-white dark:bg-primary-dark text-center border-t border-slate-100 dark:border-white/5">
+         <p className="text-[11px] font-black uppercase tracking-[0.8em] text-slate-300 italic">
+            BUILT ON WISDOM. ESTABLISHED WITH UNDERSTANDING. DESIGNED FOR ENDURANCE.
+         </p>
+      </section>
     </div>
   );
 };
