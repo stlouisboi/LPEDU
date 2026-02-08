@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -26,7 +27,6 @@ import {
   BarChart3,
   Target,
   ShieldCheck,
-  // Fix: Added missing DollarSign icon import
   DollarSign
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -229,7 +229,7 @@ const HomePage: React.FC = () => {
             </div>
 
             <div className="pt-8">
-              <Link to="/readiness" className="inline-flex items-center space-x-6 bg-[#C5A059] text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-white transition-all active:scale-95 group border-b-8 border-[#8e7340]">
+              <Link to="/readiness" className="inline-flex items-center space-x-6 bg-[#C5A059] text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_30px_60px_rgba(197,160,89,0.3)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-8 border-[#8e7340]">
                 <span>Verify Admission Readiness</span>
                 <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
               </Link>
@@ -397,7 +397,7 @@ const HomePage: React.FC = () => {
                 </h2>
              </div>
              <p className="text-2xl font-bold text-slate-500 max-w-4xl leading-relaxed uppercase tracking-tight">
-               IDENTIFICATION OF HIGH-PROBABILITY FAILURE PATTERNS USED BY FMCSA INVESTIGATORS TO INITIATE REMEDIAL ENFORCEMENT ACTIONS.
+               IDENTIFICATION OF HIGH-PROBABILITY FAILURE PATTERNS USED BY INVESTIGATORS.
              </p>
           </header>
 
@@ -509,7 +509,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. THE "MATH OF SURVIVAL" - TCO ANCHOR */}
+      {/* 6. THE "MATH OF SURVIVAL" - TCO ANCHOR - LINKED TO CALCULATOR */}
       <section className="py-24 md:py-48 bg-[#C5A059] text-[#002244] relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -580,7 +580,7 @@ const HomePage: React.FC = () => {
               <p className="text-2xl md:text-3xl text-slate-300 font-medium max-w-4xl mx-auto leading-[1.6]">You didn't get your authority to hope you don't get audited. You got it to build something that lasts. LaunchPath gives you the infrastructure to operate with discipline.</p>
            </header>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-10 pt-10">
-              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.4)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={32} className="ml-5 group-hover:translate-x-2 transition-transform" /></Link>
+              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] shadow-[0_30px_70px_-20px_rgba(197,160,89,0.4)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={32} className="ml-5 group-hover:translate-x-2 transition-transform" /></Link>
               <Link to="/pricing" className="w-full sm:w-auto border-4 border-white/20 px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] hover:bg-white/5 transition-all flex items-center justify-center">VIEW ADMISSION PROTOCOL</Link>
            </div>
            

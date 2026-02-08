@@ -49,6 +49,7 @@ import ReachTestPage from './pages/ReachTestPage';
 import TCOCalculatorPage from './pages/TCOCalculatorPage';
 import TCOPreviewPage from './pages/TCOPreviewPage';
 import OperatorPortal from './pages/OperatorPortal';
+import ExposureMatrixPage from './pages/ExposureMatrixPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -108,9 +109,9 @@ const Header = () => {
   const navItems = [
     { name: 'About', path: '/about' },
     { name: 'Program', path: '/learning-path' },
+    { name: 'Matrix', path: '/exposure-matrix' },
     { name: 'Resources', path: '/resources' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'FAQ', path: '/faq' }
+    { name: 'Blog', path: '/blog' }
   ];
 
   return (
@@ -166,9 +167,10 @@ const Header = () => {
                 </Link>
               )}
 
+              {/* Pinnd Admission Protocol Button - High High Fidelity */}
               <Link 
-                to="/readiness" 
-                className="bg-signal-gold text-authority-blue px-10 py-4.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] hover:bg-white hover:shadow-2xl transition-all active:scale-95 shadow-xl border-b-4 border-slate-900"
+                to="/pricing" 
+                className="bg-signal-gold text-authority-blue px-10 py-5 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:shadow-[0_20px_40px_rgba(198,146,42,0.4)] transition-all active:scale-95 shadow-2xl border-b-8 border-slate-900 group"
               >
                 Admission Protocol
               </Link>
@@ -238,7 +240,7 @@ const Header = () => {
               </Link>
 
               <Link 
-                to="/readiness" 
+                to="/pricing" 
                 onClick={() => setIsMenuOpen(false)}
                 className="block w-full text-center bg-signal-gold text-authority-blue py-9 rounded-[2.5rem] text-xl font-black uppercase tracking-[0.2em] shadow-2xl border-b-8 border-slate-900"
               >
@@ -290,7 +292,7 @@ const Footer = () => {
                 {[
                   { name: 'Program Roadmap', path: '/learning-path' },
                   { name: 'Admission Protocol', path: '/pricing' },
-                  { name: 'TCO Calculator', path: '/tools/tco-preview' }
+                  { name: 'TCO Calculator', path: '/tools/tco-calculator' }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
@@ -309,7 +311,7 @@ const Footer = () => {
                 {[
                   { name: 'REACH Test', path: '/readiness' },
                   { name: 'Resources', path: '/resources' },
-                  { name: 'FAQ', path: '/faq' },
+                  { name: 'Exposure Matrix', path: '/exposure-matrix' },
                   { name: 'Blog', path: '/blog' }
                 ].map((link) => (
                   <li key={link.name}>
@@ -523,6 +525,7 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/clarification" element={<ClarificationPage />} />
+              <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
               <Route path="/learning-path" element={<LearningPathPage />} />
               <Route path="/resources" element={<ResourcesPage />} />
               <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
