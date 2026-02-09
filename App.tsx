@@ -5,7 +5,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import { doc, onSnapshot } from 'firebase/firestore';
 
 // Core Config & Context
-import { db, auth } from './config/firebase';
+import { db, auth } from './firebase';
 
 // OR if you exported isFirebaseConfigured from firebase.ts:
 // import { db, auth, isFirebaseConfigured } from './config/firebase';
