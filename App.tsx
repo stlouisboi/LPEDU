@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Sun, Moon, Layout, ShieldCheck } from 'lucide-react'; // Group your icons here
+import { Sun, Moon, Layout, ShieldCheck } from 'lucide-react'; // Closed the bracket correctly here
 import AdminDashboard from './pages/admin/AdminDashboard';
   Sun, 
   Moon, 
