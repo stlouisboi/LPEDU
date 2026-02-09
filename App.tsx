@@ -1,9 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { 
-  Sun, Moon, Menu, X, ChevronRight, Lock, Youtube, Facebook, 
-  Linkedin, ShieldCheck, Layout, LayoutDashboard, Music 
-} from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import { doc, onSnapshot } from 'firebase/firestore';
 
 // Core Config & Context
