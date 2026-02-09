@@ -16,7 +16,7 @@ import {
   Lock
 } from 'lucide-react';
 import Logo from './Logo';
-import SuccessProtocolModal from './SuccessProtocolModal';
+import SuccessProtocol from './SuccessProtocol';
 
 interface AdmissionTerminalV42Props {
   isOpen: boolean;
@@ -26,7 +26,7 @@ interface AdmissionTerminalV42Props {
 /**
  * AdmissionTerminalV42: High-Security Registry Gate
  * Blueprint: image_798d1e.png
- * Handles Security Identity creation and Operator Registry filing.
+ * Handles Security Identity creation, Operator Registry filing, and MailerLite Uplink.
  */
 const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -41,25 +41,30 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
 
   if (!isOpen) return null;
 
-  const handleAdmissionSequence = async (e: React.FormEvent) => {
+  /**
+   * handleRegistrySubmit: Core Admission Sequence
+   * Integrates Firebase Identity, Firestore Registry, and MailerLite Nurture.
+   */
+  const handleRegistrySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
       if (!db || !auth) throw new Error("SYSTEM_OFFLINE: Registry synchronization failed.");
 
-      // 1. Create the Security Identity (Firebase Auth)
+      // 1. CREATE FIREBASE ACCOUNT (Security Identity)
       // Using institutional temporary password protocol
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email, "LaunchPathTemp123!");
       const user = userCredential.user;
 
-      // 2. File the Professional Profile in the 'operators' vault (Firestore)
+      // 2. INITIALIZE FIRESTORE DOCUMENT (Registry File)
+      // We index this under 'operators' as per the latest blueprint
       await setDoc(doc(db, "operators", user.uid), {
         fullName: formData.fullName,
         email: formData.email,
         carrierName: formData.carrierName,
         dotNumber: formData.dotNumber,
-        enrolled: false, // Stewardship Filter: Mandatory Lock
+        enrolled: false, // Stewardship Filter remains LOCKED
         authorityStatus: "Pending Verification",
         integrityScore: 70, // Baseline for new entrants
         createdAt: serverTimestamp(),
@@ -67,9 +72,48 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
         uplinkStatus: 'SYNCHRONIZED'
       });
 
-      console.log("Registry Protocol Initialized for Entity:", user.uid);
+      console.log("Institutional Registry Complete. Identity Verified:", user.uid);
+
+      // 3. MAILERLITE UPLINK (Lead Nurture)
+      // Subscribing email to Group ID: 178951579261470547
+      // Setting 'Stewardship Status' custom field to 'Pending Audit'
+      const mailerliteApiKey = (process.env as any).VITE_MAILERLITE_API_KEY;
       
-      // 3. Trigger Success Protocol
+      if (mailerliteApiKey && mailerliteApiKey !== "") {
+        fetch('https://connect.mailerlite.com/api/subscribers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${mailerliteApiKey}`
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            fields: {
+              name: formData.fullName,
+              stewardship_status: "Pending Audit"
+            },
+            groups: ["178951579261470547"]
+          })
+        }).catch(err => console.error("MailerLite Uplink Fault:", err));
+      } else {
+        // Fallback to form-based submission if API key is missing (graceful degradation)
+        const mlFormId = (process.env as any).VITE_MAILERLITE_FORM_ID;
+        if (mlFormId) {
+          const mlFormData = new FormData();
+          mlFormData.append('fields[email]', formData.email);
+          mlFormData.append('fields[name]', formData.fullName);
+          mlFormData.append('fields[stewardship_status]', 'Pending Audit');
+          
+          fetch(`https://assets.mailerlite.com/forms/1989508/${mlFormId}/subscribe`, {
+            method: 'POST',
+            body: mlFormData,
+            mode: 'no-cors'
+          }).catch(err => console.warn("MailerLite Form Fallback Fault:", err));
+        }
+      }
+      
+      // 4. Trigger Success Protocol
       setIsSuccess(true);
     } catch (error: any) {
       console.error("Admission Error: INVALID REGISTRY ATTEMPT", error);
@@ -84,7 +128,7 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
   };
 
   if (isSuccess) {
-    return <SuccessProtocolModal isOpen={isSuccess} />;
+    return <SuccessProtocol isOpen={isSuccess} />;
   }
 
   return (
@@ -106,7 +150,7 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
 
             <div className="space-y-8 pt-6">
               <div className="flex items-center space-x-4">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_15px_rgba(52,211,153,0.6)]"></div>
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">UPLINK: SYNCHRONIZED</span>
               </div>
               <div className="flex items-center space-x-4 opacity-50">
@@ -118,7 +162,7 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
 
           <div className="mt-12 lg:mt-0 relative z-10">
             <p className="text-[10px] font-bold text-white/30 leading-relaxed uppercase tracking-tighter max-w-[250px]">
-              Authorization required to provision operating assets. Identity verification is final.
+              Authorization required to provision operating assets. Identity verification is final and permanent.
             </p>
           </div>
           
@@ -138,7 +182,7 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
             <X size={24} className="group-hover:rotate-90 transition-transform" />
           </button>
 
-          <form onSubmit={handleAdmissionSequence} className="space-y-12">
+          <form onSubmit={handleRegistrySubmit} className="space-y-12">
             <div className="space-y-3">
               <h2 className="text-4xl font-black font-serif uppercase tracking-tight text-[#002244] dark:text-white leading-none">Credentials Required</h2>
               <p className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400">Initialize Admission Sequence</p>

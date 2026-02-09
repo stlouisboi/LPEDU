@@ -1,4 +1,3 @@
-
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -19,7 +18,8 @@ export default defineConfig(({ mode }) => {
       'process.env.VITE_FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(env.VITE_FIREBASE_MESSAGING_SENDER_ID || ""),
       'process.env.VITE_FIREBASE_APP_ID': JSON.stringify(env.VITE_FIREBASE_APP_ID || ""),
       // MailerLite configuration
-      'process.env.VITE_MAILERLITE_FORM_ID': JSON.stringify(env.VITE_MAILERLITE_FORM_ID || "")
+      'process.env.VITE_MAILERLITE_FORM_ID': JSON.stringify(env.VITE_MAILERLITE_FORM_ID || ""),
+      'process.env.VITE_MAILERLITE_API_KEY': JSON.stringify(env.VITE_MAILERLITE_API_KEY || "")
     },
     server: {
       historyApiFallback: true
