@@ -15,7 +15,10 @@ import {
   Zap,
   Monitor,
   Calendar,
-  FileText
+  FileText,
+  Cpu,
+  Terminal,
+  Activity
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 import { GeneratedVideo } from '../../types';
@@ -23,9 +26,8 @@ import { COURSE_MODULES } from '../../constants';
 import VideoUploader from '../../components/admin/VideoUploader';
 
 /**
- * Video Studio Lab - Neural Curriculum Asset Synthesis
- * This component manages the generation and archival of educational video assets
- * using the Veo 3.1 Neural Engine.
+ * Video Studio Lab: Neural Curriculum Asset Synthesis
+ * This component directs the synthesis and archival of educational visualizations.
  */
 const VideoLab = () => {
   const [videos, setVideos] = useState<GeneratedVideo[]>([]);
@@ -45,10 +47,11 @@ const VideoLab = () => {
   });
 
   const reassuringMessages = [
-    "Synthesizing compliance visuals...", 
-    "Baking neural light models...", 
-    "Rendering motion vectors...",
-    "Finalizing administrative rendering..."
+    "SEQUENCING NEURAL ASSET...", 
+    "BAKING LIGHT TRANSPORT MODELS...", 
+    "PROVISIONING RENDER NODES...",
+    "FINALIZING CINEMATIC BUFFERS...",
+    "UPLINKING TO CLOUD REGISTRY..."
   ];
 
   useEffect(() => {
@@ -80,8 +83,8 @@ const VideoLab = () => {
   };
 
   /**
-   * Generates a video using Veo 3.1 model.
-   * Following @google/genai guidelines for Video Generation and API key management.
+   * generateAIVideo: Triggers Veo 3.1 Synthesis
+   * Adheres to long-polling and persistent download patterns.
    */
   const generateAIVideo = async () => {
     if (!formData.prompt || isGenerating) return;
@@ -92,11 +95,10 @@ const VideoLab = () => {
     }, 12000);
 
     try {
-      // Guideline: Create a new GoogleGenAI instance right before making an API call
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       let config: any = {
         model: 'veo-3.1-fast-generate-preview',
-        prompt: `Institutional cinematic visualization for LaunchPath: ${formData.prompt}. High-quality, professional tone.`,
+        prompt: `Institutional curriculum visualization for LaunchPath: ${formData.prompt}. Cinematic, professional, 1080p target.`,
         config: { 
           numberOfVideos: 1, 
           resolution: '720p', 
@@ -117,19 +119,19 @@ const VideoLab = () => {
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // Guideline: Create a new instance right before making a polling API call
+        // Requirement: Renewed instance for polling
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        operation = await pollAi.operations.getVideosOperation({ operation: operation });
+        operation = await pollAi.operations.getVideosOperation({ operation });
       }
 
       if (operation.error) {
-        throw new Error(operation.error.message || "Neural synthesis failed.");
+        throw new Error(operation.error.message || "Synthesis error.");
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
-      if (!downloadLink) throw new Error("Generated video link missing.");
+      if (!downloadLink) throw new Error("Terminal mismatch: Result missing.");
 
-      // Fetch the generated MP4 using the API key as required by guidelines
+      // Requirement: Fetch with API Key
       const vidRes = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
       const blob = await vidRes.blob();
       const vidPath = `generated/${Date.now()}.mp4`;
@@ -152,10 +154,10 @@ const VideoLab = () => {
     } catch (e: any) {
       if (e.message?.includes("Requested entity was not found")) {
         setHasApiKey(false);
-        alert("Session authorization expired. Please re-authorize your Studio key.");
+        alert("Session authorization fault. Re-authenticate Studio key.");
       } else {
-        console.error("Video Generation Error:", e);
-        alert("Neural synthesis failed. Please review your visual directives.");
+        console.error("Video Lab Fault:", e);
+        alert("Synthesis rejected. Verify terminal directives.");
       }
     } finally {
       clearInterval(msgInt);
@@ -175,7 +177,7 @@ const VideoLab = () => {
       });
       setShowModal(false);
     } catch (e) {
-      alert("Database synchronization failed.");
+      alert("Registry synchronization failed.");
     }
   };
 
@@ -186,48 +188,48 @@ const VideoLab = () => {
   );
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500 pb-16">
-      <div className="flex justify-between items-center">
+    <div className="space-y-12 animate-in fade-in duration-500 pb-20">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <h1 className="text-3xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Video Studio Lab</h1>
-          <p className="text-text-muted mt-1 font-medium">Directing institutional curriculum visualizations.</p>
+          <h1 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Production Studio</h1>
+          <p className="text-text-muted mt-1 font-bold text-sm uppercase tracking-widest opacity-60">Directing neural curriculum assets</p>
         </div>
-        <button onClick={() => setShowModal(true)} className="bg-authority-blue text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-[11px] active:scale-95 transition-all shadow-lg hover:bg-steel-blue">Initialize Production</button>
+        <button onClick={() => setShowModal(true)} className="bg-authority-blue text-white px-10 py-5 rounded-[2rem] font-black uppercase tracking-widest text-[11px] active:scale-95 transition-all shadow-[0_20px_40px_rgba(0,34,68,0.2)] hover:bg-slate-800 border-b-4 border-black">Initialize Production</button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {videos.map((vid) => (
-          <div key={vid.id} className="bg-white dark:bg-surface-dark rounded-[2.5rem] border border-border-light dark:border-border-dark overflow-hidden shadow-sm group relative hover:shadow-xl transition-all">
+          <div key={vid.id} className="bg-white dark:bg-slate-900 rounded-[3rem] border border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm group relative hover:shadow-2xl transition-all duration-700">
             <div className={`relative ${vid.aspectRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-video'} bg-black`}>
               <video src={vid.url} className="w-full h-full object-cover" controls />
               <button 
                 onClick={async () => { 
-                  if(window.confirm("Permanently purge this asset?")) { 
+                  if(window.confirm("Permanently purge this asset from the registry?")) { 
                     await deleteDoc(doc(db, "generatedVideos", vid.id)); 
                     if(vid.storagePath) try { await deleteObject(ref(storage, vid.storagePath)); } catch(e){} 
                   } 
                 }} 
-                className="absolute top-4 right-4 p-3 bg-red-500 text-white rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow-lg"
+                className="absolute top-6 right-6 p-3 bg-red-600 text-white rounded-2xl opacity-0 group-hover:opacity-100 transition-all z-20 shadow-2xl hover:scale-110 active:scale-95"
               >
-                <Trash2 size={18} />
+                <Trash2 size={20} />
               </button>
             </div>
-            <div className="p-8 space-y-4">
+            <div className="p-10 space-y-6">
               <div className="flex items-center justify-between">
-                <span className="bg-authority-blue/10 text-authority-blue dark:text-signal-gold px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
+                <span className="bg-authority-blue/5 text-authority-blue dark:text-signal-gold px-5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border border-authority-blue/10">
                   {vid.moduleId === 0 ? 'Ground 0' : `Module ${vid.moduleId}`}
                 </span>
-                <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-400 uppercase tracking-widest">
-                  <Calendar size={10} />
+                <div className="flex items-center gap-2 text-[9px] font-black text-slate-400 uppercase tracking-[0.3em]">
+                  <Activity size={10} className="text-signal-gold" />
                   <span>{new Date(vid.createdAt).toLocaleDateString()}</span>
                 </div>
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-slate-400">
-                  <FileText size={12} />
-                  <p className="text-[9px] font-black uppercase tracking-widest">Description</p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-slate-400 border-b border-slate-50 dark:border-slate-800 pb-3">
+                  <Terminal size={14} />
+                  <p className="text-[10px] font-black uppercase tracking-widest">Directive Summary</p>
                 </div>
-                <h4 className="font-bold text-sm text-text-primary dark:text-white line-clamp-2 leading-relaxed italic">"{vid.prompt}"</h4>
+                <h4 className="font-bold text-sm text-text-primary dark:text-white line-clamp-3 leading-relaxed italic opacity-80 group-hover:opacity-100 transition-opacity">"{vid.prompt}"</h4>
               </div>
             </div>
           </div>
@@ -235,58 +237,68 @@ const VideoLab = () => {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300">
-           <div className="bg-white dark:bg-surface-dark p-8 md:p-12 rounded-[4rem] shadow-2xl max-w-5xl w-full relative overflow-y-auto max-h-[95vh] custom-scrollbar border border-white/10">
-              <button onClick={() => setShowModal(false)} className="absolute top-10 right-10 p-3 hover:bg-slate-100 dark:hover:bg-gray-800 rounded-full transition-all"><X /></button>
-              <h2 className="text-4xl font-black font-serif text-authority-blue dark:text-white flex items-center mb-10"><Settings2 className="mr-4 text-signal-gold" size={36} />Production Studio</h2>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12 bg-slate-950/95 backdrop-blur-xl animate-in fade-in duration-300">
+           <div className="bg-white dark:bg-slate-900 p-10 md:p-16 rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] max-w-6xl w-full relative overflow-y-auto max-h-[95vh] custom-scrollbar border-4 border-white/5">
+              <button onClick={() => setShowModal(false)} className="absolute top-12 right-12 p-4 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all group z-20"><X className="group-hover:rotate-90 transition-transform" /></button>
+              
+              <header className="mb-12 space-y-3">
+                 <div className="flex items-center space-x-4">
+                    <Settings2 className="text-signal-gold" size={32} />
+                    <h2 className="text-4xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">Production Interface</h2>
+                 </div>
+                 <p className="text-[11px] font-black uppercase tracking-[0.6em] text-slate-400">System Registry Asset Generator v2.4</p>
+              </header>
 
-              <div className="flex bg-slate-50 dark:bg-gray-900 p-2 rounded-[2.5rem] mb-12 max-w-md border shadow-inner border-slate-100 dark:border-border-dark">
+              <div className="flex bg-slate-50 dark:bg-slate-950 p-2 rounded-[2.5rem] mb-16 max-w-md border border-slate-100 dark:border-slate-800 shadow-inner">
                 <button 
                   onClick={() => setProductionMode('ai')}
-                  className={`flex-grow py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${productionMode === 'ai' ? 'bg-white dark:bg-gray-800 text-authority-blue shadow-md' : 'text-text-muted'}`}
+                  className={`flex-grow py-4 rounded-3xl text-[11px] font-black uppercase tracking-widest transition-all ${productionMode === 'ai' ? 'bg-white dark:bg-slate-800 text-authority-blue dark:text-signal-gold shadow-2xl' : 'text-slate-400 hover:text-slate-600'}`}
                 >
-                  AI Synthesis
+                  Neural Synthesis
                 </button>
                 <button 
                   onClick={() => setProductionMode('manual')}
-                  className={`flex-grow py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${productionMode === 'manual' ? 'bg-white dark:bg-gray-800 text-authority-blue shadow-md' : 'text-text-muted'}`}
+                  className={`flex-grow py-4 rounded-3xl text-[11px] font-black uppercase tracking-widest transition-all ${productionMode === 'manual' ? 'bg-white dark:bg-slate-800 text-authority-blue dark:text-signal-gold shadow-2xl' : 'text-slate-400 hover:text-slate-600'}`}
                 >
                   Manual Archive
                 </button>
               </div>
 
               {productionMode === 'ai' ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                   <div className="space-y-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                   <div className="space-y-12">
                       <div className="space-y-4">
-                         <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Visual Directive (Prompt)</label>
-                         <textarea 
-                           rows={6}
-                           value={formData.prompt}
-                           onChange={e => setFormData({ ...formData, prompt: e.target.value })}
-                           placeholder="Describe the cinematic visualization..."
-                           className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-3xl p-6 font-bold text-sm"
-                         />
+                         <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Visual Directive (High Fidelity Prompt)</label>
+                         <div className="relative">
+                            <Terminal className="absolute left-8 top-8 text-slate-400" size={24} />
+                            <textarea 
+                              rows={6}
+                              value={formData.prompt}
+                              onChange={e => setFormData({ ...formData, prompt: e.target.value })}
+                              placeholder="Describe the cinematic visualization directive for curriculum synthesis..."
+                              className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-slate-100 dark:border-slate-800 focus:border-authority-blue dark:focus:border-signal-gold outline-none rounded-[3rem] pl-20 pr-10 py-8 font-black text-lg transition-all shadow-inner dark:text-white"
+                            />
+                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-8">
+                      <div className="grid grid-cols-2 gap-10">
                          <div className="space-y-4">
-                            <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Aspect Ratio</label>
+                            <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Aspect Ratio</label>
                             <select 
                               value={formData.aspectRatio}
                               onChange={e => setFormData({ ...formData, aspectRatio: e.target.value as any })}
-                              className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-xs appearance-none cursor-pointer"
+                              className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-slate-100 dark:border-slate-800 focus:border-authority-blue outline-none rounded-[2rem] px-8 py-5 font-black text-sm appearance-none cursor-pointer dark:text-white"
                             >
                                <option value="16:9">Landscape (16:9)</option>
                                <option value="9:16">Portrait (9:16)</option>
                             </select>
                          </div>
                          <div className="space-y-4">
-                            <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Module Association</label>
+                            <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Module Map</label>
                             <select 
                               value={formData.moduleId}
                               onChange={e => setFormData({ ...formData, moduleId: parseInt(e.target.value) })}
-                              className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-xs appearance-none cursor-pointer"
+                              className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-slate-100 dark:border-slate-800 focus:border-authority-blue outline-none rounded-[2rem] px-8 py-5 font-black text-sm appearance-none cursor-pointer dark:text-white"
                             >
                                {COURSE_MODULES.map(m => (
                                  <option key={m.id} value={m.id}>{m.title}</option>
@@ -296,72 +308,89 @@ const VideoLab = () => {
                       </div>
 
                       <div className="space-y-4">
-                         <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Reference Frame (Optional)</label>
+                         <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Start Image Reference (Optional)</label>
                          <input 
                            type="file" 
                            accept="image/*"
                            onChange={e => setRefFile(e.target.files?.[0] || null)}
-                           className="w-full text-xs file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-authority-blue file:text-white"
+                           className="w-full text-[11px] font-black uppercase file:mr-6 file:py-3 file:px-8 file:rounded-2xl file:border-0 file:bg-authority-blue file:text-white file:cursor-pointer hover:file:bg-slate-800 transition-all"
                          />
                       </div>
 
-                      {!hasApiKey ? (
-                        <button 
-                          onClick={selectApiKey}
-                          className="w-full py-8 rounded-[2.5rem] bg-amber-600 text-white font-black uppercase tracking-widest text-xs shadow-xl active:scale-95 transition-all"
-                        >
-                          Authorize Studio Key
-                        </button>
-                      ) : (
-                        <button 
-                          onClick={generateAIVideo}
-                          disabled={isGenerating || !formData.prompt}
-                          className="w-full py-8 rounded-[2.5rem] bg-authority-blue text-white font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 shadow-xl active:scale-95 disabled:opacity-50 transition-all border-b-8 border-slate-900 group"
-                        >
-                           {isGenerating ? <Loader2 className="animate-spin" size={20} /> : <Sparkles size={20} />}
-                           {isGenerating ? 'Synthesizing...' : 'Initialize Synthesis'}
-                        </button>
-                      )}
+                      <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
+                        {!hasApiKey ? (
+                          <button 
+                            onClick={selectApiKey}
+                            className="w-full py-8 rounded-[2.5rem] bg-amber-600 text-white font-black uppercase tracking-[0.4em] text-xs shadow-2xl active:scale-95 transition-all border-b-8 border-amber-900"
+                          >
+                            Authorize Synthesis key
+                          </button>
+                        ) : (
+                          <button 
+                            onClick={generateAIVideo}
+                            disabled={isGenerating || !formData.prompt}
+                            className="w-full py-10 rounded-[3rem] bg-authority-blue text-white font-black uppercase tracking-[0.5em] text-sm flex items-center justify-center gap-4 shadow-2xl active:scale-95 disabled:opacity-20 transition-all border-b-[12px] border-black group"
+                          >
+                             {isGenerating ? <Loader2 className="animate-spin" size={28} /> : <Sparkles size={28} className="group-hover:rotate-12 transition-transform" />}
+                             {isGenerating ? 'SYNTHESIZING...' : 'INITIALIZE PRODUCTION'}
+                          </button>
+                        )}
+                      </div>
                    </div>
 
-                   <div className="bg-slate-50 dark:bg-gray-900 rounded-[3.5rem] flex flex-col items-center justify-center text-center p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden group/mon shadow-inner">
+                   <div className="bg-slate-50 dark:bg-slate-950 rounded-[5rem] flex flex-col items-center justify-center text-center p-16 border-4 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden group/monitor shadow-inner min-h-[600px]">
                       {isGenerating ? (
-                        <div className="space-y-6 animate-pulse">
-                           <div className="w-20 h-20 bg-authority-blue/10 rounded-full border-4 border-authority-blue border-t-transparent animate-spin mx-auto"></div>
-                           <p className="font-black uppercase tracking-widest text-authority-blue">{genMessage}</p>
+                        <div className="space-y-12 animate-in zoom-in-95 duration-700">
+                           <div className="relative">
+                              <div className="w-40 h-40 bg-authority-blue/5 rounded-full border-[8px] border-authority-blue border-t-transparent dark:border-signal-gold dark:border-t-transparent animate-spin mx-auto shadow-2xl"></div>
+                              <Cpu className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold" size={48} />
+                           </div>
+                           <div className="space-y-4">
+                              <p className="font-black text-3xl uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold animate-pulse leading-none">{genMessage}</p>
+                              <p className="text-[11px] font-black text-slate-500 uppercase tracking-widest italic">Provisioning Neural Frame Buffers</p>
+                           </div>
                         </div>
                       ) : (
-                        <div className="opacity-20 group-hover/mon:opacity-40 transition-opacity">
-                           <Monitor size={80} className="mx-auto mb-6" />
-                           <p className="font-black uppercase tracking-widest text-sm">Synthesis Monitor Idle</p>
+                        <div className="opacity-10 group-hover/monitor:opacity-30 transition-opacity duration-700">
+                           <Monitor size={160} className="mx-auto mb-10" />
+                           <p className="font-black uppercase tracking-[1em] text-sm">Standby Mode</p>
                         </div>
                       )}
+                      
+                      <div className="absolute bottom-10 left-0 w-full px-10 flex justify-between items-center opacity-30 text-[9px] font-black uppercase tracking-widest">
+                         <div className="flex items-center gap-2"><Activity size={10} /> LINK_STABLE</div>
+                         <div>UPLINK_VEO_3.1</div>
+                      </div>
                    </div>
                 </div>
               ) : (
-                <div className="max-w-2xl mx-auto space-y-10">
-                   <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Asset Label</label>
-                      <input 
-                        value={formData.title}
-                        onChange={e => setFormData({ ...formData, title: e.target.value })}
-                        placeholder="e.g. Module 3 Safety Brief"
-                        className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-sm shadow-inner"
-                      />
+                <div className="max-w-3xl mx-auto space-y-16 animate-reveal-up py-10">
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      <div className="space-y-4">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Asset Identification</label>
+                        <input 
+                          value={formData.title}
+                          onChange={e => setFormData({ ...formData, title: e.target.value })}
+                          placeholder="e.g. 03_Safety_Brief_Final"
+                          className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-slate-100 dark:border-slate-800 focus:border-authority-blue outline-none rounded-2xl px-8 py-5 font-black text-sm shadow-inner dark:text-white"
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Curriculum Mapping</label>
+                        <select 
+                          value={formData.moduleId}
+                          onChange={e => setFormData({ ...formData, moduleId: parseInt(e.target.value) })}
+                          className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-slate-100 dark:border-slate-800 focus:border-authority-blue outline-none rounded-2xl px-8 py-5 font-black text-sm appearance-none cursor-pointer dark:text-white"
+                        >
+                           {COURSE_MODULES.map(m => (
+                             <option key={m.id} value={m.id}>{m.title}</option>
+                           ))}
+                        </select>
+                      </div>
                    </div>
-                   <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted ml-4">Module Target</label>
-                      <select 
-                        value={formData.moduleId}
-                        onChange={e => setFormData({ ...formData, moduleId: parseInt(e.target.value) })}
-                        className="w-full bg-slate-50 dark:bg-gray-900 border-2 border-transparent focus:border-authority-blue outline-none rounded-2xl px-6 py-4 font-bold text-sm appearance-none cursor-pointer"
-                      >
-                         {COURSE_MODULES.map(m => (
-                           <option key={m.id} value={m.id}>{m.title}</option>
-                         ))}
-                      </select>
+                   <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-[4rem] p-1 shadow-2xl">
+                      <VideoUploader onUploadComplete={handleManualUploadComplete} label="Archive Master asset" />
                    </div>
-                   <VideoUploader onUploadComplete={handleManualUploadComplete} label="Primary Curriculum Upload" />
                 </div>
               )}
            </div>
@@ -371,5 +400,4 @@ const VideoLab = () => {
   );
 };
 
-// Fixed the missing default export causing errors in App.tsx and AdminDashboard.tsx
 export default VideoLab;

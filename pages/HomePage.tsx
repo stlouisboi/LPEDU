@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -27,7 +26,8 @@ import {
   BarChart3,
   Target,
   ShieldCheck,
-  DollarSign
+  DollarSign,
+  FileText
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -354,21 +354,62 @@ const HomePage: React.FC = () => {
             <div className="lg:col-span-6 grid grid-cols-1 gap-10">
               {[
                 { 
+                  title: "SYSTEMS OVER HUSTLE", 
+                  desc: "We prioritize administrative order over 'load board hustle.' LaunchPath is built for carrier executives, not freight-chasers.",
+                  icon: <Zap size={24} />,
+                  id: "LP-PRTX-01"
+                },
+                { 
                   title: "CAPITAL FILTER", 
-                  desc: "Admission requires a $2,500 one-time investment. This ensures every carrier is capitalized for the regulatory rigor required to survive." 
+                  desc: "Admission requires a $2,500 one-time investment. This ensures every carrier is capitalized for the regulatory rigor required to survive.",
+                  icon: <DollarSign size={24} />,
+                  id: "LP-PRTX-02"
                 },
                 { 
                   title: "DOCUMENTATION COMMITMENT", 
-                  desc: "You will execute clinical record-keeping protocols. If you are not prepared for OSHA-level documentation standards, do not apply." 
-                },
-                { 
-                  title: "SYSTEMS OVER HUSTLE", 
-                  desc: "We prioritize administrative order over 'load board hustle.' LaunchPath is built for carrier executives, not freight-chasers." 
+                  desc: "You will execute clinical record-keeping protocols. If you are not prepared for OSHA-level documentation standards, do not apply.",
+                  icon: <ClipboardCheck size={24} />,
+                  id: "LP-PRTX-03"
                 }
               ].map((filter, i) => (
-                <div key={i} className="bg-white/[0.03] border border-white/10 p-12 rounded-[3.5rem] hover:bg-white/[0.06] transition-all group">
-                  <h4 className="text-2xl font-black uppercase tracking-widest text-[#C5A059] mb-4 font-serif">{filter.title}</h4>
-                  <p className="text-xl text-slate-400 font-bold leading-relaxed">{filter.desc}</p>
+                <div key={i} className="relative group">
+                  {/* Hover Glow Effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#C5A059]/20 to-transparent rounded-[3.5rem] blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                  
+                  <div className="relative bg-white/[0.03] backdrop-blur-md border border-white/10 p-12 rounded-[3.5rem] hover:bg-white/[0.06] hover:border-[#C5A059]/30 transition-all duration-500 overflow-hidden flex flex-col h-full shadow-2xl">
+                    {/* Internal Background Pattern */}
+                    <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity pointer-events-none">
+                       <Terminal size={140} />
+                    </div>
+
+                    {/* Metadata Header */}
+                    <div className="flex items-center justify-between mb-10">
+                       <div className="w-16 h-16 bg-[#002244] border border-white/10 rounded-2xl flex items-center justify-center shadow-[inset_0_0_20px_rgba(0,0,0,0.4)] group-hover:border-[#C5A059]/50 transition-all duration-500">
+                         <div className="text-[#C5A059] group-hover:scale-110 transition-transform duration-500">
+                           {filter.icon}
+                         </div>
+                       </div>
+                       <div className="flex flex-col items-end">
+                          <span className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.3em] mb-1">MANDATORY</span>
+                          <span className="text-[9px] font-bold text-white/20 uppercase tracking-widest">{filter.id}</span>
+                       </div>
+                    </div>
+
+                    {/* Content */}
+                    <h4 className="text-3xl font-black uppercase tracking-tight text-white mb-6 font-serif group-hover:text-[#C5A059] transition-colors">{filter.title}</h4>
+                    <p className="text-[20px] text-slate-400 font-bold leading-relaxed group-hover:text-slate-200 transition-colors flex-grow">
+                      {filter.desc}
+                    </p>
+
+                    {/* Verification Footer */}
+                    <div className="mt-12 pt-8 border-t border-white/5 flex items-center justify-between">
+                       <div className="flex items-center space-x-2">
+                          <ShieldCheck size={14} className="text-[#C5A059]/40 group-hover:text-[#C5A059] transition-colors" />
+                          <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] group-hover:text-white/40 transition-colors">Integrity Locked</span>
+                       </div>
+                       <div className="h-1 w-12 bg-white/5 rounded-full group-hover:w-24 group-hover:bg-[#C5A059] transition-all duration-700"></div>
+                    </div>
+                  </div>
                 </div>
               ))}
               <div className="pt-12">
@@ -492,7 +533,7 @@ const HomePage: React.FC = () => {
               }
             ].map((pillar, i) => (
               <article key={i} className="bg-white dark:bg-primary-dark p-12 lg:p-20 rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:shadow-[0_60px_120px_-30px_rgba(0,34,68,0.15)] transition-all duration-700 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 <div className="w-24 h-24 lg:w-32 lg:h-32 bg-[#FAF9F6] dark:bg-gray-800 text-[#C5A059] rounded-[2.5rem] flex items-center justify-center mb-12 shadow-inner group-hover:scale-110 group-hover:bg-[#002244] group-hover:text-white transition-all duration-500">
                   {pillar.icon}
                 </div>
@@ -580,7 +621,7 @@ const HomePage: React.FC = () => {
               <p className="text-2xl md:text-3xl text-slate-300 font-medium max-w-4xl mx-auto leading-[1.6]">You didn't get your authority to hope you don't get audited. You got it to build something that lasts. LaunchPath gives you the infrastructure to operate with discipline.</p>
            </header>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-10 pt-10">
-              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] shadow-[0_30px_70px_-20px_rgba(197,160,89,0.4)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={32} className="ml-5 group-hover:translate-x-2 transition-transform" /></Link>
+              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] shadow-[0_30px_70px_-20px_rgba(0,34,68,0.4)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={32} className="ml-5 group-hover:translate-x-2 transition-transform" /></Link>
               <Link to="/pricing" className="w-full sm:w-auto border-4 border-white/20 px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] hover:bg-white/5 transition-all flex items-center justify-center">VIEW ADMISSION PROTOCOL</Link>
            </div>
            

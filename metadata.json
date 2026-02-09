@@ -3,6 +3,7 @@
   "description": "LaunchPath is a 90-day compliance system for new motor carriers. Build audit-ready documentation and protect your authority. Accuracy over hype.",
   "requestFramePermissions": [
     "camera",
-    "microphone"
+    "microphone",
+    "geolocation"
   ]
 }

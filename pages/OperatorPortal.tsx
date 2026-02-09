@@ -286,7 +286,11 @@ const OperatorPortal: React.FC = () => {
                 {filteredTasks.map((task) => (
                   <div 
                     key={task.id} 
-                    className="flex items-center justify-between p-5 bg-slate-50 dark:bg-gray-900/50 border border-slate-100 dark:border-border-dark rounded-2xl group transition-all hover:bg-white dark:hover:bg-gray-800"
+                    className={`flex items-center justify-between p-5 border rounded-2xl group transition-all duration-500 ${
+                      task.completed 
+                        ? 'bg-green-50/30 dark:bg-green-900/10 border-green-100 dark:border-green-900/20 animate-in zoom-in-[0.99] fade-in-80' 
+                        : 'bg-slate-50 dark:bg-gray-900/50 border-slate-100 dark:border-border-dark hover:bg-white dark:hover:bg-gray-800'
+                    }`}
                   >
                     {editingTaskId === task.id ? (
                       <div className="flex items-center space-x-4 flex-grow pr-4">
@@ -310,7 +314,7 @@ const OperatorPortal: React.FC = () => {
                       <>
                         <div className="flex items-center space-x-4 flex-grow cursor-pointer" onClick={() => toggleTask(task.id)}>
                           <AnimatedCheckmark checked={task.completed} />
-                          <span className={`text-sm font-bold transition-all duration-300 ${task.completed ? 'text-slate-300 line-through' : 'text-slate-700 dark:text-slate-200'}`}>
+                          <span className={`text-sm font-bold transition-all duration-300 ${task.completed ? 'text-slate-300 line-through opacity-60' : 'text-slate-700 dark:text-slate-200'}`}>
                             {task.text}
                           </span>
                         </div>

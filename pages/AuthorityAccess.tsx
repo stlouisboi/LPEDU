@@ -117,7 +117,7 @@ const AuthorityAccess: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="OPERATOR@CARRIER.GOV"
-                    className="w-full bg-white/5 border border-white/5 rounded-2xl pl-16 pr-6 py-5 text-white font-bold text-sm focus:border-[#C5A059]/40 outline-none transition-all placeholder:text-white/5 uppercase tracking-widest shadow-inner"
+                    className="w-full bg-white/5 border-2 border-white/5 rounded-2xl pl-16 pr-6 py-5 text-white font-bold text-sm focus:border-[#C5A059]/40 outline-none transition-all placeholder:text-white/5 uppercase tracking-widest shadow-inner"
                   />
                 </div>
               </div>
@@ -135,7 +135,7 @@ const AuthorityAccess: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full bg-white/5 border border-white/5 rounded-2xl pl-16 pr-6 py-5 text-white font-bold text-sm focus:border-[#C5A059]/40 outline-none transition-all placeholder:text-white/5 tracking-widest shadow-inner"
+                    className="w-full bg-white/5 border-2 border-white/5 rounded-2xl pl-16 pr-6 py-5 text-white font-bold text-sm focus:border-[#C5A059]/40 outline-none transition-all placeholder:text-white/5 tracking-widest shadow-inner"
                   />
                 </div>
               </div>
@@ -155,7 +155,7 @@ const AuthorityAccess: React.FC = () => {
               <button 
                 type="submit" 
                 disabled={loading}
-                className="w-full h-16 bg-[#C5A059] text-[#002244] rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-[0_15px_30px_rgba(197,160,89,0.2)] hover:bg-white hover:scale-[1.03] hover:shadow-[0_25px_50px_rgba(197,160,89,0.4)] transition-all active:scale-[0.98] disabled:opacity-50 flex items-center justify-center group border-b-4 border-[#8e7340]"
+                className="w-full h-16 bg-[#C5A059] text-[#002244] rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-[0_15px_30px_rgba(197,160,89,0.2)] hover:bg-white hover:scale-[1.04] hover:-translate-y-1 hover:shadow-[0_30px_60px_-12px_rgba(197,160,89,0.5)] transition-all duration-300 ease-out active:scale-[0.98] disabled:opacity-50 flex items-center justify-center group border-b-4 border-[#8e7340]"
               >
                 {loading ? (
                   <div className="flex items-center space-x-3">
