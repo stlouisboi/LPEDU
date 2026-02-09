@@ -1,21 +1,19 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Sun, Moon, Layout, ShieldCheck } from 'lucide-react'; // Closed the bracket correctly here
-import AdminDashboard from './pages/admin/AdminDashboard';
+import { 
   Sun, 
   Moon, 
   Menu, 
   X, 
   ChevronRight, 
-  Lock,
-  Youtube,
-  Facebook,
-  Linkedin,
+  Lock, 
+  Youtube, 
+  Facebook, 
+  Linkedin, 
   ShieldCheck,
-  LayoutDashboard,
-  Music
-} from 'lucide-react';
-import { doc, onSnapshot } from "firebase/firestore";
+  Layout 
+} from 'lucide-react'; 
+import AdminDashboard from './pages/admin/AdminDashboard';
 import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
