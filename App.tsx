@@ -5,7 +5,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import { doc, onSnapshot } from 'firebase/firestore';
 
 // Core Config & Context
-import { db, isFirebaseConfigured } from './firebase';
+import { db, auth } from './config/firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
 import { AuthProvider, useAuth } from './AuthContext';
