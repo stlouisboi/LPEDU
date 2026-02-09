@@ -6,6 +6,9 @@ import { doc, onSnapshot } from 'firebase/firestore';
 
 // Core Config & Context
 import { db, auth } from './config/firebase';
+
+// OR if you exported isFirebaseConfigured from firebase.ts:
+// import { db, auth, isFirebaseConfigured } from './config/firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
 import { AuthProvider, useAuth } from './AuthContext';
