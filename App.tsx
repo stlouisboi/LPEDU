@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -7,13 +6,11 @@ import {
   Menu, 
   X, 
   ChevronRight, 
-  Loader2, 
   Lock,
   Youtube,
   Facebook,
   Linkedin,
   ShieldCheck,
-  User as UserIcon,
   LayoutDashboard,
   Music
 } from 'lucide-react';
@@ -40,11 +37,12 @@ import ContactPage from './pages/ContactPage';
 import SupportPage from './pages/SupportPage';
 import LegalPage from './pages/LegalPage';
 import AIServicePage from './pages/AIServicePage';
-import EnrollPage from './pages/EnrollPage';
+import RequestAdmission from './pages/RequestAdmission';
 import ModuleDetailPage from './pages/ModuleDetailPage';
 import DownloadPage from './pages/DownloadPage';
 import ReadinessPage from './pages/ReadinessPage';
-import PortalInterstitial from './pages/PortalInterstitial';
+import AuthorityAccess from './pages/AuthorityAccess';
+import EnrollmentPendingPage from './pages/EnrollmentPendingPage';
 import ReachTestPage from './pages/ReachTestPage';
 import TCOCalculatorPage from './pages/TCOCalculatorPage';
 import TCOPreviewPage from './pages/TCOPreviewPage';
@@ -104,7 +102,9 @@ const Header = () => {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
-  if (location.pathname.startsWith('/admin')) return null;
+  // Hide header on login and admin pages
+  const hideHeaderRoutes = ['/admin', '/portal', '/enrollment-pending'];
+  if (hideHeaderRoutes.some(route => location.pathname.startsWith(route))) return null;
 
   const navItems = [
     { name: 'About', path: '/about' },
@@ -195,7 +195,7 @@ const Header = () => {
             </button>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="p-2.5 bg-signal-gold text-authority-blue rounded-xl shadow-lg active:scale-90 transition-transform"
+              className="p-2.5 bg-signal-gold text-authority-blue rounded-xl shadow-lg transition-transform active:scale-90"
               aria-expanded={isMenuOpen}
               aria-label="Toggle Menu"
             >
@@ -257,7 +257,10 @@ const Header = () => {
 const Footer = () => {
   const { settings } = useApp();
   const location = useLocation();
-  if (location.pathname.startsWith('/admin')) return null;
+  
+  // Hide footer on login and admin pages
+  const hideFooterRoutes = ['/admin', '/portal', '/enrollment-pending'];
+  if (hideFooterRoutes.some(route => location.pathname.startsWith(route))) return null;
 
   return (
     <footer className="w-full font-sans" role="contentinfo">
@@ -331,12 +334,27 @@ const Footer = () => {
                 {[
                   { name: 'Privacy Policy', path: '/legal/privacy' },
                   { name: 'Terms of Service', path: '/legal/terms' },
-                  { name: 'Educational Disclaimer', path: '/legal/disclaimer' }
+                  { name: 'Educational Disclaimer', path: '/legal/disclaimer' },
+                  { name: 'FMCSA Contact', path: 'https://www.fmcsa.dot.gov/contact-us', external: true }
                 ].map((link) => (
                   <li key={link.name}>
-                    <Link to={link.path} className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300">
-                      {link.name}
-                    </Link>
+                    {link.external ? (
+                      <a 
+                        href={link.path} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link 
+                        to={link.path} 
+                        className="text-lg font-medium text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
+                      >
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -492,81 +510,80 @@ export default function App() {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  if (appLoading) return (
-    <div className="min-h-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
-      <div className="flex flex-col items-center gap-10">
-        <img 
-          src={theme === 'dark' 
-            ? "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
-            : "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf"
-          } 
-          alt="LaunchPath Loading" 
-          className="h-20 w-auto animate-pulse" 
-        />
-        <div className="flex flex-col items-center space-y-4">
-            <Loader2 className="animate-spin text-authority-blue" size={40} />
-            <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 animate-pulse">Initializing Secure Standard...</p>
-        </div>
-      </div>
-    </div>
-  );
+  const contextValue: AppContextType = {
+    theme, toggleTheme, settings, updateSettings: setSettings, blogs, addBlog: (b) => setBlogs([b, ...blogs]), updateBlog: (u) => setBlogs(blogs.map(b => b.id === u.id ? u : b)),
+    formSubmissions, addFormSubmission: (s) => setFormSubmissions([s, ...formSubmissions]), testimonials, addTestimonial: (t) => setTestimonials([t, ...testimonials]), deleteTestimonial: (id) => setTestimonials(testimonials.filter(t => t.id !== id))
+  };
 
   return (
-    <AppContext.Provider value={{
-      theme, toggleTheme, settings, updateSettings: setSettings, blogs, addBlog: (b) => setBlogs([b, ...blogs]), updateBlog: (u) => setBlogs(blogs.map(b => b.id === u.id ? u : b)),
-      formSubmissions, addFormSubmission: (s) => setFormSubmissions([s, ...formSubmissions]), testimonials, addTestimonial: (t) => setTestimonials([t, ...testimonials]), deleteTestimonial: (id) => setTestimonials(testimonials.filter(t => t.id !== id))
-    }}>
+    <AppContext.Provider value={contextValue}>
       <AuthProvider>
         <Router>
           <ScrollToTop />
-          <Header />
-          <main id="main-content" className="flex-grow" role="main">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/clarification" element={<ClarificationPage />} />
-              <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
-              <Route path="/learning-path" element={<LearningPathPage />} />
-              <Route path="/resources" element={<ResourcesPage />} />
-              <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
-              <Route path="/readiness" element={<ReadinessPage />} />
-              <Route path="/reach-test" element={<ReachTestPage />} />
-              <Route path="/portal" element={<PortalInterstitial />} />
-              <Route path="/operator-portal" element={<OperatorPortal />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/support" element={<SupportPage />} />
-              <Route path="/legal" element={<LegalPage />} />
-              <Route path="/ai-advisor" element={<AIServicePage />} />
-              <Route path="/pricing" element={<EnrollPage />} />
-              <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
-              <Route path="/tools/tco-preview" element={<TCOPreviewPage />} />
-              <Route path="/authorized/tco-calculator" element={<ProtectedRoute><TCOCalculatorPage /></ProtectedRoute>} />
-              <Route path="/modules/:id" element={<ModuleDetailPage />} />
-              <Route path="/download/risk-map" element={<DownloadPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogPostPage />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
-                <Route index element={<AdminDashboard />} />
-                <Route path="pages" element={<PageList />} />
-                <Route path="pages/home" element={<HomePageEditor />} />
-                <Route path="blog" element={<BlogList />} />
-                <Route path="blog/new" element={<BlogEditor />} />
-                <Route path="blog/edit/:id" element={<BlogEditor />} />
-                <Route path="resources" element={<ResourceManager />} />
-                <Route path="forms" element={<FormManagement />} />
-                <Route path="forms/submissions" element={<SubmissionsList />} />
-                <Route path="leads" element={<LeadsManager />} />
-                <Route path="settings" element={<SettingsManager />} />
-                <Route path="video-lab" element={<VideoLab />} />
-                <Route path="initialize-data" element={<InitializeDataPage />} />
-              </Route>
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </main>
-          <Footer />
-          <AIChatWidget />
+          {appLoading ? (
+            <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] dark:bg-primary-dark transition-colors duration-500">
+              <div className="flex flex-col items-center gap-10 animate-in fade-in duration-700">
+                <Logo className="h-20 w-auto animate-pulse brightness-110 drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]" />
+                <div className="flex flex-col items-center space-y-4">
+                    <div className="w-10 h-10 border-4 border-slate-200 dark:border-slate-800 border-t-signal-gold rounded-full animate-spin"></div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 dark:text-slate-500 animate-pulse">Initializing Secure Standard...</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <Header />
+              <main id="main-content" className="flex-grow" role="main">
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/clarification" element={<ClarificationPage />} />
+                  <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
+                  <Route path="/learning-path" element={<LearningPathPage />} />
+                  <Route path="/resources" element={<ResourcesPage />} />
+                  <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
+                  <Route path="/readiness" element={<ReadinessPage />} />
+                  <Route path="/reach-test" element={<ReachTestPage />} />
+                  <Route path="/portal" element={<AuthorityAccess />} />
+                  <Route path="/dashboard" element={<Navigate to="/operator-portal" replace />} />
+                  <Route path="/enrollment-pending" element={<EnrollmentPendingPage />} />
+                  <Route path="/operator-portal" element={<ProtectedRoute><OperatorPortal /></ProtectedRoute>} />
+                  <Route path="/faq" element={<FAQPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/support" element={<SupportPage />} />
+                  <Route path="/legal" element={<LegalPage />} />
+                  <Route path="/ai-advisor" element={<AIServicePage />} />
+                  <Route path="/pricing" element={<RequestAdmission />} />
+                  <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
+                  <Route path="/tools/tco-preview" element={<TCOPreviewPage />} />
+                  <Route path="/authorized/tco-calculator" element={<ProtectedRoute><TCOCalculatorPage /></ProtectedRoute>} />
+                  <Route path="/modules/:id" element={<ModuleDetailPage />} />
+                  <Route path="/download/risk-map" element={<DownloadPage />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/blog/:slug" element={<BlogPostPage />} />
+                  <Route path="/admin/login" element={<AdminLogin />} />
+                  <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+                    <Route index element={<AdminDashboard />} />
+                    <Route path="pages" element={<PageList />} />
+                    <Route path="pages/home" element={<HomePageEditor />} />
+                    <Route path="blog" element={<BlogList />} />
+                    <Route path="blog/new" element={<BlogEditor />} />
+                    <Route path="blog/edit/:id" element={<BlogEditor />} />
+                    <Route path="resources" element={<ResourceManager />} />
+                    <Route path="forms" element={<FormManagement />} />
+                    <Route path="forms/submissions" element={<SubmissionsList />} />
+                    <Route path="leads" element={<LeadsManager />} />
+                    <Route path="settings" element={<SettingsManager />} />
+                    <Route path="video-lab" element={<VideoLab />} />
+                    <Route path="initialize-data" element={<InitializeDataPage />} />
+                  </Route>
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </main>
+              <Footer />
+              <AIChatWidget />
+            </>
+          )}
         </Router>
       </AuthProvider>
     </AppContext.Provider>

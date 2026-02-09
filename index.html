@@ -134,8 +134,37 @@
       }
 
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      .boot-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: 'Montserrat', sans-serif; }
-      .spinner { width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top: 3px solid #C6922A; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+      @keyframes pulse-logo { 0% { opacity: 0.8; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0.8; transform: scale(0.98); } }
+      
+      .boot-loader { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
+        height: 100vh; 
+        font-family: 'Montserrat', sans-serif; 
+        background: #F8FAFC;
+        transition: background 0.5s ease;
+      }
+      
+      @media (prefers-color-scheme: dark) {
+        .boot-loader { background: #020617; }
+        .boot-logo-light { display: none; }
+        .boot-logo-dark { display: block; }
+      }
+      @media (prefers-color-scheme: light) {
+        .boot-logo-light { display: block; }
+        .boot-logo-dark { display: none; }
+      }
+
+      .boot-logo {
+        height: 80px;
+        width: auto;
+        margin-bottom: 40px;
+        animation: pulse-logo 2s ease-in-out infinite;
+      }
+
+      .spinner { width: 30px; height: 30px; border: 3px solid rgba(30, 58, 95, 0.1); border-top: 3px solid #C6922A; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
       
       .custom-scrollbar::-webkit-scrollbar { width: 6px; }
       .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
@@ -168,8 +197,10 @@
 <body class="dark:bg-primary-dark">
     <div id="root">
         <div class="boot-loader">
+            <img src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf" alt="LaunchPath" class="boot-logo boot-logo-light">
+            <img src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2" alt="LaunchPath" class="boot-logo boot-logo-dark">
             <div class="spinner"></div>
-            <p style="font-size: 10px; font-weight: 900; letter-spacing: 0.4em; text-transform: uppercase; color: #64748B;">Initializing LaunchPath™ OS</p>
+            <p style="font-size: 10px; font-weight: 900; letter-spacing: 0.4em; text-transform: uppercase; color: #64748B; margin-top: 10px;">Initializing LaunchPath™ OS</p>
         </div>
     </div>
     <script type="module" src="./index.tsx"></script>
