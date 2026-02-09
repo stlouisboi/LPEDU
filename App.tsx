@@ -139,7 +139,6 @@ const Footer = () => {
   );
 };
 
-// Main App Component
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
@@ -198,7 +197,6 @@ export default function App() {
                 <Route path="/operator-portal" element={<ProtectedRoute><OperatorPortal /></ProtectedRoute>} />
                 <Route path="/pricing" element={<RequestAdmission />} />
                 
-                {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
                   <Route index element={<AdminDashboardHome />} />
