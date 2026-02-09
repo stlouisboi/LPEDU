@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
+import AdminDashboard from './pages/admin/AdminDashboard';
   Sun, 
   Moon, 
   Menu, 
@@ -579,6 +580,7 @@ export default function App() {
                   </Route>
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
+                <Route path="/admin" element={<AdminDashboard />} />
               </main>
               <Footer />
               <AIChatWidget />
