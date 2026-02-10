@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { doc, getDocs, collection, query, where, limit } from "firebase/firestore";
 import { db } from '../firebase';
-// Added missing ShieldCheck import to fix errors on lines 122 and 175
-import { Calendar, User, ChevronLeft, Share2, Bookmark, Loader2, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { Calendar, User, ChevronLeft, Share2, Bookmark, Loader2, ShieldAlert, ShieldCheck, X, Maximize2, ZoomIn } from 'lucide-react';
 import { BlogPost } from '../types';
 import { INITIAL_BLOGS } from '../constants';
 
@@ -12,18 +11,17 @@ const BlogPostPage = () => {
   const { slug } = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // Attempt to find from static first for speed
         const foundPost = INITIAL_BLOGS.find(p => p.slug === slug);
         if (foundPost) {
           setPost(foundPost);
           document.title = foundPost.seoTitle || foundPost.title;
         }
 
-        // Try to fetch latest from DB if configured
         if (db) {
           const q = query(collection(db, "blogPosts"), where("slug", "==", slug), limit(1));
           const snap = await getDocs(q);
@@ -41,6 +39,15 @@ const BlogPostPage = () => {
     };
     fetchPost();
   }, [slug]);
+
+  // Handle clicks on images within dangerouslySetInnerHTML
+  const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'IMG') {
+      const src = (target as HTMLImageElement).src;
+      setActiveImage(src);
+    }
+  };
 
   if (loading) {
     return (
@@ -66,20 +73,23 @@ const BlogPostPage = () => {
   }
 
   return (
-    <div className="bg-white dark:bg-primary-dark min-h-screen">
+    <div className="bg-white dark:bg-primary-dark min-h-screen relative">
       {/* Cinematic Hero Header */}
-      <div className="relative h-[40vh] md:h-[60vh] min-h-[400px] w-full bg-slate-900 overflow-hidden">
+      <div className="relative h-[40vh] md:h-[60vh] min-h-[400px] w-full bg-slate-900 overflow-hidden cursor-zoom-in group" onClick={() => setActiveImage(post.image)}>
         <img 
           src={post.image || 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=1200'} 
           alt={post.title} 
-          className="w-full h-full object-cover transition-all duration-1000" 
+          className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" 
         />
-        {/* Deepened Overlay for Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/60 to-transparent pointer-events-none"></div>
         
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 lg:p-24">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-md p-4 rounded-full text-white pointer-events-none">
+          <Maximize2 size={24} />
+        </div>
+
+        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 lg:p-24 pointer-events-none">
           <div className="max-w-5xl mx-auto space-y-8 animate-reveal-up">
-            <Link to="/blog" className="inline-flex items-center text-white/60 hover:text-signal-gold mb-4 transition-all font-black uppercase tracking-[0.4em] text-[10px] group">
+            <Link to="/blog" className="inline-flex items-center text-white/60 hover:text-signal-gold mb-4 transition-all font-black uppercase tracking-[0.4em] text-[10px] group pointer-events-auto">
               <ChevronLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" /> 
               Back to Compliance Ledger
             </Link>
@@ -105,7 +115,6 @@ const BlogPostPage = () => {
       <div className="max-w-6xl mx-auto px-6 py-20 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-16 lg:gap-24 items-start">
           
-          {/* Content Architecture */}
           <article className="prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:text-authority-blue dark:prose-headings:text-signal-gold max-w-none">
             {post.excerpt && (
               <div className="mb-16 p-10 bg-slate-50 dark:bg-surface-dark border-l-[12px] border-signal-gold rounded-r-[3rem] shadow-sm">
@@ -117,6 +126,7 @@ const BlogPostPage = () => {
             
             <div 
               className="blog-content leading-[1.8] text-slate-600 dark:text-slate-300 font-medium" 
+              onClick={handleContentClick}
               dangerouslySetInnerHTML={{ __html: post.content }} 
             />
             
@@ -142,7 +152,6 @@ const BlogPostPage = () => {
             </div>
           </article>
 
-          {/* Institutional Sidebar */}
           <aside className="space-y-16 lg:sticky lg:top-40">
             <div className="space-y-8">
               <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-white border-b border-slate-100 dark:border-white/5 pb-4">Article Taxonomy</h4>
@@ -182,6 +191,57 @@ const BlogPostPage = () => {
           </aside>
         </div>
       </div>
+
+      {/* Institutional Lightbox Terminal */}
+      {activeImage && (
+        <div 
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-primary-dark/95 backdrop-blur-2xl animate-in fade-in duration-300 p-4 md:p-12"
+          onClick={() => setActiveImage(null)}
+        >
+          <div className="absolute top-8 right-8 z-[1010] flex items-center space-x-4">
+             <div className="bg-white/10 px-4 py-2 rounded-xl border border-white/10 backdrop-blur-md hidden md:block">
+                <p className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Institutional Inspection Mode</p>
+             </div>
+             <button 
+              className="p-4 bg-white/10 hover:bg-red-500 text-white rounded-full transition-all border border-white/10 group"
+              onClick={() => setActiveImage(null)}
+            >
+              <X size={24} className="group-hover:rotate-90 transition-transform" />
+            </button>
+          </div>
+          
+          <div className="relative max-w-7xl w-full max-h-full flex items-center justify-center animate-in zoom-in-95 duration-500">
+            <img 
+              src={activeImage} 
+              alt="Inspected Asset" 
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-[0_40px_100px_rgba(0,0,0,0.8)] border-4 border-white/5" 
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-40 pointer-events-none">
+             <div className="flex flex-col items-center space-y-2">
+                <ShieldCheck size={20} className="text-signal-gold" />
+                <p className="text-[9px] font-black text-white uppercase tracking-[0.5em]">Registry Asset Secure</p>
+             </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        .blog-content img {
+          cursor: zoom-in;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: 2rem;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+          margin-top: 3rem;
+          margin-bottom: 3rem;
+        }
+        .blog-content img:hover {
+          transform: scale(1.02);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+      `}</style>
     </div>
   );
 };

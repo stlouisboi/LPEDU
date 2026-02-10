@@ -289,7 +289,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-01-30",
     author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Fcall%20or%20text.png?alt=media&token=72ce99f3-0c26-401a-822f-2ce3835b2848",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FTHE%2090-DAY%20STABILIZATION%20WINDOW.png?alt=media&token=cb140a63-99ef-452e-b435-3116ae485aa0",
     status: 'published',
     tags: ['Institutional', 'Briefing', 'FMCSA', 'Survival']
   },
