@@ -478,32 +478,38 @@ export default function App() {
   }, [theme]);
 
   useEffect(() => {
-    if (!isFirebaseConfigured || !db) {
-      setAppLoading(false);
-      return;
-    }
-    
+    // 5-second max boot wait to prevent blank screens if database is unreachable
     const loadTimeout = setTimeout(() => {
       setAppLoading(false);
     }, 5000);
 
-    const settingsRef = doc(db, "settings", "general");
-    const unsub = onSnapshot(settingsRef, (snap) => {
-      if (snap.exists()) {
-        setSettings(snap.data() as SiteSettings);
-      }
-      clearTimeout(loadTimeout);
+    if (!isFirebaseConfigured || !db) {
       setAppLoading(false);
-    }, (error) => {
-      console.warn("App: Settings listener failed.", error.message);
       clearTimeout(loadTimeout);
-      setAppLoading(false);
-    });
+      return;
+    }
     
-    return () => {
-      unsub();
-      clearTimeout(loadTimeout);
-    };
+    try {
+      const settingsRef = doc(db, "settings", "general");
+      const unsub = onSnapshot(settingsRef, (snap) => {
+        if (snap.exists()) {
+          setSettings(snap.data() as SiteSettings);
+        }
+        clearTimeout(loadTimeout);
+        setAppLoading(false);
+      }, (error) => {
+        console.warn("App Boot: Firestore unreachable. Using static standard.", error.message);
+        clearTimeout(loadTimeout);
+        setAppLoading(false);
+      });
+      
+      return () => {
+        unsub();
+        clearTimeout(loadTimeout);
+      };
+    } catch (err) {
+      setAppLoading(false);
+    }
   }, []);
 
   const toggleTheme = () => {

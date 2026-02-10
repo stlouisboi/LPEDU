@@ -15,7 +15,8 @@ import {
   ChevronRight,
   Video,
   Database,
-  Users
+  Users,
+  Shield
 } from 'lucide-react';
 
 const AdminLayout = () => {
@@ -71,6 +72,7 @@ const AdminLayout = () => {
           </div>
 
           <nav className="flex-grow p-6 space-y-2 overflow-y-auto custom-scrollbar">
+            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4 px-3">Management</p>
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -88,6 +90,24 @@ const AdminLayout = () => {
                 {location.pathname === item.path && <ChevronRight size={14} />}
               </Link>
             ))}
+
+            <div className="pt-8 space-y-2">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4 px-3">Quick Links</p>
+              <Link
+                to="/operator-portal"
+                className="flex items-center space-x-3 p-3 rounded-xl text-sm font-bold text-signal-gold hover:bg-signal-gold/5 transition-all"
+              >
+                <Shield size={20} />
+                <span>Operator View</span>
+              </Link>
+              <Link
+                to="/"
+                className="flex items-center space-x-3 p-3 rounded-xl text-sm font-bold text-slate-500 hover:bg-slate-50 transition-all"
+              >
+                <Globe size={20} />
+                <span>View Live Site</span>
+              </Link>
+            </div>
           </nav>
 
           <div className="p-6 border-t border-border-light dark:border-border-dark">
