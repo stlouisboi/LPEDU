@@ -94,8 +94,9 @@ const SettingsManager = () => {
         seal: "A professional institutional round seal for a transportation authority. Inner logo is an anchor and shield. Colors: Authority Blue and Signal Gold. 3D embossed look, white background, high-end corporate style."
       };
 
+      // Fix: Corrected model to 'gemini-2.5-flash-image' for image generation as 'gemini-3-flash-preview' is a text model
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.5-flash-image',
         contents: { parts: [{ text: promptMap[type] }] },
         config: { imageConfig: { aspectRatio: "1:1" } }
       });
