@@ -1,28 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, query, where, onSnapshot } from "firebase/firestore";
-import { db } from '../firebase';
-import { Search, Filter, Calendar, User, ArrowRight, Loader2, AlertCircle, BookOpen } from 'lucide-react';
-import { useApp } from '../App';
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { db, isFirebaseConfigured } from '../firebase';
+import { Search, Filter, Calendar, User, ArrowRight, Loader2, BookOpen } from 'lucide-react';
 import { BlogPost, BlogCategory } from '../types';
 import { INITIAL_BLOGS } from '../constants';
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     document.title = "Blog | LaunchPath Compliance Insights";
-    const update = (selector: string, content: string, attr = 'content') => {
-      const el = document.querySelector(selector);
-      if (el) el.setAttribute(attr, content);
-    };
-    update('meta[name="description"]', "Practical guidance on FMCSA compliance, insurance continuity, and carrier operations. No hype. No shortcuts. Just what you need to know.");
-    update('meta[property="og:title"]', "Blog | LaunchPath Compliance Insights");
-    update('meta[property="og:description"]', "Compliance guidance for new motor carriers. Accuracy over hype.");
-    update('meta[property="og:type"]', "website");
+    
+    if (!isFirebaseConfigured || !db) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const q = query(collection(db, "blogPosts"), orderBy("publishedAt", "desc"));
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        if (!snapshot.empty) {
+          const blogData = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          })) as BlogPost[];
+          setBlogs(blogData);
+        }
+        setLoading(false);
+      }, (error) => {
+        console.warn("Blog: Remote sync restricted. Using static archive.", error);
+        setLoading(false);
+      });
+      return () => unsubscribe();
+    } catch (err) {
+      setLoading(false);
+    }
   }, []);
 
   const categories: (BlogCategory | 'All')[] = [
@@ -104,9 +120,15 @@ const BlogPage = () => {
           {filteredBlogs.length > 0 ? (
             filteredBlogs.map(post => (
               <article key={post.id} className="flex flex-col bg-white dark:bg-surface-dark rounded-[2.5rem] overflow-hidden border border-slate-100 dark:border-border-dark group transition-all hover:shadow-2xl hover:-translate-y-1">
-                {/* Image: hidden on mobile, visible on sm and up */}
-                <div className="hidden sm:block aspect-video w-full overflow-hidden">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                {/* Image Section: Now visible on mobile */}
+                <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+                  <img 
+                    src={post.image || 'https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?q=80&w=1000&auto=format&fit=crop'} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <div className="p-10 flex flex-col flex-grow">
