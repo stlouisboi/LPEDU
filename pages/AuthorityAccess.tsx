@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from '../firebase';
 import { useAuth } from '../AuthContext';
@@ -13,7 +14,8 @@ import {
   ShieldAlert,
   Terminal,
   Activity,
-  Cpu
+  Cpu,
+  Fingerprint
 } from 'lucide-react';
 import Logo from '../components/Logo';
 
@@ -29,32 +31,45 @@ const AuthorityAccess: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const checkEnrollmentAndNavigate = async (uid: string) => {
+    const userRef = doc(db, "operators", uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      const userData = userSnap.data();
+      if (userData.enrolled === true) {
+        navigate('/operator-portal');
+      } else {
+        navigate('/enrollment-pending');
+      }
+    } else {
+      navigate('/enrollment-pending');
+    }
+  };
+
+  const handleGoogleConnection = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      await checkEnrollmentAndNavigate(result.user.uid);
+    } catch (err: any) {
+      console.error("Google Auth Error:", err);
+      setError("AUTHENTICATION_FAILED: GOOGLE UPLINK REJECTED");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleTerminalConnection = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      // 1. Trigger Firebase Auth Sequence
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // 2. Navigation Guard: Verify Firestore Enrollment Status
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (userSnap.exists()) {
-        const userData = userSnap.data();
-        // Prompt specific requirement: enrolled === true -> /dashboard, else /enrollment-pending
-        if (userData.enrolled === true) {
-          navigate('/dashboard');
-        } else {
-          navigate('/enrollment-pending');
-        }
-      } else {
-        // Fallback for missing registry document
-        navigate('/enrollment-pending');
-      }
+      await checkEnrollmentAndNavigate(userCredential.user.uid);
     } catch (err: any) {
       console.error("Terminal Auth Error:", err);
       setError("SYSTEM ERROR: INVALID AUTHORITY CREDENTIALS");
@@ -99,13 +114,28 @@ const AuthorityAccess: React.FC = () => {
             </div>
           </div>
 
-          <form onSubmit={handleTerminalConnection} className="p-8 md:p-10 space-y-8">
+          <div className="p-8 md:p-10 space-y-8">
             <div className="space-y-1.5">
               <h2 className="text-2xl font-black text-white uppercase tracking-tight leading-none">CREDENTIALS REQUIRED</h2>
               <p className="text-[9px] font-bold text-white/20 uppercase tracking-[0.4em]">GATEWAY_VERSION_V4.2.0</p>
             </div>
 
-            <div className="space-y-6">
+            <button 
+              onClick={handleGoogleConnection}
+              disabled={loading}
+              className="w-full h-14 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center space-x-4 hover:bg-white/10 transition-all active:scale-95 group/google"
+            >
+              <Fingerprint className="text-[#C5A059] group-hover/google:animate-pulse" size={20} />
+              <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Google Authority Link</span>
+            </button>
+
+            <div className="flex items-center space-x-4 opacity-20">
+               <div className="h-px flex-grow bg-white"></div>
+               <span className="text-[8px] font-black text-white uppercase">OR</span>
+               <div className="h-px flex-grow bg-white"></div>
+            </div>
+
+            <form onSubmit={handleTerminalConnection} className="space-y-6">
               {/* Registry Email Input */}
               <div className="space-y-2.5">
                 <label className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 ml-4">Registry Email</label>
@@ -139,19 +169,16 @@ const AuthorityAccess: React.FC = () => {
                   />
                 </div>
               </div>
-            </div>
 
-            {/* Error Message: Industrial Mono Style */}
-            {error && (
-              <div className="bg-red-500/5 border border-red-500/20 p-4 rounded-xl flex items-center space-x-3 animate-in shake duration-300">
-                <ShieldAlert size={14} className="text-red-500 shrink-0" />
-                <p className="text-[10px] font-bold text-red-500/80 uppercase font-mono tracking-tighter leading-none">
-                  {error}
-                </p>
-              </div>
-            )}
+              {error && (
+                <div className="bg-red-500/5 border border-red-500/20 p-4 rounded-xl flex items-center space-x-3 animate-in shake duration-300">
+                  <ShieldAlert size={14} className="text-red-500 shrink-0" />
+                  <p className="text-[10px] font-bold text-red-500/80 uppercase font-mono tracking-tighter leading-none">
+                    {error}
+                  </p>
+                </div>
+              )}
 
-            <div className="pt-2">
               <button 
                 type="submit" 
                 disabled={loading}
@@ -169,8 +196,8 @@ const AuthorityAccess: React.FC = () => {
                   </div>
                 )}
               </button>
-            </div>
-          </form>
+            </form>
+          </div>
 
           {/* Container Footer */}
           <div className="bg-black/30 px-8 py-5 border-t border-white/5">

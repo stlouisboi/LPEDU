@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import RemediationProtocolBlock from '../components/RemediationProtocolBlock';
 import { COURSE_MODULES } from '../constants';
 import { Link } from 'react-router-dom';
@@ -42,7 +43,7 @@ const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
                 opacity: 0,
                 transform: `rotate(${i * 45}deg) translateY(-14px)`,
                 animation: `sparkle-burst 0.8s ease-out forwards ${i * 0.05}s`
-              }}
+              } as React.CSSProperties}
             />
           ))}
         </div>
@@ -74,13 +75,6 @@ const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
           />
         </svg>
       </div>
-
-      <style>{`
-        @keyframes sparkle-burst {
-          0% { transform: rotate(var(--rotation)) translateY(0); opacity: 1; }
-          100% { transform: rotate(var(--rotation)) translateY(-24px) scale(0); opacity: 0; }
-        }
-      `}</style>
     </div>
   );
 };
@@ -405,6 +399,13 @@ const OperatorPortal: React.FC = () => {
         message="This action will permanently remove this item from your operator registry. This action cannot be undone."
         confirmLabel="Purge Record"
       />
+
+      <style>{`
+        @keyframes sparkle-burst {
+          0% { transform: rotate(var(--rotation)) translateY(0); opacity: 1; }
+          100% { transform: rotate(var(--rotation)) translateY(-24px) scale(0); opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 };

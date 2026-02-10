@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, Lock, Mail, Loader2 } from 'lucide-react';
+import { ShieldCheck, Lock, Mail, Loader2, Chrome } from 'lucide-react';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +11,20 @@ const AdminLogin = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      navigate('/admin');
+    } catch (err: any) {
+      setError('Google authorization failed. Access denied.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,51 +51,72 @@ const AdminLogin = () => {
           <p className="text-white/60 text-sm mt-1 uppercase tracking-widest font-bold">Secure Gateway</p>
         </div>
 
-        <form onSubmit={handleLogin} className="p-8 space-y-6">
+        <div className="p-8 space-y-6">
           {error && (
             <div className="p-4 bg-red-50 text-red-600 rounded-xl text-sm font-bold border border-red-100 animate-in shake duration-300">
               {error}
             </div>
           )}
 
-          <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-text-muted">Email Address</label>
-            <div className="relative">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
-              <input 
-                type="email" 
-                required
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue transition-all"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@launchpath.com"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-text-muted">Security Key</label>
-            <div className="relative">
-              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
-              <input 
-                type="password" 
-                required
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue transition-all"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-              />
-            </div>
-          </div>
-
           <button 
-            type="submit" 
+            onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full bg-authority-blue text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-xl disabled:opacity-50"
+            className="w-full bg-white border-2 border-slate-100 py-4 rounded-2xl font-bold text-slate-700 flex items-center justify-center space-x-3 hover:bg-slate-50 transition-all shadow-sm active:scale-95 disabled:opacity-50"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <span>Authorize Entry</span>}
+            {loading ? <Loader2 className="animate-spin" size={18} /> : (
+              <>
+                <Chrome size={20} className="text-blue-500" />
+                <span>Sign in with Google Workspace</span>
+              </>
+            )}
           </button>
-        </form>
+
+          <div className="flex items-center space-x-4 opacity-30 py-2">
+            <div className="h-px flex-grow bg-slate-400"></div>
+            <span className="text-[10px] font-black uppercase">OR</span>
+            <div className="h-px flex-grow bg-slate-400"></div>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-text-muted">Email Address</label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
+                <input 
+                  type="email" 
+                  required
+                  className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue transition-all"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@launchpath.com"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-text-muted">Security Key</label>
+              <div className="relative">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
+                <input 
+                  type="password" 
+                  required
+                  className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-2xl outline-none focus:ring-2 focus:ring-authority-blue transition-all"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                />
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="w-full bg-authority-blue text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-xl disabled:opacity-50"
+            >
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <span>Authorize Entry</span>}
+            </button>
+          </form>
+        </div>
 
         <div className="p-4 bg-gray-50 dark:bg-gray-900/50 text-center">
           <p className="text-[10px] text-text-muted uppercase tracking-widest font-bold">
