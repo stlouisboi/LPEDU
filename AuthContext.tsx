@@ -22,8 +22,8 @@ export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Only subscribe to auth state if we have a real initialized app instance
-    if (isFirebaseConfigured && auth && (auth as any).app) {
+    // Safely check if auth is initialized before subscribing
+    if (isFirebaseConfigured && auth) {
       try {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
           setCurrentUser(user);
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
   }, []);
 
   const logout = async () => {
-    if (isFirebaseConfigured && auth && (auth as any).app) {
+    if (auth) {
       return signOut(auth);
     }
   };

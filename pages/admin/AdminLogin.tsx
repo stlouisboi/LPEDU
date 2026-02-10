@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from '../../firebase';
+import { auth, isFirebaseConfigured } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, Lock, Mail, Loader2, Chrome } from 'lucide-react';
+import { ShieldCheck, Lock, Mail, Loader2, Chrome, AlertTriangle } from 'lucide-react';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +13,10 @@ const AdminLogin = () => {
   const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
+    if (!auth) {
+      setError('System configuration error: Auth instance missing.');
+      return;
+    }
     setLoading(true);
     setError('');
     try {
@@ -28,6 +32,10 @@ const AdminLogin = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!auth) {
+      setError('System configuration error: Auth instance missing.');
+      return;
+    }
     setLoading(true);
     setError('');
     try {
@@ -52,6 +60,13 @@ const AdminLogin = () => {
         </div>
 
         <div className="p-8 space-y-6">
+          {!isFirebaseConfigured && (
+            <div className="p-4 bg-amber-50 text-amber-700 rounded-xl text-xs font-bold border border-amber-200 flex items-start gap-3">
+              <AlertTriangle className="shrink-0" size={16} />
+              <span>WARNING: Critical environment variables are missing. Firebase Auth is inactive.</span>
+            </div>
+          )}
+
           {error && (
             <div className="p-4 bg-red-50 text-red-600 rounded-xl text-sm font-bold border border-red-100 animate-in shake duration-300">
               {error}
@@ -60,8 +75,8 @@ const AdminLogin = () => {
 
           <button 
             onClick={handleGoogleLogin}
-            disabled={loading}
-            className="w-full bg-white border-2 border-slate-100 py-4 rounded-2xl font-bold text-slate-700 flex items-center justify-center space-x-3 hover:bg-slate-50 transition-all shadow-sm active:scale-95 disabled:opacity-50"
+            disabled={loading || !isFirebaseConfigured}
+            className="w-full bg-white border-2 border-slate-100 py-4 rounded-2xl font-bold text-slate-700 flex items-center justify-center space-x-3 hover:bg-slate-50 transition-all shadow-sm active:scale-95 disabled:opacity-30"
           >
             {loading ? <Loader2 className="animate-spin" size={18} /> : (
               <>
@@ -110,8 +125,8 @@ const AdminLogin = () => {
 
             <button 
               type="submit" 
-              disabled={loading}
-              className="w-full bg-authority-blue text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-xl disabled:opacity-50"
+              disabled={loading || !isFirebaseConfigured}
+              className="w-full bg-authority-blue text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-2 hover:bg-steel-blue transition-all shadow-xl disabled:opacity-30"
             >
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <span>Authorize Entry</span>}
             </button>

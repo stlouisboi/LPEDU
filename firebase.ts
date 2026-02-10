@@ -1,8 +1,8 @@
 
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { initializeFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getAuth, Auth } from "firebase/auth";
+import { initializeFirestore, Firestore } from "firebase/firestore";
+import { getStorage, FirebaseStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: (process.env as any).VITE_FIREBASE_API_KEY,
@@ -19,23 +19,24 @@ export const isFirebaseConfigured =
   firebaseConfig.apiKey !== "undefined" && 
   firebaseConfig.apiKey !== "";
 
-let app;
-let auth: any = null;
-let db: any = null;
-let storage: any = null;
+let auth: Auth = null as any;
+let db: Firestore = null as any;
+let storage: FirebaseStorage = null as any;
 
 if (isFirebaseConfigured) {
   try {
-    app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+    const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
     auth = getAuth(app);
     db = initializeFirestore(app, {
       experimentalForceLongPolling: true,
-      useFetchStreams: false 
     });
     storage = getStorage(app);
+    console.log("LaunchPath: Firebase Infrastructure Online");
   } catch (err) {
-    console.warn("Firebase initialization skipped or failed:", err);
+    console.error("LaunchPath: Firebase initialization critical failure:", err);
   }
+} else {
+  console.warn("LaunchPath: Firebase configuration missing. Auth and Database services are offline.");
 }
 
 export { auth, db, storage };
