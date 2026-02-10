@@ -30,6 +30,7 @@ import {
   AlertTriangle,
   X
 } from 'lucide-react';
+import ConfirmationModal from '../../components/ConfirmationModal';
 
 interface LeadMagnet {
   id: string;
@@ -47,6 +48,12 @@ const LeadsManager = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [isDeleting, setIsDeleting] = useState(false);
+  
+  // Modal states
+  const [showSingleConfirm, setShowSingleConfirm] = useState(false);
+  const [showBulkConfirm, setShowBulkConfirm] = useState(false);
+  const [leadToDelete, setLeadToDelete] = useState<string | null>(null);
+
   const pageSize = 20;
 
   useEffect(() => {
@@ -102,8 +109,6 @@ const LeadsManager = () => {
 
   const handleBulkDelete = async () => {
     if (selectedIds.size === 0) return;
-    if (!window.confirm(`Permanently purge ${selectedIds.size} records from the institutional registry?`)) return;
-    
     setIsDeleting(true);
     try {
       const batch = writeBatch(db);
@@ -113,6 +118,7 @@ const LeadsManager = () => {
       });
       await batch.commit();
       setSelectedIds(new Set());
+      setShowBulkConfirm(false);
     } catch (err) {
       console.error("Bulk Delete Fault:", err);
       alert("System could not finalize bulk purge. Verification failed.");
@@ -121,15 +127,20 @@ const LeadsManager = () => {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("Are you sure you want to delete this lead?")) return;
+  const handleDelete = async () => {
+    if (!leadToDelete) return;
+    setIsDeleting(true);
     try {
-      await deleteDoc(doc(db, "leadMagnets", id));
+      await deleteDoc(doc(db, "leadMagnets", leadToDelete));
       const newSelected = new Set(selectedIds);
-      newSelected.delete(id);
+      newSelected.delete(leadToDelete);
       setSelectedIds(newSelected);
+      setShowSingleConfirm(false);
+      setLeadToDelete(null);
     } catch (err) {
       alert("Delete failed.");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -274,7 +285,7 @@ const LeadsManager = () => {
                <X size={20} />
              </button>
              <button 
-               onClick={handleBulkDelete}
+               onClick={() => setShowBulkConfirm(true)}
                disabled={isDeleting}
                className="bg-red-600 hover:bg-red-700 text-white px-8 py-3.5 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center shadow-lg transition-all active:scale-95 disabled:opacity-50"
              >
@@ -354,7 +365,7 @@ const LeadsManager = () => {
                   </td>
                   <td className="px-8 py-6 text-right">
                     <button 
-                      onClick={() => handleDelete(lead.id)}
+                      onClick={() => { setLeadToDelete(lead.id); setShowSingleConfirm(true); }}
                       className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all active:scale-90"
                       title="Purge Record"
                     >
@@ -399,7 +410,7 @@ const LeadsManager = () => {
                   <p className="text-xs text-text-muted" onClick={() => copyToClipboard(lead.email, lead.id)}>{lead.email}</p>
                 </div>
               </div>
-              <button onClick={() => handleDelete(lead.id)} className="p-2 text-red-400"><Trash2 size={18} /></button>
+              <button onClick={() => { setLeadToDelete(lead.id); setShowSingleConfirm(true); }} className="p-2 text-red-400"><Trash2 size={18} /></button>
             </div>
             <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-border-dark">
               <span className="text-[10px] font-black uppercase text-text-muted">{lead.source?.replace(/-/g, ' ')}</span>
@@ -431,6 +442,27 @@ const LeadsManager = () => {
           </button>
         </div>
       )}
+
+      {/* CONFIRMATION MODALS */}
+      <ConfirmationModal 
+        isOpen={showSingleConfirm}
+        onClose={() => setShowSingleConfirm(false)}
+        onConfirm={handleDelete}
+        title="Purge Lead Record?"
+        message="This will permanently remove the lead from the carrier registry. This action is final."
+        confirmLabel="Confirm Purge"
+        isProcessing={isDeleting}
+      />
+
+      <ConfirmationModal 
+        isOpen={showBulkConfirm}
+        onClose={() => setShowBulkConfirm(false)}
+        onConfirm={handleBulkDelete}
+        title={`Purge ${selectedIds.size} Leads?`}
+        message={`You are about to mass-delete ${selectedIds.size} records. This action cannot be reversed.`}
+        confirmLabel="Mass Purge"
+        isProcessing={isDeleting}
+      />
     </div>
   );
 };

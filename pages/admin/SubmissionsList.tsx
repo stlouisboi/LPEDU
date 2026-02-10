@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   collection, 
@@ -20,6 +19,7 @@ import {
   Loader2, 
   Filter
 } from 'lucide-react';
+import ConfirmationModal from '../../components/ConfirmationModal';
 
 interface ContactSubmission {
   id: string;
@@ -37,6 +37,11 @@ const SubmissionsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSub, setSelectedSub] = useState<ContactSubmission | null>(null);
   const [filter, setFilter] = useState<'all' | 'unread' | 'read' | 'replied'>('all');
+  
+  // Modal state
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [subToDelete, setSubToDelete] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (!isFirebaseConfigured || !db || !(db as any).app) {
@@ -72,13 +77,18 @@ const SubmissionsList = () => {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("Delete this submission permanently?")) return;
+  const handleDelete = async () => {
+    if (!subToDelete) return;
+    setIsDeleting(true);
     try {
-      await deleteDoc(doc(db, "formSubmissions", id));
+      await deleteDoc(doc(db, "formSubmissions", subToDelete));
       setSelectedSub(null);
+      setIsConfirmOpen(false);
+      setSubToDelete(null);
     } catch (err) {
       alert("Failed to delete.");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -180,7 +190,7 @@ const SubmissionsList = () => {
                     <div className="flex justify-end space-x-2">
                        <button className="p-2 text-text-muted hover:text-authority-blue"><Eye size={16} /></button>
                        <button 
-                        onClick={(e) => { e.stopPropagation(); handleDelete(sub.id); }} 
+                        onClick={(e) => { e.stopPropagation(); setSubToDelete(sub.id); setIsConfirmOpen(true); }} 
                         className="p-2 text-red-400 hover:text-red-600"
                        >
                          <Trash2 size={16} />
@@ -231,7 +241,7 @@ const SubmissionsList = () => {
                     <Mail size={18} className="mr-2" /> Quick Reply via Email
                   </a>
                   <button 
-                    onClick={() => handleDelete(selectedSub.id)}
+                    onClick={() => { setSubToDelete(selectedSub.id); setIsConfirmOpen(true); }}
                     className="p-4 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-colors"
                   >
                     <Trash2 size={20} />
@@ -241,6 +251,17 @@ const SubmissionsList = () => {
           </div>
         </div>
       )}
+
+      {/* CONFIRMATION MODAL */}
+      <ConfirmationModal 
+        isOpen={isConfirmOpen}
+        onClose={() => setIsConfirmOpen(false)}
+        onConfirm={handleDelete}
+        title="Purge Submission?"
+        message="This action will permanently remove this inquiry from the registry archive. This action cannot be undone."
+        confirmLabel="Purge Record"
+        isProcessing={isDeleting}
+      />
     </div>
   );
 };

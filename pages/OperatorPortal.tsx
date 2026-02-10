@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import RemediationProtocolBlock from '../components/RemediationProtocolBlock';
 import { COURSE_MODULES } from '../constants';
@@ -93,6 +92,7 @@ const OperatorPortal: React.FC = () => {
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const addTask = (e: React.FormEvent) => {
     e.preventDefault();
@@ -132,12 +132,15 @@ const OperatorPortal: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleDeleteTask = () => {
-    if (taskToDelete) {
-      setTasks(tasks.filter(t => t.id !== taskToDelete));
-      setIsModalOpen(false);
-      setTaskToDelete(null);
-    }
+  const handleDeleteTask = async () => {
+    if (!taskToDelete) return;
+    setIsProcessing(true);
+    // Simulate registry sync
+    await new Promise(r => setTimeout(r, 800));
+    setTasks(tasks.filter(t => t.id !== taskToDelete));
+    setIsModalOpen(false);
+    setTaskToDelete(null);
+    setIsProcessing(false);
   };
 
   const filteredTasks = tasks.filter(task => {
@@ -398,6 +401,7 @@ const OperatorPortal: React.FC = () => {
         title="Purge Task?"
         message="This action will permanently remove this item from your operator registry. This action cannot be undone."
         confirmLabel="Purge Record"
+        isProcessing={isProcessing}
       />
 
       <style>{`
