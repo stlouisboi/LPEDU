@@ -102,51 +102,37 @@ const Footer = () => {
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
-  const [appLoading, setAppLoading] = useState(true);
+  // Temporarily set loading to false to force a render
+  const [appLoading, setAppLoading] = useState(false); 
 
   useEffect(() => {
     if (theme === 'dark') document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   }, [theme]);
 
-  useEffect(() => {
-    if (!isFirebaseConfigured || !db) { setAppLoading(false); return; }
-    const settingsRef = doc(db, "settings", "general");
-    const unsub = onSnapshot(settingsRef, (snap) => {
-      if (snap.exists()) setSettings(snap.data() as SiteSettings);
-      setAppLoading(false);
-    }, () => setAppLoading(false));
-    return () => unsub();
-  }, []);
+  const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
   return (
     <AppContext.Provider value={{ theme, toggleTheme, settings, updateSettings: setSettings }}>
       <AuthProvider>
         <Router>
           <ScrollToTop />
-          {appLoading ? (
-            <div className="min-h-screen flex items-center justify-center bg-authority-blue text-signal-gold uppercase font-black tracking-widest">
-              Initializing Secure Standard...
-            </div>
-          ) : (
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-grow">
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
-                  <Route path="/reach-test" element={<ReachTestPage />} />
-                  <Route path="/portal" element={<AuthorityAccess />} />
-                  <Route path="/operator-portal" element={<ProtectedRoute><OperatorPortal /></ProtectedRoute>} />
-                  <Route path="/pricing" element={<RequestAdmission />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-              </main>
-              <Footer />
-              <AIChatWidget />
-            </div>
-          )}
+          <div className="min-h-screen flex flex-col bg-white dark:bg-authority-blue">
+            <Header />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
+                <Route path="/reach-test" element={<ReachTestPage />} />
+                <Route path="/portal" element={<AuthorityAccess />} />
+                <Route path="/pricing" element={<RequestAdmission />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </main>
+            <Footer />
+            <AIChatWidget />
+          </div>
         </Router>
       </AuthProvider>
     </AppContext.Provider>
