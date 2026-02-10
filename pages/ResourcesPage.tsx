@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -32,7 +33,8 @@ import {
   RefreshCw,
   Sparkles,
   Zap,
-  Terminal
+  Terminal,
+  Brain
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -195,58 +197,70 @@ const ResourcesPage = () => {
           <div className="hidden lg:block w-32 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-white/10"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* REACH Test Card - Vibrant Emerald */}
-          <div className="bg-white dark:bg-surface-dark p-12 rounded-[4rem] border-2 border-transparent hover:border-emerald-500/30 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_60px_100px_-30px_rgba(16,185,129,0.15)]">
+          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border-2 border-transparent hover:border-emerald-500/30 shadow-sm relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-2">
             <AccessBadge type="FREE" />
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-colors duration-700"></div>
-            <div className="w-20 h-20 bg-emerald-500 text-white rounded-[2rem] flex items-center justify-center mb-10 shadow-2xl group-hover:scale-110 transition-transform duration-700 ring-8 ring-emerald-500/10">
-              <FileSearch size={32} />
+            <div className="w-16 h-16 bg-emerald-500 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-700">
+              <FileSearch size={28} />
             </div>
-            <h3 className="text-3xl font-black text-authority-blue dark:text-white uppercase mb-6 font-serif leading-none">REACH Test™</h3>
-            <p className="text-lg text-slate-500 dark:text-slate-400 font-extrabold mb-12 flex-grow leading-relaxed">
-              Analyze your current compliance posture across the four pillars of carrier safety.
+            <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 font-serif leading-none">REACH Test™</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-bold mb-8 flex-grow leading-relaxed">
+              Analyze your current compliance posture across the four pillars.
             </p>
-            <Link to="/reach-test" className="w-full bg-emerald-600 text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-2xl hover:bg-emerald-700 active:scale-95 flex items-center justify-center group/btn border-b-4 border-emerald-900">
-              Start Assessment <ArrowRight size={18} className="ml-3 group-hover/btn:translate-x-1 transition-transform" />
+            <Link to="/reach-test" className="w-full bg-emerald-600 text-white py-4 rounded-xl font-black uppercase tracking-[0.3em] text-[10px] shadow-lg hover:bg-emerald-700 flex items-center justify-center group/btn border-b-4 border-emerald-900">
+              Start <ArrowRight size={14} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
             </Link>
           </div>
 
           {/* Risk Map - Vibrant Gold */}
-          <div className="bg-white dark:bg-surface-dark p-12 rounded-[4rem] border-2 border-transparent hover:border-signal-gold/30 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_60px_100px_-30px_rgba(198,146,42,0.15)]">
+          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border-2 border-transparent hover:border-signal-gold/30 shadow-sm relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-2">
             <AccessBadge type="FREE" />
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-colors duration-700"></div>
-            <div className="w-20 h-20 bg-signal-gold text-authority-blue rounded-[2rem] flex items-center justify-center mb-10 shadow-2xl group-hover:scale-110 transition-transform duration-700 ring-8 ring-signal-gold/10">
-              <Activity size={32} className="group-hover:animate-pulse" />
+            <div className="w-16 h-16 bg-signal-gold text-authority-blue rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-700">
+              <Activity size={28} />
             </div>
-            <h3 className="text-3xl font-black text-authority-blue dark:text-white uppercase mb-6 font-serif leading-none">90 Days Risk Map™</h3>
-            <p className="text-lg text-slate-500 dark:text-slate-400 font-extrabold mb-12 flex-grow leading-relaxed">
-              A comprehensive visualization of common failure points for new entrants.
+            <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 font-serif leading-none">90 Days Risk Map™</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-bold mb-8 flex-grow leading-relaxed">
+              Visualize common failure points for new motor carrier entrants.
             </p>
             <button 
               onClick={() => setSelectedGuide({ title: "90 Days Risk Map™", link: "#" })}
-              className="w-full bg-authority-blue text-white py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] flex items-center justify-center hover:bg-steel-blue transition-all active:scale-95 shadow-xl border-b-4 border-slate-900"
+              className="w-full bg-authority-blue text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center hover:bg-steel-blue transition-all shadow-lg border-b-4 border-slate-900"
             >
-              View Risk Map <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
+              View Map <ArrowRight size={14} className="ml-2 group-hover:translate-x-1" />
             </button>
           </div>
 
-          {/* Survival Scorecard - Vibrant Blue */}
-          <div className="bg-white dark:bg-surface-dark p-12 rounded-[4rem] border-2 border-transparent hover:border-authority-blue/30 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-3 hover:shadow-[0_60px_100px_-30px_rgba(30,58,95,0.15)]">
+          {/* NEW: Sudoku Discipline Trainer */}
+          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border-2 border-transparent hover:border-authority-blue/30 shadow-sm relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-2">
             <AccessBadge type="FREE" />
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-authority-blue/5 rounded-full blur-3xl group-hover:bg-authority-blue/10 transition-colors duration-700"></div>
-            <div className="w-20 h-20 bg-authority-blue text-white rounded-[2rem] flex items-center justify-center mb-10 shadow-2xl group-hover:scale-110 transition-transform duration-700 ring-8 ring-authority-blue/10">
-              <ClipboardList size={32} />
+            <div className="w-16 h-16 bg-authority-blue text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-700 ring-4 ring-authority-blue/10">
+              <Brain size={28} className="text-signal-gold" />
             </div>
-            <h3 className="text-3xl font-black text-authority-blue dark:text-white uppercase mb-6 font-serif leading-none">Survival Scorecard</h3>
-            <p className="text-lg text-slate-500 dark:text-slate-400 font-extrabold mb-12 flex-grow leading-relaxed">
-              Binary evaluation tool to verify if your entity is ready for operations.
+            <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 font-serif leading-none">Mind Gym</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-bold mb-8 flex-grow leading-relaxed">
+              Discipline Trainer: Sudoku puzzles to maintain focus and attention.
+            </p>
+            <Link to="/tools/sudoku" className="w-full bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] border border-slate-200 dark:border-white/10 flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 transition-all active:scale-95">
+              Launch Trainer <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          {/* Survival Scorecard - Vibrant Blue */}
+          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border-2 border-transparent hover:border-authority-blue/30 shadow-sm relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-2">
+            <AccessBadge type="FREE" />
+            <div className="w-16 h-16 bg-slate-100 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center mb-8 shadow-inner">
+              <ClipboardList size={28} />
+            </div>
+            <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 font-serif leading-none">Readiness</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-bold mb-8 flex-grow leading-relaxed">
+              Binary evaluation to verify if your entity is ready to launch.
             </p>
             <Link 
               to="/readiness"
-              className="w-full bg-slate-50 dark:bg-gray-800 text-authority-blue dark:text-white py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] border-2 border-slate-200 dark:border-white/10 flex items-center justify-center hover:bg-white dark:hover:bg-gray-700 transition-all active:scale-95 shadow-sm"
+              className="w-full bg-white dark:bg-gray-800 text-authority-blue dark:text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] border border-slate-200 dark:border-white/10 flex items-center justify-center hover:bg-slate-50 transition-all active:scale-95"
             >
-              Open Scorecard <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
+              Verify <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

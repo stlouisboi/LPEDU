@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -12,7 +13,8 @@ import {
   Linkedin,
   ShieldCheck,
   LayoutDashboard,
-  Music
+  Music,
+  Brain
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -48,6 +50,7 @@ import TCOCalculatorPage from './pages/TCOCalculatorPage';
 import TCOPreviewPage from './pages/TCOPreviewPage';
 import OperatorPortal from './pages/OperatorPortal';
 import ExposureMatrixPage from './pages/ExposureMatrixPage';
+import SudokuPage from './pages/SudokuPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -296,16 +299,25 @@ const Footer = () => {
 
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-    return 'light';
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('launchpath-theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+      return 'dark'; // Set dark as default
+    }
+    return 'dark';
   });
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
   const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
   const [appLoading, setAppLoading] = useState(true);
 
   useEffect(() => {
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('launchpath-theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('launchpath-theme', 'light');
+    }
   }, [theme]);
 
   useEffect(() => {
@@ -372,6 +384,7 @@ export default function App() {
                   <Route path="/pricing" element={<RequestAdmission />} />
                   <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
                   <Route path="/tools/tco-preview" element={<TCOPreviewPage />} />
+                  <Route path="/tools/sudoku" element={<SudokuPage />} />
                   <Route path="/authorized/tco-calculator" element={<ProtectedRoute><TCOCalculatorPage /></ProtectedRoute>} />
                   <Route path="/modules/:id" element={<ModuleDetailPage />} />
                   <Route path="/download/risk-map" element={<DownloadPage />} />

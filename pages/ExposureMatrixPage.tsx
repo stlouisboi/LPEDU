@@ -20,7 +20,9 @@ import {
   Activity,
   ClipboardCheck,
   Scale,
-  Download
+  Download,
+  AlertTriangle,
+  Cpu
 } from 'lucide-react';
 
 interface SinItem {
@@ -127,54 +129,86 @@ const ExposureMatrixPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="text-left md:text-right">
-                   <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Impact Level</p>
+                   <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Domain Impact</p>
                    <p className="text-xl md:text-2xl font-black text-red-500 uppercase tracking-tighter italic">Critical Exposure</p>
                 </div>
               </header>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                {domain.items.map((item) => (
-                  <article 
-                    key={item.id} 
-                    onClick={() => setSelectedSin(item as SinItem)}
-                    className="bg-white/[0.02] border border-white/5 p-8 md:p-10 rounded-[3rem] flex flex-col group hover:bg-white/[0.04] hover:border-[#C5A059]/40 transition-all duration-700 relative overflow-hidden shadow-sm cursor-pointer min-h-[400px] lg:min-h-[450px]"
-                  >
-                    <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-700">
-                      <Terminal size={80} />
-                    </div>
-                    
-                    <header className="mb-6 md:mb-8">
-                      <span className="text-xs font-black text-slate-700 font-mono tracking-tighter mb-4 block group-hover:text-[#C5A059] transition-colors">{item.id}</span>
-                      <h4 className="text-[18px] md:text-[20px] font-black text-white uppercase leading-tight tracking-tight group-hover:text-[#C5A059] transition-colors">{item.text}</h4>
-                    </header>
+                {domain.items.map((item) => {
+                  const isTerminal = item.severity === 'TERMINAL';
+                  
+                  return (
+                    <button 
+                      key={item.id} 
+                      onClick={() => setSelectedSin(item as SinItem)}
+                      className={`
+                        text-left w-full relative overflow-hidden flex flex-col group transition-all duration-700
+                        bg-slate-900/40 backdrop-blur-md border rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10
+                        hover:-translate-y-2 hover:shadow-2xl active:scale-[0.98] cursor-pointer
+                        ${isTerminal 
+                          ? 'border-red-500/20 hover:border-red-500/40 shadow-red-900/10' 
+                          : 'border-white/5 hover:border-signal-gold/40 shadow-black/20'
+                        }
+                      `}
+                    >
+                      {/* Ghosted Background Icon */}
+                      <div className="absolute -top-4 -right-4 p-4 opacity-[0.04] group-hover:opacity-[0.1] transition-opacity duration-700 pointer-events-none rotate-12">
+                        {React.cloneElement(domain.icon as React.ReactElement<any>, { size: 140 })}
+                      </div>
 
-                    <div className="space-y-6 flex-grow">
-                      <div className="space-y-4">
-                        <div className="flex flex-col space-y-1">
-                          <p className="text-[10px] md:text-[12px] font-black text-slate-500 uppercase tracking-widest">Result</p>
-                          <p className="text-[14px] md:text-[20px] font-black text-red-500 uppercase leading-none">{item.result}</p>
+                      {/* TERMINAL Pulsing Glow */}
+                      {isTerminal && (
+                        <div className="absolute inset-0 bg-red-600/[0.03] animate-pulse pointer-events-none"></div>
+                      )}
+
+                      <header className="mb-8 relative z-10">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className={`px-3 py-1 rounded-lg font-mono text-[10px] font-black tracking-widest border transition-colors ${
+                            isTerminal ? 'bg-red-950/40 border-red-500/40 text-red-500' : 'bg-slate-800/40 border-white/10 text-slate-500'
+                          }`}>
+                            SIN-{item.id}
+                          </span>
+                          <Activity size={14} className={`${isTerminal ? 'text-red-500' : 'text-slate-700'} opacity-50`} />
                         </div>
-                        <div className="flex flex-col space-y-1">
-                          <p className="text-[10px] md:text-[12px] font-black text-slate-500 uppercase tracking-widest">Severity</p>
-                          <p className={`text-[14px] md:text-[20px] font-black uppercase leading-none ${item.severity === 'TERMINAL' ? 'text-red-600' : 'text-amber-500'}`}>{item.severity}</p>
+                        <h4 className="text-[19px] md:text-[21px] font-black text-white uppercase leading-tight tracking-tight group-hover:text-signal-gold transition-colors duration-500">
+                          {item.text}
+                        </h4>
+                      </header>
+
+                      <div className="mt-auto space-y-6 relative z-10">
+                        {/* Summary Block */}
+                        <div className="bg-black/20 rounded-2xl p-5 space-y-4 border border-white/5 group-hover:border-white/10 transition-colors">
+                          <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Result</p>
+                            <p className="text-[11px] font-black text-red-500 uppercase tracking-tight">{item.result}</p>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Severity</p>
+                            <div className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-[10px] font-black uppercase ${
+                              isTerminal ? 'bg-red-600/10 text-red-500' : 'bg-amber-600/10 text-amber-500'
+                            }`}>
+                              <AlertTriangle size={10} />
+                              {item.severity}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between text-slate-500 group-hover:text-white transition-colors duration-500">
+                          <span className="text-[10px] font-black uppercase tracking-[0.3em]">Diagnosis Details</span>
+                          <ChevronRight size={16} className="group-hover:translate-x-2 transition-transform duration-500" />
                         </div>
                       </div>
-                    </div>
-
-                    <div className="mt-8 flex justify-end">
-                      <div className="bg-[#C5A059] text-[#002244] px-5 py-3 rounded-xl font-black uppercase tracking-widest text-[9px] flex items-center gap-2 group-hover:scale-105 transition-all shadow-[0_10px_20px_rgba(197,160,89,0.2)] active:scale-95">
-                        INITIATE DIAGNOSIS <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </article>
-                ))}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 3. Detail Modal Overlay - Scaling 80% with Cab Readability */}
+      {/* 3. Detail Modal Overlay */}
       {selectedSin && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-8 lg:p-12 animate-in fade-in duration-300">
           <div 
@@ -214,7 +248,7 @@ const ExposureMatrixPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Modal Main Content - 20px Legibility Baseline */}
+            {/* Modal Main Content */}
             <div className="flex-grow p-8 md:p-14 lg:p-20 overflow-y-auto custom-scrollbar relative">
               <button 
                 onClick={() => setSelectedSin(null)}
@@ -224,7 +258,6 @@ const ExposureMatrixPage: React.FC = () => {
               </button>
 
               <div className="space-y-12 md:space-y-16">
-                {/* Legibility Lock: 20px Base for Detail Text */}
                 <div className="space-y-6">
                   <h4 className="text-[12px] font-black uppercase tracking-[0.5em] text-[#C5A059]">Terminal Exposure Risk</h4>
                   <p className="text-[24px] md:text-[32px] font-black text-white leading-tight uppercase tracking-tight font-serif">
@@ -235,7 +268,6 @@ const ExposureMatrixPage: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Reach Test Question Section */}
                 <div className="space-y-6 p-8 md:p-10 bg-red-600/5 rounded-[3rem] border border-red-600/20">
                    <div className="flex items-center space-x-3 text-red-500">
                       <Target size={20} />
@@ -255,7 +287,6 @@ const ExposureMatrixPage: React.FC = () => {
                        <ShieldCheck size={20} />
                        <h4 className="text-[11px] font-black uppercase tracking-[0.4em]">Systemic Guard Protocol</h4>
                     </div>
-                    {/* 20px Polish Text */}
                     <p className="text-[20px] font-black text-white leading-relaxed uppercase tracking-tight">
                       {selectedSin.remediation}
                     </p>
@@ -266,7 +297,7 @@ const ExposureMatrixPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-6 flex flex-col sm:flex-row gap-6">
+                <div className="pt-6 flex flex-col sm:flex-row gap-6 pb-12">
                    <Link 
                      to="/pricing"
                      className="bg-[#C5A059] text-[#002244] px-12 py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[13px] shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-[8px] border-slate-900"

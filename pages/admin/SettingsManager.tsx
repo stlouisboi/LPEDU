@@ -29,8 +29,12 @@ import {
   HelpCircle,
   ExternalLink,
   FileText,
-  Music
+  Music,
+  Database,
+  // Added missing ChevronRight import from lucide-react
+  ChevronRight
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { GoogleGenAI } from "@google/genai";
 import { SiteSettings } from '../../types';
 import MediaUploader from '../../components/admin/MediaUploader';
@@ -45,7 +49,6 @@ const SettingsManager = () => {
 
   // MailerLite status
   const mailerLiteFormId = (process.env as any).VITE_MAILERLITE_FORM_ID;
-  const mailerLiteAccountId = '1989508';
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -57,6 +60,8 @@ const SettingsManager = () => {
         const snap = await getDoc(doc(db, "settings", "general"));
         if (snap.exists()) {
           setSettings(snap.data() as SiteSettings);
+        } else {
+          setSettings(null);
         }
       } catch (err) {
         console.error(err);
@@ -94,7 +99,6 @@ const SettingsManager = () => {
         seal: "A professional institutional round seal for a transportation authority. Inner logo is an anchor and shield. Colors: Authority Blue and Signal Gold. 3D embossed look, white background, high-end corporate style."
       };
 
-      // Fix: Corrected model to 'gemini-2.5-flash-image' for image generation as 'gemini-3-flash-preview' is a text model
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash-image',
         contents: { parts: [{ text: promptMap[type] }] },
@@ -133,7 +137,25 @@ const SettingsManager = () => {
   };
 
   if (loading) return <div className="h-96 flex items-center justify-center"><Loader2 className="animate-spin text-authority-blue" size={40} /></div>;
-  if (!settings) return null;
+  
+  if (!settings) return (
+    <div className="max-w-2xl mx-auto py-20 text-center animate-in fade-in duration-500">
+      <div className="bg-white dark:bg-surface-dark p-12 rounded-[3.5rem] border border-border-light dark:border-border-dark shadow-xl space-y-8">
+        <div className="w-20 h-20 bg-slate-50 dark:bg-gray-800 rounded-3xl flex items-center justify-center mx-auto text-slate-300">
+          <Database size={40} />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-bold font-serif text-authority-blue dark:text-white uppercase tracking-tight">Registry Data Required</h2>
+          <p className="text-text-muted font-medium">The global settings document was not found in your cloud database.</p>
+        </div>
+        <div className="pt-4">
+          <Link to="/admin/initialize-data" className="inline-flex items-center px-8 py-4 bg-authority-blue text-white rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-lg hover:bg-steel-blue transition-all">
+            Go to Init Cloud <ChevronRight size={14} className="ml-2" />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
@@ -542,7 +564,7 @@ const SettingsManager = () => {
            </div>
 
            <div className="bg-authority-blue p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12"><Music size={140}/></div>
               <Eye className="mb-4 text-signal-gold" size={24} />
               <h4 className="text-xl font-bold font-serif mb-2">Interface Preview</h4>
               <p className="text-sm opacity-70 leading-relaxed mb-8">Brand changes synchronize across the public facing frontend and AI Advisor interfaces instantly.</p>
