@@ -102,7 +102,8 @@ const Footer = () => {
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
-  // Temporarily set loading to false to force a render
+  
+  // FORCE TO FALSE: This ensures the Header/Footer render immediately
   const [appLoading, setAppLoading] = useState(false); 
 
   useEffect(() => {
@@ -110,22 +111,18 @@ export default function App() {
     else document.documentElement.classList.remove('dark');
   }, [theme]);
 
-  const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
-
   return (
-    <AppContext.Provider value={{ theme, toggleTheme, settings, updateSettings: setSettings }}>
+    <AppContext.Provider value={{ theme, settings }}>
       <AuthProvider>
         <Router>
           <ScrollToTop />
+          {/* Explicit flex-col and background ensures the "Dock" is visible */}
           <div className="min-h-screen flex flex-col bg-white dark:bg-authority-blue">
             <Header />
             <main className="flex-grow">
               <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
                 <Route path="/reach-test" element={<ReachTestPage />} />
-                <Route path="/portal" element={<AuthorityAccess />} />
                 <Route path="/pricing" element={<RequestAdmission />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
