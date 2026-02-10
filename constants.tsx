@@ -222,7 +222,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-02-05",
     author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Fcall%20or%20text.png?alt=media&token=72ce99f3-0c26-401a-822f-2ce3835b2848",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2FTHE%20MATH%20OF%20SURVIVAL%20WHY%20CASH-FLOW%20OXYGEN%20IS%20THE%20FOUNDATION%20OF%20OPERATING%20AUTHORITY.png?alt=media&token=db7a689e-ef6d-4d04-826d-6aee4ffe2ed7",
     status: 'published',
     tags: ['Four Pillars', 'Stewardship', 'Math', 'Survival']
   },
@@ -341,7 +341,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-01-28",
     author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Fcall%20or%20text.png?alt=media&token=72ce99f3-0c26-401a-822f-2ce3835b2848",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FTHE%2048-HOUR%20NEW%20ENTRANT%20WINDOW.png?alt=media&token=0b0afe10-f022-44a7-8c50-f733e41ced3d",
     status: 'published',
     tags: ['Audit', 'FMCSA', 'Compliance', 'Reach Test']
   },

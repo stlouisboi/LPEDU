@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, 
@@ -15,18 +14,19 @@ import {
   Film,
   Phone,
   PhoneOff,
-  Maximize2,
-  Lock,
-  Zap,
   Bot,
   User,
   ArrowRight,
   Terminal,
-  RefreshCw
+  RefreshCw,
+  Lock,
+  Zap,
+  Activity,
+  Cpu
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, GenerateContentResponse } from '@google/genai';
 
-// --- AUDIO UTILS ---
+// --- INSTITUTIONAL AUDIO UTILITIES (RAW PCM) ---
 function decode(base64: string) {
   const binaryString = atob(base64);
   const len = binaryString.length;
@@ -46,9 +46,6 @@ function encode(bytes: Uint8Array) {
   return btoa(binary);
 }
 
-/**
- * Standard raw PCM decoding for Gemini Live API audio streams.
- */
 async function decodeAudioData(
   data: Uint8Array,
   ctx: AudioContext,
@@ -62,7 +59,6 @@ async function decodeAudioData(
   for (let channel = 0; channel < numChannels; channel++) {
     const channelData = buffer.getChannelData(channel);
     for (let i = 0; i < frameCount; i++) {
-      // Normalize Int16 raw PCM to Float32 range [-1.0, 1.0]
       channelData[i] = dataInt16[i * numChannels + channel] / 32768.0;
     }
   }
@@ -82,16 +78,16 @@ function createBlob(data: Float32Array) {
 }
 
 const reassuringMessages = [
-  "Synthesizing compliance visuals...", 
-  "Baking neural light models...", 
-  "Rendering motion vectors...",
-  "Finalizing administrative rendering..."
+  "SYNTHESIZING COMPLIANCE VISUALS...", 
+  "BAKING NEURAL LIGHT MODELS...", 
+  "RENDERING MOTION VECTORS...",
+  "FINALIZING ADMINISTRATIVE RENDERING..."
 ];
 
 const AIServicePage = () => {
   const [activeTab, setActiveTab] = useState<'chat' | 'voice' | 'video'>('chat');
-  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string, audio?: string}[]>([
-    { role: 'assistant', content: "Hello! I'm the LaunchPath Compliance Advisor Pro. I'm powered by Gemini 3 Pro to handle complex regulatory questions. How can I help your carrier today?" }
+  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string}[]>([
+    { role: 'assistant', content: "SYSTEM_ONLINE: Welcome to the LaunchPath™ Compliance Advisor Terminal. How may I assist your authority today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -99,12 +95,14 @@ const AIServicePage = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
+  // Live Mode State
   const [isLiveActive, setIsLiveActive] = useState(false);
   const liveSessionRef = useRef<any>(null);
   const liveAudioContextRef = useRef<{ input: AudioContext; output: AudioContext } | null>(null);
   const liveSourcesRef = useRef<Set<AudioBufferSourceNode>>(new Set());
   const nextStartTimeRef = useRef(0);
 
+  // Video Mode State
   const [videoPrompt, setVideoPrompt] = useState('');
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [aspectRatio, setAspectRatio] = useState<'16:9' | '9:16'>('16:9');
@@ -115,7 +113,7 @@ const AIServicePage = () => {
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [messages]);
+  }, [messages, activeTab]);
 
   useEffect(() => {
     const checkKey = async () => {
@@ -126,15 +124,6 @@ const AIServicePage = () => {
     };
     checkKey();
   }, []);
-
-  useEffect(() => {
-    return () => {
-      if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
-        audioContextRef.current.close().catch(() => {});
-      }
-      if (isLiveActive) stopLiveConversation();
-    };
-  }, [isLiveActive]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -149,13 +138,13 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: "You are an expert FMCSA compliance consultant for LaunchPath. Authoritative, professional tone. Use markdown for lists and bold text.",
-          temperature: 0.7,
+          systemInstruction: "You are the LaunchPath™ Lead Compliance Specialist. Professional, authoritative tone. Accuracy Over Hype.",
+          temperature: 0.2,
         }
       });
-      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "Neural logic fault detected." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "COMMUNICATION_LINK_FAULT." }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Error: Could not connect to the neural advisory service." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "CRITICAL_FAULT: LINK LOST." }]);
     } finally {
       setIsLoading(false);
     }
@@ -166,9 +155,9 @@ const AIServicePage = () => {
     setIsSpeaking(index);
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const response: GenerateContentResponse = await ai.models.generateContent({
+      const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
-        contents: [{ parts: [{ text: `Read this professionally and calmly: ${text}` }] }],
+        contents: [{ parts: [{ text: `Read this professionally: ${text}` }] }],
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } },
@@ -178,10 +167,7 @@ const AIServicePage = () => {
       let base64Audio = '';
       if (response.candidates?.[0]?.content?.parts) {
         for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData?.data) {
-            base64Audio = part.inlineData.data;
-            break;
-          }
+          if (part.inlineData?.data) { base64Audio = part.inlineData.data; break; }
         }
       }
 
@@ -196,12 +182,8 @@ const AIServicePage = () => {
         source.connect(ctx.destination);
         source.onended = () => setIsSpeaking(null);
         source.start();
-      } else {
-        setIsSpeaking(null);
-      }
-    } catch (err) {
-      setIsSpeaking(null);
-    }
+      } else { setIsSpeaking(null); }
+    } catch (err) { setIsSpeaking(null); }
   };
 
   const startLiveConversation = async () => {
@@ -229,16 +211,7 @@ const AIServicePage = () => {
             scriptProcessor.connect(inputCtx.destination);
           },
           onmessage: async (message: LiveServerMessage) => {
-            let base64Audio = '';
-            if (message.serverContent?.modelTurn?.parts) {
-              for (const part of message.serverContent.modelTurn.parts) {
-                if (part.inlineData?.data) {
-                  base64Audio = part.inlineData.data;
-                  break;
-                }
-              }
-            }
-
+            let base64Audio = message.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
             if (base64Audio && liveAudioContextRef.current) {
               const outCtx = liveAudioContextRef.current.output;
               nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outCtx.currentTime);
@@ -246,19 +219,9 @@ const AIServicePage = () => {
               const source = outCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outCtx.destination);
-              source.addEventListener('ended', () => {
-                if (liveSourcesRef.current) liveSourcesRef.current.delete(source);
-              });
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
               liveSourcesRef.current.add(source);
-            }
-            if (message.serverContent?.interrupted) {
-              if (liveSourcesRef.current) {
-                liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
-                liveSourcesRef.current.clear();
-              }
-              nextStartTimeRef.current = 0;
             }
           },
           onclose: () => setIsLiveActive(false),
@@ -267,66 +230,38 @@ const AIServicePage = () => {
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } },
-          systemInstruction: 'You are the LaunchPath Compliance Expert. Professional, authoritative, and concise.'
+          systemInstruction: 'You are the LaunchPath Live Assistant. Professional and direct.'
         }
       });
       liveSessionRef.current = sessionPromise;
-    } catch (err) {
-      alert("Microphone access is mandatory for Voice Mode.");
-    }
+    } catch (err) { alert("Microphone access required."); }
   };
 
   const stopLiveConversation = () => {
-    if (liveSessionRef.current) {
-      liveSessionRef.current.then((s: any) => { try { s.close(); } catch(e) {} });
-    }
+    if (liveSessionRef.current) liveSessionRef.current.then((s: any) => s.close());
     setIsLiveActive(false);
-    if (liveAudioContextRef.current) {
-      liveAudioContextRef.current.input.close().catch(() => {});
-      liveAudioContextRef.current.output.close().catch(() => {});
-      liveAudioContextRef.current = null;
-    }
-    if (liveSourcesRef.current) {
-      liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
-      liveSourcesRef.current.clear();
-    }
   };
 
   const generateVideo = async () => {
-    if ((!videoPrompt && !videoFile) || isGeneratingVideo) return;
+    if (!videoPrompt.trim() || isGeneratingVideo) return;
     setIsGeneratingVideo(true);
     setGenMessage(reassuringMessages[0]);
     const msgInterval = setInterval(() => {
       setGenMessage(reassuringMessages[Math.floor(Math.random() * reassuringMessages.length)]);
-    }, 10000);
+    }, 8000);
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      let config: any = {
+      let operation = await ai.models.generateVideos({
         model: 'veo-3.1-fast-generate-preview',
-        prompt: videoPrompt || "Professional trucking fleet visualization.",
+        prompt: `Trucking professional visual: ${videoPrompt}`,
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
-      };
-      if (videoFile) {
-        const reader = new FileReader();
-        const base64 = await new Promise<string>((res) => {
-          reader.onload = () => res((reader.result as string).split(',')[1]);
-          reader.readAsDataURL(videoFile);
-        });
-        config.image = { imageBytes: base64, mimeType: videoFile.type };
-      }
-
-      let operation = await ai.models.generateVideos(config);
+      });
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        // Requirement: Create a new instance right before making a polling API call
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        operation = await pollAi.operations.getVideosOperation({ operation: operation });
-      }
-
-      if (operation.error) {
-        throw new Error(operation.error.message || "Synthesis failure.");
+        operation = await pollAi.operations.getVideosOperation({ operation });
       }
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
@@ -336,13 +271,8 @@ const AIServicePage = () => {
         setVideoResult(URL.createObjectURL(blob));
       }
     } catch (err: any) {
-      if (err.message?.includes("Requested entity was not found")) {
-        setHasApiKey(false);
-        alert("Session expired. Re-authorization mandatory.");
-      } else {
-        console.error("Video Generation Error:", err);
-        alert("Synthesis failure. Check visual directives.");
-      }
+      console.error(err);
+      alert("Synthesis fault.");
     } finally {
       clearInterval(msgInterval);
       setIsGeneratingVideo(false);
@@ -350,123 +280,93 @@ const AIServicePage = () => {
   };
 
   return (
-    <div className="bg-[#f8fafc] dark:bg-primary-dark min-h-screen py-12 px-6 animate-in fade-in duration-1000">
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 h-[calc(100vh-160px)]">
+    <div className="bg-[#FAF9F6] dark:bg-[#020617] min-h-screen pt-20 pb-8 px-4 sm:px-6 lg:px-12 font-sans overflow-x-hidden">
+      <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 h-auto lg:h-[calc(100vh-140px)]">
         
-        {/* Sidebar Nav */}
-        <aside className="lg:col-span-3 space-y-6">
-          <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border border-slate-200 dark:border-border-dark shadow-xl">
-            <h2 className="text-sm font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold mb-8 flex items-center">
-              <Bot size={18} className="mr-3" /> Neural Advisors
+        {/* SIDEBAR NAVIGATION */}
+        <aside className="lg:col-span-3 space-y-4 lg:space-y-8 flex flex-col">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 rounded-[2rem] sm:rounded-[3rem] shadow-xl relative overflow-hidden flex-shrink-0">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6 flex items-center">
+              <Bot size={16} className="mr-2" /> MODES
             </h2>
-            <nav className="space-y-3">
+            <nav className="space-y-2 sm:space-y-4">
               {[
-                { id: 'chat', label: 'Compliance GPT', icon: <MessageCircle size={18} />, sub: 'Institutional Q&A' },
-                { id: 'voice', label: 'Voice Terminal', icon: <Mic size={18} />, sub: 'Low-latency Link' },
-                { id: 'video', label: 'Video Studio', icon: <Video size={18} />, sub: 'Asset Synthesis' }
+                { id: 'chat', label: 'Compliance GPT', icon: <MessageCircle size={20} /> },
+                { id: 'voice', label: 'Live Link', icon: <Mic size={20} /> },
+                { id: 'video', label: 'Video Studio', icon: <Video size={20} /> }
               ].map(tab => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`w-full text-left p-5 rounded-3xl transition-all flex items-center space-x-4 border-2 ${
+                  className={`w-full p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all flex items-center space-x-4 border-2 ${
                     activeTab === tab.id 
-                    ? 'bg-authority-blue border-authority-blue text-white shadow-2xl scale-[1.02]' 
-                    : 'bg-slate-50 dark:bg-gray-800 border-transparent text-text-muted dark:text-text-dark-muted hover:border-slate-200 dark:hover:bg-gray-700'
+                    ? 'bg-authority-blue border-authority-blue text-white shadow-xl' 
+                    : 'bg-slate-50 dark:bg-slate-800/50 border-transparent text-slate-500 hover:border-slate-200'
                   }`}
                 >
-                  <div className={`p-3 rounded-2xl ${activeTab === tab.id ? 'bg-white/20' : 'bg-white dark:bg-gray-700 shadow-sm'}`}>
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${activeTab === tab.id ? 'bg-white/20' : 'bg-white dark:bg-slate-700 shadow-inner'}`}>
                     {tab.icon}
                   </div>
-                  <div>
+                  <div className="text-left">
                     <p className="font-black text-xs uppercase tracking-widest">{tab.label}</p>
-                    <p className={`text-[10px] uppercase font-bold opacity-60 ${activeTab === tab.id ? 'text-white' : 'text-slate-400 dark:text-slate-500'}`}>{tab.sub}</p>
                   </div>
                 </button>
               ))}
             </nav>
           </div>
 
-          <div className="bg-authority-blue p-8 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16"></div>
-             <Zap className="text-signal-gold mb-4" size={24} />
-             <h3 className="text-lg font-bold font-serif mb-2">System Status</h3>
-             <p className="text-[11px] font-medium text-white/60 leading-relaxed uppercase tracking-widest">
-               Uplink active. Advisor training synchronized to 49 CFR standards.
-             </p>
+          <div className="hidden lg:flex bg-authority-blue p-8 rounded-[3rem] text-white shadow-2xl relative overflow-hidden flex-grow flex-col justify-end">
+             <div className="absolute top-0 right-0 p-8 opacity-5 scale-150"><Zap size={200}/></div>
+             <div className="relative z-10 space-y-4">
+                <div className="flex items-center space-x-3 text-signal-gold">
+                   <Activity size={18} className="animate-pulse" />
+                   <p className="text-[10px] font-black uppercase tracking-[0.4em]">SYSTEM ACTIVE</p>
+                </div>
+                <h3 className="text-2xl font-black font-serif uppercase tracking-tight">Institutional <br/><span className="text-signal-gold italic">Uplink.</span></h3>
+             </div>
           </div>
         </aside>
 
-        {/* Main Interface */}
-        <main className="lg:col-span-9 bg-white dark:bg-surface-dark rounded-[4rem] border border-slate-200 dark:border-border-dark shadow-2xl overflow-hidden flex flex-col relative">
+        {/* MAIN CONSOLE */}
+        <main className="lg:col-span-9 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] sm:rounded-[4rem] shadow-2xl overflow-hidden flex flex-col relative min-h-[500px]">
           
           {activeTab === 'chat' && (
             <>
-              <div ref={scrollRef} className="flex-grow overflow-y-auto p-10 space-y-8 scroll-smooth custom-scrollbar">
+              <div ref={scrollRef} className="flex-grow overflow-y-auto p-6 sm:p-10 lg:p-12 space-y-8 sm:space-y-12 scroll-smooth custom-scrollbar">
                 {messages.map((m, i) => (
                   <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2`}>
-                    <div className="flex items-start max-w-[85%] space-x-4">
+                    <div className="flex items-start max-w-[90%] sm:max-w-[85%] space-x-4 sm:space-x-6">
                       {m.role === 'assistant' && (
-                        <div className="w-10 h-10 bg-authority-blue rounded-xl flex items-center justify-center text-white shrink-0 shadow-lg">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-authority-blue rounded-xl sm:rounded-2xl flex items-center justify-center text-white shrink-0 mt-1">
                           <Bot size={20} />
                         </div>
                       )}
-                      <div className={`p-8 rounded-[2.5rem] ${
+                      <div className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] ${
                         m.role === 'user' 
-                        ? 'bg-authority-blue text-white rounded-tr-none shadow-xl' 
-                        : 'bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-border-dark rounded-tl-none'
+                        ? 'bg-authority-blue text-white rounded-tr-none shadow-2xl' 
+                        : 'bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-800 rounded-tl-none'
                       }`}>
-                        <div className="text-base font-medium leading-relaxed prose dark:prose-invert max-w-none">
-                          {m.content.split('\n').map((line, li) => <p key={li} className="mb-2 last:mb-0">{line}</p>)}
+                        <div className="text-base sm:text-lg font-medium leading-relaxed">
+                          {m.content}
                         </div>
                         {m.role === 'assistant' && (
-                          <button 
-                            onClick={() => speakMessage(m.content, i)} 
-                            className={`mt-6 flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] py-2.5 px-5 rounded-xl border transition-all ${
-                              isSpeaking === i 
-                              ? 'text-signal-gold border-signal-gold bg-signal-gold/5 animate-pulse' 
-                              : 'text-authority-blue border-slate-200 dark:border-border-dark dark:text-signal-gold hover:bg-slate-100 dark:hover:bg-gray-800'
-                            }`}
-                          >
+                          <button onClick={() => speakMessage(m.content, i)} className={`mt-6 flex items-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] py-2 px-4 rounded-xl border transition-all ${isSpeaking === i ? 'text-signal-gold border-signal-gold animate-pulse' : 'text-authority-blue border-slate-200 dark:text-signal-gold'}`}>
                             {isSpeaking === i ? <Volume2 size={16} /> : <VolumeX size={16} />}
-                            <span>{isSpeaking === i ? 'Advisor Speaking' : 'Listen to Brief'}</span>
+                            <span>{isSpeaking === i ? 'Speaking' : 'Speak'}</span>
                           </button>
                         )}
                       </div>
-                      {m.role === 'user' && (
-                        <div className="w-10 h-10 bg-slate-100 dark:bg-gray-800 rounded-xl flex items-center justify-center text-authority-blue dark:text-signal-gold shrink-0 shadow-sm border border-slate-200 dark:border-border-dark">
-                          <User size={20} />
-                        </div>
-                      )}
                     </div>
                   </div>
                 ))}
-                {isLoading && (
-                  <div className="flex justify-start animate-in fade-in">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 bg-authority-blue/10 rounded-xl flex items-center justify-center text-authority-blue shrink-0 animate-pulse">
-                        <Bot size={20} />
-                      </div>
-                      <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-[2.5rem] rounded-tl-none border border-slate-100 dark:border-border-dark shadow-inner">
-                        <div className="flex space-x-2">
-                           <div className="w-2 h-2 bg-authority-blue rounded-full animate-bounce"></div>
-                           <div className="w-2 h-2 bg-authority-blue rounded-full animate-bounce [animation-delay:0.2s]"></div>
-                           <div className="w-2 h-2 bg-authority-blue rounded-full animate-bounce [animation-delay:0.4s]"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
-              <div className="p-10 bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-xl border-t border-slate-200 dark:border-border-dark">
-                <div className="max-w-4xl mx-auto flex items-center space-x-5">
-                  <div className="relative flex-grow">
-                    <input 
-                      type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                      placeholder="Input regulatory inquiry..." className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark pl-8 pr-16 py-6 rounded-[2.5rem] outline-none shadow-2xl font-bold text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold transition-all"
-                    />
-                    <Sparkles className="absolute right-6 top-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold opacity-20" size={24} />
-                  </div>
-                  <button onClick={handleSend} disabled={isLoading || !input.trim()} className="bg-authority-blue text-white p-6 rounded-[2rem] hover:bg-steel-blue active:scale-95 shadow-xl disabled:opacity-50 transition-all">
+              <div className="p-4 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-3xl border-t border-slate-200 dark:border-slate-800">
+                <div className="max-w-4xl mx-auto flex items-center space-x-3 sm:space-x-6">
+                  <input 
+                    type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    placeholder="Input inquiry..." className="w-full bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 pl-6 sm:pl-10 pr-6 py-4 sm:py-6 rounded-[2rem] sm:rounded-[3rem] outline-none shadow-xl font-bold text-base transition-all"
+                  />
+                  <button onClick={handleSend} disabled={isLoading || !input.trim()} className="bg-authority-blue text-white p-5 sm:p-6 rounded-full hover:bg-slate-800 active:scale-95 shadow-xl disabled:opacity-50 shrink-0">
                     <Send className="w-6 h-6" />
                   </button>
                 </div>
@@ -475,109 +375,58 @@ const AIServicePage = () => {
           )}
 
           {activeTab === 'voice' && (
-            <div className="flex-grow flex flex-col items-center justify-center p-20 bg-gradient-to-b from-transparent to-authority-blue/[0.02]">
-              <div className="text-center mb-16 space-y-10">
-                <div className="relative inline-block">
-                  <div className={`w-40 h-40 rounded-[4rem] flex items-center justify-center mx-auto transition-all duration-700 border-4 ${isLiveActive ? 'bg-authority-blue border-signal-gold shadow-[0_0_50px_rgba(212,175,55,0.3)]' : 'bg-slate-50 dark:bg-gray-800 border-slate-100 dark:border-border-dark'}`}>
-                    <Mic size={64} className={isLiveActive ? 'text-white' : 'text-text-muted opacity-30 dark:opacity-50'} />
-                  </div>
-                  {isLiveActive && <div className="absolute inset-0 bg-signal-gold/20 rounded-[4rem] animate-ping"></div>}
-                </div>
-                <div>
-                  <h2 className="text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Voice Terminal</h2>
-                  <p className="text-lg text-text-muted dark:text-text-dark-muted mt-4 font-medium uppercase tracking-[0.2em]">Institutional Low-latency Link</p>
-                </div>
+            <div className="flex-grow flex flex-col items-center justify-center p-8 sm:p-20 text-center">
+              <div className={`w-40 h-40 sm:w-56 sm:h-56 rounded-[4rem] sm:rounded-[5rem] flex items-center justify-center mx-auto transition-all duration-700 border-[4px] sm:border-[6px] mb-12 ${isLiveActive ? 'bg-authority-blue border-signal-gold shadow-[0_0_80px_rgba(212,175,55,0.3)]' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 opacity-50'}`}>
+                <Mic size={64} className={isLiveActive ? 'text-white' : 'text-slate-300'} />
               </div>
+              <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-10">Voice Link</h2>
               <button
                 onClick={isLiveActive ? stopLiveConversation : startLiveConversation}
-                className={`flex items-center space-x-6 px-16 py-8 rounded-[3rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl active:scale-95 transition-all ${
-                  isLiveActive 
-                  ? 'bg-red-500 text-white hover:bg-red-600' 
-                  : 'bg-authority-blue text-white hover:bg-steel-blue'
+                className={`px-12 sm:px-20 py-5 sm:py-8 rounded-[2rem] sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[10px] sm:text-sm shadow-2xl transition-all border-b-4 sm:border-b-[12px] ${
+                  isLiveActive ? 'bg-red-600 text-white border-red-900' : 'bg-authority-blue text-white border-slate-950'
                 }`}
               >
-                {isLiveActive ? <PhoneOff size={24} /> : <Phone size={24} />}
-                <span>{isLiveActive ? 'Terminate Terminal Link' : 'Establish Advisory Link'}</span>
+                {isLiveActive ? 'Terminate Link' : 'Establish Link'}
               </button>
-              <div className="mt-16 flex items-center space-x-4 opacity-40 dark:opacity-60 dark:text-white">
-                 <Lock size={14} />
-                 <p className="text-[10px] font-black uppercase tracking-widest">Encrypted neural channel active</p>
-              </div>
             </div>
           )}
 
           {activeTab === 'video' && (
-            <div className="flex-grow overflow-y-auto p-12 custom-scrollbar">
+            <div className="flex-grow overflow-y-auto p-6 sm:p-12 lg:p-20 custom-scrollbar">
               {!hasApiKey ? (
-                <div className="max-w-2xl mx-auto p-16 bg-amber-50 dark:bg-amber-950/20 rounded-[4rem] text-center space-y-10 border border-amber-200 dark:border-amber-900/40 shadow-xl mt-12">
-                  <ShieldAlert className="mx-auto text-amber-600" size={80} />
-                  <div className="space-y-4">
-                    <h3 className="text-4xl font-black uppercase tracking-tighter text-amber-800 dark:text-amber-400 font-serif">Studio Auth Required</h3>
-                    <p className="text-lg font-medium text-amber-700/80 dark:text-amber-300/80 leading-relaxed">
-                      Synthesis requires a validated Google AI Studio key.
-                    </p>
-                  </div>
-                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-14 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-amber-700 active:scale-95 transition-all">Authorize Key</button>
+                <div className="max-w-2xl mx-auto p-10 sm:p-20 bg-amber-50 dark:bg-amber-950/20 rounded-[2.5rem] sm:rounded-[4rem] text-center space-y-10 border-2 border-amber-200">
+                  <ShieldAlert className="mx-auto text-amber-600" size={64} />
+                  <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-amber-800 dark:text-amber-400 font-serif">Key Required</h3>
+                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-10 py-5 rounded-[2rem] font-black uppercase tracking-widest text-[10px] shadow-xl hover:bg-amber-700">Authorize Key</button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                   <div className="space-y-10">
-                     <div className="bg-slate-50 dark:bg-slate-900 p-8 rounded-[3rem] border border-slate-200 dark:border-slate-800">
-                       <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6 flex items-center">
-                          <Terminal size={14} className="mr-2" /> Production Directives
-                       </h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
+                   <div className="space-y-8 sm:space-y-12">
+                     <div className="bg-slate-50 dark:bg-slate-800/50 p-6 sm:p-10 rounded-[2rem] sm:rounded-[4rem] border border-slate-100">
+                       <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue mb-6">Directives</h3>
                        <textarea 
-                        rows={8} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} 
-                        placeholder="Describe the cinematic visualization (e.g. 'A professional box truck fleet at dawn')..." 
-                        className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark p-6 rounded-[2rem] font-bold text-sm text-text-primary dark:text-white focus:border-authority-blue dark:focus:border-signal-gold outline-none shadow-inner" 
+                        rows={6} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} 
+                        placeholder="Describe visualization..." 
+                        className="w-full bg-white dark:bg-slate-900 border-2 border-slate-100 p-6 sm:p-8 rounded-[2rem] font-black text-lg focus:border-authority-blue outline-none shadow-2xl" 
                        />
                      </div>
-                     
-                     <div className="space-y-6 px-4">
-                        <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-500">Cinematic Aspect Ratio</h3>
-                        <div className="flex gap-4">
-                          {(['16:9', '9:16'] as const).map(ratio => (
-                            <button 
-                              key={ratio} onClick={() => setAspectRatio(ratio)}
-                              className={`flex-grow py-4 rounded-2xl font-black border-2 transition-all ${aspectRatio === ratio ? 'bg-authority-blue border-authority-blue text-white shadow-lg' : 'bg-white dark:bg-gray-800 border-slate-100 dark:border-border-dark text-slate-400 dark:text-slate-500 hover:border-authority-blue'}`}
-                            >
-                              {ratio === '16:9' ? 'Landscape (16:9)' : 'Portrait (9:16)'}
-                            </button>
-                          ))}
-                        </div>
-                     </div>
-
-                     <button onClick={generateVideo} disabled={isGeneratingVideo} className="w-full py-10 rounded-[2.5rem] bg-authority-blue text-white font-black uppercase tracking-[0.3em] text-xs flex items-center justify-center shadow-lg hover:bg-steel-blue active:scale-95 disabled:opacity-50 group border-b-8 border-slate-900">
-                        {isGeneratingVideo ? <Loader2 className="animate-spin mr-4" size={24} /> : <Film className="mr-4 group-hover:rotate-12 transition-transform" size={24} />}
-                        Synthesize Digital Asset
+                     <button onClick={generateVideo} disabled={isGeneratingVideo || !videoPrompt.trim()} className="w-full py-6 sm:py-8 rounded-[2rem] sm:rounded-[3rem] bg-authority-blue text-white font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs flex items-center justify-center shadow-2xl group border-b-4 sm:border-b-[10px] border-slate-950">
+                        {isGeneratingVideo ? <Loader2 className="animate-spin mr-3" /> : <Film className="mr-3" />}
+                        Synthesize
                      </button>
                    </div>
                    
-                   <div className="space-y-6">
-                      <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6">Synthesis Monitor</h3>
-                      <div className="bg-slate-50 dark:bg-gray-800 rounded-[4rem] border-2 border-dashed border-slate-200 dark:border-border-dark flex flex-col items-center justify-center min-h-[500px] relative overflow-hidden group shadow-inner">
+                   <div className="bg-slate-50 dark:bg-slate-800/30 rounded-[3rem] sm:rounded-[5rem] border-4 border-dashed border-slate-200 flex flex-col items-center justify-center min-h-[400px] sm:min-h-[600px] relative overflow-hidden group shadow-inner">
                         {isGeneratingVideo ? (
-                          <div className="text-center space-y-6 px-10 animate-in fade-in">
-                            <div className="relative">
-                              <div className="w-24 h-24 bg-authority-blue/5 rounded-full border-4 border-authority-blue border-t-transparent dark:border-signal-gold dark:border-t-transparent animate-spin mx-auto"></div>
-                              <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold" />
-                            </div>
-                            <div className="space-y-2">
-                               <p className="font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold animate-pulse">{genMessage}</p>
-                               <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Veo 3.1 Neural Engine Active</p>
-                            </div>
+                          <div className="text-center space-y-6 px-10">
+                             <div className="w-20 h-20 sm:w-32 sm:h-32 bg-authority-blue/5 rounded-full border-4 sm:border-[6px] border-authority-blue border-t-transparent animate-spin mx-auto"></div>
+                             <p className="font-black text-sm sm:text-2xl uppercase tracking-[0.3em] text-authority-blue animate-pulse leading-tight">{genMessage}</p>
                           </div>
                         ) : videoResult ? (
-                          <div className="w-full h-full relative group/vid">
-                            <video src={videoResult} controls className="w-full h-full object-cover rounded-[3.8rem]" />
-                          </div>
+                          <video src={videoResult} controls className="w-full h-full object-cover rounded-[3rem] sm:rounded-[4.6rem]" />
                         ) : (
-                          <div className="text-center p-12 opacity-30 group-hover:opacity-50 transition-opacity dark:text-white">
-                             <Film size={80} className="mx-auto mb-6" />
-                             <p className="uppercase font-black tracking-[0.4em] text-sm">Studio Terminal Idle</p>
-                          </div>
+                          <Film size={80} className="opacity-10" />
                         )}
-                      </div>
                    </div>
                 </div>
               )}

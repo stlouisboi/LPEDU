@@ -41,7 +41,7 @@ const FAQItem: React.FC<{
   onClick: () => void 
 }> = ({ question, answer, isOpen, icon, onClick }) => {
   return (
-    <article className={`border transition-all duration-500 rounded-[2.5rem] overflow-hidden ${
+    <article className={`border transition-all duration-500 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden ${
       isOpen 
       ? 'border-[#002244] bg-white dark:bg-surface-dark shadow-2xl ring-1 ring-[#002244]/5' 
       : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark shadow-sm hover:border-[#002244]/30'
@@ -49,36 +49,36 @@ const FAQItem: React.FC<{
       <h3>
         <button 
           onClick={onClick}
-          className="w-full flex items-center justify-between p-6 sm:p-10 text-left focus:outline-none group"
+          className="w-full flex items-center justify-between p-5 sm:p-10 text-left focus:outline-none group"
           aria-expanded={isOpen}
         >
-          <div className="flex items-center space-x-4 sm:space-x-6">
-            <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center transition-all duration-500 ${
+          <div className="flex items-center space-x-3 sm:space-x-6">
+            <div className={`w-10 h-10 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center transition-all duration-500 ${
               isOpen ? 'bg-[#002244] text-[#C5A059] shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'
             }`}>
-              {React.cloneElement(icon as React.ReactElement<any>, { size: 24 })}
+              {React.cloneElement(icon as React.ReactElement<any>, { size: 20 })}
             </div>
-            <span className={`text-xl sm:text-2xl font-black tracking-tight uppercase transition-colors duration-300 ${
+            <span className={`text-lg sm:text-2xl font-black tracking-tight uppercase transition-colors duration-300 ${
               isOpen ? 'text-[#002244] dark:text-[#C5A059]' : 'text-slate-700 dark:text-text-dark-primary'
             }`}>
               {question}
             </span>
           </div>
-          <div className={`p-3 rounded-full transition-all duration-500 ${
+          <div className={`p-2 rounded-full transition-all duration-500 ${
             isOpen ? 'bg-[#002244] text-white rotate-180 shadow-lg' : 'bg-slate-100 dark:bg-gray-800 text-slate-400 group-hover:bg-slate-200'
           }`}>
-            <ChevronDown className="w-6 h-6" />
+            <ChevronDown className="w-5 h-5" />
           </div>
         </button>
       </h3>
       <div 
         className={`grid transition-all duration-500 ease-in-out ${
-          isOpen ? 'grid-rows-[1fr] opacity-100 pb-10' : 'grid-rows-[0fr] opacity-0'
+          isOpen ? 'grid-rows-[1fr] opacity-100 pb-8 sm:pb-10' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
-          <div className="px-6 sm:px-12 pt-0 text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed border-t border-slate-50 dark:border-border-dark mt-2 pt-8">
-            <p className="text-lg sm:text-xl whitespace-pre-wrap">
+          <div className="px-5 sm:px-12 pt-0 text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed border-t border-slate-50 dark:border-border-dark mt-2 pt-6 sm:pt-8">
+            <p className="text-base sm:text-xl whitespace-pre-wrap">
               {answer}
             </p>
           </div>
@@ -198,132 +198,127 @@ const HomePage: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans leading-relaxed selection:bg-[#C5A059]/20">
       
-      {/* 1. HERO SECTION - SPLIT SCREEN "RISK MAP™" */}
+      {/* 1. HERO SECTION */}
       <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">
-        {/* LEFT COLUMN: BRAND & AUTHORITY (60%) */}
-        <div className="w-full lg:w-[60%] bg-[#002244] text-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative">
+        <div className="w-full lg:w-[60%] bg-[#002244] text-white p-6 sm:p-12 md:p-16 lg:p-24 flex flex-col justify-center relative">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
           
-          <div className="relative z-10 max-w-2xl space-y-12 animate-reveal-up">
-            <div className="flex flex-wrap gap-4 items-center mb-4">
-              <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full w-fit">
-                <ShieldCheck size={14} className="text-[#C5A059]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">VETERAN OWNED & OPERATED</span>
+          <div className="relative z-10 max-w-2xl space-y-8 sm:space-y-12 animate-reveal-up">
+            <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
+              <div className="inline-flex items-center space-x-2 sm:space-x-3 bg-white/5 border border-white/10 px-3 sm:px-5 py-2 rounded-full">
+                <ShieldCheck size={12} className="text-[#C5A059]" />
+                <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white">VETERAN OPERATED</span>
               </div>
-              <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full w-fit">
-                <Award size={14} className="text-[#C5A059]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">OSHA-CERTIFIED SAFETY COORDINATOR</span>
+              <div className="inline-flex items-center space-x-2 sm:space-x-3 bg-white/5 border border-white/10 px-3 sm:px-5 py-2 rounded-full">
+                <Award size={12} className="text-[#C5A059]" />
+                <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white">SAFETY CERTIFIED</span>
               </div>
             </div>
             
             <div className="space-y-4">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85]">
-                PROTECT <br/>YOUR <br/><span className="text-[#C5A059]">AUTHORITY</span><br/>WITH <br/>ORDER.
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9]">
+                PROTECT <br className="hidden sm:block"/>YOUR <br/><span className="text-[#C5A059]">AUTHORITY</span><br className="hidden sm:block"/>WITH <br className="hidden sm:block"/>ORDER.
               </h1>
             </div>
             
-            <div className="max-w-xl border-l-[12px] border-[#C5A059] pl-10 py-4">
-              <p className="text-2xl font-bold text-white/90 leading-[1.6]">
-                Most new carriers satisfactorily establish their compliance infrastructure within the first 90 days — or inherit the consequences for 18 months.
+            <div className="max-w-xl border-l-[8px] sm:border-l-[12px] border-[#C5A059] pl-6 sm:pl-10 py-2 sm:py-4">
+              <p className="text-lg sm:text-2xl font-bold text-white/90 leading-[1.4] sm:leading-[1.6]">
+                Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
               </p>
             </div>
 
-            <div className="pt-8">
-              <Link to="/readiness" className="inline-flex items-center space-x-6 bg-[#C5A059] text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_30px_60px_rgba(197,160,89,0.3)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-8 border-[#8e7340]">
+            <div className="pt-4 sm:pt-8">
+              <Link to="/readiness" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-12 py-5 sm:py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] sm:text-[12px] shadow-2xl hover:bg-white transition-all active:scale-95 group border-b-4 sm:border-b-8 border-[#8e7340]">
                 <span>Verify Admission Readiness</span>
-                <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: THE DIAGNOSTIC TERMINAL (40%) */}
-        <div className="w-full lg:w-[40%] bg-slate-100 dark:bg-slate-900 relative p-8 md:p-16 flex items-center">
-          <div className="bg-white dark:bg-surface-dark p-10 rounded-[3rem] shadow-[0_60px_120px_-30px_rgba(0,34,68,0.2)] border border-slate-100 dark:border-white/5 relative overflow-hidden group w-full flex flex-col">
-            <div className="absolute top-6 left-6">
-              <div className="bg-[#C5A059] text-[#002244] px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.4em] shadow-lg">FREE ACCESS</div>
+        <div className="w-full lg:w-[40%] bg-slate-100 dark:bg-slate-900 relative p-6 sm:p-12 md:p-16 flex items-center">
+          <div className="bg-white dark:bg-surface-dark p-6 sm:p-10 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border border-slate-100 dark:border-white/5 relative overflow-hidden group w-full">
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
+              <div className="bg-[#C5A059] text-[#002244] px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] shadow-lg">FREE ACCESS</div>
             </div>
             
-            <div className="relative z-10 flex flex-col flex-grow">
+            <div className="relative z-10 mt-10 sm:mt-12 flex flex-col">
               {scanState === 'idle' ? (
                 <>
-                  <header className="mb-10 mt-12">
-                       <h3 className="text-[3.5rem] font-black font-serif uppercase tracking-tighter text-[#002244] dark:text-white leading-[0.8]">
+                  <header className="mb-6 sm:mb-10">
+                       <h3 className="text-3xl sm:text-[3.5rem] font-black font-serif uppercase tracking-tighter text-[#002244] dark:text-white leading-[0.85]">
                          90 DAY <br/>
                          <span className="text-[#C5A059] italic">RISK MAP™</span>
                        </h3>
-                       <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mt-6 border-t border-slate-100 pt-6">Diagnostic Orientation Terminal</p>
+                       <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mt-4 sm:mt-6 border-t border-slate-100 pt-4 sm:pt-6">Diagnostic Terminal</p>
                   </header>
                   
-                  <form onSubmit={handleRiskMapSubmit} className="space-y-6 flex-grow">
+                  <form onSubmit={handleRiskMapSubmit} className="space-y-4 sm:space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 ml-4">LEGAL ENTITY NAME</label>
-                      <input required value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-[#002244] dark:focus:border-[#C5A059] outline-none px-6 py-5 rounded-3xl font-black text-lg transition-all text-[#002244] dark:text-white" placeholder="JANE DOE" />
+                      <label className="text-[9px] sm:text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 ml-2 sm:ml-4">LEGAL ENTITY NAME</label>
+                      <input required value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-[#002244] outline-none px-5 sm:px-6 py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-base sm:text-lg transition-all" placeholder="JANE DOE" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-[0.5em] text-slate-400 ml-4">REGISTRY EMAIL</label>
-                      <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-[#002244] dark:focus:border-[#C5A059] outline-none px-6 py-5 rounded-3xl font-black text-lg transition-all text-[#002244] dark:text-white" placeholder="JANE@CARRIER.COM" />
+                      <label className="text-[9px] sm:text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 ml-2 sm:ml-4">REGISTRY EMAIL</label>
+                      <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-[#002244] outline-none px-5 sm:px-6 py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-base sm:text-lg transition-all" placeholder="JANE@CARRIER.COM" />
                     </div>
-                    <button type="submit" className="w-full bg-[#002244] text-white py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-xs shadow-xl hover:bg-[#003366] transition-all flex items-center justify-center group border-b-8 border-slate-900">
-                      VIEW MY RISK MAP <ChevronRight className="ml-3 group-hover:translate-x-1" size={20} />
+                    <button type="submit" className="w-full bg-[#002244] text-white py-6 sm:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs shadow-xl hover:bg-[#003366] transition-all flex items-center justify-center group border-b-4 sm:border-b-8 border-slate-900">
+                      VIEW MY RISK MAP <ChevronRight className="ml-2 sm:ml-3 group-hover:translate-x-1" size={18} />
                     </button>
                   </form>
                 </>
               ) : (
-                <div className="py-20 text-center space-y-8 animate-in fade-in">
-                  <div className="w-20 h-20 rounded-full border-8 border-[#002244]/10 border-t-[#002244] animate-spin mx-auto"></div>
-                  <div className="bg-slate-50 dark:bg-black/40 rounded-3xl p-6 border font-mono text-[10px] text-[#002244] dark:text-emerald-500 text-left h-48 overflow-hidden relative shadow-inner">
-                    <div className="space-y-2">
+                <div className="py-12 sm:py-20 text-center space-y-6 sm:space-y-8 animate-in fade-in">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 sm:border-8 border-[#002244]/10 border-t-[#002244] animate-spin mx-auto"></div>
+                  <div className="bg-slate-50 dark:bg-black/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border font-mono text-[8px] sm:text-[10px] text-[#002244] dark:text-emerald-500 text-left h-40 sm:h-48 overflow-hidden relative shadow-inner">
+                    <div className="space-y-1 sm:space-y-2">
                       {scanLog.map((log, i) => <div key={i}>[{new Date().toLocaleTimeString([], {hour12:false})}] {log}</div>)}
                     </div>
                   </div>
                 </div>
               )}
-              <div className="mt-auto pt-6 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#002244] dark:text-emerald-500 flex items-center">
-                  <ShieldCheck size={14} className="mr-2" /> UPLINK ACTIVE
+              <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
+                <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#002244] dark:text-emerald-500 flex items-center">
+                  <ShieldCheck size={12} className="mr-1.5" /> UPLINK ACTIVE
                 </p>
-                <p className="text-[9px] font-black text-slate-300 uppercase">LP-SYS-V4.5</p>
+                <p className="text-[8px] font-black text-slate-300 uppercase">LP-SYS-V4.5</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. THE "WHY" - FOUNDER NARRATIVE */}
-      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
+      {/* 2. THE PATTERN SECTION */}
+      <section className="py-16 sm:py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-            <div className="lg:col-span-5">
-              <div className="relative group max-w-[480px]">
-                <div className="bg-[#002244] rounded-[4rem] shadow-2xl overflow-hidden relative border-[12px] border-[#FAF9F6]">
-                  <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince Lawrence" className="w-full h-auto grayscale opacity-95 group-hover:grayscale-0 transition-all duration-1000 object-top" />
-                  <div className="absolute bottom-0 left-0 w-full bg-[#002244]/90 backdrop-blur-md py-6 text-center border-t border-white/10">
-                    <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.5em]">SYSTEM CUSTODIAN</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="relative group mx-auto lg:mx-0 max-w-[400px] lg:max-w-none">
+                <div className="bg-[#002244] rounded-[3rem] sm:rounded-[4rem] shadow-2xl overflow-hidden relative border-[8px] sm:border-[12px] border-[#FAF9F6]">
+                  <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince Lawrence" className="w-full h-auto grayscale opacity-95 group-hover:grayscale-0 transition-all duration-1000" />
+                  <div className="absolute bottom-0 left-0 w-full bg-[#002244]/90 backdrop-blur-md py-4 sm:py-6 text-center border-t border-white/10">
+                    <p className="text-[8px] sm:text-[10px] font-black text-[#C5A059] uppercase tracking-[0.4em]">SYSTEM CUSTODIAN</p>
                   </div>
                 </div>
-                <div className="absolute -bottom-8 -right-8 bg-[#C5A059] p-8 rounded-[2.5rem] shadow-2xl border-8 border-white hidden sm:block z-20 group-hover:rotate-12 transition-transform">
-                  <ShieldCheck className="text-[#002244]" size={48} />
+                <div className="absolute -bottom-6 -right-6 bg-[#C5A059] p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl border-4 sm:border-8 border-white hidden sm:block z-20 group-hover:rotate-12 transition-transform">
+                  <ShieldCheck className="text-[#002244]" size={32} />
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-7 space-y-10">
-              <header className="space-y-6">
-                <p className="text-[13px] font-black uppercase tracking-[0.6em] text-slate-400">THE PATTERN</p>
-                <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.9]">
+            <div className="lg:col-span-7 space-y-8 sm:space-y-10 order-1 lg:order-2">
+              <header className="space-y-4 sm:space-y-6">
+                <p className="text-[11px] sm:text-[13px] font-black uppercase tracking-[0.5em] text-slate-400">THE PATTERN</p>
+                <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.95]">
                   I'VE WATCHED THIS <br/><span className="text-red-600 italic">FAIL</span> 200 TIMES.
                 </h2>
               </header>
 
-              <div className="space-y-10 text-2xl font-bold text-slate-600 dark:text-slate-300 leading-[1.6] border-l-[12px] border-slate-100 dark:border-border-dark pl-12">
+              <div className="space-y-6 sm:space-y-10 text-lg sm:text-2xl font-bold text-slate-600 dark:text-slate-300 leading-[1.5] sm:leading-[1.6] border-l-[8px] sm:border-l-[12px] border-slate-100 dark:border-border-dark pl-6 sm:pl-12">
                 <p>
-                  I spent 25 years in manufacturing leadership and 7 years in the U.S. Navy. In those environments, <span className="text-[#002244] dark:text-white font-black">systems weren't elective; they were survival.</span>
+                  I spent 25 years in manufacturing leadership and 7 years in the US Navy. In those environments, <span className="text-[#002244] dark:text-white font-black">systems weren't elective; they were survival.</span>
                 </p>
-                <p>
-                  When I moved into motor carrier operations, I saw good men—hard workers with clean records—who lost their authority in 90 days. Not because they couldn't drive, but because the industry sold them <span className="text-[#C5A059] font-black italic">"hustle"</span> while the FMCSA demanded <span className="text-[#C5A059] font-black">"infrastructure."</span>
-                </p>
-                <p className="text-3xl font-black text-[#002244] dark:text-white font-serif tracking-tight leading-tight">
+                <p className="text-2xl sm:text-3xl font-black text-[#002244] dark:text-white font-serif tracking-tight leading-tight">
                   I refuse to reverse the order of wisdom. <br/><span className="text-[#C5A059] italic">Order precedes revenue.</span>
                 </p>
               </div>
@@ -332,163 +327,59 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE FILTER - SYSTEM ACCESS WARNING */}
-      <section className="py-24 md:py-48 bg-[#002244] text-white relative overflow-hidden border-y-[15px] border-[#C5A059]/10">
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
-            <div className="lg:col-span-6 space-y-12">
-              <div className="inline-flex items-center space-x-4 bg-red-600/10 border border-red-600/30 px-8 py-3 rounded-full">
-                 <ShieldAlert size={18} className="text-red-500" />
-                 <span className="text-[12px] font-black uppercase tracking-[0.5em] text-red-400">ENTRY CRITERIA REQUIRED</span>
-              </div>
-              <h2 className="text-5xl md:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85]">
-                SYSTEM ACCESS <br/><span className="text-red-600 italic">WARNING.</span>
-              </h2>
-              <div className="h-4 w-48 bg-red-600"></div>
-              <p className="text-3xl font-bold text-slate-300 leading-relaxed max-w-xl">
-                The LaunchPath Operating Standard™ is an engineered 90-day implementation system—not a "side-hustle" course.
-              </p>
-            </div>
-
-            <div className="lg:col-span-6 grid grid-cols-1 gap-10">
-              {[
-                { 
-                  title: "SYSTEMS OVER HUSTLE", 
-                  desc: "We prioritize administrative order over 'load board hustle.' LaunchPath is built for carrier executives, not freight-chasers.",
-                  icon: <Zap size={24} />,
-                  id: "LP-PRTX-01"
-                },
-                { 
-                  title: "CAPITAL FILTER", 
-                  desc: "Admission requires a $2,500 one-time investment. This ensures every carrier is capitalized for the regulatory rigor required to survive.",
-                  icon: <DollarSign size={24} />,
-                  id: "LP-PRTX-02"
-                },
-                { 
-                  title: "DOCUMENTATION COMMITMENT", 
-                  desc: "You will execute clinical record-keeping protocols. If you are not prepared for OSHA-level documentation standards, do not apply.",
-                  icon: <ClipboardCheck size={24} />,
-                  id: "LP-PRTX-03"
-                }
-              ].map((filter, i) => (
-                <div key={i} className="relative group">
-                  {/* Hover Glow Effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#C5A059]/20 to-transparent rounded-[3.5rem] blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-                  
-                  <div className="relative bg-white/[0.03] backdrop-blur-md border border-white/10 p-12 rounded-[3.5rem] hover:bg-white/[0.06] hover:border-[#C5A059]/30 transition-all duration-500 overflow-hidden flex flex-col h-full shadow-2xl">
-                    {/* Internal Background Pattern */}
-                    <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity pointer-events-none">
-                       <Terminal size={140} />
-                    </div>
-
-                    {/* Metadata Header */}
-                    <div className="flex items-center justify-between mb-10">
-                       <div className="w-16 h-16 bg-[#002244] border border-white/10 rounded-2xl flex items-center justify-center shadow-[inset_0_0_20px_rgba(0,0,0,0.4)] group-hover:border-[#C5A059]/50 transition-all duration-500">
-                         <div className="text-[#C5A059] group-hover:scale-110 transition-transform duration-500">
-                           {filter.icon}
-                         </div>
-                       </div>
-                       <div className="flex flex-col items-end">
-                          <span className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.3em] mb-1">MANDATORY</span>
-                          <span className="text-[9px] font-bold text-white/20 uppercase tracking-widest">{filter.id}</span>
-                       </div>
-                    </div>
-
-                    {/* Content */}
-                    <h4 className="text-3xl font-black uppercase tracking-tight text-white mb-6 font-serif group-hover:text-[#C5A059] transition-colors">{filter.title}</h4>
-                    <p className="text-[20px] text-slate-400 font-bold leading-relaxed group-hover:text-slate-200 transition-colors flex-grow">
-                      {filter.desc}
-                    </p>
-
-                    {/* Verification Footer */}
-                    <div className="mt-12 pt-8 border-t border-white/5 flex items-center justify-between">
-                       <div className="flex items-center space-x-2">
-                          <ShieldCheck size={14} className="text-[#C5A059]/40 group-hover:text-[#C5A059] transition-colors" />
-                          <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] group-hover:text-white/40 transition-colors">Integrity Locked</span>
-                       </div>
-                       <div className="h-1 w-12 bg-white/5 rounded-full group-hover:w-24 group-hover:bg-[#C5A059] transition-all duration-700"></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              <div className="pt-12">
-                <Link to="/readiness" className="w-full bg-red-600 text-white py-10 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-red-700 transition-all flex items-center justify-center group border-b-[12px] border-slate-900">
-                  VALIDATE MY ELIGIBILITY <ChevronRight className="ml-4 group-hover:translate-x-2" size={28} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. THE ANATOMY OF FAILURE - 16 DEADLY SINS */}
-      <section id="exposure-matrix" className="bg-[#020617] py-24 lg:py-48 border-y border-white/5 relative overflow-hidden transition-colors duration-300">
+      {/* 3. THE 16 DEADLY SINS MATRIX */}
+      <section id="exposure-matrix" className="bg-[#020617] py-16 sm:py-24 lg:py-48 border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 relative z-10">
           
-          <header className="mb-24 lg:mb-40 flex flex-col items-center text-center space-y-8 animate-reveal-up">
-             <div className="w-24 h-24 bg-red-600/10 text-red-500 rounded-[2.5rem] flex items-center justify-center mb-10 border-2 border-red-500/20 shadow-[0_0_50px_rgba(220,38,38,0.2)]">
-               <ShieldX size={40} />
+          <header className="mb-16 sm:mb-24 lg:mb-40 flex flex-col items-center text-center space-y-6 sm:space-y-8 animate-reveal-up">
+             <div className="w-16 h-16 sm:w-24 sm:h-24 bg-red-600/10 text-red-500 rounded-2xl sm:rounded-[2.5rem] flex items-center justify-center mb-6 sm:mb-10 border-2 border-red-500/20 shadow-[0_0_50px_rgba(220,38,38,0.2)]">
+               <ShieldX size={32} />
              </div>
-             <div className="space-y-4">
-                <p className="text-[13px] font-black uppercase tracking-[0.8em] text-red-500">The Exposure Taxonomy</p>
-                <h2 className="text-6xl md:text-[6.5rem] font-black font-serif text-white uppercase tracking-tighter leading-[0.85]">
+             <div className="space-y-3 sm:space-y-4">
+                <p className="text-[11px] sm:text-[13px] font-black uppercase tracking-[0.5em] text-red-500">The Exposure Taxonomy</p>
+                <h2 className="text-4xl sm:text-6xl md:text-[6.5rem] font-black font-serif text-white uppercase tracking-tighter leading-[0.9]">
                   THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span>
                 </h2>
              </div>
-             <p className="text-2xl font-bold text-slate-500 max-w-4xl leading-relaxed uppercase tracking-tight">
+             <p className="text-lg sm:text-2xl font-bold text-slate-500 max-w-4xl leading-relaxed uppercase tracking-tight">
                IDENTIFICATION OF HIGH-PROBABILITY FAILURE PATTERNS USED BY INVESTIGATORS.
              </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20">
             {riskDomains.map((domain, dIdx) => (
-              <div key={dIdx} className="space-y-12 animate-reveal-up" style={{ animationDelay: `${dIdx * 0.1}s` }}>
-                <header className="flex items-center justify-between border-b border-white/10 pb-10">
-                   <div className="flex items-center space-x-6">
-                      <div className="w-16 h-16 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center shadow-inner">
-                        {React.cloneElement(domain.icon as React.ReactElement<any>, { size: 32 })}
+              <div key={dIdx} className="space-y-8 sm:space-y-12 animate-reveal-up">
+                <header className="flex items-center justify-between border-b border-white/10 pb-6 sm:pb-10">
+                   <div className="flex items-center space-x-4 sm:space-x-6">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-xl sm:rounded-2xl border border-white/10 flex items-center justify-center">
+                        {React.cloneElement(domain.icon as React.ReactElement<any>, { size: 24 })}
                       </div>
                       <div>
-                        <h3 className="text-3xl font-black text-white uppercase tracking-tight font-serif">{domain.domain}</h3>
-                        <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] mt-1">{domain.id} // SECURE_ARCHIVE</p>
+                        <h3 className="text-xl sm:text-3xl font-black text-white uppercase tracking-tight font-serif">{domain.domain}</h3>
+                        <p className="text-[8px] sm:text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mt-1">{domain.id}</p>
                       </div>
-                   </div>
-                   <div className="hidden sm:flex flex-col items-end">
-                      <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Active Vectors</p>
-                      <p className="text-5xl font-black text-white font-mono leading-none">04</p>
                    </div>
                 </header>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                   {domain.items.map((item) => (
-                    <article key={item.id} className="bg-[#0c1a2d] border border-white/5 p-10 rounded-[3rem] flex flex-col space-y-10 group hover:border-red-500/30 transition-all duration-500 shadow-2xl relative overflow-hidden">
-                       <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity">
-                          <Terminal size={100} />
-                       </div>
-                       <header className="space-y-4 relative z-10">
-                          <span className="text-[11px] font-black text-slate-600 font-mono tracking-tighter block">{item.id}</span>
-                          <h4 className="text-[19px] font-black text-white uppercase leading-tight tracking-tight group-hover:text-red-500 transition-colors h-[50px]">{item.text}</h4>
+                    <article key={item.id} className="bg-[#0c1a2d] border border-white/5 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] flex flex-col space-y-6 sm:space-y-10 group hover:border-red-500/30 transition-all duration-500 shadow-2xl relative overflow-hidden">
+                       <header className="space-y-2 sm:space-y-4 relative z-10">
+                          <span className="text-[10px] font-black text-slate-600 font-mono tracking-tighter block">{item.id}</span>
+                          <h4 className="text-[17px] sm:text-[19px] font-black text-white uppercase leading-tight tracking-tight h-auto sm:h-[50px]">{item.text}</h4>
                        </header>
                        
-                       <div className="space-y-8 flex-grow relative z-10">
-                          <div className="flex justify-between items-end border-b border-white/[0.03] pb-4">
-                             <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Result</p>
-                             <p className="text-sm font-black text-slate-200 uppercase tracking-tight">{item.result}</p>
+                       <div className="space-y-4 sm:space-y-8 flex-grow relative z-10">
+                          <div className="flex justify-between items-end border-b border-white/[0.03] pb-3">
+                             <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">Result</p>
+                             <p className="text-xs sm:text-sm font-black text-slate-200 uppercase tracking-tight">{item.result}</p>
                           </div>
-                          <div className="flex justify-between items-end border-b border-white/[0.03] pb-4">
-                             <div className="flex items-center space-x-2">
-                                <ShieldCheck size={14} className="text-emerald-500" />
-                                <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Guard</p>
-                             </div>
-                             <p className="text-[11px] font-black text-emerald-400 uppercase tracking-tighter text-right leading-none max-w-[150px]">{item.guard}</p>
-                          </div>
-                          <div className="flex justify-between items-center pt-2">
-                             <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Severity</p>
-                             <div className={`px-5 py-2.5 rounded-xl flex items-center space-x-3 border ${item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.1)]' : 'bg-amber-500/10 border-amber-500/30 text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.1)]'}`}>
-                                <Zap size={14} className="fill-current" />
-                                <span className="text-[11px] font-black uppercase tracking-[0.2em]">{item.severity}</span>
+                          <div className="flex justify-between items-center pt-1">
+                             <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">Severity</p>
+                             <div className={`px-4 py-1.5 rounded-lg flex items-center space-x-2 border ${item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500' : 'bg-amber-500/10 border-amber-500/30 text-amber-500'}`}>
+                                <Zap size={12} className="fill-current" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.1em]">{item.severity}</span>
                              </div>
                           </div>
                        </div>
@@ -501,141 +392,67 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. THE TRANSFORMATION - CARRIER EXECUTIVE STANDARD */}
-      <section className="py-24 md:py-48 bg-[#FAF9F6] dark:bg-surface-dark transition-colors">
+      {/* 4. THE OUTCOME SECTION */}
+      <section className="py-16 sm:py-24 md:py-48 bg-[#FAF9F6] dark:bg-surface-dark transition-colors">
         <div className="max-w-[1600px] mx-auto px-6">
-          <header className="text-center mb-32 space-y-8 animate-reveal-up">
-             <p className="text-[14px] font-black uppercase tracking-[1em] text-slate-400">THE OUTCOME</p>
-             <h2 className="text-6xl md:text-[6.5rem] font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.85]">
+          <header className="text-center mb-16 sm:mb-32 space-y-6 sm:space-y-8 animate-reveal-up">
+             <p className="text-[12px] sm:text-[14px] font-black uppercase tracking-[0.5em] text-slate-400">THE OUTCOME</p>
+             <h2 className="text-4xl sm:text-6xl md:text-[6.5rem] font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.9]">
                THE <span className="text-[#C5A059] italic">EXECUTIVE</span> STANDARD.
              </h2>
-             <p className="text-2xl md:text-3xl font-bold text-slate-500 max-w-4xl mx-auto leading-relaxed uppercase">
+             <p className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-500 max-w-4xl mx-auto leading-relaxed uppercase">
                The transformation from a driver with a dream to a carrier with infrastructure.
              </p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
             {[
               { 
-                icon: <ClipboardCheck size={48} />, 
+                icon: <ClipboardCheck size={40} />, 
                 title: "Audit-Ready Infrastructure", 
-                desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards. Your refuge is built before the knock arrives." 
+                desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards." 
               },
               { 
-                icon: <UserCheck size={48} />, 
+                icon: <UserCheck size={40} />, 
                 title: "Preferred Risk Profile", 
-                desc: "Maintain a safety record that forces insurance underwriters to offer your business the lowest possible market premiums. Control your insurability." 
+                desc: "Maintain a safety record that forces insurance underwriters to offer your business the lowest possible rates." 
               },
               { 
-                icon: <BarChart3 size={48} />, 
+                icon: <BarChart3 size={40} />, 
                 title: "Financial Sovereignty", 
-                desc: "Use industrial-grade cost tracking to ensure every mile driven contributes to net wealth, not just gross revenue. Drive for profit, not just volume." 
+                desc: "Use industrial-grade tracking to ensure every mile driven contributes to net wealth, not just revenue." 
               }
             ].map((pillar, i) => (
-              <article key={i} className="bg-white dark:bg-primary-dark p-12 lg:p-20 rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:shadow-[0_60px_120px_-30px_rgba(0,34,68,0.15)] transition-all duration-700 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                <div className="w-24 h-24 lg:w-32 lg:h-32 bg-[#FAF9F6] dark:bg-gray-800 text-[#C5A059] rounded-[2.5rem] flex items-center justify-center mb-12 shadow-inner group-hover:scale-110 group-hover:bg-[#002244] group-hover:text-white transition-all duration-500">
+              <article key={i} className="bg-white dark:bg-primary-dark p-8 sm:p-12 lg:p-20 rounded-[3rem] sm:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:shadow-xl transition-all duration-700">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-[#FAF9F6] dark:bg-gray-800 text-[#C5A059] rounded-2xl sm:rounded-[2.5rem] flex items-center justify-center mb-8 sm:mb-12 shadow-inner group-hover:scale-110 transition-all duration-500">
                   {pillar.icon}
                 </div>
-                <h3 className="text-3xl lg:text-4xl font-black text-[#002244] dark:text-white uppercase leading-tight mb-8 font-serif tracking-tight group-hover:text-[#C5A059] transition-colors">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#002244] dark:text-white uppercase leading-tight mb-6 sm:mb-8 font-serif tracking-tight group-hover:text-[#C5A059] transition-colors">
                   {pillar.title}
                 </h3>
-                <p className="text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed mb-12 flex-grow uppercase tracking-tight">
+                <p className="text-base sm:text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-tight">
                   {pillar.desc}
                 </p>
-                <div className="h-2 w-12 bg-slate-100 dark:bg-gray-800 rounded-full group-hover:bg-[#C5A059] transition-all group-hover:w-24"></div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 6. THE "MATH OF SURVIVAL" - TCO ANCHOR - LINKED TO CALCULATOR */}
-      <section className="py-24 md:py-48 bg-[#C5A059] text-[#002244] relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div className="space-y-12">
-               <div className="inline-flex items-center space-x-4 bg-[#002244]/10 border border-[#002244]/20 px-8 py-3 rounded-full">
-                  <Calculator size={24} />
-                  <span className="text-sm font-black uppercase tracking-[0.5em]">OPERATIONAL STEWARDSHIP</span>
-               </div>
-               <h2 className="text-6xl md:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85]">
-                 THE MATH OF <br/><span className="text-white italic">SURVIVAL.</span>
-               </h2>
-               <div className="h-4 w-48 bg-[#002244]"></div>
-               <p className="text-3xl font-black uppercase tracking-tight leading-none italic">"Your TCO is the Foundation."</p>
-            </div>
-            
-            <div className="bg-[#002244] p-12 md:p-20 rounded-[5rem] text-white shadow-2xl relative overflow-hidden border-[15px] border-white/5">
-               <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12">
-                  <Target size={200} />
-               </div>
-               <div className="relative z-10 space-y-12">
-                  <div className="space-y-8 text-2xl md:text-3xl font-bold leading-relaxed border-l-[12px] border-[#C5A059] pl-12">
-                    <p>
-                      In 25 years of manufacturing leadership, I learned that margins don't move because of effort—they move because of systems.
-                    </p>
-                    <p className="text-white/80">
-                      If you don't know your <span className="text-[#C5A059]">True Cost of Ownership</span>, you are driving toward a cliff.
-                    </p>
-                  </div>
-                  <div className="pt-8">
-                     <Link to="/tools/tco-calculator" className="w-full bg-[#C5A059] text-[#002244] py-10 rounded-[3rem] font-black uppercase tracking-[0.3em] text-sm shadow-[0_30px_70px_-15px_rgba(0,0,0,0.5)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-[12px] border-[#8e7340]">
-                        ACCESS THE EXECUTIVE TCO CALCULATOR <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" size={28} />
-                     </Link>
-                  </div>
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. FAQS */}
-      <section className="py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden transition-colors duration-300">
-        <div className="max-w-[90%] md:max-w-5xl mx-auto px-6">
-          <header className="text-center mb-32 space-y-10">
-             <p className="text-[14px] font-black uppercase tracking-[0.6em] text-slate-400">FAQS</p>
-             <h2 className="text-6xl md:text-[6.5rem] font-black font-serif text-[#002244] dark:text-white uppercase tracking-tight leading-none">COMMON <span className="text-[#C5A059] italic">QUESTIONS.</span></h2>
-          </header>
-          <div className="space-y-6">
-            {[
-              { q: "Does LaunchPath guarantee I will pass a new entrant safety audit?", a: "No. LaunchPath does not guarantee audit outcomes. Final determination is made solely by the FMCSA based on their independent investigation. We provide the institutional framework and documentation systems.", icon: <ShieldAlert size={18} /> },
-              { q: "What if my insurance quote is higher than expected?", a: "Insurance pricing is based on factors outside our control — your location, commodity, driving history, and market conditions. LaunchPath teaches you how to present your operation professionally to underwriters.", icon: <Award size={18} /> },
-              { q: "Is LaunchPath for non-CDL box truck carriers?", a: "Yes. LaunchPath covers all interstate motor carriers operating CMVs over 10,001 lbs GVWR, including non-CDL operations.", icon: <Truck size={18} /> },
-              { q: "Can I skip sections or move ahead?", a: "No. The curriculum follows a sequential implementation calendar. Each phase builds on the previous. Skipping creates gaps in your compliance infrastructure.", icon: <Lock size={18} /> },
-              { q: "Is there a recurring monthly subscription fee?", a: "No. Enrollment is a one-time fee with lifetime access to the curriculum and tools.", icon: <DollarSign size={18} /> }
-            ].map((faq, idx) => (
-              <FAQItem key={idx} question={faq.q} answer={faq.a} icon={faq.icon} isOpen={openFaqIndex === idx} onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. FINAL CTA */}
-      <section className="py-24 md:py-48 bg-[#002244] text-white overflow-hidden relative transition-colors duration-300">
+      {/* 5. FINAL CTA SECTION */}
+      <section className="py-16 sm:py-24 md:py-48 bg-[#002244] text-white overflow-hidden relative">
         <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-16">
-           <header className="space-y-10">
-              <h2 className="text-6xl md:text-[6.5rem] font-black font-serif uppercase tracking-tight leading-none">BUILD YOUR CARRIER LIKE A <br/><span className="text-[#C5A059] italic">CARRIER EXECUTIVE.</span></h2>
-              <p className="text-2xl md:text-3xl text-slate-300 font-medium max-w-4xl mx-auto leading-[1.6]">You didn't get your authority to hope you don't get audited. You got it to build something that lasts. LaunchPath gives you the infrastructure to operate with discipline.</p>
+        <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-12 sm:space-y-16">
+           <header className="space-y-6 sm:space-y-10">
+              <h2 className="text-4xl sm:text-6xl md:text-[6.5rem] font-black font-serif uppercase tracking-tight leading-none">BUILD YOUR CARRIER LIKE A <br/><span className="text-[#C5A059] italic">CARRIER EXECUTIVE.</span></h2>
+              <p className="text-lg sm:text-2xl md:text-3xl text-slate-300 font-medium max-w-4xl mx-auto leading-[1.4] sm:leading-[1.6]">LaunchPath gives you the infrastructure to operate with discipline and pass the federal REACH Test™.</p>
            </header>
-           <div className="flex flex-col sm:flex-row items-center justify-center gap-10 pt-10">
-              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] shadow-[0_30px_70px_-20px_rgba(0,34,68,0.4)] hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={32} className="ml-5 group-hover:translate-x-2 transition-transform" /></Link>
-              <Link to="/pricing" className="w-full sm:w-auto border-4 border-white/20 px-14 sm:px-24 py-10 sm:py-12 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[18px] hover:bg-white/5 transition-all flex items-center justify-center">VIEW ADMISSION PROTOCOL</Link>
+           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 pt-6">
+              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-10 sm:px-24 py-6 sm:py-12 rounded-[2rem] sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[16px] sm:text-[18px] shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-4 sm:border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={24} className="ml-3 sm:ml-5 group-hover:translate-x-2 transition-transform" /></Link>
+              <Link to="/pricing" className="w-full sm:w-auto border-2 sm:border-4 border-white/20 px-10 sm:px-24 py-6 sm:py-12 rounded-[2rem] sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[16px] sm:text-[18px] hover:bg-white/5 transition-all flex items-center justify-center">ADMISSION PROTOCOL</Link>
            </div>
            
-           <div className="pt-24 flex flex-col md:flex-row items-center justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
-              <div className="flex items-center space-x-4 border border-white/20 px-8 py-4 rounded-2xl">
-                 <ShieldCheck size={28} className="text-[#C5A059]" />
-                 <span className="text-sm font-black uppercase tracking-[0.3em]">VETERAN OWNED & OPERATED</span>
-              </div>
-              <div className="flex items-center space-x-4 border border-white/20 px-8 py-4 rounded-2xl">
-                 <Award size={28} className="text-[#C5A059]" />
-                 <span className="text-sm font-black uppercase tracking-[0.3em]">OSHA-CERTIFIED SAFETY COORDINATOR</span>
-              </div>
-           </div>
-           <p className="text-[13px] font-black uppercase tracking-[0.5em] text-white/20 pt-12">BUILT ON WISDOM • ESTABLISHED WITH UNDERSTANDING • DESIGNED FOR ENDURANCE.™</p>
+           <p className="text-[11px] sm:text-[13px] font-black uppercase tracking-[0.5em] text-white/20 pt-8 sm:pt-12">BUILT ON WISDOM • ESTABLISHED WITH UNDERSTANDING.™</p>
         </div>
       </section>
     </div>
