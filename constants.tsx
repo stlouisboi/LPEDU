@@ -21,6 +21,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   secondaryColor: "#d4af37",
   metaDescription: "LaunchPath is a 90-day compliance system for new motor carriers. Build audit-ready documentation and protect your authority. Accuracy over hype.",
   logoUrl: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fblue_logo.png?alt=media&token=57100c1c-e867-4f10-9d2a-30e9d641b8cf", 
+  faviconUrl: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Ffavicon.png?alt=media&token=83091176-34eb-44eb-8ce4-6871f0f48e2c",
   googleAnalyticsId: "G-LP-VET-2025",
   showVeteranBadge: true,
   showDisabledVeteranBadge: true,
