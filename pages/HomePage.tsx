@@ -29,11 +29,13 @@ import {
   MessageCircle,
   HelpCircle,
   Loader2,
-  Truck
+  Truck,
+  Scale
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { syncToMailerLite } from '../mailerlite';
+import DeadlySinsGrid from '../components/DeadlySinsGrid';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -90,7 +92,7 @@ const HomePage: React.FC = () => {
     "CROSS_REFERENCING_49_CFR_PART_382...",
     "IDENTIFYING_AUTHORITY_GAP_PATTERNS...",
     "SEQUENCING_90_DAY_REMEDIATION...",
-    "AUTHORIZATION_GRANTED."
+    "ESTABLISHING_CRM_HANDSHAKE..."
   ];
 
   const handleRiskMapSubmit = async (e: React.FormEvent) => {
@@ -98,15 +100,19 @@ const HomePage: React.FC = () => {
     setLoading(true);
     setScanState('scanning');
     
+    // Phase 1: Visual Diagnostic Scan
     for (let i = 0; i < scanSteps.length; i++) {
       setScanLog(prev => [...prev, scanSteps[i]]);
       await new Promise(r => setTimeout(r, 600));
     }
 
     setScanState('syncing');
+    setScanLog(prev => [...prev, "UPLINKING_TO_INSTITUTIONAL_REGISTRY..."]);
+    
     const destination = `/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`;
 
     try {
+      // Phase 2: Registry Handshake (Firebase)
       if (db) {
         await addDoc(collection(db, "leadMagnets"), {
           firstName: formData.firstName || 'Carrier',
@@ -115,54 +121,28 @@ const HomePage: React.FC = () => {
           source: "homepage-hero-risk-map"
         });
       }
-      await syncToMailerLite({ email: formData.email, fields: { name: formData.firstName } });
+      
+      // Phase 3: CRM Synchronization (MailerLite)
+      await syncToMailerLite({ 
+        email: formData.email, 
+        fields: { 
+          name: formData.firstName,
+          source: 'homepage-risk-map'
+        } 
+      });
+
+      setScanLog(prev => [...prev, "SYNCHRONIZATION_COMPLETE."]);
+      await new Promise(r => setTimeout(r, 800));
       setScanState('complete');
       navigate(destination);
     } catch (err) {
+      console.error("Registry Sync Fault:", err);
+      // Graceful fallback: navigate even if sync fails to preserve user journey
       navigate(destination);
     } finally {
       setLoading(false);
     }
   };
-
-  const riskDomains = [
-    {
-      domain: "Substance Governance",
-      items: [
-        { id: "01", text: "Random Pool Enrollment", result: "AUDIT DEFAULT" },
-        { id: "02", text: "Positive Driver Results", result: "IMMEDIATE REVOCATION" },
-        { id: "03", text: "Clearinghouse Query Failure", result: "OPERATING BAN" },
-        { id: "04", text: "Omission of Pre-Employment", result: "STRICT LIABILITY" }
-      ]
-    },
-    {
-      domain: "Human Capital",
-      items: [
-        { id: "05", text: "Revoked License Usage", result: "OOS EVENT" },
-        { id: "06", text: "Missing Med-Cert", result: "DRIVER DOWN GRADE" },
-        { id: "07", text: "Fragmented DQ Files", result: "AUDIT RED FLAG" },
-        { id: "08", text: "Omitted Background Inq", result: "NEGLIGENT ENTRUSTMENT" }
-      ]
-    },
-    {
-      domain: "Operational Control",
-      items: [
-        { id: "09", text: "Falsification of HOS", result: "CRIMINAL DEFAULT" },
-        { id: "10", text: "Dispatching OOS Vehicles", result: "AUTHORITY SEIZURE" },
-        { id: "11", text: "Deficient Roadside History", result: "PREMIUM SPIKE" },
-        { id: "12", text: "No Maintenance Log", result: "LIABILITY DEFAULT" }
-      ]
-    },
-    {
-      domain: "Administrative",
-      items: [
-        { id: "13", text: "Insurance Coverage Lapse", result: "AUTHORITY TERMINATION" },
-        { id: "14", text: "Failure to Update MCS-150", result: "ADMIN REVOCATION" },
-        { id: "15", text: "BOC-3 Process Agent", result: "FILING SUSPENSION" },
-        { id: "16", text: "Late Accident Reporting", result: "LEGAL DEFAULT" }
-      ]
-    }
-  ];
 
   const faqs = [
     { q: "What if my insurance quote is higher than expected?", a: "Insurance is a fixed economic reality. We help you build a risk profile that underwriters value, even if initial costs are high." },
@@ -185,7 +165,7 @@ const HomePage: React.FC = () => {
         }
       `}</style>
       
-      {/* 1. HERO SECTION - REDESIGNED GRID */}
+      {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex items-center border-b border-white/5 py-20">
         <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
@@ -207,14 +187,13 @@ const HomePage: React.FC = () => {
               <div className="pt-4 animate-reveal-up [animation-delay:400ms]">
                 <Link 
                   to="/reach-test" 
-                  className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+                  className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center">
                     Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
                   <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
-                  <div className="absolute inset-x-0 top-0 h-[1px] bg-white/40"></div>
                 </Link>
               </div>
             </div>
@@ -225,8 +204,6 @@ const HomePage: React.FC = () => {
             <div className="bg-[#0D1B2A] p-8 md:p-10 lg:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-md lg:max-w-lg relative overflow-hidden group">
               {/* Inner depth effect */}
               <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
-              
-              {/* Animated Truck Icon in the corner */}
               <div className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
                 <Truck size={48} className="text-signal-gold animate-truck-drive" />
               </div>
@@ -238,7 +215,7 @@ const HomePage: React.FC = () => {
                     <h3 className="text-3xl font-black font-serif uppercase text-signal-gold italic leading-none">RISK MAP™</h3>
                   </div>
                   <div className="p-3 bg-white/5 rounded-2xl border border-white/10 transition-transform duration-700 group-hover:rotate-12">
-                    <Zap size={24} className="text-signal-gold" />
+                    <Truck size={28} className="text-signal-gold" />
                   </div>
                 </div>
                 
@@ -265,17 +242,15 @@ const HomePage: React.FC = () => {
                         className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
                       />
                     </div>
-                    <button type="submit" className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue hover:shadow-signal-gold/20 transition-all overflow-hidden group/btn border-b-4 border-[#8e7340]">
+                    <button type="submit" className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue transition-all overflow-hidden group/btn border-b-4 border-[#8e7340]">
                       <span className="relative z-10 flex items-center justify-center">
                         GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover/btn:animate-shine"></div>
                     </button>
                   </form>
                 ) : (
                   <div className="py-10 space-y-6">
                     <div className="flex justify-center relative">
-                      <div className="absolute inset-0 bg-signal-gold/10 rounded-full blur-2xl animate-pulse"></div>
                       <Loader2 className="animate-spin text-signal-gold relative z-10" size={48} />
                     </div>
                     <div className="bg-black/60 rounded-2xl p-6 font-mono text-[10px] text-emerald-500 h-40 overflow-hidden shadow-inner border border-white/5">
@@ -284,14 +259,6 @@ const HomePage: React.FC = () => {
                     </div>
                   </div>
                 )}
-                
-                <div className="mt-10 pt-6 border-t border-white/5 flex justify-between items-center">
-                   <p className="text-[10px] font-mono font-bold text-white/20 uppercase tracking-widest">LP-SYS-V4.5</p>
-                   <div className="flex items-center space-x-2 text-white/20">
-                     <Lock size={12} />
-                     <span className="text-[10px] font-mono uppercase tracking-widest font-bold">SECURE_LINK</span>
-                   </div>
-                </div>
               </div>
             </div>
             </div>
@@ -299,137 +266,54 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. PATTERN SECTION */}
+      {/* 2. THE FOUR PILLARS INTERDEPENDENCE */}
       <section className="py-32 px-10 md:px-20 lg:px-40 bg-white dark:bg-primary-dark">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-          <div className="lg:col-span-5 relative group">
-            <div className="rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-slate-100 dark:border-slate-800 relative bg-slate-50 dark:bg-surface-dark">
-              <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince" className="w-full grayscale hover:grayscale-0 transition-all duration-1000" />
-              <div className="absolute bottom-0 left-0 w-full bg-[#002244] py-6 text-center">
-                <p className="text-[10px] font-black text-signal-gold uppercase tracking-[0.4em]">SYSTEM CUSTODIAN</p>
-              </div>
-            </div>
-            <div className="absolute -bottom-8 -right-8 bg-signal-gold p-8 rounded-3xl shadow-2xl border-8 border-white dark:border-slate-900 hidden lg:block group-hover:rotate-12 transition-transform duration-500 hover:scale-110">
-               <ShieldCheck size={40} className="text-[#002244]" />
-            </div>
-          </div>
-          <div className="lg:col-span-7 space-y-10">
-            <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.95]">
-              I'VE WATCHED THIS <br/><span className="text-red-600 italic">FAIL 200 TIMES.</span>
+        <div className="max-w-7xl mx-auto space-y-24">
+          <header className="text-center space-y-6 animate-reveal-up">
+            <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
+            <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
+              THE <span className="text-signal-gold italic">FOUR</span> PILLARS.
             </h2>
-            <p className="text-2xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold leading-relaxed border-l-8 border-slate-200 dark:border-slate-700 pl-10">
-              Systems aren't elective; they are survival. I refuse to reverse the order of wisdom. <span className="text-[#002244] dark:text-signal-gold">Order precedes revenue.</span>
+            <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
+              Institutional logic: A failure in the Compliance Backbone (Documentation) results in a loss of Insurance Continuity, which suffocates Cash-Flow Oxygen.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. WARNING SECTION */}
-      <section className="py-32 px-10 md:px-20 lg:px-40 bg-[#020617] border-y border-white/5">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div className="space-y-10">
-            <h2 className="text-5xl md:text-7xl font-black font-serif uppercase tracking-tight leading-none text-white">SYSTEM <br/>ACCESS <br/><span className="text-red-600 italic">WARNING.</span></h2>
-            <p className="text-xl text-slate-400 font-bold leading-relaxed max-w-md">
-              If you are using home-spun files or "winging it," your authority is currently in a state of terminal exposure.
-            </p>
-          </div>
-          <div className="space-y-6">
-            {[
-              { title: "Driver Qualification Files", desc: "Fragmented documentation that fails the 48-hour federal reach test." },
-              { title: "Insurance Lapse", desc: "Missing renewal buffers that trigger immediate authority termination." },
-              { title: "Hours of Service", desc: "Unassigned mileage traps that prove lack of systemic control." }
-            ].map((card, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-3xl flex items-center justify-between group hover:bg-white/10 transition-all cursor-pointer">
-                <div>
-                  <h4 className="font-black uppercase tracking-tight text-white group-hover:text-signal-gold transition-colors">{card.title}</h4>
-                  <p className="text-sm text-slate-500 mt-1">{card.desc}</p>
-                </div>
-                <ChevronRight size={20} className="text-white/20 group-hover:text-signal-gold group-hover:translate-x-1 transition-all" />
-              </div>
-            ))}
-            <div className="pt-10">
-               <Link 
-                to="/reach-test" 
-                className="bg-red-600 text-white px-16 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-red-700 transition-all flex items-center justify-center w-full active:scale-95 border-b-8 border-red-900 group"
-               >
-                 TAKE THE RISK TEST <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
-               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. THE 16 DEADLY SINS MATRIX */}
-      <section className="py-32 px-10 md:px-20 bg-[#020617] relative">
-        <div className="max-w-[1600px] mx-auto space-y-32">
-          <header className="text-center space-y-6">
-             <div className="w-20 h-20 bg-red-600/10 rounded-2xl flex items-center justify-center mx-auto border border-red-600/20"><ShieldX size={40} className="text-red-600" /></div>
-             <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span></h2>
-             <p className="text-[10px] font-black uppercase tracking-[1em] text-slate-500 italic">Identification of high-probability failure patterns used by investigators</p>
           </header>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {riskDomains.map((domain, i) => (
-              <div key={i} className="space-y-6">
-                <h3 className="text-sm font-black uppercase tracking-widest text-signal-gold border-b border-white/10 pb-4 flex items-center"><ChevronDown size={14} className="mr-2" /> {domain.domain}</h3>
-                <div className="space-y-4">
-                  {domain.items.map((item) => (
-                    <div key={item.id} className="bg-white/5 border border-white/10 p-6 rounded-[2rem] space-y-4 group hover:border-red-600/30 transition-all">
-                       <span className="text-[9px] font-black text-slate-600">FAULT-{item.id}</span>
-                       <h4 className="text-base font-black uppercase tracking-tight text-white group-hover:text-red-500 transition-colors leading-tight">{item.text}</h4>
-                       <div className="flex justify-between items-center pt-2 border-t border-white/5">
-                          <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Result</span>
-                          <span className="text-[10px] font-black text-red-500 uppercase">{item.result}</span>
-                       </div>
-                    </div>
-                  ))}
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: "Authority Protection", icon: <Scale />, desc: "The legal right to operate and the center of the structure." },
+              { title: "Insurance Continuity", icon: <ShieldCheck />, desc: "The financial shield required to move freight and protect assets." },
+              { title: "Compliance Backbone", icon: <FileText />, desc: "The documentary evidence of safety required to satisfy federal investigators." },
+              { title: "Cash-Flow Oxygen", icon: <Zap />, desc: "The capital required to keep the other three pillars alive." }
+            ].map((pillar, i) => (
+              <div key={i} className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center space-y-6 hover:shadow-2xl transition-all duration-700">
+                <div className="w-16 h-16 bg-authority-blue text-signal-gold rounded-2xl flex items-center justify-center shadow-lg">{pillar.icon}</div>
+                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight leading-tight">{pillar.title}</h4>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-tighter">{pillar.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. THE EXECUTIVE STANDARD */}
-      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
-        <header className="text-center mb-32 space-y-6">
-          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">THE OUTCOME</p>
-          <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
-          <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-           {[
-             { letter: "D", title: "Audit-Ready Infrastructure", desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards." },
-             { letter: "A", title: "Preferred Risk Profile", desc: "Safety-first operational structure." },
-             { letter: "F", title: "Financial Stability", desc: "Systems that maximize operating margins." }
-           ].map((item, i) => (
-             <div key={i} className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-sm space-y-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center font-black text-2xl text-signal-gold">{item.letter}</div>
-                <div className="space-y-4">
-                  <h4 className="text-xl font-black text-[#002244] dark:text-white uppercase tracking-tight">{item.title}</h4>
-                  <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
-                </div>
-             </div>
-           ))}
-        </div>
-      </section>
-
-      {/* 6. THE MATH OF SURVIVAL */}
-      <section className="py-48 px-10 md:px-20 bg-signal-gold text-white">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+      {/* 3. THE MATH OF SURVIVAL */}
+      <section className="py-48 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
+        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center relative z-10">
           <div className="lg:col-span-7 space-y-10">
             <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center text-[#002244] opacity-70"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
             <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] text-[#002244]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
             <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl text-[#002244]">
-               Monthly operating costs per truck currently range from $10,300 – $18,800. 
+               Monthly operating costs per truck range from <span className="underline decoration-[#002244] decoration-8 underline-offset-8">$10,300 – $18,800.</span> 
+            </p>
+            <p className="text-lg text-[#002244] font-bold opacity-80 max-w-lg">
+              Operating on intuition is the primary cause of carrier collapse. Secure your margins with clinical math.
             </p>
             <div className="pt-10">
                <Link to="/tools/tco-calculator" className="relative overflow-hidden bg-[#002244] text-white px-12 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-slate-800 transition-all active:scale-95 flex items-center w-fit border-b-8 border-black group">
                  <span className="relative z-10 flex items-center">
-                   CALCULATE YOUR MATH <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
+                   Calculate Your Survival Math <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
                  </span>
-                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
                </Link>
             </div>
           </div>
@@ -458,7 +342,41 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. FAQ SECTION */}
+      {/* 4. THE 16 DEADLY SINS MATRIX GRID */}
+      <DeadlySinsGrid />
+      
+      <div className="flex justify-center bg-[#020617] pb-32">
+        <Link to="/exposure-matrix" className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 hover:text-white transition-all group">
+            Analyze Complete Exposure Matrix <ArrowRight size={14} className="ml-3 group-hover:translate-x-2 transition-transform" />
+        </Link>
+      </div>
+
+      {/* 5. THE EXECUTIVE STANDARD */}
+      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
+        <header className="text-center mb-32 space-y-6">
+          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">THE OUTCOME</p>
+          <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
+          <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+           {[
+             { letter: "D", title: "Audit-Ready Infrastructure", desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards." },
+             { letter: "A", title: "Preferred Risk Profile", desc: "Build a safety-first operational structure that underwriters value." },
+             { letter: "F", title: "Financial Stability", desc: "Deploy systems that maximize operating margins and preserve cash-flow oxygen." }
+           ].map((item, i) => (
+             <div key={i} className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-sm space-y-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center font-black text-2xl text-signal-gold">{item.letter}</div>
+                <div className="space-y-4">
+                  <h4 className="text-xl font-black text-[#002244] dark:text-white uppercase tracking-tight">{item.title}</h4>
+                  <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+                </div>
+             </div>
+           ))}
+        </div>
+      </section>
+
+      {/* 6. FAQ SECTION */}
       <section className="py-48 px-10 md:px-20 lg:px-40 bg-[#020617]">
         <header className="text-center mb-32 space-y-6">
           <p className="text-[11px] font-black text-slate-500 uppercase tracking-[0.5em]">KNOWLEDGE BASE</p>
@@ -478,7 +396,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 8. FINAL CTA */}
+      {/* 7. FINAL CTA */}
       <section className="py-48 px-10 md:px-20 lg:px-40 text-center bg-[#002244] relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         <div className="relative z-10 space-y-16">
@@ -490,14 +408,18 @@ const HomePage: React.FC = () => {
                 to="/reach-test" 
                 className="relative overflow-hidden bg-signal-gold text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white hover:text-authority-blue transition-all active:scale-95 border-b-8 border-slate-900 group"
               >
-                <span className="relative z-10">TAKE THE REACH TEST™</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
+                <span className="relative z-10">Take the REACH Test™</span>
               </Link>
-              <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/10 transition-all flex items-center justify-center">ADMISSION PROTOCOL</Link>
+              <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/10 transition-all flex items-center justify-center">Admission Protocol</Link>
            </div>
         </div>
       </section>
 
+      <div className="bg-[#020617] text-center py-10">
+        <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
+          CARRIER OPERATING STANDARD: LP-SYS-V4.2 — INSTITUTIONAL INTEGRITY ACTIVE
+        </p>
+      </div>
     </div>
   );
 };
