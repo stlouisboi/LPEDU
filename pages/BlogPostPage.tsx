@@ -13,13 +13,21 @@ const BlogPostPage = () => {
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
+  const updateMetaData = (title: string, description: string) => {
+    document.title = title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', description);
+    }
+  };
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const foundPost = INITIAL_BLOGS.find(p => p.slug === slug);
         if (foundPost) {
           setPost(foundPost);
-          document.title = foundPost.seoTitle || foundPost.title;
+          updateMetaData(foundPost.seoTitle || foundPost.title, foundPost.seoDescription || foundPost.excerpt);
         }
 
         if (db) {
@@ -28,7 +36,7 @@ const BlogPostPage = () => {
           if (!snap.empty) {
             const dbPost = { id: snap.docs[0].id, ...snap.docs[0].data() } as BlogPost;
             setPost(dbPost);
-            document.title = dbPost.seoTitle || dbPost.title;
+            updateMetaData(dbPost.seoTitle || dbPost.title, dbPost.seoDescription || dbPost.excerpt);
           }
         }
       } catch (err) {

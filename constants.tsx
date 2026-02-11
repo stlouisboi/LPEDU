@@ -471,6 +471,8 @@ export const INITIAL_BLOGS: BlogPost[] = [
     slug: "usdot-vs-mc-number-differences",
     category: "Authority",
     excerpt: "Regulatory Directive: Distinguishing between safety registration and commercial operating authority to prevent equipment seizure.",
+    seoTitle: "USDOT vs MC Number: Do You Really Need Both? | LaunchPath",
+    seoDescription: "Regulatory Directive: Distinguishing between safety registration and commercial operating authority to prevent equipment seizure. Learn if you need both USDOT and MC numbers for your trucking business.",
     content: `
       <p style="font-size: 14px; color: #64748b; font-style: italic; margin-bottom: 30px;">Subtitle: How to Not Get Your Truck Impounded in Week One.</p>
 
