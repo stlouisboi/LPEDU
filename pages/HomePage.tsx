@@ -249,7 +249,7 @@ const HomePage: React.FC = () => {
                     <h3 className="text-3xl font-black font-serif uppercase text-signal-gold italic leading-none">RISK MAP™</h3>
                   </div>
                   <div className="p-3 bg-white/5 rounded-2xl border border-white/10 transition-transform duration-700 group-hover:rotate-12">
-                    <Zap size={24} className="text-signal-gold" />
+                    <Truck size={28} className="text-signal-gold" />
                   </div>
                 </div>
                 
