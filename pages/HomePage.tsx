@@ -91,7 +91,7 @@ const HomePage: React.FC = () => {
     "CROSS_REFERENCING_49_CFR_PART_382...",
     "IDENTIFYING_AUTHORITY_GAP_PATTERNS...",
     "SEQUENCING_90_DAY_REMEDIATION...",
-    "AUTHORIZATION_GRANTED."
+    "ESTABLISHING_CRM_HANDSHAKE..."
   ];
 
   const handleRiskMapSubmit = async (e: React.FormEvent) => {
@@ -99,15 +99,19 @@ const HomePage: React.FC = () => {
     setLoading(true);
     setScanState('scanning');
     
+    // Phase 1: Visual Diagnostic Scan
     for (let i = 0; i < scanSteps.length; i++) {
       setScanLog(prev => [...prev, scanSteps[i]]);
       await new Promise(r => setTimeout(r, 600));
     }
 
     setScanState('syncing');
+    setScanLog(prev => [...prev, "UPLINKING_TO_INSTITUTIONAL_REGISTRY..."]);
+    
     const destination = `/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`;
 
     try {
+      // Phase 2: Registry Handshake (Firebase)
       if (db) {
         await addDoc(collection(db, "leadMagnets"), {
           firstName: formData.firstName || 'Carrier',
@@ -116,10 +120,23 @@ const HomePage: React.FC = () => {
           source: "homepage-hero-risk-map"
         });
       }
-      await syncToMailerLite({ email: formData.email, fields: { name: formData.firstName } });
+      
+      // Phase 3: CRM Synchronization (MailerLite)
+      await syncToMailerLite({ 
+        email: formData.email, 
+        fields: { 
+          name: formData.firstName,
+          source: 'homepage-risk-map'
+        } 
+      });
+
+      setScanLog(prev => [...prev, "SYNCHRONIZATION_COMPLETE."]);
+      await new Promise(r => setTimeout(r, 800));
       setScanState('complete');
       navigate(destination);
     } catch (err) {
+      console.error("Registry Sync Fault:", err);
+      // Graceful fallback: navigate even if sync fails to preserve user journey
       navigate(destination);
     } finally {
       setLoading(false);
