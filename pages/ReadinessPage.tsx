@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   ArrowRight, 
@@ -9,10 +9,14 @@ import {
   ChevronRight, 
   Loader2, 
   CheckCircle,
-  Award
+  Award,
+  Lock,
+  RefreshCw
 } from 'lucide-react';
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { db } from '../firebase';
+import { syncToMailerLite } from '../mailerlite';
+import { createUserProfile } from '../utils/userRoles';
 
 interface Question {
   id: string;
@@ -107,10 +111,12 @@ const QUESTIONS: Question[] = [
 ];
 
 const ReadinessPage = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<number>(0); 
   const [answers, setAnswers] = useState<number[]>(new Array(QUESTIONS.length).fill(-1));
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const [consent, setConsent] = useState(false);
 
   useEffect(() => {
@@ -129,16 +135,59 @@ const ReadinessPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      if (db) await addDoc(collection(db, "readinessAssessments"), { email, totalScore, resultType, createdAt: serverTimestamp() });
+      if (db) {
+        // 1. Log the assessment
+        await addDoc(collection(db, "readinessAssessments"), { 
+          email, 
+          totalScore, 
+          resultType, 
+          answers,
+          createdAt: serverTimestamp() 
+        });
+
+        // 2. Create/Update user document to mark completed status
+        // Note: We don't have a password here for full Auth creation, 
+        // so we track via email in a 'leads' pattern that matches 'users' schema.
+        await addDoc(collection(db, "users"), {
+          email,
+          role: 'free',
+          quizStatus: 'completed',
+          quizResult: resultType,
+          lastActivity: serverTimestamp()
+        });
+      }
+
+      // 3. Sync to CRM (MailerLite) with specific tagging
+      setSyncing(true);
+      await syncToMailerLite({
+        email,
+        fields: {
+          name: 'Ready Operator',
+          tags: ['Readiness_Test_Complete', `Result_${resultType}`]
+        }
+      });
+      
       setStep(9);
-    } catch (error) { setStep(9); } finally { setLoading(false); }
+    } catch (error) { 
+      console.error("Diagnostic Registry Error:", error);
+      setStep(9); 
+    } finally { 
+      setLoading(false); 
+      setSyncing(false);
+    }
+  };
+
+  const handleInitiateSequence = () => {
+    // Construct query parameters from quiz answers
+    const params = answers.map((val, idx) => `q${idx + 1}=${QUESTIONS[idx].options[val].points}`).join('&');
+    navigate(`/tools/tco-calculator?${params}&result=${resultType}`);
   };
 
   return (
     <div className="bg-[#fafaf9] dark:bg-primary-dark min-h-screen font-sans text-authority-blue overflow-x-hidden">
       <div className="max-w-[800px] mx-auto px-5 py-12 sm:py-24 min-h-[80vh] flex flex-col">
         
-        {/* PROGRESS BAR (Functional Standard) */}
+        {/* PROGRESS BAR */}
         {step >= 1 && step <= 7 && (
           <div className="w-full mb-12 animate-in fade-in duration-500">
              <div className="flex justify-between items-end mb-4">
@@ -231,9 +280,9 @@ const ReadinessPage = () => {
               </div>
               <button 
                 disabled={loading || !consent} 
-                className="w-full bg-authority-blue text-white py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl disabled:opacity-50 hover:bg-steel-blue transition-all border-b-8 border-slate-900"
+                className="w-full bg-authority-blue text-white py-7 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl disabled:opacity-50 hover:bg-steel-blue transition-all border-b-8 border-slate-900 flex items-center justify-center"
               >
-                {loading ? <Loader2 className="animate-spin mx-auto" /> : "Authorize Classification Result"}
+                {loading ? <div className="flex items-center"><RefreshCw className="animate-spin mr-3" size={18} /> {syncing ? 'SYNCING CRM...' : 'AUTHORIZING...'}</div> : "Authorize Classification Result"}
               </button>
             </form>
           </div>
@@ -282,9 +331,12 @@ const ReadinessPage = () => {
 
             <div className="pt-12 flex flex-col items-center gap-10">
                <div className="flex flex-col sm:flex-row gap-6 w-full max-w-2xl">
-                  <Link to={resultType==='GREEN'?'/pricing':'/resources'} className="flex-grow bg-authority-blue text-white px-12 py-7 rounded-[2rem] font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 text-center border-b-8 border-slate-900">
-                    {resultType==='GREEN'?'Initiate Admission Sequence':'Access Remediation Resources'}
-                  </Link>
+                  <button 
+                    onClick={handleInitiateSequence}
+                    className="flex-grow bg-authority-blue text-white px-12 py-7 rounded-[2rem] font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 text-center border-b-8 border-slate-900"
+                  >
+                    INITIATE ADMISSION SEQUENCE
+                  </button>
                   <button onClick={() => window.print()} className="px-10 py-7 rounded-[2rem] border-4 border-slate-100 dark:border-border-dark text-authority-blue dark:text-white font-black uppercase tracking-widest text-[11px] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm">
                     Print Certification
                   </button>

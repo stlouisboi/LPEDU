@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   Calculator, 
   DollarSign, 
@@ -42,7 +42,8 @@ interface VariableCosts {
 }
 
 const TCOCalculatorPage: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<number>(0); // 0: Start, 1: Fixed, 2: Var, 3: Operational, 4: Analysis
+  const location = useLocation();
+  const [activeStep, setActiveStep] = useState<number>(0); 
   const [fixedCosts, setFixedCosts] = useState<FixedCosts>({
     truckPayment: 2200,
     insurance: 1500,
@@ -69,6 +70,22 @@ const TCOCalculatorPage: React.FC = () => {
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+
+  // Handle Query Params for Pre-filling
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const q1 = params.get('q1'); // Capital
+    if (q1) {
+      const score = parseInt(q1);
+      // Pre-fill fixed costs based on capital score (example logic)
+      if (score === 0) setFixedCosts(prev => ({ ...prev, other: 1000 })); // High entry barrier penalty
+    }
+    
+    const result = params.get('result');
+    if (result) {
+      setActiveStep(1); // Jump straight into input if coming from quiz
+    }
+  }, [location]);
 
   useEffect(() => {
     document.title = "Economic Engine | LaunchPath TCO Calculator";
