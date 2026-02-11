@@ -187,10 +187,11 @@ const HomePage: React.FC = () => {
       
       {/* 1. HERO SECTION - REDESIGNED GRID */}
       <section className="relative min-h-screen flex items-center border-b border-white/5 py-20">
-        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
           
-          {/* Left Column: Narrative */}
-          <div className="lg:col-span-7 space-y-12 relative">
+            {/* Left Column: Narrative */}
+            <div className="lg:col-span-7 space-y-12 relative">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
             <div className="relative z-10 space-y-8 md:space-y-12">
               <div className="flex flex-wrap gap-4">
@@ -219,9 +220,9 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Terminal Form */}
-          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
-            <div className="bg-[#0D1B2A] p-8 md:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-lg relative overflow-hidden group">
+            {/* Right Column: Terminal Form */}
+            <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
+            <div className="bg-[#0D1B2A] p-8 md:p-10 lg:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-md lg:max-w-lg relative overflow-hidden group">
               {/* Inner depth effect */}
               <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
               
@@ -292,6 +293,7 @@ const HomePage: React.FC = () => {
                    </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
