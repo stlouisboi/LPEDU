@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-// Add missing ShieldAlert import
 import { ChevronLeft, ArrowRight, ShieldCheck, Scale, Info, Anchor, ShieldAlert } from 'lucide-react';
 
 interface BriefContent {

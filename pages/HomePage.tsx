@@ -27,7 +27,8 @@ import {
   Target,
   ShieldCheck,
   DollarSign,
-  FileText
+  FileText,
+  TrendingDown
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -154,10 +155,10 @@ const HomePage: React.FC = () => {
       id: "DOMAIN_01",
       icon: <FileWarning className="text-red-500" />,
       items: [
-        { id: "01", text: "Absence of random pool enrollment", result: "AUDIT DEFAULT", guard: "RANDOM TESTING ENROLLMENT", severity: "TERMINAL" },
-        { id: "02", text: "Positive driver results (Unmanaged)", result: "IMMEDIATE REVOCATION", guard: "RESULTS MANAGEMENT SYSTEM", severity: "TERMINAL" },
-        { id: "03", text: "Clearinghouse query failure", result: "OPERATING BAN", guard: "CLEARINGHOUSE QUERY PROCESS", severity: "CRITICAL" },
-        { id: "04", text: "Omission of pre-employment test", result: "STRICT LIABILITY", guard: "PRE-EMPLOYMENT SCREENING", severity: "HIGH RISK" }
+        { id: "01", text: "Absence of random pool enrollment", result: "AUDIT DEFAULT", severity: "TERMINAL" },
+        { id: "02", text: "Positive driver results (Unmanaged)", result: "IMMEDIATE REVOCATION", severity: "TERMINAL" },
+        { id: "03", text: "Clearinghouse query failure", result: "OPERATING BAN", severity: "CRITICAL" },
+        { id: "04", text: "Omission of pre-employment test", result: "STRICT LIABILITY", severity: "HIGH RISK" }
       ]
     },
     {
@@ -165,10 +166,10 @@ const HomePage: React.FC = () => {
       id: "DOMAIN_02",
       icon: <Fingerprint className="text-amber-500" />,
       items: [
-        { id: "05", text: "Revoked/Expired license usage", result: "OOS EVENT", guard: "LICENSE VERIFICATION WORKFLOW", severity: "TERMINAL" },
-        { id: "06", text: "Missing Med-Cert verification", result: "DRIVER DOWN GRADE", guard: "MEDICAL CERTIFICATE TRACKING", severity: "CRITICAL" },
-        { id: "07", text: "Fragmented DQ File framework", result: "AUDIT RED FLAG", guard: "DQ FILE BUILDER", severity: "HIGH RISK" },
-        { id: "08", text: "Omitted background inquiries", result: "NEGLIGENT ENTRUSTMENT", guard: "BACKGROUND CHECK PROTOCOL", severity: "CRITICAL" }
+        { id: "05", text: "Revoked/Expired license usage", result: "OOS EVENT", severity: "TERMINAL" },
+        { id: "06", text: "Missing Med-Cert verification", result: "DRIVER DOWN GRADE", severity: "CRITICAL" },
+        { id: "07", text: "Fragmented DQ File framework", result: "AUDIT RED FLAG", severity: "HIGH RISK" },
+        { id: "08", text: "Omitted background inquiries", result: "NEGLIGENT ENTRUSTMENT", severity: "CRITICAL" }
       ]
     },
     {
@@ -176,10 +177,10 @@ const HomePage: React.FC = () => {
       id: "DOMAIN_03",
       icon: <Gavel className="text-slate-500" />,
       items: [
-        { id: "09", text: "Falsification of HOS records", result: "CRIMINAL DEFAULT", guard: "HOURS OF SERVICE COMPLIANCE", severity: "TERMINAL" },
-        { id: "10", text: "Dispatching OOS vehicles", result: "AUTHORITY SEIZURE", guard: "VEHICLE INSPECTION SYSTEM", severity: "TERMINAL" },
-        { id: "11", text: "Deficient roadside history (CSA)", result: "PREMIUM SPIKE", guard: "SAFETY SCORE MONITORING", severity: "HIGH RISK" },
-        { id: "12", text: "No systematic maintenance log", result: "LIABILITY DEFAULT", guard: "MAINTENANCE DOCUMENTATION", severity: "CRITICAL" }
+        { id: "09", text: "Falsification of HOS records", result: "CRIMINAL DEFAULT", severity: "TERMINAL" },
+        { id: "10", text: "Dispatching OOS vehicles", result: "AUTHORITY SEIZURE", severity: "TERMINAL" },
+        { id: "11", text: "Deficient roadside history (CSA)", result: "PREMIUM SPIKE", severity: "HIGH RISK" },
+        { id: "12", text: "No systematic maintenance log", result: "LIABILITY DEFAULT", severity: "CRITICAL" }
       ]
     },
     {
@@ -187,10 +188,10 @@ const HomePage: React.FC = () => {
       id: "DOMAIN_04",
       icon: <HardDrive className="text-blue-500" />,
       items: [
-        { id: "13", text: "Insurance coverage lapse", result: "AUTHORITY TERMINATION", guard: "INSURANCE MONITORING SYSTEM", severity: "TERMINAL" },
-        { id: "14", text: "Failure to update MCS-150", result: "ADMINISTRATIVE REVOCATION", guard: "MCS-150 UPDATE PROTOCOL", severity: "CRITICAL" },
-        { id: "15", text: "BOC-3 Process agent omission", result: "FILING SUSPENSION", guard: "BOC-3 PROCESS AGENT FILING", severity: "HIGH RISK" },
-        { id: "16", text: "Late Incident/Accident reporting", result: "LEGAL DEFAULT", guard: "ACCIDENT REPORTING PROTOCOL", severity: "CRITICAL" }
+        { id: "13", text: "Insurance coverage lapse", result: "AUTHORITY TERMINATION", severity: "TERMINAL" },
+        { id: "14", text: "Failure to update MCS-150", result: "ADMINISTRATIVE REVOCATION", severity: "CRITICAL" },
+        { id: "15", text: "BOC-3 Process agent omission", result: "FILING SUSPENSION", severity: "HIGH RISK" },
+        { id: "16", text: "Late Incident/Accident reporting", result: "LEGAL DEFAULT", severity: "CRITICAL" }
       ]
     }
   ];
@@ -327,7 +328,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE 16 DEADLY SINS MATRIX */}
+      {/* 3. THE 16 DEADLY SINS MATRIX (Enhanced Grid) */}
       <section id="exposure-matrix" className="bg-[#020617] py-16 sm:py-24 lg:py-48 border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 relative z-10">
@@ -366,7 +367,7 @@ const HomePage: React.FC = () => {
                   {domain.items.map((item) => (
                     <article key={item.id} className="bg-[#0c1a2d] border border-white/5 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] flex flex-col space-y-6 sm:space-y-10 group hover:border-red-500/30 transition-all duration-500 shadow-2xl relative overflow-hidden">
                        <header className="space-y-2 sm:space-y-4 relative z-10">
-                          <span className="text-[10px] font-black text-slate-600 font-mono tracking-tighter block">{item.id}</span>
+                          <span className="text-[10px] font-black text-slate-600 font-mono tracking-tighter block">FAULT-{item.id}</span>
                           <h4 className="text-[17px] sm:text-[19px] font-black text-white uppercase leading-tight tracking-tight h-auto sm:h-[50px]">{item.text}</h4>
                        </header>
                        
@@ -392,7 +393,62 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. THE OUTCOME SECTION */}
+      {/* 4. THE MATH OF SURVIVAL SECTION (New High-Contrast Block) */}
+      <section className="py-24 sm:py-48 bg-[#C5A059] text-[#002244] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+           <div className="lg:col-span-7 space-y-10">
+              <header className="space-y-6">
+                <div className="inline-flex items-center space-x-3 bg-[#002244]/10 border border-[#002244]/20 px-6 py-2 rounded-full">
+                   <Target size={16} />
+                   <span className="text-[10px] font-black uppercase tracking-[0.4em]">FISCAL STABILIZATION</span>
+                </div>
+                <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter leading-none">
+                  THE MATH <br/>OF <span className="italic">SURVIVAL.</span>
+                </h2>
+              </header>
+              <p className="text-2xl sm:text-4xl font-bold leading-tight max-w-2xl uppercase tracking-tight">
+                Monthly operating costs per truck currently range from <span className="underline decoration-4 underline-offset-8 font-black">$10,300 – $18,800.</span>
+              </p>
+              <p className="text-lg sm:text-xl font-bold opacity-80 leading-relaxed max-w-xl">
+                Carriers who operate on "intuition" instead of infrastructure are mathematically certain to fail within the first 90 days. We install the Economic Engine before you book your first load.
+              </p>
+              <div className="pt-6">
+                <Link to="/tools/tco-calculator" className="inline-flex items-center space-x-6 bg-[#002244] text-white px-10 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-slate-800 transition-all active:scale-95 group border-b-[8px] border-black">
+                  <span>Calculate Your Survival Math</span>
+                  <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+                </Link>
+              </div>
+           </div>
+           <div className="lg:col-span-5">
+              <div className="bg-[#002244] p-10 md:p-14 rounded-[4rem] text-white shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border-t-[10px] border-[#C5A059] relative group">
+                <div className="absolute top-0 right-0 p-8 opacity-5"><Calculator size={140} /></div>
+                <div className="space-y-10 relative z-10">
+                   <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white"><Calculator size={24}/></div>
+                      <h4 className="text-xl font-black font-serif uppercase tracking-tight">TCO Engine v4.0</h4>
+                   </div>
+                   <div className="space-y-6">
+                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
+                        <p className="text-[11px] font-black uppercase tracking-widest text-slate-400">Fixed Cost Baseline</p>
+                        <p className="text-2xl font-black text-white">$4,200/mo</p>
+                      </div>
+                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
+                        <p className="text-[11px] font-black uppercase tracking-widest text-slate-400">Variable CPM Avg</p>
+                        <p className="text-2xl font-black text-white">$0.98/mi</p>
+                      </div>
+                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
+                        <p className="text-[11px] font-black uppercase tracking-widest text-slate-400">Break-Even RPM</p>
+                        <p className="text-2xl font-black text-[#C5A059] italic">$1.84/mi</p>
+                      </div>
+                   </div>
+                </div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* 5. THE OUTCOME SECTION */}
       <section className="py-16 sm:py-24 md:py-48 bg-[#FAF9F6] dark:bg-surface-dark transition-colors">
         <div className="max-w-[1600px] mx-auto px-6">
           <header className="text-center mb-16 sm:mb-32 space-y-6 sm:space-y-8 animate-reveal-up">
@@ -439,7 +495,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. FINAL CTA SECTION */}
+      {/* 6. FINAL CTA SECTION */}
       <section className="py-16 sm:py-24 md:py-48 bg-[#002244] text-white overflow-hidden relative">
         <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-12 sm:space-y-16">

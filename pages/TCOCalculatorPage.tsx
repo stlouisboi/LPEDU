@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect } from 'react';
-// Fix: Added missing Link import from react-router-dom
 import { Link } from 'react-router-dom';
 import { 
   Calculator, 
@@ -105,16 +104,13 @@ const TCOCalculatorPage: React.FC = () => {
   const nextStep = () => setActiveStep(prev => prev + 1);
   const prevStep = () => setActiveStep(prev => prev - 1);
 
-  // Fix: Added missing handleSaveProfile function to manage UI state during save
   const handleSaveProfile = async () => {
     setSaveStatus('saving');
-    // Simulate a save operation
     await new Promise(resolve => setTimeout(resolve, 1500));
     setSaveStatus('saved');
     setTimeout(() => setSaveStatus('idle'), 3000);
   };
 
-  // Fix: Added missing exportCSV function to generate downloadable metrics report
   const exportCSV = () => {
     const headers = ['Metric', 'Value'];
     const data = [
@@ -392,7 +388,7 @@ const TCOCalculatorPage: React.FC = () => {
                       <div className="relative z-10 space-y-12">
                          <div>
                             <h3 className="text-2xl font-black font-serif uppercase tracking-tight text-white mb-2">Neural Strategic Review</h3>
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold opacity-60">Synthesis Terminal Active</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold opacity-60">Thinking Terminal Active</p>
                          </div>
 
                          {isAnalyzing ? (
@@ -474,7 +470,6 @@ const TCOCalculatorPage: React.FC = () => {
   );
 };
 
-// Reusable local icon components for clarity
 const RefreshCw = ({ size, className }: { size: number, className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/>

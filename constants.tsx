@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -7,7 +8,7 @@ import {
   Clock, 
   Wrench,
   Search, 
-  BookOpen,
+  BookOpen, 
   Route
 } from 'lucide-react';
 import { BlogPost, RoadmapStep, SiteSettings, CourseModule, Testimonial } from './types';
@@ -159,6 +160,100 @@ export const COURSE_MODULES: CourseModule[] = [
 ];
 
 export const INITIAL_BLOGS: BlogPost[] = [
+  {
+    id: "deadly-sins-carrier-failure",
+    title: "THE 16 DEADLY SINS OF CARRIER FAILURE: A TAXONOMY OF EXPOSURE",
+    slug: "16-deadly-sins-carrier-failure",
+    category: "Compliance",
+    excerpt: "Institutional Analysis: High-priority violations that trigger automatic federal audit failure. Identify the patterns of Undercapitalization, Money Loop, and Documentary Disorder before they manifest.",
+    content: `
+      <div style="background: #002244; color: #ffffff; padding: 40px; border-radius: 30px; margin-bottom: 40px; border-left: 10px solid #C5A059;">
+        <h3 style="color: #C5A059; margin-top: 0; font-family: Montserrat, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px;">Master Diagnostic Bulletin</h3>
+        <p style="font-size: 20px; font-weight: 700; line-height: 1.6; margin-bottom: 0;">
+          "The Federal Motor Carrier Safety Administration (FMCSA) uses a specific hierarchy of violations to determine if a carrier is fundamentally unsafe. In the LaunchPath standard, we call these the 16 Deadly Sins—violations that do not allow for remediation during an audit. They are automatic failures."
+        </p>
+      </div>
+
+      <h3>I. THE ANATOMY OF SYSTEMIC COLLAPSE</h3>
+      <p>Failure in the motor carrier space is rarely random. It is almost always the result of a predictable sequence of events that begins with the erosion of the Four Pillars. When an authority fails, it typically leaves a trail of what investigators define as 'Critical' or 'Acute' violations. However, for the new carrier, the collapse often starts with three conceptual 'Sins' that lead to federal detection.</p>
+      
+      <h4>1. Undercapitalization (The Financial Sin)</h4>
+      <p>Undercapitalization is the primary catalyst for all other failures. When a carrier enters the market without 90 days of operational reserves, they lose the ability to make safety-first decisions. Maintenance is deferred (49 CFR § 396), insurance premiums are put at risk (49 CFR Part 387), and load selection is driven by desperation rather than margin analysis.</p>
+
+      <h4>2. The Money Loop (The Operational Sin)</h4>
+      <p>The Money Loop occurs when a carrier uses revenue from Load B to pay for the fuel for Load A. This state of constant catch-up creates a 'blindness' to real operating costs. Carriers in the Money Loop rarely know their break-even RPM. This Sin leads directly to HOS falsification (49 CFR § 395.8) as drivers are pressured to keep equipment moving at all costs to satisfy debt cycles.</p>
+
+      <h4>3. Documentary Disorder (The Administrative Sin)</h4>
+      <p>Documentary Disorder is the failure to maintain a 'Clinical' registry of evidence. Federal auditors do not care about your 'intent' to be safe; they only care about the evidence of refuge. Missing a single pre-employment drug test result (49 CFR § 382.301) or having fragmented Driver Qualification files (49 CFR § 391.51) signal a total loss of institutional control.</p>
+
+      <div style="background: #C5A059; color: #002244; padding: 50px; border-radius: 40px; margin: 60px 0; text-align: center; border: 4px solid #002244; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
+        <h3 style="font-family: Montserrat, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; font-size: 32px;">STOP OPERATING ON INTUITION.</h3>
+        <p style="font-size: 20px; font-weight: 700; max-width: 600px; margin: 0 auto 40px; line-height: 1.5;">
+          The primary cure for Undercapitalization and the Money Loop is clinical math. Identify your real costs before they identify your failure.
+        </p>
+        <a href="#/tools/tco-calculator" style="background: #002244; color: #ffffff; padding: 25px 50px; border-radius: 20px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 14px; box-shadow: 0 15px 40px rgba(0,34,68,0.4); display: inline-block; border-bottom: 6px solid #000;">
+          Launch TCO Economic Engine
+        </a>
+      </div>
+
+      <h3>II. MAPPING THE 16 DEADLY SINS TO FEDERAL STATUTES</h3>
+      <p>The FMCSA's New Entrant Safety Assurance Program targets specific high-priority violations. If an auditor reaches any of these during the 48-hour audit window, your authority is marked for immediate revocation.</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; border: 1px solid #e2e8f0; margin: 40px 0;">
+        <thead>
+          <tr style="background-color: #002244; color: white;">
+            <th style="padding: 15px; border: 1px solid #334155;">SIN CATEGORY</th>
+            <th style="padding: 15px; border: 1px solid #334155;">FEDERAL STATUTE</th>
+            <th style="padding: 15px; border: 1px solid #334155;">IMPACT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Substance Abuse</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 382.301</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">TERMINAL FAIL</td>
+          </tr>
+          <tr style="background-color: #f8fafc;">
+            <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Driver Qualification</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 391.51</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">TERMINAL FAIL</td>
+          </tr>
+          <tr>
+            <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">HOS Falsification</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 395.8</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">CRIMINAL DEFAULT</td>
+          </tr>
+          <tr style="background-color: #f8fafc;">
+            <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Insurance Lapse</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR Part 387</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">REVOCATION</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>III. ELIMINATING THE EXPOSURE VECTOR</h3>
+      <p>The distance between a driver and a carrier executive is measured by the systems they trust. A driver trusts their skill; an executive trusts their infrastructure. To move beyond the 16 Deadly Sins, you must stop handling compliance as an elective task and start managing it as an engineered guard.</p>
+
+      <p>By establishing the LaunchPath Operating Standard within your first 90 days, you install a 'Compliance Backbone' that satisfies investigators before they ever knock on your door. Order precedes revenue. Discipline precedes expansion. Wisdom precedes the riches.</p>
+
+      <div style="text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #e2e8f0;">
+        <p style="font-family: Montserrat, sans-serif; font-style: italic; font-size: 24px; color: #002244; font-weight: 800; max-width: 600px; margin: 0 auto;">
+          "If you are waiting for the audit to start building your files, you have already failed."
+        </p>
+        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— Vince Lawrence, System Custodian</p>
+      </div>
+
+      <div style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #64748b;">Next Recommended Action:</p>
+        <a href="#/exposure-matrix" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Analyze the Exposure Matrix</a>
+      </div>
+    `,
+    publishedAt: "2025-02-15",
+    author: "Vince Lawrence",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2FThe%2016%20Deadly%20Sins%20of%20Carrier%20Failure.png?alt=media&token=c27c62b6-52c6-4d04-a698-6395b00c6275",
+    status: 'published',
+    tags: ['16 Deadly Sins', 'Audit', 'FMCSA', 'Exposure']
+  },
   {
     id: "briefing-four-pillars",
     title: "THE MATH OF SURVIVAL: WHY CASH-FLOW OXYGEN IS THE FOUNDATION OF OPERATING AUTHORITY",

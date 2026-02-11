@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
   Sun, 
   Moon, 
@@ -21,9 +20,6 @@ import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
 import { AuthProvider, useAuth } from './AuthContext';
-import { EnhancedAuthProvider, useEnhancedAuth } from './contexts/EnhancedAuthContext';
-import { ProtectedRoute as BaseProtectedRoute, FreeRoute, PaidRoute, AdminRoute } from './components/auth/RoleBasedRoutes';
-import EnhancedPortalLogin from './pages/EnhancedPortalLogin';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
@@ -71,7 +67,7 @@ import SettingsManager from './pages/admin/SettingsManager';
 import VideoLab from './pages/admin/VideoLab';
 import InitializeDataPage from './pages/admin/InitializeDataPage';
 
-// Security (Legacy - kept for backward compatibility)
+// Security
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 interface AppContextType {
@@ -99,7 +95,7 @@ export const useApp = () => {
 
 const Header = () => {
   const { theme, toggleTheme } = useApp();
-  const { currentUser } = useEnhancedAuth();
+  const { currentUser } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -238,9 +234,9 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
             {[
               { title: 'FOUNDATION', links: [{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }, { name: 'Contact', path: '/contact' }] },
-              { title: 'SYSTEM', links: [{ name: 'Roadmap', path: '/learning-path' }, { name: 'Pricing', path: '/pricing' }, { name: 'TCO Tool', path: '/tools/tco-calculator' }] },
-              { title: 'RESOURCES', links: [{ name: 'REACH Test', path: '/readiness' }, { name: 'Library', path: '/resources' }, { name: 'Matrix', path: '/exposure-matrix' }] },
-              { title: 'GOVERNANCE', links: [{ name: 'Privacy', path: '/legal/privacy' }, { name: 'Terms', path: '/legal/terms' }, { name: 'Disclaimer', path: '/legal/disclaimer' }] }
+              { title: 'SYSTEM', links: [{ name: 'Program Roadmap', path: '/learning-path' }, { name: 'Admission Protocol', path: '/pricing' }, { name: 'TCO Calculator', path: '/tools/tco-calculator' }] },
+              { title: 'RESOURCES', links: [{ name: 'REACH Test™', path: '/readiness' }, { name: 'The Blog', path: '/blog' }, { name: 'Exposure Matrix', path: '/exposure-matrix' }] },
+              { title: 'GOVERNANCE', links: [{ name: 'Privacy Policy', path: '/legal/privacy' }, { name: 'Terms of Service', path: '/legal/terms' }, { name: 'FMCSA Official', path: 'https://www.fmcsa.dot.gov/' }] }
             ].map((section) => (
               <div key={section.title} className="space-y-6">
                 <h3 className="text-[11px] font-black text-signal-gold uppercase tracking-[0.3em] flex items-center">
@@ -250,9 +246,15 @@ const Footer = () => {
                 <ul className="space-y-4">
                   {section.links.map((link) => (
                     <li key={link.name}>
-                      <Link to={link.path} className="text-base font-medium text-white/60 hover:text-white transition-all block py-1">
-                        {link.name}
-                      </Link>
+                      {link.path.startsWith('http') ? (
+                        <a href={link.path} target="_blank" rel="noopener" className="text-base font-medium text-white/60 hover:text-white transition-all block py-1">
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link to={link.path} className="text-base font-medium text-white/60 hover:text-white transition-all block py-1">
+                          {link.name}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -278,7 +280,7 @@ const Footer = () => {
                 LaunchPath is an institutional educational platform. All materials are for educational purposes only and do not constitute legal or regulatory advice. Success depends on individual operator discipline.
               </p>
               <p className="text-[11px] font-bold text-white/30 uppercase tracking-widest">
-                © {new Date().getFullYear()} LaunchPath™ EDU • Veteran Owned • NC-2025-LP
+                CARRIER OPERATING STANDARD: LP-SYS-V4.2 — INSTITUTIONAL INTEGRITY ACTIVE
               </p>
             </div>
             
@@ -286,7 +288,8 @@ const Footer = () => {
               {[
                 { icon: <Facebook size={20} />, path: settings.social.facebook, label: 'Facebook' },
                 { icon: <Linkedin size={20} />, path: settings.social.linkedin, label: 'LinkedIn' },
-                { icon: <Youtube size={20} />, path: settings.social.youtube, label: 'YouTube' }
+                { icon: <Youtube size={20} />, path: settings.social.youtube, label: 'YouTube' },
+                { icon: <Music size={20} />, path: settings.social.tiktok, label: 'TikTok' }
               ].map((social, i) => social.path && (
                 <a key={i} href={social.path} target="_blank" rel="noopener" className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/40 hover:bg-signal-gold hover:text-authority-blue transition-all" aria-label={social.label}>
                   {social.icon}
@@ -354,7 +357,7 @@ export default function App() {
       theme, toggleTheme, settings, updateSettings: setSettings, blogs, addBlog: (b) => setBlogs([b, ...blogs]), updateBlog: (u) => setBlogs(blogs.map(b => b.id === u.id ? u : b)),
       formSubmissions: [], addFormSubmission: () => {}, testimonials: [], addTestimonial: () => {}, deleteTestimonial: () => {}
     }}>
-      <EnhancedAuthProvider>
+      <AuthProvider>
         <Router>
           <ScrollToTop />
           {appLoading ? (
@@ -375,11 +378,10 @@ export default function App() {
                   <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
                   <Route path="/readiness" element={<ReadinessPage />} />
                   <Route path="/reach-test" element={<ReachTestPage />} />
-                  <Route path="/portal" element={<EnhancedPortalLogin />} />
-                  <Route path="/portal-legacy" element={<AuthorityAccess />} />
+                  <Route path="/portal" element={<AuthorityAccess />} />
                   <Route path="/dashboard" element={<Navigate to="/operator-portal" replace />} />
                   <Route path="/enrollment-pending" element={<EnrollmentPendingPage />} />
-                  <Route path="/operator-portal" element={<PaidRoute><OperatorPortal /></PaidRoute>} />
+                  <Route path="/operator-portal" element={<ProtectedRoute><OperatorPortal /></ProtectedRoute>} />
                   <Route path="/faq" element={<FAQPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/support" element={<SupportPage />} />
@@ -395,7 +397,7 @@ export default function App() {
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:slug" element={<BlogPostPage />} />
                   <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+                  <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
                     <Route index element={<AdminDashboard />} />
                     <Route path="pages" element={<PageList />} />
                     <Route path="pages/home" element={<HomePageEditor />} />
@@ -418,7 +420,7 @@ export default function App() {
             </>
           )}
         </Router>
-      </EnhancedAuthProvider>
+      </AuthProvider>
     </AppContext.Provider>
   );
 }

@@ -31,7 +31,6 @@ import {
   FileText,
   Music,
   Database,
-  // Added missing ChevronRight import from lucide-react
   ChevronRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -47,7 +46,6 @@ const SettingsManager = () => {
   const [activeTab, setActiveTab] = useState<'site' | 'contact' | 'social' | 'checkout' | 'seo'>('site');
   const [message, setMessage] = useState<{type: 'success' | 'error', text: string} | null>(null);
 
-  // MailerLite status
   const mailerLiteFormId = (process.env as any).VITE_MAILERLITE_FORM_ID;
 
   useEffect(() => {
@@ -507,7 +505,6 @@ const SettingsManager = () => {
         </div>
 
         <div className="space-y-8">
-           {/* MailerLite Monitor */}
            <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
               <div className="flex items-center space-x-3 mb-6">
                 <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-blue-600">
@@ -536,7 +533,6 @@ const SettingsManager = () => {
                  </div>
               </div>
 
-              {/* SETUP GUIDE SECTION */}
               <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 space-y-6">
                  <div className="flex items-center space-x-2 text-authority-blue dark:text-signal-gold">
                     <HelpCircle size={14} />
@@ -555,10 +551,6 @@ const SettingsManager = () => {
                        <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">3</div>
                        <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase">Your ID is the <span className="text-authority-blue dark:text-white">last number</span> in the URL (e.g. 178039977112766339).</p>
                     </div>
-                    <div className="flex items-start gap-3">
-                       <div className="w-5 h-5 bg-slate-100 dark:bg-gray-800 rounded flex items-center justify-center text-[10px] font-black shrink-0">4</div>
-                       <p className="text-[10px] font-bold text-slate-500 leading-relaxed uppercase italic">Do not use the PDF download link as an ID.</p>
-                    </div>
                  </div>
               </div>
            </div>
@@ -567,7 +559,7 @@ const SettingsManager = () => {
               <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12"><Music size={140}/></div>
               <Eye className="mb-4 text-signal-gold" size={24} />
               <h4 className="text-xl font-bold font-serif mb-2">Interface Preview</h4>
-              <p className="text-sm opacity-70 leading-relaxed mb-8">Brand changes synchronize across the public facing frontend and AI Advisor interfaces instantly.</p>
+              <p className="text-sm opacity-70 leading-relaxed mb-8">Brand changes synchronize across the frontend and AI advisor terminal interfaces instantly.</p>
               <div className="p-4 bg-white/10 rounded-2xl border border-white/10">
                  <div className="flex items-center space-x-3 mb-3">
                     <div className="w-8 h-8 rounded-lg bg-white/20"></div>
