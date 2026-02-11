@@ -210,22 +210,46 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <tbody>
           <tr>
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Substance Abuse</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 382.301</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR § 382.301</span>
+                <button class="reach-trigger" data-reach="Is there a verified negative lab result on file for every driver that predates their first load for your authority?">REACH</button>
+                <div class="reach-tooltip hidden">"Is there a verified negative lab result on file for every driver that predates their first load for your authority?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">TERMINAL FAIL</td>
           </tr>
           <tr style="background-color: #f8fafc;">
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Driver Qualification</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 391.51</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR § 391.51</span>
+                <button class="reach-trigger" data-reach="If an auditor pulls a driver file at random, can you produce all 12 required items (Application, MVR, Med-Cert, etc.) in under 5 minutes?">REACH</button>
+                <div class="reach-tooltip hidden">"If an auditor pulls a driver file at random, can you produce all 12 required items (Application, MVR, Med-Cert, etc.) in under 5 minutes?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">TERMINAL FAIL</td>
           </tr>
           <tr>
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">HOS Falsification</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 395.8</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR § 395.8</span>
+                <button class="reach-trigger" data-reach="Does your ELD dashboard currently have 'Unassigned Driving Time' that has not been reconciled and signed by a driver?">REACH</button>
+                <div class="reach-tooltip hidden">"Does your ELD dashboard currently have 'Unassigned Driving Time' that has not been reconciled and signed by a driver?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">CRIMINAL DEFAULT</td>
           </tr>
           <tr style="background-color: #f8fafc;">
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Insurance Lapse</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR Part 387</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR Part 387</span>
+                <button class="reach-trigger" data-reach="Is your insurance filing status currently listed as 'Active' on the SAFER system, and do you have the next 60 days of premium funded?">REACH</button>
+                <div class="reach-tooltip hidden">"Is your insurance filing status currently listed as 'Active' on the SAFER system, and do you have the next 60 days of premium funded?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">REVOCATION</td>
           </tr>
         </tbody>

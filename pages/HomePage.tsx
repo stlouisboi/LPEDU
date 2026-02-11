@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -167,11 +168,9 @@ const HomePage: React.FC = () => {
       
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex items-center border-b border-white/5 py-20">
-        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
+        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           
-            {/* Left Column: Narrative */}
-            <div className="lg:col-span-7 space-y-12 relative">
+          <div className="lg:col-span-7 space-y-12 relative">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
             <div className="relative z-10 space-y-8 md:space-y-12">
               <div className="flex flex-wrap gap-4">
@@ -189,6 +188,10 @@ const HomePage: React.FC = () => {
                   to="/reach-test" 
                   className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
                 >
+                  <Truck 
+                    size={22} 
+                    className="absolute top-2 left-4 text-white/20 group-hover:text-white/80 transition-all duration-500 animate-truck-drive" 
+                  />
                   <span className="relative z-10 flex items-center">
                     Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
                   </span>
@@ -199,10 +202,8 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-            {/* Right Column: Terminal Form */}
-            <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
-            <div className="bg-[#0D1B2A] p-8 md:p-10 lg:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-md lg:max-w-lg relative overflow-hidden group">
-              {/* Inner depth effect */}
+          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
+            <div className="bg-[#0D1B2A] p-8 md:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-lg relative overflow-hidden group">
               <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
               <div className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
                 <Truck size={48} className="text-signal-gold animate-truck-drive" />
@@ -260,7 +261,6 @@ const HomePage: React.FC = () => {
                   </div>
                 )}
               </div>
-            </div>
             </div>
           </div>
         </div>
