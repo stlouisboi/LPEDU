@@ -320,8 +320,11 @@ export default function App() {
   }, [settings.faviconUrl]);
 
   useEffect(() => {
-    // Failsafe timeout to clear the spinner
-    const loadTimeout = setTimeout(() => setAppLoading(false), 3000);
+    // EXECUTIVE FAILSAFE: Clear spinner after 3s if Firebase stalls (Common in Preview Mode)
+    const loadTimeout = setTimeout(() => {
+      console.warn("LaunchPath: Preview Mode Active - Bypassing Firebase Stall");
+      setAppLoading(false);
+    }, 3000);
     
     if (!isFirebaseConfigured || !db) {
       setAppLoading(false);
@@ -334,8 +337,9 @@ export default function App() {
       const unsub = onSnapshot(settingsRef, (snap) => {
         if (snap.exists()) setSettings(snap.data() as SiteSettings);
         setAppLoading(false);
-        clearTimeout(loadTimeout);
-      }, () => {
+        clearTimeout(loadTimeout); // Clear timeout if Firebase responds first
+      }, (error) => {
+        console.error("Firebase Snapshot Error:", error);
         setAppLoading(false);
         clearTimeout(loadTimeout);
       });
