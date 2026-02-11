@@ -82,7 +82,29 @@ const EnhancedPortalLogin: React.FC = () => {
       // Profile fetching and navigation handled by Context + useEffect
     } catch (err: any) {
       console.error("Auth terminal error:", err);
-      setError(err.code === 'auth/user-not-found' ? "ENTITY NOT FOUND" : "INVALID AUTHORITY KEY");
+      // Provide specific error messages based on Firebase error codes
+      switch (err.code) {
+        case 'auth/user-not-found':
+          setError("ENTITY NOT FOUND");
+          break;
+        case 'auth/wrong-password':
+          setError("INVALID AUTHORITY KEY");
+          break;
+        case 'auth/invalid-email':
+          setError("INVALID EMAIL FORMAT");
+          break;
+        case 'auth/email-already-in-use':
+          setError("EMAIL ALREADY REGISTERED - USE LOGIN");
+          break;
+        case 'auth/weak-password':
+          setError("PASSWORD TOO WEAK - MIN 6 CHARACTERS");
+          break;
+        case 'auth/invalid-credential':
+          setError("INVALID CREDENTIALS");
+          break;
+        default:
+          setError("AUTHENTICATION FAILED: " + (err.message || "UNKNOWN ERROR"));
+      }
     } finally {
       setLoading(false);
     }
