@@ -21,6 +21,9 @@ import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
 import { AuthProvider, useAuth } from './AuthContext';
+import { EnhancedAuthProvider, useEnhancedAuth } from './contexts/EnhancedAuthContext';
+import { ProtectedRoute as BaseProtectedRoute, FreeRoute, PaidRoute, AdminRoute } from './components/auth/RoleBasedRoutes';
+import EnhancedPortalLogin from './pages/EnhancedPortalLogin';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
@@ -68,7 +71,7 @@ import SettingsManager from './pages/admin/SettingsManager';
 import VideoLab from './pages/admin/VideoLab';
 import InitializeDataPage from './pages/admin/InitializeDataPage';
 
-// Security
+// Security (Legacy - kept for backward compatibility)
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 interface AppContextType {
@@ -96,7 +99,7 @@ export const useApp = () => {
 
 const Header = () => {
   const { theme, toggleTheme } = useApp();
-  const { currentUser } = useAuth();
+  const { currentUser } = useEnhancedAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -351,7 +354,7 @@ export default function App() {
       theme, toggleTheme, settings, updateSettings: setSettings, blogs, addBlog: (b) => setBlogs([b, ...blogs]), updateBlog: (u) => setBlogs(blogs.map(b => b.id === u.id ? u : b)),
       formSubmissions: [], addFormSubmission: () => {}, testimonials: [], addTestimonial: () => {}, deleteTestimonial: () => {}
     }}>
-      <AuthProvider>
+      <EnhancedAuthProvider>
         <Router>
           <ScrollToTop />
           {appLoading ? (
@@ -372,10 +375,11 @@ export default function App() {
                   <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
                   <Route path="/readiness" element={<ReadinessPage />} />
                   <Route path="/reach-test" element={<ReachTestPage />} />
-                  <Route path="/portal" element={<AuthorityAccess />} />
+                  <Route path="/portal" element={<EnhancedPortalLogin />} />
+                  <Route path="/portal-legacy" element={<AuthorityAccess />} />
                   <Route path="/dashboard" element={<Navigate to="/operator-portal" replace />} />
                   <Route path="/enrollment-pending" element={<EnrollmentPendingPage />} />
-                  <Route path="/operator-portal" element={<ProtectedRoute><OperatorPortal /></ProtectedRoute>} />
+                  <Route path="/operator-portal" element={<PaidRoute><OperatorPortal /></PaidRoute>} />
                   <Route path="/faq" element={<FAQPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/support" element={<SupportPage />} />
@@ -391,7 +395,7 @@ export default function App() {
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:slug" element={<BlogPostPage />} />
                   <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+                  <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
                     <Route index element={<AdminDashboard />} />
                     <Route path="pages" element={<PageList />} />
                     <Route path="pages/home" element={<HomePageEditor />} />
@@ -414,7 +418,7 @@ export default function App() {
             </>
           )}
         </Router>
-      </AuthProvider>
+      </EnhancedAuthProvider>
     </AppContext.Provider>
   );
 }
