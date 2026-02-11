@@ -1,84 +1,52 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // PUBLIC READ ACCESS: Global site configuration and content
-    match /settings/{docId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    
-    match /pages/{docId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    
-    match /blogPosts/{postId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    
-    match /courseModules/{moduleId} {
-      allow read: if true;
-      allow write: if request.auth != null;
+    // User Profile Access
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
-    match /resources/{resourceId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
+    // Global site configuration and public content
+    match /settings/{docId} { allow read: if true; allow write: if isAdmin(); }
+    match /pages/{docId} { allow read: if true; allow write: if isAdmin(); }
+    match /blogPosts/{docId} { allow read: if true; allow write: if isAdmin(); }
+    match /courseModules/{docId} { allow read: if true; allow write: if isAdmin(); }
+    match /resources/{docId} { allow read: if true; allow write: if isAdmin(); }
+    match /generatedVideos/{docId} { allow read: if true; allow write: if isAdmin(); }
+    match /testimonials/{docId} { allow read: if true; allow write: if isAdmin(); }
 
-    match /generatedVideos/{videoId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-
-    match /testimonials/{testimonialId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    
-    // OPERATOR REGISTRY: Allow public creation for Admission sequence
+    // Operator Registry - Users can see their own
     match /operators/{userId} {
-      allow create: if request.auth != null && request.auth.uid == userId;
-      allow read, update, delete: if request.auth != null && (request.auth.uid == userId || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'ADMIN');
-    }
-    
-    // PUBLIC CREATE ACCESS: Lead generation with basic validation
-    match /admissionInquiries/{inquiryId} {
-      allow create: if request.resource.data.keys().hasAll(['email', 'legalName']);
-      allow read, update, delete: if request.auth != null;
-    }
-    
-    match /readinessAssessments/{assessmentId} {
-      allow create: if request.resource.data.keys().hasAll(['email', 'totalScore']);
-      allow read, update, delete: if request.auth != null;
-    }
-    
-    match /leadMagnets/{leadId} {
-      allow create: if request.resource.data.keys().hasAll(['email', 'firstName']);
-      allow read, update, delete: if request.auth != null;
-    }
-    
-    match /formSubmissions/{submissionId} {
-      allow create: if request.resource.data.keys().hasAll(['email', 'message']);
-      allow read, update, delete: if request.auth != null;
-    }
-    
-    match /contacts/{contactId} {
-      allow create: if request.resource.data.keys().hasAll(['email', 'fullName']);
-      allow read, update, delete: if request.auth != null;
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if isAdmin();
     }
 
-    // SYSTEM HEALTH & DIAGNOSTICS
-    match /_health_check_/{docId} {
-      allow read: if true; 
-      allow write: if request.auth != null;
+    // Program Content - Accessible by any logged in user
+    match /programContent/{document=**} {
+      allow read: if request.auth != null;
     }
 
-    // ADMIN ACCESS: Default catch-all
-    match /{document=**} {
-      allow read, write: if request.auth != null;
+    // Paid Content - Accessible by paid members or admins
+    match /paidContent/{document=**} {
+      allow read: if isPaid() || isAdmin();
+    }
+
+    // Public Intake
+    match /admissionInquiries/{id} { allow create: if true; allow read, write: if isAdmin(); }
+    match /readinessAssessments/{id} { allow create: if true; allow read, write: if isAdmin(); }
+    match /leadMagnets/{id} { allow create: if true; allow read, write: if isAdmin(); }
+    match /formSubmissions/{id} { allow create: if true; allow read, write: if isAdmin(); }
+    match /contacts/{id} { allow create: if true; allow read, write: if isAdmin(); }
+
+    // Helper Functions
+    function isAdmin() {
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isPaid() {
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'paid';
     }
   }
 }

@@ -19,7 +19,8 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
 import { BlogPost, SiteSettings, Testimonial } from './types';
-import { AuthProvider, useAuth } from './AuthContext';
+import { EnhancedAuthProvider, useEnhancedAuth } from './EnhancedAuthContext';
+import { FreeRoute, PaidRoute, AdminRoute } from './components/auth/RoleBasedRoutes';
 import ScrollToTop from './components/ScrollToTop';
 import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
@@ -42,7 +43,7 @@ import RequestAdmission from './pages/RequestAdmission';
 import ModuleDetailPage from './pages/ModuleDetailPage';
 import DownloadPage from './pages/DownloadPage';
 import ReadinessPage from './pages/ReadinessPage';
-import AuthorityAccess from './pages/AuthorityAccess';
+import EnhancedPortalLogin from './pages/EnhancedPortalLogin';
 import EnrollmentPendingPage from './pages/EnrollmentPendingPage';
 import ReachTestPage from './pages/ReachTestPage';
 import TCOCalculatorPage from './pages/TCOCalculatorPage';
@@ -67,22 +68,12 @@ import SettingsManager from './pages/admin/SettingsManager';
 import VideoLab from './pages/admin/VideoLab';
 import InitializeDataPage from './pages/admin/InitializeDataPage';
 
-// Security
-import ProtectedRoute from './components/admin/ProtectedRoute';
-
 interface AppContextType {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
   settings: SiteSettings;
   updateSettings: (s: SiteSettings) => void;
   blogs: BlogPost[];
-  addBlog: (b: BlogPost) => void;
-  updateBlog: (b: BlogPost) => void;
-  testimonials: Testimonial[];
-  addTestimonial: (t: Testimonial) => void;
-  deleteTestimonial: (id: string) => void;
-  formSubmissions: any[];
-  addFormSubmission: (sub: any) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -95,7 +86,7 @@ export const useApp = () => {
 
 const Header = () => {
   const { theme, toggleTheme } = useApp();
-  const { currentUser } = useAuth();
+  const { currentUser, userProfile } = useEnhancedAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -308,7 +299,7 @@ export default function App() {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('launchpath-theme');
       if (saved === 'light' || saved === 'dark') return saved;
-      return 'dark'; // Set dark as default
+      return 'dark'; 
     }
     return 'dark';
   });
@@ -354,10 +345,9 @@ export default function App() {
 
   return (
     <AppContext.Provider value={{ 
-      theme, toggleTheme, settings, updateSettings: setSettings, blogs, addBlog: (b) => setBlogs([b, ...blogs]), updateBlog: (u) => setBlogs(blogs.map(b => b.id === u.id ? u : b)),
-      formSubmissions: [], addFormSubmission: () => {}, testimonials: [], addTestimonial: () => {}, deleteTestimonial: () => {}
+      theme, toggleTheme, settings, updateSettings: setSettings, blogs
     }}>
-      <AuthProvider>
+      <EnhancedAuthProvider>
         <Router>
           <ScrollToTop />
           {appLoading ? (
@@ -369,6 +359,7 @@ export default function App() {
               <Header />
               <main id="main-content" className="flex-grow" role="main">
                 <Routes>
+                  {/* Public Routes */}
                   <Route path="/" element={<HomePage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/clarification" element={<ClarificationPage />} />
@@ -378,40 +369,52 @@ export default function App() {
                   <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
                   <Route path="/readiness" element={<ReadinessPage />} />
                   <Route path="/reach-test" element={<ReachTestPage />} />
-                  <Route path="/portal" element={<AuthorityAccess />} />
-                  <Route path="/dashboard" element={<Navigate to="/operator-portal" replace />} />
-                  <Route path="/enrollment-pending" element={<EnrollmentPendingPage />} />
-                  <Route path="/operator-portal" element={<ProtectedRoute><OperatorPortal /></ProtectedRoute>} />
                   <Route path="/faq" element={<FAQPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/support" element={<SupportPage />} />
                   <Route path="/legal" element={<LegalPage />} />
-                  <Route path="/ai-advisor" element={<AIServicePage />} />
                   <Route path="/pricing" element={<RequestAdmission />} />
-                  <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
-                  <Route path="/tools/tco-preview" element={<TCOPreviewPage />} />
-                  <Route path="/tools/sudoku" element={<SudokuPage />} />
-                  <Route path="/authorized/tco-calculator" element={<ProtectedRoute><TCOCalculatorPage /></ProtectedRoute>} />
-                  <Route path="/modules/:id" element={<ModuleDetailPage />} />
-                  <Route path="/download/risk-map" element={<DownloadPage />} />
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:slug" element={<BlogPostPage />} />
+                  
+                  {/* Auth Terminal */}
+                  <Route path="/portal" element={<EnhancedPortalLogin />} />
                   <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
-                    <Route index element={<AdminDashboard />} />
-                    <Route path="pages" element={<PageList />} />
-                    <Route path="pages/home" element={<HomePageEditor />} />
-                    <Route path="blog" element={<BlogList />} />
-                    <Route path="blog/new" element={<BlogEditor />} />
-                    <Route path="blog/edit/:id" element={<BlogEditor />} />
-                    <Route path="resources" element={<ResourceManager />} />
-                    <Route path="forms" element={<FormManagement />} />
-                    <Route path="forms/submissions" element={<SubmissionsList />} />
-                    <Route path="leads" element={<LeadsManager />} />
-                    <Route path="settings" element={<SettingsManager />} />
-                    <Route path="video-lab" element={<VideoLab />} />
-                    <Route path="initialize-data" element={<InitializeDataPage />} />
+
+                  {/* Free / Registered User Content */}
+                  <Route element={<FreeRoute />}>
+                    <Route path="/enrollment-pending" element={<EnrollmentPendingPage />} />
+                    <Route path="/download/risk-map" element={<DownloadPage />} />
+                    <Route path="/tools/sudoku" element={<SudokuPage />} />
                   </Route>
+
+                  {/* Paid Member Content */}
+                  <Route element={<PaidRoute />}>
+                    <Route path="/operator-portal" element={<OperatorPortal />} />
+                    <Route path="/ai-advisor" element={<AIServicePage />} />
+                    <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
+                    <Route path="/modules/:id" element={<ModuleDetailPage />} />
+                  </Route>
+
+                  {/* Admin Command Center */}
+                  <Route element={<AdminRoute />}>
+                    <Route path="/admin" element={<AdminLayout />}>
+                      <Route index element={<AdminDashboard />} />
+                      <Route path="pages" element={<PageList />} />
+                      <Route path="pages/home" element={<HomePageEditor />} />
+                      <Route path="blog" element={<BlogList />} />
+                      <Route path="blog/new" element={<BlogEditor />} />
+                      <Route path="blog/edit/:id" element={<BlogEditor />} />
+                      <Route path="resources" element={<ResourceManager />} />
+                      <Route path="forms" element={<FormManagement />} />
+                      <Route path="forms/submissions" element={<SubmissionsList />} />
+                      <Route path="leads" element={<LeadsManager />} />
+                      <Route path="settings" element={<SettingsManager />} />
+                      <Route path="video-lab" element={<VideoLab />} />
+                      <Route path="initialize-data" element={<InitializeDataPage />} />
+                    </Route>
+                  </Route>
+
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </main>
@@ -420,7 +423,7 @@ export default function App() {
             </>
           )}
         </Router>
-      </AuthProvider>
+      </EnhancedAuthProvider>
     </AppContext.Provider>
   );
 }
