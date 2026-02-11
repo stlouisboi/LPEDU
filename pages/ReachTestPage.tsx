@@ -83,31 +83,31 @@ const ReachTestPage = () => {
               { 
                 num: "01", 
                 title: "Regulatory Violations", 
-                desc: "Technical missteps that trigger administrative filters, resulting in automatic federal investigation.",
+                desc: "Small compliance errors that trigger automatic federal review. What appears minor internally can initiate formal oversight externally.",
                 icon: <Gavel size={24} className="text-red-500" />
               },
               { 
                 num: "02", 
                 title: "Underwriting Isolation", 
-                desc: "Information gaps that trigger insurance cancellation, isolating the carrier from the market.",
+                desc: "Missing or inconsistent information that causes insurers to restrict, cancel, or refuse coverage. Without underwriting support, authority becomes fragile.",
                 icon: <ShieldAlert size={24} className="text-amber-500" />
               },
               { 
                 num: "03", 
                 title: "Administrative Inconsistency", 
-                desc: "Conflicting documentation during a federal audit that proves a lack of systematic control.",
+                desc: "Incomplete, mismatched, or poorly maintained documentation during audit review. When records do not align, confidence erodes quickly.",
                 icon: <FileText size={24} className="text-blue-500" />
               },
               { 
                 num: "04", 
-                title: "Structural Taxonomy", 
-                desc: "Fiscal deficits and management gaps that compromise the mandated safety standard.",
+                title: "Financial Structure Gaps", 
+                desc: "Poor separation of revenue, reserves, and tax obligations. When financial structure is weak, cash flow destabilizes under pressure.",
                 icon: <HardDrive size={24} className="text-slate-500" />
               },
               { 
                 num: "05", 
-                title: "Institutional Context", 
-                desc: "Misalignment with the unwritten rules of institutional engagement that govern access to capital and contracts.",
+                title: "System Misalignment", 
+                desc: "Operating practices that conflict with how regulators, insurers, and brokers evaluate risk. When your internal system does not match institutional expectations, access narrows.",
                 icon: <Cpu size={24} className="text-signal-gold" />
               }
             ].map((v, i) => (
