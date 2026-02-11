@@ -28,7 +28,6 @@ import {
   Search,
   MessageCircle,
   HelpCircle,
-  // Fix: Added missing Loader2 import from lucide-react
   Loader2
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -173,69 +172,108 @@ const HomePage: React.FC = () => {
   return (
     <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col lg:flex-row border-b border-white/5">
-        <div className="w-full lg:w-[60%] p-10 sm:p-20 lg:p-32 flex flex-col justify-center relative">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-          <div className="relative z-10 space-y-12">
-            <div className="flex gap-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
-            </div>
-            <h1 className="text-5xl sm:text-7xl lg:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85] animate-reveal-up">
-              PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
-            </h1>
-            <p className="text-xl md:text-2xl text-white/60 font-bold max-w-xl border-l-8 border-signal-gold pl-8 py-2 animate-reveal-up [animation-delay:200ms]">
-              Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
-            </p>
-            <div className="pt-8 animate-reveal-up [animation-delay:400ms]">
-              <Link 
-                to="/reach-test" 
-                className="group relative bg-signal-gold text-[#002244] px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center">
-                  Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
-                </span>
-                
-                {/* Shimmer Effect */}
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
-                <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
-                
-                {/* Internal Glow */}
-                <div className="absolute inset-x-0 top-0 h-[1px] bg-white/40"></div>
-              </Link>
+      {/* 1. HERO SECTION - REDESIGNED GRID */}
+      <section className="relative min-h-screen flex items-center border-b border-white/5 py-20">
+        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          
+          {/* Left Column: Narrative */}
+          <div className="lg:col-span-7 space-y-12 relative">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
+            <div className="relative z-10 space-y-8 md:space-y-12">
+              <div className="flex flex-wrap gap-4">
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
+              </div>
+              <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85] animate-reveal-up">
+                PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
+              </h1>
+              <p className="text-xl md:text-2xl text-white/60 font-bold max-w-xl border-l-8 border-signal-gold pl-8 py-2 animate-reveal-up [animation-delay:200ms]">
+                Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
+              </p>
+              <div className="pt-4 animate-reveal-up [animation-delay:400ms]">
+                <Link 
+                  to="/reach-test" 
+                  className="group relative bg-signal-gold text-[#002244] px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center">
+                    Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
+                  <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
+                  <div className="absolute inset-x-0 top-0 h-[1px] bg-white/40"></div>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-full lg:w-[40%] bg-white/5 p-10 sm:p-20 flex items-center justify-center border-l border-white/5">
-          <div className="bg-[#0c1a2d] p-10 rounded-[3rem] shadow-2xl border border-white/10 w-full max-w-md relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110">
-              <Zap size={24} className="text-signal-gold opacity-30" />
-            </div>
-            <h3 className="text-3xl font-black font-serif uppercase text-white mb-2">90 DAY</h3>
-            <h3 className="text-4xl font-black font-serif uppercase text-signal-gold italic mb-8">RISK MAP™</h3>
-            
-            {scanState === 'idle' ? (
-              <form onSubmit={handleRiskMapSubmit} className="space-y-6">
-                <input required value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} placeholder="LEGAL ENTITY NAME" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold focus:bg-white/10 transition-all placeholder:text-white/20" />
-                <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="REGISTRY EMAIL" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold focus:bg-white/10 transition-all placeholder:text-white/20" />
-                <button type="submit" className="w-full relative bg-signal-gold text-[#002244] py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] shadow-xl hover:bg-white transition-all overflow-hidden group/btn">
-                  <span className="relative z-10">GENERATE DIAGNOSTIC</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover/btn:animate-shine"></div>
-                </button>
-              </form>
-            ) : (
-              <div className="py-10 space-y-4">
-                <div className="flex justify-center"><Loader2 className="animate-spin text-signal-gold" size={40} /></div>
-                <div className="bg-black/40 rounded-xl p-4 font-mono text-[9px] text-emerald-500 h-32 overflow-hidden shadow-inner">
-                  {scanLog.map((log, i) => <div key={i}>&gt; {log}</div>)}
+          {/* Right Column: Terminal Form */}
+          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
+            <div className="bg-[#0D1B2A] p-8 md:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-lg relative overflow-hidden group">
+              {/* Inner depth effect */}
+              <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
+              
+              <div className="relative z-10">
+                <div className="flex justify-between items-start mb-8">
+                  <div className="space-y-1">
+                    <h3 className="text-2xl font-black font-serif uppercase text-white leading-tight">90 DAY</h3>
+                    <h3 className="text-3xl font-black font-serif uppercase text-signal-gold italic leading-none">RISK MAP™</h3>
+                  </div>
+                  <div className="p-3 bg-white/5 rounded-2xl border border-white/10 transition-transform duration-700 group-hover:rotate-12">
+                    <Zap size={24} className="text-signal-gold" />
+                  </div>
+                </div>
+                
+                {scanState === 'idle' ? (
+                  <form onSubmit={handleRiskMapSubmit} className="space-y-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/40 ml-2">LEGAL ENTITY NA</label>
+                      <input 
+                        required 
+                        value={formData.firstName} 
+                        onChange={e => setFormData({...formData, firstName: e.target.value})} 
+                        placeholder="CARRIER_NAME_HERE" 
+                        className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/40 ml-2">REGISTRY EMAIL</label>
+                      <input 
+                        required 
+                        type="email" 
+                        value={formData.email} 
+                        onChange={e => setFormData({...formData, email: e.target.value})} 
+                        placeholder="OPERATOR@CARRIER.COM" 
+                        className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
+                      />
+                    </div>
+                    <button type="submit" className="w-full relative bg-signal-gold text-[#002244] py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:shadow-signal-gold/20 transition-all overflow-hidden group/btn border-b-4 border-[#8e7340]">
+                      <span className="relative z-10 flex items-center justify-center">
+                        GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover/btn:animate-shine"></div>
+                    </button>
+                  </form>
+                ) : (
+                  <div className="py-10 space-y-6">
+                    <div className="flex justify-center relative">
+                      <div className="absolute inset-0 bg-signal-gold/10 rounded-full blur-2xl animate-pulse"></div>
+                      <Loader2 className="animate-spin text-signal-gold relative z-10" size={48} />
+                    </div>
+                    <div className="bg-black/60 rounded-2xl p-6 font-mono text-[10px] text-emerald-500 h-40 overflow-hidden shadow-inner border border-white/5">
+                      {scanLog.map((log, i) => <div key={i} className="mb-1">&gt; {log}</div>)}
+                      <div className="animate-pulse">_</div>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="mt-10 pt-6 border-t border-white/5 flex justify-between items-center">
+                   <p className="text-[10px] font-mono font-bold text-white/20 uppercase tracking-widest">LP-SYS-V4.5</p>
+                   <div className="flex items-center space-x-2 text-white/20">
+                     <Lock size={12} />
+                     <span className="text-[10px] font-mono uppercase tracking-widest font-bold">SECURE_LINK</span>
+                   </div>
                 </div>
               </div>
-            )}
-            <div className="mt-8 pt-6 border-t border-white/5 flex justify-between items-center opacity-40">
-               <p className="text-[8px] font-black uppercase tracking-[0.2em]">LP-SYS-V4.5</p>
-               <ShieldCheck size={14} />
             </div>
           </div>
         </div>

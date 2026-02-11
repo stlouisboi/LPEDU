@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../firebase';
-import { Search, Filter, Calendar, User, ArrowRight, Loader2, BookOpen } from 'lucide-react';
+import { Search, Filter, Calendar, User, ArrowRight, Loader2, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BlogPost, BlogCategory } from '../types';
 import { INITIAL_BLOGS } from '../constants';
+
+const POSTS_PER_PAGE = 9;
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     document.title = "Blog | LaunchPath Compliance Insights";
@@ -41,6 +44,11 @@ const BlogPage = () => {
     }
   }, []);
 
+  // Reset page to 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchQuery]);
+
   const categories: (BlogCategory | 'All')[] = [
     'All', 
     'Compliance', 
@@ -53,12 +61,20 @@ const BlogPage = () => {
     'Maintenance'
   ];
 
-  const filteredBlogs = blogs.filter(blog => {
-    const matchesCategory = selectedCategory === 'All' || blog.category === selectedCategory;
-    const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredBlogs = useMemo(() => {
+    return blogs.filter(blog => {
+      const matchesCategory = selectedCategory === 'All' || blog.category === selectedCategory;
+      const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [blogs, selectedCategory, searchQuery]);
+
+  const totalPages = Math.ceil(filteredBlogs.length / POSTS_PER_PAGE);
+  const paginatedBlogs = useMemo(() => {
+    const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+    return filteredBlogs.slice(startIndex, startIndex + POSTS_PER_PAGE);
+  }, [filteredBlogs, currentPage]);
 
   if (loading) {
     return (
@@ -117,10 +133,10 @@ const BlogPage = () => {
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBlogs.length > 0 ? (
-            filteredBlogs.map(post => (
+          {paginatedBlogs.length > 0 ? (
+            paginatedBlogs.map(post => (
               <article key={post.id} className="flex flex-col bg-white dark:bg-surface-dark rounded-[2.5rem] overflow-hidden border border-slate-100 dark:border-border-dark group transition-all hover:shadow-2xl hover:-translate-y-1">
-                {/* Image Section: Now visible on mobile */}
+                {/* Image Section */}
                 <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
                   <img 
                     src={post.image || 'https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?q=80&w=1000&auto=format&fit=crop'} 
@@ -172,6 +188,51 @@ const BlogPage = () => {
             </div>
           )}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="mt-20 flex flex-col items-center space-y-6">
+            <div className="flex items-center space-x-2">
+              <button 
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="p-4 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-2xl text-authority-blue dark:text-signal-gold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-white/5 transition-all shadow-sm active:scale-95"
+                aria-label="Previous Page"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              
+              <div className="flex items-center space-x-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`w-12 h-12 rounded-2xl text-[10px] font-black transition-all ${
+                      currentPage === page 
+                      ? 'bg-authority-blue text-white shadow-lg scale-110' 
+                      : 'bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 text-text-muted hover:bg-slate-50 dark:hover:bg-white/5'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button 
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                className="p-4 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-2xl text-authority-blue dark:text-signal-gold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-white/5 transition-all shadow-sm active:scale-95"
+                aria-label="Next Page"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+            
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+              Page {currentPage} of {totalPages} // Records {filteredBlogs.length}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
