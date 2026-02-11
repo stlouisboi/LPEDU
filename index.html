@@ -126,6 +126,21 @@
       .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
 
       button, a { min-height: 44px; min-width: 44px; }
+
+      /* Enhanced focus indicators for accessibility */
+      *:focus-visible {
+        outline: 3px solid #C6922A !important;
+        outline-offset: 2px !important;
+        border-radius: 4px;
+      }
+      
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid #C6922A !important;
+        outline-offset: 2px !important;
+      }
     </style>
 <script type="importmap">
 {

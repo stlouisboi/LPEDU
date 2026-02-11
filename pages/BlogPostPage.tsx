@@ -13,13 +13,21 @@ const BlogPostPage = () => {
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
+  const updateMetaData = (title: string, description: string) => {
+    document.title = title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', description);
+    }
+  };
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const foundPost = INITIAL_BLOGS.find(p => p.slug === slug);
         if (foundPost) {
           setPost(foundPost);
-          document.title = foundPost.seoTitle || foundPost.title;
+          updateMetaData(foundPost.seoTitle || foundPost.title, foundPost.seoDescription || foundPost.excerpt);
         }
 
         if (db) {
@@ -28,7 +36,7 @@ const BlogPostPage = () => {
           if (!snap.empty) {
             const dbPost = { id: snap.docs[0].id, ...snap.docs[0].data() } as BlogPost;
             setPost(dbPost);
-            document.title = dbPost.seoTitle || dbPost.title;
+            updateMetaData(dbPost.seoTitle || dbPost.title, dbPost.seoDescription || dbPost.excerpt);
           }
         }
       } catch (err) {
@@ -40,12 +48,37 @@ const BlogPostPage = () => {
     fetchPost();
   }, [slug]);
 
-  // Handle clicks on images within dangerouslySetInnerHTML
+  // Handle clicks on interactive elements within dangerouslySetInnerHTML
   const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
+    
+    // Image Lightbox Trigger
     if (target.tagName === 'IMG') {
       const src = (target as HTMLImageElement).src;
       setActiveImage(src);
+      return;
+    }
+
+    // Reach Test Tooltip Trigger
+    const reachTrigger = target.closest('.reach-trigger');
+    if (reachTrigger) {
+      const tooltip = reachTrigger.nextElementSibling;
+      if (tooltip && tooltip.classList.contains('reach-tooltip')) {
+        // Toggle this tooltip
+        const isHidden = tooltip.classList.contains('hidden');
+        
+        // Optional: Close all other tooltips first
+        document.querySelectorAll('.reach-tooltip').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.reach-trigger').forEach(el => el.classList.remove('active-trigger'));
+
+        if (isHidden) {
+          tooltip.classList.remove('hidden');
+          reachTrigger.classList.add('active-trigger');
+        } else {
+          tooltip.classList.add('hidden');
+          reachTrigger.classList.remove('active-trigger');
+        }
+      }
     }
   };
 
@@ -240,6 +273,79 @@ const BlogPostPage = () => {
         .blog-content img:hover {
           transform: scale(1.02);
           box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+        
+        /* Interactive Reach Test Styles */
+        .reach-trigger {
+          padding: 4px 10px;
+          background: rgba(198, 146, 42, 0.1);
+          color: #C6922A;
+          font-family: 'Inter', sans-serif;
+          font-weight: 900;
+          font-size: 10px;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          border-radius: 6px;
+          border: 1px solid rgba(198, 146, 42, 0.2);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          outline: none;
+        }
+        
+        .reach-trigger:hover {
+          background: #C6922A;
+          color: #002244;
+          box-shadow: 0 4px 12px rgba(198, 146, 42, 0.2);
+        }
+
+        .active-trigger {
+          background: #C6922A;
+          color: #002244;
+          border-color: #C6922A;
+          box-shadow: 0 0 15px rgba(198, 146, 42, 0.3);
+        }
+
+        .reach-tooltip {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: 50;
+          margin-top: 12px;
+          padding: 20px;
+          background: #002244;
+          color: #ffffff;
+          border: 2px solid #C6922A;
+          border-radius: 16px;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 1.5;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+          animation: tooltip-reveal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .dark .reach-tooltip {
+          background: #0f172a;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .reach-tooltip::before {
+          content: 'THE REACH TEST™ DIAGNOSTIC:';
+          display: block;
+          font-size: 9px;
+          font-weight: 900;
+          letter-spacing: 0.2em;
+          color: #C6922A;
+          margin-bottom: 8px;
+        }
+
+        .hidden {
+          display: none;
+        }
+
+        @keyframes tooltip-reveal {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </div>

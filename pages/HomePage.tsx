@@ -30,7 +30,8 @@ import {
   HelpCircle,
   Loader2,
   Truck,
-  Scale
+  Scale,
+  ChevronUp
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -82,10 +83,25 @@ const HomePage: React.FC = () => {
   const [scanState, setScanState] = useState<'idle' | 'scanning' | 'syncing' | 'complete'>('idle');
   const [scanLog, setScanLog] = useState<string[]>([]);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     document.title = "LaunchPath | 90-Day Owner-Operator Survival System";
+    
+    // Set Meta Description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', '90-day owner-operator survival system. Protect your authority with audit-ready compliance infrastructure. Veteran-operated, OSHA-certified safety training.');
+
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 1000);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const scanSteps = [
     "INITIALIZING_NEURAL_UPLINK...",
@@ -168,16 +184,14 @@ const HomePage: React.FC = () => {
       
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex items-center border-b border-white/5 py-20">
-        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
+        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           
-            {/* Left Column: Narrative */}
-            <div className="lg:col-span-7 space-y-12 relative">
+          <div className="lg:col-span-7 space-y-12 relative">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
             <div className="relative z-10 space-y-8 md:space-y-12">
               <div className="flex flex-wrap gap-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
               </div>
               <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85] animate-reveal-up">
                 PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
@@ -190,6 +204,10 @@ const HomePage: React.FC = () => {
                   to="/reach-test" 
                   className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
                 >
+                  <Truck 
+                    size={22} 
+                    className="absolute top-2 left-4 text-white/20 group-hover:text-white/80 transition-all duration-500 animate-truck-drive" 
+                  />
                   <span className="relative z-10 flex items-center">
                     Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
                   </span>
@@ -200,10 +218,8 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-            {/* Right Column: Terminal Form */}
-            <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
-            <div className="bg-[#0D1B2A] p-8 md:p-10 lg:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-md lg:max-w-lg relative overflow-hidden group">
-              {/* Inner depth effect */}
+          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
+            <div className="bg-[#0D1B2A] p-8 md:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-lg relative overflow-hidden group">
               <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
               <div className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
                 <Truck size={48} className="text-signal-gold animate-truck-drive" />
@@ -223,7 +239,7 @@ const HomePage: React.FC = () => {
                 {scanState === 'idle' ? (
                   <form onSubmit={handleRiskMapSubmit} className="space-y-8">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/40 ml-2">LEGAL ENTITY NA</label>
+                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">LEGAL ENTITY NA</label>
                       <input 
                         required 
                         value={formData.firstName} 
@@ -233,7 +249,7 @@ const HomePage: React.FC = () => {
                       />
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/40 ml-2">REGISTRY EMAIL</label>
+                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">REGISTRY EMAIL</label>
                       <input 
                         required 
                         type="email" 
@@ -243,9 +259,18 @@ const HomePage: React.FC = () => {
                         className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
                       />
                     </div>
-                    <button type="submit" className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue transition-all overflow-hidden group/btn border-b-4 border-[#8e7340]">
+                    <button type="submit" disabled={loading} className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue transition-all overflow-hidden group/btn border-b-4 border-[#8e7340] disabled:opacity-50 disabled:cursor-not-allowed">
                       <span className="relative z-10 flex items-center justify-center">
-                        GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
+                        {loading ? (
+                          <>
+                            <Loader2 className="animate-spin mr-2" size={16} />
+                            PROCESSING...
+                          </>
+                        ) : (
+                          <>
+                            GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
+                          </>
+                        )}
                       </span>
                     </button>
                   </form>
@@ -262,7 +287,6 @@ const HomePage: React.FC = () => {
                 )}
               </div>
             </div>
-            </div>
           </div>
         </div>
       </section>
@@ -271,11 +295,11 @@ const HomePage: React.FC = () => {
       <section className="py-32 px-10 md:px-20 lg:px-40 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto space-y-24">
           <header className="text-center space-y-6 animate-reveal-up">
-            <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
+            <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
             <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
               THE <span className="text-signal-gold italic">FOUR</span> PILLARS.
             </h2>
-            <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
               Institutional logic: A failure in the Compliance Backbone (Documentation) results in a loss of Insurance Continuity, which suffocates Cash-Flow Oxygen.
             </p>
           </header>
@@ -355,7 +379,7 @@ const HomePage: React.FC = () => {
       {/* 5. THE EXECUTIVE STANDARD */}
       <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
         <header className="text-center mb-32 space-y-6">
-          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">THE OUTCOME</p>
+          <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">THE OUTCOME</p>
           <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
           <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
         </header>
@@ -380,7 +404,7 @@ const HomePage: React.FC = () => {
       {/* 6. FAQ SECTION */}
       <section className="py-48 px-10 md:px-20 lg:px-40 bg-[#020617]">
         <header className="text-center mb-32 space-y-6">
-          <p className="text-[11px] font-black text-slate-500 uppercase tracking-[0.5em]">KNOWLEDGE BASE</p>
+          <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">KNOWLEDGE BASE</p>
           <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">COMMON <br/><span className="text-signal-gold italic">QUESTIONS.</span></h2>
         </header>
 
@@ -418,6 +442,17 @@ const HomePage: React.FC = () => {
 
       {/* FAQ Section */}
       <FAQSection />
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-24 right-8 bg-signal-gold text-[#002244] p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-40 border-4 border-white/20 animate-in fade-in zoom-in"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
 
       <div className="bg-[#020617] text-center py-10">
         <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">

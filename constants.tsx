@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -73,7 +72,7 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
 export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 0, 
-    title: "Ground 0: The Discipline Standard", 
+    title: "Ground 0: THE DISCIPLINE STANDARD", 
     description: "Operating Asset: Preliminary framework verification. Evaluates carrier discipline before authority filing.", 
     lessons: 6, 
     duration: "Protocol Assessment", 
@@ -85,7 +84,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 1, 
-    title: "Authority Protection Protocols", 
+    title: "AUTHORITY PROTECTION PROTOCOLS", 
     description: "Operating Asset: Legal architecture for carrier identity. Documentation infrastructure for MC/DOT configuration.", 
     lessons: 8, 
     duration: "Structural Setup", 
@@ -97,7 +96,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 2, 
-    title: "Insurance Continuity Systems", 
+    title: "INSURANCE CONTINUITY SYSTEMS", 
     description: "Operating Asset: Risk mitigation files. Standards for maintaining primary liability and cargo coverage continuity.", 
     lessons: 5, 
     duration: "Risk Management", 
@@ -109,7 +108,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 3, 
-    title: "Compliance Backbone Installation", 
+    title: "COMPLIANCE BACKBONE INSTALLATION", 
     description: "Operating Asset: Technical Safety Files. Installation of DQ files, Clearinghouse governance, and HOS protocols.", 
     lessons: 10, 
     duration: "Technical Implementation", 
@@ -121,7 +120,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 4, 
-    title: "Cash-Flow Oxygen Protocols", 
+    title: "CASH-FLOW OXYGEN PROTOCOLS", 
     description: "Operating Asset: Financial solvency files. Documentation of operational reserves and payment cycle management.", 
     lessons: 6, 
     duration: "Fiscal Stewardship", 
@@ -134,7 +133,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 5, 
-    title: "Audit Readiness Standards", 
+    title: "AUDIT READINESS STANDARDS", 
     description: "Operating Asset: New Entrant investigation response kit. Preparation for the 48-hour federal audit window.", 
     lessons: 7, 
     duration: "Audit Verification", 
@@ -147,7 +146,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 6, 
-    title: "Stabilization & Scale Protocols", 
+    title: "STABILIZATION & SCALE PROTOCOLS", 
     description: "Operating Asset: Advanced growth files. Standards for fleet expansion and multi-unit governance.", 
     lessons: 4, 
     duration: "Operational Continuity", 
@@ -210,22 +209,46 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <tbody>
           <tr>
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Substance Abuse</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 382.301</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR § 382.301</span>
+                <button class="reach-trigger" data-reach="Is there a verified negative lab result on file for every driver that predates their first load for your authority?">REACH</button>
+                <div class="reach-tooltip hidden">"Is there a verified negative lab result on file for every driver that predates their first load for your authority?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">TERMINAL FAIL</td>
           </tr>
           <tr style="background-color: #f8fafc;">
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Driver Qualification</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 391.51</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR § 391.51</span>
+                <button class="reach-trigger" data-reach="If an auditor pulls a driver file at random, can you produce all 12 required items (Application, MVR, Med-Cert, etc.) in under 5 minutes?">REACH</button>
+                <div class="reach-tooltip hidden">"If an auditor pulls a driver file at random, can you produce all 12 required items (Application, MVR, Med-Cert, etc.) in under 5 minutes?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">TERMINAL FAIL</td>
           </tr>
           <tr>
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">HOS Falsification</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR § 395.8</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR § 395.8</span>
+                <button class="reach-trigger" data-reach="Does your ELD dashboard currently have 'Unassigned Driving Time' that has not been reconciled and signed by a driver?">REACH</button>
+                <div class="reach-tooltip hidden">"Does your ELD dashboard currently have 'Unassigned Driving Time' that has not been reconciled and signed by a driver?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">CRIMINAL DEFAULT</td>
           </tr>
           <tr style="background-color: #f8fafc;">
             <td style="padding: 15px; border: 1px solid #e2e8f0; font-weight: bold;">Insurance Lapse</td>
-            <td style="padding: 15px; border: 1px solid #e2e8f0;">49 CFR Part 387</td>
+            <td style="padding: 15px; border: 1px solid #e2e8f0;">
+              <div style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+                <span>49 CFR Part 387</span>
+                <button class="reach-trigger" data-reach="Is your insurance filing status currently listed as 'Active' on the SAFER system, and do you have the next 60 days of premium funded?">REACH</button>
+                <div class="reach-tooltip hidden">"Is your insurance filing status currently listed as 'Active' on the SAFER system, and do you have the next 60 days of premium funded?"</div>
+              </div>
+            </td>
             <td style="padding: 15px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 800;">REVOCATION</td>
           </tr>
         </tbody>
@@ -323,73 +346,6 @@ export const INITIAL_BLOGS: BlogPost[] = [
     tags: ['Four Pillars', 'Stewardship', 'Math', 'Survival']
   },
   {
-    id: "briefing-2025-01",
-    title: "THE 90-DAY STABILIZATION WINDOW: A STRATEGIC BRIEFING ON CARRIER SURVIVAL",
-    slug: "90-day-stabilization-briefing",
-    category: "Compliance",
-    excerpt: "Institutional Analysis: Why the first 90 days determine the 18-month survival of a motor carrier. Data-driven insights on federal compliance and fiscal stewardship.",
-    content: `
-      <div style="background: #002244; color: #ffffff; padding: 40px; border-radius: 30px; margin-bottom: 40px; border-left: 10px solid #C5A059;">
-        <h3 style="color: #C5A059; margin-top: 0; font-family: Montserrat, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px;">The Lead Safety Editor Perspective</h3>
-        <p style="font-size: 20px; font-weight: 700; line-height: 1.6; margin-bottom: 0;">
-          "Ambition is a prerequisite for ownership, but systems are the prerequisite for endurance. In the current market, the distance between receiving an MC number and passing a New Entrant Audit is bridged by clinical preparation, not effort alone."
-        </p>
-      </div>
-
-      <h3>I. THE MARKET REALITY: ENTRIES VS. SURVIVORS</h3>
-      <p>To pursue the status of a motor carrier is to engage in one of the most vital sectors of the American economy. It is an honorable ambition that represents the height of entrepreneurial spirit. However, the gate to this market has never been more crowded, and the path to stability has never been more rigorous. In 2023 alone, the Federal Motor Carrier Safety Administration (FMCSA) issued over 159,000 new DOT numbers. This volume of entry indicates a low barrier to registration, but it does not reflect a low barrier to survival.</p>
-      
-      <p>Federal statistics regarding motor carrier industry health are sobering. Data indicates that between 33% and 45% of new motor carriers registered between 2018 and 2021 are now inactive. This attrition rate suggests that nearly half of all entrants are failing to navigate the transition from a registered entity to a sustainable business. The primary vector for this failure is rarely a lack of work ethic; it is a failure to establish the necessary infrastructure before operational pressure mounts.</p>
-
-      <blockquote style="background: #f8fafc; border-left: 5px solid #1e3a5f; padding: 30px; margin: 40px 0;">
-        <h4 style="margin-top: 0; color: #1e3a5f; font-family: Montserrat, sans-serif; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; margin-bottom: 15px;">Executive Insight: The Administrative Trap</h4>
-        <p style="margin-bottom: 0; font-size: 18px; font-weight: 600; color: #1e3a5f;">The FMCSA issued over 159,000 new DOT numbers in 2023, yet nearly half of all new entrants from the previous three years have already ceased operations. The market does not lack for entrants; it lacks for survivors.</p>
-      </blockquote>
-
-      <h3>II. FAILURE PATTERNS: THE MECHANICS OF COLLAPSE</h3>
-      <p>The collapse of a new authority typically follows one of three predictable patterns: undercapitalization, regulatory non-compliance, or systemic management failure. The fiscal reality of interstate commerce is industrial in scale. Current industry estimates suggest that average monthly operating costs per truck range from $10,300 to $18,800 depending on equipment age and insurance profile. When a carrier enters the market without 90 days of operational reserves, they are forced into reactive load selection, which inherently increases safety and compliance risks.</p>
-
-      <p>Regulatory non-compliance acts as the second primary failure vector. Many operators treat compliance as an administrative chore to be handled on weekends, rather than an engineering control for their business. This mindset is terminal. The average FMCSA fine currently stands at nearly $6,000 per violation, with serious penalties involving systemic drug and alcohol testing failures or falsified logs peaking at over $79,000. For a new business, a single high-priority violation can result in an "Unsatisfactory" rating, making the entity uninsurable and effectively terminating the authority.</p>
-
-      <blockquote style="background: #f8fafc; border-left: 5px solid #1e3a5f; padding: 30px; margin: 40px 0;">
-        <h4 style="margin-top: 0; color: #1e3a5f; font-family: Montserrat, sans-serif; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; margin-bottom: 15px;">Executive Insight: The 16 Deadly Sins</h4>
-        <p style="margin-bottom: 0; font-size: 18px; font-weight: 600; color: #1e3a5f;">Federal auditors use a specific taxonomy of high-priority violations—The 16 Deadly Sins—that trigger automatic audit failure. Identifying these exposure vectors before the 48-hour audit window is the hallmark of a carrier executive.</p>
-      </blockquote>
-
-      <h3>III. DATA INTERPRETATION: THE 90-DAY RISK WINDOW</h3>
-      <p>The first 90 days of an authority represent a period of profound exposure. During this window, the carrier is often operating on "estimated" data for their MCS-150, their insurance premiums are at their highest, and their administrative systems are being tested in real-time. The interdependence of the Four Pillars—Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen—becomes evident here. If the Compliance Backbone is weak, Insurance Continuity is threatened. If Cash-Flow Oxygen is low, equipment maintenance is deferred, leading to roadside inspections that damage the Authority Protection pillar.</p>
-
-      <p>The New Entrant Safety Audit, which occurs within the first 18 months, is not a conversation; it is a clinical assessment of your documentary evidence. Auditors do not evaluate your intentions or your "hustle." They evaluate your registry of evidence. Can you produce a clinical Driver Qualification (DQ) file for every operator? Is there a timestamped pre-employment negative drug test that predates the first load? If these records are missing or disjointed, the structural integrity of the business is deemed non-viable by the state.</p>
-
-      <blockquote style="background: #f8fafc; border-left: 5px solid #1e3a5f; padding: 30px; margin: 40px 0;">
-        <h4 style="margin-top: 0; color: #1e3a5f; font-family: Montserrat, sans-serif; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; margin-bottom: 15px;">Executive Insight: The Price of Negligence</h4>
-        <p style="margin-bottom: 0; font-size: 18px; font-weight: 600; color: #1e3a5f;">The average fine for a serious federal compliance violation exceeds $6,000. For a new carrier, the cost of installing a system is an investment; the cost of a fine is a terminal expense.</p>
-      </blockquote>
-
-      <h3>IV. THE PATH FORWARD: STRATEGIC RESTRAINT</h3>
-      <p>The path to endurance is paved with strategic restraint. It requires the discipline to pause and establish the "Operating Standard" before seeking the riches of the market. Wisdom dictates that a house is built by understanding its structure first. For the serious owner-operator, this means moving beyond the status of a driver and into the role of a risk manager. It means recognizing that a trucking company is actually a compliance entity that happens to move freight.</p>
-
-      <p>Establishing this order precedes revenue. Carriers who survive the 18-month New Entrant phase are those who prioritize "Documentary Order" from day one. They do not wait for the audit notification to build their files; they build the system that produces the files automatically. This transition from individual effort to institutional infrastructure is the defining characteristic of the LaunchPath standard. We honor the path of preparation because we have seen the cost of disorder.</p>
-
-      <div style="text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid #e2e8f0;">
-        <p style="font-family: Montserrat, sans-serif; font-style: italic; font-size: 24px; color: #002244; font-weight: 800; max-width: 600px; margin: 0 auto;">
-          "Order precedes revenue. Discipline precedes expansion. Wisdom precedes the riches."
-        </p>
-        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— LaunchPath Operating Standard</p>
-      </div>
-      
-      <div style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-        <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #64748b;">Next Clinical Procedure:</p>
-        <a href="/reach-test" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Take the REACH Test™</a>
-      </div>
-    `,
-    publishedAt: "2025-01-30",
-    author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FTHE%2090-DAY%20STABILIZATION%20WINDOW.png?alt=media&token=cb140a63-99ef-452e-b435-3116ae485aa0",
-    status: 'published',
-    tags: ['Institutional', 'Briefing', 'FMCSA', 'Survival']
-  },
-  {
     id: "audit-1",
     title: "THE 48-HOUR NEW ENTRANT WINDOW: ARE YOU READY?",
     slug: "new-entrant-audit-readiness",
@@ -432,7 +388,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <p style="font-family: Montserrat, sans-serif; font-style: italic; font-size: 24px; color: #002244; font-weight: 800; max-width: 600px; margin: 0 auto;">
           “By wisdom a house is built, and by understanding it is established; by knowledge the rooms are filled with all precious and pleasant riches.”
         </p>
-        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— Proverbs 24:3–4</p>
+        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— Vince Lawrence, System Custodian</p>
       </div>
     `,
     publishedAt: "2025-01-28",
@@ -443,10 +399,12 @@ export const INITIAL_BLOGS: BlogPost[] = [
   },
   {
     id: "auth-1",
-    title: "USDOT vs. MC Number: Do You Really Need Both?",
+    title: "USDOT VS. MC NUMBER: DO YOU REALLY NEED BOTH?",
     slug: "usdot-vs-mc-number-differences",
     category: "Authority",
     excerpt: "Regulatory Directive: Distinguishing between safety registration and commercial operating authority to prevent equipment seizure.",
+    seoTitle: "USDOT vs MC Number: Do You Really Need Both? | LaunchPath",
+    seoDescription: "Regulatory Directive: Distinguishing between safety registration and commercial operating authority to prevent equipment seizure. Learn if you need both USDOT and MC numbers for your trucking business.",
     content: `
       <p style="font-size: 14px; color: #64748b; font-style: italic; margin-bottom: 30px;">Subtitle: How to Not Get Your Truck Impounded in Week One.</p>
 
@@ -532,7 +490,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
   },
   {
     id: "maint-1",
-    title: "Navigating Truck Maintenance: From Breakdown Fixes to Disciplined Stewardship",
+    title: "NAVIGATING TRUCK MAINTENANCE: FROM BREAKDOWN FIXES TO DISCIPLINED STEWARDSHIP",
     slug: "navigating-truck-maintenance-disciplined-stewardship",
     category: "Maintenance",
     excerpt: "Technical Directive: Moving from reactive repairs to a disciplined preventive maintenance program is the foundation of carrier longevity and safety compliance.",
@@ -565,7 +523,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
       </ul>
 
       <blockquote style="background: #1e3a5f; color: white; padding: 30px; border-left: 10px solid #C6922A; border-radius: 0 20px 20px 0; margin: 40px 0;">
-        <h4 style="color: #C6922A; margin-top: 0; text-transform: uppercase; font-size: 14px; letter-spacing: 0.2em;">Executive Financial Alert: The Maintenance Escrow</h4>
+        <h4 style="color: #C6922A; margin-top: 0; text-transform: uppercase; font-size: 14px; letter-spacing: 0.2em;">Executive Financial Alert: THE MAINTENANCE ESCROW</h4>
         <p style="font-size: 18px; margin-bottom: 0;"><b>DO NOT TREAT GROSS REVENUE AS TAKE-HOME PAY.</b> Stable operations treat maintenance as a fixed operating expense. Successful carriers utilize a dedicated <b>Maintenance Escrow</b> funded at a minimum rate of <b>$0.15 per mile</b>. This protocol prevents normal wear-and-tear from escalating into a terminal business crisis.</p>
       </blockquote>
 
@@ -578,7 +536,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
       </ul>
 
       <h3>V. STEWARDSHIP PERSPECTIVE</h3>
-      <p>Transportation is a marathon. Carriers that survive the 18-month New Entrant window are rarely those chasing spot rates with worn equipment. They are the carriers that prioritize <b>Order</b>, <b>Stewardship</b>, and <b>Systematic Process</b>. When you fund your escrow every mile and execute your maintenance program with discipline, you protect your safety record, your equipment, your <b>Authority</b>, and your future.</p>
+      <p>Transportation is a marathon. Carriers that survive the 18-month New Entrant window are rarely those chasing spot rates with worn equipment. They are the carriers that prioritize <b>Order</b>, <b>Stewardship</b>, and <b>SystemATIC PROCESS</b>. When you fund your escrow every mile and execute your maintenance program with discipline, you protect your safety record, your equipment, your <b>Authority</b>, and your future.</p>
       
       <p style="font-size: 10px; color: #94a3b8; margin-top: 50px; border-top: 1px solid #e2e8f0; pt-20;">END OF TECHNICAL BRIEF — REFERENCE LP-MAINT-V1.2</p>
     `,
