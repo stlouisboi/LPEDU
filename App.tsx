@@ -18,7 +18,7 @@ import {
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
 import { INITIAL_SETTINGS, INITIAL_BLOGS } from './constants';
-import { BlogPost, SiteSettings, Testimonial } from './types';
+import { BlogPost, SiteSettings } from './types';
 import { EnhancedAuthProvider, useEnhancedAuth } from './EnhancedAuthContext';
 import { FreeRoute, PaidRoute, AdminRoute } from './components/auth/RoleBasedRoutes';
 import ScrollToTop from './components/ScrollToTop';
@@ -55,7 +55,7 @@ import SudokuPage from './pages/SudokuPage';
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
-import AdminDashboard from './pages/admin/AdminDashboardHome'; 
+import AdminDashboardHome from './pages/admin/AdminDashboardHome'; 
 import PageList from './pages/admin/PageList';
 import HomePageEditor from './pages/admin/HomePageEditor';
 import BlogList from './pages/admin/BlogList';
@@ -86,7 +86,7 @@ export const useApp = () => {
 
 const Header = () => {
   const { theme, toggleTheme } = useApp();
-  const { currentUser, userProfile } = useEnhancedAuth();
+  const { currentUser } = useEnhancedAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -114,7 +114,6 @@ const Header = () => {
             <Logo light={true} className="h-8 sm:h-10 md:h-14 w-auto" />
           </Link>
 
-          {/* DESKTOP NAVIGATION */}
           <nav className="hidden xl:flex items-center" aria-label="Main Navigation">
             <div className="flex items-center space-x-1">
               {navItems.map((item) => (
@@ -160,7 +159,6 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* MOBILE TOGGLE */}
           <div className="xl:hidden flex items-center space-x-2 sm:space-x-4">
             <button onClick={toggleTheme} className="p-3 rounded-xl bg-white/10 text-signal-gold border border-white/10" aria-label="Toggle Theme">
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
@@ -176,7 +174,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* MOBILE NAV OVERLAY */}
       {isMenuOpen && (
         <nav className="fixed inset-0 top-20 sm:top-24 bg-authority-blue z-[99] xl:hidden flex flex-col animate-in fade-in slide-in-from-top-4 duration-300 overflow-y-auto" aria-label="Mobile Navigation">
           <div className="flex flex-col p-6 sm:p-10 space-y-3">
@@ -323,22 +320,30 @@ export default function App() {
   }, [settings.faviconUrl]);
 
   useEffect(() => {
+    // Failsafe timeout to clear the spinner
     const loadTimeout = setTimeout(() => setAppLoading(false), 3000);
+    
     if (!isFirebaseConfigured || !db) {
       setAppLoading(false);
       clearTimeout(loadTimeout);
       return;
     }
-    const settingsRef = doc(db, "settings", "general");
-    const unsub = onSnapshot(settingsRef, (snap) => {
-      if (snap.exists()) setSettings(snap.data() as SiteSettings);
+    
+    try {
+      const settingsRef = doc(db, "settings", "general");
+      const unsub = onSnapshot(settingsRef, (snap) => {
+        if (snap.exists()) setSettings(snap.data() as SiteSettings);
+        setAppLoading(false);
+        clearTimeout(loadTimeout);
+      }, () => {
+        setAppLoading(false);
+        clearTimeout(loadTimeout);
+      });
+      return () => { unsub(); clearTimeout(loadTimeout); };
+    } catch (e) {
       setAppLoading(false);
       clearTimeout(loadTimeout);
-    }, () => {
-      setAppLoading(false);
-      clearTimeout(loadTimeout);
-    });
-    return () => { unsub(); clearTimeout(loadTimeout); };
+    }
   }, []);
 
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
@@ -347,83 +352,76 @@ export default function App() {
     <AppContext.Provider value={{ 
       theme, toggleTheme, settings, updateSettings: setSettings, blogs
     }}>
-      <EnhancedAuthProvider>
-        <Router>
-          <ScrollToTop />
-          {appLoading ? (
-            <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] dark:bg-primary-dark transition-colors duration-500">
-              <Logo className="h-16 w-auto animate-pulse brightness-110" />
-            </div>
-          ) : (
-            <>
-              <Header />
-              <main id="main-content" className="flex-grow" role="main">
-                <Routes>
-                  {/* Public Routes */}
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/clarification" element={<ClarificationPage />} />
-                  <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
-                  <Route path="/learning-path" element={<LearningPathPage />} />
-                  <Route path="/resources" element={<ResourcesPage />} />
-                  <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
-                  <Route path="/readiness" element={<ReadinessPage />} />
-                  <Route path="/reach-test" element={<ReachTestPage />} />
-                  <Route path="/faq" element={<FAQPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/support" element={<SupportPage />} />
-                  <Route path="/legal" element={<LegalPage />} />
-                  <Route path="/pricing" element={<RequestAdmission />} />
-                  <Route path="/blog" element={<BlogPage />} />
-                  <Route path="/blog/:slug" element={<BlogPostPage />} />
-                  
-                  {/* Auth Terminal */}
-                  <Route path="/portal" element={<EnhancedPortalLogin />} />
-                  <Route path="/admin/login" element={<AdminLogin />} />
+      {appLoading ? (
+        <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] dark:bg-primary-dark transition-colors duration-500">
+          <Logo className="h-16 w-auto animate-pulse brightness-110" />
+        </div>
+      ) : (
+        <EnhancedAuthProvider>
+          <Router>
+            <ScrollToTop />
+            <Header />
+            <main id="main-content" className="flex-grow" role="main">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/clarification" element={<ClarificationPage />} />
+                <Route path="/exposure-matrix" element={<ExposureMatrixPage />} />
+                <Route path="/learning-path" element={<LearningPathPage />} />
+                <Route path="/resources" element={<ResourcesPage />} />
+                <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
+                <Route path="/readiness" element={<ReadinessPage />} />
+                <Route path="/reach-test" element={<ReachTestPage />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/support" element={<SupportPage />} />
+                <Route path="/legal" element={<LegalPage />} />
+                <Route path="/pricing" element={<RequestAdmission />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                
+                <Route path="/portal" element={<EnhancedPortalLogin />} />
+                <Route path="/admin/login" element={<AdminLogin />} />
 
-                  {/* Free / Registered User Content */}
-                  <Route element={<FreeRoute />}>
-                    <Route path="/enrollment-pending" element={<EnrollmentPendingPage />} />
-                    <Route path="/download/risk-map" element={<DownloadPage />} />
-                    <Route path="/tools/sudoku" element={<SudokuPage />} />
+                <Route element={<FreeRoute />}>
+                  <Route path="/enrollment-pending" element={<EnrollmentPendingPage />} />
+                  <Route path="/download/risk-map" element={<DownloadPage />} />
+                  <Route path="/tools/sudoku" element={<SudokuPage />} />
+                </Route>
+
+                <Route element={<PaidRoute />}>
+                  <Route path="/operator-portal" element={<OperatorPortal />} />
+                  <Route path="/ai-advisor" element={<AIServicePage />} />
+                  <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
+                  <Route path="/modules/:id" element={<ModuleDetailPage />} />
+                </Route>
+
+                <Route element={<AdminRoute />}>
+                  <Route path="/admin" element={<AdminLayout />}>
+                    <Route index element={<AdminDashboardHome />} />
+                    <Route path="pages" element={<PageList />} />
+                    <Route path="pages/home" element={<HomePageEditor />} />
+                    <Route path="blog" element={<BlogList />} />
+                    <Route path="blog/new" element={<BlogEditor />} />
+                    <Route path="blog/edit/:id" element={<BlogEditor />} />
+                    <Route path="resources" element={<ResourceManager />} />
+                    <Route path="forms" element={<FormManagement />} />
+                    <Route path="forms/submissions" element={<SubmissionsList />} />
+                    <Route path="leads" element={<LeadsManager />} />
+                    <Route path="settings" element={<SettingsManager />} />
+                    <Route path="video-lab" element={<VideoLab />} />
+                    <Route path="initialize-data" element={<InitializeDataPage />} />
                   </Route>
+                </Route>
 
-                  {/* Paid Member Content */}
-                  <Route element={<PaidRoute />}>
-                    <Route path="/operator-portal" element={<OperatorPortal />} />
-                    <Route path="/ai-advisor" element={<AIServicePage />} />
-                    <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
-                    <Route path="/modules/:id" element={<ModuleDetailPage />} />
-                  </Route>
-
-                  {/* Admin Command Center */}
-                  <Route element={<AdminRoute />}>
-                    <Route path="/admin" element={<AdminLayout />}>
-                      <Route index element={<AdminDashboard />} />
-                      <Route path="pages" element={<PageList />} />
-                      <Route path="pages/home" element={<HomePageEditor />} />
-                      <Route path="blog" element={<BlogList />} />
-                      <Route path="blog/new" element={<BlogEditor />} />
-                      <Route path="blog/edit/:id" element={<BlogEditor />} />
-                      <Route path="resources" element={<ResourceManager />} />
-                      <Route path="forms" element={<FormManagement />} />
-                      <Route path="forms/submissions" element={<SubmissionsList />} />
-                      <Route path="leads" element={<LeadsManager />} />
-                      <Route path="settings" element={<SettingsManager />} />
-                      <Route path="video-lab" element={<VideoLab />} />
-                      <Route path="initialize-data" element={<InitializeDataPage />} />
-                    </Route>
-                  </Route>
-
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-              </main>
-              <Footer />
-              <AIChatWidget />
-            </>
-          )}
-        </Router>
-      </EnhancedAuthProvider>
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </main>
+            <Footer />
+            <AIChatWidget />
+          </Router>
+        </EnhancedAuthProvider>
+      )}
     </AppContext.Provider>
   );
 }

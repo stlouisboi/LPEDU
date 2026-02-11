@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -231,7 +230,7 @@ const ResourcesPage = () => {
             </button>
           </div>
 
-          {/* NEW: Sudoku Discipline Trainer */}
+          {/* Mind Gym Card */}
           <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border-2 border-transparent hover:border-authority-blue/30 shadow-sm relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-2">
             <AccessBadge type="FREE" />
             <div className="w-16 h-16 bg-authority-blue text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-700 ring-4 ring-authority-blue/10">
@@ -246,7 +245,7 @@ const ResourcesPage = () => {
             </Link>
           </div>
 
-          {/* Survival Scorecard - Vibrant Blue */}
+          {/* Readiness Scorecard Card */}
           <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border-2 border-transparent hover:border-authority-blue/30 shadow-sm relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-2">
             <AccessBadge type="FREE" />
             <div className="w-16 h-16 bg-slate-100 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center mb-8 shadow-inner">
@@ -257,7 +256,7 @@ const ResourcesPage = () => {
               Binary evaluation to verify if your entity is ready to launch.
             </p>
             <Link 
-              to="/readiness"
+              to="/reach-test"
               className="w-full bg-white dark:bg-gray-800 text-authority-blue dark:text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] border border-slate-200 dark:border-white/10 flex items-center justify-center hover:bg-slate-50 transition-all active:scale-95"
             >
               Verify <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -453,7 +452,7 @@ const ResourcesPage = () => {
 
                   <div className="pt-8">
                     <button 
-                      type="submit"
+                      type="submit" 
                       disabled={isSubmitting}
                       className="w-full bg-authority-blue text-white py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[14px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-8 border-slate-900 group"
                     >

@@ -19,7 +19,7 @@ import {
   Filter
 } from 'lucide-react';
 import ConfirmationModal from '../components/ConfirmationModal';
-import { useAuth } from '../AuthContext';
+import { useAuth } from '../EnhancedAuthContext';
 
 interface Task {
   id: string;
@@ -79,7 +79,7 @@ const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
 };
 
 const OperatorPortal: React.FC = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, userProfile } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([
     { id: '1', text: 'Update MCS-150 form details', completed: true },
     { id: '2', text: 'Verify BOC-3 process agent filing', completed: false },
@@ -135,7 +135,6 @@ const OperatorPortal: React.FC = () => {
   const handleDeleteTask = async () => {
     if (!taskToDelete) return;
     setIsProcessing(true);
-    // Simulate registry sync
     await new Promise(r => setTimeout(r, 800));
     setTasks(tasks.filter(t => t.id !== taskToDelete));
     setIsModalOpen(false);
@@ -165,13 +164,13 @@ const OperatorPortal: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 gap-6">
           <div>
             <h1 className="text-3xl sm:text-4xl font-black text-authority-blue dark:text-white uppercase tracking-tight">
-              Operator Dashboard {currentUser?.displayName ? `// ${currentUser.displayName}` : ''}
+              Operator Dashboard {userProfile?.displayName ? `// ${userProfile.displayName}` : ''}
             </h1>
-            <p className="text-text-muted mt-1 uppercase text-[10px] font-black tracking-widest">Registry ID: LP-AUTH-7729 // SECURE_UPLINK_STABLE</p>
+            <p className="text-text-muted mt-1 uppercase text-[10px] font-black tracking-widest">Registry ID: LP-AUTH-{userProfile?.uid.slice(0,4).toUpperCase() || '7729'} // SECURE_UPLINK_STABLE</p>
           </div>
           <div className="flex items-center space-x-3 bg-white dark:bg-surface-dark px-5 py-3 border border-slate-100 dark:border-border-dark rounded-2xl shadow-sm">
             <Shield size={16} className="text-signal-gold" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white">Active Authority Standard</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white">{userProfile?.role.toUpperCase()} Authority Standard</span>
           </div>
         </div>
 

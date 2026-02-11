@@ -38,8 +38,12 @@ export const EnhancedAuthProvider: React.FC<{ children: ReactNode }> = ({ childr
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
       if (user) {
-        const profile = await getUserProfile(user.uid);
-        setUserProfile(profile);
+        try {
+          const profile = await getUserProfile(user.uid);
+          setUserProfile(profile);
+        } catch (err) {
+          console.error("Auth Context: Profile fetch failed", err);
+        }
       } else {
         setUserProfile(null);
       }
@@ -64,7 +68,7 @@ export const EnhancedAuthProvider: React.FC<{ children: ReactNode }> = ({ childr
 
   return (
     <EnhancedAuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </EnhancedAuthContext.Provider>
   );
 };

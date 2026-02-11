@@ -156,7 +156,7 @@ The LaunchPath Stance: We provide Standardized Implementation Requirements; the 
                 Message Vince Directly
               </Link>
               <Link 
-                to="/readiness" 
+                to="/reach-test" 
                 className="text-signal-gold font-black uppercase tracking-widest text-xs flex items-center hover:underline group"
               >
                 Validate Readiness 

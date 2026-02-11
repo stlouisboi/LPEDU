@@ -438,7 +438,7 @@ const TCOCalculatorPage: React.FC = () => {
                       <h4 className="text-lg font-black text-white uppercase tracking-tight">Institutional Standard</h4>
                       <p className="text-sm font-medium text-slate-400 leading-relaxed italic">"A carrier's solvency is not determined by its freight; it is determined by its stewardship of the operating margins. Order precedes revenue."</p>
                       <div className="pt-6 border-t border-white/5">
-                         <Link to="/readiness" className="text-[10px] font-black uppercase tracking-widest text-signal-gold hover:underline flex items-center">Verify Structural Readiness <ChevronRight size={14} className="ml-1"/></Link>
+                         <Link to="/reach-test" className="text-[10px] font-black uppercase tracking-widest text-signal-gold hover:underline flex items-center">Verify Structural Readiness <ChevronRight size={14} className="ml-1"/></Link>
                       </div>
                    </div>
 

@@ -185,34 +185,51 @@ const HomePage: React.FC = () => {
             <h1 className="text-5xl sm:text-7xl lg:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85] animate-reveal-up">
               PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
             </h1>
-            <p className="text-xl md:text-2xl text-white/60 font-bold max-w-xl border-l-8 border-signal-gold pl-8 py-2">
+            <p className="text-xl md:text-2xl text-white/60 font-bold max-w-xl border-l-8 border-signal-gold pl-8 py-2 animate-reveal-up [animation-delay:200ms]">
               Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
             </p>
-            <div className="pt-8">
-              <Link to="/reach-test" className="bg-signal-gold text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center w-fit group border-b-8 border-slate-900">
-                Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
+            <div className="pt-8 animate-reveal-up [animation-delay:400ms]">
+              <Link 
+                to="/reach-test" 
+                className="group relative bg-signal-gold text-[#002244] px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center">
+                  Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
+                </span>
+                
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
+                <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
+                
+                {/* Internal Glow */}
+                <div className="absolute inset-x-0 top-0 h-[1px] bg-white/40"></div>
               </Link>
             </div>
           </div>
         </div>
 
         <div className="w-full lg:w-[40%] bg-white/5 p-10 sm:p-20 flex items-center justify-center border-l border-white/5">
-          <div className="bg-[#0c1a2d] p-10 rounded-[3rem] shadow-2xl border border-white/10 w-full max-w-md relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4"><Zap size={24} className="text-signal-gold opacity-30" /></div>
+          <div className="bg-[#0c1a2d] p-10 rounded-[3rem] shadow-2xl border border-white/10 w-full max-w-md relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110">
+              <Zap size={24} className="text-signal-gold opacity-30" />
+            </div>
             <h3 className="text-3xl font-black font-serif uppercase text-white mb-2">90 DAY</h3>
             <h3 className="text-4xl font-black font-serif uppercase text-signal-gold italic mb-8">RISK MAP™</h3>
             
             {scanState === 'idle' ? (
               <form onSubmit={handleRiskMapSubmit} className="space-y-6">
-                <input required value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} placeholder="LEGAL ENTITY NAME" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold transition-all" />
-                <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="REGISTRY EMAIL" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold transition-all" />
-                <button type="submit" className="w-full bg-signal-gold text-[#002244] py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] shadow-xl hover:bg-white transition-all">GENERATE DIAGNOSTIC</button>
+                <input required value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} placeholder="LEGAL ENTITY NAME" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold focus:bg-white/10 transition-all placeholder:text-white/20" />
+                <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="REGISTRY EMAIL" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold focus:bg-white/10 transition-all placeholder:text-white/20" />
+                <button type="submit" className="w-full relative bg-signal-gold text-[#002244] py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] shadow-xl hover:bg-white transition-all overflow-hidden group/btn">
+                  <span className="relative z-10">GENERATE DIAGNOSTIC</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover/btn:animate-shine"></div>
+                </button>
               </form>
             ) : (
               <div className="py-10 space-y-4">
                 <div className="flex justify-center"><Loader2 className="animate-spin text-signal-gold" size={40} /></div>
                 <div className="bg-black/40 rounded-xl p-4 font-mono text-[9px] text-emerald-500 h-32 overflow-hidden shadow-inner">
-                  {scanLog.map((log, i) => <div key={i}>> {log}</div>)}
+                  {scanLog.map((log, i) => <div key={i}>&gt; {log}</div>)}
                 </div>
               </div>
             )}
@@ -228,13 +245,13 @@ const HomePage: React.FC = () => {
       <section className="py-32 px-10 md:px-20 lg:px-40 bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-5 relative group">
-            <div className="rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-slate-100 relative">
+            <div className="rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-slate-100 relative bg-slate-50">
               <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince" className="w-full grayscale hover:grayscale-0 transition-all duration-1000" />
               <div className="absolute bottom-0 left-0 w-full bg-[#002244] py-6 text-center">
                 <p className="text-[10px] font-black text-signal-gold uppercase tracking-[0.4em]">SYSTEM CUSTODIAN</p>
               </div>
             </div>
-            <div className="absolute -bottom-8 -right-8 bg-signal-gold p-8 rounded-3xl shadow-2xl border-8 border-white hidden lg:block group-hover:rotate-12 transition-transform">
+            <div className="absolute -bottom-8 -right-8 bg-signal-gold p-8 rounded-3xl shadow-2xl border-8 border-white hidden lg:block group-hover:rotate-12 transition-transform duration-500 hover:scale-110">
                <ShieldCheck size={40} className="text-[#002244]" />
             </div>
           </div>
@@ -264,17 +281,20 @@ const HomePage: React.FC = () => {
               { title: "Insurance Lapse", desc: "Missing renewal buffers that trigger immediate authority termination." },
               { title: "Hours of Service", desc: "Unassigned mileage traps that prove lack of systemic control." }
             ].map((card, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-3xl flex items-center justify-between group hover:bg-white/10 transition-all">
+              <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-3xl flex items-center justify-between group hover:bg-white/10 transition-all cursor-pointer">
                 <div>
                   <h4 className="font-black uppercase tracking-tight text-white group-hover:text-signal-gold transition-colors">{card.title}</h4>
                   <p className="text-sm text-slate-500 mt-1">{card.desc}</p>
                 </div>
-                <ChevronRight size={20} className="text-white/20" />
+                <ChevronRight size={20} className="text-white/20 group-hover:text-signal-gold group-hover:translate-x-1 transition-all" />
               </div>
             ))}
             <div className="pt-10">
-               <Link to="/reach-test" className="bg-red-600 text-white px-16 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-red-700 transition-all flex items-center justify-center w-full active:scale-95 border-b-8 border-red-900">
-                 TAKE THE RISK TEST
+               <Link 
+                to="/reach-test" 
+                className="bg-red-600 text-white px-16 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-red-700 transition-all flex items-center justify-center w-full active:scale-95 border-b-8 border-red-900 group"
+               >
+                 TAKE THE RISK TEST <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
                </Link>
             </div>
           </div>
@@ -323,14 +343,14 @@ const HomePage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
            {[
              { letter: "D", title: "Audit-Ready Infrastructure", desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards." },
-             { letter: "A", title: "Preferred Risk Profile", desc: "Maintain a safety record that forces insurance underwriters to offer your business the lowest possible rates." },
-             { letter: "F", title: "Financial Sovereignty", desc: "Use industrial-grade tracking to ensure every mile driven contributes to net wealth, not just revenue." }
-           ].map((card, i) => (
-             <div key={i} className="bg-white p-12 rounded-[4rem] border border-slate-200 flex flex-col items-center text-center space-y-10 group hover:shadow-2xl transition-all duration-700">
-                <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center font-black text-3xl text-signal-gold shadow-inner group-hover:scale-110 transition-transform">{card.letter}</div>
+             { letter: "A", title: "Preferred Risk Profile", desc: "Safety-first operational structure." },
+             { letter: "F", title: "Financial Stability", desc: "Systems that maximize operating margins." }
+           ].map((item, i) => (
+             <div key={i} className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm space-y-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center font-black text-2xl text-signal-gold">{item.letter}</div>
                 <div className="space-y-4">
-                  <h4 className="text-2xl font-black font-serif text-[#002244] uppercase tracking-tight leading-none group-hover:text-signal-gold transition-colors">{card.title}</h4>
-                  <p className="text-base font-bold text-slate-500 uppercase tracking-tighter leading-relaxed">{card.desc}</p>
+                  <h4 className="text-xl font-black text-[#002244] uppercase tracking-tight">{item.title}</h4>
+                  <p className="text-slate-500 font-medium leading-relaxed">{item.desc}</p>
                 </div>
              </div>
            ))}
@@ -347,14 +367,17 @@ const HomePage: React.FC = () => {
                Monthly operating costs per truck currently range from $10,300 – $18,800. 
             </p>
             <div className="pt-10">
-               <Link to="/tools/tco-calculator" className="bg-[#002244] text-white px-12 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-slate-800 transition-all active:scale-95 flex items-center w-fit border-b-8 border-black group">
-                 CALCULATE YOUR MATH <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
+               <Link to="/tools/tco-calculator" className="relative overflow-hidden bg-[#002244] text-white px-12 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-slate-800 transition-all active:scale-95 flex items-center w-fit border-b-8 border-black group">
+                 <span className="relative z-10 flex items-center">
+                   CALCULATE YOUR MATH <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
+                 </span>
+                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
                </Link>
             </div>
           </div>
           <div className="lg:col-span-5">
-             <div className="bg-[#002244] p-12 rounded-[4rem] text-white shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-8 opacity-10"><Calculator size={140} /></div>
+             <div className="bg-[#002244] p-12 rounded-[4rem] text-white shadow-2xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-10 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={140} /></div>
                 <div className="space-y-10 relative z-10">
                    <h4 className="text-xl font-black font-serif uppercase tracking-tight text-signal-gold italic">TCO Engine v4.0</h4>
                    <div className="space-y-6">
@@ -405,8 +428,14 @@ const HomePage: React.FC = () => {
            <div className="h-2 w-48 bg-signal-gold mx-auto rounded-full"></div>
            <p className="text-2xl md:text-4xl font-black text-white/50 max-w-4xl mx-auto uppercase tracking-tighter italic">"Order precedes revenue. Discipline precedes expansion. Wisdom precedes the riches."</p>
            <div className="flex flex-col sm:flex-row gap-8 justify-center pt-10">
-              <Link to="/reach-test" className="bg-signal-gold text-[#002244] px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white transition-all active:scale-95 border-b-8 border-slate-900">TAKE THE REACH TEST™</Link>
-              <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/10 transition-all">ADMISSION PROTOCOL</Link>
+              <Link 
+                to="/reach-test" 
+                className="relative overflow-hidden bg-signal-gold text-[#002244] px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white transition-all active:scale-95 border-b-8 border-slate-900 group"
+              >
+                <span className="relative z-10">TAKE THE REACH TEST™</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
+              </Link>
+              <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/10 transition-all flex items-center justify-center">ADMISSION PROTOCOL</Link>
            </div>
         </div>
       </section>

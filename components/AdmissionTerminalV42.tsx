@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from '../firebase';
 import { 
@@ -17,17 +17,13 @@ import {
 } from 'lucide-react';
 import Logo from './Logo';
 import SuccessProtocol from './SuccessProtocol';
+import { createUserProfile } from '../utils/userRoles';
 
 interface AdmissionTerminalV42Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
-/**
- * AdmissionTerminalV42: High-Security Registry Gate
- * Blueprint: image_798d1e.png
- * Refined for mobile-first responsiveness.
- */
 const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,23 +44,30 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
     try {
       if (!db || !auth) throw new Error("SYSTEM_OFFLINE");
 
-      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, "LaunchPathTemp123!");
+      // Use a secure temporary pattern for first-time registry
+      const tempPass = `LP!${Math.random().toString(36).slice(-8)}`;
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, tempPass);
       const user = userCredential.user;
 
+      await updateProfile(user, { displayName: formData.fullName });
+      
+      // Initialize profile in centralized 'users' collection
+      await createUserProfile(user.uid, formData.email, formData.fullName, 'free');
+      
+      // Log specific carrier meta-data
       await setDoc(doc(db, "operators", user.uid), {
-        fullName: formData.fullName,
-        email: formData.email,
         carrierName: formData.carrierName,
         dotNumber: formData.dotNumber,
-        enrolled: false,
-        createdAt: serverTimestamp(),
-        terminalVersion: '4.2.0'
+        terminalVersion: '4.2.0',
+        createdAt: serverTimestamp()
       });
 
       setIsSuccess(true);
     } catch (error: any) {
       console.error(error);
-      alert("ADMISSION ERROR: UNABLE TO SYNCHRONIZE REGISTRY.");
+      alert(error.code === 'auth/email-already-in-use' 
+        ? "IDENTITY CONFLICT: THIS EMAIL IS ALREADY ENROLLED." 
+        : "ADMISSION ERROR: UNABLE TO SYNCHRONIZE REGISTRY.");
     } finally {
       setIsSubmitting(false);
     }
@@ -78,7 +81,6 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
     <div className="fixed inset-0 z-[300] flex items-center justify-center p-0 sm:p-4 bg-[#002244]/98 backdrop-blur-xl animate-in fade-in duration-500 overflow-y-auto">
       <div className="bg-[#FAF9F6] dark:bg-primary-dark w-full max-w-5xl sm:rounded-[4rem] overflow-hidden shadow-2xl border-0 sm:border-[10px] border-white/5 relative flex flex-col lg:flex-row min-h-screen sm:min-h-0">
         
-        {/* LEFT PANE - STATUS (Optimized for Mobile) */}
         <div className="w-full lg:w-[38%] bg-[#002244] p-8 sm:p-14 text-white flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-white/10 shrink-0">
           <div className="space-y-8 sm:space-y-12 relative z-10">
             <div className="flex justify-between items-center lg:block lg:space-y-12">
@@ -103,7 +105,6 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
           </div>
         </div>
 
-        {/* RIGHT PANE - FORM */}
         <div className="flex-grow p-8 sm:p-16 lg:p-20 relative bg-white dark:bg-primary-dark">
           <button 
             onClick={onClose}

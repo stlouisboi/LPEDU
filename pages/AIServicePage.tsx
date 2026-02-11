@@ -22,7 +22,9 @@ import {
   Lock,
   Zap,
   Activity,
-  Cpu
+  Cpu,
+  ExternalLink,
+  Globe
 } from 'lucide-react';
 import { GoogleGenAI, LiveServerMessage, Modality, GenerateContentResponse } from '@google/genai';
 
@@ -81,13 +83,20 @@ const reassuringMessages = [
   "SYNTHESIZING COMPLIANCE VISUALS...", 
   "BAKING NEURAL LIGHT MODELS...", 
   "RENDERING MOTION VECTORS...",
-  "FINALIZING ADMINISTRATIVE RENDERING..."
+  "FINALIZING ADMINISTRATIVE RENDERING...",
+  "CROSS-REFERENCING REGULATORY ASSETS..."
 ];
+
+interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  sources?: { uri: string; title: string }[];
+}
 
 const AIServicePage = () => {
   const [activeTab, setActiveTab] = useState<'chat' | 'voice' | 'video'>('chat');
-  const [messages, setMessages] = useState<{role: 'user' | 'assistant', content: string}[]>([
-    { role: 'assistant', content: "SYSTEM_ONLINE: Welcome to the LaunchPath™ Compliance Advisor Terminal. How may I assist your authority today?" }
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    { role: 'assistant', content: "SYSTEM_ONLINE: Welcome to the LaunchPath™ Compliance Advisor Terminal. I am your high-fidelity advisor for 49 CFR Part 382, 391, and 396 regulations. How may I assist your authority today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -125,6 +134,15 @@ const AIServicePage = () => {
     checkKey();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+        audioContextRef.current.close().catch(() => {});
+      }
+      if (isLiveActive) stopLiveConversation();
+    };
+  }, [isLiveActive]);
+
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
     const userMessage = input.trim();
@@ -138,13 +156,31 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: "You are the LaunchPath™ Lead Compliance Specialist. Professional, authoritative tone. Accuracy Over Hype.",
+          systemInstruction: "You are the LaunchPath™ Lead Compliance Specialist. Professional, authoritative, institutional tone. Use Markdown for structured responses. Focus on Accuracy Over Hype. Always explain the logic behind federal regulations.",
+          tools: [{ googleSearch: {} }],
+          thinkingConfig: { thinkingBudget: 4000 },
           temperature: 0.2,
         }
       });
-      setMessages(prev => [...prev, { role: 'assistant', content: response.text || "COMMUNICATION_LINK_FAULT." }]);
+
+      const sources: { uri: string; title: string }[] = [];
+      const chunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
+      if (chunks && Array.isArray(chunks)) {
+        chunks.forEach((chunk: any) => {
+          if (chunk.web && chunk.web.uri) {
+            sources.push({ uri: chunk.web.uri, title: chunk.web.title || 'Regulatory Reference' });
+          }
+        });
+      }
+
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: response.text || "LOGIC_ERROR: Communication link timeout.",
+        sources: sources.length > 0 ? sources : undefined
+      }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "CRITICAL_FAULT: LINK LOST." }]);
+      console.error(error);
+      setMessages(prev => [...prev, { role: 'assistant', content: "CRITICAL_FAULT: Connection to neural advisor lost." }]);
     } finally {
       setIsLoading(false);
     }
@@ -157,7 +193,7 @@ const AIServicePage = () => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
-        contents: [{ parts: [{ text: `Read this professionally: ${text}` }] }],
+        contents: [{ parts: [{ text: `Synthesize this professional safety bulletin: ${text}` }] }],
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } },
@@ -167,7 +203,10 @@ const AIServicePage = () => {
       let base64Audio = '';
       if (response.candidates?.[0]?.content?.parts) {
         for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData?.data) { base64Audio = part.inlineData.data; break; }
+          if (part.inlineData?.data) {
+            base64Audio = part.inlineData.data;
+            break;
+          }
         }
       }
 
@@ -182,8 +221,12 @@ const AIServicePage = () => {
         source.connect(ctx.destination);
         source.onended = () => setIsSpeaking(null);
         source.start();
-      } else { setIsSpeaking(null); }
-    } catch (err) { setIsSpeaking(null); }
+      } else {
+        setIsSpeaking(null);
+      }
+    } catch (err) {
+      setIsSpeaking(null);
+    }
   };
 
   const startLiveConversation = async () => {
@@ -211,7 +254,16 @@ const AIServicePage = () => {
             scriptProcessor.connect(inputCtx.destination);
           },
           onmessage: async (message: LiveServerMessage) => {
-            let base64Audio = message.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
+            let base64Audio = '';
+            if (message.serverContent?.modelTurn?.parts) {
+              for (const part of message.serverContent.modelTurn.parts) {
+                if (part.inlineData?.data) {
+                  base64Audio = part.inlineData.data;
+                  break;
+                }
+              }
+            }
+
             if (base64Audio && liveAudioContextRef.current) {
               const outCtx = liveAudioContextRef.current.output;
               nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outCtx.currentTime);
@@ -219,31 +271,57 @@ const AIServicePage = () => {
               const source = outCtx.createBufferSource();
               source.buffer = buffer;
               source.connect(outCtx.destination);
+              source.addEventListener('ended', () => {
+                if (liveSourcesRef.current) liveSourcesRef.current.delete(source);
+              });
               source.start(nextStartTimeRef.current);
               nextStartTimeRef.current += buffer.duration;
               liveSourcesRef.current.add(source);
             }
+            if (message.serverContent?.interrupted) {
+              if (liveSourcesRef.current) {
+                liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
+                liveSourcesRef.current.clear();
+              }
+              nextStartTimeRef.current = 0;
+            }
           },
           onclose: () => setIsLiveActive(false),
-          onerror: () => setIsLiveActive(false)
+          onerror: (e) => {
+            console.error("Live Error", e);
+            setIsLiveActive(false);
+          }
         },
         config: {
           responseModalities: [Modality.AUDIO],
           speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } },
-          systemInstruction: 'You are the LaunchPath Live Assistant. Professional and direct.'
+          systemInstruction: 'You are the LaunchPath Live Assistant. Speak clearly and professionally. You provide immediate compliance clarity for owner-operators.'
         }
       });
       liveSessionRef.current = sessionPromise;
-    } catch (err) { alert("Microphone access required."); }
+    } catch (err) {
+      alert("Terminal access requires microphone authorization.");
+    }
   };
 
   const stopLiveConversation = () => {
-    if (liveSessionRef.current) liveSessionRef.current.then((s: any) => s.close());
+    if (liveSessionRef.current) {
+      liveSessionRef.current.then((s: any) => { try { s.close(); } catch(e) {} });
+    }
     setIsLiveActive(false);
+    if (liveAudioContextRef.current) {
+      liveAudioContextRef.current.input.close().catch(() => {});
+      liveAudioContextRef.current.output.close().catch(() => {});
+      liveAudioContextRef.current = null;
+    }
+    if (liveSourcesRef.current) {
+      liveSourcesRef.current.forEach(s => { try { s.stop(); } catch(e) {} });
+      liveSourcesRef.current.clear();
+    }
   };
 
   const generateVideo = async () => {
-    if (!videoPrompt.trim() || isGeneratingVideo) return;
+    if ((!videoPrompt && !videoFile) || isGeneratingVideo) return;
     setIsGeneratingVideo(true);
     setGenMessage(reassuringMessages[0]);
     const msgInterval = setInterval(() => {
@@ -252,17 +330,30 @@ const AIServicePage = () => {
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      let operation = await ai.models.generateVideos({
+      let config: any = {
         model: 'veo-3.1-fast-generate-preview',
-        prompt: `Trucking professional visual: ${videoPrompt}`,
+        prompt: `Cinematic professional trucking visualization: ${videoPrompt}`,
         config: { numberOfVideos: 1, resolution: '720p', aspectRatio: aspectRatio }
-      });
+      };
+      
+      if (videoFile) {
+        const reader = new FileReader();
+        const base64 = await new Promise<string>((res) => {
+          reader.onload = () => res((reader.result as string).split(',')[1]);
+          reader.readAsDataURL(videoFile);
+        });
+        config.image = { imageBytes: base64, mimeType: videoFile.type };
+      }
+
+      let operation = await ai.models.generateVideos(config);
 
       while (!operation.done) {
         await new Promise(resolve => setTimeout(resolve, 10000));
         const pollAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
         operation = await pollAi.operations.getVideosOperation({ operation });
       }
+
+      if (operation.error) throw new Error(operation.error.message);
 
       const downloadLink = operation.response?.generatedVideos?.[0]?.video?.uri;
       if (downloadLink) {
@@ -271,8 +362,13 @@ const AIServicePage = () => {
         setVideoResult(URL.createObjectURL(blob));
       }
     } catch (err: any) {
-      console.error(err);
-      alert("Synthesis fault.");
+      if (err.message?.includes("Requested entity was not found")) {
+        setHasApiKey(false);
+        alert("Authorization required. Please select your API key again.");
+      } else {
+        console.error(err);
+        alert("Video synthesis failure. Verify visual directives.");
+      }
     } finally {
       clearInterval(msgInterval);
       setIsGeneratingVideo(false);
@@ -280,94 +376,146 @@ const AIServicePage = () => {
   };
 
   return (
-    <div className="bg-[#FAF9F6] dark:bg-[#020617] min-h-screen pt-20 pb-8 px-4 sm:px-6 lg:px-12 font-sans overflow-x-hidden">
-      <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 h-auto lg:h-[calc(100vh-140px)]">
+    <div className="bg-[#FAF9F6] dark:bg-[#020617] min-h-screen pt-24 pb-12 font-sans selection:bg-[#C5A059]/20">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 h-[calc(100vh-160px)]">
         
-        {/* SIDEBAR NAVIGATION */}
-        <aside className="lg:col-span-3 space-y-4 lg:space-y-8 flex flex-col">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 rounded-[2rem] sm:rounded-[3rem] shadow-xl relative overflow-hidden flex-shrink-0">
-            <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-6 flex items-center">
-              <Bot size={16} className="mr-2" /> MODES
+        {/* Sidebar Terminal Controls */}
+        <aside className="lg:col-span-3 space-y-8 h-full flex flex-col">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-[3rem] shadow-xl relative overflow-hidden flex-shrink-0">
+            <div className="absolute top-0 right-0 p-6 opacity-[0.03] rotate-12"><Cpu size={120}/></div>
+            <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold mb-10 flex items-center">
+              <Bot size={18} className="mr-3" /> ADVISORY MODES
             </h2>
-            <nav className="space-y-2 sm:space-y-4">
+            <nav className="space-y-4">
               {[
-                { id: 'chat', label: 'Compliance GPT', icon: <MessageCircle size={20} /> },
-                { id: 'voice', label: 'Live Link', icon: <Mic size={20} /> },
-                { id: 'video', label: 'Video Studio', icon: <Video size={20} /> }
+                { id: 'chat', label: 'Compliance GPT', icon: <MessageCircle size={20} />, desc: 'Text-based consultation' },
+                { id: 'voice', label: 'Live Link', icon: <Mic size={20} />, desc: 'Voice-to-voice uplink' },
+                { id: 'video', label: 'Video Studio', icon: <Video size={20} />, desc: 'Asset synthesis terminal' }
               ].map(tab => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`w-full p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all flex items-center space-x-4 border-2 ${
+                  className={`w-full p-6 rounded-3xl transition-all flex items-center space-x-5 group border-2 ${
                     activeTab === tab.id 
-                    ? 'bg-authority-blue border-authority-blue text-white shadow-xl' 
-                    : 'bg-slate-50 dark:bg-slate-800/50 border-transparent text-slate-500 hover:border-slate-200'
+                    ? 'bg-authority-blue border-authority-blue text-white shadow-2xl scale-[1.03]' 
+                    : 'bg-slate-50 dark:bg-slate-800/50 border-transparent text-slate-500 hover:border-slate-200 dark:hover:border-slate-700'
                   }`}
                 >
-                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${activeTab === tab.id ? 'bg-white/20' : 'bg-white dark:bg-slate-700 shadow-inner'}`}>
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-white/20' : 'bg-white dark:bg-slate-700 shadow-inner group-hover:scale-110'}`}>
                     {tab.icon}
                   </div>
                   <div className="text-left">
                     <p className="font-black text-xs uppercase tracking-widest">{tab.label}</p>
+                    <p className={`text-[10px] uppercase font-bold opacity-60 ${activeTab === tab.id ? 'text-white' : 'text-slate-400'}`}>{tab.desc}</p>
                   </div>
                 </button>
               ))}
             </nav>
           </div>
 
-          <div className="hidden lg:flex bg-authority-blue p-8 rounded-[3rem] text-white shadow-2xl relative overflow-hidden flex-grow flex-col justify-end">
+          <div className="bg-authority-blue p-8 rounded-[3rem] text-white shadow-2xl relative overflow-hidden flex-grow flex flex-col justify-end">
              <div className="absolute top-0 right-0 p-8 opacity-5 scale-150"><Zap size={200}/></div>
              <div className="relative z-10 space-y-4">
                 <div className="flex items-center space-x-3 text-signal-gold">
                    <Activity size={18} className="animate-pulse" />
-                   <p className="text-[10px] font-black uppercase tracking-[0.4em]">SYSTEM ACTIVE</p>
+                   <p className="text-[10px] font-black uppercase tracking-[0.4em]">SYSTEM STATUS</p>
                 </div>
-                <h3 className="text-2xl font-black font-serif uppercase tracking-tight">Institutional <br/><span className="text-signal-gold italic">Uplink.</span></h3>
+                <h3 className="text-2xl font-black font-serif uppercase tracking-tight">Institutional <br/><span className="text-signal-gold italic">Uplink Active.</span></h3>
+                <p className="text-sm font-medium text-white/50 leading-relaxed uppercase tracking-tighter">
+                  Advisory models synchronized to latest 49 CFR Part 382/391 standards.
+                </p>
              </div>
           </div>
         </aside>
 
-        {/* MAIN CONSOLE */}
-        <main className="lg:col-span-9 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] sm:rounded-[4rem] shadow-2xl overflow-hidden flex flex-col relative min-h-[500px]">
+        {/* Primary Interactive Console */}
+        <main className="lg:col-span-9 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[4rem] shadow-2xl overflow-hidden flex flex-col relative group">
           
           {activeTab === 'chat' && (
             <>
-              <div ref={scrollRef} className="flex-grow overflow-y-auto p-6 sm:p-10 lg:p-12 space-y-8 sm:space-y-12 scroll-smooth custom-scrollbar">
+              <div ref={scrollRef} className="flex-grow overflow-y-auto p-12 space-y-12 scroll-smooth custom-scrollbar">
                 {messages.map((m, i) => (
-                  <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2`}>
-                    <div className="flex items-start max-w-[90%] sm:max-w-[85%] space-x-4 sm:space-x-6">
+                  <div key={i} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'} animate-in fade-in slide-in-from-bottom-4`}>
+                    <div className="flex items-start max-w-[85%] space-x-6">
                       {m.role === 'assistant' && (
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-authority-blue rounded-xl sm:rounded-2xl flex items-center justify-center text-white shrink-0 mt-1">
-                          <Bot size={20} />
+                        <div className="w-12 h-12 bg-authority-blue rounded-2xl flex items-center justify-center text-white shrink-0 shadow-xl border border-white/10 mt-1">
+                          <Bot size={24} />
                         </div>
                       )}
-                      <div className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] ${
+                      <div className={`p-10 rounded-[3rem] ${
                         m.role === 'user' 
                         ? 'bg-authority-blue text-white rounded-tr-none shadow-2xl' 
                         : 'bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-800 rounded-tl-none'
                       }`}>
-                        <div className="text-base sm:text-lg font-medium leading-relaxed">
-                          {m.content}
+                        <div className="text-lg font-medium leading-relaxed prose dark:prose-invert max-w-none">
+                          {m.content.split('\n').map((line, li) => <p key={li} className="mb-4 last:mb-0">{line}</p>)}
                         </div>
+                        
+                        {m.sources && (
+                          <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700 flex flex-wrap gap-4">
+                            <div className="flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-slate-400 w-full mb-2">
+                               <Globe size={14} />
+                               <span>Regulatory Sources:</span>
+                            </div>
+                            {m.sources.map((src, sIdx) => (
+                              <a 
+                                key={sIdx} href={src.uri} target="_blank" rel="noopener noreferrer"
+                                className="flex items-center px-4 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-signal-gold hover:shadow-md transition-all active:scale-95"
+                              >
+                                {src.title} <ExternalLink size={12} className="ml-2" />
+                              </a>
+                            ))}
+                          </div>
+                        )}
+
                         {m.role === 'assistant' && (
-                          <button onClick={() => speakMessage(m.content, i)} className={`mt-6 flex items-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] py-2 px-4 rounded-xl border transition-all ${isSpeaking === i ? 'text-signal-gold border-signal-gold animate-pulse' : 'text-authority-blue border-slate-200 dark:text-signal-gold'}`}>
-                            {isSpeaking === i ? <Volume2 size={16} /> : <VolumeX size={16} />}
-                            <span>{isSpeaking === i ? 'Speaking' : 'Speak'}</span>
+                          <button 
+                            onClick={() => speakMessage(m.content, i)} 
+                            className={`mt-8 flex items-center space-x-4 text-[10px] font-black uppercase tracking-[0.3em] py-3 px-6 rounded-2xl border transition-all ${
+                              isSpeaking === i 
+                              ? 'text-signal-gold border-signal-gold bg-signal-gold/5 animate-pulse shadow-lg' 
+                              : 'text-authority-blue border-slate-200 dark:border-slate-700 dark:text-signal-gold hover:bg-white dark:hover:bg-slate-700 hover:shadow-md'
+                            }`}
+                          >
+                            {isSpeaking === i ? <Volume2 size={18} /> : <VolumeX size={18} />}
+                            <span>{isSpeaking === i ? 'Advisor speaking' : 'Synthesize Audio'}</span>
                           </button>
                         )}
                       </div>
+                      {m.role === 'user' && (
+                        <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-authority-blue dark:text-signal-gold shrink-0 shadow-xl border border-slate-100 dark:border-slate-700 mt-1">
+                          <User size={24} />
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
+                {isLoading && (
+                  <div className="flex justify-start">
+                    <div className="flex items-start space-x-6 animate-pulse">
+                      <div className="w-12 h-12 bg-authority-blue/10 rounded-2xl flex items-center justify-center text-authority-blue shrink-0">
+                        <Bot size={24} />
+                      </div>
+                      <div className="bg-slate-50 dark:bg-slate-800/50 p-10 rounded-[3rem] rounded-tl-none border border-slate-100 dark:border-slate-800 flex space-x-3">
+                         <div className="w-2.5 h-2.5 bg-authority-blue rounded-full animate-bounce"></div>
+                         <div className="w-2.5 h-2.5 bg-authority-blue rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                         <div className="w-2.5 h-2.5 bg-authority-blue rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="p-4 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-3xl border-t border-slate-200 dark:border-slate-800">
-                <div className="max-w-4xl mx-auto flex items-center space-x-3 sm:space-x-6">
-                  <input 
-                    type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Input inquiry..." className="w-full bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 pl-6 sm:pl-10 pr-6 py-4 sm:py-6 rounded-[2rem] sm:rounded-[3rem] outline-none shadow-xl font-bold text-base transition-all"
-                  />
-                  <button onClick={handleSend} disabled={isLoading || !input.trim()} className="bg-authority-blue text-white p-5 sm:p-6 rounded-full hover:bg-slate-800 active:scale-95 shadow-xl disabled:opacity-50 shrink-0">
-                    <Send className="w-6 h-6" />
+              <div className="p-10 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-3xl border-t border-slate-200 dark:border-slate-800">
+                <div className="max-w-4xl mx-auto flex items-center space-x-6">
+                  <div className="relative flex-grow">
+                    <input 
+                      type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                      placeholder="Input regulatory inquiry here..." className="w-full bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 pl-10 pr-20 py-7 rounded-[3rem] outline-none shadow-2xl font-black text-lg transition-all focus:border-authority-blue dark:focus:border-signal-gold"
+                    />
+                    <Sparkles className="absolute right-8 top-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold opacity-30 group-hover:opacity-100 transition-opacity" size={28} />
+                  </div>
+                  <button onClick={handleSend} disabled={isLoading || !input.trim()} className="bg-authority-blue text-white p-7 rounded-[2rem] hover:bg-slate-800 active:scale-95 shadow-2xl shadow-authority-blue/20 disabled:opacity-50 transition-all border-b-4 border-slate-950">
+                    <Send className="w-7 h-7" />
                   </button>
                 </div>
               </div>
@@ -375,58 +523,112 @@ const AIServicePage = () => {
           )}
 
           {activeTab === 'voice' && (
-            <div className="flex-grow flex flex-col items-center justify-center p-8 sm:p-20 text-center">
-              <div className={`w-40 h-40 sm:w-56 sm:h-56 rounded-[4rem] sm:rounded-[5rem] flex items-center justify-center mx-auto transition-all duration-700 border-[4px] sm:border-[6px] mb-12 ${isLiveActive ? 'bg-authority-blue border-signal-gold shadow-[0_0_80px_rgba(212,175,55,0.3)]' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 opacity-50'}`}>
-                <Mic size={64} className={isLiveActive ? 'text-white' : 'text-slate-300'} />
+            <div className="flex-grow flex flex-col items-center justify-center p-20 bg-gradient-to-b from-transparent to-authority-blue/[0.02]">
+              <div className="text-center mb-20 space-y-12">
+                <div className="relative inline-block">
+                  <div className={`w-56 h-56 rounded-[5rem] flex items-center justify-center mx-auto transition-all duration-1000 border-[6px] ${isLiveActive ? 'bg-authority-blue border-signal-gold shadow-[0_0_100px_rgba(212,175,55,0.4)] scale-110' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 opacity-50'}`}>
+                    <Mic size={96} className={isLiveActive ? 'text-white' : 'text-slate-300'} />
+                  </div>
+                  {isLiveActive && <div className="absolute inset-0 bg-signal-gold/30 rounded-[5rem] animate-ping"></div>}
+                </div>
+                <div>
+                  <h2 className="text-6xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Voice Terminal</h2>
+                  <div className="h-2 w-24 bg-signal-gold mx-auto mt-6 rounded-full"></div>
+                  <p className="text-xl text-slate-400 mt-6 font-black uppercase tracking-[0.4em]">Live Multi-Modal Interface</p>
+                </div>
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white mb-10">Voice Link</h2>
+              
               <button
                 onClick={isLiveActive ? stopLiveConversation : startLiveConversation}
-                className={`px-12 sm:px-20 py-5 sm:py-8 rounded-[2rem] sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[10px] sm:text-sm shadow-2xl transition-all border-b-4 sm:border-b-[12px] ${
-                  isLiveActive ? 'bg-red-600 text-white border-red-900' : 'bg-authority-blue text-white border-slate-950'
+                className={`flex items-center space-x-8 px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] active:scale-95 transition-all border-b-[12px] ${
+                  isLiveActive 
+                  ? 'bg-red-600 text-white border-red-900 hover:bg-red-700' 
+                  : 'bg-authority-blue text-white border-slate-950 hover:bg-slate-800'
                 }`}
               >
-                {isLiveActive ? 'Terminate Link' : 'Establish Link'}
+                {isLiveActive ? <PhoneOff size={32} /> : <Phone size={32} />}
+                <span>{isLiveActive ? 'Terminate Uplink' : 'Establish Advisory Link'}</span>
               </button>
+
+              <div className="mt-20 flex items-center space-x-4 opacity-40">
+                 <Lock size={16} className="text-signal-gold" />
+                 <p className="text-[11px] font-black uppercase tracking-[0.5em]">Institutional Encryption Standard Active</p>
+              </div>
             </div>
           )}
 
           {activeTab === 'video' && (
-            <div className="flex-grow overflow-y-auto p-6 sm:p-12 lg:p-20 custom-scrollbar">
+            <div className="flex-grow overflow-y-auto p-12 lg:p-20 custom-scrollbar">
               {!hasApiKey ? (
-                <div className="max-w-2xl mx-auto p-10 sm:p-20 bg-amber-50 dark:bg-amber-950/20 rounded-[2.5rem] sm:rounded-[4rem] text-center space-y-10 border-2 border-amber-200">
-                  <ShieldAlert className="mx-auto text-amber-600" size={64} />
-                  <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-amber-800 dark:text-amber-400 font-serif">Key Required</h3>
-                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-10 py-5 rounded-[2rem] font-black uppercase tracking-widest text-[10px] shadow-xl hover:bg-amber-700">Authorize Key</button>
+                <div className="max-w-2xl mx-auto p-20 bg-amber-50 dark:bg-amber-950/20 rounded-[4rem] text-center space-y-12 border-2 border-amber-200 dark:border-amber-900/40 shadow-2xl mt-12 animate-reveal-up">
+                  <ShieldAlert className="mx-auto text-amber-600" size={100} />
+                  <div className="space-y-4">
+                    <h3 className="text-4xl font-black uppercase tracking-tighter text-amber-800 dark:text-amber-400 font-serif leading-none">Studio Key Required</h3>
+                    <p className="text-lg font-bold text-amber-700/60 dark:text-amber-300/60 leading-relaxed uppercase tracking-widest">
+                      Visual synthesis requires a validated Google AI Studio key.
+                    </p>
+                  </div>
+                  <button onClick={() => window.aistudio.openSelectKey().then(() => setHasApiKey(true))} className="bg-amber-600 text-white px-16 py-8 rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs shadow-2xl hover:bg-amber-700 active:scale-95 transition-all border-b-8 border-amber-900">Authorize Terminal Key</button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
-                   <div className="space-y-8 sm:space-y-12">
-                     <div className="bg-slate-50 dark:bg-slate-800/50 p-6 sm:p-10 rounded-[2rem] sm:rounded-[4rem] border border-slate-100">
-                       <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue mb-6">Directives</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                   <div className="space-y-12 animate-reveal-up">
+                     <div className="bg-slate-50 dark:bg-slate-800/50 p-10 rounded-[4rem] border border-slate-100 dark:border-slate-800 shadow-inner">
+                       <h3 className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold mb-8 flex items-center">
+                          <Terminal size={18} className="mr-3" /> PRODUCTION DIRECTIVES
+                       </h3>
                        <textarea 
-                        rows={6} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} 
-                        placeholder="Describe visualization..." 
-                        className="w-full bg-white dark:bg-slate-900 border-2 border-slate-100 p-6 sm:p-8 rounded-[2rem] font-black text-lg focus:border-authority-blue outline-none shadow-2xl" 
+                        rows={8} value={videoPrompt} onChange={e => setVideoPrompt(e.target.value)} 
+                        placeholder="Describe the cinematic visualization (e.g. 'A professional box truck carrier inspecting a new unit at a clean logistics facility')..." 
+                        className="w-full bg-white dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 p-8 rounded-[3rem] font-black text-lg focus:border-authority-blue dark:focus:border-signal-gold outline-none shadow-2xl transition-all" 
                        />
                      </div>
-                     <button onClick={generateVideo} disabled={isGeneratingVideo || !videoPrompt.trim()} className="w-full py-6 sm:py-8 rounded-[2rem] sm:rounded-[3rem] bg-authority-blue text-white font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs flex items-center justify-center shadow-2xl group border-b-4 sm:border-b-[10px] border-slate-950">
-                        {isGeneratingVideo ? <Loader2 className="animate-spin mr-3" /> : <Film className="mr-3" />}
-                        Synthesize
+                     
+                     <div className="space-y-8 px-6">
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">Cinematic Framework</h3>
+                        <div className="flex gap-6">
+                          {(['16:9', '9:16'] as const).map(ratio => (
+                            <button 
+                              key={ratio} onClick={() => setAspectRatio(ratio)}
+                              className={`flex-grow py-6 rounded-3xl font-black border-2 transition-all uppercase tracking-widest text-[11px] ${aspectRatio === ratio ? 'bg-authority-blue border-authority-blue text-white shadow-2xl scale-105' : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-400 hover:border-authority-blue'}`}
+                            >
+                              {ratio === '16:9' ? 'Landscape (16:9)' : 'Portrait (9:16)'}
+                            </button>
+                          ))}
+                        </div>
+                     </div>
+
+                     <button onClick={generateVideo} disabled={isGeneratingVideo || !videoPrompt.trim()} className="w-full py-10 rounded-[3rem] bg-authority-blue text-white font-black uppercase tracking-[0.5em] text-sm flex items-center justify-center shadow-2xl hover:bg-slate-800 active:scale-95 disabled:opacity-30 group border-b-[12px] border-slate-950 transition-all">
+                        {isGeneratingVideo ? <Loader2 className="animate-spin mr-5" size={32} /> : <Film className="mr-5 group-hover:rotate-12 transition-transform" size={32} />}
+                        SYNTESIZE ASSET
                      </button>
                    </div>
                    
-                   <div className="bg-slate-50 dark:bg-slate-800/30 rounded-[3rem] sm:rounded-[5rem] border-4 border-dashed border-slate-200 flex flex-col items-center justify-center min-h-[400px] sm:min-h-[600px] relative overflow-hidden group shadow-inner">
+                   <div className="space-y-8 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
+                      <h3 className="text-[11px] font-black uppercase tracking-[0.5em] text-authority-blue dark:text-signal-gold mb-8">SYNTHESIS MONITOR</h3>
+                      <div className="bg-slate-50 dark:bg-slate-800/30 rounded-[5rem] border-4 border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center min-h-[600px] relative overflow-hidden group shadow-inner">
                         {isGeneratingVideo ? (
-                          <div className="text-center space-y-6 px-10">
-                             <div className="w-20 h-20 sm:w-32 sm:h-32 bg-authority-blue/5 rounded-full border-4 sm:border-[6px] border-authority-blue border-t-transparent animate-spin mx-auto"></div>
-                             <p className="font-black text-sm sm:text-2xl uppercase tracking-[0.3em] text-authority-blue animate-pulse leading-tight">{genMessage}</p>
+                          <div className="text-center space-y-10 px-12">
+                            <div className="relative">
+                              <div className="w-32 h-32 bg-authority-blue/5 rounded-full border-[6px] border-authority-blue border-t-transparent dark:border-signal-gold dark:border-t-transparent animate-spin mx-auto shadow-2xl"></div>
+                              <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-authority-blue dark:text-signal-gold" size={40} />
+                            </div>
+                            <div className="space-y-4">
+                               <p className="font-black text-2xl uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold animate-pulse leading-tight">{genMessage}</p>
+                               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest italic">Veo 3.1 Neural Production Engine</p>
+                            </div>
                           </div>
                         ) : videoResult ? (
-                          <video src={videoResult} controls className="w-full h-full object-cover rounded-[3rem] sm:rounded-[4.6rem]" />
+                          <div className="w-full h-full animate-in zoom-in-95 duration-1000">
+                            <video src={videoResult} controls className="w-full h-full object-cover rounded-[4.6rem]" />
+                          </div>
                         ) : (
-                          <Film size={80} className="opacity-10" />
+                          <div className="text-center p-20 opacity-20 group-hover:opacity-40 transition-opacity">
+                             <Monitor size={120} className="mx-auto mb-10" />
+                             <p className="uppercase font-black tracking-[0.8em] text-sm">Monitor Standby</p>
+                          </div>
                         )}
+                      </div>
                    </div>
                 </div>
               )}
@@ -437,5 +639,12 @@ const AIServicePage = () => {
     </div>
   );
 };
+
+// Reusable monitor icon component for the video state
+const Monitor = ({ size, className }: { size: number, className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+  </svg>
+);
 
 export default AIServicePage;

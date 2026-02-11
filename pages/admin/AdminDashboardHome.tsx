@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   BarChart3, 
@@ -21,7 +20,7 @@ import {
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
-import { useAuth } from '../../AuthContext';
+import { useAuth } from '../../EnhancedAuthContext';
 import SettingsManager from './SettingsManager';
 
 const AdminDashboardHome = () => {

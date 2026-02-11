@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
-import { useAuth } from '../../AuthContext';
+import { useEnhancedAuth } from '../../EnhancedAuthContext';
 import Logo from '../../components/Logo';
 import { 
   LayoutDashboard, 
@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 const AdminLayout = () => {
-  const { logout } = useAuth();
+  const { logout } = useEnhancedAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [isSidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1024);

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -305,7 +304,7 @@ const ReachTestPage = () => {
                 </div>
 
                 <div className="flex flex-col items-center lg:items-start gap-8">
-                  <Link to="/readiness" className="bg-white text-authority-blue px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.25em] text-sm hover:bg-signal-gold hover:text-white transition-all shadow-xl active:scale-95 inline-flex items-center group">
+                  <Link to="/reach-test" className="bg-white text-authority-blue px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.25em] text-sm hover:bg-signal-gold hover:text-white transition-all shadow-xl active:scale-95 inline-flex items-center group">
                     <span>Initiate Diagnostic Assessment</span>
                     <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
                   </Link>
