@@ -51,7 +51,6 @@ const RequestAdmission: React.FC = () => {
       <section className="py-24 px-6 max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
-          {/* STAT CARD */}
           <div className="lg:col-span-5 bg-[#002244] p-12 rounded-[4rem] text-white flex flex-col justify-between relative overflow-hidden group shadow-2xl">
             <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:scale-110 transition-transform duration-700">
               <TrendingDown size={180} />
@@ -63,13 +62,11 @@ const RequestAdmission: React.FC = () => {
             </div>
             <div className="pt-12 border-t border-white/10 mt-12 relative z-10">
               <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest leading-relaxed">
-                Over 159,000 new DOT numbers were issued in 2023 alone. The market does not lack entrants. It lacks survivors.
-                <br/><span className="text-signal-gold/40 italic">Source: FMCSA Motor Carrier Industry Statistics</span>
+                Nearly half of all entrants cease operations within 36 months. The market lacks survivors with institutional infrastructure.
               </p>
             </div>
           </div>
 
-          {/* FAILURE VECTORS */}
           <div className="lg:col-span-7 bg-white dark:bg-surface-dark p-12 rounded-[4rem] border border-slate-100 dark:border-border-dark shadow-sm space-y-12">
             {[
               { 
@@ -108,7 +105,6 @@ const RequestAdmission: React.FC = () => {
           <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/5 items-stretch relative z-10">
-            {/* EXPOSURE SIDE */}
             <div className="p-16 space-y-10">
                <p className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px]">Operational Exposure</p>
                <h3 className="text-2xl font-bold text-white/50 uppercase tracking-tight font-serif">Cost of One Serious Violation</h3>
@@ -118,7 +114,6 @@ const RequestAdmission: React.FC = () => {
                </div>
             </div>
 
-            {/* GUARD SIDE */}
             <div className="p-16 space-y-10 bg-white/[0.02]">
                <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">Institutional Guard</p>
                <h3 className="text-2xl font-bold text-white uppercase tracking-tight font-serif">LaunchPath Implementation Investment</h3>
@@ -130,106 +125,68 @@ const RequestAdmission: React.FC = () => {
           </div>
           
           <div className="bg-black/40 py-12 px-8 text-center border-t border-white/5">
-             <p className="text-2xl md:text-4xl font-black font-serif italic text-white/60 tracking-tight max-w-4xl mx-auto leading-tight">
-               "THE INVESTMENT IS NOT THE RISK. THE ABSENCE OF INFRASTRUCTURE IS THE RISK."
+             <p className="text-2xl md:text-4xl font-black font-serif italic text-white/60 tracking-tight max-w-4xl mx-auto leading-tight uppercase">
+               "The investment is not the risk. The absence of infrastructure is the risk."
              </p>
-             <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 mt-8">Source: FMCSA 2024</p>
           </div>
         </div>
       </section>
 
-      {/* SECTION: WHAT YOU'RE BUILDING */}
+      {/* SECTION: SYSTEM COMPONENTS (THE GAP FIX) */}
       <section className="py-32 px-6 max-w-7xl mx-auto">
-        <div className="space-y-12 mb-24">
-           <div className="space-y-4">
-              <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">SCOPE OF ADMISSION</p>
-              <h2 className="text-5xl md:text-8xl font-black font-serif uppercase text-[#002244] dark:text-white leading-[0.85] tracking-tighter">
-                WHAT YOU'RE <br/><span className="text-signal-gold italic">BUILDING.</span>
-              </h2>
-           </div>
-           <p className="text-2xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold max-w-4xl leading-relaxed">
-             Your $2,500 implementation investment covers the complete 90-Day Survival System — not a course library, but an operational infrastructure designed to keep your authority intact.
-           </p>
+        <div className="mb-20 text-center">
+          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">SYSTEM <span className="text-signal-gold italic">COMPONENTS.</span></h2>
+          <p className="text-lg text-slate-500 font-bold mt-4">Verification of Inclusion and Institutional Boundaries.</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-surface-dark rounded-[4rem] border border-slate-100 dark:border-white/5 overflow-hidden shadow-2xl items-stretch">
-           <div className="p-12 md:p-20 space-y-12">
-              <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue border-b border-slate-100 pb-4">Curriculum & Training</h3>
-              <div className="space-y-8">
-                 {[
-                   { icon: <Layers size={18} />, title: "6 Sequential Modules", desc: "Technical deployment of the Operating Standard across the 90-day window." },
-                   { icon: <BookOpen size={18} />, title: "46 Functional Lessons", desc: "Procedural walkthroughs of 49 CFR federal requirements." }
-                 ].map((item, i) => (
-                   <div key={i} className="flex gap-6 group">
-                      <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0 text-authority-blue border border-slate-100 transition-transform group-hover:scale-110">
-                        {item.icon}
-                      </div>
-                      <div className="space-y-1">
-                        <h4 className="font-black text-[#002244] dark:text-white uppercase tracking-tight text-lg">{item.title}</h4>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
-                      </div>
-                   </div>
-                 ))}
-              </div>
-           </div>
-
-           <div className="p-12 md:p-20 space-y-12 bg-slate-50 dark:bg-[#0c1a2d]">
-              <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold border-b border-white/5 pb-4">Tools & Infrastructure</h3>
-              <div className="space-y-8">
-                 {[
-                   { icon: <Calculator size={18} />, title: "TCO Economic Engine", desc: "Proprietary margin analysis and break-even RPM logic terminal." },
-                   { icon: <FileText size={18} />, title: "DQ File Templates", desc: "Audit-ready document factory for clinical driver records." },
-                   { icon: <Bot size={18} />, title: "Compliance Assistant", desc: "24/7 high-fidelity regulatory advisor terminal access." }
-                 ].map((item, i) => (
-                   <div key={i} className="flex gap-6 group">
-                      <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0 text-signal-gold border border-slate-100 dark:border-white/5 transition-transform group-hover:scale-110">
-                        {item.icon}
-                      </div>
-                      <div className="space-y-1">
-                        <h4 className="font-black text-[#002244] dark:text-white uppercase tracking-tight text-lg">{item.title}</h4>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
-                      </div>
-                   </div>
-                 ))}
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* SECTION: WHAT WE DON'T DO (GRID) */}
-      <section className="py-32 px-6 max-w-7xl mx-auto">
-        <div className="space-y-8 mb-20">
-           <p className="text-[11px] font-black uppercase tracking-[0.4em] text-red-500">Institutional Boundaries</p>
-           <h2 className="text-5xl md:text-[5.5rem] font-black font-serif uppercase text-[#002244] dark:text-white leading-[0.85] tracking-tighter">
-             WHAT WE <span className="text-red-500 italic">DON'T DO.</span>
-           </h2>
-           <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-3xl leading-relaxed">
-             LaunchPath is an education and implementation system. We build infrastructure. We do not operate your business.
-           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-           {[
-             "Legal Advice or Legal Representation",
-             "Dispatch Services or Load Booking",
-             "Insurance Brokerage or Policy Placement",
-             "Guaranteed FMCSA Audit Outcomes",
-             "Tax Preparation or Financial Advisory",
-             "Ongoing Consulting or Coaching Retainers"
-           ].map((item, i) => (
-             <div key={i} className="bg-white dark:bg-surface-dark border-2 border-slate-100 dark:border-border-dark p-10 rounded-[3rem] flex flex-col items-start space-y-6 group hover:border-red-500/20 transition-all duration-500 shadow-sm hover:shadow-2xl">
-                <div className="w-12 h-12 bg-red-50 dark:bg-red-950/20 rounded-2xl flex items-center justify-center text-red-500 border border-red-100 dark:border-red-900/30">
-                  <XCircle size={20} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+          {/* INCLUSIONS */}
+          <div className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-12 rounded-[4rem] shadow-sm space-y-10">
+            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold border-b pb-4">Standard Inclusions</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {[
+                { title: "6 Core Modules", icon: <Layers />, desc: "Structured implementation sequence." },
+                { title: "46 Functional Lessons", icon: <BookOpen />, desc: "High-fidelity procedural training." },
+                { title: "TCO Economic Engine", icon: <Calculator />, desc: "Clinical margin analysis terminal." },
+                { title: "DQ File Factory", icon: <FileText />, desc: "Audit-ready document templates." },
+                { title: "Neural Advisor", icon: <Bot />, desc: "24/7 technical regulatory access." },
+                { title: "Lifetime Updates", icon: <Zap />, desc: "Regulatory sync as CFRs evolve." }
+              ].map((item, i) => (
+                <div key={i} className="space-y-2 group">
+                  <div className="flex items-center space-x-3 text-authority-blue dark:text-signal-gold">
+                    {React.cloneElement(item.icon as React.ReactElement, { size: 18 })}
+                    <span className="text-sm font-black uppercase tracking-tight">{item.title}</span>
+                  </div>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
                 </div>
-                <span className="text-base font-black uppercase tracking-tight text-[#002244] dark:text-white leading-tight">{item}</span>
-             </div>
-           ))}
-        </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="mt-24 text-center">
-           <p className="text-2xl md:text-4xl font-black font-serif italic text-slate-400 dark:text-slate-600 max-w-5xl mx-auto leading-tight uppercase tracking-tighter">
-             "THIS IS A ONE-TIME INVESTMENT IN INFRASTRUCTURE — NOT A SUBSCRIPTION TO CONTENT. YOU'RE BUILDING SYSTEMS THAT PROTECT YOUR AUTHORITY FOR YEARS, NOT RENTING ACCESS TO VIDEOS."
-           </p>
+          {/* EXCLUSIONS */}
+          <div className="bg-slate-50 dark:bg-[#0c1a2d] border border-slate-100 dark:border-white/5 p-12 rounded-[4rem] shadow-sm space-y-10">
+            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-red-500 border-b pb-4">Institutional Boundaries</h3>
+            <div className="space-y-6">
+              {[
+                "Legal Representation or Attorney Counsel",
+                "Tax Preparation or Direct Financial Advisory",
+                "Insurance Brokerage or Policy Issuance",
+                "Dispatch Services or Load Board Access",
+                "Guaranteed FMCSA Audit Pass Result",
+                "Ongoing Coaching or One-on-One Consulting"
+              ].map((item, i) => (
+                <div key={i} className="flex items-center space-x-4 group">
+                  <div className="w-8 h-8 bg-red-50 dark:bg-red-950/20 rounded-lg flex items-center justify-center text-red-500">
+                    <XCircle size={16} />
+                  </div>
+                  <span className="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-tight">{item}</span>
+                </div>
+              ))}
+            </div>
+            <div className="pt-8 border-t border-slate-200 dark:border-white/10 italic text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+              "LaunchPath provides the infrastructure. The carrier provides the operational execution."
+            </div>
+          </div>
         </div>
       </section>
 
@@ -247,7 +204,7 @@ const RequestAdmission: React.FC = () => {
            <div className="flex flex-col items-center space-y-16">
              <button 
                onClick={() => setIsTerminalOpen(true)}
-               className="bg-[#002244] text-white px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-10px_rgba(0,34,68,0.4)] hover:bg-[#0c1a2d] hover:scale-105 transition-all active:scale-95 border-b-[12px] border-slate-900 group"
+               className="bg-[#002244] text-white px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-10px_rgba(0,34,68,0.4)] hover:bg-[#0c1a2d] hover:scale-105 transition-all active:scale-0.98 border-b-[12px] border-slate-900 group"
              >
                OPEN ADMISSION TERMINAL <ChevronRight className="inline ml-4 group-hover:translate-x-2 transition-transform" size={24} />
              </button>
@@ -255,7 +212,7 @@ const RequestAdmission: React.FC = () => {
              <div className="space-y-10 w-full">
                 <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest flex flex-col sm:flex-row items-center justify-center gap-2">
                   <span>Questions before enrolling? Contact us at</span>
-                  <span className="text-signal-gold font-black border-b border-signal-gold/30 pb-0.5">CONTACT@LAUNCHPATHEDU.COM</span>
+                  <span className="text-signal-gold font-black border-b border-signal-gold/30 pb-0.5">SUPPORT@LAUNCHPATHEDU.COM</span>
                 </p>
                 
                 <div className="flex items-center justify-center space-x-8 opacity-30">
@@ -275,20 +232,14 @@ const RequestAdmission: React.FC = () => {
         onClose={() => setIsTerminalOpen(false)} 
       />
 
-      {/* FOOTER ANCHOR */}
-      <section className="py-32 bg-[#FAF9F6] dark:bg-[#020617] text-center border-t border-slate-200 dark:border-white/5">
+      <footer className="py-32 bg-[#FAF9F6] dark:bg-[#020617] text-center border-t border-slate-200 dark:border-white/5">
          <p className="text-[12px] font-black uppercase tracking-[1em] text-slate-400 italic mb-8">
             BUILT ON WISDOM. ESTABLISHED WITH UNDERSTANDING. DESIGNED FOR ENDURANCE.
          </p>
-         <div className="flex items-center justify-center space-x-6 opacity-10">
-            <Lock size={20} />
-            <Activity size={20} />
-            <ShieldCheck size={20} />
-         </div>
          <p className="text-[9px] font-bold text-white/20 uppercase tracking-widest mt-12">
             CARRIER OPERATING STANDARD: LP-SYS-V4.2 — INSTITUTIONAL INTEGRITY ACTIVE
          </p>
-      </section>
+      </footer>
     </div>
   );
 };
