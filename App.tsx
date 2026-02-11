@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
   Sun, 
   Moon, 
@@ -226,7 +226,7 @@ const Footer = () => {
             {[
               { title: 'FOUNDATION', links: [{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }, { name: 'Contact', path: '/contact' }] },
               { title: 'SYSTEM', links: [{ name: 'Program Roadmap', path: '/learning-path' }, { name: 'Admission Protocol', path: '/pricing' }, { name: 'TCO Calculator', path: '/tools/tco-calculator' }] },
-              { title: 'RESOURCES', links: [{ name: 'REACH Test™', path: '/readiness' }, { name: 'The Blog', path: '/blog' }, { name: 'Exposure Matrix', path: '/exposure-matrix' }] },
+              { title: 'RESOURCES', links: [{ name: 'REACH Test™', path: '/reach-test' }, { name: 'The Blog', path: '/blog' }, { name: 'Exposure Matrix', path: '/exposure-matrix' }] },
               { title: 'GOVERNANCE', links: [{ name: 'Privacy Policy', path: '/legal/privacy' }, { name: 'Terms of Service', path: '/legal/terms' }, { name: 'FMCSA Official', path: 'https://www.fmcsa.dot.gov/' }] }
             ].map((section) => (
               <div key={section.title} className="space-y-6">

@@ -126,13 +126,13 @@ const TCOPreviewPage = () => {
               
               <div className="flex flex-col gap-4">
                 <Link 
-                  to="/pricing" 
+                  to="/reach-test" 
                   className="w-full bg-signal-gold text-authority-blue py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-8 border-slate-900"
                 >
                   View Admission Protocol <ArrowRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link 
-                  to="/readiness" 
+                  to="/reach-test" 
                   className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark text-authority-blue dark:text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-slate-50 transition-all flex items-center justify-center"
                 >
                   Take the REACH Test™ First

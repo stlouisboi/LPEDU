@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -66,7 +65,7 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="pt-8">
-              <Link to="/readiness" className="inline-flex items-center space-x-6 bg-[#C5A059] text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-8 border-[#8e7340]">
+              <Link to="/reach-test" className="inline-flex items-center space-x-6 bg-[#C5A059] text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-8 border-[#8e7340]">
                 <span>Verify Admission Readiness</span>
                 <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
               </Link>
@@ -400,7 +399,7 @@ const AboutPage: React.FC = () => {
               </div>
 
               <div className="pt-16">
-                 <Link to="/readiness" className="bg-white text-[#002244] px-16 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[14px] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.5)] hover:bg-[#C5A059] hover:text-[#002244] transition-all active:scale-95 inline-flex items-center group border-b-[12px] border-slate-300">
+                 <Link to="/reach-test" className="bg-white text-[#002244] px-16 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-[14px] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.5)] hover:bg-[#C5A059] hover:text-[#002244] transition-all active:scale-95 inline-flex items-center group border-b-[12px] border-slate-300">
                     Initiate Admission Diagnostic <ArrowRight size={24} className="ml-6 group-hover:translate-x-3 transition-transform" />
                  </Link>
               </div>

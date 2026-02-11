@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -320,7 +319,7 @@ const ExposureMatrixPage: React.FC = () => {
       {/* 4. Diagnostic Footer - Sticky */}
       <div className="fixed bottom-0 left-0 w-full z-40 p-6 flex justify-center bg-gradient-to-t from-[#020617] via-[#020617]/80 to-transparent">
          <Link 
-           to="/readiness"
+           to="/reach-test"
            className="w-full max-w-2xl bg-authority-blue text-white py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[13px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-2 border-signal-gold/30 hover:bg-steel-blue hover:border-signal-gold transition-all flex items-center justify-center group active:scale-[0.98]"
          >
            <Download size={20} className="mr-4 group-hover:translate-y-0.5 transition-transform" />
@@ -341,7 +340,7 @@ const ExposureMatrixPage: React.FC = () => {
             </p>
             <div className="pt-6">
               <Link 
-                to="/readiness" 
+                to="/reach-test" 
                 className="inline-flex items-center space-x-4 bg-[#C5A059] text-[#002244] px-12 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[14px] shadow-2xl hover:bg-white transition-all active:scale-95 group border-b-8 border-slate-900"
               >
                 <span>INITIATE REACH TEST™</span>

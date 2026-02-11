@@ -191,7 +191,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <p style="font-size: 20px; font-weight: 700; max-width: 600px; margin: 0 auto 40px; line-height: 1.5;">
           The primary cure for Undercapitalization and the Money Loop is clinical math. Identify your real costs before they identify your failure.
         </p>
-        <a href="#/tools/tco-calculator" style="background: #002244; color: #ffffff; padding: 25px 50px; border-radius: 20px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 14px; box-shadow: 0 15px 40px rgba(0,34,68,0.4); display: inline-block; border-bottom: 6px solid #000;">
+        <a href="/tools/tco-calculator" style="background: #002244; color: #ffffff; padding: 25px 50px; border-radius: 20px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 14px; box-shadow: 0 15px 40px rgba(0,34,68,0.4); display: inline-block; border-bottom: 6px solid #000;">
           Launch TCO Economic Engine
         </a>
       </div>
@@ -245,7 +245,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
 
       <div style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
         <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #64748b;">Next Recommended Action:</p>
-        <a href="#/exposure-matrix" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Analyze the Exposure Matrix</a>
+        <a href="/exposure-matrix" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Analyze the Exposure Matrix</a>
       </div>
     `,
     publishedAt: "2025-02-15",
@@ -293,7 +293,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <li><b>Cash-Flow Oxygen:</b> The capital required to keep the other three pillars alive.</li>
       </ul>
 
-      <p>Understanding the interdependence of these pillars is the hallmark of a carrier executive. For example, a lapse in the Compliance Backbone—such as failing to maintain clinical Driver Qualification files—leads to a failed New Entrant Safety Audit. A failed audit triggers a catastrophic loss of Insurance Continuity, as underwriters move to cancel or non-renew a carrier with an "Unsatisfactory" or "Conditional" rating. The resulting premium spike eventually suffocates the Cash-Flow Oxygen. <a href="#/learning-path" style="color: #1e3a5f; font-weight: 800; text-decoration: underline;">Review the Four Pillars of the Operating Standard here</a> to understand how internal alignment prevents terminal exposure.</p>
+      <p>Understanding the interdependence of these pillars is the hallmark of a carrier executive. For example, a lapse in the Compliance Backbone—such as failing to maintain clinical Driver Qualification files—leads to a failed New Entrant Safety Audit. A failed audit triggers a catastrophic loss of Insurance Continuity, as underwriters move to cancel or non-renew a carrier with an "Unsatisfactory" or "Conditional" rating. The resulting premium spike eventually suffocates the Cash-Flow Oxygen. <a href="/learning-path" style="color: #1e3a5f; font-weight: 800; text-decoration: underline;">Review the Four Pillars of the Operating Standard here</a> to understand how internal alignment prevents terminal exposure.</p>
 
       <blockquote style="background: #f8fafc; border-left: 5px solid #1e3a5f; padding: 30px; margin: 40px 0;">
         <h4 style="margin-top: 0; color: #1e3a5f; font-family: Montserrat, sans-serif; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; margin-bottom: 15px;">Executive Insight: The TCO Diagnostic</h4>
@@ -309,7 +309,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
 
       <div style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
         <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #64748b;">Next Clinical Procedure:</p>
-        <a href="#/readiness" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Take the REACH Test™</a>
+        <a href="/reach-test" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Take the REACH Test™</a>
       </div>
       
       <p style="font-size: 10px; color: #94a3b8; margin-top: 80px; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 40px;">
@@ -380,7 +380,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
       
       <div style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
         <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #64748b;">Next Clinical Procedure:</p>
-        <a href="#/readiness" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Take the REACH Test™</a>
+        <a href="/reach-test" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Take the REACH Test™</a>
       </div>
     `,
     publishedAt: "2025-01-30",

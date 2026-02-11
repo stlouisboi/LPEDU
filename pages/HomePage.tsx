@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowRight, 
   Shield,
   ChevronRight,
-  Briefcase,
   Calculator,
-  CheckCircle2,
-  Lock,
   Zap,
   Activity,
   ShieldAlert,
   ChevronDown,
   Award,
-  Truck,
   ShieldX,
   FileWarning,
   HardDrive,
@@ -26,9 +22,14 @@ import {
   BarChart3,
   Target,
   ShieldCheck,
-  DollarSign,
   FileText,
-  TrendingDown
+  AlertTriangle,
+  Lock,
+  Search,
+  MessageCircle,
+  HelpCircle,
+  // Fix: Added missing Loader2 import from lucide-react
+  Loader2
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -38,56 +39,38 @@ const FAQItem: React.FC<{
   question: string; 
   answer: string; 
   isOpen: boolean; 
-  icon: React.ReactNode;
   onClick: () => void 
-}> = ({ question, answer, isOpen, icon, onClick }) => {
+}> = ({ question, answer, isOpen, onClick }) => {
   return (
-    <article className={`border transition-all duration-500 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden ${
-      isOpen 
-      ? 'border-[#002244] bg-white dark:bg-surface-dark shadow-2xl ring-1 ring-[#002244]/5' 
-      : 'border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark shadow-sm hover:border-[#002244]/30'
-    }`}>
-      <h3>
-        <button 
-          onClick={onClick}
-          className="w-full flex items-center justify-between p-5 sm:p-10 text-left focus:outline-none group"
-          aria-expanded={isOpen}
-        >
-          <div className="flex items-center space-x-3 sm:space-x-6">
-            <div className={`w-10 h-10 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center transition-all duration-500 ${
-              isOpen ? 'bg-[#002244] text-[#C5A059] shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'
-            }`}>
-              {React.cloneElement(icon as React.ReactElement<any>, { size: 20 })}
-            </div>
-            <span className={`text-lg sm:text-2xl font-black tracking-tight uppercase transition-colors duration-300 ${
-              isOpen ? 'text-[#002244] dark:text-[#C5A059]' : 'text-slate-700 dark:text-text-dark-primary'
-            }`}>
-              {question}
-            </span>
-          </div>
-          <div className={`p-2 rounded-full transition-all duration-500 ${
-            isOpen ? 'bg-[#002244] text-white rotate-180 shadow-lg' : 'bg-slate-100 dark:bg-gray-800 text-slate-400 group-hover:bg-slate-200'
-          }`}>
-            <ChevronDown className="w-5 h-5" />
-          </div>
-        </button>
-      </h3>
-      <div 
-        className={`grid transition-all duration-500 ease-in-out ${
-          isOpen ? 'grid-rows-[1fr] opacity-100 pb-8 sm:pb-10' : 'grid-rows-[0fr] opacity-0'
-        }`}
+    <article className={`border-b transition-all duration-300 ${isOpen ? 'bg-white/5 border-signal-gold/30' : 'border-white/10'}`}>
+      <button 
+        onClick={onClick}
+        className="w-full flex items-center justify-between py-8 px-6 text-left focus:outline-none group"
       >
+        <span className={`text-lg sm:text-xl font-black tracking-tight uppercase transition-colors ${isOpen ? 'text-signal-gold' : 'text-white/70'}`}>
+          {question}
+        </span>
+        <div className={`transition-all duration-500 ${isOpen ? 'rotate-45 text-signal-gold' : 'text-white/20'}`}>
+          <Plus size={24} />
+        </div>
+      </button>
+      <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
         <div className="overflow-hidden">
-          <div className="px-5 sm:px-12 pt-0 text-slate-500 dark:text-text-dark-muted font-medium leading-relaxed border-t border-slate-50 dark:border-border-dark mt-2 pt-6 sm:pt-8">
-            <p className="text-base sm:text-xl whitespace-pre-wrap">
-              {answer}
-            </p>
+          <div className="px-6 pb-8 text-slate-400 font-medium leading-relaxed">
+            <p className="text-base sm:text-lg whitespace-pre-wrap">{answer}</p>
           </div>
         </div>
       </div>
     </article>
   );
 };
+
+const Plus = ({ size, className }: { size?: number, className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="12" y1="5" x2="12" y2="19" />
+    <line x1="5" y1="12" x2="19" y2="12" />
+  </svg>
+);
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -132,17 +115,10 @@ const HomePage: React.FC = () => {
           source: "homepage-hero-risk-map"
         });
       }
-
-      await syncToMailerLite({
-        email: formData.email,
-        fields: { name: formData.firstName }
-      });
-      
+      await syncToMailerLite({ email: formData.email, fields: { name: formData.firstName } });
       setScanState('complete');
-      await new Promise(r => setTimeout(r, 500));
       navigate(destination);
     } catch (err) {
-      console.error("Submission Sequence Error:", err);
       navigate(destination);
     } finally {
       setLoading(false);
@@ -152,239 +128,182 @@ const HomePage: React.FC = () => {
   const riskDomains = [
     {
       domain: "Substance Governance",
-      id: "DOMAIN_01",
-      icon: <FileWarning className="text-red-500" />,
       items: [
-        { id: "01", text: "Absence of random pool enrollment", result: "AUDIT DEFAULT", severity: "TERMINAL" },
-        { id: "02", text: "Positive driver results (Unmanaged)", result: "IMMEDIATE REVOCATION", severity: "TERMINAL" },
-        { id: "03", text: "Clearinghouse query failure", result: "OPERATING BAN", severity: "CRITICAL" },
-        { id: "04", text: "Omission of pre-employment test", result: "STRICT LIABILITY", severity: "HIGH RISK" }
+        { id: "01", text: "Random Pool Enrollment", result: "AUDIT DEFAULT" },
+        { id: "02", text: "Positive Driver Results", result: "IMMEDIATE REVOCATION" },
+        { id: "03", text: "Clearinghouse Query Failure", result: "OPERATING BAN" },
+        { id: "04", text: "Omission of Pre-Employment", result: "STRICT LIABILITY" }
       ]
     },
     {
-      domain: "Human Capital Compliance",
-      id: "DOMAIN_02",
-      icon: <Fingerprint className="text-amber-500" />,
+      domain: "Human Capital",
       items: [
-        { id: "05", text: "Revoked/Expired license usage", result: "OOS EVENT", severity: "TERMINAL" },
-        { id: "06", text: "Missing Med-Cert verification", result: "DRIVER DOWN GRADE", severity: "CRITICAL" },
-        { id: "07", text: "Fragmented DQ File framework", result: "AUDIT RED FLAG", severity: "HIGH RISK" },
-        { id: "08", text: "Omitted background inquiries", result: "NEGLIGENT ENTRUSTMENT", severity: "CRITICAL" }
+        { id: "05", text: "Revoked License Usage", result: "OOS EVENT" },
+        { id: "06", text: "Missing Med-Cert", result: "DRIVER DOWN GRADE" },
+        { id: "07", text: "Fragmented DQ Files", result: "AUDIT RED FLAG" },
+        { id: "08", text: "Omitted Background Inq", result: "NEGLIGENT ENTRUSTMENT" }
       ]
     },
     {
       domain: "Operational Control",
-      id: "DOMAIN_03",
-      icon: <Gavel className="text-slate-500" />,
       items: [
-        { id: "09", text: "Falsification of HOS records", result: "CRIMINAL DEFAULT", severity: "TERMINAL" },
-        { id: "10", text: "Dispatching OOS vehicles", result: "AUTHORITY SEIZURE", severity: "TERMINAL" },
-        { id: "11", text: "Deficient roadside history (CSA)", result: "PREMIUM SPIKE", severity: "HIGH RISK" },
-        { id: "12", text: "No systematic maintenance log", result: "LIABILITY DEFAULT", severity: "CRITICAL" }
+        { id: "09", text: "Falsification of HOS", result: "CRIMINAL DEFAULT" },
+        { id: "10", text: "Dispatching OOS Vehicles", result: "AUTHORITY SEIZURE" },
+        { id: "11", text: "Deficient Roadside History", result: "PREMIUM SPIKE" },
+        { id: "12", text: "No Maintenance Log", result: "LIABILITY DEFAULT" }
       ]
     },
     {
-      domain: "Administrative Stewardship",
-      id: "DOMAIN_04",
-      icon: <HardDrive className="text-blue-500" />,
+      domain: "Administrative",
       items: [
-        { id: "13", text: "Insurance coverage lapse", result: "AUTHORITY TERMINATION", severity: "TERMINAL" },
-        { id: "14", text: "Failure to update MCS-150", result: "ADMINISTRATIVE REVOCATION", severity: "CRITICAL" },
-        { id: "15", text: "BOC-3 Process agent omission", result: "FILING SUSPENSION", severity: "HIGH RISK" },
-        { id: "16", text: "Late Incident/Accident reporting", result: "LEGAL DEFAULT", severity: "CRITICAL" }
+        { id: "13", text: "Insurance Coverage Lapse", result: "AUTHORITY TERMINATION" },
+        { id: "14", text: "Failure to Update MCS-150", result: "ADMIN REVOCATION" },
+        { id: "15", text: "BOC-3 Process Agent", result: "FILING SUSPENSION" },
+        { id: "16", text: "Late Accident Reporting", result: "LEGAL DEFAULT" }
       ]
     }
   ];
 
+  const faqs = [
+    { q: "What if my insurance quote is higher than expected?", a: "Insurance is a fixed economic reality. We help you build a risk profile that underwriters value, even if initial costs are high." },
+    { q: "Does LaunchPath guarantee I will pass an audit?", a: "No system can guarantee results. We provide the infrastructure and implementation requirements used by the nation's most compliant carriers." },
+    { q: "How long does authority activation take?", a: "The mandatory protest period is 10 days, with typical processing totaling 21 days. We use this window for system initialization." }
+  ];
+
   return (
-    <div className="animate-in fade-in duration-700 relative overflow-x-hidden bg-[#FAF9F6] dark:bg-primary-dark font-sans leading-relaxed selection:bg-[#C5A059]/20">
+    <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30">
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">
-        <div className="w-full lg:w-[60%] bg-[#002244] text-white p-6 sm:p-12 md:p-16 lg:p-24 flex flex-col justify-center relative">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-          
-          <div className="relative z-10 max-w-2xl space-y-8 sm:space-y-12 animate-reveal-up">
-            <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
-              <div className="inline-flex items-center space-x-2 sm:space-x-3 bg-white/5 border border-white/10 px-3 sm:px-5 py-2 rounded-full">
-                <ShieldCheck size={12} className="text-[#C5A059]" />
-                <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white">VETERAN OPERATED</span>
-              </div>
-              <div className="inline-flex items-center space-x-2 sm:space-x-3 bg-white/5 border border-white/10 px-3 sm:px-5 py-2 rounded-full">
-                <Award size={12} className="text-[#C5A059]" />
-                <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white">SAFETY CERTIFIED</span>
-              </div>
+      <section className="relative min-h-screen flex flex-col lg:flex-row border-b border-white/5">
+        <div className="w-full lg:w-[60%] p-10 sm:p-20 lg:p-32 flex flex-col justify-center relative">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+          <div className="relative z-10 space-y-12">
+            <div className="flex gap-4">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
             </div>
-            
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9]">
-                PROTECT <br className="hidden sm:block"/>YOUR <br/><span className="text-[#C5A059]">AUTHORITY</span><br className="hidden sm:block"/>WITH <br className="hidden sm:block"/>ORDER.
-              </h1>
-            </div>
-            
-            <div className="max-w-xl border-l-[8px] sm:border-l-[12px] border-[#C5A059] pl-6 sm:pl-10 py-2 sm:py-4">
-              <p className="text-lg sm:text-2xl font-bold text-white/90 leading-[1.4] sm:leading-[1.6]">
-                Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
-              </p>
-            </div>
-
-            <div className="pt-4 sm:pt-8">
-              <Link to="/readiness" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-12 py-5 sm:py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] sm:text-[12px] shadow-2xl hover:bg-white transition-all active:scale-95 group border-b-4 sm:border-b-8 border-[#8e7340]">
-                <span>Verify Admission Readiness</span>
-                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+            <h1 className="text-5xl sm:text-7xl lg:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85] animate-reveal-up">
+              PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
+            </h1>
+            <p className="text-xl md:text-2xl text-white/60 font-bold max-w-xl border-l-8 border-signal-gold pl-8 py-2">
+              Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
+            </p>
+            <div className="pt-8">
+              <Link to="/reach-test" className="bg-signal-gold text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center w-fit group border-b-8 border-slate-900">
+                Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
           </div>
         </div>
 
-        <div className="w-full lg:w-[40%] bg-slate-100 dark:bg-slate-900 relative p-6 sm:p-12 md:p-16 flex items-center">
-          <div className="bg-white dark:bg-surface-dark p-6 sm:p-10 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border border-slate-100 dark:border-white/5 relative overflow-hidden group w-full">
-            <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
-              <div className="bg-[#C5A059] text-[#002244] px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] shadow-lg">FREE ACCESS</div>
-            </div>
+        <div className="w-full lg:w-[40%] bg-white/5 p-10 sm:p-20 flex items-center justify-center border-l border-white/5">
+          <div className="bg-[#0c1a2d] p-10 rounded-[3rem] shadow-2xl border border-white/10 w-full max-w-md relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4"><Zap size={24} className="text-signal-gold opacity-30" /></div>
+            <h3 className="text-3xl font-black font-serif uppercase text-white mb-2">90 DAY</h3>
+            <h3 className="text-4xl font-black font-serif uppercase text-signal-gold italic mb-8">RISK MAP™</h3>
             
-            <div className="relative z-10 mt-10 sm:mt-12 flex flex-col">
-              {scanState === 'idle' ? (
-                <>
-                  <header className="mb-6 sm:mb-10">
-                       <h3 className="text-3xl sm:text-[3.5rem] font-black font-serif uppercase tracking-tighter text-[#002244] dark:text-white leading-[0.85]">
-                         90 DAY <br/>
-                         <span className="text-[#C5A059] italic">RISK MAP™</span>
-                       </h3>
-                       <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mt-4 sm:mt-6 border-t border-slate-100 pt-4 sm:pt-6">Diagnostic Terminal</p>
-                  </header>
-                  
-                  <form onSubmit={handleRiskMapSubmit} className="space-y-4 sm:space-y-6">
-                    <div className="space-y-2">
-                      <label className="text-[9px] sm:text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 ml-2 sm:ml-4">LEGAL ENTITY NAME</label>
-                      <input required value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-[#002244] outline-none px-5 sm:px-6 py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-base sm:text-lg transition-all" placeholder="JANE DOE" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[9px] sm:text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 ml-2 sm:ml-4">REGISTRY EMAIL</label>
-                      <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-50 dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-[#002244] outline-none px-5 sm:px-6 py-4 sm:py-5 rounded-2xl sm:rounded-3xl font-black text-base sm:text-lg transition-all" placeholder="JANE@CARRIER.COM" />
-                    </div>
-                    <button type="submit" className="w-full bg-[#002244] text-white py-6 sm:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs shadow-xl hover:bg-[#003366] transition-all flex items-center justify-center group border-b-4 sm:border-b-8 border-slate-900">
-                      VIEW MY RISK MAP <ChevronRight className="ml-2 sm:ml-3 group-hover:translate-x-1" size={18} />
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <div className="py-12 sm:py-20 text-center space-y-6 sm:space-y-8 animate-in fade-in">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 sm:border-8 border-[#002244]/10 border-t-[#002244] animate-spin mx-auto"></div>
-                  <div className="bg-slate-50 dark:bg-black/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border font-mono text-[8px] sm:text-[10px] text-[#002244] dark:text-emerald-500 text-left h-40 sm:h-48 overflow-hidden relative shadow-inner">
-                    <div className="space-y-1 sm:space-y-2">
-                      {scanLog.map((log, i) => <div key={i}>[{new Date().toLocaleTimeString([], {hour12:false})}] {log}</div>)}
-                    </div>
-                  </div>
+            {scanState === 'idle' ? (
+              <form onSubmit={handleRiskMapSubmit} className="space-y-6">
+                <input required value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} placeholder="LEGAL ENTITY NAME" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold transition-all" />
+                <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="REGISTRY EMAIL" className="w-full bg-white/5 border border-white/10 px-6 py-5 rounded-2xl font-black text-sm outline-none focus:border-signal-gold transition-all" />
+                <button type="submit" className="w-full bg-signal-gold text-[#002244] py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] shadow-xl hover:bg-white transition-all">GENERATE DIAGNOSTIC</button>
+              </form>
+            ) : (
+              <div className="py-10 space-y-4">
+                <div className="flex justify-center"><Loader2 className="animate-spin text-signal-gold" size={40} /></div>
+                <div className="bg-black/40 rounded-xl p-4 font-mono text-[9px] text-emerald-500 h-32 overflow-hidden shadow-inner">
+                  {scanLog.map((log, i) => <div key={i}>> {log}</div>)}
                 </div>
-              )}
-              <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
-                <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#002244] dark:text-emerald-500 flex items-center">
-                  <ShieldCheck size={12} className="mr-1.5" /> UPLINK ACTIVE
-                </p>
-                <p className="text-[8px] font-black text-slate-300 uppercase">LP-SYS-V4.5</p>
               </div>
+            )}
+            <div className="mt-8 pt-6 border-t border-white/5 flex justify-between items-center opacity-40">
+               <p className="text-[8px] font-black uppercase tracking-[0.2em]">LP-SYS-V4.5</p>
+               <ShieldCheck size={14} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. THE PATTERN SECTION */}
-      <section className="py-16 sm:py-24 md:py-48 bg-white dark:bg-primary-dark overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-center">
-            <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="relative group mx-auto lg:mx-0 max-w-[400px] lg:max-w-none">
-                <div className="bg-[#002244] rounded-[3rem] sm:rounded-[4rem] shadow-2xl overflow-hidden relative border-[8px] sm:border-[12px] border-[#FAF9F6]">
-                  <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince Lawrence" className="w-full h-auto grayscale opacity-95 group-hover:grayscale-0 transition-all duration-1000" />
-                  <div className="absolute bottom-0 left-0 w-full bg-[#002244]/90 backdrop-blur-md py-4 sm:py-6 text-center border-t border-white/10">
-                    <p className="text-[8px] sm:text-[10px] font-black text-[#C5A059] uppercase tracking-[0.4em]">SYSTEM CUSTODIAN</p>
-                  </div>
-                </div>
-                <div className="absolute -bottom-6 -right-6 bg-[#C5A059] p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl border-4 sm:border-8 border-white hidden sm:block z-20 group-hover:rotate-12 transition-transform">
-                  <ShieldCheck className="text-[#002244]" size={32} />
-                </div>
+      {/* 2. PATTERN SECTION */}
+      <section className="py-32 px-10 md:px-20 lg:px-40 bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+          <div className="lg:col-span-5 relative group">
+            <div className="rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-slate-100 relative">
+              <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince" className="w-full grayscale hover:grayscale-0 transition-all duration-1000" />
+              <div className="absolute bottom-0 left-0 w-full bg-[#002244] py-6 text-center">
+                <p className="text-[10px] font-black text-signal-gold uppercase tracking-[0.4em]">SYSTEM CUSTODIAN</p>
               </div>
             </div>
+            <div className="absolute -bottom-8 -right-8 bg-signal-gold p-8 rounded-3xl shadow-2xl border-8 border-white hidden lg:block group-hover:rotate-12 transition-transform">
+               <ShieldCheck size={40} className="text-[#002244]" />
+            </div>
+          </div>
+          <div className="lg:col-span-7 space-y-10">
+            <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] uppercase tracking-tighter leading-[0.95]">
+              I'VE WATCHED THIS <br/><span className="text-red-600 italic">FAIL 200 TIMES.</span>
+            </h2>
+            <p className="text-2xl md:text-3xl text-slate-500 font-bold leading-relaxed border-l-8 border-slate-200 pl-10">
+              Systems aren't elective; they are survival. I refuse to reverse the order of wisdom. <span className="text-[#002244]">Order precedes revenue.</span>
+            </p>
+          </div>
+        </div>
+      </section>
 
-            <div className="lg:col-span-7 space-y-8 sm:space-y-10 order-1 lg:order-2">
-              <header className="space-y-4 sm:space-y-6">
-                <p className="text-[11px] sm:text-[13px] font-black uppercase tracking-[0.5em] text-slate-400">THE PATTERN</p>
-                <h2 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.95]">
-                  I'VE WATCHED THIS <br/><span className="text-red-600 italic">FAIL</span> 200 TIMES.
-                </h2>
-              </header>
-
-              <div className="space-y-6 sm:space-y-10 text-lg sm:text-2xl font-bold text-slate-600 dark:text-slate-300 leading-[1.5] sm:leading-[1.6] border-l-[8px] sm:border-l-[12px] border-slate-100 dark:border-border-dark pl-6 sm:pl-12">
-                <p>
-                  I spent 25 years in manufacturing leadership and 7 years in the US Navy. In those environments, <span className="text-[#002244] dark:text-white font-black">systems weren't elective; they were survival.</span>
-                </p>
-                <p className="text-2xl sm:text-3xl font-black text-[#002244] dark:text-white font-serif tracking-tight leading-tight">
-                  I refuse to reverse the order of wisdom. <br/><span className="text-[#C5A059] italic">Order precedes revenue.</span>
-                </p>
+      {/* 3. WARNING SECTION */}
+      <section className="py-32 px-10 md:px-20 lg:px-40 bg-[#020617] border-y border-white/5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <div className="space-y-10">
+            <h2 className="text-5xl md:text-7xl font-black font-serif uppercase tracking-tight leading-none text-white">SYSTEM <br/>ACCESS <br/><span className="text-red-600 italic">WARNING.</span></h2>
+            <p className="text-xl text-slate-400 font-bold leading-relaxed max-w-md">
+              If you are using home-spun files or "winging it," your authority is currently in a state of terminal exposure.
+            </p>
+          </div>
+          <div className="space-y-6">
+            {[
+              { title: "Driver Qualification Files", desc: "Fragmented documentation that fails the 48-hour federal reach test." },
+              { title: "Insurance Lapse", desc: "Missing renewal buffers that trigger immediate authority termination." },
+              { title: "Hours of Service", desc: "Unassigned mileage traps that prove lack of systemic control." }
+            ].map((card, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-3xl flex items-center justify-between group hover:bg-white/10 transition-all">
+                <div>
+                  <h4 className="font-black uppercase tracking-tight text-white group-hover:text-signal-gold transition-colors">{card.title}</h4>
+                  <p className="text-sm text-slate-500 mt-1">{card.desc}</p>
+                </div>
+                <ChevronRight size={20} className="text-white/20" />
               </div>
+            ))}
+            <div className="pt-10">
+               <Link to="/reach-test" className="bg-red-600 text-white px-16 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-sm shadow-2xl hover:bg-red-700 transition-all flex items-center justify-center w-full active:scale-95 border-b-8 border-red-900">
+                 TAKE THE RISK TEST
+               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. THE 16 DEADLY SINS MATRIX (Enhanced Grid) */}
-      <section id="exposure-matrix" className="bg-[#020617] py-16 sm:py-24 lg:py-48 border-y border-white/5 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 relative z-10">
-          
-          <header className="mb-16 sm:mb-24 lg:mb-40 flex flex-col items-center text-center space-y-6 sm:space-y-8 animate-reveal-up">
-             <div className="w-16 h-16 sm:w-24 sm:h-24 bg-red-600/10 text-red-500 rounded-2xl sm:rounded-[2.5rem] flex items-center justify-center mb-6 sm:mb-10 border-2 border-red-500/20 shadow-[0_0_50px_rgba(220,38,38,0.2)]">
-               <ShieldX size={32} />
-             </div>
-             <div className="space-y-3 sm:space-y-4">
-                <p className="text-[11px] sm:text-[13px] font-black uppercase tracking-[0.5em] text-red-500">The Exposure Taxonomy</p>
-                <h2 className="text-4xl sm:text-6xl md:text-[6.5rem] font-black font-serif text-white uppercase tracking-tighter leading-[0.9]">
-                  THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span>
-                </h2>
-             </div>
-             <p className="text-lg sm:text-2xl font-bold text-slate-500 max-w-4xl leading-relaxed uppercase tracking-tight">
-               IDENTIFICATION OF HIGH-PROBABILITY FAILURE PATTERNS USED BY INVESTIGATORS.
-             </p>
+      {/* 4. THE 16 DEADLY SINS MATRIX */}
+      <section className="py-32 px-10 md:px-20 bg-[#020617] relative">
+        <div className="max-w-[1600px] mx-auto space-y-32">
+          <header className="text-center space-y-6">
+             <div className="w-20 h-20 bg-red-600/10 rounded-2xl flex items-center justify-center mx-auto border border-red-600/20"><ShieldX size={40} className="text-red-600" /></div>
+             <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span></h2>
+             <p className="text-[10px] font-black uppercase tracking-[1em] text-slate-500 italic">Identification of high-probability failure patterns used by investigators</p>
           </header>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20">
-            {riskDomains.map((domain, dIdx) => (
-              <div key={dIdx} className="space-y-8 sm:space-y-12 animate-reveal-up">
-                <header className="flex items-center justify-between border-b border-white/10 pb-6 sm:pb-10">
-                   <div className="flex items-center space-x-4 sm:space-x-6">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-xl sm:rounded-2xl border border-white/10 flex items-center justify-center">
-                        {React.cloneElement(domain.icon as React.ReactElement<any>, { size: 24 })}
-                      </div>
-                      <div>
-                        <h3 className="text-xl sm:text-3xl font-black text-white uppercase tracking-tight font-serif">{domain.domain}</h3>
-                        <p className="text-[8px] sm:text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mt-1">{domain.id}</p>
-                      </div>
-                   </div>
-                </header>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {riskDomains.map((domain, i) => (
+              <div key={i} className="space-y-6">
+                <h3 className="text-sm font-black uppercase tracking-widest text-signal-gold border-b border-white/10 pb-4 flex items-center"><ChevronDown size={14} className="mr-2" /> {domain.domain}</h3>
+                <div className="space-y-4">
                   {domain.items.map((item) => (
-                    <article key={item.id} className="bg-[#0c1a2d] border border-white/5 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] flex flex-col space-y-6 sm:space-y-10 group hover:border-red-500/30 transition-all duration-500 shadow-2xl relative overflow-hidden">
-                       <header className="space-y-2 sm:space-y-4 relative z-10">
-                          <span className="text-[10px] font-black text-slate-600 font-mono tracking-tighter block">FAULT-{item.id}</span>
-                          <h4 className="text-[17px] sm:text-[19px] font-black text-white uppercase leading-tight tracking-tight h-auto sm:h-[50px]">{item.text}</h4>
-                       </header>
-                       
-                       <div className="space-y-4 sm:space-y-8 flex-grow relative z-10">
-                          <div className="flex justify-between items-end border-b border-white/[0.03] pb-3">
-                             <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">Result</p>
-                             <p className="text-xs sm:text-sm font-black text-slate-200 uppercase tracking-tight">{item.result}</p>
-                          </div>
-                          <div className="flex justify-between items-center pt-1">
-                             <p className="text-[9px] font-black uppercase text-slate-500 tracking-widest">Severity</p>
-                             <div className={`px-4 py-1.5 rounded-lg flex items-center space-x-2 border ${item.severity === 'TERMINAL' ? 'bg-red-500/10 border-red-500/30 text-red-500' : 'bg-amber-500/10 border-amber-500/30 text-amber-500'}`}>
-                                <Zap size={12} className="fill-current" />
-                                <span className="text-[10px] font-black uppercase tracking-[0.1em]">{item.severity}</span>
-                             </div>
-                          </div>
+                    <div key={item.id} className="bg-white/5 border border-white/10 p-6 rounded-[2rem] space-y-4 group hover:border-red-600/30 transition-all">
+                       <span className="text-[9px] font-black text-slate-600">FAULT-{item.id}</span>
+                       <h4 className="text-base font-black uppercase tracking-tight text-white group-hover:text-red-500 transition-colors leading-tight">{item.text}</h4>
+                       <div className="flex justify-between items-center pt-2 border-t border-white/5">
+                          <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Result</span>
+                          <span className="text-[10px] font-black text-red-500 uppercase">{item.result}</span>
                        </div>
-                    </article>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -393,124 +312,105 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. THE MATH OF SURVIVAL SECTION (New High-Contrast Block) */}
-      <section className="py-24 sm:py-48 bg-[#C5A059] text-[#002244] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
-           <div className="lg:col-span-7 space-y-10">
-              <header className="space-y-6">
-                <div className="inline-flex items-center space-x-3 bg-[#002244]/10 border border-[#002244]/20 px-6 py-2 rounded-full">
-                   <Target size={16} />
-                   <span className="text-[10px] font-black uppercase tracking-[0.4em]">FISCAL STABILIZATION</span>
+      {/* 5. THE EXECUTIVE STANDARD */}
+      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6]">
+        <header className="text-center mb-32 space-y-6">
+          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">THE OUTCOME</p>
+          <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
+          <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+           {[
+             { letter: "D", title: "Audit-Ready Infrastructure", desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards." },
+             { letter: "A", title: "Preferred Risk Profile", desc: "Maintain a safety record that forces insurance underwriters to offer your business the lowest possible rates." },
+             { letter: "F", title: "Financial Sovereignty", desc: "Use industrial-grade tracking to ensure every mile driven contributes to net wealth, not just revenue." }
+           ].map((card, i) => (
+             <div key={i} className="bg-white p-12 rounded-[4rem] border border-slate-200 flex flex-col items-center text-center space-y-10 group hover:shadow-2xl transition-all duration-700">
+                <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center font-black text-3xl text-signal-gold shadow-inner group-hover:scale-110 transition-transform">{card.letter}</div>
+                <div className="space-y-4">
+                  <h4 className="text-2xl font-black font-serif text-[#002244] uppercase tracking-tight leading-none group-hover:text-signal-gold transition-colors">{card.title}</h4>
+                  <p className="text-base font-bold text-slate-500 uppercase tracking-tighter leading-relaxed">{card.desc}</p>
                 </div>
-                <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter leading-none">
-                  THE MATH <br/>OF <span className="italic">SURVIVAL.</span>
-                </h2>
-              </header>
-              <p className="text-2xl sm:text-4xl font-bold leading-tight max-w-2xl uppercase tracking-tight">
-                Monthly operating costs per truck currently range from <span className="underline decoration-4 underline-offset-8 font-black">$10,300 – $18,800.</span>
-              </p>
-              <p className="text-lg sm:text-xl font-bold opacity-80 leading-relaxed max-w-xl">
-                Carriers who operate on "intuition" instead of infrastructure are mathematically certain to fail within the first 90 days. We install the Economic Engine before you book your first load.
-              </p>
-              <div className="pt-6">
-                <Link to="/tools/tco-calculator" className="inline-flex items-center space-x-6 bg-[#002244] text-white px-10 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-slate-800 transition-all active:scale-95 group border-b-[8px] border-black">
-                  <span>Calculate Your Survival Math</span>
-                  <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-              </div>
-           </div>
-           <div className="lg:col-span-5">
-              <div className="bg-[#002244] p-10 md:p-14 rounded-[4rem] text-white shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border-t-[10px] border-[#C5A059] relative group">
-                <div className="absolute top-0 right-0 p-8 opacity-5"><Calculator size={140} /></div>
-                <div className="space-y-10 relative z-10">
-                   <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white"><Calculator size={24}/></div>
-                      <h4 className="text-xl font-black font-serif uppercase tracking-tight">TCO Engine v4.0</h4>
-                   </div>
-                   <div className="space-y-6">
-                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
-                        <p className="text-[11px] font-black uppercase tracking-widest text-slate-400">Fixed Cost Baseline</p>
-                        <p className="text-2xl font-black text-white">$4,200/mo</p>
-                      </div>
-                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
-                        <p className="text-[11px] font-black uppercase tracking-widest text-slate-400">Variable CPM Avg</p>
-                        <p className="text-2xl font-black text-white">$0.98/mi</p>
-                      </div>
-                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
-                        <p className="text-[11px] font-black uppercase tracking-widest text-slate-400">Break-Even RPM</p>
-                        <p className="text-2xl font-black text-[#C5A059] italic">$1.84/mi</p>
-                      </div>
-                   </div>
-                </div>
-              </div>
-           </div>
+             </div>
+           ))}
         </div>
       </section>
 
-      {/* 5. THE OUTCOME SECTION */}
-      <section className="py-16 sm:py-24 md:py-48 bg-[#FAF9F6] dark:bg-surface-dark transition-colors">
-        <div className="max-w-[1600px] mx-auto px-6">
-          <header className="text-center mb-16 sm:mb-32 space-y-6 sm:space-y-8 animate-reveal-up">
-             <p className="text-[12px] sm:text-[14px] font-black uppercase tracking-[0.5em] text-slate-400">THE OUTCOME</p>
-             <h2 className="text-4xl sm:text-6xl md:text-[6.5rem] font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.9]">
-               THE <span className="text-[#C5A059] italic">EXECUTIVE</span> STANDARD.
-             </h2>
-             <p className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-500 max-w-4xl mx-auto leading-relaxed uppercase">
-               The transformation from a driver with a dream to a carrier with infrastructure.
-             </p>
-          </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
-            {[
-              { 
-                icon: <ClipboardCheck size={40} />, 
-                title: "Audit-Ready Infrastructure", 
-                desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards." 
-              },
-              { 
-                icon: <UserCheck size={40} />, 
-                title: "Preferred Risk Profile", 
-                desc: "Maintain a safety record that forces insurance underwriters to offer your business the lowest possible rates." 
-              },
-              { 
-                icon: <BarChart3 size={40} />, 
-                title: "Financial Sovereignty", 
-                desc: "Use industrial-grade tracking to ensure every mile driven contributes to net wealth, not just revenue." 
-              }
-            ].map((pillar, i) => (
-              <article key={i} className="bg-white dark:bg-primary-dark p-8 sm:p-12 lg:p-20 rounded-[3rem] sm:rounded-[4.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center group hover:shadow-xl transition-all duration-700">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-[#FAF9F6] dark:bg-gray-800 text-[#C5A059] rounded-2xl sm:rounded-[2.5rem] flex items-center justify-center mb-8 sm:mb-12 shadow-inner group-hover:scale-110 transition-all duration-500">
-                  {pillar.icon}
+      {/* 6. THE MATH OF SURVIVAL */}
+      <section className="py-48 px-10 md:px-20 bg-signal-gold text-[#002244]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+          <div className="lg:col-span-7 space-y-10">
+            <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
+            <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
+            <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl">
+               Monthly operating costs per truck currently range from $10,300 – $18,800. 
+            </p>
+            <div className="pt-10">
+               <Link to="/tools/tco-calculator" className="bg-[#002244] text-white px-12 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-slate-800 transition-all active:scale-95 flex items-center w-fit border-b-8 border-black group">
+                 CALCULATE YOUR MATH <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
+               </Link>
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+             <div className="bg-[#002244] p-12 rounded-[4rem] text-white shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-10"><Calculator size={140} /></div>
+                <div className="space-y-10 relative z-10">
+                   <h4 className="text-xl font-black font-serif uppercase tracking-tight text-signal-gold italic">TCO Engine v4.0</h4>
+                   <div className="space-y-6">
+                      <div className="flex justify-between border-b border-white/10 pb-4">
+                        <span className="text-[11px] font-black text-slate-500 uppercase tracking-widest">Fixed Cost</span>
+                        <span className="text-2xl font-black">$4,200/mo</span>
+                      </div>
+                      <div className="flex justify-between border-b border-white/10 pb-4">
+                        <span className="text-[11px] font-black text-slate-500 uppercase tracking-widest">Variable CPM</span>
+                        <span className="text-2xl font-black">$0.98/mi</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[11px] font-black text-signal-gold uppercase tracking-widest">Break-Even RPM</span>
+                        <span className="text-2xl font-black text-signal-gold">$1.84/mi</span>
+                      </div>
+                   </div>
                 </div>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#002244] dark:text-white uppercase leading-tight mb-6 sm:mb-8 font-serif tracking-tight group-hover:text-[#C5A059] transition-colors">
-                  {pillar.title}
-                </h3>
-                <p className="text-base sm:text-xl font-bold text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-tight">
-                  {pillar.desc}
-                </p>
-              </article>
-            ))}
+             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. FINAL CTA SECTION */}
-      <section className="py-16 sm:py-24 md:py-48 bg-[#002244] text-white overflow-hidden relative">
-        <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-[1600px] mx-auto px-6 text-center relative z-10 space-y-12 sm:space-y-16">
-           <header className="space-y-6 sm:space-y-10">
-              <h2 className="text-4xl sm:text-6xl md:text-[6.5rem] font-black font-serif uppercase tracking-tight leading-none">BUILD YOUR CARRIER LIKE A <br/><span className="text-[#C5A059] italic">CARRIER EXECUTIVE.</span></h2>
-              <p className="text-lg sm:text-2xl md:text-3xl text-slate-300 font-medium max-w-4xl mx-auto leading-[1.4] sm:leading-[1.6]">LaunchPath gives you the infrastructure to operate with discipline and pass the federal REACH Test™.</p>
-           </header>
-           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 pt-6">
-              <Link to="/readiness" className="w-full sm:w-auto bg-[#C5A059] text-[#002244] px-10 sm:px-24 py-6 sm:py-12 rounded-[2rem] sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[16px] sm:text-[18px] shadow-2xl hover:bg-white transition-all active:scale-95 flex items-center justify-center group border-b-4 sm:border-b-8 border-[#8e7340]">TAKE THE REACH TEST™ <ArrowRight size={24} className="ml-3 sm:ml-5 group-hover:translate-x-2 transition-transform" /></Link>
-              <Link to="/pricing" className="w-full sm:w-auto border-2 sm:border-4 border-white/20 px-10 sm:px-24 py-6 sm:py-12 rounded-[2rem] sm:rounded-[3rem] font-black uppercase tracking-[0.3em] text-[16px] sm:text-[18px] hover:bg-white/5 transition-all flex items-center justify-center">ADMISSION PROTOCOL</Link>
-           </div>
-           
-           <p className="text-[11px] sm:text-[13px] font-black uppercase tracking-[0.5em] text-white/20 pt-8 sm:pt-12">BUILT ON WISDOM • ESTABLISHED WITH UNDERSTANDING.™</p>
+      {/* 7. FAQ SECTION */}
+      <section className="py-48 px-10 md:px-20 lg:px-40 bg-[#020617]">
+        <header className="text-center mb-32 space-y-6">
+          <p className="text-[11px] font-black text-slate-500 uppercase tracking-[0.5em]">KNOWLEDGE BASE</p>
+          <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">COMMON <br/><span className="text-signal-gold italic">QUESTIONS.</span></h2>
+        </header>
+
+        <div className="max-w-4xl mx-auto divide-y divide-white/5 border-y border-white/5">
+           {faqs.map((faq, i) => (
+             <FAQItem 
+               key={i} 
+               question={faq.q} 
+               answer={faq.a} 
+               isOpen={openFaqIndex === i} 
+               onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)} 
+             />
+           ))}
         </div>
       </section>
+
+      {/* 8. FINAL CTA */}
+      <section className="py-48 px-10 md:px-20 lg:px-40 text-center bg-[#002244] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="relative z-10 space-y-16">
+           <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tight text-white leading-none">BUILD YOUR CARRIER LIKE A <br/><span className="text-signal-gold italic">CARRIER EXECUTIVE.</span></h2>
+           <div className="h-2 w-48 bg-signal-gold mx-auto rounded-full"></div>
+           <p className="text-2xl md:text-4xl font-black text-white/50 max-w-4xl mx-auto uppercase tracking-tighter italic">"Order precedes revenue. Discipline precedes expansion. Wisdom precedes the riches."</p>
+           <div className="flex flex-col sm:flex-row gap-8 justify-center pt-10">
+              <Link to="/reach-test" className="bg-signal-gold text-[#002244] px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white transition-all active:scale-95 border-b-8 border-slate-900">TAKE THE REACH TEST™</Link>
+              <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/10 transition-all">ADMISSION PROTOCOL</Link>
+           </div>
+        </div>
+      </section>
+
     </div>
   );
 };
