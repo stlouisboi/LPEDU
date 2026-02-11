@@ -1,23 +1,28 @@
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../firebase';
-import { Search, Filter, Calendar, User, ArrowRight, Loader2, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Filter, Calendar, User, ArrowRight, Loader2, BookOpen, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { BlogPost, BlogCategory } from '../types';
 import { INITIAL_BLOGS } from '../constants';
 
-const POSTS_PER_PAGE = 9;
+const POSTS_PER_PAGE = 6;
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [visiblePosts, setVisiblePosts] = useState(POSTS_PER_PAGE);
 
   useEffect(() => {
     document.title = "Blog | LaunchPath Compliance Insights";
     
+    // Set Meta Description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', 'Weekly compliance insights for motor carriers. FMCSA regulations, audit preparation, and carrier operations from industry experts.');
+
     if (!isFirebaseConfigured || !db) {
       setLoading(false);
       return;
@@ -44,9 +49,9 @@ const BlogPage = () => {
     }
   }, []);
 
-  // Reset page to 1 when filters change
+  // Reset visibility when filters change
   useEffect(() => {
-    setCurrentPage(1);
+    setVisiblePosts(POSTS_PER_PAGE);
   }, [selectedCategory, searchQuery]);
 
   const categories: (BlogCategory | 'All')[] = [
@@ -70,11 +75,9 @@ const BlogPage = () => {
     });
   }, [blogs, selectedCategory, searchQuery]);
 
-  const totalPages = Math.ceil(filteredBlogs.length / POSTS_PER_PAGE);
-  const paginatedBlogs = useMemo(() => {
-    const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-    return filteredBlogs.slice(startIndex, startIndex + POSTS_PER_PAGE);
-  }, [filteredBlogs, currentPage]);
+  const loadMore = () => {
+    setVisiblePosts(prev => prev + POSTS_PER_PAGE);
+  };
 
   if (loading) {
     return (
@@ -133,8 +136,8 @@ const BlogPage = () => {
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {paginatedBlogs.length > 0 ? (
-            paginatedBlogs.map(post => (
+          {filteredBlogs.length > 0 ? (
+            filteredBlogs.slice(0, visiblePosts).map(post => (
               <article key={post.id} className="flex flex-col bg-white dark:bg-surface-dark rounded-[2.5rem] overflow-hidden border border-slate-100 dark:border-border-dark group transition-all hover:shadow-2xl hover:-translate-y-1">
                 {/* Image Section */}
                 <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
@@ -152,7 +155,7 @@ const BlogPage = () => {
                     <span className="bg-authority-blue/5 px-3 py-1 rounded-lg">{post.category}</span>
                     <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
                     <span className="text-slate-400 flex items-center">
-                      <Calendar className="w-3 h-3 mr-1.5" /> {new Date(post.publishedAt).toLocaleDateString()}
+                      <Calendar className="w-3.5 h-3.5 mr-1.5" /> {new Date(post.publishedAt).toLocaleDateString()}
                     </span>
                   </div>
                   
@@ -189,47 +192,21 @@ const BlogPage = () => {
           )}
         </div>
 
-        {/* Pagination Controls */}
-        {totalPages > 1 && (
+        {/* Load More Control */}
+        {visiblePosts < filteredBlogs.length && (
           <div className="mt-20 flex flex-col items-center space-y-6">
-            <div className="flex items-center space-x-2">
-              <button 
-                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                disabled={currentPage === 1}
-                className="p-4 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-2xl text-authority-blue dark:text-signal-gold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-white/5 transition-all shadow-sm active:scale-95"
-                aria-label="Previous Page"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              
-              <div className="flex items-center space-x-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`w-12 h-12 rounded-2xl text-[10px] font-black transition-all ${
-                      currentPage === page 
-                      ? 'bg-authority-blue text-white shadow-lg scale-110' 
-                      : 'bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 text-text-muted hover:bg-slate-50 dark:hover:bg-white/5'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-
-              <button 
-                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                disabled={currentPage === totalPages}
-                className="p-4 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-2xl text-authority-blue dark:text-signal-gold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-white/5 transition-all shadow-sm active:scale-95"
-                aria-label="Next Page"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
+            <button 
+              onClick={loadMore}
+              className="group relative bg-[#C6922A] text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center">
+                LOAD MORE INSIGHTS <ChevronDown className="ml-4 group-hover:translate-y-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
+            </button>
             
             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
-              Page {currentPage} of {totalPages} // Records {filteredBlogs.length}
+              Showing {Math.min(visiblePosts, filteredBlogs.length)} of {filteredBlogs.length} Records
             </p>
           </div>
         )}

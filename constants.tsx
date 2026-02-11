@@ -73,7 +73,7 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
 export const COURSE_MODULES: CourseModule[] = [
   { 
     id: 0, 
-    title: "Ground 0: The Discipline Standard", 
+    title: "Ground 0: THE DISCIPLINE STANDARD", 
     description: "Operating Asset: Preliminary framework verification. Evaluates carrier discipline before authority filing.", 
     lessons: 6, 
     duration: "Protocol Assessment", 
@@ -85,7 +85,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 1, 
-    title: "Authority Protection Protocols", 
+    title: "AUTHORITY PROTECTION PROTOCOLS", 
     description: "Operating Asset: Legal architecture for carrier identity. Documentation infrastructure for MC/DOT configuration.", 
     lessons: 8, 
     duration: "Structural Setup", 
@@ -97,7 +97,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 2, 
-    title: "Insurance Continuity Systems", 
+    title: "INSURANCE CONTINUITY SYSTEMS", 
     description: "Operating Asset: Risk mitigation files. Standards for maintaining primary liability and cargo coverage continuity.", 
     lessons: 5, 
     duration: "Risk Management", 
@@ -109,7 +109,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 3, 
-    title: "Compliance Backbone Installation", 
+    title: "COMPLIANCE BACKBONE INSTALLATION", 
     description: "Operating Asset: Technical Safety Files. Installation of DQ files, Clearinghouse governance, and HOS protocols.", 
     lessons: 10, 
     duration: "Technical Implementation", 
@@ -121,7 +121,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 4, 
-    title: "Cash-Flow Oxygen Protocols", 
+    title: "CASH-FLOW OXYGEN PROTOCOLS", 
     description: "Operating Asset: Financial solvency files. Documentation of operational reserves and payment cycle management.", 
     lessons: 6, 
     duration: "Fiscal Stewardship", 
@@ -134,7 +134,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 5, 
-    title: "Audit Readiness Standards", 
+    title: "AUDIT READINESS STANDARDS", 
     description: "Operating Asset: New Entrant investigation response kit. Preparation for the 48-hour federal audit window.", 
     lessons: 7, 
     duration: "Audit Verification", 
@@ -147,7 +147,7 @@ export const COURSE_MODULES: CourseModule[] = [
   },
   { 
     id: 6, 
-    title: "Stabilization & Scale Protocols", 
+    title: "STABILIZATION & SCALE PROTOCOLS", 
     description: "Operating Asset: Advanced growth files. Standards for fleet expansion and multi-unit governance.", 
     lessons: 4, 
     duration: "Operational Continuity", 
@@ -399,7 +399,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <p style="font-family: Montserrat, sans-serif; font-style: italic; font-size: 24px; color: #002244; font-weight: 800; max-width: 600px; margin: 0 auto;">
           "Order precedes revenue. Discipline precedes expansion. Wisdom precedes the riches."
         </p>
-        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— LaunchPath Operating Standard</p>
+        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— Vince Lawrence, System Custodian</p>
       </div>
       
       <div style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
@@ -456,7 +456,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <p style="font-family: Montserrat, sans-serif; font-style: italic; font-size: 24px; color: #002244; font-weight: 800; max-width: 600px; margin: 0 auto;">
           “By wisdom a house is built, and by understanding it is established; by knowledge the rooms are filled with all precious and pleasant riches.”
         </p>
-        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— Proverbs 24:3–4</p>
+        <p style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: #C5A059; margin-top: 20px;">— Vince Lawrence, System Custodian</p>
       </div>
     `,
     publishedAt: "2025-01-28",
@@ -467,7 +467,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
   },
   {
     id: "auth-1",
-    title: "USDOT vs. MC Number: Do You Really Need Both?",
+    title: "USDOT VS. MC NUMBER: DO YOU REALLY NEED BOTH?",
     slug: "usdot-vs-mc-number-differences",
     category: "Authority",
     excerpt: "Regulatory Directive: Distinguishing between safety registration and commercial operating authority to prevent equipment seizure.",
@@ -556,7 +556,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
   },
   {
     id: "maint-1",
-    title: "Navigating Truck Maintenance: From Breakdown Fixes to Disciplined Stewardship",
+    title: "NAVIGATING TRUCK MAINTENANCE: FROM BREAKDOWN FIXES TO DISCIPLINED STEWARDSHIP",
     slug: "navigating-truck-maintenance-disciplined-stewardship",
     category: "Maintenance",
     excerpt: "Technical Directive: Moving from reactive repairs to a disciplined preventive maintenance program is the foundation of carrier longevity and safety compliance.",

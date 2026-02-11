@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -26,10 +27,14 @@ import {
 const AboutPage: React.FC = () => {
   useEffect(() => {
     document.title = "About | LaunchPath Transportation Education";
+    
+    // Set Meta Description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', 'Meet Vince Lawrence: 25+ years manufacturing leadership, OSHA-certified safety coordinator, U.S. Navy veteran. LaunchPath exists to prevent authority failure.');
   }, []);
 
   return (
-    <div className="bg-[#FAF9F6] dark:bg-primary-dark min-h-screen font-sans animate-in fade-in duration-700 transition-colors selection:bg-[#C5A059]/30">
+    <div className="bg-[#FAF9F6] dark:bg-primary-dark min-h-screen font-sans border-t border-white/5">
       
       {/* HERO SECTION - 60/40 EXECUTIVE ENTRANCE */}
       <section className="relative min-h-[95vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">

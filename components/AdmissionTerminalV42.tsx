@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -155,9 +156,12 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
                 className="w-full bg-[#002244] text-white py-6 sm:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[10px] sm:text-xs shadow-2xl hover:bg-[#0c1a2d] transition-all active:scale-[0.98] border-b-4 sm:border-b-8 border-slate-950 flex items-center justify-center disabled:opacity-50"
               >
                 {isSubmitting ? (
-                  <Loader2 className="animate-spin" size={24} />
+                  <div className="flex items-center">
+                    <Loader2 className="animate-spin mr-3" size={24} />
+                    <span className="font-black">PROCESSING...</span>
+                  </div>
                 ) : (
-                  <span className="flex items-center">AUTHORIZE REGISTRY UPLINK <ChevronRight className="ml-2" size={18} /></span>
+                  <span className="flex items-center font-black">AUTHORIZE REGISTRY UPLINK <ChevronRight className="ml-2" size={18} /></span>
                 )}
               </button>
               <div className="flex items-center justify-center space-x-3 opacity-40 mt-8">

@@ -31,7 +31,8 @@ import {
   HelpCircle,
   Loader2,
   Truck,
-  Scale
+  Scale,
+  ChevronUp
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -82,10 +83,25 @@ const HomePage: React.FC = () => {
   const [scanState, setScanState] = useState<'idle' | 'scanning' | 'syncing' | 'complete'>('idle');
   const [scanLog, setScanLog] = useState<string[]>([]);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     document.title = "LaunchPath | 90-Day Owner-Operator Survival System";
+    
+    // Set Meta Description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', '90-day owner-operator survival system. Protect your authority with audit-ready compliance infrastructure. Veteran-operated, OSHA-certified safety training.');
+
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 1000);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const scanSteps = [
     "INITIALIZING_NEURAL_UPLINK...",
@@ -243,9 +259,18 @@ const HomePage: React.FC = () => {
                         className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
                       />
                     </div>
-                    <button type="submit" className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue transition-all overflow-hidden group/btn border-b-4 border-[#8e7340]">
+                    <button type="submit" disabled={loading} className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue transition-all overflow-hidden group/btn border-b-4 border-[#8e7340] disabled:opacity-50">
                       <span className="relative z-10 flex items-center justify-center">
-                        GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
+                        {loading ? (
+                          <>
+                            <Loader2 className="animate-spin mr-2" size={16} />
+                            PROCESSING...
+                          </>
+                        ) : (
+                          <>
+                            GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
+                          </>
+                        )}
                       </span>
                     </button>
                   </form>
@@ -414,6 +439,17 @@ const HomePage: React.FC = () => {
            </div>
         </div>
       </section>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-24 right-8 bg-signal-gold text-[#002244] p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 z-40 border-4 border-white/20 animate-in fade-in zoom-in"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
 
       <div className="bg-[#020617] text-center py-10">
         <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
