@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -30,7 +29,7 @@ const AboutPage: React.FC = () => {
     
     // Set Meta Description
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', 'Meet Vince Lawrence: 25+ years manufacturing leadership, OSHA-certified safety coordinator, U.S. Navy veteran. LaunchPath exists to prevent authority failure.');
+    if (metaDesc) metaDesc.setAttribute('content', 'Meet Vince Lawrence: 25+ years manufacturing leadership, OSHA-certified safety coordinator, U.S. Navy veteran. LaunchPath exists to prevent authority failure through disciplined compliance systems.');
   }, []);
 
   return (
@@ -46,7 +45,7 @@ const AboutPage: React.FC = () => {
           <div className="relative z-10 max-w-2xl space-y-12 animate-reveal-up">
             <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full w-fit">
               <span className="flex h-2 w-2 rounded-full bg-[#C5A059] animate-pulse"></span>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Institutional Heritage</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70">Institutional Heritage</span>
             </div>
             
             <div className="space-y-4">
@@ -97,7 +96,7 @@ const AboutPage: React.FC = () => {
       <section className="py-32 md:py-56 bg-white dark:bg-primary-dark">
         <div className="max-w-[1600px] mx-auto px-6">
           <div className="text-center mb-32 space-y-8 animate-reveal-up">
-            <p className="text-[11px] font-black uppercase tracking-[1em] text-slate-400">OPERATIONAL PARAMETERS</p>
+            <p className="text-[11px] font-black uppercase tracking-[1em] text-white/70">OPERATIONAL PARAMETERS</p>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
               CLARITY OF <span className="text-[#C5A059] italic">PURPOSE.</span>
             </h2>

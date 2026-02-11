@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { 
@@ -199,7 +198,7 @@ const EnhancedPortalLogin: React.FC = () => {
                 </div>
               )}
 
-              <button type="submit" disabled={loading} className="w-full h-16 bg-[#C5A059] text-[#002244] rounded-2xl font-black uppercase tracking-[0.4em] text-[11px] shadow-2xl hover:bg-white transition-all active:scale-[0.98] disabled:opacity-30 border-b-4 border-[#8e7340] flex items-center justify-center group">
+              <button type="submit" disabled={loading} className="w-full h-16 bg-[#C5A059] text-[#002244] rounded-2xl font-black uppercase tracking-[0.4em] text-[11px] shadow-2xl hover:bg-white transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed border-b-4 border-[#8e7340] flex items-center justify-center group">
                 {loading ? (
                   <div className="flex items-center space-x-2">
                     <Loader2 className="animate-spin" size={18} />

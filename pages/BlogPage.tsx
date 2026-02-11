@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
@@ -21,7 +20,7 @@ const BlogPage = () => {
     
     // Set Meta Description
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', 'Weekly compliance insights for motor carriers. FMCSA regulations, audit preparation, and carrier operations from industry experts.');
+    if (metaDesc) metaDesc.setAttribute('content', 'Weekly compliance insights for motor carriers. FMCSA regulations, audit preparation, and carrier operations from industry experts. Technical briefings on federal compliance.');
 
     if (!isFirebaseConfigured || !db) {
       setLoading(false);
@@ -99,7 +98,7 @@ const BlogPage = () => {
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold">Regulatory Insights</span>
           </div>
           <h1 className="text-6xl lg:text-7xl font-black mb-6 font-serif uppercase tracking-tight text-authority-blue dark:text-white">The Compliance Ledger</h1>
-          <p className="text-xl text-slate-500 dark:text-text-dark-muted max-w-2xl mx-auto font-bold">
+          <p className="text-xl text-white/70 dark:text-white/70 max-w-2xl mx-auto font-bold">
             Weekly deep-dives into FMCSA regulations, audit preparation, and carrier operations.
           </p>
         </div>
@@ -197,12 +196,11 @@ const BlogPage = () => {
           <div className="mt-20 flex flex-col items-center space-y-6">
             <button 
               onClick={loadMore}
-              className="group relative bg-[#C6922A] text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+              className="bg-signal-gold text-[#002244] px-12 py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-sm hover:bg-white hover:text-[#002244] transition-all duration-300 shadow-2xl flex items-center"
             >
               <span className="relative z-10 flex items-center">
                 LOAD MORE INSIGHTS <ChevronDown className="ml-4 group-hover:translate-y-1 transition-transform" />
               </span>
-              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
             </button>
             
             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">

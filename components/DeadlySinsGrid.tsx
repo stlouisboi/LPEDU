@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ShieldX, ChevronDown } from 'lucide-react';
 
@@ -71,7 +70,7 @@ const DeadlySinsGrid: React.FC = () => {
             THE 16 DEADLY SINS OF <br/>
             <span className="text-red-600 italic">CARRIER FAILURE.</span>
           </h2>
-          <p className="text-xs tracking-[0.3em] text-white/70 font-normal uppercase">
+          <p className="text-xs tracking-[0.3em] text-white/70 uppercase font-normal">
             Identification of high-probability failure patterns used by investigators
           </p>
         </header>
