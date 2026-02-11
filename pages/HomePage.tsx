@@ -35,6 +35,7 @@ import {
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { syncToMailerLite } from '../mailerlite';
+import DeadlySinsGrid from '../components/DeadlySinsGrid';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -142,45 +143,6 @@ const HomePage: React.FC = () => {
       setLoading(false);
     }
   };
-
-  const riskDomains = [
-    {
-      domain: "Substance & Performance",
-      items: [
-        { id: "01", text: "Random Pool Enrollment", result: "AUDIT DEFAULT" },
-        { id: "02", text: "Positive Driver Results", result: "IMMEDIATE REVOCATION" },
-        { id: "03", text: "Clearinghouse Query Failure", result: "OPERATING BAN" },
-        { id: "04", text: "Omission of Pre-Employment", result: "STRICT LIABILITY" }
-      ]
-    },
-    {
-      domain: "Human Capital & Compliance",
-      items: [
-        { id: "05", text: "Revoked License Usage", result: "OOS EVENT" },
-        { id: "06", text: "Missing Med-Cert", result: "DRIVER DOWN GRADE" },
-        { id: "07", text: "Fragmented DQ Files", result: "AUDIT RED FLAG" },
-        { id: "08", text: "Omitted Background Inq", result: "NEGLIGENT ENTRUSTMENT" }
-      ]
-    },
-    {
-      domain: "Operational Control",
-      items: [
-        { id: "09", text: "Falsification of HOS", result: "CRIMINAL DEFAULT" },
-        { id: "10", text: "Dispatching OOS Vehicles", result: "AUTHORITY SEIZURE" },
-        { id: "11", text: "Deficient Roadside History", result: "PREMIUM SPIKE" },
-        { id: "12", text: "No Maintenance Log", result: "LIABILITY DEFAULT" }
-      ]
-    },
-    {
-      domain: "Administrative Stewardship",
-      items: [
-        { id: "13", text: "Insurance Coverage Lapse", result: "AUTHORITY TERMINATION" },
-        { id: "14", text: "Failure to Update MCS-150", result: "ADMIN REVOCATION" },
-        { id: "15", text: "BOC-3 Process Agent", result: "FILING SUSPENSION" },
-        { id: "16", text: "Late Accident Reporting", result: "LEGAL DEFAULT" }
-      ]
-    }
-  ];
 
   const faqs = [
     { q: "What if my insurance quote is higher than expected?", a: "Insurance is a fixed economic reality. We help you build a risk profile that underwriters value, even if initial costs are high." },
@@ -376,41 +338,13 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 4. THE 16 DEADLY SINS MATRIX GRID */}
-      <section className="py-32 px-10 md:px-20 bg-[#020617] relative">
-        <div className="max-w-[1600px] mx-auto space-y-32">
-          <header className="text-center space-y-6">
-             <div className="w-20 h-20 bg-red-600/10 rounded-2xl flex items-center justify-center mx-auto border border-red-600/20"><ShieldX size={40} className="text-red-600" /></div>
-             <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span></h2>
-             <p className="text-[10px] font-black uppercase tracking-[1em] text-slate-500 italic">Identification of high-probability failure patterns used by investigators</p>
-          </header>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {riskDomains.map((domain, i) => (
-              <div key={i} className="space-y-6">
-                <h3 className="text-sm font-black uppercase tracking-widest text-signal-gold border-b border-white/10 pb-4 flex items-center"><ChevronDown size={14} className="mr-2" /> {domain.domain}</h3>
-                <div className="space-y-4">
-                  {domain.items.map((item) => (
-                    <div key={item.id} className="bg-white/5 border border-white/10 p-6 rounded-[2rem] space-y-4 group hover:border-red-600/30 transition-all cursor-default">
-                       <span className="text-[9px] font-black text-slate-600">FAULT-{item.id}</span>
-                       <h4 className="text-base font-black uppercase tracking-tight text-white group-hover:text-red-500 transition-colors leading-tight">{item.text}</h4>
-                       <div className="flex justify-between items-center pt-2 border-t border-white/5">
-                          <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Result</span>
-                          <span className="text-[10px] font-black text-red-500 uppercase">{item.result}</span>
-                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="flex justify-center">
-            <Link to="/exposure-matrix" className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 hover:text-white transition-all group">
-               Analyze Complete Exposure Matrix <ArrowRight size={14} className="ml-3 group-hover:translate-x-2 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <DeadlySinsGrid />
+      
+      <div className="flex justify-center bg-[#020617] pb-32">
+        <Link to="/exposure-matrix" className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 hover:text-white transition-all group">
+            Analyze Complete Exposure Matrix <ArrowRight size={14} className="ml-3 group-hover:translate-x-2 transition-transform" />
+        </Link>
+      </div>
 
       {/* 5. THE EXECUTIVE STANDARD */}
       <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
