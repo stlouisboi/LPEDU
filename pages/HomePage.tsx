@@ -190,8 +190,8 @@ const HomePage: React.FC = () => {
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
             <div className="relative z-10 space-y-8 md:space-y-12">
               <div className="flex flex-wrap gap-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
               </div>
               <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85] animate-reveal-up">
                 PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
@@ -202,7 +202,7 @@ const HomePage: React.FC = () => {
               <div className="pt-4 animate-reveal-up [animation-delay:400ms]">
                 <Link 
                   to="/reach-test" 
-                  className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+                  className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
                 >
                   <Truck 
                     size={22} 
@@ -239,7 +239,7 @@ const HomePage: React.FC = () => {
                 {scanState === 'idle' ? (
                   <form onSubmit={handleRiskMapSubmit} className="space-y-8">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/40 ml-2">LEGAL ENTITY NA</label>
+                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">LEGAL ENTITY NA</label>
                       <input 
                         required 
                         value={formData.firstName} 
@@ -249,7 +249,7 @@ const HomePage: React.FC = () => {
                       />
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/40 ml-2">REGISTRY EMAIL</label>
+                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">REGISTRY EMAIL</label>
                       <input 
                         required 
                         type="email" 
@@ -295,11 +295,11 @@ const HomePage: React.FC = () => {
       <section className="py-32 px-10 md:px-20 lg:px-40 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto space-y-24">
           <header className="text-center space-y-6 animate-reveal-up">
-            <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
+            <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
             <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
               THE <span className="text-signal-gold italic">FOUR</span> PILLARS.
             </h2>
-            <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
               Institutional logic: A failure in the Compliance Backbone (Documentation) results in a loss of Insurance Continuity, which suffocates Cash-Flow Oxygen.
             </p>
           </header>
@@ -379,7 +379,7 @@ const HomePage: React.FC = () => {
       {/* 5. THE EXECUTIVE STANDARD */}
       <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
         <header className="text-center mb-32 space-y-6">
-          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">THE OUTCOME</p>
+          <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">THE OUTCOME</p>
           <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
           <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
         </header>
@@ -404,7 +404,7 @@ const HomePage: React.FC = () => {
       {/* 6. FAQ SECTION */}
       <section className="py-48 px-10 md:px-20 lg:px-40 bg-[#020617]">
         <header className="text-center mb-32 space-y-6">
-          <p className="text-[11px] font-black text-slate-500 uppercase tracking-[0.5em]">KNOWLEDGE BASE</p>
+          <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">KNOWLEDGE BASE</p>
           <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">COMMON <br/><span className="text-signal-gold italic">QUESTIONS.</span></h2>
         </header>
 
