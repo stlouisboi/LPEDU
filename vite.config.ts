@@ -3,11 +3,12 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
-  // Fix: Added type casting to process to resolve TypeScript error 'Property cwd does not exist on type Process'
+  // Fix: Property 'cwd' does not exist on type 'Process' - casting to any to access the Node.js cwd() method
   const env = loadEnv(mode, (process as any).cwd(), '');
   
   return {
     plugins: [react()],
+    appType: 'spa',
     define: {
       // The Gemini SDK requires the key to be available on process.env.API_KEY
       'process.env.API_KEY': JSON.stringify(env.VITE_GEMINI_API_KEY || env.API_KEY || ""),
@@ -24,7 +25,13 @@ export default defineConfig(({ mode }) => {
       'process.env.VITE_MAILERLITE_API_KEY': JSON.stringify(env.VITE_MAILERLITE_API_KEY || ""),
     },
     server: {
+      port: 3000,
+      strictPort: true,
       historyApiFallback: true
+    },
+    preview: {
+      port: 3000,
+      strictPort: true
     }
   };
 });

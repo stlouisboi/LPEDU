@@ -28,7 +28,8 @@ import {
   Search,
   MessageCircle,
   HelpCircle,
-  Loader2
+  Loader2,
+  Truck
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -171,6 +172,18 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30">
+      <style>{`
+        @keyframes truck-drive {
+          0% { transform: translateX(-5px) translateY(0px); }
+          25% { transform: translateX(5px) translateY(-1px); }
+          50% { transform: translateX(-5px) translateY(1px); }
+          75% { transform: translateX(5px) translateY(-1px); }
+          100% { transform: translateX(-5px) translateY(0px); }
+        }
+        .animate-truck-drive {
+          animation: truck-drive 3s ease-in-out infinite;
+        }
+      `}</style>
       
       {/* 1. HERO SECTION - REDESIGNED GRID */}
       <section className="relative min-h-screen flex items-center border-b border-white/5 py-20">
@@ -193,7 +206,7 @@ const HomePage: React.FC = () => {
               <div className="pt-4 animate-reveal-up [animation-delay:400ms]">
                 <Link 
                   to="/reach-test" 
-                  className="group relative bg-signal-gold text-[#002244] px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+                  className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center">
                     Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
@@ -212,6 +225,11 @@ const HomePage: React.FC = () => {
               {/* Inner depth effect */}
               <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
               
+              {/* Animated Truck Icon in the corner */}
+              <div className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+                <Truck size={48} className="text-signal-gold animate-truck-drive" />
+              </div>
+
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-8">
                   <div className="space-y-1">
@@ -246,7 +264,7 @@ const HomePage: React.FC = () => {
                         className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
                       />
                     </div>
-                    <button type="submit" className="w-full relative bg-signal-gold text-[#002244] py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:shadow-signal-gold/20 transition-all overflow-hidden group/btn border-b-4 border-[#8e7340]">
+                    <button type="submit" className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue hover:shadow-signal-gold/20 transition-all overflow-hidden group/btn border-b-4 border-[#8e7340]">
                       <span className="relative z-10 flex items-center justify-center">
                         GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
                       </span>
@@ -280,25 +298,25 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 2. PATTERN SECTION */}
-      <section className="py-32 px-10 md:px-20 lg:px-40 bg-white">
+      <section className="py-32 px-10 md:px-20 lg:px-40 bg-white dark:bg-primary-dark">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-5 relative group">
-            <div className="rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-slate-100 relative bg-slate-50">
+            <div className="rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-slate-100 dark:border-slate-800 relative bg-slate-50 dark:bg-surface-dark">
               <img src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" alt="Vince" className="w-full grayscale hover:grayscale-0 transition-all duration-1000" />
               <div className="absolute bottom-0 left-0 w-full bg-[#002244] py-6 text-center">
                 <p className="text-[10px] font-black text-signal-gold uppercase tracking-[0.4em]">SYSTEM CUSTODIAN</p>
               </div>
             </div>
-            <div className="absolute -bottom-8 -right-8 bg-signal-gold p-8 rounded-3xl shadow-2xl border-8 border-white hidden lg:block group-hover:rotate-12 transition-transform duration-500 hover:scale-110">
+            <div className="absolute -bottom-8 -right-8 bg-signal-gold p-8 rounded-3xl shadow-2xl border-8 border-white dark:border-slate-900 hidden lg:block group-hover:rotate-12 transition-transform duration-500 hover:scale-110">
                <ShieldCheck size={40} className="text-[#002244]" />
             </div>
           </div>
           <div className="lg:col-span-7 space-y-10">
-            <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] uppercase tracking-tighter leading-[0.95]">
+            <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-[0.95]">
               I'VE WATCHED THIS <br/><span className="text-red-600 italic">FAIL 200 TIMES.</span>
             </h2>
-            <p className="text-2xl md:text-3xl text-slate-500 font-bold leading-relaxed border-l-8 border-slate-200 pl-10">
-              Systems aren't elective; they are survival. I refuse to reverse the order of wisdom. <span className="text-[#002244]">Order precedes revenue.</span>
+            <p className="text-2xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold leading-relaxed border-l-8 border-slate-200 dark:border-slate-700 pl-10">
+              Systems aren't elective; they are survival. I refuse to reverse the order of wisdom. <span className="text-[#002244] dark:text-signal-gold">Order precedes revenue.</span>
             </p>
           </div>
         </div>
@@ -371,11 +389,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 5. THE EXECUTIVE STANDARD */}
-      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6]">
+      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
         <header className="text-center mb-32 space-y-6">
           <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">THE OUTCOME</p>
-          <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
-          <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
+          <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
+          <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -384,11 +402,11 @@ const HomePage: React.FC = () => {
              { letter: "A", title: "Preferred Risk Profile", desc: "Safety-first operational structure." },
              { letter: "F", title: "Financial Stability", desc: "Systems that maximize operating margins." }
            ].map((item, i) => (
-             <div key={i} className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm space-y-8 flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center font-black text-2xl text-signal-gold">{item.letter}</div>
+             <div key={i} className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-sm space-y-8 flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center font-black text-2xl text-signal-gold">{item.letter}</div>
                 <div className="space-y-4">
-                  <h4 className="text-xl font-black text-[#002244] uppercase tracking-tight">{item.title}</h4>
-                  <p className="text-slate-500 font-medium leading-relaxed">{item.desc}</p>
+                  <h4 className="text-xl font-black text-[#002244] dark:text-white uppercase tracking-tight">{item.title}</h4>
+                  <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
                 </div>
              </div>
            ))}
@@ -396,12 +414,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 6. THE MATH OF SURVIVAL */}
-      <section className="py-48 px-10 md:px-20 bg-signal-gold text-[#002244]">
+      <section className="py-48 px-10 md:px-20 bg-signal-gold text-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-7 space-y-10">
-            <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
-            <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
-            <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl">
+            <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center text-[#002244] opacity-70"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
+            <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] text-[#002244]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
+            <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl text-[#002244]">
                Monthly operating costs per truck currently range from $10,300 – $18,800. 
             </p>
             <div className="pt-10">
@@ -468,7 +486,7 @@ const HomePage: React.FC = () => {
            <div className="flex flex-col sm:flex-row gap-8 justify-center pt-10">
               <Link 
                 to="/reach-test" 
-                className="relative overflow-hidden bg-signal-gold text-[#002244] px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white transition-all active:scale-95 border-b-8 border-slate-900 group"
+                className="relative overflow-hidden bg-signal-gold text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white hover:text-authority-blue transition-all active:scale-95 border-b-8 border-slate-900 group"
               >
                 <span className="relative z-10">TAKE THE REACH TEST™</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>

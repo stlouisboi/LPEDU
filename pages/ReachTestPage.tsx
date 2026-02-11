@@ -21,7 +21,6 @@ import {
   Gavel,
   HardDrive,
   Cpu,
-  // Added AlertTriangle to imports
   AlertTriangle
 } from 'lucide-react';
 
@@ -40,7 +39,7 @@ const ReachTestPage = () => {
             THE <span className="text-signal-gold italic">REACH</span> TEST™
           </h1>
           <p className="text-xl md:text-2xl text-slate-500 dark:text-text-dark-muted font-bold leading-relaxed uppercase tracking-tight">
-            An Assessment of Structural Integrity Under Institutional Pressures
+            A Structural Readiness Assessment for the First 90 Days Under Authority
           </p>
           <p className="text-[10px] text-slate-400 italic mt-6 uppercase tracking-[0.4em] font-black">
             Based on the OSHA-Mandated "Point of Operation" Safety Protocol
@@ -126,12 +125,19 @@ const ReachTestPage = () => {
               </div>
             ))}
             
-            {/* The Placeholder for the Stick Visual */}
             <div className="hidden lg:flex bg-authority-blue rounded-[3rem] p-10 flex-col items-center justify-center text-center text-white relative overflow-hidden shadow-2xl">
                <div className="absolute inset-0 opacity-10 rotate-12"><Scale size={200}/></div>
                <div className="relative z-10 space-y-4">
                   <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">OSHA Standard Applied</p>
-                  <p className="text-xl font-black font-serif italic uppercase tracking-tighter">"Can an auditor reach the defect?"</p>
+                  <p className="text-xl font-black font-serif italic uppercase tracking-tighter">"Can an Auditor Reach the Defect?"</p>
+                  <div className="space-y-4 mt-6">
+                    <p className="text-sm font-medium leading-relaxed">
+                      If the vulnerability is accessible, exposure is inevitable.
+                    </p>
+                    <p className="text-sm font-medium leading-relaxed">
+                      In other words: if documentation gaps, compliance errors, or structural weaknesses are visible during review, corrective action will not be optional.
+                    </p>
+                  </div>
                </div>
             </div>
           </div>
@@ -161,7 +167,7 @@ const ReachTestPage = () => {
 
             <div className="pt-8 flex flex-col items-center gap-8">
               <Link to="/readiness" className="bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center group border-b-[12px] border-slate-900">
-                INITIATE DIAGNOSTIC ASSESSMENT <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
+                RUN THE REACH TEST™ <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
               </Link>
               <p className="text-[10px] font-black uppercase tracking-[0.6em] text-slate-400 opacity-50">Verified Stewardship before Operational Movement</p>
             </div>
