@@ -36,6 +36,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { syncToMailerLite } from '../mailerlite';
 import DeadlySinsGrid from '../components/DeadlySinsGrid';
+import FAQSection from '../components/FAQSection';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -414,6 +415,9 @@ const HomePage: React.FC = () => {
            </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
 
       <div className="bg-[#020617] text-center py-10">
         <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
