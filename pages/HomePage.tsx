@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -23,7 +22,10 @@ import {
   ChevronUp,
   Lock,
   Terminal,
-  Cpu
+  Cpu,
+  CheckCircle2,
+  XCircle,
+  Info
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -122,7 +124,7 @@ const HomePage: React.FC = () => {
       `}</style>
       
       {/* 1. THE DECLARATION: HERO SECTION */}
-      <section className="relative min-h-screen flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-20 lg:py-32">
+      <section className="relative min-h-[80vh] flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-20 lg:py-32">
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
           
           <div className="lg:col-span-7 space-y-12 relative">
@@ -316,16 +318,28 @@ const HomePage: React.FC = () => {
           </p>
           
           <div className="mt-20 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-primary-dark">
-            <span className="font-black text-xl tracking-tighter">COMPLIANCE</span>
+            <div className="flex flex-col items-center">
+              <span className="font-black text-xl tracking-tighter">COMPLIANCE</span>
+              <Activity size={16} className="mt-2 opacity-40" />
+            </div>
             <ArrowRight size={32} className="hidden md:block opacity-30" />
             <ChevronDown size={32} className="md:hidden opacity-30" />
-            <span className="font-black text-xl tracking-tighter">INSURANCE</span>
+            <div className="flex flex-col items-center">
+              <span className="font-black text-xl tracking-tighter">INSURANCE</span>
+              <ShieldCheck size={16} className="mt-2 opacity-40" />
+            </div>
             <ArrowRight size={32} className="hidden md:block opacity-30" />
             <ChevronDown size={32} className="md:hidden opacity-30" />
-            <span className="font-black text-xl tracking-tighter">CASH FLOW</span>
+            <div className="flex flex-col items-center">
+              <span className="font-black text-xl tracking-tighter">CASH FLOW</span>
+              <Zap size={16} className="mt-2 opacity-40" />
+            </div>
             <ArrowRight size={32} className="hidden md:block opacity-30" />
             <ChevronDown size={32} className="md:hidden opacity-30" />
-            <span className="font-black text-xl tracking-tighter">AUTHORITY</span>
+            <div className="flex flex-col items-center">
+              <span className="font-black text-xl tracking-tighter">AUTHORITY</span>
+              <Lock size={16} className="mt-2 opacity-40" />
+            </div>
           </div>
         </div>
       </section>
@@ -476,7 +490,7 @@ const HomePage: React.FC = () => {
       <section className="py-24 md:py-48 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-24 items-center relative z-10">
-          <div className="lg:col-span-7 space-y-10 w-full lg:w-2/3">
+          <div className="w-full lg:w-7/12 space-y-10">
             <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center text-[#002244] opacity-70"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
             <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] text-[#002244]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
             <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl text-[#002244]">
@@ -490,7 +504,7 @@ const HomePage: React.FC = () => {
                </Link>
             </div>
           </div>
-          <div className="lg:col-span-5 w-full lg:w-1/3">
+          <div className="w-full lg:w-5/12">
              <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={140} /></div>
                 <div className="space-y-10 relative z-10">
