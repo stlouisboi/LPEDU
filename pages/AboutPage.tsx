@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -60,12 +61,30 @@ const AboutPage: React.FC = () => {
               <p>
                 I spent 25 years in manufacturing leadership—serving as a supervisor and business unit manager—and 5 years as a certified OSHA safety coordinator. Before that, I served 7 years in the U.S. Navy. In those high-stakes environments, <span className="text-white font-black">systems weren't just paperwork; they were the difference between a productive shift and a catastrophic failure.</span>
               </p>
-              <p>
-                When I transitioned into the motor carrier space, I saw company drivers trying to make the leap to owner-operator. These were good men—hard workers with clean records—who lost their authority in 90 days. 
-              </p>
+              
+              <div className="space-y-4">
+                <h4 className="text-[12px] font-black uppercase tracking-[0.3em] text-[#C5A059]">The Failure Was Not Effort. It Was Structure.</h4>
+                <p>
+                  When I transitioned into the motor carrier space, I saw company drivers trying to make the leap to owner-operator. These were good men—hard workers with clean records—who lost their authority in 90 days. 
+                </p>
+              </div>
+
               <p>
                 Not because they couldn't drive, but because the industry sold them <span className="text-[#C5A059] font-black italic">"hustle"</span> while the FMCSA demanded <span className="text-[#C5A059] font-black">"compliance infrastructure."</span> LaunchPath exists because I refuse to reverse the order of wisdom.
               </p>
+            </div>
+
+            {/* MANDATORY CUSTODIANSHIP DECLARATION */}
+            <div className="pt-16 border-t border-white/10 mt-16 space-y-6">
+              <h3 className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C5A059]">Custodianship Statement</h3>
+              <div className="space-y-4">
+                <p className="text-lg font-bold text-white/90 leading-relaxed uppercase tracking-tight">
+                  LaunchPath is not an expression of personal brand, opinion, or influence.
+                </p>
+                <p className="text-base text-white/60 font-medium leading-relaxed italic border-l-2 border-[#C5A059]/30 pl-6">
+                  It is a governed operating standard designed to preserve continuity, accuracy, and institutional integrity beyond any individual—including its founder. Decisions within this system prioritize verification, documentation, and long-term authority over speed, convenience, or popularity.
+                </p>
+              </div>
             </div>
 
             <div className="pt-8">
@@ -232,6 +251,22 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
+      {/* FORMAL EXCLUSION NOTICE */}
+      <section className="py-20 bg-slate-100 dark:bg-slate-900 border-y border-slate-200 dark:border-white/5">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
+          <div className="inline-flex items-center space-x-3 bg-red-600/5 px-6 py-2 rounded-full border border-red-600/10">
+            <ShieldAlert size={14} className="text-red-600" />
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-red-600">Institutional Fit Notice</span>
+          </div>
+          <p className="text-xl md:text-3xl text-slate-700 dark:text-slate-300 font-bold leading-relaxed uppercase tracking-tight">
+            This environment is not designed for operators seeking shortcuts, informal advice, motivational content, or discretionary compliance.
+          </p>
+          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium italic border-t border-slate-200 dark:border-white/10 pt-8">
+            It exists for owners and executives willing to submit to structure, documentation, and verification as the cost of long-term authority.
+          </p>
+        </div>
+      </section>
+
       {/* THE REACH TEST SECTION */}
       <section className="py-24 md:py-48 bg-[#fafaf9] dark:bg-surface-dark border-y border-[#002244]/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
@@ -391,7 +426,10 @@ const AboutPage: React.FC = () => {
                   <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85]">
                     INSTITUTIONAL <br/><span className="text-[#C5A059] italic">LEGACY.</span>
                   </h2>
-                  <div className="h-1 sm:h-1.5 md:h-2 w-24 sm:w-32 md:w-48 bg-[#C5A059]"></div>
+                  <p className="text-[12px] font-black text-[#C5A059] uppercase tracking-[0.4em] mt-6">
+                    Legacy, in this context, refers to systems that continue to function when the founder is no longer present.
+                  </p>
+                  <div className="h-1 sm:h-1.5 md:h-2 w-24 sm:w-32 md:w-48 bg-[#C5A059] mt-8"></div>
                 </div>
 
                 <div className="space-y-8 sm:space-y-10 md:space-y-12 text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 font-medium leading-relaxed max-w-3xl">
@@ -428,3 +466,17 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
+
+/*
+INSTITUTIONAL DOCTRINE — DO NOT MODIFY WITHOUT REVIEW
+
+This page exists to establish custodianship, not persuasion.
+It must remain:
+– Calm
+– Governed
+– Founder-subordinate to the system
+– Explicitly exclusionary where required
+
+Any edits that introduce hype, urgency, or personality-driven language
+violate the LaunchPath Institutional Standard.
+*/
