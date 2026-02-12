@@ -183,8 +183,8 @@ const HomePage: React.FC = () => {
       `}</style>
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex items-center border-b border-white/5 py-20">
-        <div className="max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+      <section className="relative min-h-screen flex items-center border-b border-white/5 px-4 sm:px-6 py-20 sm:py-32">
+        <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-center">
           
           <div className="lg:col-span-7 space-y-12 relative">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
@@ -193,16 +193,16 @@ const HomePage: React.FC = () => {
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
               </div>
-              <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black font-serif uppercase tracking-tighter leading-[0.85] animate-reveal-up">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-none mb-6 sm:mb-8 animate-reveal-up">
                 PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
               </h1>
-              <p className="text-xl md:text-2xl text-white/60 font-bold max-w-xl border-l-8 border-signal-gold pl-8 py-2 animate-reveal-up [animation-delay:200ms]">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-2xl border-l-8 border-signal-gold pl-8 py-2 animate-reveal-up [animation-delay:200ms]">
                 Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
               </p>
               <div className="pt-4 animate-reveal-up [animation-delay:400ms]">
                 <Link 
                   to="/reach-test" 
-                  className="group relative bg-signal-gold text-white px-14 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_rgba(198,146,42,0.3)] hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-[10px] border-slate-900 overflow-hidden"
+                  className="group relative bg-signal-gold text-white px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-xs shadow-2xl hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-4 sm:border-b-8 border-slate-900 overflow-hidden"
                 >
                   <Truck 
                     size={22} 
@@ -219,7 +219,7 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
-            <div className="bg-[#0D1B2A] p-8 md:p-12 rounded-[3rem] shadow-2xl border border-signal-gold/40 w-full max-w-lg relative overflow-hidden group">
+            <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-full sm:max-w-md lg:max-w-lg relative overflow-hidden group">
               <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
               <div className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
                 <Truck size={48} className="text-signal-gold animate-truck-drive" />
@@ -239,7 +239,7 @@ const HomePage: React.FC = () => {
                 {scanState === 'idle' ? (
                   <form onSubmit={handleRiskMapSubmit} className="space-y-8">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">LEGAL ENTITY NA</label>
+                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">LEGAL ENTITY NAME</label>
                       <input 
                         required 
                         value={formData.firstName} 
@@ -324,8 +324,8 @@ const HomePage: React.FC = () => {
       {/* 3. THE MATH OF SURVIVAL */}
       <section className="py-48 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center relative z-10">
-          <div className="lg:col-span-7 space-y-10">
+        <div className="max-w-[1600px] mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center relative z-10">
+          <div className="space-y-10">
             <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center text-[#002244] opacity-70"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
             <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] text-[#002244]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
             <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl text-[#002244]">
@@ -342,8 +342,8 @@ const HomePage: React.FC = () => {
                </Link>
             </div>
           </div>
-          <div className="lg:col-span-5">
-             <div className="bg-[#002244] p-12 rounded-[4rem] text-white shadow-2xl relative overflow-hidden group">
+          <div>
+             <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={140} /></div>
                 <div className="space-y-10 relative z-10">
                    <h4 className="text-xl font-black font-serif uppercase tracking-tight text-signal-gold italic">TCO Engine v4.0</h4>
@@ -398,45 +398,6 @@ const HomePage: React.FC = () => {
                 </div>
              </div>
            ))}
-        </div>
-      </section>
-
-      {/* 6. FAQ SECTION */}
-      <section className="py-48 px-10 md:px-20 lg:px-40 bg-[#020617]">
-        <header className="text-center mb-32 space-y-6">
-          <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">KNOWLEDGE BASE</p>
-          <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">COMMON <br/><span className="text-signal-gold italic">QUESTIONS.</span></h2>
-        </header>
-
-        <div className="max-w-4xl mx-auto divide-y divide-white/5 border-y border-white/5">
-           {faqs.map((faq, i) => (
-             <FAQItem 
-               key={i} 
-               question={faq.q} 
-               answer={faq.a} 
-               isOpen={openFaqIndex === i} 
-               onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)} 
-             />
-           ))}
-        </div>
-      </section>
-
-      {/* 7. FINAL CTA */}
-      <section className="py-48 px-10 md:px-20 lg:px-40 text-center bg-[#002244] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div className="relative z-10 space-y-16">
-           <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tight text-white leading-none">BUILD YOUR CARRIER LIKE A <br/><span className="text-signal-gold italic">CARRIER EXECUTIVE.</span></h2>
-           <div className="h-2 w-48 bg-signal-gold mx-auto rounded-full"></div>
-           <p className="text-2xl md:text-4xl font-black text-white/50 max-w-4xl mx-auto uppercase tracking-tighter italic">"Order precedes revenue. Discipline precedes expansion. Wisdom precedes the riches."</p>
-           <div className="flex flex-col sm:flex-row gap-8 justify-center pt-10">
-              <Link 
-                to="/reach-test" 
-                className="relative overflow-hidden bg-signal-gold text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-white hover:text-authority-blue transition-all active:scale-95 border-b-8 border-slate-900 group"
-              >
-                <span className="relative z-10">Take the REACH Test™</span>
-              </Link>
-              <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/10 transition-all flex items-center justify-center">Admission Protocol</Link>
-           </div>
         </div>
       </section>
 
