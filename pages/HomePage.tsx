@@ -40,50 +40,8 @@ import DeadlySinsGrid from '../components/DeadlySinsGrid';
 import FAQSection from '../components/FAQSection';
 import AIChatWidget from '../components/AIChatWidget';
 
-const FAQItem: React.FC<{ 
-  question: string; 
-  answer: string; 
-  isOpen: boolean; 
-  onClick: () => void 
-}> = ({ question, answer, isOpen, onClick }) => {
-  return (
-    <article className={`border-b transition-all duration-300 ${isOpen ? 'bg-white/5 border-signal-gold/30' : 'border-white/10'}`}>
-      <button 
-        onClick={onClick}
-        className="w-full flex items-center justify-between py-8 px-6 text-left focus:outline-none group"
-      >
-        <span className={`text-lg sm:text-xl font-black tracking-tight uppercase transition-colors ${isOpen ? 'text-signal-gold' : 'text-white/70'}`}>
-          {question}
-        </span>
-        <div className={`transition-all duration-500 ${isOpen ? 'rotate-45 text-signal-gold' : 'text-white/20'}`}>
-          <Plus size={24} />
-        </div>
-      </button>
-      <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-        <div className="overflow-hidden">
-          <div className="px-6 pb-8 text-slate-400 font-medium leading-relaxed">
-            <p className="text-base sm:text-lg whitespace-pre-wrap">{answer}</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-};
-
-const Plus = ({ size, className }: { size?: number, className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <line x1="12" y1="5" x2="12" y2="19" />
-    <line x1="5" y1="12" x2="19" y2="12" />
-  </svg>
-);
-
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ firstName: '', email: '' });
-  const [loading, setLoading] = useState(false);
-  const [scanState, setScanState] = useState<'idle' | 'scanning' | 'syncing' | 'complete'>('idle');
-  const [scanLog, setScanLog] = useState<string[]>([]);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -104,190 +62,41 @@ const HomePage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scanSteps = [
-    "INITIALIZING_NEURAL_UPLINK...",
-    "MAPPING_EXPOSURE_VECTORS...",
-    "CROSS_REFERENCING_49_CFR_PART_382...",
-    "IDENTIFYING_AUTHORITY_GAP_PATTERNS...",
-    "SEQUENCING_90_DAY_REMEDIATION...",
-    "ESTABLISHING_CRM_HANDSHAKE..."
-  ];
-
-  const handleRiskMapSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setScanState('scanning');
-    
-    // Phase 1: Visual Diagnostic Scan
-    for (let i = 0; i < scanSteps.length; i++) {
-      setScanLog(prev => [...prev, scanSteps[i]]);
-      await new Promise(r => setTimeout(r, 600));
-    }
-
-    setScanState('syncing');
-    setScanLog(prev => [...prev, "UPLINKING_TO_INSTITUTIONAL_REGISTRY..."]);
-    
-    const destination = `/download/risk-map?name=${encodeURIComponent(formData.firstName || 'Carrier')}`;
-
-    try {
-      // Phase 2: Registry Handshake (Firebase)
-      if (db) {
-        await addDoc(collection(db, "leadMagnets"), {
-          firstName: formData.firstName || 'Carrier',
-          email: formData.email,
-          downloadedAt: serverTimestamp(),
-          source: "homepage-hero-risk-map"
-        });
-      }
-      
-      // Phase 3: CRM Synchronization (MailerLite)
-      await syncToMailerLite({ 
-        email: formData.email, 
-        fields: { 
-          name: formData.firstName,
-          source: 'homepage-risk-map'
-        } 
-      });
-
-      setScanLog(prev => [...prev, "SYNCHRONIZATION_COMPLETE."]);
-      await new Promise(r => setTimeout(r, 800));
-      setScanState('complete');
-      navigate(destination);
-    } catch (err) {
-      console.error("Registry Sync Fault:", err);
-      // Graceful fallback: navigate even if sync fails to preserve user journey
-      navigate(destination);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const faqs = [
-    { q: "What if my insurance quote is higher than expected?", a: "Insurance is a fixed economic reality. We help you build a risk profile that underwriters value, even if initial costs are high." },
-    { q: "Does LaunchPath guarantee I will pass an audit?", a: "No system can guarantee results. We provide the infrastructure and implementation requirements used by the nation's most compliant carriers." },
-    { q: "How long does authority activation take?", a: "The mandatory protest period is 10 days, with typical processing totaling 21 days. We use this window for system initialization." }
-  ];
-
   return (
     <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30">
-      <style>{`
-        @keyframes truck-drive {
-          0% { transform: translateX(-5px) translateY(0px); }
-          25% { transform: translateX(5px) translateY(-1px); }
-          50% { transform: translateX(-5px) translateY(1px); }
-          75% { transform: translateX(5px) translateY(-1px); }
-          100% { transform: translateX(-5px) translateY(0px); }
-        }
-        .animate-truck-drive {
-          animation: truck-drive 3s ease-in-out infinite;
-        }
-      `}</style>
       
-      {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex items-center border-b border-white/5 px-4 sm:px-6 py-20 sm:py-32">
-        <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-center">
-          
-          <div className="lg:col-span-7 space-y-12 relative">
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-            <div className="relative z-10 space-y-8 md:space-y-12">
-              <div className="flex flex-wrap gap-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-none mb-6 sm:mb-8 animate-reveal-up">
-                PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-2xl border-l-8 border-signal-gold pl-8 py-2 animate-reveal-up [animation-delay:200ms]">
-                Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
-              </p>
-              <div className="pt-4 animate-reveal-up [animation-delay:400ms]">
-                <Link 
-                  to="/reach-test" 
-                  className="group relative bg-signal-gold text-white px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-xs shadow-2xl hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-4 sm:border-b-8 border-slate-900 overflow-hidden"
-                >
-                  <Truck 
-                    size={22} 
-                    className="absolute top-2 left-4 text-white/20 group-hover:text-white/80 transition-all duration-500 animate-truck-drive" 
-                  />
-                  <span className="relative z-10 flex items-center">
-                    Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
-                  <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
-                </Link>
-              </div>
-            </div>
+      {/* 1. HERO SECTION - REWRITTEN TO MATCH SCREENSHOT */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center bg-authority-blue text-white px-6 py-20 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto space-y-16 animate-reveal-up relative z-10">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-serif uppercase tracking-tight leading-[0.9]">
+            BUILD YOUR <br/>
+            CARRIER LIKE <br/>
+            A <br/>
+            <span className="text-signal-gold italic">CARRIER EXECUTIVE.</span>
+          </h1>
+
+          <div className="flex flex-col items-center space-y-8">
+            <div className="h-1.5 w-32 bg-signal-gold rounded-full"></div>
+            <p className="text-xl sm:text-2xl md:text-3xl font-black italic uppercase tracking-tight max-w-4xl opacity-80 leading-relaxed">
+              "ORDER PRECEDES REVENUE. DISCIPLINE PRECEDES EXPANSION. WISDOM PRECEDES THE RICHES."
+            </p>
           </div>
 
-          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
-            <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-full sm:max-w-md lg:max-w-lg relative overflow-hidden group">
-              <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
-              <div className="absolute bottom-6 right-6 opacity-40 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
-                <Truck size={48} className="text-signal-gold animate-truck-drive" />
-              </div>
-
-              <div className="relative z-10">
-                <div className="flex justify-between items-start mb-8">
-                  <div className="space-y-1">
-                    <h3 className="text-2xl font-black font-serif uppercase text-white leading-tight">90 DAY</h3>
-                    <h3 className="text-3xl font-black font-serif uppercase text-signal-gold italic leading-none">RISK MAP™</h3>
-                  </div>
-                  <div className="p-3 bg-white/5 rounded-2xl border border-white/10 transition-transform duration-700 group-hover:rotate-12">
-                    <Truck size={28} className="text-signal-gold" />
-                  </div>
-                </div>
-                
-                {scanState === 'idle' ? (
-                  <form onSubmit={handleRiskMapSubmit} className="space-y-8">
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">LEGAL ENTITY NAME</label>
-                      <input 
-                        required 
-                        value={formData.firstName} 
-                        onChange={e => setFormData({...formData, firstName: e.target.value})} 
-                        placeholder="CARRIER_NAME_HERE" 
-                        className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-white/60 ml-2">REGISTRY EMAIL</label>
-                      <input 
-                        required 
-                        type="email" 
-                        value={formData.email} 
-                        onChange={e => setFormData({...formData, email: e.target.value})} 
-                        placeholder="OPERATOR@CARRIER.COM" 
-                        className="w-full bg-black/40 border border-signal-gold/20 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold focus:ring-4 focus:ring-signal-gold/10 transition-all placeholder:text-white/10" 
-                      />
-                    </div>
-                    <button type="submit" disabled={loading} className="w-full relative bg-signal-gold text-white py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-xl hover:bg-white hover:text-authority-blue transition-all overflow-hidden group/btn border-b-4 border-[#8e7340] disabled:opacity-50 disabled:cursor-not-allowed">
-                      <span className="relative z-10 flex items-center justify-center">
-                        {loading ? (
-                          <>
-                            <Loader2 className="animate-spin mr-2" size={16} />
-                            PROCESSING...
-                          </>
-                        ) : (
-                          <>
-                            GENERATE DIAGNOSTIC <ChevronRight size={16} className="ml-2" />
-                          </>
-                        )}
-                      </span>
-                    </button>
-                  </form>
-                ) : (
-                  <div className="py-10 space-y-6">
-                    <div className="flex justify-center relative">
-                      <Loader2 className="animate-spin text-signal-gold relative z-10" size={48} />
-                    </div>
-                    <div className="bg-black/60 rounded-2xl p-6 font-mono text-[10px] text-emerald-500 h-40 overflow-hidden shadow-inner border border-white/5">
-                      {scanLog.map((log, i) => <div key={i} className="mb-1">&gt; {log}</div>)}
-                      <div className="animate-pulse">_</div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10">
+            <Link 
+              to="/reach-test" 
+              className="w-full sm:w-auto bg-signal-gold text-authority-blue px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl hover:bg-white transition-all active:scale-95 border-b-8 border-[#8e7340]"
+            >
+              TAKE THE REACH TEST™
+            </Link>
+            <Link 
+              to="/pricing" 
+              className="w-full sm:w-auto border-2 border-white/20 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all active:scale-95"
+            >
+              ADMISSION PROTOCOL
+            </Link>
           </div>
         </div>
       </section>
@@ -405,7 +214,7 @@ const HomePage: React.FC = () => {
       {/* FAQ Section */}
       <FAQSection />
 
-      {/* AIChatWidget - Fixed but placed contextually at the end of the homepage flow */}
+      {/* AIChatWidget - Fixed and visible on all platforms for immediate advisor access */}
       <AIChatWidget />
 
       {/* Scroll to Top Button */}
