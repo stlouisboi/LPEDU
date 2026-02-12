@@ -112,21 +112,8 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30 break-words">
-      <style>{`
-        @keyframes truck-drive {
-          0% { transform: translateX(-5px) translateY(0px); }
-          25% { transform: translateX(5px) translateY(-1px); }
-          50% { transform: translateX(-5px) translateY(1px); }
-          75% { transform: translateX(5px) translateY(-1px); }
-          100% { transform: translateX(-5px) translateY(0px); }
-        }
-        .animate-truck-drive {
-          animation: truck-drive 3s ease-in-out infinite;
-        }
-      `}</style>
-      
       {/* 1. THE DECLARATION: HERO SECTION */}
-      <section className="relative min-h-[80vh] flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-20 lg:py-48">
+      <section className="relative min-h-[70vh] flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-20 lg:py-48">
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
           
           <div className="lg:col-span-7 space-y-12 relative">
@@ -136,21 +123,13 @@ const HomePage: React.FC = () => {
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9] mb-6 sm:mb-8 animate-reveal-up">
-                SYSTEMATIC <br/>GOVERNANCE <br/>FOR <span className="text-signal-gold italic">CARRIERS.</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85] mb-6 animate-reveal-up">
+                INSTITUTIONAL <br/>GOVERNANCE FOR <br/><span className="text-signal-gold italic">NEW AUTHORITIES.</span>
               </h1>
               <div className="space-y-6 animate-reveal-up [animation-delay:200ms]">
-                <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl font-medium">
-                  Built specifically for 1-3 truck operations navigating the critical 18-month new entrant phase. Systems prevent early failure; ambition alone inherits consequences.
+                <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl font-medium">
+                  Establish an unshakeable operating standard from your first day of authority.
                 </p>
-                <div className="space-y-3">
-                  {['Authority Protection', 'Insurance Continuity', 'Documentation Integrity'].map((item, i) => (
-                    <div key={i} className="flex items-center space-x-3 text-xs font-black uppercase tracking-widest text-signal-gold">
-                      <div className="w-1.5 h-1.5 bg-signal-gold rounded-full"></div>
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
               <div className="pt-4 animate-reveal-up [animation-delay:400ms] flex flex-col sm:flex-row gap-4">
                 <Link 
@@ -168,12 +147,11 @@ const HomePage: React.FC = () => {
                   <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 italic">Failure is predictable. Systems are the only prevention.</p>
             </div>
           </div>
 
           <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
-            <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-3xl p-6 sm:p-10 md:p-12 w-full max-w-full sm:max-w-md lg:max-w-lg relative overflow-hidden group">
+            <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-3xl p-6 sm:p-10 md:p-12 w-full max-w-full sm:max-w-md lg:max-w-lg relative overflow-hidden group shadow-2xl">
               <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)] pointer-events-none"></div>
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-8">
@@ -237,15 +215,15 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 2. THE LAW: EXECUTIVE TARGET DECLARATION */}
-      <section className="bg-[#020617] py-16 md:py-32 px-6 border-y border-white/5">
+      <section className="bg-[#020617] py-20 md:py-40 px-6 border-y border-white/5">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="flex items-center space-x-4 mb-8">
             <Shield className="text-signal-gold" size={28} />
-            <h2 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-signal-gold font-serif leading-none">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-signal-gold font-serif leading-none">
               CARRIER EXECUTIVE. <br/>NOT HUSTLER.
             </h2>
           </div>
-          <div className="space-y-8 text-lg md:text-2xl text-white/70 leading-relaxed font-bold">
+          <div className="space-y-8 text-xl md:text-2xl text-white/70 leading-relaxed font-bold">
             <p>
               LaunchPath is built for operators who treat their authority as a governed asset, not a revenue experiment. If you view compliance as overhead instead of infrastructure, this system will not serve you.
             </p>
@@ -257,11 +235,11 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 3. THE DOCTRINE: FOUNDER'S BRIEF */}
-      <section className="bg-primary-dark py-20 md:py-32 px-6">
+      <section className="bg-primary-dark py-20 md:py-40 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-4 lg:col-span-3">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
+              src="{{FIREBASE_URL_FOUNDER_EXECUTIVE}}"
               alt="Vince Lawrence, Founder"
               className="rounded-[3rem] w-full md:h-auto object-cover mx-auto border-4 border-signal-gold/50 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
             />
@@ -284,7 +262,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 4. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
-      <section className="py-24 md:py-32 px-6 sm:px-10 md:px-20 bg-white dark:bg-primary-dark">
+      <section className="py-24 md:py-40 px-6 sm:px-10 md:px-20 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto space-y-24">
           <header className="text-center space-y-6 animate-reveal-up">
             <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
@@ -379,7 +357,7 @@ const HomePage: React.FC = () => {
       {/* 6. THE JUDGMENT: 16 SINS + REACH BRIDGE */}
       <DeadlySinsGrid />
       
-      <section className="bg-primary-dark py-24 md:py-48 px-6 relative overflow-hidden">
+      <section className="bg-primary-dark py-24 md:py-48 px-6 relative overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 bg-red-600/[0.02] pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
           <div className="w-24 h-24 bg-red-600/10 rounded-[2.5rem] border border-red-600/30 flex items-center justify-center mx-auto mb-10 shadow-2xl">
@@ -444,7 +422,7 @@ const HomePage: React.FC = () => {
       <section className="py-24 md:py-48 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-24 items-center relative z-10">
-          <div className="w-full lg:w-7/12 space-y-10">
+          <div className="w-full lg:col-span-7 space-y-10">
             <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center text-[#002244] opacity-70"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
             <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] text-[#002244]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
             <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl text-[#002244]">
@@ -458,7 +436,7 @@ const HomePage: React.FC = () => {
                </Link>
             </div>
           </div>
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:col-span-5">
              <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-3xl p-8 sm:p-10 md:p-12 text-white shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={140} /></div>
                 <div className="space-y-10 relative z-10">
@@ -487,7 +465,7 @@ const HomePage: React.FC = () => {
       <FAQSection />
 
       {/* 10. THE INVITATION: FINAL CTA */}
-      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
+      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark border-t border-white/5">
         <header className="text-center mb-32 space-y-6">
           <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">THE OUTCOME</p>
           <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
