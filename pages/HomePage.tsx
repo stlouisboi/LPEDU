@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    document.title = "LaunchPath | Institutional Governance for New Authorities";
+    document.title = "LaunchPath | Institutional Governance for Motor Carriers";
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 1000);
     };
@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
     <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30 break-words">
       
       {/* 1. THE DECLARATION: HERO SECTION */}
-      <section className="relative min-h-[70vh] flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-20 lg:py-48">
+      <section className="relative min-h-[75vh] flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-24 lg:py-56">
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
           
           <div className="lg:col-span-7 space-y-12 relative">
@@ -129,7 +129,10 @@ const HomePage: React.FC = () => {
               </h1>
               <div className="space-y-6 animate-reveal-up [animation-delay:200ms]">
                 <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl font-medium">
-                  Establish an unshakeable operating standard from your first day of authority.
+                  Infrastructure for 1–3 truck motor carriers designed to prevent early failure. We stabilize the four variables that kill new authorities: insurance cancellation, compliance collapse, authority loss, and cash-flow exhaustion.
+                </p>
+                <p className="text-base sm:text-lg text-slate-400 font-bold italic border-l-2 border-signal-gold pl-6">
+                  Built for the disciplined executive who values order; not for those seeking shortcuts, hustle, or revenue without a system.
                 </p>
               </div>
               <div className="pt-4 animate-reveal-up [animation-delay:400ms] flex flex-col sm:flex-row gap-4">
@@ -369,7 +372,41 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* 6. THE JUDGMENT: 16 SINS + REACH BRIDGE */}
+      <section className="bg-[#020617] pt-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-lg md:text-xl text-slate-400 font-bold max-w-4xl border-l-4 border-red-600 pl-6 py-2 mb-12">
+            These are the clinical failure patterns used by FMCSA investigators and insurance underwriters to determine if your entity is fundamentally unsafe. Each "Sin" represents a reachable hazard that triggers an automatic administrative response.
+          </p>
+        </div>
+      </section>
+      
       <DeadlySinsGrid />
+
+      <section className="bg-[#020617] pb-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white/[0.02] rounded-[2rem] p-8 md:p-10 border border-white/5 mb-20">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 mb-8">RESULT CLASSIFICATION LEGEND</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { label: "AUDIT DEFAULT", desc: "Mandatory failure during a federal safety review." },
+                { label: "AUTHORITY TERMINATION", desc: "Administrative revocation of your legal right to operate." },
+                { label: "STRICT LIABILITY", desc: "Automatic legal responsibility for damages regardless of intent." },
+                { label: "LEGAL DEFAULT", desc: "Civil or criminal default due to regulatory omission." },
+                { label: "PREMIUM SPIKE", desc: "A 200%+ increase in insurance costs or total non-renewal." },
+                { label: "FILING SUSPENSION", desc: "Immediate pause of authority due to administrative documentation gaps." }
+              ].map((item, i) => (
+                <div key={i} className="space-y-1">
+                  <p className="text-[10px] font-black text-red-500 uppercase tracking-tight">{item.label}</p>
+                  <p className="text-[11px] font-bold text-slate-500 leading-tight uppercase tracking-tighter">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="text-lg md:text-2xl text-center text-slate-500 font-bold uppercase tracking-tight max-w-3xl mx-auto italic">
+            Ground 0 and the Unified Dossier framework exist to locate which of these exposures you already carry—and to prevent you from tolerating them in your operation.
+          </p>
+        </div>
+      </section>
       
       <section className="bg-primary-dark py-32 md:py-56 px-6 relative overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 bg-red-600/[0.02] pointer-events-none"></div>
@@ -421,6 +458,49 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: GROUND 0 + TCO BAND */}
+      <section className="py-32 md:py-48 px-6 bg-authority-blue text-white relative overflow-hidden border-y border-white/10">
+        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="max-w-5xl mx-auto text-center space-y-12 relative z-10">
+          <div className="w-20 h-20 bg-signal-gold text-authority-blue rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+            <Scale size={32} />
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight text-white leading-tight">
+            GROUND 0: <span className="text-signal-gold italic">DECISION</span> BEFORE DEPLOYMENT
+          </h2>
+          <p className="text-xl md:text-2xl text-white/70 font-bold leading-relaxed max-w-3xl mx-auto uppercase tracking-tight">
+            Ground 0 is a 90-minute clinical decision module used to verify entity viability before capital is deployed. It maps your risk tolerance against the Four Pillars and utilizes the TCO Economic Engine to determine if your operation is statistically sound. The final output is a documented status: Proceed, Delay, or Walk Away—all are considered successful outcomes.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10">
+            {[
+              { label: "Analyze Math", desc: "Run the TCO Economic Engine against current market rates." },
+              { label: "Audit Readiness", desc: "Verify household and capital reserves against a 90-day window." },
+              { label: "Define Stop-Loss", desc: "Establish clear operational lines where you must stop or pivot." }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center space-y-4">
+                <div className="w-2 h-2 bg-signal-gold rounded-full"></div>
+                <h4 className="font-black uppercase tracking-widest text-signal-gold">{item.label}</h4>
+                <p className="text-xs font-bold opacity-60 uppercase">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-6 pt-10">
+            <Link 
+              to="/readiness" 
+              className="inline-flex items-center space-x-6 bg-signal-gold text-authority-blue px-16 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm md:text-lg hover:bg-white transition-all shadow-2xl active:scale-95 group border-b-8 border-slate-900"
+            >
+              <span>START GROUND 0</span>
+              <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
+            </Link>
+            <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
+              Count the cost before you file for authority or sign for equipment.
+            </p>
           </div>
         </div>
       </section>
