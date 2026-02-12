@@ -18,7 +18,7 @@ const FloatingInput = ({ label, icon: Icon, ...props }: any) => {
         {...props}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className={`w-full bg-white dark:bg-gray-800 border-2 transition-all duration-300 px-8 pt-10 pb-4 rounded-[1.5rem] outline-none font-bold text-[18px] text-text-primary dark:text-white shadow-sm hover:shadow-md focus:shadow-xl ${
+        className={`w-full bg-white dark:bg-gray-800 border-2 transition-all duration-300 px-6 sm:px-8 pt-8 sm:pt-10 pb-3 sm:pb-4 rounded-xl sm:rounded-[1.5rem] outline-none font-bold text-base sm:text-[18px] text-text-primary dark:text-white shadow-sm hover:shadow-md focus:shadow-xl ${
           focused ? 'border-authority-blue' : 'border-slate-100 dark:border-border-dark'
         } ${!Icon ? 'pl-8' : 'pl-16'}`}
         placeholder=" "
@@ -27,7 +27,7 @@ const FloatingInput = ({ label, icon: Icon, ...props }: any) => {
         className={`absolute left-1 transition-all duration-300 pointer-events-none uppercase font-black tracking-widest text-[12px] ${
           focused || hasValue
             ? '-top-3.5 left-6 bg-white dark:bg-gray-800 px-3 text-authority-blue'
-            : `top-1/2 -translate-y-1/2 text-slate-400 ${!Icon ? 'left-8' : 'left-16'}`
+            : `top-1/2 -translate-y-1/2 text-slate-400 ${!Icon ? 'left-6 sm:left-8' : 'left-12 sm:left-16'}`
         }`}
       >
         {label}
@@ -103,27 +103,27 @@ const ContactPage = () => {
   return (
     <div className="bg-[#FAF9F6] dark:bg-primary-dark min-h-screen">
       {/* Header Section */}
-      <section className="pt-32 pb-16 px-6">
+      <section className="pt-16 sm:pt-20 md:pt-24 lg:pt-32 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6">
         <div className="max-w-[90%] md:max-w-7xl mx-auto">
           <div className="inline-flex items-center space-x-4 bg-authority-blue/5 border border-authority-blue/10 px-6 py-3 rounded-full mb-10">
             <Anchor size={18} className="text-authority-blue" />
             <span className="text-[12px] font-black uppercase tracking-[0.4em] text-authority-blue">CONTACT</span>
           </div>
-          <h1 className="text-[48px] md:text-[80px] font-black font-serif text-authority-blue dark:text-white mb-8 uppercase tracking-tighter leading-none">
+          <h1 className="text-[36px] sm:text-[44px] md:text-[60px] lg:text-[80px] font-black font-serif text-authority-blue dark:text-white mb-6 sm:mb-8 uppercase tracking-tighter leading-none">
             GET IN <span className="text-signal-gold italic">TOUCH.</span>
           </h1>
-          <p className="text-[22px] text-slate-500 dark:text-text-dark-muted max-w-3xl font-bold leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-[22px] text-slate-500 dark:text-text-dark-muted max-w-3xl font-bold leading-relaxed">
             Questions about enrollment, compliance, or the program? We respond within 24-48 hours.
           </p>
         </div>
       </section>
 
-      <section className="max-w-[90%] md:max-w-7xl mx-auto px-6 pb-40">
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
+      <section className="max-w-[90%] md:max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24 md:pb-32 lg:pb-40">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 md:gap-16 items-stretch">
           
           {/* Visual Column */}
           <div className="lg:col-span-5 h-full">
-            <div className="relative h-full min-h-[600px] w-full rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white dark:border-surface-dark group">
+            <div className="relative h-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] w-full rounded-2xl sm:rounded-3xl md:rounded-[4rem] overflow-hidden shadow-2xl border-2 sm:border-4 border-white dark:border-surface-dark group">
               <img 
                 src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2Fcall%20or%20text.png?alt=media&token=72ce99f3-0c26-401a-822f-2ce3835b2848" 
                 alt="Professional carrier operator" 
@@ -131,15 +131,15 @@ const ContactPage = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-authority-blue/80 via-transparent to-transparent"></div>
               
-              <div className="absolute bottom-16 left-16 right-16 space-y-6">
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-10 rounded-[3rem] shadow-2xl">
-                  <h3 className="text-white text-[28px] font-black font-serif uppercase tracking-tight mb-4">QUESTIONS?</h3>
-                  <p className="text-white/70 text-[18px] font-medium leading-relaxed italic">
+              <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 sm:right-10 md:bottom-16 md:left-16 md:right-16 space-y-4 sm:space-y-6">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl md:rounded-[3rem] shadow-2xl">
+                  <h3 className="text-white text-xl sm:text-2xl md:text-[28px] font-black font-serif uppercase tracking-tight mb-3 sm:mb-4">QUESTIONS?</h3>
+                  <p className="text-white/70 text-base sm:text-lg md:text-[18px] font-medium leading-relaxed italic">
                     "We're here to help you get started."
                   </p>
                 </div>
-                <div className="flex items-center space-x-6 px-6">
-                  <div className="w-14 h-14 rounded-2xl bg-signal-gold flex items-center justify-center text-authority-blue">
+                <div className="flex items-center space-x-4 sm:space-x-6 px-4 sm:px-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl sm:rounded-2xl bg-signal-gold flex items-center justify-center text-authority-blue">
                     <ShieldCheck size={28} />
                   </div>
                   <p className="text-white text-[12px] font-black uppercase tracking-[0.3em]">Institutional Guard Active</p>
@@ -150,17 +150,17 @@ const ContactPage = () => {
 
           {/* Form Column */}
           <div className="lg:col-span-7 flex items-center">
-            <div className="w-full bg-white dark:bg-surface-dark p-10 md:p-20 rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(30,58,95,0.08)] border border-slate-100 dark:border-border-dark relative overflow-hidden h-fit">
+            <div className="w-full bg-white dark:bg-surface-dark p-6 sm:p-8 md:p-12 lg:p-20 rounded-2xl sm:rounded-3xl md:rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(30,58,95,0.08)] border border-slate-100 dark:border-border-dark relative overflow-hidden h-fit">
               {isSubmitted ? (
                 <div className="text-center py-24 animate-scale-in">
                    <div className="w-28 h-28 bg-green-50 text-green-600 rounded-[3rem] flex items-center justify-center mx-auto mb-12 shadow-lg border border-green-100">
                       <CheckCircle size={56} />
                    </div>
-                   <h2 className="text-[40px] font-black font-serif mb-8 uppercase tracking-tight text-authority-blue dark:text-white">Inquiry Secured</h2>
-                   <p className="text-[20px] text-slate-500 dark:text-slate-400 max-w-md mx-auto font-bold leading-relaxed mb-16">
+                   <h2 className="text-2xl sm:text-3xl md:text-[40px] font-black font-serif mb-6 sm:mb-8 uppercase tracking-tight text-authority-blue dark:text-white">Inquiry Secured</h2>
+                   <p className="text-base sm:text-lg md:text-[20px] text-slate-500 dark:text-slate-400 max-w-md mx-auto font-bold leading-relaxed mb-10 sm:mb-16">
                      A specialist has been notified. Expect a response within 24-48 hours.
                    </p>
-                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-16 py-8 rounded-[2rem] font-black uppercase tracking-widest text-[20px] hover:bg-steel-blue transition-all shadow-xl active:scale-95 border-b-[8px] border-slate-900">SEND ANOTHER</button>
+                   <button onClick={() => setIsSubmitted(false)} className="bg-authority-blue text-white px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 rounded-xl sm:rounded-2xl md:rounded-[2rem] font-black uppercase tracking-widest text-base sm:text-lg md:text-[20px] hover:bg-steel-blue transition-all shadow-xl active:scale-95 border-b-4 sm:border-b-6 md:border-b-[8px] border-slate-900">SEND ANOTHER</button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
