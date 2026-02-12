@@ -156,7 +156,7 @@ const AIServicePage = () => {
         model: 'gemini-3-pro-preview',
         contents: userMessage,
         config: {
-          systemInstruction: "You are the LaunchPath™ Lead Compliance Specialist. Professional, authoritative, institutional tone. Use Markdown for structured responses. Focus on Accuracy Over Hype. Always explain the logic behind federal regulations.",
+          systemInstruction: "You are the LaunchPath™ Lead Compliance Specialist. Professional, authoritative, institutional tone. Use Markdown for structured responses. Focus on Accuracy Over Hype. Your goal is to guide new motor carriers toward audit-readiness.",
           tools: [{ googleSearch: {} }],
           thinkingConfig: { thinkingBudget: 4000 },
           temperature: 0.2,

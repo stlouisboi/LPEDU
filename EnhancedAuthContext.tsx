@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { onAuthStateChanged, User, signOut } from 'firebase/auth';
 import { auth, isFirebaseConfigured } from './firebase';
-import { UserProfile } from './types/userTypes';
+import { UserProfile } from './types';
 import { getUserProfile } from './utils/userRoles';
 
 interface EnhancedAuthContextType {

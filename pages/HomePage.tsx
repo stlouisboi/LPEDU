@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -11,36 +12,24 @@ import {
   ChevronDown,
   Award,
   ShieldX,
-  FileWarning,
-  HardDrive,
-  Fingerprint,
-  Gavel,
-  Terminal,
-  FileSearch,
-  ClipboardCheck,
-  UserCheck,
-  BarChart3,
   Target,
-  ShieldCheck,
   FileText,
-  AlertTriangle,
-  Lock,
-  Search,
-  MessageCircle,
-  HelpCircle,
+  ShieldCheck,
+  CheckCircle,
+  TrendingDown,
   Loader2,
   Truck,
   Scale,
   ChevronUp,
-  CheckCircle,
-  TrendingDown
+  Lock,
+  Terminal,
+  Cpu
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { syncToMailerLite } from '../mailerlite';
 import DeadlySinsGrid from '../components/DeadlySinsGrid';
 import FAQSection from '../components/FAQSection';
-import AIChatWidget from '../components/AIChatWidget';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -118,7 +107,7 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30">
+    <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30 break-words">
       <style>{`
         @keyframes truck-drive {
           0% { transform: translateX(-5px) translateY(0px); }
@@ -132,9 +121,9 @@ const HomePage: React.FC = () => {
         }
       `}</style>
       
-      {/* 1. HERO SECTION (THE DECLARATION) */}
-      <section className="relative min-h-screen flex items-center border-b border-white/5 px-4 sm:px-6 py-20 sm:py-32">
-        <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-center">
+      {/* 1. THE DECLARATION: HERO SECTION */}
+      <section className="relative min-h-screen flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-20 lg:py-32">
+        <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
           
           <div className="lg:col-span-7 space-y-12 relative">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
@@ -239,7 +228,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. EXECUTIVE TARGET DECLARATION (THE LAW) */}
+      {/* 2. THE LAW: EXECUTIVE TARGET DECLARATION */}
       <section className="bg-[#020617] py-16 md:py-32 px-6 border-y border-white/5">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center space-x-4 mb-8">
@@ -257,12 +246,12 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. FOUNDER'S BRIEF (THE DOCTRINE) */}
+      {/* 3. THE DOCTRINE: FOUNDER'S BRIEF */}
       <section className="bg-primary-dark py-20 md:py-32 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-4 lg:col-span-3">
             <img
-              src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png"
+              src="{{FIREBASE_URL_FOUNDER_EXECUTIVE}}"
               alt="Vince Lawrence, Founder of LaunchPath"
               className="rounded-full w-48 h-48 md:w-full md:h-auto object-cover mx-auto border-4 border-signal-gold/50 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
             />
@@ -284,7 +273,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. THE SYSTEM (FOUR PILLARS + INTERDEPENDENCE) */}
+      {/* 4. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
       <section className="py-32 px-10 md:px-20 lg:px-40 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto space-y-24">
           <header className="text-center space-y-6 animate-reveal-up">
@@ -292,7 +281,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
               THE <span className="text-signal-gold italic">FOUR</span> PILLARS.
             </h2>
-            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-authority-blue dark:text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
               Institutional logic: A failure in the Compliance Backbone results in a loss of Insurance Continuity, which suffocates Cash-Flow Oxygen.
             </p>
           </header>
@@ -341,7 +330,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. THE UNIFIED DOSSIER (THE PROOF) */}
+      {/* 5. THE PROOF: UNIFIED DOSSIER */}
       <section className="bg-[#FAF9F6] dark:bg-[#0F172A] py-20 md:py-48 px-6 border-y border-slate-100 dark:border-white/5">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-primary-dark dark:text-white mb-10 font-serif leading-none">
@@ -400,7 +389,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. THE JUDGMENT (16 DEADLY SINS + REACH BRIDGE) */}
+      {/* 6. THE JUDGMENT: 16 DEADLY SINS + REACH BRIDGE */}
       <DeadlySinsGrid />
       
       <section className="bg-primary-dark py-24 md:py-48 px-6 relative overflow-hidden">
@@ -427,7 +416,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. ADMISSION SEQUENCE (THE PATH) */}
+      {/* 7. THE PATH: ADMISSION SEQUENCE */}
       <section className="bg-[#FAF9F6] dark:bg-[#020617] py-20 md:py-48 px-6 border-y border-slate-100 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-primary-dark dark:text-white mb-12 text-center font-serif leading-none">
@@ -446,7 +435,7 @@ const HomePage: React.FC = () => {
                 <h3 className="text-2xl font-black uppercase text-primary-dark dark:text-white tracking-tight leading-none font-serif">
                   DIAGNOSTIC & <br/>EXPOSURE CONFIRMATION
                 </h3>
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold uppercase tracking-tight">
                   Complete the REACH Test™ to map your compliance posture and identify terminal exposure vectors.
                 </p>
               </div>
@@ -460,7 +449,7 @@ const HomePage: React.FC = () => {
                 <h3 className="text-2xl font-black uppercase text-primary-dark dark:text-white tracking-tight leading-none font-serif">
                   ADMISSION & <br/>AUTHORIZATION REVIEW
                 </h3>
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold uppercase tracking-tight">
                   Submit your diagnostic results for admission review. Authorization is granted based on operational readiness, not payment.
                 </p>
               </div>
@@ -474,7 +463,7 @@ const HomePage: React.FC = () => {
                 <h3 className="text-2xl font-black uppercase text-primary-dark dark:text-white tracking-tight leading-none font-serif">
                   GUIDED SYSTEM <br/>INSTALLATION BEGINS
                 </h3>
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold uppercase tracking-tight">
                   Upon authorization, you receive access to the Unified Dossier framework and begin sequenced implementation.
                 </p>
               </div>
@@ -483,11 +472,11 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 8. THE MATH OF SURVIVAL (THE TOOLS) */}
-      <section className="py-48 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
+      {/* 8. THE TOOLS: MATH OF SURVIVAL */}
+      <section className="py-24 md:py-48 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-[1600px] mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center relative z-10">
-          <div className="space-y-10">
+        <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-24 items-center relative z-10">
+          <div className="lg:col-span-7 space-y-10 w-full lg:w-2/3">
             <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center text-[#002244] opacity-70"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
             <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] text-[#002244]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
             <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl text-[#002244]">
@@ -501,7 +490,7 @@ const HomePage: React.FC = () => {
                </Link>
             </div>
           </div>
-          <div>
+          <div className="lg:col-span-5 w-full lg:w-1/3">
              <div className="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={140} /></div>
                 <div className="space-y-10 relative z-10">
@@ -526,10 +515,10 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. FAQ (THE CLARIFICATION) */}
+      {/* 9. THE CLARIFICATION: FAQ SECTION */}
       <FAQSection />
 
-      {/* 10. THE EXECUTIVE STANDARD (THE INVITATION) */}
+      {/* 10. THE INVITATION: FINAL CTA */}
       <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
         <header className="text-center mb-32 space-y-6">
           <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">THE OUTCOME</p>
@@ -563,8 +552,6 @@ const HomePage: React.FC = () => {
           </Link>
         </div>
       </section>
-
-      <AIChatWidget />
 
       {showScrollTop && (
         <button
