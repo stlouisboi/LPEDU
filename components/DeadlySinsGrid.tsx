@@ -1,16 +1,15 @@
 import React from 'react';
-import { ShieldX, ChevronDown } from 'lucide-react';
+import { ShieldX, ChevronDown, AlertTriangle, ShieldAlert, Gavel, FileText, Activity } from 'lucide-react';
 
 /**
- * The 16 Deadly Sins Grid Component
- * 
- * Displays the 16 most common federal compliance violations that destroy new motor carriers.
- * Organized into 4 domains with 4 faults each, showing violation descriptions and consequences.
+ * THE 16 DEADLY SINS OF CARRIER FAILURE
+ * Institutional failure-pattern map for motor carrier risk analysis.
  */
 
 interface Fault {
   id: string;
-  text: string;
+  title: string;
+  subtitle: string;
   result: string;
 }
 
@@ -24,81 +23,86 @@ const DeadlySinsGrid: React.FC = () => {
     {
       domain: "Substance Governance",
       items: [
-        { id: "01", text: "Random Pool Enrollment", result: "AUDIT DEFAULT" },
-        { id: "02", text: "Positive Driver Results", result: "IMMEDIATE REVOCATION" },
-        { id: "03", text: "Clearinghouse Query Failure", result: "OPERATING BAN" },
-        { id: "04", text: "Omission of Pre-Employment", result: "STRICT LIABILITY" }
+        { id: "01", title: "Random Pool Enrollment", subtitle: "Drug and alcohol testing program not aligned with 49 CFR Part 382.", result: "AUDIT DEFAULT" },
+        { id: "02", title: "Positive Driver Results", subtitle: "Failure to manage driver removal or return-to-duty (49 CFR § 382.501).", result: "AUTHORITY TERMINATION" },
+        { id: "03", title: "Clearinghouse Query Failure", subtitle: "Pre-employment and annual driver queries not completed (49 CFR § 382.701).", result: "OPERATING BAN" },
+        { id: "04", title: "Omission of Pre-Employment Test", subtitle: "Verified negative result not obtained prior to first dispatch (49 CFR § 382.301).", result: "CRIMINAL DEFAULT" }
       ]
     },
     {
       domain: "Human Capital",
       items: [
-        { id: "05", text: "Revoked License Usage", result: "OOS EVENT" },
-        { id: "06", text: "Missing Med-Cert", result: "DRIVER DOWN GRADE" },
-        { id: "07", text: "Fragmented DQ Files", result: "AUDIT RED FLAG" },
-        { id: "08", text: "Omitted Background Inq", result: "NEGLIGENT ENTRUSTMENT" }
+        { id: "05", title: "Revoked License Usage", subtitle: "Operating with expired or suspended CDL credentials (49 CFR § 383.51).", result: "OPERATING BAN" },
+        { id: "06", title: "Missing Med-Cert", subtitle: "Medical examiner certificates not current or verified (49 CFR § 391.41).", result: "AUDIT DEFAULT" },
+        { id: "07", title: "Fragmented DQ Files", subtitle: "Driver qualification records incomplete or non-sequential (49 CFR § 391.51).", result: "AUDIT DEFAULT" },
+        { id: "08", title: "Omitted Background Inquiries", subtitle: "Safety performance history not requested or documented (49 CFR § 391.23).", result: "CRIMINAL DEFAULT" }
       ]
     },
     {
       domain: "Operational Control",
       items: [
-        { id: "09", text: "Falsification of HOS", result: "CRIMINAL DEFAULT" },
-        { id: "10", text: "Dispatching OOS Vehicles", result: "AUTHORITY SEIZURE" },
-        { id: "11", text: "Deficient Roadside History", result: "PREMIUM SPIKE" },
-        { id: "12", text: "No Maintenance Log", result: "LIABILITY DEFAULT" }
+        { id: "09", title: "Falsification of HOS", subtitle: "ELD records or duty status logs inaccurate or falsified (49 CFR § 395.8).", result: "CRIMINAL DEFAULT" },
+        { id: "10", title: "Dispatching OOS Vehicles", subtitle: "Equipment operated with known out-of-service defects (49 CFR § 396.9).", result: "AUTHORITY TERMINATION" },
+        { id: "11", title: "Deficient Roadside History", subtitle: "Recurrent safety violations in roadside inspections (49 CFR Part 385).", result: "PREMIUM SPIKE" },
+        { id: "12", title: "No Maintenance Log", subtitle: "Unable to prove inspections, repairs, or maintenance (49 CFR § 396.3).", result: "AUDIT DEFAULT" }
       ]
     },
     {
       domain: "Administrative",
       items: [
-        { id: "13", text: "Insurance Coverage Lapse", result: "AUTHORITY TERMINATION" },
-        { id: "14", text: "Failure to Update MCS-150", result: "ADMIN REVOCATION" },
-        { id: "15", text: "BOC-3 Process Agent", result: "FILING SUSPENSION" },
-        { id: "16", text: "Late Accident Reporting", result: "LEGAL DEFAULT" }
+        { id: "13", title: "Insurance Coverage Lapse", subtitle: "Failure to maintain primary liability or cargo coverage (49 CFR Part 387).", result: "AUTHORITY TERMINATION" },
+        { id: "14", title: "Failure to Update MCS-150", subtitle: "Biennial carrier identification reports not updated (49 CFR § 390.19).", result: "OPERATING BAN" },
+        { id: "15", title: "BOC-3 Process Agent Omission", subtitle: "Lack of designated legal process agents in operating states (49 CFR Part 366).", result: "AUTHORITY TERMINATION" },
+        { id: "16", title: "Late Accident Reporting", subtitle: "Failure to maintain accident register or reportable logs (49 CFR § 390.15).", result: "CRIMINAL DEFAULT" }
       ]
     }
   ];
 
   return (
-    <section className="py-32 px-10 md:px-20 bg-[#020617] relative">
-      <div className="max-w-[1600px] mx-auto space-y-32">
-        <header className="text-center space-y-6">
-          <div className="w-20 h-20 bg-red-600/10 rounded-2xl flex items-center justify-center mx-auto border border-red-600/20">
-            <ShieldX size={40} className="text-red-600" />
+    <section className="py-24 px-6 md:px-12 bg-[#020617] relative font-sans overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-20">
+        <header className="space-y-6">
+          <div className="flex items-center space-x-4 mb-4">
+            <ShieldX size={32} className="text-red-600 shrink-0" />
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black font-serif uppercase tracking-tighter text-white">
+              THE 16 DEADLY SINS OF CARRIER FAILURE.
+            </h2>
           </div>
-          <h2 className="text-5xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white">
-            THE 16 DEADLY SINS OF <br/>
-            <span className="text-red-600 italic">CARRIER FAILURE.</span>
-          </h2>
-          <p className="text-xs tracking-[0.3em] text-white/70 uppercase font-normal">
-            Identification of high-probability failure patterns used by investigators
+          <p className="text-lg md:text-xl text-slate-400 font-bold max-w-4xl border-l-4 border-red-600 pl-6 py-2">
+            These are the sixteen failure patterns investigators look for when deciding whether a carrier survives an audit, keeps insurance coverage, or loses operating authority.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {riskDomains.map((domain, domainIndex) => (
-            <div key={domainIndex} className="space-y-6">
-              <h3 className="text-sm font-black uppercase tracking-widest text-signal-gold border-b border-white/10 pb-4 flex items-center">
-                <ChevronDown size={14} className="mr-2" /> 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          {riskDomains.map((domain, dIndex) => (
+            <div key={dIndex} className="space-y-8">
+              <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-signal-gold border-b border-white/10 pb-3 flex items-center">
+                <ChevronDown size={14} className="mr-2 opacity-50" /> 
                 {domain.domain}
               </h3>
               <div className="space-y-4">
                 {domain.items.map((item) => (
                   <div 
                     key={item.id} 
-                    className="bg-white/5 border border-white/10 p-6 rounded-[2rem] space-y-4 group hover:border-red-600/30 transition-all cursor-default"
+                    className="bg-white/[0.03] border border-white/5 p-6 rounded-3xl space-y-5 group hover:border-red-600/30 transition-all cursor-default relative overflow-hidden"
                   >
-                    <span className="text-[9px] font-black text-slate-600">
-                      FAULT-{item.id}
-                    </span>
-                    <h4 className="text-base font-black uppercase tracking-tight text-white group-hover:text-red-500 transition-colors leading-tight">
-                      {item.text}
-                    </h4>
-                    <div className="flex justify-between items-center pt-2 border-t border-white/5">
-                      <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">
-                        Result
+                    <div className="absolute top-0 left-0 w-1 h-full bg-red-600/20 group-hover:bg-red-600 transition-colors"></div>
+                    <div className="space-y-1">
+                      <span className="text-[9px] font-black text-slate-600 uppercase tracking-widest">
+                        FAULT-{item.id}
                       </span>
-                      <span className="text-[10px] font-black text-red-500 uppercase">
+                      <h4 className="text-lg font-black uppercase tracking-tight text-white leading-tight group-hover:text-red-500 transition-colors">
+                        {item.title}
+                      </h4>
+                    </div>
+                    <p className="text-xs font-bold text-slate-400 leading-relaxed italic">
+                      {item.subtitle}
+                    </p>
+                    <div className="pt-4 border-t border-white/5 flex flex-col gap-1">
+                      <span className="text-[8px] font-black text-slate-600 uppercase tracking-widest">
+                        RESULT
+                      </span>
+                      <span className="text-xs font-black text-red-500 uppercase tracking-tight">
                         {item.result}
                       </span>
                     </div>
@@ -107,6 +111,35 @@ const DeadlySinsGrid: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* RESULT LEGEND */}
+        <div className="mt-20 pt-12 border-t border-white/10">
+          <div className="bg-white/[0.02] rounded-[2rem] p-8 md:p-10 border border-white/5">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 mb-8 flex items-center">
+              <ShieldAlert size={14} className="mr-2" /> Result Classification Legend
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+              {[
+                { label: "Audit Default", desc: "Likely failure during compliance review" },
+                { label: "Authority Termination", desc: "FMCSA revokes operating authority" },
+                { label: "Operating Ban", desc: "Carrier prohibited from operating" },
+                { label: "Premium Spike", desc: "Insurance non-renewal or rate increase" },
+                { label: "Criminal Default", desc: "Civil or criminal exposure risk" }
+              ].map((item, i) => (
+                <div key={i} className="space-y-1">
+                  <p className="text-[10px] font-black text-red-500 uppercase tracking-tight">{item.label}</p>
+                  <p className="text-[11px] font-bold text-slate-500 leading-tight uppercase tracking-tighter">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center opacity-20 pt-10">
+          <p className="text-[9px] font-black uppercase tracking-[0.8em] text-slate-500 italic">
+            EXPOSURE TAXONOMY REGISTRY: LP-EXP-V3.0 — INSTITUTIONAL STANDARDS ACTIVE
+          </p>
         </div>
       </div>
     </section>
