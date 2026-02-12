@@ -38,7 +38,7 @@ const AboutPage: React.FC = () => {
       {/* HERO SECTION - 60/40 EXECUTIVE ENTRANCE */}
       <section className="relative min-h-[95vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">
         {/* LEFT COLUMN: THE NARRATIVE (60%) */}
-        <div className="w-full lg:w-[60%] bg-[#002244] text-white p-8 md:p-16 lg:p-24 xl:p-32 flex flex-col justify-center relative">
+        <div className="w-full lg:w-[60%] bg-[#002244] text-white p-6 sm:p-8 md:p-12 lg:p-24 xl:p-32 flex flex-col justify-center relative">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C5A059] via-[#C5A059]/40 to-transparent"></div>
           
@@ -49,14 +49,14 @@ const AboutPage: React.FC = () => {
             </div>
             
             <div className="space-y-4">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85]">
                 WHY <br/>
                 <span className="text-[#C5A059] italic">LAUNCHPATH</span> <br/>
                 EXISTS.
               </h1>
             </div>
 
-            <div className="space-y-8 text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
+            <div className="space-y-6 sm:space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
               <p>
                 I spent 25 years in manufacturing leadership—serving as a supervisor and business unit manager—and 5 years as a certified OSHA safety coordinator. Before that, I served 7 years in the U.S. Navy. In those high-stakes environments, <span className="text-white font-black">systems weren't just paperwork; they were the difference between a productive shift and a catastrophic failure.</span>
               </p>
@@ -69,7 +69,7 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="pt-8">
-              <Link to="/reach-test" className="inline-flex items-center space-x-6 bg-[#C5A059] text-[#002244] px-12 py-8 rounded-2xl font-black uppercase tracking-[0.3em] text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-8 border-[#8e7340]">
+              <Link to="/reach-test" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-8 rounded-xl sm:rounded-2xl font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[11px] sm:text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-4 sm:border-b-6 md:border-b-8 border-[#8e7340]">
                 <span>Verify Admission Readiness</span>
                 <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
               </Link>
@@ -78,7 +78,7 @@ const AboutPage: React.FC = () => {
         </div>
 
         {/* RIGHT COLUMN: THE PORTRAIT (40%) */}
-        <div className="w-full lg:w-[40%] bg-slate-200 relative min-h-[500px] lg:min-h-0">
+        <div className="w-full lg:w-[40%] bg-slate-200 relative min-h-[400px] sm:min-h-[500px] lg:min-h-0">
           <img 
             src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
             alt="Founder Vince Lawrence" 
@@ -93,19 +93,19 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* CLARITY OF PURPOSE SECTION */}
-      <section className="py-32 md:py-56 bg-white dark:bg-primary-dark">
+      <section className="py-16 sm:py-24 md:py-32 lg:py-56 bg-white dark:bg-primary-dark">
         <div className="max-w-[1600px] mx-auto px-6">
           <div className="text-center mb-32 space-y-8 animate-reveal-up">
             <p className="text-[11px] font-black uppercase tracking-[1em] text-white/70">OPERATIONAL PARAMETERS</p>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
               CLARITY OF <span className="text-[#C5A059] italic">PURPOSE.</span>
             </h2>
-            <p className="text-xl md:text-2xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed px-4">
               Precision definition of institutional boundaries. We build infrastructure; we do not provide legal or commercial services.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 xl:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 xl:gap-16">
             {[
               { 
                 icon: <Gavel size={36} className="text-[#C5A059]" />, 
@@ -159,13 +159,13 @@ const AboutPage: React.FC = () => {
                 ]
               }
             ].map((card, i) => (
-              <div key={i} className="bg-[#002244] rounded-[4rem] border border-white/5 shadow-2xl flex flex-col group hover:-translate-y-2 transition-all duration-700 animate-reveal-up overflow-hidden" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div key={i} className="bg-[#002244] rounded-2xl sm:rounded-3xl md:rounded-[4rem] border border-white/5 shadow-2xl flex flex-col group hover:-translate-y-2 transition-all duration-700 animate-reveal-up overflow-hidden" style={{ animationDelay: `${i * 0.1}s` }}>
                 {/* Header Decoration */}
                 <div className="h-2 w-full bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent"></div>
                 
-                <div className="p-10 lg:p-16 flex flex-col flex-grow">
+                <div className="p-6 sm:p-8 md:p-10 lg:p-16 flex flex-col flex-grow">
                   <div className="flex justify-between items-start mb-10">
-                    <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center border border-white/10 group-hover:bg-[#C5A059] group-hover:text-[#002244] transition-all duration-500 shadow-inner group-hover:rotate-6">
+                    <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-white/5 rounded-2xl sm:rounded-3xl flex items-center justify-center border border-white/10 group-hover:bg-[#C5A059] group-hover:text-[#002244] transition-all duration-500 shadow-inner group-hover:rotate-6">
                       {card.icon}
                     </div>
                     <div className="flex items-center space-x-2 text-[#C5A059]/40 group-hover:text-[#C5A059] transition-colors">
@@ -175,15 +175,15 @@ const AboutPage: React.FC = () => {
                   </div>
                   
                   <div className="space-y-4 mb-10">
-                    <h3 className="text-3xl font-black font-serif text-white uppercase tracking-tight leading-tight">{card.title}</h3>
+                    <h3 className="text-2xl sm:text-2xl md:text-3xl font-black font-serif text-white uppercase tracking-tight leading-tight">{card.title}</h3>
                     <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.4em]">{card.subtitle}</p>
                   </div>
                   
-                  <p className="text-[19px] font-bold text-white/90 leading-relaxed mb-10 flex-grow uppercase tracking-tight">
+                  <p className="text-base sm:text-[17px] md:text-[19px] font-bold text-white/90 leading-relaxed mb-8 sm:mb-10 flex-grow uppercase tracking-tight">
                     {card.body}
                   </p>
 
-                  <div className="bg-white/5 p-6 rounded-2xl border border-white/10 mb-12 italic text-sm text-[#C5A059] font-medium leading-relaxed">
+                  <div className="bg-white/5 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border border-white/10 mb-8 sm:mb-10 md:mb-12 italic text-xs sm:text-sm text-[#C5A059] font-medium leading-relaxed">
                     <div className="flex items-center gap-2 mb-2">
                       <ShieldCheck size={14} />
                       <span className="text-[9px] font-black uppercase tracking-widest">Safeguard Protocol</span>
