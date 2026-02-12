@@ -126,7 +126,7 @@ const HomePage: React.FC = () => {
       `}</style>
       
       {/* 1. THE DECLARATION: HERO SECTION */}
-      <section className="relative min-h-[75vh] flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-24 lg:py-56">
+      <section className="relative min-h-[80vh] flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-20 lg:py-48">
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
           
           <div className="lg:col-span-7 space-y-12 relative">
@@ -136,13 +136,21 @@ const HomePage: React.FC = () => {
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED</span>
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
               </div>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] mb-6 animate-reveal-up">
-                CARRIER <br/>GOVERNANCE <br/><span className="text-signal-gold italic">SYSTEMS.</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9] mb-6 sm:mb-8 animate-reveal-up">
+                SYSTEMATIC <br/>GOVERNANCE <br/>FOR <span className="text-signal-gold italic">CARRIERS.</span>
               </h1>
               <div className="space-y-6 animate-reveal-up [animation-delay:200ms]">
-                <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl font-medium">
-                  Infrastructure for 1-3 truck operations. Systems prevent failure; ambition inherits consequences.
+                <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl font-medium">
+                  Built specifically for 1-3 truck operations navigating the critical 18-month new entrant phase. Systems prevent early failure; ambition alone inherits consequences.
                 </p>
+                <div className="space-y-3">
+                  {['Authority Protection', 'Insurance Continuity', 'Documentation Integrity'].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-3 text-xs font-black uppercase tracking-widest text-signal-gold">
+                      <div className="w-1.5 h-1.5 bg-signal-gold rounded-full"></div>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="pt-4 animate-reveal-up [animation-delay:400ms] flex flex-col sm:flex-row gap-4">
                 <Link 
@@ -160,7 +168,7 @@ const HomePage: React.FC = () => {
                   <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 italic">Registration does not equal readiness. Build the system first.</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 italic">Failure is predictable. Systems are the only prevention.</p>
             </div>
           </div>
 
@@ -229,27 +237,27 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 2. THE LAW: EXECUTIVE TARGET DECLARATION */}
-      <section className="bg-[#020617] py-20 md:py-40 px-6 border-y border-white/5">
+      <section className="bg-[#020617] py-16 md:py-32 px-6 border-y border-white/5">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="flex items-center space-x-4 mb-8">
             <Shield className="text-signal-gold" size={28} />
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-signal-gold font-serif leading-none">
-              AUTHORITY IS AN <br/>ASSET. NOT A HUSTLE.
+            <h2 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-signal-gold font-serif leading-none">
+              CARRIER EXECUTIVE. <br/>NOT HUSTLER.
             </h2>
           </div>
-          <div className="space-y-8 text-xl md:text-2xl text-white/70 leading-relaxed font-bold">
+          <div className="space-y-8 text-lg md:text-2xl text-white/70 leading-relaxed font-bold">
             <p>
-              Authority is a governed asset. Compliance is infrastructure, not overhead. Entry requires peer-level participation in an audit-verified framework.
+              LaunchPath is built for operators who treat their authority as a governed asset, not a revenue experiment. If you view compliance as overhead instead of infrastructure, this system will not serve you.
             </p>
             <p>
-              LaunchPath serves operators who treat their business as a professional institution. If you view compliance as a discretionary task, this system will not serve you.
+              Entry requires peer-level participation inside a sequenced, audit-verified operating framework. Enrollment is not a transaction. It is authorization to access institutional-grade carrier governance.
             </p>
           </div>
         </div>
       </section>
 
       {/* 3. THE DOCTRINE: FOUNDER'S BRIEF */}
-      <section className="bg-primary-dark py-20 md:py-40 px-6">
+      <section className="bg-primary-dark py-20 md:py-32 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-4 lg:col-span-3">
             <img
@@ -265,7 +273,8 @@ const HomePage: React.FC = () => {
             </h2>
 
             <blockquote className="text-lg md:text-xl text-white/70 leading-relaxed font-medium space-y-6 border-l-4 border-signal-gold/30 pl-8">
-              <p>The industry hands you keys to a truck, but not blueprints to a governed operation. That omission creates terminal exposure.</p>
+              <p>I’ve watched hundreds of carriers collapse. Not from a lack of effort — from structural weakness.</p>
+              <p>The industry hands you the keys to a truck, but not the blueprints to a governed operation. That omission creates exposure under scrutiny.</p>
               <p>LaunchPath was not built to be another training product. It was architected as the missing institutional layer — an operating system that installs order, documentation integrity, and verification so your authority is built to last.</p>
             </blockquote>
 
@@ -275,7 +284,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 4. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
-      <section className="py-24 md:py-40 px-6 sm:px-10 md:px-20 bg-white dark:bg-primary-dark">
+      <section className="py-24 md:py-32 px-6 sm:px-10 md:px-20 bg-white dark:bg-primary-dark">
         <div className="max-w-7xl mx-auto space-y-24">
           <header className="text-center space-y-6 animate-reveal-up">
             <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
@@ -283,7 +292,7 @@ const HomePage: React.FC = () => {
               THE <span className="text-signal-gold italic">FOUR</span> PILLARS.
             </h2>
             <p className="text-xl md:text-2xl text-authority-blue dark:text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
-              Institutional stability requires four interlocking systems of control.
+              LaunchPath is an institutional system installed across three governed steps.
             </p>
           </header>
 
@@ -291,7 +300,7 @@ const HomePage: React.FC = () => {
             {[
               { title: "Authority Protection", icon: <Scale />, desc: "The legal right to operate and the asset at the center of the structure." },
               { title: "Insurance Continuity", icon: <ShieldCheck />, desc: "The financial shield required to move freight and protect assets." },
-              { title: "Compliance Backbone", icon: <FileText />, desc: "The documentary evidence required to satisfy federal investigators." },
+              { title: "Compliance Backbone", icon: <FileText />, desc: "The documentary evidence of safety required to satisfy federal investigators." },
               { title: "Cash-Flow Oxygen", icon: <Zap />, desc: "The capital required to keep the other three pillars alive." }
             ].map((pillar, i) => (
               <div key={i} className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center space-y-6 hover:shadow-2xl transition-all duration-700">
@@ -305,32 +314,25 @@ const HomePage: React.FC = () => {
           <div className="pt-20 border-t border-slate-100 dark:border-white/5 space-y-12">
             <h3 className="text-3xl font-black uppercase text-authority-blue dark:text-signal-gold font-serif">The Interdependence Logic</h3>
             <p className="text-lg md:text-2xl text-slate-600 dark:text-slate-400 font-bold leading-relaxed max-w-4xl">
-              Pillars are not independent modules. Compliance failure triggers underwriting isolation. Isolation triggers insurance lapse. Lapse triggers authority revocation. Revocation triggers operational collapse.
+              The Four Pillars are not independent modules. They are a causal chain. Compliance failure triggers underwriting isolation. Underwriting isolation triggers insurance lapse. Insurance lapse triggers authority revocation. Authority revocation triggers operational collapse.
             </p>
           </div>
         </div>
       </section>
 
-      {/* PAUSE: ORIENTATION BEFORE IMPLEMENTATION */}
-      <div className="bg-[#FAF9F6] dark:bg-[#020617] py-16 text-center border-y border-slate-200 dark:border-white/5">
-        <p className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-bold uppercase tracking-tight max-w-3xl mx-auto px-6 italic">
-          Identifying the pillars is a diagnostic exercise. Protecting them requires the physical assembly of an audit-ready archive.
-        </p>
-      </div>
-
       {/* 5. THE PROOF: UNIFIED DOSSIER */}
-      <section className="bg-[#FAF9F6] dark:bg-[#0F172A] py-24 md:py-48 px-6 border-b border-slate-100 dark:border-white/5">
+      <section className="bg-[#FAF9F6] dark:bg-[#0F172A] py-24 md:py-48 px-6 border-y border-slate-100 dark:border-white/5">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-primary-dark dark:text-white mb-10 font-serif leading-none">
             THE UNIFIED <br/>DOSSIER.
           </h2>
           <p className="text-xl md:text-3xl text-slate-600 dark:text-slate-400 font-bold mb-16 leading-relaxed uppercase tracking-tight">
-            Authority Protection, Insurance, and Compliance collapse into a single governed file.
+            Authority Protection, Insurance Continuity, and Compliance Backbone collapse into a single governed file.
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-7 space-y-10">
               <p className="text-lg md:text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                LaunchPath installs an infrastructure file that governs:
+                LaunchPath installs a Unified, Audit-Ready Dossier — a sequenced, verification-backed infrastructure file that governs:
               </p>
               <div className="grid grid-cols-1 gap-6">
                 {[
@@ -349,7 +351,7 @@ const HomePage: React.FC = () => {
                 ))}
               </div>
               <p className="text-xl md:text-3xl text-slate-900 dark:text-white leading-relaxed mt-12 font-black border-l-8 border-signal-gold pl-10 py-4 uppercase tracking-tighter">
-                This is documentation integrity. This is what survives an audit.
+                This is not content. This is documentation integrity. This is what survives an audit.
               </p>
             </div>
             <div className="lg:col-span-5 flex items-center justify-center">
@@ -374,17 +376,10 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* PAUSE: TRANSITION TO JUDGMENT */}
-      <div className="bg-[#020617] py-16 text-center">
-        <p className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-bold uppercase tracking-tight max-w-3xl mx-auto px-6">
-          Operational safety is evaluated through a clinical lens used by investigators and insurers to determine entity viability.
-        </p>
-      </div>
-
       {/* 6. THE JUDGMENT: 16 SINS + REACH BRIDGE */}
       <DeadlySinsGrid />
       
-      <section className="bg-primary-dark py-24 md:py-48 px-6 relative overflow-hidden border-t border-white/5">
+      <section className="bg-primary-dark py-24 md:py-48 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-red-600/[0.02] pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
           <div className="w-24 h-24 bg-red-600/10 rounded-[2.5rem] border border-red-600/30 flex items-center justify-center mx-auto mb-10 shadow-2xl">
@@ -394,7 +389,7 @@ const HomePage: React.FC = () => {
             LOCATE YOUR <br/><span className="text-white italic">EXPOSURE.</span>
           </h2>
           <p className="text-lg md:text-2xl text-white/70 leading-relaxed font-bold max-w-2xl mx-auto">
-            The REACH Test™ maps your current compliance posture against the 16 terminal failure vectors.
+            The REACH Test™ is a diagnostic clearance protocol that maps your current compliance posture against the 16 terminal failure vectors.
           </p>
           <div className="pt-10">
             <Link 
@@ -409,20 +404,20 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 7. THE PATH: ADMISSION SEQUENCE */}
-      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-24 md:py-40 px-6 border-y border-slate-100 dark:border-white/5">
+      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-24 md:py-48 px-6 border-y border-slate-100 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-primary-dark dark:text-white mb-12 text-center font-serif leading-none">
             ADMISSION <br/><span className="text-signal-gold italic">SEQUENCE.</span>
           </h2>
           <p className="text-xl md:text-3xl text-slate-600 dark:text-slate-400 font-bold mb-24 text-center leading-relaxed uppercase tracking-tight">
-            LaunchPath operates on a governed entry protocol. No instant access.
+            LaunchPath operates on a governed entry protocol. There is no instant access.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
             {[
-              { num: "1", title: "GROUND 0: READINESS", desc: "Mindset & Decision Module. Determines Go / Wait / No-Go based on clinical math." },
-              { num: "2", title: "SYSTEM INSTALLATION", desc: "Sequential deployment of Authority, Insurance, and Compliance files." },
-              { num: "3", title: "ONGOING OPERATION", desc: "Administrative continuity. Moving from a driver with a dream to a carrier with infrastructure." }
+              { num: "1", title: "GROUND 0: READINESS", desc: "6 Lessons (~90 minutes). 11 Downloads. Designed to determine Go / Wait / No-Go. Stewardship begins with honesty." },
+              { num: "2", title: "SYSTEM INSTALLATION", desc: "Modules 1–7. Sequential deployment of Authority Protection, Insurance Continuity, and Compliance Backbone files." },
+              { num: "3", title: "ONGOING OPERATION", desc: "Clinical discipline and continuity. Moving from a driver with a dream to a carrier with infrastructure." }
             ].map((step, i) => (
               <div key={i} className="space-y-8 group">
                 <div className="w-20 h-20 bg-signal-gold text-primary-dark rounded-[2rem] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 border-b-8 border-slate-900">
@@ -439,7 +434,7 @@ const HomePage: React.FC = () => {
           <div className="mt-32 p-12 bg-white dark:bg-surface-dark rounded-[3.5rem] border border-slate-100 dark:border-slate-800 text-center space-y-8">
             <h3 className="text-2xl font-black uppercase font-serif">The Judgment</h3>
             <p className="text-xl font-bold text-slate-500 max-w-2xl mx-auto italic">
-              "Not everyone should file for authority. WAIT is often wise. NO-GO is stewardship of capital."
+              "Not everyone should file for authority. GO is rare. WAIT is often wise. NO-GO is not quitting—it is stewardship of capital."
             </p>
           </div>
         </div>
@@ -453,7 +448,7 @@ const HomePage: React.FC = () => {
             <p className="text-[10px] font-black uppercase tracking-[0.5em] flex items-center text-[#002244] opacity-70"><Target size={14} className="mr-2" /> FISCAL STABILIZATION</p>
             <h2 className="text-6xl md:text-9xl font-black font-serif uppercase tracking-tighter leading-[0.85] text-[#002244]">THE MATH <br/>OF <span className="italic">SURVIVAL.</span></h2>
             <p className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-xl text-[#002244]">
-               Revenue without margin analysis is busyness. Verify solvency before you commit.
+               A reality check for owner-operators. Revenue without profit is busy-work. Verify before you commit.
             </p>
             <div className="pt-10">
                <Link to="/tools/tco-calculator" className="relative overflow-hidden bg-[#002244] text-white px-12 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] shadow-2xl hover:bg-slate-800 transition-all active:scale-95 flex items-center w-fit border-b-8 border-black group">
@@ -492,18 +487,18 @@ const HomePage: React.FC = () => {
       <FAQSection />
 
       {/* 10. THE INVITATION: FINAL CTA */}
-      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark border-t border-slate-100 dark:border-white/5">
+      <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
         <header className="text-center mb-32 space-y-6">
           <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">THE OUTCOME</p>
           <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">THE <span className="text-signal-gold italic">EXECUTIVE</span> STANDARD.</h2>
-          <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto uppercase">Transformation from driver with a dream to carrier with infrastructure.</p>
+          <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold max-w-2xl mx-auto uppercase">The transformation from a driver with a dream to a carrier with infrastructure.</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
            {[
-             { letter: "D", title: "Audit-Ready Infrastructure", desc: "Documentation standards where federal auditors find zero hazards." },
-             { letter: "A", title: "Preferred Risk Profile", desc: "Safety-first operational structures that underwriters value." },
-             { letter: "F", title: "Financial Stability", desc: "Systems that maximize operating margins and preserve cash-flow." }
+             { letter: "D", title: "Audit-Ready Infrastructure", desc: "Establish a documentation standard where federal auditors find zero \"Reach Test\" hazards." },
+             { letter: "A", title: "Preferred Risk Profile", desc: "Build a safety-first operational structure that underwriters value." },
+             { letter: "F", title: "Financial Stability", desc: "Deploy systems that maximize operating margins and preserve cash-flow oxygen." }
            ].map((item, i) => (
              <div key={i} className="bg-white dark:bg-primary-dark p-10 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-sm space-y-8 flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center font-black text-2xl text-signal-gold">{item.letter}</div>
@@ -539,7 +534,7 @@ const HomePage: React.FC = () => {
       <div className="bg-[#020617] py-20 px-6 border-t border-white/5">
         <div className="max-w-4xl mx-auto text-center space-y-10">
           <p className="text-xs text-white/40 font-medium leading-relaxed uppercase tracking-tight">
-            LaunchPath is an educational platform. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice. Verify all filings with the FMCSA and qualified professionals.
+            LaunchPath is an institutional educational platform. All materials are for educational purposes only and do not constitute legal, tax, financial, insurance, or regulatory advice. Success depends on individual operator discipline. Verify all filings with the FMCSA and qualified professionals.
           </p>
           <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
             CARRIER OPERATING STANDARD: LP-SYS-V4.2 — INSTITUTIONAL INTEGRITY ACTIVE
