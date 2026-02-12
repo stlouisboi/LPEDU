@@ -37,7 +37,6 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { syncToMailerLite } from '../mailerlite';
 import DeadlySinsGrid from '../components/DeadlySinsGrid';
-import FAQSection from '../components/FAQSection';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -439,9 +438,6 @@ const HomePage: React.FC = () => {
            </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      <FAQSection />
 
       {/* Scroll to Top Button */}
       {showScrollTop && (

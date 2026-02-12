@@ -27,7 +27,7 @@ import { BlogPost, SiteSettings } from './types';
 import { EnhancedAuthProvider, useEnhancedAuth } from './EnhancedAuthContext';
 import { FreeRoute, PaidRoute, AdminRoute } from './components/auth/RoleBasedRoutes';
 import ScrollToTop from './components/ScrollToTop';
-
+import AIChatWidget from './components/AIChatWidget';
 import Logo from './components/Logo';
 
 // Pages
@@ -460,7 +460,7 @@ export default function App() {
               </Routes>
             </main>
             <Footer />
-
+            <AIChatWidget />
           </Router>
         </EnhancedAuthProvider>
       )}
