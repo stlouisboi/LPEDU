@@ -1,16 +1,17 @@
 import React from 'react';
-import { ShieldX, ChevronDown, AlertTriangle, ShieldAlert, Gavel, FileText, Activity } from 'lucide-react';
+import { ShieldX, ChevronDown, ShieldAlert } from 'lucide-react';
 
 /**
  * THE 16 DEADLY SINS OF CARRIER FAILURE
  * Institutional failure-pattern map for motor carrier risk analysis.
+ * Governed by the LaunchPath Executive Standard.
  */
 
 interface Fault {
   id: string;
   title: string;
   subtitle: string;
-  result: string;
+  result: 'AUDIT DEFAULT' | 'AUTHORITY TERMINATION' | 'OPERATING BAN' | 'PREMIUM SPIKE' | 'CRIMINAL DEFAULT';
 }
 
 interface RiskDomain {
@@ -25,7 +26,7 @@ const DeadlySinsGrid: React.FC = () => {
       items: [
         { id: "01", title: "Random Pool Enrollment", subtitle: "Drug and alcohol testing program not aligned with 49 CFR Part 382.", result: "AUDIT DEFAULT" },
         { id: "02", title: "Positive Driver Results", subtitle: "Failure to manage driver removal or return-to-duty (49 CFR § 382.501).", result: "AUTHORITY TERMINATION" },
-        { id: "03", title: "Clearinghouse Query Failure", subtitle: "Pre-employment and annual driver queries not completed (49 CFR § 382.701).", result: "OPERATING BAN" },
+        { id: "03", title: "Clearinghouse Query Failure", subtitle: "Required driver queries not completed or documented (49 CFR § 382.701).", result: "OPERATING BAN" },
         { id: "04", title: "Omission of Pre-Employment Test", subtitle: "Verified negative result not obtained prior to first dispatch (49 CFR § 382.301).", result: "CRIMINAL DEFAULT" }
       ]
     },
@@ -116,9 +117,12 @@ const DeadlySinsGrid: React.FC = () => {
         {/* RESULT LEGEND */}
         <div className="mt-20 pt-12 border-t border-white/10">
           <div className="bg-white/[0.02] rounded-[2rem] p-8 md:p-10 border border-white/5">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 mb-8 flex items-center">
-              <ShieldAlert size={14} className="mr-2" /> Result Classification Legend
-            </h4>
+            <div className="flex items-center space-x-3 mb-8">
+              <ShieldAlert size={14} className="text-slate-500" />
+              <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500">
+                Result Classification Legend
+              </h4>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
               {[
                 { label: "Audit Default", desc: "Likely failure during compliance review" },
