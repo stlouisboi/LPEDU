@@ -99,7 +99,7 @@ const AboutPage: React.FC = () => {
         {/* RIGHT COLUMN: THE PORTRAIT (40%) */}
         <div className="w-full lg:w-[40%] bg-slate-200 relative min-h-[400px] sm:min-h-[500px] lg:min-h-0">
           <img 
-            src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
+            src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vince_founder.png?alt=media&token=b5ea75d9-5252-4ac3-af5c-282eec053e7d" 
             alt="Founder Vince Lawrence" 
             className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 hover:brightness-100 transition-all duration-1000 object-top"
           />
@@ -388,7 +388,7 @@ const AboutPage: React.FC = () => {
                 <div className="relative group">
                   <div className="bg-white/5 border-2 sm:border-3 md:border-4 border-[#C5A059]/30 rounded-2xl sm:rounded-3xl md:rounded-[4rem] lg:rounded-[5rem] overflow-hidden shadow-2xl aspect-[4/5] relative">
                     <img 
-                      src="https://raw.githubusercontent.com/stlouisboi/assets-launchpath/main/LaunchPath%20Vince.png" 
+                      src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vince_founder.png?alt=media&token=b5ea75d9-5252-4ac3-af5c-282eec053e7d" 
                       alt="Institutional Portrait: Vince Lawrence" 
                       className="w-full h-full object-cover grayscale opacity-90 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000 object-top" 
                     />

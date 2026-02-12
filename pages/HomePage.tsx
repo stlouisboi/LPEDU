@@ -253,7 +253,7 @@ const HomePage: React.FC = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-4 lg:col-span-3">
             <img
-              src="{{FIREBASE_URL_FOUNDER_EXECUTIVE}}"
+              src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
               alt="Vince Lawrence, Founder of LaunchPath"
               className="rounded-full w-48 h-48 md:w-full md:h-auto object-cover mx-auto border-4 border-signal-gold/50 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
             />
