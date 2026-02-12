@@ -624,7 +624,7 @@ const AIServicePage = () => {
                           </div>
                         ) : (
                           <div className="text-center p-20 opacity-20 group-hover:opacity-40 transition-opacity">
-                             <Monitor size={120} className="mx-auto mb-10" />
+                             <VisualMonitorIcon size={120} className="mx-auto mb-10" />
                              <p className="uppercase font-black tracking-[0.8em] text-sm">Monitor Standby</p>
                           </div>
                         )}
@@ -641,7 +641,7 @@ const AIServicePage = () => {
 };
 
 // Reusable monitor icon component for the video state
-const Monitor = ({ size, className }: { size: number, className?: string }) => (
+const VisualMonitorIcon = ({ size, className }: { size: number, className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
   </svg>

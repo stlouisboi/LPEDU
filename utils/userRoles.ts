@@ -1,6 +1,6 @@
 import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
-import { UserProfile, UserRole } from "../types/userTypes";
+import { UserProfile, UserRole } from "../types";
 
 export const createUserProfile = async (uid: string, email: string | null, displayName: string | null, role: UserRole = 'free'): Promise<UserProfile> => {
   if (!db) throw new Error("Database offline");

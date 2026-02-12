@@ -1,4 +1,3 @@
-
 export interface Resource {
   id: string;
   name: string;
@@ -69,6 +68,16 @@ export type BlogCategory =
   | 'Hours of Service' 
   | 'Maintenance'
   | 'Compliance';
+
+export type UserRole = 'free' | 'paid' | 'admin';
+
+export interface UserProfile {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  role: UserRole;
+  enrolledAt: any;
+}
 
 export interface SiteSettings {
   siteName: string;
@@ -141,17 +150,6 @@ export interface Testimonial {
   author: string;
   role: string;
   content: string;
-}
-
-export enum UserRole {
-  ADMIN = 'ADMIN',
-  EDITOR = 'EDITOR',
-  GUEST = 'GUEST'
-}
-
-export interface User {
-  role: UserRole;
-  isLoggedIn: boolean;
 }
 
 export interface HomepageContent {
