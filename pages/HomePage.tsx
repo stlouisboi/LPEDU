@@ -31,7 +31,9 @@ import {
   Loader2,
   Truck,
   Scale,
-  ChevronUp
+  ChevronUp,
+  CheckCircle,
+  TrendingDown
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
@@ -162,12 +164,6 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const faqs = [
-    { q: "What if my insurance quote is higher than expected?", a: "Insurance is a fixed economic reality. We help you build a risk profile that underwriters value, even if initial costs are high." },
-    { q: "Does LaunchPath guarantee I will pass an audit?", a: "No system can guarantee results. We provide the infrastructure and implementation requirements used by the nation's most compliant carriers." },
-    { q: "How long does authority activation take?", a: "The mandatory protest period is 10 days, with typical processing totaling 21 days. We use this window for system initialization." }
-  ];
-
   return (
     <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30">
       <style>{`
@@ -195,25 +191,23 @@ const HomePage: React.FC = () => {
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center"><Award size={12} className="mr-2 text-signal-gold" /> SAFETY CERTIFIED</span>
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-none mb-6 sm:mb-8 animate-reveal-up">
-                PROTECT <br/>YOUR <br/><span className="text-signal-gold">AUTHORITY</span> <br/>WITH ORDER.
+                I'VE WATCHED THIS <br/>FAIL <span className="text-signal-gold italic">200 TIMES.</span>
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-2xl border-l-8 border-signal-gold pl-8 py-2 animate-reveal-up [animation-delay:200ms]">
-                Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
-              </p>
+              <div className="space-y-6 animate-reveal-up [animation-delay:200ms]">
+                <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl font-medium">
+                  A compliance-first operating system for new motor carriers who treat their authority as institutional infrastructure.
+                </p>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed max-w-2xl border-l-8 border-signal-gold pl-8 py-2">
+                  Most new carriers establish compliance within the first 90 days — or inherit consequences for 18 months.
+                </p>
+              </div>
               <div className="pt-4 animate-reveal-up [animation-delay:400ms]">
                 <Link 
                   to="/reach-test" 
-                  className="group relative bg-signal-gold text-white px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-xs shadow-2xl hover:shadow-[0_30px_70px_rgba(198,146,42,0.4)] hover:scale-[1.03] active:scale-0.98 transition-all duration-500 flex items-center w-fit border-b-4 sm:border-b-8 border-slate-900 overflow-hidden"
+                  className="inline-flex items-center space-x-3 border-2 border-signal-gold text-signal-gold px-10 py-5 rounded-xl font-black uppercase tracking-widest text-base md:text-lg hover:bg-signal-gold hover:text-primary-dark transition-all shadow-2xl active:scale-95 group"
                 >
-                  <Truck 
-                    size={22} 
-                    className="absolute top-2 left-4 text-white/20 group-hover:text-white/80 transition-all duration-500 animate-truck-drive" 
-                  />
-                  <span className="relative z-10 flex items-center">
-                    Verify Admission Readiness <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500"></div>
-                  <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] translate-x-[-200%] group-hover:animate-shine pointer-events-none"></div>
+                  <span>VERIFY EXPOSURE VECTORS</span>
+                  <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
             </div>
@@ -292,37 +286,25 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. THE FOUR PILLARS INTERDEPENDENCE */}
-      <section className="py-32 px-10 md:px-20 lg:px-40 bg-white dark:bg-primary-dark">
-        <div className="max-w-7xl mx-auto space-y-24">
-          <header className="text-center space-y-6 animate-reveal-up">
-            <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
-            <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
-              THE <span className="text-signal-gold italic">FOUR</span> PILLARS.
+      {/* EXECUTIVE TARGET DECLARATION */}
+      <section className="bg-[#020617] py-16 md:py-32 px-6 border-y border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center space-x-4 mb-8">
+            <Shield className="text-signal-gold" size={28} />
+            <h2 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-signal-gold font-serif">
+              CARRIER EXECUTIVE. NOT HUSTLER.
             </h2>
-            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
-              Institutional logic: A failure in the Compliance Backbone (Documentation) results in a loss of Insurance Continuity, which suffocates Cash-Flow Oxygen.
-            </p>
-          </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: "Authority Protection", icon: <Scale />, desc: "The legal right to operate and the center of the structure." },
-              { title: "Insurance Continuity", icon: <ShieldCheck />, desc: "The financial shield required to move freight and protect assets." },
-              { title: "Compliance Backbone", icon: <FileText />, desc: "The documentary evidence of safety required to satisfy federal investigators." },
-              { title: "Cash-Flow Oxygen", icon: <Zap />, desc: "The capital required to keep the other three pillars alive." }
-            ].map((pillar, i) => (
-              <div key={i} className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center space-y-6 hover:shadow-2xl transition-all duration-700">
-                <div className="w-16 h-16 bg-authority-blue text-signal-gold rounded-2xl flex items-center justify-center shadow-lg">{pillar.icon}</div>
-                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight leading-tight">{pillar.title}</h4>
-                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-tighter">{pillar.desc}</p>
-              </div>
-            ))}
           </div>
+          <p className="text-lg md:text-2xl text-white/70 leading-relaxed font-bold">
+            LaunchPath is built for operators who treat their authority as a governed asset, not a revenue experiment. If you view compliance as overhead instead of infrastructure, this system will not serve you.
+          </p>
+          <p className="text-lg md:text-2xl text-white/70 leading-relaxed font-bold mt-8">
+            Entry requires peer-level participation inside a sequenced, audit-verified operating framework. Enrollment is not a transaction. It is authorization to access institutional-grade carrier governance.
+          </p>
         </div>
       </section>
 
-      {/* 3. THE MATH OF SURVIVAL */}
+      {/* THE MATH OF SURVIVAL */}
       <section className="py-48 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center relative z-10">
@@ -368,6 +350,126 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* THE INTERDEPENDENCE LOGIC */}
+      <section className="bg-signal-gold py-16 md:py-32 px-6 border-t border-black/5">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-primary-dark mb-12 font-serif">
+            THE INTERDEPENDENCE LOGIC.
+          </h2>
+          <p className="text-xl md:text-2xl text-primary-dark leading-relaxed font-black mb-8">
+            The Four Pillars are not independent modules. They are a causal chain.
+          </p>
+          <p className="text-xl md:text-2xl text-primary-dark leading-relaxed font-bold mb-8">
+            Compliance failure triggers underwriting isolation. Underwriting isolation triggers insurance lapse. Insurance lapse triggers authority revocation. Authority revocation triggers operational collapse.
+          </p>
+          <p className="text-xl md:text-2xl text-primary-dark leading-relaxed font-black uppercase tracking-tight">
+            This is not fear-based messaging. This is operational physics. LaunchPath installs the infrastructure that prevents the first domino from falling.
+          </p>
+          
+          <div className="mt-20 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-primary-dark">
+            <span className="font-black text-xl tracking-tighter">COMPLIANCE</span>
+            <ArrowRight size={32} className="hidden md:block opacity-30" />
+            <ChevronDown size={32} className="md:hidden opacity-30" />
+            <span className="font-black text-xl tracking-tighter">INSURANCE</span>
+            <ArrowRight size={32} className="hidden md:block opacity-30" />
+            <ChevronDown size={32} className="md:hidden opacity-30" />
+            <span className="font-black text-xl tracking-tighter">CASH FLOW</span>
+            <ArrowRight size={32} className="hidden md:block opacity-30" />
+            <ChevronDown size={32} className="md:hidden opacity-30" />
+            <span className="font-black text-xl tracking-tighter">AUTHORITY</span>
+          </div>
+        </div>
+      </section>
+
+      {/* THE FOUR PILLARS INTERDEPENDENCE */}
+      <section className="py-32 px-10 md:px-20 lg:px-40 bg-white dark:bg-primary-dark">
+        <div className="max-w-7xl mx-auto space-y-24">
+          <header className="text-center space-y-6 animate-reveal-up">
+            <p className="text-[11px] font-black text-white/70 uppercase tracking-[0.5em]">SYSTEM ARCHITECTURE</p>
+            <h2 className="text-5xl md:text-8xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-none">
+              THE <span className="text-signal-gold italic">FOUR</span> PILLARS.
+            </h2>
+            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
+              Institutional logic: A failure in the Compliance Backbone (Documentation) results in a loss of Insurance Continuity, which suffocates Cash-Flow Oxygen.
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: "Authority Protection", icon: <Scale />, desc: "The legal right to operate and the center of the structure." },
+              { title: "Insurance Continuity", icon: <ShieldCheck />, desc: "The financial shield required to move freight and protect assets." },
+              { title: "Compliance Backbone", icon: <FileText />, desc: "The documentary evidence of safety required to satisfy federal investigators." },
+              { title: "Cash-Flow Oxygen", icon: <Zap />, desc: "The capital required to keep the other three pillars alive." }
+            ].map((pillar, i) => (
+              <div key={i} className="bg-slate-50 dark:bg-surface-dark p-10 rounded-[3.5rem] border border-slate-100 dark:border-border-dark flex flex-col items-center text-center space-y-6 hover:shadow-2xl transition-all duration-700">
+                <div className="w-16 h-16 bg-authority-blue text-signal-gold rounded-2xl flex items-center justify-center shadow-lg">{pillar.icon}</div>
+                <h4 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight leading-tight">{pillar.title}</h4>
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-tighter">{pillar.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* THE UNIFIED DOSSIER */}
+      <section className="bg-[#FAF9F6] dark:bg-[#0F172A] py-20 md:py-48 px-6 border-y border-slate-100 dark:border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-primary-dark dark:text-white mb-10 font-serif leading-none">
+            THE UNIFIED DOSSIER.
+          </h2>
+          <p className="text-xl md:text-3xl text-slate-600 dark:text-slate-400 font-bold mb-16 leading-relaxed uppercase tracking-tight">
+            Authority Protection, Insurance Continuity, and Compliance Backbone collapse into a single governed file.
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-7 space-y-10">
+              <p className="text-lg md:text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                LaunchPath does not deliver training modules. It installs a Unified, Audit-Ready Dossier — a sequenced, verification-backed infrastructure file that governs:
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                {[
+                  'Driver Qualification Files (DQF) with federal sequencing',
+                  'Substance Governance Program (Drug & Alcohol Consortium enrollment)',
+                  'Hours of Service Compliance Architecture',
+                  'Maintenance & Inspection Documentation Protocol',
+                  'Insurance Continuity & Underwriting Verification',
+                  'Authority Registration & Biennial Update Tracking'
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start space-x-5 group">
+                    <CheckCircle className="text-signal-gold flex-shrink-0 mt-1 shadow-2xl" size={28} />
+                    <span className="text-lg md:text-xl text-slate-700 dark:text-slate-300 font-black uppercase tracking-tight leading-tight">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              
+              <p className="text-xl md:text-3xl text-slate-900 dark:text-white leading-relaxed mt-12 font-black border-l-8 border-signal-gold pl-10 py-4 uppercase tracking-tighter">
+                This is not content. This is documentation integrity. This is what survives an audit.
+              </p>
+            </div>
+            <div className="lg:col-span-5 flex items-center justify-center">
+               <div className="w-full aspect-[4/5] bg-[#020617] rounded-[4rem] border-[12px] border-white/5 shadow-2xl p-12 flex flex-col justify-between relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-8 opacity-[0.03]"><FileText size={200}/></div>
+                  <div className="space-y-6 relative z-10">
+                    <div className="w-16 h-16 bg-signal-gold rounded-2xl flex items-center justify-center text-primary-dark shadow-xl"><Lock size={32}/></div>
+                    <h4 className="text-2xl font-black text-white uppercase tracking-tight leading-none font-serif">REGISTRY ARCHIVE v4.5</h4>
+                    <div className="space-y-4">
+                      <div className="h-2 w-full bg-white/10 rounded-full"></div>
+                      <div className="h-2 w-3/4 bg-white/10 rounded-full"></div>
+                      <div className="h-2 w-1/2 bg-white/10 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div className="relative z-10">
+                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-signal-gold mb-2">Institutional Guard</p>
+                    <p className="text-xs text-white/40 uppercase font-bold tracking-widest leading-relaxed">Systematic verification of refuge before operational dispatch.</p>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. THE 16 DEADLY SINS MATRIX GRID */}
       <DeadlySinsGrid />
       
@@ -376,6 +478,100 @@ const HomePage: React.FC = () => {
             Analyze Complete Exposure Matrix <ArrowRight size={14} className="ml-3 group-hover:translate-x-2 transition-transform" />
         </Link>
       </div>
+
+      {/* LOCATE YOUR EXPOSURE - REACH TEST BRIDGE */}
+      <section className="bg-primary-dark py-24 md:py-48 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-red-600/[0.02] pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10 animate-reveal-up">
+          <div className="w-24 h-24 bg-red-600/10 rounded-[2.5rem] border border-red-600/30 flex items-center justify-center mx-auto mb-10 shadow-2xl">
+            <ShieldAlert size={48} className="text-red-500" />
+          </div>
+          <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-signal-gold font-serif leading-none">
+            LOCATE YOUR <br/><span className="text-white italic">EXPOSURE.</span>
+          </h2>
+          <p className="text-lg md:text-2xl text-white/70 leading-relaxed font-bold max-w-2xl mx-auto">
+            The REACH Test™ is a diagnostic clearance protocol that maps your current compliance posture against the 16 terminal failure vectors.
+          </p>
+          <p className="text-lg md:text-2xl text-white/70 leading-relaxed font-bold max-w-2xl mx-auto">
+            This is not enrollment. This is exposure confirmation. Operators use this diagnostic to verify readiness before admission review.
+          </p>
+          
+          <div className="pt-10">
+            <Link 
+              to="/reach-test" 
+              className="inline-flex items-center space-x-6 border-4 border-signal-gold text-signal-gold px-12 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm md:text-lg hover:bg-signal-gold hover:text-primary-dark transition-all shadow-[0_30px_60px_rgba(198,146,42,0.3)] active:scale-95 group"
+            >
+              <span>VERIFY EXPOSURE VECTORS</span>
+              <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ADMISSION SEQUENCE */}
+      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-20 md:py-48 px-6 border-y border-slate-100 dark:border-white/5">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-primary-dark dark:text-white mb-12 text-center font-serif leading-none">
+            ADMISSION <span className="text-signal-gold italic">SEQUENCE.</span>
+          </h2>
+          <p className="text-xl md:text-3xl text-slate-600 dark:text-slate-400 font-bold mb-24 text-center leading-relaxed uppercase tracking-tight">
+            LaunchPath operates on a governed entry protocol. There is no instant access.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
+            {/* Step 1 */}
+            <div className="space-y-8 group">
+              <div className="w-20 h-20 bg-signal-gold text-primary-dark rounded-[2rem] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 border-b-8 border-slate-900">
+                <span className="text-3xl font-black font-serif">1</span>
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-2xl font-black uppercase text-primary-dark dark:text-white tracking-tight leading-none font-serif">
+                  DIAGNOSTIC & <br/>EXPOSURE CONFIRMATION
+                </h3>
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
+                  Complete the REACH Test™ to map your compliance posture and identify terminal exposure vectors.
+                </p>
+              </div>
+            </div>
+            
+            {/* Step 2 */}
+            <div className="space-y-8 group">
+              <div className="w-20 h-20 bg-signal-gold text-primary-dark rounded-[2rem] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 border-b-8 border-slate-900">
+                <span className="text-3xl font-black font-serif">2</span>
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-2xl font-black uppercase text-primary-dark dark:text-white tracking-tight leading-none font-serif">
+                  ADMISSION & <br/>AUTHORIZATION REVIEW
+                </h3>
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
+                  Submit your diagnostic results for admission review. Authorization is granted based on operational readiness, not payment.
+                </p>
+              </div>
+            </div>
+            
+            {/* Step 3 */}
+            <div className="space-y-8 group">
+              <div className="w-20 h-20 bg-signal-gold text-primary-dark rounded-[2rem] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500 border-b-8 border-slate-900">
+                <span className="text-3xl font-black font-serif">3</span>
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-2xl font-black uppercase text-primary-dark dark:text-white tracking-tight leading-none font-serif">
+                  GUIDED SYSTEM <br/>INSTALLATION BEGINS
+                </h3>
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
+                  Upon authorization, you receive access to the Unified Dossier framework and begin sequenced implementation under governance oversight.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-32 pt-20 border-t border-slate-100 dark:border-white/5 text-center">
+            <p className="text-2xl md:text-5xl text-slate-700 dark:text-slate-200 font-black uppercase tracking-tighter leading-none font-serif italic">
+              "This is not a course. This is infrastructure installation."
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* 5. THE EXECUTIVE STANDARD */}
       <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark">
