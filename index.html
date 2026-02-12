@@ -35,7 +35,8 @@
         theme: {
           extend: {
             fontSize: {
-              'base': ['18px', '1.65'],
+              'base': ['16px', '1.6'],
+              'lg': ['18px', '1.65'],
             },
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -86,6 +87,8 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
+        overflow-wrap: anywhere;
+        word-break: normal;
       }
       @media (min-width: 768px) {
         body { font-size: 18px; line-height: 1.65; }
@@ -97,13 +100,17 @@
         margin-left: auto;
         margin-right: auto;
         width: 100%;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
       }
 
-      h1 { font-size: 36px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
-      @media (min-width: 640px) { h1 { font-size: 64px; } }
+      h1 { font-size: 32px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
+      @media (min-width: 640px) { h1 { font-size: 48px; } }
+      @media (min-width: 1024px) { h1 { font-size: 64px; } }
       
-      h2 { font-size: 28px; font-weight: 800; line-height: 1.2; }
-      @media (min-width: 640px) { h2 { font-size: 40px; } }
+      h2 { font-size: 24px; font-weight: 800; line-height: 1.2; }
+      @media (min-width: 640px) { h2 { font-size: 32px; } }
+      @media (min-width: 1024px) { h2 { font-size: 40px; } }
 
       .boot-loader { 
         display: flex; 
@@ -127,19 +134,10 @@
 
       button, a { min-height: 44px; min-width: 44px; }
 
-      /* Enhanced focus indicators for accessibility */
       *:focus-visible {
         outline: 3px solid #C6922A !important;
         outline-offset: 2px !important;
         border-radius: 4px;
-      }
-      
-      button:focus-visible,
-      a:focus-visible,
-      input:focus-visible,
-      textarea:focus-visible {
-        outline: 3px solid #C6922A !important;
-        outline-offset: 2px !important;
       }
     </style>
 <script type="importmap">
