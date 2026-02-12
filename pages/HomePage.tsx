@@ -38,6 +38,7 @@ import { db } from '../firebase';
 import { syncToMailerLite } from '../mailerlite';
 import DeadlySinsGrid from '../components/DeadlySinsGrid';
 import FAQSection from '../components/FAQSection';
+import AIChatWidget from '../components/AIChatWidget';
 
 const FAQItem: React.FC<{ 
   question: string; 
@@ -403,6 +404,9 @@ const HomePage: React.FC = () => {
 
       {/* FAQ Section */}
       <FAQSection />
+
+      {/* AIChatWidget - Fixed but placed contextually at the end of the homepage flow */}
+      <AIChatWidget />
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
