@@ -55,6 +55,12 @@ const HomePage: React.FC = () => {
   const [scanState, setScanState] = useState<'idle' | 'scanning' | 'syncing' | 'complete'>('idle');
   const [scanLog, setScanLog] = useState<string[]>([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  
+  // Economic Analyzer Ticker State
+  const [metrics, setMetrics] = useState({ cpm: '1.92', rpm: '2.45' });
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [chartHeights, setChartHeights] = useState([40, 60, 30, 80, 50, 90, 45, 75, 55, 85]);
+  const [terminalPhase, setTerminalPhase] = useState<'STANDBY' | 'INBOUND' | 'CALCULATING'>('STANDBY');
 
   useEffect(() => {
     document.title = "LaunchPath | Institutional Governance for Motor Carriers";
@@ -62,7 +68,41 @@ const HomePage: React.FC = () => {
       setShowScrollTop(window.scrollY > 1000);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Advanced Analyzer Animation Loop
+    const tickerInterval = setInterval(() => {
+      setTerminalPhase('INBOUND');
+      setIsUpdating(true);
+      
+      // Simulate "Numbers being entered" via rapid flicker
+      let step = 0;
+      const flicker = setInterval(() => {
+        setMetrics({
+          cpm: (1.2 + Math.random() * 2.0).toFixed(2),
+          rpm: (1.8 + Math.random() * 2.5).toFixed(2)
+        });
+        setChartHeights(prev => prev.map(() => Math.floor(Math.random() * 70) + 20));
+        step++;
+        
+        if (step === 10) setTerminalPhase('CALCULATING');
+
+        if (step > 20) {
+          clearInterval(flicker);
+          setMetrics({
+            cpm: (1.85 + Math.random() * 0.3).toFixed(2),
+            rpm: (2.40 + Math.random() * 0.5).toFixed(2)
+          });
+          setIsUpdating(false);
+          setTerminalPhase('STANDBY');
+        }
+      }, 80);
+
+    }, 6000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearInterval(tickerInterval);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -562,11 +602,18 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Ticker / Entry Animation Overlay */}
                 <div className="space-y-12 relative z-10">
                    <div className="flex justify-between items-start">
-                     <h4 className="text-xl font-black font-serif uppercase tracking-widest italic opacity-40">Economic Analyzer v4.2</h4>
-                     <div className="bg-emerald-500/20 text-emerald-500 p-2 rounded-lg border border-emerald-500/20">
-                        <Activity size={16} className="animate-pulse" />
+                     <div className="space-y-1">
+                        <h4 className="text-xl font-black font-serif uppercase tracking-widest italic opacity-40">Economic Analyzer v4.2</h4>
+                        <div className="flex items-center space-x-2">
+                           <div className={`w-1.5 h-1.5 rounded-full ${isUpdating ? 'bg-signal-gold animate-ping' : 'bg-emerald-500'}`}></div>
+                           <span className="text-[8px] font-black uppercase tracking-widest text-white/40">{terminalPhase}</span>
+                        </div>
+                     </div>
+                     <div className={`p-2 rounded-lg border transition-colors ${isUpdating ? 'bg-signal-gold/20 border-signal-gold/40 text-signal-gold' : 'bg-emerald-500/20 border-emerald-500/20 text-emerald-500'}`}>
+                        <Activity size={16} className={`${isUpdating ? 'animate-spin' : 'animate-pulse'}`} />
                      </div>
                    </div>
 
@@ -577,38 +624,53 @@ const HomePage: React.FC = () => {
                             <span className="text-[11px] font-black opacity-40 uppercase tracking-[0.4em]">Calculated CPM</span>
                             <div className="flex items-center space-x-2">
                                <TrendingDown size={12} className="text-emerald-500" />
-                               <span className="text-[8px] font-black text-emerald-500 uppercase">Below Target</span>
+                               <span className="text-[8px] font-black text-emerald-500 uppercase">Input Feed...</span>
                             </div>
                           </div>
-                          <span className="text-4xl md:text-5xl font-black tracking-tighter">$X.XX</span>
+                          <div className="flex flex-col items-end">
+                            <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'opacity-100 text-signal-gold' : 'opacity-100 text-white'}`}>
+                              ${metrics.cpm}
+                            </span>
+                            {isUpdating && <div className="h-0.5 w-full bg-signal-gold animate-pulse"></div>}
+                          </div>
                         </div>
                         <div className="flex justify-between items-end border-b border-white/10 pb-6 group/item">
                           <div className="space-y-1">
                             <span className="text-[11px] font-black opacity-40 uppercase tracking-[0.4em]">Break-Even RPM</span>
                             <div className="flex items-center space-x-2">
                                <Activity size={12} className="text-signal-gold" />
-                               <span className="text-[8px] font-black text-signal-gold uppercase">Critical Threshold</span>
+                               <span className="text-[8px] font-black text-signal-gold uppercase">Neural Synthesizing...</span>
                             </div>
                           </div>
-                          <span className="text-4xl md:text-5xl font-black tracking-tighter text-signal-gold">$X.XX</span>
+                          <div className="flex flex-col items-end">
+                            <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'text-white' : 'text-signal-gold'}`}>
+                              ${metrics.rpm}
+                            </span>
+                            {isUpdating && <div className="h-0.5 w-full bg-white animate-pulse"></div>}
+                          </div>
                         </div>
                       </div>
                    </div>
 
                    {/* Mini Charts Visualization */}
                    <div className="flex items-end space-x-2 h-16 pt-4">
-                      {[40, 60, 30, 80, 50, 90, 45, 75, 55, 85].map((h, i) => (
+                      {chartHeights.map((h, i) => (
                         <div key={i} className="bg-white/5 w-full rounded-t-sm relative group/bar transition-all hover:bg-signal-gold/40">
-                          <div className="bg-signal-gold/20 absolute bottom-0 w-full transition-all duration-1000 group-hover/bar:bg-signal-gold" style={{ height: `${h}%` }}></div>
+                          <div className="bg-signal-gold/20 absolute bottom-0 w-full transition-all duration-300 group-hover/bar:bg-signal-gold" style={{ height: `${h}%` }}></div>
                         </div>
                       ))}
                    </div>
 
                    <div className="flex items-center space-x-4 pt-4">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">Registry Synchronized // Protocol Ready</p>
+                      <div className={`w-2 h-2 rounded-full transition-colors ${isUpdating ? 'bg-signal-gold animate-pulse' : 'bg-emerald-500'} `}></div>
+                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">
+                        {isUpdating ? 'PROCESSING_FISCAL_VECTORS...' : 'Registry Synchronized // Protocol Ready'}
+                      </p>
                    </div>
                 </div>
+
+                {/* Scanline Effect Overlay */}
+                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-[20] [background-size:100%_2px,3px_100%]"></div>
              </div>
           </div>
         </div>
