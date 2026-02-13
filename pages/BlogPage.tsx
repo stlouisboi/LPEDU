@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
@@ -82,7 +83,7 @@ const BlogPage = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
         <Loader2 className="animate-spin text-authority-blue" size={40} />
-        <p className="text-text-muted font-bold uppercase tracking-widest text-xs">Accessing Knowledge Base...</p>
+        <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Accessing Knowledge Base...</p>
       </div>
     );
   }
@@ -98,7 +99,7 @@ const BlogPage = () => {
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold">Regulatory Insights</span>
           </div>
           <h1 className="text-6xl lg:text-7xl font-black mb-6 font-serif uppercase tracking-tight text-authority-blue dark:text-white">The Compliance Ledger</h1>
-          <p className="text-xl text-white/70 dark:text-white/70 max-w-2xl mx-auto font-bold">
+          <p className="text-xl text-slate-500 dark:text-white/70 max-w-2xl mx-auto font-bold">
             Weekly deep-dives into FMCSA regulations, audit preparation, and carrier operations.
           </p>
         </div>
@@ -113,7 +114,7 @@ const BlogPage = () => {
                 className={`px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
                   selectedCategory === cat 
                   ? 'bg-authority-blue text-white shadow-lg' 
-                  : 'bg-slate-50 dark:bg-gray-800 text-text-muted hover:bg-slate-100 dark:hover:bg-gray-700'
+                  : 'bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-authority-blue dark:hover:text-white border border-transparent dark:border-white/5'
                 }`}
               >
                 {cat}
@@ -126,7 +127,7 @@ const BlogPage = () => {
             <input 
               type="text"
               placeholder="Search guides..."
-              className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-gray-800 border border-slate-100 dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all font-medium text-sm"
+              className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-border-dark rounded-2xl focus:ring-2 focus:ring-authority-blue outline-none transition-all font-medium text-sm text-slate-900 dark:text-white"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -168,7 +169,7 @@ const BlogPage = () => {
                   
                   <div className="mt-auto pt-8 border-t border-slate-50 dark:border-white/5 flex justify-between items-center">
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-gray-800 flex items-center justify-center text-authority-blue dark:text-signal-gold">
+                      <div className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-authority-blue dark:text-signal-gold">
                         <User size={14} />
                       </div>
                       <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{post.author}</span>
@@ -182,7 +183,7 @@ const BlogPage = () => {
             ))
           ) : (
             <div className="col-span-full py-32 text-center bg-white dark:bg-surface-dark rounded-[3rem] border border-dashed border-slate-200">
-              <div className="bg-slate-50 dark:bg-gray-800 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <div className="bg-slate-50 dark:bg-slate-800 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6">
                 <Filter className="w-10 h-10 text-slate-300" />
               </div>
               <h2 className="text-2xl font-black font-serif uppercase text-authority-blue dark:text-white mb-2">No Matching Records</h2>
