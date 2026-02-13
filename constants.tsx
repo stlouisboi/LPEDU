@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   ShieldCheck, 
@@ -372,9 +373,9 @@ export const INITIAL_BLOGS: BlogPost[] = [
         <li style="margin-bottom: 12px; padding-left: 30px; position: relative;"><span style="position: absolute; left: 0; color: #ef4444;">●</span><b>Insurance Volatility:</b> Underwriters treat a failed audit as a critical risk factor, often leading to 300% premium spikes or total non-renewal.</li>
       </ul>
 
-      <div style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 30px; border-radius: 20px; margin: 40px 0;">
+      <div style="background: #f8fafc; border: 2px solid #e2e8f0; padding: 30px; border-radius: 20px; margin: 40px 0; color: #002244;">
         <h4 style="margin-top: 0; color: #002244; font-family: Montserrat, sans-serif; text-transform: uppercase; font-size: 12px; letter-spacing: 0.2em; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 20px;">The Mandatory Documentation List</h4>
-        <ul style="margin-bottom: 0;">
+        <ul style="margin-bottom: 0; color: #334155; font-weight: 600;">
           <li style="margin-bottom: 15px;"><b>Proof of Controlled Substance Testing:</b> Evidence of pre-employment negatives and active consortium enrollment.</li>
           <li style="margin-bottom: 15px;"><b>Current MCS-150 Updates:</b> Verification that your carrier identity matches your operational reality.</li>
           <li style="margin-bottom: 15px;"><b>Complete Driver Qualification (DQ) Files:</b> A clinical record for every operator including MVRs, medical certs, and applications.</li>

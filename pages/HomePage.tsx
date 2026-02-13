@@ -56,11 +56,12 @@ const HomePage: React.FC = () => {
   const [scanLog, setScanLog] = useState<string[]>([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
   
-  // Economic Analyzer Ticker State
+  // --- TCO ANALYZER ANIMATION STATE ---
   const [metrics, setMetrics] = useState({ cpm: '1.92', rpm: '2.45' });
   const [isUpdating, setIsUpdating] = useState(false);
   const [chartHeights, setChartHeights] = useState([40, 60, 30, 80, 50, 90, 45, 75, 55, 85]);
   const [terminalPhase, setTerminalPhase] = useState<'STANDBY' | 'INBOUND' | 'CALCULATING'>('STANDBY');
+  const [cursorVisible, setCursorVisible] = useState(true);
 
   useEffect(() => {
     document.title = "LaunchPath | Institutional Governance for Motor Carriers";
@@ -69,39 +70,47 @@ const HomePage: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     
-    // Advanced Analyzer Animation Loop
+    // Blinking cursor effect
+    const cursorInterval = setInterval(() => {
+      setCursorVisible(v => !v);
+    }, 500);
+
+    // Advanced Economic Ticker Loop
     const tickerInterval = setInterval(() => {
       setTerminalPhase('INBOUND');
       setIsUpdating(true);
       
-      // Simulate "Numbers being entered" via rapid flicker
       let step = 0;
       const flicker = setInterval(() => {
+        // Random "glitch" values during calculation phase to look like data stream
         setMetrics({
-          cpm: (1.2 + Math.random() * 2.0).toFixed(2),
-          rpm: (1.8 + Math.random() * 2.5).toFixed(2)
+          cpm: (1.1 + Math.random() * 2.2).toFixed(2),
+          rpm: (1.7 + Math.random() * 2.8).toFixed(2)
         });
+        // Jitter the chart bars
         setChartHeights(prev => prev.map(() => Math.floor(Math.random() * 70) + 20));
-        step++;
         
-        if (step === 10) setTerminalPhase('CALCULATING');
+        step++;
+        if (step === 8) setTerminalPhase('CALCULATING');
 
-        if (step > 20) {
+        if (step > 15) {
           clearInterval(flicker);
+          // Settle on realistic "Standard" values
           setMetrics({
-            cpm: (1.85 + Math.random() * 0.3).toFixed(2),
-            rpm: (2.40 + Math.random() * 0.5).toFixed(2)
+            cpm: (1.85 + Math.random() * 0.2).toFixed(2),
+            rpm: (2.35 + Math.random() * 0.4).toFixed(2)
           });
           setIsUpdating(false);
           setTerminalPhase('STANDBY');
         }
-      }, 80);
+      }, 70); 
 
-    }, 6000);
+    }, 5500);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(tickerInterval);
+      clearInterval(cursorInterval);
     };
   }, []);
 
@@ -422,7 +431,7 @@ const HomePage: React.FC = () => {
                       <h4 className="text-xl md:text-2xl text-authority-blue dark:text-white font-black uppercase tracking-tight leading-none">
                         {item.t}
                       </h4>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1.5">{item.d}</p>
+                      <p className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mt-1.5 opacity-90">{item.d}</p>
                     </div>
                   </div>
                 ))}
@@ -566,12 +575,12 @@ const HomePage: React.FC = () => {
                 { label: "AUDIT RISK MULTIPLIER", val: "12X EXPOSURE", desc: "No-System Penalty", icon: <Activity size={16}/> }
               ].map((b, i) => (
                 <div key={i} className="bg-[#002244]/5 border border-[#002244]/10 p-6 rounded-3xl backdrop-blur-md">
-                   <div className="flex items-center space-x-3 mb-3 text-[#002244]/60">
+                   <div className="flex items-center space-x-3 mb-3 text-[#002244]/70">
                       {b.icon}
                       <p className="text-[9px] font-black uppercase tracking-widest">{b.label}</p>
                    </div>
                    <p className="text-2xl font-black text-[#002244] tracking-tight">{b.val}</p>
-                   <p className="text-[10px] font-bold text-[#002244]/40 uppercase mt-1">{b.desc}</p>
+                   <p className="text-[10px] font-bold text-[#002244]/60 uppercase mt-1">{b.desc}</p>
                 </div>
               ))}
             </div>
@@ -586,7 +595,7 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="w-full lg:w-5/12">
-             {/* High Fidelity Mockup */}
+             {/* High Fidelity Mockup with Advanced Animation */}
              <div className="bg-[#0c1a2d] border-[12px] border-white/5 rounded-[5rem] p-12 md:p-20 text-white shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-12 opacity-5 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={300} /></div>
                 
@@ -609,7 +618,7 @@ const HomePage: React.FC = () => {
                         <h4 className="text-xl font-black font-serif uppercase tracking-widest italic opacity-40">Economic Analyzer v4.2</h4>
                         <div className="flex items-center space-x-2">
                            <div className={`w-1.5 h-1.5 rounded-full ${isUpdating ? 'bg-signal-gold animate-ping' : 'bg-emerald-500'}`}></div>
-                           <span className="text-[8px] font-black uppercase tracking-widest text-white/40">{terminalPhase}</span>
+                           <span className="text-[8px] font-black uppercase tracking-widest text-white/60">{terminalPhase}</span>
                         </div>
                      </div>
                      <div className={`p-2 rounded-lg border transition-colors ${isUpdating ? 'bg-signal-gold/20 border-signal-gold/40 text-signal-gold' : 'bg-emerald-500/20 border-emerald-500/20 text-emerald-500'}`}>
@@ -621,32 +630,38 @@ const HomePage: React.FC = () => {
                       <div className="space-y-6">
                         <div className="flex justify-between items-end border-b border-white/10 pb-6 group/item">
                           <div className="space-y-1">
-                            <span className="text-[11px] font-black opacity-40 uppercase tracking-[0.4em]">Calculated CPM</span>
+                            <span className="text-[11px] font-black opacity-70 uppercase tracking-[0.4em]">Calculated CPM</span>
                             <div className="flex items-center space-x-2">
                                <TrendingDown size={12} className="text-emerald-500" />
                                <span className="text-[8px] font-black text-emerald-500 uppercase">Input Feed...</span>
                             </div>
                           </div>
                           <div className="flex flex-col items-end">
-                            <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'opacity-100 text-signal-gold' : 'opacity-100 text-white'}`}>
-                              ${metrics.cpm}
-                            </span>
-                            {isUpdating && <div className="h-0.5 w-full bg-signal-gold animate-pulse"></div>}
+                            <div className="flex items-center">
+                              <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'opacity-100 text-signal-gold' : 'opacity-100 text-white'}`}>
+                                ${metrics.cpm}
+                              </span>
+                              {isUpdating && cursorVisible && <span className="text-4xl md:text-5xl font-thin ml-1 text-signal-gold">|</span>}
+                            </div>
+                            {isUpdating && <div className="h-0.5 w-full bg-signal-gold/50 animate-pulse mt-1"></div>}
                           </div>
                         </div>
                         <div className="flex justify-between items-end border-b border-white/10 pb-6 group/item">
                           <div className="space-y-1">
-                            <span className="text-[11px] font-black opacity-40 uppercase tracking-[0.4em]">Break-Even RPM</span>
+                            <span className="text-[11px] font-black opacity-70 uppercase tracking-[0.4em]">Break-Even RPM</span>
                             <div className="flex items-center space-x-2">
                                <Activity size={12} className="text-signal-gold" />
                                <span className="text-[8px] font-black text-signal-gold uppercase">Neural Synthesizing...</span>
                             </div>
                           </div>
                           <div className="flex flex-col items-end">
-                            <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'text-white' : 'text-signal-gold'}`}>
-                              ${metrics.rpm}
-                            </span>
-                            {isUpdating && <div className="h-0.5 w-full bg-white animate-pulse"></div>}
+                            <div className="flex items-center">
+                              <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'text-white/80' : 'text-signal-gold'}`}>
+                                ${metrics.rpm}
+                              </span>
+                              {isUpdating && cursorVisible && <span className="text-4xl md:text-5xl font-thin ml-1 text-white">|</span>}
+                            </div>
+                            {isUpdating && <div className="h-0.5 w-full bg-white/30 animate-pulse mt-1"></div>}
                           </div>
                         </div>
                       </div>
@@ -663,7 +678,7 @@ const HomePage: React.FC = () => {
 
                    <div className="flex items-center space-x-4 pt-4">
                       <div className={`w-2 h-2 rounded-full transition-colors ${isUpdating ? 'bg-signal-gold animate-pulse' : 'bg-emerald-500'} `}></div>
-                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">
+                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/60">
                         {isUpdating ? 'PROCESSING_FISCAL_VECTORS...' : 'Registry Synchronized // Protocol Ready'}
                       </p>
                    </div>
