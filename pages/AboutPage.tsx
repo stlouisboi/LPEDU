@@ -55,17 +55,17 @@ const AboutPage: React.FC = () => {
                 EXISTS.
               </h1>
               <p className="text-lg md:text-xl text-signal-gold font-bold uppercase tracking-widest border-l-2 border-signal-gold pl-6">
-                Institutional structure for new FMCSA authorities who want to prevent early failure, not chase shortcuts.
+                Institutional structure for new FMCSA authorities who want to prevent early failure.
               </p>
             </div>
 
             <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
               <p>
-                LaunchPath is built for carrier executives operating 1–3 units under new FMCSA authority. We exist to prevent the predictable cycle of early failure driven by authority revocation, insurance cancellation, compliance collapse, and cash-flow exhaustion.
+                LaunchPath is built for carrier executives operating 1–3 units under new FMCSA authority. We exist to prevent failure driven by authority revocation, insurance cancellation, and compliance collapse.
               </p>
               
               <p>
-                This is achieved by installing institutional governance and verified documentation protocols before revenue is prioritized. This environment functions as a clinical operating standard, not a motivational platform or a personality-driven brand. Our purpose is to ensure your authority survives the critical 18-month new entrant window through systematic order.
+                We install institutional governance before revenue is prioritized. This environment is a clinical operating standard, not a motivational platform. Our purpose is systematic order to ensure survival through the 18-month new entrant window.
               </p>
             </div>
 
@@ -93,6 +93,13 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
+      {/* ORIENTATION PAUSE */}
+      <div className="bg-slate-50 dark:bg-black/20 py-16 text-center border-b border-slate-100 dark:border-white/5">
+        <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
+          Operating within the standard requires strict adherence to defined boundaries.
+        </p>
+      </div>
+
       {/* CLARITY OF PURPOSE SECTION */}
       <section className="py-16 md:py-32 lg:py-48 bg-white dark:bg-primary-dark">
         <div className="max-w-[1600px] mx-auto px-6">
@@ -103,7 +110,7 @@ const AboutPage: React.FC = () => {
             </h2>
             <div className="bg-[#002244] text-white p-8 rounded-3xl max-w-4xl mx-auto shadow-2xl border-l-[12px] border-signal-gold mb-16">
               <p className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-tight text-left">
-                This environment is not built for operational side-hustles, shortcut seekers, or dispatch-first models. It is built exclusively for executives who are willing to submit their operation to documented legal, operational, and insurance standards.
+                This environment is built exclusively for executives willing to submit their operation to documented legal, operational, and insurance standards. Shortcut seekers are excluded.
               </p>
             </div>
           </div>
@@ -113,29 +120,23 @@ const AboutPage: React.FC = () => {
               { 
                 icon: <Gavel size={32} className="text-[#C5A059]" />, 
                 title: "LEGAL BOUNDARIES", 
-                subtitle: "Regulatory Architecture",
-                body: "LaunchPath is an educational standard providing 49 CFR interpretation and technical compliance frameworks.",
-                guard: "Prevents unauthorized practice through strict technical separation.",
+                body: "We provide safety file architecture and federal regulation interpretation to prevent unauthorized practice through strict technical separation.",
                 provide: ["Technical safety file architecture", "Federal regulation interpretation", "Audit-readiness verification"],
-                exclude: ["Legal representation/counsel", "Attorney-client privilege", "Courtroom defense services"]
+                exclude: ["Legal representation/counsel", "Courtroom defense services"]
               },
               { 
                 icon: <Briefcase size={32} className="text-[#C5A059]" />, 
                 title: "OPERATIONAL BOUNDARIES", 
-                subtitle: "Authority Governance",
-                body: "We engineer the governance systems that protect your authority. We do not operate your fleet on a daily basis.",
-                guard: "Protects carrier independence by maintaining administrative distance.",
+                body: "We engineer governance systems that protect your authority while maintaining administrative distance to preserve carrier independence.",
                 provide: ["Authority protection protocols", "Preferred carrier positioning", "Systemic record governance"],
-                exclude: ["Daily dispatch operations", "Load procurement/negotiation", "Direct shipper recruitment"]
+                exclude: ["Daily dispatch operations", "Direct shipper recruitment"]
               },
               { 
                 icon: <Shield size={32} className="text-[#C5A059]" />, 
                 title: "INSURANCE BOUNDARIES", 
-                subtitle: "Risk Mitigation",
-                body: "We show you how to build a risk profile that underwriters value. We do not sell or issue insurance policies.",
-                guard: "Eliminates conflicts of interest in coverage procurement.",
+                body: "We build risk profiles underwriters value. We do not sell policies, eliminating conflicts of interest in coverage procurement.",
                 provide: ["Insurance continuity systems", "Underwriter evidence packages", "Risk profile optimization"],
-                exclude: ["Policy binding or issuance", "Underwriting final decisions", "Premium financing or brokerage"]
+                exclude: ["Policy binding or issuance", "Brokerage services"]
               }
             ].map((card, i) => (
               <div key={i} className="bg-[#002244] rounded-3xl md:rounded-[4rem] border border-white/5 shadow-2xl flex flex-col group hover:-translate-y-2 transition-all duration-700 animate-reveal-up overflow-hidden" style={{ animationDelay: `${i * 0.1}s` }}>
@@ -152,14 +153,10 @@ const AboutPage: React.FC = () => {
                   </div>
                   <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
                     <h3 className="text-2xl sm:text-3xl font-black font-serif text-white uppercase tracking-tight leading-tight">{card.title}</h3>
-                    <p className="text-[9px] sm:text-[10px] font-black text-[#C5A059] uppercase tracking-[0.4em]">{card.subtitle}</p>
                   </div>
                   <p className="text-base sm:text-lg md:text-[19px] font-bold text-white/90 leading-relaxed mb-8 sm:mb-10 flex-grow uppercase tracking-tight">
                     {card.body}
                   </p>
-                  <div className="bg-white/5 p-5 sm:p-6 rounded-2xl border border-white/10 mb-8 sm:mb-12 italic text-xs sm:text-sm text-[#C5A059] font-medium leading-relaxed">
-                    "{card.guard}"
-                  </div>
                   <div className="space-y-10 sm:space-y-12 pt-8 sm:pt-10 border-t border-white/5">
                     <div className="space-y-5 sm:space-y-6">
                       <p className="text-[10px] sm:text-[11px] font-black text-emerald-400 uppercase tracking-[0.4em] flex items-center gap-3">
@@ -189,14 +186,18 @@ const AboutPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-black/30 p-6 sm:p-8 text-center border-t border-white/5">
-                  <p className="text-[8px] sm:text-[9px] font-black text-white/20 uppercase tracking-[0.4em] sm:tracking-[0.6em]">System Protocol Registry v4.5 // AUTH_GATE</p>
-                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* ORIENTATION PAUSE */}
+      <div className="bg-slate-50 dark:bg-black/20 py-16 text-center border-y border-slate-100 dark:border-white/5">
+        <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
+          Our diagnostic framework is rooted in industrial safety protocols.
+        </p>
+      </div>
 
       {/* THE REACH TEST SECTION */}
       <section className="py-20 md:py-32 lg:py-48 bg-[#fafaf9] dark:bg-surface-dark border-y border-[#002244]/5 relative overflow-hidden">
@@ -213,8 +214,8 @@ const AboutPage: React.FC = () => {
                 </h2>
               </div>
               <div className="space-y-8 sm:space-y-10 text-lg sm:text-xl md:text-[22px] text-slate-600 dark:text-slate-300 font-bold leading-relaxed">
-                <p>In my years as an OSHA safety coordinator, we used a principle called the <span className="text-[#002244] dark:text-white underline decoration-[#C5A059] underline-offset-8 decoration-4 font-black">"Reach Test."</span></p>
-                <p>It was a binary assessment: Could a hazard be reached during normal operations? If a hand could reach a blade, the system was a failure.</p>
+                <p>In industrial safety, we use the <span className="text-[#002244] dark:text-white underline decoration-[#C5A059] underline-offset-8 decoration-4 font-black">"Reach Test."</span></p>
+                <p>It is a binary assessment: If a hazard can be reached during normal operations, the system has failed.</p>
                 <p className="text-2xl sm:text-3xl md:text-4xl font-black text-[#002244] dark:text-white font-serif tracking-tight leading-tight">
                   "If an auditor can reach a defect in your paperwork, the system has failed."
                 </p>
@@ -232,7 +233,7 @@ const AboutPage: React.FC = () => {
                     </div>
                     <div>
                       <h5 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight mb-2 sm:mb-3 font-serif">Isolation of Hazards</h5>
-                      <p className="text-white/60 text-base sm:text-lg font-medium leading-relaxed italic">We build engineering controls around your authority that prevent regulatory reach into your operations.</p>
+                      <p className="text-white/60 text-base sm:text-lg font-medium leading-relaxed italic">We build engineering controls around your authority that prevent regulatory reach into operations.</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-6 sm:space-x-8">
@@ -241,7 +242,7 @@ const AboutPage: React.FC = () => {
                     </div>
                     <div>
                       <h5 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight mb-2 sm:mb-3 font-serif">Systematic Guarding</h5>
-                      <p className="text-white/60 text-base sm:text-lg font-medium leading-relaxed italic">Paperwork is not a task; it is a guard. If the guard is missing, the business is exposed to terminal failure.</p>
+                      <p className="text-white/60 text-base sm:text-lg font-medium leading-relaxed italic">Paperwork is a guard. If the guard is missing, the business is exposed to terminal failure.</p>
                     </div>
                   </div>
                 </div>
@@ -259,6 +260,9 @@ const AboutPage: React.FC = () => {
                <Anchor size={18} className="text-[#002244] dark:text-[#C5A059]" />
                <p className="text-[#002244] dark:text-slate-400 font-bold text-[11px] sm:text-[13px] uppercase tracking-[0.5em]">Architectural Instruction</p>
             </div>
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 max-w-sm mx-auto">
+              This principle governs the design and operation of the LaunchPath standard.
+            </p>
             <h2 className="text-3xl sm:text-6xl lg:text-8xl font-black font-serif italic text-[#002244] dark:text-white leading-[1.1] tracking-tighter">
               “By wisdom a house is built, and by understanding it is established; by knowledge the rooms are filled with all precious and pleasant riches.”
             </h2>
@@ -266,6 +270,13 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* ORIENTATION PAUSE */}
+      <div className="bg-slate-50 dark:bg-black/20 py-16 text-center border-y border-slate-100 dark:border-white/5">
+        <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
+          Systemic stability relies on the continuity of established standards.
+        </p>
+      </div>
 
       {/* INSTITUTIONAL LEGACY SECTION */}
       <section className="py-16 md:py-32 lg:py-48 bg-[#002244] text-white relative overflow-hidden">
@@ -284,7 +295,7 @@ const AboutPage: React.FC = () => {
                   <Award size={32} className="text-[#002244] w-8 h-8 sm:w-16 md:h-16" />
                 </div>
               </div>
-              <div className="space-y-4 md:space-y-6">
+              <div className="space-y-4 md:space-y-6 text-center lg:text-left">
                 <h4 className="text-[11px] sm:text-[12px] font-black uppercase tracking-[0.4em] text-[#C5A059]">Credential Verification</h4>
                 <div className="grid grid-cols-1 gap-3 sm:gap-4">
                   {[
@@ -314,15 +325,15 @@ const AboutPage: React.FC = () => {
               </div>
 
               <div className="space-y-10 sm:space-y-12 text-base sm:text-xl lg:text-2xl text-white/80 font-medium leading-relaxed max-w-3xl">
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <p>
-                    I have witnessed hundreds of new carriers fail for reasons that were entirely predictable and avoidable. These collapses were rarely caused by a lack of effort; they were caused by fragmented documentation, weak financial logic, and mismanaged regulatory risk.
+                    I have seen hundreds of carriers fail for predictable reasons. These collapses are rarely caused by a lack of effort; they are caused by fragmented documentation and mismanaged risk.
                   </p>
                   <p>
-                    My responsibility is to maintain the standard of what regulators expect and what insurers tolerate. I serve as a custodian of these institutional structures, not a guru or influencer. LaunchPath is an engineered system designed to function and outlast any individual presence.
+                    My responsibility is to maintain the standard of what regulators expect and what insurers tolerate. I serve as a custodian of these institutional structures. LaunchPath is an engineered system designed to outlast any individual presence.
                   </p>
                   <p>
-                    Building a sustainable carrier requires the discipline to face your actual numbers and accept the constraints of a governed operation. We install the systems before you chase the revenue, ensuring that your authority is established on a foundation that cannot be reached by common failure vectors.
+                    Sustainable operation requires the discipline to face your actual numbers and accept the constraints of governance. We install the systems before you chase revenue, ensuring authority rests on a foundation auditors cannot reach.
                   </p>
                 </div>
               </div>
