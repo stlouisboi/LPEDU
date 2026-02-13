@@ -274,7 +274,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-02-15",
     author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2FThe%2016%20Deadly%20Sins%20of%20Carrier%20Failure.png?alt=media&token=c27c62b6-52c6-4d04-a698-6395b00c6275",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2F90%20day%20stabilization.jpg?alt=media&token=f934937c-51f4-4981-99fe-bde29b177b9a",
     status: 'published',
     tags: ['16 Deadly Sins', 'Audit', 'FMCSA', 'Exposure']
   },
@@ -342,7 +342,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-02-05",
     author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2FTHE%20MATH%20OF%20SURVIVAL%20WHY%20CASH-FLOW%20OXYGEN%20IS%20THE%20FOUNDATION%20OF%20OPERATING%20AUTHORITY.png?alt=media&token=db7a689e-ef6d-4d04-826d-6aee4ffe2ed7",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2FMath%20of%20survial.jpg?alt=media&token=b682b2ef-0a99-44df-9f9a-a644214c32f5",
     status: 'published',
     tags: ['Four Pillars', 'Stewardship', 'Math', 'Survival']
   },
@@ -394,7 +394,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-01-28",
     author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FTHE%2048-HOUR%20NEW%20ENTRANT%20WINDOW.png?alt=media&token=0b0afe10-f022-44a7-8c50-f733e41ced3d",
+    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2F48%20hour%20new%20entrant.jpg?alt=media&token=f547b070-6556-4c48-889b-4a9f82364a9f82364a9f8236",
     status: 'published',
     tags: ['Audit', 'FMCSA', 'Compliance', 'Reach Test']
   },
