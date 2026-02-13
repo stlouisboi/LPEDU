@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     
-    // Blinking cursor effect
+    // Blinking cursor effect for terminal feel
     const cursorInterval = setInterval(() => {
       setCursorVisible(v => !v);
     }, 500);
@@ -82,30 +82,30 @@ const HomePage: React.FC = () => {
       
       let step = 0;
       const flicker = setInterval(() => {
-        // Random "glitch" values during calculation phase to look like data stream
+        // Fast-moving data synthesis simulation
         setMetrics({
-          cpm: (1.1 + Math.random() * 2.2).toFixed(2),
-          rpm: (1.7 + Math.random() * 2.8).toFixed(2)
+          cpm: (1.4 + Math.random() * 1.5).toFixed(2),
+          rpm: (1.9 + Math.random() * 2.2).toFixed(2)
         });
-        // Jitter the chart bars
+        // Dynamic jitter for visual interest
         setChartHeights(prev => prev.map(() => Math.floor(Math.random() * 70) + 20));
         
         step++;
-        if (step === 8) setTerminalPhase('CALCULATING');
+        if (step === 6) setTerminalPhase('CALCULATING');
 
-        if (step > 15) {
+        if (step > 12) {
           clearInterval(flicker);
-          // Settle on realistic "Standard" values
+          // Settle on clean standard metrics
           setMetrics({
-            cpm: (1.85 + Math.random() * 0.2).toFixed(2),
-            rpm: (2.35 + Math.random() * 0.4).toFixed(2)
+            cpm: (1.85 + Math.random() * 0.1).toFixed(2),
+            rpm: (2.35 + Math.random() * 0.2).toFixed(2)
           });
           setIsUpdating(false);
           setTerminalPhase('STANDBY');
         }
-      }, 70); 
+      }, 90); 
 
-    }, 5500);
+    }, 5000);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -595,15 +595,15 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="w-full lg:w-5/12">
-             {/* High Fidelity Mockup with Advanced Animation */}
-             <div className="bg-[#0c1a2d] border-[12px] border-white/5 rounded-[5rem] p-12 md:p-20 text-white shadow-2xl relative overflow-hidden group">
+             {/* High Fidelity Mockup with Advanced Animation - Refined for visibility */}
+             <div className="bg-[#0c1a2d] border-[12px] border-white/5 rounded-[5rem] p-12 md:p-16 text-white shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-12 opacity-5 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={300} /></div>
                 
-                {/* Simulated Data Feed */}
-                <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+                {/* Simulated Data Feed - Subtly muted to avoid clutter */}
+                <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
                   <div className="flex flex-col gap-2 p-8 text-[8px] font-mono">
                     {[...Array(20)].map((_, i) => (
-                      <div key={i} className="flex justify-between w-full opacity-50 overflow-hidden whitespace-nowrap">
+                      <div key={i} className="flex justify-between w-full opacity-40 overflow-hidden whitespace-nowrap">
                         <span>DATA_PKT_{i*124}...</span>
                         <span>0x{Math.random().toString(16).slice(2,8).toUpperCase()}</span>
                       </div>
@@ -615,77 +615,77 @@ const HomePage: React.FC = () => {
                 <div className="space-y-12 relative z-10">
                    <div className="flex justify-between items-start">
                      <div className="space-y-1">
-                        <h4 className="text-xl font-black font-serif uppercase tracking-widest italic opacity-40">Economic Analyzer v4.2</h4>
+                        <h4 className="text-xl font-black font-serif uppercase tracking-widest italic text-white/50">Economic Analyzer v4.2</h4>
                         <div className="flex items-center space-x-2">
                            <div className={`w-1.5 h-1.5 rounded-full ${isUpdating ? 'bg-signal-gold animate-ping' : 'bg-emerald-500'}`}></div>
-                           <span className="text-[8px] font-black uppercase tracking-widest text-white/60">{terminalPhase}</span>
+                           <span className="text-[9px] font-black uppercase tracking-widest text-white/80">{terminalPhase}</span>
                         </div>
                      </div>
-                     <div className={`p-2 rounded-lg border transition-colors ${isUpdating ? 'bg-signal-gold/20 border-signal-gold/40 text-signal-gold' : 'bg-emerald-500/20 border-emerald-500/20 text-emerald-500'}`}>
-                        <Activity size={16} className={`${isUpdating ? 'animate-spin' : 'animate-pulse'}`} />
+                     <div className={`p-2.5 rounded-xl border transition-all duration-300 ${isUpdating ? 'bg-signal-gold/20 border-signal-gold/40 text-signal-gold' : 'bg-emerald-500/20 border-emerald-500/20 text-emerald-500'}`}>
+                        <Activity size={18} className={`${isUpdating ? 'animate-spin' : 'animate-pulse'}`} />
                      </div>
                    </div>
 
-                   <div className="space-y-10">
-                      <div className="space-y-6">
-                        <div className="flex justify-between items-end border-b border-white/10 pb-6 group/item">
-                          <div className="space-y-1">
-                            <span className="text-[11px] font-black opacity-70 uppercase tracking-[0.4em]">Calculated CPM</span>
+                   <div className="space-y-12">
+                      <div className="space-y-10">
+                        <div className="flex justify-between items-end border-b border-white/15 pb-8 group/item">
+                          <div className="space-y-2">
+                            <span className="text-xs font-black text-white uppercase tracking-[0.4em]">Calculated CPM</span>
                             <div className="flex items-center space-x-2">
-                               <TrendingDown size={12} className="text-emerald-500" />
-                               <span className="text-[8px] font-black text-emerald-500 uppercase">Input Feed...</span>
+                               <TrendingDown size={14} className="text-emerald-500" />
+                               <span className="text-[9px] font-black text-emerald-500 uppercase tracking-widest">Input Feed...</span>
                             </div>
                           </div>
                           <div className="flex flex-col items-end">
                             <div className="flex items-center">
-                              <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'opacity-100 text-signal-gold' : 'opacity-100 text-white'}`}>
+                              <span className={`text-5xl md:text-6xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'text-signal-gold' : 'text-white'}`}>
                                 ${metrics.cpm}
                               </span>
-                              {isUpdating && cursorVisible && <span className="text-4xl md:text-5xl font-thin ml-1 text-signal-gold">|</span>}
+                              {isUpdating && cursorVisible && <span className="text-5xl md:text-6xl font-thin ml-1 text-signal-gold">|</span>}
                             </div>
-                            {isUpdating && <div className="h-0.5 w-full bg-signal-gold/50 animate-pulse mt-1"></div>}
+                            {isUpdating && <div className="h-1 w-full bg-signal-gold/40 animate-pulse mt-2"></div>}
                           </div>
                         </div>
-                        <div className="flex justify-between items-end border-b border-white/10 pb-6 group/item">
-                          <div className="space-y-1">
-                            <span className="text-[11px] font-black opacity-70 uppercase tracking-[0.4em]">Break-Even RPM</span>
+                        <div className="flex justify-between items-end border-b border-white/15 pb-8 group/item">
+                          <div className="space-y-2">
+                            <span className="text-xs font-black text-white uppercase tracking-[0.4em]">Break-Even RPM</span>
                             <div className="flex items-center space-x-2">
-                               <Activity size={12} className="text-signal-gold" />
-                               <span className="text-[8px] font-black text-signal-gold uppercase">Neural Synthesizing...</span>
+                               <Activity size={14} className="text-signal-gold" />
+                               <span className="text-[9px] font-black text-signal-gold uppercase tracking-widest">Neural Sync...</span>
                             </div>
                           </div>
                           <div className="flex flex-col items-end">
                             <div className="flex items-center">
-                              <span className={`text-4xl md:text-5xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'text-white/80' : 'text-signal-gold'}`}>
+                              <span className={`text-5xl md:text-6xl font-black tracking-tighter tabular-nums transition-all ${isUpdating ? 'text-white/90' : 'text-signal-gold'}`}>
                                 ${metrics.rpm}
                               </span>
-                              {isUpdating && cursorVisible && <span className="text-4xl md:text-5xl font-thin ml-1 text-white">|</span>}
+                              {isUpdating && cursorVisible && <span className="text-5xl md:text-6xl font-thin ml-1 text-white">|</span>}
                             </div>
-                            {isUpdating && <div className="h-0.5 w-full bg-white/30 animate-pulse mt-1"></div>}
+                            {isUpdating && <div className="h-1 w-full bg-white/30 animate-pulse mt-2"></div>}
                           </div>
                         </div>
                       </div>
                    </div>
 
-                   {/* Mini Charts Visualization */}
-                   <div className="flex items-end space-x-2 h-16 pt-4">
+                   {/* Mini Charts Visualization - Sharper colors */}
+                   <div className="flex items-end space-x-2.5 h-20 pt-6">
                       {chartHeights.map((h, i) => (
-                        <div key={i} className="bg-white/5 w-full rounded-t-sm relative group/bar transition-all hover:bg-signal-gold/40">
-                          <div className="bg-signal-gold/20 absolute bottom-0 w-full transition-all duration-300 group-hover/bar:bg-signal-gold" style={{ height: `${h}%` }}></div>
+                        <div key={i} className="bg-white/10 w-full rounded-t-md relative group/bar transition-all hover:bg-signal-gold/40">
+                          <div className={`absolute bottom-0 w-full transition-all duration-500 group-hover/bar:bg-signal-gold rounded-t-sm ${isUpdating ? 'bg-signal-gold' : 'bg-signal-gold/40'}`} style={{ height: `${h}%` }}></div>
                         </div>
                       ))}
                    </div>
 
-                   <div className="flex items-center space-x-4 pt-4">
-                      <div className={`w-2 h-2 rounded-full transition-colors ${isUpdating ? 'bg-signal-gold animate-pulse' : 'bg-emerald-500'} `}></div>
-                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/60">
+                   <div className="flex items-center space-x-5 pt-8">
+                      <div className={`w-2.5 h-2.5 rounded-full transition-colors ${isUpdating ? 'bg-signal-gold animate-pulse shadow-[0_0_10px_rgba(198,146,42,0.6)]' : 'bg-emerald-500'} `}></div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/80">
                         {isUpdating ? 'PROCESSING_FISCAL_VECTORS...' : 'Registry Synchronized // Protocol Ready'}
                       </p>
                    </div>
                 </div>
 
-                {/* Scanline Effect Overlay */}
-                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-[20] [background-size:100%_2px,3px_100%]"></div>
+                {/* Scanline Effect Overlay - Tuned for text protection */}
+                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.15)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] z-[20] [background-size:100%_3px,4px_100%]"></div>
              </div>
           </div>
         </div>
