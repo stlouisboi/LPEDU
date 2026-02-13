@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ShieldCheck, ArrowRight, Globe, ExternalLink } from 'lucide-react';
 import { GoogleGenAI, GenerateContentResponse } from '@google/genai';
@@ -8,6 +9,10 @@ interface Message {
   sources?: { uri: string; title: string }[];
 }
 
+/**
+ * AIChatWidget: The Institutional Reference Terminal
+ * Provides neutral educational context on compliance terminology.
+ */
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -33,7 +38,6 @@ const AIChatWidget = () => {
     setLoading(true);
 
     try {
-      // Requirement: Create new instance right before call for key robustness
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response: GenerateContentResponse = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
@@ -77,9 +81,9 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] font-sans hidden lg:block">
+    <div className="fixed bottom-6 right-6 z-[100] font-sans">
       {isOpen ? (
-        <div className="bg-white dark:bg-surface-dark w-[350px] sm:w-[400px] h-[550px] rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] border border-border-light dark:border-border-dark flex flex-col overflow-hidden animate-scale-in">
+        <div className="bg-white dark:bg-surface-dark w-[350px] sm:w-[400px] h-[550px] rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] border border-border-light dark:border-border-dark flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
           <div className="bg-authority-blue p-6 flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -88,7 +92,7 @@ DISCLAIMER: "LaunchPath is an educational and coaching program only. This inform
               </div>
               <div>
                 <h3 className="text-white font-black text-sm uppercase tracking-tighter leading-none">Compliance Assistant</h3>
-                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Advisor</p>
+                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest mt-1">Institutional Advisor</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-white/40 hover:text-white transition-colors p-1" aria-label="Close Compliance Assistant">

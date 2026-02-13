@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -28,6 +29,7 @@ import { EnhancedAuthProvider, useEnhancedAuth } from './EnhancedAuthContext';
 import { FreeRoute, PaidRoute, AdminRoute } from './components/auth/RoleBasedRoutes';
 import ScrollToTop from './components/ScrollToTop';
 import Logo from './components/Logo';
+import AIChatWidget from './components/AIChatWidget';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -402,6 +404,7 @@ export default function App() {
           <Router>
             <ScrollToTop />
             <Header />
+            <ChatWidgetWrapper />
             <main id="main-content" className="flex-grow" role="main">
               <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -465,3 +468,15 @@ export default function App() {
     </AppContext.Provider>
   );
 }
+
+/**
+ * Helper component to ensure AIChatWidget doesn't appear on the Homepage
+ */
+const ChatWidgetWrapper = () => {
+  const location = useLocation();
+  const hideOnPaths = ['/', '/admin', '/portal', '/operator-portal'];
+  const shouldShow = !hideOnPaths.some(path => path === location.pathname || (path !== '/' && location.pathname.startsWith(path)));
+  
+  if (!shouldShow) return null;
+  return <AIChatWidget />;
+};

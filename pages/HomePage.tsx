@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -129,7 +130,7 @@ const HomePage: React.FC = () => {
               </h1>
               <div className="space-y-6 animate-reveal-up [animation-delay:200ms]">
                 <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl font-medium">
-                  Infrastructure for 1–3 truck motor carriers designed to prevent early failure. We stabilize the four variables that kill new authorities: insurance cancellation, compliance collapse, authority loss, and cash-flow exhaustion.
+                  Establish an unshakeable operating standard from your first day of authority.
                 </p>
                 <p className="text-base sm:text-lg text-slate-400 font-bold italic border-l-2 border-signal-gold pl-6">
                   Built for the disciplined executive who values order; not for those seeking shortcuts, hustle, or revenue without a system.
@@ -305,13 +306,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* PAUSE: ORIENTATION BEFORE IMPLEMENTATION */}
-      <div className="bg-[#FAF9F6] dark:bg-[#020617] py-24 text-center border-y border-slate-200 dark:border-white/5">
-        <p className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-bold uppercase tracking-tight max-w-3xl mx-auto px-6 italic leading-relaxed">
-          Identifying the pillars is a diagnostic exercise. Protecting them requires the physical assembly of an audit-ready archive.
-        </p>
-      </div>
-
       {/* 5. THE PROOF: UNIFIED DOSSIER */}
       <section className="bg-[#FAF9F6] dark:bg-[#0F172A] py-32 md:py-56 px-6 border-b border-slate-100 dark:border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -363,13 +357,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* PAUSE: TRANSITION TO JUDGMENT */}
-      <div className="bg-[#020617] py-24 text-center">
-        <p className="text-lg md:text-2xl text-slate-500 font-bold uppercase tracking-tight max-w-3xl mx-auto px-6 leading-relaxed">
-          Operational safety is evaluated through a clinical lens used by investigators and insurers to determine entity viability.
-        </p>
-      </div>
 
       {/* 6. THE JUDGMENT: 16 SINS + REACH BRIDGE */}
       <section className="bg-[#020617] pt-24">
@@ -462,50 +449,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* NEW: GROUND 0 + TCO BAND */}
-      <section className="py-32 md:py-48 px-6 bg-authority-blue text-white relative overflow-hidden border-y border-white/10">
-        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-5xl mx-auto text-center space-y-12 relative z-10">
-          <div className="w-20 h-20 bg-signal-gold text-authority-blue rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-            <Scale size={32} />
-          </div>
-          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight text-white leading-tight">
-            GROUND 0: <span className="text-signal-gold italic">DECISION</span> BEFORE DEPLOYMENT
-          </h2>
-          <p className="text-xl md:text-2xl text-white/70 font-bold leading-relaxed max-w-3xl mx-auto uppercase tracking-tight">
-            Ground 0 is a 90-minute clinical decision module used to verify entity viability before capital is deployed. It maps your risk tolerance against the Four Pillars and utilizes the TCO Economic Engine to determine if your operation is statistically sound. The final output is a documented status: Proceed, Delay, or Walk Away—all are considered successful outcomes.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10">
-            {[
-              { label: "Analyze Math", desc: "Run the TCO Economic Engine against current market rates." },
-              { label: "Audit Readiness", desc: "Verify household and capital reserves against a 90-day window." },
-              { label: "Define Stop-Loss", desc: "Establish clear operational lines where you must stop or pivot." }
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center space-y-4">
-                <div className="w-2 h-2 bg-signal-gold rounded-full"></div>
-                <h4 className="font-black uppercase tracking-widest text-signal-gold">{item.label}</h4>
-                <p className="text-xs font-bold opacity-60 uppercase">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-6 pt-10">
-            <Link 
-              to="/readiness" 
-              className="inline-flex items-center space-x-6 bg-signal-gold text-authority-blue px-16 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm md:text-lg hover:bg-white transition-all shadow-2xl active:scale-95 group border-b-8 border-slate-900"
-            >
-              <span>START GROUND 0</span>
-              <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
-            </Link>
-            <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
-              Count the cost before you file for authority or sign for equipment.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. THE TOOLS: MATH OF SURVIVAL */}
+      {/* 8. THE TOOLS: MATH OF SURVIVAL / TCO CALCULATOR */}
       <section className="py-32 md:py-56 px-10 md:px-20 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24 items-center relative z-10">
@@ -547,7 +491,7 @@ const HomePage: React.FC = () => {
       {/* 9. THE CLARIFICATION: FAQ SECTION */}
       <FAQSection />
 
-      {/* 10. THE INVITATION: FINAL CTA */}
+      {/* 10. THE INVITATION: FINAL CTA SECTION */}
       <section className="py-48 px-10 md:px-20 bg-[#FAF9F6] dark:bg-surface-dark border-t border-slate-100 dark:border-white/5">
         <header className="text-center mb-32 space-y-6">
           <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em]">THE OUTCOME</p>
