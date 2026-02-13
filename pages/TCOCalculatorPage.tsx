@@ -13,14 +13,20 @@ import {
   Printer,
   Info,
   TrendingDown,
-  Wrench,
-  FileDown,
-  CheckCircle2,
-  ChevronRight,
-  ChevronLeft,
-  ArrowRight,
-  ShieldCheck,
-  Award
+  Wrench, 
+  FileDown, 
+  CheckCircle2, 
+  ChevronRight, 
+  ChevronLeft, 
+  ArrowRight, 
+  ShieldCheck, 
+  Award, 
+  BarChart3, 
+  FileText, 
+  PieChart, 
+  LineChart,
+  // Added Globe to fix the error on line 504
+  Globe
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
@@ -40,6 +46,14 @@ interface VariableCosts {
   tires: number;
   tolls: number;
 }
+
+// Added TechnicalPattern component definition to fix the error on line 421
+const TechnicalPattern = () => (
+  <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #fff 1px, transparent 0)', backgroundSize: '48px 48px' }}></div>
+    <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '120px 120px' }}></div>
+  </div>
+);
 
 const TCOCalculatorPage: React.FC = () => {
   const location = useLocation();
@@ -71,19 +85,17 @@ const TCOCalculatorPage: React.FC = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
 
-  // Handle Query Params for Pre-filling
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const q1 = params.get('q1'); // Capital
+    const q1 = params.get('q1');
     if (q1) {
       const score = parseInt(q1);
-      // Pre-fill fixed costs based on capital score (example logic)
-      if (score === 0) setFixedCosts(prev => ({ ...prev, other: 1000 })); // High entry barrier penalty
+      if (score === 0) setFixedCosts(prev => ({ ...prev, other: 1000 }));
     }
     
     const result = params.get('result');
     if (result) {
-      setActiveStep(1); // Jump straight into input if coming from quiz
+      setActiveStep(1);
     }
   }, [location]);
 
@@ -101,18 +113,19 @@ const TCOCalculatorPage: React.FC = () => {
     
     const actualGrossRevenue = paidMiles * (Number(operation.ratePerMile) || 0);
     const totalVarCosts = totalVarPerMile * (Number(operation.monthlyMiles) || 0);
-    const netProfit = actualGrossRevenue - (totalFixed + totalVarCosts);
-    const cpm = (totalFixed + totalVarCosts) / (Math.max(1, Number(operation.monthlyMiles) || 1));
+    const totalMonthlyExpense = totalFixed + totalVarCosts;
+    const netProfit = actualGrossRevenue - totalMonthlyExpense;
+    const cpm = totalMonthlyExpense / (Math.max(1, Number(operation.monthlyMiles) || 1));
     const breakEvenRate = paidMilesFactor > 0 ? (cpm / paidMilesFactor) : 99.99;
 
-    return { totalFixed, totalVarPerMile, netProfit, cpm, breakEvenRate, margin: actualGrossRevenue > 0 ? (netProfit / actualGrossRevenue) * 100 : 0, actualGrossRevenue };
+    return { totalFixed, totalVarPerMile, netProfit, cpm, breakEvenRate, margin: actualGrossRevenue > 0 ? (netProfit / actualGrossRevenue) * 100 : 0, actualGrossRevenue, totalMonthlyExpense };
   }, [fixedCosts, variableCosts, operation]);
 
   const performAIAnalysis = async () => {
     setIsAnalyzing(true);
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const prompt = `Trucking Carrier TCO Analysis: Fixed $${totals.totalFixed}, Var $${totals.totalVarPerMile.toFixed(2)}/mi, Net $${totals.netProfit.toFixed(2)}. Suggest 3 tactical improvements for sustainability in an authoritative institutional tone.`;
+      const prompt = `Trucking Carrier TCO Analysis: Fixed $${totals.totalFixed}, Var $${totals.totalVarPerMile.toFixed(2)}/mi, Net $${totals.netProfit.toFixed(2)}. Suggest 3 tactical improvements for sustainability in an authoritative institutional tone. Use Markdown.`;
       const response = await ai.models.generateContent({ model: 'gemini-3-pro-preview', contents: prompt });
       setAiAnalysis(response.text || "Analysis complete.");
     } catch (err) { setAiAnalysis("Analysis terminal fault."); } finally { setIsAnalyzing(false); }
@@ -156,313 +169,367 @@ const TCOCalculatorPage: React.FC = () => {
     <div className="bg-[#020617] min-h-screen text-slate-200 font-sans selection:bg-signal-gold/20 overflow-x-hidden">
       
       {/* STEALTH HEADER */}
-      <div className="fixed top-0 left-0 w-full z-50 bg-[#0F172A]/80 backdrop-blur-md border-b border-white/5 px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between">
-         <div className="flex items-center space-x-3 sm:space-x-4">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-signal-gold rounded-xl flex items-center justify-center text-authority-blue shadow-lg shrink-0">
-               <Calculator size={20} sm:size={22} />
+      <div className="fixed top-0 left-0 w-full z-50 bg-[#0F172A]/90 backdrop-blur-xl border-b border-white/5 px-6 py-5 flex items-center justify-between shadow-2xl">
+         <div className="flex items-center space-x-4">
+            <div className="w-10 h-10 bg-signal-gold rounded-xl flex items-center justify-center text-authority-blue shadow-[0_0_20px_rgba(198,146,42,0.4)] shrink-0">
+               <Calculator size={22} />
             </div>
             <div className="hidden xs:block">
-               <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-signal-gold leading-none mb-1">Economic Engine v4.0</p>
-               <p className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-widest opacity-60">Pillar 4: Cash-Flow Oxygen</p>
+               <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold leading-none mb-1">Economic Engine v4.0</p>
+               <p className="text-xs font-bold text-white uppercase tracking-widest opacity-60">Authorized Assessment Terminal</p>
             </div>
          </div>
          {activeStep > 0 && activeStep < 4 && (
-           <div className="flex items-center space-x-4 sm:space-x-6">
+           <div className="flex items-center space-x-6">
               <div className="hidden md:flex space-x-2">
                  {[1,2,3].map(i => (
-                   <div key={i} className={`h-1 w-10 sm:w-12 rounded-full transition-all duration-500 ${activeStep >= i ? 'bg-signal-gold' : 'bg-white/10'}`}></div>
+                   <div key={i} className={`h-1.5 w-12 rounded-full transition-all duration-700 ${activeStep >= i ? 'bg-signal-gold shadow-[0_0_10px_rgba(198,146,42,0.5)]' : 'bg-white/10'}`}></div>
                  ))}
               </div>
-              <p className="text-[9px] sm:text-[10px] font-black uppercase text-slate-400">Step {activeStep} / 3</p>
+              <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Step {activeStep} / 3</p>
            </div>
          )}
-         <div className="flex items-center space-x-2 sm:space-x-4">
-            <button onClick={() => window.print()} className="p-2 text-slate-400 hover:text-white transition-colors" title="Print Analysis"><Printer size={18} sm:size={20}/></button>
-            <button onClick={() => setActiveStep(4)} className="bg-white/5 border border-white/10 px-4 sm:px-6 py-2 rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all">Summary</button>
+         <div className="flex items-center space-x-4">
+            <button onClick={() => window.print()} className="p-2 text-slate-400 hover:text-white transition-all hover:scale-110 active:scale-95" title="Print Analysis"><Printer size={20}/></button>
+            <button onClick={() => setActiveStep(4)} className="bg-white/5 border border-white/10 px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all hover:border-signal-gold/30">Summary</button>
          </div>
       </div>
 
-      <main className="max-w-[1200px] mx-auto px-6 pt-32 sm:pt-40 pb-20 md:pb-32 min-h-screen flex flex-col items-center">
+      <main className="max-w-[1400px] mx-auto px-6 pt-32 sm:pt-48 pb-32 min-h-screen">
         
         {/* STEP 0: START */}
         {activeStep === 0 && (
-          <div className="legibility-container text-center space-y-10 md:space-y-12 animate-reveal-up py-12 md:py-24">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/5 rounded-[2rem] sm:rounded-[2.5rem] flex items-center justify-center mx-auto shadow-inner border border-white/10 shrink-0">
-               <Target size={36} sm:size={48} className="text-signal-gold" />
+          <div className="max-w-3xl mx-auto text-center space-y-12 animate-reveal-up py-24">
+            <div className="relative inline-block">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white/5 rounded-[2.5rem] sm:rounded-[3.5rem] flex items-center justify-center mx-auto shadow-inner border border-white/10">
+                 <Target size={48} sm:size={64} className="text-signal-gold" />
+              </div>
+              <div className="absolute inset-0 bg-signal-gold/10 rounded-full blur-3xl animate-pulse"></div>
             </div>
-            <div className="space-y-4">
-               <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-serif uppercase tracking-tight text-white leading-tight md:leading-none">The Economic <br/><span className="text-signal-gold italic">Engine.</span></h1>
-               <p className="text-lg sm:text-xl text-slate-400 font-bold leading-relaxed max-w-xl mx-auto uppercase tracking-tight">Analyze your true cost per mile, break-even rate, and monthly net margin. Revenue without profit is busy-work.</p>
+            <div className="space-y-6">
+               <h1 className="text-4xl sm:text-6xl md:text-8xl font-black font-serif uppercase tracking-tighter text-white leading-[0.85]">
+                 THE ECONOMIC <br/><span className="text-signal-gold italic">ENGINE.</span>
+               </h1>
+               <div className="h-1 w-24 bg-signal-gold mx-auto"></div>
+               <p className="text-xl sm:text-2xl text-slate-400 font-bold leading-relaxed max-w-xl mx-auto uppercase tracking-tighter">
+                 Revenue without margin analysis is busyness. Establish your clinical cost-per-mile baseline before operational commencement.
+               </p>
             </div>
-            <button onClick={nextStep} className="bg-signal-gold text-authority-blue px-10 sm:px-16 py-6 sm:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-xs sm:text-sm shadow-2xl hover:scale-105 transition-all active:scale-95 border-b-6 sm:border-b-8 border-slate-900 group">
-               Begin Calculation <ChevronRight className="inline ml-2 sm:ml-3 group-hover:translate-x-1" size={18} sm:size={20} />
+            <button onClick={nextStep} className="bg-signal-gold text-authority-blue px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-xs shadow-[0_30px_60px_rgba(198,146,42,0.3)] hover:scale-105 transition-all active:scale-95 border-b-[10px] border-slate-900 group">
+               INITIALIZE PARAMETERS <ChevronRight className="inline ml-3 group-hover:translate-x-2 transition-transform" size={20} />
             </button>
           </div>
         )}
 
         {/* STEP 1: FIXED COSTS */}
         {activeStep === 1 && (
-          <div className="w-full max-w-4xl space-y-12 sm:space-y-16 animate-in fade-in slide-in-from-right-4 duration-500">
-             <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center space-x-3 text-signal-gold">
-                   <ShieldAlert size={20} />
-                   <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em]">Section 01: Fixed Structural Costs</h2>
+          <div className="w-full max-w-5xl mx-auto space-y-16 animate-in fade-in slide-in-from-right-8 duration-700">
+             <div className="space-y-6">
+                <div className="flex items-center space-x-4 text-signal-gold">
+                   <ShieldAlert size={28} />
+                   <h2 className="text-xs font-black uppercase tracking-[0.5em]">01_FIXED_STRUCTURAL_COSTS</h2>
                 </div>
-                <p className="text-base sm:text-lg text-slate-400 font-bold italic">Monthly overhead that persists regardless of utilization.</p>
+                <p className="text-2xl sm:text-3xl text-white font-black uppercase tracking-tight">Monthly overhead that persists regardless of utilization.</p>
              </div>
 
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-8 sm:gap-y-10">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
                 {[
-                  { label: "Truck Payment", id: "truckPayment" },
-                  { label: "Insurance Premium", id: "insurance" },
-                  { label: "Parking Fees", id: "parking" },
-                  { label: "Permits & Plates", id: "permits" },
-                  { label: "Software / Subscriptions", id: "software" },
-                  { label: "Other Fixed Costs", id: "other" }
+                  { label: "Equipment Payment", id: "truckPayment", info: "Monthly finance or lease obligation." },
+                  { label: "Insurance Premium", id: "insurance", info: "Monthly primary liability and cargo installment." },
+                  { label: "Parking & Storage", id: "parking", info: "Secured terminal or lot fees." },
+                  { label: "Permits & Compliance", id: "permits", info: "ELD service, permits, and filings." },
+                  { label: "Enterprise Software", id: "software", info: "TMS, load boards, accounting tools." },
+                  { label: "Reserved Overhead", id: "other", info: "Other non-varying monthly costs." }
                 ].map((input) => (
-                  <div key={input.id} className="space-y-2.5 sm:space-y-3 group">
-                     <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500 group-focus-within:text-signal-gold transition-colors ml-2">{input.label}</label>
+                  <div key={input.id} className="space-y-4 group">
+                     <div className="flex justify-between items-end ml-2">
+                       <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 group-focus-within:text-signal-gold transition-colors">{input.label}</label>
+                       <span className="text-[8px] font-bold text-slate-600 uppercase tracking-widest">{input.info}</span>
+                     </div>
                      <div className="relative">
-                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 font-black text-lg sm:text-2xl">$</span>
+                        <span className="absolute left-8 top-1/2 -translate-y-1/2 text-slate-500 font-black text-3xl">$</span>
                         <input 
                           type="number" 
                           value={fixedCosts[input.id as keyof FixedCosts]} 
                           onChange={e => setFixedCosts({...fixedCosts, [input.id]: parseFloat(e.target.value) || 0})}
-                          className="w-full bg-white/5 border-2 border-white/5 rounded-2xl sm:rounded-3xl py-5 sm:py-6 pl-12 sm:pl-14 pr-6 text-white font-black text-xl sm:text-3xl focus:border-signal-gold outline-none shadow-inner transition-all"
+                          className="w-full bg-[#0c1a2d] border-2 border-white/5 rounded-[2.5rem] py-8 pl-16 pr-8 text-white font-black text-3xl sm:text-4xl focus:border-signal-gold outline-none shadow-inner transition-all hover:bg-black/20"
                         />
                      </div>
                   </div>
                 ))}
              </div>
 
-             <div className="pt-10 sm:pt-12 border-t border-white/5 flex flex-col sm:flex-row gap-6 sm:justify-between items-center">
-                <button onClick={prevStep} className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white flex items-center transition-colors"><ChevronLeft className="mr-2" size={16}/> Back</button>
-                <button onClick={nextStep} className="w-full sm:w-auto bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] sm:text-xs hover:bg-signal-gold transition-all shadow-xl flex items-center justify-center group">Continue to Variable Costs <ChevronRight className="ml-2 group-hover:translate-x-1" size={16}/></button>
+             <div className="pt-16 border-t border-white/5 flex flex-col sm:flex-row gap-8 sm:justify-between items-center">
+                <button onClick={prevStep} className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white flex items-center transition-all hover:scale-105 active:scale-95"><ChevronLeft className="mr-2" size={16}/> PREVIOUS</button>
+                <button onClick={nextStep} className="w-full sm:w-auto bg-white text-authority-blue px-14 py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[11px] hover:bg-signal-gold transition-all shadow-2xl flex items-center justify-center group active:scale-95">CONTINUE_VARIABLE_INPUT <ChevronRight className="ml-3 group-hover:translate-x-1" size={18}/></button>
              </div>
           </div>
         )}
 
         {/* STEP 2: VARIABLE COSTS */}
         {activeStep === 2 && (
-          <div className="w-full max-w-4xl space-y-12 sm:space-y-16 animate-in fade-in slide-in-from-right-4 duration-500">
-             <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center space-x-3 text-signal-gold">
-                   <Wrench size={20} />
-                   <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em]">Section 02: Variable Operating Costs</h2>
+          <div className="w-full max-w-5xl mx-auto space-y-16 animate-in fade-in slide-in-from-right-8 duration-700">
+             <div className="space-y-6">
+                <div className="flex items-center space-x-4 text-signal-gold">
+                   <Wrench size={28} />
+                   <h2 className="text-xs font-black uppercase tracking-[0.5em]">02_VARIABLE_OPERATING_COSTS</h2>
                 </div>
-                <p className="text-base sm:text-lg text-slate-400 font-bold italic">Costs driven directly by active movement and utilization.</p>
+                <p className="text-2xl sm:text-3xl text-white font-black uppercase tracking-tight">Costs driven directly by active utilization and movement.</p>
              </div>
 
-             <div className="space-y-10 sm:space-y-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                   <div className="space-y-3">
-                      <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500 ml-2">Average Fuel Price</label>
+             <div className="space-y-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Average Fuel Price (Diesel)</label>
                       <div className="relative">
-                         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 font-black text-xl sm:text-2xl">$</span>
-                         <input type="number" step="0.01" value={variableCosts.fuelPrice} onChange={e => setVariableCosts({...variableCosts, fuelPrice: parseFloat(e.target.value) || 0})} className="w-full bg-white/5 border-2 border-white/5 rounded-2xl sm:rounded-3xl py-5 sm:py-6 pl-12 sm:pl-14 pr-6 text-white font-black text-xl sm:text-3xl focus:border-signal-gold outline-none shadow-inner"/>
+                         <span className="absolute left-8 top-1/2 -translate-y-1/2 text-slate-500 font-black text-3xl">$</span>
+                         <input type="number" step="0.01" value={variableCosts.fuelPrice} onChange={e => setVariableCosts({...variableCosts, fuelPrice: parseFloat(e.target.value) || 0})} className="w-full bg-[#0c1a2d] border-2 border-white/5 rounded-[2.5rem] py-8 pl-16 pr-8 text-white font-black text-3xl sm:text-4xl focus:border-signal-gold outline-none shadow-inner"/>
                       </div>
                    </div>
-                   <div className="space-y-3">
-                      <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500 ml-2">Fuel Efficiency (MPG)</label>
-                      <input type="number" step="0.1" value={variableCosts.mpg} onChange={e => setVariableCosts({...variableCosts, mpg: parseFloat(e.target.value) || 0})} className="w-full bg-white/5 border-2 border-white/5 rounded-2xl sm:rounded-3xl py-5 sm:py-6 px-8 text-white font-black text-xl sm:text-3xl focus:border-signal-gold outline-none shadow-inner"/>
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Asset Efficiency (MPG)</label>
+                      <div className="relative">
+                         <input type="number" step="0.1" value={variableCosts.mpg} onChange={e => setVariableCosts({...variableCosts, mpg: parseFloat(e.target.value) || 0})} className="w-full bg-[#0c1a2d] border-2 border-white/5 rounded-[2.5rem] py-8 px-10 text-white font-black text-3xl sm:text-4xl focus:border-signal-gold outline-none shadow-inner"/>
+                         <span className="absolute right-10 top-1/2 -translate-y-1/2 text-white/20 font-black text-xl">AVG_MPG</span>
+                      </div>
                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                    {[
-                     { label: "Maintenance", id: "maintenance" },
-                     { label: "Tire Fund", id: "tires" },
-                     { label: "Toll Est.", id: "tolls" }
+                     { label: "Maintenance Fund", id: "maintenance" },
+                     { label: "Tire Replacement", id: "tires" },
+                     { label: "Operational Tolls", id: "tolls" }
                    ].map(input => (
-                     <div key={input.id} className="space-y-2.5 sm:space-y-3">
-                        <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500 ml-2">{input.label} / Mi</label>
+                     <div key={input.id} className="space-y-4 group">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">{input.label} / Mi</label>
                         <div className="relative">
-                           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">$</span>
-                           <input type="number" step="0.01" value={variableCosts[input.id as keyof VariableCosts]} onChange={e => setVariableCosts({...variableCosts, [input.id]: parseFloat(e.target.value) || 0})} className="w-full bg-white/5 border-2 border-white/5 rounded-xl sm:rounded-2xl py-4 pl-10 pr-4 text-white font-black text-base sm:text-lg focus:border-signal-gold outline-none"/>
+                           <span className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 font-bold">$</span>
+                           <input type="number" step="0.01" value={variableCosts[input.id as keyof VariableCosts]} onChange={e => setVariableCosts({...variableCosts, [input.id]: parseFloat(e.target.value) || 0})} className="w-full bg-[#0c1a2d] border-2 border-white/5 rounded-3xl py-6 pl-12 pr-6 text-white font-black text-2xl focus:border-signal-gold outline-none"/>
                         </div>
                      </div>
                    ))}
                 </div>
 
-                <div className="p-6 sm:p-8 bg-white/5 rounded-2xl sm:rounded-[2.5rem] border border-white/10 flex items-start space-x-4 sm:space-x-6">
-                   <div className="p-3 sm:p-4 bg-signal-gold/10 rounded-xl sm:rounded-2xl text-signal-gold shrink-0"><Info size={20} sm:size={24}/></div>
-                   <p className="text-xs sm:text-sm font-medium text-slate-400 leading-relaxed uppercase tracking-tighter">Maintenance reserves should be funded at a minimum of <span className="text-white font-black">$0.15 per mile</span> to cover component failures over the lifecycle of the asset.</p>
+                <div className="p-10 bg-authority-blue/30 rounded-[3rem] border border-white/5 flex items-start space-x-8 shadow-inner">
+                   <div className="p-4 bg-signal-gold/10 rounded-2xl text-signal-gold shrink-0 border border-signal-gold/20 shadow-lg"><Info size={28}/></div>
+                   <div className="space-y-2">
+                     <p className="text-xs font-black uppercase tracking-widest text-white">Stewardship Protocol</p>
+                     <p className="text-base font-medium text-slate-400 leading-relaxed uppercase tracking-tight italic">"Maintenance reserves should be funded at a minimum of <span className="text-signal-gold font-black">$0.15 per mile</span> to mitigate terminal equipment failures."</p>
+                   </div>
                 </div>
              </div>
 
-             <div className="pt-10 sm:pt-12 border-t border-white/5 flex flex-col sm:flex-row gap-6 sm:justify-between items-center">
-                <button onClick={prevStep} className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white flex items-center transition-colors"><ChevronLeft className="mr-2" size={16}/> Back</button>
-                <button onClick={nextStep} className="w-full sm:w-auto bg-white text-authority-blue px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] sm:text-xs hover:bg-signal-gold transition-all shadow-xl flex items-center justify-center group">Utilization & Market Goals <ChevronRight className="ml-2 group-hover:translate-x-1" size={16}/></button>
+             <div className="pt-16 border-t border-white/5 flex flex-col sm:flex-row gap-8 sm:justify-between items-center">
+                <button onClick={prevStep} className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white flex items-center transition-all"><ChevronLeft className="mr-2" size={16}/> PREVIOUS</button>
+                <button onClick={nextStep} className="w-full sm:w-auto bg-white text-authority-blue px-14 py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[11px] hover:bg-signal-gold transition-all shadow-2xl flex items-center justify-center group">UTILIZATION_TARGETS <ChevronRight className="ml-3 group-hover:translate-x-1" size={18}/></button>
              </div>
           </div>
         )}
 
         {/* STEP 3: OPERATIONAL GOALS */}
         {activeStep === 3 && (
-          <div className="w-full max-w-4xl space-y-12 sm:space-y-16 animate-in fade-in slide-in-from-right-4 duration-500">
-             <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center space-x-3 text-signal-gold">
-                   <Activity size={20} />
-                   <h2 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.4em]">Section 03: Operational Performance</h2>
+          <div className="w-full max-w-5xl mx-auto space-y-16 animate-in fade-in slide-in-from-right-8 duration-700">
+             <div className="space-y-6">
+                <div className="flex items-center space-x-4 text-signal-gold">
+                   <Activity size={28} />
+                   <h2 className="text-xs font-black uppercase tracking-[0.5em]">03_OPERATIONAL_UTILIZATION</h2>
                 </div>
-                <p className="text-base sm:text-lg text-slate-400 font-bold italic">Define your utilization targets and market pricing.</p>
+                <p className="text-2xl sm:text-3xl text-white font-black uppercase tracking-tight">Define utilization targets and clinical market pricing.</p>
              </div>
 
-             <div className="space-y-10 sm:space-y-12">
-                <div className="space-y-3">
-                   <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500 ml-2">Target Monthly Total Mileage</label>
-                   <input type="number" value={operation.monthlyMiles} onChange={e => setOperation({...operation, monthlyMiles: parseInt(e.target.value) || 0})} className="w-full bg-white/5 border-2 border-white/5 rounded-2xl sm:rounded-3xl py-6 sm:py-8 px-8 sm:px-10 text-white font-black text-2xl sm:text-4xl focus:border-signal-gold outline-none shadow-inner"/>
+             <div className="space-y-12">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-6">Target Total Monthly Mileage</label>
+                   <input type="number" value={operation.monthlyMiles} onChange={e => setOperation({...operation, monthlyMiles: parseInt(e.target.value) || 0})} className="w-full bg-[#0c1a2d] border-2 border-white/5 rounded-[3rem] py-8 px-12 text-white font-black text-4xl sm:text-6xl focus:border-signal-gold outline-none shadow-inner text-center sm:text-left"/>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                   <div className="space-y-3">
-                      <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500 ml-2">Market Gross Rate / Mi</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-6">Gross Market RPM</label>
                       <div className="relative">
-                         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 font-black text-xl sm:text-2xl">$</span>
-                         <input type="number" step="0.05" value={operation.ratePerMile} onChange={e => setOperation({...operation, ratePerMile: parseFloat(e.target.value) || 0})} className="w-full bg-white/5 border-2 border-white/5 rounded-2xl sm:rounded-3xl py-5 sm:py-6 pl-12 sm:pl-14 pr-6 text-white font-black text-xl sm:text-3xl focus:border-signal-gold outline-none shadow-inner"/>
+                         <span className="absolute left-8 top-1/2 -translate-y-1/2 text-slate-500 font-black text-3xl">$</span>
+                         <input type="number" step="0.05" value={operation.ratePerMile} onChange={e => setOperation({...operation, ratePerMile: parseFloat(e.target.value) || 0})} className="w-full bg-[#0c1a2d] border-2 border-white/5 rounded-[2.5rem] py-8 pl-16 pr-8 text-white font-black text-3xl sm:text-4xl focus:border-signal-gold outline-none shadow-inner"/>
+                         <span className="absolute right-10 top-1/2 -translate-y-1/2 text-white/10 font-bold uppercase text-sm tracking-widest">Rate_Target</span>
                       </div>
                    </div>
-                   <div className="space-y-3">
-                      <label className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500 ml-2">Deadhead Factor (%)</label>
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-6">Deadhead Percentage (%)</label>
                       <div className="relative">
-                         <span className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-500 font-black text-xl sm:text-2xl">%</span>
-                         <input type="number" value={operation.deadheadPercentage} onChange={e => setOperation({...operation, deadheadPercentage: parseInt(e.target.value) || 0})} className="w-full bg-white/5 border-2 border-white/5 rounded-2xl sm:rounded-3xl py-5 sm:py-6 px-8 sm:px-10 text-white font-black text-xl sm:text-3xl focus:border-signal-gold outline-none shadow-inner"/>
+                         <input type="number" value={operation.deadheadPercentage} onChange={e => setOperation({...operation, deadheadPercentage: parseInt(e.target.value) || 0})} className="w-full bg-[#0c1a2d] border-2 border-white/5 rounded-[2.5rem] py-8 px-10 text-white font-black text-3xl sm:text-4xl focus:border-signal-gold outline-none shadow-inner"/>
+                         <span className="absolute right-10 top-1/2 -translate-y-1/2 text-red-500/40 font-black text-3xl">%</span>
                       </div>
                    </div>
                 </div>
 
-                <div className="p-6 sm:p-8 bg-red-500/5 rounded-2xl sm:rounded-[2.5rem] border border-red-500/10 flex items-start space-x-4 sm:space-x-6">
-                   <div className="p-3 sm:p-4 bg-red-500/10 rounded-xl sm:rounded-2xl text-red-400 shrink-0"><TrendingDown size={20} sm:size={24}/></div>
-                   <p className="text-xs sm:text-sm font-medium text-slate-400 leading-relaxed uppercase tracking-tighter">Deadhead miles represent unbillable asset utilization. Every percentage point increase in deadhead requires a higher <span className="text-white font-black">Break-Even RPM</span> to maintain solvency.</p>
+                <div className="p-10 bg-red-500/5 rounded-[3rem] border border-red-500/10 flex items-start space-x-8 shadow-inner">
+                   <div className="p-4 bg-red-500/10 rounded-2xl text-red-500 shrink-0 border border-red-500/20"><TrendingDown size={28}/></div>
+                   <div className="space-y-2">
+                     <p className="text-xs font-black uppercase tracking-widest text-red-500">Unbillable Exposure Alert</p>
+                     <p className="text-base font-medium text-slate-400 leading-relaxed uppercase tracking-tight italic">"Every percentage point of deadhead requires an exponential increase in billable RPM to maintain authority solvency."</p>
+                   </div>
                 </div>
              </div>
 
-             <div className="pt-10 sm:pt-12 border-t border-white/5 flex flex-col sm:flex-row gap-6 sm:justify-between items-center">
-                <button onClick={prevStep} className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white flex items-center transition-colors"><ChevronLeft className="mr-2" size={16}/> Back</button>
-                <button onClick={nextStep} className="w-full sm:w-auto bg-signal-gold text-authority-blue px-10 sm:px-16 py-6 sm:py-7 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-widest text-[10px] sm:text-xs shadow-2xl hover:scale-105 transition-all active:scale-95 flex items-center justify-center border-b-6 sm:border-b-8 border-slate-900">Synthesize Economic Summary <ChevronRight className="ml-2" size={16}/></button>
+             <div className="pt-16 border-t border-white/5 flex flex-col sm:flex-row gap-8 sm:justify-between items-center">
+                <button onClick={prevStep} className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white flex items-center transition-all"><ChevronLeft className="mr-2" size={16}/> PREVIOUS</button>
+                <button onClick={nextStep} className="w-full sm:w-auto bg-signal-gold text-authority-blue px-14 py-7 rounded-[2rem] font-black uppercase tracking-[0.4em] text-[11px] shadow-[0_30px_60px_rgba(198,146,42,0.4)] hover:scale-105 transition-all active:scale-95 flex items-center justify-center border-b-[10px] border-slate-900 group">SYNTHESIZE_ECONOMIC_SUMMARY <ChevronRight className="ml-3" size={20}/></button>
              </div>
           </div>
         )}
 
-        {/* STEP 4: SUMMARY & ANALYSIS */}
+        {/* STEP 4: SUMMARY & ANALYSIS (WORLD CLASS REDESIGN) */}
         {activeStep === 4 && (
-          <div className="w-full space-y-10 sm:space-y-12 animate-in fade-in duration-1000">
+          <div className="w-full space-y-16 animate-in fade-in duration-1000 max-w-6xl mx-auto">
              
-             {/* THE CORE METRICS BAR */}
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+             {/* HEADER BRIEF */}
+             <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/10 pb-12 gap-8">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center space-x-3 bg-signal-gold/10 border border-signal-gold/30 px-5 py-2 rounded-full">
+                    <ShieldCheck size={14} className="text-signal-gold" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">FISCAL_DIAGNOSTIC_BRIEF</span>
+                  </div>
+                  <h2 className="text-4xl sm:text-6xl font-black font-serif text-white uppercase tracking-tighter leading-none">THE EXECUTIVE <br/><span className="text-signal-gold italic">SUMMARY.</span></h2>
+                </div>
+                <div className="flex items-center space-x-4">
+                   <button onClick={exportCSV} className="flex items-center space-x-3 bg-white/5 border border-white/10 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all">
+                      <FileDown size={14} /> <span>Download CSV</span>
+                   </button>
+                   <button onClick={() => window.print()} className="flex items-center space-x-3 bg-signal-gold text-primary-dark px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-white transition-all">
+                      <Printer size={14} /> <span>Print Brief</span>
+                   </button>
+                </div>
+             </div>
+
+             {/* KEY PERFORMANCE INDICATORS */}
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { label: "Total Cost Per Mile", val: totals.cpm.toFixed(4), unit: "/MI", icon: <Zap size={18}/> },
-                  { label: "Break-Even RPM", val: totals.breakEvenRate.toFixed(4), unit: "/MI", icon: <Award size={18}/> },
-                  { label: "Net Monthly Profit", val: totals.netProfit.toLocaleString(undefined, { minimumFractionDigits: 2 }), unit: "/MO", icon: <DollarSign size={18}/>, color: totals.netProfit >= 0 ? 'text-emerald-400' : 'text-red-500' },
-                  { label: "Operating Margin", val: totals.margin.toFixed(2), unit: "%", icon: <Activity size={18}/> }
+                  { label: "Cost Per Mile", val: totals.cpm.toFixed(4), unit: "/MI", icon: <Zap size={18}/>, status: totals.cpm < 2.1 ? 'OPTIMIZED' : 'EXPOSURE' },
+                  { label: "Break-Even RPM", val: totals.breakEvenRate.toFixed(4), unit: "/MI", icon: <Award size={18}/>, status: 'STND' },
+                  { label: "Monthly Margin", val: totals.netProfit.toLocaleString(undefined, { minimumFractionDigits: 2 }), unit: "/MO", icon: <DollarSign size={18}/>, color: totals.netProfit >= 0 ? 'text-emerald-400' : 'text-red-500', status: totals.netProfit >= 0 ? 'SOLVENT' : 'INSOLVENT' },
+                  { label: "Profit Percentage", val: totals.margin.toFixed(2), unit: "%", icon: <Activity size={18}/>, status: totals.margin > 15 ? 'ELITE' : 'STABILIZED' }
                 ].map((metric, i) => (
-                  <div key={i} className="bg-[#0F172A] border border-white/10 p-6 sm:p-8 rounded-3xl md:rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
-                     <div className="absolute top-0 right-0 p-4 sm:p-6 opacity-5 group-hover:scale-110 transition-transform">{metric.icon}</div>
-                     <p className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-slate-500 mb-4 sm:mb-6">{metric.label}</p>
+                  <div key={i} className="bg-[#0F172A] border-2 border-white/5 p-10 rounded-[3rem] shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative overflow-hidden group">
+                     <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">{metric.icon}</div>
+                     <div className="flex justify-between items-start mb-10">
+                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-slate-500">{metric.label}</p>
+                        <span className={`text-[8px] font-black px-2 py-0.5 rounded uppercase ${metric.status === 'INSOLVENT' || metric.status === 'EXPOSURE' ? 'bg-red-500/20 text-red-500' : 'bg-emerald-500/20 text-emerald-500'}`}>{metric.status}</span>
+                     </div>
                      <div className="flex items-baseline gap-2">
-                        <span className={`text-2xl sm:text-3xl font-black tracking-tighter ${metric.color || 'text-white'}`}>${metric.val}</span>
-                        <span className="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase">{metric.unit}</span>
+                        <span className={`text-3xl sm:text-4xl font-black tracking-tighter ${metric.color || 'text-white'}`}>${metric.val}</span>
+                        <span className="text-[10px] font-bold text-slate-600 uppercase">{metric.unit}</span>
                      </div>
                   </div>
                 ))}
              </div>
 
-             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
+             {/* DIAGNOSTIC VISUALIZATION */}
+             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
                 
-                {/* Visual Analysis Column */}
-                <div className="lg:col-span-8 space-y-8 sm:space-y-10">
-                   <div className="bg-white/5 border border-white/10 rounded-3xl md:rounded-[4rem] p-8 sm:p-12 lg:p-16 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 p-12 opacity-[0.03] rotate-12"><Activity size={180}/></div>
-                      
-                      <div className="relative z-10 space-y-10 sm:space-y-12">
-                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <h3 className="text-xl sm:text-2xl font-black font-serif uppercase text-white">Institutional Forecast</h3>
-                            <div className="px-4 py-2 bg-signal-gold/10 rounded-xl border border-signal-gold/20 flex items-center space-x-2 w-fit">
-                               <div className={`w-2 h-2 rounded-full ${totals.netProfit >= 0 ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></div>
-                               <span className="text-[9px] font-black uppercase text-signal-gold">Solvency: {totals.netProfit >= 0 ? 'Verified' : 'Exposure Risk'}</span>
+                <div className="lg:col-span-7 bg-white/5 border-2 border-white/5 rounded-[4rem] p-12 md:p-16 relative overflow-hidden flex flex-col justify-between group shadow-inner">
+                   <TechnicalPattern />
+                   <div className="relative z-10 space-y-12">
+                      <div className="flex items-center space-x-6">
+                         <div className="w-16 h-16 bg-[#0c1a2d] rounded-2xl flex items-center justify-center text-signal-gold border border-white/10 shadow-2xl">
+                           <BarChart3 size={32} />
+                         </div>
+                         <div>
+                            <h3 className="text-2xl font-black font-serif uppercase text-white">Efficiency Variance Analysis</h3>
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30">Benchmark: Market_STND_2026</p>
+                         </div>
+                      </div>
+
+                      <div className="space-y-10">
+                         <div className="space-y-6">
+                            <div className="flex justify-between items-center text-xs font-black uppercase tracking-widest">
+                               <span className="text-slate-400">Current Structural CPM</span>
+                               <span className="text-white">${totals.cpm.toFixed(3)}</span>
+                            </div>
+                            <div className="h-4 bg-white/5 rounded-full overflow-hidden p-1 border border-white/5 shadow-inner">
+                               <div className={`h-full rounded-full transition-all duration-1000 ${totals.cpm > 2.1 ? 'bg-gradient-to-r from-red-500 to-red-400 shadow-[0_0_20px_rgba(239,68,68,0.4)]' : 'bg-gradient-to-r from-emerald-500 to-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]'}`} style={{ width: `${Math.min(100, (totals.cpm / 3.5) * 100)}%` }}></div>
                             </div>
                          </div>
 
-                         <div className="space-y-6 sm:space-y-8">
-                            <div className="flex items-center justify-between">
-                               <p className="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest">Market Efficiency Threshold</p>
-                               <p className="text-base sm:text-lg font-black text-white">$2.10 <span className="text-[10px] sm:text-xs text-slate-500">Benchmark</span></p>
+                         <div className="grid grid-cols-2 gap-10">
+                            <div className="space-y-3 p-8 bg-black/40 rounded-3xl border border-white/5">
+                               <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Gross Monthly Rev</p>
+                               <p className="text-3xl font-black text-white">${totals.actualGrossRevenue.toLocaleString()}</p>
                             </div>
-                            <div className="h-3 sm:h-4 bg-white/5 rounded-full overflow-hidden border border-white/5 p-0.5">
-                               <div className={`h-full rounded-full transition-all duration-1000 ${totals.cpm > 2.1 ? 'bg-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)]' : 'bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)]'}`} style={{ width: `${Math.min(100, (totals.cpm / 3.5) * 100)}%` }}></div>
+                            <div className="space-y-3 p-8 bg-black/40 rounded-3xl border border-white/5">
+                               <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Total Monthly Exp</p>
+                               <p className="text-3xl font-black text-white">${totals.totalMonthlyExpense.toLocaleString()}</p>
                             </div>
-                            <p className="text-[11px] sm:text-xs font-bold text-slate-500 leading-relaxed max-w-2xl italic uppercase tracking-tight">
-                               {totals.cpm > 2.1 
-                                 ? "Structural overhead exceeds market standards. Immediate cost containment recommended before authority activation." 
-                                 : "Entity maintains efficient structural overhead. Operational capacity expansion viable under current rate environments."}
-                            </p>
                          </div>
                       </div>
                    </div>
+                   
+                   <div className="mt-12 pt-8 border-t border-white/5 relative z-10 flex items-center space-x-4">
+                      <ShieldAlert size={16} className="text-signal-gold" />
+                      <p className="text-[11px] font-bold text-slate-500 leading-relaxed uppercase tracking-widest">
+                         {totals.cpm > 2.1 
+                           ? "OVERHEAD_CRITICAL: Corrective cost containment required to stabilize authority profile." 
+                           : "OVERHEAD_OPTIMAL: Entity shows structural resilience for market utilization scaling."}
+                      </p>
+                   </div>
+                </div>
 
-                   <section className="bg-authority-blue text-white p-8 sm:p-12 md:p-16 rounded-3xl md:rounded-[4rem] shadow-2xl relative overflow-hidden border-t-[6px] sm:border-t-8 border-signal-gold">
+                <div className="lg:col-span-5 flex flex-col space-y-10">
+                   <div className="bg-authority-blue p-12 rounded-[4rem] text-white shadow-2xl relative overflow-hidden flex-grow border-t-8 border-signal-gold">
                       <div className="absolute top-0 right-0 p-8 opacity-10"><Sparkles size={120}/></div>
-                      <div className="relative z-10 space-y-10 sm:space-y-12">
-                         <div className="space-y-2">
-                            <h3 className="text-xl sm:text-2xl font-black font-serif uppercase tracking-tight text-white leading-none">Neural Strategic Review</h3>
-                            <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold opacity-60">Thinking Terminal v4.2 Active</p>
+                      <div className="relative z-10 space-y-10">
+                         <div className="space-y-3">
+                            <h3 className="text-2xl font-black font-serif uppercase tracking-tight text-white leading-none">Neural Insights</h3>
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold opacity-60">Advisor Terminal v4.2 Active</p>
                          </div>
 
                          {isAnalyzing ? (
-                           <div className="py-12 sm:py-20 flex flex-col items-center justify-center space-y-6">
-                              <Loader2 className="animate-spin text-signal-gold" size={40} sm:size={48} />
-                              <p className="text-[10px] font-black uppercase tracking-[0.5em] animate-pulse">Analyzing Structural Integrity...</p>
+                           <div className="py-20 flex flex-col items-center justify-center space-y-6">
+                              <Loader2 className="animate-spin text-signal-gold" size={48} />
+                              <p className="text-[10px] font-black uppercase tracking-[0.5em] animate-pulse">Analyzing Solvency Vectors...</p>
                            </div>
                          ) : aiAnalysis ? (
-                           <div className="space-y-8 sm:space-y-10 animate-in fade-in">
-                              <div className="text-base sm:text-lg font-medium leading-relaxed prose prose-invert max-w-none border-l-4 border-signal-gold/30 pl-6 sm:pl-10">
-                                 {aiAnalysis.split('\n').map((line, i) => <p key={i} className="mb-4 sm:mb-6">{line}</p>)}
+                           <div className="space-y-8 animate-in fade-in">
+                              <div className="text-lg font-medium leading-relaxed prose prose-invert max-w-none border-l-4 border-signal-gold/30 pl-10 custom-scrollbar max-h-[300px] overflow-y-auto pr-4">
+                                 {aiAnalysis.split('\n').map((line, i) => <p key={i} className="mb-4">{line}</p>)}
                               </div>
-                              <button onClick={performAIAnalysis} className="inline-flex items-center text-[10px] font-black uppercase tracking-widest text-signal-gold hover:text-white transition-colors">
-                                 Re-Synthesize Diagnostic <ArrowRight className="ml-2" size={14}/>
+                              <button onClick={performAIAnalysis} className="inline-flex items-center text-[10px] font-black uppercase tracking-widest text-signal-gold hover:text-white transition-all hover:scale-105 active:scale-95">
+                                 Re-Synthesize Report <RefreshCw className="ml-2" size={14}/>
                               </button>
                            </div>
                          ) : (
-                           <div className="py-8 sm:py-12">
-                              <button onClick={performAIAnalysis} className="w-full bg-signal-gold text-authority-blue py-6 sm:py-8 rounded-2xl sm:rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs shadow-xl active:scale-95 transition-all flex items-center justify-center">
-                                 Synthesize Strategic Review <Sparkles className="ml-3" size={20}/>
+                           <div className="py-12">
+                              <button onClick={performAIAnalysis} className="w-full bg-signal-gold text-authority-blue py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[10px] shadow-2xl active:scale-95 transition-all flex items-center justify-center hover:bg-white">
+                                 SYNTHESIZE_STRATEGIC_REVIEW <Sparkles className="ml-3" size={20}/>
                               </button>
                            </div>
                          )}
                       </div>
-                   </section>
+                   </div>
+                   
+                   <div className="bg-[#0F172A] border border-white/5 p-10 rounded-[3.5rem] flex flex-col justify-center space-y-8 shadow-xl">
+                      <div className="flex justify-between items-center">
+                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Registry Sync</span>
+                         <span className="text-[9px] font-black text-emerald-500 uppercase tracking-[0.2em] flex items-center">
+                           <Globe size={10} className="mr-2" /> ONLINE
+                         </span>
+                      </div>
+                      <button onClick={handleSaveProfile} disabled={saveStatus !== 'idle'} className={`w-full py-6 rounded-3xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-4 transition-all active:scale-[0.98] ${saveStatus==='saved' ? 'bg-emerald-600 text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10'}`}>
+                         {saveStatus==='saving' ? <Loader2 size={18} className="animate-spin"/> : saveStatus==='saved' ? <CheckCircle2 size={18}/> : <Save size={18}/>}
+                         {saveStatus==='saved' ? 'SYCHRONIZED' : 'SAVE_TO_REGISTRY'}
+                      </button>
+                   </div>
                 </div>
+             </div>
 
-                {/* System Controls Column */}
-                <aside className="lg:col-span-4 space-y-6 sm:space-y-8">
-                   <div className="bg-[#0F172A] border border-white/10 p-8 sm:p-10 rounded-3xl space-y-8 shadow-xl">
-                      <h4 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-slate-500 flex items-center border-b border-white/5 pb-6">
-                        <Save size={16} className="mr-3 shrink-0" /> Registry Controls
-                      </h4>
-                      <div className="space-y-4">
-                         <button onClick={handleSaveProfile} disabled={saveStatus !== 'idle'} className={`w-full py-5 rounded-2xl font-black uppercase tracking-widest text-[9px] sm:text-[10px] flex items-center justify-center gap-3 transition-all active:scale-[0.98] ${saveStatus==='saved' ? 'bg-emerald-600 text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10'}`}>
-                            {saveStatus==='saving' ? <Loader2 size={16} className="animate-spin"/> : saveStatus==='saved' ? <CheckCircle2 size={16}/> : <Save size={16}/>}
-                            {saveStatus==='saved' ? 'Sync Complete' : 'Sync to Registry'}
-                         </button>
-                         <button onClick={exportCSV} className="w-full py-5 bg-white/5 border border-white/10 rounded-2xl font-black uppercase tracking-widest text-[9px] sm:text-[10px] text-slate-300 hover:bg-white/10 transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
-                            <FileDown size={16} className="shrink-0" /> Export Analysis CSV
-                         </button>
-                      </div>
-                   </div>
-
-                   <div className="bg-gradient-to-br from-signal-gold/10 to-transparent border border-signal-gold/20 p-8 sm:p-10 rounded-3xl space-y-6 shadow-2xl relative overflow-hidden">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-signal-gold text-authority-blue rounded-xl flex items-center justify-center shadow-lg shrink-0"><ShieldCheck size={24} sm:size={28}/></div>
-                      <h4 className="text-lg font-black text-white uppercase tracking-tight">Institutional Standard</h4>
-                      <p className="text-sm font-medium text-slate-400 leading-relaxed italic">"A carrier's solvency is determined by its stewardship of margins. Order precedes revenue."</p>
-                      <div className="pt-6 border-t border-white/5">
-                         <Link to="/reach-test" className="text-[10px] font-black uppercase tracking-widest text-signal-gold hover:underline flex items-center">Verify Structural Readiness <ChevronRight size={14} className="ml-1"/></Link>
-                      </div>
-                   </div>
-
-                   <button onClick={() => setActiveStep(0)} className="w-full py-6 text-slate-500 hover:text-white font-black uppercase tracking-widest text-[9px] sm:text-[10px] flex items-center justify-center transition-all opacity-60 hover:opacity-100">
-                      <RefreshCw size={14} className="mr-3 shrink-0" /> Reset Economic Engine
-                   </button>
-                </aside>
+             <div className="pt-20 text-center opacity-30 flex flex-col items-center gap-6">
+                <div className="flex items-center space-x-12">
+                   <ShieldCheck size={32} />
+                   <div className="h-px w-32 bg-white"></div>
+                   <Activity size={32} />
+                   <div className="h-px w-32 bg-white"></div>
+                   <Award size={32} />
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-[1em] text-white">Institutional Economic Guard System</p>
              </div>
           </div>
         )}
@@ -474,13 +541,14 @@ const TCOCalculatorPage: React.FC = () => {
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         @media print {
-          .fixed, button, aside, .pt-40, .pt-32 { display: none !important; }
-          main { padding: 0 !important; color: black !important; }
-          .bg-[#020617], .bg-[#0F172A] { background: white !important; }
-          .text-white, .text-slate-200, .text-slate-400 { color: black !important; }
-          .border-white\/5, .border-white\/10 { border-color: #eee !important; }
-          .legibility-container { max-width: 100% !important; padding: 0 !important; }
-          h1, h2, h3, .text-3xl, .text-4xl { color: #1e3a5f !important; }
+          .fixed, button, aside, .pt-48 { display: none !important; }
+          main { padding: 40px !important; color: black !important; }
+          .bg-[#020617], .bg-[#0F172A], .bg-[#0c1a2d] { background: white !important; }
+          .text-white, .text-slate-200, .text-slate-400, .text-slate-500 { color: black !important; }
+          .border-white\/5, .border-white\/10 { border-color: #eee !important; border-width: 1px !important; }
+          h2, h3, .text-4xl, .text-6xl { color: #1e3a5f !important; }
+          .shadow-2xl, .shadow-inner, .shadow-xl { shadow: none !important; }
+          .bg-white\/5 { background: #f9f9f9 !important; }
         }
       `}</style>
     </div>

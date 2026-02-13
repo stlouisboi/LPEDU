@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { 
@@ -19,7 +18,12 @@ import {
   FileText,
   ShieldAlert,
   Activity,
-  Anchor
+  Anchor,
+  Zap,
+  Globe,
+  Database,
+  // Added ArrowRight to imports to fix the error on line 216
+  ArrowRight
 } from 'lucide-react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, isFirebaseConfigured } from './firebase';
@@ -90,14 +94,59 @@ export const useApp = () => {
   return context;
 };
 
+const SystemStatusBar = () => {
+  const [activeSignal, setActiveSignal] = useState(0);
+  const signals = [
+    { label: "AUTHORITY", value: "ACTIVE", icon: <ShieldCheck size={10} /> },
+    { label: "REGISTRY", value: "SYNCED", icon: <Database size={10} /> },
+    { label: "INTEGRITY", value: "100%", icon: <Zap size={10} /> },
+    { label: "UPLINK", value: "STABLE", icon: <Globe size={10} /> }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSignal((prev) => (prev + 1) % signals.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="bg-primary-dark/95 border-b border-white/5 h-8 flex items-center px-6 overflow-hidden">
+      <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-2 text-[9px] font-black text-signal-gold uppercase tracking-[0.2em]">
+          <Activity size={10} className="animate-pulse" />
+          <span>SYSTEM_STATUS_MONITOR</span>
+        </div>
+        <div className="h-3 w-px bg-white/10"></div>
+        <div className="flex items-center space-x-8">
+          {signals.map((sig, i) => (
+            <div key={i} className={`flex items-center space-x-2 transition-opacity duration-1000 ${activeSignal === i ? 'opacity-100' : 'opacity-20 hidden sm:flex'}`}>
+              <span className="text-white/40">{sig.icon}</span>
+              <span className="text-[8px] font-bold text-white/60 uppercase tracking-widest">{sig.label}:</span>
+              <span className="text-[8px] font-black text-emerald-500 uppercase tracking-widest">{sig.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="ml-auto hidden lg:flex items-center space-x-4">
+         <span className="text-[8px] font-black text-white/20 uppercase tracking-[0.3em]">CFR_SYNC: 2026_V4.2</span>
+      </div>
+    </div>
+  );
+};
+
 const Header = () => {
   const { theme, toggleTheme } = useApp();
   const { currentUser } = useEnhancedAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     setIsMenuOpen(false);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
   const hideHeaderRoutes = ['/admin', '/portal', '/enrollment-pending'];
@@ -112,105 +161,115 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-[100] bg-authority-blue border-b border-white/10 transition-all duration-500 text-signal-gold" role="banner">
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center h-20 sm:h-24 md:h-32">
-          
-          <Link to="/" className="flex items-center shrink-0 transition-opacity hover:opacity-80 active:scale-95 duration-300" aria-label="LaunchPath Home">
-            <Logo light={true} className="h-8 sm:h-10 md:h-14 w-auto" />
-          </Link>
+    <>
+      <SystemStatusBar />
+      <header 
+        className={`sticky top-0 z-[100] transition-all duration-500 ${
+          isScrolled 
+            ? 'bg-authority-blue/90 backdrop-blur-xl border-b border-white/10 h-20 sm:h-24' 
+            : 'bg-authority-blue border-b border-white/5 h-20 sm:h-28 md:h-32'
+        }`} 
+        role="banner"
+      >
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 h-full">
+          <div className="flex justify-between items-center h-full">
+            
+            <Link to="/" className="flex items-center shrink-0 transition-all hover:scale-105 active:scale-95 duration-300" aria-label="LaunchPath Home">
+              <Logo light={true} className={`${isScrolled ? 'h-7 sm:h-9' : 'h-8 sm:h-10 md:h-14'} w-auto transition-all`} />
+            </Link>
 
-          <nav className="hidden xl:flex items-center" aria-label="Main Navigation">
-            <div className="flex items-center space-x-1">
+            <nav className="hidden xl:flex items-center" aria-label="Main Navigation">
+              <div className="flex items-center space-x-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] transition-all relative group filter ${
+                      location.pathname === item.path 
+                      ? 'text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]' 
+                      : 'text-signal-gold/70 hover:text-white'
+                    }`}
+                  >
+                    {item.name}
+                    <span className={`absolute bottom-0 left-4 right-4 h-[3px] bg-signal-gold transition-all duration-300 origin-center ${
+                      location.pathname === item.path ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
+                    }`}></span>
+                  </Link>
+                ))}
+              </div>
+              
+              <div className="w-[1.5px] h-8 bg-white/10 mx-6" />
+
+              <div className="flex items-center space-x-4">
+                {currentUser ? (
+                  <Link to="/operator-portal" className="bg-white/5 border-2 border-white/20 text-white px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center hover:bg-white hover:text-authority-blue transition-all active:scale-95">
+                    <LayoutDashboard size={12} className="mr-2" />
+                    Portal
+                  </Link>
+                ) : (
+                  <Link to="/portal" className="border-2 border-signal-gold text-signal-gold px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95">
+                    <Lock size={12} className="mr-2" />
+                    Enter
+                  </Link>
+                )}
+
+                <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-all active:scale-95 shadow-xl border-b-4 border-slate-900 group">
+                  Admission <ArrowRight size={12} className="inline ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+
+                <button onClick={toggleTheme} className="p-3 rounded-2xl bg-white/5 text-signal-gold hover:scale-110 transition-all border border-white/10" aria-label="Toggle Theme">
+                  {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+                </button>
+              </div>
+            </nav>
+
+            <div className="xl:hidden flex items-center space-x-2 sm:space-x-4">
+              <button onClick={toggleTheme} className="p-3 rounded-xl bg-white/10 text-signal-gold border border-white/10" aria-label="Toggle Theme">
+                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              </button>
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)} 
+                className="p-3 bg-signal-gold text-authority-blue rounded-xl shadow-lg transition-transform active:scale-90"
+                aria-expanded={isMenuOpen}
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {isMenuOpen && (
+          <nav className="fixed inset-0 top-20 sm:top-24 bg-authority-blue z-[99] xl:hidden flex flex-col animate-in fade-in slide-in-from-top-4 duration-300 overflow-y-auto" aria-label="Mobile Navigation">
+            <div className="flex flex-col p-6 sm:p-10 space-y-3">
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${location.pathname === '/' ? 'bg-white text-authority-blue shadow-xl' : 'text-white/40'}`}>
+                Home
+              </Link>
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-4 py-3 text-[11px] font-black uppercase tracking-[0.3em] transition-all relative group filter ${
-                    location.pathname === item.path 
-                    ? 'text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]' 
-                    : 'text-signal-gold/70 hover:text-white'
+                  className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${
+                    location.pathname === item.path ? 'bg-white text-authority-blue shadow-xl' : 'text-signal-gold'
                   }`}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                  <span className={`absolute bottom-0 left-4 right-4 h-[3px] bg-signal-gold transition-all duration-300 origin-center ${
-                    location.pathname === item.path ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
-                  }`}></span>
                 </Link>
               ))}
-            </div>
-            
-            <div className="w-[1.5px] h-8 bg-white/10 mx-6" />
-
-            <div className="flex items-center space-x-4">
-              {currentUser ? (
-                <Link to="/operator-portal" className="bg-white/5 border-2 border-white/20 text-white px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] flex items-center hover:bg-white hover:text-authority-blue transition-all active:scale-95">
-                  <LayoutDashboard size={12} className="mr-2" />
-                  My Portal
+              
+              <div className="pt-10 space-y-4">
+                <Link to={currentUser ? "/operator-portal" : "/portal"} onClick={() => setIsMenuOpen(false)} className="block w-full text-center border-2 border-signal-gold text-signal-gold py-5 rounded-[2rem] text-lg font-black uppercase tracking-widest">
+                  {currentUser ? 'My Portal' : 'Portal Access'}
                 </Link>
-              ) : (
-                <Link to="/portal" className="border-2 border-signal-gold text-signal-gold px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] flex items-center hover:bg-signal-gold hover:text-authority-blue transition-all active:scale-95">
-                  <Lock size={12} className="mr-2" />
-                  Portal
+                <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="block w-full text-center bg-signal-gold text-authority-blue py-6 rounded-[2rem] text-lg font-black uppercase tracking-widest shadow-2xl border-b-8 border-slate-950">
+                  Admission Protocol
                 </Link>
-              )}
-
-              <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-2xl text-[11px] font-black uppercase tracking-[0.25em] hover:bg-white transition-all active:scale-95 shadow-xl border-b-4 border-slate-900">
-                Admission
-              </Link>
-
-              <button onClick={toggleTheme} className="p-3 rounded-2xl bg-white/5 text-signal-gold hover:scale-110 transition-all border border-white/10" aria-label="Toggle Theme">
-                {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-              </button>
+              </div>
             </div>
           </nav>
-
-          <div className="xl:hidden flex items-center space-x-2 sm:space-x-4">
-            <button onClick={toggleTheme} className="p-3 rounded-xl bg-white/10 text-signal-gold border border-white/10" aria-label="Toggle Theme">
-              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="p-3 bg-signal-gold text-authority-blue rounded-xl shadow-lg transition-transform active:scale-90"
-              aria-expanded={isMenuOpen}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {isMenuOpen && (
-        <nav className="fixed inset-0 top-20 sm:top-24 bg-authority-blue z-[99] xl:hidden flex flex-col animate-in fade-in slide-in-from-top-4 duration-300 overflow-y-auto" aria-label="Mobile Navigation">
-          <div className="flex flex-col p-6 sm:p-10 space-y-3">
-            <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${location.pathname === '/' ? 'bg-white text-authority-blue shadow-xl' : 'text-white/40'}`}>
-              Home
-            </Link>
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${
-                  location.pathname === item.path ? 'bg-white text-authority-blue shadow-xl' : 'text-signal-gold'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            
-            <div className="pt-10 space-y-4">
-              <Link to={currentUser ? "/operator-portal" : "/portal"} onClick={() => setIsMenuOpen(false)} className="block w-full text-center border-2 border-signal-gold text-signal-gold py-5 rounded-[2rem] text-lg font-black uppercase tracking-widest">
-                {currentUser ? 'My Portal' : 'Portal Access'}
-              </Link>
-              <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="block w-full text-center bg-signal-gold text-authority-blue py-6 rounded-[2rem] text-lg font-black uppercase tracking-widest shadow-2xl border-b-8 border-slate-950">
-                Admission Protocol
-              </Link>
-            </div>
-          </div>
-        </nav>
-      )}
-    </header>
+        )}
+      </header>
+    </>
   );
 };
 
@@ -337,7 +396,6 @@ export default function App() {
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
   const [blogs, setBlogs] = useState<BlogPost[]>(INITIAL_BLOGS);
   
-  // Safety Bypass Logic: Trigger immediate render if in preview environment
   const isPreview = typeof window !== 'undefined' && (
     window.location.hostname.includes("googlevideo.com") || 
     window.location.hostname.includes("usercontent.goog") ||
@@ -368,7 +426,6 @@ export default function App() {
     }
 
     if (!isFirebaseConfigured || !db) {
-      console.log("LaunchPath: Using local system defaults (Preview Mode)");
       setAppLoading(false);
       return;
     }
@@ -379,12 +436,10 @@ export default function App() {
         if (snap.exists()) setSettings(snap.data() as SiteSettings);
         setAppLoading(false);
       }, (err) => {
-        console.warn("LaunchPath: Cloud link restricted. Stability maintained.");
         setAppLoading(false);
       });
       return () => unsub();
     } catch (e) {
-      console.warn("LaunchPath: System bypass active.");
       setAppLoading(false);
     }
   }, [isPreview]);
@@ -469,12 +524,9 @@ export default function App() {
   );
 }
 
-/**
- * Helper component to ensure AIChatWidget doesn't appear on the Homepage
- */
 const ChatWidgetWrapper = () => {
   const location = useLocation();
-  const hideOnPaths = ['/', '/admin', '/portal', '/operator-portal'];
+  const hideOnPaths = ['/', '/admin', '/portal', '/operator-portal', '/enrollment-pending'];
   const shouldShow = !hideOnPaths.some(path => path === location.pathname || (path !== '/' && location.pathname.startsWith(path)));
   
   if (!shouldShow) return null;
