@@ -469,7 +469,7 @@ const HomePage: React.FC = () => {
                       <Activity size={16} className="text-emerald-500 animate-pulse" />
                       <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">Encryption Active</p>
                     </div>
-                    <p className="text-xs text-white/30 uppercase font-bold tracking-widest leading-relaxed">Systematic verification before operational dispatch required.</p>
+                    <p className="text-xs text-white/30 uppercase font-bold tracking-widest leading-relaxed">SystemATIC verification before operational dispatch required.</p>
                   </div>
                </div>
             </div>
@@ -723,7 +723,7 @@ const HomePage: React.FC = () => {
           <div className="mt-40 text-center space-y-12">
             <Link 
               to="/reach-test" 
-              className="inline-flex items-center space-x-10 bg-authority-blue text-white px-20 py-10 rounded-[3.5rem] font-black uppercase tracking-[0.5em] text-xs md:text-sm shadow-[0_50px_100px_-20px_rgba(30,58,95,0.4)] hover:bg-steel-blue hover:scale-105 transition-all active:scale-95 group border-b-[16px] border-slate-950"
+              className="inline-flex items-center space-x-10 bg-authority-blue text-white px-20 py-10 rounded-[3.5rem] font-black uppercase tracking-[0.5em] text-xs md:text-sm shadow-[0_50px_100px_-20px_rgba(30,58,95,0.4)] hover:bg-steel-blue hover:scale-105 transition-all active:scale-95 group border-b-4 border-slate-950"
             >
               <span>INITIATE ADMISSION DIAGNOSTIC</span>
               <ArrowRight size={32} className="group-hover:translate-x-3 transition-transform" />
@@ -736,6 +736,33 @@ const HomePage: React.FC = () => {
                  <div className="h-px w-32 bg-slate-900 dark:bg-white"></div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* INSERTION: Common Questions Before Proceeding */}
+      <section className="py-32 px-6 bg-slate-50 dark:bg-surface-dark border-t border-slate-100 dark:border-white/5 relative">
+        <TechnicalPattern />
+        <div className="max-w-4xl mx-auto space-y-16 relative z-10">
+          <div className="text-center space-y-6">
+            <p className="text-[11px] font-black uppercase tracking-[1em] text-slate-400">ORIENTATION_Q_AND_A</p>
+            <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">Common Questions Before Proceeding</h2>
+            <div className="h-1 w-24 bg-signal-gold mx-auto rounded-full"></div>
+          </div>
+          <div className="grid grid-cols-1 gap-12">
+            {[
+              { q: "Is this a \"make money trucking\" course?", a: "LaunchPath is compliance-first education focused on FMCSA regulations, audit readiness, and authority protection. It does not teach revenue tactics, dispatching, or freight brokerage." },
+              { q: "Who is LaunchPath for?", a: "LaunchPath is for new motor carriers operating box trucks, cargo vans, or other non-CDL commercial vehicles under their own authority." },
+              { q: "Is this only for brand-new carriers?", a: "LaunchPath is most effective within the first 90 days of operation, but active carriers use it to identify and correct existing compliance exposure before audits or insurance reviews." },
+              { q: "Does LaunchPath guarantee audit approval?", a: "No system guarantees outcomes. LaunchPath installs the controls and documentation investigators evaluate when determining compliance." },
+              { q: "How much time does this require?", a: "LaunchPath requires disciplined weekly implementation during the first 90 days of operation." },
+              { q: "What if I'm not ready for this level of structure?", a: "Then LaunchPath is not a fit. The system assumes disciplined documentation and operational control from day one." }
+            ].map((item, i) => (
+              <div key={i} className="space-y-4 group">
+                <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight font-serif group-hover:text-signal-gold transition-colors">Q{i+1}: {item.q}</h3>
+                <p className="text-lg text-slate-500 dark:text-slate-400 font-bold leading-relaxed uppercase tracking-tighter">{item.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

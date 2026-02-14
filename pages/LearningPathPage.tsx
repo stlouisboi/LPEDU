@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -263,6 +264,31 @@ const LearningPathPage = () => {
             <p className="text-xl font-bold text-slate-700 dark:text-slate-300 italic">
               "Infrastructure that protects your authority — installed, verified, operational."
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* INSERTION: Program Details & Enrollment FAQ */}
+      <section className="py-32 px-6 bg-white dark:bg-primary-dark border-t border-slate-100 dark:border-white/5 relative">
+        <div className="max-w-4xl mx-auto space-y-16">
+          <div className="text-center space-y-6">
+            <p className="text-[11px] font-black uppercase tracking-[1em] text-slate-400">ENROLLMENT_PARAMETERS</p>
+            <h2 className="text-3xl md:text-5xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight leading-none">Program Details & Enrollment</h2>
+            <div className="h-1 w-24 bg-signal-gold mx-auto rounded-full"></div>
+          </div>
+          <div className="grid grid-cols-1 gap-12">
+            {[
+              { q: "What does enrollment include?", a: "Four structured training phases, compliance templates, pre-audit assessment tools, and the 90-Day Survival System implementation framework. Ground 0 outlines requirements; Phases 1–4 guide execution." },
+              { q: "How is this different from free FMCSA resources?", a: "FMCSA publishes regulations. LaunchPath teaches structured implementation based on how audits are conducted for specific operation types." },
+              { q: "Is a CDL required?", a: "No. This curriculum addresses box truck, cargo van, and non-CDL carrier operations." },
+              { q: "When should I enroll?", a: "During the FMCSA application waiting period or within the first 30 days after authority activation." },
+              { q: "Is coaching or live support included?", a: "No. The program is self-directed and complete. Optional consulting is available separately." }
+            ].map((item, i) => (
+              <div key={i} className="space-y-4 group">
+                <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase tracking-tight font-serif group-hover:text-signal-gold transition-colors">Q{i+1}: {item.q}</h3>
+                <p className="text-lg text-slate-500 dark:text-slate-400 font-bold leading-relaxed uppercase tracking-tighter">{item.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
