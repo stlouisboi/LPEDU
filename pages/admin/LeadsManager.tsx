@@ -301,7 +301,7 @@ const LeadsManager = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="border-b border-border-light bg-slate-50/50">
+              <tr className="border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/50">
                 <th className="px-8 py-5 w-12">
                    <button 
                      onClick={toggleAllOnPage}
@@ -314,10 +314,10 @@ const LeadsManager = () => {
                      )}
                    </button>
                 </th>
-                <th className="px-4 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Carrier Lead</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Time Captured</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Inbound Channel</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted text-right">Actions</th>
+                <th className="px-4 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">Carrier Lead</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">Time Captured</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">Inbound Channel</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border-light">
