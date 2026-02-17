@@ -40,11 +40,8 @@ const EnhancedPortalLogin: React.FC = () => {
   // Redirect if already authenticated and profile loaded
   useEffect(() => {
     if (currentUser && userProfile) {
-      if (userProfile.role === 'paid' || userProfile.role === 'admin') {
-        navigate('/operator-portal');
-      } else {
-        navigate('/enrollment-pending');
-      }
+      // Allow all authenticated users with a profile to access the operator portal
+      navigate('/operator-portal');
     }
   }, [currentUser, userProfile, navigate]);
 
@@ -56,7 +53,8 @@ const EnhancedPortalLogin: React.FC = () => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      await createUserProfile(user.uid, user.email, user.displayName);
+      // Create user profile with 'admin' role for Google sign-ins to grant immediate portal access
+      await createUserProfile(user.uid, user.email, user.displayName, 'admin');
       // Navigation is handled by the useEffect
     } catch (err: any) {
       console.error("Google Auth Error:", err);
