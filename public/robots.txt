@@ -1,0 +1,35 @@
+# LaunchPath EDU - Search Engine Crawler Instructions
+# This file tells search engines which pages to crawl and which to skip
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /.git
+Disallow: /node_modules
+Disallow: /build
+Disallow: /dist
+Disallow: /*.json$
+Disallow: /*.log$
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://launchpathedu.com/sitemap.xml
+
+# Crawl delay (in seconds) - allows 1 request per second
+Crawl-delay: 1
+Request-rate: 1/1s
