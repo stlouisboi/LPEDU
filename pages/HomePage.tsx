@@ -552,16 +552,16 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 8. THE TOOLS: MATH OF SURVIVAL / TCO CALCULATOR */}
-      <section className="py-32 md:py-64 px-6 md:px-20 bg-signal-gold text-white relative overflow-hidden">
+      <section className="py-24 md:py-64 px-6 md:px-20 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/10 to-transparent"></div>
         <TechnicalPattern />
-        <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-20 lg:gap-32 items-center relative z-10">
+        <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-32 items-start lg:items-center relative z-10">
           <div className="w-full lg:w-7/12 space-y-12">
             <div className="inline-flex items-center space-x-4 bg-[#002244]/10 border border-[#002244]/10 px-6 py-2.5 rounded-full">
               <Target size={16} className="text-[#002244]" />
               <p className="text-[10px] font-black uppercase tracking-[0.5em] text-[#002244]">FISCAL_STABILIZATION_TERMINAL</p>
             </div>
-            <h2 className="text-6xl md:text-[9rem] font-black font-serif uppercase tracking-tighter leading-[0.8] text-[#002244]">THE MATH <br/>OF <span className="italic text-white underline decoration-white/20 underline-offset-[20px]">SURVIVAL.</span></h2>
+            <h2 className="text-4xl sm:text-5xl md:text-[9rem] font-black font-serif uppercase tracking-tighter leading-[0.8] text-[#002244]">THE MATH <br/>OF <span className="italic text-white underline decoration-white/20 underline-offset-[20px]">SURVIVAL.</span></h2>
             <p className="text-2xl md:text-4xl font-black uppercase tracking-tight leading-tight max-w-2xl text-[#002244]/80">
                Revenue without margin analysis is busyness. Verify solvency before you commit.
             </p>
@@ -594,9 +594,9 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-5/12 flex justify-center lg:justify-end">
              {/* High Fidelity Mockup with Advanced Animation - Refined for visibility */}
-             <div className="bg-[#0c1a2d] border-[12px] border-white/5 rounded-[5rem] p-12 md:p-16 text-white shadow-2xl relative overflow-hidden group">
+             <div className="bg-[#0c1a2d] border-[12px] border-white/5 rounded-[5rem] p-8 md:p-16 text-white shadow-2xl relative overflow-hidden group w-full max-w-sm lg:max-w-none">
                 <div className="absolute top-0 right-0 p-12 opacity-5 transition-transform duration-1000 group-hover:scale-125 group-hover:rotate-6"><Calculator size={300} /></div>
                 
                 {/* Simulated Data Feed - Subtly muted to avoid clutter */}
