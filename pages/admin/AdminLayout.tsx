@@ -125,7 +125,7 @@ const AdminLayout = () => {
       </aside>
 
       <div className="flex-grow flex flex-col min-w-0 h-screen overflow-hidden">
-        <header className="h-16 bg-white dark:bg-surface-dark border-b border-border-light dark:border-border-dark flex items-center justify-between px-8 shrink-0">
+        <header className="sticky top-0 z-40 h-16 bg-white dark:bg-surface-dark border-b border-border-light dark:border-border-dark flex items-center justify-between px-8 shrink-0 shadow-sm">
           <div className="flex items-center space-x-4">
             <button className="lg:hidden p-2 hover:bg-slate-50 dark:hover:bg-gray-800 rounded-lg" onClick={() => setSidebarOpen(true)}>
               <Menu size={20} />
