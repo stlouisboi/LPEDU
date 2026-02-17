@@ -27,7 +27,7 @@ import VideoLab from './admin/VideoLab';
 const AdminDashboard = () => {
   const { settings, updateSettings, blogs } = useApp();
   const { currentUser } = useAuth();
-  const [activeTab, setActiveTab] = useState<'settings' | 'blogs' | 'videos' | 'modules'>('settings');
+  const [activeTab, setActiveTab] = useState<'settings' | 'blogs' | 'ground0' | 'videos' | 'modules'>('settings');
 
   if (!currentUser) {
     return (
@@ -45,6 +45,7 @@ const AdminDashboard = () => {
   const tabs = [
     { id: 'settings', label: 'Site Settings', icon: <Settings size={18} /> },
     { id: 'blogs', label: 'Blog Management', icon: <PenTool size={18} /> },
+    { id: 'ground0', label: 'Ground 0 Manager', icon: <BookOpen size={18} /> },
     { id: 'videos', label: 'Video Library', icon: <Video size={18} /> },
     { id: 'modules', label: 'Course Modules', icon: <BookOpen size={18} /> },
   ];
@@ -103,6 +104,40 @@ const AdminDashboard = () => {
 
           {activeTab === 'blogs' && (
             <BlogList />
+          )}
+
+          {activeTab === 'ground0' && (
+            <div className="bg-white dark:bg-surface-dark p-10 rounded-[3.5rem] border border-border-light dark:border-border-dark shadow-sm">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="text-3xl font-bold font-serif mb-2">Ground 0 Curriculum Manager</h3>
+                  <p className="text-text-muted font-medium">Manage the 6-module Readiness Briefing system that filters new carrier applicants.</p>
+                </div>
+                <Link to="/admin/ground0" className="bg-authority-blue text-white px-6 py-3 rounded-2xl font-bold text-sm hover:bg-blue-700 transition-all">
+                  Open Ground 0 Editor
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { num: '0.1', title: 'Welcome', desc: 'Define LaunchPath mission and eligibility' },
+                  { num: '0.2', title: 'Four Pillars', desc: 'Authority, Insurance, Compliance, Cash-Flow' },
+                  { num: '0.3', title: 'Lane Selection', desc: 'Box Truck vs. Semi-Truck analysis' },
+                  { num: '0.4', title: 'Personal Readiness', desc: 'Capital and time reserve evaluation' },
+                  { num: '0.5', title: 'Risk Tolerance', desc: 'Hard lines and stop-loss parameters' },
+                  { num: '0.6', title: 'The Decision', desc: 'GO / WAIT / NO-GO outcome logic' },
+                ].map((module, idx) => (
+                  <div key={idx} className="p-6 bg-slate-50 dark:bg-gray-800 rounded-3xl border border-border-light hover:border-authority-blue transition-colors cursor-pointer group">
+                    <p className="text-[10px] font-black text-signal-gold uppercase tracking-widest mb-2">Module {module.num}</p>
+                    <h4 className="font-bold text-lg mb-2">{module.title}</h4>
+                    <p className="text-sm text-text-muted mb-4">{module.desc}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] font-bold text-green-600 uppercase">Ready to Edit</span>
+                      <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
 
           {activeTab === 'videos' && (
