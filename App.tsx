@@ -61,6 +61,8 @@ import TCOPreviewPage from './pages/TCOPreviewPage';
 import OperatorPortal from './pages/OperatorPortal';
 import ExposureMatrixPage from './pages/ExposureMatrixPage';
 import SudokuPage from './pages/SudokuPage';
+import Ground0BriefingPage from './pages/Ground0BriefingPage';
+import Ground0ModulePage from './pages/Ground0ModulePage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -472,6 +474,8 @@ export default function App() {
                 <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
                 <Route path="/readiness" element={<ReadinessPage />} />
                 <Route path="/reach-test" element={<ReachTestPage />} />
+                <Route path="/ground-0" element={<Ground0BriefingPage />} />
+                <Route path="/ground-0/module" element={<Ground0ModulePage />} />
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/support" element={<SupportPage />} />
