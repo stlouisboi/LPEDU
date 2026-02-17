@@ -103,8 +103,8 @@ const Ground0List = () => {
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-black uppercase">Ground 0 Lessons</h1>
-          <p className="text-slate-400 mt-2">Manage the Ground 0 institutional decision engine</p>
+          <h1 className="text-3xl font-black uppercase text-white dark:text-white">Ground 0 Lessons</h1>
+          <p className="text-slate-300 dark:text-slate-300 mt-2">Manage the Ground 0 institutional decision engine</p>
         </div>
         <Link
           to="/admin/ground0/new"
@@ -120,7 +120,7 @@ const Ground0List = () => {
         <AlertCircle size={24} className="text-signal-gold flex-shrink-0 mt-1" />
         <div>
           <h3 className="font-black text-signal-gold uppercase mb-2">Ground 0 Overview</h3>
-          <p className="text-slate-300 text-sm">
+          <p className="text-slate-100 dark:text-slate-100 text-sm">
             Ground 0 is a 90-minute institutional decision engine that determines whether launching a motor carrier authority is sound. All 6 lessons (0.1–0.6) are required for the complete module experience.
           </p>
         </div>
@@ -128,7 +128,7 @@ const Ground0List = () => {
 
       {/* FILTERS */}
       <div className="flex items-center space-x-3">
-        <span className="text-sm font-bold text-slate-400 uppercase tracking-wider">Filter:</span>
+        <span className="text-sm font-bold text-slate-300 dark:text-slate-300 uppercase tracking-wider">Filter:</span>
         {(['all', 'published', 'draft'] as const).map(status => (
           <button
             key={status}
@@ -149,14 +149,14 @@ const Ground0List = () => {
         <table className="w-full">
           <thead className="bg-white/5 border-b border-white/10">
             <tr>
-              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-400">
+              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-200 dark:text-slate-200">
                 <input type="checkbox" className="w-4 h-4" />
               </th>
-              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-400">Lesson</th>
-              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-400">Description</th>
-              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-400">Time</th>
-              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-400">Status</th>
-              <th className="px-6 py-4 text-right text-xs font-black uppercase tracking-wider text-slate-400">Actions</th>
+              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-200 dark:text-slate-200">Lesson</th>
+              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-200 dark:text-slate-200">Description</th>
+              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-200 dark:text-slate-200">Time</th>
+              <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-200 dark:text-slate-200">Status</th>
+              <th className="px-6 py-4 text-right text-xs font-black uppercase tracking-wider text-slate-200 dark:text-slate-200">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
@@ -183,7 +183,7 @@ const Ground0List = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <p className="text-sm text-slate-400">{lesson.description}</p>
+                  <p className="text-sm text-slate-300 dark:text-slate-300">{lesson.description}</p>
                 </td>
                 <td className="px-6 py-4">
                   <p className="text-sm font-bold">{lesson.estimatedTime}</p>
@@ -241,7 +241,7 @@ const Ground0List = () => {
       {/* EMPTY STATE */}
       {filteredLessons.length === 0 && (
         <div className="text-center py-12 bg-white/5 border border-white/10 rounded-2xl">
-          <p className="text-slate-400 mb-4">No lessons found</p>
+          <p className="text-slate-300 dark:text-slate-300 mb-4">No lessons found</p>
           <Link
             to="/admin/ground0/new"
             className="inline-flex items-center space-x-2 px-6 py-2 bg-signal-gold text-[#002244] rounded-lg hover:bg-white transition-all font-bold"

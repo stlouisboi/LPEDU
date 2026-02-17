@@ -66,8 +66,8 @@ const Ground0Editor = () => {
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-black uppercase">Ground 0 Lesson Editor</h1>
-          <p className="text-slate-400 mt-2">
+          <h1 className="text-3xl font-black uppercase text-white dark:text-white">Ground 0 Lesson Editor</h1>
+          <p className="text-slate-300 dark:text-slate-300 mt-2">
             {lesson.id === 'new' ? 'Create a new lesson' : `Editing Lesson ${lesson.number}`}
           </p>
         </div>
@@ -103,11 +103,11 @@ const Ground0Editor = () => {
         <div className="lg:col-span-2 space-y-6">
           {/* BASIC INFO */}
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
-            <h2 className="font-black uppercase">Lesson Information</h2>
+            <h2 className="font-black uppercase text-white dark:text-white">Lesson Information</h2>
             
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-bold mb-2">Lesson Number</label>
+                <label className="block text-sm font-bold mb-2 text-slate-200 dark:text-slate-200">Lesson Number</label>
                 <input
                   type="text"
                   value={lesson.number}
@@ -117,7 +117,7 @@ const Ground0Editor = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold mb-2">Estimated Time</label>
+                <label className="block text-sm font-bold mb-2 text-slate-200 dark:text-slate-200">Estimated Time</label>
                 <input
                   type="text"
                   value={lesson.estimatedTime}
@@ -129,7 +129,7 @@ const Ground0Editor = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2">Lesson Title</label>
+              <label className="block text-sm font-bold mb-2 text-slate-200 dark:text-slate-200">Lesson Title</label>
               <input
                 type="text"
                 value={lesson.title}
@@ -140,7 +140,7 @@ const Ground0Editor = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2">Description</label>
+              <label className="block text-sm font-bold mb-2 text-slate-200 dark:text-slate-200">Description</label>
               <textarea
                 value={lesson.description}
                 onChange={(e) => setLesson({ ...lesson, description: e.target.value })}
@@ -153,8 +153,8 @@ const Ground0Editor = () => {
 
           {/* CONTENT EDITOR */}
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
-            <h2 className="font-black uppercase">Lesson Content</h2>
-            <p className="text-xs text-slate-400">
+            <h2 className="font-black uppercase text-white dark:text-white">Lesson Content</h2>
+            <p className="text-xs text-slate-300 dark:text-slate-300">
               Use HTML or plain text. You can include headings, paragraphs, lists, and forms.
             </p>
             
@@ -169,7 +169,7 @@ const Ground0Editor = () => {
 
           {/* PUBLISHING */}
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
-            <h2 className="font-black uppercase">Publishing</h2>
+            <h2 className="font-black uppercase text-white dark:text-white">Publishing</h2>
             
             <label className="flex items-center space-x-3 cursor-pointer">
               <input
@@ -178,10 +178,10 @@ const Ground0Editor = () => {
                 onChange={(e) => setLesson({ ...lesson, isPublished: e.target.checked })}
                 className="w-5 h-5"
               />
-              <span className="font-bold">Publish this lesson</span>
+              <span className="font-bold text-slate-200 dark:text-slate-200">Publish this lesson</span>
             </label>
             
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-300 dark:text-slate-300">
               {lesson.isPublished 
                 ? 'This lesson is visible to users in the Ground 0 module.' 
                 : 'This lesson is hidden. Publish it to make it visible.'}
@@ -193,7 +193,7 @@ const Ground0Editor = () => {
         <div className="space-y-6">
           {/* QUICK ACTIONS */}
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
-            <h3 className="font-black uppercase">Quick Actions</h3>
+            <h3 className="font-black uppercase text-white dark:text-white">Quick Actions</h3>
             
             <button className="w-full flex items-center space-x-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-signal-gold/50 transition-all">
               <Plus size={18} />
@@ -213,21 +213,21 @@ const Ground0Editor = () => {
 
           {/* LESSON TEMPLATES */}
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-4">
-            <h3 className="font-black uppercase">Templates</h3>
+            <h3 className="font-black uppercase text-white dark:text-white">Templates</h3>
             
             <button className="w-full text-left px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-signal-gold/50 transition-all text-sm">
-              <p className="font-bold">Pillar Overview</p>
-              <p className="text-xs text-slate-400">Standard pillar explanation template</p>
+              <p className="font-bold text-slate-200 dark:text-slate-200">Pillar Overview</p>
+              <p className="text-xs text-slate-400 dark:text-slate-400">Standard pillar explanation template</p>
             </button>
             
             <button className="w-full text-left px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-signal-gold/50 transition-all text-sm">
-              <p className="font-bold">Checklist</p>
-              <p className="text-xs text-slate-400">Interactive readiness checklist</p>
+              <p className="font-bold text-slate-200 dark:text-slate-200">Checklist</p>
+              <p className="text-xs text-slate-400 dark:text-slate-400">Interactive readiness checklist</p>
             </button>
             
             <button className="w-full text-left px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-signal-gold/50 transition-all text-sm">
-              <p className="font-bold">Comparison Table</p>
-              <p className="text-xs text-slate-400">Side-by-side comparison layout</p>
+              <p className="font-bold text-slate-200 dark:text-slate-200">Comparison Table</p>
+              <p className="text-xs text-slate-400 dark:text-slate-400">Side-by-side comparison layout</p>
             </button>
           </div>
 
@@ -235,7 +235,7 @@ const Ground0Editor = () => {
           <div className="bg-signal-gold/10 border border-signal-gold/30 p-6 rounded-2xl space-y-4">
             <h3 className="font-black uppercase text-signal-gold">Need Help?</h3>
             
-            <p className="text-sm text-slate-300">
+            <p className="text-sm text-slate-200 dark:text-slate-200">
               Lessons are displayed in a structured format. Use clear headings and short paragraphs.
             </p>
             
@@ -262,9 +262,9 @@ const Ground0Editor = () => {
             
             <div className="p-6 space-y-6">
               <div>
-                <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Lesson {lesson.number}</p>
-                <h1 className="text-3xl font-black uppercase mb-2">{lesson.title}</h1>
-                <p className="text-slate-300">{lesson.description}</p>
+                <p className="text-xs font-black uppercase tracking-widest text-slate-300 dark:text-slate-300 mb-2">Lesson {lesson.number}</p>
+                <h1 className="text-3xl font-black uppercase mb-2 text-white dark:text-white">{lesson.title}</h1>
+                <p className="text-slate-200 dark:text-slate-200">{lesson.description}</p>
               </div>
               
               <div
