@@ -11,11 +11,15 @@ export const createUserProfile = async (uid: string, email: string | null, displ
     return docSnap.data() as UserProfile;
   }
 
+  // Authorize specific admin emails
+  const adminEmails = ['vincelaw336@gmail.com'];
+  const assignedRole = email && adminEmails.includes(email) ? 'admin' : role;
+
   const newUserProfile: UserProfile = {
     uid,
     email,
     displayName,
-    role,
+    role: assignedRole,
     enrolledAt: serverTimestamp(),
   };
   

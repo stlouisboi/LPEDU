@@ -59,25 +59,36 @@ const AboutPage: React.FC = () => {
                 EXISTS.
               </h1>
               <p className="text-lg md:text-xl text-signal-gold font-bold uppercase tracking-widest border-l-2 border-signal-gold pl-6">
-                Institutional structure for new FMCSA authorities who want to prevent early failure.
+                Our mission is to prevent early carrier failure by installing institutional governance for new FMCSA authorities before they scale.
               </p>
             </div>
 
             <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
-              <p>
-                LaunchPath is built for carrier executives operating 1–3 units under new FMCSA authority. We exist to prevent failure driven by authority revocation, insurance cancellation, and compliance collapse.
+              <p className="font-bold text-white">
+                INSTITUTIONAL STRUCTURE FOR NEW FMCSA AUTHORITIES WHO WANT TO PREVENT EARLY FAILURE
               </p>
               
               <p>
-                We install institutional governance before revenue is prioritized. This environment is a clinical operating standard, not a motivational platform. Our purpose is systematic order to ensure survival through the 18-month new entrant window.
+                LaunchPath serves new motor carrier authorities (1-3 units) facing the First 90 Days. We exist to prevent terminal failure from authority revocation, insurance lapse, and cash-flow asphyxiation.
+              </p>
+              
+              <p>
+                We install compliance infrastructure before operational dispatch. This environment is a clinical operating standard, not a motivational framework.
+              </p>
+              
+              <p>
+                We engineer systematic order to ensure survival through the 18-month New Entrant window.
               </p>
             </div>
 
-            <div className="pt-6 sm:pt-8">
-              <Link to="/reach-test" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-12 py-5 sm:py-7 rounded-xl sm:rounded-2xl font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-4 sm:border-b-8 border-[#8e7340]">
+            <div className="pt-6 sm:pt-8 flex flex-col space-y-6">
+              <Link to="/ground-0" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-12 py-5 sm:py-7 rounded-xl sm:rounded-2xl font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-4 sm:border-b-8 border-[#8e7340]">
                 <span>Verify Admission Readiness</span>
                 <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
               </Link>
+              <p className="text-sm text-white/50 font-bold uppercase tracking-wider">
+                Complete the free Ground 0 Readiness Briefing before requesting entry.
+              </p>
             </div>
           </div>
         </div>
@@ -91,8 +102,11 @@ const AboutPage: React.FC = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#002244]/60 via-transparent to-transparent"></div>
           <div className="absolute bottom-10 left-10 right-10 text-center lg:text-left">
-            <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.5em] mb-2 drop-shadow-lg">System Custodian</p>
+            <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.5em] mb-2 drop-shadow-lg">Stationed Custodian</p>
             <p className="text-3xl font-black text-white uppercase tracking-tight font-serif drop-shadow-2xl">Vince Lawrence</p>
+            <p className="text-base font-bold text-white/80 mt-4 leading-relaxed drop-shadow-lg">
+              My responsibility is to keep the standard clear and to refuse enrollment to carriers who are not structurally ready.
+            </p>
           </div>
         </div>
       </section>
