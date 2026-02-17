@@ -157,7 +157,8 @@ const Header = () => {
     { name: 'Program', path: '/learning-path' },
     { name: 'Matrix', path: '/exposure-matrix' },
     { name: 'Resources', path: '/resources' },
-    { name: 'Blog', path: '/blog' }
+    { name: 'Blog', path: '/blog' },
+    { name: 'Ground 0', path: '/readiness' }
   ];
 
   return (
