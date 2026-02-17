@@ -149,10 +149,14 @@ const Header = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsScrolled(false); // Reset scroll state when location changes
+  }, [location.pathname]);
+
+  useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
+  }, []);
 
   const hideHeaderRoutes = ['/admin', '/portal', '/enrollment-pending'];
   if (hideHeaderRoutes.some(route => location.pathname.startsWith(route))) return null;
@@ -169,8 +173,9 @@ const Header = () => {
   return (
     <>
       <SystemStatusBar />
+      <div className="h-20 sm:h-28 md:h-32" />
       <header 
-        className={`sticky top-0 z-[100] transition-all duration-500 ${
+        className={`fixed top-8 left-0 right-0 z-[100] transition-all duration-500 ${
           isScrolled 
             ? 'bg-authority-blue/90 backdrop-blur-xl border-b border-white/10 h-20 sm:h-24' 
             : 'bg-authority-blue border-b border-white/5 h-20 sm:h-28 md:h-32'
@@ -245,7 +250,7 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <nav className="fixed inset-0 top-20 sm:top-24 bg-authority-blue z-[99] xl:hidden flex flex-col animate-in fade-in slide-in-from-top-4 duration-300 overflow-y-auto" aria-label="Mobile Navigation">
+          <nav className="fixed inset-0 top-28 sm:top-32 md:top-40 bg-authority-blue z-[99] xl:hidden flex flex-col animate-in fade-in slide-in-from-top-4 duration-300 overflow-y-auto" aria-label="Mobile Navigation">
             <div className="flex flex-col p-6 sm:p-10 space-y-3">
               <Link to="/" onClick={() => setIsMenuOpen(false)} className={`block p-5 rounded-[2rem] font-black text-xl uppercase tracking-tighter transition-all ${location.pathname === '/' ? 'bg-white text-authority-blue shadow-xl' : 'text-white/40'}`}>
                 Home

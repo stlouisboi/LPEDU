@@ -20,11 +20,11 @@ import {
 import { Link } from 'react-router-dom';
 import { doc, getDoc } from "firebase/firestore";
 import { db, isFirebaseConfigured } from '../../firebase';
-import { useAuth } from '../../EnhancedAuthContext';
+import { useEnhancedAuth } from '../../EnhancedAuthContext';
 import SettingsManager from './SettingsManager';
 
 const AdminDashboardHome = () => {
-  const { currentUser } = useAuth();
+  const { currentUser } = useEnhancedAuth();
   const [dbStatus, setDbStatus] = useState<'checking' | 'active' | 'api-disabled' | 'not-found' | 'error'>('checking');
 
   useEffect(() => {
@@ -55,6 +55,7 @@ const AdminDashboardHome = () => {
   const quickActions = [
     { name: 'Edit Homepage', path: '/admin/pages/home', icon: <FileEdit size={18} /> },
     { name: 'New Blog Post', path: '/admin/blog/new', icon: <PlusCircle size={18} /> },
+    { name: 'Ground 0 Manager', path: '/admin/ground0', icon: <BookOpen size={18} /> },
     { name: 'Manage Leads', path: '/admin/leads', icon: <Users size={18} /> },
     { name: 'Upload Resource', path: '/admin/resources', icon: <Zap size={18} /> },
   ];

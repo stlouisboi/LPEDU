@@ -156,12 +156,12 @@ const BlogList = () => {
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/50">
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Post Info</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">SEO Title</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Category</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Status</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Date</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted text-right">Actions</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">Post Info</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">SEO Title</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">Category</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">Status</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200">Date</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-700 dark:text-slate-200 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border-light dark:divide-border-dark">
