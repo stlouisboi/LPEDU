@@ -81,6 +81,52 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
 
+            <div className="relative z-10 max-w-2xl space-y-10 md:space-y-12 animate-reveal-up">
+              <p className="text-xl font-serif italic text-white/80">
+                "By wisdom a house is built, and through understanding it is established; through knowledge its rooms are filled with rare and beautiful treasures."
+                <br/>
+                <span className="text-signal-gold">— Proverbs 24:3-4 (NIV)</span>
+              </p>
+            </div>
+
+            <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
+              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">The Custodian's Vesting: Our Authority to Guide</h2>
+              <p>
+                LaunchPath Education is founded upon decades of direct, front-line experience within the complex ecosystem of commercial transportation. Our leadership has navigated the intricate regulatory landscapes, witnessed the common pitfalls that lead to carrier failure, and meticulously engineered the operational blueprints for sustained success. We are not merely educators; we are **Stationed Custodians**—vested by hard-won expertise to safeguard the integrity of new entrants into this vital industry.
+              </p>
+              <p>
+                Our credentials are not merely academic; they are forged in the crucible of real-world operations:
+              </p>
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                <li>**Over 20 years** of dedicated service across various facets of the trucking and logistics sector, including fleet management, compliance auditing, and safety management.</li>
+                <li>Deep expertise in FMCSA, DOT, OSHA, and state-specific regulations, translating complex legal frameworks into actionable, audit-ready operational procedures.</li>
+                <li>Proven track record in developing and implementing robust safety protocols, efficiency models, and risk mitigation strategies for both small and large-scale carrier operations.</li>
+                <li>Experience in guiding carriers through compliance audits, post-accident investigations, and operational restructuring, transforming vulnerabilities into strengths.</li>
+              </ul>
+              <p>
+                This comprehensive background empowers us to provide not just advice, but a **proven system**—a decision engine designed to filter out uncertainty and establish a clear path to institutional longevity.
+              </p>
+            </div>
+
+            <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
+              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">The Institutional Manifesto: Forging the Next Generation of Compliant Carriers</h2>
+              <p>
+                The commercial transportation sector is rife with opportunity, yet equally fraught with peril for the unprepared. Many new owner-operators enter the "lane" with enthusiasm but without the **institutional governance** required to survive beyond their first year. This critical gap—the absence of a robust, compliance-first foundation—is the **unsaturated lane** that LaunchPath Education is engineered to fill.
+              </p>
+              <p>
+                We exist to cultivate a new breed of motor carrier: the **Stationed Custodian**. These are operators who understand that their authority is a privilege, their compliance a duty, and their operational integrity the bedrock of their enterprise. Our mission is to:
+              </p>
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                <li>**Demystify Complexity**: Translate arcane regulations into clear, actionable steps.</li>
+                <li>**Instill Proactive Governance**: Shift the mindset from reactive problem-solving to proactive system building.</li>
+                <li>**Provide Insurance Against Ruin**: Offer a decision engine (Ground 0) that evaluates readiness *before* significant capital investment, thereby protecting livelihoods and fostering sustainable growth.</li>
+                <li>**Elevate Industry Standards**: By empowering individual carriers with institutional-grade compliance, we collectively raise the bar for safety, efficiency, and professionalism across the entire sector.</li>
+              </ul>
+              <p>
+                LaunchPath Education is more than a training platform; it is a **commitment to the future of compliant, resilient, and profitable motor carrier operations**. We are building the foundation for those who aspire not just to drive, but to **govern** their enterprise with unwavering authority and uncompromising authority.
+              </p>
+            </div>
+
             <div className="pt-6 sm:pt-8 flex flex-col space-y-6">
               <Link to="/ground-0" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-12 py-5 sm:py-7 rounded-xl sm:rounded-2xl font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-4 sm:border-b-8 border-[#8e7340]">
                 <span>Verify Admission Readiness</span>
