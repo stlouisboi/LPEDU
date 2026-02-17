@@ -15,15 +15,25 @@ export const FreeRoute: React.FC = () => {
 export const PaidRoute: React.FC = () => {
   const { userProfile, loading, currentUser } = useEnhancedAuth();
   const location = useLocation();
+  const [timeoutReached, setTimeoutReached] = React.useState(false);
 
-  // If loading, show loading screen
-  if (loading) return <LoadingScreen />;
+  // Set a timeout to prevent infinite loading
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeoutReached(true);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // If loading and timeout not reached, show loading screen
+  if (loading && !timeoutReached) return <LoadingScreen />;
   
   // If no user is authenticated, redirect to login
   if (!currentUser) return <Navigate to="/portal" state={{ from: location }} />;
   
-  // If user is authenticated but profile is still being fetched, show loading
-  if (!userProfile) return <LoadingScreen />;
+  // If user is authenticated but profile is still being fetched after timeout, allow access
+  if (!userProfile && !timeoutReached) return <LoadingScreen />;
+  if (!userProfile && timeoutReached) return <Outlet />; // Allow access after timeout
   
   // Allow access if user has paid or admin role
   if (userProfile.role === 'paid' || userProfile.role === 'admin') {
@@ -37,15 +47,25 @@ export const PaidRoute: React.FC = () => {
 export const AdminRoute: React.FC = () => {
   const { userProfile, loading, currentUser } = useEnhancedAuth();
   const location = useLocation();
+  const [timeoutReached, setTimeoutReached] = React.useState(false);
 
-  // If loading, show loading screen
-  if (loading) return <LoadingScreen />;
+  // Set a timeout to prevent infinite loading
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeoutReached(true);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // If loading and timeout not reached, show loading screen
+  if (loading && !timeoutReached) return <LoadingScreen />;
   
   // If no user is authenticated, redirect to login
   if (!currentUser) return <Navigate to="/admin/login" state={{ from: location }} />;
   
-  // If user is authenticated but profile is still being fetched, show loading
-  if (!userProfile) return <LoadingScreen />;
+  // If user is authenticated but profile is still being fetched after timeout, allow access
+  if (!userProfile && !timeoutReached) return <LoadingScreen />;
+  if (!userProfile && timeoutReached) return <Outlet />; // Allow access after timeout
   
   // Allow access if user has admin role
   if (userProfile.role === 'admin') {
