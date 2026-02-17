@@ -80,6 +80,8 @@ import LeadsManager from './pages/admin/LeadsManager';
 import SettingsManager from './pages/admin/SettingsManager';
 import VideoLab from './pages/admin/VideoLab';
 import InitializeDataPage from './pages/admin/InitializeDataPage';
+import Ground0List from './pages/admin/Ground0List';
+import Ground0Editor from './pages/admin/Ground0Editor';
 
 interface AppContextType {
   theme: 'light' | 'dark';
@@ -516,6 +518,9 @@ export default function App() {
                     <Route path="leads" element={<LeadsManager />} />
                     <Route path="settings" element={<SettingsManager />} />
                     <Route path="video-lab" element={<VideoLab />} />
+                    <Route path="ground0" element={<Ground0List />} />
+                    <Route path="ground0/new" element={<Ground0Editor />} />
+                    <Route path="ground0/edit/:lessonId" element={<Ground0Editor />} />
                     <Route path="initialize-data" element={<InitializeDataPage />} />
                   </Route>
                 </Route>
