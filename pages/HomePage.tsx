@@ -296,7 +296,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 2. THE LAW: EXECUTIVE TARGET DECLARATION */}
-      <section className="bg-[#020617] py-32 md:py-56 px-6 border-y border-white/5 relative">
+      <section className="bg-[#020617] py-32 md:py-56 px-4 sm:px-6 md:px-8 lg:px-12 border-y border-white/5 relative">
         <TechnicalPattern />
         <div className="max-w-5xl mx-auto space-y-16 relative z-10">
           <div className="flex items-center space-x-6 mb-8">
@@ -319,7 +319,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 3. THE DOCTRINE: FOUNDER'S BRIEF */}
-      <section className="bg-primary-dark py-32 md:py-64 px-6 border-b border-white/5 overflow-hidden relative">
+      <section className="bg-primary-dark py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 overflow-hidden relative">
         <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-authority-blue/10 to-transparent"></div>
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-4 relative group">
@@ -360,7 +360,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 4. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
-      <section className="py-32 md:py-64 px-6 bg-white dark:bg-primary-dark transition-colors relative">
+      <section className="py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-primary-dark transition-colors relative">
         <TechnicalPattern />
         <div className="max-w-[1400px] mx-auto space-y-32 relative z-10">
           <header className="text-center space-y-8">
@@ -404,7 +404,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 5. THE PROOF: UNIFIED DOSSIER */}
-      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-32 md:py-64 px-6 border-b border-slate-100 dark:border-white/5">
+      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
             <div className="lg:col-span-7 space-y-16">
@@ -517,7 +517,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 7. THE PATH: ADMISSION SEQUENCE */}
-      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-32 md:py-64 px-6 border-y border-slate-100 dark:border-white/5 relative">
+      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 border-y border-slate-100 dark:border-white/5 relative">
         <TechnicalPattern />
         <div className="max-w-[1400px] mx-auto relative z-10">
           <header className="text-center mb-32 space-y-8">
@@ -552,7 +552,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 8. THE TOOLS: MATH OF SURVIVAL / TCO CALCULATOR */}
-      <section className="py-24 md:py-64 px-6 md:px-20 bg-signal-gold text-white relative overflow-hidden">
+      <section className="py-24 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/10 to-transparent"></div>
         <TechnicalPattern />
         <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-32 items-start lg:items-center relative z-10">
@@ -586,7 +586,7 @@ const HomePage: React.FC = () => {
             </div>
 
             <div className="pt-10">
-               <Link to="/tools/tco-calculator" className="relative overflow-hidden bg-[#002244] text-white px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs shadow-[0_40px_80px_-10px_rgba(0,0,0,0.4)] hover:bg-slate-800 transition-all active:scale-95 flex items-center w-fit border-b-[12px] border-black group">
+               <Link to="/tools/tco-calculator" className="relative overflow-hidden bg-[#002244] text-white px-8 sm:px-12 md:px-20 py-8 sm:py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-xs shadow-[0_40px_80px_-10px_rgba(0,0,0,0.4)] hover:bg-slate-800 transition-all active:scale-95 flex items-center w-fit border-b-[12px] border-black group">
                  <span className="relative z-10 flex items-center">
                    LAUNCH TCO ENGINE <ArrowRight size={24} className="ml-6 group-hover:translate-x-2 transition-transform" />
                  </span>
@@ -695,7 +695,7 @@ const HomePage: React.FC = () => {
       <FAQSection />
 
       {/* 10. THE INVITATION: FINAL CTA SECTION */}
-      <section className="py-48 md:py-72 px-6 bg-white dark:bg-primary-dark relative">
+      <section className="py-48 md:py-72 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-primary-dark relative">
         <TechnicalPattern />
         <div className="max-w-[1400px] mx-auto relative z-10">
           <header className="text-center mb-32 space-y-10">
@@ -723,7 +723,7 @@ const HomePage: React.FC = () => {
           <div className="mt-40 text-center space-y-12">
             <Link 
               to="/reach-test" 
-              className="inline-flex items-center space-x-10 bg-authority-blue text-white px-20 py-10 rounded-[3.5rem] font-black uppercase tracking-[0.5em] text-xs md:text-sm shadow-[0_50px_100px_-20px_rgba(30,58,95,0.4)] hover:bg-steel-blue hover:scale-105 transition-all active:scale-95 group border-b-4 border-slate-950"
+              className="inline-flex items-center space-x-6 sm:space-x-10 bg-authority-blue text-white px-8 sm:px-12 md:px-20 py-8 sm:py-10 rounded-[3.5rem] font-black uppercase tracking-[0.5em] text-xs md:text-sm shadow-[0_50px_100px_-20px_rgba(30,58,95,0.4)] hover:bg-steel-blue hover:scale-105 transition-all active:scale-95 group border-b-4 border-slate-950"
             >
               <span>INITIATE ADMISSION DIAGNOSTIC</span>
               <ArrowRight size={32} className="group-hover:translate-x-3 transition-transform" />
@@ -741,7 +741,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* INSERTION: Common Questions Before Proceeding */}
-      <section className="py-32 px-6 bg-slate-50 dark:bg-surface-dark border-t border-slate-100 dark:border-white/5 relative">
+      <section className="py-32 px-4 sm:px-6 md:px-8 lg:px-12 bg-slate-50 dark:bg-surface-dark border-t border-slate-100 dark:border-white/5 relative">
         <TechnicalPattern />
         <div className="max-w-4xl mx-auto space-y-16 relative z-10">
           <div className="text-center space-y-6">
