@@ -403,6 +403,11 @@ const HomePage: React.FC = () => {
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
               THE INSTITUTIONAL <br/><span className="text-signal-gold italic">MANIFESTO.</span>
             </h2>
+            <div className="max-w-4xl mx-auto pt-8 border-t border-white/10">
+              <p className="text-lg md:text-xl text-white/70 leading-relaxed font-medium italic">
+                A <strong className="text-signal-gold not-italic">Stationed Custodian</strong> is a carrier executive who treats authority as a privilege, compliance as a duty, and submits their operation to an external operating standard for governance.
+              </p>
+            </div>
           </div>
 
           <div className="bg-white/5 backdrop-blur-xl border-2 border-white/10 rounded-[3rem] p-10 md:p-16 space-y-10">
