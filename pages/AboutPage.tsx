@@ -101,14 +101,19 @@ const AboutPage: React.FC = () => {
 
             <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
               <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">The Institutional Manifesto</h2>
+              <div className="border-l-4 border-signal-gold pl-6 py-2 bg-white/5 rounded-r-lg">
+                <p className="text-lg italic text-white/90">
+                  A <strong className="text-signal-gold not-italic">Stationed Custodian</strong> is a carrier executive who treats authority as a privilege, compliance as a duty, and submits their operation to an external operating standard for governance.
+                </p>
+              </div>
               <p>
-                The commercial transportation sector is rife with opportunity, yet equally fraught with peril for the unprepared. Many new owner-operators enter the lane with enthusiasm but without the institutional governance required to survive beyond their first year.
+                The commercial transportation sector is full of opportunity and unforgiving to operators who treat it like a hustle. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
               </p>
               <p>
-                We exist to cultivate a new breed of motor carrier: the <strong className="text-signal-gold">Stationed Custodian</strong>. These are operators who understand that their authority is a privilege, their compliance a duty, and their operational integrity the bedrock of their enterprise.
+                LaunchPath exists to form a different kind of carrier: the <strong className="text-signal-gold">Stationed Custodian</strong>. These are executives who treat authority as a privilege, compliance as a duty, and operational integrity as the non‑negotiable base of their enterprise.
               </p>
               <p>
-                LaunchPath is more than a training platform; it is a commitment to the future of compliant, resilient, and profitable motor carrier operations. We are building the foundation for those who aspire not just to drive, but to <strong className="text-signal-gold">govern</strong> their enterprise with unwavering discipline.
+                LaunchPath is <strong className="text-white">not a training program</strong>; it is an <strong className="text-signal-gold">operating standard</strong> for compliant, resilient, and profitable motor carrier operations. We build the foundation for operators who do not just want to drive, but to <strong className="text-signal-gold italic">govern</strong> their enterprise with unwavering discipline.
               </p>
             </div>
 

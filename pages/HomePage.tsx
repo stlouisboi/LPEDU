@@ -394,52 +394,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE INSTITUTIONAL MANIFESTO */}
-      <section className="bg-primary-dark py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/10 to-transparent"></div>
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="text-center space-y-6 mb-16">
-            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">OPERATIONAL_DOCTRINE</p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
-              THE INSTITUTIONAL <br/><span className="text-signal-gold italic">MANIFESTO.</span>
-            </h2>
-            <div className="max-w-4xl mx-auto pt-8 border-t border-white/10">
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed font-medium italic">
-                A <strong className="text-signal-gold not-italic">Stationed Custodian</strong> is a carrier executive who treats authority as a privilege, compliance as a duty, and submits their operation to an external operating standard for governance.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-xl border-2 border-white/10 rounded-[3rem] p-10 md:p-16 space-y-10">
-            <div className="space-y-8 text-lg md:text-xl text-white/80 leading-relaxed font-medium">
-              <p>
-                The commercial transportation sector is <strong className="text-white">full of opportunity</strong> and <strong className="text-signal-gold">unforgiving to operators who treat it like a hustle</strong>. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
-              </p>
-              
-              <p>
-                LaunchPath exists to form a different kind of carrier: the <strong className="text-signal-gold">Stationed Custodian</strong>. These are executives who treat authority as a privilege, compliance as a duty, and operational integrity as the non‑negotiable base of their enterprise.
-              </p>
-              
-              <p>
-                LaunchPath is <strong className="text-white">not a training program</strong>; it is an <strong className="text-signal-gold">operating standard</strong> for compliant, resilient, and profitable motor carrier operations. We build the foundation for operators who do not just want to drive, but to <strong className="text-signal-gold italic">govern</strong> their enterprise with unwavering discipline.
-              </p>
-            </div>
-
-            <div className="border-t border-white/10 pt-10 flex items-center justify-between flex-wrap gap-6">
-              <div className="flex items-center space-x-4">
-                <div className="h-px w-12 bg-signal-gold/40"></div>
-                <p className="text-white/40 font-serif italic text-lg">Institutional Standard v4.2</p>
-              </div>
-              <div className="flex items-center space-x-3">
-                <ShieldCheck size={20} className="text-signal-gold" />
-                <p className="text-xs font-black uppercase tracking-widest text-white/50">Compliance First</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
+      {/* 3. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
       <section className="py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-primary-dark transition-colors relative">
         <TechnicalPattern />
         <div className="max-w-[1400px] mx-auto space-y-32 relative z-10">
