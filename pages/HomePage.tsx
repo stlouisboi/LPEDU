@@ -318,6 +318,81 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* 2.5 THE CREDENTIALS: STATION CUSTODIAN */}
+      <section className="bg-white dark:bg-[#0a0f1a] py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/5 to-transparent"></div>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+          {/* Image Column */}
+          <div className="lg:col-span-5 relative group order-2 lg:order-1">
+            <div className="absolute -inset-4 bg-signal-gold/10 rounded-[4rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+            <div className="relative rounded-[4rem] overflow-hidden border-8 border-slate-200 dark:border-white/5 shadow-2xl">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
+                alt="Vince Lawrence, Station Custodian"
+                className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent"></div>
+            </div>
+          </div>
+
+          {/* Credentials Column */}
+          <div className="lg:col-span-7 space-y-10 order-1 lg:order-2">
+            <div className="space-y-4">
+              <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">INSTITUTIONAL_FOUNDATION</p>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-none">
+                CREDENTIALS & <br/><span className="text-signal-gold italic">FOUNDATION.</span>
+              </h2>
+            </div>
+
+            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold p-8 md:p-10 rounded-2xl space-y-6">
+              <div className="space-y-1">
+                <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">Station Custodian</p>
+                <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight">Vince Lawrence</h3>
+              </div>
+              
+              <div className="space-y-6 text-base md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <p>
+                  I have spent more than <strong className="text-authority-blue dark:text-signal-gold">20 years in operational leadership</strong> as a shift manager, business unit manager, supervisor, team leader, and OSHA safety coordinator, after <strong className="text-authority-blue dark:text-signal-gold">8 years of service in the United States Navy</strong>.
+                </p>
+                <p className="font-bold text-authority-blue dark:text-white">
+                  That background informs how I install order, enforce boundaries, and refuse admission to carriers that are not structurally ready to operate.
+                </p>
+              </div>
+            </div>
+
+            {/* Scripture Foundation */}
+            <div className="border-t border-slate-200 dark:border-white/10 pt-8">
+              <blockquote className="text-sm md:text-base text-slate-600 dark:text-slate-400 italic leading-relaxed">
+                <p>"By wisdom a house is built, and by understanding it is established; by knowledge the rooms are filled with all precious and pleasant riches."</p>
+                <footer className="text-signal-gold font-bold not-italic mt-3 text-xs uppercase tracking-widest">— Proverbs 24:3-4</footer>
+              </blockquote>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="grid grid-cols-3 gap-4 pt-6">
+              <div className="text-center space-y-2">
+                <div className="w-16 h-16 bg-authority-blue/10 dark:bg-white/5 rounded-2xl flex items-center justify-center mx-auto">
+                  <Anchor size={28} className="text-authority-blue dark:text-signal-gold" />
+                </div>
+                <p className="text-xs font-black uppercase text-slate-600 dark:text-slate-400 tracking-wider">Navy Veteran</p>
+              </div>
+              <div className="text-center space-y-2">
+                <div className="w-16 h-16 bg-authority-blue/10 dark:bg-white/5 rounded-2xl flex items-center justify-center mx-auto">
+                  <ShieldCheck size={28} className="text-authority-blue dark:text-signal-gold" />
+                </div>
+                <p className="text-xs font-black uppercase text-slate-600 dark:text-slate-400 tracking-wider">OSHA Certified</p>
+              </div>
+              <div className="text-center space-y-2">
+                <div className="w-16 h-16 bg-authority-blue/10 dark:bg-white/5 rounded-2xl flex items-center justify-center mx-auto">
+                  <Award size={28} className="text-authority-blue dark:text-signal-gold" />
+                </div>
+                <p className="text-xs font-black uppercase text-slate-600 dark:text-slate-400 tracking-wider">20+ Years</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. THE DOCTRINE: FOUNDER'S BRIEF */}
       <section className="bg-primary-dark py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 overflow-hidden relative">
         <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-authority-blue/10 to-transparent"></div>

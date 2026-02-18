@@ -90,40 +90,25 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
-              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">The Custodian's Vesting: Our Authority to Guide</h2>
+              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">Station Custodian – Vince Lawrence</h2>
               <p>
-                LaunchPath Education is founded upon decades of direct, front-line experience within the complex ecosystem of commercial transportation. Our leadership has navigated the intricate regulatory landscapes, witnessed the common pitfalls that lead to carrier failure, and meticulously engineered the operational blueprints for sustained success. We are not merely educators; we are **Stationed Custodians**—vested by hard-won expertise to safeguard the integrity of new entrants into this vital industry.
+                I have spent more than <strong className="text-signal-gold">20 years in operational leadership</strong> as a shift manager, business unit manager, supervisor, team leader, and OSHA safety coordinator, after <strong className="text-signal-gold">8 years of service in the United States Navy</strong>.
               </p>
-              <p>
-                Our credentials are not merely academic; they are forged in the crucible of real-world operations:
-              </p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>**Over 20 years** of dedicated service across various facets of the trucking and logistics sector, including fleet management, compliance auditing, and safety management.</li>
-                <li>Deep expertise in FMCSA, DOT, OSHA, and state-specific regulations, translating complex legal frameworks into actionable, audit-ready operational procedures.</li>
-                <li>Proven track record in developing and implementing robust safety protocols, efficiency models, and risk mitigation strategies for both small and large-scale carrier operations.</li>
-                <li>Experience in guiding carriers through compliance audits, post-accident investigations, and operational restructuring, transforming vulnerabilities into strengths.</li>
-              </ul>
-              <p>
-                This comprehensive background empowers us to provide not just advice, but a **proven system**—a decision engine designed to filter out uncertainty and establish a clear path to institutional longevity.
+              <p className="font-bold text-white">
+                That background informs how I install order, enforce boundaries, and refuse admission to carriers that are not structurally ready to operate.
               </p>
             </div>
 
             <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
-              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">The Institutional Manifesto: Forging the Next Generation of Compliant Carriers</h2>
+              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">The Institutional Manifesto</h2>
               <p>
-                The commercial transportation sector is rife with opportunity, yet equally fraught with peril for the unprepared. Many new owner-operators enter the "lane" with enthusiasm but without the **institutional governance** required to survive beyond their first year. This critical gap—the absence of a robust, compliance-first foundation—is the **unsaturated lane** that LaunchPath Education is engineered to fill.
+                The commercial transportation sector is rife with opportunity, yet equally fraught with peril for the unprepared. Many new owner-operators enter the lane with enthusiasm but without the institutional governance required to survive beyond their first year.
               </p>
               <p>
-                We exist to cultivate a new breed of motor carrier: the **Stationed Custodian**. These are operators who understand that their authority is a privilege, their compliance a duty, and their operational integrity the bedrock of their enterprise. Our mission is to:
+                We exist to cultivate a new breed of motor carrier: the <strong className="text-signal-gold">Stationed Custodian</strong>. These are operators who understand that their authority is a privilege, their compliance a duty, and their operational integrity the bedrock of their enterprise.
               </p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>**Demystify Complexity**: Translate arcane regulations into clear, actionable steps.</li>
-                <li>**Instill Proactive Governance**: Shift the mindset from reactive problem-solving to proactive system building.</li>
-                <li>**Provide Insurance Against Ruin**: Offer a decision engine (Ground 0) that evaluates readiness *before* significant capital investment, thereby protecting livelihoods and fostering sustainable growth.</li>
-                <li>**Elevate Industry Standards**: By empowering individual carriers with institutional-grade compliance, we collectively raise the bar for safety, efficiency, and professionalism across the entire sector.</li>
-              </ul>
               <p>
-                LaunchPath Education is more than a training platform; it is a **commitment to the future of compliant, resilient, and profitable motor carrier operations**. We are building the foundation for those who aspire not just to drive, but to **govern** their enterprise with unwavering authority and uncompromising authority.
+                LaunchPath is more than a training platform; it is a commitment to the future of compliant, resilient, and profitable motor carrier operations. We are building the foundation for those who aspire not just to drive, but to <strong className="text-signal-gold">govern</strong> their enterprise with unwavering discipline.
               </p>
             </div>
 
