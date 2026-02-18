@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Logo from '../components/Logo';
 import { 
   Calculator, 
   DollarSign, 
@@ -26,7 +27,10 @@ import {
   PieChart, 
   LineChart,
   // Added Globe to fix the error on line 504
-  Globe
+  Globe,
+  Share2,
+  Copy,
+  Check
 } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
@@ -84,6 +88,7 @@ const TCOCalculatorPage: React.FC = () => {
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const [shareStatus, setShareStatus] = useState<'idle' | 'copied'>('idle');
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -141,6 +146,43 @@ const TCOCalculatorPage: React.FC = () => {
     setTimeout(() => setSaveStatus('idle'), 3000);
   };
 
+  const handleShare = async () => {
+    const data = { fixedCosts, variableCosts, operation };
+    const encoded = btoa(JSON.stringify(data));
+    const shareUrl = `${window.location.origin}/tco-calculator?data=${encoded}`;
+    
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareStatus('copied');
+      setTimeout(() => setShareStatus('idle'), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  const loadDemoData = () => {
+    setFixedCosts({
+      truckPayment: 2200,
+      insurance: 1500,
+      permits: 100,
+      parking: 250,
+      software: 80,
+      other: 0
+    });
+    setVariableCosts({
+      fuelPrice: 4.25,
+      mpg: 7.5,
+      maintenance: 0.15,
+      tires: 0.03,
+      tolls: 0.05
+    });
+    setOperation({
+      monthlyMiles: 8000,
+      ratePerMile: 2.50,
+      deadheadPercentage: 15
+    });
+  };
+
   const exportCSV = () => {
     const headers = ['Metric', 'Value'];
     const data = [
@@ -170,15 +212,13 @@ const TCOCalculatorPage: React.FC = () => {
       
       {/* STEALTH HEADER */}
       <div className="fixed top-0 left-0 w-full z-50 bg-[#0F172A]/90 backdrop-blur-xl border-b border-white/5 px-6 py-5 flex items-center justify-between shadow-2xl">
-         <div className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-signal-gold rounded-xl flex items-center justify-center text-authority-blue shadow-[0_0_20px_rgba(198,146,42,0.4)] shrink-0">
-               <Calculator size={22} />
-            </div>
+         <Link to="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity">
+            <Logo className="h-8" light />
             <div className="hidden xs:block">
                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold leading-none mb-1">Economic Engine v4.0</p>
                <p className="text-xs font-bold text-white uppercase tracking-widest opacity-60">Authorized Assessment Terminal</p>
             </div>
-         </div>
+         </Link>
          {activeStep > 0 && activeStep < 4 && (
            <div className="flex items-center space-x-6">
               <div className="hidden md:flex space-x-2">
@@ -190,6 +230,9 @@ const TCOCalculatorPage: React.FC = () => {
            </div>
          )}
          <div className="flex items-center space-x-4">
+            <button onClick={handleShare} className="p-2 text-slate-400 hover:text-white transition-all hover:scale-110 active:scale-95" title={shareStatus === 'copied' ? 'Link Copied!' : 'Share Results'}>
+              {shareStatus === 'copied' ? <Check size={20} className="text-green-400"/> : <Share2 size={20}/>}
+            </button>
             <button onClick={() => window.print()} className="p-2 text-slate-400 hover:text-white transition-all hover:scale-110 active:scale-95" title="Print Analysis"><Printer size={20}/></button>
             <button onClick={() => setActiveStep(4)} className="bg-white/5 border border-white/10 px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all hover:border-signal-gold/30">Summary</button>
          </div>
@@ -215,9 +258,32 @@ const TCOCalculatorPage: React.FC = () => {
                  Revenue without margin analysis is busyness. Establish your clinical cost-per-mile baseline before operational commencement.
                </p>
             </div>
-            <button onClick={nextStep} className="bg-signal-gold text-authority-blue px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-xs shadow-[0_30px_60px_rgba(198,146,42,0.3)] hover:scale-105 transition-all active:scale-95 border-b-[10px] border-slate-900 group">
-               INITIALIZE PARAMETERS <ChevronRight className="inline ml-3 group-hover:translate-x-2 transition-transform" size={20} />
-            </button>
+            
+            {/* Instructions */}
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 max-w-2xl mx-auto text-left space-y-4">
+              <div className="flex items-center space-x-3 text-signal-gold mb-4">
+                <Info size={24} />
+                <h3 className="text-sm font-black uppercase tracking-widest">How to Use This Calculator</h3>
+              </div>
+              <div className="space-y-3 text-sm text-slate-300 leading-relaxed">
+                <p><span className="text-signal-gold font-bold">Step 1:</span> Enter your monthly fixed costs (truck payment, insurance, permits, etc.)</p>
+                <p><span className="text-signal-gold font-bold">Step 2:</span> Input variable costs (fuel price, MPG, maintenance, tires, tolls)</p>
+                <p><span className="text-signal-gold font-bold">Step 3:</span> Define your operation (monthly miles, rate per mile, deadhead %)</p>
+                <p><span className="text-signal-gold font-bold">Step 4:</span> Review your complete analysis with AI-powered recommendations</p>
+              </div>
+              <div className="pt-4 border-t border-white/10">
+                <p className="text-xs text-slate-500 italic">💡 Tip: Not sure where to start? Load demo data to see an example calculation.</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button onClick={() => { loadDemoData(); nextStep(); }} className="bg-white/5 border border-white/10 text-white px-12 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-white/10 transition-all active:scale-95">
+                 LOAD DEMO DATA
+              </button>
+              <button onClick={nextStep} className="bg-signal-gold text-authority-blue px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-xs shadow-[0_30px_60px_rgba(198,146,42,0.3)] hover:scale-105 transition-all active:scale-95 border-b-[10px] border-slate-900 group">
+                 START FRESH <ChevronRight className="inline ml-3 group-hover:translate-x-2 transition-transform" size={20} />
+              </button>
+            </div>
           </div>
         )}
 
