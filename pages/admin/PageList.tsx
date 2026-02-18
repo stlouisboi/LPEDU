@@ -20,7 +20,7 @@ const PageList = () => {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div>
         <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Page Management</h1>
-        <p className="text-text-muted mt-1">Select a page to modify its content and SEO settings.</p>
+        <p className="text-text-muted dark:text-gray-400 mt-1">Select a page to modify its content and SEO settings.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4">
@@ -35,7 +35,7 @@ const PageList = () => {
                 <Globe className="text-authority-blue" size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold font-serif group-hover:text-authority-blue transition-colors">
+                <h3 className="text-xl font-bold font-serif text-authority-blue dark:text-white group-hover:text-authority-blue dark:group-hover:text-steel-blue transition-colors">
                   {page.name}
                 </h3>
                 <div className="flex items-center space-x-4 mt-1">
@@ -44,7 +44,7 @@ const PageList = () => {
                   }`}>
                     {page.status}
                   </span>
-                  <div className="flex items-center text-xs text-text-muted">
+                  <div className="flex items-center text-xs text-text-muted dark:text-gray-400">
                     <Clock size={12} className="mr-1" />
                     Modified {page.lastModified}
                   </div>
