@@ -111,7 +111,7 @@ const BlogList = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Blog Management</h1>
-          <p className="text-text-muted mt-1">Manage articles, compliance guides, and safety bulletins.</p>
+            <p className="text-text-muted dark:text-gray-400 mt-1">Manage articles, compliance guides, and safety bulletins.</p>
         </div>
         <Link 
           to="/admin/blog/new" 
@@ -179,8 +179,8 @@ const BlogList = () => {
                         )}
                       </div>
                       <div className="min-w-0">
-                        <h4 className="font-bold text-sm truncate max-w-xs">{blog.title}</h4>
-                        <p className="text-[10px] text-text-muted font-mono truncate max-w-xs">/{blog.slug}</p>
+                        <h4 className="font-bold text-sm text-authority-blue dark:text-white truncate max-w-md">{blog.title}</h4>
+                        <p className="text-[10px] text-text-muted dark:text-gray-400 font-mono truncate max-w-md">/{blog.slug}</p>
                       </div>
                     </div>
                   </td>
@@ -211,13 +211,13 @@ const BlogList = () => {
                       </div>
                     ) : (
                       <div 
-                        className="flex items-center justify-between group/seo cursor-pointer max-w-[250px]"
+                        className="flex items-center justify-between group/seo cursor-pointer max-w-md"
                         onClick={() => handleSeoEditStart(blog)}
                       >
-                        <span className={`text-xs font-medium truncate ${blog.seoTitle ? 'text-authority-blue dark:text-steel-blue' : 'text-text-muted italic'}`}>
-                          {blog.seoTitle || "Using default title..."}
+                        <span className={`text-sm font-medium truncate ${blog.seoTitle ? 'text-authority-blue dark:text-white' : 'text-text-muted dark:text-gray-500 italic'}`}>
+                          {blog.seoTitle || blog.title}
                         </span>
-                        <Type size={12} className="text-text-muted opacity-0 group-hover/seo:opacity-100 transition-opacity ml-2 shrink-0" />
+                        <Type size={14} className="text-text-muted dark:text-gray-400 opacity-0 group-hover/seo:opacity-100 transition-opacity ml-2 shrink-0" />
                       </div>
                     )}
                   </td>
@@ -239,7 +239,7 @@ const BlogList = () => {
                       )}
                     </div>
                   </td>
-                  <td className="px-8 py-6 text-xs text-text-muted font-medium">
+                  <td className="px-8 py-6 text-xs text-text-muted dark:text-gray-400 font-medium">
                     {new Date(blog.publishedAt).toLocaleDateString()}
                   </td>
                   <td className="px-8 py-6 text-right">
