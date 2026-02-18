@@ -99,24 +99,6 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
-              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">The Institutional Manifesto</h2>
-              <div className="border-l-4 border-signal-gold pl-6 py-2 bg-white/5 rounded-r-lg">
-                <p className="text-lg italic text-white/90">
-                  A <strong className="text-signal-gold not-italic">Stationed Custodian</strong> is a carrier executive who treats authority as a privilege, compliance as a duty, and submits their operation to an external operating standard for governance.
-                </p>
-              </div>
-              <p>
-                The commercial transportation sector is full of opportunity and unforgiving to operators who treat it like a hustle. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
-              </p>
-              <p>
-                LaunchPath exists to form a different kind of carrier: the <strong className="text-signal-gold">Stationed Custodian</strong>. These are executives who treat authority as a privilege, compliance as a duty, and operational integrity as the non‑negotiable base of their enterprise.
-              </p>
-              <p>
-                LaunchPath is <strong className="text-white">not a training program</strong>; it is an <strong className="text-signal-gold">operating standard</strong> for compliant, resilient, and profitable motor carrier operations. We build the foundation for operators who do not just want to drive, but to <strong className="text-signal-gold italic">govern</strong> their enterprise with unwavering discipline.
-              </p>
-            </div>
-
             <div className="pt-6 sm:pt-8 flex flex-col space-y-6">
               <Link to="/ground-0" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-12 py-5 sm:py-7 rounded-xl sm:rounded-2xl font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-4 sm:border-b-8 border-[#8e7340]">
                 <span>Verify Admission Readiness</span>
@@ -153,6 +135,54 @@ const AboutPage: React.FC = () => {
           Operating within the standard requires strict adherence to defined boundaries.
         </p>
       </div>
+
+      {/* THE INSTITUTIONAL MANIFESTO SECTION */}
+      <section className="bg-[#002244] py-24 md:py-32 lg:py-48 px-6 border-b border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center space-y-6 mb-16">
+            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">OPERATIONAL_DOCTRINE</p>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
+              THE INSTITUTIONAL <br/><span className="text-signal-gold italic">MANIFESTO.</span>
+            </h2>
+          </div>
+
+          <div className="bg-white/5 backdrop-blur-xl border-2 border-white/10 rounded-[3rem] p-10 md:p-16 space-y-10">
+            {/* Stationed Custodian Definition */}
+            <div className="border-l-4 border-signal-gold pl-8 py-4 bg-signal-gold/5 rounded-r-2xl">
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed font-medium italic">
+                A <strong className="text-signal-gold not-italic">Stationed Custodian</strong> is a carrier executive who treats authority as a privilege, compliance as a duty, and submits their operation to an external operating standard for governance.
+              </p>
+            </div>
+
+            {/* Manifesto Content */}
+            <div className="space-y-8 text-lg md:text-xl text-white/80 leading-relaxed font-medium">
+              <p>
+                The commercial transportation sector is <strong className="text-white">full of opportunity</strong> and <strong className="text-signal-gold">unforgiving to operators who treat it like a hustle</strong>. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
+              </p>
+              
+              <p>
+                LaunchPath exists to form a different kind of carrier: the <strong className="text-signal-gold">Stationed Custodian</strong>. These are executives who treat authority as a privilege, compliance as a duty, and operational integrity as the non‑negotiable base of their enterprise.
+              </p>
+              
+              <p>
+                LaunchPath is <strong className="text-white">not a training program</strong>; it is an <strong className="text-signal-gold">operating standard</strong> for compliant, resilient, and profitable motor carrier operations. We build the foundation for operators who do not just want to drive, but to <strong className="text-signal-gold italic">govern</strong> their enterprise with unwavering discipline.
+              </p>
+            </div>
+
+            {/* Footer */}
+            <div className="border-t border-white/10 pt-10 flex items-center justify-between flex-wrap gap-6">
+              <div className="flex items-center space-x-4">
+                <div className="h-px w-12 bg-signal-gold/40"></div>
+                <p className="text-white/40 font-serif italic text-lg">Institutional Standard v4.2</p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <ShieldCheck size={20} className="text-signal-gold" />
+                <p className="text-xs font-black uppercase tracking-widest text-white/50">Compliance First</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* CLARITY OF PURPOSE SECTION */}
       <section className="py-16 md:py-32 lg:py-48 bg-white dark:bg-primary-dark">
