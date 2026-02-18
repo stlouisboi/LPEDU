@@ -9,6 +9,7 @@ import {
 import { auth, isFirebaseConfigured } from '../firebase';
 import { createUserProfile } from '../utils/userRoles';
 import { useEnhancedAuth } from '../EnhancedAuthContext';
+import { syncToMailerLite } from '../mailerlite';
 import { 
   ShieldCheck, 
   Lock, 
@@ -55,6 +56,15 @@ const EnhancedPortalLogin: React.FC = () => {
       const user = result.user;
       // Create user profile with 'admin' role for Google sign-ins to grant immediate portal access
       await createUserProfile(user.uid, user.email, user.displayName, 'admin');
+      
+      // Sync to MailerLite for lead capture
+      await syncToMailerLite({
+        email: user.email || '',
+        fields: {
+          name: user.displayName || ''
+        }
+      });
+      
       // Navigation is handled by the useEffect
     } catch (err: any) {
       console.error("Google Auth Error:", err);
@@ -76,6 +86,12 @@ const EnhancedPortalLogin: React.FC = () => {
       } else {
         const result = await createUserWithEmailAndPassword(auth, email, password);
         await createUserProfile(result.user.uid, result.user.email, null);
+        
+        // Sync to MailerLite for lead capture on registration
+        await syncToMailerLite({
+          email: email,
+          fields: {}
+        });
       }
       // Profile fetching and navigation handled by Context + useEffect
     } catch (err: any) {

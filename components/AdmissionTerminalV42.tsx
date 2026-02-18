@@ -18,6 +18,7 @@ import {
 import Logo from './Logo';
 import SuccessProtocol from './SuccessProtocol';
 import { createUserProfile } from '../utils/userRoles';
+import { syncToMailerLite } from '../mailerlite';
 
 interface AdmissionTerminalV42Props {
   isOpen: boolean;
@@ -60,6 +61,15 @@ const AdmissionTerminalV42: React.FC<AdmissionTerminalV42Props> = ({ isOpen, onC
         dotNumber: formData.dotNumber,
         terminalVersion: '4.2.0',
         createdAt: serverTimestamp()
+      });
+
+      // Sync to MailerLite for lead capture
+      await syncToMailerLite({
+        email: formData.email,
+        fields: {
+          name: formData.fullName,
+          company: formData.carrierName
+        }
       });
 
       setIsSuccess(true);
