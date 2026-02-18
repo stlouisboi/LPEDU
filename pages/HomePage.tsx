@@ -33,7 +33,8 @@ import {
   BarChart3,
   TrendingUp,
   ArrowUpRight,
-  DollarSign
+  DollarSign,
+  Anchor
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
