@@ -394,48 +394,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. THE DOCTRINE: FOUNDER'S BRIEF */}
-      <section className="bg-primary-dark py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 overflow-hidden relative">
-        <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-authority-blue/10 to-transparent"></div>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-4 relative group">
-            <div className="absolute -inset-4 bg-signal-gold/10 rounded-[4rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-            <div className="relative rounded-[4rem] overflow-hidden border-8 border-white/5 shadow-2xl">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
-                alt="Vince Lawrence, Founder"
-                className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent"></div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-8 space-y-12">
-            <div className="space-y-4">
-              <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">Registry: FOUNDER_BRIEF_v4.2</p>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white font-serif leading-none">
-                A WORD FROM <br/><span className="text-signal-gold italic">THE CUSTODIAN.</span>
-              </h2>
-            </div>
-
-            <blockquote className="relative">
-              <span className="absolute -top-10 -left-10 text-[120px] font-serif text-white/5 leading-none select-none">“</span>
-              <div className="text-xl md:text-3xl text-white/70 leading-relaxed font-bold space-y-10 border-l-4 border-white/10 pl-12 py-4">
-                <p>Hundreds of carriers collapse annually. Not from a lack of effort—from structural weakness.</p>
-                <p>The industry hands you keys to a truck, but no blueprints for a governed operation. That omission creates terminal exposure.</p>
-                <p>LaunchPath is the missing institutional layer. We install the order, documentation integrity, and verification required to endure.</p>
-              </div>
-            </blockquote>
-
-            <div className="flex items-center space-x-6 pl-12">
-               <div className="h-px w-12 bg-signal-gold/40"></div>
-               <p className="text-white/40 font-serif italic text-xl">— Vince Lawrence, Founder & Lead Specialist</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
+      {/* 3. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
       <section className="py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-primary-dark transition-colors relative">
         <TechnicalPattern />
         <div className="max-w-[1400px] mx-auto space-y-32 relative z-10">
