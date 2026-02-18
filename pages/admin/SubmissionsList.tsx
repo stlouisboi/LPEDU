@@ -145,10 +145,10 @@ const SubmissionsList = () => {
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-border-light bg-slate-50/50">
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Contact Info</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Message Preview</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Status</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Date</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Contact Info</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Message Preview</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Status</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Date</th>
                 <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted text-right">Actions</th>
               </tr>
             </thead>
@@ -168,7 +168,7 @@ const SubmissionsList = () => {
                           <h4 className={`text-sm font-bold ${sub.status === 'unread' ? 'text-authority-blue' : ''}`}>
                             {sub.fullName || 'Anonymous User'}
                           </h4>
-                          <p className="text-[10px] text-text-muted">{sub.email}</p>
+                          <p className="text-[10px] text-text-muted dark:text-gray-400">{sub.email}</p>
                        </div>
                     </div>
                   </td>
@@ -220,7 +220,7 @@ const SubmissionsList = () => {
                </div>
                <div>
                   <h3 className="text-3xl font-bold font-serif leading-none">{selectedSub.fullName || 'Anonymous User'}</h3>
-                  <div className="flex items-center space-x-4 mt-2 text-sm text-text-muted">
+                  <div className="flex items-center space-x-4 mt-2 text-sm text-text-muted dark:text-gray-400">
                      <span className="flex items-center"><Mail size={14} className="mr-1.5" /> {selectedSub.email}</span>
                   </div>
                </div>

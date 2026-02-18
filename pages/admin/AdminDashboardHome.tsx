@@ -52,13 +52,7 @@ const AdminDashboardHome = () => {
     { label: 'Resources', value: '156', icon: <Download className="text-amber-500" />, trend: 'Stable' },
   ];
 
-  const quickActions = [
-    { name: 'Edit Homepage', path: '/admin/pages/home', icon: <FileEdit size={18} /> },
-    { name: 'New Blog Post', path: '/admin/blog/new', icon: <PlusCircle size={18} /> },
-    { name: 'Ground 0 Manager', path: '/admin/ground0', icon: <BookOpen size={18} /> },
-    { name: 'Manage Leads', path: '/admin/leads', icon: <Users size={18} /> },
-    { name: 'Upload Resource', path: '/admin/resources', icon: <Zap size={18} /> },
-  ];
+
 
   return (
     <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -69,7 +63,7 @@ const AdminDashboardHome = () => {
         </div>
         
         <div className="bg-white dark:bg-surface-dark px-4 py-2 rounded-xl border border-border-light dark:border-border-dark flex items-center space-x-3 shadow-sm">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">Cloud Health:</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-gray-400">Cloud Health:</span>
           {dbStatus === 'checking' && <Loader2 size={14} className="animate-spin text-authority-blue" />}
           {dbStatus === 'active' && <CheckCircle2 size={14} className="text-green-500" />}
           {(dbStatus === 'api-disabled' || dbStatus === 'not-found') && <AlertCircle size={14} className="text-red-500" />}
@@ -87,31 +81,12 @@ const AdminDashboardHome = () => {
               <span className="text-xs font-bold text-green-500 flex items-center">{stat.trend} <ArrowUpRight size={12} className="ml-1" /></span>
             </div>
             <p className="text-3xl font-black font-serif text-authority-blue dark:text-white">{stat.value}</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-text-muted mt-1">{stat.label}</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-text-muted dark:text-gray-400 mt-1">{stat.label}</p>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark shadow-sm">
-          <h3 className="text-xl font-bold font-serif mb-6 text-authority-blue dark:text-white">Quick Actions</h3>
-          <div className="space-y-3">
-            {quickActions.map((action, i) => (
-              <Link 
-                key={i} 
-                to={action.path}
-                className="flex items-center justify-between p-4 bg-slate-50 dark:bg-gray-800 rounded-2xl hover:bg-authority-blue hover:text-white transition-all group"
-              >
-                <div className="flex items-center space-x-4">
-                  <div className="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm group-hover:text-authority-blue">{action.icon}</div>
-                  <span className="font-bold text-sm">{action.name}</span>
-                </div>
-                <ChevronRight size={16} />
-              </Link>
-            ))}
-          </div>
-        </div>
-
+      <div className="max-w-2xl">
         <div className="bg-authority-blue p-10 rounded-[3.5rem] text-white shadow-2xl relative overflow-hidden flex flex-col justify-center">
           <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold opacity-10 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
           <Globe className="mb-6 text-signal-gold" size={32} />

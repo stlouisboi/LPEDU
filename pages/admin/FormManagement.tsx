@@ -102,7 +102,7 @@ const FormManagement = () => {
             </h3>
             
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Form Title</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Form Title</label>
               <input 
                 value={settings.title}
                 onChange={e => setSettings({...settings, title: e.target.value})}
@@ -111,7 +111,7 @@ const FormManagement = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Submit Button Text</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Submit Button Text</label>
               <input 
                 value={settings.submitButtonText}
                 onChange={e => setSettings({...settings, submitButtonText: e.target.value})}
@@ -120,7 +120,7 @@ const FormManagement = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Success Message</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Success Message</label>
               <textarea 
                 rows={4}
                 value={settings.successMessage}
@@ -130,7 +130,7 @@ const FormManagement = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Redirect URL (Optional)</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Redirect URL (Optional)</label>
               <input 
                 value={settings.redirectUrl || ''}
                 placeholder="e.g. /thank-you"
@@ -148,7 +148,7 @@ const FormManagement = () => {
             </h3>
 
             <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-gray-800 rounded-xl">
-               <span className="text-xs font-bold uppercase tracking-widest">Enable Email Alerts</span>
+               <span className="text-xs font-bold uppercase tracking-widest dark:text-gray-300">Enable Email Alerts</span>
                <button 
                 type="button"
                 onClick={() => setSettings({...settings, enableNotifications: !settings.enableNotifications})}
@@ -161,7 +161,7 @@ const FormManagement = () => {
             {settings.enableNotifications && (
               <div className="space-y-4 animate-in slide-in-from-top duration-300">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Notification Email</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Notification Email</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={16} />
                     <input 
@@ -173,7 +173,7 @@ const FormManagement = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Subject Template</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Subject Template</label>
                   <input 
                     value={settings.emailSubjectTemplate}
                     onChange={e => setSettings({...settings, emailSubjectTemplate: e.target.value})}

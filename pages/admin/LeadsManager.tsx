@@ -243,7 +243,7 @@ const LeadsManager = () => {
             <div className="flex items-center space-x-4">
               <div className={`p-3 rounded-2xl ${s.color}`}>{s.icon}</div>
               <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">{s.label}</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">{s.label}</p>
                 <p className="text-3xl font-black font-serif text-authority-blue dark:text-white">{s.val}</p>
               </div>
             </div>
@@ -359,7 +359,7 @@ const LeadsManager = () => {
                     </span>
                   </td>
                   <td className="px-8 py-6">
-                    <span className="px-3 py-1 bg-slate-100 dark:bg-gray-800 rounded-full text-[10px] font-black uppercase tracking-widest text-text-muted">
+                    <span className="px-3 py-1 bg-slate-100 dark:bg-gray-800 rounded-full text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">
                       {lead.source?.replace(/-/g, ' ') || 'Unknown'}
                     </span>
                   </td>
@@ -413,8 +413,8 @@ const LeadsManager = () => {
               <button onClick={() => { setLeadToDelete(lead.id); setShowSingleConfirm(true); }} className="p-2 text-red-400"><Trash2 size={18} /></button>
             </div>
             <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-border-dark">
-              <span className="text-[10px] font-black uppercase text-text-muted">{lead.source?.replace(/-/g, ' ')}</span>
-              <span className="text-[10px] font-bold text-text-muted">{formatLeadDate(lead).split(',')[0]}</span>
+              <span className="text-[10px] font-black uppercase text-text-muted dark:text-gray-400">{lead.source?.replace(/-/g, ' ')}</span>
+              <span className="text-[10px] font-bold text-text-muted dark:text-gray-400">{formatLeadDate(lead).split(',')[0]}</span>
             </div>
           </div>
         ))}
@@ -430,7 +430,7 @@ const LeadsManager = () => {
           >
             <ChevronLeft size={20} />
           </button>
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-text-muted">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-text-muted dark:text-gray-400">
             Page {currentPage} of {totalPages}
           </span>
           <button 

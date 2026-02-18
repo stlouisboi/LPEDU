@@ -322,7 +322,7 @@ const SettingsManager = () => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Primary Brand Logo</label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Primary Brand Logo</label>
                       <div className="aspect-video bg-slate-50 dark:bg-gray-800 rounded-3xl border-2 border-dashed border-border-light flex flex-col items-center justify-center relative overflow-hidden group">
                         {settings.logoUrl ? (
                           <img src={settings.logoUrl} className="max-h-[80%] max-w-[80%] object-contain drop-shadow-xl" alt="Logo" />
@@ -342,7 +342,7 @@ const SettingsManager = () => {
                       />
                     </div>
                     <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Brand Avatar / Favicon</label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Brand Avatar / Favicon</label>
                       <div className="aspect-video bg-slate-50 dark:bg-gray-800 rounded-3xl border-2 border-dashed border-border-light flex flex-col items-center justify-center relative overflow-hidden group">
                         {settings.faviconUrl ? (
                           <img src={settings.faviconUrl} className="w-24 h-24 object-contain shadow-2xl rounded-[2rem] border-4 border-white dark:border-surface-dark" alt="Favicon" />
@@ -369,7 +369,7 @@ const SettingsManager = () => {
                <h3 className="text-lg font-bold font-serif">Inbound Infrastructure</h3>
                <div className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Public Support Email</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Public Support Email</label>
                     <input 
                       value={settings.contact.email}
                       onChange={e => setSettings({...settings, contact: {...settings.contact, email: e.target.value}})}
@@ -377,7 +377,7 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Support Phone Line</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Support Phone Line</label>
                     <input 
                       value={settings.contact.phone}
                       onChange={e => setSettings({...settings, contact: {...settings.contact, phone: e.target.value}})}
@@ -385,7 +385,7 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Headquarters Address</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Headquarters Address</label>
                     <textarea 
                       rows={3}
                       value={settings.contact.address}
@@ -451,7 +451,7 @@ const SettingsManager = () => {
                <h3 className="text-lg font-bold font-serif">Checkout & Enrollment Links</h3>
                <div className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Self-Paced Enrollment URL</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Self-Paced Enrollment URL</label>
                     <input 
                       value={settings.checkoutUrls?.selfPaced || ''}
                       onChange={e => setSettings({...settings, checkoutUrls: {...(settings.checkoutUrls || {selfPaced: '', mastery: '', elite: ''}), selfPaced: e.target.value}})}
@@ -459,7 +459,7 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Mastery Enrollment URL</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Mastery Enrollment URL</label>
                     <input 
                       value={settings.checkoutUrls?.mastery || ''}
                       onChange={e => setSettings({...settings, checkoutUrls: {...(settings.checkoutUrls || {selfPaced: '', mastery: '', elite: ''}), mastery: e.target.value}})}
@@ -475,7 +475,7 @@ const SettingsManager = () => {
                <h3 className="text-lg font-bold font-serif">SEO & Indexing Controls</h3>
                <div className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Global Meta Description</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Global Meta Description</label>
                     <textarea 
                       rows={4}
                       value={settings.metaDescription}
@@ -484,7 +484,7 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Google Analytics ID (G-XXXXXX)</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Google Analytics ID (G-XXXXXX)</label>
                     <input 
                       value={settings.googleAnalyticsId || ''}
                       onChange={e => setSettings({...settings, googleAnalyticsId: e.target.value})}
@@ -492,7 +492,7 @@ const SettingsManager = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Default OG Image URL</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Default OG Image URL</label>
                     <input 
                       value={settings.seo.ogImage || ''}
                       onChange={e => setSettings({...settings, seo: {...settings.seo, ogImage: e.target.value}})}
@@ -514,11 +514,11 @@ const SettingsManager = () => {
               </div>
               <div className="space-y-4">
                  <div className="flex justify-between items-center text-[10px] font-bold uppercase">
-                    <span className="text-text-muted">Provider:</span>
+                    <span className="text-text-muted dark:text-gray-400">Provider:</span>
                     <span className="text-authority-blue">MailerLite</span>
                  </div>
                  <div className="flex justify-between items-center text-[10px] font-bold uppercase">
-                    <span className="text-text-muted">Registry Form ID:</span>
+                    <span className="text-text-muted dark:text-gray-400">Registry Form ID:</span>
                     <span className={mailerLiteFormId ? "text-green-600 font-black" : "text-red-600 font-black"}>
                        {mailerLiteFormId || "NOT CONFIGURED"}
                     </span>

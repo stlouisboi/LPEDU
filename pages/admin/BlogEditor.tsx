@@ -178,7 +178,7 @@ const BlogEditor = () => {
           {activeTab === 'content' ? (
             <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark space-y-6 shadow-sm">
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Article Title</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Article Title</label>
                 <input 
                   value={formData.title}
                   onChange={e => handleTitleChange(e.target.value)}
@@ -189,7 +189,7 @@ const BlogEditor = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">URL Slug</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">URL Slug</label>
                   <div className="relative">
                     <Globe className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={14} />
                     <input 
@@ -200,7 +200,7 @@ const BlogEditor = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Category</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Category</label>
                   <select 
                     value={formData.category}
                     onChange={e => setFormData({ ...formData, category: e.target.value as BlogCategory })}
@@ -214,7 +214,7 @@ const BlogEditor = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Excerpt (Lead Summary)</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Excerpt (Lead Summary)</label>
                 <textarea 
                   rows={3}
                   value={formData.excerpt}
@@ -225,7 +225,7 @@ const BlogEditor = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Main Body Content</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Main Body Content</label>
                 <ReactQuill 
                   theme="snow"
                   value={formData.content}
@@ -237,7 +237,7 @@ const BlogEditor = () => {
           ) : (
             <div className="bg-white dark:bg-surface-dark p-8 rounded-[2.5rem] border border-border-light dark:border-border-dark space-y-6 shadow-sm animate-in fade-in duration-300">
                <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">SEO Browser Title</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">SEO Browser Title</label>
                 <input 
                   value={formData.seoTitle}
                   onChange={e => setFormData({ ...formData, seoTitle: e.target.value })}
@@ -246,7 +246,7 @@ const BlogEditor = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Meta Description</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Meta Description</label>
                 <textarea 
                   rows={4}
                   value={formData.seoDescription}
@@ -272,13 +272,13 @@ const BlogEditor = () => {
             
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-text-muted">Current Status:</span>
+                <span className="font-bold text-text-muted dark:text-gray-400">Current Status:</span>
                 <span className={`font-black uppercase tracking-tighter ${formData.status === 'published' ? 'text-green-600' : 'text-amber-500'}`}>
                   {formData.status}
                 </span>
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Publish Date</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Publish Date</label>
                 <input 
                   type="date"
                   value={formData.publishedAt}
@@ -287,7 +287,7 @@ const BlogEditor = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Author Name</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Author Name</label>
                 <input 
                   value={formData.author}
                   onChange={e => setFormData({ ...formData, author: e.target.value })}
@@ -312,7 +312,7 @@ const BlogEditor = () => {
                ) : (
                  <div className="text-center p-4">
                    <ImageIcon className="mx-auto mb-2 text-text-muted opacity-30" size={32} />
-                   <p className="text-[10px] font-bold text-text-muted">Click below to upload</p>
+                   <p className="text-[10px] font-bold text-text-muted dark:text-gray-400">Click below to upload</p>
                  </div>
                )}
              </div>

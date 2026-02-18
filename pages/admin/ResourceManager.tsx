@@ -198,7 +198,7 @@ const ResourceManager = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Resource Name</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Resource Name</label>
                   <input 
                     required
                     value={formData.name}
@@ -208,7 +208,7 @@ const ResourceManager = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Category</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Category</label>
                   <select 
                     value={formData.category}
                     onChange={e => setFormData({ ...formData, category: e.target.value as any })}
@@ -222,7 +222,7 @@ const ResourceManager = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">Short Description</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Short Description</label>
                 <textarea 
                   rows={2}
                   value={formData.description}
@@ -233,7 +233,7 @@ const ResourceManager = () => {
               </div>
 
               <div className="p-6 bg-slate-50 dark:bg-gray-900/50 rounded-2xl border border-dashed border-border-light space-y-4 shadow-inner">
-                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted">File Source</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">File Source</label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <p className="text-[10px] font-bold text-authority-blue dark:text-steel-blue uppercase tracking-widest">Option A: Direct Upload</p>
@@ -317,10 +317,10 @@ const ResourceManager = () => {
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/50">
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Asset Info</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Category</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Gate</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted">Downloads</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Asset Info</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Category</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Gate</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted dark:text-gray-400">Downloads</th>
                 <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-text-muted text-right">Actions</th>
               </tr>
             </thead>

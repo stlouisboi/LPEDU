@@ -8,6 +8,10 @@ const PageList = () => {
     { id: 'home', name: 'Homepage', status: 'Published', lastModified: '2 hours ago' },
     { id: 'about', name: 'About Us', status: 'Draft', lastModified: '1 day ago' },
     { id: 'learning-path', name: 'Learning Path', status: 'Published', lastModified: '5 days ago' },
+    { id: 'program', name: 'Program', status: 'Published', lastModified: '3 days ago' },
+    { id: 'reach-test', name: 'Reach Test', status: 'Published', lastModified: '4 days ago' },
+    { id: 'tco-calculator', name: 'TCO Calculator', status: 'Published', lastModified: '6 days ago' },
+    { id: 'admissions', name: 'Admissions', status: 'Published', lastModified: '1 week ago' },
     { id: 'resources', name: 'Resources', status: 'Published', lastModified: '1 week ago' },
     { id: 'contact', name: 'Contact', status: 'Published', lastModified: '2 weeks ago' },
   ];
