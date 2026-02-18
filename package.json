@@ -2,6 +2,7 @@
   "name": "launchpath---compliance-first-guidance-for-owner-operators",
   "private": true,
   "version": "0.0.0",
+  "_comment": "Force redeploy to clear CDN cache - 2026-02-18",
   "overrides": {
     "react-quill": {
       "react": "^19.2.3",
