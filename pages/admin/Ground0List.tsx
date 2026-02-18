@@ -179,14 +179,14 @@ const Ground0List = () => {
                 <td className="px-6 py-4">
                   <div>
                     <p className="text-xs font-black text-signal-gold uppercase mb-1">Lesson {lesson.number}</p>
-                    <p className="font-bold">{lesson.title}</p>
+                    <p className="font-bold text-white dark:text-white">{lesson.title}</p>
                   </div>
                 </td>
                 <td className="px-6 py-4">
                   <p className="text-sm text-slate-300 dark:text-slate-300">{lesson.description}</p>
                 </td>
                 <td className="px-6 py-4">
-                  <p className="text-sm font-bold">{lesson.estimatedTime}</p>
+                  <p className="text-sm font-bold text-white dark:text-white">{lesson.estimatedTime}</p>
                 </td>
                 <td className="px-6 py-4">
                   <span className={`inline-flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
