@@ -316,46 +316,82 @@ const HomePage: React.FC = () => {
 
           <div className="space-y-8">
             {/* Step 1: REACH Test */}
-            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 hover:border-l-8 transition-all group">
-              <div className="flex items-start space-x-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center text-signal-gold font-black text-2xl">
-                  01
+            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-3xl p-10 md:p-12 hover:border-signal-gold/50 hover:shadow-2xl hover:shadow-signal-gold/10 hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
+              <div className="relative flex items-start space-x-6">
+                <div className="flex-shrink-0">
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <Target size={36} className="text-signal-gold" />
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-signal-gold/20 rounded-xl flex items-center justify-center">
+                    <span className="text-2xl font-black text-signal-gold">01</span>
+                  </div>
                 </div>
-                <div className="space-y-4">
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight">REACH Test</h3>
+                <div className="space-y-4 flex-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight group-hover:text-signal-gold dark:group-hover:text-signal-gold transition-colors">REACH Test</h3>
+                    <ArrowRight size={24} className="text-signal-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300" />
+                  </div>
                   <p className="text-lg md:text-xl text-slate-700 dark:text-white/80 leading-relaxed font-medium">
                     Complete the REACH Test to map your first 90 days of authority and expose audit, insurance, and cash‑flow risks.
                   </p>
+                  <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+                    <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Risk Mapping</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Step 2: Ground 0 Briefing */}
-            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 hover:border-l-8 transition-all group">
-              <div className="flex items-start space-x-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center text-signal-gold font-black text-2xl">
-                  02
+            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-3xl p-10 md:p-12 hover:border-signal-gold/50 hover:shadow-2xl hover:shadow-signal-gold/10 hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
+              <div className="relative flex items-start space-x-6">
+                <div className="flex-shrink-0">
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <FileText size={36} className="text-signal-gold" />
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-signal-gold/20 rounded-xl flex items-center justify-center">
+                    <span className="text-2xl font-black text-signal-gold">02</span>
+                  </div>
                 </div>
-                <div className="space-y-4">
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight">Ground 0 Briefing</h3>
+                <div className="space-y-4 flex-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight group-hover:text-signal-gold dark:group-hover:text-signal-gold transition-colors">Ground 0 Briefing</h3>
+                    <ArrowRight size={24} className="text-signal-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300" />
+                  </div>
                   <p className="text-lg md:text-xl text-slate-700 dark:text-white/80 leading-relaxed font-medium">
                     Enter a structured readiness briefing where we review your risk map, documentation, and governance against the operating standard.
                   </p>
+                  <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+                    <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Structure Verification</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Step 3: Admission Decision */}
-            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 hover:border-l-8 transition-all group">
-              <div className="flex items-start space-x-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center text-signal-gold font-black text-2xl">
-                  03
+            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-3xl p-10 md:p-12 hover:border-signal-gold/50 hover:shadow-2xl hover:shadow-signal-gold/10 hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
+              <div className="relative flex items-start space-x-6">
+                <div className="flex-shrink-0">
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <ShieldCheck size={36} className="text-signal-gold" />
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-signal-gold/20 rounded-xl flex items-center justify-center">
+                    <span className="text-2xl font-black text-signal-gold">03</span>
+                  </div>
                 </div>
-                <div className="space-y-4">
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight">Admission Decision</h3>
+                <div className="space-y-4 flex-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight group-hover:text-signal-gold dark:group-hover:text-signal-gold transition-colors">Admission Decision</h3>
+                    <ArrowRight size={24} className="text-signal-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300" />
+                  </div>
                   <p className="text-lg md:text-xl text-slate-700 dark:text-white/80 leading-relaxed font-medium">
                     If your operation reaches the minimum standard, you are invited into LaunchPath to install the full compliance system; if not, you receive corrective priorities and are not advanced.
                   </p>
+                  <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+                    <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Qualified Admission</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -456,88 +492,6 @@ const HomePage: React.FC = () => {
                 </div>
                 <p className="text-xs font-black uppercase text-slate-600 dark:text-slate-400 tracking-wider">20+ Years</p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2.75 HOW LAUNCHPATH WORKS - 3 STEP PROCESS */}
-      <section className="bg-authority-blue py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-signal-gold/5 via-transparent to-transparent"></div>
-        <TechnicalPattern />
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center space-y-6 mb-20">
-            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">STRUCTURED_PROCESS</p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
-              HOW LAUNCHPATH <br/><span className="text-signal-gold italic">WORKS.</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-            {/* Step 1: REACH Test */}
-            <div className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-[3rem] p-10 space-y-6 hover:border-signal-gold/50 transition-all group">
-              <div className="flex items-center justify-between">
-                <div className="w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center">
-                  <Target size={32} className="text-signal-gold" />
-                </div>
-                <span className="text-6xl font-black text-white/10 group-hover:text-signal-gold/20 transition-colors">01</span>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black uppercase text-white tracking-tight">Find Your Risk</h3>
-                <p className="text-base text-white/70 leading-relaxed font-medium">
-                  Take the <strong className="text-signal-gold">REACH Test</strong> to see where your authority could get in trouble — audits, insurance gaps, or cash-flow strain.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Risk Mapping</p>
-              </div>
-            </div>
-
-            {/* Step 2: Ground 0 */}
-            <div className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-[3rem] p-10 space-y-6 hover:border-signal-gold/50 transition-all group">
-              <div className="flex items-center justify-between">
-                <div className="w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center">
-                  <FileText size={32} className="text-signal-gold" />
-                </div>
-                <span className="text-6xl font-black text-white/10 group-hover:text-signal-gold/20 transition-colors">02</span>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black uppercase text-white tracking-tight">Review Your Setup</h3>
-                <p className="text-base text-white/70 leading-relaxed font-medium">
-                  In <strong className="text-signal-gold">Ground 0</strong>, we go through your documents and structure to see if you're actually audit-ready.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Structure Verification</p>
-              </div>
-            </div>
-
-            {/* Step 3: Admission */}
-            <div className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-[3rem] p-10 space-y-6 hover:border-signal-gold/50 transition-all group">
-              <div className="flex items-center justify-between">
-                <div className="w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center">
-                  <ShieldCheck size={32} className="text-signal-gold" />
-                </div>
-                <span className="text-6xl font-black text-white/10 group-hover:text-signal-gold/20 transition-colors">03</span>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black uppercase text-white tracking-tight">Move Forward — or Fix First</h3>
-                <p className="text-base text-white/70 leading-relaxed font-medium">
-                  If you're ready, you move into LaunchPath to install the full system. If you're not, you get a clear checklist of what needs to be fixed before you scale.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Qualified Admission</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Statement */}
-          <div className="mt-20 text-center space-y-6">
-            <div className="max-w-3xl mx-auto bg-white/5 border-l-4 border-signal-gold rounded-2xl p-8">
-              <p className="text-xl md:text-2xl text-white font-bold leading-relaxed">
-                No guessing. No shortcuts. No scaling on weak structure.
-              </p>
             </div>
           </div>
         </div>
@@ -845,7 +799,7 @@ const HomePage: React.FC = () => {
       <section className="py-24 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 bg-signal-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/10 to-transparent"></div>
         <TechnicalPattern />
-        <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-32 items-start lg:items-center relative z-10">
+        <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-16 lg:gap-32 items-start lg:items-center relative z-10">
           <div className="w-full lg:w-7/12 space-y-12">
             <div className="inline-flex items-center space-x-4 bg-[#002244]/10 border border-[#002244]/10 px-6 py-2.5 rounded-full">
               <Target size={16} className="text-[#002244]" />
