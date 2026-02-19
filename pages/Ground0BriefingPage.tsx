@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, AlertTriangle, Shield, TrendingUp, DollarSign, CheckCircle, XCircle, Clock } from 'lucide-react';
+import { ArrowRight, AlertTriangle, Shield, TrendingUp, DollarSign, CheckCircle, XCircle, Clock, FileText, Lock, Activity } from 'lucide-react';
 
 const Ground0BriefingPage = () => {
   const [expandedSin, setExpandedSin] = useState<number | null>(null);
@@ -229,6 +229,80 @@ const Ground0BriefingPage = () => {
                 </ul>
               </div>
               <p className="text-xs text-slate-400">Guidance on alternative paths</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* THE COMPLETE DOSSIER */}
+      <section className="bg-[#FAF9F6] dark:bg-[#020617] py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
+            <div className="lg:col-span-7 space-y-16">
+              <div className="space-y-6">
+                <p className="text-signal-gold font-black uppercase tracking-[0.6em] text-[10px]">Verification Standard</p>
+                <h2 className="text-5xl md:text-9xl font-black uppercase tracking-tighter text-authority-blue dark:text-white font-serif leading-[0.85]">
+                  THE COMPLETE <br/><span className="text-signal-gold italic">DOSSIER.</span>
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 gap-8">
+                {[
+                  { t: 'Driver Qualification Files (DQF)', d: '49 CFR § 391.51 Standard' },
+                  { t: 'Substance Governance Program', d: 'Clearinghouse & Consortium Sync' },
+                  { t: 'HOS Compliance Architecture', d: 'ELD Reconciliation Protocol' },
+                  { t: 'Maintenance Documentation Protocol', d: 'Closed-Loop Inspection Records' },
+                  { t: 'Insurance Underwriting Evidence', d: 'Standardized Carrier Profile' }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center space-x-8 group">
+                    <div className="w-12 h-12 bg-white dark:bg-white/5 border-2 border-slate-100 dark:border-white/10 rounded-2xl flex items-center justify-center text-signal-gold shadow-sm group-hover:bg-authority-blue group-hover:text-white transition-all">
+                      <CheckCircle size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl md:text-2xl text-authority-blue dark:text-white font-black uppercase tracking-tight leading-none">
+                        {item.t}
+                      </h4>
+                      <p className="text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest mt-1.5 opacity-90">{item.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="bg-authority-blue p-10 rounded-[3rem] text-white/90 font-black text-2xl uppercase tracking-tighter leading-tight border-b-8 border-slate-950">
+                 "This is documentation integrity. This is what survives an audit window."
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+               <div className="aspect-[4/5] bg-primary-dark rounded-[5rem] border-[20px] border-white/5 shadow-[0_60px_100px_-20px_rgba(0,0,0,0.8)] p-16 flex flex-col justify-between relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+                  <div className="absolute -top-10 -right-10 p-12 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-1000 rotate-12">
+                    <FileText size={400}/>
+                  </div>
+                  
+                  <div className="space-y-8 relative z-10">
+                    <div className="w-20 h-20 bg-signal-gold rounded-3xl flex items-center justify-center text-primary-dark shadow-[0_0_40px_rgba(198,146,42,0.4)] transition-transform group-hover:scale-110 duration-700">
+                      <Lock size={40}/>
+                    </div>
+                    <div>
+                      <h4 className="text-3xl font-black text-white uppercase tracking-tight leading-none font-serif">REGISTRY ARCHIVE</h4>
+                      <p className="text-[11px] font-black uppercase tracking-[0.4em] text-signal-gold mt-3">VER_4.2.0_STABLE</p>
+                    </div>
+                    <div className="space-y-4 pt-4">
+                      <div className="h-2 w-full bg-white/10 rounded-full"></div>
+                      <div className="h-2 w-4/5 bg-white/10 rounded-full"></div>
+                      <div className="h-2 w-3/5 bg-white/10 rounded-full"></div>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <Activity size={16} className="text-emerald-500 animate-pulse" />
+                      <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40">Encryption Active</p>
+                    </div>
+                    <p className="text-xs text-white/30 uppercase font-bold tracking-widest leading-relaxed">SystemATIC verification before operational dispatch required.</p>
+                  </div>
+               </div>
             </div>
           </div>
         </div>
