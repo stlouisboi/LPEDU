@@ -187,7 +187,7 @@ const HomePage: React.FC = () => {
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center relative z-10">
           <div className="lg:col-span-7 space-y-12">
             <div className="space-y-8 md:space-y-12">
-              <div className="flex flex-wrap gap-4 animate-reveal-up">
+              <div className="flex flex-wrap gap-4 animate-reveal-up justify-center lg:justify-start">
                 <span className="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center backdrop-blur-md">
                   <ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED
                 </span>
@@ -196,15 +196,19 @@ const HomePage: React.FC = () => {
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85] mb-6 animate-reveal-up">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85] mb-6 animate-reveal-up text-center lg:text-left">
                 90-DAY <br/>COMPLIANCE SYSTEM <br/>FOR <span className="text-signal-gold italic">NEW MOTOR CARRIERS.</span>
               </h1>
 
+              <p className="text-xl sm:text-2xl md:text-3xl text-signal-gold font-bold leading-tight animate-reveal-up [animation-delay:100ms] text-center lg:text-left">
+                Install the safety, documentation, and governance needed to keep your new FMCSA authority legal, insurable, and alive.
+              </p>
+
               <div className="space-y-8 animate-reveal-up [animation-delay:200ms]">
-                <p className="text-[22px] sm:text-2xl md:text-3xl text-white/70 leading-relaxed max-w-2xl font-medium">
+                <p className="text-[22px] sm:text-2xl md:text-3xl text-white/70 leading-relaxed max-w-2xl font-medium text-center lg:text-left mx-auto lg:mx-0">
                   The commercial transportation sector is full of opportunity and unforgiving to operators who treat it like a hustle. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
                 </p>
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-6 justify-center lg:justify-start">
                   <div className="h-px w-12 bg-signal-gold"></div>
                   <p className="text-lg sm:text-xl text-slate-400 font-bold italic tracking-tight">
                     Built for the disciplined executive; not for shortcuts.
@@ -212,7 +216,7 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-4 animate-reveal-up [animation-delay:400ms] flex flex-col sm:flex-row gap-6">
+              <div className="pt-4 animate-reveal-up [animation-delay:400ms] flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
                 <Link 
                   to="/tools/tco-calculator" 
                   className="inline-flex items-center justify-center space-x-3 bg-signal-gold text-primary-dark px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white transition-all shadow-[0_20px_40px_rgba(198,146,42,0.3)] active:scale-95 group border-b-4 border-[#8e7340]"
