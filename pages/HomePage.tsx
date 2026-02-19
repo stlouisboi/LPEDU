@@ -177,7 +177,7 @@ const HomePage: React.FC = () => {
     <div className="bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-signal-gold/30 break-words">
       
       {/* 1. THE DECLARATION: HERO SECTION */}
-      <section className="relative min-h-screen flex items-center border-b border-white/5 px-4 sm:px-6 pt-32 pb-24 lg:py-56 overflow-hidden">
+      <section className="relative flex items-center border-b border-white/5 px-4 sm:px-6 pt-24 pb-16 md:pt-32 md:pb-24 lg:py-56 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/40 via-primary-dark to-primary-dark"></div>
           <div className="absolute top-1/4 right-0 w-[800px] h-[800px] bg-signal-gold/10 blur-[150px] rounded-full animate-pulse"></div>
@@ -185,8 +185,8 @@ const HomePage: React.FC = () => {
         </div>
 
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center relative z-10">
-          <div className="lg:col-span-7 space-y-12">
-            <div className="space-y-8 md:space-y-12">
+          <div className="lg:col-span-7 space-y-6 md:space-y-10">
+            <div className="space-y-6 md:space-y-10">
               <div className="flex flex-wrap gap-4 animate-reveal-up justify-center lg:justify-start">
                 <span className="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.4em] text-white/70 flex items-center backdrop-blur-md">
                   <ShieldCheck size={12} className="mr-2 text-signal-gold" /> VETERAN OPERATED
@@ -196,36 +196,39 @@ const HomePage: React.FC = () => {
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85] mb-6 animate-reveal-up text-center lg:text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9] animate-reveal-up text-center lg:text-left">
                 90-DAY <br/>COMPLIANCE SYSTEM <br/>FOR <span className="text-signal-gold italic">NEW MOTOR CARRIERS.</span>
               </h1>
 
-              <p className="text-xl sm:text-2xl md:text-3xl text-signal-gold font-bold leading-tight animate-reveal-up [animation-delay:100ms] text-center lg:text-left">
+              <p className="text-base sm:text-lg md:text-xl text-signal-gold font-bold leading-snug animate-reveal-up [animation-delay:100ms] text-center lg:text-left px-4 lg:px-0">
                 Install the safety, documentation, and governance needed to keep your new FMCSA authority legal, insurable, and alive.
               </p>
 
-              <div className="space-y-8 animate-reveal-up [animation-delay:200ms]">
-                <p className="text-[22px] sm:text-2xl md:text-3xl text-white/70 leading-relaxed max-w-2xl font-medium text-center lg:text-left mx-auto lg:mx-0">
-                  LaunchPath is not a "make money in trucking" course. It's a structured compliance system designed to protect your authority in the first 90 days — before small mistakes turn into big problems.
+              <div className="space-y-4 md:space-y-6 animate-reveal-up [animation-delay:200ms] px-4 lg:px-0">
+                <p className="text-[15px] sm:text-base text-white/80 leading-relaxed max-w-xl font-normal text-center lg:text-left mx-auto lg:mx-0">
+                  LaunchPath is not a "make money in trucking" course.
                 </p>
-                <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-2xl font-medium text-center lg:text-left mx-auto lg:mx-0">
+                <p className="text-[15px] sm:text-base text-white/80 leading-relaxed max-w-xl font-normal text-center lg:text-left mx-auto lg:mx-0">
+                  It's a structured compliance system designed to protect your authority in the first 90 days — before small mistakes turn into big problems.
+                </p>
+                <p className="text-[15px] sm:text-base text-white/70 leading-relaxed max-w-xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                   Most new carriers don't fail because they can't drive. They fail because their paperwork, insurance, or systems weren't built strong enough.
                 </p>
-                <div className="flex items-center space-x-6 justify-center lg:justify-start">
-                  <div className="h-px w-12 bg-signal-gold"></div>
-                  <p className="text-lg sm:text-xl text-signal-gold font-bold tracking-tight">
+                <div className="flex items-center space-x-4 justify-center lg:justify-start">
+                  <div className="h-px w-8 bg-signal-gold"></div>
+                  <p className="text-[15px] sm:text-base text-signal-gold font-bold">
                     LaunchPath installs the structure before pressure hits.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 animate-reveal-up [animation-delay:400ms] flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+              <div className="pt-2 animate-reveal-up [animation-delay:400ms] flex flex-col gap-4 justify-center lg:justify-start px-4 lg:px-0">
                 <Link 
-                  to="/tools/tco-calculator" 
+                  to="/reach-test" 
                   className="inline-flex items-center justify-center space-x-3 bg-signal-gold text-primary-dark px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white transition-all shadow-[0_20px_40px_rgba(198,146,42,0.3)] active:scale-95 group border-b-4 border-[#8e7340]"
                 >
-                  <span>RUN TCO CALCULATOR</span>
-                  <Calculator size={18} className="group-hover:rotate-12 transition-transform" />
+                  <span>START THE REACH TEST</span>
+                  <Target size={18} className="group-hover:scale-110 transition-transform" />
                 </Link>
                 <Link 
                   to="/readiness" 
@@ -395,6 +398,17 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* CTA: Begin Ground 0 Briefing */}
+          <div className="mt-16 text-center">
+            <Link 
+              to="/readiness" 
+              className="inline-flex items-center justify-center space-x-4 bg-authority-blue text-white px-16 py-8 rounded-3xl font-black uppercase tracking-widest text-sm md:text-base hover:bg-signal-gold hover:text-primary-dark transition-all shadow-2xl active:scale-95 group border-b-6 border-primary-dark hover:border-[#8e7340]"
+            >
+              <span>BEGIN GROUND 0 BRIEFING</span>
+              <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>
