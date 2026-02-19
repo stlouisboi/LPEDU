@@ -120,7 +120,7 @@ const ClarificationPage = () => {
                 <button onClick={() => setOpenIndex(isOpen ? null : idx)} className="w-full flex items-center justify-between p-10 text-left focus:outline-none">
                   <div className="flex items-center space-x-6">
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-authority-blue text-signal-gold shadow-lg' : 'bg-slate-50 dark:bg-gray-800 text-slate-300'}`}>{item.icon}</div>
-                    <span className={`text-xl font-black uppercase tracking-tight transition-colors duration-300 ${isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-text-dark-primary'}`}>{item.q}</span>
+                    <span className={`text-xl font-black uppercase tracking-tight transition-colors duration-300 ${isOpen ? 'text-authority-blue dark:text-signal-gold' : 'text-slate-700 dark:text-white'}`}>{item.q}</span>
                   </div>
                   <ChevronDown className={`w-6 h-6 transition-all duration-500 ${isOpen ? 'rotate-180 text-authority-blue' : 'text-slate-300'}`} />
                 </button>
