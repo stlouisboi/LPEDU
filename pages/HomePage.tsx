@@ -303,6 +303,66 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* 1.5 HOW LAUNCHPATH OPERATES */}
+      <section className="bg-white dark:bg-[#0a0f1a] py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/5 to-transparent"></div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="text-center space-y-6 mb-20">
+            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">OPERATING_PROTOCOL</p>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-none">
+              HOW LAUNCHPATH <br/><span className="text-signal-gold italic">OPERATES.</span>
+            </h2>
+          </div>
+
+          <div className="space-y-8">
+            {/* Step 1: REACH Test */}
+            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 hover:border-l-8 transition-all group">
+              <div className="flex items-start space-x-6">
+                <div className="flex-shrink-0 w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center text-signal-gold font-black text-2xl">
+                  01
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight">REACH Test</h3>
+                  <p className="text-lg md:text-xl text-slate-700 dark:text-white/80 leading-relaxed font-medium">
+                    Complete the REACH Test to map your first 90 days of authority and expose audit, insurance, and cash‑flow risks.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2: Ground 0 Briefing */}
+            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 hover:border-l-8 transition-all group">
+              <div className="flex items-start space-x-6">
+                <div className="flex-shrink-0 w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center text-signal-gold font-black text-2xl">
+                  02
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight">Ground 0 Briefing</h3>
+                  <p className="text-lg md:text-xl text-slate-700 dark:text-white/80 leading-relaxed font-medium">
+                    Enter a structured readiness briefing where we review your risk map, documentation, and governance against the operating standard.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3: Admission Decision */}
+            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 hover:border-l-8 transition-all group">
+              <div className="flex items-start space-x-6">
+                <div className="flex-shrink-0 w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center text-signal-gold font-black text-2xl">
+                  03
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight">Admission Decision</h3>
+                  <p className="text-lg md:text-xl text-slate-700 dark:text-white/80 leading-relaxed font-medium">
+                    If your operation reaches the minimum standard, you are invited into LaunchPath to install the full compliance system; if not, you receive corrective priorities and are not advanced.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 2. THE LAW: EXECUTIVE TARGET DECLARATION */}
       <section className="bg-[#020617] py-32 md:py-56 px-4 sm:px-6 md:px-8 lg:px-12 border-y border-white/5 relative">
         <TechnicalPattern />
