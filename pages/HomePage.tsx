@@ -197,16 +197,16 @@ const HomePage: React.FC = () => {
               </div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.85] mb-6 animate-reveal-up">
-                INSTITUTIONAL <br/>GOVERNANCE FOR <br/><span className="text-signal-gold italic">NEW AUTHORITIES.</span>
+                90-DAY <br/>COMPLIANCE SYSTEM <br/>FOR <span className="text-signal-gold italic">NEW MOTOR CARRIERS.</span>
               </h1>
 
               <div className="space-y-8 animate-reveal-up [animation-delay:200ms]">
-                <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl font-medium">
+                <p className="text-[22px] sm:text-2xl md:text-3xl text-white/70 leading-relaxed max-w-2xl font-medium">
                   The commercial transportation sector is full of opportunity and unforgiving to operators who treat it like a hustle. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
                 </p>
                 <div className="flex items-center space-x-6">
                   <div className="h-px w-12 bg-signal-gold"></div>
-                  <p className="text-base sm:text-lg text-slate-400 font-bold italic tracking-tight">
+                  <p className="text-lg sm:text-xl text-slate-400 font-bold italic tracking-tight">
                     Built for the disciplined executive; not for shortcuts.
                   </p>
                 </div>
@@ -215,14 +215,14 @@ const HomePage: React.FC = () => {
               <div className="pt-4 animate-reveal-up [animation-delay:400ms] flex flex-col sm:flex-row gap-6">
                 <Link 
                   to="/tools/tco-calculator" 
-                  className="inline-flex items-center justify-center space-x-3 bg-signal-gold text-primary-dark px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-[0_20px_40px_rgba(198,146,42,0.3)] active:scale-95 group border-b-4 border-[#8e7340]"
+                  className="inline-flex items-center justify-center space-x-3 bg-signal-gold text-primary-dark px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white transition-all shadow-[0_20px_40px_rgba(198,146,42,0.3)] active:scale-95 group border-b-4 border-[#8e7340]"
                 >
                   <span>RUN TCO CALCULATOR</span>
                   <Calculator size={18} className="group-hover:rotate-12 transition-transform" />
                 </Link>
                 <Link 
                   to="/readiness" 
-                  className="inline-flex items-center justify-center space-x-3 bg-white/5 backdrop-blur-md border-2 border-white/20 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all active:scale-95 group"
+                  className="inline-flex items-center justify-center space-x-3 bg-white/5 backdrop-blur-md border-2 border-white/20 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white/10 transition-all active:scale-95 group"
                 >
                   <span>ENTER GROUND 0</span>
                   <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -248,27 +248,27 @@ const HomePage: React.FC = () => {
                 {scanState === 'idle' ? (
                   <form onSubmit={handleRiskMapSubmit} className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[9px] font-mono font-black uppercase tracking-[0.4em] text-white/40 ml-2">ENTITY IDENTIFIER</label>
+                      <label className="text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.4em] text-white/40 ml-2">ENTITY IDENTIFIER</label>
                       <input 
                         required 
                         value={formData.firstName} 
                         onChange={e => setFormData({...formData, firstName: e.target.value})} 
                         placeholder="CARRIER_NAME" 
-                        className="w-full bg-black/40 border-2 border-white/5 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold/50 focus:ring-4 focus:ring-signal-gold/5 transition-all placeholder:text-white/5 uppercase" 
+                        className="w-full bg-black/40 border-2 border-white/5 px-6 py-5 rounded-2xl font-mono font-bold text-base sm:text-lg outline-none focus:border-signal-gold/50 focus:ring-4 focus:ring-signal-gold/5 transition-all placeholder:text-white/5 uppercase" 
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[9px] font-mono font-black uppercase tracking-[0.4em] text-white/40 ml-2">UPLINK EMAIL</label>
+                      <label className="text-[10px] sm:text-[11px] font-mono font-black uppercase tracking-[0.4em] text-white/40 ml-2">UPLINK EMAIL</label>
                       <input 
                         required 
                         type="email" 
                         value={formData.email} 
                         onChange={e => setFormData({...formData, email: e.target.value})} 
                         placeholder="ADMIN@CARRIER.COM" 
-                        className="w-full bg-black/40 border-2 border-white/5 px-6 py-5 rounded-2xl font-mono font-bold text-sm outline-none focus:border-signal-gold/50 focus:ring-4 focus:ring-signal-gold/5 transition-all placeholder:text-white/5 uppercase" 
+                        className="w-full bg-black/40 border-2 border-white/5 px-6 py-5 rounded-2xl font-mono font-bold text-base sm:text-lg outline-none focus:border-signal-gold/50 focus:ring-4 focus:ring-signal-gold/5 transition-all placeholder:text-white/5 uppercase" 
                       />
                     </div>
-                    <button type="submit" disabled={loading} className="w-full relative bg-signal-gold text-primary-dark py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-[11px] shadow-2xl hover:bg-white transition-all overflow-hidden group/btn border-b-8 border-[#8e7340] disabled:opacity-50 mt-4">
+                    <button type="submit" disabled={loading} className="w-full relative bg-signal-gold text-primary-dark py-7 rounded-2xl font-black uppercase tracking-[0.3em] text-sm sm:text-base shadow-2xl hover:bg-white transition-all overflow-hidden group/btn border-b-8 border-[#8e7340] disabled:opacity-50 mt-4">
                       <span className="relative z-10 flex items-center justify-center">
                         {loading ? (
                           <><Loader2 className="animate-spin mr-3" size={18} /> PROCESSING_DATA</>
