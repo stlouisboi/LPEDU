@@ -490,6 +490,7 @@ export default function App() {
                 <Route path="/pricing" element={<RequestAdmission />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
+                <Route path="/system-overview" element={<SystemOverviewPage />} />
                 
                 <Route path="/portal" element={<EnhancedPortalLogin />} />
                 <Route path="/admin/login" element={<AdminLogin />} />
@@ -505,7 +506,6 @@ export default function App() {
                   <Route path="/ai-advisor" element={<AIServicePage />} />
                   <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
                   <Route path="/modules/:id" element={<ModuleDetailPage />} />
-                  <Route path="/system-overview" element={<SystemOverviewPage />} />
                 </Route>
 
                 <Route element={<AdminRoute />}>
