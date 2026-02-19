@@ -51,6 +51,7 @@ import LegalPage from './pages/LegalPage';
 import AIServicePage from './pages/AIServicePage';
 import RequestAdmission from './pages/RequestAdmission';
 import ModuleDetailPage from './pages/ModuleDetailPage';
+import SystemOverviewPage from './pages/SystemOverviewPage';
 import DownloadPage from './pages/DownloadPage';
 import ReadinessPage from './pages/ReadinessPage';
 import EnhancedPortalLogin from './pages/EnhancedPortalLogin';
@@ -504,6 +505,7 @@ export default function App() {
                   <Route path="/ai-advisor" element={<AIServicePage />} />
                   <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
                   <Route path="/modules/:id" element={<ModuleDetailPage />} />
+                  <Route path="/system-overview" element={<SystemOverviewPage />} />
                 </Route>
 
                 <Route element={<AdminRoute />}>

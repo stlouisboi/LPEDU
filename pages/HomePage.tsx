@@ -219,7 +219,7 @@ const HomePage: React.FC = () => {
                   <FileText size={18} className="group-hover:scale-110 transition-transform" />
                 </Link>
                 <Link 
-                  to="/modules" 
+                  to="/system-overview" 
                   className="inline-flex items-center justify-center space-x-3 bg-white/5 backdrop-blur-md border-2 border-white/20 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white/10 transition-all active:scale-95 group"
                 >
                   <span>VIEW FULL SYSTEM</span>
