@@ -197,32 +197,20 @@ const HomePage: React.FC = () => {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-black font-serif uppercase tracking-tighter leading-[0.9] animate-reveal-up text-center lg:text-left">
-                90-DAY <br/>COMPLIANCE SYSTEM <br/>FOR <span className="text-signal-gold italic">NEW MOTOR CARRIERS.</span>
+                THIS IS NOT <br/>A TRUCKING <span className="text-signal-gold italic">COURSE.</span>
               </h1>
 
-              <p className="text-base sm:text-lg md:text-xl text-signal-gold font-bold leading-snug animate-reveal-up [animation-delay:100ms] text-center lg:text-left px-4 lg:px-0">
-                Install the safety, documentation, and governance needed to keep your new FMCSA authority legal, insurable, and alive.
+              <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-medium leading-snug animate-reveal-up [animation-delay:100ms] text-center lg:text-left px-4 lg:px-0">
+                It's the compliance infrastructure <br className="hidden md:block"/>that keeps your authority alive.
               </p>
 
-              <div className="space-y-4 md:space-y-6 animate-reveal-up [animation-delay:200ms] px-4 lg:px-0">
-                <p className="text-[15px] sm:text-base text-white/80 leading-relaxed max-w-xl font-normal text-center lg:text-left mx-auto lg:mx-0">
-                  LaunchPath is not a "make money in trucking" course.
-                </p>
-                <p className="text-[15px] sm:text-base text-white/80 leading-relaxed max-w-xl font-normal text-center lg:text-left mx-auto lg:mx-0">
-                  It's a structured compliance system designed to protect your authority in the first 90 days — before small mistakes turn into big problems.
-                </p>
-                <p className="text-[15px] sm:text-base text-white/70 leading-relaxed max-w-xl font-normal text-center lg:text-left mx-auto lg:mx-0">
-                  Most new carriers don't fail because they can't drive. They fail because their paperwork, insurance, or systems weren't built strong enough.
-                </p>
-                <div className="flex items-center space-x-4 justify-center lg:justify-start">
-                  <div className="h-px w-8 bg-signal-gold"></div>
-                  <p className="text-[15px] sm:text-base text-signal-gold font-bold">
-                    LaunchPath installs the structure before pressure hits.
-                  </p>
-                </div>
-              </div>
+              <p className="text-base sm:text-lg text-signal-gold/90 font-medium leading-relaxed animate-reveal-up [animation-delay:150ms] text-center lg:text-left px-4 lg:px-0">
+                Built by a federal compliance professional <br className="hidden md:block"/>for the operators YouTube won't prepare you for.
+              </p>
 
-              <div className="pt-2 animate-reveal-up [animation-delay:400ms] flex flex-col gap-4 justify-center lg:justify-start px-4 lg:px-0">
+
+
+              <div className="pt-4 animate-reveal-up [animation-delay:200ms] flex flex-col gap-4 justify-center lg:justify-start px-4 lg:px-0">
                 <Link 
                   to="/reach-test" 
                   className="inline-flex items-center justify-center space-x-3 bg-signal-gold text-primary-dark px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white transition-all shadow-[0_20px_40px_rgba(198,146,42,0.3)] active:scale-95 group border-b-4 border-[#8e7340]"
@@ -237,6 +225,24 @@ const HomePage: React.FC = () => {
                   <span>ENTER GROUND 0</span>
                   <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
+                
+                {/* Honest Friction Line */}
+                <div className="pt-4 border-t border-white/10 text-center lg:text-left">
+                  <p className="text-sm text-white/50 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    If you want shortcuts, this isn't it. <br className="hidden sm:block"/>If you're serious about building it right — keep reading.
+                  </p>
+                </div>
+              </div>
+
+              {/* Credential Strip */}
+              <div className="pt-8 border-t border-white/10 animate-reveal-up [animation-delay:300ms] px-4 lg:px-0">
+                <div className="flex flex-wrap gap-4 justify-center lg:justify-start text-[10px] font-mono uppercase tracking-wider text-white/40">
+                  <span>20+ Years Compliance Leadership</span>
+                  <span className="text-white/20">|</span>
+                  <span>8 Years U.S. Navy</span>
+                  <span className="text-white/20">|</span>
+                  <span>5 Years OSHA Certified</span>
+                </div>
               </div>
             </div>
           </div>
@@ -567,22 +573,22 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="space-y-10">
-            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 space-y-8">
+            <div className="bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 space-y-8 shadow-lg">
               <p className="text-xl md:text-2xl text-slate-700 dark:text-white/90 font-bold leading-relaxed">
-                Most new carriers don't fail because they can't drive.
+                The carriers who survive their first 90 days have one thing in common:
               </p>
               <p className="text-lg md:text-xl text-slate-600 dark:text-white/70 leading-relaxed font-medium">
-                They fail because their <strong className="text-authority-blue dark:text-signal-gold">paperwork, insurance, or systems weren't built strong enough</strong> to survive the first 90 days of pressure.
+                They built <strong className="text-authority-blue dark:text-signal-gold">documented systems, verified insurance, and audit-ready files</strong> before pressure hit.
               </p>
               <p className="text-lg md:text-xl text-slate-600 dark:text-white/70 leading-relaxed font-medium">
-                Small mistakes — a missing driver file, a gap in insurance coverage, an ELD setup error — turn into <strong className="text-authority-blue dark:text-signal-gold">audit findings, policy cancellations, and authority revocation</strong>.
+                LaunchPath gives you the same foundation — so you can focus on running your operation, not scrambling to fix preventable gaps.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-slate-50 dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center space-y-4">
-                <div className="text-5xl font-black text-signal-gold">18</div>
-                <p className="text-sm font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">Months Average Failure</p>
+              <div className="bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center space-y-4 hover:border-signal-gold/50 transition-all">
+                <div className="text-5xl font-black text-signal-gold">20<span className="text-2xl">%</span></div>
+                <p className="text-sm font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">Carriers Who Survive</p>
               </div>
               <div className="bg-slate-50 dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center space-y-4">
                 <div className="text-5xl font-black text-signal-gold">90</div>
@@ -594,12 +600,13 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-authority-blue rounded-2xl p-10 md:p-12 text-center space-y-6">
-              <p className="text-2xl md:text-3xl text-white font-bold leading-tight">
-                LaunchPath exists to <span className="text-signal-gold">install the structure before pressure hits</span>.
+            <div className="bg-gradient-to-br from-authority-blue to-primary-dark rounded-2xl p-10 md:p-12 text-center space-y-6 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold/10 rounded-full blur-3xl"></div>
+              <p className="text-2xl md:text-3xl text-white font-bold leading-tight relative z-10">
+                You don't have to figure this out alone. <span className="text-signal-gold">We've already built the system</span>.
               </p>
-              <p className="text-lg text-white/70 font-medium">
-                Not to motivate. Not to inspire. To <strong className="text-white">protect your authority</strong>.
+              <p className="text-lg text-white/80 font-medium relative z-10">
+                LaunchPath installs the structure before pressure hits — so you can <strong className="text-signal-gold">operate with confidence</strong> from day one.
               </p>
             </div>
           </div>
