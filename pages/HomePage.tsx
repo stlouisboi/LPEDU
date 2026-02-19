@@ -53,6 +53,34 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* NEW SECTION: EVALUATION TOOLS */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
+        <div className="max-w-6xl mx-auto space-y-20">
+          <div className="text-center space-y-6">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Evaluation Tools Used Before Admission</h2>
+            <p className="text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+              Before any carrier is admitted into LaunchPath, we evaluate starting position, cost structure, and compliance exposure. The tools below are the same frameworks used during early review. They are provided to serious operators who want clarity before proceeding.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white/5 border-2 border-signal-gold/30 p-10 rounded-3xl space-y-6 text-center">
+              <h3 className="text-2xl font-black uppercase text-signal-gold">Ground 0 Readiness Diagnostic</h3>
+              <p className="text-slate-300 leading-relaxed">Expose gaps in paperwork, insurance, compliance, and operational setup before they trigger audits or shutdowns.</p>
+              <Link to="/ground-0-access" className="inline-block bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors">Initiate Ground 0 Diagnostic</Link>
+            </div>
+            <div className="bg-white/5 border-2 border-authority-blue/30 p-10 rounded-3xl space-y-6 text-center">
+              <h3 className="text-2xl font-black uppercase text-authority-blue">True Cost of Operation (TCO) Framework</h3>
+              <p className="text-slate-300 leading-relaxed">Calculate what it actually costs to run your operation and where early-stage carriers usually misjudge survival math.</p>
+              <Link to="/tco-access" className="inline-block bg-authority-blue text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-steel-blue transition-colors">Run TCO Framework</Link>
+            </div>
+          </div>
+          <div className="text-center space-y-4">
+            <p className="text-sm text-slate-400 font-bold uppercase tracking-widest">These tools reveal your starting position. They do not install the system.</p>
+            <p className="text-xs text-slate-500">Access to these tools does not imply admission.</p>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 3 – ADMISSION GATEKEEPING */}
       <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-authority-blue/10">
         <div className="max-w-4xl mx-auto text-center space-y-10">
@@ -134,11 +162,11 @@ const HomePage = () => {
 
       {/* SECTION 6 – FOUNDER / CUSTODIAN STRIP */}
       <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-authority-blue/10">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <img src="/img/vince-lawrence.jpg" alt="Vince Lawrence" className="w-32 h-32 rounded-full border-4 border-signal-gold object-cover" />
-          <div className="text-center md:text-left">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-8">
+          <img src="/img/vince-lawrence.jpg" alt="Vince Lawrence" className="w-32 h-32 flex-shrink-0 rounded-full border-4 border-signal-gold object-cover" />
+          <div className="flex-1 text-center md:text-left space-y-4">
             <h3 className="text-xl font-black uppercase text-signal-gold tracking-widest">Station Custodian – Vince Lawrence</h3>
-            <p className="text-lg text-slate-300 mt-4 leading-relaxed">
+            <p className="text-lg text-slate-300 leading-relaxed">
               Veteran-operated. OSHA safety coordinator. More than 20 years in operational leadership. My job is to keep the standard clear and to refuse admission when a carrier is not structurally ready to operate.
             </p>
           </div>
