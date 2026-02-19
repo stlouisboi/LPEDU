@@ -111,36 +111,59 @@ const Ground0BriefingPage = () => {
         </div>
       </section>
 
-      {/* THE 16 DEADLY SINS */}
-      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
-        <div className="max-w-6xl mx-auto space-y-16">
-          <div className="text-center space-y-4">
-            <p className="text-xs font-black uppercase tracking-[0.8em] text-slate-400">FEDERAL AUDIT FAILURES</p>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">The 16 Deadly Sins</h2>
-            <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-              High-priority violations that trigger automatic federal audit failure. These are not minor infractions—they are terminal events.
+      {/* THE 16 DEADLY SINS - FEATURED */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-gradient-to-br from-red-950/20 to-transparent relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none [background-image:radial-gradient(#ff0000_1px,transparent_1px)] [background-size:32px:32px]"></div>
+        <div className="max-w-6xl mx-auto space-y-16 relative z-10">
+          <div className="text-center space-y-6">
+            <div className="inline-flex items-center space-x-3 bg-red-600/10 border border-red-600/30 px-6 py-2.5 rounded-full">
+              <AlertTriangle size={16} className="text-red-500" />
+              <p className="text-xs font-black uppercase tracking-[0.5em] text-red-500">DIAGNOSTIC REGISTRY: LP-EXP-V3.0</p>
+            </div>
+            <h2 className="text-4xl md:text-7xl font-black font-serif uppercase tracking-tighter leading-[0.85]">
+              THE 16 DEADLY SINS OF <br/><span className="text-red-600 italic">CARRIER FAILURE.</span>
+            </h2>
+            <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed border-l-4 border-red-600 pl-6 py-2 text-left">
+              These are the sixteen failure patterns investigators look for when deciding whether a carrier survives an audit, keeps insurance coverage, or loses operating authority.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {deadlySins.map((sin) => (
+          {/* Preview Grid - First 4 Sins */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {deadlySins.slice(0, 4).map((sin) => (
               <div
                 key={sin.num}
-                onClick={() => setExpandedSin(expandedSin === sin.num ? null : sin.num)}
-                className="bg-white/5 border border-white/10 hover:border-signal-gold/50 p-6 rounded-2xl cursor-pointer transition-all duration-300"
+                className="bg-white/5 backdrop-blur-md border-l-4 border-red-600 rounded-2xl p-8 space-y-4 hover:bg-white/10 hover:shadow-2xl hover:shadow-red-600/20 transition-all group"
               >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-xs font-black text-signal-gold uppercase tracking-widest mb-2">SIN #{sin.num}</p>
-                    <h4 className="font-black text-lg uppercase tracking-tight">{sin.title}</h4>
-                    <p className="text-sm text-slate-400 mt-2">{sin.desc}</p>
-                  </div>
-                  <div className="flex-shrink-0 ml-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-5xl font-black text-red-600/40 group-hover:text-red-500 transition-colors">#{sin.num}</span>
+                  <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <XCircle size={24} className="text-red-500" />
                   </div>
                 </div>
+                <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">{sin.title}</h3>
+                <p className="text-sm text-white/70 leading-relaxed font-medium">{sin.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* CTA to Full Matrix */}
+          <div className="bg-gradient-to-br from-red-600/20 to-red-950/20 border-2 border-red-600/40 rounded-[3rem] p-12 text-center space-y-8">
+            <div className="space-y-4">
+              <p className="text-sm font-black uppercase tracking-[0.4em] text-red-500">COMPLETE DIAGNOSTIC REGISTRY</p>
+              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white">View All 16 Deadly Sins</h3>
+              <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+                Access the complete exposure matrix with CFR references, REACH questions, and severity classifications for all 16 terminal violations.
+              </p>
+            </div>
+            <Link 
+              to="/exposure-matrix"
+              className="inline-flex items-center space-x-3 bg-red-600 hover:bg-red-700 text-white px-12 py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-sm transition-all shadow-2xl shadow-red-600/30 hover:shadow-red-600/50 active:scale-95 group"
+            >
+              <span>OPEN EXPOSURE MATRIX</span>
+              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+            </Link>
+            <p className="text-xs text-slate-500 uppercase tracking-widest">4 domains • 16 violations • Full CFR mapping</p>
           </div>
         </div>
       </section>
