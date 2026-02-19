@@ -197,10 +197,10 @@ const ContactPage = () => {
                         value={formData.currentStatus}
                         onChange={e => setFormData({...formData, currentStatus: e.target.value})}
                       >
-                        <option value="">Select Phase</option>
-                        <option value="New Authority">First 90 Days</option>
-                        <option value="Existing Carrier">Active Operator</option>
-                        <option value="Pre-Filing">Pre-Filing Stage</option>
+                        <option value="" className="dark:bg-gray-800 dark:text-white">Select Phase</option>
+                        <option value="New Authority" className="dark:bg-gray-800 dark:text-white">First 90 Days</option>
+                        <option value="Existing Carrier" className="dark:bg-gray-800 dark:text-white">Active Operator</option>
+                        <option value="Pre-Filing" className="dark:bg-gray-800 dark:text-white">Pre-Filing Stage</option>
                       </select>
                       <label className="absolute left-8 top-3 text-[11px] font-black uppercase tracking-widest text-slate-400">Current Phase</label>
                       <ChevronDown className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none group-hover:text-authority-blue" size={24} />
@@ -212,11 +212,10 @@ const ContactPage = () => {
                         value={formData.areaOfInterest}
                         onChange={e => setFormData({...formData, areaOfInterest: e.target.value})}
                       >
-                        <option value="">Select Category</option>
-                        <option value="Compliance Systems">The Four Pillars</option>
-                        <option value="Audit Prep">New Entrant Audit</option>
-                        <option value="Training">Training Programs</option>
-                        <option value="General">General Inquiry</option>
+                           <option value="" className="dark:bg-gray-800 dark:text-white">Select Category</option>
+                        <option value="Compliance Systems" className="dark:bg-gray-800 dark:text-white">The Four Pillars</option>
+                        <option value="Audit Prep" className="dark:bg-gray-800 dark:text-white">New Entrant Audit</option>
+                        <option value="General" className="dark:bg-gray-800 dark:text-white">General Inquiry</option>
                       </select>
                       <label className="absolute left-8 top-3 text-[11px] font-black uppercase tracking-widest text-slate-400">Primary Inquiry Area</label>
                       <ChevronDown className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none group-hover:text-authority-blue" size={24} />
