@@ -23,8 +23,7 @@ import {
 const SystemOverviewPage: React.FC = () => {
   useEffect(() => {
     document.title = "System Overview | LaunchPath Transportation Education";
-    const metaDesc = document.querySelector('meta[name="description"]
-');
+    const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', 'The complete architecture of the LaunchPath operating standard, including the 8 core modules, TCO Calculator, and Ground 0 readiness briefing.');
   }, []);
 
