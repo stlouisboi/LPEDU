@@ -173,13 +173,8 @@ const Header = () => {
   return (
     <>
       <SystemStatusBar />
-      <div className="h-20 sm:h-28 md:h-32" />
       <header 
-        className={`fixed top-8 left-0 right-0 z-[100] transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-authority-blue/90 backdrop-blur-xl border-b border-white/10 h-20 sm:h-24' 
-            : 'bg-authority-blue border-b border-white/5 h-20 sm:h-28 md:h-32'
-        }`} 
+        className={`relative z-[100] transition-all duration-500 bg-authority-blue border-b border-white/5 h-20 sm:h-28 md:h-32`} 
         role="banner"
       >
         <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 h-full">
