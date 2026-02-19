@@ -212,24 +212,31 @@ const HomePage: React.FC = () => {
 
               <div className="pt-4 animate-reveal-up [animation-delay:200ms] flex flex-col gap-4 justify-center lg:justify-start px-4 lg:px-0">
                 <Link 
-                  to="/reach-test" 
+                  to="/readiness" 
                   className="inline-flex items-center justify-center space-x-3 bg-signal-gold text-primary-dark px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white transition-all shadow-[0_20px_40px_rgba(198,146,42,0.3)] active:scale-95 group border-b-4 border-[#8e7340]"
                 >
-                  <span>START THE REACH TEST</span>
-                  <Target size={18} className="group-hover:scale-110 transition-transform" />
+                  <span>START WITH GROUND 0 — FREE</span>
+                  <FileText size={18} className="group-hover:scale-110 transition-transform" />
                 </Link>
                 <Link 
-                  to="/readiness" 
+                  to="/modules" 
                   className="inline-flex items-center justify-center space-x-3 bg-white/5 backdrop-blur-md border-2 border-white/20 text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base hover:bg-white/10 transition-all active:scale-95 group"
                 >
-                  <span>ENTER GROUND 0</span>
-                  <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <span>VIEW FULL SYSTEM</span>
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 
                 {/* Honest Friction Line */}
                 <div className="pt-4 border-t border-white/10 text-center lg:text-left">
                   <p className="text-sm text-white/50 leading-relaxed max-w-lg mx-auto lg:mx-0">
                     If you want shortcuts, this isn't it. <br className="hidden sm:block"/>If you're serious about building it right — keep reading.
+                  </p>
+                </div>
+
+                {/* Disqualifier Line */}
+                <div className="pt-3 text-center lg:text-left">
+                  <p className="text-xs text-white/30 font-medium">
+                    This is not for dispatchers, brokers, or side-hustle operators.
                   </p>
                 </div>
               </div>
@@ -317,93 +324,95 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/5 to-transparent"></div>
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="text-center space-y-4 mb-12 md:mb-16">
-            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">OPERATING_PROTOCOL</p>
+            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">SYSTEM_ARCHITECTURE</p>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-none">
-              HOW LAUNCHPATH <br/><span className="text-signal-gold italic">OPERATES.</span>
+              HOW THE STANDARD <br/><span className="text-signal-gold italic">IS BUILT.</span>
             </h2>
           </div>
 
-          <div className="space-y-6">
-            {/* Step 1: REACH Test */}
-            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-6 md:p-10 hover:border-signal-gold/50 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
-              <div className="relative flex items-start space-x-4 md:space-x-6">
-                <div className="flex-shrink-0">
-                  <div className="relative w-16 md:w-20 h-16 md:h-20 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <Target className="w-7 h-7 md:w-9 md:h-9 text-signal-gold" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {/* Card 1: Ground 0 */}
+            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 md:p-10 hover:border-signal-gold/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
+              <div className="relative space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <FileText className="w-7 h-7 text-signal-gold" />
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-10 h-10 md:w-12 md:h-12 bg-signal-gold/20 rounded-xl flex items-center justify-center">
-                    <span className="text-xl md:text-2xl font-black text-signal-gold">1</span>
-                  </div>
+                  <span className="text-3xl font-black text-signal-gold/20">01</span>
                 </div>
-                <div className="space-y-3 md:space-y-4 flex-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl md:text-2xl font-black uppercase text-authority-blue dark:text-white tracking-tight group-hover:text-signal-gold dark:group-hover:text-signal-gold transition-colors">Find your risk</h3>
-                    <ArrowRight size={20} className="hidden md:block text-signal-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300" />
-                  </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight leading-tight mb-4">Ground 0</h3>
                   <p className="text-[15px] md:text-base text-slate-700 dark:text-white/80 leading-relaxed font-normal">
-                    Complete the <strong className="font-bold">REACH Test</strong> to map your first 90 days of authority and expose audit, insurance, and cash‑flow risks.
+                    A free readiness briefing that maps your first 90 days, identifies structural gaps, and determines if you're ready to install the full system.
                   </p>
-                  <div className="pt-3 md:pt-4 border-t border-slate-200 dark:border-white/10">
-                    <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-signal-gold/70">Risk Mapping</p>
-                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Step 2: Ground 0 Briefing */}
-            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-6 md:p-10 hover:border-signal-gold/50 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
-              <div className="relative flex items-start space-x-4 md:space-x-6">
-                <div className="flex-shrink-0">
-                  <div className="relative w-16 md:w-20 h-16 md:h-20 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <FileText className="w-7 h-7 md:w-9 md:h-9 text-signal-gold" />
+            {/* Card 2: 8 Compliance Modules */}
+            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 md:p-10 hover:border-signal-gold/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
+              <div className="relative space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Database className="w-7 h-7 text-signal-gold" />
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-10 h-10 md:w-12 md:h-12 bg-signal-gold/20 rounded-xl flex items-center justify-center">
-                    <span className="text-xl md:text-2xl font-black text-signal-gold">2</span>
-                  </div>
+                  <span className="text-3xl font-black text-signal-gold/20">02</span>
                 </div>
-                <div className="space-y-3 md:space-y-4 flex-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl md:text-2xl font-black uppercase text-authority-blue dark:text-white tracking-tight group-hover:text-signal-gold dark:group-hover:text-signal-gold transition-colors">Review your setup</h3>
-                    <ArrowRight size={20} className="hidden md:block text-signal-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300" />
-                  </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight leading-tight mb-4">8 Modules</h3>
                   <p className="text-[15px] md:text-base text-slate-700 dark:text-white/80 leading-relaxed font-normal">
-                    Enter <strong className="font-bold">Ground 0</strong> briefing where we review your risk map, documentation, and governance against the operating standard.
+                    Authority & Identity, Insurance, Driver Files, HOS/ELD, Maintenance, Safety, Recordkeeping, and Financial Discipline — each built to federal audit standards.
                   </p>
-                  <div className="pt-3 md:pt-4 border-t border-slate-200 dark:border-white/10">
-                    <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-signal-gold/70">Structure Verification</p>
-                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Step 3: Admission Decision */}
-            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-6 md:p-10 hover:border-signal-gold/50 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
-              <div className="relative flex items-start space-x-4 md:space-x-6">
-                <div className="flex-shrink-0">
-                  <div className="relative w-16 md:w-20 h-16 md:h-20 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <ShieldCheck className="w-7 h-7 md:w-9 md:h-9 text-signal-gold" />
+            {/* Card 3: Federal Audit Standard */}
+            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 md:p-10 hover:border-signal-gold/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
+              <div className="relative space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <ShieldCheck className="w-7 h-7 text-signal-gold" />
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-10 h-10 md:w-12 md:h-12 bg-signal-gold/20 rounded-xl flex items-center justify-center">
-                    <span className="text-xl md:text-2xl font-black text-signal-gold">3</span>
-                  </div>
+                  <span className="text-3xl font-black text-signal-gold/20">03</span>
                 </div>
-                <div className="space-y-3 md:space-y-4 flex-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl md:text-2xl font-black uppercase text-authority-blue dark:text-white tracking-tight group-hover:text-signal-gold dark:group-hover:text-signal-gold transition-colors">Qualify or fix first</h3>
-                    <ArrowRight size={20} className="hidden md:block text-signal-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300" />
-                  </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight leading-tight mb-4">Audit-Ready</h3>
                   <p className="text-[15px] md:text-base text-slate-700 dark:text-white/80 leading-relaxed font-normal">
-                    If you meet the minimum standard, you're invited to install the full system. If not, you receive corrective priorities before you scale.
+                    Every document, policy, and process is built to survive FMCSA compliance reviews, insurance audits, and DOT roadside inspections.
                   </p>
-                  <div className="pt-3 md:pt-4 border-t border-slate-200 dark:border-white/10">
-                    <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-signal-gold/70">Qualified Admission</p>
-                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Card 4: The Outcome */}
+            <div className="relative bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-white/[0.02] border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 md:p-10 hover:border-signal-gold/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-signal-gold/5 rounded-full blur-3xl group-hover:bg-signal-gold/10 transition-all duration-500"></div>
+              <div className="relative space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 bg-gradient-to-br from-signal-gold/30 to-signal-gold/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Target className="w-7 h-7 text-signal-gold" />
+                  </div>
+                  <span className="text-3xl font-black text-signal-gold/20">04</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-authority-blue dark:text-white tracking-tight leading-tight mb-4">Protected Authority</h3>
+                  <p className="text-[15px] md:text-base text-slate-700 dark:text-white/80 leading-relaxed font-normal">
+                    You walk away with documented systems, verified compliance, and the infrastructure to operate without fear of revocation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Stat */}
+          <div className="mt-12 md:mt-16 text-center">
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 font-medium">
+              <span className="text-signal-gold font-black text-2xl md:text-3xl">40%</span> of new carriers fail compliance in year one. This system exists to keep you out of that statistic.
+            </p>
           </div>
 
           {/* CTA: Begin Ground 0 Briefing */}
@@ -443,7 +452,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* 2.5 THE CREDENTIALS: STATION CUSTODIAN */}
-      <section className="bg-white dark:bg-[#0a0f1a] py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5 relative overflow-hidden">
+      <section className="bg-white dark:bg-[#0a0f1a] py-48 md:py-64 lg:py-80 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/5 to-transparent"></div>
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
           {/* Image Column */}
@@ -463,7 +472,7 @@ const HomePage: React.FC = () => {
           <div className="lg:col-span-7 space-y-10 order-1 lg:order-2">
             <div className="space-y-4">
               <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">INSTITUTIONAL_FOUNDATION</p>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-none">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-none">
                 CREDENTIALS & <br/><span className="text-signal-gold italic">FOUNDATION.</span>
               </h2>
             </div>
