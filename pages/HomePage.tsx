@@ -206,12 +206,15 @@ const HomePage: React.FC = () => {
 
               <div className="space-y-8 animate-reveal-up [animation-delay:200ms]">
                 <p className="text-[22px] sm:text-2xl md:text-3xl text-white/70 leading-relaxed max-w-2xl font-medium text-center lg:text-left mx-auto lg:mx-0">
-                  The commercial transportation sector is full of opportunity and unforgiving to operators who treat it like a hustle. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
+                  LaunchPath is not a "make money in trucking" course. It's a structured compliance system designed to protect your authority in the first 90 days — before small mistakes turn into big problems.
+                </p>
+                <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-2xl font-medium text-center lg:text-left mx-auto lg:mx-0">
+                  Most new carriers don't fail because they can't drive. They fail because their paperwork, insurance, or systems weren't built strong enough.
                 </p>
                 <div className="flex items-center space-x-6 justify-center lg:justify-start">
                   <div className="h-px w-12 bg-signal-gold"></div>
-                  <p className="text-lg sm:text-xl text-slate-400 font-bold italic tracking-tight">
-                    Built for the disciplined executive; not for shortcuts.
+                  <p className="text-lg sm:text-xl text-signal-gold font-bold tracking-tight">
+                    LaunchPath installs the structure before pressure hits.
                   </p>
                 </div>
               </div>
@@ -398,6 +401,88 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* 2.75 HOW LAUNCHPATH WORKS - 3 STEP PROCESS */}
+      <section className="bg-authority-blue py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-signal-gold/5 via-transparent to-transparent"></div>
+        <TechnicalPattern />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center space-y-6 mb-20">
+            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">STRUCTURED_PROCESS</p>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
+              HOW LAUNCHPATH <br/><span className="text-signal-gold italic">WORKS.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            {/* Step 1: REACH Test */}
+            <div className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-[3rem] p-10 space-y-6 hover:border-signal-gold/50 transition-all group">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center">
+                  <Target size={32} className="text-signal-gold" />
+                </div>
+                <span className="text-6xl font-black text-white/10 group-hover:text-signal-gold/20 transition-colors">01</span>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black uppercase text-white tracking-tight">Find Your Risk</h3>
+                <p className="text-base text-white/70 leading-relaxed font-medium">
+                  Take the <strong className="text-signal-gold">REACH Test</strong> to see where your authority could get in trouble — audits, insurance gaps, or cash-flow strain.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-white/10">
+                <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Risk Mapping</p>
+              </div>
+            </div>
+
+            {/* Step 2: Ground 0 */}
+            <div className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-[3rem] p-10 space-y-6 hover:border-signal-gold/50 transition-all group">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center">
+                  <FileText size={32} className="text-signal-gold" />
+                </div>
+                <span className="text-6xl font-black text-white/10 group-hover:text-signal-gold/20 transition-colors">02</span>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black uppercase text-white tracking-tight">Review Your Setup</h3>
+                <p className="text-base text-white/70 leading-relaxed font-medium">
+                  In <strong className="text-signal-gold">Ground 0</strong>, we go through your documents and structure to see if you're actually audit-ready.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-white/10">
+                <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Structure Verification</p>
+              </div>
+            </div>
+
+            {/* Step 3: Admission */}
+            <div className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-[3rem] p-10 space-y-6 hover:border-signal-gold/50 transition-all group">
+              <div className="flex items-center justify-between">
+                <div className="w-16 h-16 bg-signal-gold/20 rounded-2xl flex items-center justify-center">
+                  <ShieldCheck size={32} className="text-signal-gold" />
+                </div>
+                <span className="text-6xl font-black text-white/10 group-hover:text-signal-gold/20 transition-colors">03</span>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black uppercase text-white tracking-tight">Move Forward — or Fix First</h3>
+                <p className="text-base text-white/70 leading-relaxed font-medium">
+                  If you're ready, you move into LaunchPath to install the full system. If you're not, you get a clear checklist of what needs to be fixed before you scale.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-white/10">
+                <p className="text-xs font-black uppercase tracking-widest text-signal-gold/70">Qualified Admission</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Statement */}
+          <div className="mt-20 text-center space-y-6">
+            <div className="max-w-3xl mx-auto bg-white/5 border-l-4 border-signal-gold rounded-2xl p-8">
+              <p className="text-xl md:text-2xl text-white font-bold leading-relaxed">
+                No guessing. No shortcuts. No scaling on weak structure.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. THE SYSTEM: FOUR PILLARS + INTERDEPENDENCE LOGIC */}
       <section className="py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-primary-dark transition-colors relative">
         <TechnicalPattern />
@@ -436,6 +521,57 @@ const HomePage: React.FC = () => {
               <h3 className="text-3xl font-black uppercase text-signal-gold font-serif tracking-tight leading-none">Interdependence Logic Protocol</h3>
               <p className="text-xl md:text-4xl text-white font-bold leading-[1.1] uppercase tracking-tighter">
                 Pillars are not independent modules. Compliance failure triggers underwriting isolation. Isolation triggers insurance lapse. Lapse triggers authority revocation. Operational collapse is the terminal output.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4.5 WHY THIS STANDARD EXISTS */}
+      <section className="bg-white dark:bg-[#0a0f1a] py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/5 to-transparent"></div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="text-center space-y-6 mb-16">
+            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">PROTECTIVE_DOCTRINE</p>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-authority-blue dark:text-white font-serif leading-none">
+              WHY THIS STANDARD <br/><span className="text-signal-gold italic">EXISTS.</span>
+            </h2>
+          </div>
+
+          <div className="space-y-10">
+            <div className="bg-slate-50 dark:bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 space-y-8">
+              <p className="text-xl md:text-2xl text-slate-700 dark:text-white/90 font-bold leading-relaxed">
+                Most new carriers don't fail because they can't drive.
+              </p>
+              <p className="text-lg md:text-xl text-slate-600 dark:text-white/70 leading-relaxed font-medium">
+                They fail because their <strong className="text-authority-blue dark:text-signal-gold">paperwork, insurance, or systems weren't built strong enough</strong> to survive the first 90 days of pressure.
+              </p>
+              <p className="text-lg md:text-xl text-slate-600 dark:text-white/70 leading-relaxed font-medium">
+                Small mistakes — a missing driver file, a gap in insurance coverage, an ELD setup error — turn into <strong className="text-authority-blue dark:text-signal-gold">audit findings, policy cancellations, and authority revocation</strong>.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-slate-50 dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center space-y-4">
+                <div className="text-5xl font-black text-signal-gold">18</div>
+                <p className="text-sm font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">Months Average Failure</p>
+              </div>
+              <div className="bg-slate-50 dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center space-y-4">
+                <div className="text-5xl font-black text-signal-gold">90</div>
+                <p className="text-sm font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">Days Critical Window</p>
+              </div>
+              <div className="bg-slate-50 dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center space-y-4">
+                <div className="text-5xl font-black text-signal-gold">10</div>
+                <p className="text-sm font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">Structural Requirements</p>
+              </div>
+            </div>
+
+            <div className="bg-authority-blue rounded-2xl p-10 md:p-12 text-center space-y-6">
+              <p className="text-2xl md:text-3xl text-white font-bold leading-tight">
+                LaunchPath exists to <span className="text-signal-gold">install the structure before pressure hits</span>.
+              </p>
+              <p className="text-lg text-white/70 font-medium">
+                Not to motivate. Not to inspire. To <strong className="text-white">protect your authority</strong>.
               </p>
             </div>
           </div>
@@ -516,6 +652,61 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* 5.5 THE MINIMUM STANDARD - 10 POINT OVERVIEW */}
+      <section className="bg-authority-blue py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-signal-gold/5 via-transparent to-transparent"></div>
+        <TechnicalPattern />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center space-y-6 mb-20">
+            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">ENFORCEMENT_FRAMEWORK</p>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
+              THE MINIMUM <br/><span className="text-signal-gold italic">STANDARD.</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-white/70 font-medium max-w-3xl mx-auto leading-relaxed">
+              This is not content. This is the <strong className="text-white">measuring rod</strong>. The <strong className="text-signal-gold">gate</strong>. The thing that separates LaunchPath from YouTube courses.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            {[
+              { num: '01', title: 'Authority and Identity', desc: 'DOT/MC active, legal name consistent, process agent filed' },
+              { num: '02', title: 'Insurance and Risk', desc: 'Coverage limits match freight type, no gaps, certificate handling process' },
+              { num: '03', title: 'Driver Qualification Files', desc: 'Valid CDL, application, MVR, medical card, clearinghouse query' },
+              { num: '04', title: 'Hours of Service and ELD', desc: 'ELD compliant, written HOS policy, log review process defined' },
+              { num: '05', title: 'Vehicle and Maintenance', desc: 'Unit list, ownership proof, maintenance files, inspection process' },
+              { num: '06', title: 'Safety Program and Training', desc: 'Named safety officer, written policy, orientation checklist' },
+              { num: '07', title: 'Compliance Recordkeeping', desc: 'Central file location, FMCSA audit structure, backup plan' },
+              { num: '08', title: 'Financial and Cash-Flow', desc: '90-day cash plan, factoring/receivables plan, minimum rate process' },
+              { num: '09', title: 'Operational Discipline', desc: 'Dispatch rules, out-of-service policy, corrective action process' },
+              { num: '10', title: 'Governance and Review', desc: 'Monthly safety review, REACH results stored, Ground 0 tracking' }
+            ].map((item, index) => (
+              <div key={index} className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-2xl p-8 space-y-4 hover:border-signal-gold/50 transition-all group">
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl font-black text-signal-gold/30 group-hover:text-signal-gold/50 transition-colors">{item.num}</span>
+                  <div className="w-10 h-10 bg-signal-gold/20 rounded-xl flex items-center justify-center">
+                    <CheckCircle size={20} className="text-signal-gold" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">{item.title}</h3>
+                <p className="text-sm text-white/60 leading-relaxed font-medium">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 space-y-6 text-center">
+            <p className="text-2xl md:text-3xl text-white font-bold leading-tight">
+              LaunchPath is <span className="text-signal-gold">not open enrollment</span>.
+            </p>
+            <p className="text-lg md:text-xl text-white/70 font-medium leading-relaxed">
+              You don't buy access. You <strong className="text-white">qualify</strong>.
+            </p>
+            <p className="text-base text-white/60 font-medium leading-relaxed max-w-3xl mx-auto">
+              If your operation isn't structurally ready, you'll be told directly — along with what needs to be corrected. That protects your authority. And it protects the standard.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 6. THE JUDGMENT: 16 SINS + REACH BRIDGE */}
       <section className="bg-primary-dark py-32 md:py-64 relative overflow-hidden">
         <TechnicalPattern />
@@ -564,16 +755,16 @@ const HomePage: React.FC = () => {
             <h2 className="text-5xl md:text-[10rem] font-black uppercase tracking-tighter text-authority-blue dark:text-white font-serif leading-[0.8]">
               ADMISSION <br/><span className="text-signal-gold italic">SEQUENCE.</span>
             </h2>
-            <p className="text-2xl md:text-3xl text-slate-500 font-bold max-w-2xl mx-auto leading-relaxed uppercase tracking-tight">
-              LaunchPath operates on a governed entry protocol. No instant access.
+            <p className="text-2xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold max-w-3xl mx-auto leading-relaxed">
+              You don't buy access. You <span className="text-signal-gold">qualify</span>. Every applicant completes REACH and Ground 0 before admission is considered.
             </p>
           </header>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24">
             {[
-              { num: "01", title: "GROUND 0: READINESS", desc: "Mindset & Decision Module. Determines Go / Wait / No-Go based on clinical math." },
-              { num: "02", title: "SYSTEM INSTALLATION", desc: "Sequential deployment of Authority, Insurance, and Compliance files." },
-              { num: "03", title: "ONGOING OPERATION", desc: "Administrative continuity. Moving from driver with a dream to carrier with infrastructure." }
+              { num: "01", title: "REACH TEST", desc: "Map your first 90 days and uncover audit triggers, insurance gaps, and cash-flow pressure points." },
+              { num: "02", title: "GROUND 0 EVALUATION", desc: "We review your documents and structure against what a real FMCSA audit expects. Not theory. Not guesswork." },
+              { num: "03", title: "ADMISSION DECISION", desc: "If you meet the minimum standard, you're invited to install the full system. If not, you receive corrective priorities before you scale." }
             ].map((step, i) => (
               <div key={i} className="space-y-10 group relative">
                 <div className="w-24 h-24 bg-authority-blue text-signal-gold rounded-[2.5rem] flex items-center justify-center shadow-[0_20px_50px_rgba(30,58,95,0.3)] group-hover:scale-110 transition-transform duration-700 border-b-8 border-slate-950">
