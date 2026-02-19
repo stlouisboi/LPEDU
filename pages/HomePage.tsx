@@ -711,30 +711,126 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            {[
-              { num: '01', title: 'Authority and Identity', desc: 'DOT/MC active, legal name consistent, process agent filed' },
-              { num: '02', title: 'Insurance and Risk', desc: 'Coverage limits match freight type, no gaps, certificate handling process' },
-              { num: '03', title: 'Driver Qualification Files', desc: 'Valid CDL, application, MVR, medical card, clearinghouse query' },
-              { num: '04', title: 'Hours of Service and ELD', desc: 'ELD compliant, written HOS policy, log review process defined' },
-              { num: '05', title: 'Vehicle and Maintenance', desc: 'Unit list, ownership proof, maintenance files, inspection process' },
-              { num: '06', title: 'Safety Program and Training', desc: 'Named safety officer, written policy, orientation checklist' },
-              { num: '07', title: 'Compliance Recordkeeping', desc: 'Central file location, FMCSA audit structure, backup plan' },
-              { num: '08', title: 'Financial and Cash-Flow', desc: '90-day cash plan, factoring/receivables plan, minimum rate process' },
-              { num: '09', title: 'Operational Discipline', desc: 'Dispatch rules, out-of-service policy, corrective action process' },
-              { num: '10', title: 'Governance and Review', desc: 'Monthly safety review, REACH results stored, Ground 0 tracking' }
-            ].map((item, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-2xl p-8 space-y-4 hover:border-signal-gold/50 transition-all group">
-                <div className="flex items-center justify-between">
-                  <span className="text-4xl font-black text-signal-gold/30 group-hover:text-signal-gold/50 transition-colors">{item.num}</span>
-                  <div className="w-10 h-10 bg-signal-gold/20 rounded-xl flex items-center justify-center">
-                    <CheckCircle size={20} className="text-signal-gold" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">{item.title}</h3>
-                <p className="text-sm text-white/60 leading-relaxed font-medium">{item.desc}</p>
+          {/* LEGAL PILLAR */}
+          <div className="mb-16 space-y-6">
+            <div className="flex items-center space-x-4 mb-8">
+              <div className="w-14 h-14 bg-authority-blue/20 border-2 border-authority-blue/40 rounded-2xl flex items-center justify-center">
+                <Scale size={28} className="text-authority-blue" />
               </div>
-            ))}
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white tracking-tight">LEGAL PILLAR</h3>
+                <p className="text-sm text-white/50 font-medium">Federal authority, insurance, and audit readiness</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { num: '01', title: 'Authority and Identity', desc: 'DOT/MC active, legal name consistent, process agent filed', pillar: 'legal' },
+                { num: '02', title: 'Insurance and Risk', desc: 'Coverage limits match freight type, no gaps, certificate handling process', pillar: 'legal' },
+                { num: '07', title: 'Compliance Recordkeeping', desc: 'Central file location, FMCSA audit structure, backup plan', pillar: 'legal' }
+              ].map((item, index) => (
+                <div key={index} className="bg-white/5 backdrop-blur-md border-l-4 border-authority-blue rounded-2xl p-8 space-y-4 hover:bg-white/10 hover:shadow-2xl hover:shadow-authority-blue/20 transition-all group">
+                  <div className="flex items-center justify-between">
+                    <span className="text-5xl font-black text-authority-blue/40 group-hover:text-authority-blue transition-colors">{item.num}</span>
+                    <div className="w-12 h-12 bg-authority-blue/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <ShieldCheck size={24} className="text-authority-blue" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">{item.title}</h3>
+                  <p className="text-sm text-white/70 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* SAFETY PILLAR */}
+          <div className="mb-16 space-y-6">
+            <div className="flex items-center space-x-4 mb-8">
+              <div className="w-14 h-14 bg-red-600/20 border-2 border-red-600/40 rounded-2xl flex items-center justify-center">
+                <ShieldAlert size={28} className="text-red-500" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white tracking-tight">SAFETY PILLAR</h3>
+                <p className="text-sm text-white/50 font-medium">Driver qualification, HOS, vehicles, and training</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { num: '03', title: 'Driver Qualification Files', desc: 'Valid CDL, application, MVR, medical card, clearinghouse query', pillar: 'safety' },
+                { num: '04', title: 'Hours of Service and ELD', desc: 'ELD compliant, written HOS policy, log review process defined', pillar: 'safety' },
+                { num: '05', title: 'Vehicle and Maintenance', desc: 'Unit list, ownership proof, maintenance files, inspection process', pillar: 'safety' },
+                { num: '06', title: 'Safety Program and Training', desc: 'Named safety officer, written policy, orientation checklist', pillar: 'safety' }
+              ].map((item, index) => (
+                <div key={index} className="bg-white/5 backdrop-blur-md border-l-4 border-red-600 rounded-2xl p-8 space-y-4 hover:bg-white/10 hover:shadow-2xl hover:shadow-red-600/20 transition-all group">
+                  <div className="flex items-center justify-between">
+                    <span className="text-5xl font-black text-red-600/40 group-hover:text-red-500 transition-colors">{item.num}</span>
+                    <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <AlertTriangle size={24} className="text-red-500" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">{item.title}</h3>
+                  <p className="text-sm text-white/70 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* FINANCIAL PILLAR */}
+          <div className="mb-16 space-y-6">
+            <div className="flex items-center space-x-4 mb-8">
+              <div className="w-14 h-14 bg-signal-gold/20 border-2 border-signal-gold/40 rounded-2xl flex items-center justify-center">
+                <Calculator size={28} className="text-signal-gold" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white tracking-tight">FINANCIAL PILLAR</h3>
+                <p className="text-sm text-white/50 font-medium">Cash-flow planning and rate discipline</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { num: '08', title: 'Financial and Cash-Flow', desc: '90-day cash plan, factoring/receivables plan, minimum rate process', pillar: 'financial' }
+              ].map((item, index) => (
+                <div key={index} className="bg-white/5 backdrop-blur-md border-l-4 border-signal-gold rounded-2xl p-8 space-y-4 hover:bg-white/10 hover:shadow-2xl hover:shadow-signal-gold/20 transition-all group">
+                  <div className="flex items-center justify-between">
+                    <span className="text-5xl font-black text-signal-gold/40 group-hover:text-signal-gold transition-colors">{item.num}</span>
+                    <div className="w-12 h-12 bg-signal-gold/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <TrendingDown size={24} className="text-signal-gold" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">{item.title}</h3>
+                  <p className="text-sm text-white/70 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* OPERATIONAL PILLAR */}
+          <div className="mb-16 space-y-6">
+            <div className="flex items-center space-x-4 mb-8">
+              <div className="w-14 h-14 bg-steel-blue/20 border-2 border-steel-blue/40 rounded-2xl flex items-center justify-center">
+                <Activity size={28} className="text-steel-blue" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white tracking-tight">OPERATIONAL PILLAR</h3>
+                <p className="text-sm text-white/50 font-medium">Dispatch discipline and governance review</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { num: '09', title: 'Operational Discipline', desc: 'Dispatch rules, out-of-service policy, corrective action process', pillar: 'operational' },
+                { num: '10', title: 'Governance and Review', desc: 'Monthly safety review, REACH results stored, Ground 0 tracking', pillar: 'operational' }
+              ].map((item, index) => (
+                <div key={index} className="bg-white/5 backdrop-blur-md border-l-4 border-steel-blue rounded-2xl p-8 space-y-4 hover:bg-white/10 hover:shadow-2xl hover:shadow-steel-blue/20 transition-all group">
+                  <div className="flex items-center justify-between">
+                    <span className="text-5xl font-black text-steel-blue/40 group-hover:text-steel-blue transition-colors">{item.num}</span>
+                    <div className="w-12 h-12 bg-steel-blue/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Zap size={24} className="text-steel-blue" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">{item.title}</h3>
+                  <p className="text-sm text-white/70 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="bg-white/5 border-l-4 border-signal-gold rounded-2xl p-10 md:p-12 space-y-6 text-center">
