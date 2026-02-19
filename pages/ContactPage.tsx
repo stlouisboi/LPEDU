@@ -193,7 +193,7 @@ const ContactPage = () => {
                     <div className="relative group">
                       <select 
                         required
-                        className="w-full px-8 pt-10 pb-4 rounded-[1.5rem] bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-bold text-[18px] appearance-none cursor-pointer transition-all"
+                        className="w-full px-8 pt-10 pb-4 rounded-[1.5rem] bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-bold text-[18px] text-text-primary dark:text-white appearance-none cursor-pointer transition-all"
                         value={formData.currentStatus}
                         onChange={e => setFormData({...formData, currentStatus: e.target.value})}
                       >
@@ -208,7 +208,7 @@ const ContactPage = () => {
                     <div className="relative group">
                       <select 
                         required
-                        className="w-full px-8 pt-10 pb-4 rounded-[1.5rem] bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-bold text-[18px] appearance-none cursor-pointer transition-all"
+                        className="w-full px-8 pt-10 pb-4 rounded-[1.5rem] bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-bold text-[18px] text-text-primary dark:text-white appearance-none cursor-pointer transition-all"
                         value={formData.areaOfInterest}
                         onChange={e => setFormData({...formData, areaOfInterest: e.target.value})}
                       >
@@ -227,7 +227,7 @@ const ContactPage = () => {
                     <textarea 
                       required 
                       rows={5} 
-                      className="w-full px-8 pt-12 pb-6 rounded-[2.5rem] bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-medium text-[18px] transition-all leading-relaxed resize-none"
+                      className="w-full px-8 pt-12 pb-6 rounded-[2.5rem] bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark focus:border-authority-blue outline-none font-medium text-[18px] text-text-primary dark:text-white transition-all leading-relaxed resize-none"
                       placeholder=" "
                       value={formData.message} 
                       onChange={e => setFormData({...formData, message: e.target.value})} 

@@ -14,7 +14,8 @@ import {
   FileText,
   Scale,
   Users,
-  Clock
+  Clock,
+  ShieldX
 } from 'lucide-react';
 
 /**
