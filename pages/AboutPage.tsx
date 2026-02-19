@@ -44,7 +44,7 @@ const AboutPage: React.FC = () => {
 
   const doctrineMap = [
     { principle: "Structure precedes survival", mechanism: "Four Pillars Framework", icon: <Scale/> },
-    { principle: "Authority without governance collapses", mechanism: "Unified Dossier", icon: <FileText/> },
+    { principle: "Authority without governance collapses", mechanism: "Complete Dossier", icon: <FileText/> },
     { principle: "Interdependent systems", mechanism: "Interdependence Logic Protocol", icon: <Users/> },
     { principle: "Diagnostics precede instruction", mechanism: "REACH Test™", icon: <Clock/> },
     { principle: "Teaching without enforcement is negligence", mechanism: "Admission Gates + Verification", icon: <ShieldCheck/> },

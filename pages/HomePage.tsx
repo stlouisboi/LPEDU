@@ -622,7 +622,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. THE PROOF: UNIFIED DOSSIER */}
+      {/* 5. THE PROOF: COMPLETE DOSSIER */}
       <section className="bg-[#FAF9F6] dark:bg-[#020617] py-32 md:py-64 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-slate-100 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
@@ -630,7 +630,7 @@ const HomePage: React.FC = () => {
               <div className="space-y-6">
                 <p className="text-signal-gold font-black uppercase tracking-[0.6em] text-[10px]">Verification Standard</p>
                 <h2 className="text-5xl md:text-9xl font-black uppercase tracking-tighter text-authority-blue dark:text-white font-serif leading-[0.85]">
-                  THE UNIFIED <br/><span className="text-signal-gold italic">DOSSIER.</span>
+                  THE COMPLETE <br/><span className="text-signal-gold italic">DOSSIER.</span>
                 </h2>
               </div>
               
