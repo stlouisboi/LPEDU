@@ -4,51 +4,65 @@ import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   ArrowRight, 
-  Award, 
-  Clock, 
-  Users, 
-  Scale,
-  Shield,
   Gavel,
-  Zap,
-  ShieldX,
-  Target,
-  FileText,
-  ShieldAlert,
-  ChevronRight,
-  Anchor,
-  BookOpen,
+  Briefcase,
+  Shield,
   CheckCircle2,
   XCircle,
-  Briefcase,
-  Lock
+  Lock,
+  BookOpen,
+  FileText,
+  Scale,
+  Users,
+  Clock
 } from 'lucide-react';
 
 /**
- * AboutPage: Institutional narrative and operational boundaries.
+ * AboutPage: The institutional doctrine and operating standard of LaunchPath.
+ * Version: 2.0 (Doctrine-First Refactor)
  */
 const AboutPage: React.FC = () => {
   useEffect(() => {
-    document.title = "About | LaunchPath Transportation Education";
-    
-    // Set Meta Description
+    document.title = "Doctrine | LaunchPath Transportation Education";
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', 'Institutional structure for new FMCSA authorities. Learn why LaunchPath exists to prevent early carrier failure through governed systems and documented standards.');
+    if (metaDesc) metaDesc.setAttribute('content', 'The operating doctrine of LaunchPath. An institutional standard for new motor carriers who build their authority on the principle of governance before growth.');
   }, []);
+
+  const doctrinePrinciples = [
+    "Structure precedes survival.",
+    "Authority without governance collapses.",
+    "Compliance, insurance, and cash flow are interdependent systems.",
+    "Standards exist to prevent collapse, not to accommodate comfort.",
+    "Systems must be built before scale is pursued.",
+    "Diagnostics precede instruction.",
+    "Teaching without enforcement is negligence.",
+    "Stewardship requires saying no.",
+    "Responsibility outweighs enrollment.",
+    "Survival before scale. Discipline before ambition. Governance before freedom."
+  ];
+
+  const doctrineMap = [
+    { principle: "Structure precedes survival", mechanism: "Four Pillars Framework", icon: <Scale/> },
+    { principle: "Authority without governance collapses", mechanism: "Unified Dossier", icon: <FileText/> },
+    { principle: "Interdependent systems", mechanism: "Interdependence Logic Protocol", icon: <Users/> },
+    { principle: "Diagnostics precede instruction", mechanism: "REACH Test™", icon: <Clock/> },
+    { principle: "Teaching without enforcement is negligence", mechanism: "Admission Gates + Verification", icon: <ShieldCheck/> },
+    { principle: "Stewardship requires saying no", mechanism: "Ground 0 GO / WAIT / NO-GO", icon: <Gavel/> },
+    { principle: "Responsibility outweighs enrollment", mechanism: "No Hype, No Guarantees, No Rush", icon: <ShieldX/> },
+  ];
 
   return (
     <div className="bg-[#FAF9F6] dark:bg-primary-dark min-h-screen font-sans border-t border-white/5">
       
-      {/* HERO SECTION - 60/40 EXECUTIVE ENTRANCE */}
+      {/* HERO SECTION - The Premise */}
       <section className="relative min-h-[90vh] lg:min-h-[95vh] flex flex-col lg:flex-row overflow-hidden border-b border-[#002244]/10">
-        {/* LEFT COLUMN: THE NARRATIVE (60%) */}
         <div className="w-full lg:w-[60%] bg-[#002244] text-white p-8 sm:p-12 md:p-16 lg:p-24 xl:p-32 flex flex-col justify-center relative">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C5A059] via-[#C5A059]/40 to-transparent"></div>
           
           <div className="relative z-10 max-w-2xl space-y-10 md:space-y-12 animate-reveal-up">
             <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-5 py-2 rounded-full w-fit">
-              <span className="flex h-2 w-2 rounded-full bg-[#C5A059] animate-pulse"></span>
+              <span className="flex h-2 w-2 rounded-full bg-[#C5A059]"></span>
               <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white/70">Institutional Registry</span>
             </div>
             
@@ -59,25 +73,19 @@ const AboutPage: React.FC = () => {
                 EXISTS.
               </h1>
               <p className="text-lg md:text-xl text-signal-gold font-bold uppercase tracking-widest border-l-2 border-signal-gold pl-6">
-                Our mission is to prevent early carrier failure by installing institutional governance for new FMCSA authorities before they scale.
+                To prevent early carrier failure by installing institutional governance within new FMCSA authorities before they scale.
               </p>
             </div>
 
             <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
               <p className="font-bold text-white">
-                INSTITUTIONAL STRUCTURE FOR NEW FMCSA AUTHORITIES WHO WANT TO PREVENT EARLY FAILURE
+                This is an institutional operating standard for new motor carriers, not a course or coaching program.
               </p>
-              
               <p>
-                LaunchPath serves new motor carrier authorities (1-3 units) facing the First 90 Days. We exist to prevent terminal failure from authority revocation, insurance lapse, and cash-flow asphyxiation.
+                LaunchPath applies to new authorities (1-3 units) inside the 18-month New Entrant window. The standard exists to prevent terminal failure from authority revocation, insurance lapse, and cash-flow asphyxiation.
               </p>
-              
               <p>
-                We install compliance infrastructure before operational dispatch. This environment is a clinical operating standard, not a motivational framework.
-              </p>
-              
-              <p>
-                We engineer systematic order to ensure survival through the 18-month New Entrant window.
+                The standard requires compliance infrastructure before operational dispatch. This environment is a clinical system, not a motivational framework.
               </p>
             </div>
 
@@ -88,39 +96,18 @@ const AboutPage: React.FC = () => {
                 <span className="text-signal-gold">— Proverbs 24:3-4 (NIV)</span>
               </p>
             </div>
-
-            <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
-              <h2 className="text-2xl font-black font-serif text-white uppercase tracking-tighter">Station Custodian – Vince Lawrence</h2>
-              <p>
-                I have spent more than <strong className="text-signal-gold">20 years in operational leadership</strong> as a shift manager, business unit manager, supervisor, team leader, and OSHA safety coordinator, after <strong className="text-signal-gold">8 years of service in the United States Navy</strong>.
-              </p>
-              <p className="font-bold text-white">
-                That background informs how I install order, enforce boundaries, and refuse admission to carriers that are not structurally ready to operate.
-              </p>
-            </div>
-
-            <div className="pt-6 sm:pt-8 flex flex-col space-y-6">
-              <Link to="/ground-0" className="inline-flex items-center space-x-4 sm:space-x-6 bg-[#C5A059] text-[#002244] px-8 sm:px-12 py-5 sm:py-7 rounded-xl sm:rounded-2xl font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-[12px] shadow-[0_20px_50px_-15px_rgba(197,160,89,0.4)] hover:bg-white hover:text-[#002244] transition-all active:scale-95 group border-b-4 sm:border-b-8 border-[#8e7340]">
-                <span>Verify Admission Readiness</span>
-                <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-              <p className="text-sm text-white/50 font-bold uppercase tracking-wider">
-                Complete the free Ground 0 Readiness Briefing before requesting entry.
-              </p>
-            </div>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: THE PORTRAIT (40%) */}
         <div className="w-full lg:w-[40%] bg-slate-200 relative min-h-[450px] sm:min-h-[550px] lg:min-h-0 shrink-0">
           <img 
             src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vince_founder.png?alt=media&token=b5ea75d9-5252-4ac3-af5c-282eec053e7d" 
             alt="Founder Vince Lawrence" 
-            className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 hover:brightness-100 transition-all duration-1000 object-top"
+            className="w-full h-full object-cover grayscale brightness-90 object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#002244]/60 via-transparent to-transparent"></div>
           <div className="absolute bottom-10 left-10 right-10 text-center lg:text-left">
-            <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.5em] mb-2 drop-shadow-lg">Stationed Custodian</p>
+            <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.5em] mb-2 drop-shadow-lg">Station Custodian</p>
             <p className="text-3xl font-black text-white uppercase tracking-tight font-serif drop-shadow-2xl">Vince Lawrence</p>
             <p className="text-base font-bold text-white/80 mt-4 leading-relaxed drop-shadow-lg">
               My responsibility is to keep the standard clear and to refuse enrollment to carriers who are not structurally ready.
@@ -129,70 +116,60 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ORIENTATION PAUSE */}
-      <div className="bg-slate-50 dark:bg-black/20 py-16 text-center border-b border-slate-100 dark:border-white/5">
-        <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
-          Operating within the standard requires strict adherence to defined boundaries.
-        </p>
-      </div>
-
-      {/* THE INSTITUTIONAL MANIFESTO SECTION */}
-      <section className="bg-[#002244] py-24 md:py-32 lg:py-48 px-6 border-b border-white/5">
+      {/* THE DOCTRINE SECTION */}
+      <section className="bg-[#002244] py-24 md:py-32 lg:py-40 px-6 border-b-4 border-signal-gold">
         <div className="max-w-5xl mx-auto">
           <div className="text-center space-y-6 mb-16">
             <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">OPERATIONAL_DOCTRINE</p>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
-              THE INSTITUTIONAL <br/><span className="text-signal-gold italic">MANIFESTO.</span>
+              THE LAUNCHPATH <br/><span className="text-signal-gold italic">DOCTRINE.</span>
             </h2>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-xl border-2 border-white/10 rounded-[3rem] p-10 md:p-16 space-y-10">
-            {/* Stationed Custodian Definition */}
-            <div className="border-l-4 border-signal-gold pl-8 py-4 bg-signal-gold/5 rounded-r-2xl">
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed font-medium italic">
-                A <strong className="text-signal-gold not-italic">Stationed Custodian</strong> is a carrier executive who treats authority as a privilege, compliance as a duty, and submits their operation to an external operating standard for governance.
-              </p>
-            </div>
-
-            {/* Manifesto Content */}
-            <div className="space-y-8 text-lg md:text-xl text-white/80 leading-relaxed font-medium">
-              <p>
-                The commercial transportation sector is <strong className="text-white">full of opportunity</strong> and <strong className="text-signal-gold">unforgiving to operators who treat it like a hustle</strong>. Many new owner‑operators enter the lane with energy, but without the institutional governance required to survive their first year.
-              </p>
-              
-              <p>
-                LaunchPath exists to form a different kind of carrier: the <strong className="text-signal-gold">Stationed Custodian</strong>. These are executives who treat authority as a privilege, compliance as a duty, and operational integrity as the non‑negotiable base of their enterprise.
-              </p>
-              
-              <p>
-                LaunchPath is <strong className="text-white">not a training program</strong>; it is an <strong className="text-signal-gold">operating standard</strong> for compliant, resilient, and profitable motor carrier operations. We build the foundation for operators who do not just want to drive, but to <strong className="text-signal-gold italic">govern</strong> their enterprise with unwavering discipline.
-              </p>
-            </div>
-
-            {/* Footer */}
-            <div className="border-t border-white/10 pt-10 flex items-center justify-between flex-wrap gap-6">
-              <div className="flex items-center space-x-4">
-                <div className="h-px w-12 bg-signal-gold/40"></div>
-                <p className="text-white/40 font-serif italic text-lg">Institutional Standard v4.2</p>
+          <div className="grid grid-cols-1 gap-4">
+            {doctrinePrinciples.map((principle, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                <p className="text-base md:text-lg text-white/80 font-medium leading-relaxed">{principle}</p>
               </div>
-              <div className="flex items-center space-x-3">
-                <ShieldCheck size={20} className="text-signal-gold" />
-                <p className="text-xs font-black uppercase tracking-widest text-white/50">Compliance First</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DOCTRINE ENFORCEMENT SECTION */}
+      <section className="py-24 md:py-32 lg:py-40 bg-white dark:bg-primary-dark">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16 md:mb-24 space-y-6">
+            <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.8em] sm:tracking-[1em] text-slate-400">DOCTRINE ENFORCEMENT</p>
+            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-tight">
+              PRINCIPLE <span className="text-[#C5A059] italic">INTO PRACTICE.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {doctrineMap.map((item, i) => (
+              <div key={i} className="bg-[#002244] rounded-3xl border border-white/5 shadow-2xl p-8 space-y-6 text-center flex flex-col items-center">
+                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10">
+                  {React.cloneElement(item.icon, { size: 32, className: "text-[#C5A059]" })}
+                </div>
+                <h3 className="text-lg font-black text-white uppercase tracking-tight font-serif h-12 flex items-center">{item.principle}</h3>
+                <div className="h-px w-16 bg-signal-gold/30"></div>
+                <p className="text-base font-bold text-[#C5A059] uppercase tracking-widest flex-grow">{item.mechanism}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CLARITY OF PURPOSE SECTION */}
-      <section className="py-16 md:py-32 lg:py-48 bg-white dark:bg-primary-dark">
+      <section className="py-16 md:py-32 lg:py-40 bg-slate-50 dark:bg-black/20 border-t border-slate-100 dark:border-white/5">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="text-center mb-16 md:mb-24 space-y-6 md:space-y-8 animate-reveal-up">
+          <div className="text-center mb-16 md:mb-24 space-y-6 md:space-y-8">
             <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.8em] sm:tracking-[1em] text-slate-400">OPERATIONAL PARAMETERS</p>
             <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-tight">
-              CLARITY OF <span className="text-[#C5A059] italic">PURPOSE.</span>
+              CLARITY OF <span className="text-[#C5A059] italic">BOUNDARIES.</span>
             </h2>
-            <div className="bg-[#002244] text-white p-8 rounded-3xl max-w-4xl mx-auto shadow-2xl border-l-[12px] border-signal-gold mb-16">
+            <div className="bg-[#002244] text-white p-8 rounded-3xl max-w-4xl mx-auto shadow-2xl border-l-[12px] border-signal-gold">
               <p className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-tight text-left">
                 This environment is built exclusively for executives willing to submit their operation to documented legal, operational, and insurance standards. Shortcut seekers are excluded.
               </p>
@@ -203,30 +180,30 @@ const AboutPage: React.FC = () => {
             {[
               { 
                 icon: <Gavel size={32} className="text-[#C5A059]" />, 
-                title: "LEGAL BOUNDARIES", 
-                body: "We provide safety file architecture and federal regulation interpretation to prevent unauthorized practice through strict technical separation.",
+                title: "LEGAL BOUNDARIES",
+                body: "The standard provides safety file architecture and federal regulation interpretation to prevent unauthorized practice through strict technical separation.",
                 provide: ["Technical safety file architecture", "Federal regulation interpretation", "Audit-readiness verification"],
                 exclude: ["Legal representation/counsel", "Courtroom defense services"]
               },
               { 
                 icon: <Briefcase size={32} className="text-[#C5A059]" />, 
                 title: "OPERATIONAL BOUNDARIES", 
-                body: "We engineer governance systems that protect your authority while maintaining administrative distance to preserve carrier independence.",
+                body: "The standard engineers governance systems that protect authority while maintaining administrative distance to preserve carrier independence.",
                 provide: ["Authority protection protocols", "Preferred carrier positioning", "Systemic record governance"],
                 exclude: ["Daily dispatch operations", "Direct shipper recruitment"]
               },
               { 
                 icon: <Shield size={32} className="text-[#C5A059]" />, 
                 title: "INSURANCE BOUNDARIES", 
-                body: "We build risk profiles underwriters value. We do not sell policies, eliminating conflicts of interest in coverage procurement.",
+                body: "The standard builds risk profiles underwriters value. It does not include policy sales, eliminating conflicts of interest in coverage procurement.",
                 provide: ["Insurance continuity systems", "Underwriter evidence packages", "Risk profile optimization"],
                 exclude: ["Policy binding or issuance", "Brokerage services"]
               }
             ].map((card, i) => (
-              <div key={i} className="bg-[#002244] rounded-3xl md:rounded-[4rem] border border-white/5 shadow-2xl flex flex-col group hover:-translate-y-2 transition-all duration-700 animate-reveal-up overflow-hidden" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div key={i} className="bg-[#002244] rounded-3xl md:rounded-[4rem] border border-white/5 shadow-2xl flex flex-col group">
                 <div className="p-10 md:p-12 space-y-8 flex-grow">
                   <div className="flex items-center space-x-6">
-                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10">
                       {card.icon}
                     </div>
                     <h3 className="text-xl md:text-2xl font-black text-[#C5A059] uppercase tracking-tight font-serif">{card.title}</h3>
@@ -234,22 +211,22 @@ const AboutPage: React.FC = () => {
                   <p className="text-base text-white/70 font-medium leading-relaxed">{card.body}</p>
                   
                   <div className="space-y-6 pt-6 border-t border-white/5">
-                    <div className="space-y-4">
+                    <div>
                       <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">Service Scope:</p>
-                      <ul className="space-y-3">
+                      <ul className="space-y-3 mt-4">
                         {card.provide.map((item, idx) => (
                           <li key={idx} className="flex items-center text-xs font-bold text-white/80 uppercase tracking-tight">
-                            <CheckCircle2 size={14} className="text-emerald-500 mr-3" /> {item}
+                            <CheckCircle2 size={14} className="text-emerald-500 mr-3 shrink-0" /> <span>{item}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="space-y-4">
+                    <div className="pt-4">
                       <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-500">Exclusions:</p>
-                      <ul className="space-y-3">
+                      <ul className="space-y-3 mt-4">
                         {card.exclude.map((item, idx) => (
                           <li key={idx} className="flex items-center text-xs font-bold text-white/40 uppercase tracking-tight">
-                            <XCircle size={14} className="text-red-500/40 mr-3" /> {item}
+                            <XCircle size={14} className="text-red-500/40 mr-3 shrink-0" /> <span>{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -263,23 +240,23 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* FOOTER CALL TO ACTION */}
-      <section className="py-24 md:py-32 lg:py-48 bg-[#FAF9F6] dark:bg-[#020617] border-t border-slate-100 dark:border-white/5 text-center">
+      <section className="py-24 md:py-32 lg:py-40 bg-[#FAF9F6] dark:bg-[#020617] border-t border-slate-100 dark:border-white/5 text-center">
         <div className="max-w-4xl mx-auto px-6 space-y-12">
           <div className="w-20 h-20 bg-authority-blue rounded-3xl flex items-center justify-center mx-auto mb-10 shadow-2xl">
             <Lock size={32} className="text-[#C5A059]" />
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-tight">
-            JOIN THE <span className="text-[#C5A059] italic">OPERATING STANDARD.</span>
+            SUBMIT TO THE <span className="text-[#C5A059] italic">STANDARD.</span>
           </h2>
           <p className="text-lg sm:text-xl font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest max-w-2xl mx-auto">
-            Establishing order before revenue is the only way to survive the first 18 months.
+            Structure precedes survival. Diagnostics precede instruction.
           </p>
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link to="/reach-test" className="w-full sm:w-auto bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group border-b-4 border-slate-900">
-              TAKE THE REACH TEST™ <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
+            <Link to="/ground-0" className="w-full sm:w-auto bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center group border-b-4 border-slate-900">
+              BEGIN READINESS BRIEFING <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
             </Link>
-            <Link to="/pricing" className="w-full sm:w-auto bg-white dark:bg-gray-800 border-2 border-authority-blue/10 dark:border-white/10 text-authority-blue dark:text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-[11px] hover:bg-slate-50 dark:hover:bg-gray-700 transition-all flex items-center justify-center shadow-sm">
-              VIEW ADMISSION PROTOCOL
+            <Link to="/reach-test" className="w-full sm:w-auto bg-white dark:bg-gray-800 border-2 border-authority-blue/10 dark:border-white/10 text-authority-blue dark:text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-[11px] hover:bg-slate-50 dark:hover:bg-gray-700 transition-all flex items-center justify-center shadow-sm">
+              START DIAGNOSTIC
             </Link>
           </div>
         </div>
