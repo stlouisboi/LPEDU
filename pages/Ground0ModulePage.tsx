@@ -370,13 +370,16 @@ const Ground0ModulePage = () => {
 
   const currentLesson = lessons[currentLessonIndex];
   const progressPercentage = ((completedLessons.length + 1) / lessons.length) * 100;
-
   const handleCompleteLesson = () => {
     if (!completedLessons.includes(currentLesson.id)) {
       setCompletedLessons([...completedLessons, currentLesson.id]);
     }
+
     if (currentLessonIndex < lessons.length - 1) {
       setCurrentLessonIndex(currentLessonIndex + 1);
+    } else {
+      // Navigate to checklist after completing all lessons
+      navigate('/ground-0/checklist');
     }
   };
 
