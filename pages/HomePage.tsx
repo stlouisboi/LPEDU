@@ -30,24 +30,54 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* SECTION 1.5 – FAILURE RISK CALCULATOR (INTERACTIVE LEAD CAPTURE) */}
+      <section className="relative py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-gradient-to-br from-red-900/20 to-transparent">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="inline-flex items-center space-x-3 bg-red-600/10 border border-red-600/30 px-6 py-2.5 rounded-full mb-4">
+            <AlertTriangle size={16} className="text-red-500" />
+            <p className="text-xs font-black uppercase tracking-[0.3em] text-red-500">Are You Part of the 90%?</p>
+          </div>
+          
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
+            Find Out If Your Authority Is At Risk
+          </h2>
+          
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Most new carriers don't know they're failing until the FMCSA audit letter arrives. Take the REACH Test to identify your compliance gaps before they become violations.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link 
+              to="/reach-test" 
+              className="inline-flex items-center space-x-3 bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-red-600/30 hover:shadow-red-600/50 active:scale-95 group"
+            >
+              <AlertTriangle size={20} />
+              <span>Calculate Your Failure Risk</span>
+              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+            </Link>
+            <p className="text-sm text-slate-400 italic">Takes 3 minutes • No email required</p>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 2 – HOW THE STANDARD WORKS (3 STEPS) */}
       <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
         <div className="max-w-6xl mx-auto space-y-20">
           <div className="text-center space-y-4">
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">How The Standard Works</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-4">
-              <h3 className="text-2xl font-black uppercase text-signal-gold">1. Find Your Risk</h3>
-              <p className="text-slate-300 leading-relaxed">Take the REACH Test to see where your new authority can get in trouble with audits, insurance, or cash-flow.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div className="space-y-6">
+              <h3 className="text-3xl md:text-4xl font-black uppercase text-signal-gold">1. Find Your Risk</h3>
+              <p className="text-lg md:text-xl text-slate-300 leading-relaxed">Take the REACH Test to see where your new authority can get in trouble with audits, insurance, or cash-flow.</p>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-2xl font-black uppercase text-signal-gold">2. Review Your Setup</h3>
-              <p className="text-slate-300 leading-relaxed">In Ground 0, we walk through your paperwork and systems to see if you are actually ready to operate.</p>
+            <div className="space-y-6">
+              <h3 className="text-3xl md:text-4xl font-black uppercase text-signal-gold">2. Review Your Setup</h3>
+              <p className="text-lg md:text-xl text-slate-300 leading-relaxed">In Ground 0, we walk through your paperwork and systems to see if you are actually ready to operate.</p>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-2xl font-black uppercase text-signal-gold">3. Move Forward or Fix First</h3>
-              <p className="text-slate-300 leading-relaxed">If you meet the standard, you enter LaunchPath to install the full system. If you do not, you get a clear fix-first list.</p>
+            <div className="space-y-6">
+              <h3 className="text-3xl md:text-4xl font-black uppercase text-signal-gold">3. Move Forward or Fix First</h3>
+              <p className="text-lg md:text-xl text-slate-300 leading-relaxed">If you meet the standard, you enter LaunchPath to install the full system. If you do not, you get a clear fix-first list.</p>
             </div>
           </div>
         </div>
@@ -181,10 +211,10 @@ const HomePage = () => {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             
             {/* Left: Image + Credentials */}
-            <div className="flex flex-col items-center lg:items-start space-y-8">
+            <div className="flex flex-col items-center space-y-8">
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-br from-signal-gold/30 to-blue-600/30 rounded-full blur-2xl"></div>
                 <img 
@@ -195,7 +225,7 @@ const HomePage = () => {
               </div>
               
               {/* Credentials Badges */}
-              <div className="flex flex-col sm:flex-row gap-4 w-full justify-center lg:justify-start">
+              <div className="flex flex-col gap-4 w-full max-w-sm">
                 <div className="flex items-center space-x-3 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/10 shadow-lg">
                   <Award size={24} className="text-signal-gold" />
                   <div className="text-left">
