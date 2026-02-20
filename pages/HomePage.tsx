@@ -1,6 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, CheckCircle, Award, AlertTriangle, TrendingDown, FileText, Scale, Zap, Activity } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Shield, 
+  CheckCircle, 
+  Award, 
+  AlertTriangle, 
+  FileText, 
+  Scale, 
+  Zap, 
+  Activity,
+  Lock,
+  ShieldAlert,
+  ShieldCheck,
+  Search,
+  Clipboard,
+  Calculator,
+  Map
+} from 'lucide-react';
 
 const HomePage = () => {
   return (
@@ -18,45 +35,16 @@ const HomePage = () => {
             90% of New Carriers Fail Within 18 Months.
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            The average cost: <span className="text-signal-gold font-bold">$5,000-$25,000</span> in violations and lost authority. LaunchPath installs the compliance infrastructure most carriers never receive—and survival depends on it.
+            LaunchPath installs the compliance infrastructure that prevents both failure and financial loss.
           </p>
           <Link 
             to="/reach-test" 
             className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
           >
-            <span>Run Diagnostic Assessment</span>
+            <Activity size={20} />
+            <span>Run Diagnostic Assessment (REACH)</span>
             <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
           </Link>
-        </div>
-      </section>
-
-      {/* SECTION 1.5 – FAILURE RISK CALCULATOR (INTERACTIVE LEAD CAPTURE) */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-gradient-to-br from-red-900/20 to-transparent">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center space-x-3 bg-red-600/10 border border-red-600/30 px-6 py-2.5 rounded-full mb-4">
-            <AlertTriangle size={16} className="text-red-500" />
-            <p className="text-xs font-black uppercase tracking-[0.3em] text-red-500">Are You Part of the 90%?</p>
-          </div>
-          
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight">
-            Find Out If Your Authority Is At Risk
-          </h2>
-          
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Most new carriers don't know they're failing until the FMCSA audit letter arrives. Take the REACH Test to identify your compliance gaps before they become violations.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link 
-              to="/reach-test" 
-              className="inline-flex items-center space-x-3 bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-red-600/30 hover:shadow-red-600/50 active:scale-95 group"
-            >
-              <AlertTriangle size={20} />
-              <span>Calculate Your Failure Risk</span>
-              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
-            </Link>
-            <p className="text-sm text-slate-400 italic">Takes 3 minutes • No email required</p>
-          </div>
         </div>
       </section>
 
@@ -83,45 +71,256 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* NEW SECTION: EVALUATION TOOLS */}
-      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
+      {/* PRIORITY 6: GATEKEEPING CALLOUT (MOVED HIGHER) */}
+      <section className="py-16 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-authority-blue/10">
+        <div className="max-w-2xl mx-auto text-center space-y-6">
+          <Lock size={32} className="mx-auto text-signal-gold" />
+          <p className="text-xl md:text-2xl font-bold text-white">
+            LaunchPath is not open enrollment. Access is granted only after diagnostic review.
+          </p>
+        </div>
+      </section>
+
+      {/* PRIMARY CTA REPEAT (AFTER SECTION 2) */}
+      <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Start With The REACH Test</h3>
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Identify your compliance exposure before moving forward.
+          </p>
+          <Link 
+            to="/reach-test" 
+            className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
+          >
+            <Activity size={20} />
+            <span>Run Diagnostic Assessment (REACH)</span>
+            <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+          </Link>
+        </div>
+      </section>
+
+      {/* PRIORITY 3: 3-STEP ADMISSION PROCESS (REVISED) */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
         <div className="max-w-6xl mx-auto space-y-20">
           <div className="text-center space-y-6">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Evaluation Tools Used Before Admission</h2>
-            <p className="text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Before any carrier is admitted into LaunchPath, we evaluate starting position, cost structure, and compliance exposure. The tools below are the same frameworks used during early review. They are provided to serious operators who want clarity before proceeding.
-            </p>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">3-Step Admission Process</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 border-2 border-signal-gold/30 p-10 rounded-3xl space-y-6 text-center">
-              <h3 className="text-2xl font-black uppercase text-signal-gold">Ground 0 Readiness Diagnostic</h3>
-              <p className="text-slate-300 leading-relaxed">Expose gaps in paperwork, insurance, compliance, and operational setup before they trigger audits or shutdowns.</p>
-              <Link to="/ground-0" className="inline-block bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors">Initiate Ground 0 Diagnostic</Link>
+            {/* STEP 1 */}
+            <div className="bg-white/5 border-2 border-signal-gold/30 p-10 rounded-3xl space-y-6">
+              <Search size={40} className="text-signal-gold mx-auto" />
+              <h3 className="text-2xl font-black uppercase text-signal-gold text-center">STEP 1: REACH TEST (15 MINUTES)</h3>
+              <p className="text-slate-300 leading-relaxed text-center">
+                Take the REACH Test to map your regulatory risk exposure across authority, insurance, and operational compliance.
+              </p>
+              <Link 
+                to="/reach-test" 
+                className="block text-center bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors"
+              >
+                Take the REACH Test
+              </Link>
             </div>
-            <div className="bg-white/5 border-2 border-red-600/30 p-10 rounded-3xl space-y-6 text-center">
-              <h3 className="text-2xl font-black uppercase text-red-500">90-Day Risk Map™</h3>
-              <p className="text-slate-300 leading-relaxed">Identify compliance gaps before they become violations. See exactly what FMCSA auditors look for in new carriers.</p>
-              <Link to="/download/risk-map" className="inline-block bg-red-600 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-red-700 transition-colors">Download Risk Map™</Link>
+
+            {/* STEP 2 */}
+            <div className="bg-white/5 border-2 border-white/20 p-10 rounded-3xl space-y-6">
+              <Clipboard size={40} className="text-white mx-auto" />
+              <h3 className="text-2xl font-black uppercase text-white text-center">STEP 2: GROUND 0 BRIEFING (90 MINUTES)</h3>
+              <p className="text-slate-300 leading-relaxed text-center">
+                Complete Ground 0 to evaluate your financial reserves, documentation readiness, and structural discipline.
+              </p>
             </div>
-            <div className="bg-white/5 border-2 border-authority-blue/30 p-10 rounded-3xl space-y-6 text-center">
-              <h3 className="text-2xl font-black uppercase text-authority-blue">True Cost of Operation (TCO) Framework</h3>
-              <p className="text-slate-300 leading-relaxed">Calculate what it actually costs to run your operation and where early-stage carriers usually misjudge survival math.</p>
-              <Link to="/tools/tco-calculator" className="inline-block bg-authority-blue text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-steel-blue transition-colors">Run TCO Framework</Link>
+
+            {/* STEP 3 */}
+            <div className="bg-white/5 border-2 border-white/20 p-10 rounded-3xl space-y-6">
+              <CheckCircle size={40} className="text-white mx-auto" />
+              <h3 className="text-2xl font-black uppercase text-white text-center">STEP 3: ADMISSION DECISION</h3>
+              <p className="text-slate-300 leading-relaxed text-center">
+                Receive GO (enter system), WAIT (strengthen reserves), or NO-GO (structural deficiency). Only GO outcomes receive admission protocol.
+              </p>
             </div>
-          </div>
-          <div className="text-center space-y-4">
-            <p className="text-sm text-slate-400 font-bold uppercase tracking-widest">These tools reveal your starting position. They do not install the system.</p>
-            <p className="text-xs text-slate-500">Access to these tools does not imply admission.</p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3 – ADMISSION GATEKEEPING */}
+      {/* SECONDARY TOOLS (SUBORDINATE TO PRIMARY CTA) */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Evaluation Tools Used Before Admission</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Link 
+              to="/ground-0" 
+              className="bg-white/5 border border-white/20 p-8 rounded-2xl space-y-4 text-center hover:border-white/40 transition-colors"
+            >
+              <FileText size={32} className="text-slate-400 mx-auto" />
+              <h3 className="text-lg font-bold uppercase text-slate-300">Access Ground 0 Readiness Diagnostic</h3>
+            </Link>
+            <Link 
+              to="/tools/tco-calculator" 
+              className="bg-white/5 border border-white/20 p-8 rounded-2xl space-y-4 text-center hover:border-white/40 transition-colors"
+            >
+              <Calculator size={32} className="text-slate-400 mx-auto" />
+              <h3 className="text-lg font-bold uppercase text-slate-300">Run TCO Framework</h3>
+            </Link>
+            <Link 
+              to="/download/risk-map" 
+              className="bg-white/5 border border-white/20 p-8 rounded-2xl space-y-4 text-center hover:border-white/40 transition-colors"
+            >
+              <Map size={32} className="text-slate-400 mx-auto" />
+              <h3 className="text-lg font-bold uppercase text-slate-300">View 90-Day Risk Map</h3>
+            </Link>
+          </div>
+          <div className="text-center">
+            <p className="text-sm text-slate-400 font-bold uppercase tracking-widest">
+              These tools reveal your starting position. They do not install the system.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PRIORITY 4: THE MATH OF AUTHORITY LOSS (WITH SYSTEM PROTECTION COLUMN) */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-red-950/20">
+        <div className="max-w-6xl mx-auto space-y-20">
+          <div className="text-center space-y-6">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">The Math of Authority Loss</h2>
+            <div className="max-w-3xl mx-auto space-y-4 text-slate-300 text-lg">
+              <p>Regulatory violations commonly reach five figures</p>
+              <p>Insurance cancellation can suspend authority immediately</p>
+              <p>Failed audits often lead to 45–90 day shutdowns</p>
+              <p>Authority revocation can take months to rebuild, if at all</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
+              <h3 className="text-lg font-black uppercase text-red-500">Regulatory Violations</h3>
+              <p className="text-2xl font-bold text-white">$5,000 - $25,000</p>
+            </div>
+            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
+              <h3 className="text-lg font-black uppercase text-red-500">Insurance Cancellation</h3>
+              <p className="text-2xl font-bold text-white">Automatic Suspension</p>
+            </div>
+            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
+              <h3 className="text-lg font-black uppercase text-red-500">Audit Failure</h3>
+              <p className="text-2xl font-bold text-white">45-90 Day Shutdown</p>
+            </div>
+            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
+              <h3 className="text-lg font-black uppercase text-red-500">Authority Revocation</h3>
+              <p className="text-2xl font-bold text-white">6-12 Months to Rebuild</p>
+            </div>
+            {/* PRIORITY 4: SYSTEM PROTECTION COLUMN */}
+            <div className="bg-gradient-to-br from-signal-gold/10 to-signal-gold/5 border-2 border-signal-gold/50 p-8 rounded-3xl space-y-4 text-center">
+              <ShieldCheck size={32} className="text-signal-gold mx-auto" />
+              <h3 className="text-lg font-black uppercase text-signal-gold">SYSTEM PROTECTION</h3>
+              <p className="text-sm font-bold text-white leading-relaxed">
+                LaunchPath installs structure before these failures occur.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRIORITY 5: WHAT THE SYSTEM INSTALLS (WITH CHECKMARKS) */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-20">
+          <div className="text-center space-y-4">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">6 Complete Compliance Systems Installed</h2>
+          </div>
+          <div className="space-y-8">
+            {/* DRIVER QUALIFICATION SYSTEM */}
+            <div className="flex items-start space-x-6">
+              <CheckCircle size={32} className="text-signal-gold flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white mb-2">DRIVER QUALIFICATION SYSTEM</h3>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Build and maintain complete driver files that pass federal audit review.
+                </p>
+              </div>
+            </div>
+
+            {/* DRUG & ALCOHOL TESTING PROGRAM */}
+            <div className="flex items-start space-x-6">
+              <CheckCircle size={32} className="text-signal-gold flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white mb-2">DRUG & ALCOHOL TESTING PROGRAM</h3>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Install clearinghouse enrollment, random pool setup, and testing protocols.
+                </p>
+              </div>
+            </div>
+
+            {/* HOURS OF SERVICE COMPLIANCE */}
+            <div className="flex items-start space-x-6">
+              <CheckCircle size={32} className="text-signal-gold flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white mb-2">HOURS OF SERVICE COMPLIANCE</h3>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Implement ELD reconciliation and supporting document protocols.
+                </p>
+              </div>
+            </div>
+
+            {/* INSURANCE CONTINUITY ARCHITECTURE */}
+            <div className="flex items-start space-x-6">
+              <CheckCircle size={32} className="text-signal-gold flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white mb-2">INSURANCE CONTINUITY ARCHITECTURE</h3>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Maintain unbroken BMC-91 filing and prevent lapse-triggered shutdowns.
+                </p>
+              </div>
+            </div>
+
+            {/* MAINTENANCE DOCUMENTATION SYSTEM */}
+            <div className="flex items-start space-x-6">
+              <CheckCircle size={32} className="text-signal-gold flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white mb-2">MAINTENANCE DOCUMENTATION SYSTEM</h3>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Create closed-loop inspection and repair records that satisfy 49 CFR Part 396.
+                </p>
+              </div>
+            </div>
+
+            {/* 90-DAY CASH-FLOW SURVIVAL MODEL */}
+            <div className="flex items-start space-x-6">
+              <CheckCircle size={32} className="text-signal-gold flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-2xl font-black uppercase text-white mb-2">90-DAY CASH-FLOW SURVIVAL MODEL</h3>
+                <p className="text-lg text-slate-300 leading-relaxed">
+                  Engineer operating reserves independent of revenue generation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRIMARY CTA REPEAT (BEFORE ADMISSION SECTION) */}
+      <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Ready to See Where You Stand?</h3>
+          <Link 
+            to="/reach-test" 
+            className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
+          >
+            <Activity size={20} />
+            <span>Run Diagnostic Assessment (REACH)</span>
+            <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+          </Link>
+        </div>
+      </section>
+
+      {/* PRIORITY 8: ADMISSION GATEKEEPING (WITH SCARCITY STAT) */}
       <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-authority-blue/10">
         <div className="max-w-4xl mx-auto text-center space-y-10">
+          <ShieldAlert size={48} className="mx-auto text-signal-gold" />
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Admission Is Not Open Enrollment</h2>
           <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
             You do not buy your way into LaunchPath. <span className="text-signal-gold font-bold">You qualify.</span> Every applicant completes the REACH Test and Ground 0 review before admission is considered. If your operation is not structurally ready, you receive corrective priorities and advancement is paused. That protects your authority and it protects the standard.
+          </p>
+          <p className="text-2xl font-bold text-signal-gold">
+            Only 1 in 3 applicants receive GO determination on first review.
           </p>
           <Link 
             to="/pricing" 
@@ -133,69 +332,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* SECTION 4 – COST OF FAILURE */}
-      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-red-950/20">
-        <div className="max-w-6xl mx-auto space-y-20">
-          <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">The Math of Authority Loss</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4">
-              <h3 className="text-xl font-black uppercase text-red-500">Regulatory Violations</h3>
-              <p className="text-3xl font-bold text-white">$5,000 - $25,000</p>
-            </div>
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4">
-              <h3 className="text-xl font-black uppercase text-red-500">Insurance Cancellation</h3>
-              <p className="text-3xl font-bold text-white">Automatic Suspension</p>
-            </div>
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4">
-              <h3 className="text-xl font-black uppercase text-red-500">Audit Failure</h3>
-              <p className="text-3xl font-bold text-white">45-90 Day Shutdown</p>
-            </div>
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4">
-              <h3 className="text-xl font-black uppercase text-red-500">Authority Revocation</h3>
-              <p className="text-3xl font-bold text-white">6-12 Months to Rebuild</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5 – DELIVERABLES */}
-      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
-        <div className="max-w-6xl mx-auto space-y-20">
-          <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">What The System Installs</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-4">
-              <FileText size={32} className="text-signal-gold" />
-              <h3 className="text-xl font-black uppercase">Driver Qualification File System</h3>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-4">
-              <Scale size={32} className="text-signal-gold" />
-              <h3 className="text-xl font-black uppercase">Drug & Alcohol Testing Program</h3>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-4">
-              <Activity size={32} className="text-signal-gold" />
-              <h3 className="text-xl font-black uppercase">Hours of Service Compliance</h3>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-4">
-              <Zap size={32} className="text-signal-gold" />
-              <h3 className="text-xl font-black uppercase">Maintenance Documentation System</h3>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-4">
-              <Shield size={32} className="text-signal-gold" />
-              <h3 className="text-xl font-black uppercase">Insurance Continuity Verification</h3>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-8 rounded-3xl space-y-4">
-              <TrendingDown size={32} className="text-signal-gold" />
-              <h3 className="text-xl font-black uppercase">90-Day Cash-Flow Survival Model</h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 6 – CUSTODIAN SECTION (PREMIUM REDESIGN) */}
+      {/* PRIORITY 7: CUSTODIAN SECTION (UPDATED CREDENTIALS) */}
       <section className="relative py-40 md:py-56 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
         {/* Premium background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900"></div>
@@ -254,10 +391,10 @@ const HomePage = () => {
 
               <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
                 <p>
-                  Twenty years in federal compliance, manufacturing leadership, and safety system management. Not a former truck driver. Not an influencer. A systems architect who builds the infrastructure that protects federally regulated businesses from enforcement actions.
+                  U.S. Navy veteran. OSHA-certified safety coordinator. 20+ years enforcing federal compliance standards and identifying the documentation failures that kill new carriers.
                 </p>
                 <p>
-                  LaunchPath exists because most new carriers never receive the compliance backbone required to survive their first audit. My role is to maintain the standard and refuse admission to operators who are not structurally ready—because stewardship requires saying no.
+                  My job is to keep the standard clear and to refuse admission when a carrier is not structurally ready to operate.
                 </p>
               </div>
 
@@ -271,8 +408,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
-
 
     </div>
   );
