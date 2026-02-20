@@ -1,4 +1,4 @@
-
+// AboutPage.tsx
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -15,12 +15,13 @@ import {
   Scale,
   Users,
   Clock,
-  ShieldX
+  ShieldX,
+  Award
 } from 'lucide-react';
 
 /**
  * AboutPage: The institutional doctrine and operating standard of LaunchPath.
- * Version: 2.0 (Doctrine-First Refactor)
+ * Version: 3.0 (Complete Spec Implementation)
  */
 const AboutPage: React.FC = () => {
   useEffect(() => {
@@ -73,9 +74,13 @@ const AboutPage: React.FC = () => {
                 <span className="text-[#C5A059] italic">LAUNCHPATH</span> <br/>
                 EXISTS.
               </h1>
-              <p className="text-lg md:text-xl text-signal-gold font-bold uppercase tracking-widest border-l-2 border-signal-gold pl-6">
-                To prevent early carrier failure by installing institutional governance within new FMCSA authorities before they scale.
-              </p>
+              
+              {/* PRIORITY 1: MISSION STATEMENT (AFTER HEADING) */}
+              <div className="bg-signal-gold/10 border-l-4 border-signal-gold p-6 rounded-r-2xl mt-8">
+                <p className="text-lg md:text-xl text-white font-bold leading-relaxed">
+                  Our mission is to prevent early carrier failure by installing institutional governance for new FMCSA authorities before they scale.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-8 text-base sm:text-lg md:text-[20px] text-white/80 font-medium leading-relaxed max-w-xl">
@@ -87,14 +92,6 @@ const AboutPage: React.FC = () => {
               </p>
               <p>
                 The standard requires compliance infrastructure before operational dispatch. This environment is a clinical system, not a motivational framework.
-              </p>
-            </div>
-
-            <div className="relative z-10 max-w-2xl space-y-10 md:space-y-12 animate-reveal-up">
-              <p className="text-xl font-serif italic text-white/80">
-                "By wisdom a house is built, and through understanding it is established; through knowledge its rooms are filled with rare and beautiful treasures."
-                <br/>
-                <span className="text-signal-gold">— Proverbs 24:3-4 (NIV)</span>
               </p>
             </div>
           </div>
@@ -110,9 +107,59 @@ const AboutPage: React.FC = () => {
           <div className="absolute bottom-10 left-10 right-10 text-center lg:text-left">
             <p className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.5em] mb-2 drop-shadow-lg">Station Custodian</p>
             <p className="text-3xl font-black text-white uppercase tracking-tight font-serif drop-shadow-2xl">Vince Lawrence</p>
+            {/* PRIORITY 1: FOUNDER'S RESPONSIBILITY (ALREADY CORRECT) */}
             <p className="text-base font-bold text-white/80 mt-4 leading-relaxed drop-shadow-lg">
               My responsibility is to keep the standard clear and to refuse enrollment to carriers who are not structurally ready.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PRIORITY 2: WHY A COMPLIANCE SPECIALIST, NOT AN OPERATOR? */}
+      <section className="bg-slate-100 dark:bg-black/30 py-16 md:py-24 px-6 border-b border-slate-200 dark:border-white/5">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center space-x-3 bg-signal-gold/10 border border-signal-gold/30 px-5 py-2 rounded-full">
+              <Award size={16} className="text-signal-gold" />
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">Credibility Statement</p>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#002244] dark:text-white font-serif">
+              WHY A COMPLIANCE SPECIALIST, <span className="text-signal-gold italic">NOT AN OPERATOR?</span>
+            </h2>
+          </div>
+
+          <div className="bg-[#002244] text-white p-8 md:p-12 rounded-3xl space-y-6 text-lg leading-relaxed">
+            <p className="font-bold">
+              LaunchPath is not taught by a former trucker turned coach—it's taught by a federal compliance specialist who spent 20+ years identifying the exact documentation failures that trigger authority revocation.
+            </p>
+            <p>
+              I don't teach you how to run loads. I teach you how to survive FMCSA compliance reviews, prevent insurance cancellations, and build the documentary evidence that protects your authority.
+            </p>
+            <p className="text-signal-gold font-bold">
+              That requires regulatory expertise, not operational experience. My lack of CDL experience is not a weakness—it's proof this is institutional compliance education, not operator coaching.
+            </p>
+          </div>
+
+          <div className="bg-white dark:bg-slate-800 border-2 border-signal-gold/20 p-8 rounded-2xl">
+            <p className="text-sm font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-4">Credentials</p>
+            <ul className="space-y-3 text-base text-slate-700 dark:text-slate-300">
+              <li className="flex items-start space-x-3">
+                <CheckCircle2 size={20} className="text-signal-gold flex-shrink-0 mt-1" />
+                <span><strong>U.S. Navy veteran</strong> with operational leadership experience</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <CheckCircle2 size={20} className="text-signal-gold flex-shrink-0 mt-1" />
+                <span><strong>OSHA-certified safety coordinator</strong> with 20+ years enforcing federal compliance standards</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <CheckCircle2 size={20} className="text-signal-gold flex-shrink-0 mt-1" />
+                <span><strong>Manufacturing and safety system management</strong> in federally regulated environments</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <CheckCircle2 size={20} className="text-signal-gold flex-shrink-0 mt-1" />
+                <span><strong>Systems architect</strong> who builds infrastructure that protects businesses from enforcement actions</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -127,12 +174,42 @@ const AboutPage: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-4 mb-12">
             {doctrinePrinciples.map((principle, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
                 <p className="text-base md:text-lg text-white/80 font-medium leading-relaxed">{principle}</p>
               </div>
             ))}
+          </div>
+
+          {/* PRIORITY 3: DOCTRINE → PRACTICE CONNECTION */}
+          <div className="bg-signal-gold/10 border-2 border-signal-gold/50 p-8 rounded-3xl text-center">
+            <p className="text-lg md:text-xl font-bold text-white leading-relaxed">
+              These principles manifest in the LaunchPath system through <span className="text-signal-gold">Ground 0</span> (readiness verification), the <span className="text-signal-gold">Four Pillars</span> (structural framework), and the <span className="text-signal-gold">Unified File</span> (documentation architecture).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PRIORITY 2: SCRIPTURE ANCHOR (PROVERBS 21:5) */}
+      <section className="bg-slate-900 py-20 md:py-32 px-6 border-b border-white/10">
+        <div className="max-w-3xl mx-auto text-center space-y-8">
+          <div className="inline-block bg-signal-gold/10 border border-signal-gold/30 px-5 py-2 rounded-full">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">Foundation</p>
+          </div>
+          
+          <blockquote className="text-2xl md:text-4xl font-serif italic text-white leading-relaxed">
+            "The plans of the diligent lead surely to abundance, but everyone who is hasty comes only to poverty."
+          </blockquote>
+          
+          <p className="text-lg font-black uppercase tracking-widest text-signal-gold">
+            — PROVERBS 21:5
+          </p>
+
+          <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
+            <p className="text-lg text-white/80 leading-relaxed">
+              LaunchPath is built on this principle: <span className="text-signal-gold font-bold">systematic preparation prevents terminal failure</span>. Haste without structure leads to loss.
+            </p>
           </div>
         </div>
       </section>
@@ -145,6 +222,11 @@ const AboutPage: React.FC = () => {
             <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black font-serif text-[#002244] dark:text-white uppercase tracking-tighter leading-tight">
               PRINCIPLE <span className="text-[#C5A059] italic">INTO PRACTICE.</span>
             </h2>
+            
+            {/* PRIORITY 3: PHASE ORGANIZATION CONTEXT */}
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+              These systems are installed across <span className="font-bold text-signal-gold">Ground 0</span> (diagnostic phase) and <span className="font-bold text-signal-gold">Modules 1-6</span> (implementation phase):
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -158,6 +240,57 @@ const AboutPage: React.FC = () => {
                 <p className="text-base font-bold text-[#C5A059] uppercase tracking-widest flex-grow">{item.mechanism}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRIORITY 1: GROUND 0 MECHANISM SECTION */}
+      <section className="bg-gradient-to-br from-signal-gold/10 to-slate-100 dark:from-signal-gold/5 dark:to-black/20 py-24 md:py-32 px-6 border-y border-signal-gold/20">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center space-y-6">
+            <div className="inline-block bg-signal-gold/20 border-2 border-signal-gold/50 px-5 py-2 rounded-full">
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">Operationalization</p>
+            </div>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#002244] dark:text-white font-serif">
+              THE GROUND 0 <span className="text-signal-gold italic">MECHANISM.</span>
+            </h2>
+          </div>
+
+          <div className="bg-[#002244] text-white p-10 md:p-16 rounded-3xl space-y-8 shadow-2xl border-l-8 border-signal-gold">
+            <p className="text-xl md:text-2xl font-bold leading-relaxed">
+              LaunchPath operationalizes this mission through <span className="text-signal-gold">Ground 0</span>—a 90-minute readiness briefing that may conclude with <span className="text-signal-gold">GO</span>, <span className="text-red-500">WAIT</span>, or <span className="text-red-500">NO-GO</span>.
+            </p>
+            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              Only <span className="text-signal-gold font-bold">GO outcomes</span> are invited into the full operating standard.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
+              <div className="bg-green-900/20 border-2 border-green-500/30 p-6 rounded-2xl text-center">
+                <CheckCircle2 size={32} className="text-green-500 mx-auto mb-4" />
+                <p className="text-lg font-black uppercase text-green-500 mb-2">GO</p>
+                <p className="text-sm text-white/70">Enter full system</p>
+              </div>
+              <div className="bg-yellow-900/20 border-2 border-yellow-500/30 p-6 rounded-2xl text-center">
+                <Clock size={32} className="text-yellow-500 mx-auto mb-4" />
+                <p className="text-lg font-black uppercase text-yellow-500 mb-2">WAIT</p>
+                <p className="text-sm text-white/70">Strengthen reserves</p>
+              </div>
+              <div className="bg-red-900/20 border-2 border-red-500/30 p-6 rounded-2xl text-center">
+                <XCircle size={32} className="text-red-500 mx-auto mb-4" />
+                <p className="text-lg font-black uppercase text-red-500 mb-2">NO-GO</p>
+                <p className="text-sm text-white/70">Structural deficiency</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link 
+              to="/ground-0" 
+              className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
+            >
+              <span>Begin Ground 0 Briefing</span>
+              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+            </Link>
           </div>
         </div>
       </section>
