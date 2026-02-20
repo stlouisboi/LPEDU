@@ -66,12 +66,12 @@ const HomePage = () => {
             <div className="bg-white/5 border-2 border-signal-gold/30 p-10 rounded-3xl space-y-6 text-center">
               <h3 className="text-2xl font-black uppercase text-signal-gold">Ground 0 Readiness Diagnostic</h3>
               <p className="text-slate-300 leading-relaxed">Expose gaps in paperwork, insurance, compliance, and operational setup before they trigger audits or shutdowns.</p>
-              <Link to="/ground-0-access" className="inline-block bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors">Initiate Ground 0 Diagnostic</Link>
+              <Link to="/ground-0" className="inline-block bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors">Initiate Ground 0 Diagnostic</Link>
             </div>
             <div className="bg-white/5 border-2 border-authority-blue/30 p-10 rounded-3xl space-y-6 text-center">
               <h3 className="text-2xl font-black uppercase text-authority-blue">True Cost of Operation (TCO) Framework</h3>
               <p className="text-slate-300 leading-relaxed">Calculate what it actually costs to run your operation and where early-stage carriers usually misjudge survival math.</p>
-              <Link to="/tco-access" className="inline-block bg-authority-blue text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-steel-blue transition-colors">Run TCO Framework</Link>
+              <Link to="/tools/tco-calculator" className="inline-block bg-authority-blue text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-steel-blue transition-colors">Run TCO Framework</Link>
             </div>
           </div>
           <div className="text-center space-y-4">
@@ -89,7 +89,7 @@ const HomePage = () => {
             You do not buy your way into LaunchPath. <span className="text-signal-gold font-bold">You qualify.</span> Every applicant completes the REACH Test and Ground 0 review before admission is considered. If your operation is not structurally ready, you receive corrective priorities and advancement is paused. That protects your authority and it protects the standard.
           </p>
           <Link 
-            to="/admission" 
+            to="/pricing" 
             className="inline-flex items-center space-x-3 bg-authority-blue hover:bg-steel-blue text-white px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-authority-blue/30 hover:shadow-authority-blue/50 active:scale-95 group"
           >
             <span>Request LaunchPath Admission</span>
@@ -183,9 +183,9 @@ const HomePage = () => {
           <div className="space-y-4">
             <h4 className="font-bold uppercase tracking-widest text-signal-gold">Doctrine</h4>
             <ul className="space-y-2">
-              <li><Link to="/standard" className="text-slate-300 hover:text-white">The Standard</Link></li>
+              <li><Link to="/about" className="text-slate-300 hover:text-white">The Standard</Link></li>
               <li><Link to="/ground-0" className="text-slate-300 hover:text-white">Ground 0</Link></li>
-              <li><Link to="/admission" className="text-slate-300 hover:text-white">Admission Protocol</Link></li>
+              <li><Link to="/pricing" className="text-slate-300 hover:text-white">Admission Protocol</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
@@ -193,7 +193,7 @@ const HomePage = () => {
             <ul className="space-y-2">
               <li><Link to="/blog" className="text-slate-300 hover:text-white">Blog</Link></li>
               <li><Link to="/contact" className="text-slate-300 hover:text-white">Contact</Link></li>
-              <li><Link to="/privacy" className="text-slate-300 hover:text-white">Privacy Policy</Link></li>
+              <li><Link to="/legal" className="text-slate-300 hover:text-white">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>
