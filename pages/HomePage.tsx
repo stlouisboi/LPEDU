@@ -213,44 +213,118 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* PRIORITY 4: THE MATH OF AUTHORITY LOSS (WITH SYSTEM PROTECTION COLUMN) */}
-      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-red-950/20">
-        <div className="max-w-6xl mx-auto space-y-20">
-          <div className="text-center space-y-6">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">The Math of Authority Loss</h2>
-            <div className="max-w-3xl mx-auto space-y-4 text-slate-300 text-lg">
-              <p>Regulatory violations commonly reach five figures</p>
-              <p>Insurance cancellation can suspend authority immediately</p>
-              <p>Failed audits often lead to 45–90 day shutdowns</p>
-              <p>Authority revocation can take months to rebuild, if at all</p>
+      {/* PRIORITY 4: THE MATH OF AUTHORITY LOSS - PREMIUM REDESIGN */}
+      <section className="relative py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 overflow-hidden">
+        {/* Premium gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-red-950/30 to-slate-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-transparent to-transparent"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10 space-y-20">
+          {/* Header - Premium Typography */}
+          <div className="text-center space-y-8">
+            <div className="inline-block bg-red-500/10 border border-red-500/30 px-6 py-2 rounded-full">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-400">CONSEQUENCE ANALYSIS</p>
+            </div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none">
+              THE MATH OF <span className="text-red-400">AUTHORITY LOSS</span>
+            </h2>
+            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300 text-base md:text-lg">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                <p>Regulatory violations commonly reach five figures</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                <p>Insurance cancellation can suspend authority immediately</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                <p>Failed audits often lead to 45–90 day shutdowns</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                <p>Authority revocation can take months to rebuild, if at all</p>
+              </div>
             </div>
           </div>
+
+          {/* Premium Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
-              <h3 className="text-lg font-black uppercase text-red-500">Regulatory Violations</h3>
-              <p className="text-2xl font-bold text-white">$5,000 - $25,000</p>
+            {/* Failure Cards - Premium Glass-morphism */}
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
+                  <AlertTriangle size={28} className="text-red-400" />
+                </div>
+                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Regulatory Violations</h3>
+                <p className="text-3xl md:text-4xl font-black text-white mb-2">$5,000 - $25,000</p>
+                <p className="text-xs text-slate-400 leading-relaxed">Average penalty range for documentation failures</p>
+              </div>
             </div>
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
-              <h3 className="text-lg font-black uppercase text-red-500">Insurance Cancellation</h3>
-              <p className="text-2xl font-bold text-white">Automatic Suspension</p>
+
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
+                  <XCircle size={28} className="text-red-400" />
+                </div>
+                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Insurance Cancellation</h3>
+                <p className="text-3xl md:text-4xl font-black text-white mb-2">Automatic Suspension</p>
+                <p className="text-xs text-slate-400 leading-relaxed">Authority suspended within 24-48 hours</p>
+              </div>
             </div>
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
-              <h3 className="text-lg font-black uppercase text-red-500">Audit Failure</h3>
-              <p className="text-2xl font-bold text-white">45-90 Day Shutdown</p>
+
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
+                  <AlertCircle size={28} className="text-red-400" />
+                </div>
+                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Audit Failure</h3>
+                <p className="text-3xl md:text-4xl font-black text-white mb-2">45-90 Day Shutdown</p>
+                <p className="text-xs text-slate-400 leading-relaxed">Operational suspension during remediation</p>
+              </div>
             </div>
-            <div className="bg-red-600/10 border border-red-600/30 p-8 rounded-3xl space-y-4 text-center">
-              <h3 className="text-lg font-black uppercase text-red-500">Authority Revocation</h3>
-              <p className="text-2xl font-bold text-white">6-12 Months to Rebuild</p>
+
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
+                  <Ban size={28} className="text-red-400" />
+                </div>
+                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Authority Revocation</h3>
+                <p className="text-3xl md:text-4xl font-black text-white mb-2">6-12 Months to Rebuild</p>
+                <p className="text-xs text-slate-400 leading-relaxed">If reinstatement is granted at all</p>
+              </div>
             </div>
-            {/* PRIORITY 4: SYSTEM PROTECTION COLUMN */}
-            <div className="bg-gradient-to-br from-signal-gold/10 to-signal-gold/5 border-2 border-signal-gold/50 p-8 rounded-3xl space-y-4 text-center">
-              <ShieldCheck size={32} className="text-signal-gold mx-auto" />
-              <h3 className="text-lg font-black uppercase text-signal-gold">LAUNCHPATH OUTCOME</h3>
-              <div className="text-sm font-bold text-white leading-relaxed space-y-2">
-                <p>Zero violations (audit-ready from day one)</p>
-                <p>Continuous insurance (no lapses)</p>
-                <p>Audit passage (documentation complete)</p>
-                <p>Authority protected (structural compliance)</p>
+
+            {/* LaunchPath Outcome - Premium Gold Card */}
+            <div className="group relative bg-gradient-to-br from-signal-gold/20 via-signal-gold/10 to-signal-gold/5 backdrop-blur-sm border-2 border-signal-gold/50 p-10 rounded-3xl space-y-6 text-center hover:border-signal-gold transition-all duration-300 hover:shadow-2xl hover:shadow-signal-gold/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-signal-gold/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-signal-gold/20 border-2 border-signal-gold/50 rounded-2xl mb-4">
+                  <ShieldCheck size={28} className="text-signal-gold" />
+                </div>
+                <h3 className="text-xs font-black uppercase tracking-widest text-signal-gold mb-6">LAUNCHPATH OUTCOME</h3>
+                <div className="space-y-3 text-left">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
+                    <p className="text-sm font-bold text-white">Zero violations (audit-ready from day one)</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
+                    <p className="text-sm font-bold text-white">Continuous insurance (no lapses)</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
+                    <p className="text-sm font-bold text-white">Audit passage (documentation complete)</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
+                    <p className="text-sm font-bold text-white">Authority protected (structural compliance)</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
