@@ -192,7 +192,7 @@ const VideoLab = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
           <h1 className="text-4xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tight">Production Studio</h1>
-          <p className="text-text-muted mt-1 font-bold text-sm uppercase tracking-widest opacity-60">Directing neural curriculum assets</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-1 font-bold text-sm uppercase tracking-widest opacity-60">Directing neural curriculum assets</p>
         </div>
         <button onClick={() => setShowModal(true)} className="bg-authority-blue text-white px-10 py-5 rounded-[2rem] font-black uppercase tracking-widest text-[11px] active:scale-95 transition-all shadow-[0_20px_40px_rgba(0,34,68,0.2)] hover:bg-slate-800 border-b-4 border-black">Initialize Production</button>
       </div>

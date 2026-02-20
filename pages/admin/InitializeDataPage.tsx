@@ -154,13 +154,13 @@ const InitializeDataPage = () => {
             <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
               <FileText size={24} />
             </div>
-            <h3 className="text-xl font-bold font-serif">SECTION 1: Blog Posts</h3>
+            <h3 className="text-xl font-bold font-serif text-gray-900 dark:text-white">SECTION 1: Blog Posts</h3>
           </div>
           <div className="mb-8 space-y-3">
-            <p className="text-sm text-text-muted leading-relaxed font-medium">
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-medium">
               Upload the archive of safety bulletins and compliance guides from the system constants.
             </p>
-            <p id="placeholder-image-task" className="text-sm text-text-muted leading-relaxed font-medium italic opacity-60">
+            <p id="placeholder-image-task" className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed font-medium italic opacity-60">
               Create placeholder images for articles.
             </p>
           </div>
@@ -187,9 +187,9 @@ const InitializeDataPage = () => {
             <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
               <Settings size={24} />
             </div>
-            <h3 className="text-xl font-bold font-serif">SECTION 2: Site Settings</h3>
+            <h3 className="text-xl font-bold font-serif text-gray-900 dark:text-white">SECTION 2: Site Settings</h3>
           </div>
-          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8 leading-relaxed font-medium">
             Initialize global brand identity, contact details, and homepage configuration.
           </p>
           <div className="mt-auto space-y-4">
@@ -215,9 +215,9 @@ const InitializeDataPage = () => {
             <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
               <Quote size={24} />
             </div>
-            <h3 className="text-xl font-bold font-serif">SECTION 3: Testimonials</h3>
+            <h3 className="text-xl font-bold font-serif text-gray-900 dark:text-white">SECTION 3: Testimonials</h3>
           </div>
-          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8 leading-relaxed font-medium">
             Populate student success stories and industry social proof.
           </p>
           <div className="mt-auto space-y-4">
@@ -243,9 +243,9 @@ const InitializeDataPage = () => {
             <div className="w-12 h-12 bg-slate-50 dark:bg-gray-800 text-authority-blue rounded-2xl flex items-center justify-center">
               <Layers size={24} />
             </div>
-            <h3 className="text-xl font-bold font-serif">SECTION 4: Course Modules</h3>
+            <h3 className="text-xl font-bold font-serif text-gray-900 dark:text-white">SECTION 4: Course Modules</h3>
           </div>
-          <p className="text-sm text-text-muted mb-8 leading-relaxed font-medium">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8 leading-relaxed font-medium">
             Provision the 6-module curriculum structure for the learning pathway.
           </p>
           <div className="mt-auto space-y-4">

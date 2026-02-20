@@ -59,11 +59,11 @@ const AdminDashboardHome = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Admin Dashboard</h1>
-          <p className="text-text-muted mt-1">Welcome back. Monitoring LaunchPath systems.</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Welcome back. Monitoring LaunchPath systems.</p>
         </div>
         
         <div className="bg-white dark:bg-surface-dark px-4 py-2 rounded-xl border border-border-light dark:border-border-dark flex items-center space-x-3 shadow-sm">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-gray-400">Cloud Health:</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-gray-600 dark:text-gray-400">Cloud Health:</span>
           {dbStatus === 'checking' && <Loader2 size={14} className="animate-spin text-authority-blue" />}
           {dbStatus === 'active' && <CheckCircle2 size={14} className="text-green-500" />}
           {(dbStatus === 'api-disabled' || dbStatus === 'not-found') && <AlertCircle size={14} className="text-red-500" />}

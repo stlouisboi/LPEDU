@@ -101,7 +101,7 @@ const BlogList = () => {
     return (
       <div className="h-96 flex flex-col items-center justify-center space-y-4">
         <Loader2 className="animate-spin text-authority-blue" size={40} />
-        <p className="text-text-muted font-bold uppercase tracking-widest text-xs">Loading Knowledge Base...</p>
+        <p className="text-gray-600 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">Loading Knowledge Base...</p>
       </div>
     );
   }
@@ -111,7 +111,7 @@ const BlogList = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold font-serif text-authority-blue dark:text-white">Blog Management</h1>
-            <p className="text-text-muted dark:text-gray-400 mt-1">Manage articles, compliance guides, and safety bulletins.</p>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Manage articles, compliance guides, and safety bulletins.</p>
         </div>
         <Link 
           to="/admin/blog/new" 
@@ -124,7 +124,7 @@ const BlogList = () => {
       {/* Filters & Search */}
       <div className="bg-white dark:bg-surface-dark p-6 rounded-3xl border border-border-light dark:border-border-dark flex flex-col lg:flex-row gap-4">
         <div className="relative flex-grow">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400" size={18} />
           <input 
             type="text" 
             placeholder="Search by title..."
@@ -141,7 +141,7 @@ const BlogList = () => {
               className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest border transition-all ${
                 statusFilter === status 
                 ? 'bg-authority-blue text-white border-authority-blue' 
-                : 'bg-white dark:bg-gray-800 text-text-muted border-border-light dark:border-border-dark'
+                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-border-light dark:border-border-dark'
               }`}
             >
               {status}
@@ -180,7 +180,7 @@ const BlogList = () => {
                       </div>
                       <div className="min-w-0">
                         <h4 className="font-bold text-sm text-authority-blue dark:text-white truncate max-w-md">{blog.title}</h4>
-                        <p className="text-[10px] text-text-muted dark:text-gray-400 font-mono truncate max-w-md">/{blog.slug}</p>
+                        <p className="text-[10px] text-gray-500 dark:text-gray-400 font-mono truncate max-w-md">/{blog.slug}</p>
                       </div>
                     </div>
                   </td>
