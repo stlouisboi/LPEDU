@@ -165,20 +165,34 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* SECTION 6 – FOUNDER / CUSTODIAN STRIP */}
-      <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-authority-blue/10">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-8">
-          <img src="/img/vince-lawrence.jpg" alt="Vince Lawrence" className="w-32 h-32 flex-shrink-0 rounded-full border-4 border-signal-gold object-cover" />
-          <div className="flex-1 text-center md:text-left space-y-4">
-            <h3 className="text-xl font-black uppercase text-signal-gold tracking-widest">Station Custodian – Vince Lawrence</h3>
-            <p className="text-lg text-slate-300 leading-relaxed">
-              Veteran-operated. OSHA safety coordinator. More than 20 years in operational leadership. My job is to keep the standard clear and to refuse admission when a carrier is not structurally ready to operate.
-            </p>
+      {/* SECTION 6 – FOUNDER / CUSTODIAN STRIP (HIGH-PROFILE) */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-authority-blue/10">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+          <div className="md:col-span-1 flex justify-center">
+            <img src="/img/vince-lawrence.jpg" alt="Vince Lawrence" className="w-48 h-48 rounded-full border-4 border-signal-gold object-cover shadow-2xl shadow-signal-gold/20" />
+          </div>
+          <div className="md:col-span-2 text-center md:text-left space-y-8">
+            <div>
+              <h3 className="text-3xl font-black uppercase text-signal-gold tracking-widest">Station Custodian – Vince Lawrence</h3>
+              <p className="text-xl text-slate-300 mt-2 leading-relaxed">
+                My job is to keep the standard clear and to refuse admission when a carrier is not structurally ready to operate.
+              </p>
+            </div>
+            <div className="flex justify-center md:justify-start space-x-8">
+              <div className="flex items-center space-x-3 bg-white/10 px-6 py-3 rounded-full">
+                <Award size={20} className="text-signal-gold" />
+                <span className="font-bold uppercase tracking-widest text-sm">Veteran-Operated</span>
+              </div>
+              <div className="flex items-center space-x-3 bg-white/10 px-6 py-3 rounded-full">
+                <Shield size={20} className="text-signal-gold" />
+                <span className="font-bold uppercase tracking-widest text-sm">OSHA Safety Coordinator</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 7 – FOOTER */}
+      {/* FOOTER */}
       <footer className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-primary-dark">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
           <div className="md:col-span-2 space-y-4">
