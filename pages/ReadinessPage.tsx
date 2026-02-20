@@ -33,7 +33,7 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 'capital',
-    text: "How much cash do you have available to start?",
+    text: "How much cash do you have available to start your trucking business?",
     options: [
       { label: 'A', text: 'Less than $10,000', points: 0, flag: 'RED' },
       { label: 'B', text: '$10,000 – $20,000', points: 1, flag: 'YELLOW' },
