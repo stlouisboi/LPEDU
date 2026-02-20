@@ -333,7 +333,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
 
       <div style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
         <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px; color: #64748b;">Next Clinical Procedure:</p>
-        <a href="/reach-test" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Take the REACH Test™</a>
+        <a href="/reach-test" style="background: #1e3a5f; color: white; padding: 20px 40px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; box-shadow: 0 10px 30px rgba(30,58,95,0.3);">Take the AUTO Diagnostic™</a>
       </div>
       
       <p style="font-size: 10px; color: #94a3b8; margin-top: 80px; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 40px;">

@@ -23,7 +23,7 @@ const RemediationProtocol: React.FC = () => {
 
         <div className="space-y-6 text-slate-300 font-medium leading-relaxed max-w-3xl">
           <p>
-            The REACH Test™ Diagnostic has been successfully completed and logged. This transition marks the formal authorization to move from exposure identification to the systematic installation of Institutional Guards. 
+            The AUTO Diagnostic™ Diagnostic has been successfully completed and logged. This transition marks the formal authorization to move from exposure identification to the systematic installation of Institutional Guards. 
           </p>
           <p>
             You are now operating within an Authorized Repair Zone. All prior diagnostic data has been transferred into the remediation framework for immediate corrective action.

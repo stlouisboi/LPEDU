@@ -143,7 +143,7 @@ export default function WhatsIncludedPage() {
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-6 h-6 text-yellow-600 mt-1 flex-shrink-0" />
-                <p>A final <strong>90-Day Debrief and REACH Test re-run</strong> so operators finish with a verified standard, not just completed videos</p>
+                <p>A final <strong>90-Day Debrief and AUTO Diagnostic re-run</strong> so operators finish with a verified standard, not just completed videos</p>
               </div>
             </div>
           </div>

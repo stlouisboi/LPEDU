@@ -64,7 +64,7 @@ const ReachTestPage = () => {
                   In manufacturing, a machine that isn't properly guarded can cause catastrophic injury. The Occupational Safety and Health Administration (OSHA) uses a simple but effective tool—the <span className="text-authority-blue dark:text-white font-black">"gotcha stick"</span>—to determine if a worker's body can <span className="text-signal-gold font-black italic">reach</span> a machine's point of operation. If it can, the machine has failed its safety inspection.
                 </p>
                 <p>
-                  We've adapted this rigorous safety protocol for the trucking industry. The REACH Test™ is our "gotcha stick." It is a proprietary diagnostic that identifies where your new trucking business is dangerously exposed to the five most common points of failure.
+                  We've adapted this rigorous safety protocol for the trucking industry. The AUTO Diagnostic™ is our "gotcha stick." It is a proprietary diagnostic that identifies where your new trucking business is dangerously exposed to the five most common points of failure.
                 </p>
               </div>
             </div>
@@ -151,7 +151,7 @@ const ReachTestPage = () => {
             <div className="space-y-6">
               <h3 className="text-3xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">Diagnostic Completion</h3>
               <p className="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto">
-                Completion of the REACH Test™ marks the end of the <span className="text-authority-blue dark:text-white font-black">Orientation</span> phase. Corrective action and systematic implementation are restricted to the admission phase.
+                Completion of the AUTO Diagnostic™ marks the end of the <span className="text-authority-blue dark:text-white font-black">Orientation</span> phase. Corrective action and systematic implementation are restricted to the admission phase.
               </p>
             </div>
 

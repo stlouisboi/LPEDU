@@ -144,7 +144,7 @@ const CHECKLIST_SECTIONS = [
     icon: <BarChart3 size={24} />,
     items: [
       { id: '10-1', text: 'Monthly safety and compliance review scheduled (date, time, who attends)', checked: false },
-      { id: '10-2', text: 'REACH Test results stored and referenced as your baseline risk map', checked: false },
+      { id: '10-2', text: 'AUTO Diagnostic results stored and referenced as your baseline risk map', checked: false },
       { id: '10-3', text: 'Ground 0 corrective items tracked with due dates until closed', checked: false }
     ]
   }

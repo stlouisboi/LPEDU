@@ -47,7 +47,7 @@ const AboutPage: React.FC = () => {
     { principle: "Structure precedes survival", mechanism: "Four Pillars Framework", icon: <Scale/> },
     { principle: "Authority without governance collapses", mechanism: "Complete Dossier", icon: <FileText/> },
     { principle: "Interdependent systems", mechanism: "Interdependence Logic Protocol", icon: <Users/> },
-    { principle: "Diagnostics precede instruction", mechanism: "REACH Test™", icon: <Clock/> },
+    { principle: "Diagnostics precede instruction", mechanism: "AUTO Diagnostic™", icon: <Clock/> },
     { principle: "Teaching without enforcement is negligence", mechanism: "Admission Gates + Verification", icon: <ShieldCheck/> },
     { principle: "Stewardship requires saying no", mechanism: "Ground 0 GO / WAIT / NO-GO", icon: <Gavel/> },
     { principle: "Responsibility outweighs enrollment", mechanism: "No Hype, No Guarantees, No Rush", icon: <ShieldX/> },

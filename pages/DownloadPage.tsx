@@ -172,7 +172,7 @@ const DownloadPage = () => {
                 <span>VIEW ADMISSION PROTOCOL</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
               </Link>
-              <Link to="/readiness" className="text-white/60 font-black uppercase tracking-widest text-[10px] hover:text-white transition-colors">Take REACH Test Diagnosis</Link>
+              <Link to="/readiness" className="text-white/60 font-black uppercase tracking-widest text-[10px] hover:text-white transition-colors">Take AUTO Diagnostic Diagnosis</Link>
             </div>
           </div>
         </div>

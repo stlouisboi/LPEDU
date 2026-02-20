@@ -46,7 +46,7 @@ const HomePage = () => {
             className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
           >
             <Activity size={20} />
-            <span>Run Diagnostic Assessment (REACH)</span>
+            <span>Run AUTO Diagnostic Assessment</span>
             <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
           </Link>
           
@@ -77,7 +77,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div className="space-y-6">
               <h3 className="text-3xl md:text-4xl font-black uppercase text-signal-gold">1. Find Your Risk</h3>
-              <p className="text-lg md:text-xl text-slate-300 leading-relaxed">Take the REACH Test to see where your new authority can get in trouble with audits, insurance, or cash-flow.</p>
+              <p className="text-lg md:text-xl text-slate-300 leading-relaxed">Run AUTO Diagnostic to see where your new authority can get in trouble with audits, insurance, or cash-flow.</p>
             </div>
             <div className="space-y-6">
               <h3 className="text-3xl md:text-4xl font-black uppercase text-signal-gold">2. Review Your Setup</h3>
@@ -104,16 +104,16 @@ const HomePage = () => {
       {/* PRIMARY CTA REPEAT (AFTER SECTION 2) */}
       <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Start With The REACH Test</h3>
+          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Start With The AUTO Diagnostic</h3>
           <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Identify your compliance exposure before moving forward.
+            See which industrial guards are missing from your authority protection system.
           </p>
           <Link 
             to="/reach-test" 
             className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
           >
             <Activity size={20} />
-            <span>Run Diagnostic Assessment (REACH)</span>
+            <span>Run AUTO Diagnostic Assessment</span>
             <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
           </Link>
         </div>
@@ -133,16 +133,16 @@ const HomePage = () => {
                 <div className="inline-block bg-signal-gold/20 border border-signal-gold/40 px-4 py-1 rounded-full">
                   <span className="text-xs font-black uppercase tracking-widest text-signal-gold">5–7 Minutes</span>
                 </div>
-                <h3 className="text-2xl font-black uppercase text-signal-gold">STEP 1: REACH TEST</h3>
+                <h3 className="text-2xl font-black uppercase text-signal-gold">STEP 1: AUTO DIAGNOSTIC</h3>
               </div>
               <p className="text-slate-300 leading-relaxed text-center">
-                Take the REACH Test to map your regulatory risk exposure across authority, insurance, and operational compliance.
+                Run the AUTO Diagnostic to identify which industrial guards (Around, Under, Through, Over) are protecting your authority.
               </p>
               <Link 
                 to="/reach-test" 
                 className="block text-center bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors"
               >
-                Take the REACH Test
+                Run AUTO Diagnostic
               </Link>
             </div>
 
@@ -423,7 +423,7 @@ const HomePage = () => {
             className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
           >
             <Activity size={20} />
-            <span>Run Diagnostic Assessment (REACH)</span>
+            <span>Run AUTO Diagnostic Assessment</span>
             <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
           </Link>
         </div>
@@ -435,7 +435,7 @@ const HomePage = () => {
           <ShieldAlert size={48} className="mx-auto text-signal-gold" />
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Admission Is Not Open Enrollment</h2>
           <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
-            You do not buy your way into LaunchPath. <span className="text-signal-gold font-bold">You qualify.</span> Every applicant completes the REACH Test and Ground 0 review before admission is considered. If your operation is not structurally ready, you receive corrective priorities and advancement is paused. That protects your authority and it protects the standard.
+            You do not buy your way into LaunchPath. <span className="text-signal-gold font-bold">You qualify.</span> Every applicant completes the AUTO Diagnostic and Ground 0 review before admission is considered. If your operation is not structurally ready, you receive corrective priorities and advancement is paused. That protects your authority and it protects the standard.
           </p>
           <p className="text-2xl font-bold text-signal-gold">
             Only 1 in 3 applicants receive GO determination on first review.

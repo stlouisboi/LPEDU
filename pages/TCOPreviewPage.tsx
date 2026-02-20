@@ -135,12 +135,12 @@ const TCOPreviewPage = () => {
                   to="/reach-test" 
                   className="w-full bg-white dark:bg-gray-800 border-2 border-slate-100 dark:border-border-dark text-authority-blue dark:text-white py-6 rounded-[2rem] font-black uppercase tracking-[0.3em] text-xs hover:bg-slate-50 transition-all flex items-center justify-center"
                 >
-                  Take the REACH Test™ First
+                  Take the AUTO Diagnostic™ First
                 </Link>
               </div>
               
               <p className="text-[9px] text-center text-slate-400 uppercase tracking-widest font-black opacity-60 leading-relaxed">
-                The REACH Test™ is free and helps you assess your <br/>compliance readiness before enrollment.
+                The AUTO Diagnostic™ is free and helps you assess your <br/>compliance readiness before enrollment.
               </p>
             </div>
           </div>

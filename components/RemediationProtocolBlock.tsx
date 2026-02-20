@@ -20,7 +20,7 @@ const RemediationProtocolBlock: React.FC = () => {
 
         <div className="max-w-3xl space-y-6 mb-12">
           <p className="text-slate-600 dark:text-slate-300 text-sm font-medium leading-relaxed">
-            The REACH Test™ diagnostic sequence is complete and registry data has been finalized. 
+            The AUTO Diagnostic™ diagnostic sequence is complete and registry data has been finalized. 
             Formal remediation clearance is now granted to the authorized entity. 
             This transition authorizes the move from Exposure Vector identification to the systematic installation of LaunchPath compliance infrastructure and safety management systems.
           </p>

@@ -174,11 +174,11 @@ const ResourcesPage = () => {
                 <ShieldCheck size={28} />
               </div>
               <p className="text-left text-lg font-black text-authority-blue dark:text-white leading-tight">
-                New here? <br/><span className="text-slate-400 font-bold">Start with the REACH Test™.</span>
+                New here? <br/><span className="text-slate-400 font-bold">Start with the AUTO Diagnostic™.</span>
               </p>
             </div>
             <Link to="/reach-test" className="w-full sm:w-auto bg-authority-blue text-white px-12 py-8 rounded-[2.8rem] font-black uppercase tracking-[0.2em] text-[12px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-8 border-slate-900 group/btn relative z-10">
-              Take the REACH Test™ <ArrowRight size={14} className="ml-3 group-hover/btn:translate-x-2 transition-transform" />
+              Take the AUTO Diagnostic™ <ArrowRight size={14} className="ml-3 group-hover/btn:translate-x-2 transition-transform" />
             </Link>
           </div>
         </div>
@@ -197,13 +197,13 @@ const ResourcesPage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* REACH Test Card - Vibrant Emerald */}
+          {/* AUTO Diagnostic Card - Vibrant Emerald */}
           <div className="bg-white dark:bg-surface-dark p-8 rounded-[3rem] border-2 border-transparent hover:border-emerald-500/30 shadow-sm relative overflow-hidden flex flex-col group transition-all duration-700 hover:-translate-y-2">
             <AccessBadge type="FREE" />
             <div className="w-16 h-16 bg-emerald-500 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-700">
               <FileSearch size={28} />
             </div>
-            <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 font-serif leading-none">REACH Test™</h3>
+            <h3 className="text-xl font-black text-authority-blue dark:text-white uppercase mb-4 font-serif leading-none">AUTO Diagnostic™</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 font-bold mb-8 flex-grow leading-relaxed">
               Analyze your current compliance posture across the four pillars.
             </p>
@@ -494,7 +494,7 @@ const ResourcesPage = () => {
                 <p className="text-[14px] font-black uppercase text-authority-blue dark:text-signal-gold tracking-[0.6em] mb-8">Authorization Path:</p>
                 <div className="space-y-8">
                   {[
-                    { num: "01", text: "Complete REACH Test™ Diagnosis" },
+                    { num: "01", text: "Complete AUTO Diagnostic™ Diagnosis" },
                     { num: "02", text: "Verify Admission Readiness" },
                     { num: "03", text: "Secure Implementation Access" }
                   ].map((step, i) => (

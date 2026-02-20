@@ -178,7 +178,7 @@ const ExposureMatrixPage: React.FC = () => {
                <div className="space-y-6 p-8 bg-black/40 rounded-[2rem] border border-white/5">
                   <div className="flex items-center space-x-3 text-red-500">
                     <Target size={20} />
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em]">The REACH Test™ Diagnostic</h4>
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em]">The AUTO Diagnostic™ Diagnostic</h4>
                   </div>
                   <p className="text-lg md:text-xl font-bold text-white leading-relaxed italic">
                     "{selectedSin.reachQuestion}"

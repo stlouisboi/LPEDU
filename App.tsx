@@ -317,7 +317,7 @@ const Footer = () => {
               { 
                 title: 'RESOURCES', 
                 links: [
-                  { name: 'REACH Test™', path: '/reach-test' }, 
+                  { name: 'AUTO Diagnostic™', path: '/reach-test' }, 
                   { name: 'The Blog', path: '/blog' }, 
                   { name: 'Exposure Matrix', path: '/exposure-matrix' }
                 ] 
