@@ -198,9 +198,17 @@ const HomePage = () => {
             </Link>
           </div>
           <div className="text-center">
-            <p className="text-sm text-slate-400 font-bold uppercase tracking-widest">
-              These tools reveal your starting position. They do not install the system.
-            </p>
+            <div className="inline-block bg-signal-gold/10 border-2 border-signal-gold/50 px-8 py-6 rounded-2xl">
+              <div className="flex items-center justify-center space-x-3 mb-2">
+                <AlertTriangle size={20} className="text-signal-gold" />
+                <p className="text-sm font-black uppercase tracking-widest text-signal-gold">
+                  Important Distinction
+                </p>
+              </div>
+              <p className="text-base font-bold text-white">
+                These tools reveal your starting position. They do not install the system.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -237,10 +245,13 @@ const HomePage = () => {
             {/* PRIORITY 4: SYSTEM PROTECTION COLUMN */}
             <div className="bg-gradient-to-br from-signal-gold/10 to-signal-gold/5 border-2 border-signal-gold/50 p-8 rounded-3xl space-y-4 text-center">
               <ShieldCheck size={32} className="text-signal-gold mx-auto" />
-              <h3 className="text-lg font-black uppercase text-signal-gold">SYSTEM PROTECTION</h3>
-              <p className="text-sm font-bold text-white leading-relaxed">
-                LaunchPath installs structure before these failures occur.
-              </p>
+              <h3 className="text-lg font-black uppercase text-signal-gold">LAUNCHPATH OUTCOME</h3>
+              <div className="text-sm font-bold text-white leading-relaxed space-y-2">
+                <p>Zero violations (audit-ready from day one)</p>
+                <p>Continuous insurance (no lapses)</p>
+                <p>Audit passage (documentation complete)</p>
+                <p>Authority protected (structural compliance)</p>
+              </div>
             </div>
           </div>
         </div>
@@ -249,8 +260,11 @@ const HomePage = () => {
       {/* PRIORITY 5: WHAT THE SYSTEM INSTALLS (WITH CHECKMARKS) */}
       <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
         <div className="max-w-4xl mx-auto space-y-20">
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-6">
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">6 Complete Compliance Systems Installed</h2>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              Each system includes templates, protocols, and implementation guides—not generic advice.
+            </p>
           </div>
           <div className="space-y-8">
             {/* DRIVER QUALIFICATION SYSTEM */}
