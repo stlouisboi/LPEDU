@@ -16,7 +16,11 @@ import {
   Search,
   Clipboard,
   Calculator,
-  Map
+  Map,
+  XCircle,
+  AlertCircle,
+  Ban,
+  CheckCircle2
 } from 'lucide-react';
 
 const HomePage = () => {
