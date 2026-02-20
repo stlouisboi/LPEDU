@@ -372,77 +372,92 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* PRIORITY 7: CUSTODIAN SECTION (UPDATED CREDENTIALS) */}
-      <section className="relative py-40 md:py-56 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
-        {/* Premium background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
-        
-        <div className="max-w-6xl mx-auto relative z-10">
-          {/* Section Label */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-3 bg-signal-gold/10 border border-signal-gold/30 px-6 py-2 rounded-full mb-6">
-              <Shield size={16} className="text-signal-gold" />
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-signal-gold">System Custodian</p>
-            </div>
-          </div>
+      {/* PRIORITY 7: CUSTODIAN SECTION - SPLIT-SCREEN INSTITUTIONAL AUTHORITY */}
+      <section className="relative flex flex-col lg:flex-row overflow-hidden border-t border-white/5">
+        {/* LEFT SIDE: PHOTO (40% width) */}
+        <div className="w-full lg:w-[40%] relative min-h-[500px] lg:min-h-[700px] shrink-0">
+          <img 
+            src="/img/vince-lawrence.jpg" 
+            alt="Vince Lawrence" 
+            className="w-full h-full object-cover grayscale brightness-90" 
+          />
+          {/* Vignette overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/60"></div>
+          {/* Gold border on right edge */}
+          <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-signal-gold via-signal-gold/50 to-signal-gold"></div>
+        </div>
 
-          {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        {/* RIGHT SIDE: CONTENT (60% width) */}
+        <div className="w-full lg:w-[60%] bg-gradient-to-br from-authority-blue via-slate-900 to-authority-blue relative">
+          <div className="p-8 sm:p-12 md:p-16 lg:p-20 xl:p-24 space-y-10">
             
-            {/* Left: Image + Credentials */}
-            <div className="flex flex-col items-center space-y-8">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-br from-signal-gold/30 to-blue-600/30 rounded-full blur-2xl"></div>
-                <img 
-                  src="/img/vince-lawrence.jpg" 
-                  alt="Vince Lawrence" 
-                  className="relative w-64 h-64 rounded-2xl object-cover shadow-2xl border-2 border-signal-gold/50" 
-                />
+            {/* Top Label - Centered */}
+            <div className="flex items-center justify-center space-x-2">
+              <Shield size={16} className="text-signal-gold" />
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">STATION CUSTODIAN</p>
+            </div>
+
+            {/* Name - Large, Authoritative */}
+            <div className="space-y-2">
+              <h3 className="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+                VINCE LAWRENCE
+              </h3>
+              <p className="text-sm font-black uppercase tracking-[0.3em] text-signal-gold">
+                FOUNDER & CUSTODIAN
+              </p>
+            </div>
+
+            {/* Credentials Grid - 2 Columns */}
+            <div className="grid grid-cols-2 gap-4 max-w-md">
+              <div className="bg-slate-900 border border-white/10 p-6 rounded-xl">
+                <Award size={28} className="text-signal-gold mb-3" />
+                <p className="text-[9px] uppercase tracking-widest text-white/60 mb-1">U.S. NAVY</p>
+                <p className="text-lg font-black uppercase text-white">Veteran</p>
               </div>
-              
-              {/* Credentials Badges */}
-              <div className="flex flex-col gap-4 w-full max-w-sm">
-                <div className="flex items-center space-x-3 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/10 shadow-lg">
-                  <Award size={24} className="text-signal-gold" />
-                  <div className="text-left">
-                    <p className="text-xs text-slate-400 uppercase tracking-wider">U.S. Navy</p>
-                    <p className="font-bold text-white">Veteran</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/10 shadow-lg">
-                  <Shield size={24} className="text-signal-gold" />
-                  <div className="text-left">
-                    <p className="text-xs text-slate-400 uppercase tracking-wider">OSHA</p>
-                    <p className="font-bold text-white">Safety Certified</p>
-                  </div>
-                </div>
+              <div className="bg-slate-900 border border-white/10 p-6 rounded-xl">
+                <Shield size={28} className="text-signal-gold mb-3" />
+                <p className="text-[9px] uppercase tracking-widest text-white/60 mb-1">OSHA</p>
+                <p className="text-lg font-black uppercase text-white">Safety Certified</p>
               </div>
             </div>
 
-            {/* Right: Bio + Philosophy */}
-            <div className="space-y-8 text-center lg:text-left">
-              <div>
-                <h3 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
-                  Vince Lawrence
-                </h3>
-                <p className="text-xl text-signal-gold font-bold uppercase tracking-widest mb-6">Founder & Custodian</p>
-              </div>
+            {/* Separator Line */}
+            <div className="h-px bg-signal-gold/20 max-w-2xl"></div>
 
-              <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
-                <p>
-                  U.S. Navy veteran. OSHA-certified safety coordinator. 20+ years enforcing federal compliance standards and identifying the documentation failures that kill new carriers.
-                </p>
-                <p>
-                  My job is to keep the standard clear and to refuse admission when a carrier is not structurally ready to operate.
-                </p>
-              </div>
+            {/* Primary Statement */}
+            <p className="text-lg font-medium text-white/90 leading-relaxed max-w-2xl">
+              U.S. Navy veteran. OSHA-certified safety coordinator. 20+ years enforcing federal compliance standards and identifying the documentation failures that kill new carriers.
+            </p>
 
-              {/* Philosophy Statement */}
-              <div className="bg-gradient-to-br from-signal-gold/10 to-blue-600/10 border-l-4 border-signal-gold p-6 rounded-r-xl">
-                <p className="text-white font-bold text-lg italic">
-                  "Accuracy Over Hype. Systems Over Shortcuts. Execution Over Everything."
-                </p>
+            {/* Responsibility Statement - Gold Box */}
+            <div className="border-l-4 border-signal-gold bg-signal-gold/5 p-6 rounded-r-xl max-w-2xl">
+              <p className="text-xl font-bold text-signal-gold leading-tight">
+                My job is to keep the standard clear and to refuse admission when a carrier is not structurally ready to operate.
+              </p>
+            </div>
+
+            {/* Philosophy Quote */}
+            <div className="border-l-4 border-signal-gold pl-8 max-w-2xl">
+              <p className="text-2xl font-serif italic text-white leading-relaxed">
+                "Accuracy Over Hype. Systems Over Shortcuts. Execution Over Everything."
+              </p>
+            </div>
+
+            {/* Certification Strip (Optional) */}
+            <div className="flex flex-wrap items-center gap-4 text-xs text-white/40 max-w-2xl pt-6">
+              <div className="flex items-center space-x-2">
+                <Shield size={14} className="text-signal-gold/40" />
+                <span>20+ Years Federal Compliance</span>
+              </div>
+              <span className="text-white/20">|</span>
+              <div className="flex items-center space-x-2">
+                <Award size={14} className="text-signal-gold/40" />
+                <span>OSHA Certified</span>
+              </div>
+              <span className="text-white/20">|</span>
+              <div className="flex items-center space-x-2">
+                <Shield size={14} className="text-signal-gold/40" />
+                <span>Veteran-Operated</span>
               </div>
             </div>
           </div>
