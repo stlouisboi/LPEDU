@@ -6,8 +6,8 @@ export default function EnrollPage() {
   const navigate = useNavigate();
 
   const handleGroundZero = () => {
-    // TODO: Integrate with Stripe for $197 Ground 0 purchase
-    navigate('/ground-zero');
+    // Ground 0 is free - navigate directly to the module
+    navigate('/ground-0');
   };
 
   const handleApplyStandard = () => {
@@ -397,7 +397,7 @@ export default function EnrollPage() {
                 Ground 0 — Readiness Diagnostic
               </h3>
               <div className="mb-6">
-                <span className="text-4xl font-bold text-gray-900 dark:text-white">$197</span>
+                <span className="text-4xl font-bold text-green-600 dark:text-green-400">FREE</span>
               </div>
               <h4 className="font-bold mb-4 text-gray-900 dark:text-white">Includes:</h4>
               <ul className="space-y-3 mb-8 text-gray-700 dark:text-gray-300">
@@ -419,7 +419,7 @@ export default function EnrollPage() {
                 </li>
               </ul>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 italic">
-                Ground 0 completion is required before Standard admission. This is where the process begins.
+                Ground 0 is completely free. Completion is required before Standard admission. This is where the process begins.
               </p>
               <button
                 onClick={handleGroundZero}
