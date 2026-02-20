@@ -35,7 +35,7 @@ const HomePage = () => {
             90% of New Carriers Fail Within 18 Months.
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            LaunchPath installs the compliance infrastructure that prevents both failure and financial loss.
+            Keep your authority. Pass audits. Stay insurable. LaunchPath installs the compliance infrastructure most carriers never receive.
           </p>
           <Link 
             to="/reach-test" 
@@ -45,6 +45,22 @@ const HomePage = () => {
             <span>Run Diagnostic Assessment (REACH)</span>
             <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
           </Link>
+          
+          {/* TRUST STRIP */}
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 mt-12 pt-8 border-t border-white/10">
+            <div className="flex items-center space-x-2">
+              <Award size={16} className="text-signal-gold" />
+              <span className="text-sm font-bold text-slate-300">Veteran-operated</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Shield size={16} className="text-signal-gold" />
+              <span className="text-sm font-bold text-slate-300">20+ years compliance & safety</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle size={16} className="text-signal-gold" />
+              <span className="text-sm font-bold text-slate-300">Safety-certified operations</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -109,7 +125,12 @@ const HomePage = () => {
             {/* STEP 1 */}
             <div className="bg-white/5 border-2 border-signal-gold/30 p-10 rounded-3xl space-y-6">
               <Search size={40} className="text-signal-gold mx-auto" />
-              <h3 className="text-2xl font-black uppercase text-signal-gold text-center">STEP 1: REACH TEST (15 MINUTES)</h3>
+              <div className="text-center space-y-2">
+                <div className="inline-block bg-signal-gold/20 border border-signal-gold/40 px-4 py-1 rounded-full">
+                  <span className="text-xs font-black uppercase tracking-widest text-signal-gold">5–7 Minutes</span>
+                </div>
+                <h3 className="text-2xl font-black uppercase text-signal-gold">STEP 1: REACH TEST</h3>
+              </div>
               <p className="text-slate-300 leading-relaxed text-center">
                 Take the REACH Test to map your regulatory risk exposure across authority, insurance, and operational compliance.
               </p>
@@ -124,7 +145,12 @@ const HomePage = () => {
             {/* STEP 2 */}
             <div className="bg-white/5 border-2 border-white/20 p-10 rounded-3xl space-y-6">
               <Clipboard size={40} className="text-white mx-auto" />
-              <h3 className="text-2xl font-black uppercase text-white text-center">STEP 2: GROUND 0 BRIEFING (90 MINUTES)</h3>
+              <div className="text-center space-y-2">
+                <div className="inline-block bg-white/10 border border-white/20 px-4 py-1 rounded-full">
+                  <span className="text-xs font-black uppercase tracking-widest text-white">30–90 Minutes</span>
+                </div>
+                <h3 className="text-2xl font-black uppercase text-white">STEP 2: GROUND 0 BRIEFING</h3>
+              </div>
               <p className="text-slate-300 leading-relaxed text-center">
                 Complete Ground 0 to evaluate your financial reserves, documentation readiness, and structural discipline.
               </p>
