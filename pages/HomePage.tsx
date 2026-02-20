@@ -104,18 +104,10 @@ const HomePage = () => {
       {/* PRIMARY CTA REPEAT (AFTER SECTION 2) */}
       <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Start With The AUTO Diagnostic</h3>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            See which industrial guards are missing from your authority protection system.
+          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">AUTO DIAGNOSTIC — REQUIRED FIRST STEP</h3>
+          <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
+            AUTO Diagnostic is required before Ground 0 or admission is considered.
           </p>
-          <Link 
-            to="/auto-diagnostic" 
-            className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
-          >
-            <Activity size={20} />
-            <span>Run AUTO Diagnostic Assessment</span>
-            <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
-          </Link>
         </div>
       </section>
 
@@ -692,9 +684,12 @@ const HomePage = () => {
             </p>
 
             {/* Responsibility Statement - Gold Box */}
-            <div className="border-l-4 border-signal-gold bg-signal-gold/5 p-6 rounded-r-xl max-w-2xl">
+            <div className="border-l-4 border-signal-gold bg-signal-gold/5 p-6 rounded-r-xl max-w-2xl space-y-4">
               <p className="text-xl font-bold text-signal-gold leading-tight">
                 My job is to keep the standard clear and to refuse admission when a carrier is not structurally ready to operate.
+              </p>
+              <p className="text-base font-bold text-signal-gold/80 leading-tight">
+                Final admission authority retained. Standard enforcement is non-negotiable.
               </p>
             </div>
 
