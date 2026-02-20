@@ -62,11 +62,16 @@ const HomePage = () => {
               Before any carrier is admitted into LaunchPath, we evaluate starting position, cost structure, and compliance exposure. The tools below are the same frameworks used during early review. They are provided to serious operators who want clarity before proceeding.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white/5 border-2 border-signal-gold/30 p-10 rounded-3xl space-y-6 text-center">
               <h3 className="text-2xl font-black uppercase text-signal-gold">Ground 0 Readiness Diagnostic</h3>
               <p className="text-slate-300 leading-relaxed">Expose gaps in paperwork, insurance, compliance, and operational setup before they trigger audits or shutdowns.</p>
               <Link to="/ground-0" className="inline-block bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors">Initiate Ground 0 Diagnostic</Link>
+            </div>
+            <div className="bg-white/5 border-2 border-red-600/30 p-10 rounded-3xl space-y-6 text-center">
+              <h3 className="text-2xl font-black uppercase text-red-500">90-Day Risk Map™</h3>
+              <p className="text-slate-300 leading-relaxed">Identify compliance gaps before they become violations. See exactly what FMCSA auditors look for in new carriers.</p>
+              <Link to="/download/risk-map" className="inline-block bg-red-600 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-red-700 transition-colors">Download Risk Map™</Link>
             </div>
             <div className="bg-white/5 border-2 border-authority-blue/30 p-10 rounded-3xl space-y-6 text-center">
               <h3 className="text-2xl font-black uppercase text-authority-blue">True Cost of Operation (TCO) Framework</h3>
