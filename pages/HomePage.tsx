@@ -590,21 +590,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* PRIMARY CTA REPEAT (BEFORE ADMISSION SECTION) */}
-      <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Ready to See Where You Stand?</h3>
-          <Link 
-            to="/auto-diagnostic" 
-            className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
-          >
-            <Activity size={20} />
-            <span>Run AUTO Diagnostic Assessment</span>
-            <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
-          </Link>
-        </div>
-      </section>
-
       {/* PRIORITY 8: ADMISSION GATEKEEPING (WITH SCARCITY STAT) */}
       <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-authority-blue/10">
         <div className="max-w-4xl mx-auto text-center space-y-10">
@@ -718,6 +703,21 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA - BOTTOM OF PAGE */}
+      <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-white/[0.02]">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Ready to See Where You Stand?</h3>
+          <Link 
+            to="/auto-diagnostic" 
+            className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
+          >
+            <Activity size={20} />
+            <span>Run AUTO Diagnostic Assessment</span>
+            <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+          </Link>
         </div>
       </section>
 
