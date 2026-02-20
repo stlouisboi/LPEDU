@@ -36,10 +36,10 @@ const ReachTestPage = () => {
             <span className="text-[11px] font-black uppercase tracking-[0.3em] text-authority-blue">Standard Diagnostic Protocol</span>
           </div>
           <h1 className="text-4xl lg:text-7xl font-black font-serif text-authority-blue dark:text-white uppercase tracking-tighter leading-[0.9] mb-8">
-            THE <span className="text-signal-gold italic">REACH</span> TEST™
+            THE <span className="text-signal-gold italic">AUTO</span> DIAGNOSTIC™
           </h1>
           <p className="text-xl md:text-2xl text-slate-500 dark:text-text-dark-muted font-bold leading-relaxed uppercase tracking-tight">
-            A Structural Readiness Assessment for the First 90 Days Under Authority
+            Authority Under Total Observation: A Guarding Standard for New Motor Carriers
           </p>
           <p className="text-[10px] text-slate-400 italic mt-6 uppercase tracking-[0.4em] font-black">
             Based on the OSHA-Mandated "Point of Operation" Safety Protocol
@@ -167,7 +167,7 @@ const ReachTestPage = () => {
 
             <div className="pt-8 flex flex-col items-center gap-8">
               <Link to="/readiness" className="bg-authority-blue text-white px-16 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center group border-b-[12px] border-slate-900">
-                RUN THE REACH TEST™ <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
+                RUN THE AUTO DIAGNOSTIC™ <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
               </Link>
               <p className="text-[10px] font-black uppercase tracking-[0.6em] text-slate-400 opacity-50">Verified Stewardship before Operational Movement</p>
             </div>
