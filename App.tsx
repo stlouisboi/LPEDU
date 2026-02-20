@@ -68,6 +68,7 @@ import Ground0ModulePage from './pages/Ground0ModulePage';
 import Ground0ResultPage from './pages/Ground0ResultPage';
 import Ground0ChecklistPage from './pages/Ground0ChecklistPage';
 import EnrollPage from './pages/EnrollPage';
+import WhatsIncludedPage from './pages/WhatsIncludedPage';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -493,6 +494,7 @@ export default function App() {
                 <Route path="/pricing" element={<RequestAdmission />} />
                 <Route path="/enroll" element={<EnrollPage />} />
                 <Route path="/standard" element={<EnrollPage />} />
+                <Route path="/whats-included" element={<WhatsIncludedPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/system-overview" element={<SystemOverviewPage />} />
