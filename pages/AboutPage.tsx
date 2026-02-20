@@ -164,29 +164,139 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* THE DOCTRINE SECTION */}
-      <section className="bg-[#002244] py-24 md:py-32 lg:py-40 px-6 border-b-4 border-signal-gold">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center space-y-6 mb-16">
-            <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">OPERATIONAL_DOCTRINE</p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none">
-              THE LAUNCHPATH <br/><span className="text-signal-gold italic">DOCTRINE.</span>
+      {/* THE DOCTRINE SECTION - REGULATORY FRAMEWORK */}
+      <section className="bg-[#002244] py-24 md:py-32 lg:py-40 px-6 border-b-4 border-signal-gold relative overflow-hidden">
+        {/* Subtle grid texture */}
+        <div className="absolute inset-0 opacity-5" style={{backgroundImage: 'linear-gradient(#C5A059 1px, transparent 1px), linear-gradient(90deg, #C5A059 1px, transparent 1px)', backgroundSize: '50px 50px'}}></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header - Federal Regulation Style */}
+          <div className="mb-16 space-y-4">
+            <div className="flex items-center space-x-4 mb-6">
+              <div className="h-px bg-signal-gold/30 flex-grow"></div>
+              <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">49 CFR SUBPART</p>
+              <div className="h-px bg-signal-gold/30 flex-grow"></div>
+            </div>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-serif leading-none text-center">
+              OPERATIONAL <span className="text-signal-gold italic">DOCTRINE.</span>
             </h2>
+            <p className="text-center text-slate-400 text-sm uppercase tracking-widest">
+              Institutional Compliance Framework • Version 4.2 • Authority: Station Custodian
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 mb-12">
-            {doctrinePrinciples.map((principle, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                <p className="text-base md:text-lg text-white/80 font-medium leading-relaxed">{principle}</p>
+          {/* Two-Column Regulatory Grid */}
+          <div className="space-y-6">
+            {[
+              {
+                num: "§ 1.1",
+                principle: "STRUCTURAL PRECEDENCE REQUIREMENT",
+                violation: "90% of new carriers fail within 18 months without structural foundation. Average regulatory loss: $5,000–$25,000.",
+                cfr: "49 CFR § 385.13"
+              },
+              {
+                num: "§ 1.2",
+                principle: "GOVERNANCE MANDATE",
+                violation: "Authority without compliance backbone results in MC revocation within 90 days via administrative action.",
+                cfr: "49 CFR § 385.13"
+              },
+              {
+                num: "§ 1.3",
+                principle: "SYSTEM INTERDEPENDENCE PROTOCOL",
+                violation: "Insurance lapse triggers automatic authority suspension. Cash-flow failure causes 60-day operational shutdown.",
+                cfr: "49 CFR § 387"
+              },
+              {
+                num: "§ 1.4",
+                principle: "COLLAPSE PREVENTION STANDARD",
+                violation: "Comfort-seeking operators bypass critical systems, resulting in audit failure rates exceeding 85%.",
+                cfr: "49 CFR § 385"
+              },
+              {
+                num: "§ 1.5",
+                principle: "PRE-SCALE INSTALLATION REQUIREMENT",
+                violation: "Revenue-first operations fail documentation audits, triggering conditional/unsatisfactory ratings.",
+                cfr: "49 CFR § 385.5"
+              },
+              {
+                num: "§ 1.6",
+                principle: "DIAGNOSTIC PRECEDENCE RULE",
+                violation: "Instruction without diagnostic assessment results in misaligned system implementation and structural gaps.",
+                cfr: "Ground 0 Protocol"
+              },
+              {
+                num: "§ 1.7",
+                principle: "ENFORCEMENT ACCOUNTABILITY STANDARD",
+                violation: "Teaching without verification enables non-compliance. Unverified systems fail under regulatory scrutiny.",
+                cfr: "49 CFR § 385.15"
+              },
+              {
+                num: "§ 1.8",
+                principle: "STEWARDSHIP REFUSAL AUTHORITY",
+                violation: "Enrollment without structural readiness creates liability exposure and authority protection failure.",
+                cfr: "Custodian Authority"
+              },
+              {
+                num: "§ 1.9",
+                principle: "RESPONSIBILITY PRIORITIZATION",
+                violation: "Enrollment-driven admission compromises standard integrity and increases systemic failure rates.",
+                cfr: "Institutional Policy"
+              },
+              {
+                num: "§ 1.10",
+                principle: "OPERATIONAL HIERARCHY MANDATE",
+                violation: "Scale before survival, ambition before discipline, freedom before governance—all lead to terminal failure.",
+                cfr: "49 CFR § 385"
+              }
+            ].map((item, i) => (
+              <div key={i} className="bg-slate-900/50 border border-white/10 rounded-xl overflow-hidden hover:border-signal-gold/30 transition-colors">
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  {/* Left: The Doctrine */}
+                  <div className="bg-white/5 p-8 border-r border-white/10">
+                    <p className="text-signal-gold font-mono text-sm mb-3">{item.num}</p>
+                    <h3 className="text-xl font-black uppercase text-white tracking-tight leading-tight">
+                      {item.principle}
+                    </h3>
+                  </div>
+                  {/* Right: Violation Consequence */}
+                  <div className="p-8 space-y-4">
+                    <p className="text-base text-slate-300 leading-relaxed">
+                      {item.violation}
+                    </p>
+                    <p className="text-xs font-mono text-red-400 uppercase tracking-wider">
+                      REFERENCE: {item.cfr}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* PRIORITY 3: DOCTRINE → PRACTICE CONNECTION */}
-          <div className="bg-signal-gold/10 border-2 border-signal-gold/50 p-8 rounded-3xl text-center">
-            <p className="text-lg md:text-xl font-bold text-white leading-relaxed">
-              These principles manifest in the LaunchPath system through <span className="text-signal-gold">Ground 0</span> (readiness verification), the <span className="text-signal-gold">Four Pillars</span> (structural framework), and the <span className="text-signal-gold">Unified File</span> (documentation architecture).
+          {/* Implementation Framework (Bottom Section) */}
+          <div className="mt-16 bg-signal-gold/10 border-2 border-signal-gold/50 p-10 rounded-3xl">
+            <p className="text-xs font-black uppercase tracking-widest text-signal-gold mb-6 text-center">IMPLEMENTATION FRAMEWORK</p>
+            <p className="text-lg md:text-xl font-bold text-white leading-relaxed text-center mb-6">
+              This doctrine manifests in the LaunchPath system through:
             </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div className="space-y-2">
+                <p className="text-signal-gold font-black uppercase text-sm">Ground 0</p>
+                <p className="text-xs text-white/70">49 CFR § 385 Readiness Verification</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-signal-gold font-black uppercase text-sm">Four Pillars</p>
+                <p className="text-xs text-white/70">Structural Compliance Architecture</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-signal-gold font-black uppercase text-sm">Unified File</p>
+                <p className="text-xs text-white/70">§ 391.51 Documentation Standard</p>
+              </div>
+            </div>
+            <div className="mt-8 pt-8 border-t border-signal-gold/30">
+              <p className="text-sm text-white/80 text-center leading-relaxed">
+                <span className="text-red-400 font-bold">VIOLATION NOTICE:</span> Deviation from doctrine principles results in structural deficiency determination and admission refusal under custodian authority.
+              </p>
+            </div>
           </div>
         </div>
       </section>
