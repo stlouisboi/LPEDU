@@ -306,7 +306,7 @@ const LearningPathPage = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link to="/reach-test" className="w-full sm:w-auto bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] hover:bg-steel-blue transition-all shadow-2xl active:scale-95 flex items-center justify-center group border-b-4 border-slate-900">
+              <Link to="/auto-diagnostic" className="w-full sm:w-auto bg-authority-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] hover:bg-steel-blue transition-all shadow-2xl active:scale-95 flex items-center justify-center group border-b-4 border-slate-900">
                 TAKE THE REACH TEST™ <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
               </Link>
               <Link to="/pricing" className="w-full sm:w-auto bg-white dark:bg-gray-800 border-2 border-authority-blue/10 dark:border-white/10 text-authority-blue dark:text-white px-12 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] hover:bg-slate-50 dark:hover:bg-gray-700 transition-all flex items-center justify-center shadow-sm">

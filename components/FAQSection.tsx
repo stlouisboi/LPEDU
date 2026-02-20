@@ -8,7 +8,7 @@ const FAQSection = () => {
       question: "Is this for CDL only?",
       answer: "No. The LaunchPath Operating Standard applies to all motor carriers operating commercial motor vehicles in interstate commerce (10,001+ GVWR), regardless of driver licensing class.",
       cta: "Verify your asset class",
-      link: "/reach-test"
+      link: "/auto-diagnostic"
     },
     {
       question: "Do I need both a USDOT and MC number?",

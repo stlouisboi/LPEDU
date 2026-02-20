@@ -217,7 +217,7 @@ const ExposureMatrixPage: React.FC = () => {
 
       <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50">
          <Link 
-           to="/reach-test"
+           to="/auto-diagnostic"
            className="bg-white text-[#002244] px-12 py-6 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-[11px] shadow-[0_30px_60px_rgba(0,0,0,0.5)] border-b-8 border-slate-300 hover:bg-signal-gold transition-all active:scale-95"
          >
            GENERATE MY EXPOSURE REPORT

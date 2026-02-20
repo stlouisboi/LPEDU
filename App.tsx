@@ -317,7 +317,7 @@ const Footer = () => {
               { 
                 title: 'RESOURCES', 
                 links: [
-                  { name: 'AUTO Diagnostic™', path: '/reach-test' }, 
+                  { name: 'AUTO Diagnostic™', path: '/auto-diagnostic' }, 
                   { name: 'The Blog', path: '/blog' }, 
                   { name: 'Exposure Matrix', path: '/exposure-matrix' }
                 ] 
@@ -482,7 +482,7 @@ export default function App() {
                 <Route path="/resources" element={<ResourcesPage />} />
                 <Route path="/resources/:briefId" element={<ReferenceBriefPage />} />
                 <Route path="/readiness" element={<ReadinessPage />} />
-                <Route path="/reach-test" element={<ReachTestPage />} />
+                <Route path="/auto-diagnostic" element={<ReachTestPage />} />
                 <Route path="/ground-0" element={<Ground0BriefingPage />} />
                 <Route path="/ground-0/module" element={<Ground0ModulePage />} />
                 <Route path="/ground-0/checklist" element={<Ground0ChecklistPage />} />

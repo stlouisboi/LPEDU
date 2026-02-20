@@ -42,7 +42,7 @@ const HomePage = () => {
             Keep your authority. Pass audits. Stay insurable. LaunchPath installs the compliance infrastructure most carriers never receive.
           </p>
           <Link 
-            to="/reach-test" 
+            to="/auto-diagnostic" 
             className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
           >
             <Activity size={20} />
@@ -109,7 +109,7 @@ const HomePage = () => {
             See which industrial guards are missing from your authority protection system.
           </p>
           <Link 
-            to="/reach-test" 
+            to="/auto-diagnostic" 
             className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
           >
             <Activity size={20} />
@@ -139,7 +139,7 @@ const HomePage = () => {
                 Run the AUTO Diagnostic to identify which industrial guards (Around, Under, Through, Over) are protecting your authority.
               </p>
               <Link 
-                to="/reach-test" 
+                to="/auto-diagnostic" 
                 className="block text-center bg-signal-gold text-primary-dark px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-yellow-400 transition-colors"
               >
                 Run AUTO Diagnostic
@@ -414,12 +414,196 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* AUTO GUARDING STANDARD SECTION */}
+      <section className="relative py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 overflow-hidden">
+        {/* Premium gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-authority-blue/20 via-slate-950 to-slate-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-signal-gold/5 via-transparent to-transparent"></div>
+        
+        <div className="max-w-6xl mx-auto relative z-10 space-y-16">
+          {/* Header */}
+          <div className="text-center space-y-6">
+            <div className="inline-flex items-center space-x-2 bg-signal-gold/10 border border-signal-gold/30 px-6 py-2 rounded-full">
+              <Shield size={20} className="text-signal-gold" />
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-signal-gold">INDUSTRIAL COMPLIANCE STANDARD</p>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-none">
+              DOES YOUR AUTHORITY PASS THE <span className="text-signal-gold">AUTO TEST?</span>
+            </h2>
+            <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              We don't just teach compliance; we install industrial guarding. Based on OSHA machine-guarding standards, the AUTO system ensures no risk can reach your point of operation.
+            </p>
+          </div>
+
+          {/* Central Authority Protection Graphic */}
+          <div className="flex justify-center items-center py-12">
+            <div className="relative w-full max-w-md aspect-square">
+              {/* Center - MC Authority */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br from-authority-blue to-authority-blue/60 rounded-full border-4 border-signal-gold/30 flex items-center justify-center">
+                <div className="text-center">
+                  <p className="text-xs font-black uppercase tracking-wider text-signal-gold">MC</p>
+                  <p className="text-2xl font-black text-white">AUTHORITY</p>
+                </div>
+              </div>
+
+              {/* Shield A - AROUND (Left) */}
+              <div className="absolute top-1/2 left-0 -translate-y-1/2 text-center">
+                <div className="bg-signal-gold/10 border-2 border-signal-gold p-4 rounded-2xl backdrop-blur-sm">
+                  <Shield size={40} className="text-signal-gold mx-auto mb-2" />
+                  <p className="text-2xl font-black text-signal-gold">A</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-signal-gold mt-1">AROUND</p>
+                </div>
+                {/* Connection line */}
+                <div className="absolute top-1/2 left-full w-16 h-0.5 bg-signal-gold/30 -translate-y-1/2"></div>
+              </div>
+
+              {/* Shield U - UNDER (Top) */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 text-center">
+                <div className="bg-signal-gold/10 border-2 border-signal-gold p-4 rounded-2xl backdrop-blur-sm">
+                  <Shield size={40} className="text-signal-gold mx-auto mb-2" />
+                  <p className="text-2xl font-black text-signal-gold">U</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-signal-gold mt-1">UNDER</p>
+                </div>
+                {/* Connection line */}
+                <div className="absolute top-full left-1/2 w-0.5 h-16 bg-signal-gold/30 -translate-x-1/2"></div>
+              </div>
+
+              {/* Shield T - THROUGH (Bottom) */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-center">
+                <div className="bg-signal-gold/10 border-2 border-signal-gold p-4 rounded-2xl backdrop-blur-sm">
+                  <Shield size={40} className="text-signal-gold mx-auto mb-2" />
+                  <p className="text-2xl font-black text-signal-gold">T</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-signal-gold mt-1">THROUGH</p>
+                </div>
+                {/* Connection line */}
+                <div className="absolute bottom-full left-1/2 w-0.5 h-16 bg-signal-gold/30 -translate-x-1/2"></div>
+              </div>
+
+              {/* Shield O - OVER (Right) */}
+              <div className="absolute top-1/2 right-0 -translate-y-1/2 text-center">
+                <div className="bg-signal-gold/10 border-2 border-signal-gold p-4 rounded-2xl backdrop-blur-sm">
+                  <Shield size={40} className="text-signal-gold mx-auto mb-2" />
+                  <p className="text-2xl font-black text-signal-gold">O</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-signal-gold mt-1">OVER</p>
+                </div>
+                {/* Connection line */}
+                <div className="absolute top-1/2 right-full w-16 h-0.5 bg-signal-gold/30 -translate-y-1/2"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Four Vectors Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Vector A - AROUND */}
+            <div className="bg-white/5 border-2 border-white/20 p-8 rounded-3xl space-y-4 hover:border-signal-gold/50 transition-colors">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="relative">
+                  <Shield size={48} className="text-signal-gold" />
+                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-black text-primary-dark">A</span>
+                </div>
+                <h3 className="text-lg font-black uppercase tracking-wider text-signal-gold">VECTOR A - AROUND</h3>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE RISK</p>
+                  <p className="text-sm text-slate-300">Market volatility or payment gaps reaching Around your cash flow.</p>
+                </div>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE GUARD (WHAT WE INSTALL)</p>
+                  <p className="text-base font-black uppercase text-signal-gold">THE 35-DAY STANDARD</p>
+                  <p className="text-sm text-slate-300">Mathematical barriers for revenue cycles and concentration.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Vector U - UNDER */}
+            <div className="bg-white/5 border-2 border-white/20 p-8 rounded-3xl space-y-4 hover:border-signal-gold/50 transition-colors">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="relative">
+                  <Shield size={48} className="text-signal-gold" />
+                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-black text-primary-dark">U</span>
+                </div>
+                <h3 className="text-lg font-black uppercase tracking-wider text-signal-gold">VECTOR U - UNDER</h3>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE RISK</p>
+                  <p className="text-sm text-slate-300">Hidden regulatory lapses sliding Under your administrative radar.</p>
+                </div>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE GUARD (WHAT WE INSTALL)</p>
+                  <p className="text-base font-black uppercase text-signal-gold">THE INTEGRITY GUARD</p>
+                  <p className="text-sm text-slate-300">A 12-month automated compliance calendar and filing system.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Vector T - THROUGH */}
+            <div className="bg-white/5 border-2 border-white/20 p-8 rounded-3xl space-y-4 hover:border-signal-gold/50 transition-colors">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="relative">
+                  <Shield size={48} className="text-signal-gold" />
+                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-black text-primary-dark">T</span>
+                </div>
+                <h3 className="text-lg font-black uppercase tracking-wider text-signal-gold">VECTOR T - THROUGH</h3>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE RISK</p>
+                  <p className="text-sm text-slate-300">Operational chaos punching Through a lack of defined structure.</p>
+                </div>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE GUARD (WHAT WE INSTALL)</p>
+                  <p className="text-base font-black uppercase text-signal-gold">LANE DISCIPLINE FRAMEWORK</p>
+                  <p className="text-sm text-slate-300">Structural limits on dispatch and equipment utilization.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Vector O - OVER */}
+            <div className="bg-white/5 border-2 border-white/20 p-8 rounded-3xl space-y-4 hover:border-signal-gold/50 transition-colors">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="relative">
+                  <Shield size={48} className="text-signal-gold" />
+                  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-black text-primary-dark">O</span>
+                </div>
+                <h3 className="text-lg font-black uppercase tracking-wider text-signal-gold">VECTOR O - OVER</h3>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE RISK</p>
+                  <p className="text-sm text-slate-300">Uncalculated overhead climbing Over your net profit margins.</p>
+                </div>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">THE GUARD (WHAT WE INSTALL)</p>
+                  <p className="text-base font-black uppercase text-signal-gold">THE 24-HOUR GUARD</p>
+                  <p className="text-sm text-slate-300">Real-time TCO monitoring and invoicing speed requirements.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center space-y-4">
+            <Link 
+              to="/auto-diagnostic" 
+              className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
+            >
+              <Activity size={20} />
+              <span>Run AUTO Diagnostic Assessment</span>
+              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+            </Link>
+            <p className="text-sm text-slate-400">See which guards are missing from your authority protection system.</p>
+          </div>
+        </div>
+      </section>
+
       {/* PRIMARY CTA REPEAT (BEFORE ADMISSION SECTION) */}
       <section className="py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-white/[0.02]">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Ready to See Where You Stand?</h3>
           <Link 
-            to="/reach-test" 
+            to="/auto-diagnostic" 
             className="inline-flex items-center space-x-3 bg-signal-gold hover:bg-yellow-400 text-primary-dark px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-2xl shadow-signal-gold/30 hover:shadow-signal-gold/50 active:scale-95 group"
           >
             <Activity size={20} />

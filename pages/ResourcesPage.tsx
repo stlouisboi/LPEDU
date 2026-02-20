@@ -177,7 +177,7 @@ const ResourcesPage = () => {
                 New here? <br/><span className="text-slate-400 font-bold">Start with the AUTO Diagnostic™.</span>
               </p>
             </div>
-            <Link to="/reach-test" className="w-full sm:w-auto bg-authority-blue text-white px-12 py-8 rounded-[2.8rem] font-black uppercase tracking-[0.2em] text-[12px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-8 border-slate-900 group/btn relative z-10">
+            <Link to="/auto-diagnostic" className="w-full sm:w-auto bg-authority-blue text-white px-12 py-8 rounded-[2.8rem] font-black uppercase tracking-[0.2em] text-[12px] shadow-2xl hover:bg-steel-blue transition-all active:scale-95 flex items-center justify-center border-b-8 border-slate-900 group/btn relative z-10">
               Take the AUTO Diagnostic™ <ArrowRight size={14} className="ml-3 group-hover/btn:translate-x-2 transition-transform" />
             </Link>
           </div>
@@ -207,7 +207,7 @@ const ResourcesPage = () => {
             <p className="text-sm text-slate-500 dark:text-slate-400 font-bold mb-8 flex-grow leading-relaxed">
               Analyze your current compliance posture across the four pillars.
             </p>
-            <Link to="/reach-test" className="w-full bg-emerald-600 text-white py-4 rounded-xl font-black uppercase tracking-[0.3em] text-[10px] shadow-lg hover:bg-emerald-700 flex items-center justify-center group/btn border-b-4 border-emerald-900">
+            <Link to="/auto-diagnostic" className="w-full bg-emerald-600 text-white py-4 rounded-xl font-black uppercase tracking-[0.3em] text-[10px] shadow-lg hover:bg-emerald-700 flex items-center justify-center group/btn border-b-4 border-emerald-900">
               Start <ArrowRight size={14} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -256,7 +256,7 @@ const ResourcesPage = () => {
               Binary evaluation to verify if your entity is ready to launch.
             </p>
             <Link 
-              to="/reach-test"
+              to="/auto-diagnostic"
               className="w-full bg-white dark:bg-gray-800 text-authority-blue dark:text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] border border-slate-200 dark:border-white/10 flex items-center justify-center hover:bg-slate-50 transition-all active:scale-95"
             >
               Verify <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -509,7 +509,7 @@ const ResourcesPage = () => {
                   ))}
                 </div>
               </div>
-              <Link to="/reach-test" className="block w-full bg-authority-blue text-white py-10 rounded-[3.5rem] font-black uppercase tracking-[0.4em] text-[14px] shadow-2xl hover:bg-steel-blue active:scale-95 transition-all border-b-8 border-slate-900 mt-16 flex items-center justify-center group">
+              <Link to="/auto-diagnostic" className="block w-full bg-authority-blue text-white py-10 rounded-[3.5rem] font-black uppercase tracking-[0.4em] text-[14px] shadow-2xl hover:bg-steel-blue active:scale-95 transition-all border-b-8 border-slate-900 mt-16 flex items-center justify-center group">
                 Initiate Diagnosis <ArrowRight size={24} className="ml-5 group-hover:translate-x-3 transition-transform" />
               </Link>
             </div>
