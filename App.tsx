@@ -51,6 +51,7 @@ import LegalPage from './pages/LegalPage';
 import AIServicePage from './pages/AIServicePage';
 import RequestAdmission from './pages/RequestAdmission';
 import ModuleDetailPage from './pages/ModuleDetailPage';
+import LessonDetailPage from './pages/LessonDetailPage';
 import SystemOverviewPage from './pages/SystemOverviewPage';
 import DownloadPage from './pages/DownloadPage';
 import ReadinessPage from './pages/ReadinessPage';
@@ -84,6 +85,7 @@ import VideoLab from './pages/admin/VideoLab';
 import InitializeDataPage from './pages/admin/InitializeDataPage';
 import Ground0List from './pages/admin/Ground0List';
 import Ground0Editor from './pages/admin/Ground0Editor';
+import LessonUploader from './pages/admin/LessonUploader';
 
 interface AppContextType {
   theme: 'light' | 'dark';
@@ -506,6 +508,7 @@ export default function App() {
                   <Route path="/ai-advisor" element={<AIServicePage />} />
                   <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
                   <Route path="/modules/:id" element={<ModuleDetailPage />} />
+                  <Route path="/modules/:moduleId/lessons/:lessonId" element={<LessonDetailPage />} />
                 </Route>
 
                 <Route element={<AdminRoute />}>
@@ -523,8 +526,8 @@ export default function App() {
                     <Route path="settings" element={<SettingsManager />} />
                     <Route path="video-lab" element={<VideoLab />} />
                     <Route path="ground0" element={<Ground0List />} />
-                    <Route path="ground0/new" element={<Ground0Editor />} />
-                    <Route path="ground0/edit/:lessonId" element={<Ground0Editor />} />
+                    <Route path="ground-0/:id/edit" element={<Ground0Editor />} />
+                    <Route path="lessons" element={<LessonUploader />} />               <Route path="ground0/edit/:lessonId" element={<Ground0Editor />} />
                     <Route path="initialize-data" element={<InitializeDataPage />} />
                   </Route>
                 </Route>
