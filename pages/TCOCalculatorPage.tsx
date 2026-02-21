@@ -30,9 +30,10 @@ import {
   Globe,
   Share2,
   Copy,
-  Check
+  Check,
+  RefreshCw
 } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
+import OpenAI from 'openai';
 
 interface FixedCosts {
   truckPayment: number;
@@ -128,12 +129,46 @@ const TCOCalculatorPage: React.FC = () => {
 
   const performAIAnalysis = async () => {
     setIsAnalyzing(true);
+    setAiAnalysis(null);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const prompt = `Trucking Carrier TCO Analysis: Fixed $${totals.totalFixed}, Var $${totals.totalVarPerMile.toFixed(2)}/mi, Net $${totals.netProfit.toFixed(2)}. Suggest 3 tactical improvements for sustainability in an authoritative institutional tone. Use Markdown.`;
-      const response = await ai.models.generateContent({ model: 'gemini-3-pro-preview', contents: prompt });
-      setAiAnalysis(response.text || "Analysis complete.");
-    } catch (err) { setAiAnalysis("Analysis terminal fault."); } finally { setIsAnalyzing(false); }
+      const client = new OpenAI();
+      const prompt = `You are an institutional compliance and financial advisor for motor carriers. Analyze this trucking operation's Total Cost of Ownership:
+
+**FINANCIAL METRICS:**
+- Total Fixed Costs: $${totals.totalFixed.toFixed(2)}/month
+- Variable Cost Per Mile: $${totals.totalVarPerMile.toFixed(2)}/mile
+- Monthly Miles: ${operation.monthlyMiles.toLocaleString()}
+- Rate Per Mile: $${operation.ratePerMile.toFixed(2)}
+- Deadhead: ${operation.deadheadPercentage}%
+- Gross Revenue: $${totals.actualGrossRevenue.toFixed(2)}/month
+- Total Monthly Expense: $${totals.totalMonthlyExpense.toFixed(2)}/month
+- Net Profit: $${totals.netProfit.toFixed(2)}/month
+- Profit Margin: ${totals.margin.toFixed(2)}%
+- Cost Per Mile: $${totals.cpm.toFixed(2)}/mile
+- Break-Even Rate: $${totals.breakEvenRate.toFixed(2)}/mile
+
+Provide a concise, authoritative analysis with:
+1. **SOLVENCY ASSESSMENT** - Current financial health and sustainability
+2. **CRITICAL VULNERABILITIES** - Top 2-3 specific risks to authority/operations
+3. **TACTICAL CORRECTIONS** - 3 specific, actionable improvements with expected impact
+
+Use institutional, consequence-based language. Be direct. No fluff. Format with markdown headers and bullet points.`;
+      
+      const response = await client.chat.completions.create({
+        model: 'gemini-2.5-flash',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.7,
+        max_tokens: 1000
+      });
+      
+      const analysis = response.choices[0]?.message?.content || "Analysis complete. No recommendations generated.";
+      setAiAnalysis(analysis);
+    } catch (err) {
+      console.error('AI Analysis Error:', err);
+      setAiAnalysis("**ANALYSIS TERMINAL FAULT**\n\nUnable to synthesize strategic review. System may be offline or credentials invalid. Manual review recommended.");
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const nextStep = () => setActiveStep(prev => prev + 1);
@@ -555,8 +590,37 @@ const TCOCalculatorPage: React.FC = () => {
                            </div>
                          ) : aiAnalysis ? (
                            <div className="space-y-8 animate-in fade-in">
-                              <div className="text-lg font-medium leading-relaxed prose prose-invert max-w-none border-l-4 border-signal-gold/30 pl-10 custom-scrollbar max-h-[300px] overflow-y-auto pr-4">
-                                 {aiAnalysis.split('\n').map((line, i) => <p key={i} className="mb-4">{line}</p>)}
+                              <div className="text-sm leading-relaxed border-l-4 border-signal-gold/30 pl-6 custom-scrollbar max-h-[400px] overflow-y-auto pr-4">
+                                 {aiAnalysis.split('\n').map((line, i) => {
+                                   // Handle markdown bold headers
+                                   if (line.startsWith('**') && line.endsWith('**')) {
+                                     const text = line.replace(/\*\*/g, '');
+                                     return <h4 key={i} className="text-base font-black uppercase tracking-wider text-signal-gold mt-6 mb-3 first:mt-0">{text}</h4>;
+                                   }
+                                   // Handle markdown headers with #
+                                   if (line.startsWith('###')) {
+                                     return <h4 key={i} className="text-base font-black uppercase tracking-wider text-signal-gold mt-6 mb-3 first:mt-0">{line.replace(/###/g, '').trim()}</h4>;
+                                   }
+                                   if (line.startsWith('##')) {
+                                     return <h3 key={i} className="text-lg font-black uppercase tracking-wider text-signal-gold mt-6 mb-3 first:mt-0">{line.replace(/##/g, '').trim()}</h3>;
+                                   }
+                                   // Handle bullet points
+                                   if (line.trim().startsWith('-') || line.trim().startsWith('•')) {
+                                     const text = line.replace(/^[\s-•]+/, '');
+                                     return <li key={i} className="text-white/90 mb-2 ml-4 list-disc">{text}</li>;
+                                   }
+                                   // Handle numbered lists
+                                   if (/^\d+\./.test(line.trim())) {
+                                     const text = line.replace(/^\d+\.\s*/, '');
+                                     return <li key={i} className="text-white/90 mb-2 ml-4 list-decimal">{text}</li>;
+                                   }
+                                   // Regular paragraphs
+                                   if (line.trim()) {
+                                     return <p key={i} className="text-white/90 mb-3 leading-relaxed">{line}</p>;
+                                   }
+                                   // Empty lines for spacing
+                                   return <div key={i} className="h-2"></div>;
+                                 })}
                               </div>
                               <button onClick={performAIAnalysis} className="inline-flex items-center text-[10px] font-black uppercase tracking-widest text-signal-gold hover:text-white transition-all hover:scale-105 active:scale-95">
                                  Re-Synthesize Report <RefreshCw className="ml-2" size={14}/>
