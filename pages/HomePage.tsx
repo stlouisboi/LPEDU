@@ -247,78 +247,78 @@ const HomePage = () => {
           {/* Premium Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {/* Failure Cards - Premium Glass-morphism */}
-            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-6 md:p-8 lg:p-10 rounded-3xl space-y-4 md:space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
-                  <AlertTriangle size={28} className="text-red-400" />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-3 md:mb-4">
+                  <AlertTriangle size={24} className="text-red-400 md:w-7 md:h-7" />
                 </div>
-                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Regulatory Violations</h3>
-                <p className="text-3xl md:text-4xl font-black text-white mb-2">$5,000 - $25,000</p>
+                <h3 className="text-[10px] md:text-xs font-black uppercase tracking-widest text-red-400 mb-3 md:mb-4 break-words">Regulator<wbr/>y Violation<wbr/>s</h3>
+                <p className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 leading-tight">$5,000<br className="md:hidden" /><span className="hidden md:inline"> - </span><br className="md:hidden" />$25,000</p>
                 <p className="text-xs text-slate-400 leading-relaxed">Average penalty range for documentation failures</p>
               </div>
             </div>
 
-            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-6 md:p-8 lg:p-10 rounded-3xl space-y-4 md:space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
-                  <XCircle size={28} className="text-red-400" />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-3 md:mb-4">
+                  <XCircle size={24} className="text-red-400 md:w-7 md:h-7" />
                 </div>
-                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Insurance Cancellation</h3>
-                <p className="text-3xl md:text-4xl font-black text-white mb-2">Automatic Suspension</p>
+                <h3 className="text-[10px] md:text-xs font-black uppercase tracking-widest text-red-400 mb-3 md:mb-4 break-words">Insurance Cancella<wbr/>tion</h3>
+                <p className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 leading-tight">Automatic<br className="md:hidden" /> Suspension</p>
                 <p className="text-xs text-slate-400 leading-relaxed">Authority suspended within 24-48 hours</p>
               </div>
             </div>
 
-            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-6 md:p-8 lg:p-10 rounded-3xl space-y-4 md:space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
-                  <AlertCircle size={28} className="text-red-400" />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-3 md:mb-4">
+                  <AlertCircle size={24} className="text-red-400 md:w-7 md:h-7" />
                 </div>
-                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Audit Failure</h3>
-                <p className="text-3xl md:text-4xl font-black text-white mb-2">45-90 Day Shutdown</p>
+                <h3 className="text-[10px] md:text-xs font-black uppercase tracking-widest text-red-400 mb-3 md:mb-4">Audit Failure</h3>
+                <p className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 leading-tight">45-90 Day<br className="md:hidden" /> Shutdown</p>
                 <p className="text-xs text-slate-400 leading-relaxed">Operational suspension during remediation</p>
               </div>
             </div>
 
-            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-10 rounded-3xl space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+            <div className="group relative bg-gradient-to-br from-red-950/40 to-red-900/20 backdrop-blur-sm border border-red-500/30 p-6 md:p-8 lg:p-10 rounded-3xl space-y-4 md:space-y-6 text-center hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-4">
-                  <Ban size={28} className="text-red-400" />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-red-500/10 border border-red-500/30 rounded-2xl mb-3 md:mb-4">
+                  <Ban size={24} className="text-red-400 md:w-7 md:h-7" />
                 </div>
-                <h3 className="text-xs font-black uppercase tracking-widest text-red-400 mb-4">Authority Revocation</h3>
-                <p className="text-3xl md:text-4xl font-black text-white mb-2">6-12 Months to Rebuild</p>
+                <h3 className="text-[10px] md:text-xs font-black uppercase tracking-widest text-red-400 mb-3 md:mb-4 break-words">Authority Revoca<wbr/>tion</h3>
+                <p className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 leading-tight">6-12 Months<br className="md:hidden" /> to Rebuild</p>
                 <p className="text-xs text-slate-400 leading-relaxed">If reinstatement is granted at all</p>
               </div>
             </div>
 
             {/* LaunchPath Outcome - Premium Gold Card */}
-            <div className="group relative bg-gradient-to-br from-signal-gold/20 via-signal-gold/10 to-signal-gold/5 backdrop-blur-sm border-2 border-signal-gold/50 p-10 rounded-3xl space-y-6 text-center hover:border-signal-gold transition-all duration-300 hover:shadow-2xl hover:shadow-signal-gold/30">
+            <div className="group relative bg-gradient-to-br from-signal-gold/20 via-signal-gold/10 to-signal-gold/5 backdrop-blur-sm border-2 border-signal-gold/50 p-6 md:p-8 lg:p-10 rounded-3xl space-y-4 md:space-y-6 text-center hover:border-signal-gold transition-all duration-300 hover:shadow-2xl hover:shadow-signal-gold/30">
               <div className="absolute inset-0 bg-gradient-to-br from-signal-gold/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-signal-gold/20 border-2 border-signal-gold/50 rounded-2xl mb-4">
-                  <ShieldCheck size={28} className="text-signal-gold" />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-signal-gold/20 border-2 border-signal-gold/50 rounded-2xl mb-3 md:mb-4">
+                  <ShieldCheck size={24} className="text-signal-gold md:w-7 md:h-7" />
                 </div>
-                <h3 className="text-xs font-black uppercase tracking-widest text-signal-gold mb-6">LAUNCHPATH OUTCOME</h3>
-                <div className="space-y-3 text-left">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
-                    <p className="text-sm font-bold text-white">Zero violations (audit-ready from day one)</p>
+                <h3 className="text-[10px] md:text-xs font-black uppercase tracking-widest text-signal-gold mb-4 md:mb-6 break-words">LAUNCHPATH OUTCOME</h3>
+                <div className="space-y-2 md:space-y-3 text-left">
+                  <div className="flex items-start space-x-2 md:space-x-3">
+                    <CheckCircle2 size={16} className="text-signal-gold flex-shrink-0 mt-0.5 md:w-[18px] md:h-[18px]" />
+                    <p className="text-xs md:text-sm font-bold text-white leading-snug">Zero violations (audit-ready from day one)</p>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
-                    <p className="text-sm font-bold text-white">Continuous insurance (no lapses)</p>
+                  <div className="flex items-start space-x-2 md:space-x-3">
+                    <CheckCircle2 size={16} className="text-signal-gold flex-shrink-0 mt-0.5 md:w-[18px] md:h-[18px]" />
+                    <p className="text-xs md:text-sm font-bold text-white leading-snug">Continuous insurance (no lapses)</p>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
-                    <p className="text-sm font-bold text-white">Audit passage (documentation complete)</p>
+                  <div className="flex items-start space-x-2 md:space-x-3">
+                    <CheckCircle2 size={16} className="text-signal-gold flex-shrink-0 mt-0.5 md:w-[18px] md:h-[18px]" />
+                    <p className="text-xs md:text-sm font-bold text-white leading-snug">Audit passage (documentation complete)</p>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 size={18} className="text-signal-gold flex-shrink-0 mt-0.5" />
-                    <p className="text-sm font-bold text-white">Authority protected (structural compliance)</p>
+                  <div className="flex items-start space-x-2 md:space-x-3">
+                    <CheckCircle2 size={16} className="text-signal-gold flex-shrink-0 mt-0.5 md:w-[18px] md:h-[18px]" />
+                    <p className="text-xs md:text-sm font-bold text-white leading-snug">Authority protected (structural compliance)</p>
                   </div>
                 </div>
               </div>
