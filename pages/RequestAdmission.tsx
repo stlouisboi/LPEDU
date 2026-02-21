@@ -44,6 +44,9 @@ const RequestAdmission: React.FC = () => {
           <p className="text-xl md:text-3xl text-white/70 font-bold max-w-4xl mx-auto leading-relaxed uppercase tracking-tight">
             The decision to invest in LaunchPath is not emotional. It is mathematical. Federal data confirms that carriers who fail are not the ones who lacked ambition—they are the ones who lacked systems.
           </p>
+          <p className="text-sm text-white/50 max-w-3xl mx-auto mt-8 leading-relaxed">
+            Designed for new and early-stage motor carriers operating under their own FMCSA authority. This is an implementation environment, not a general trucking course.
+          </p>
         </div>
       </section>
 
@@ -135,6 +138,9 @@ const RequestAdmission: React.FC = () => {
       {/* SECTION: SYSTEM COMPONENTS (THE GAP FIX) */}
       <section className="py-32 px-6 max-w-7xl mx-auto">
         <div className="mb-20 text-center">
+          <p className="text-base text-slate-600 dark:text-slate-400 max-w-4xl mx-auto mb-8 leading-relaxed">
+            These are operational controls installed to survive audits, insurance reviews, and the first 90 days of authority.
+          </p>
           <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">SYSTEM <span className="text-signal-gold italic">COMPONENTS.</span></h2>
           <p className="text-lg text-slate-500 font-bold mt-4">Verification of Inclusion and Institutional Boundaries.</p>
         </div>
@@ -202,12 +208,17 @@ const RequestAdmission: React.FC = () => {
            </div>
            
            <div className="flex flex-col items-center space-y-16">
-             <button 
-               onClick={() => setIsTerminalOpen(true)}
-               className="bg-[#002244] text-white px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-10px_rgba(0,34,68,0.4)] hover:bg-[#0c1a2d] hover:scale-105 transition-all active:scale-0.98 border-b-[12px] border-slate-900 group"
-             >
-               OPEN ADMISSION TERMINAL <ChevronRight className="inline ml-4 group-hover:translate-x-2 transition-transform" size={24} />
-             </button>
+             <div className="flex flex-col items-center space-y-4">
+               <button 
+                 onClick={() => setIsTerminalOpen(true)}
+                 className="bg-[#002244] text-white px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-10px_rgba(0,34,68,0.4)] hover:bg-[#0c1a2d] hover:scale-105 transition-all active:scale-0.98 border-b-[12px] border-slate-900 group"
+               >
+                 OPEN ADMISSION TERMINAL <ChevronRight className="inline ml-4 group-hover:translate-x-2 transition-transform" size={24} />
+               </button>
+               <p className="text-xs text-slate-400 dark:text-slate-500">
+                 Completion of Ground 0 is required. Admission is not guaranteed.
+               </p>
+             </div>
              
              <div className="space-y-10 w-full">
                 <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest flex flex-col sm:flex-row items-center justify-center gap-2">

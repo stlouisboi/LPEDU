@@ -580,6 +580,9 @@ Use institutional, consequence-based language. Be direct. No fluff. Format with 
                       <div className="relative z-10 space-y-10">
                          <div className="space-y-3">
                             <h3 className="text-2xl font-black font-serif uppercase tracking-tight text-white leading-none">Neural Insights</h3>
+                            <p className="text-sm italic text-slate-400 mb-4">
+                              Pattern recognition and risk signaling only. No financial advice or guarantees.
+                            </p>
                             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold opacity-60">Advisor Terminal v4.2 Active</p>
                          </div>
 
