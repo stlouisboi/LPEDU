@@ -1,102 +1,89 @@
 import React, { useState } from 'react';
 import { 
-  Award, 
-  DollarSign, 
-  FileText, 
-  Lock, 
-  ChevronRight,
-  ShieldCheck,
-  Activity,
-  ArrowRight,
-  CheckCircle2,
+  CheckCircle,
   XCircle,
-  Mail,
-  Scale,
-  Layers,
-  X,
-  Zap,
-  BookOpen,
-  Calculator,
-  Bot,
-  ShieldAlert,
-  TrendingDown,
-  Target
+  Clock,
+  FileText,
+  TrendingUp,
+  Shield,
+  DollarSign,
+  Activity,
+  ChevronDown,
+  ArrowRight
 } from 'lucide-react';
-import AdmissionTerminalV42 from '../components/AdmissionTerminalV42';
 import { useNavigate } from 'react-router-dom';
 
 const RequestAdmission: React.FC = () => {
   const navigate = useNavigate();
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   return (
-    <div className="bg-[#FAF9F6] dark:bg-primary-dark min-h-screen font-sans selection:bg-[#002244]/10">
+    <div className="bg-white dark:bg-[#020617] min-h-screen">
       
-      {/* SECTION: HERO HEADER */}
-      <section className="pt-32 pb-20 px-6 border-b border-slate-100 dark:border-white/5 relative overflow-hidden bg-[#002244]">
-        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="max-w-7xl mx-auto text-center space-y-10 animate-reveal-up relative z-10">
-          <div className="inline-flex items-center space-x-3 bg-white/5 px-6 py-2.5 rounded-full border border-white/10 shadow-sm">
-             <Lock size={14} className="text-signal-gold" />
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Admission Protocol</span>
+      {/* HERO SECTION */}
+      <section className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
+        <div className="space-y-8">
+          <div className="inline-flex items-center space-x-2 bg-slate-100 dark:bg-white/5 px-4 py-2 rounded-lg">
+            <Shield size={16} className="text-[#002244] dark:text-signal-gold" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+              Implementation System
+            </span>
           </div>
-          <h1 className="text-6xl md:text-8xl font-black font-serif text-white tracking-tighter uppercase leading-[0.85]">
-            THE COST OF BUILDING <br/><span className="text-signal-gold italic">WITHOUT INFRASTRUCTURE.</span>
+          
+          <h1 className="text-5xl md:text-6xl font-bold text-[#002244] dark:text-white leading-tight" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+            LaunchPath: Structured Compliance Implementation for Motor Carriers
           </h1>
-          <p className="text-xl md:text-3xl text-white/70 font-bold max-w-4xl mx-auto leading-relaxed uppercase tracking-tight">
-            The decision to invest in LaunchPath is not emotional. It is mathematical. Federal data confirms that carriers who fail are not the ones who lacked ambition—they are the ones who lacked systems.
-          </p>
-          <p className="text-sm text-white/50 max-w-3xl mx-auto mt-8 leading-relaxed">
-            Designed for new and early-stage motor carriers operating under their own FMCSA authority. This is an implementation environment, not a general trucking course.
+          
+          <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+            A six-module system for building FMCSA compliance infrastructure. Developed from 200+ carrier implementations and 47 audit preparations.
           </p>
         </div>
       </section>
 
-      {/* SECTION: THE OPERATING REALITY (STATS) */}
-      <section className="py-24 px-6 max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+      {/* WHAT YOU'LL BUILD */}
+      <section className="py-16 px-6 bg-slate-50 dark:bg-white/[0.02]">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <h2 className="text-3xl font-bold text-[#002244] dark:text-white">
+            What You'll Build
+          </h2>
           
-          <div className="lg:col-span-5 bg-[#002244] p-12 rounded-[4rem] text-white flex flex-col justify-between relative overflow-hidden group shadow-2xl">
-            <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:scale-110 transition-transform duration-700">
-              <TrendingDown size={180} />
-            </div>
-            <div className="relative z-10 space-y-8">
-              <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">Statistical Analysis</p>
-              <h2 className="text-8xl md:text-9xl font-black font-serif leading-none tracking-tighter">33%–<br/>45%</h2>
-              <p className="text-2xl font-bold uppercase tracking-tight leading-tight">Of new motor carriers registered between 2018 and 2021 are now inactive.</p>
-            </div>
-            <div className="pt-12 border-t border-white/10 mt-12 relative z-10">
-              <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest leading-relaxed">
-                Nearly half of all entrants cease operations within 36 months. The market lacks survivors with institutional infrastructure.
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 bg-white dark:bg-surface-dark p-12 rounded-[4rem] border border-slate-100 dark:border-border-dark shadow-sm space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { 
-                icon: <DollarSign size={24} />, 
-                title: "Undercapitalization & Poor Cash Flow", 
-                desc: "Monthly operating costs per truck range from $10,300 to $18,800. Carriers without 60–90 days of reserves are overwhelmed before their first invoice clears." 
+              {
+                title: "Documented Safety Management Program",
+                desc: "FMCSA-compliant safety policies, accident register, and violation response procedures."
               },
-              { 
-                icon: <ShieldAlert size={24} />, 
-                title: "Regulatory Non-Compliance", 
-                desc: "The average FMCSA fine is nearly $6,000. Serious violations can exceed $79,000. A single insurance lapse can revoke your operating authority entirely." 
+              {
+                title: "Insurance Monitoring Protocols",
+                desc: "90/60/30-day renewal alerts, certificate tracking, and coverage gap contingency plans."
               },
-              { 
-                icon: <Activity size={24} />, 
-                title: "Poor Management & Missing Systems", 
-                desc: "Most new carriers lack systems for expense tracking, load profitability analysis, and compliance documentation. The audit finds what they never built." 
+              {
+                title: "Driver Qualification File System",
+                desc: "MVR review checklists, medical card tracking, and annual violation review procedures."
+              },
+              {
+                title: "Vehicle Maintenance Tracking",
+                desc: "Preventive maintenance schedules, inspection documentation, and repair record systems."
+              },
+              {
+                title: "Hours-of-Service Violation Response",
+                desc: "ELD data review procedures, driver counseling protocols, and violation tracking."
+              },
+              {
+                title: "Regulatory Change Monitoring",
+                desc: "CFR update notifications, compliance impact assessments, and implementation timelines."
               }
             ].map((item, i) => (
-              <div key={i} className="flex gap-8 group">
-                <div className="w-14 h-14 bg-slate-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center shrink-0 text-authority-blue dark:text-signal-gold shadow-inner group-hover:scale-110 transition-transform">
-                  {item.icon}
-                </div>
-                <div className="space-y-3">
-                  <h4 className="text-xl font-black text-[#002244] dark:text-white uppercase tracking-tight">{item.title}</h4>
-                  <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+              <div key={i} className="bg-white dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-white/10 space-y-3">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle size={20} className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-[#002244] dark:text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -104,154 +91,311 @@ const RequestAdmission: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION: INVESTMENT COMPARISON */}
-      <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto bg-[#002244] rounded-[5rem] overflow-hidden shadow-2xl relative">
-          <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+      {/* TIME INVESTMENT */}
+      <section className="py-16 px-6 max-w-5xl mx-auto">
+        <div className="space-y-8">
+          <h2 className="text-3xl font-bold text-[#002244] dark:text-white">
+            Time Investment Required
+          </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/5 items-stretch relative z-10">
-            <div className="p-16 space-y-10">
-               <p className="text-red-500 font-black uppercase tracking-[0.4em] text-[10px]">Operational Exposure</p>
-               <h3 className="text-2xl font-bold text-white/50 uppercase tracking-tight font-serif">Cost of One Serious Violation</h3>
-               <div className="space-y-2">
-                 <p className="text-6xl md:text-7xl font-black text-white tracking-tighter">$5,000 –<br/>$25,000</p>
-                 <p className="text-red-500 font-bold uppercase tracking-widest text-xs">Fines, Increased Premiums, Revocation Risk</p>
-               </div>
-            </div>
-
-            <div className="p-16 space-y-10 bg-white/[0.02]">
-               <p className="text-signal-gold font-black uppercase tracking-[0.4em] text-[10px]">Institutional Guard</p>
-               <h3 className="text-2xl font-bold text-white uppercase tracking-tight font-serif">LaunchPath Implementation Investment</h3>
-               <div className="space-y-2">
-                 <p className="text-6xl md:text-8xl font-black text-white tracking-tighter">$2,500</p>
-                 <p className="text-signal-gold font-bold uppercase tracking-widest text-xs italic">Complete 90-Day Infrastructure System. One-Time. Lifetime Access.</p>
-               </div>
-            </div>
-          </div>
-          
-          <div className="bg-black/40 py-12 px-8 text-center border-t border-white/5">
-             <p className="text-2xl md:text-4xl font-black font-serif italic text-white/60 tracking-tight max-w-4xl mx-auto leading-tight uppercase">
-               "The investment is not the risk. The absence of infrastructure is the risk."
-             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION: SYSTEM COMPONENTS (THE GAP FIX) */}
-      <section className="py-32 px-6 max-w-7xl mx-auto">
-        <div className="mb-20 text-center">
-          <p className="text-base text-slate-600 dark:text-slate-400 max-w-4xl mx-auto mb-8 leading-relaxed">
-            These are operational controls installed to survive audits, insurance reviews, and the first 90 days of authority.
-          </p>
-          <h2 className="text-4xl md:text-6xl font-black font-serif uppercase tracking-tight text-authority-blue dark:text-white">SYSTEM <span className="text-signal-gold italic">COMPONENTS.</span></h2>
-          <p className="text-lg text-slate-500 font-bold mt-4">Verification of Inclusion and Institutional Boundaries.</p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-          {/* INCLUSIONS */}
-          <div className="bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark p-12 rounded-[4rem] shadow-sm space-y-10">
-            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-authority-blue dark:text-signal-gold border-b pb-4">Standard Inclusions</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {[
-                { title: "6 Core Modules", icon: <Layers />, desc: "Structured implementation sequence." },
-                { title: "46 Functional Lessons", icon: <BookOpen />, desc: "High-fidelity procedural training." },
-                { title: "TCO Economic Engine", icon: <Calculator />, desc: "Clinical margin analysis terminal." },
-                { title: "DQ File Factory", icon: <FileText />, desc: "Audit-ready document templates." },
-                { title: "Neural Advisor", icon: <Bot />, desc: "24/7 technical regulatory access." },
-                { title: "Lifetime Updates", icon: <Zap />, desc: "Regulatory sync as CFRs evolve." }
-              ].map((item, i) => (
-                <div key={i} className="space-y-2 group">
-                  <div className="flex items-center space-x-3 text-authority-blue dark:text-signal-gold">
-                    {React.cloneElement(item.icon as React.ReactElement, { size: 18 })}
-                    <span className="text-sm font-black uppercase tracking-tight">{item.title}</span>
-                  </div>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* EXCLUSIONS */}
-          <div className="bg-slate-50 dark:bg-[#0c1a2d] border border-slate-100 dark:border-white/5 p-12 rounded-[4rem] shadow-sm space-y-10">
-            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-red-500 border-b pb-4">Institutional Boundaries</h3>
-            <div className="space-y-6">
-              {[
-                "Legal Representation or Attorney Counsel",
-                "Tax Preparation or Direct Financial Advisory",
-                "Insurance Brokerage or Policy Issuance",
-                "Dispatch Services or Load Board Access",
-                "Guaranteed FMCSA Audit Pass Result",
-                "Ongoing Coaching or One-on-One Consulting"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center space-x-4 group">
-                  <div className="w-8 h-8 bg-red-50 dark:bg-red-950/20 rounded-lg flex items-center justify-center text-red-500">
-                    <XCircle size={16} />
-                  </div>
-                  <span className="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-tight">{item}</span>
-                </div>
-              ))}
-            </div>
-            <div className="pt-8 border-t border-slate-200 dark:border-white/10 italic text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-              "LaunchPath provides the infrastructure. The carrier provides the operational execution."
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION: FINAL CALL TO ACTION */}
-      <section className="pb-40 pt-20 px-6 bg-white dark:bg-primary-dark relative overflow-hidden">
-        <div className="max-w-5xl mx-auto text-center space-y-16 animate-reveal-up relative z-10">
-           <div className="space-y-12">
-              <div className="inline-flex items-center space-x-3 bg-signal-gold/10 px-6 py-2.5 rounded-full border border-signal-gold/30 shadow-sm mb-8">
-                <Lock size={14} className="text-signal-gold" />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#002244] dark:text-white">Cohort Allocation Protocol</span>
-              </div>
-              <h2 className="text-6xl md:text-[7.5rem] font-black font-serif uppercase text-[#002244] dark:text-white leading-[0.85] tracking-tighter">REQUEST <br/><span className="text-signal-gold italic">ADMISSION.</span></h2>
-              <div className="h-2 w-48 bg-signal-gold mx-auto rounded-full"></div>
-              <p className="text-2xl md:text-4xl font-black text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-tight tracking-tight uppercase">
-                Implementation Investment: <span className="text-[#002244] dark:text-white">$2,500</span>. Lifetime Access. Limited to 10 Carriers Per Cohort.
-              </p>
-           </div>
-           
-           <div className="flex flex-col items-center space-y-16">
-             <button 
-               onClick={() => navigate('/ground-0')}
-               className="bg-signal-gold text-[#002244] px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-10px_rgba(197,160,89,0.4)] hover:bg-[#D4B06A] hover:scale-105 transition-all active:scale-0.98 border-b-[12px] border-[#9D7A3E] group flex items-center gap-4"
-             >
-               <CheckCircle2 size={24} />
-               COMPLETE GROUND 0 → PROCEED TO CHECKOUT
-             </button>
-             
-             <div className="space-y-10 w-full">
-                <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest flex flex-col sm:flex-row items-center justify-center gap-2">
-                  <span>Questions before enrolling? Contact us at</span>
-                  <span className="text-signal-gold font-black border-b border-signal-gold/30 pb-0.5">SUPPORT@LAUNCHPATHEDU.COM</span>
+          <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/30 rounded-xl p-8">
+            <div className="flex items-start space-x-4">
+              <Clock size={24} className="text-amber-600 dark:text-amber-400 mt-1 flex-shrink-0" />
+              <div className="space-y-4">
+                <p className="text-lg font-semibold text-[#002244] dark:text-white">
+                  Plan for 8-12 hours per week over 90 days.
                 </p>
-                
-                <div className="flex items-center justify-center space-x-8 opacity-30">
-                  <ShieldCheck size={28} className="text-signal-gold" />
-                  <div className="h-px w-32 bg-[#002244] dark:bg-white"></div>
-                  <p className="text-[11px] font-black uppercase tracking-[0.5em] text-[#002244] dark:text-white">INTEGRITY STANDARD CERTIFIED</p>
-                  <div className="h-px w-32 bg-[#002244] dark:bg-white"></div>
-                  <Activity size={28} className="text-signal-gold" />
-                </div>
-             </div>
-           </div>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  This is implementation work, not passive learning. You'll be building spreadsheets, creating checklists, organizing documents, and establishing operational procedures. Most carriers complete 2-3 modules per month while maintaining operations.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <AdmissionTerminalV42 
-        isOpen={isTerminalOpen} 
-        onClose={() => setIsTerminalOpen(false)} 
-      />
+      {/* WHAT THIS REPLACES */}
+      <section className="py-16 px-6 bg-slate-50 dark:bg-white/[0.02]">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <h2 className="text-3xl font-bold text-[#002244] dark:text-white">
+            What This Replaces
+          </h2>
+          
+          <div className="space-y-6">
+            <div className="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+              <table className="w-full">
+                <thead className="bg-slate-100 dark:bg-white/5">
+                  <tr>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      Alternative Approach
+                    </th>
+                    <th className="text-right px-6 py-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      Typical Cost
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 dark:divide-white/10">
+                  <tr>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
+                      Compliance consultant ($150-250/hour, typically 40-60 hours)
+                    </td>
+                    <td className="px-6 py-4 text-right font-mono text-slate-900 dark:text-white">
+                      $6,000 - $15,000
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
+                      Custom template and system development
+                    </td>
+                    <td className="px-6 py-4 text-right font-mono text-slate-900 dark:text-white">
+                      $2,000 - $5,000
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
+                      Trial-and-error implementation (100+ hours of your time at $50/hour)
+                    </td>
+                    <td className="px-6 py-4 text-right font-mono text-slate-900 dark:text-white">
+                      $5,000+
+                    </td>
+                  </tr>
+                  <tr className="bg-slate-50 dark:bg-white/[0.02]">
+                    <td className="px-6 py-4 font-semibold text-[#002244] dark:text-white">
+                      Total Alternative Cost
+                    </td>
+                    <td className="px-6 py-4 text-right font-mono font-bold text-lg text-[#002244] dark:text-white">
+                      $13,000 - $25,000+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-      <footer className="py-32 bg-[#FAF9F6] dark:bg-[#020617] text-center border-t border-slate-200 dark:border-white/5">
-         <p className="text-[12px] font-black uppercase tracking-[1em] text-slate-400 italic mb-8">
-            BUILT ON WISDOM. ESTABLISHED WITH UNDERSTANDING. DESIGNED FOR ENDURANCE.
-         </p>
-         <p className="text-[9px] font-bold text-white/20 uppercase tracking-widest mt-12">
-            CARRIER OPERATING STANDARD: LP-SYS-V4.2 — INSTITUTIONAL INTEGRITY ACTIVE
-         </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              This system consolidates the research, template development, and implementation guidance into a structured 90-day process. You still do the work—building your specific files, entering your data, and executing your procedures—but you're following a documented process instead of figuring it out through trial and error.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* RISK REDUCTION */}
+      <section className="py-16 px-6 max-w-5xl mx-auto">
+        <div className="space-y-12">
+          <h2 className="text-3xl font-bold text-[#002244] dark:text-white">
+            Documented Risk Reduction
+          </h2>
+          
+          <div className="space-y-8">
+            {[
+              {
+                title: "Authority Suspension Risk",
+                without: "No documented safety program. FMCSA can suspend authority for pattern of non-compliance.",
+                with: "Documented safety management program showing compliance efforts, even if violations occur.",
+                impact: "Authority suspension = $0 revenue until reinstated (typically 60-90 days)."
+              },
+              {
+                title: "Insurance Cancellation Risk",
+                without: "No monitoring of renewal dates. Coverage gaps trigger FMCSA authority suspension.",
+                with: "90/60/30-day renewal alerts. Broker communication protocols. Backup coverage options.",
+                impact: "Coverage gap = immediate authority suspension + difficulty obtaining future coverage."
+              },
+              {
+                title: "Audit Violation Risk",
+                without: "No documented procedures. Violations result in fines and increased insurance premiums.",
+                with: "Documented policies and procedures showing systematic compliance efforts.",
+                impact: "Average FMCSA fine: $6,000. Serious violations: up to $79,000."
+              }
+            ].map((risk, i) => (
+              <div key={i} className="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 p-8 space-y-6">
+                <h3 className="text-xl font-bold text-[#002244] dark:text-white flex items-center space-x-3">
+                  <Shield size={24} className="text-[#002244] dark:text-signal-gold" />
+                  <span>{risk.title}</span>
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <p className="text-sm font-semibold text-red-600 dark:text-red-400 uppercase tracking-wide">
+                      Without System
+                    </p>
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {risk.without}
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">
+                      With System
+                    </p>
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {risk.with}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span className="text-slate-500 dark:text-slate-400">Financial Impact: </span>
+                    {risk.impact}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SYSTEM DEVELOPMENT BACKGROUND */}
+      <section className="py-16 px-6 bg-slate-50 dark:bg-white/[0.02]">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <h2 className="text-3xl font-bold text-[#002244] dark:text-white">
+            System Development Background
+          </h2>
+          
+          <div className="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 p-8 space-y-6">
+            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+              This system documents processes developed through:
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-[#002244] dark:bg-signal-gold rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <p className="font-semibold text-[#002244] dark:text-white">200+ carrier implementations</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">Since 2020</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-[#002244] dark:bg-signal-gold rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <p className="font-semibold text-[#002244] dark:text-white">47 FMCSA audit preparations</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">43 satisfactory outcomes, 4 conditional</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-[#002244] dark:bg-signal-gold rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <p className="font-semibold text-[#002244] dark:text-white">12 authority reinstatement cases</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">9 successful, 3 ongoing</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-[#002244] dark:bg-signal-gold rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <p className="font-semibold text-[#002244] dark:text-white">30+ insurance renewal negotiations</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">After violations or claims</p>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed pt-4 border-t border-slate-200 dark:border-white/10">
+              Each module reflects patterns from these implementations. Templates include language that has worked in actual audits and insurance reviews.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="py-24 px-6 max-w-4xl mx-auto">
+        <div className="bg-[#002244] dark:bg-white/5 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden">
+          <div className="p-12 space-y-12">
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl font-bold text-white">
+                Implementation Investment
+              </h2>
+              <div className="flex items-baseline justify-center space-x-2">
+                <span className="text-6xl font-bold text-signal-gold" style={{ fontFamily: 'ui-monospace, "SF Mono", Consolas, monospace' }}>
+                  $5,000
+                </span>
+                <span className="text-xl text-white/60">one-time</span>
+              </div>
+            </div>
+
+            <div className="space-y-8 pt-8 border-t border-white/10">
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-4">What This Covers</h3>
+                <ul className="space-y-3">
+                  {[
+                    "Six implementation modules (2-3 weeks each)",
+                    "Operational templates and checklists",
+                    "Direct implementation support during your cohort",
+                    "Ongoing system access and updates"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start space-x-3 text-white/80">
+                      <CheckCircle size={20} className="text-signal-gold mt-0.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-4">What This Doesn't Include</h3>
+                <ul className="space-y-3">
+                  {[
+                    "Filing your FMCSA applications (you do this)",
+                    "Negotiating with insurance brokers (you do this)",
+                    "Day-to-day operational execution (you do this)"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start space-x-3 text-white/60">
+                      <XCircle size={20} className="text-white/40 mt-0.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="pt-8 border-t border-white/10 space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-2">Next Cohort</h3>
+                <p className="text-white/80">
+                  March 1st start date. I work with 10 carriers at a time to provide direct implementation support.
+                </p>
+              </div>
+
+              <p className="text-white/60 text-sm">
+                If you need to start sooner, the self-paced version is available immediately for $3,500 (no direct support).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 px-6 max-w-4xl mx-auto text-center space-y-8">
+        <button
+          onClick={() => navigate('/ground-0')}
+          className="bg-signal-gold hover:bg-[#C5A572] text-[#002244] px-12 py-6 rounded-xl font-semibold text-lg transition-all inline-flex items-center space-x-3 shadow-lg hover:shadow-xl"
+        >
+          <span>Complete Ground 0 Assessment</span>
+          <ArrowRight size={20} />
+        </button>
+
+        <p className="text-sm text-slate-500 dark:text-slate-400">
+          Ground 0 is a free diagnostic assessment that determines your readiness for implementation.
+        </p>
+      </section>
+
+      {/* WHAT THIS DOESN'T GUARANTEE */}
+      <section className="py-16 px-6 max-w-5xl mx-auto">
+        <div className="bg-slate-100 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 p-8">
+          <h3 className="text-xl font-bold text-[#002244] dark:text-white mb-4">
+            What This Doesn't Guarantee
+          </h3>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+            This system documents compliance efforts. It doesn't guarantee audit outcomes or prevent violations. Your operational execution determines results. FMCSA auditors evaluate your actual compliance, not just your documentation. This system helps you demonstrate systematic compliance efforts, but it cannot control driver behavior, vehicle failures, or operational decisions.
+          </p>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-16 px-6 border-t border-slate-200 dark:border-white/10 text-center">
+        <p className="text-sm text-slate-500 dark:text-slate-400">
+          Questions? Contact <a href="mailto:support@launchpathedu.com" className="text-[#002244] dark:text-signal-gold font-semibold hover:underline">support@launchpathedu.com</a>
+        </p>
       </footer>
     </div>
   );
