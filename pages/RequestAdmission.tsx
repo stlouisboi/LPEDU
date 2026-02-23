@@ -307,7 +307,7 @@ const RequestAdmission: React.FC = () => {
               </h2>
               <div className="flex items-baseline justify-center space-x-2">
                 <span className="text-6xl font-bold text-signal-gold" style={{ fontFamily: 'ui-monospace, "SF Mono", Consolas, monospace' }}>
-                  $5,000
+                  $2,500
                 </span>
                 <span className="text-xl text-white/60">one-time</span>
               </div>
@@ -357,7 +357,7 @@ const RequestAdmission: React.FC = () => {
               </div>
 
               <p className="text-white/60 text-sm">
-                If you need to start sooner, the self-paced version is available immediately for $3,500 (no direct support).
+                If you need to start sooner, the self-paced version is available immediately for $1,500 (no direct support).
               </p>
             </div>
           </div>
