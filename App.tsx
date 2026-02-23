@@ -69,6 +69,8 @@ import Ground0ResultPage from './pages/Ground0ResultPage';
 import Ground0ChecklistPage from './pages/Ground0ChecklistPage';
 import EnrollPage from './pages/EnrollPage';
 import WhatsIncludedPage from './pages/WhatsIncludedPage';
+import AdmissionCheckout from './pages/AdmissionCheckout';
+import AdmissionSuccess from './pages/AdmissionSuccess';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -487,6 +489,8 @@ export default function App() {
                 <Route path="/ground-0/module" element={<Ground0ModulePage />} />
                 <Route path="/ground-0/checklist" element={<Ground0ChecklistPage />} />
                 <Route path="/ground-0/result" element={<Ground0ResultPage />} />
+                <Route path="/admission-checkout" element={<AdmissionCheckout />} />
+                <Route path="/admission-success" element={<AdmissionSuccess />} />
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/support" element={<SupportPage />} />

@@ -170,17 +170,20 @@ const Ground0ResultPage = () => {
           <div className="space-y-6">
             {decision.outcome === 'GO' && (
               <>
-                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">
-                  Ready to Install the Operating System?
-                </h2>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-                  You have met the institutional thresholds. The full LaunchPath Operating System (Modules 1–7) is now available to you.
-                </p>
+                <div className="bg-emerald-500/10 border border-emerald-500/30 p-8 rounded-3xl mb-8">
+                  <CheckCircle size={48} className="text-emerald-500 mx-auto mb-4" />
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-emerald-500 mb-4">
+                    ✓ GO DETERMINATION CONFIRMED
+                  </h2>
+                  <p className="text-xl text-slate-200">
+                    You qualify for LaunchPath system access.
+                  </p>
+                </div>
                 <Link
-                  to="/pricing"
-                  className="inline-flex items-center space-x-4 bg-signal-gold text-[#002244] px-12 py-6 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_40px_80px_rgba(218,165,32,0.4)] hover:bg-white transition-all active:scale-95 border-b-[8px] border-yellow-700 group"
+                  to="/admission-checkout"
+                  className="inline-flex items-center space-x-4 bg-signal-gold text-[#002244] px-12 py-6 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_40px_80px_rgba(218,165,32,0.4)] hover:bg-[#D4B06A] transition-all active:scale-95 border-b-[8px] border-[#9D7A3E] group"
                 >
-                  <span>View Operating System & Admission Protocol</span>
+                  <span>PROCEED TO ADMISSION CHECKOUT</span>
                   <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
               </>
@@ -188,17 +191,20 @@ const Ground0ResultPage = () => {
 
             {decision.outcome === 'WAIT' && (
               <>
-                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">
-                  Build Your Path to GO
-                </h2>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-                  You are close. Use the action plan above to strengthen your position. Revisit Ground 0 in 3–6 months.
-                </p>
+                <div className="bg-yellow-500/10 border border-yellow-500/30 p-8 rounded-3xl mb-8">
+                  <Clock size={48} className="text-yellow-500 mx-auto mb-4" />
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-yellow-500 mb-4">
+                    ⚠ ADVANCEMENT PAUSED
+                  </h2>
+                  <p className="text-xl text-slate-200">
+                    Your readiness briefing identified structural gaps.
+                  </p>
+                </div>
                 <Link
-                  to="/resources"
-                  className="inline-flex items-center space-x-4 bg-authority-blue text-white px-12 py-6 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_40px_80px_rgba(0,34,68,0.4)] hover:bg-slate-700 transition-all active:scale-95 border-b-[8px] border-slate-950 group"
+                  to="/"
+                  className="inline-flex items-center space-x-4 bg-slate-500 text-white px-12 py-6 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_40px_80px_rgba(100,116,139,0.4)] hover:bg-slate-600 transition-all active:scale-95 border-b-[8px] border-slate-700 group"
                 >
-                  <span>Access Preparation Resources</span>
+                  <span>RETURN HOME</span>
                   <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
               </>
@@ -206,17 +212,20 @@ const Ground0ResultPage = () => {
 
             {decision.outcome === 'NO-GO' && (
               <>
-                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">
-                  Preserve Capital, Strengthen Position
-                </h2>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-                  Now is not the time to launch. Use the next 12–24 months to build your capital reserves and revisit when your position has strengthened.
-                </p>
+                <div className="bg-red-500/10 border border-red-500/30 p-8 rounded-3xl mb-8">
+                  <XCircle size={48} className="text-red-500 mx-auto mb-4" />
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-red-500 mb-4">
+                    ⚠ ADVANCEMENT PAUSED
+                  </h2>
+                  <p className="text-xl text-slate-200">
+                    Your readiness briefing identified structural gaps.
+                  </p>
+                </div>
                 <Link
-                  to="/contact"
-                  className="inline-flex items-center space-x-4 bg-white/10 text-white px-12 py-6 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm border border-white/20 hover:border-white/50 transition-all active:scale-95 group"
+                  to="/"
+                  className="inline-flex items-center space-x-4 bg-slate-500 text-white px-12 py-6 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_40px_80px_rgba(100,116,139,0.4)] hover:bg-slate-600 transition-all active:scale-95 border-b-[8px] border-slate-700 group"
                 >
-                  <span>Consult with an Advisor</span>
+                  <span>RETURN HOME</span>
                   <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
               </>

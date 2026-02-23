@@ -23,8 +23,10 @@ import {
   Target
 } from 'lucide-react';
 import AdmissionTerminalV42 from '../components/AdmissionTerminalV42';
+import { useNavigate } from 'react-router-dom';
 
 const RequestAdmission: React.FC = () => {
+  const navigate = useNavigate();
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   return (
@@ -200,25 +202,25 @@ const RequestAdmission: React.FC = () => {
       <section className="pb-40 pt-20 px-6 bg-white dark:bg-primary-dark relative overflow-hidden">
         <div className="max-w-5xl mx-auto text-center space-y-16 animate-reveal-up relative z-10">
            <div className="space-y-12">
-              <h2 className="text-6xl md:text-[7.5rem] font-black font-serif uppercase text-[#002244] dark:text-white leading-[0.85] tracking-tighter">ACCESS THE <br/><span className="text-signal-gold italic">OPERATING STANDARD.</span></h2>
+              <div className="inline-flex items-center space-x-3 bg-signal-gold/10 px-6 py-2.5 rounded-full border border-signal-gold/30 shadow-sm mb-8">
+                <Lock size={14} className="text-signal-gold" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#002244] dark:text-white">Cohort Allocation Protocol</span>
+              </div>
+              <h2 className="text-6xl md:text-[7.5rem] font-black font-serif uppercase text-[#002244] dark:text-white leading-[0.85] tracking-tighter">REQUEST <br/><span className="text-signal-gold italic">ADMISSION.</span></h2>
               <div className="h-2 w-48 bg-signal-gold mx-auto rounded-full"></div>
               <p className="text-2xl md:text-4xl font-black text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-tight tracking-tight uppercase">
-                One-time implementation investment of <span className="text-[#002244] dark:text-white">$2,500</span>. Includes lifetime access to the 90-Day Survival System.
+                Implementation Investment: <span className="text-[#002244] dark:text-white">$2,500</span>. Lifetime Access. Limited to 10 Carriers Per Cohort.
               </p>
            </div>
            
            <div className="flex flex-col items-center space-y-16">
-             <div className="flex flex-col items-center space-y-4">
-               <button 
-                 onClick={() => setIsTerminalOpen(true)}
-                 className="bg-[#002244] text-white px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-10px_rgba(0,34,68,0.4)] hover:bg-[#0c1a2d] hover:scale-105 transition-all active:scale-0.98 border-b-[12px] border-slate-900 group"
-               >
-                 OPEN ADMISSION TERMINAL <ChevronRight className="inline ml-4 group-hover:translate-x-2 transition-transform" size={24} />
-               </button>
-               <p className="text-xs text-slate-400 dark:text-slate-500">
-                 Completion of Ground 0 is required. Admission is not guaranteed.
-               </p>
-             </div>
+             <button 
+               onClick={() => navigate('/ground-0')}
+               className="bg-signal-gold text-[#002244] px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.4em] text-sm shadow-[0_30px_60px_-10px_rgba(197,160,89,0.4)] hover:bg-[#D4B06A] hover:scale-105 transition-all active:scale-0.98 border-b-[12px] border-[#9D7A3E] group flex items-center gap-4"
+             >
+               <CheckCircle2 size={24} />
+               COMPLETE GROUND 0 → PROCEED TO CHECKOUT
+             </button>
              
              <div className="space-y-10 w-full">
                 <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest flex flex-col sm:flex-row items-center justify-center gap-2">
