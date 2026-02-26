@@ -115,6 +115,35 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
+      {/* CHANGE 6: CREDENTIALS BAR */}
+      <section className="bg-[#002244] border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            <div className="flex flex-col items-center">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">U.S. NAVY</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">VETERAN</p>
+            </div>
+            <div className="w-px h-8 bg-white/10"></div>
+            <div className="flex flex-col items-center">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">OSHA CERTIFIED</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">COMPLIANCE &</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">MFG LEADERSHIP</p>
+            </div>
+            <div className="w-px h-8 bg-white/10"></div>
+            <div className="flex flex-col items-center">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">20+ YRS FEDERAL</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">COMPLIANCE</p>
+            </div>
+            <div className="w-px h-8 bg-white/10"></div>
+            <div className="flex flex-col items-center">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">FOUNDER,</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">LAUNCHPATH</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">TRANSPORTATION EDU</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PRIORITY 2: WHY A COMPLIANCE SPECIALIST, NOT AN OPERATOR? */}
       <section className="bg-slate-100 dark:bg-black/30 py-16 md:py-24 px-6 border-b border-slate-200 dark:border-white/5">
         <div className="max-w-4xl mx-auto space-y-8">
@@ -160,6 +189,16 @@ const AboutPage: React.FC = () => {
                 <span><strong>Systems architect</strong> who builds infrastructure that protects businesses from enforcement actions</span>
               </li>
             </ul>
+          </div>
+
+          {/* CHANGE 7: ROLE CLARITY STATEMENT */}
+          <div className="mt-16 bg-white dark:bg-slate-900 border-l-4 border-signal-gold p-10 md:p-12 rounded-r-3xl">
+            <p className="text-2xl md:text-3xl font-bold text-[#002244] dark:text-white leading-relaxed italic">
+              "My responsibility is not to motivate carriers — it is to prevent preventable failure."
+            </p>
+            <p className="text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-6">
+              — Vince Lawrence, Station Custodian, LaunchPath Transportation EDU
+            </p>
           </div>
         </div>
       </section>
@@ -480,6 +519,58 @@ const AboutPage: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CHANGE 8: INSTITUTIONAL BOUNDARIES */}
+      <section className="bg-[#002244] py-24 md:py-32 px-6 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <div className="text-center space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">INSTITUTIONAL BOUNDARIES</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white font-serif">
+              What LaunchPath Does Not Provide
+            </h2>
+            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
+              Knowing what we don't do is as important as knowing what we do. LaunchPath is a compliance education and implementation system. We build infrastructure. We do not operate your business.
+            </p>
+          </div>
+
+          <div className="bg-slate-900/50 border border-white/10 rounded-2xl p-10 space-y-4">
+            <ul className="space-y-4 text-base text-slate-300">
+              <li className="flex items-start space-x-3">
+                <XCircle size={20} className="text-red-500/60 flex-shrink-0 mt-1" />
+                <span>Legal advice or legal representation</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <XCircle size={20} className="text-red-500/60 flex-shrink-0 mt-1" />
+                <span>Dispatch services or load booking</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <XCircle size={20} className="text-red-500/60 flex-shrink-0 mt-1" />
+                <span>Insurance brokerage or policy placement</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <XCircle size={20} className="text-red-500/60 flex-shrink-0 mt-1" />
+                <span>Guaranteed FMCSA audit outcomes</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <XCircle size={20} className="text-red-500/60 flex-shrink-0 mt-1" />
+                <span>Tax preparation or financial advisory</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <XCircle size={20} className="text-red-500/60 flex-shrink-0 mt-1" />
+                <span>Ongoing consulting retainers or managed services</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <XCircle size={20} className="text-red-500/60 flex-shrink-0 mt-1" />
+                <span>Revenue generation coaching or freight strategies</span>
+              </li>
+            </ul>
+          </div>
+
+          <p className="text-center text-lg text-white/80 italic leading-relaxed">
+            These boundaries are not limitations — they are the reason the LaunchPath Standard maintains its integrity.
+          </p>
         </div>
       </section>
 

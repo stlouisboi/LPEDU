@@ -68,6 +68,29 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* CHANGE 1: THE PRIMARY THREAT */}
+      <section className="py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-[#001122]">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">THE PRIMARY THREAT</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+              Most New Authorities Don't Fail Because They're Lazy — They Fail Because They're Unprotected.
+            </h2>
+          </div>
+          <div className="space-y-6 text-lg md:text-xl text-slate-300 leading-relaxed">
+            <p>
+              Authority revocations, insurance cancellations, and audit failures don't announce themselves. By the time most carriers realize something is wrong, it's already on record — on their CSA profile, in their insurance history, and in their FMCSA authority file.
+            </p>
+            <p>
+              The first 90 days determine whether your authority becomes an asset or a liability. Not the first year. The first 90 days.
+            </p>
+            <p className="italic text-white font-bold">
+              The regulation doesn't know your name. It only knows what your file says. A prepared file is the only defense that works.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 2 – HOW THE STANDARD WORKS (3 STEPS) */}
       <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
         <div className="max-w-6xl mx-auto space-y-20">
