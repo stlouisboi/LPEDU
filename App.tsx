@@ -142,7 +142,7 @@ const SystemStatusBar = () => {
         </div>
       </div>
       <div className="ml-auto hidden lg:flex items-center space-x-4">
-         <span className="text-[8px] font-black text-white/20 uppercase tracking-[0.3em]">CFR_SYNC: 2026_V4.2</span>
+         <span className="text-[8px] font-black text-white/20 uppercase tracking-wide">CFR_SYNC: 2026_V4.2</span>
       </div>
     </div>
   );
@@ -198,7 +198,7 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-4 py-3 text-[10px] font-black uppercase tracking-[0.3em] transition-all relative group filter ${
+                    className={`px-4 py-3 text-[10px] font-black uppercase tracking-wider transition-all relative group filter ${
                       location.pathname === item.path 
                       ? 'text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]' 
                       : 'text-signal-gold/70 hover:text-white'
@@ -227,7 +227,7 @@ const Header = () => {
                   </Link>
                 )}
 
-                <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-all active:scale-95 shadow-xl border-b-4 border-slate-900 group">
+                <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-wider hover:bg-white transition-all active:scale-95 shadow-xl border-b-4 border-slate-900 group">
                   Admission <ArrowRight size={12} className="inline ml-1 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
@@ -334,7 +334,7 @@ const Footer = () => {
               }
             ].map((section) => (
               <div key={section.title} className="space-y-6">
-                <h3 className="text-[11px] font-black text-signal-gold uppercase tracking-[0.3em] flex items-center">
+                <h3 className="text-[11px] font-black text-signal-gold uppercase tracking-wide flex items-center">
                   <span className="w-4 h-px bg-signal-gold/40 mr-3"></span>
                   {section.title}
                 </h3>
