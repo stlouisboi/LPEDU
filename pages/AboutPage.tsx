@@ -229,48 +229,63 @@ const AboutPage: React.FC = () => {
             {[
               {
                 num: "§ 1.1",
-                principle: "Documentation Before Operation",
-                description: "If it isn't written down and filed correctly, it doesn't exist — and the auditor will treat it that way."
+                principle: "STRUCTURAL PRECEDENCE REQUIREMENT",
+                violation: "90% of new carriers fail within 18 months without structural foundation. Average regulatory loss: $5,000–$25,000.",
+                cfr: "49 CFR § 385.13"
               },
               {
                 num: "§ 1.2",
-                principle: "Authority Maintenance",
-                description: "Your MC number is a legal instrument. Treat it like one or lose it like one."
+                principle: "GOVERNANCE MANDATE",
+                violation: "Authority without compliance backbone results in MC revocation within 90 days via administrative action.",
+                cfr: "49 CFR § 385.13"
               },
               {
                 num: "§ 1.3",
-                principle: "Insurance Continuity",
-                description: "A single lapse in coverage doesn't just cost money — it can end your authority permanently."
+                principle: "SYSTEM INTERDEPENDENCE PROTOCOL",
+                violation: "Insurance lapse triggers automatic authority suspension. Cash-flow failure causes 60-day operational shutdown.",
+                cfr: "49 CFR § 387"
               },
               {
                 num: "§ 1.4",
-                principle: "Driver Qualification Standards",
-                description: "Every driver you put behind the wheel is a compliance event. Build the file before they turn the key."
+                principle: "COLLAPSE PREVENTION STANDARD",
+                violation: "Comfort-seeking operators bypass critical systems, resulting in audit failure rates exceeding 85%.",
+                cfr: "49 CFR § 385"
               },
               {
                 num: "§ 1.5",
-                principle: "Vehicle Maintenance Governance",
-                description: "Maintenance records are not optional — they are your defense when something goes wrong on the road."
+                principle: "PRE-SCALE INSTALLATION REQUIREMENT",
+                violation: "Revenue-first operations fail documentation audits, triggering conditional/unsatisfactory ratings.",
+                cfr: "49 CFR § 385.5"
               },
               {
                 num: "§ 1.6",
-                principle: "Financial Discipline",
-                description: "Cash flow problems don't announce themselves. A carrier who runs out of margin runs out of options."
+                principle: "DIAGNOSTIC PRECEDENCE RULE",
+                violation: "Teaching before diagnosing builds systems that don't fit the actual operation. The assessment comes first. Always.",
+                cfr: "Ground 0 Protocol"
               },
               {
                 num: "§ 1.7",
-                principle: "Regulatory Awareness",
-                description: "The rules change. Carriers who don't track changes get caught by them."
+                principle: "ENFORCEMENT ACCOUNTABILITY STANDARD",
+                violation: "Teaching without verification enables non-compliance. Unverified systems fail under regulatory scrutiny.",
+                cfr: "49 CFR § 385.15"
               },
               {
                 num: "§ 1.8",
-                principle: "Operational Discipline",
-                description: "Systems only work if they're actually followed. Discipline is the bridge between a good plan and a compliant operation."
+                principle: "STEWARDSHIP REFUSAL AUTHORITY",
+                violation: "Carriers who enroll before they are ready don't just waste money. They build on a broken foundation. This standard refuses admission when readiness is absent.",
+                cfr: "Custodian Authority"
               },
               {
                 num: "§ 1.9",
-                principle: "The Correct Order",
-                description: "Scale before survival, ambition before discipline, freedom before governance — all lead to terminal failure."
+                principle: "RESPONSIBILITY PRIORITIZATION",
+                violation: "Admission based on willingness to pay rather than readiness to build weakens the standard for every carrier in the cohort. Readiness determines admission. Not urgency.",
+                cfr: "Institutional Policy"
+              },
+              {
+                num: "§ 1.10",
+                principle: "OPERATIONAL HIERARCHY MANDATE",
+                violation: "Scale before survival, ambition before discipline, freedom before governance—all lead to terminal failure.",
+                cfr: "49 CFR § 385"
               }
             ].map((item, i) => (
               <div key={i} className="bg-slate-900/50 border border-white/10 rounded-xl overflow-hidden hover:border-signal-gold/30 transition-colors">
@@ -282,10 +297,13 @@ const AboutPage: React.FC = () => {
                       {item.principle}
                     </h3>
                   </div>
-                  {/* Right: Description */}
-                  <div className="p-8">
+                  {/* Right: Violation Consequence */}
+                  <div className="p-8 space-y-4">
                     <p className="text-base text-slate-300 leading-relaxed">
-                      {item.description}
+                      {item.violation}
+                    </p>
+                    <p className="text-xs font-mono text-red-400 uppercase tracking-wider">
+                      REFERENCE: {item.cfr}
                     </p>
                   </div>
                 </div>
@@ -310,10 +328,14 @@ const AboutPage: React.FC = () => {
               </div>
               <div className="space-y-2">
                 <p className="text-signal-gold font-black uppercase text-sm">Unified File</p>
-                <p className="text-xs text-white/70">§ 391.51 Documentation Standard</p>
-              </div>
+              <p className="text-xs text-white/70">§ 391.51 Documentation Standard</p>
             </div>
-
+          </div>
+          <div className="mt-8 pt-8 border-t border-signal-gold/30">
+            <p className="text-sm text-white/80 text-center leading-relaxed">
+              <span className="text-red-400 font-bold">VIOLATION NOTICE:</span> Deviation from doctrine principles results in structural deficiency determination and admission refusal under custodian authority.
+            </p>
+          </div>
           </div>
         </div>
       </section>
