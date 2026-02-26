@@ -364,6 +364,91 @@ const RequestAdmission: React.FC = () => {
         </div>
       </section>
 
+      {/* CHANGE 10: WHAT THIS DOESN'T GUARANTEE */}
+      <section className="py-16 px-6 max-w-4xl mx-auto">
+        <div className="bg-slate-100 dark:bg-white/[0.02] rounded-2xl border border-slate-200 dark:border-white/10 p-10 space-y-6">
+          <h3 className="text-2xl font-bold text-[#002244] dark:text-white">
+            What This Doesn't Guarantee
+          </h3>
+          <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            This system documents compliance efforts and builds operational infrastructure. It does not guarantee FMCSA audit outcomes, insurance approval, or business profitability. Your execution, discipline, and operational decisions determine results.
+          </p>
+          <p className="text-base text-slate-500 dark:text-slate-400 italic">
+            LaunchPath provides the structure. You provide the implementation.
+          </p>
+        </div>
+      </section>
+
+      {/* CHANGE 11: COHORT STRUCTURE */}
+      <section className="py-16 px-6 max-w-4xl mx-auto">
+        <div className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-[#002244] dark:text-white">
+              Cohort Structure
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+              I work with 10 carriers at a time. This allows me to provide direct implementation support, answer operational questions, and maintain the standard without dilution.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-white/10 space-y-3">
+              <h3 className="font-semibold text-[#002244] dark:text-white">
+                Cohort Implementation (Recommended)
+              </h3>
+              <p className="text-3xl font-bold text-signal-gold" style={{ fontFamily: 'ui-monospace, "SF Mono", Consolas, monospace' }}>$2,500</p>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                <li className="flex items-start space-x-2">
+                  <CheckCircle size={16} className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <span>Direct implementation support during your cohort</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle size={16} className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <span>Operational question access</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle size={16} className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <span>Structured 90-day timeline</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle size={16} className="text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <span>Next start: March 1st</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-slate-200 dark:border-white/10 space-y-3">
+              <h3 className="font-semibold text-[#002244] dark:text-white">
+                Self-Paced Implementation
+              </h3>
+              <p className="text-3xl font-bold text-slate-600 dark:text-slate-400" style={{ fontFamily: 'ui-monospace, "SF Mono", Consolas, monospace' }}>$1,500</p>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                <li className="flex items-start space-x-2">
+                  <CheckCircle size={16} className="text-slate-400 mt-0.5 flex-shrink-0" />
+                  <span>Immediate access to all modules</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle size={16} className="text-slate-400 mt-0.5 flex-shrink-0" />
+                  <span>All templates and checklists</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <XCircle size={16} className="text-slate-400 mt-0.5 flex-shrink-0" />
+                  <span>No direct support</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <XCircle size={16} className="text-slate-400 mt-0.5 flex-shrink-0" />
+                  <span>No operational question access</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-center text-base text-slate-500 dark:text-slate-400 italic">
+            The cohort model exists to protect the standard. If you need to move faster, self-paced is available. But the structure works best when carriers move through it together.
+          </p>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 px-6 max-w-4xl mx-auto text-center space-y-8">
         <button
