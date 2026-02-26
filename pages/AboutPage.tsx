@@ -531,7 +531,7 @@ const AboutPage: React.FC = () => {
               What LaunchPath Does Not Provide
             </h2>
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-              Knowing what we don't do is as important as knowing what we do. LaunchPath is a compliance education and implementation system. We build infrastructure. We do not operate your business.
+              Knowing what we do not do is as important as knowing what we do. LaunchPath is a compliance education and implementation system. We build infrastructure. We do not operate your business.
             </p>
           </div>
 
