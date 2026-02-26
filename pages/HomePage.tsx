@@ -429,6 +429,171 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* CHANGE 2: THE FULL INSTITUTIONAL STANDARD - SHADOW TIER */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-[#001122]">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">THE FULL INSTITUTIONAL STANDARD</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">What Proper Implementation Actually Requires</h2>
+            <p className="text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto">
+              When carriers pursue full compliance implementation through private consultants or compliance firms, the scope typically includes the following. Read it carefully — this is what your authority actually needs to survive.
+            </p>
+          </div>
+
+          <div className="bg-slate-900/50 border border-white/10 rounded-2xl p-10 md:p-12 space-y-5">
+            <ol className="space-y-5 text-base md:text-lg text-slate-300 leading-relaxed">
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">1.</span>
+                <span>Pre-authority structural validation — confirming the operation is built correctly before the first load moves</span>
+              </li>
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">2.</span>
+                <span>Insurance continuity mapping — ensuring coverage never lapses, is never misaligned, and survives carrier changes</span>
+              </li>
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">3.</span>
+                <span>Audit-grade document architecture — DQ files, maintenance records, and policy manuals built to withstand federal review</span>
+              </li>
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">4.</span>
+                <span>Failure mode analysis — identifying what breaks first in a typical new carrier operation and building guards against it</span>
+              </li>
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">5.</span>
+                <span>Authority defense playbooks — knowing exactly how to respond when FMCSA makes contact</span>
+              </li>
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">6.</span>
+                <span>Operational discipline systems — the daily and weekly habits that keep a compliant operation compliant</span>
+              </li>
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">7.</span>
+                <span>Driver qualification and monitoring frameworks — built before a driver ever turns a key</span>
+              </li>
+              <li className="flex items-start space-x-4">
+                <span className="text-signal-gold font-black text-xl flex-shrink-0">8.</span>
+                <span>30/60/90 day compliance checkpoints — structured reviews that catch drift before it becomes record</span>
+              </li>
+            </ol>
+          </div>
+
+          <div className="border-t border-white/10 pt-10 space-y-6">
+            <p className="text-xs font-black uppercase tracking-widest text-signal-gold">EXTERNAL COST REFERENCE</p>
+            <p className="text-xl md:text-2xl font-bold text-white">
+              The true cost of full institutional implementation: $5,000–$12,000+ when assembled privately through consultants, attorneys, and compliance firms.
+            </p>
+          </div>
+
+          <div className="border-t border-white/10 pt-10 space-y-6">
+            <p className="text-xs font-black uppercase tracking-widest text-signal-gold">THE LAUNCHPATH APPROACH</p>
+            <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
+              LaunchPath delivers the same standard at a reduced rate by systematizing the process across a controlled group of serious carriers. The methodology doesn't change. The delivery is structured so that more carriers can access it without compromising the standard.
+            </p>
+            <p className="text-lg md:text-xl text-white font-bold italic leading-relaxed">
+              You are not getting a discounted product. You are getting structured access to a system that took years to build — because building it alone costs far more than this.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CHANGE 2B: THE REAL MATH - FMCSA PENALTY TABLE */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">THE REAL MATH</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight">What FMCSA Non-Compliance Actually Costs</h2>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              These are not hypothetical risks. These are documented regulatory and financial consequences that hit new carriers every year.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse bg-slate-900/50 border border-white/10 rounded-2xl overflow-hidden">
+              <thead className="bg-white/5">
+                <tr>
+                  <th className="text-left p-6 text-sm font-black uppercase tracking-wider text-signal-gold border-b border-white/10">Violation / Failure Event</th>
+                  <th className="text-left p-6 text-sm font-black uppercase tracking-wider text-signal-gold border-b border-white/10">Documented Cost Range</th>
+                </tr>
+              </thead>
+              <tbody className="text-base text-slate-300">
+                <tr className="border-b border-white/5">
+                  <td className="p-6">New Entrant Audit failure — authority revocation</td>
+                  <td className="p-6 font-bold text-white">$5,000–$15,000+ to recover, reapply, and restart</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="p-6">Out-of-service violation per vehicle</td>
+                  <td className="p-6 font-bold text-white">$1,000–$16,000 in civil penalties per occurrence</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="p-6">Operating without required insurance on file</td>
+                  <td className="p-6 font-bold text-white">Immediate authority suspension + potential personal liability</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="p-6">Improper or incomplete DQ file — driver disqualified at audit</td>
+                  <td className="p-6 font-bold text-white">Lost revenue + cost of finding and qualifying a replacement driver</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="p-6">CSA score damage from recordable violations</td>
+                  <td className="p-6 font-bold text-white">Higher insurance premiums for 2–3 years — often $3,000–$8,000+ annually</td>
+                </tr>
+                <tr>
+                  <td className="p-6">Hours of Service violation — driver fatigue citation</td>
+                  <td className="p-6 font-bold text-white">$1,000–$11,000 per violation depending on severity</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-center text-xl md:text-2xl text-white font-bold leading-relaxed">
+            The LaunchPath 90-Day Survival System is priced at a fraction of a single compliance failure. That is not a sales tactic. That is arithmetic.
+          </p>
+        </div>
+      </section>
+
+      {/* CHANGE 3: THREE PATHS COMPARISON TABLE */}
+      <section className="py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-[#001122]">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">IMPLEMENTATION CONTEXT</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">Three Paths. One Decision.</h2>
+            <p className="text-lg text-slate-300">No commentary. No recommendation. Read the table and decide.</p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse bg-slate-900/50 border border-white/10 rounded-2xl overflow-hidden">
+              <thead className="bg-white/5">
+                <tr>
+                  <th className="text-left p-6 text-sm font-black uppercase tracking-wider text-signal-gold border-b border-white/10">Path</th>
+                  <th className="text-left p-6 text-sm font-black uppercase tracking-wider text-signal-gold border-b border-white/10">Typical Cost</th>
+                  <th className="text-left p-6 text-sm font-black uppercase tracking-wider text-signal-gold border-b border-white/10">What You're Left With</th>
+                </tr>
+              </thead>
+              <tbody className="text-base text-slate-300">
+                <tr className="border-b border-white/5">
+                  <td className="p-6 font-bold text-white">Trial-and-error self-study</td>
+                  <td className="p-6">$10,000–$25,000+ in recoverable and unrecoverable losses</td>
+                  <td className="p-6">Experience you paid too much for</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="p-6 font-bold text-white">Private consultant / compliance firm</td>
+                  <td className="p-6">$5,000–$12,000</td>
+                  <td className="p-6">Their knowledge, not your system</td>
+                </tr>
+                <tr>
+                  <td className="p-6 font-bold text-white">LaunchPath Standard</td>
+                  <td className="p-6">$2,500–$3,500</td>
+                  <td className="p-6 font-bold text-white">Built infrastructure you own and operate</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-center text-xl text-white font-bold">
+            We are not the cheapest option. We are the most systematized one.
+          </p>
+        </div>
+      </section>
+
       {/* AUTO GUARDING STANDARD SECTION */}
       <section className="relative py-32 md:py-48 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 overflow-hidden">
         {/* Premium gradient background */}
