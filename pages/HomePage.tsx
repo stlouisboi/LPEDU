@@ -111,6 +111,19 @@ const HomePage = () => {
               <p className="text-lg md:text-xl text-slate-300 leading-relaxed">If you meet the standard, you enter LaunchPath to install the full system. If you do not, you get a clear fix-first list.</p>
             </div>
           </div>
+
+          {/* PHILOSOPHICAL LINES */}
+          <div className="max-w-3xl mx-auto space-y-8 pt-12 border-t border-white/10">
+            <p className="text-xl md:text-2xl text-white font-bold italic leading-relaxed text-center">
+              "The regulation doesn't know your name. It only knows what your file says."
+            </p>
+            <p className="text-xl md:text-2xl text-white font-bold italic leading-relaxed text-center">
+              "Structure precedes survival. Diagnostics precede instruction."
+            </p>
+            <p className="text-xl md:text-2xl text-white font-bold italic leading-relaxed text-center">
+              "My responsibility is not to motivate carriers — it is to prevent preventable failure."
+            </p>
+          </div>
         </div>
       </section>
 
@@ -346,6 +359,43 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CHANGE 4: CURRICULUM SCOPE SIGNAL */}
+      <section className="py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-white/5 bg-[#001122]">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-signal-gold">SCOPE OF THE STANDARD</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+              This Is Not a Video Library. This Is a Built System.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="space-y-3">
+              <p className="text-5xl md:text-6xl font-black text-signal-gold">46</p>
+              <p className="text-sm font-bold uppercase tracking-wider text-slate-300">Structured Lessons</p>
+            </div>
+            <div className="space-y-3">
+              <p className="text-5xl md:text-6xl font-black text-signal-gold">14.4</p>
+              <p className="text-sm font-bold uppercase tracking-wider text-slate-300">Hours of Implementation Guidance</p>
+            </div>
+            <div className="space-y-3">
+              <p className="text-5xl md:text-6xl font-black text-signal-gold">30+</p>
+              <p className="text-sm font-bold uppercase tracking-wider text-slate-300">Templates, Tools & Operational Documents</p>
+            </div>
+          </div>
+
+          <p className="text-center text-xl text-white font-bold">
+            Everything sequenced. Nothing left to chance. Built in the order it needs to be built.
+          </p>
+
+          <div className="text-center">
+            <a href="/learning-path" className="inline-block text-signal-gold hover:text-white font-bold uppercase tracking-wider text-sm transition-colors underline">
+              Review the full curriculum →
+            </a>
           </div>
         </div>
       </section>
@@ -784,10 +834,13 @@ const HomePage = () => {
           <ShieldAlert size={48} className="mx-auto text-signal-gold" />
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Admission Is Not Open Enrollment</h2>
           <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
-            You do not buy your way into LaunchPath. <span className="text-signal-gold font-bold">You qualify.</span> Every applicant completes the AUTO Diagnostic and Ground 0 review before admission is considered. If your operation is not structurally ready, you receive corrective priorities and advancement is paused. That protects your authority and it protects the standard.
+            You do not buy your way into LaunchPath. <span className="text-signal-gold font-bold">You qualify.</span>
           </p>
-          <p className="text-2xl font-bold text-signal-gold">
-            Only 1 in 3 applicants receive GO determination on first review.
+          <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
+            Every applicant completes the AUTO Diagnostic and Ground 0 review before admission is considered. If your operation is not structurally ready, you receive corrective priorities and advancement is paused.
+          </p>
+          <p className="text-lg md:text-xl text-white font-bold italic leading-relaxed">
+            That protects your authority. And it protects the standard.
           </p>
           <Link 
             to="/pricing" 
