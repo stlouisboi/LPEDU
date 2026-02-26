@@ -229,63 +229,48 @@ const AboutPage: React.FC = () => {
             {[
               {
                 num: "§ 1.1",
-                principle: "STRUCTURAL PRECEDENCE REQUIREMENT",
-                violation: "90% of new carriers fail within 18 months without structural foundation. Average regulatory loss: $5,000–$25,000.",
-                cfr: "49 CFR § 385.13"
+                principle: "Documentation Before Operation",
+                description: "If it isn't written down and filed correctly, it doesn't exist — and the auditor will treat it that way."
               },
               {
                 num: "§ 1.2",
-                principle: "GOVERNANCE MANDATE",
-                violation: "Authority without compliance backbone results in MC revocation within 90 days via administrative action.",
-                cfr: "49 CFR § 385.13"
+                principle: "Authority Maintenance",
+                description: "Your MC number is a legal instrument. Treat it like one or lose it like one."
               },
               {
                 num: "§ 1.3",
-                principle: "SYSTEM INTERDEPENDENCE PROTOCOL",
-                violation: "Insurance lapse triggers automatic authority suspension. Cash-flow failure causes 60-day operational shutdown.",
-                cfr: "49 CFR § 387"
+                principle: "Insurance Continuity",
+                description: "A single lapse in coverage doesn't just cost money — it can end your authority permanently."
               },
               {
                 num: "§ 1.4",
-                principle: "COLLAPSE PREVENTION STANDARD",
-                violation: "Comfort-seeking operators bypass critical systems, resulting in audit failure rates exceeding 85%.",
-                cfr: "49 CFR § 385"
+                principle: "Driver Qualification Standards",
+                description: "Every driver you put behind the wheel is a compliance event. Build the file before they turn the key."
               },
               {
                 num: "§ 1.5",
-                principle: "PRE-SCALE INSTALLATION REQUIREMENT",
-                violation: "Revenue-first operations fail documentation audits, triggering conditional/unsatisfactory ratings.",
-                cfr: "49 CFR § 385.5"
+                principle: "Vehicle Maintenance Governance",
+                description: "Maintenance records are not optional — they are your defense when something goes wrong on the road."
               },
               {
                 num: "§ 1.6",
-                principle: "DIAGNOSTIC PRECEDENCE RULE",
-                violation: "Instruction without diagnostic assessment results in misaligned system implementation and structural gaps.",
-                cfr: "Ground 0 Protocol"
+                principle: "Financial Discipline",
+                description: "Cash flow problems don't announce themselves. A carrier who runs out of margin runs out of options."
               },
               {
                 num: "§ 1.7",
-                principle: "ENFORCEMENT ACCOUNTABILITY STANDARD",
-                violation: "Teaching without verification enables non-compliance. Unverified systems fail under regulatory scrutiny.",
-                cfr: "49 CFR § 385.15"
+                principle: "Regulatory Awareness",
+                description: "The rules change. Carriers who don't track changes get caught by them."
               },
               {
                 num: "§ 1.8",
-                principle: "STEWARDSHIP REFUSAL AUTHORITY",
-                violation: "Enrollment without structural readiness creates liability exposure and authority protection failure.",
-                cfr: "Custodian Authority"
+                principle: "Operational Discipline",
+                description: "Systems only work if they're actually followed. Discipline is the bridge between a good plan and a compliant operation."
               },
               {
                 num: "§ 1.9",
-                principle: "RESPONSIBILITY PRIORITIZATION",
-                violation: "Enrollment-driven admission compromises standard integrity and increases systemic failure rates.",
-                cfr: "Institutional Policy"
-              },
-              {
-                num: "§ 1.10",
-                principle: "OPERATIONAL HIERARCHY MANDATE",
-                violation: "Scale before survival, ambition before discipline, freedom before governance—all lead to terminal failure.",
-                cfr: "49 CFR § 385"
+                principle: "The Correct Order",
+                description: "Scale before survival, ambition before discipline, freedom before governance — all lead to terminal failure."
               }
             ].map((item, i) => (
               <div key={i} className="bg-slate-900/50 border border-white/10 rounded-xl overflow-hidden hover:border-signal-gold/30 transition-colors">
@@ -297,13 +282,10 @@ const AboutPage: React.FC = () => {
                       {item.principle}
                     </h3>
                   </div>
-                  {/* Right: Violation Consequence */}
-                  <div className="p-8 space-y-4">
+                  {/* Right: Description */}
+                  <div className="p-8">
                     <p className="text-base text-slate-300 leading-relaxed">
-                      {item.violation}
-                    </p>
-                    <p className="text-xs font-mono text-red-400 uppercase tracking-wider">
-                      REFERENCE: {item.cfr}
+                      {item.description}
                     </p>
                   </div>
                 </div>
@@ -331,11 +313,7 @@ const AboutPage: React.FC = () => {
                 <p className="text-xs text-white/70">§ 391.51 Documentation Standard</p>
               </div>
             </div>
-            <div className="mt-8 pt-8 border-t border-signal-gold/30">
-              <p className="text-sm text-white/80 text-center leading-relaxed">
-                <span className="text-red-400 font-bold">VIOLATION NOTICE:</span> Deviation from doctrine principles results in structural deficiency determination and admission refusal under custodian authority.
-              </p>
-            </div>
+
           </div>
         </div>
       </section>
