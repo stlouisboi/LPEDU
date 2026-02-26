@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreditCard, CheckCircle, Lock, Shield, Activity } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useEnhancedAuth } from '../EnhancedAuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const AdmissionCheckout: React.FC = () => {
   const navigate = useNavigate();
-  const { currentUser } = useAuth();
+  const { currentUser } = useEnhancedAuth();
   const [loading, setLoading] = useState(true);
   const [hasAccess, setHasAccess] = useState(false);
   const [processing, setProcessing] = useState(false);
