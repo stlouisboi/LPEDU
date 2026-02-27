@@ -166,13 +166,65 @@ export const stripeWebhook = functions.https.onRequest(async (req, res) => {
 });
 
 async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
-  const { userId, fullName, phone } = session.metadata!;
+  const { userId, fullName, phone, mcNumber, dotNumber } = session.metadata!;
 
   try {
-    // Update user record
+    // 1. Get or create active cohort
+    const cohortsRef = admin.firestore().collection('cohorts');
+    const activeCohortQuery = await cohortsRef
+      .where('status', '==', 'enrolling')
+      .where('currentEnrollment', '<', 10)
+      .limit(1)
+      .get();
+    
+    let cohortId: string;
+    if (activeCohortQuery.empty) {
+      // Create new cohort if none available
+      const newCohortRef = cohortsRef.doc();
+      cohortId = newCohortRef.id;
+      await newCohortRef.set({
+        id: cohortId,
+        name: `Cohort ${new Date().toISOString().split('T')[0]}`,
+        startDate: admin.firestore.FieldValue.serverTimestamp(),
+        status: 'enrolling',
+        currentEnrollment: 1,
+        maxCapacity: 10,
+        createdAt: admin.firestore.FieldValue.serverTimestamp()
+      });
+    } else {
+      const cohortDoc = activeCohortQuery.docs[0];
+      cohortId = cohortDoc.id;
+      // Increment enrollment count
+      await cohortDoc.ref.update({
+        currentEnrollment: admin.firestore.FieldValue.increment(1)
+      });
+    }
+
+    // 2. Create carrier profile
+    const carrierRef = admin.firestore().collection('carriers').doc();
+    await carrierRef.set({
+      id: carrierRef.id,
+      userId: userId,
+      cohortId: cohortId,
+      legalName: fullName,
+      mcNumber: mcNumber || null,
+      dotNumber: dotNumber || null,
+      email: session.customer_email,
+      phone: phone || null,
+      authorityStatus: 'pending',
+      insuranceStatus: 'pending',
+      lastAuthorityCheck: null,
+      lastInsuranceCheck: null,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    // 3. Update user record
     await admin.firestore().collection('users').doc(userId).update({
       admissionConfirmed: true,
       role: 'paid',
+      cohortId: cohortId,
+      carrierId: carrierRef.id,
       paymentDate: admin.firestore.FieldValue.serverTimestamp(),
       stripeSessionId: session.id,
       stripePaymentIntent: session.payment_intent,
