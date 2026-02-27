@@ -394,7 +394,7 @@ export const INITIAL_BLOGS: BlogPost[] = [
     `,
     publishedAt: "2025-01-28",
     author: "Vince Lawrence",
-    image: "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2FPictures%2FBLOG%20POST%2F48%20hour%20new%20entrant.jpg?alt=media&token=f547b070-6556-4c48-889b-4a9f82364a9f",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663297865110/GpeMXBniKtIyuJPg.png",
     status: 'published',
     tags: ['Audit', 'FMCSA', 'Compliance', 'Reach Test']
   },
