@@ -350,14 +350,14 @@ const RequestAdmission: React.FC = () => {
 
             <div className="pt-8 border-t border-white/10 space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-white mb-2">Next Cohort</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">Cohort Structure</h3>
                 <p className="text-white/80">
-                  March 1st start date. I work with 10 carriers at a time to provide direct implementation support.
+                  LaunchPath operates in cohorts of 10 carriers. Each cohort receives direct implementation support over 90 days. Cohort enrollment opens when capacity is available.
                 </p>
               </div>
 
               <p className="text-white/60 text-sm">
-                If you need to start sooner, the self-paced version is available immediately for $1,500 (no direct support).
+                Self-paced access is available immediately for $1,500 (no direct support, no cohort structure).
               </p>
             </div>
           </div>

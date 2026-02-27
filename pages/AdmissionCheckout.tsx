@@ -4,6 +4,8 @@ import { CreditCard, CheckCircle, Lock, Shield, Activity } from 'lucide-react';
 import { useEnhancedAuth } from '../EnhancedAuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { checkCohortCapacity } from '../services/cohortService';
+import type { Cohort } from '../types/cohort';
 
 const AdmissionCheckout: React.FC = () => {
   const navigate = useNavigate();
@@ -12,6 +14,9 @@ const AdmissionCheckout: React.FC = () => {
   const [hasAccess, setHasAccess] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [cohortAvailable, setCohortAvailable] = useState(true);
+  const [cohortMessage, setCohortMessage] = useState('');
+  const [availableCohort, setAvailableCohort] = useState<Cohort | null>(null);
   
   const [formData, setFormData] = useState({
     fullName: '',
@@ -42,6 +47,17 @@ const AdmissionCheckout: React.FC = () => {
       // Check if already paid
       if (userData?.admissionConfirmed) {
         navigate('/operator-portal');
+        return;
+      }
+
+      // Check cohort capacity
+      const capacityCheck = await checkCohortCapacity();
+      setCohortAvailable(capacityCheck.available);
+      setCohortMessage(capacityCheck.message);
+      setAvailableCohort(capacityCheck.cohort);
+
+      if (!capacityCheck.available) {
+        setHasAccess(false);
         return;
       }
 
@@ -98,6 +114,35 @@ const AdmissionCheckout: React.FC = () => {
   }
 
   if (!hasAccess) {
+    // Show capacity message if cohorts are full
+    if (!cohortAvailable) {
+      return (
+        <div className="min-h-screen bg-[#020617] text-white flex items-center justify-center p-6">
+          <div className="max-w-2xl w-full bg-white/[0.02] border border-white/10 rounded-3xl p-12 text-center space-y-6">
+            <div className="w-20 h-20 bg-amber-500/10 border-2 border-amber-500/30 rounded-full flex items-center justify-center mx-auto">
+              <Lock size={40} className="text-amber-500" />
+            </div>
+            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-amber-500">
+              COHORT AT CAPACITY
+            </h1>
+            <p className="text-lg text-slate-300 leading-relaxed">
+              {cohortMessage}
+            </p>
+            <div className="pt-6 border-t border-white/10">
+              <p className="text-sm text-slate-400 mb-6">
+                You will be notified when the next cohort opens for enrollment.
+              </p>
+              <button
+                onClick={() => navigate('/')}
+                className="px-8 py-4 bg-signal-gold text-authority-blue font-black uppercase tracking-wider rounded-xl hover:bg-signal-gold/90 transition-colors"
+              >
+                Return Home
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
     return null;
   }
 

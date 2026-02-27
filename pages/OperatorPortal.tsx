@@ -30,48 +30,23 @@ interface Task {
 const AnimatedCheckmark = ({ checked }: { checked: boolean }) => {
   return (
     <div className="relative shrink-0">
-      {checked && (
-        <div className="absolute inset-0 pointer-events-none overflow-visible">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-signal-gold rounded-full"
-              style={{
-                top: '50%',
-                left: '50%',
-                opacity: 0,
-                transform: `rotate(${i * 45}deg) translateY(-14px)`,
-                animation: `sparkle-burst 0.8s ease-out forwards ${i * 0.05}s`
-              } as React.CSSProperties}
-            />
-          ))}
-        </div>
-      )}
-      
-      <div className={`relative w-6 h-6 rounded-lg border-2 transition-all duration-500 flex items-center justify-center overflow-hidden ${
+      <div className={`relative w-6 h-6 rounded border-2 transition-all duration-200 flex items-center justify-center ${
         checked 
-          ? 'bg-green-500 border-green-500 scale-110 shadow-lg shadow-green-500/20' 
-          : 'bg-transparent border-slate-200 dark:border-slate-700'
+          ? 'bg-green-600 border-green-600' 
+          : 'bg-transparent border-slate-300 dark:border-slate-600'
       }`}>
         <svg
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="4"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`w-3.5 h-3.5 text-white transition-all duration-500 ${
-            checked ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 -rotate-45'
+          className={`w-4 h-4 text-white transition-opacity duration-200 ${
+            checked ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <path
-            d="M20 6L9 17L4 12"
-            style={{
-              strokeDasharray: 40,
-              strokeDashoffset: checked ? 0 : 40,
-              transition: 'stroke-dashoffset 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s'
-            }}
-          />
+          <path d="M20 6L9 17L4 12" />
         </svg>
       </div>
     </div>
