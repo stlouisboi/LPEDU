@@ -161,9 +161,9 @@ const OperatorPortal: React.FC = () => {
                <div className="absolute top-5 left-0 w-full h-1 bg-slate-100 dark:bg-slate-800 z-0 hidden lg:block"></div>
                {timelineDays.map((step, i) => (
                  <div key={i} className="relative z-10 flex flex-col items-center text-center space-y-4 group">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all duration-500 ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all duration-300 ${
                       step.status === 'complete' ? 'bg-green-500 border-green-500 text-white' :
-                      step.status === 'active' ? 'bg-authority-blue border-authority-blue text-white shadow-[0_0_20px_rgba(30,58,95,0.4)] animate-pulse' :
+                      step.status === 'active' ? 'bg-authority-blue border-authority-blue text-white' :
                       'bg-white dark:bg-gray-800 border-slate-200 dark:border-slate-700 text-slate-300'
                     }`}>
                       {step.status === 'complete' ? <CheckCircle2 size={20} /> : <span className="text-xs font-black">{i + 1}</span>}
@@ -257,9 +257,9 @@ const OperatorPortal: React.FC = () => {
                 {filteredTasks.map((task) => (
                   <div 
                     key={task.id} 
-                    className={`flex items-center justify-between p-5 border rounded-2xl group transition-all duration-500 ${
+                    className={`flex items-center justify-between p-5 border rounded-2xl group transition-all duration-300 ${
                       task.completed 
-                        ? 'bg-green-50/30 dark:bg-green-900/10 border-green-100 dark:border-green-900/20 animate-in zoom-in-[0.99] fade-in-80' 
+                        ? 'bg-green-50/30 dark:bg-green-900/10 border-green-100 dark:border-green-900/20' 
                         : 'bg-slate-50 dark:bg-gray-900/50 border-slate-100 dark:border-border-dark hover:bg-white dark:hover:bg-gray-800'
                     }`}
                   >
@@ -378,12 +378,7 @@ const OperatorPortal: React.FC = () => {
         isProcessing={isProcessing}
       />
 
-      <style>{`
-        @keyframes sparkle-burst {
-          0% { transform: rotate(var(--rotation)) translateY(0); opacity: 1; }
-          100% { transform: rotate(var(--rotation)) translateY(-24px) scale(0); opacity: 0; }
-        }
-      `}</style>
+
     </div>
   );
 };
