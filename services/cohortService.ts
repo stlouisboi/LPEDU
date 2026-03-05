@@ -385,3 +385,14 @@ export async function checkCohortCapacity(): Promise<{
     message: `${spotsRemaining} ${spotsRemaining === 1 ? 'spot' : 'spots'} remaining in ${cohort.cohortName}.`,
   };
 }
+
+/**
+ * Get all cohorts (for admin/coach use)
+ */
+export async function getAllCohorts(): Promise<Cohort[]> {
+  const cohortsRef = collection(db, COLLECTIONS.COHORTS);
+  const q = query(cohortsRef, orderBy('startDate', 'desc'));
+  
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => doc.data() as Cohort);
+}

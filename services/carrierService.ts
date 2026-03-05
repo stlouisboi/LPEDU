@@ -185,5 +185,50 @@ export const carrierService = {
     }
 
     return 'yellow';
+  },
+
+  /**
+   * Update carrier risk level manually
+   */
+  async updateRiskLevel(carrierId: string, riskLevel: 'green' | 'yellow' | 'red', reason: string): Promise<void> {
+    await updateDoc(doc(db, 'carriers', carrierId), {
+      riskLevel,
+      updatedAt: new Date().toISOString()
+    });
+    
+    // Add to carrier timeline
+    const timelineRef = collection(db, 'carrierTimelineEvents');
+    await setDoc(doc(timelineRef), {
+      carrierId,
+      eventType: 'risk_level_change',
+      eventData: { riskLevel, reason },
+      createdAt: new Date().toISOString()
+    });
+  },
+
+  /**
+   * Calculate automatic risk level based on signals
+   */
+  async calculateAutomaticRisk(carrierId: string): Promise<'green' | 'yellow' | 'red'> {
+    const carrier = await this.getCarrier(carrierId);
+    if (!carrier) return 'red';
+
+    // Base risk from authority/insurance
+    let risk: 'green' | 'yellow' | 'red' = await this.getCarrierRiskLevel(carrierId);
+
+    // If already red from authority/insurance, return red
+    if (risk === 'red') return 'red';
+
+    // Check for inactivity (14 days for RED, 7 days for YELLOW)
+    const lastActivity = carrier.lastActivityDate ? new Date(carrier.lastActivityDate) : new Date(carrier.createdAt);
+    const daysInactive = Math.floor((new Date().getTime() - lastActivity.getTime()) / (1000 * 60 * 60 * 24));
+
+    if (daysInactive >= 14) return 'red';
+    if (daysInactive >= 7) return 'yellow';
+
+    // Check for unaddressed NEEDS CHANGES (> 5 days)
+    // This would require querying carrierTaskStatus, placeholder for logic
+    
+    return risk;
   }
 };

@@ -332,5 +332,20 @@ export const taskService = {
     
     const snapshot = await getDocs(q);
     return snapshot.docs.map(doc => doc.data() as MilestoneVerification);
+  },
+
+  /**
+   * Get all pending submissions (for coach review)
+   */
+  async getAllSubmissions(status: 'submitted' | 'verified' | 'needs_changes' = 'submitted'): Promise<CarrierTaskStatus[]> {
+    const statusRef = collection(db, 'carrierTaskStatus');
+    const q = query(
+      statusRef,
+      where('status', '==', status),
+      orderBy('submittedAt', 'asc')
+    );
+    
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => doc.data() as CarrierTaskStatus);
   }
 };
