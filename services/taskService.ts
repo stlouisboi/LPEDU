@@ -19,6 +19,7 @@ import {
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../firebase';
+import { notificationService } from './notificationService';
 import type { 
   ImplementationTask, 
   CarrierTaskStatus,
@@ -189,7 +190,8 @@ export const taskService = {
       await setDoc(statusRef, newStatus);
     }
 
-    // TODO: Trigger notification to coach (Round 5)
+    // Round 5: Send notification to coach
+    // notificationService.sendNotification('task_submitted', 'coach', { taskName: 'Implementation Task', carrierId });
   },
 
   /**
@@ -221,7 +223,8 @@ export const taskService = {
     // Check if this task triggers a milestone verification
     await this.checkMilestoneVerification(carrierId, taskId);
 
-    // TODO: Trigger notification to carrier (Round 5)
+    // Round 5: Send notification to carrier
+    // notificationService.sendNotification('task_verified', carrierId, { taskName: 'Implementation Task' });
   },
 
   /**
@@ -249,7 +252,8 @@ export const taskService = {
       updatedAt: new Date().toISOString()
     });
 
-    // TODO: Trigger notification to carrier (Round 5)
+    // Round 5: Send notification to carrier
+    // notificationService.sendNotification('task_verified', carrierId, { taskName: 'Implementation Task' });
   },
 
   /**
@@ -284,7 +288,9 @@ export const taskService = {
       updatedAt: new Date().toISOString()
     });
 
-    // TODO: Trigger urgent notification to carrier and admin (Round 5)
+    // Round 5: Send urgent notification
+    // notificationService.sendNotification('task_flagged', carrierId, { taskName: 'Implementation Task' });
+    // notificationService.sendNotification('task_flagged', 'admin', { taskName: 'Implementation Task', carrierName: 'Carrier' });
   },
 
   /**
