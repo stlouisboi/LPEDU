@@ -4,22 +4,17 @@ import {
   Shield, 
   ArrowRight, 
   CheckCircle2, 
-  AlertTriangle, 
-  Activity,
-  Lock,
-  Search,
-  Clipboard,
-  CheckCircle
+  Activity
 } from 'lucide-react';
 
 const HomePage = () => {
   return (
     <div className="bg-[#002244] text-white font-sans overflow-x-hidden selection:bg-[#C5A059] selection:text-[#002244]">
       
-      {/* ITEM 0 & 1: NEW HERO COPY & REMOVE ALL OTHER HERO CTAs */}
+      {/* ITEM 0 & 1: NEW HERO COPY & REMOVE ALL OTHER HERO CTAs (Confirmed in v3) */}
       <section className="relative pt-24 pb-20 md:pt-40 md:pb-32 px-6 md:px-12 max-w-7xl mx-auto text-center">
         <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000">
-          <h1 className="text-[32px] md:text-[64px] font-black uppercase tracking-tight leading-[1.1] mb-6">
+          <h1 className="text-[32px] md:text-[64px] font-black uppercase tracking-tighter leading-[1.1] mb-6">
             90-DAY COMPLIANCE OPERATING STANDARD FOR NEW AUTHORITIES
           </h1>
           <h2 className="text-[20px] md:text-[28px] font-bold text-[#C5A059] mb-8 uppercase tracking-tight">
@@ -62,7 +57,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ITEM 4: REAL KNOWLEDGE DELIVERY BLOCK */}
+      {/* ITEM 4 (v2): REAL KNOWLEDGE DELIVERY BLOCK */}
       <section className="bg-[#001833] py-24 md:py-32 px-6 md:px-12 border-y border-white/5">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="space-y-8 text-[18px] md:text-[22px] text-slate-300 leading-relaxed">
@@ -82,7 +77,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CONFIRMED WORKING: THE MATH OF AUTHORITY LOSS */}
+      {/* THE MATH OF AUTHORITY LOSS */}
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <h2 className="text-[28px] md:text-[40px] font-black uppercase tracking-tight text-center mb-16">
           The Math of Authority Loss
@@ -103,7 +98,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* ITEM 8: PHILOSOPHICAL LINE 1 */}
+        {/* ITEM 5 (v3): PHILOSOPHICAL LINE 1 */}
         <div className="text-center py-12 italic text-[20px] md:text-[24px] text-slate-400 max-w-3xl mx-auto leading-relaxed">
           "The wise carrier builds the system before the audit. The audit only confirms what was already true."
         </div>
@@ -118,7 +113,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ITEM 3: GROUND 0 AS STEP 1 — SECTION REFRAME */}
+      {/* ITEM 3 (v2/v3): GROUND 0 AS STEP 1 — SECTION REFRAME */}
       <section className="bg-[#0A1628] py-24 md:py-32 px-6 md:px-12 border-y border-white/5">
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <h2 className="text-[28px] md:text-[40px] font-black uppercase tracking-tight text-[#C5A059]">
@@ -144,7 +139,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ITEM 5: PRIMARY THREAT SECTION */}
+      {/* ITEM 5 (v2): PRIMARY THREAT SECTION */}
       <section className="py-24 md:py-32 px-6 md:px-12 border-b border-white/5">
         <div className="max-w-4xl mx-auto space-y-8">
           <p className="text-[14px] font-black uppercase tracking-[0.4em] text-[#C5A059]">THE PRIMARY THREAT</p>
@@ -165,7 +160,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CONFIRMED WORKING: COMPLETE COMPLIANCE SYSTEM GRID */}
+      {/* COMPLETE COMPLIANCE SYSTEM GRID */}
       <section className="bg-[#001833] py-24 md:py-32 px-6 md:px-12 border-y border-white/5">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-[28px] md:text-[40px] font-black uppercase tracking-tight text-center mb-16">
@@ -187,14 +182,14 @@ const HomePage = () => {
             ))}
           </div>
 
-          {/* ITEM 8: PHILOSOPHICAL LINE 3 */}
+          {/* ITEM 5 (v3): PHILOSOPHICAL LINE 3 */}
           <div className="text-center mt-20 italic text-[20px] md:text-[24px] text-slate-400 max-w-3xl mx-auto leading-relaxed">
             "This program does not make you compliant. It gives you the infrastructure to stay compliant — which is a different thing entirely."
           </div>
         </div>
       </section>
 
-      {/* ITEM 6A: THE FULL INSTITUTIONAL STANDARD (SHADOW TIER) */}
+      {/* ITEM 6A (v2): THE FULL INSTITUTIONAL STANDARD (SHADOW TIER) */}
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-5xl mx-auto">
         <p className="text-[14px] font-black uppercase tracking-[0.4em] text-[#C5A059] text-center mb-4">THE FULL INSTITUTIONAL STANDARD</p>
         <h2 className="text-[28px] md:text-[40px] font-black uppercase tracking-tight text-center mb-8">
@@ -247,7 +242,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ITEM 6B: THE FULL PENALTY TABLE */}
+      {/* ITEM 6B (v2): THE FULL PENALTY TABLE */}
       <section className="bg-[#001833] py-24 md:py-32 px-6 md:px-12 border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <p className="text-[14px] font-black uppercase tracking-[0.4em] text-[#C5A059] text-center mb-4">THE REAL MATH</p>
@@ -315,7 +310,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ITEM 7: THREE PATHS COMPARISON TABLE */}
+      {/* ITEM 7 (v2): THREE PATHS COMPARISON TABLE */}
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-6xl mx-auto">
         <p className="text-[14px] font-black uppercase tracking-[0.4em] text-[#C5A059] text-center mb-4">IMPLEMENTATION CONTEXT</p>
         <h2 className="text-[28px] md:text-[40px] font-black uppercase tracking-tight text-center mb-16">
@@ -358,43 +353,68 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CONFIRMED WORKING: 3-STEP ADMISSION PROCESS */}
-      <section className="bg-[#0A1628] py-24 md:py-32 px-6 md:px-12 border-y border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-[28px] md:text-[40px] font-black uppercase tracking-tight text-center mb-20">
-            3-Step Admission Process
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-            <div className="bg-[#002244] p-10 rounded-[40px] border border-white/5 space-y-6">
-              <div className="w-14 h-14 bg-[#C5A059] text-[#002244] rounded-full flex items-center justify-center font-black text-2xl">1</div>
-              <h3 className="text-[24px] font-black uppercase tracking-tight">Ground 0 Briefing</h3>
-              <p className="text-[18px] text-slate-400 leading-relaxed">
-                A structured orientation that establishes whether your authority is protected or exposed before capital is committed.
-              </p>
+      {/* ITEM 4 (v3): FOUNDER SECTION — SOCIAL PROOF BLOCK */}
+      <section className="bg-[#001833] py-24 md:py-32 px-6 md:px-12 border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-16">
+            <div className="bg-slate-800 rounded-3xl overflow-hidden border-2 border-[#C5A059]/20 grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/5]">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vince_founder.png?alt=media&token=b5ea75d9-5252-4ac3-af5c-282eec053e7d" 
+                alt="Vince Lawrence - Station Custodian" 
+                className="w-full h-full object-cover object-top"
+              />
             </div>
-            <div className="bg-[#002244] p-10 rounded-[40px] border border-white/5 space-y-6">
-              <div className="w-14 h-14 bg-[#C5A059] text-[#002244] rounded-full flex items-center justify-center font-black text-2xl">2</div>
-              <h3 className="text-[24px] font-black uppercase tracking-tight">REACH Standard Assessment</h3>
-              <p className="text-[18px] text-slate-400 leading-relaxed">
-                Your authority is evaluated through the REACH framework to determine structural readiness.
-              </p>
+            <div className="space-y-8">
+              <div className="space-y-2">
+                <p className="text-[14px] font-black uppercase tracking-[0.4em] text-[#C5A059]">THE STANDARD CUSTODIAN</p>
+                <h2 className="text-[32px] md:text-[48px] font-black uppercase tracking-tight text-white leading-tight">
+                  VINCE LAWRENCE
+                </h2>
+                <p className="text-[18px] font-bold text-slate-400 uppercase tracking-widest">Station Custodian, LaunchPath Transportation EDU</p>
+              </div>
+              <div className="space-y-6 text-[18px] md:text-[20px] text-slate-300 leading-relaxed">
+                <p>
+                  I did not come from trucking. I came from 20 years of building operational systems in manufacturing
+                  environments — where a missing record was not an inconvenience, it was a liability. When I looked at
+                  what new motor carriers were operating without, I recognized the failure pattern. Not ignorance. Not
+                  laziness. The absence of a system. LaunchPath is the system.
+                </p>
+              </div>
             </div>
-            <div className="bg-[#002244] p-10 rounded-[40px] border border-white/5 space-y-6">
-              <div className="w-14 h-14 bg-[#C5A059] text-[#002244] rounded-full flex items-center justify-center font-black text-2xl">3</div>
-              <h3 className="text-[24px] font-black uppercase tracking-tight">LaunchPath Admission</h3>
-              <p className="text-[18px] text-slate-400 leading-relaxed">
-                If your authority meets the operating standard, enrollment opens and the Ground 0 module is installed immediately.
-              </p>
+          </div>
+
+          <div className="py-12 border-y border-white/10 text-center mb-16">
+            <p className="text-[24px] md:text-[32px] font-black uppercase tracking-tight text-white leading-tight italic">
+              “My responsibility is not to motivate carriers — it is to prevent preventable failure.”
+            </p>
+            <p className="text-[14px] font-bold text-slate-500 mt-4 uppercase tracking-widest">— Vince Lawrence, Station Custodian</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+            <div className="flex flex-col items-center text-center md:border-r md:border-white/10 px-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">U.S. NAVY</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">VETERAN</p>
+            </div>
+            <div className="flex flex-col items-center text-center md:border-r md:border-white/10 px-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">OSHA</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">CERTIFIED</p>
+            </div>
+            <div className="flex flex-col items-center text-center md:border-r md:border-white/10 px-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">20+ YRS</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">MFG MGMT & LEADERSHIP</p>
+            </div>
+            <div className="flex flex-col items-center text-center px-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">FOUNDER,</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#C5A059]">LAUNCHPATH EDU</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ITEM 8: ADMISSION GATE & FINAL CTA */}
+      {/* ITEM 5 (v3): PHILOSOPHICAL LINE 2 & ADMISSION GATE */}
       <section className="py-32 px-6 md:px-12 text-center bg-[#002244]">
         <div className="max-w-4xl mx-auto space-y-16">
           
-          {/* Philosophical Line 2 */}
           <div className="italic text-[20px] md:text-[24px] text-slate-400 leading-relaxed">
             "Most carriers wait until something goes wrong to learn what should have been built before they started.
             LaunchPath exists for the ones who refuse to wait."

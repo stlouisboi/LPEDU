@@ -227,9 +227,7 @@ const Header = () => {
                   </Link>
                 )}
 
-                <Link to="/readiness" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-wider hover:bg-white transition-all active:scale-95 shadow-xl border-b-4 border-slate-900 group">
-                  Begin Ground 0 <ArrowRight size={12} className="inline ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
+{/* Removed Header CTA for "One Door" Policy */}
 
                 <button onClick={toggleTheme} className="p-3 rounded-2xl bg-white/5 text-signal-gold hover:scale-110 transition-all border border-white/10" aria-label="Toggle Theme">
                   {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
@@ -275,9 +273,7 @@ const Header = () => {
                 <Link to={currentUser ? "/operator-portal" : "/portal"} onClick={() => setIsMenuOpen(false)} className="block w-full text-center border-2 border-signal-gold text-signal-gold py-5 rounded-[2rem] text-lg font-black uppercase tracking-widest">
                   {currentUser ? 'My Portal' : 'Portal Access'}
                 </Link>
-                <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="block w-full text-center bg-signal-gold text-authority-blue py-6 rounded-[2rem] text-lg font-black uppercase tracking-widest shadow-2xl border-b-8 border-slate-950">
-                  Admission Protocol
-                </Link>
+{/* Removed Mobile Menu CTA for "One Door" Policy */}
               </div>
             </div>
           </nav>
@@ -312,8 +308,7 @@ const Footer = () => {
                 title: 'SYSTEM', 
                 links: [
                   { name: 'Program Roadmap', path: '/learning-path' }, 
-                  { name: 'Admission Protocol', path: '/pricing' }, 
-                  { name: 'TCO Calculator', path: '/tools/tco-calculator' }
+	                  { name: 'TCO Calculator', path: '/tools/tco-calculator' }
                 ] 
               },
               { 
