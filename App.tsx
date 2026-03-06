@@ -227,8 +227,8 @@ const Header = () => {
                   </Link>
                 )}
 
-                <Link to="/pricing" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-wider hover:bg-white transition-all active:scale-95 shadow-xl border-b-4 border-slate-900 group">
-                  Admission <ArrowRight size={12} className="inline ml-1 group-hover:translate-x-1 transition-transform" />
+                <Link to="/readiness" className="bg-signal-gold text-authority-blue px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-wider hover:bg-white transition-all active:scale-95 shadow-xl border-b-4 border-slate-900 group">
+                  Begin Ground 0 <ArrowRight size={12} className="inline ml-1 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
                 <button onClick={toggleTheme} className="p-3 rounded-2xl bg-white/5 text-signal-gold hover:scale-110 transition-all border border-white/10" aria-label="Toggle Theme">
