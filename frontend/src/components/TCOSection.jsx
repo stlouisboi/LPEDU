@@ -407,6 +407,7 @@ export default function TCOSection() {
             maxWidth: 560,
             marginLeft: "auto",
             marginRight: "auto",
+            paddingBottom: "3rem",
           }}
         >
           This is not a projection. It is arithmetic based on documented FMCSA enforcement data.
