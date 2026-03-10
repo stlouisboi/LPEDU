@@ -1,38 +1,9 @@
-/* LaunchPath Homepage — Global Overrides */
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+/* LaunchPath — The Onyx Standard */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+a { transition: color 0.2s; }
+table { border-collapse: collapse; }
 
 input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-input:focus {
-  border-color: rgba(200,150,62,0.6) !important;
-}
-
-table {
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-th, td {
-  border: none;
-}
-
-/* Responsive grid */
-@media (max-width: 768px) {
-  [data-grid-responsive] {
-    grid-template-columns: 1fr !important;
-  }
-}
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+input[type="number"] { -moz-appearance: textfield; }

@@ -1,120 +1,96 @@
-const pillars = [
+import { ShieldCheck, CurrencyDollar, FileText, Certificate } from "@phosphor-icons/react";
+
+const PILLARS = [
   {
-    num: "I",
-    name: "INSURANCE CONTINUITY",
-    desc: "Maintains uninterrupted coverage. A single lapse suspends authority.",
+    icon: <ShieldCheck size={22} weight="regular" />,
+    label: "01",
+    name: "Insurance Continuity",
+    desc: "A single coverage lapse suspends authority automatically. LaunchPath installs the protocols that prevent it from happening."
   },
   {
-    num: "II",
-    name: "CASH-FLOW OXYGEN",
-    desc: "Ensures capital reserves to survive freight volatility and delayed payments.",
+    icon: <CurrencyDollar size={22} weight="regular" />,
+    label: "02",
+    name: "Cash-Flow Oxygen",
+    desc: "Capital reserves, payment gap protocols, and tax discipline installed before the first load is dispatched."
   },
   {
-    num: "III",
-    name: "AUTHORITY PROTECTION",
-    desc: "Prevents operational decisions that trigger CSA score damage and enforcement risk.",
+    icon: <FileText size={22} weight="regular" />,
+    label: "03",
+    name: "Compliance Backbone",
+    desc: "Driver qualification files, HOS records, maintenance logs, and drug program documentation built to audit standard."
   },
   {
-    num: "IV",
-    name: "COMPLIANCE BACKBONE",
-    desc: "DQ files, HOS records, maintenance logs, and policy manuals built to audit standard.",
+    icon: <Certificate size={22} weight="regular" />,
+    label: "04",
+    name: "Authority Protection",
+    desc: "Operational decisions that trigger CSA score damage are identified and prevented before they reach the enforcement threshold."
   },
 ];
 
 export default function FourPillarsSection() {
   return (
-    <section
-      data-testid="four-pillars-section"
-      style={{
-        background: "var(--bg-secondary)",
-        padding: "5rem 1.5rem",
-        borderTop: "1px solid var(--border)",
-      }}
-    >
+    <section data-testid="four-pillars-section" style={{
+      background: "var(--bg-2)",
+      padding: "6rem 1.5rem",
+      borderBottom: "1px solid var(--border)",
+    }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div className="section-label" style={{ marginBottom: "1.5rem" }}>
-          THE LAUNCHPATH OPERATING STANDARD
+
+        <div style={{ maxWidth: 600, marginBottom: "4rem" }}>
+          <p className="overline" style={{ marginBottom: "1.25rem" }}>The Operating Standard</p>
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            letterSpacing: "-0.02em",
+            marginBottom: "1rem",
+          }}>
+            Four systems. Installed before the first audit window opens.
+          </h2>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.75 }}>
+            New authorities do not fail because of bad intentions. They fail because the required systems were never installed.
+          </p>
         </div>
-
-        <h2
-          className="font-headline"
-          style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            lineHeight: 0.95,
-            margin: "0 0 1.5rem",
-            color: "#ffffff",
-          }}
-        >
-          FOUR PILLARS.<br />
-          INSTALLED BEFORE SCALE.
-        </h2>
-
-        <p style={{ color: "#8899aa", lineHeight: 1.7, maxWidth: 580, marginBottom: "3rem" }}>
-          The first 90 days determine whether a carrier stabilizes or fails.
-          LaunchPath installs four pillars required to survive the New Entrant period.
-        </p>
 
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
           gap: "1px",
-          background: "rgba(255,255,255,0.08)",
-          border: "1px solid rgba(255,255,255,0.08)",
+          background: "var(--border)",
         }}>
-          {pillars.map((p) => (
-            <div
-              key={p.num}
-              data-testid={`pillar-${p.num}`}
-              style={{
-                background: "var(--bg-secondary)",
-                padding: "2rem",
-                position: "relative",
-                overflow: "hidden",
-              }}
+          {PILLARS.map((p) => (
+            <div key={p.label} data-testid={`pillar-${p.label}`} style={{
+              background: "var(--bg-2)",
+              padding: "2.5rem",
+              transition: "background 0.2s",
+            }}
+              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+              onMouseLeave={e => e.currentTarget.style.background = "var(--bg-2)"}
             >
+              <div style={{ color: "var(--gold)", marginBottom: "1.25rem" }}>{p.icon}</div>
               <div style={{
-                position: "absolute",
-                top: 0,
-                right: "1rem",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 900,
-                fontSize: "5rem",
-                color: "rgba(255,255,255,0.04)",
-                lineHeight: 1,
-                userSelect: "none",
-              }}>{p.num}</div>
-
-              <div style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.55rem",
-                color: "#8899aa",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.65rem",
+                color: "var(--text-subtle)",
                 letterSpacing: "0.1em",
-                marginBottom: "0.75rem",
-              }}>{p.num}</div>
-
-              <div style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 800,
+                marginBottom: "0.5rem",
+              }}>{p.label}</div>
+              <h3 style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontWeight: 700,
                 fontSize: "1.1rem",
-                color: "var(--gold)",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: "0.75rem",
-              }}>
-                {p.name}
-              </div>
-
-              <p style={{ color: "#8899aa", fontSize: "0.875rem", lineHeight: 1.6, margin: 0 }}>
-                {p.desc}
-              </p>
+                color: "var(--text)",
+                marginBottom: "0.875rem",
+              }}>{p.name}</h3>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.9rem",
+                color: "var(--text-muted)",
+                lineHeight: 1.7,
+              }}>{p.desc}</p>
             </div>
           ))}
         </div>
-
-        <p style={{ color: "#8899aa", marginTop: "2rem", fontSize: "0.9rem" }}>
-          If any of these systems fail, authority risk rises immediately.{" "}
-          <strong style={{ color: "#c8d8e8" }}>LaunchPath exists to install them before failure occurs.</strong>
-        </p>
       </div>
     </section>
   );

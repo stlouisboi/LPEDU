@@ -1,164 +1,119 @@
 import { useState } from "react";
+import { List, X } from "@phosphor-icons/react";
 
-const STATUS_ITEMS = [
-  { label: "SYSTEM_STATUS_MONITOR", value: null, color: "#8899aa" },
-  { label: "AUTHORITY", value: "ACTIVE", color: "#4ade80" },
-  { label: "REGISTRY", value: "SYNCED", color: "#4ade80" },
-  { label: "INTEGRITY", value: "100%", color: "#4ade80" },
-  { label: "UPLINK", value: "STABLE", color: "#4ade80" },
+const NAV_LINKS = [
+  { label: "Method", href: "https://www.launchpathedu.com/auto-method" },
+  { label: "Diagnostic", href: "https://www.launchpathedu.com/auto-diagnostic" },
+  { label: "Ground 0", href: "https://www.launchpathedu.com/ground-0-briefing" },
+  { label: "Knowledge", href: "https://www.launchpathedu.com/knowledge-center" },
+  { label: "About", href: "https://www.launchpathedu.com/about" },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <header style={{ position: "sticky", top: 0, zIndex: 100 }}>
-      {/* Status bar */}
+    <header style={{
+      position: "sticky", top: 0, zIndex: 100,
+      background: "rgba(2,4,8,0.92)",
+      backdropFilter: "blur(12px)",
+      borderBottom: "1px solid var(--border)",
+    }}>
       <div style={{
-        background: "#060e1a",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        padding: "0.35rem 1.5rem",
-        display: "flex",
-        alignItems: "center",
-        gap: "2rem",
-        overflowX: "auto",
-        fontSize: "0.65rem",
-      }}>
-        {STATUS_ITEMS.map((item) => (
-          <span key={item.label} style={{ display: "flex", alignItems: "center", gap: "0.4rem", whiteSpace: "nowrap" }}>
-            {item.value && (
-              <span style={{
-                width: 6, height: 6, borderRadius: "50%",
-                background: item.color, display: "inline-block",
-                boxShadow: `0 0 6px ${item.color}`,
-              }} />
-            )}
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.1em", color: "#8899aa" }}>
-              {item.value ? `${item.label}: ` : item.label}
-              {item.value && <span style={{ color: item.color }}>{item.value}</span>}
-            </span>
-          </span>
-        ))}
-        <span style={{ marginLeft: "auto", fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.1em", color: "#8899aa", whiteSpace: "nowrap" }}>
-          CFR_SYNC: 2026_V4.2
-        </span>
-      </div>
-
-      {/* Main nav */}
-      <nav style={{
-        background: "var(--bg-primary)",
-        borderBottom: "1px solid var(--border)",
+        maxWidth: 1200, margin: "0 auto",
         padding: "0 1.5rem",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        height: "64px",
+        height: 64,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
-        <a href="/" style={{ textDecoration: "none" }}>
+        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
           <img
             src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
             alt="LaunchPath"
-            style={{ height: 32 }}
+            style={{ height: 28 }}
           />
         </a>
 
-        {/* Desktop nav */}
-        <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-          {["KNOWLEDGE CENTER", "AUTO DIAGNOSTIC", "GROUND 0 BRIEFING", "AUTO METHOD", "ABOUT"].map((item) => (
-            <a
-              key={item}
-              href="https://www.launchpathedu.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.65rem",
-                letterSpacing: "0.1em",
-                color: "#8899aa",
-                textDecoration: "none",
-                textTransform: "uppercase",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={e => e.target.style.color = "#ffffff"}
-              onMouseLeave={e => e.target.style.color = "#8899aa"}
+        {/* Desktop */}
+        <nav style={{ display: "flex", alignItems: "center", gap: "2.5rem" }} className="desktop-nav">
+          {NAV_LINKS.map(l => (
+            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              color: "var(--text-muted)",
+              textDecoration: "none",
+              transition: "color 0.2s",
+              letterSpacing: "0.01em",
+            }}
+              onMouseEnter={e => e.target.style.color = "var(--text)"}
+              onMouseLeave={e => e.target.style.color = "var(--text-muted)"}
             >
-              {item}
+              {l.label}
             </a>
           ))}
-          <a
-            href="https://www.launchpathedu.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer" data-testid="nav-enter-btn"
             style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.65rem",
-              letterSpacing: "0.12em",
-              color: "#ffffff",
-              textDecoration: "none",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.8rem", fontWeight: 600,
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
-              border: "1px solid rgba(255,255,255,0.4)",
-              padding: "0.4rem 1rem",
-              transition: "all 0.2s",
+              color: "#000",
+              background: "var(--gold)",
+              padding: "0.5rem 1.25rem",
+              textDecoration: "none",
+              transition: "background 0.2s",
             }}
-            onMouseEnter={e => { e.target.style.background = "rgba(255,255,255,0.1)"; e.target.style.borderColor = "#ffffff"; }}
-            onMouseLeave={e => { e.target.style.background = "transparent"; e.target.style.borderColor = "rgba(255,255,255,0.4)"; }}
+            onMouseEnter={e => e.target.style.background = "var(--gold-hover)"}
+            onMouseLeave={e => e.target.style.background = "var(--gold)"}
           >
-            ENTER
+            Enter
           </a>
-        </div>
+        </nav>
 
         {/* Mobile hamburger */}
-        <button
-          data-testid="mobile-menu-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            display: "none",
-            background: "none",
-            border: "1px solid rgba(255,255,255,0.3)",
-            color: "#ffffff",
-            padding: "0.4rem 0.6rem",
-            cursor: "pointer",
-          }}
-          className="mobile-menu-btn"
+        <button className="mobile-btn" data-testid="mobile-menu-btn"
+          onClick={() => setOpen(!open)}
+          style={{ background: "none", border: "none", color: "var(--text)", cursor: "pointer", padding: "0.25rem" }}
         >
-          &#9776;
+          {open ? <X size={22} /> : <List size={22} />}
         </button>
-      </nav>
+      </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
+      {open && (
         <div style={{
-          background: "var(--bg-secondary)",
-          borderBottom: "1px solid var(--border)",
-          padding: "1rem 1.5rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
+          background: "var(--bg-2)",
+          borderTop: "1px solid var(--border)",
+          padding: "1.5rem",
+          display: "flex", flexDirection: "column", gap: "1.25rem",
         }}>
-          {["KNOWLEDGE CENTER", "AUTO DIAGNOSTIC", "GROUND 0 BRIEFING", "AUTO METHOD", "ABOUT"].map((item) => (
-            <a
-              key={item}
-              href="https://www.launchpathedu.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.7rem",
-                letterSpacing: "0.1em",
-                color: "#8899aa",
-                textDecoration: "none",
-              }}
+          {NAV_LINKS.map(l => (
+            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", textDecoration: "none" }}
             >
-              {item}
+              {l.label}
             </a>
           ))}
+          <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
+            style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              color: "#000", background: "var(--gold)",
+              padding: "0.75rem 1.25rem", textDecoration: "none",
+              textAlign: "center",
+            }}
+          >
+            Enter Portal
+          </a>
         </div>
       )}
 
       <style>{`
+        .mobile-btn { display: none !important; }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
-          .mobile-menu-btn { display: block !important; }
+          .mobile-btn { display: flex !important; }
         }
       `}</style>
     </header>

@@ -1,124 +1,98 @@
-const paths = [
+const PATHS = [
   {
     id: "self-study",
-    name: "TRIAL-AND-ERROR SELF-STUDY",
+    label: "Path 01",
+    name: "Trial-and-Error Self-Study",
     cost: "$10,000–$25,000+",
     costColor: "var(--red)",
-    description: "Experience you paid too much for",
-    highlight: false,
+    desc: "Experience you paid too much for. The compliance gaps surface during enforcement, not before.",
   },
   {
     id: "consultant",
-    name: "PRIVATE CONSULTANT / COMPLIANCE FIRM",
+    label: "Path 02",
+    name: "Private Consultant or Compliance Firm",
     cost: "$5,000–$12,000",
-    costColor: "#ffffff",
-    description: "Their knowledge, not your system",
-    highlight: false,
+    costColor: "var(--text)",
+    desc: "Their knowledge, not your system. When the engagement ends, the infrastructure doesn't transfer.",
   },
   {
     id: "launchpath",
-    name: "LAUNCHPATH STANDARD",
+    label: "Path 03",
+    name: "LaunchPath Standard",
     cost: "$5,000",
     costColor: "var(--gold)",
-    description: "Built infrastructure you own and operate — verified by the Station Custodian before your audit window closes",
+    desc: "A documented operational standard you own and operate — verified before your audit window closes.",
     highlight: true,
   },
 ];
 
 export default function ThreePathsSection() {
   return (
-    <section
-      data-testid="three-paths-section"
-      style={{
-        background: "var(--bg-secondary)",
-        padding: "5rem 1.5rem",
-        borderTop: "1px solid var(--border)",
-      }}
-    >
-      <div style={{ maxWidth: 900, margin: "0 auto" }}>
+    <section data-testid="three-paths-section" style={{
+      background: "var(--bg)",
+      padding: "6rem 1.5rem",
+      borderBottom: "1px solid var(--border)",
+    }}>
+      <div style={{ maxWidth: 920, margin: "0 auto" }}>
 
-        <div className="section-label" style={{ marginBottom: "1.5rem" }}>
-          IMPLEMENTATION CONTEXT
-        </div>
-
-        <h2
-          className="font-headline"
-          style={{
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            lineHeight: 0.95,
-            margin: "0 0 3rem",
-            color: "#ffffff",
-          }}
-        >
-          THREE PATHS. ONE DECISION.
+        <p className="overline" style={{ marginBottom: "1.25rem" }}>The Decision</p>
+        <h2 style={{
+          fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+          fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+          letterSpacing: "-0.02em", marginBottom: "4rem",
+        }}>
+          Three paths. One decision.
         </h2>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          {paths.map((path, i) => (
-            <div
-              key={path.id}
-              data-testid={`path-row-${path.id}`}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr auto 1fr",
-                gap: "1.5rem",
-                alignItems: "center",
-                padding: "1.5rem 1.75rem",
-                borderTop: "1px solid rgba(255,255,255,0.08)",
-                borderLeft: path.highlight ? "2px solid var(--gold)" : "2px solid transparent",
-                background: path.highlight ? "rgba(200,150,62,0.04)" : "transparent",
-                transition: "background 0.2s",
-              }}
-            >
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {PATHS.map((p, i) => (
+            <div key={p.id} data-testid={`path-row-${p.id}`} style={{
+              display: "grid",
+              gridTemplateColumns: "5rem 1fr auto",
+              gap: "2rem",
+              alignItems: "start",
+              padding: "2rem 0",
+              borderTop: "1px solid var(--border)",
+              borderLeft: p.highlight ? "2px solid var(--gold)" : "2px solid transparent",
+              paddingLeft: p.highlight ? "1.5rem" : 0,
+              background: p.highlight ? "rgba(212,175,55,0.02)" : "transparent",
+            }}>
+              {/* Label */}
               <div style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 800,
-                fontSize: "1rem",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                color: path.highlight ? "var(--gold)" : "#c8d8e8",
-              }}>
-                {path.name}
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.7rem", color: "var(--text-subtle)",
+                paddingTop: "0.25rem",
+              }}>{p.label}</div>
+
+              {/* Name + desc */}
+              <div>
+                <h3 style={{
+                  fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                  fontSize: "1.05rem", color: p.highlight ? "var(--gold)" : "var(--text)",
+                  marginBottom: "0.5rem",
+                }}>{p.name}</h3>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{p.desc}</p>
               </div>
 
+              {/* Cost */}
               <div style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 800,
-                fontSize: "1.35rem",
-                color: path.costColor,
-                textAlign: "center",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "1.2rem", fontWeight: 500,
+                color: p.costColor,
                 whiteSpace: "nowrap",
-              }}>
-                {path.cost}
-              </div>
-
-              <div style={{
-                color: "#8899aa",
-                fontSize: "0.9rem",
-                textAlign: "right",
-                lineHeight: 1.5,
-              }}>
-                {path.description}
-              </div>
+                paddingTop: "0.15rem",
+              }}>{p.cost}</div>
             </div>
           ))}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }} />
+          <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
 
-        <p
-          data-testid="three-paths-footer"
-          style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.65rem",
-            letterSpacing: "0.15em",
-            color: "#8899aa",
-            marginTop: "2rem",
-            textTransform: "uppercase",
-          }}
-        >
-          WE ARE NOT THE CHEAPEST OPTION. WE ARE THE MOST SYSTEMATIZED ONE.
+        <p data-testid="three-paths-footer" style={{
+          fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
+          color: "var(--text-subtle)", marginTop: "2.5rem", lineHeight: 1.7,
+        }}>
+          We are not the cheapest option. We are the most systematized one.
         </p>
-
       </div>
     </section>
   );
