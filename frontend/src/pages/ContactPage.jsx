@@ -56,10 +56,20 @@ export default function ContactPage() {
   const submit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Wire to backend or Formspree endpoint here
-    await new Promise(r => setTimeout(r, 900));
-    setSubmitted(true);
-    setLoading(false);
+    try {
+      const API = process.env.REACT_APP_BACKEND_URL;
+      const res = await fetch(`${API}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Server error");
+      setSubmitted(true);
+    } catch {
+      alert("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

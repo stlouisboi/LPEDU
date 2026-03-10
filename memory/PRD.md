@@ -67,7 +67,8 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 - [x] Full homepage (9 sections wired, animated)
 - [x] Knowledge Center (5 briefs + print bundle)
 - [x] About page (`/about`)
-- [x] Contact page (`/contact`)
+- [x] Contact page (`/contact`) — MailerLite integrated, live
+- [x] MailerLite contact form integration (`POST /api/contact`)
 
 ### P0 — Next Up
 - [ ] Wire contact form to a real endpoint (Formspree, or backend API)
