@@ -6,6 +6,8 @@ import NewEntrantAuditBrief from "./pages/knowledge-center/NewEntrantAuditBrief"
 import HOSComplianceBrief from "./pages/knowledge-center/HOSComplianceBrief";
 import MaintenanceRecordsBrief from "./pages/knowledge-center/MaintenanceRecordsBrief";
 
+import InsuranceContinuityBrief from "./pages/knowledge-center/InsuranceContinuityBrief";
+
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +17,7 @@ function App() {
         <Route path="/knowledge-center/new-entrant-safety-audit-brief" element={<NewEntrantAuditBrief />} />
         <Route path="/knowledge-center/hos-compliance-brief" element={<HOSComplianceBrief />} />
         <Route path="/knowledge-center/maintenance-records-brief" element={<MaintenanceRecordsBrief />} />
+        <Route path="/knowledge-center/insurance-continuity-brief" element={<InsuranceContinuityBrief />} />
       </Routes>
     </BrowserRouter>
   );

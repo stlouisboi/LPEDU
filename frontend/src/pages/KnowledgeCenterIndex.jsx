@@ -39,13 +39,13 @@ const BRIEFS = [
     status: "coming",
   },
   {
-    slug: null,
+    slug: "/knowledge-center/insurance-continuity-brief",
     phase: "Compliance Systems — Insurance & Authority",
     title: "Insurance Continuity Brief: Staying Active When Rates Move",
     teaser: "New authorities navigating their first renewal cycle or managing post-CSA event premium increases face risks most carriers only discover too late. This brief covers the filing requirements and rate-management controls that keep authority active through the first 24 months.",
     outcome: "Keep authority active and rates manageable through the first renewal cycle.",
-    readTime: "11-minute brief",
-    status: "coming",
+    readTime: "14-minute brief",
+    status: "published",
   },
 ];
 

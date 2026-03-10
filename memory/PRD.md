@@ -61,6 +61,8 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 ## Prioritized Backlog
 
 - `/knowledge-center/maintenance-records-brief` → `pages/knowledge-center/MaintenanceRecordsBrief.jsx`
+- `/knowledge-center/insurance-continuity-brief` → `pages/knowledge-center/InsuranceContinuityBrief.jsx`
+
 
 ### P0 — Next Up
 - [ ] Drug & Alcohol Program Installation Brief (last in series)
