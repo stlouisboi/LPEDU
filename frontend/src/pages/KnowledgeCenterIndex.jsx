@@ -121,6 +121,49 @@ export default function KnowledgeCenterIndex() {
         </div>
       </section>
 
+      {/* ── BUNDLE DOWNLOAD BLOCK ── */}
+      <section data-testid="kc-bundle-download" style={{
+        background: "var(--bg-2)",
+        borderBottom: "1px solid var(--border)",
+        padding: "3rem 1.5rem",
+      }}>
+        <div style={{
+          maxWidth: 860, margin: "0 auto",
+          display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "center",
+        }} className="bundle-grid">
+          <div>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.63rem", letterSpacing: "0.14em",
+              textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.625rem",
+            }}>The Complete Audit Binder Series</p>
+            <h2 style={{
+              fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.2rem",
+              letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem",
+            }}>All 5 compliance checklists in one printable PDF</h2>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-subtle)",
+              lineHeight: 1.65,
+            }}>New Entrant — HOS — Drug & Alcohol — Maintenance — Insurance</p>
+          </div>
+          <a
+            href="/knowledge-center/all-checklists"
+            target="_blank" rel="noopener noreferrer"
+            data-testid="kc-download-all-btn"
+            style={{
+              display: "inline-block", background: "var(--orange)", color: "#fff",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+              letterSpacing: "0.06em", textTransform: "uppercase",
+              padding: "1rem 1.75rem", textDecoration: "none", whiteSpace: "nowrap",
+              flexShrink: 0, transition: "background 0.2s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
+            onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
+          >
+            Download All Checklists
+          </a>
+        </div>
+      </section>
+
       {/* ── BRIEF LIST ── */}
       <section data-testid="kc-brief-list" style={{ padding: "5rem 1.5rem" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
@@ -210,7 +253,7 @@ export default function KnowledgeCenterIndex() {
       <FooterSection />
 
       <style>{`
-        @media (max-width: 640px) { .kc-bottom-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 640px) { .kc-bottom-grid { grid-template-columns: 1fr !important; } .bundle-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </div>
   );
