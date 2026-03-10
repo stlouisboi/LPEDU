@@ -86,7 +86,8 @@ async def submit_contact(form: ContactForm):
             "name": first,
             "last_name": last,
             "phone": form.phone or "",
-            "company": form.mc or "",          # MC/DOT stored in company field
+            "company": form.mc or "",
+            "lead_source": "contact_form",
         },
     }
     # Store extra context as custom fields (MailerLite auto-creates them)
@@ -130,6 +131,7 @@ async def submit_diagnostic(data: DiagnosticSubmit):
             "diagnostic_score": f"{data.score}/28",
             "red_flags": str(data.red_count),
             "yellow_flags": str(data.yellow_count),
+            "lead_source": "diagnostic_assessment",
         },
     }
     headers = {
