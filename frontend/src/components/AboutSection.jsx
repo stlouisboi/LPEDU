@@ -81,8 +81,8 @@ export default function AboutSection() {
                 new carriers before their first audit window opens.
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.85 }}>
-                This is not a course. Admission is limited to carriers willing to operate under the standard.
-                The custodian's role is to verify that the standard is installed — not to sell it.
+                This is not a course. Admission is limited to carriers willing to operate under the Standard.
+                The custodian's role is to verify that the Standard is installed — not to sell it.
               </p>
             </div>
 

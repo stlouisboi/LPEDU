@@ -60,10 +60,16 @@ export default function FourPillarsSection() {
           background: "var(--border)",
         }}>
           {PILLARS.map((p) => (
-            <div key={p.num} data-testid={`pillar-${p.num}`} style={{
-              background: "var(--bg-2)",
-              padding: "2.5rem",
-            }}>
+            <div key={p.num} data-testid={`pillar-${p.num}`}
+              className="pillar-card"
+              style={{
+                background: "var(--bg-2)",
+                padding: "2.5rem",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+              onMouseLeave={e => e.currentTarget.style.background = "var(--bg-2)"}
+            >
               <div style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "0.65rem",

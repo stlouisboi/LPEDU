@@ -57,16 +57,16 @@ export default function Navbar() {
               fontSize: "0.8rem", fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#000",
-              background: "var(--gold)",
+              color: "#fff",
+              background: "var(--orange)",
               padding: "0.5rem 1.25rem",
               textDecoration: "none",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => e.target.style.background = "var(--gold-hover)"}
-            onMouseLeave={e => e.target.style.background = "var(--gold)"}
+            onMouseEnter={e => e.target.style.background = "var(--orange-hover)"}
+            onMouseLeave={e => e.target.style.background = "var(--orange)"}
           >
-            Enter
+            Portal
           </a>
         </nav>
 

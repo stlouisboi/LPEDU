@@ -36,7 +36,7 @@ export default function FooterSection() {
               alt="LaunchPath" style={{ height: 26, marginBottom: "1.25rem", display: "block" }}
             />
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-subtle)", lineHeight: 1.75, maxWidth: 280 }}>
-              A documented operational standard for new motor carrier authorities. Accuracy over hype. Systems over shortcuts.
+              A documented operational Standard for new motor carrier authorities. Accuracy over hype. Systems over shortcuts.
             </p>
           </div>
 

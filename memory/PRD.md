@@ -1,93 +1,80 @@
-# LaunchPath Transportation EDU — TCO Calculator Homepage
+# LaunchPath Transportation EDU — Site Rebuild
 
 ## Original Problem Statement
-LaunchPath Transportation EDU TCO Calculator Homepage Embed Brief.
-Reposition the TCO Calculator from a gated lead magnet to a live decision tool embedded on the homepage.
-Placement: Between the Cost Exposure / Penalty Table section and the Three Paths comparison table.
+Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. The site must reflect the "Onyx Standard" design system — dark, minimalist, premium, "Vanta for new trucking authorities" aesthetic. The homepage is the first deliverable, with inner pages and an Operator Portal to follow.
 
 ## Architecture
 - **Frontend**: React.js (single-page app)
-- **Backend**: FastAPI (not used for this project — pure frontend)
-- **Database**: MongoDB (not used — static content + client-side calculator)
-- **Design System**: Dark navy, gold accents (#c8963e), IBM Plex Mono labels, Barlow Condensed headlines
+- **Backend**: FastAPI (not used — pure frontend currently)
+- **Database**: MongoDB (not used — static content)
+- **Design System**: "Onyx Standard" — Manrope + Inter + JetBrains Mono fonts, LaunchPath Orange (#E8590F) as sole action color, deep dark backgrounds
 
-## Pages / Sections Built
-1. **Status Bar** — FMCSA system status indicators
-2. **Navbar** — LaunchPath branding, desktop/mobile navigation
-3. **Hero Section** — "90-Day Compliance Operating Standard" + Entry Protocol card
-4. **Four Pillars Section** — Insurance Continuity, Cash-Flow Oxygen, Authority Protection, Compliance Backbone
-5. **4-Step Operating Sequence** — Ground 0 → AUTO Diagnostic → Admission → 90-Day System
-6. **Cost Exposure / Penalty Table** (COMPLIANCE DATA) — Required infrastructure costs + Documented violation exposure
-7. **TCO Calculator — RUN YOUR OWN NUMBERS** ← KEY SECTION
-8. **Three Paths Comparison** — Trial-and-error vs. Consultant vs. LaunchPath Standard
-9. **Footer**
+## Design System Rules (Onyx Standard)
+- `--bg: #020408` (primary background)
+- `--bg-2: #0B1120` (section alternate)
+- `--bg-3: #1e293b` (hover states)
+- `--orange: #E8590F` — ONLY action/CTA color
+- `--text: #f0f4f8`, `--text-muted: #c8d4de`, `--text-subtle: #8a99aa`
+- `--gold: #8A96A3` — used only for overline labels and data callouts (NOT gold-colored)
+- NO gold/yellow on CTAs. Orange only.
+- "Standard" is always a proper noun — capitalize everywhere.
 
-## Critical Design Rules Implemented
-- Penalty Table → Calculator → Three Paths (sequence is load-bearing — NOT inverted)
-- No email gate on calculator
-- No CTA between calculator section and Three Paths section
-- Output displays plain dollar figures only (no color-coded meters)
-- Static line: "The LaunchPath 90-Day Standard is priced at $5,000."
-- Mobile: full-width inputs, stacked layout
+## Homepage Sections (5 + Footer)
+1. **Navbar** — Logo, nav links, orange "Portal" CTA button
+2. **Hero** — H1, orientation copy, FMCSA New Entrant Brief data card, "Begin Readiness Test" CTA
+3. **Four Pillars** — 4-card grid with hover states
+4. **Deadly Sins** — 2×2 grid of 4 failure buckets (Records, Insurance, Driver, Financial)
+5. **About / Proof + Founder** — Metric band (4 stats) + Vince Lawrence founder section
+6. **Next Step** — 4-step sequence, "Apply for the 90-Day Standard" CTA
+7. **Footer** — Logo + tagline, 4 link columns, legal line
 
-## Calculator Outputs (5 required by brief)
-1. Estimated Annual Compliance Infrastructure Exposure
-2. Estimated Cost — Single Out-of-Service Violation (fleet-scaled)
-3. Estimated Insurance Premium Increase — 2 Years Post-CSA Event
-4. Total Estimated Exposure — Authority Revocation & Recovery Cycle
-5. LaunchPath 90-Day Standard: $5,000 (static line, gold text)
+## What's Been Implemented (as of 2026-02-XX)
 
-## What's Been Implemented (as of 2026-03-10)
+### Homepage v3 — "The Onyx Standard" (Complete)
+- 5-section homepage per LaunchPath_Emergent_Brief.docx
+- Manrope / Inter / JetBrains Mono type system
+- LaunchPath Orange (#E8590F) CTAs only
+- Vince Lawrence real photo + correct credentials (OSHA, Navy, manufacturing mgmt)
+- 4-metric band: 200+, 94%, 20+, 0
+- Voice: plain English, no hype, no income claims
 
-### Homepage v3 — "The Onyx Standard" (Current)
-Complete redesign per LaunchPath_Emergent_Brief.docx directives:
-- **5 sections only**: Hero → Four Pillars → 16 Deadly Sins → Proof+Founder → Next Step
-- **Design system**: Manrope (headlines) + Inter (body) + JetBrains Mono (data only)
-- **CTA color**: LaunchPath Orange (#E8590F) — procedural, attention-signaling
-- **One CTA above fold**: "Begin Readiness Test" (diagnostic entry, not enrollment)
-- **One CTA at bottom**: "Apply for the 90-Day Standard"
-- **TCO Calculator + Three Paths moved OFF homepage** (reserved for subpages)
-- **Vince Lawrence real photo** + corrected credentials (OSHA, manufacturing mgmt, NOT "trucking industry")
-- **Metric band**: 200+, 94% audit pass, 20+ years, 0 income claims
-- **Voice**: Plain English, no hype, no urgency, no income claims
-
-### Design Changes from v2 → v3
-- Removed: SYSTEM_STATUS_MONITOR status bar
-- Removed: IBM Plex Mono overuse
-- Removed: All-caps screaming
-- Removed: Red everywhere (only on FMCSA penalty data)
-- Added: Manrope 700 headlines, generous breathing room
-- Added: LaunchPath Orange (#E8590F) for CTAs only
-- Added: JetBrains Mono reserved for data/codes only
-- Full LaunchPath homepage replica matching launchpathedu.com design system
-- Native compliance exposure calculator (5 outputs per brief spec)
-- Framing copy: exact text from brief ("The penalty table shows documented ranges...")
-- Italic closing framing: "This is not a projection. It is arithmetic based on documented FMCSA enforcement data."
-- Mobile responsive layout
-- All section data matches existing launchpathedu.com content
-
-## Test Results
-- Testing agent: 97% pass rate
-- Section sequence confirmed: Penalty(Y=2065) → TCO(Y=3350) → ThreePaths(Y=3999)
-- Calculator: 1-truck $46,850 total exposure vs $5,000 LaunchPath (ROI self-evident)
-- No CTA between calculator and Three Paths confirmed
+### Refactor Polish (completed this session)
+- Navbar CTA: was `var(--gold)` gray → now `var(--orange)` correctly
+- Navbar CTA label: "Enter" → "Portal"
+- "Standard" capitalized as proper noun throughout all components
+- FourPillars cards: hover state added (`--bg-2` → `--bg-3`)
+- Footer tagline: "standard" → "Standard"
 
 ## Prioritized Backlog
-### P0 (Complete)
-- [x] Full homepage with penalty table
-- [x] TCO Calculator with 5 required outputs
-- [x] Three Paths comparison table
-- [x] Correct section sequence
-- [x] No email gate
-- [x] Mobile responsive
 
-### P1 (Future)
-- [ ] Swap native calculator for iframe of tco.base44.app once Pre-Embed Fix is deployed
-- [ ] Integrate with launchpathedu.com codebase directly
-- [ ] Add scroll-triggered animations for section reveals
-- [ ] Add anchor links in navbar to jump to specific sections
+### P0 — Next Up
+- [ ] Article/Brief template for `/knowledge-center/*` — fix "patchy" fonts on blog pages
 
-### P2 (Backlog)
-- [ ] Add "download/print" PDF of results
-- [ ] Track calculator completions with analytics
-- [ ] A/B test with different calculator input layouts
+### P1 — Static Pages
+- [ ] `/about` page
+- [ ] `/contact` page (with form)
+- [ ] `/resources` page
+- [ ] `/knowledge-center` index page
+
+### P2 — Tool Pages
+- [ ] `/auto-diagnostic`
+- [ ] `/ground-0-briefing`
+- [ ] `/auto-method`
+
+### P3 — Future
+- [ ] Operator Portal (Firebase Auth or JWT — decision pending)
+- [ ] Members-only content gating on `/resources`
+- [ ] Scroll-triggered entrance animations
+- [ ] Anchor nav links to page sections
+
+## File Reference
+- `/app/frontend/src/App.js` — section assembly
+- `/app/frontend/src/index.css` — CSS variables + global styles
+- `/app/frontend/src/components/Navbar.jsx`
+- `/app/frontend/src/components/HeroSection.jsx`
+- `/app/frontend/src/components/FourPillarsSection.jsx`
+- `/app/frontend/src/components/DeadlySinsSection.jsx`
+- `/app/frontend/src/components/AboutSection.jsx`
+- `/app/frontend/src/components/NextStepSection.jsx`
+- `/app/frontend/src/components/FooterSection.jsx`
+- `/app/design_guidelines.json` — foundational Onyx Standard spec
