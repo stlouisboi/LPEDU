@@ -6,7 +6,7 @@ const BRIEFS = [
     slug: "/knowledge-center/new-entrant-safety-audit-brief",
     phase: "Ground 0 — New Entrant Program (18-month period)",
     title: "New Entrant Safety Audit: Ground 0 Brief",
-    whoFor: "New authorities in their first 12 months, preparing for FMCSA New Entrant Safety Audit.",
+    teaser: "Most new carriers think the audit is a paperwork check — FMCSA is really asking whether your safety systems exist at all. This brief shows you what investigators actually request, how they read your records, and the minimum operating rhythm you need to pass without scrambling.",
     outcome: "Walk away with a one-binder audit prep checklist and a map of every automatic-failure condition.",
     readTime: "12-minute brief",
     status: "published",
@@ -15,35 +15,35 @@ const BRIEFS = [
     slug: "/knowledge-center/hos-compliance-brief",
     phase: "Ground 0 — Hours-of-Service Compliance",
     title: "HOS Compliance Brief: What ELD Records Actually Prove",
-    whoFor: "Carriers operating any CMV requiring HOS tracking — drivers, owner-operators, and small fleets.",
+    teaser: "Your ELD data is not just hours and locations — it is evidence of how you dispatch, rest, and correct violations. This brief walks through how FMCSA reads your logs, which patterns trigger risk, and the weekly HOS habits that make your logs defensible even when they are not perfect.",
     outcome: "Build a retrievable HOS record system that holds up to audit review.",
     readTime: "12-minute brief",
+    status: "published",
+  },
+  {
+    slug: "/knowledge-center/maintenance-records-brief",
+    phase: "Compliance Systems — Vehicle & Maintenance",
+    title: "Maintenance Records Brief: What Your Unit Files Actually Have to Prove",
+    teaser: "Random invoices are not a maintenance system. This brief explains how regulators follow a single truck's history through DVIRs, annual inspections, roadside reports, and repairs — and gives you a unit-file system and a 90-day checklist that tells a believable story to every auditor who asks.",
+    outcome: "Build unit files that survive roadside, audits, and post-crash investigations.",
+    readTime: "14-minute brief",
     status: "published",
   },
   {
     slug: null,
     phase: "Ground 0 — Drug & Alcohol Program",
     title: "Drug & Alcohol Program Installation Brief",
-    whoFor: "Any motor carrier required to maintain a D&A testing program under 49 CFR Part 382.",
-    outcome: "Install a compliant testing program — consortium, random, and Clearinghouse — before the first driver dispatch.",
+    teaser: "A D&A program is more than a consortium contract and a policy in a binder. This brief shows how auditors and insurers connect your roster, tests, and Clearinghouse activity — and gives you a 90-day plan to close the gap between 'we test' and 'we can prove we kept unsafe drivers out of service.'",
+    outcome: "Install a compliant testing program before the first driver dispatch.",
     readTime: "9-minute brief",
-    status: "coming",
-  },
-  {
-    slug: null,
-    phase: "Compliance Systems — Vehicle & Maintenance",
-    title: "Maintenance Records Brief: DVIRs, Periodic Inspections, and OOS Protocol",
-    whoFor: "Carriers managing their own maintenance records or working with third-party shops.",
-    outcome: "Create a maintenance file for each unit that passes an audit review on the first request.",
-    readTime: "8-minute brief",
     status: "coming",
   },
   {
     slug: null,
     phase: "Compliance Systems — Insurance & Authority",
     title: "Insurance Continuity Brief: Staying Active When Rates Move",
-    whoFor: "New authorities navigating their first renewal cycle or managing post-CSA event premium increases.",
-    outcome: "Understand the filing requirements and rate-management controls that keep authority active through the first 24 months.",
+    teaser: "New authorities navigating their first renewal cycle or managing post-CSA event premium increases face risks most carriers only discover too late. This brief covers the filing requirements and rate-management controls that keep authority active through the first 24 months.",
+    outcome: "Keep authority active and rates manageable through the first renewal cycle.",
     readTime: "11-minute brief",
     status: "coming",
   },
@@ -258,24 +258,14 @@ function BriefCard({ brief, index }) {
           marginBottom: "0.625rem",
         }}>{brief.title}</h3>
 
-        {/* Who it's for */}
+        {/* Teaser */}
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.85rem",
-          color: "var(--text-subtle)",
-          lineHeight: 1.65,
-          marginBottom: "0.5rem",
-        }}>{brief.whoFor}</p>
-
-        {/* Outcome line */}
-        <p style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "0.85rem",
-          fontStyle: "italic",
           color: "var(--text-muted)",
-          lineHeight: 1.65,
-          marginBottom: "1rem",
-        }}>"{brief.outcome}"</p>
+          lineHeight: 1.7,
+          marginBottom: "0.875rem",
+        }}>{brief.teaser}</p>
 
         {/* Read time + status */}
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>

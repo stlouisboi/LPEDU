@@ -60,9 +60,12 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 
 ## Prioritized Backlog
 
+- `/knowledge-center/maintenance-records-brief` → `pages/knowledge-center/MaintenanceRecordsBrief.jsx`
+
 ### P0 — Next Up
-- [ ] Additional FMCSA briefs using the same article template (HOS, D&A, Insurance, Maintenance)
-- [ ] Static pages: About, Contact, Resources
+- [ ] Drug & Alcohol Program Installation Brief (last in series)
+- [ ] Readability/contrast refinement (Option C — refined dark with higher contrast) across all pages
+- [ ] Static pages: About, Contact (with form), Resources
 
 ### P1 — Static Pages
 - [ ] `/about` page
