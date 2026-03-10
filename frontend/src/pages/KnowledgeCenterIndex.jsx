@@ -161,6 +161,15 @@ export default function KnowledgeCenterIndex() {
           >
             Download All Checklists
           </a>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.75rem",
+            color: "var(--text-subtle)",
+            marginTop: "0.75rem",
+            textAlign: "right",
+          }}>
+            Found this useful? Forward it to your compliance contact.
+          </p>
         </div>
       </section>
 
