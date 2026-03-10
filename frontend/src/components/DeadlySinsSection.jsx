@@ -24,7 +24,7 @@ const BUCKETS = [
     id: "driver",
     label: "Driver Qualification Failures",
     sins: [
-      "Operating under your authority without a verified, current CDL on file.",
+      "Operating under authority without a verified, current CDL on file.",
       "No annual motor vehicle record (MVR) pull in the DQ file.",
       "No road test documentation before first dispatch.",
       "Medical certificate expires. Driver continues operating.",
@@ -48,7 +48,7 @@ export default function DeadlySinsSection() {
       padding: "7rem 1.5rem",
       borderBottom: "1px solid var(--border)",
     }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
         <div style={{ maxWidth: 680, marginBottom: "5rem" }}>
           <p className="overline" style={{ marginBottom: "1.25rem" }}>Failure Documentation</p>
@@ -73,21 +73,22 @@ export default function DeadlySinsSection() {
           </p>
         </div>
 
+        {/* 2×2 Grid */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "2rem",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "3rem 4rem",
           marginBottom: "3.5rem",
-        }}>
+        }} className="sins-grid">
           {BUCKETS.map((bucket) => (
             <div key={bucket.id} data-testid={`sin-bucket-${bucket.id}`}>
               <div style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.7rem",
+                fontSize: "0.68rem",
                 fontWeight: 700,
-                letterSpacing: "0.14em",
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "var(--gold)",
+                color: "var(--text-subtle)",
                 paddingBottom: "1rem",
                 borderBottom: "1px solid var(--border)",
                 marginBottom: "1.5rem",
@@ -99,16 +100,17 @@ export default function DeadlySinsSection() {
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{
                       fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.6rem",
+                      fontSize: "0.7rem",
                       color: "var(--text-subtle)",
-                      marginTop: "0.3rem",
+                      marginTop: "0.25rem",
                       flexShrink: 0,
+                      lineHeight: 1.7,
                     }}>—</span>
                     <p style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.875rem",
+                      fontSize: "0.9rem",
                       color: "var(--text-muted)",
-                      lineHeight: 1.7,
+                      lineHeight: 1.75,
                       margin: 0,
                     }}>{sin}</p>
                   </div>
@@ -118,10 +120,7 @@ export default function DeadlySinsSection() {
           ))}
         </div>
 
-        <div style={{
-          borderTop: "1px solid var(--border)",
-          paddingTop: "2rem",
-        }}>
+        <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.95rem",
@@ -133,6 +132,10 @@ export default function DeadlySinsSection() {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) { .sins-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; } }
+      `}</style>
     </section>
   );
 }

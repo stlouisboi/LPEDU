@@ -1,10 +1,32 @@
-import { ArrowRight } from "@phosphor-icons/react";
-
 const SEQUENCE = [
-  { step: "01", name: "Readiness Test", desc: "12-minute diagnostic. Establishes where your operation stands before the Standard is applied.", badge: "Free" },
-  { step: "02", name: "AUTO Diagnostic", desc: "Four-pillar readiness assessment and cost-of-authority calculation.", badge: "Free" },
-  { step: "03", name: "Ground 0 Briefing", desc: "Six structured lessons. The operational framework before systems installation begins.", badge: "Free" },
-  { step: "04", name: "90-Day Cohort", desc: "Structured implementation. The Standard installed, verified, and documented.", badge: "$5,000" },
+  {
+    step: "01",
+    name: "Readiness Test",
+    desc: "12-minute diagnostic. Establishes where the operation stands before the Standard is applied.",
+    badge: "Free",
+    badgeOrange: false,
+  },
+  {
+    step: "02",
+    name: "AUTO Diagnostic",
+    desc: "Four-pillar readiness assessment and cost-of-authority calculation.",
+    badge: "Free",
+    badgeOrange: false,
+  },
+  {
+    step: "03",
+    name: "Ground 0 Briefing",
+    desc: "Six structured lessons. The operational framework before systems installation begins.",
+    badge: "Free",
+    badgeOrange: false,
+  },
+  {
+    step: "04",
+    name: "90-Day Cohort",
+    desc: "Structured implementation. The Standard installed, verified, and documented by the Station Custodian.",
+    badge: "$5,000",
+    badgeOrange: true,
+  },
 ];
 
 export default function NextStepSection() {
@@ -35,7 +57,7 @@ export default function NextStepSection() {
         }}>
           Admission is not purchased at the front door.
           It is earned through the sequence.
-          Each step is designed to establish whether the carrier is prepared to operate under the Standard.
+          Each step establishes whether the carrier is prepared to operate under the Standard.
         </p>
 
         {/* Sequence */}
@@ -43,17 +65,20 @@ export default function NextStepSection() {
           {SEQUENCE.map((s, i) => (
             <div key={s.step} data-testid={`sequence-step-${s.step}`} style={{
               display: "grid",
-              gridTemplateColumns: "3.5rem 1fr auto",
-              gap: "1.5rem",
+              gridTemplateColumns: "2.5rem 1fr auto",
+              gap: "1.75rem",
               alignItems: "start",
               padding: "1.75rem 0",
               borderTop: "1px solid var(--border)",
+              borderLeft: s.badgeOrange ? "2px solid var(--orange)" : "2px solid transparent",
+              paddingLeft: s.badgeOrange ? "1.25rem" : "0",
             }}>
               <div style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "0.65rem",
                 color: "var(--text-subtle)",
-                paddingTop: "0.2rem",
+                paddingTop: "0.3rem",
+                letterSpacing: "0.05em",
               }}>{s.step}</div>
 
               <div>
@@ -61,43 +86,47 @@ export default function NextStepSection() {
                   fontFamily: "'Manrope', sans-serif",
                   fontWeight: 700,
                   fontSize: "1.05rem",
-                  color: "var(--text)",
+                  color: s.badgeOrange ? "var(--text)" : "var(--text)",
                   marginBottom: "0.4rem",
                 }}>{s.name}</h3>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.875rem",
+                  fontSize: "0.9rem",
                   color: "var(--text-muted)",
-                  lineHeight: 1.65,
+                  lineHeight: 1.7,
                 }}>{s.desc}</p>
               </div>
 
               <span style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.75rem",
-                color: s.badge === "$5,000" ? "var(--gold)" : "var(--text-subtle)",
+                fontSize: "0.8rem",
+                fontWeight: 500,
+                color: s.badgeOrange ? "var(--orange)" : "var(--text-subtle)",
                 whiteSpace: "nowrap",
-                paddingTop: "0.2rem",
+                paddingTop: "0.3rem",
+                letterSpacing: "0.02em",
               }}>{s.badge}</span>
             </div>
           ))}
           <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
 
-        {/* Urgency line */}
+        {/* Urgency — factual, no manipulation */}
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.9rem",
           color: "var(--text-subtle)",
-          lineHeight: 1.7,
-          marginBottom: "2.5rem",
+          lineHeight: 1.75,
+          marginBottom: "2.75rem",
+          maxWidth: 560,
         }}>
           The FMCSA New Entrant audit window opens between 12 and 24 months of authority.
-          Cohort placement is limited to what can be verified and installed within the Standard's
-          implementation timeline. If the authority is already active, the sequence begins now.
+          Cohort placement is limited to what can be verified and installed within the
+          Standard's implementation timeline.
+          If the authority is already active, the sequence begins now.
         </p>
 
-        {/* Single CTA — the one door */}
+        {/* One CTA — the only door */}
         <a
           href="https://www.launchpathedu.com/admission"
           target="_blank" rel="noopener noreferrer"
@@ -120,7 +149,7 @@ export default function NextStepSection() {
           onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
           onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
         >
-          Apply for the 90-Day Standard <ArrowRight size={16} weight="bold" />
+          Apply for the 90-Day Standard
         </a>
 
       </div>
