@@ -4,7 +4,7 @@ import { List, X } from "@phosphor-icons/react";
 
 const NAV_LINKS = [
   { label: "Method", href: "https://www.launchpathedu.com/auto-method", external: true },
-  { label: "Diagnostic", href: "https://www.launchpathedu.com/auto-diagnostic", external: true },
+  { label: "Diagnostic", href: "/auto-diagnostic", external: false },
   { label: "Ground 0", href: "https://www.launchpathedu.com/ground-0-briefing", external: true },
   { label: "Knowledge", href: "/knowledge-center", external: false },
   { label: "About", href: "/about", external: false },

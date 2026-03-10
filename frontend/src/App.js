@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ReadinessPage from "./pages/ReadinessPage";
+import AutoDiagnosticPage from "./pages/AutoDiagnosticPage";
 import KnowledgeCenterIndex from "./pages/KnowledgeCenterIndex";
 import NewEntrantAuditBrief from "./pages/knowledge-center/NewEntrantAuditBrief";
 import HOSComplianceBrief from "./pages/knowledge-center/HOSComplianceBrief";
@@ -18,6 +20,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/readiness" element={<ReadinessPage />} />
+        <Route path="/auto-diagnostic" element={<AutoDiagnosticPage />} />
         <Route path="/knowledge-center" element={<KnowledgeCenterIndex />} />
         <Route path="/knowledge-center/all-checklists" element={<AllChecklists />} />
         <Route path="/knowledge-center/new-entrant-safety-audit-brief" element={<NewEntrantAuditBrief />} />

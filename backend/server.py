@@ -112,6 +112,39 @@ async def submit_contact(form: ContactForm):
 
     return {"ok": True}
 
+
+class DiagnosticSubmit(BaseModel):
+    email: EmailStr
+    score: int
+    result: str
+    red_count: int
+    yellow_count: int
+
+@api_router.post("/diagnostic")
+async def submit_diagnostic(data: DiagnosticSubmit):
+    payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "diagnostic_result": data.result,
+            "diagnostic_score": f"{data.score}/28",
+            "red_flags": str(data.red_count),
+            "yellow_flags": str(data.yellow_count),
+        },
+    }
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+    if resp.status_code not in (200, 201):
+        logger.error(f"MailerLite diagnostic error: {resp.text}")
+        raise HTTPException(status_code=502, detail="Could not log result.")
+    return {"ok": True, "result": data.result}
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
