@@ -63,24 +63,30 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 
 ## Prioritized Backlog
 
-### P0 — Next Up
-- [ ] Build `/about` page (founder story, firm positioning)
-- [ ] Build `/contact` page with form
-- [ ] Add actual video URL to "Watch" CTA in About section (user to provide)
+### P0 — Done
+- [x] Full homepage (9 sections wired, animated)
+- [x] Knowledge Center (5 briefs + print bundle)
+- [x] About page (`/about`)
+- [x] Contact page (`/contact`)
 
-### P1 — Static Pages
-- [ ] `/resources` page
-- [ ] Connect navbar links to actual pages (Method, Diagnostic, Ground 0)
+### P0 — Next Up
+- [ ] Wire contact form to a real endpoint (Formspree, or backend API)
+- [ ] Add actual video URL to "Watch" CTA in About section (YouTube channel is set up, no videos yet)
+
+### P1 — Connect remaining navbar links
+- [ ] Method (`/auto-method`)
+- [ ] Diagnostic (`/auto-diagnostic`)
+- [ ] Ground 0 (`/ground-0-briefing`)
 
 ### P2 — Tool Pages
-- [ ] `/auto-diagnostic` — 4-pillar readiness assessment tool
-- [ ] `/ground-0-briefing` — structured 6-lesson onboarding
-- [ ] `/auto-method` — AUTO method explainer
+- [ ] `/auto-diagnostic` — interactive 4-pillar readiness assessment tool
+- [ ] `/ground-0-briefing` — structured 6-lesson onboarding flow
+- [ ] `/auto-method` — AUTO method explainer page
 
 ### P3 — Future
 - [ ] Operator Portal (Firebase Auth or JWT — decision pending)
 - [ ] Members-only content gating on `/resources`
-- [ ] Anchor nav links to page sections
+- [ ] `/resources` page
 - [ ] Embed actual founder video in About section
 
 ## File Reference

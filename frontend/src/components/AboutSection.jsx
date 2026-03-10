@@ -120,7 +120,7 @@ export default function AboutSection() {
                   </p>
                 </div>
                 <a
-                  href="https://www.launchpathedu.com/overview"
+                  href="https://www.youtube.com/@LaunchPath-s1p"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="watch-overview-cta"

@@ -1,15 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 import KnowledgeCenterIndex from "./pages/KnowledgeCenterIndex";
 import NewEntrantAuditBrief from "./pages/knowledge-center/NewEntrantAuditBrief";
 import HOSComplianceBrief from "./pages/knowledge-center/HOSComplianceBrief";
 import MaintenanceRecordsBrief from "./pages/knowledge-center/MaintenanceRecordsBrief";
-
 import InsuranceContinuityBrief from "./pages/knowledge-center/InsuranceContinuityBrief";
-
 import DrugAlcoholBrief from "./pages/knowledge-center/DrugAlcoholBrief";
-
 import AllChecklists from "./pages/knowledge-center/AllChecklists";
 
 function App() {
@@ -17,6 +16,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/knowledge-center" element={<KnowledgeCenterIndex />} />
         <Route path="/knowledge-center/all-checklists" element={<AllChecklists />} />
         <Route path="/knowledge-center/new-entrant-safety-audit-brief" element={<NewEntrantAuditBrief />} />
