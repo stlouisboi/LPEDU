@@ -67,8 +67,9 @@ export default function DeadlySinsSection() {
             color: "var(--text-muted)",
             lineHeight: 1.8,
           }}>
-            These are not warnings. They are documented patterns. Most new carriers encounter
-            at least one of these in the first 90 days. Several will recognize themselves in more than one.
+            Authority failure is rarely caused by a single mistake.
+            It is usually the result of missing systems.
+            Most carriers will recognize at least one pattern below before the first 90 days close.
           </p>
         </div>
 
@@ -127,7 +128,7 @@ export default function DeadlySinsSection() {
             color: "var(--text-subtle)",
             lineHeight: 1.7,
           }}>
-            The 90-Day Standard is built to remove these from your operation — before enforcement finds them first.
+            The 90-Day Standard is built to remove these from the operation before enforcement identifies them.
           </p>
         </div>
 

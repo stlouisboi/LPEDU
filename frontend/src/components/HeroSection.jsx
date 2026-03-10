@@ -21,7 +21,7 @@ export default function HeroSection() {
           marginBottom: "2rem",
           maxWidth: 780,
         }}>
-          The 90-Day Compliance Operating Standard for new authorities.
+          The 90-Day Compliance Operating Standard for new motor carrier authorities.
         </h1>
 
         <p style={{
@@ -32,8 +32,9 @@ export default function HeroSection() {
           maxWidth: 620,
           marginBottom: "1.25rem",
         }}>
-          Built for new carriers in their first 12 months of authority. Not a course. Not a coaching program.
-          A documented operating standard that installs the systems required to survive what comes next.
+          LaunchPath is not a course. It installs the compliance infrastructure,
+          financial controls, and governance systems required to survive the
+          FMCSA New Entrant period.
         </p>
 
         <p style={{
@@ -44,8 +45,8 @@ export default function HeroSection() {
           maxWidth: 580,
           marginBottom: "3rem",
         }}>
-          The New Entrant period has a defined audit window, documented failure patterns, and predictable
-          consequences. The carriers who survive it are not more talented. They are more prepared.
+          New authorities do not fail because they lack ambition.<br />
+          They fail because operational systems were never installed.
         </p>
 
         <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>

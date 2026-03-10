@@ -33,8 +33,9 @@ export default function NextStepSection() {
           marginBottom: "4rem",
           maxWidth: 580,
         }}>
-          Admission is earned through the sequence — not purchased at the front door.
-          Each step is designed to surface whether the carrier is ready to operate under the standard.
+          Admission is not purchased at the front door.
+          It is earned through the sequence.
+          Each step is designed to establish whether the carrier is prepared to operate under the Standard.
         </p>
 
         {/* Sequence */}
@@ -91,9 +92,9 @@ export default function NextStepSection() {
           lineHeight: 1.7,
           marginBottom: "2.5rem",
         }}>
-          The FMCSA audit window for new authorities opens at 12 months and closes at 24.
-          Cohort seats are limited by what can be verified within the standard's implementation timeline.
-          If your authority is already active, the sequence starts now.
+          The FMCSA New Entrant audit window opens between 12 and 24 months of authority.
+          Cohort placement is limited to what can be verified and installed within the Standard's
+          implementation timeline. If the authority is already active, the sequence begins now.
         </p>
 
         {/* Single CTA — the one door */}
