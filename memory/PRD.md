@@ -64,8 +64,11 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 - `/knowledge-center/insurance-continuity-brief` → `pages/knowledge-center/InsuranceContinuityBrief.jsx`
 
 
+- `/knowledge-center/drug-alcohol-program-brief` → `pages/knowledge-center/DrugAlcoholBrief.jsx`
+
 ### P0 — Next Up
-- [ ] Drug & Alcohol Program Installation Brief (last in series)
+- [ ] Readability/contrast refinement (Option C — refined dark, higher contrast) across all pages
+- [ ] Static pages: About, Contact (with form), Resources
 - [ ] Readability/contrast refinement (Option C — refined dark with higher contrast) across all pages
 - [ ] Static pages: About, Contact (with form), Resources
 

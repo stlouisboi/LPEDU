@@ -30,13 +30,13 @@ const BRIEFS = [
     status: "published",
   },
   {
-    slug: null,
+    slug: "/knowledge-center/drug-alcohol-program-brief",
     phase: "Ground 0 — Drug & Alcohol Program",
     title: "Drug & Alcohol Program Installation Brief",
     teaser: "A D&A program is more than a consortium contract and a policy in a binder. This brief shows how auditors and insurers connect your roster, tests, and Clearinghouse activity — and gives you a 90-day plan to close the gap between 'we test' and 'we can prove we kept unsafe drivers out of service.'",
     outcome: "Install a compliant testing program before the first driver dispatch.",
     readTime: "9-minute brief",
-    status: "coming",
+    status: "published",
   },
   {
     slug: "/knowledge-center/insurance-continuity-brief",

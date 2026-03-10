@@ -8,6 +8,8 @@ import MaintenanceRecordsBrief from "./pages/knowledge-center/MaintenanceRecords
 
 import InsuranceContinuityBrief from "./pages/knowledge-center/InsuranceContinuityBrief";
 
+import DrugAlcoholBrief from "./pages/knowledge-center/DrugAlcoholBrief";
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +20,7 @@ function App() {
         <Route path="/knowledge-center/hos-compliance-brief" element={<HOSComplianceBrief />} />
         <Route path="/knowledge-center/maintenance-records-brief" element={<MaintenanceRecordsBrief />} />
         <Route path="/knowledge-center/insurance-continuity-brief" element={<InsuranceContinuityBrief />} />
+        <Route path="/knowledge-center/drug-alcohol-program-brief" element={<DrugAlcoholBrief />} />
       </Routes>
     </BrowserRouter>
   );
