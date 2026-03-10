@@ -47,6 +47,7 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 
 ## Routing
 - `/` → `pages/HomePage.jsx`
+- `/knowledge-center` → `pages/KnowledgeCenterIndex.jsx`
 - `/knowledge-center/new-entrant-safety-audit-brief` → `pages/knowledge-center/NewEntrantAuditBrief.jsx`
 
 ## Article Template Structure (Onyx Standard)
@@ -60,8 +61,8 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 ## Prioritized Backlog
 
 ### P0 — Next Up
-- [ ] Knowledge Center index page (`/knowledge-center`) — article card grid using this brief as the template
-- [ ] Additional FMCSA briefs using the same skeleton (HOS, D&A, Insurance, Maintenance)
+- [ ] Additional FMCSA briefs using the same article template (HOS, D&A, Insurance, Maintenance)
+- [ ] Static pages: About, Contact, Resources
 
 ### P1 — Static Pages
 - [ ] `/about` page

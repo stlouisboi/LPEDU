@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 
@@ -266,7 +267,7 @@ export default function NewEntrantAuditBrief() {
         borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <a href="/knowledge-center" style={{
+          <Link to="/knowledge-center" style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.75rem",
             color: "var(--text-subtle)",
@@ -278,7 +279,7 @@ export default function NewEntrantAuditBrief() {
             marginBottom: "2.5rem",
           }}>
             ← Knowledge Center
-          </a>
+          </Link>
 
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
