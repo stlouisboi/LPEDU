@@ -5,18 +5,27 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 
 ## Architecture
 - **Frontend**: React.js (SPA)
-- **Backend**: FastAPI (not used — pure frontend currently)
-- **Database**: MongoDB (not used — static content)
-- **Design System**: "Refined Dark" (evolved from "Onyx Standard") — higher contrast, brighter text, defined card borders
+- **Backend**: FastAPI (secure proxy to MailerLite)
+- **Database**: MongoDB (not used — static content + MailerLite for leads)
+- **Design System**: "Onyx/Paper" alternating theme (evolved from "Refined Dark")
 
-## Design System Rules (Refined Dark)
-- `--bg: #020408` (primary background)
-- `--bg-2: #0B1120` (section alternate)
-- `--bg-3: #1e293b` (hover states)
-- `--orange: #E8590F` — ONLY action/CTA color (NO gold on CTAs)
-- `--text: #f4f7fb`, `--text-muted: #dce6f0`, `--text-subtle: #a0b0bf`
-- `--border: rgba(255,255,255,0.10)` — higher contrast than original
-- `--gold: #8A96A3` — used ONLY for overline labels and data callouts
+## Design System Rules (Onyx/Paper)
+### Dark Sections (--bg-onyx: #1B2A4A)
+- Background: `#1B2A4A` (deep navy)
+- Text: `#f4f7fb` (var --text), muted: `#dce6f0` (var --text-muted)
+- Borders: `#2A3A5A` (var --divider-dark)
+- Gold label: `#C9A84C` (var --gold-brand)
+
+### Light Sections (--bg-paper: #F5F5F5)
+- Background: `#F5F5F5` (near white)
+- Heading text: `#1B2A4A` (var --text-paper-heading)
+- Body text: `#1A1A1A` (var --text-paper)
+- Muted text: `#666666` (var --text-paper-muted)
+- Borders: `#DDDDDD` (var --divider-light)
+
+### Accent Colors (unchanged)
+- `--orange: #E8590F` — ONLY action/CTA color
+- `--red: #ef4444` — penalty/violation amounts
 - "Standard" is always a proper noun — capitalize everywhere.
 
 ## Routing
@@ -28,81 +37,78 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 - `/knowledge-center/maintenance-records-brief` → `pages/knowledge-center/MaintenanceRecordsBrief.jsx`
 - `/knowledge-center/insurance-continuity-brief` → `pages/knowledge-center/InsuranceContinuityBrief.jsx`
 - `/knowledge-center/drug-alcohol-program-brief` → `pages/knowledge-center/DrugAlcoholBrief.jsx`
+- `/about` → `pages/AboutPage.jsx`
+- `/contact` → `pages/ContactPage.jsx`
+- `/readiness` → `pages/ReadinessPage.jsx` (multi-step diagnostic)
+- `/auto-diagnostic` → `pages/AutoDiagnosticPage.jsx`
 
-## Homepage Section Order (Complete High-Ticket Sales Architecture)
+## Homepage Section Order (Final — post Design Consolidation Brief)
 1. **Navbar** — Logo, nav links, orange "Portal" CTA
-2. **Hero** — H1, Knowledge Center tie-in sentence, CTA with sublabel, FMCSA brief card
-3. **Four Pillars** — New tighter copy with brief deep-links, "View all 5 briefs" CTA
-4. **System Diagram** — "Authority Protection System" animated SVG with 4 nodes
-5. **Deadly Sins** — 2×2 failure buckets with scroll-triggered reveal
-6. **Penalty Table** — Infrastructure + violation exposure tables
-7. **TCO Calculator** — Interactive exposure calculator with orange CTA
-8. **Three Paths** — LaunchPath vs alternatives (orange highlight on LaunchPath row)
-9. **About / Proof + Founder** — Animated metric counters + Vince photo + video CTA hook
-10. **Next Step** — 4-step enrollment sequence + "Apply for the 90-Day Standard" CTA
+2. **Hero** — DARK. H1, FMCSA brief card, CTA
+3. **System Diagram** — DARK. "Authority Protection System" animated SVG
+4. **Deadly Sins** — LIGHT. 2×2 failure buckets, scroll-triggered reveal
+5. **Penalty Table** — DARK. Infrastructure + violation exposure tables
+6. **TCO Calculator** — LIGHT. Interactive exposure calculator
+7. **Three Paths** — DARK. LaunchPath vs alternatives
+8. **About / Metric Band** — DARK. 49 | 96.4% | 10+ stats + philosophical line
+9. **About / Founder** — LIGHT. Vince Lawrence section + video CTA hook
+10. **Next Step** — DARK. 4-step enrollment sequence + "Apply" CTA
 11. **Footer**
 
-## Animation System
-- `FadeIn.jsx` — IntersectionObserver scroll-triggered fade+translateY reveal (all sections)
-- `AnimatedCounter.jsx` — Count-up animation for metric band stats (200+, 94%, 20+, 0)
-- **Hero background**: Animated dot grid + scan beam (orange dashed horizontal line scanning down)
-- **Hero elements**: Staggered entrance animations (overline → H1 → paragraphs → CTA)
-- **FMCSA brief card rows**: Staggered `fadeInRow` keyframes
-- **TCO output**: `tcoCountIn` stagger on each row reveal
-- **System Diagram**: Animated SVG dashes (already built-in)
+*(FourPillarsSection removed per Design Consolidation Brief)*
 
-## Video Hook
-- "Watch: The 3-Minute System Overview" CTA block in the About section
-- Orange play button + subtitle + "WATCH →" link
-- URL currently points to launchpathedu.com/overview — swap when video is ready
+## Key Stats (AboutSection — Static, no animation)
+- **49** — Authorities audited in the LaunchPath development framework
+- **96.4%** — Carriers who avoid first-year authority loss with documented systems
+- **10+** — Years building operational compliance systems before LaunchPath was founded
+- Philosophical line: *"This is not a compliance lecture. This is loss prevention."*
 
-## Knowledge Center (Complete)
-- Index page with all 5 brief cards + "Download All Checklists" hero
-- 5 article pages with full brief content
-- Print-optimized all-checklists bundle page
+## Backend API Endpoints
+- `POST /api/contact` → Submits contact form to MailerLite (field: `lead_source: "contact_form"`)
+- `POST /api/diagnostic` → Submits diagnostic results to MailerLite (field: `lead_source: "diagnostic_tool"`)
+
+## MailerLite Integration
+- Live and functional. API key stored in `/app/backend/.env`
+- Custom fields: `first_name`, `lead_source`, `readiness_score`, `readiness_level`, `diagnostic_pillar_*`, etc.
+- Segments configured for contact vs. diagnostic leads
 
 ## Prioritized Backlog
 
-### P0 — Done
-- [x] Full homepage (9 sections wired, animated)
+### P0 — Completed
+- [x] Full homepage (8 sections wired + Onyx/Paper alternating theme)
 - [x] Knowledge Center (5 briefs + print bundle)
 - [x] About page (`/about`)
 - [x] Contact page (`/contact`) — MailerLite integrated, live
 - [x] MailerLite contact form integration (`POST /api/contact`)
+- [x] MailerLite diagnostic integration (`POST /api/diagnostic`)
+- [x] Auto-Diagnostic Tool (`/readiness` and `/auto-diagnostic`)
+- [x] Design Consolidation Brief — new stats, removed FourPillars, Onyx/Paper backgrounds
 
-### P0 — Next Up
-- [ ] Wire contact form to a real endpoint (Formspree, or backend API)
-- [ ] Add actual video URL to "Watch" CTA in About section (YouTube channel is set up, no videos yet)
-
-### P1 — Connect remaining navbar links
-- [ ] Method (`/auto-method`)
-- [ ] Diagnostic (`/auto-diagnostic`)
-- [ ] Ground 0 (`/ground-0-briefing`)
+### P1 — Next Up
+- [ ] Build `/ground-0-briefing` page — 6-lesson structured onboarding flow
+- [ ] Add actual video URL to "Watch" CTA when YouTube video is ready
 
 ### P2 — Tool Pages
-- [ ] `/auto-diagnostic` — interactive 4-pillar readiness assessment tool
-- [ ] `/ground-0-briefing` — structured 6-lesson onboarding flow
 - [ ] `/auto-method` — AUTO method explainer page
 
 ### P3 — Future
-- [ ] Operator Portal (Firebase Auth or JWT — decision pending)
-- [ ] Members-only content gating on `/resources`
+- [ ] Operator Portal (JWT or Firebase Auth — decision pending)
+- [ ] Members-only content gating
 - [ ] `/resources` page
-- [ ] Embed actual founder video in About section
 
 ## File Reference
 - `/app/frontend/src/App.js` — Router configuration
-- `/app/frontend/src/index.css` — CSS variables + animation keyframes (Refined Dark)
+- `/app/frontend/src/index.css` — CSS variables (Onyx/Paper theme)
 - `/app/frontend/src/pages/HomePage.jsx` — Full homepage assembly
 - `/app/frontend/src/components/FadeIn.jsx` — Scroll-reveal wrapper
-- `/app/frontend/src/components/AnimatedCounter.jsx` — Count-up animation
-- `/app/frontend/src/components/HeroSection.jsx`
-- `/app/frontend/src/components/FourPillarsSection.jsx`
-- `/app/frontend/src/components/SystemDiagramSection.jsx`
-- `/app/frontend/src/components/DeadlySinsSection.jsx`
-- `/app/frontend/src/components/PenaltyTableSection.jsx`
-- `/app/frontend/src/components/TCOSection.jsx`
-- `/app/frontend/src/components/ThreePathsSection.jsx`
-- `/app/frontend/src/components/AboutSection.jsx`
-- `/app/frontend/src/components/NextStepSection.jsx`
+- `/app/frontend/src/components/HeroSection.jsx` — DARK
+- `/app/frontend/src/components/SystemDiagramSection.jsx` — DARK
+- `/app/frontend/src/components/DeadlySinsSection.jsx` — LIGHT
+- `/app/frontend/src/components/PenaltyTableSection.jsx` — DARK
+- `/app/frontend/src/components/TCOSection.jsx` — LIGHT
+- `/app/frontend/src/components/ThreePathsSection.jsx` — DARK
+- `/app/frontend/src/components/AboutSection.jsx` — DARK (metric band) + LIGHT (founder)
+- `/app/frontend/src/components/NextStepSection.jsx` — DARK
 - `/app/frontend/src/components/FooterSection.jsx`
+- `/app/backend/server.py` — MailerLite proxy
+- `/app/backend/.env` — API key storage
