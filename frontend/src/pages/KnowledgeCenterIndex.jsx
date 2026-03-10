@@ -12,13 +12,13 @@ const BRIEFS = [
     status: "published",
   },
   {
-    slug: null,
+    slug: "/knowledge-center/hos-compliance-brief",
     phase: "Ground 0 — Hours-of-Service Compliance",
     title: "HOS Compliance Brief: What ELD Records Actually Prove",
     whoFor: "Carriers operating any CMV requiring HOS tracking — drivers, owner-operators, and small fleets.",
     outcome: "Build a retrievable HOS record system that holds up to audit review.",
-    readTime: "10-minute brief",
-    status: "coming",
+    readTime: "12-minute brief",
+    status: "published",
   },
   {
     slug: null,
