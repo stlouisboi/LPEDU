@@ -32,7 +32,7 @@ const SEQUENCE = [
 export default function NextStepSection() {
   return (
     <section data-testid="next-step-section" style={{
-      background: "var(--bg)",
+      background: "var(--bg-onyx)",
       padding: "7rem 1.5rem",
     }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>

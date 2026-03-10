@@ -31,9 +31,9 @@ const PATHS = [
 export default function ThreePathsSection() {
   return (
     <section data-testid="three-paths-section" style={{
-      background: "var(--bg)",
+      background: "var(--bg-onyx)",
       padding: "6rem 1.5rem",
-      borderBottom: "1px solid var(--border)",
+      borderBottom: "1px solid var(--divider-dark)",
     }}>
       <div style={{ maxWidth: 920, margin: "0 auto" }}>
 

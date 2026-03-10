@@ -32,9 +32,9 @@ const tableHead = {
 export default function PenaltyTableSection() {
   return (
     <section data-testid="penalty-table-section" style={{
-      background: "var(--bg)",
+      background: "var(--bg-onyx)",
       padding: "6rem 1.5rem",
-      borderBottom: "1px solid var(--border)",
+      borderBottom: "1px solid var(--divider-dark)",
     }}>
       <div style={{ maxWidth: 920, margin: "0 auto" }}>
 
@@ -53,7 +53,7 @@ export default function PenaltyTableSection() {
         </p>
 
         {/* Infrastructure table */}
-        <div style={{ marginBottom: "2.5rem", border: "1px solid var(--border)" }}>
+        <div style={{ marginBottom: "2.5rem", border: "1px solid var(--divider-dark)" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
@@ -79,7 +79,7 @@ export default function PenaltyTableSection() {
         </div>
 
         {/* Violation table */}
-        <div style={{ border: "1px solid var(--border)" }}>
+        <div style={{ border: "1px solid var(--divider-dark)" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>

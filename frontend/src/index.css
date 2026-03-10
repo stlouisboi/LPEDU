@@ -28,6 +28,15 @@
   --border: rgba(255,255,255,0.10);
   --border-gold: rgba(138,150,163,0.22);
   --red: #ef4444;
+  /* Onyx / Paper theme */
+  --bg-onyx: #1B2A4A;
+  --bg-paper: #F5F5F5;
+  --gold-brand: #C9A84C;
+  --divider-dark: #2A3A5A;
+  --divider-light: #DDDDDD;
+  --text-paper: #1A1A1A;
+  --text-paper-muted: #666666;
+  --text-paper-heading: #1B2A4A;
 }
 
 /* ── Animation Keyframes ── */

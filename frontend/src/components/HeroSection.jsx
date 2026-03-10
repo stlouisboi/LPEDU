@@ -12,9 +12,9 @@ export default function HeroSection() {
   return (
     <section data-testid="hero-section" style={{
       position: "relative",
-      background: "var(--bg)",
+      background: "var(--bg-onyx)",
       padding: "8rem 1.5rem 6rem",
-      borderBottom: "1px solid var(--border)",
+      borderBottom: "1px solid var(--divider-dark)",
       overflow: "hidden",
     }}>
 

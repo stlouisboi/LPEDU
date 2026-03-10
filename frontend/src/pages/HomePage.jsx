@@ -1,7 +1,6 @@
 import "../App.css";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
-import FourPillarsSection from "../components/FourPillarsSection";
 import SystemDiagramSection from "../components/SystemDiagramSection";
 import DeadlySinsSection from "../components/DeadlySinsSection";
 import PenaltyTableSection from "../components/PenaltyTableSection";
@@ -13,11 +12,10 @@ import FooterSection from "../components/FooterSection";
 
 export default function HomePage() {
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div style={{ background: "var(--bg-onyx)", minHeight: "100vh" }}>
       <Navbar />
       <main>
         <HeroSection />
-        <FourPillarsSection />
         <SystemDiagramSection />
         <DeadlySinsSection />
         <PenaltyTableSection />

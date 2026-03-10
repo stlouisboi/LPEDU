@@ -21,79 +21,80 @@ export default function TCOSection() {
 
   return (
     <section data-testid="tco-calculator-section" style={{
-      background: "var(--bg-2)",
+      background: "var(--bg-paper)",
       padding: "6rem 1.5rem",
-      borderBottom: "1px solid var(--border)",
+      borderBottom: "1px solid var(--divider-light)",
     }}>
       <div style={{ maxWidth: 920, margin: "0 auto" }}>
 
-        <p className="overline" data-testid="tco-section-label" style={{ marginBottom: "1.25rem" }}>
+        <p className="overline" data-testid="tco-section-label" style={{ marginBottom: "1.25rem", color: "var(--text-paper-heading)" }}>
           Run Your Own Numbers
         </p>
         <h2 style={{
           fontFamily: "'Manrope', sans-serif", fontWeight: 700,
           fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
           letterSpacing: "-0.02em", marginBottom: "1rem",
+          color: "var(--text-paper-heading)",
         }}>
           The penalty table shows ranges. This applies them to your operation.
         </h2>
         <p data-testid="tco-framing-above" style={{
           fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-          color: "var(--text-muted)", lineHeight: 1.75, maxWidth: 580, marginBottom: "3.5rem",
+          color: "var(--text-paper)", lineHeight: 1.75, maxWidth: 580, marginBottom: "3.5rem",
         }}>
           Enter your operation size. The output shows your documented exposure against documented FMCSA enforcement data — before the LaunchPath program cost appears.
         </p>
 
         {/* Input panel */}
-        <div style={{ border: "1px solid var(--border)", padding: "2.5rem", marginBottom: 0, background: "rgba(255,255,255,0.01)" }}>
+        <div style={{ border: "1px solid var(--divider-light)", padding: "2.5rem", marginBottom: 0, background: "#FFFFFF" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", marginBottom: "2.5rem" }}>
 
             {/* Fleet size */}
             <div>
-              <label htmlFor="fleet" style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.75rem" }}>
+              <label htmlFor="fleet" style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-paper-muted)", marginBottom: "0.75rem" }}>
                 Power Units
               </label>
               <input id="fleet" data-testid="fleet-size-input" type="number" min={1} max={50} value={trucks}
                 onChange={e => { setTrucks(Math.max(1, parseInt(e.target.value) || 1)); setDone(false); }}
                 style={{
-                  width: "100%", background: "var(--bg)",
-                  border: "1px solid var(--border)", color: "var(--text)",
+                  width: "100%", background: "#FFFFFF",
+                  border: "1px solid var(--divider-light)", color: "var(--text-paper)",
                   padding: "0.875rem 1rem", fontSize: "1.25rem",
                   fontFamily: "'JetBrains Mono', monospace", outline: "none",
                   transition: "border-color 0.2s",
                 }}
-                onFocus={e => e.target.style.borderColor = "var(--border-gold)"}
-                onBlur={e => e.target.style.borderColor = "var(--border)"}
+                onFocus={e => e.target.style.borderColor = "var(--text-paper-heading)"}
+                onBlur={e => e.target.style.borderColor = "var(--divider-light)"}
               />
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "var(--text-subtle)", marginTop: "0.4rem" }}>Trucks / power units in operation</p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "var(--text-paper-muted)", marginTop: "0.4rem" }}>Trucks / power units in operation</p>
             </div>
 
             {/* Monthly revenue */}
             <div>
-              <label htmlFor="rev" style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.75rem" }}>
+              <label htmlFor="rev" style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-paper-muted)", marginBottom: "0.75rem" }}>
                 Monthly Revenue / Truck
               </label>
               <div style={{ position: "relative" }}>
-                <span style={{ position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)", color: "var(--text-subtle)", fontFamily: "'JetBrains Mono', monospace" }}>$</span>
+                <span style={{ position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)", color: "var(--text-paper-muted)", fontFamily: "'JetBrains Mono', monospace" }}>$</span>
                 <input id="rev" data-testid="monthly-rev-input" type="number" min={0} step={500} value={monthlyRev}
                   onChange={e => { setMonthlyRev(parseInt(e.target.value) || 0); setDone(false); }}
                   style={{
-                    width: "100%", background: "var(--bg)",
-                    border: "1px solid var(--border)", color: "var(--text)",
+                    width: "100%", background: "#FFFFFF",
+                    border: "1px solid var(--divider-light)", color: "var(--text-paper)",
                     padding: "0.875rem 1rem 0.875rem 1.75rem",
                     fontSize: "1.25rem", fontFamily: "'JetBrains Mono', monospace", outline: "none",
                     transition: "border-color 0.2s",
                   }}
-                  onFocus={e => e.target.style.borderColor = "var(--border-gold)"}
-                  onBlur={e => e.target.style.borderColor = "var(--border)"}
+                  onFocus={e => e.target.style.borderColor = "var(--text-paper-heading)"}
+                  onBlur={e => e.target.style.borderColor = "var(--divider-light)"}
                 />
               </div>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "var(--text-subtle)", marginTop: "0.4rem" }}>Gross monthly revenue per unit</p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "var(--text-paper-muted)", marginTop: "0.4rem" }}>Gross monthly revenue per unit</p>
             </div>
 
             {/* Structure */}
             <div>
-              <label style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.75rem" }}>
+              <label style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-paper-muted)", marginBottom: "0.75rem" }}>
                 Operating Structure
               </label>
               <div style={{ display: "flex", gap: 0 }}>
@@ -104,9 +105,9 @@ export default function TCOSection() {
                       flex: 1, padding: "0.875rem", cursor: "pointer",
                       fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
                       border: "1px solid",
-                      borderColor: structure === val ? "var(--border-gold)" : "var(--border)",
-                      background: structure === val ? "var(--gold-muted)" : "var(--bg)",
-                      color: structure === val ? "var(--gold)" : "var(--text-subtle)",
+                      borderColor: structure === val ? "var(--text-paper-heading)" : "var(--divider-light)",
+                      background: structure === val ? "rgba(27,42,74,0.07)" : "#FFFFFF",
+                      color: structure === val ? "var(--text-paper-heading)" : "var(--text-paper-muted)",
                       transition: "all 0.2s",
                     }}
                   >{label}</button>
@@ -133,8 +134,8 @@ export default function TCOSection() {
 
         {/* Output */}
         {done && (
-          <div data-testid="tco-output" style={{ border: "1px solid var(--border)", borderTop: "none", padding: "2.5rem", background: "rgba(255,255,255,0.01)" }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "2rem" }}>
+          <div data-testid="tco-output" style={{ border: "1px solid var(--divider-light)", borderTop: "none", padding: "2.5rem", background: "#FFFFFF" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-paper-muted)", marginBottom: "2rem" }}>
               Estimated Exposure — {trucks} Power Unit{trucks !== 1 ? "s" : ""}
             </p>
 
@@ -147,13 +148,13 @@ export default function TCOSection() {
               <div key={row.id} data-testid={`output-row-${row.id}`} style={{
                 display: "flex", justifyContent: "space-between", alignItems: "flex-start",
                 gap: "2rem", padding: "1.25rem 0",
-                borderBottom: "1px solid var(--border)",
+                borderBottom: "1px solid var(--divider-light)",
                 animation: "tcoCountIn 0.4s ease both",
                 animationDelay: `${i * 0.08}s`,
               }}>
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text)", marginBottom: "0.3rem" }}>{row.label}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: "var(--text-subtle)" }}>{row.sub}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-paper)", marginBottom: "0.3rem" }}>{row.label}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: "var(--text-paper-muted)" }}>{row.sub}</p>
                 </div>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1.35rem", fontWeight: 500, color: "var(--red)", whiteSpace: "nowrap" }}>
                   {fmt(row.val)}
@@ -162,15 +163,15 @@ export default function TCOSection() {
             ))}
 
             {/* Total */}
-            <div data-testid="output-total" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.75rem 0 1.5rem", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "1rem", color: "var(--text)", textTransform: "uppercase", letterSpacing: "0.05em" }}>Total estimated exposure</span>
+            <div data-testid="output-total" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.75rem 0 1.5rem", borderBottom: "1px solid var(--divider-light)" }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "1rem", color: "var(--text-paper)", textTransform: "uppercase", letterSpacing: "0.05em" }}>Total estimated exposure</span>
               <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem", fontWeight: 500, color: "var(--red)" }}>{fmt(r.total)}</span>
             </div>
 
             {/* Price line */}
             <div data-testid="launchpath-price-line" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem 0 0" }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-muted)" }}>The LaunchPath 90-Day Standard is priced at $5,000.</span>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem", fontWeight: 500, color: "var(--gold)" }}>$5,000</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-paper)" }}>The LaunchPath 90-Day Standard is priced at $5,000.</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem", fontWeight: 500, color: "var(--gold-brand)" }}>$5,000</span>
             </div>
           </div>
         )}
@@ -178,7 +179,7 @@ export default function TCOSection() {
         {/* Closing framing */}
         <p data-testid="tco-framing-below" style={{
           fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontStyle: "italic",
-          color: "var(--text-subtle)", textAlign: "center",
+          color: "var(--text-paper-muted)", textAlign: "center",
           marginTop: "2.5rem", lineHeight: 1.7, paddingBottom: "1rem",
         }}>
           This is not a projection. It is arithmetic based on documented FMCSA enforcement data.

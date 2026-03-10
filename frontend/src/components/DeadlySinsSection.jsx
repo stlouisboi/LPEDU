@@ -46,21 +46,22 @@ const BUCKETS = [
 export default function DeadlySinsSection() {
   return (
     <section data-testid="deadly-sins-section" style={{
-      background: "var(--bg-2)",
+      background: "var(--bg-paper)",
       padding: "7rem 1.5rem",
-      borderBottom: "1px solid var(--border)",
+      borderBottom: "1px solid var(--divider-light)",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
         <FadeIn>
           <div style={{ maxWidth: 680, marginBottom: "5rem" }}>
-            <p className="overline" style={{ marginBottom: "1.25rem" }}>Failure Documentation</p>
+            <p className="overline" style={{ marginBottom: "1.25rem", color: "var(--text-paper-heading)" }}>Failure Documentation</p>
             <h2 style={{
               fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
               letterSpacing: "-0.02em",
               marginBottom: "1.25rem",
+              color: "var(--text-paper-heading)",
             }}>
               How new authorities fail in the first 90 days.
             </h2>
@@ -68,7 +69,7 @@ export default function DeadlySinsSection() {
               fontFamily: "'Manrope', sans-serif",
               fontWeight: 600,
               fontSize: "1rem",
-              color: "var(--text-muted)",
+              color: "var(--text-paper)",
               lineHeight: 1.7,
               marginBottom: "0.5rem",
             }}>
@@ -93,9 +94,9 @@ export default function DeadlySinsSection() {
                 fontWeight: 700,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "var(--text-subtle)",
+                color: "var(--text-paper-muted)",
                 paddingBottom: "1rem",
-                borderBottom: "1px solid var(--border)",
+                borderBottom: "1px solid var(--divider-light)",
                 marginBottom: "1.5rem",
               }}>
                 {bucket.label}
@@ -106,7 +107,7 @@ export default function DeadlySinsSection() {
                     <span style={{
                       fontFamily: "'JetBrains Mono', monospace",
                       fontSize: "0.7rem",
-                      color: "var(--text-subtle)",
+                      color: "var(--text-paper-muted)",
                       marginTop: "0.25rem",
                       flexShrink: 0,
                       lineHeight: 1.7,
@@ -114,7 +115,7 @@ export default function DeadlySinsSection() {
                     <p style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.9rem",
-                      color: "var(--text-muted)",
+                      color: "var(--text-paper)",
                       lineHeight: 1.75,
                       margin: 0,
                     }}>{sin}</p>
@@ -125,11 +126,11 @@ export default function DeadlySinsSection() {
           ))}
         </div>
 
-        <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem" }}>
+        <div style={{ borderTop: "1px solid var(--divider-light)", paddingTop: "2rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.95rem",
-            color: "var(--text-subtle)",
+            color: "var(--text-paper-muted)",
             lineHeight: 1.7,
           }}>
             The 90-Day Standard is built to remove these from the operation before enforcement identifies them.
