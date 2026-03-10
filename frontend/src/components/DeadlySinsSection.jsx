@@ -46,7 +46,7 @@ const BUCKETS = [
 export default function DeadlySinsSection() {
   return (
     <section data-testid="deadly-sins-section" style={{
-      background: "var(--bg)",
+      background: "var(--bg-2)",
       padding: "7rem 1.5rem",
       borderBottom: "1px solid var(--border)",
     }}>
@@ -62,17 +62,18 @@ export default function DeadlySinsSection() {
               letterSpacing: "-0.02em",
               marginBottom: "1.25rem",
             }}>
-              How new authorities actually fail in their first 90 days.
+              How new authorities fail in the first 90 days.
             </h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Manrope', sans-serif",
+              fontWeight: 600,
               fontSize: "1rem",
               color: "var(--text-muted)",
-              lineHeight: 1.8,
+              lineHeight: 1.7,
+              marginBottom: "0.5rem",
             }}>
-              Authority failure is rarely caused by a single mistake.
-              It is usually the result of missing systems.
-              Most carriers will recognize at least one pattern below before the first 90 days close.
+              Failure rarely begins with a single decision.<br />
+              It begins with systems that were never installed.
             </p>
           </div>
         </FadeIn>

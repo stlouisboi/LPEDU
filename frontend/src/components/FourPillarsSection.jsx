@@ -5,6 +5,7 @@ const PILLARS = [
   {
     num: "01",
     name: "Authority Protection",
+    principle: "The authority survives only when its obligations are maintained.",
     body: "New authorities don't get shut down because of one bad day; they get shut down because nobody installed a system for the New Entrant window. This pillar hard-wires the filings, records, and 90-day habits that keep your MC number active when FMCSA runs its first audit.",
     brief: "/knowledge-center/new-entrant-safety-audit-brief",
     briefLabel: "New Entrant Audit Brief",
@@ -12,6 +13,7 @@ const PILLARS = [
   {
     num: "02",
     name: "Insurance Continuity",
+    principle: "Coverage that lapses ends an authority.",
     body: "Coverage that looks fine on a quote can still let your authority die on paper. This pillar keeps your policy, filings, and real operation in sync so one missed payment, unreported truck, or bad MCS-90 assumption doesn't quietly pull your BMC-91 and sideline your business.",
     brief: "/knowledge-center/insurance-continuity-brief",
     briefLabel: "Insurance Continuity Brief",
@@ -19,6 +21,7 @@ const PILLARS = [
   {
     num: "03",
     name: "Compliance Backbone",
+    principle: "Documentation is the spine of the operation.",
     body: "Most carriers stack loose paperwork and call it \"compliance.\" This pillar turns HOS, Drug & Alcohol, and Maintenance into a simple operating backbone — clear policies, weekly reviews, and unit files that can survive roadside checks, audits, and crash investigations.",
     brief: "/knowledge-center/hos-compliance-brief",
     briefLabel: "HOS Compliance Brief",
@@ -26,6 +29,7 @@ const PILLARS = [
   {
     num: "04",
     name: "Cash-Flow Oxygen",
+    principle: "Operations fail when cash suffocates.",
     body: "You can pass every audit and still bleed out on cash. This pillar uses your real cost per mile, payment terms, and startup spend to make sure you can afford to run the Standard for 12–24 months instead of starving it the first time freight gets slow.",
     brief: null,
     briefLabel: null,
@@ -102,6 +106,13 @@ export default function FourPillarsSection() {
                   color: "var(--text)",
                   lineHeight: 1.3,
                 }}>{p.name}</h3>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.825rem",
+                  color: "var(--orange)",
+                  lineHeight: 1.5,
+                  fontStyle: "italic",
+                }}>{p.principle}</p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.9rem",

@@ -39,6 +39,15 @@ export default function ThreePathsSection() {
 
         <FadeIn>
           <p className="overline" style={{ marginBottom: "1.25rem" }}>The Decision</p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.8rem",
+            color: "var(--text-subtle)",
+            letterSpacing: "0.04em",
+            marginBottom: "0.875rem",
+          }}>
+            Every authority reaches the same decision.
+          </p>
           <h2 style={{
             fontFamily: "'Manrope', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
@@ -91,12 +100,12 @@ export default function ThreePathsSection() {
           <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
 
-        <p data-testid="three-paths-footer" style={{
-          fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
-          color: "var(--text-subtle)", marginTop: "2.5rem", lineHeight: 1.7,
-        }}>
-          We are not the cheapest option. We are the most systematized one.
-        </p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
+            color: "var(--text-subtle)", marginTop: "2.5rem", lineHeight: 1.7,
+          }}>
+            The wise decision is the one that preserves the household.
+          </p>
       </div>
     </section>
   );

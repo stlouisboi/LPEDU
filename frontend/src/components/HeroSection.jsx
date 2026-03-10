@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const FMCSA_DATA = [
   { label: "Audit window", value: "12–24 months" },
   { label: "Required filings", value: "10+" },
@@ -72,18 +74,19 @@ export default function HeroSection() {
           </h1>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.1rem",
-            color: "var(--text-muted)",
-            lineHeight: 1.8,
-            maxWidth: 580,
-            marginBottom: "1.25rem",
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 600,
+            fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+            color: "var(--text)",
+            lineHeight: 1.5,
+            maxWidth: 560,
+            marginBottom: "1.5rem",
+            letterSpacing: "-0.01em",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.25s",
           }}>
-            LaunchPath is not a course. It installs the compliance infrastructure,
-            financial controls, and governance systems required to survive the
-            FMCSA New Entrant period.
+            The first ninety days do not test ambition.<br />
+            They test structure.
           </p>
 
           <p style={{
@@ -96,7 +99,7 @@ export default function HeroSection() {
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.3s",
           }}>
-            New authorities do not fail because they lack ambition.<br />
+            New authorities do not fail because they lack ambition.
             They fail because operational systems were never installed.
           </p>
 
@@ -120,9 +123,8 @@ export default function HeroSection() {
             animationDelay: "0.48s",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
-              <a
-                href="https://www.launchpathedu.com/auto-diagnostic"
-                target="_blank" rel="noopener noreferrer"
+              <Link
+                to="/readiness"
                 data-testid="hero-readiness-cta"
                 style={{
                   display: "inline-block",
@@ -140,8 +142,8 @@ export default function HeroSection() {
                 onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
                 onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
               >
-                Begin Readiness Test
-              </a>
+                Begin Ground 0 Briefing
+              </Link>
               <span style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.8rem",
