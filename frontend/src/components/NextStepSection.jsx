@@ -1,0 +1,128 @@
+import { ArrowRight } from "@phosphor-icons/react";
+
+const SEQUENCE = [
+  { step: "01", name: "Readiness Test", desc: "12-minute diagnostic. Establishes where your operation stands before the Standard is applied.", badge: "Free" },
+  { step: "02", name: "AUTO Diagnostic", desc: "Four-pillar readiness assessment and cost-of-authority calculation.", badge: "Free" },
+  { step: "03", name: "Ground 0 Briefing", desc: "Six structured lessons. The operational framework before systems installation begins.", badge: "Free" },
+  { step: "04", name: "90-Day Cohort", desc: "Structured implementation. The Standard installed, verified, and documented.", badge: "$5,000" },
+];
+
+export default function NextStepSection() {
+  return (
+    <section data-testid="next-step-section" style={{
+      background: "var(--bg)",
+      padding: "7rem 1.5rem",
+    }}>
+      <div style={{ maxWidth: 860, margin: "0 auto" }}>
+
+        <p className="overline" style={{ marginBottom: "1.25rem" }}>What Happens Next</p>
+        <h2 style={{
+          fontFamily: "'Manrope', sans-serif",
+          fontWeight: 700,
+          fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+          letterSpacing: "-0.02em",
+          marginBottom: "1.25rem",
+        }}>
+          The sequence is fixed. There are no shortcuts.
+        </h2>
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "1rem",
+          color: "var(--text-muted)",
+          lineHeight: 1.8,
+          marginBottom: "4rem",
+          maxWidth: 580,
+        }}>
+          Admission is earned through the sequence — not purchased at the front door.
+          Each step is designed to surface whether the carrier is ready to operate under the standard.
+        </p>
+
+        {/* Sequence */}
+        <div style={{ display: "flex", flexDirection: "column", marginBottom: "4rem" }}>
+          {SEQUENCE.map((s, i) => (
+            <div key={s.step} data-testid={`sequence-step-${s.step}`} style={{
+              display: "grid",
+              gridTemplateColumns: "3.5rem 1fr auto",
+              gap: "1.5rem",
+              alignItems: "start",
+              padding: "1.75rem 0",
+              borderTop: "1px solid var(--border)",
+            }}>
+              <div style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.65rem",
+                color: "var(--text-subtle)",
+                paddingTop: "0.2rem",
+              }}>{s.step}</div>
+
+              <div>
+                <h3 style={{
+                  fontFamily: "'Manrope', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "1.05rem",
+                  color: "var(--text)",
+                  marginBottom: "0.4rem",
+                }}>{s.name}</h3>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.875rem",
+                  color: "var(--text-muted)",
+                  lineHeight: 1.65,
+                }}>{s.desc}</p>
+              </div>
+
+              <span style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.75rem",
+                color: s.badge === "$5,000" ? "var(--gold)" : "var(--text-subtle)",
+                whiteSpace: "nowrap",
+                paddingTop: "0.2rem",
+              }}>{s.badge}</span>
+            </div>
+          ))}
+          <div style={{ borderTop: "1px solid var(--border)" }} />
+        </div>
+
+        {/* Urgency line */}
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.9rem",
+          color: "var(--text-subtle)",
+          lineHeight: 1.7,
+          marginBottom: "2.5rem",
+        }}>
+          The FMCSA audit window for new authorities opens at 12 months and closes at 24.
+          Cohort seats are limited by what can be verified within the standard's implementation timeline.
+          If your authority is already active, the sequence starts now.
+        </p>
+
+        {/* Single CTA — the one door */}
+        <a
+          href="https://www.launchpathedu.com/admission"
+          target="_blank" rel="noopener noreferrer"
+          data-testid="apply-cta"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.75rem",
+            background: "var(--orange)",
+            color: "#fff",
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 700,
+            fontSize: "0.875rem",
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            padding: "1rem 2.25rem",
+            textDecoration: "none",
+            transition: "background 0.2s",
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
+          onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
+        >
+          Apply for the 90-Day Standard <ArrowRight size={16} weight="bold" />
+        </a>
+
+      </div>
+    </section>
+  );
+}

@@ -2,12 +2,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import FourPillarsSection from "./components/FourPillarsSection";
-import StepsSection from "./components/StepsSection";
-import PenaltyTableSection from "./components/PenaltyTableSection";
-import TCOSection from "./components/TCOSection";
-import ThreePathsSection from "./components/ThreePathsSection";
+import DeadlySinsSection from "./components/DeadlySinsSection";
 import AboutSection from "./components/AboutSection";
-import AdmissionSection from "./components/AdmissionSection";
+import NextStepSection from "./components/NextStepSection";
 import FooterSection from "./components/FooterSection";
 
 function App() {
@@ -15,14 +12,16 @@ function App() {
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
       <main>
+        {/* Section 1 — Orientation */}
         <HeroSection />
+        {/* Section 2 — Four Pillars */}
         <FourPillarsSection />
-        <StepsSection />
-        <PenaltyTableSection />
-        <TCOSection />
-        <ThreePathsSection />
+        {/* Section 3 — 16 Deadly Sins */}
+        <DeadlySinsSection />
+        {/* Section 4 — Proof + Founder */}
         <AboutSection />
-        <AdmissionSection />
+        {/* Section 5 — Next Step + One CTA */}
+        <NextStepSection />
       </main>
       <FooterSection />
     </div>
