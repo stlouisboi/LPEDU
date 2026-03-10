@@ -21,12 +21,41 @@
   --orange: #E8590F;
   --orange-hover: #F06A20;
   --orange-muted: rgba(232,89,15,0.1);
-  --text: #f0f4f8;
-  --text-muted: #c8d4de;
-  --text-subtle: #8a99aa;
-  --border: rgba(255,255,255,0.07);
-  --border-gold: rgba(138,150,163,0.18);
+  /* Refined Dark — higher contrast for readability */
+  --text: #f4f7fb;
+  --text-muted: #dce6f0;
+  --text-subtle: #a0b0bf;
+  --border: rgba(255,255,255,0.10);
+  --border-gold: rgba(138,150,163,0.22);
   --red: #ef4444;
+}
+
+/* ── Animation Keyframes ── */
+@keyframes heroEnter {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scanLine {
+  0%   { top: -2%;  opacity: 0; }
+  4%   { opacity: 1; }
+  96%  { opacity: 1; }
+  100% { top: 102%; opacity: 0; }
+}
+
+@keyframes pulseRing {
+  0%, 100% { opacity: 0.06; transform: scale(1); }
+  50%       { opacity: 0.14; transform: scale(1.04); }
+}
+
+@keyframes fadeInRow {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes tcoCountIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

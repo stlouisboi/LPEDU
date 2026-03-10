@@ -1,3 +1,5 @@
+import FadeIn from "./FadeIn";
+
 const PATHS = [
   {
     id: "self-study",
@@ -20,7 +22,7 @@ const PATHS = [
     label: "Path 03",
     name: "LaunchPath Standard",
     cost: "$5,000",
-    costColor: "var(--gold)",
+    costColor: "var(--orange)",
     desc: "A documented operational standard you own and operate — verified before your audit window closes.",
     highlight: true,
   },
@@ -35,14 +37,16 @@ export default function ThreePathsSection() {
     }}>
       <div style={{ maxWidth: 920, margin: "0 auto" }}>
 
-        <p className="overline" style={{ marginBottom: "1.25rem" }}>The Decision</p>
-        <h2 style={{
-          fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-          fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-          letterSpacing: "-0.02em", marginBottom: "4rem",
-        }}>
-          Three paths. One decision.
-        </h2>
+        <FadeIn>
+          <p className="overline" style={{ marginBottom: "1.25rem" }}>The Decision</p>
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            letterSpacing: "-0.02em", marginBottom: "4rem",
+          }}>
+            Three paths. One decision.
+          </h2>
+        </FadeIn>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           {PATHS.map((p, i) => (
@@ -53,9 +57,9 @@ export default function ThreePathsSection() {
               alignItems: "start",
               padding: "2rem 0",
               borderTop: "1px solid var(--border)",
-              borderLeft: p.highlight ? "2px solid var(--gold)" : "2px solid transparent",
+              borderLeft: p.highlight ? "2px solid var(--orange)" : "2px solid transparent",
               paddingLeft: p.highlight ? "1.5rem" : 0,
-              background: p.highlight ? "rgba(212,175,55,0.02)" : "transparent",
+              background: p.highlight ? "rgba(232,89,15,0.03)" : "transparent",
             }}>
               {/* Label */}
               <div style={{
@@ -68,7 +72,7 @@ export default function ThreePathsSection() {
               <div>
                 <h3 style={{
                   fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-                  fontSize: "1.05rem", color: p.highlight ? "var(--gold)" : "var(--text)",
+                  fontSize: "1.05rem", color: p.highlight ? "var(--orange)" : "var(--text)",
                   marginBottom: "0.5rem",
                 }}>{p.name}</h3>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{p.desc}</p>

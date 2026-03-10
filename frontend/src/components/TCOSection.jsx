@@ -118,14 +118,14 @@ export default function TCOSection() {
           <button data-testid="calculate-btn" onClick={() => setDone(true)}
             style={{
               width: "100%", padding: "1rem",
-              background: "var(--gold)", color: "#000",
+              background: "var(--orange)", color: "#fff",
               border: "none", cursor: "pointer",
               fontFamily: "'Inter', sans-serif", fontWeight: 700,
               fontSize: "0.875rem", letterSpacing: "0.08em", textTransform: "uppercase",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => e.target.style.background = "var(--gold-hover)"}
-            onMouseLeave={e => e.target.style.background = "var(--gold)"}
+            onMouseEnter={e => e.target.style.background = "var(--orange-hover)"}
+            onMouseLeave={e => e.target.style.background = "var(--orange)"}
           >
             Calculate Exposure
           </button>
@@ -148,6 +148,8 @@ export default function TCOSection() {
                 display: "flex", justifyContent: "space-between", alignItems: "flex-start",
                 gap: "2rem", padding: "1.25rem 0",
                 borderBottom: "1px solid var(--border)",
+                animation: "tcoCountIn 0.4s ease both",
+                animationDelay: `${i * 0.08}s`,
               }}>
                 <div style={{ flex: 1 }}>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text)", marginBottom: "0.3rem" }}>{row.label}</p>

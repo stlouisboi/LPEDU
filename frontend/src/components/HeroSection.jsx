@@ -9,11 +9,37 @@ const FMCSA_DATA = [
 export default function HeroSection() {
   return (
     <section data-testid="hero-section" style={{
+      position: "relative",
       background: "var(--bg)",
       padding: "8rem 1.5rem 6rem",
       borderBottom: "1px solid var(--border)",
+      overflow: "hidden",
     }}>
+
+      {/* Ambient background — dot grid + scan beam */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
+        <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.045 }} aria-hidden="true">
+          <defs>
+            <pattern id="hero-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="1" fill="#8A96A3" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-dots)" />
+        </svg>
+        <div style={{
+          position: "absolute", left: 0, right: 0, height: "1px",
+          background: "linear-gradient(90deg, transparent 0%, rgba(232,89,15,0.18) 50%, transparent 100%)",
+          animation: "scanLine 9s linear infinite",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 70% 55% at 30% 50%, rgba(232,89,15,0.04) 0%, transparent 70%)",
+          animation: "pulseRing 8s ease-in-out infinite",
+        }} />
+      </div>
+
       <div style={{
+        position: "relative", zIndex: 1,
         maxWidth: 1200, margin: "0 auto",
         display: "grid",
         gridTemplateColumns: "1fr 340px",
@@ -23,7 +49,11 @@ export default function HeroSection() {
 
         {/* Left — Orientation */}
         <div>
-          <p className="overline" style={{ marginBottom: "2rem" }}>
+          <p className="overline" style={{
+            marginBottom: "2rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.05s",
+          }}>
             90-Day Compliance Operating Standard — New Motor Carrier Authorities
           </p>
 
@@ -35,6 +65,8 @@ export default function HeroSection() {
             letterSpacing: "-0.025em",
             color: "var(--text)",
             marginBottom: "2rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.15s",
           }}>
             The 90-Day Compliance Operating Standard for new motor carrier authorities.
           </h1>
@@ -45,7 +77,9 @@ export default function HeroSection() {
             color: "var(--text-muted)",
             lineHeight: 1.8,
             maxWidth: 580,
-            marginBottom: "1.5rem",
+            marginBottom: "1.25rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.25s",
           }}>
             LaunchPath is not a course. It installs the compliance infrastructure,
             financial controls, and governance systems required to survive the
@@ -54,46 +88,77 @@ export default function HeroSection() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1rem",
+            fontSize: "0.95rem",
             color: "var(--text-subtle)",
             lineHeight: 1.8,
-            maxWidth: 520,
-            marginBottom: "3rem",
+            maxWidth: 560,
+            marginBottom: "1rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.3s",
           }}>
             New authorities do not fail because they lack ambition.<br />
             They fail because operational systems were never installed.
           </p>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
-            <a
-              href="https://www.launchpathedu.com/auto-diagnostic"
-              target="_blank" rel="noopener noreferrer"
-              data-testid="hero-readiness-cta"
-              style={{
-                display: "inline-block",
-                background: "var(--orange)",
-                color: "#fff",
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.9rem",
+            color: "var(--orange)",
+            lineHeight: 1.7,
+            maxWidth: 560,
+            marginBottom: "3rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.38s",
+          }}>
+            The LaunchPath Standard is documented in a 5-brief series and 90-day checklists
+            that show what your records actually have to prove in a New Entrant audit.
+          </p>
+
+          <div style={{
+            display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.48s",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
+              <a
+                href="https://www.launchpathedu.com/auto-diagnostic"
+                target="_blank" rel="noopener noreferrer"
+                data-testid="hero-readiness-cta"
+                style={{
+                  display: "inline-block",
+                  background: "var(--orange)",
+                  color: "#fff",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.875rem",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  padding: "1rem 2rem",
+                  textDecoration: "none",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
+                onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
+              >
+                Begin Readiness Test
+              </a>
+              <span style={{
                 fontFamily: "'Inter', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.875rem",
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                padding: "1rem 2rem",
-                textDecoration: "none",
-                transition: "background 0.2s",
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
-              onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
-            >
-              Begin Readiness Test
-            </a>
-            <span style={{
+                fontSize: "0.8rem",
+                color: "var(--text-subtle)",
+              }}>
+                Free. Takes approximately 12 minutes.
+              </span>
+            </div>
+            <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
+              fontSize: "0.78rem",
               color: "var(--text-subtle)",
+              maxWidth: 420,
+              lineHeight: 1.6,
             }}>
-              Free. Takes approximately 12 minutes.
-            </span>
+              Runs through the same failure points FMCSA checks in your first audit.
+            </p>
           </div>
         </div>
 
@@ -104,6 +169,8 @@ export default function HeroSection() {
           padding: "1.75rem",
           position: "sticky",
           top: "80px",
+          animation: "heroEnter 0.65s ease both",
+          animationDelay: "0.2s",
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -127,6 +194,8 @@ export default function HeroSection() {
                 alignItems: "baseline",
                 padding: "0.875rem 0",
                 borderBottom: i < FMCSA_DATA.length - 1 ? "1px solid var(--border)" : "none",
+                animation: "fadeInRow 0.5s ease both",
+                animationDelay: `${0.3 + i * 0.07}s`,
               }}>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",

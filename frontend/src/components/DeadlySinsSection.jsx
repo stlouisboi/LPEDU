@@ -1,3 +1,5 @@
+import FadeIn from "./FadeIn";
+
 const BUCKETS = [
   {
     id: "records",
@@ -50,28 +52,30 @@ export default function DeadlySinsSection() {
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
-        <div style={{ maxWidth: 680, marginBottom: "5rem" }}>
-          <p className="overline" style={{ marginBottom: "1.25rem" }}>Failure Documentation</p>
-          <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
-            fontWeight: 700,
-            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-            letterSpacing: "-0.02em",
-            marginBottom: "1.25rem",
-          }}>
-            How new authorities actually fail in their first 90 days.
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1rem",
-            color: "var(--text-muted)",
-            lineHeight: 1.8,
-          }}>
-            Authority failure is rarely caused by a single mistake.
-            It is usually the result of missing systems.
-            Most carriers will recognize at least one pattern below before the first 90 days close.
-          </p>
-        </div>
+        <FadeIn>
+          <div style={{ maxWidth: 680, marginBottom: "5rem" }}>
+            <p className="overline" style={{ marginBottom: "1.25rem" }}>Failure Documentation</p>
+            <h2 style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              letterSpacing: "-0.02em",
+              marginBottom: "1.25rem",
+            }}>
+              How new authorities actually fail in their first 90 days.
+            </h2>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem",
+              color: "var(--text-muted)",
+              lineHeight: 1.8,
+            }}>
+              Authority failure is rarely caused by a single mistake.
+              It is usually the result of missing systems.
+              Most carriers will recognize at least one pattern below before the first 90 days close.
+            </p>
+          </div>
+        </FadeIn>
 
         {/* 2×2 Grid */}
         <div style={{
