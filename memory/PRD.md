@@ -45,10 +45,23 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 - FourPillars cards: hover state added (`--bg-2` → `--bg-3`)
 - Footer tagline: "standard" → "Standard"
 
+## Routing
+- `/` → `pages/HomePage.jsx`
+- `/knowledge-center/new-entrant-safety-audit-brief` → `pages/knowledge-center/NewEntrantAuditBrief.jsx`
+
+## Article Template Structure (Onyx Standard)
+- Hero: overline tag (JetBrains Mono), H1 (Manrope 700), subhead, meta row (read time | date | critical pill)
+- Executive summary band: bullets + download CTA
+- Prose body: max-width 760px, sections with SectionHeader / Body / Callout / CheckList components
+- Auto-fail table: full-width bg-2 band, horizontally scrollable on mobile
+- Audit binder: tabbed checklist with print/PDF support (`window.print()` + `@media print` CSS)
+- Bottom CTA: orange primary + ghost secondary
+
 ## Prioritized Backlog
 
 ### P0 — Next Up
-- [ ] Article/Brief template for `/knowledge-center/*` — fix "patchy" fonts on blog pages
+- [ ] Knowledge Center index page (`/knowledge-center`) — article card grid using this brief as the template
+- [ ] Additional FMCSA briefs using the same skeleton (HOS, D&A, Insurance, Maintenance)
 
 ### P1 — Static Pages
 - [ ] `/about` page
