@@ -166,7 +166,7 @@ export default function FailureRealitySection() {
               }}>
                 <span style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.62rem",
+                  fontSize: "0.72rem",
                   fontWeight: 700,
                   color: "var(--gold-primary)",
                   letterSpacing: "0.08em",
@@ -182,7 +182,7 @@ export default function FailureRealitySection() {
                 ) : (
                   <span style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.875rem",
+                    fontSize: "1rem",
                     color: "var(--text-subtle)",
                     lineHeight: 1.5,
                   }}>{field.value}</span>
@@ -254,7 +254,7 @@ export default function FailureRealitySection() {
               <div>
                 <p style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.62rem",
+                  fontSize: "0.72rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
                   color: "var(--gold-primary)",
@@ -276,7 +276,7 @@ export default function FailureRealitySection() {
                       }}>[ ]</span>
                       <p style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.875rem",
+                        fontSize: "1rem",
                         color: "var(--text-muted-dark)",
                         lineHeight: 1.7,
                         margin: 0,

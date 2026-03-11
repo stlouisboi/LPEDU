@@ -103,7 +103,7 @@ export default function TCOSection() {
                     onClick={() => { setStructure(val); setDone(false); }}
                     style={{
                       flex: 1, padding: "0.875rem", cursor: "pointer",
-                      fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
+                      fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", fontWeight: 600,
                       border: "1px solid",
                       borderColor: structure === val ? "var(--text-paper-heading)" : "var(--divider-light)",
                       background: structure === val ? "rgba(27,42,74,0.07)" : "#FFFFFF",
@@ -122,7 +122,7 @@ export default function TCOSection() {
               background: "var(--gold-primary)", color: "var(--bg-onyx)",
               border: "none", cursor: "pointer",
               fontFamily: "'Inter', sans-serif", fontWeight: 700,
-              fontSize: "0.875rem", letterSpacing: "0.08em", textTransform: "uppercase",
+              fontSize: "1rem", letterSpacing: "0.08em", textTransform: "uppercase",
               transition: "background 0.2s",
             }}
             onMouseEnter={e => e.target.style.background = "var(--gold-light)"}
@@ -135,7 +135,7 @@ export default function TCOSection() {
         {/* Output */}
         {done && (
           <div data-testid="tco-output" style={{ border: "1px solid var(--divider-light)", borderTop: "none", padding: "2.5rem", background: "#FFFFFF" }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-paper-muted)", marginBottom: "2rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-paper-muted)", marginBottom: "2rem" }}>
               Estimated Exposure — {trucks} Power Unit{trucks !== 1 ? "s" : ""}
             </p>
 
@@ -153,8 +153,8 @@ export default function TCOSection() {
                 animationDelay: `${i * 0.08}s`,
               }}>
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-paper)", marginBottom: "0.3rem" }}>{row.label}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: "var(--text-paper-muted)" }}>{row.sub}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "var(--text-paper)", marginBottom: "0.3rem" }}>{row.label}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-paper-muted)" }}>{row.sub}</p>
                 </div>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1.35rem", fontWeight: 500, color: "var(--red)", whiteSpace: "nowrap" }}>
                   {fmt(row.val)}
@@ -170,7 +170,7 @@ export default function TCOSection() {
 
             {/* Price line */}
             <div data-testid="launchpath-price-line" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem 0 0" }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-paper)" }}>The LaunchPath 90-Day Standard is priced at $2,500.</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "var(--text-paper)" }}>The LaunchPath 90-Day Standard is priced at $2,500.</span>
               <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem", fontWeight: 500, color: "var(--gold-primary)" }}>$2,500</span>
             </div>
           </div>
@@ -178,7 +178,7 @@ export default function TCOSection() {
 
         {/* Closing framing */}
         <p data-testid="tco-framing-below" style={{
-          fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontStyle: "italic",
+          fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontStyle: "italic",
           color: "var(--text-paper-muted)", textAlign: "center",
           marginTop: "2.5rem", lineHeight: 1.7, paddingBottom: "1rem",
         }}>

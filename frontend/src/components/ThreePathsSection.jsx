@@ -79,7 +79,7 @@ export default function ThreePathsSection() {
               {["PATH", "APPROACH", "COST", "OUTCOME"].map((h) => (
                 <p key={h} style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.62rem",
+                  fontSize: "0.82rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   color: "var(--text-subtle)",
@@ -110,7 +110,7 @@ export default function ThreePathsSection() {
                 </div>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.95rem",
+                  fontSize: "1.1rem",
                   color: "var(--text-muted)",
                   lineHeight: 1.6,
                   margin: 0,
@@ -127,7 +127,7 @@ export default function ThreePathsSection() {
                   {path.costNote && (
                     <p style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.72rem",
+                      fontSize: "0.82rem",
                       color: "var(--text-subtle)",
                       marginTop: "0.25rem",
                       lineHeight: 1.4,
@@ -136,7 +136,7 @@ export default function ThreePathsSection() {
                 </div>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: path.isLP ? "0.925rem" : "0.9rem",
+                  fontSize: path.isLP ? "1.05rem" : "1rem",
                   fontStyle: path.isLP ? "italic" : "normal",
                   color: path.isLP ? "var(--text-muted)" : "var(--text-subtle)",
                   lineHeight: 1.65,

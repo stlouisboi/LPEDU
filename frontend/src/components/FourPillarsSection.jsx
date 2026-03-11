@@ -90,7 +90,7 @@ export default function FourPillarsSection() {
                 }}>{pillar.name}</p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.925rem",
+                  fontSize: "1.05rem",
                   color: "#CCCCCC",
                   lineHeight: 1.8,
                   margin: 0,
