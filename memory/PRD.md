@@ -93,6 +93,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] About + Contact pages
 - [x] MailerLite integration (contact + diagnostic)
 - [x] Auto-Diagnostic Tool (/readiness + /auto-diagnostic)
+- [x] Font size +12% across all body, table, labels, monospace, footnotes (Mar 2026)
 
 ### P1 — Next Up
 - [ ] Build `/ground-0-briefing` page — 6-lesson structured onboarding flow

@@ -27,7 +27,7 @@ const inputStyle = {
   border: "1px solid var(--border)",
   color: "var(--text)",
   padding: "0.875rem 1rem",
-  fontSize: "0.95rem",
+  fontSize: "1.064rem",
   fontFamily: "'Inter', sans-serif",
   outline: "none",
   transition: "border-color 0.2s",
@@ -36,7 +36,7 @@ const inputStyle = {
 const labelStyle = {
   display: "block",
   fontFamily: "'Inter', sans-serif",
-  fontSize: "0.72rem",
+  fontSize: "0.806rem",
   fontWeight: 600,
   letterSpacing: "0.1em",
   textTransform: "uppercase",
@@ -99,7 +99,7 @@ export default function ContactPage() {
             </h1>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
+              fontSize: "1.12rem",
               color: "var(--text-muted)",
               lineHeight: 1.85,
               marginBottom: "2.5rem",
@@ -124,8 +124,8 @@ export default function ContactPage() {
                 ["No pressure", "Readiness determines admission, not urgency"],
               ].map(([label, val]) => (
                 <div key={label} style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: "1rem" }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: "var(--text-subtle)", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", paddingTop: "0.1rem" }}>{label}</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.5 }}>{val}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", color: "var(--text-subtle)", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", paddingTop: "0.1rem" }}>{label}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.5 }}>{val}</span>
                 </div>
               ))}
             </div>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                 <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "var(--text)", marginBottom: "1rem" }}>
                   Message received.
                 </h2>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 360, margin: "0 auto" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 360, margin: "0 auto" }}>
                   Vince reviews every inquiry personally. You'll hear back within 2 business days
                   with either a readiness assessment or next steps.
                 </p>
@@ -241,7 +241,7 @@ export default function ContactPage() {
                     padding: "1rem 2rem",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
-                    fontSize: "0.875rem",
+                    fontSize: "0.98rem",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     cursor: loading ? "not-allowed" : "pointer",
@@ -258,7 +258,7 @@ export default function ContactPage() {
                   {loading ? "Sending..." : <>Send Message <ArrowRight size={15} weight="bold" /></>}
                 </button>
 
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "var(--text-subtle)", lineHeight: 1.6, textAlign: "center" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.84rem", color: "var(--text-subtle)", lineHeight: 1.6, textAlign: "center" }}>
                   Not all applicants are accepted. A response does not constitute an offer of admission.
                 </p>
 

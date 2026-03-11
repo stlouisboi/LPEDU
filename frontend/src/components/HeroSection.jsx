@@ -88,7 +88,7 @@ export default function HeroSection() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.075rem",
+            fontSize: "1.204rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             maxWidth: 560,
@@ -113,7 +113,7 @@ export default function HeroSection() {
                 color: "var(--bg-onyx)",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "0.875rem",
+                fontSize: "0.98rem",
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 padding: "1rem 2rem",
@@ -129,7 +129,7 @@ export default function HeroSection() {
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontStyle: "italic",
-              fontSize: "0.875rem",
+              fontSize: "0.98rem",
               color: "var(--text-subtle)",
               maxWidth: 420,
               lineHeight: 1.6,
@@ -151,7 +151,7 @@ export default function HeroSection() {
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -176,12 +176,12 @@ export default function HeroSection() {
               }}>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.825rem",
+                  fontSize: "0.924rem",
                   color: "var(--text-subtle)",
                 }}>{item.label}</span>
                 <span style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.875rem",
+                  fontSize: "0.98rem",
                   color: "var(--text)",
                   fontWeight: 500,
                 }}>{item.value}</span>
@@ -196,7 +196,7 @@ export default function HeroSection() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.875rem",
+              fontSize: "0.98rem",
               color: "var(--text-subtle)",
               lineHeight: 1.6,
             }}>

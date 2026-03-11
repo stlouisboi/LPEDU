@@ -63,7 +63,7 @@ export default function KnowledgeCenterIndex() {
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "var(--text-subtle)",
@@ -82,7 +82,7 @@ export default function KnowledgeCenterIndex() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.05rem",
+            fontSize: "1.176rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             maxWidth: 620,
@@ -112,7 +112,7 @@ export default function KnowledgeCenterIndex() {
                 }}>{val}</div>
                 <div style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.75rem",
+                  fontSize: "0.84rem",
                   color: "var(--text-subtle)",
                 }}>{label}</div>
               </div>
@@ -133,7 +133,7 @@ export default function KnowledgeCenterIndex() {
         }} className="bundle-grid">
           <div>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.63rem", letterSpacing: "0.14em",
+              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.706rem", letterSpacing: "0.14em",
               textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.625rem",
             }}>The Complete Audit Binder Series</p>
             <h2 style={{
@@ -141,7 +141,7 @@ export default function KnowledgeCenterIndex() {
               letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem",
             }}>All 5 compliance checklists in one printable PDF</h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-subtle)",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)",
               lineHeight: 1.65,
             }}>New Entrant — HOS — Drug & Alcohol — Maintenance — Insurance</p>
           </div>
@@ -151,7 +151,7 @@ export default function KnowledgeCenterIndex() {
             data-testid="kc-download-all-btn"
             style={{
               display: "inline-block", background: "var(--orange)", color: "#fff",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.896rem",
               letterSpacing: "0.06em", textTransform: "uppercase",
               padding: "1rem 1.75rem", textDecoration: "none", whiteSpace: "nowrap",
               flexShrink: 0, transition: "background 0.2s",
@@ -163,7 +163,7 @@ export default function KnowledgeCenterIndex() {
           </a>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.75rem",
+            fontSize: "0.84rem",
             color: "var(--text-subtle)",
             marginTop: "0.75rem",
             textAlign: "right",
@@ -179,7 +179,7 @@ export default function KnowledgeCenterIndex() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -207,7 +207,7 @@ export default function KnowledgeCenterIndex() {
           <div>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.65rem",
+              fontSize: "0.728rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -224,7 +224,7 @@ export default function KnowledgeCenterIndex() {
             }}>Run the FREE readiness diagnostic first.</h2>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.9rem",
+              fontSize: "1.008rem",
               color: "var(--text-muted)",
               lineHeight: 1.75,
               maxWidth: 460,
@@ -242,7 +242,7 @@ export default function KnowledgeCenterIndex() {
               color: "#fff",
               fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
-              fontSize: "0.8rem",
+              fontSize: "0.896rem",
               letterSpacing: "0.06em",
               textTransform: "uppercase",
               padding: "1rem 1.75rem",
@@ -292,7 +292,7 @@ function BriefCard({ brief, index }) {
         {/* Phase tag */}
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.63rem",
+          fontSize: "0.706rem",
           letterSpacing: "0.1em",
           textTransform: "uppercase",
           color: "var(--text-subtle)",
@@ -303,7 +303,7 @@ function BriefCard({ brief, index }) {
         <h3 style={{
           fontFamily: "'Manrope', sans-serif",
           fontWeight: 700,
-          fontSize: "1.1rem",
+          fontSize: "1.232rem",
           letterSpacing: "-0.01em",
           color: "var(--text)",
           lineHeight: 1.3,
@@ -313,7 +313,7 @@ function BriefCard({ brief, index }) {
         {/* Teaser */}
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.85rem",
+          fontSize: "0.952rem",
           color: "var(--text-muted)",
           lineHeight: 1.7,
           marginBottom: "0.875rem",
@@ -323,14 +323,14 @@ function BriefCard({ brief, index }) {
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
           <span style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.68rem",
+            fontSize: "0.762rem",
             color: "var(--text-subtle)",
             letterSpacing: "0.05em",
           }}>{brief.readTime}</span>
           {!isPublished && (
             <span style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.68rem",
+              fontSize: "0.762rem",
               fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
@@ -346,7 +346,7 @@ function BriefCard({ brief, index }) {
       {isPublished && (
         <div style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.9rem",
+          fontSize: "1.008rem",
           color: "var(--orange)",
           paddingTop: "0.25rem",
           flexShrink: 0,

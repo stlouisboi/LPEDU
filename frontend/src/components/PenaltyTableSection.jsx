@@ -61,7 +61,7 @@ export default function PenaltyTableSection() {
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.1rem",
+            fontSize: "1.232rem",
             color: "var(--text-muted)",
             lineHeight: 1.75,
             maxWidth: 600,
@@ -81,7 +81,7 @@ export default function PenaltyTableSection() {
               <div style={{ padding: "1rem 1.5rem", borderRight: "1px solid var(--divider-dark)" }}>
                 <p style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.85rem",
+                  fontSize: "0.952rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   color: "var(--gold-primary)",
@@ -91,7 +91,7 @@ export default function PenaltyTableSection() {
               <div style={{ padding: "1rem 1.5rem", background: "var(--incident-dark-1)" }}>
                 <p style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.85rem",
+                  fontSize: "0.952rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   color: "var(--text-muted-dark)",
@@ -110,7 +110,7 @@ export default function PenaltyTableSection() {
                 <div style={{ padding: "1.25rem 1.5rem", borderRight: "1px solid var(--divider-dark)" }}>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "1rem",
+                    fontSize: "1.12rem",
                     fontWeight: 600,
                     color: "var(--text)",
                     lineHeight: 1.6,
@@ -120,7 +120,7 @@ export default function PenaltyTableSection() {
                 <div style={{ padding: "1.25rem 1.5rem" }}>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "1rem",
+                    fontSize: "1.12rem",
                     fontStyle: "italic",
                     color: "var(--text-subtle)",
                     lineHeight: 1.65,
@@ -140,7 +140,7 @@ export default function PenaltyTableSection() {
             }}>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "1rem",
+                fontSize: "1.12rem",
                 fontWeight: 600,
                 color: "var(--text)",
                 lineHeight: 1.6,
@@ -155,7 +155,7 @@ export default function PenaltyTableSection() {
         <FadeIn delay={100}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.85rem",
+            fontSize: "0.952rem",
             color: "var(--text-subtle)",
             marginBottom: "1.5rem",
             letterSpacing: "0.02em",
@@ -165,7 +165,7 @@ export default function PenaltyTableSection() {
           <p style={{
             fontFamily: "'Manrope', sans-serif",
             fontStyle: "italic",
-            fontSize: "1.1rem",
+            fontSize: "1.232rem",
             color: "var(--text-muted)",
             textAlign: "center",
             lineHeight: 1.7,

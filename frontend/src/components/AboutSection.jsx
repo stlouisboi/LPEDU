@@ -35,7 +35,7 @@ export default function AboutSection() {
 
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.72rem",
+              fontSize: "0.806rem",
               fontWeight: 700,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -54,7 +54,7 @@ export default function AboutSection() {
               ].map((para, i) => (
                 <p key={i} style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "1rem",
+                  fontSize: "1.12rem",
                   color: "var(--text-paper)",
                   lineHeight: 1.85,
                 }}>{para}</p>
@@ -71,7 +71,7 @@ export default function AboutSection() {
                 fontFamily: "'Manrope', sans-serif",
                 fontWeight: 500,
                 fontStyle: "italic",
-                fontSize: "1.05rem",
+                fontSize: "1.176rem",
                 color: "var(--text-paper-heading)",
                 lineHeight: 1.7,
               }}>
@@ -97,7 +97,7 @@ export default function AboutSection() {
             }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.62rem",
+                fontSize: "0.694rem",
                 color: "var(--text-paper-heading)",
                 letterSpacing: "0.1em",
               }}>

@@ -83,7 +83,7 @@ export default function NextStepSection() {
                 }}>
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.65rem",
+                    fontSize: "0.728rem",
                     fontWeight: 700,
                     color: "var(--gold-primary)",
                     letterSpacing: "0.05em",
@@ -94,13 +94,13 @@ export default function NextStepSection() {
                   <h3 style={{
                     fontFamily: "'Manrope', sans-serif",
                     fontWeight: 700,
-                    fontSize: "1.05rem",
+                    fontSize: "1.176rem",
                     color: "var(--text)",
                     marginBottom: "0.4rem",
                   }}>{s.name}</h3>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.9rem",
+                    fontSize: "1.008rem",
                     color: "var(--text-muted)",
                     lineHeight: 1.7,
                   }}>{s.desc}</p>
@@ -113,7 +113,7 @@ export default function NextStepSection() {
         <FadeIn delay={360}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.95rem",
+            fontSize: "1.064rem",
             color: "var(--text-subtle)",
             lineHeight: 1.7,
             marginBottom: "3rem",
@@ -132,7 +132,7 @@ export default function NextStepSection() {
               color: "var(--bg-onyx)",
               fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
-              fontSize: "0.875rem",
+              fontSize: "0.98rem",
               letterSpacing: "0.06em",
               textTransform: "uppercase",
               padding: "1rem 2rem",

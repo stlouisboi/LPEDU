@@ -136,7 +136,7 @@ function SectionHeader({ overline, title, id }) {
       {overline && (
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.65rem",
+          fontSize: "0.728rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
@@ -160,7 +160,7 @@ function Body({ children, style = {} }) {
   return (
     <p style={{
       fontFamily: "'Inter', sans-serif",
-      fontSize: "1rem",
+      fontSize: "1.12rem",
       color: "var(--text-muted)",
       lineHeight: 1.85,
       marginBottom: "1.25rem",
@@ -183,7 +183,7 @@ function Callout({ label, children }) {
       {label && (
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.65rem",
+          fontSize: "0.728rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           color: "var(--orange)",
@@ -192,7 +192,7 @@ function Callout({ label, children }) {
       )}
       <div style={{
         fontFamily: "'Inter', sans-serif",
-        fontSize: "0.9rem",
+        fontSize: "1.008rem",
         color: "var(--text-muted)",
         lineHeight: 1.8,
       }}>{children}</div>
@@ -216,7 +216,7 @@ export default function MaintenanceRecordsBrief() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <Link to="/knowledge-center" style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.75rem",
+            fontSize: "0.84rem",
             color: "var(--text-subtle)",
             textDecoration: "none",
             letterSpacing: "0.04em",
@@ -230,7 +230,7 @@ export default function MaintenanceRecordsBrief() {
 
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "var(--text-subtle)",
@@ -253,7 +253,7 @@ export default function MaintenanceRecordsBrief() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.05rem",
+            fontSize: "1.176rem",
             color: "var(--text-muted)",
             lineHeight: 1.7,
             marginBottom: "2rem",
@@ -265,20 +265,20 @@ export default function MaintenanceRecordsBrief() {
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem" }}>
             <span style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.72rem",
+              fontSize: "0.806rem",
               color: "var(--text-subtle)",
               letterSpacing: "0.06em",
             }}>14–16 minute brief</span>
-            <span style={{ color: "var(--border)", fontSize: "0.8rem" }}>|</span>
+            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
             <span style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
+              fontSize: "0.896rem",
               color: "var(--text-subtle)",
             }}>Updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}</span>
-            <span style={{ color: "var(--border)", fontSize: "0.8rem" }}>|</span>
+            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
             <span style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.72rem",
+              fontSize: "0.806rem",
               fontWeight: 600,
               color: "var(--orange)",
               background: "var(--orange-muted)",
@@ -303,7 +303,7 @@ export default function MaintenanceRecordsBrief() {
         }} className="summary-grid">
           <div>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.65rem", fontWeight: 700,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700,
               letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "1.25rem",
             }}>In this brief you will:</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -314,8 +314,8 @@ export default function MaintenanceRecordsBrief() {
                 "Use a practical 90-day checklist and an example unit-file index so you can build maintenance records that are audit-ready any day a trooper or auditor pulls a truck's history.",
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>→</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>→</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -323,7 +323,7 @@ export default function MaintenanceRecordsBrief() {
           <div style={{ textAlign: "center", flexShrink: 0 }} className="download-col">
             <button onClick={handlePrint} data-testid="download-checklist-top" style={{
               background: "none", border: "1px solid var(--border)", color: "var(--text-muted)",
-              fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 600,
               padding: "0.875rem 1.5rem", cursor: "pointer", letterSpacing: "0.02em",
               transition: "border-color 0.2s, color 0.2s", whiteSpace: "nowrap", display: "block", marginBottom: "0.5rem",
             }}
@@ -332,7 +332,7 @@ export default function MaintenanceRecordsBrief() {
             >
               Download unit-file<br />checklist (PDF)
             </button>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", color: "var(--text-subtle)" }}>Print or save to PDF</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "var(--text-subtle)" }}>Print or save to PDF</p>
           </div>
         </div>
       </section>
@@ -358,7 +358,7 @@ export default function MaintenanceRecordsBrief() {
         <div style={{ marginBottom: "4.5rem" }}>
           <SectionHeader overline="Section 2" title="What FMCSA Is Really Checking in Your Unit Files" id="what-fmcsa-checks" />
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "var(--text)", marginBottom: "0.75rem" }}>
+          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>
             What they want to see for each truck
           </h3>
           <Body>When an investigator picks a unit and asks "Show me the file for this truck," they are looking for four things:</Body>
@@ -369,12 +369,12 @@ export default function MaintenanceRecordsBrief() {
             "Roadside inspection reports and how you responded to them — especially any OOS violations.",
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "0.75rem" }}>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>—</span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>—</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
             </div>
           ))}
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>
+          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>
             How they connect your paperwork to the real truck
           </h3>
           <Body>Investigators cross-check three things:</Body>
@@ -384,8 +384,8 @@ export default function MaintenanceRecordsBrief() {
             "Roadside history — when a trooper wrote you up, can they see a follow-up repair order and sign-off, or does the same defect keep reappearing?",
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "0.75rem" }}>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>—</span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>—</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
             </div>
           ))}
 
@@ -430,11 +430,11 @@ export default function MaintenanceRecordsBrief() {
             },
           ].map((block) => (
             <div key={block.title} style={{ marginBottom: "2rem" }}>
-              <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "var(--text)", marginBottom: "0.875rem" }}>{block.title}</h3>
+              <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem" }}>{block.title}</h3>
               {block.items.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>—</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>—</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -455,11 +455,11 @@ export default function MaintenanceRecordsBrief() {
         padding: "5rem 1.5rem",
       }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 4</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 4</p>
           <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
             The DVIR Lifecycle: From Defect to Proof of Repair
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 640, marginBottom: "3rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 640, marginBottom: "3rem" }}>
             Most new entrants don't fail maintenance because they never look at trucks. They fail because they never close the loop on what their drivers find. A working DVIR lifecycle has five steps — all five, every time.
           </p>
 
@@ -475,10 +475,10 @@ export default function MaintenanceRecordsBrief() {
                 borderLeft: i === 4 ? "2px solid var(--orange)" : "2px solid transparent",
                 paddingLeft: i === 4 ? "1.25rem" : "0",
               }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--text-subtle)", paddingTop: "0.3rem", letterSpacing: "0.05em" }}>{s.num}</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", paddingTop: "0.3rem", letterSpacing: "0.05em" }}>{s.num}</span>
                 <div>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "var(--text)", marginBottom: "0.4rem" }}>{s.title}</h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{s.detail}</p>
+                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.4rem" }}>{s.title}</h3>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{s.detail}</p>
                 </div>
               </div>
             ))}
@@ -501,7 +501,7 @@ export default function MaintenanceRecordsBrief() {
             Instead of throwing invoices in a drawer, you treat your maintenance system like every other binder in the LaunchPath Standard. One file per truck, one rhythm per week, one review per month.
           </Body>
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "var(--text)", marginBottom: "0.75rem" }}>System inputs</h3>
+          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>System inputs</h3>
           <Body>Four sources feed your maintenance standard:</Body>
           {[
             "Driver inputs: DVIRs, roadside inspection reports, and driver complaints.",
@@ -510,8 +510,8 @@ export default function MaintenanceRecordsBrief() {
             "Risk inputs: OOS reports, crash investigations, and any insurer or auditor findings tied to specific equipment.",
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--orange)", marginTop: "0.3rem", flexShrink: 0 }}>—</span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "var(--orange)", marginTop: "0.3rem", flexShrink: 0 }}>—</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{item}</span>
             </div>
           ))}
 
@@ -535,11 +535,11 @@ export default function MaintenanceRecordsBrief() {
               },
             ].map((block) => (
               <div key={block.period} style={{ background: "var(--bg-2)", padding: "1.75rem", border: "1px solid var(--border)" }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)", marginBottom: "1rem" }}>{block.period}</p>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)", marginBottom: "1rem" }}>{block.period}</p>
                 {block.items.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--text-subtle)", marginTop: "0.3rem", flexShrink: 0 }}>—</span>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</span>
+                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", marginTop: "0.3rem", flexShrink: 0 }}>—</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -556,28 +556,28 @@ export default function MaintenanceRecordsBrief() {
         padding: "5rem 1.5rem",
       }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6</p>
           <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
             90-Day Maintenance Readiness Checklist
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 680, marginBottom: "2.5rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 680, marginBottom: "2.5rem" }}>
             Use this in the 90 days before an audit — or as a recurring quarterly review — to keep your maintenance system audit-ready.
           </p>
           <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "'Inter', sans-serif", fontSize: "0.98rem" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid var(--border)" }}>
                   {["Step", "Action", "Why It Matters"].map(h => (
-                    <th key={h} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-subtle)", textAlign: "left", padding: "0 1rem 1rem 0", whiteSpace: "nowrap" }}>{h}</th>
+                    <th key={h} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-subtle)", textAlign: "left", padding: "0 1rem 1rem 0", whiteSpace: "nowrap" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {CHECKLIST_STEPS.map((row) => (
                   <tr key={row.step} style={{ borderBottom: "1px solid var(--border)" }}>
-                    <td style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "var(--text-subtle)", letterSpacing: "0.05em", padding: "1rem 1.25rem 1rem 0", verticalAlign: "top", whiteSpace: "nowrap" }}>{row.step}</td>
+                    <td style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.05em", padding: "1rem 1.25rem 1rem 0", verticalAlign: "top", whiteSpace: "nowrap" }}>{row.step}</td>
                     <td style={{ padding: "1rem 1.25rem 1rem 0", color: "var(--text-muted)", lineHeight: 1.65, verticalAlign: "top", maxWidth: 340 }}>{row.action}</td>
-                    <td style={{ padding: "1rem 0", color: "var(--text-subtle)", lineHeight: 1.65, verticalAlign: "top", fontSize: "0.85rem" }}>{row.why}</td>
+                    <td style={{ padding: "1rem 0", color: "var(--text-subtle)", lineHeight: 1.65, verticalAlign: "top", fontSize: "0.952rem" }}>{row.why}</td>
                   </tr>
                 ))}
               </tbody>
@@ -593,14 +593,14 @@ export default function MaintenanceRecordsBrief() {
         padding: "5rem 1.5rem",
       }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6 — Supplement</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6 — Supplement</p>
           <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem" }}>
             Example Unit File: Tractor 101
           </h2>
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--text-subtle)", letterSpacing: "0.08em", marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.08em", marginBottom: "1.25rem" }}>
             2019 Freightliner Cascadia — VIN XXXXX — Plate ABC123
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 620 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 620 }}>
             Use this as a model for structuring each truck's file. If an investigator flips through it, they should be able to follow the history of that truck without asking you to explain every page.
           </p>
 
@@ -608,14 +608,14 @@ export default function MaintenanceRecordsBrief() {
             {UNIT_FILE_SECTIONS.map((tab) => (
               <div key={tab.num} className="binder-tab" style={{ background: "var(--bg)", padding: "2rem" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "1.25rem", paddingBottom: "0.875rem", borderBottom: "1px solid var(--border)" }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>TAB {tab.num}</span>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "var(--text)", lineHeight: 1.3 }}>{tab.title}</h3>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>TAB {tab.num}</span>
+                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", lineHeight: 1.3 }}>{tab.title}</h3>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
                   {tab.items.map((item, i) => (
                     <label key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", cursor: "pointer" }}>
                       <input type="checkbox" style={{ marginTop: "0.2rem", flexShrink: 0, accentColor: "var(--orange)", width: 14, height: 14 }} />
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</span>
                     </label>
                   ))}
                 </div>
@@ -625,7 +625,7 @@ export default function MaintenanceRecordsBrief() {
 
           <button onClick={handlePrint} data-testid="download-unit-file-btn" style={{
             background: "none", border: "1px solid var(--border)", color: "var(--text-muted)",
-            fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
+            fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 600,
             padding: "0.875rem 1.5rem", cursor: "pointer", letterSpacing: "0.02em",
             transition: "border-color 0.2s, color 0.2s",
           }}
@@ -664,7 +664,7 @@ export default function MaintenanceRecordsBrief() {
             Build one unit file this week. Start with your oldest truck.
           </h2>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.975rem", color: "var(--text-muted)",
+            fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)",
             lineHeight: 1.8, marginBottom: "2.5rem", maxWidth: 520,
           }}>
             Pull the last 90 days of DVIRs, match them to repair orders, and confirm you have a current annual inspection on file. That one exercise tells you exactly where your maintenance system stands before any auditor does.
@@ -675,7 +675,7 @@ export default function MaintenanceRecordsBrief() {
               data-testid="article-diagnostic-cta"
               style={{
                 display: "inline-block", background: "var(--orange)", color: "#fff",
-                fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+                fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.98rem",
                 letterSpacing: "0.06em", textTransform: "uppercase",
                 padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s",
               }}
@@ -686,7 +686,7 @@ export default function MaintenanceRecordsBrief() {
             </a>
             <button onClick={handlePrint} data-testid="download-checklist-cta" style={{
               background: "none", border: "1px solid var(--border)", color: "var(--text-muted)",
-              fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", fontWeight: 600,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", fontWeight: 600,
               padding: "1rem 2rem", cursor: "pointer", letterSpacing: "0.03em",
               transition: "border-color 0.2s, color 0.2s",
             }}

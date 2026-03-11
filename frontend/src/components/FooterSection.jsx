@@ -9,7 +9,7 @@ export default function FooterSection() {
 
   const linkStyle = {
     fontFamily: "'Inter', sans-serif",
-    fontSize: "1rem",
+    fontSize: "1.12rem",
     color: "#999999",
     textDecoration: "none",
     transition: "color 0.2s",
@@ -37,10 +37,10 @@ export default function FooterSection() {
               alt="LaunchPath Transportation EDU"
               style={{ height: 26, marginBottom: "1.25rem", display: "block" }}
             />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#999999", lineHeight: 1.5, marginBottom: "0.4rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "#999999", lineHeight: 1.5, marginBottom: "0.4rem" }}>
               Accuracy Over Hype.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "#999999", lineHeight: 1.5 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "#999999", lineHeight: 1.5 }}>
               Systems Over Shortcuts.
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function FooterSection() {
           {/* Nav links */}
           <div>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 700,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 700,
               letterSpacing: "0.12em", textTransform: "uppercase", color: "#999999",
               marginBottom: "1.25rem",
             }}>
@@ -82,13 +82,13 @@ export default function FooterSection() {
           flexDirection: "column",
           gap: "0.875rem",
         }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "#999999" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "#999999" }}>
             &copy; {new Date().getFullYear()} LaunchPath Transportation EDU. All rights reserved.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "#666666", lineHeight: 1.7, maxWidth: 800 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "#666666", lineHeight: 1.7, maxWidth: 800 }}>
             LaunchPath is an educational program. Content does not constitute legal, tax, financial, or compliance advice. Verify all information with appropriate professionals and regulatory agencies before making business decisions.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.82rem", color: "#666666" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.918rem", color: "#666666" }}>
             Current as of March 2026. Verified against ecfr.gov.
           </p>
         </div>

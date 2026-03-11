@@ -36,7 +36,7 @@ export default function FinalCTASection() {
             ].map((line, i) => (
               <p key={i} style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "1rem",
+                fontSize: "1.12rem",
                 color: "var(--text)",
                 lineHeight: 1.75,
               }}>{line}</p>
@@ -48,7 +48,7 @@ export default function FinalCTASection() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
-            fontSize: "0.95rem",
+            fontSize: "1.064rem",
             color: "var(--text-subtle)",
             marginBottom: "2.5rem",
             lineHeight: 1.7,
@@ -69,7 +69,7 @@ export default function FinalCTASection() {
                 color: "var(--bg-onyx)",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "0.9rem",
+                fontSize: "1.008rem",
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 padding: "1.1rem 2.5rem",
@@ -87,7 +87,7 @@ export default function FinalCTASection() {
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontStyle: "italic",
-              fontSize: "0.8rem",
+              fontSize: "0.896rem",
               color: "var(--text-subtle)",
             }}>
               Ground 0 is the opening module of the LaunchPath Standard.

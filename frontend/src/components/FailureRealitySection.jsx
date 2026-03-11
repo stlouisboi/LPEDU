@@ -142,7 +142,7 @@ export default function FailureRealitySection() {
             ].map((line, i) => (
               <p key={i} style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.7rem",
+                fontSize: "0.784rem",
                 color: i === 3 ? "var(--gold-muted-brand)" : "var(--text-muted-dark)",
                 letterSpacing: "0.05em",
                 lineHeight: 1.9,
@@ -166,7 +166,7 @@ export default function FailureRealitySection() {
               }}>
                 <span style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.72rem",
+                  fontSize: "0.806rem",
                   fontWeight: 700,
                   color: "var(--gold-primary)",
                   letterSpacing: "0.08em",
@@ -175,14 +175,14 @@ export default function FailureRealitySection() {
                 {field.redacted ? (
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.72rem",
+                    fontSize: "0.806rem",
                     color: "var(--gold-muted-brand)",
                     letterSpacing: "0.04em",
                   }}>██████████ REDACTED</span>
                 ) : (
                   <span style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "1rem",
+                    fontSize: "1.12rem",
                     color: "var(--text-subtle)",
                     lineHeight: 1.5,
                   }}>{field.value}</span>
@@ -202,7 +202,7 @@ export default function FailureRealitySection() {
           }}>
             <p style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.62rem",
+              fontSize: "0.694rem",
               color: "var(--gold-primary)",
               fontWeight: 700,
               letterSpacing: "0.1em",
@@ -210,7 +210,7 @@ export default function FailureRealitySection() {
             }}>PATTERN NOTE</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.875rem",
+              fontSize: "0.98rem",
               color: "var(--text-muted-dark)",
               lineHeight: 1.8,
               margin: 0,
@@ -225,7 +225,7 @@ export default function FailureRealitySection() {
           <p style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "1.1rem",
+            fontSize: "1.232rem",
             color: "var(--text)",
             marginBottom: "0.5rem",
             letterSpacing: "-0.01em",
@@ -234,7 +234,7 @@ export default function FailureRealitySection() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.875rem",
+            fontSize: "0.98rem",
             color: "var(--text-subtle)",
             marginBottom: "2.5rem",
             lineHeight: 1.6,
@@ -254,7 +254,7 @@ export default function FailureRealitySection() {
               <div>
                 <p style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.72rem",
+                  fontSize: "0.806rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
                   color: "var(--gold-primary)",
@@ -268,7 +268,7 @@ export default function FailureRealitySection() {
                     <div key={ii} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                       <span style={{
                         fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "0.65rem",
+                        fontSize: "0.728rem",
                         color: "var(--text-subtle)",
                         flexShrink: 0,
                         marginTop: "0.25rem",
@@ -276,7 +276,7 @@ export default function FailureRealitySection() {
                       }}>[ ]</span>
                       <p style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "1rem",
+                        fontSize: "1.12rem",
                         color: "var(--text-muted-dark)",
                         lineHeight: 1.7,
                         margin: 0,
@@ -338,7 +338,7 @@ export default function FailureRealitySection() {
                 }}><CountUp end={m.end} suffix={m.suffix} /></div>
                 <div style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.78rem",
+                  fontSize: "0.874rem",
                   color: "var(--text-subtle)",
                   lineHeight: 1.5,
                   maxWidth: 200,

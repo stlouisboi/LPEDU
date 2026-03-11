@@ -62,8 +62,8 @@ export default function AboutPage() {
               ["CFR_SYNC", "2026_V4.2"],
             ].map(([key, val]) => (
               <div key={key} style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexShrink: 0 }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>{key}:</span>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "var(--orange)", letterSpacing: "0.1em" }}>{val}</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>{key}:</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>{val}</span>
               </div>
             ))}
           </div>
@@ -93,7 +93,7 @@ export default function AboutPage() {
             </h1>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.05rem",
+              fontSize: "1.176rem",
               color: "var(--text-muted)",
               lineHeight: 1.85,
               maxWidth: 520,
@@ -106,7 +106,7 @@ export default function AboutPage() {
             </p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
+              fontSize: "1.12rem",
               color: "var(--text-subtle)",
               lineHeight: 1.8,
               maxWidth: 520,
@@ -131,7 +131,7 @@ export default function AboutPage() {
                 background: "linear-gradient(transparent, rgba(2,4,8,0.9))",
                 padding: "2.5rem 1.25rem 1.25rem",
               }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "var(--orange)", letterSpacing: "0.1em" }}>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>
                   STATION CUSTODIAN — LP-SYS-V4.2
                 </p>
               </div>
@@ -148,8 +148,8 @@ export default function AboutPage() {
                 ["20+ Yrs", "Manufacturing & Safety Systems"],
               ].map(([val, label]) => (
                 <div key={val} style={{ background: "var(--bg-2)", padding: "0.875rem 1rem" }}>
-                  <div style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "0.9rem", color: "var(--text)", marginBottom: "0.2rem" }}>{val}</div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.68rem", color: "var(--text-subtle)", lineHeight: 1.4 }}>{label}</div>
+                  <div style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.008rem", color: "var(--text)", marginBottom: "0.2rem" }}>{val}</div>
+                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", lineHeight: 1.4 }}>{label}</div>
                 </div>
               ))}
             </div>
@@ -178,18 +178,18 @@ export default function AboutPage() {
 
           <FadeIn delay={80}>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2.5rem" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
                 I did not come from trucking. I came from 20 years of building and leading operational systems
                 in manufacturing environments — where documented processes were the difference between a compliant
                 operation and a costly one, and where leadership meant being accountable for systems other people ran.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
                 When I looked at what new motor carriers were operating without in their first 90 days, I recognized
                 the same failure pattern I had watched surface on the plant floor. Not ignorance. Not laziness.
                 The absence of a system. LaunchPath is built from that pattern recognition. The names are different.
                 The failure modes are not.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
                 The Navy runs on documented procedure. Manufacturing operations at the leadership level run on system
                 accountability. OSHA certification is not a trucking credential — it is a regulatory philosophy credential.
                 FMCSA and OSHA operate from the same foundation: industries that will not self-regulate require documented
@@ -208,14 +208,14 @@ export default function AboutPage() {
               <p style={{
                 fontFamily: "'Manrope', sans-serif",
                 fontWeight: 600,
-                fontSize: "1.15rem",
+                fontSize: "1.288rem",
                 color: "var(--text)",
                 lineHeight: 1.6,
                 fontStyle: "italic",
               }}>
                 "My responsibility is not to motivate carriers — it is to prevent preventable failure."
               </p>
-              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>
+              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>
                 — Vince Lawrence, Station Custodian
               </footer>
             </blockquote>
@@ -228,7 +228,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ maxWidth: 600, marginBottom: "4.5rem" }}>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
                 48 CFR Subpart — Operational Doctrine
               </p>
               <h2 style={{
@@ -238,7 +238,7 @@ export default function AboutPage() {
                 letterSpacing: "-0.02em",
                 marginBottom: "0.75rem",
               }}>Operational Doctrine</h2>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-subtle)" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)" }}>
                 Version 4.2 · Authority: Station Custodian
               </p>
             </div>
@@ -261,9 +261,9 @@ export default function AboutPage() {
                   onMouseEnter={e => e.currentTarget.style.background = "var(--bg-2)"}
                   onMouseLeave={e => e.currentTarget.style.background = "var(--bg)"}
                 >
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--orange)", letterSpacing: "0.12em", marginBottom: "1rem" }}>{d.ref}</p>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "0.975rem", color: "var(--text)", marginBottom: "0.875rem", lineHeight: 1.3 }}>{d.title}</h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{d.body}</p>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.12em", marginBottom: "1rem" }}>{d.ref}</p>
+                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.092rem", color: "var(--text)", marginBottom: "0.875rem", lineHeight: 1.3 }}>{d.title}</h3>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{d.body}</p>
                 </div>
               </FadeIn>
             ))}
@@ -285,7 +285,7 @@ export default function AboutPage() {
             }}>
               What LaunchPath Does Not Provide
             </h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
               Knowing what we don't do is as important as knowing what we do. LaunchPath is a compliance
               education and implementation system. We build infrastructure. We do not operate your business.
             </p>
@@ -303,13 +303,13 @@ export default function AboutPage() {
                   onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
                   onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                 >
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--text-subtle)", marginTop: "0.25rem", flexShrink: 0 }}>—</span>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</p>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "var(--text-subtle)", marginTop: "0.25rem", flexShrink: 0 }}>—</span>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</p>
                 </div>
               ))}
             </div>
 
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-subtle)", marginTop: "1.5rem", lineHeight: 1.7 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)", marginTop: "1.5rem", lineHeight: 1.7 }}>
               These boundaries are not limitations — they are the reason the LaunchPath Standard maintains its integrity.
             </p>
           </FadeIn>
@@ -333,12 +333,12 @@ export default function AboutPage() {
                 "If this feels expensive, you are likely not ready.<br />
                 If it feels reasonable, you are already thinking like an operator."
               </p>
-              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: "var(--text-subtle)" }}>
+              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", color: "var(--text-subtle)" }}>
                 — Vince Lawrence
               </footer>
             </blockquote>
 
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-subtle)", lineHeight: 1.7, marginBottom: "2.5rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-subtle)", lineHeight: 1.7, marginBottom: "2.5rem" }}>
               Not all applicants are accepted. Some are advised to wait. Others are advised not to proceed at all.
             </p>
 
@@ -349,7 +349,7 @@ export default function AboutPage() {
                   display: "inline-flex", alignItems: "center", gap: "0.6rem",
                   background: "var(--orange)", color: "#fff",
                   fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                  fontSize: "0.875rem", letterSpacing: "0.06em", textTransform: "uppercase",
+                  fontSize: "0.98rem", letterSpacing: "0.06em", textTransform: "uppercase",
                   padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s",
                 }}
                 onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
@@ -363,7 +363,7 @@ export default function AboutPage() {
                   display: "inline-flex", alignItems: "center", gap: "0.5rem",
                   border: "1px solid var(--border)", color: "var(--text-muted)",
                   fontFamily: "'Inter', sans-serif", fontWeight: 600,
-                  fontSize: "0.875rem", letterSpacing: "0.05em", textTransform: "uppercase",
+                  fontSize: "0.98rem", letterSpacing: "0.05em", textTransform: "uppercase",
                   padding: "1rem 2rem", textDecoration: "none", transition: "all 0.2s",
                 }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)"; e.currentTarget.style.color = "var(--text)"; }}

@@ -12,7 +12,7 @@ export default function SystemDiagramSection() {
         <div style={{ marginBottom: "3.5rem" }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.63rem",
+            fontSize: "0.706rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "var(--text-subtle)",
@@ -29,7 +29,7 @@ export default function SystemDiagramSection() {
           }}>The Authority Protection System</h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.95rem",
+            fontSize: "1.064rem",
             color: "var(--text-muted)",
             lineHeight: 1.75,
             maxWidth: 520,
@@ -63,7 +63,7 @@ export default function SystemDiagramSection() {
             top: 12,
             left: 28,
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.58rem",
+            fontSize: "0.65rem",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "var(--text-subtle)",
@@ -212,14 +212,14 @@ export default function SystemDiagramSection() {
             <div key={title} style={{ background: "var(--bg-2)", padding: "1.25rem 1.5rem" }}>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.72rem",
+                fontSize: "0.806rem",
                 fontWeight: 700,
                 color: "var(--text)",
                 marginBottom: "0.375rem",
               }}>{title}</p>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.78rem",
+                fontSize: "0.874rem",
                 color: "var(--text-subtle)",
                 lineHeight: 1.6,
               }}>{desc}</p>

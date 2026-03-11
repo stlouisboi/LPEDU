@@ -28,7 +28,7 @@ export default function Navbar() {
 
   const linkStyle = (href) => ({
     fontFamily: "'Inter', sans-serif",
-    fontSize: "0.875rem",
+    fontSize: "0.98rem",
     fontWeight: 500,
     color: isActive(href) ? "var(--text)" : "var(--text-muted)",
     textDecoration: "none",
@@ -81,7 +81,7 @@ export default function Navbar() {
             data-testid="nav-portal-btn"
             style={{
               display: "flex", alignItems: "center", gap: "0.4rem",
-              fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 600,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", fontWeight: 600,
               letterSpacing: "0.08em", textTransform: "uppercase",
               color: "var(--gold-primary)",
               background: "transparent",
@@ -128,18 +128,18 @@ export default function Navbar() {
             l.external ? (
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", textDecoration: "none" }}
+                style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", textDecoration: "none" }}
               >{l.label}</a>
             ) : (
               <Link key={l.label} to={l.href} onClick={() => setOpen(false)}
-                style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", textDecoration: "none" }}
+                style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", textDecoration: "none" }}
               >{l.label}</Link>
             )
           ))}
           <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
             style={{
               display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem",
-              fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 600,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", fontWeight: 600,
               letterSpacing: "0.08em", textTransform: "uppercase",
               color: "var(--gold-primary)", border: "1px solid var(--gold-primary)",
               padding: "0.75rem", textDecoration: "none",

@@ -157,7 +157,7 @@ function SectionHeader({ overline, title, id }) {
       {overline && (
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.65rem",
+          fontSize: "0.728rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
@@ -181,7 +181,7 @@ function Body({ children, style = {} }) {
   return (
     <p style={{
       fontFamily: "'Inter', sans-serif",
-      fontSize: "1rem",
+      fontSize: "1.12rem",
       color: "var(--text-muted)",
       lineHeight: 1.85,
       marginBottom: "1.25rem",
@@ -204,7 +204,7 @@ function Callout({ label, children }) {
       {label && (
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.65rem",
+          fontSize: "0.728rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           color: "var(--orange)",
@@ -213,7 +213,7 @@ function Callout({ label, children }) {
       )}
       <div style={{
         fontFamily: "'Inter', sans-serif",
-        fontSize: "0.9rem",
+        fontSize: "1.008rem",
         color: "var(--text-muted)",
         lineHeight: 1.8,
       }}>{children}</div>
@@ -237,7 +237,7 @@ export default function HOSComplianceBrief() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <Link to="/knowledge-center" style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.75rem",
+            fontSize: "0.84rem",
             color: "var(--text-subtle)",
             textDecoration: "none",
             letterSpacing: "0.04em",
@@ -251,7 +251,7 @@ export default function HOSComplianceBrief() {
 
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "var(--text-subtle)",
@@ -274,7 +274,7 @@ export default function HOSComplianceBrief() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.05rem",
+            fontSize: "1.176rem",
             color: "var(--text-muted)",
             lineHeight: 1.7,
             marginBottom: "2rem",
@@ -286,20 +286,20 @@ export default function HOSComplianceBrief() {
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem" }}>
             <span style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.72rem",
+              fontSize: "0.806rem",
               color: "var(--text-subtle)",
               letterSpacing: "0.06em",
             }}>12-minute brief</span>
-            <span style={{ color: "var(--border)", fontSize: "0.8rem" }}>|</span>
+            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
             <span style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
+              fontSize: "0.896rem",
               color: "var(--text-subtle)",
             }}>Updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}</span>
-            <span style={{ color: "var(--border)", fontSize: "0.8rem" }}>|</span>
+            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
             <span style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.72rem",
+              fontSize: "0.806rem",
               fontWeight: 600,
               color: "var(--orange)",
               background: "var(--orange-muted)",
@@ -329,7 +329,7 @@ export default function HOSComplianceBrief() {
           <div>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.65rem",
+              fontSize: "0.728rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -346,14 +346,14 @@ export default function HOSComplianceBrief() {
                 <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.65rem",
+                    fontSize: "0.728rem",
                     color: "var(--orange)",
                     marginTop: "0.28rem",
                     flexShrink: 0,
                   }}>→</span>
                   <span style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.9rem",
+                    fontSize: "1.008rem",
                     color: "var(--text-muted)",
                     lineHeight: 1.75,
                   }}>{item}</span>
@@ -371,7 +371,7 @@ export default function HOSComplianceBrief() {
                 border: "1px solid var(--border)",
                 color: "var(--text-muted)",
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.8rem",
+                fontSize: "0.896rem",
                 fontWeight: 600,
                 padding: "0.875rem 1.5rem",
                 cursor: "pointer",
@@ -386,7 +386,7 @@ export default function HOSComplianceBrief() {
             >
               Download HOS<br />readiness checklist (PDF)
             </button>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", color: "var(--text-subtle)" }}>Print or save to PDF</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "var(--text-subtle)" }}>Print or save to PDF</p>
           </div>
         </div>
       </section>
@@ -415,7 +415,7 @@ export default function HOSComplianceBrief() {
           <h3 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text)",
             marginBottom: "0.75rem",
           }}>Do you fall under federal HOS?</h3>
@@ -426,7 +426,7 @@ export default function HOSComplianceBrief() {
           <h3 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text)",
             marginBottom: "0.75rem",
             marginTop: "2rem",
@@ -442,21 +442,21 @@ export default function HOSComplianceBrief() {
               <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                 <span style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.7rem",
+                  fontSize: "0.784rem",
                   color: "var(--text-subtle)",
                   marginTop: "0.3rem",
                   flexShrink: 0,
                 }}>{i + 1}.</span>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.9rem",
+                  fontSize: "1.008rem",
                   color: "var(--text-muted)",
                   lineHeight: 1.75,
                 }}>{item}</span>
               </div>
             ))}
           </div>
-          <Body style={{ color: "var(--text-subtle)", fontSize: "0.9rem" }}>
+          <Body style={{ color: "var(--text-subtle)", fontSize: "1.008rem" }}>
             If the answer to any of these is "no," you may be technically running HOS but functionally non-compliant.
           </Body>
         </div>
@@ -478,14 +478,14 @@ export default function HOSComplianceBrief() {
             <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "0.75rem" }}>
               <span style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.7rem",
+                fontSize: "0.784rem",
                 color: "var(--orange)",
                 marginTop: "0.28rem",
                 flexShrink: 0,
               }}>—</span>
               <span style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.9rem",
+                fontSize: "1.008rem",
                 color: "var(--text-muted)",
                 lineHeight: 1.75,
               }}>{item}</span>
@@ -511,7 +511,7 @@ export default function HOSComplianceBrief() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -528,7 +528,7 @@ export default function HOSComplianceBrief() {
           }}>Log Patterns That Create the Most Risk</h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             maxWidth: 680,
@@ -550,7 +550,7 @@ export default function HOSComplianceBrief() {
               }}>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.68rem",
+                  fontSize: "0.762rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
@@ -564,14 +564,14 @@ export default function HOSComplianceBrief() {
                     <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                       <span style={{
                         fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "0.65rem",
+                        fontSize: "0.728rem",
                         color: "var(--text-subtle)",
                         marginTop: "0.25rem",
                         flexShrink: 0,
                       }}>—</span>
                       <span style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.85rem",
+                        fontSize: "0.952rem",
                         color: "var(--text-muted)",
                         lineHeight: 1.7,
                       }}>{item}</span>
@@ -595,7 +595,7 @@ export default function HOSComplianceBrief() {
           <h3 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text)",
             marginBottom: "0.75rem",
           }}>System inputs</h3>
@@ -609,14 +609,14 @@ export default function HOSComplianceBrief() {
               <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                 <span style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.7rem",
+                  fontSize: "0.784rem",
                   color: "var(--orange)",
                   marginTop: "0.3rem",
                   flexShrink: 0,
                 }}>—</span>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.9rem",
+                  fontSize: "1.008rem",
                   color: "var(--text-muted)",
                   lineHeight: 1.75,
                 }}>{item}</span>
@@ -627,7 +627,7 @@ export default function HOSComplianceBrief() {
           <h3 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text)",
             marginBottom: "0.75rem",
           }}>Weekly behaviors</h3>
@@ -640,14 +640,14 @@ export default function HOSComplianceBrief() {
             <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "0.75rem" }}>
               <span style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.7rem",
+                fontSize: "0.784rem",
                 color: "var(--orange)",
                 marginTop: "0.28rem",
                 flexShrink: 0,
               }}>—</span>
               <span style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.9rem",
+                fontSize: "1.008rem",
                 color: "var(--text-muted)",
                 lineHeight: 1.75,
               }}>{item}</span>
@@ -672,7 +672,7 @@ export default function HOSComplianceBrief() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -689,7 +689,7 @@ export default function HOSComplianceBrief() {
           }}>90-Day HOS Readiness Checklist</h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             maxWidth: 680,
@@ -699,13 +699,13 @@ export default function HOSComplianceBrief() {
           </p>
 
           <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "'Inter', sans-serif", fontSize: "0.98rem" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid var(--border)" }}>
                   {["Step", "Action", "Why It Matters"].map(h => (
                     <th key={h} style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.65rem",
+                      fontSize: "0.728rem",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -722,7 +722,7 @@ export default function HOSComplianceBrief() {
                   <tr key={row.step} style={{ borderBottom: "1px solid var(--border)" }}>
                     <td style={{
                       fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.68rem",
+                      fontSize: "0.762rem",
                       color: "var(--text-subtle)",
                       letterSpacing: "0.05em",
                       padding: "1rem 1.25rem 1rem 0",
@@ -741,7 +741,7 @@ export default function HOSComplianceBrief() {
                       color: "var(--text-subtle)",
                       lineHeight: 1.65,
                       verticalAlign: "top",
-                      fontSize: "0.85rem",
+                      fontSize: "0.952rem",
                     }}>{row.why}</td>
                   </tr>
                 ))}
@@ -760,7 +760,7 @@ export default function HOSComplianceBrief() {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.65rem",
+            fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -777,7 +777,7 @@ export default function HOSComplianceBrief() {
           }}>HOS Audit Binder</h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.95rem",
+            fontSize: "1.064rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             marginBottom: "3rem",
@@ -799,14 +799,14 @@ export default function HOSComplianceBrief() {
                 }}>
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.65rem",
+                    fontSize: "0.728rem",
                     color: "var(--text-subtle)",
                     letterSpacing: "0.1em",
                   }}>TAB {tab.num}</span>
                   <h3 style={{
                     fontFamily: "'Manrope', sans-serif",
                     fontWeight: 700,
-                    fontSize: "1rem",
+                    fontSize: "1.12rem",
                     color: "var(--text)",
                     lineHeight: 1.3,
                   }}>{tab.title}</h3>
@@ -826,7 +826,7 @@ export default function HOSComplianceBrief() {
                       />
                       <span style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.875rem",
+                        fontSize: "0.98rem",
                         color: "var(--text-muted)",
                         lineHeight: 1.7,
                       }}>{item}</span>
@@ -845,7 +845,7 @@ export default function HOSComplianceBrief() {
               border: "1px solid var(--border)",
               color: "var(--text-muted)",
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
+              fontSize: "0.896rem",
               fontWeight: 600,
               padding: "0.875rem 1.5rem",
               cursor: "pointer",
@@ -895,7 +895,7 @@ export default function HOSComplianceBrief() {
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.975rem",
+            fontSize: "1.092rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             marginBottom: "2.5rem",
@@ -915,7 +915,7 @@ export default function HOSComplianceBrief() {
                 color: "#fff",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "0.875rem",
+                fontSize: "0.98rem",
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 padding: "1rem 2rem",
@@ -935,7 +935,7 @@ export default function HOSComplianceBrief() {
                 border: "1px solid var(--border)",
                 color: "var(--text-muted)",
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.875rem",
+                fontSize: "0.98rem",
                 fontWeight: 600,
                 padding: "1rem 2rem",
                 cursor: "pointer",

@@ -56,7 +56,7 @@ export default function ThreePathsSection() {
           <p style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 500,
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text-muted)",
             marginBottom: "4rem",
             lineHeight: 1.7,
@@ -79,7 +79,7 @@ export default function ThreePathsSection() {
               {["PATH", "APPROACH", "COST", "OUTCOME"].map((h) => (
                 <p key={h} style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.82rem",
+                  fontSize: "0.918rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   color: "var(--text-subtle)",
@@ -103,14 +103,14 @@ export default function ThreePathsSection() {
                   <span style={{
                     fontFamily: "'Manrope', sans-serif",
                     fontWeight: 700,
-                    fontSize: "1.1rem",
+                    fontSize: "1.232rem",
                     letterSpacing: "0.1em",
                     color: path.isLP ? "var(--gold-primary)" : "var(--text-subtle)",
                   }}>{path.label}</span>
                 </div>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.1rem",
+                  fontSize: "1.232rem",
                   color: "var(--text-muted)",
                   lineHeight: 1.6,
                   margin: 0,
@@ -118,7 +118,7 @@ export default function ThreePathsSection() {
                 <div>
                   <p style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "1.05rem",
+                    fontSize: "1.176rem",
                     fontWeight: 700,
                     color: path.isLP ? "var(--gold-primary)" : "var(--red)",
                     margin: 0,
@@ -127,7 +127,7 @@ export default function ThreePathsSection() {
                   {path.costNote && (
                     <p style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.82rem",
+                      fontSize: "0.918rem",
                       color: "var(--text-subtle)",
                       marginTop: "0.25rem",
                       lineHeight: 1.4,
@@ -152,7 +152,7 @@ export default function ThreePathsSection() {
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 500,
             fontStyle: "italic",
-            fontSize: "1.05rem",
+            fontSize: "1.176rem",
             color: "var(--text)",
             textAlign: "center",
             lineHeight: 1.7,

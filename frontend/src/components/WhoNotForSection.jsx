@@ -22,7 +22,7 @@ export default function WhoNotForSection() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.05rem",
+            fontSize: "1.176rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
             marginBottom: "3rem",
@@ -37,7 +37,7 @@ export default function WhoNotForSection() {
             <FadeIn key={i} delay={i * 60}>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.975rem",
+                fontSize: "1.092rem",
                 color: "var(--text-paper)",
                 lineHeight: 1.8,
                 paddingLeft: "1.5rem",

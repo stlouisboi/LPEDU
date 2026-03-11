@@ -68,7 +68,7 @@ export default function DeadlySinsSection() {
             <p style={{
               fontFamily: "'Manrope', sans-serif",
               fontWeight: 600,
-              fontSize: "1rem",
+              fontSize: "1.12rem",
               color: "var(--text-paper)",
               lineHeight: 1.7,
               marginBottom: "0.5rem",
@@ -90,7 +90,7 @@ export default function DeadlySinsSection() {
             <div key={bucket.id} data-testid={`sin-bucket-${bucket.id}`}>
               <div style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.68rem",
+                fontSize: "0.762rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
@@ -106,7 +106,7 @@ export default function DeadlySinsSection() {
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{
                       fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.7rem",
+                      fontSize: "0.784rem",
                       color: "var(--text-paper-muted)",
                       marginTop: "0.25rem",
                       flexShrink: 0,
@@ -114,7 +114,7 @@ export default function DeadlySinsSection() {
                     }}>—</span>
                     <p style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.9rem",
+                      fontSize: "1.008rem",
                       color: "var(--text-paper)",
                       lineHeight: 1.75,
                       margin: 0,
@@ -129,7 +129,7 @@ export default function DeadlySinsSection() {
         <div style={{ borderTop: "1px solid var(--divider-light)", paddingTop: "2rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.95rem",
+            fontSize: "1.064rem",
             color: "var(--text-paper-muted)",
             lineHeight: 1.7,
           }}>

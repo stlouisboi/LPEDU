@@ -46,7 +46,7 @@ export default function FourPillarsSection() {
           <p style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 500,
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text-muted)",
             marginBottom: "4rem",
             lineHeight: 1.7,
@@ -83,14 +83,14 @@ export default function FourPillarsSection() {
                 <p style={{
                   fontFamily: "'Manrope', sans-serif",
                   fontWeight: 700,
-                  fontSize: "1.05rem",
+                  fontSize: "1.176rem",
                   color: "var(--gold-primary)",
                   marginBottom: "0.875rem",
                   letterSpacing: "-0.01em",
                 }}>{pillar.name}</p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.05rem",
+                  fontSize: "1.176rem",
                   color: "#CCCCCC",
                   lineHeight: 1.8,
                   margin: 0,
@@ -105,7 +105,7 @@ export default function FourPillarsSection() {
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 600,
             fontStyle: "italic",
-            fontSize: "1rem",
+            fontSize: "1.12rem",
             color: "var(--text)",
             textAlign: "center",
             lineHeight: 1.7,
