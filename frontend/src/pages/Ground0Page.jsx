@@ -185,7 +185,7 @@ export default function Ground0Page() {
                 fontFamily: "Arial, sans-serif",
                 fontSize: "0.784rem",
                 fontWeight: 400,
-                color: "rgba(197,160,89,0.55)",
+                color: "rgba(197,160,89,0.78)",
                 letterSpacing: "0.02em",
                 margin: 0,
               }}
@@ -242,7 +242,7 @@ export default function Ground0Page() {
                         fontFamily: "Arial, sans-serif",
                         fontWeight: 700,
                         fontSize: "1.008rem",
-                        color: isOpen ? "#FFFFFF" : "rgba(255,255,255,0.65)",
+                        color: isOpen ? "#FFFFFF" : "rgba(255,255,255,0.87)",
                         transition: "color 0.2s",
                       }}
                     >
@@ -251,7 +251,7 @@ export default function Ground0Page() {
                   </div>
                   <span
                     style={{
-                      color: isOpen ? "#C5A059" : "rgba(255,255,255,0.35)",
+                      color: isOpen ? "#C5A059" : "rgba(255,255,255,0.60)",
                       fontSize: "1.4rem",
                       lineHeight: 1,
                       transition: "all 0.2s",
@@ -269,7 +269,7 @@ export default function Ground0Page() {
                       style={{
                         fontFamily: "Arial, sans-serif",
                         fontSize: "0.98rem",
-                        color: "rgba(255,255,255,0.72)",
+                        color: "rgba(255,255,255,0.90)",
                         lineHeight: 1.9,
                         marginBottom: "1.25rem",
                       }}
@@ -281,7 +281,7 @@ export default function Ground0Page() {
                       style={{
                         fontFamily: "Arial, sans-serif",
                         fontSize: "0.84rem",
-                        color: "rgba(197,160,89,0.75)",
+                        color: "rgba(197,160,89,0.90)",
                         marginBottom: "1.5rem",
                         letterSpacing: "0.02em",
                       }}
@@ -415,7 +415,7 @@ export default function Ground0Page() {
                   style={{
                     fontFamily: "Arial, sans-serif",
                     fontSize: "0.84rem",
-                    color: "rgba(255,255,255,0.38)",
+                    color: "rgba(255,255,255,0.84)",
                     marginTop: "1.25rem",
                     fontStyle: "italic",
                   }}
@@ -447,7 +447,7 @@ export default function Ground0Page() {
                     style={{
                       fontFamily: "Arial, sans-serif",
                       fontSize: "0.98rem",
-                      color: "rgba(255,255,255,0.68)",
+                      color: "rgba(255,255,255,0.88)",
                       lineHeight: 1.85,
                     }}
                   >
@@ -481,7 +481,7 @@ export default function Ground0Page() {
                     style={{
                       fontFamily: "Arial, sans-serif",
                       fontSize: "0.98rem",
-                      color: "rgba(255,255,255,0.68)",
+                      color: "rgba(255,255,255,0.88)",
                       lineHeight: 1.85,
                       marginBottom: "2rem",
                     }}
@@ -520,7 +520,7 @@ export default function Ground0Page() {
                     style={{
                       fontFamily: "Arial, sans-serif",
                       fontSize: "0.784rem",
-                      color: "rgba(255,255,255,0.32)",
+                      color: "rgba(255,255,255,0.75)",
                       marginTop: "1.25rem",
                       fontStyle: "italic",
                     }}

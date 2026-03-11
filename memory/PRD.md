@@ -93,7 +93,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] About + Contact pages
 - [x] MailerLite integration (contact + diagnostic)
 - [x] Auto-Diagnostic Tool (/readiness + /auto-diagnostic)
-- [x] Font size +12% across all body, table, labels, monospace, footnotes (Mar 2026)
+- [x] Text brightness pass — `--text-subtle` #a0b0bf → #dde5ec, rgba opacities raised site-wide, Footer greys #999/#666 → #BBB/#AAA, ternary color values fixed in Ground0+Portal (Mar 2026)
 
 ### P1 — Next Up
 - [x] Build `/ground-0-briefing` page — 6-lesson accordion, email capture, inline confirmation (Mar 2026)

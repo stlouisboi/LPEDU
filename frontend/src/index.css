@@ -23,8 +23,8 @@
   --orange-muted: rgba(232,89,15,0.1);
   /* Refined Dark — higher contrast for readability */
   --text: #f4f7fb;
-  --text-muted: #dce6f0;
-  --text-subtle: #a0b0bf;
+  --text-muted: #eef3f7;
+  --text-subtle: #dde5ec;
   --border: rgba(255,255,255,0.10);
   --border-gold: rgba(138,150,163,0.22);
   --red: #ef4444;
@@ -42,9 +42,9 @@
   --divider-dark: #1E3355;
   --divider-light: #DDDDDD;
   --text-paper: #1A1A1A;
-  --text-paper-muted: #666666;
+  --text-paper-muted: #555555;
   --text-paper-heading: #002244;
-  --text-muted-dark: #CCCCCC;
+  --text-muted-dark: #E2E2E2;
   --incident-dark-1: #0D1929;
   --incident-dark-2: #111E30;
   --pattern-note-bg: #1A2A3A;

@@ -178,7 +178,7 @@ export default function PortalPage() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.784rem",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(255,255,255,0.70)",
             }}
           >
             90-Day Compliance Operating Standard
@@ -213,7 +213,7 @@ export default function PortalPage() {
               fontWeight: 700,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
+              color: "rgba(255,255,255,0.75)",
               padding: "0 1.5rem",
               marginBottom: "1.25rem",
             }}
@@ -272,7 +272,7 @@ export default function PortalPage() {
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 700,
                         fontSize: "0.784rem",
-                        color: mod.locked ? "rgba(255,255,255,0.5)" : "#FFFFFF",
+                        color: mod.locked ? "rgba(255,255,255,0.75)" : "#FFFFFF",
                         letterSpacing: "0.04em",
                       }}
                     >
@@ -283,7 +283,7 @@ export default function PortalPage() {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.784rem",
-                      color: mod.locked ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.75)",
+                      color: mod.locked ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.90)",
                       lineHeight: 1.4,
                       marginBottom: "0.3rem",
                     }}
@@ -294,7 +294,7 @@ export default function PortalPage() {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.672rem",
-                      color: mod.locked ? "rgba(255,255,255,0.22)" : "rgba(197,160,89,0.7)",
+                      color: mod.locked ? "rgba(255,255,255,0.42)" : "rgba(197,160,89,0.9)",
                       letterSpacing: "0.04em",
                     }}
                   >
@@ -330,12 +330,12 @@ export default function PortalPage() {
               >
                 Placement Request Confirmed.
               </h2>
-              <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.8, marginBottom: "2rem" }}>
+              <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.87)", lineHeight: 1.8, marginBottom: "2rem" }}>
                 Your cohort placement request has been received. You will receive a confirmation
                 and next steps within 24 hours.
               </p>
               <div style={{ height: 2, background: "#C5A059", margin: "2rem 0" }} />
-              <p style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.4)", fontStyle: "italic" }}>
+              <p style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.87)", fontStyle: "italic" }}>
                 Admission is subject to assessment result and cohort availability.
               </p>
             </div>
@@ -344,10 +344,10 @@ export default function PortalPage() {
           {/* Payment polling state */}
           {paymentState === "polling" && (
             <div style={{ textAlign: "center", maxWidth: 520, margin: "4rem auto" }}>
-              <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.65)", marginBottom: "1rem" }}>
+              <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.87)", marginBottom: "1rem" }}>
                 Confirming your payment...
               </p>
-              <p style={{ fontSize: "0.84rem", color: "rgba(255,255,255,0.35)" }}>
+              <p style={{ fontSize: "0.84rem", color: "rgba(255,255,255,0.82)" }}>
                 This will only take a moment.
               </p>
             </div>
@@ -389,7 +389,7 @@ export default function PortalPage() {
                   <p
                     style={{
                       fontSize: "1.008rem",
-                      color: "rgba(255,255,255,0.6)",
+                      color: "rgba(255,255,255,0.82)",
                       lineHeight: 1.8,
                       maxWidth: 560,
                       marginBottom: "2.5rem",
@@ -437,7 +437,7 @@ export default function PortalPage() {
                             style={{
                               fontFamily: "'Inter', sans-serif",
                               fontSize: "0.98rem",
-                              color: "rgba(255,255,255,0.8)",
+                              color: "rgba(255,255,255,0.93)",
                             }}
                           >
                             {l.title}
@@ -447,7 +447,7 @@ export default function PortalPage() {
                           style={{
                             fontFamily: "'Inter', sans-serif",
                             fontSize: "0.784rem",
-                            color: "rgba(255,255,255,0.3)",
+                            color: "rgba(255,255,255,0.78)",
                           }}
                         >
                           {l.duration}
@@ -523,7 +523,7 @@ export default function PortalPage() {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "1.008rem",
-                      color: "rgba(255,255,255,0.65)",
+                      color: "rgba(255,255,255,0.87)",
                       lineHeight: 1.85,
                       marginBottom: "2.5rem",
                       maxWidth: 480,
@@ -551,7 +551,7 @@ export default function PortalPage() {
                       style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.896rem",
-                        color: "rgba(255,255,255,0.65)",
+                        color: "rgba(255,255,255,0.87)",
                         letterSpacing: "0.04em",
                       }}
                     >
@@ -618,7 +618,7 @@ export default function PortalPage() {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.784rem",
-                      color: "rgba(255,255,255,0.3)",
+                      color: "rgba(255,255,255,0.78)",
                       marginTop: "1rem",
                       fontStyle: "italic",
                     }}

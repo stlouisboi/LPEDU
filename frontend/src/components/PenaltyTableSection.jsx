@@ -122,7 +122,7 @@ export default function PenaltyTableSection() {
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "1.12rem",
                     fontStyle: "italic",
-                    color: "var(--text-subtle)",
+                    color: "var(--text-muted)",
                     lineHeight: 1.65,
                     margin: 0,
                   }}>{row.drain}</p>
