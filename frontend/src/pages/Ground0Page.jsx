@@ -61,6 +61,7 @@ const LESSONS = [
 
 export default function Ground0Page() {
   const [openPanel, setOpenPanel] = useState(0);
+  const [openedPanels, setOpenedPanels] = useState(new Set([0]));
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -89,7 +90,11 @@ export default function Ground0Page() {
   };
 
   const togglePanel = (idx) => {
-    setOpenPanel(openPanel === idx ? null : idx);
+    const isOpening = openPanel !== idx;
+    setOpenPanel(isOpening ? idx : null);
+    if (isOpening) {
+      setOpenedPanels(prev => new Set([...prev, idx]));
+    }
   };
 
   return (
@@ -161,6 +166,33 @@ export default function Ground0Page() {
       {/* ── Accordion Section ── Dark navy */}
       <div style={{ background: "#002244", padding: "72px 24px 80px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
+
+          {/* Progress indicator — sticky, one line, institutional */}
+          <div
+            data-testid="progress-indicator"
+            style={{
+              position: "sticky",
+              top: 64,
+              background: "#002244",
+              zIndex: 10,
+              padding: "0.875rem 0",
+              marginBottom: "0.5rem",
+              borderBottom: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "Arial, sans-serif",
+                fontSize: "0.784rem",
+                fontWeight: 400,
+                color: "rgba(197,160,89,0.55)",
+                letterSpacing: "0.02em",
+                margin: 0,
+              }}
+            >
+              {openedPanels.size} of 6 lessons
+            </p>
+          </div>
 
           {/* Accordion panels */}
           {LESSONS.map((lesson, idx) => {
