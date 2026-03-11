@@ -6,7 +6,6 @@ export default function AboutSection() {
       background: "var(--bg-paper)",
       padding: "7rem 1.5rem",
       borderTop: "3px solid var(--gold-primary)",
-      borderBottom: "1px solid var(--divider-light)",
     }}>
       <div style={{
         maxWidth: 1100,
