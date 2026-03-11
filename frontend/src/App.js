@@ -12,6 +12,8 @@ import MaintenanceRecordsBrief from "./pages/knowledge-center/MaintenanceRecords
 import InsuranceContinuityBrief from "./pages/knowledge-center/InsuranceContinuityBrief";
 import DrugAlcoholBrief from "./pages/knowledge-center/DrugAlcoholBrief";
 import AllChecklists from "./pages/knowledge-center/AllChecklists";
+import Ground0Page from "./pages/Ground0Page";
+import PortalPage from "./pages/PortalPage";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/knowledge-center/maintenance-records-brief" element={<MaintenanceRecordsBrief />} />
         <Route path="/knowledge-center/insurance-continuity-brief" element={<InsuranceContinuityBrief />} />
         <Route path="/knowledge-center/drug-alcohol-program-brief" element={<DrugAlcoholBrief />} />
+        <Route path="/ground-0-briefing" element={<Ground0Page />} />
+        <Route path="/portal" element={<PortalPage />} />
       </Routes>
     </BrowserRouter>
   );

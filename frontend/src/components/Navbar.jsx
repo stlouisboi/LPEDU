@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { label: "Knowledge Center", href: "/knowledge-center", external: false },
   { label: "AUTO Method", href: "https://www.launchpathedu.com/auto-method", external: true },
   { label: "AUTO Diagnostic", href: "/auto-diagnostic", external: false },
-  { label: "Ground 0", href: "https://www.launchpathedu.com/ground-0-briefing", external: true },
+  { label: "Ground 0", href: "/ground-0-briefing", external: false },
   { label: "About", href: "/about", external: false },
 ];
 
@@ -77,7 +77,7 @@ export default function Navbar() {
             )
           ))}
 
-          <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
+          <Link to="/portal"
             data-testid="nav-portal-btn"
             style={{
               display: "flex", alignItems: "center", gap: "0.4rem",
@@ -95,7 +95,7 @@ export default function Navbar() {
           >
             <LockSimple size={12} weight="bold" />
             Operator Portal
-          </a>
+          </Link>
         </nav>
 
         <button className="mobile-btn" data-testid="mobile-menu-btn"
@@ -136,7 +136,7 @@ export default function Navbar() {
               >{l.label}</Link>
             )
           ))}
-          <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
+          <Link to="/portal"
             style={{
               display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem",
               fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", fontWeight: 600,
@@ -144,10 +144,11 @@ export default function Navbar() {
               color: "var(--gold-primary)", border: "1px solid var(--gold-primary)",
               padding: "0.75rem", textDecoration: "none",
             }}
+            onClick={() => setOpen(false)}
           >
             <LockSimple size={12} weight="bold" />
             Operator Portal
-          </a>
+          </Link>
         </div>
       )}
 

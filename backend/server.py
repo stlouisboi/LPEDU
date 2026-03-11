@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
+from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
 
 
 ROOT_DIR = Path(__file__).parent
@@ -22,6 +23,7 @@ db = client[os.environ['DB_NAME']]
 
 MAILERLITE_API_TOKEN = os.environ.get('MAILERLITE_API_TOKEN', '')
 MAILERLITE_URL = "https://connect.mailerlite.com/api/subscribers"
+STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY', '')
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -145,6 +147,110 @@ async def submit_diagnostic(data: DiagnosticSubmit):
         logger.error(f"MailerLite diagnostic error: {resp.text}")
         raise HTTPException(status_code=502, detail="Could not log result.")
     return {"ok": True, "result": data.result}
+
+
+# ── Ground 0 ─────────────────────────────────────────────
+class Ground0Submit(BaseModel):
+    email: EmailStr
+
+@api_router.post("/ground0")
+async def submit_ground0(data: Ground0Submit):
+    payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "lead_source": "ground_0_complete",
+            "ground_0_complete": "true",
+        },
+    }
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+    if resp.status_code not in (200, 201):
+        logger.error(f"MailerLite Ground 0 error {resp.status_code}: {resp.text}")
+        raise HTTPException(status_code=502, detail="Could not save submission.")
+    return {"ok": True}
+
+
+# ── Portal / Stripe Checkout ──────────────────────────────
+class PortalCheckoutRequest(BaseModel):
+    origin_url: str
+
+def get_stripe(request: Request) -> StripeCheckout:
+    host_url = str(request.base_url).rstrip("/")
+    webhook_url = f"{host_url}/api/webhook/stripe"
+    return StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=webhook_url)
+
+@api_router.post("/portal/checkout")
+async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
+    if not STRIPE_API_KEY:
+        raise HTTPException(status_code=503, detail="Payment service not configured.")
+    stripe = get_stripe(request)
+    success_url = f"{data.origin_url}/portal?session_id={{CHECKOUT_SESSION_ID}}"
+    cancel_url = f"{data.origin_url}/portal"
+    req = CheckoutSessionRequest(
+        amount=2500.00,
+        currency="usd",
+        success_url=success_url,
+        cancel_url=cancel_url,
+        metadata={"product": "launchpath_cohort_admission"},
+    )
+    session = await stripe.create_checkout_session(req)
+    await db.payment_transactions.insert_one({
+        "session_id": session.session_id,
+        "amount": 2500.00,
+        "currency": "usd",
+        "payment_status": "pending",
+        "status": "initiated",
+        "metadata": {"product": "launchpath_cohort_admission"},
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    })
+    return {"url": session.url, "session_id": session.session_id}
+
+@api_router.get("/portal/checkout/status/{session_id}")
+async def get_portal_checkout_status(session_id: str, request: Request):
+    if not STRIPE_API_KEY:
+        raise HTTPException(status_code=503, detail="Payment service not configured.")
+    stripe = get_stripe(request)
+    status = await stripe.get_checkout_status(session_id)
+    await db.payment_transactions.update_one(
+        {"session_id": session_id},
+        {"$set": {
+            "payment_status": status.payment_status,
+            "status": status.status,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        }},
+        upsert=True,
+    )
+    return {"status": status.status, "payment_status": status.payment_status}
+
+@api_router.post("/webhook/stripe")
+async def stripe_webhook(request: Request):
+    if not STRIPE_API_KEY:
+        raise HTTPException(status_code=503, detail="Payment service not configured.")
+    stripe = get_stripe(request)
+    body = await request.body()
+    signature = request.headers.get("Stripe-Signature", "")
+    try:
+        event = await stripe.handle_webhook(body, signature)
+        if event.payment_status == "paid":
+            await db.payment_transactions.update_one(
+                {"session_id": event.session_id},
+                {"$set": {
+                    "payment_status": "paid",
+                    "status": "complete",
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                }},
+                upsert=True,
+            )
+    except Exception as e:
+        logger.error(f"Stripe webhook error: {e}")
+        raise HTTPException(status_code=400, detail="Webhook processing failed.")
+    return {"ok": True}
 
 
 # Include the router in the main app
