@@ -1,6 +1,6 @@
 export default function PhilosophicalLineSection({ text }) {
   return (
-    <div style={{
+    <div data-testid="philosophical-line-section" style={{
       background: "var(--bg-onyx)",
       padding: "4rem 1.5rem",
       borderBottom: "1px solid var(--divider-dark)",

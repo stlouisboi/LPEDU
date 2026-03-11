@@ -118,14 +118,14 @@ export default function TCOSection() {
           <button data-testid="calculate-btn" onClick={() => setDone(true)}
             style={{
               width: "100%", padding: "1rem",
-              background: "var(--orange)", color: "#fff",
+              background: "var(--gold-primary)", color: "var(--bg-onyx)",
               border: "none", cursor: "pointer",
               fontFamily: "'Inter', sans-serif", fontWeight: 700,
               fontSize: "0.875rem", letterSpacing: "0.08em", textTransform: "uppercase",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => e.target.style.background = "var(--orange-hover)"}
-            onMouseLeave={e => e.target.style.background = "var(--orange)"}
+            onMouseEnter={e => e.target.style.background = "var(--gold-light)"}
+            onMouseLeave={e => e.target.style.background = "var(--gold-primary)"}
           >
             Calculate Exposure
           </button>

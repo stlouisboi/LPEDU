@@ -1,92 +1,93 @@
 # LaunchPath Transportation EDU — Site Rebuild
 
 ## Original Problem Statement
-Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. The site must reflect the "Onyx Standard" design system — dark, minimalist, premium, "Vanta for new trucking authorities" aesthetic. The homepage is the first deliverable, with inner pages and an Operator Portal to follow.
+Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/conversion asset. Inner pages = resource hub. Operator Portal = future gated section.
 
 ## Architecture
-- **Frontend**: React.js (SPA)
+- **Frontend**: React.js (SPA, react-router-dom)
 - **Backend**: FastAPI (secure proxy to MailerLite)
-- **Database**: MongoDB (not used — static content + MailerLite for leads)
-- **Design System**: "Onyx/Paper" alternating theme (evolved from "Refined Dark")
+- **Styling**: Tailwind CSS + custom CSS variables
+- **Fonts**: Manrope (headings), Inter (body), JetBrains Mono (data/code)
 
-## Design System Rules (Onyx/Paper)
-### Dark Sections (--bg-onyx: #1B2A4A)
-- Background: `#1B2A4A` (deep navy)
-- Text: `#f4f7fb` (var --text), muted: `#dce6f0` (var --text-muted)
-- Borders: `#2A3A5A` (var --divider-dark)
-- Gold label: `#C9A84C` (var --gold-brand)
+## LaunchPath Color System (Final — Color Correction Brief)
+| Token | Value | Role |
+|---|---|---|
+| `--bg-onyx` | `#002244` | Dark section background |
+| `--bg-paper` | `#F5F6F7` | Light section background |
+| `--gold-primary` / `--gold-brand` | `#C5A059` | Brand gold (CTAs, labels, accents) |
+| `--gold-light` | `#D4B87A` | Gold hover state |
+| `--navy-deep` | `#001A33` | Footer background |
+| `--card-dark` | `#0F1E35` | Card bg in dark sections |
+| `--incident-dark-1` | `#0D1929` | Incident report row even |
+| `--incident-dark-2` | `#111E30` | Incident report row odd |
+| `--pattern-note-bg` | `#1A2A3A` | Pattern note strip |
+| `--divider-dark` | `#1E3355` | Borders on dark sections |
+| `--divider-light` | `#DDDDDD` | Borders on light sections |
+| `--text-paper` | `#1A1A1A` | Body on light bg |
+| `--text-paper-heading` | `#002244` | Headings on light bg |
+| `--text-paper-muted` | `#666666` | Muted on light bg |
+| `--text-muted-dark` | `#CCCCCC` | Muted on dark bg |
 
-### Light Sections (--bg-paper: #F5F5F5)
-- Background: `#F5F5F5` (near white)
-- Heading text: `#1B2A4A` (var --text-paper-heading)
-- Body text: `#1A1A1A` (var --text-paper)
-- Muted text: `#666666` (var --text-paper-muted)
-- Borders: `#DDDDDD` (var --divider-light)
+**CTA Button Rule:** Gold background (`--gold-primary`) + Navy text (`--bg-onyx`)
+**Operator Portal Button:** Navy bg + Gold border + Gold text
 
-### Accent Colors (unchanged)
-- `--orange: #E8590F` — ONLY action/CTA color
-- `--red: #ef4444` — penalty/violation amounts
-- "Standard" is always a proper noun — capitalize everywhere.
+## Homepage Section Order (Final — Master Brief v2)
+1. **Navbar** — logo, nav links, OPERATOR PORTAL (gold border, gold text)
+2. **Hero** — DARK. New body copy, gold CTA
+3. **FourPillars** — DARK. 4 gold-bordered cards on #0F1E35 bg
+4. **SystemDiagram** — DARK. AUTO diagram
+5. **PhilosophicalLine 1** — DARK. "The wise carrier builds the system before the audit..."
+6. **FailureReality** — DARK. Incident report + 16-point checklist + stats strip + closing line
+7. **PenaltyTable** — DARK. 2-col: Direct Penalties | Hidden Operational Drain (8 rows)
+8. **PhilosophicalLine 3** — DARK. "This program does not make you compliant..."
+9. **TCO** — LIGHT. Interactive calculator, $2,500 price line
+10. **ThreePaths** — DARK. GO/WAIT/STOP — $2,500 for LaunchPath
+11. **PhilosophicalLine 2** — DARK. "Most carriers wait until something goes wrong..."
+12. **Founder (About)** — LIGHT. Vince Lawrence, manufacturing bg, pull quote, credential bar
+13. **WhoNotFor** — LIGHT. 4 disqualifiers
+14. **NextStep** — DARK. 4-stage sequence (01-04) + gold CTA
+15. **FinalCTA** — DARK. Admission gate + gold CTA
+16. **Footer** — #001A33. Wordmark + nav + legal
+
+## Key Copy Rules
+- LaunchPath price: **$2,500** (NOT $5,000)
+- Vince credentials: "20+ YRS MANUFACTURING MANAGEMENT & LEADERSHIP" — NOT DOT/trucking experience
+- "The Standard" is always a proper noun — capitalize everywhere
+- Gold = brand color, Orange = removed
 
 ## Routing
 - `/` → `pages/HomePage.jsx`
-- `/knowledge-center` → `pages/KnowledgeCenterIndex.jsx`
-- `/knowledge-center/all-checklists` → `pages/knowledge-center/AllChecklists.jsx`
-- `/knowledge-center/new-entrant-safety-audit-brief` → `pages/knowledge-center/NewEntrantAuditBrief.jsx`
-- `/knowledge-center/hos-compliance-brief` → `pages/knowledge-center/HOSComplianceBrief.jsx`
-- `/knowledge-center/maintenance-records-brief` → `pages/knowledge-center/MaintenanceRecordsBrief.jsx`
-- `/knowledge-center/insurance-continuity-brief` → `pages/knowledge-center/InsuranceContinuityBrief.jsx`
-- `/knowledge-center/drug-alcohol-program-brief` → `pages/knowledge-center/DrugAlcoholBrief.jsx`
+- `/knowledge-center` → KC index + 5 articles
 - `/about` → `pages/AboutPage.jsx`
 - `/contact` → `pages/ContactPage.jsx`
 - `/readiness` → `pages/ReadinessPage.jsx` (multi-step diagnostic)
 - `/auto-diagnostic` → `pages/AutoDiagnosticPage.jsx`
 
-## Homepage Section Order (Final — post Design Consolidation Brief)
-1. **Navbar** — Logo, nav links, orange "Portal" CTA
-2. **Hero** — DARK. H1, FMCSA brief card, CTA
-3. **System Diagram** — DARK. "Authority Protection System" animated SVG
-4. **Deadly Sins** — LIGHT. 2×2 failure buckets, scroll-triggered reveal
-5. **Penalty Table** — DARK. Infrastructure + violation exposure tables
-6. **TCO Calculator** — LIGHT. Interactive exposure calculator
-7. **Three Paths** — DARK. LaunchPath vs alternatives
-8. **About / Metric Band** — DARK. 49 | 96.4% | 10+ stats + philosophical line
-9. **About / Founder** — LIGHT. Vince Lawrence section + video CTA hook
-10. **Next Step** — DARK. 4-step enrollment sequence + "Apply" CTA
-11. **Footer**
-
-*(FourPillarsSection removed per Design Consolidation Brief)*
-
-## Key Stats (AboutSection — Static, no animation)
-- **49** — Authorities audited in the LaunchPath development framework
-- **96.4%** — Carriers who avoid first-year authority loss with documented systems
-- **10+** — Years building operational compliance systems before LaunchPath was founded
-- Philosophical line: *"This is not a compliance lecture. This is loss prevention."*
-
 ## Backend API Endpoints
-- `POST /api/contact` → Submits contact form to MailerLite (field: `lead_source: "contact_form"`)
-- `POST /api/diagnostic` → Submits diagnostic results to MailerLite (field: `lead_source: "diagnostic_tool"`)
-
-## MailerLite Integration
-- Live and functional. API key stored in `/app/backend/.env`
-- Custom fields: `first_name`, `lead_source`, `readiness_score`, `readiness_level`, `diagnostic_pillar_*`, etc.
-- Segments configured for contact vs. diagnostic leads
+- `POST /api/contact` → MailerLite (lead_source: "contact_form")
+- `POST /api/diagnostic` → MailerLite (lead_source: "diagnostic_tool")
 
 ## Prioritized Backlog
 
 ### P0 — Completed
-- [x] Full homepage (8 sections wired + Onyx/Paper alternating theme)
-- [x] Knowledge Center (5 briefs + print bundle)
-- [x] About page (`/about`)
-- [x] Contact page (`/contact`) — MailerLite integrated, live
-- [x] MailerLite contact form integration (`POST /api/contact`)
-- [x] MailerLite diagnostic integration (`POST /api/diagnostic`)
-- [x] Auto-Diagnostic Tool (`/readiness` and `/auto-diagnostic`)
-- [x] Design Consolidation Brief — new stats, removed FourPillars, Onyx/Paper backgrounds
+- [x] Full homepage rebuild (15 sections per Master Brief v2 + Color Correction Brief)
+- [x] LaunchPath color system (#002244 navy + #C5A059 gold)
+- [x] Price change $5,000 → $2,500 everywhere
+- [x] FourPillars restored with gold-bordered cards
+- [x] FailureReality section (incident report format)
+- [x] PhilosophicalLine components (3 instances)
+- [x] WhoNotFor section
+- [x] FinalCTA section
+- [x] New Navbar (gold Operator Portal button)
+- [x] New Footer
+- [x] Knowledge Center (5 briefs)
+- [x] About + Contact pages
+- [x] MailerLite integration (contact + diagnostic)
+- [x] Auto-Diagnostic Tool (/readiness + /auto-diagnostic)
 
 ### P1 — Next Up
 - [ ] Build `/ground-0-briefing` page — 6-lesson structured onboarding flow
-- [ ] Add actual video URL to "Watch" CTA when YouTube video is ready
+- [ ] Update YouTube "Watch" CTA with actual video URL when ready
 
 ### P2 — Tool Pages
 - [ ] `/auto-method` — AUTO method explainer page
@@ -94,21 +95,11 @@ Full-site rebuild for LaunchPath Transportation EDU on the Emergent platform. Th
 ### P3 — Future
 - [ ] Operator Portal (JWT or Firebase Auth — decision pending)
 - [ ] Members-only content gating
-- [ ] `/resources` page
 
 ## File Reference
-- `/app/frontend/src/App.js` — Router configuration
-- `/app/frontend/src/index.css` — CSS variables (Onyx/Paper theme)
-- `/app/frontend/src/pages/HomePage.jsx` — Full homepage assembly
-- `/app/frontend/src/components/FadeIn.jsx` — Scroll-reveal wrapper
-- `/app/frontend/src/components/HeroSection.jsx` — DARK
-- `/app/frontend/src/components/SystemDiagramSection.jsx` — DARK
-- `/app/frontend/src/components/DeadlySinsSection.jsx` — LIGHT
-- `/app/frontend/src/components/PenaltyTableSection.jsx` — DARK
-- `/app/frontend/src/components/TCOSection.jsx` — LIGHT
-- `/app/frontend/src/components/ThreePathsSection.jsx` — DARK
-- `/app/frontend/src/components/AboutSection.jsx` — DARK (metric band) + LIGHT (founder)
-- `/app/frontend/src/components/NextStepSection.jsx` — DARK
-- `/app/frontend/src/components/FooterSection.jsx`
+- `/app/frontend/src/App.js` — Router
+- `/app/frontend/src/index.css` — CSS color token system
+- `/app/frontend/src/pages/HomePage.jsx` — Full section assembly
+- `/app/frontend/src/components/` — All section components
 - `/app/backend/server.py` — MailerLite proxy
-- `/app/backend/.env` — API key storage
+- `/app/backend/.env` — MailerLite API key
