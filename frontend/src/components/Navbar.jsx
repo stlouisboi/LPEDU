@@ -1,12 +1,12 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { List, X } from "@phosphor-icons/react";
+import { useState } from "react";
+import { List, X, LockSimple } from "@phosphor-icons/react";
 
 const NAV_LINKS = [
-  { label: "Method", href: "https://www.launchpathedu.com/auto-method", external: true },
-  { label: "Diagnostic", href: "/auto-diagnostic", external: false },
+  { label: "Knowledge Center", href: "/knowledge-center", external: false },
+  { label: "AUTO Method", href: "https://www.launchpathedu.com/auto-method", external: true },
+  { label: "AUTO Diagnostic", href: "/auto-diagnostic", external: false },
   { label: "Ground 0", href: "https://www.launchpathedu.com/ground-0-briefing", external: true },
-  { label: "Knowledge", href: "/knowledge-center", external: false },
   { label: "About", href: "/about", external: false },
 ];
 
@@ -14,7 +14,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (href) => location.pathname === href || location.pathname.startsWith(href + "/");
+  const isActive = (href) => !href.startsWith("http") && (location.pathname === href || location.pathname.startsWith(href + "/"));
 
   const linkStyle = (href) => ({
     fontFamily: "'Inter', sans-serif",
@@ -24,16 +24,16 @@ export default function Navbar() {
     textDecoration: "none",
     transition: "color 0.2s",
     letterSpacing: "0.01em",
-    borderBottom: isActive(href) ? "1px solid var(--orange)" : "1px solid transparent",
+    borderBottom: isActive(href) ? "1px solid var(--gold-primary)" : "1px solid transparent",
     paddingBottom: "2px",
   });
 
   return (
     <header style={{
       position: "sticky", top: 0, zIndex: 100,
-      background: "rgba(2,4,8,0.92)",
+      background: "rgba(0,34,68,0.95)",
       backdropFilter: "blur(12px)",
-      borderBottom: "1px solid var(--border)",
+      borderBottom: "1px solid var(--divider-dark)",
     }}>
       <div style={{
         maxWidth: 1200, margin: "0 auto",
@@ -70,22 +70,30 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer" data-testid="nav-enter-btn"
+
+          <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
+            data-testid="nav-portal-btn"
             style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.4rem",
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem", fontWeight: 600,
+              fontSize: "0.78rem",
+              fontWeight: 600,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#fff",
-              background: "var(--orange)",
-              padding: "0.5rem 1.25rem",
+              color: "var(--gold-primary)",
+              background: "var(--bg-onyx)",
+              border: "1px solid var(--gold-primary)",
+              padding: "0.45rem 1rem",
               textDecoration: "none",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
-            onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
+            onMouseEnter={e => { e.currentTarget.style.background = "rgba(197,160,89,0.08)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "var(--bg-onyx)"; }}
           >
-            Portal
+            <LockSimple size={12} weight="bold" />
+            Operator Portal
           </a>
         </nav>
 
@@ -101,8 +109,8 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div style={{
-          background: "var(--bg-2)",
-          borderTop: "1px solid var(--border)",
+          background: "var(--navy-deep)",
+          borderTop: "1px solid var(--divider-dark)",
           padding: "1.5rem",
           display: "flex", flexDirection: "column", gap: "1.25rem",
         }}>
@@ -125,14 +133,17 @@ export default function Navbar() {
           ))}
           <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
             style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
+              display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 600,
               letterSpacing: "0.08em", textTransform: "uppercase",
-              color: "#fff", background: "var(--orange)",
+              color: "var(--gold-primary)",
+              background: "var(--bg-onyx)",
+              border: "1px solid var(--gold-primary)",
               padding: "0.75rem 1.25rem", textDecoration: "none",
-              textAlign: "center",
             }}
           >
-            Portal
+            <LockSimple size={12} weight="bold" />
+            Operator Portal
           </a>
         </div>
       )}

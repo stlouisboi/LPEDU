@@ -1,31 +1,26 @@
-const SEQUENCE = [
+import { Link } from "react-router-dom";
+import FadeIn from "./FadeIn";
+
+const STAGES = [
   {
     step: "01",
-    name: "Readiness Test",
-    desc: "12-minute diagnostic. Establishes where the operation stands before the Standard is applied.",
-    badge: "Free",
-    badgeOrange: false,
+    name: "Ground 0 Briefing",
+    desc: "Complete the orientation module before admission is considered.",
   },
   {
     step: "02",
     name: "AUTO Diagnostic",
-    desc: "Four-pillar readiness assessment and cost-of-authority calculation.",
-    badge: "Free",
-    badgeOrange: false,
+    desc: "Complete the REACH readiness assessment. Receive GO, WAIT, or NO-GO result.",
   },
   {
     step: "03",
-    name: "Ground 0 Briefing",
-    desc: "Six structured lessons. The operational framework before systems installation begins.",
-    badge: "Free",
-    badgeOrange: false,
+    name: "Admission Decision",
+    desc: "GO carriers request cohort placement. Not all applicants are admitted.",
   },
   {
     step: "04",
-    name: "90-Day Cohort",
-    desc: "Structured implementation. The Standard installed, verified, and documented by the Station Custodian.",
-    badge: "$5,000",
-    badgeOrange: true,
+    name: "90-Day Implementation",
+    desc: "Admitted carriers enter the cohort and begin the standard.",
   },
 ];
 
@@ -34,123 +29,123 @@ export default function NextStepSection() {
     <section data-testid="next-step-section" style={{
       background: "var(--bg-onyx)",
       padding: "7rem 1.5rem",
+      borderBottom: "1px solid var(--divider-dark)",
     }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
 
-        <p className="overline" style={{ marginBottom: "1.25rem" }}>What Happens Next</p>
-        <h2 style={{
-          fontFamily: "'Manrope', sans-serif",
-          fontWeight: 700,
-          fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-          letterSpacing: "-0.02em",
-          marginBottom: "1.25rem",
-        }}>
-          The sequence is fixed. There are no shortcuts.
-        </h2>
-        <p style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "1rem",
-          color: "var(--text-muted)",
-          lineHeight: 1.8,
-          marginBottom: "4rem",
-          maxWidth: 580,
-        }}>
-          Admission is not purchased at the front door.
-          It is earned through the sequence.
-          Each step establishes whether the carrier is prepared to operate under the Standard.
-        </p>
+        <FadeIn>
+          <p className="overline" style={{ marginBottom: "1.25rem", color: "var(--gold-primary)" }}>
+            The Process
+          </p>
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            letterSpacing: "-0.02em",
+            color: "var(--text)",
+            marginBottom: "4rem",
+          }}>
+            The sequence is fixed.<br />There are no shortcuts.
+          </h2>
+        </FadeIn>
 
-        {/* Sequence */}
-        <div style={{ display: "flex", flexDirection: "column", marginBottom: "4rem" }}>
-          {SEQUENCE.map((s, i) => (
-            <div key={s.step} data-testid={`sequence-step-${s.step}`} style={{
-              display: "grid",
-              gridTemplateColumns: "2.5rem 1fr auto",
-              gap: "1.75rem",
-              alignItems: "start",
-              padding: "1.75rem 0",
-              borderTop: "1px solid var(--border)",
-              borderLeft: s.badgeOrange ? "2px solid var(--orange)" : "2px solid transparent",
-              paddingLeft: s.badgeOrange ? "1.25rem" : "0",
-            }}>
-              <div style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.65rem",
-                color: "var(--text-subtle)",
-                paddingTop: "0.3rem",
-                letterSpacing: "0.05em",
-              }}>{s.step}</div>
+        <div style={{ display: "flex", flexDirection: "column", marginBottom: "3rem", position: "relative" }}>
+          {/* Vertical connector line */}
+          <div style={{
+            position: "absolute",
+            left: "1.2rem",
+            top: 0,
+            bottom: 0,
+            width: "1px",
+            background: "var(--divider-dark)",
+            zIndex: 0,
+          }} />
 
-              <div>
-                <h3 style={{
-                  fontFamily: "'Manrope', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "1.05rem",
-                  color: s.badgeOrange ? "var(--text)" : "var(--text)",
-                  marginBottom: "0.4rem",
-                }}>{s.name}</h3>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.9rem",
-                  color: "var(--text-muted)",
-                  lineHeight: 1.7,
-                }}>{s.desc}</p>
+          {STAGES.map((s, i) => (
+            <FadeIn key={s.step} delay={i * 80}>
+              <div data-testid={`sequence-step-${s.step}`} style={{
+                display: "grid",
+                gridTemplateColumns: "2.5rem 1fr",
+                gap: "2rem",
+                padding: "1.75rem 0",
+                position: "relative",
+                zIndex: 1,
+              }}>
+                <div style={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "var(--bg-onyx)",
+                  border: "1px solid var(--gold-primary)",
+                  flexShrink: 0,
+                }}>
+                  <span style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    color: "var(--gold-primary)",
+                    letterSpacing: "0.05em",
+                  }}>{s.step}</span>
+                </div>
+
+                <div style={{ paddingTop: "0.35rem" }}>
+                  <h3 style={{
+                    fontFamily: "'Manrope', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "1.05rem",
+                    color: "var(--text)",
+                    marginBottom: "0.4rem",
+                  }}>{s.name}</h3>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.9rem",
+                    color: "var(--text-muted)",
+                    lineHeight: 1.7,
+                  }}>{s.desc}</p>
+                </div>
               </div>
-
-              <span style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.8rem",
-                fontWeight: 500,
-                color: s.badgeOrange ? "var(--orange)" : "var(--text-subtle)",
-                whiteSpace: "nowrap",
-                paddingTop: "0.3rem",
-                letterSpacing: "0.02em",
-              }}>{s.badge}</span>
-            </div>
+            </FadeIn>
           ))}
-          <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
 
-        {/* Urgency — factual, no manipulation */}
-        <p style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "0.9rem",
-          color: "var(--text-subtle)",
-          lineHeight: 1.75,
-          marginBottom: "2.75rem",
-          maxWidth: 560,
-        }}>
-          The FMCSA New Entrant audit window opens between 12 and 24 months of authority.
-          Cohort placement is limited to what can be verified and installed within the
-          Standard's implementation timeline.
-          If the authority is already active, the sequence begins now.
-        </p>
-
-        {/* One CTA — the only door */}
-        <a
-          href="https://www.launchpathedu.com/admission"
-          target="_blank" rel="noopener noreferrer"
-          data-testid="apply-cta"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.75rem",
-            background: "var(--orange)",
-            color: "#fff",
+        <FadeIn delay={360}>
+          <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontWeight: 700,
-            fontSize: "0.875rem",
-            letterSpacing: "0.06em",
-            textTransform: "uppercase",
-            padding: "1rem 2.25rem",
-            textDecoration: "none",
-            transition: "background 0.2s",
-          }}
-          onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
-          onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
-        >
-          Apply for the 90-Day Standard
-        </a>
+            fontSize: "0.95rem",
+            color: "var(--text-subtle)",
+            lineHeight: 1.7,
+            marginBottom: "3rem",
+            fontStyle: "italic",
+          }}>
+            LaunchPath does not offer open enrollment. Admission is by assessment and review only.
+          </p>
+
+          <Link
+            to="/readiness"
+            data-testid="sequence-cta-btn"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              background: "var(--gold-primary)",
+              color: "var(--bg-onyx)",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700,
+              fontSize: "0.875rem",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              padding: "1rem 2rem",
+              textDecoration: "none",
+              transition: "background 0.2s",
+              minHeight: 52,
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = "var(--gold-light)"}
+            onMouseLeave={e => e.currentTarget.style.background = "var(--gold-primary)"}
+          >
+            Begin Ground 0 Briefing
+          </Link>
+        </FadeIn>
 
       </div>
     </section>

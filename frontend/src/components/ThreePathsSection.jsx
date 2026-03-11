@@ -2,29 +2,31 @@ import FadeIn from "./FadeIn";
 
 const PATHS = [
   {
-    id: "self-study",
-    label: "Path 01",
-    name: "Trial-and-Error Self-Study",
+    id: "go",
+    label: "GO",
+    description: "Trial and error self-study",
     cost: "$10,000–$25,000+",
-    costColor: "var(--red)",
-    desc: "Experience you paid too much for. The compliance gaps surface during enforcement, not before.",
+    costNote: "in recoverable and unrecoverable losses",
+    result: "Experience you paid too much for",
+    isLP: false,
   },
   {
-    id: "consultant",
-    label: "Path 02",
-    name: "Private Consultant or Compliance Firm",
+    id: "wait",
+    label: "WAIT",
+    description: "Private consultant or compliance firm",
     cost: "$5,000–$12,000",
-    costColor: "var(--text)",
-    desc: "Their knowledge, not your system. When the engagement ends, the infrastructure doesn't transfer.",
+    costNote: "",
+    result: "Their knowledge, not your system",
+    isLP: false,
   },
   {
-    id: "launchpath",
-    label: "Path 03",
-    name: "LaunchPath Standard",
-    cost: "$5,000",
-    costColor: "var(--orange)",
-    desc: "A documented operational standard you own and operate — verified before your audit window closes.",
-    highlight: true,
+    id: "stop",
+    label: "STOP",
+    description: "LaunchPath Standard",
+    cost: "$2,500",
+    costNote: "",
+    result: "Built infrastructure you own and operate — verified by the Station Custodian before your audit window closes",
+    isLP: true,
   },
 ];
 
@@ -35,77 +37,129 @@ export default function ThreePathsSection() {
       padding: "6rem 1.5rem",
       borderBottom: "1px solid var(--divider-dark)",
     }}>
-      <div style={{ maxWidth: 920, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
         <FadeIn>
-          <p className="overline" style={{ marginBottom: "1.25rem" }}>The Decision</p>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.8rem",
-            color: "var(--text-subtle)",
-            letterSpacing: "0.04em",
-            marginBottom: "0.875rem",
-          }}>
-            Every authority reaches the same decision.
+          <p className="overline" style={{ marginBottom: "1.25rem", color: "var(--gold-primary)" }}>
+            The Decision Framework
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-            letterSpacing: "-0.02em", marginBottom: "4rem",
+            letterSpacing: "-0.02em",
+            color: "var(--text)",
+            marginBottom: "1rem",
           }}>
             Three paths. One decision.
           </h2>
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 500,
+            fontSize: "1rem",
+            color: "var(--text-muted)",
+            marginBottom: "4rem",
+            lineHeight: 1.7,
+          }}>
+            Every authority reaches the same decision point. The difference is when.
+          </p>
         </FadeIn>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {PATHS.map((p, i) => (
-            <div key={p.id} data-testid={`path-row-${p.id}`} style={{
+        <FadeIn delay={60}>
+          <div style={{ border: "1px solid var(--divider-dark)", overflow: "hidden", marginBottom: "3rem" }}>
+            {/* Header */}
+            <div style={{
               display: "grid",
-              gridTemplateColumns: "5rem 1fr auto",
-              gap: "2rem",
-              alignItems: "start",
-              padding: "2rem 0",
-              borderTop: "1px solid var(--border)",
-              borderLeft: p.highlight ? "2px solid var(--orange)" : "2px solid transparent",
-              paddingLeft: p.highlight ? "1.5rem" : 0,
-              background: p.highlight ? "rgba(232,89,15,0.03)" : "transparent",
+              gridTemplateColumns: "100px 1fr 200px 1fr",
+              background: "var(--card-dark)",
+              borderBottom: "1px solid var(--divider-dark)",
+              padding: "0.875rem 1.5rem",
+              gap: "1.5rem",
             }}>
-              {/* Label */}
-              <div style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.7rem", color: "var(--text-subtle)",
-                paddingTop: "0.25rem",
-              }}>{p.label}</div>
-
-              {/* Name + desc */}
-              <div>
-                <h3 style={{
-                  fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-                  fontSize: "1.05rem", color: p.highlight ? "var(--orange)" : "var(--text)",
-                  marginBottom: "0.5rem",
-                }}>{p.name}</h3>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{p.desc}</p>
-              </div>
-
-              {/* Cost */}
-              <div style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "1.2rem", fontWeight: 500,
-                color: p.costColor,
-                whiteSpace: "nowrap",
-                paddingTop: "0.15rem",
-              }}>{p.cost}</div>
+              {["PATH", "APPROACH", "COST", "OUTCOME"].map((h) => (
+                <p key={h} style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.62rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  color: "var(--text-subtle)",
+                  textTransform: "uppercase",
+                  margin: 0,
+                }}>{h}</p>
+              ))}
             </div>
-          ))}
-          <div style={{ borderTop: "1px solid var(--border)" }} />
-        </div>
 
+            {PATHS.map((path, i) => (
+              <div key={path.id} data-testid={`path-${path.id}`} style={{
+                display: "grid",
+                gridTemplateColumns: "100px 1fr 200px 1fr",
+                gap: "1.5rem",
+                padding: "1.5rem",
+                borderTop: i > 0 ? "1px solid var(--divider-dark)" : "none",
+                background: path.isLP ? "rgba(197,160,89,0.04)" : "transparent",
+              }}>
+                <div>
+                  <span style={{
+                    fontFamily: "'Manrope', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "1.1rem",
+                    letterSpacing: "0.1em",
+                    color: path.isLP ? "var(--gold-primary)" : "var(--text-subtle)",
+                  }}>{path.label}</span>
+                </div>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.95rem",
+                  color: "var(--text-muted)",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}>{path.description}</p>
+                <div>
+                  <p style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "1.05rem",
+                    fontWeight: 700,
+                    color: path.isLP ? "var(--gold-primary)" : "var(--red)",
+                    margin: 0,
+                    lineHeight: 1.3,
+                  }}>{path.cost}</p>
+                  {path.costNote && (
+                    <p style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.72rem",
+                      color: "var(--text-subtle)",
+                      marginTop: "0.25rem",
+                      lineHeight: 1.4,
+                    }}>{path.costNote}</p>
+                  )}
+                </div>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: path.isLP ? "0.925rem" : "0.9rem",
+                  fontStyle: path.isLP ? "italic" : "normal",
+                  color: path.isLP ? "var(--text-muted)" : "var(--text-subtle)",
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}>{path.result}</p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={120}>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
-            color: "var(--text-subtle)", marginTop: "2.5rem", lineHeight: 1.7,
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 500,
+            fontStyle: "italic",
+            fontSize: "1.05rem",
+            color: "var(--text)",
+            textAlign: "center",
+            lineHeight: 1.7,
           }}>
             The wise decision is the one that preserves the household.
           </p>
+        </FadeIn>
+
       </div>
     </section>
   );

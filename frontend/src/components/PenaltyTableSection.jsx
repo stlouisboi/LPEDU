@@ -1,33 +1,39 @@
-const INFRA = [
-  { item: "Drug & Alcohol Consortium Enrollment", cost: "$150–$300 / yr" },
-  { item: "Driver Qualification File Setup", cost: "$200–$500" },
-  { item: "Maintenance Documentation System", cost: "$100–$300" },
-  { item: "Safety Management Records", cost: "$150–$400" },
-  { item: "ELD Device & Compliance Setup", cost: "$300–$600" },
-  { item: "UCR Registration", cost: "$76–$332 / yr" },
-];
+import FadeIn from "./FadeIn";
 
-const VIOLATIONS = [
-  { item: "New Entrant Audit failure — authority revocation", cost: "$5,000–$15,000+", red: true },
-  { item: "Out-of-service violation per vehicle", cost: "$1,000–$16,000", red: true },
-  { item: "Operating without required insurance on file", cost: "Suspension + Liability", red: true },
-  { item: "Improper DQ file — driver disqualified at audit", cost: "Lost Revenue + Re-qualifying", red: false },
-  { item: "Hours of Service violation — driver fatigue citation", cost: "$1,000–$11,000", red: true },
-  { item: "Insurance premium increase after CSA score", cost: "$3,000–$8,000+ / yr", red: true },
+const ROWS = [
+  {
+    penalty: "Driver qualification violations — $1,000–$16,000 per driver",
+    drain: "Disqualified driver creates lost revenue window and re-hiring cost during audit window.",
+  },
+  {
+    penalty: "Drug testing program violations — $5,000–$25,000 per violation",
+    drain: "Consortium non-compliance triggers full new entrant audit review sequence.",
+  },
+  {
+    penalty: "Hours of service violations — $1,000–$11,000 per citation",
+    drain: "HOS flags elevate CSA score and compress the timeline to a compliance review.",
+  },
+  {
+    penalty: "Maintenance documentation failure — $1,000–$10,000",
+    drain: "Vehicle placed out of service. Load responsibility exposure. No revenue during correction.",
+  },
+  {
+    penalty: "Insurance cancellation — authority suspension immediate upon lapse",
+    drain: "Broker relationships severed. Freight network reset required after reinstatement.",
+  },
+  {
+    penalty: "Audit preparation failure — $5,000–$15,000 + revocation risk",
+    drain: "No corrective action plan results in permanent authority record flag with FMCSA.",
+  },
+  {
+    penalty: "Broker compliance rejection — load refusal on active freight",
+    drain: "Lost spot market access during full CSA remediation window. 60–90 day exposure.",
+  },
+  {
+    penalty: "Safety rating deterioration — Conditional or Unsatisfactory classification",
+    drain: "Insurance premium increases $3,000–$8,000+ annually. Carrier flagged for every broker audit.",
+  },
 ];
-
-const tableHead = {
-  fontFamily: "'Inter', sans-serif",
-  fontSize: "0.7rem",
-  fontWeight: 600,
-  letterSpacing: "0.12em",
-  textTransform: "uppercase",
-  color: "var(--text-subtle)",
-  padding: "0.75rem 1.25rem",
-  borderBottom: "1px solid var(--border)",
-  textAlign: "left",
-  background: "transparent",
-};
 
 export default function PenaltyTableSection() {
   return (
@@ -36,81 +42,137 @@ export default function PenaltyTableSection() {
       padding: "6rem 1.5rem",
       borderBottom: "1px solid var(--divider-dark)",
     }}>
-      <div style={{ maxWidth: 920, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
-        <p className="overline" style={{ marginBottom: "1.25rem" }}>Documented Exposure</p>
-        <h2 style={{
-          fontFamily: "'Manrope', sans-serif",
-          fontWeight: 700,
-          fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-          letterSpacing: "-0.02em",
-          marginBottom: "1rem",
-        }}>
-          Cost exposure during the first 90 days of authority.
-        </h2>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.75, maxWidth: 580, marginBottom: "3.5rem" }}>
-          Most new authorities encounter $1,000–$2,000 in required compliance infrastructure costs within the first 90 days. These are not optional.
-        </p>
+        <FadeIn>
+          <p className="overline" style={{ marginBottom: "1.25rem", color: "var(--gold-primary)" }}>
+            The Real Cost of Non-Compliance
+          </p>
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            letterSpacing: "-0.02em",
+            color: "var(--text)",
+            marginBottom: "1rem",
+            maxWidth: 640,
+          }}>
+            Cost exposure during the first 90 days of authority
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.95rem",
+            color: "var(--text-muted)",
+            lineHeight: 1.75,
+            maxWidth: 600,
+            marginBottom: "3rem",
+          }}>
+            Many authorities begin operations without calculating these costs. The ranges below are documented FMCSA enforcement data verified against ecfr.gov.
+          </p>
+        </FadeIn>
 
-        {/* Infrastructure table */}
-        <div style={{ marginBottom: "2.5rem", border: "1px solid var(--divider-dark)" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr>
-                <th style={tableHead}>Required Compliance Infrastructure</th>
-                <th style={{ ...tableHead, textAlign: "right" }}>Typical Cost</th>
-              </tr>
-            </thead>
-            <tbody>
-              {INFRA.map((r, i) => (
-                <tr key={i} data-testid={`infra-row-${i}`} style={{
-                  borderBottom: i < INFRA.length - 1 ? "1px solid var(--border)" : "none",
-                  transition: "background 0.15s",
-                }}
-                  onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
-                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                >
-                  <td style={{ padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)" }}>{r.item}</td>
-                  <td style={{ padding: "1rem 1.25rem", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.875rem", color: "var(--text)", textAlign: "right", whiteSpace: "nowrap" }}>{r.cost}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <FadeIn delay={60}>
+          <div style={{ border: "1px solid var(--divider-dark)", overflow: "hidden", marginBottom: "2.5rem" }}>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              background: "var(--card-dark)",
+            }}>
+              <div style={{ padding: "1rem 1.5rem", borderRight: "1px solid var(--divider-dark)" }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.65rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  color: "var(--gold-primary)",
+                  textTransform: "uppercase",
+                }}>Direct Penalties</p>
+              </div>
+              <div style={{ padding: "1rem 1.5rem", background: "var(--incident-dark-1)" }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.65rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  color: "var(--text-muted-dark)",
+                  textTransform: "uppercase",
+                }}>Hidden Operational Drain</p>
+              </div>
+            </div>
 
-        {/* Violation table */}
-        <div style={{ border: "1px solid var(--divider-dark)" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr>
-                <th style={tableHead}>Documented Violation Exposure</th>
-                <th style={{ ...tableHead, textAlign: "right" }}>Documented Cost Range</th>
-              </tr>
-            </thead>
-            <tbody>
-              {VIOLATIONS.map((r, i) => (
-                <tr key={i} data-testid={`violation-row-${i}`} style={{
-                  borderBottom: i < VIOLATIONS.length - 1 ? "1px solid var(--border)" : "none",
-                  transition: "background 0.15s",
-                }}
-                  onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
-                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                >
-                  <td style={{ padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)" }}>{r.item}</td>
-                  <td style={{
-                    padding: "1rem 1.25rem",
-                    fontFamily: "'JetBrains Mono', monospace",
+            {ROWS.map((row, i) => (
+              <div key={i} data-testid={`penalty-row-${i}`} style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)",
+                borderTop: "1px solid var(--divider-dark)",
+              }}>
+                <div style={{ padding: "1.25rem 1.5rem", borderRight: "1px solid var(--divider-dark)" }}>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.9rem",
+                    fontWeight: 600,
+                    color: "var(--text)",
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}>{row.penalty}</p>
+                </div>
+                <div style={{ padding: "1.25rem 1.5rem" }}>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.875rem",
-                    color: r.red ? "var(--red)" : "var(--text-subtle)",
-                    fontWeight: r.red ? 500 : 400,
-                    textAlign: "right",
-                    whiteSpace: "nowrap",
-                  }}>{r.cost}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                    fontStyle: "italic",
+                    color: "var(--text-subtle)",
+                    lineHeight: 1.65,
+                    margin: 0,
+                  }}>{row.drain}</p>
+                </div>
+              </div>
+            ))}
+
+            {/* Summary row */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "1fr",
+              borderTop: "1px solid var(--gold-primary)",
+              background: "var(--card-dark)",
+              padding: "1.25rem 1.5rem",
+            }}>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.9rem",
+                fontWeight: 600,
+                color: "var(--text)",
+                lineHeight: 1.6,
+                margin: 0,
+              }}>
+                Combined exposure if two or more violations occur simultaneously: <span style={{ color: "var(--red)" }}>$15,000–$60,000+</span>
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={100}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.75rem",
+            color: "var(--text-subtle)",
+            marginBottom: "1.5rem",
+            letterSpacing: "0.02em",
+          }}>
+            Current as of March 2026. Verified against ecfr.gov.
+          </p>
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontStyle: "italic",
+            fontSize: "0.975rem",
+            color: "var(--text-muted)",
+            textAlign: "center",
+            lineHeight: 1.7,
+          }}>
+            The LaunchPath 90-Day Standard is priced at a fraction of a single compliance failure. That is not a sales tactic. That is arithmetic.
+          </p>
+        </FadeIn>
 
       </div>
     </section>

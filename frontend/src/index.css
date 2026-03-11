@@ -28,15 +28,26 @@
   --border: rgba(255,255,255,0.10);
   --border-gold: rgba(138,150,163,0.22);
   --red: #ef4444;
-  /* Onyx / Paper theme */
-  --bg-onyx: #1B2A4A;
-  --bg-paper: #F5F5F5;
-  --gold-brand: #C9A84C;
-  --divider-dark: #2A3A5A;
+  /* LaunchPath Color System */
+  --bg-onyx: #002244;
+  --bg-paper: #F5F6F7;
+  --bg-white: #FAFAFA;
+  --gold-primary: #C5A059;
+  --gold-brand: #C5A059;
+  --gold-muted-brand: #8A6E2E;
+  --gold-light: #D4B87A;
+  --navy-deep: #001A33;
+  --navy-mid: #002D5A;
+  --card-dark: #0F1E35;
+  --divider-dark: #1E3355;
   --divider-light: #DDDDDD;
   --text-paper: #1A1A1A;
   --text-paper-muted: #666666;
-  --text-paper-heading: #1B2A4A;
+  --text-paper-heading: #002244;
+  --text-muted-dark: #CCCCCC;
+  --incident-dark-1: #0D1929;
+  --incident-dark-2: #111E30;
+  --pattern-note-bg: #1A2A3A;
 }
 
 /* ── Animation Keyframes ── */

@@ -1,194 +1,112 @@
 import FadeIn from "./FadeIn";
-import { ArrowRight } from "@phosphor-icons/react";
 
 const PILLARS = [
   {
-    num: "01",
     name: "Authority Protection",
-    principle: "The authority survives only when its obligations are maintained.",
-    body: "New authorities don't get shut down because of one bad day; they get shut down because nobody installed a system for the New Entrant window. This pillar hard-wires the filings, records, and 90-day habits that keep your MC number active when FMCSA runs its first audit.",
-    brief: "/knowledge-center/new-entrant-safety-audit-brief",
-    briefLabel: "New Entrant Audit Brief",
+    body: "Your DOT authority is a federal operating license. It can be suspended, conditioned, or revoked. Every decision in the first 90 days either protects it or exposes it.",
   },
   {
-    num: "02",
     name: "Insurance Continuity",
-    principle: "Coverage that lapses ends an authority.",
-    body: "Coverage that looks fine on a quote can still let your authority die on paper. This pillar keeps your policy, filings, and real operation in sync so one missed payment, unreported truck, or bad MCS-90 assumption doesn't quietly pull your BMC-91 and sideline your business.",
-    brief: "/knowledge-center/insurance-continuity-brief",
-    briefLabel: "Insurance Continuity Brief",
+    body: "A lapsed policy suspends your authority the same day. No grace period. No warning. The 35-Day Standard and the 24-Hour Guard exist because insurance failure is the fastest way to lose what you just built.",
   },
   {
-    num: "03",
     name: "Compliance Backbone",
-    principle: "Documentation is the spine of the operation.",
-    body: "Most carriers stack loose paperwork and call it \"compliance.\" This pillar turns HOS, Drug & Alcohol, and Maintenance into a simple operating backbone — clear policies, weekly reviews, and unit files that can survive roadside checks, audits, and crash investigations.",
-    brief: "/knowledge-center/hos-compliance-brief",
-    briefLabel: "HOS Compliance Brief",
+    body: "Driver Qualification files. Drug and alcohol program. Hours of Service. ELD. Vehicle maintenance records. These are not administrative tasks. They are the file system that survives or fails a federal audit.",
   },
   {
-    num: "04",
     name: "Cash-Flow Oxygen",
-    principle: "Operations fail when cash suffocates.",
-    body: "You can pass every audit and still bleed out on cash. This pillar uses your real cost per mile, payment terms, and startup spend to make sure you can afford to run the Standard for 12–24 months instead of starving it the first time freight gets slow.",
-    brief: null,
-    briefLabel: null,
+    body: "Load selection discipline. True cost per mile. Payment gap management. A carrier who cannot stay liquid cannot stay compliant. The 30% Ceiling exists because cash-flow failure and compliance failure arrive together.",
   },
 ];
 
 export default function FourPillarsSection() {
   return (
     <section data-testid="four-pillars-section" style={{
-      background: "var(--bg-2)",
+      background: "var(--bg-onyx)",
       padding: "7rem 1.5rem",
-      borderBottom: "1px solid var(--border)",
+      borderBottom: "1px solid var(--divider-dark)",
     }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
         <FadeIn>
-          <div style={{ maxWidth: 680, marginBottom: "4rem" }}>
-            <p className="overline" style={{ marginBottom: "1.25rem" }}>The Standard</p>
-            <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-              letterSpacing: "-0.02em",
-              marginBottom: "1.25rem",
-            }}>
-              The Four Pillars of the Standard.
-            </h2>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
-              color: "var(--text-muted)",
-              lineHeight: 1.8,
-            }}>
-              These are not modules. They are the four operating pillars of the LaunchPath Standard.
-              Each one addresses a documented failure pattern that ends new carrier authorities
-              in their first 12 months of operation. All four are installed simultaneously.
-            </p>
-          </div>
+          <p className="overline" style={{ marginBottom: "1.25rem", color: "var(--gold-primary)" }}>
+            The Operating Standard
+          </p>
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            letterSpacing: "-0.02em",
+            color: "var(--text)",
+            marginBottom: "1rem",
+            maxWidth: 640,
+          }}>
+            The Four Pillars of the Standard
+          </h2>
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 500,
+            fontSize: "1rem",
+            color: "var(--text-muted)",
+            marginBottom: "4rem",
+            lineHeight: 1.7,
+          }}>
+            These four systems are installed before scale. Not after the first violation. Before.
+          </p>
         </FadeIn>
 
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-          gap: "1px",
-          background: "var(--border)",
-          marginBottom: "2rem",
-        }}>
-          {PILLARS.map((p, i) => (
-            <FadeIn key={p.num} delay={i * 80}>
-              <div data-testid={`pillar-${p.num}`}
-                style={{
-                  background: "var(--bg-2)",
-                  padding: "2.5rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                  height: "100%",
-                  transition: "background 0.2s",
-                  cursor: "default",
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-                onMouseLeave={e => e.currentTarget.style.background = "var(--bg-2)"}
-              >
-                <div style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.65rem",
-                  color: "var(--gold)",
-                  letterSpacing: "0.12em",
-                }}>{p.num}</div>
-                <h3 style={{
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "1.5rem",
+          marginBottom: "3rem",
+        }} className="pillars-grid">
+          {PILLARS.map((pillar, i) => (
+            <FadeIn key={pillar.name} delay={i * 80}>
+              <div data-testid={`pillar-${i + 1}`} style={{
+                background: "var(--card-dark)",
+                border: "1px solid var(--gold-primary)",
+                padding: "2rem 2rem 2.25rem",
+              }}>
+                <p style={{
                   fontFamily: "'Manrope', sans-serif",
                   fontWeight: 700,
-                  fontSize: "1.1rem",
-                  color: "var(--text)",
-                  lineHeight: 1.3,
-                }}>{p.name}</h3>
+                  fontSize: "1.05rem",
+                  color: "var(--gold-primary)",
+                  marginBottom: "0.875rem",
+                  letterSpacing: "-0.01em",
+                }}>{pillar.name}</p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.825rem",
-                  color: "var(--orange)",
-                  lineHeight: 1.5,
-                  fontStyle: "italic",
-                }}>{p.principle}</p>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.9rem",
-                  color: "var(--text-muted)",
+                  fontSize: "0.925rem",
+                  color: "#CCCCCC",
                   lineHeight: 1.8,
-                  flex: 1,
-                }}>{p.body}</p>
-                {p.brief && (
-                  <a href={p.brief} style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.4rem",
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--text-subtle)",
-                    textDecoration: "none",
-                    marginTop: "0.5rem",
-                    transition: "color 0.2s",
-                  }}
-                    onMouseEnter={e => e.currentTarget.style.color = "var(--text)"}
-                    onMouseLeave={e => e.currentTarget.style.color = "var(--text-subtle)"}
-                  >
-                    {p.briefLabel} <ArrowRight size={12} />
-                  </a>
-                )}
+                  margin: 0,
+                }}>{pillar.body}</p>
               </div>
             </FadeIn>
           ))}
         </div>
 
-        <FadeIn delay={200}>
-          <div style={{
-            borderTop: "1px solid var(--border)",
-            paddingTop: "1.75rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "1rem",
+        <FadeIn delay={360}>
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 600,
+            fontStyle: "italic",
+            fontSize: "1rem",
+            color: "var(--text)",
+            textAlign: "center",
+            lineHeight: 1.7,
           }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.9rem",
-              color: "var(--text-subtle)",
-              lineHeight: 1.7,
-              maxWidth: 580,
-            }}>
-              Each pillar is backed by a LaunchPath brief that answers a simple question:
-              what do your records actually have to prove?
-            </p>
-            <a href="/knowledge-center" style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
-              fontWeight: 600,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-              color: "var(--text-subtle)",
-              textDecoration: "none",
-              border: "1px solid var(--border)",
-              padding: "0.6rem 1.25rem",
-              transition: "all 0.2s",
-              whiteSpace: "nowrap",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)"; e.currentTarget.style.color = "var(--text)"; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-subtle)"; }}
-            >
-              View all 5 briefs <ArrowRight size={13} />
-            </a>
-          </div>
+            LaunchPath installs all four. In sequence. Before the audit window opens.
+          </p>
         </FadeIn>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) { .pillars-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
     </section>
   );
 }

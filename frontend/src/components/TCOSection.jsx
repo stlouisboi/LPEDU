@@ -16,7 +16,6 @@ export default function TCOSection() {
   const [monthlyRev, setMonthlyRev] = useState(10000);
   const [structure, setStructure] = useState("owner");
   const [done, setDone] = useState(false);
-
   const r = useMemo(() => calc(trucks, monthlyRev), [trucks, monthlyRev]);
 
   return (
@@ -170,8 +169,8 @@ export default function TCOSection() {
 
             {/* Price line */}
             <div data-testid="launchpath-price-line" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem 0 0" }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-paper)" }}>The LaunchPath 90-Day Standard is priced at $5,000.</span>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem", fontWeight: 500, color: "var(--gold-brand)" }}>$5,000</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "var(--text-paper)" }}>The LaunchPath 90-Day Standard is priced at $2,500.</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem", fontWeight: 500, color: "var(--gold-primary)" }}>$2,500</span>
             </div>
           </div>
         )}

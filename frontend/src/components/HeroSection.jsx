@@ -92,29 +92,14 @@ export default function HeroSection() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.95rem",
-            color: "var(--text-subtle)",
+            color: "var(--text-muted)",
             lineHeight: 1.8,
-            maxWidth: 560,
-            marginBottom: "1rem",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.3s",
-          }}>
-            New authorities do not fail because they lack ambition.
-            They fail because operational systems were never installed.
-          </p>
-
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.9rem",
-            color: "var(--orange)",
-            lineHeight: 1.7,
             maxWidth: 560,
             marginBottom: "3rem",
             animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.38s",
+            animationDelay: "0.3s",
           }}>
-            The LaunchPath Standard is documented in a 5-brief series and 90-day checklists
-            that show what your records actually have to prove in a New Entrant audit.
+            LaunchPath installs the four compliance systems every new authority needs to survive FMCSA oversight in the first 90 days. This is not a course. It is an operating standard built around a federal audit timeline.
           </p>
 
           <div style={{
@@ -122,44 +107,37 @@ export default function HeroSection() {
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.48s",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
-              <Link
-                to="/readiness"
-                data-testid="hero-readiness-cta"
-                style={{
-                  display: "inline-block",
-                  background: "var(--orange)",
-                  color: "#fff",
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "0.875rem",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  padding: "1rem 2rem",
-                  textDecoration: "none",
-                  transition: "background 0.2s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
-                onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
-              >
-                Begin Ground 0 Briefing
-              </Link>
-              <span style={{
+            <Link
+              to="/readiness"
+              data-testid="hero-readiness-cta"
+              style={{
+                display: "inline-block",
+                background: "var(--gold-primary)",
+                color: "var(--bg-onyx)",
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.8rem",
-                color: "var(--text-subtle)",
-              }}>
-                Free. Takes approximately 12 minutes.
-              </span>
-            </div>
+                fontWeight: 700,
+                fontSize: "0.875rem",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                padding: "1rem 2rem",
+                textDecoration: "none",
+                transition: "background 0.2s",
+                minHeight: 52,
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "var(--gold-light)"}
+              onMouseLeave={e => e.currentTarget.style.background = "var(--gold-primary)"}
+            >
+              Begin Ground 0 Briefing
+            </Link>
             <p style={{
               fontFamily: "'Inter', sans-serif",
+              fontStyle: "italic",
               fontSize: "0.78rem",
               color: "var(--text-subtle)",
               maxWidth: 420,
               lineHeight: 1.6,
             }}>
-              Runs through the same failure points FMCSA checks in your first audit.
+              Ground 0 is the first module of the LaunchPath Standard.
             </p>
           </div>
         </div>
