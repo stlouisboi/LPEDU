@@ -96,7 +96,8 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Font size +12% across all body, table, labels, monospace, footnotes (Mar 2026)
 
 ### P1 — Next Up
-- [ ] Build `/ground-0-briefing` page — 6-lesson structured onboarding flow
+- [x] Build `/ground-0-briefing` page — 6-lesson accordion, email capture, inline confirmation (Mar 2026)
+- [x] Build `/portal` page — cohort curriculum sidebar, locked modules, Stripe payment gate (Mar 2026)
 - [ ] Update YouTube "Watch" CTA with actual video URL when ready
 
 ### P2 — Tool Pages
