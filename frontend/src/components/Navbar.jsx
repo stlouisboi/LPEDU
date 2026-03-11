@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { List, X, LockSimple } from "@phosphor-icons/react";
 
 const NAV_LINKS = [
@@ -12,7 +12,17 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrollPct, setScrollPct] = useState(0);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 0) setScrollPct((window.scrollY / total) * 100);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const isActive = (href) => !href.startsWith("http") && (location.pathname === href || location.pathname.startsWith(href + "/"));
 
@@ -31,8 +41,8 @@ export default function Navbar() {
   return (
     <header style={{
       position: "sticky", top: 0, zIndex: 100,
-      background: "rgba(0,34,68,0.95)",
-      backdropFilter: "blur(12px)",
+      background: "rgba(0,26,51,0.97)",
+      backdropFilter: "blur(14px)",
       borderBottom: "1px solid var(--divider-dark)",
     }}>
       <div style={{
@@ -41,7 +51,7 @@ export default function Navbar() {
         height: 64,
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
-        <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <img
             src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
             alt="LaunchPath"
@@ -49,7 +59,7 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop */}
+        {/* Desktop nav */}
         <nav style={{ display: "flex", alignItems: "center", gap: "2.5rem" }} className="desktop-nav">
           {NAV_LINKS.map(l => (
             l.external ? (
@@ -57,47 +67,37 @@ export default function Navbar() {
                 style={linkStyle(l.href)}
                 onMouseEnter={e => e.currentTarget.style.color = "var(--text)"}
                 onMouseLeave={e => e.currentTarget.style.color = isActive(l.href) ? "var(--text)" : "var(--text-muted)"}
-              >
-                {l.label}
-              </a>
+              >{l.label}</a>
             ) : (
               <Link key={l.label} to={l.href}
                 style={linkStyle(l.href)}
                 onMouseEnter={e => e.currentTarget.style.color = "var(--text)"}
                 onMouseLeave={e => e.currentTarget.style.color = isActive(l.href) ? "var(--text)" : "var(--text-muted)"}
-              >
-                {l.label}
-              </Link>
+              >{l.label}</Link>
             )
           ))}
 
           <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
             data-testid="nav-portal-btn"
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.4rem",
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.78rem",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
+              display: "flex", alignItems: "center", gap: "0.4rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 600,
+              letterSpacing: "0.08em", textTransform: "uppercase",
               color: "var(--gold-primary)",
-              background: "var(--bg-onyx)",
+              background: "transparent",
               border: "1px solid var(--gold-primary)",
               padding: "0.45rem 1rem",
               textDecoration: "none",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = "rgba(197,160,89,0.08)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "var(--bg-onyx)"; }}
+            onMouseEnter={e => e.currentTarget.style.background = "rgba(197,160,89,0.1)"}
+            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
           >
             <LockSimple size={12} weight="bold" />
             Operator Portal
           </a>
         </nav>
 
-        {/* Mobile hamburger */}
         <button className="mobile-btn" data-testid="mobile-menu-btn"
           onClick={() => setOpen(!open)}
           style={{ background: "none", border: "none", color: "var(--text)", cursor: "pointer", padding: "0.25rem" }}
@@ -106,10 +106,20 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* Scroll progress bar */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0,
+        height: "2px",
+        width: `${scrollPct}%`,
+        background: "linear-gradient(90deg, var(--gold-primary), var(--gold-light))",
+        transition: "width 0.08s linear",
+        zIndex: 2,
+      }} />
+
       {/* Mobile menu */}
       {open && (
         <div style={{
-          background: "var(--navy-deep)",
+          background: "#000F1F",
           borderTop: "1px solid var(--divider-dark)",
           padding: "1.5rem",
           display: "flex", flexDirection: "column", gap: "1.25rem",
@@ -119,16 +129,11 @@ export default function Navbar() {
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", textDecoration: "none" }}
-              >
-                {l.label}
-              </a>
+              >{l.label}</a>
             ) : (
-              <Link key={l.label} to={l.href}
-                onClick={() => setOpen(false)}
+              <Link key={l.label} to={l.href} onClick={() => setOpen(false)}
                 style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "var(--text-muted)", textDecoration: "none" }}
-              >
-                {l.label}
-              </Link>
+              >{l.label}</Link>
             )
           ))}
           <a href="https://www.launchpathedu.com" target="_blank" rel="noopener noreferrer"
@@ -136,10 +141,8 @@ export default function Navbar() {
               display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem",
               fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 600,
               letterSpacing: "0.08em", textTransform: "uppercase",
-              color: "var(--gold-primary)",
-              background: "var(--bg-onyx)",
-              border: "1px solid var(--gold-primary)",
-              padding: "0.75rem 1.25rem", textDecoration: "none",
+              color: "var(--gold-primary)", border: "1px solid var(--gold-primary)",
+              padding: "0.75rem", textDecoration: "none",
             }}
           >
             <LockSimple size={12} weight="bold" />

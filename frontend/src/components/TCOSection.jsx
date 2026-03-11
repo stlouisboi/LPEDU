@@ -22,6 +22,7 @@ export default function TCOSection() {
     <section data-testid="tco-calculator-section" style={{
       background: "var(--bg-paper)",
       padding: "6rem 1.5rem",
+      borderTop: "3px solid var(--gold-primary)",
       borderBottom: "1px solid var(--divider-light)",
     }}>
       <div style={{ maxWidth: 920, margin: "0 auto" }}>

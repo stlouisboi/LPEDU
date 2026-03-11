@@ -22,9 +22,9 @@ const PILLARS = [
 export default function FourPillarsSection() {
   return (
     <section data-testid="four-pillars-section" style={{
-      background: "var(--bg-onyx)",
+      background: "#001530",
       padding: "7rem 1.5rem",
-      borderBottom: "1px solid var(--divider-dark)",
+      borderBottom: "1px solid rgba(197,160,89,0.2)",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
@@ -63,11 +63,23 @@ export default function FourPillarsSection() {
         }} className="pillars-grid">
           {PILLARS.map((pillar, i) => (
             <FadeIn key={pillar.name} delay={i * 80}>
-              <div data-testid={`pillar-${i + 1}`} style={{
-                background: "var(--card-dark)",
-                border: "1px solid var(--gold-primary)",
-                padding: "2rem 2rem 2.25rem",
-              }}>
+              <div data-testid={`pillar-${i + 1}`}
+                style={{
+                  background: "var(--card-dark)",
+                  border: "1px solid var(--gold-primary)",
+                  padding: "2rem 2rem 2.25rem",
+                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                  cursor: "default",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = "translateY(-6px)";
+                  e.currentTarget.style.boxShadow = "0 16px 40px rgba(197,160,89,0.22)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
                 <p style={{
                   fontFamily: "'Manrope', sans-serif",
                   fontWeight: 700,

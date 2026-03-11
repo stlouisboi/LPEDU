@@ -38,9 +38,9 @@ const ROWS = [
 export default function PenaltyTableSection() {
   return (
     <section data-testid="penalty-table-section" style={{
-      background: "var(--bg-onyx)",
+      background: "#001530",
       padding: "6rem 1.5rem",
-      borderBottom: "1px solid var(--divider-dark)",
+      borderBottom: "1px solid rgba(197,160,89,0.2)",
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 

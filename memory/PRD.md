@@ -9,7 +9,16 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - **Styling**: Tailwind CSS + custom CSS variables
 - **Fonts**: Manrope (headings), Inter (body), JetBrains Mono (data/code)
 
-## LaunchPath Color System (Final — Color Correction Brief)
+## Visual Enhancement Layer (Option B+C — Mar 2026)
+- **Hero**: Animated gold dot-grid background, 5rem+ headline, gold CTA button
+- **Philosophical Lines**: Near-black `#060D18` bg + large faded gold quotation mark + gold bordered lines — clearly distinct from all surrounding sections
+- **Section bg variety**: 4 distinct dark tones (`#002244`, `#001530`, `#001A33`, `#060D18`) + 3 light sections with `3px gold top border`
+- **FourPillars cards**: Hover lift (`translateY(-6px)`) + gold glow box-shadow
+- **FailureReality stats**: Count-up animation via IntersectionObserver
+- **Navbar**: Gold scroll progress bar at bottom of header
+- **ThreePaths**: LaunchPath row has gold left bar accent + deeper bg
+
+
 | Token | Value | Role |
 |---|---|---|
 | `--bg-onyx` | `#002244` | Dark section background |

@@ -1,4 +1,39 @@
 import FadeIn from "./FadeIn";
+import { useState, useEffect, useRef } from "react";
+
+function CountUp({ end, suffix = "" }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef(null);
+  const fired = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !fired.current) {
+          fired.current = true;
+          const isDecimal = String(end).includes(".");
+          const target = parseFloat(end);
+          const duration = 1600;
+          const startTime = Date.now();
+          const tick = () => {
+            const elapsed = Date.now() - startTime;
+            const ease = Math.min(1 - Math.pow(1 - elapsed / duration, 3), 1);
+            const cur = isDecimal ? (ease * target).toFixed(1) : Math.floor(ease * target);
+            setVal(cur);
+            if (elapsed < duration) requestAnimationFrame(tick);
+            else setVal(isDecimal ? target.toFixed(1) : target);
+          };
+          tick();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [end]);
+
+  return <span ref={ref}>{val}{suffix}</span>;
+}
 
 const INCIDENT_FIELDS = [
   { label: "INCIDENT TYPE", value: "New Entrant Safety Audit — Compliance Review", redacted: false },
@@ -57,9 +92,9 @@ const EXPOSURE_CATEGORIES = [
 ];
 
 const METRICS = [
-  { value: "49", label: "Authorities reviewed in the LaunchPath development framework" },
-  { value: "96.4%", label: "Of carriers who avoid first-year authority loss with documented systems in place" },
-  { value: "10+", label: "Years building operational compliance systems before LaunchPath was founded" },
+  { end: 49, suffix: "", label: "Authorities reviewed in the LaunchPath development framework" },
+  { end: 96.4, suffix: "%", label: "Of carriers who avoid first-year authority loss with documented systems in place" },
+  { end: 10, suffix: "+", label: "Years building operational compliance systems before LaunchPath was founded" },
 ];
 
 export default function FailureRealitySection() {
@@ -300,7 +335,7 @@ export default function FailureRealitySection() {
                   letterSpacing: "-0.02em",
                   lineHeight: 1,
                   marginBottom: "0.5rem",
-                }}>{m.value}</div>
+                }}><CountUp end={m.end} suffix={m.suffix} /></div>
                 <div style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.78rem",

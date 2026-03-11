@@ -1,9 +1,9 @@
 export default function SystemDiagramSection() {
   return (
     <section data-testid="system-diagram" style={{
-      background: "var(--bg-onyx)",
-      borderTop: "1px solid var(--divider-dark)",
-      borderBottom: "1px solid var(--divider-dark)",
+      background: "#002244",
+      borderTop: "1px solid rgba(197,160,89,0.2)",
+      borderBottom: "1px solid rgba(197,160,89,0.2)",
       padding: "6rem 1.5rem",
     }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>

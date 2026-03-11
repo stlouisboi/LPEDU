@@ -12,31 +12,28 @@ export default function HeroSection() {
   return (
     <section data-testid="hero-section" style={{
       position: "relative",
-      background: "var(--bg-onyx)",
+      background: "#002244",
       padding: "8rem 1.5rem 6rem",
-      borderBottom: "1px solid var(--divider-dark)",
+      borderBottom: "1px solid rgba(197,160,89,0.25)",
       overflow: "hidden",
     }}>
 
-      {/* Ambient background — dot grid + scan beam */}
+      {/* Ambient background — animated dot grid */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-        <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.045 }} aria-hidden="true">
-          <defs>
-            <pattern id="hero-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="1" fill="#8A96A3" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hero-dots)" />
-        </svg>
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.12) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          animation: "dotDrift 22s linear infinite",
+        }} />
         <div style={{
           position: "absolute", left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent 0%, rgba(232,89,15,0.18) 50%, transparent 100%)",
+          background: "linear-gradient(90deg, transparent 0%, rgba(197,160,89,0.22) 50%, transparent 100%)",
           animation: "scanLine 9s linear infinite",
         }} />
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 70% 55% at 30% 50%, rgba(232,89,15,0.04) 0%, transparent 70%)",
-          animation: "pulseRing 8s ease-in-out infinite",
+          background: "radial-gradient(ellipse 70% 55% at 30% 50%, rgba(197,160,89,0.05) 0%, transparent 70%)",
         }} />
       </div>
 
@@ -62,7 +59,7 @@ export default function HeroSection() {
           <h1 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(2.4rem, 4.5vw, 3.75rem)",
+            fontSize: "clamp(2.75rem, 5.5vw, 5rem)",
             lineHeight: 1.1,
             letterSpacing: "-0.025em",
             color: "var(--text)",
