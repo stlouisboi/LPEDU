@@ -78,10 +78,19 @@ export default function VinceCTASection() {
             fontSize: "1.008rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
+            marginBottom: "0.625rem",
+          }}>
+            25 years in safety, compliance, and manufacturing operations.
+            U.S. Navy veteran. OSHA certified.
+          </p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.008rem",
+            color: "var(--text-paper)",
+            lineHeight: 1.8,
             marginBottom: "2rem",
           }}>
-            25+ years in safety, compliance, and manufacturing management.
-            U.S. Navy veteran. OSHA certified.
+            LaunchPath was built after observing the same operational failures repeat across new motor carriers year after year.
           </p>
 
           {/* Divider */}
