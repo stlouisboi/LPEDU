@@ -4,8 +4,8 @@ import { List, X, LockSimple } from "@phosphor-icons/react";
 
 const NAV_LINKS = [
   { label: "Knowledge Center", href: "/knowledge-center", external: false },
-  { label: "AUTO Method", href: "https://www.launchpathedu.com/auto-method", external: true },
-  { label: "AUTO Diagnostic", href: "/auto-diagnostic", external: false },
+  { label: "AUTO Method", href: "/auto-method", external: false },
+  { label: "REACH Assessment", href: "/reach-assessment", external: false },
   { label: "Ground 0", href: "/ground-0-briefing", external: false },
   { label: "About", href: "/about", external: false },
 ];

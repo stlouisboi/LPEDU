@@ -14,6 +14,8 @@ import DrugAlcoholBrief from "./pages/knowledge-center/DrugAlcoholBrief";
 import AllChecklists from "./pages/knowledge-center/AllChecklists";
 import Ground0Page from "./pages/Ground0Page";
 import PortalPage from "./pages/PortalPage";
+import REACHAssessmentPage from "./pages/REACHAssessmentPage";
+import AutoMethodPage from "./pages/AutoMethodPage";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="/knowledge-center/drug-alcohol-program-brief" element={<DrugAlcoholBrief />} />
         <Route path="/ground-0-briefing" element={<Ground0Page />} />
         <Route path="/portal" element={<PortalPage />} />
+        <Route path="/reach-assessment" element={<REACHAssessmentPage />} />
+        <Route path="/auto-method" element={<AutoMethodPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -149,6 +149,53 @@ async def submit_diagnostic(data: DiagnosticSubmit):
     return {"ok": True, "result": data.result}
 
 
+# ── REACH Assessment ─────────────────────────────────────
+class REACHCategoryScores(BaseModel):
+    r: int
+    e: int
+    a: int
+    c: int
+    h: int
+
+class REACHSubmit(BaseModel):
+    email: EmailStr
+    result: str
+    total_score: int
+    category_scores: REACHCategoryScores
+    open_response: Optional[str] = None
+
+@api_router.post("/reach")
+async def submit_reach(data: REACHSubmit):
+    tag_map = {"GO": "REACH_GO", "WAIT": "REACH_WAIT", "NO-GO": "REACH_NOGO"}
+    payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "lead_source": f"reach_{data.result.lower().replace('-', '_')}",
+            "reach_result": data.result,
+            "reach_total_score": str(data.total_score),
+            "reach_resources": str(data.category_scores.r),
+            "reach_experience": str(data.category_scores.e),
+            "reach_authority": str(data.category_scores.a),
+            "reach_commitment": str(data.category_scores.c),
+            "reach_hustle": str(data.category_scores.h),
+            "reach_open_response": data.open_response or "",
+            "reach_tag": tag_map.get(data.result, "REACH_COMPLETE"),
+        },
+    }
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+    if resp.status_code not in (200, 201):
+        logger.error(f"MailerLite REACH error {resp.status_code}: {resp.text}")
+        raise HTTPException(status_code=502, detail="Could not save assessment.")
+    return {"ok": True, "result": data.result}
+
+
 # ── Ground 0 ─────────────────────────────────────────────
 class Ground0Submit(BaseModel):
     email: EmailStr
