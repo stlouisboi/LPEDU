@@ -1,8 +1,11 @@
 import "../App.css";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
+import RegulatoryRealitySection from "../components/RegulatoryRealitySection";
+import AuthorityClockSection from "../components/AuthorityClockSection";
 import FourPillarsSection from "../components/FourPillarsSection";
 import SystemDiagramSection from "../components/SystemDiagramSection";
+import SystemArchitectureSection from "../components/SystemArchitectureSection";
 import PhilosophicalLineSection from "../components/PhilosophicalLineSection";
 import FailureRealitySection from "../components/FailureRealitySection";
 import PenaltyTableSection from "../components/PenaltyTableSection";
@@ -24,9 +27,12 @@ export default function HomePage() {
       <Navbar />
       <main>
         <HeroSection />
+        <RegulatoryRealitySection />
+        <AuthorityClockSection />
         <FourPillarsSection />
         <SystemDiagramSection />
         <PhilosophicalLineSection text={PHIL_1} />
+        <SystemArchitectureSection />
         <FailureRealitySection />
         <PenaltyTableSection />
         <PhilosophicalLineSection text={PHIL_3} />
