@@ -40,23 +40,14 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 **CTA Button Rule:** Gold background (`--gold-primary`) + Navy text (`--bg-onyx`)
 **Operator Portal Button:** Navy bg + Gold border + Gold text
 
-## Homepage Section Order (Final — Master Brief v2)
-1. **Navbar** — logo, nav links, OPERATOR PORTAL (gold border, gold text)
-2. **Hero** — DARK. New body copy, gold CTA
-3. **FourPillars** — DARK. 4 gold-bordered cards on #0F1E35 bg
-4. **SystemDiagram** — DARK. AUTO diagram
-5. **PhilosophicalLine 1** — DARK. "The wise carrier builds the system before the audit..."
-6. **FailureReality** — DARK. Incident report + 16-point checklist + stats strip + closing line
-7. **PenaltyTable** — DARK. 2-col: Direct Penalties | Hidden Operational Drain (8 rows)
-8. **PhilosophicalLine 3** — DARK. "This program does not make you compliant..."
-9. **TCO** — LIGHT. Interactive calculator, $2,500 price line
-10. **ThreePaths** — DARK. GO/WAIT/STOP — $2,500 for LaunchPath
-11. **PhilosophicalLine 2** — DARK. "Most carriers wait until something goes wrong..."
-12. **Founder (About)** — LIGHT. Vince Lawrence, manufacturing bg, pull quote, credential bar
-13. **WhoNotFor** — LIGHT. 4 disqualifiers
-14. **NextStep** — DARK. 4-stage sequence (01-04) + gold CTA
-15. **FinalCTA** — DARK. Admission gate + gold CTA
-16. **Footer** — #001A33. Wordmark + nav + legal
+## Homepage Section Order (Consolidated — Feb 2026)
+1. **Hero** — DARK. Headline, subhead, gold CTA
+2. **AuthorityClock** — DARK. 90-day compliance window urgency section
+3. **AutoMethodTeaser** — DARK (#002244). A/U/T/O 4-card risk vector grid
+4. **FourPillars** — DARK. 4 gold-bordered system pillars
+5. **ComplianceMapTeaser** — DARK (#001530). Banner strip → link to /operating-standard
+6. **VinceCTA** — LIGHT. Vince Lawrence bio + "Begin Ground 0 Briefing" CTA
+7. **Footer** — #001A33. Wordmark + nav + legal
 
 ## Key Copy Rules
 - LaunchPath price: **$2,500** (NOT $5,000)
@@ -110,8 +101,11 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 
 ### P3 — Future
 - [x] Members-only content gating — Modules 1-7 locked to Stripe-paid users; user_access collection, /api/portal/access + /api/portal/checkout updated to link user_id, green/gold sidebar state (Mar 2026)
+- [x] Homepage consolidation — reduced from 10+ sections to 6 (Hero, AuthorityClock, AutoMethodTeaser, FourPillars, ComplianceMapTeaser, VinceCTA) (Feb 2026)
+- [ ] Video integration for homepage "Watch the Overview" CTA (needs YouTube URL from user)
 - [ ] B2B landing page for insurers/fleet operators
-- [ ] Video integration for homepage "Watch the Overview" CTA
+- [ ] Post-payment confirmation email via MailerLite
+- [ ] Knowledge Center → Portal contextual cross-links
 
 ## File Reference
 - `/app/frontend/src/App.js` — Router
