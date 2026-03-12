@@ -8,6 +8,7 @@ const PILLARS = [
     name: "Authority Protection",
     detail: "Federal filing continuity, FMCSA operating authority maintenance, and structured audit-readiness protocol for the new entrant review period.",
     output: "Audit-Ready Authority",
+    without: "A single documentation gap — one missing DQ file, one lapsed medical certificate — can trigger a conditional rating that freezes operations within 30 days.",
   },
   {
     code: "LP-SYS-02",
@@ -15,6 +16,7 @@ const PILLARS = [
     name: "Insurance Continuity",
     detail: "BMC-91 filing compliance, continuous coverage verification, policy gap prevention, and cargo insurance alignment with freight contract requirements.",
     output: "Zero Coverage Gaps",
+    without: "Insurance non-renewal after an audit finding is the most common cause of authority revocation. Most carriers don't lose authority directly — they lose insurance, and authority follows.",
   },
   {
     code: "LP-SYS-03",
@@ -22,6 +24,7 @@ const PILLARS = [
     name: "Compliance Backbone",
     detail: "HOS documentation, D&A program enrollment, driver qualification file management, and vehicle inspection and maintenance record systems.",
     output: "Full CSA Compliance",
+    without: "Investigators don't audit one area. They pull records across all four. A clean HOS file means nothing if your D&A program is incomplete. Failure in one area exposes all the others.",
   },
   {
     code: "LP-SYS-04",
@@ -29,6 +32,7 @@ const PILLARS = [
     name: "Cash-Flow Oxygen",
     detail: "Freight rate floor calculations, cost-per-mile control systems, factoring structure, and financial runway management through the first 90 operating days.",
     output: "Positive Cash Position",
+    without: "Carriers who cannot maintain cash-flow discipline become non-compliant within 60 days — not from negligence, but from financial pressure that forces operational shortcuts.",
   },
 ];
 
@@ -105,12 +109,40 @@ function PillarCard({ pillar, idx }) {
         fontSize: "0.896rem",
         color: "rgba(255,255,255,0.68)",
         lineHeight: 1.65,
-        marginBottom: "1.5rem",
+        marginBottom: "1.25rem",
         position: "relative",
         zIndex: 1,
       }}>
         {pillar.detail}
       </p>
+
+      {/* Without it */}
+      <div style={{
+        paddingTop: "0.875rem",
+        borderTop: "1px solid rgba(248,113,113,0.12)",
+        position: "relative",
+        zIndex: 1,
+        marginBottom: "1.25rem",
+      }}>
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.784rem",
+          fontWeight: 600,
+          color: "rgba(248,113,113,0.75)",
+          marginBottom: "0.375rem",
+          letterSpacing: "0.02em",
+        }}>
+          Without it:
+        </p>
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.784rem",
+          color: "rgba(255,255,255,0.48)",
+          lineHeight: 1.6,
+        }}>
+          {pillar.without}
+        </p>
+      </div>
 
       {/* Output */}
       <div style={{
@@ -163,7 +195,7 @@ export default function FourPillarsSection() {
             lineHeight: 1.15,
             marginBottom: "0.75rem",
           }}>
-            Four Systems. One Standard.
+            Four Pillar Standard
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",

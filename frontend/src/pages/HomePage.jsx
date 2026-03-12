@@ -2,6 +2,7 @@ import "../App.css";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import AuthorityClockSection from "../components/AuthorityClockSection";
+import ConsequenceNumberBlock from "../components/ConsequenceNumberBlock";
 import AutoMethodTeaserSection from "../components/AutoMethodTeaserSection";
 import FourPillarsSection from "../components/FourPillarsSection";
 import RecoveryPathBlock from "../components/RecoveryPathBlock";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <AuthorityClockSection />
+        <ConsequenceNumberBlock />
         <AutoMethodTeaserSection />
         <FourPillarsSection />
         <RecoveryPathBlock />
