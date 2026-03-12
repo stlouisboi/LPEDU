@@ -7,7 +7,7 @@ const PILLARS = [
     num: "01",
     name: "Authority Protection",
     detail: "Federal filing continuity, FMCSA operating authority maintenance, and structured audit-readiness protocol for the new entrant review period.",
-    output: "Audit-Ready Authority",
+    output: "Avoids a conditional safety rating from a single missing DQ file or lapsed medical certificate.",
     without: "A single documentation gap — one missing DQ file, one lapsed medical certificate — can trigger a conditional rating that freezes operations within 30 days.",
   },
   {
@@ -15,7 +15,7 @@ const PILLARS = [
     num: "02",
     name: "Insurance Continuity",
     detail: "BMC-91 filing compliance, continuous coverage verification, policy gap prevention, and cargo insurance alignment with freight contract requirements.",
-    output: "Zero Coverage Gaps",
+    output: "Avoids insurance non-renewal — the leading direct trigger for authority revocation.",
     without: "Insurance non-renewal after an audit finding is the most common cause of authority revocation. Most carriers don't lose authority directly — they lose insurance, and authority follows.",
   },
   {
@@ -23,7 +23,7 @@ const PILLARS = [
     num: "03",
     name: "Compliance Backbone",
     detail: "HOS documentation, D&A program enrollment, driver qualification file management, and vehicle inspection and maintenance record systems.",
-    output: "Full CSA Compliance",
+    output: "Avoids audit failure from cross-area record gaps — a clean HOS file does not protect an incomplete D&A program.",
     without: "Investigators don't audit one area. They pull records across all four. A clean HOS file means nothing if your D&A program is incomplete. Failure in one area exposes all the others.",
   },
   {
@@ -31,7 +31,7 @@ const PILLARS = [
     num: "04",
     name: "Cash-Flow Oxygen",
     detail: "Freight rate floor calculations, cost-per-mile control systems, factoring structure, and financial runway management through the first 90 operating days.",
-    output: "Positive Cash Position",
+    output: "Avoids the financial pressure that forces compliance shortcuts and non-compliance within 60 days.",
     without: "Carriers who cannot maintain cash-flow discipline become non-compliant within 60 days — not from negligence, but from financial pressure that forces operational shortcuts.",
   },
 ];
@@ -144,7 +144,7 @@ function PillarCard({ pillar, idx }) {
         </p>
       </div>
 
-      {/* Output */}
+      {/* Output — loss aversion */}
       <div style={{
         paddingTop: "0.875rem",
         borderTop: "1px solid rgba(197,160,89,0.14)",
@@ -152,13 +152,14 @@ function PillarCard({ pillar, idx }) {
         zIndex: 1,
       }}>
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.616rem",
-          letterSpacing: "0.12em",
-          color: "rgba(197,160,89,0.88)",
-          textTransform: "uppercase",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.784rem",
+          fontWeight: 600,
+          letterSpacing: "0.04em",
+          color: "rgba(197,160,89,0.92)",
+          lineHeight: 1.55,
         }}>
-          OUTPUT: {pillar.output}
+          {pillar.output}
         </p>
       </div>
     </div>

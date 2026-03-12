@@ -104,7 +104,7 @@ export default function HeroSection() {
             animationDelay: "0.48s",
           }}>
             <Link
-              to="/readiness"
+              to="/reach-assessment"
               data-testid="hero-readiness-cta"
               style={{
                 display: "inline-block",
@@ -123,7 +123,7 @@ export default function HeroSection() {
               onMouseEnter={e => e.currentTarget.style.background = "var(--gold-light)"}
               onMouseLeave={e => e.currentTarget.style.background = "var(--gold-primary)"}
             >
-              Begin Ground 0 Briefing
+              Request an Authority Risk Review
             </Link>
             <p style={{
               fontFamily: "'Inter', sans-serif",

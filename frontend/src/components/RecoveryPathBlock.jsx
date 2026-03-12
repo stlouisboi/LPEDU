@@ -6,10 +6,10 @@ export default function RecoveryPathBlock() {
     <section
       data-testid="recovery-path-block"
       style={{
-        background: "#001020",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        background: "#000810",
+        borderTop: "3px solid rgba(197,160,89,0.35)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
-        padding: "72px 24px",
+        padding: "80px 24px",
       }}
     >
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
@@ -19,7 +19,7 @@ export default function RecoveryPathBlock() {
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.672rem",
-            color: "rgba(197,160,89,0.75)",
+            color: "rgba(197,160,89,0.88)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             marginBottom: "0.5rem",
@@ -33,14 +33,24 @@ export default function RecoveryPathBlock() {
             letterSpacing: "-0.02em",
             color: "#FFFFFF",
             lineHeight: 1.15,
-            marginBottom: "1.25rem",
+            marginBottom: "0.625rem",
           }}>
             The Recovery Path
           </h2>
           <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 600,
+            fontSize: "clamp(1rem, 2vw, 1.2rem)",
+            color: "#C5A059",
+            lineHeight: 1.4,
+            marginBottom: "1.75rem",
+          }}>
+            Already behind? The standard still applies.
+          </p>
+          <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.008rem",
-            color: "rgba(255,255,255,0.72)",
+            color: "rgba(255,255,255,0.82)",
             lineHeight: 1.7,
             maxWidth: 580,
             marginBottom: "0.875rem",
@@ -50,7 +60,7 @@ export default function RecoveryPathBlock() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.008rem",
-            color: "rgba(255,255,255,0.72)",
+            color: "rgba(255,255,255,0.82)",
             lineHeight: 1.7,
             maxWidth: 580,
             marginBottom: "0.875rem",
@@ -60,7 +70,7 @@ export default function RecoveryPathBlock() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.008rem",
-            color: "rgba(255,255,255,0.72)",
+            color: "rgba(255,255,255,0.82)",
             lineHeight: 1.7,
             maxWidth: 580,
             marginBottom: "2.75rem",
@@ -87,6 +97,7 @@ export default function RecoveryPathBlock() {
               flexDirection: "column",
               height: "100%",
               boxSizing: "border-box",
+              borderTop: "2px solid rgba(197,160,89,0.4)",
             }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
@@ -143,6 +154,7 @@ export default function RecoveryPathBlock() {
               flexDirection: "column",
               height: "100%",
               boxSizing: "border-box",
+              borderTop: "2px solid rgba(248,113,113,0.4)",
             }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
@@ -192,7 +204,7 @@ export default function RecoveryPathBlock() {
                   e.currentTarget.style.borderColor = "rgba(197,160,89,0.5)";
                 }}
               >
-                Start the Rebuild →
+                Start the Recovery Module →
               </Link>
             </div>
           </FadeIn>

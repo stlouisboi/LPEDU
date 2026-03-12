@@ -120,8 +120,22 @@ export default function ConsequenceNumberBlock() {
             fontSize: "0.875rem",
             color: "rgba(255,255,255,0.58)",
             lineHeight: 1.65,
+            marginBottom: "1.5rem",
           }}>
             This does not include lost revenue from suspended operations, insurance premium increases, or the cost of rebuilding broker relationships.
+          </p>
+
+          {/* Closing argument */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
+            color: "rgba(255,255,255,0.85)",
+            lineHeight: 1.75,
+            maxWidth: 640,
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+            paddingTop: "1.25rem",
+          }}>
+            The engagement does not guarantee you will never face a compliance issue. It guarantees you will not face one because your operating standard did not exist.
           </p>
 
         </div>
