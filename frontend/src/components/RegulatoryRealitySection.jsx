@@ -9,9 +9,9 @@ const FINDINGS = [
 ];
 
 const STATS = [
-  { value: "49", label: "Documented failure points in compliance audits" },
-  { value: "96%", label: "Insurance underwriting influenced by carrier safety history" },
-  { value: "10+", label: "Regulatory filings required to activate authority" },
+  { value: "49", label: "Documented compliance failure points" },
+  { value: "96%", label: "Insurance decisions influenced by safety history" },
+  { value: "10+", label: "Filings required to activate authority" },
 ];
 
 function CountUp({ target, duration = 1400 }) {
@@ -191,6 +191,18 @@ export default function RegulatoryRealitySection() {
             </div>
           ))}
         </div>
+
+        {/* Reinforcement line */}
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.84rem",
+          color: "rgba(255,255,255,0.38)",
+          textAlign: "center",
+          marginTop: "1.5rem",
+          letterSpacing: "0.02em",
+        }}>
+          These patterns appear consistently across new motor carrier audits.
+        </p>
 
       </div>
 

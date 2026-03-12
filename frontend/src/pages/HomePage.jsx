@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import RegulatoryRealitySection from "../components/RegulatoryRealitySection";
 import AuthorityClockSection from "../components/AuthorityClockSection";
+import ProtectionDiagramSection from "../components/ProtectionDiagramSection";
 import FourPillarsSection from "../components/FourPillarsSection";
 import SystemDiagramSection from "../components/SystemDiagramSection";
 import SystemArchitectureSection from "../components/SystemArchitectureSection";
@@ -21,6 +22,9 @@ const PHIL_1 = "The wise carrier builds the system before the audit. The audit o
 const PHIL_2 = "Most carriers wait until something goes wrong to learn what should have been built before they started. LaunchPath exists for the ones who refuse to wait.";
 const PHIL_3 = "This program does not make you compliant. It gives you the infrastructure to stay compliant — which is a different thing entirely.";
 
+// Bridge sentence between 90-Day Clock and AUTO Method
+const BRIDGE = "When these risks are mapped across a carrier operation, they approach the authority from multiple directions.";
+
 export default function HomePage() {
   return (
     <div style={{ background: "var(--bg-onyx)", minHeight: "100vh" }}>
@@ -29,6 +33,8 @@ export default function HomePage() {
         <HeroSection />
         <RegulatoryRealitySection />
         <AuthorityClockSection />
+        <PhilosophicalLineSection text={BRIDGE} />
+        <ProtectionDiagramSection />
         <FourPillarsSection />
         <SystemDiagramSection />
         <PhilosophicalLineSection text={PHIL_1} />

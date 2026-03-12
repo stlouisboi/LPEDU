@@ -35,6 +35,17 @@ export default function AuthorityClockSection() {
     >
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
 
+        {/* LP code label */}
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: "0.672rem",
+          color: "rgba(197,160,89,0.55)",
+          letterSpacing: "0.12em",
+          marginBottom: "2rem",
+        }}>
+          LP-TIM-001 | AUTHORITY ACTIVATION TIMELINE
+        </div>
+
         {/* Header */}
         <div style={{ marginBottom: "3rem" }}>
           <p style={{

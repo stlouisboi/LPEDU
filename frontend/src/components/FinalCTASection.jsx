@@ -97,7 +97,7 @@ export default function FinalCTASection() {
             lineHeight: 1.8,
             marginBottom: "2.5rem",
           }}>
-            Operators who meet these conditions can proceed to Ground 0, the first module of the LaunchPath Operating Standard.
+            Operators who meet these conditions can proceed to Ground 0, the first installation phase of the LaunchPath Operating Standard.
           </p>
 
           <p style={{
@@ -145,7 +145,7 @@ export default function FinalCTASection() {
               color: "var(--text-subtle)",
               textAlign: "center",
             }}>
-              Ground 0 is the opening module of the LaunchPath Standard. No charge.
+              Ground 0 is the first installation phase of the LaunchPath Operating Standard. No charge.
             </p>
           </div>
         </FadeIn>

@@ -5,7 +5,6 @@ const FMCSA_DATA = [
   { label: "Required filings", value: "10+" },
   { label: "Documented failure points", value: "49" },
   { label: "Standard implementation", value: "90 days" },
-  { label: "Average audit pass rate", value: "94%" },
 ];
 
 export default function HeroSection() {
@@ -83,7 +82,7 @@ export default function HeroSection() {
             animationDelay: "0.25s",
           }}>
             The first ninety days do not test ambition.<br />
-            They test structure.
+            They test operational structure.
           </p>
 
           <p style={{
@@ -134,7 +133,7 @@ export default function HeroSection() {
               maxWidth: 420,
               lineHeight: 1.6,
             }}>
-              Ground 0 is the first module of the LaunchPath Standard.
+              Ground 0 is the first installation phase of the LaunchPath Operating Standard.
             </p>
           </div>
         </div>
