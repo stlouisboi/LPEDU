@@ -700,6 +700,40 @@ export default function MaintenanceRecordsBrief() {
 
       </main>
 
+      {/* Operating Standard Library footer strip */}
+      <div style={{
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        background: "#000F1F",
+        padding: "2rem 2.5rem",
+      }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", flexWrap: "wrap" }}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.84rem",
+            color: "rgba(255,255,255,0.5)",
+            lineHeight: 1.6,
+          }}>
+            This brief is part of the{" "}
+            <a href="/operating-standard" style={{ color: "#C5A059", textDecoration: "none" }}>
+              LaunchPath Operating Standard Library
+            </a>
+            .
+          </p>
+          <a href="/operating-standard" style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.728rem",
+            fontWeight: 700,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "rgba(197,160,89,0.7)",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}>
+            View the Full Standard →
+          </a>
+        </div>
+      </div>
+
       <FooterSection />
 
       <style>{`
