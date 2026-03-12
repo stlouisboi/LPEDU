@@ -102,6 +102,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 ### P3 — Future
 - [x] Members-only content gating — Modules 1-7 locked to Stripe-paid users; user_access collection, /api/portal/access + /api/portal/checkout updated to link user_id, green/gold sidebar state (Mar 2026)
 - [x] Homepage consolidation — reduced from 10+ sections to 6 (Hero, AuthorityClock, AutoMethodTeaser, FourPillars, ComplianceMapTeaser, VinceCTA) (Feb 2026)
+- [x] Post-Failure Frank recovery signals — Hero secondary link, RecoveryPathBlock (after FourPillars), Vince recovery line (Feb 2026)
 - [ ] Video integration for homepage "Watch the Overview" CTA (needs YouTube URL from user)
 - [ ] B2B landing page for insurers/fleet operators
 - [ ] Post-payment confirmation email via MailerLite
