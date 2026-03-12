@@ -39,7 +39,7 @@ export default function AuthorityClockSection() {
         <div style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: "0.672rem",
-          color: "rgba(197,160,89,0.55)",
+          color: "rgba(197,160,89,0.85)",
           letterSpacing: "0.12em",
           marginBottom: "2rem",
         }}>
@@ -71,7 +71,7 @@ export default function AuthorityClockSection() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.008rem",
-            color: "rgba(255,255,255,0.65)",
+            color: "rgba(255,255,255,0.83)",
             lineHeight: 1.85,
             maxWidth: 580,
           }}>
@@ -89,7 +89,7 @@ export default function AuthorityClockSection() {
                 display: "grid",
                 gridTemplateColumns: "180px 1fr",
                 gap: "2.5rem",
-                borderLeft: `3px solid ${item.accent ? "#C5A059" : item.warning ? "rgba(197,130,89,0.7)" : "rgba(197,160,89,0.25)"}`,
+                borderLeft: `3px solid ${item.accent ? "#C5A059" : item.warning ? "#fb923c" : "rgba(197,160,89,0.45)"}`,
                 padding: "2rem 0 2rem 2.5rem",
                 borderBottom: idx < TIMELINE.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
               }}
@@ -100,7 +100,7 @@ export default function AuthorityClockSection() {
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.784rem",
                   fontWeight: 700,
-                  color: item.accent ? "#C5A059" : item.warning ? "rgba(197,130,89,0.8)" : "rgba(197,160,89,0.55)",
+                  color: item.accent ? "#C5A059" : item.warning ? "#fb923c" : "rgba(197,160,89,0.80)",
                   letterSpacing: "0.06em",
                   marginBottom: "0.3rem",
                 }}>
@@ -119,7 +119,7 @@ export default function AuthorityClockSection() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.98rem",
-                color: "rgba(255,255,255,0.70)",
+                color: "rgba(255,255,255,0.86)",
                 lineHeight: 1.8,
                 alignSelf: "center",
               }}>
@@ -139,7 +139,7 @@ export default function AuthorityClockSection() {
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(0.98rem, 2vw, 1.12rem)",
-            color: "rgba(255,255,255,0.75)",
+            color: "rgba(255,255,255,0.92)",
             lineHeight: 1.7,
             marginBottom: "0.5rem",
           }}>

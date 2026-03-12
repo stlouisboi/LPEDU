@@ -75,7 +75,7 @@ export default function ProtectionDiagramSection() {
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: "0.616rem",
-          color: "rgba(100,116,139,0.7)",
+          color: "rgba(148,163,184,0.85)",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           textAlign: "center",
@@ -92,7 +92,7 @@ export default function ProtectionDiagramSection() {
             <p style={{
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: "0.672rem",
-              color: "#f87171",
+              color: "#fca5a5",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
             }}>
@@ -104,8 +104,8 @@ export default function ProtectionDiagramSection() {
           <div style={{ ...visible(1), display: "flex", gap: "3rem", marginBottom: "0.5rem" }}>
             {THREATS.map((t) => (
               <div key={t.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.35rem" }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "#94a3b8" }}>{t.label}</span>
-                <span style={{ fontSize: "1.2rem", color: "#f87171", lineHeight: 1 }}>↓</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "#e2e8f0" }}>{t.label}</span>
+                <span style={{ fontSize: "1.2rem", color: "#fca5a5", lineHeight: 1 }}>↓</span>
               </div>
             ))}
           </div>
@@ -132,8 +132,8 @@ export default function ProtectionDiagramSection() {
             }}>
               {["AROUND", "UNDER"].map((d) => (
                 <div key={d} style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "0.5rem" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", color: "#64748b", letterSpacing: "0.1em" }}>{d}</p>
-                  <span style={{ color: "#64748b", fontSize: "1rem" }}>→</span>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
+                  <span style={{ color: "#94a3b8", fontSize: "1rem" }}>→</span>
                 </div>
               ))}
             </div>
@@ -142,7 +142,7 @@ export default function ProtectionDiagramSection() {
             <div style={{
               ...sideVisible(3),
               flex: 1,
-              border: "1px solid rgba(245,158,11,0.35)",
+              border: "1px solid rgba(245,158,11,0.55)",
               background: "#0f172a",
               padding: "1.5rem",
             }}>
@@ -173,10 +173,10 @@ export default function ProtectionDiagramSection() {
                     padding: "0.6rem 0.4rem",
                     textAlign: "center",
                   }}>
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.56rem", color: "#f59e0b", marginBottom: "0.25rem", letterSpacing: "0.06em" }}>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.56rem", color: "#fbbf24", marginBottom: "0.25rem", letterSpacing: "0.06em" }}>
                       {g.code}
                     </p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.616rem", color: "#cbd5e1", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.2 }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#FFFFFF", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.2 }}>
                       {g.name}
                     </p>
                   </div>
@@ -189,12 +189,12 @@ export default function ProtectionDiagramSection() {
                 border: "1px solid #1e293b",
                 padding: "0.875rem 1rem",
               }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.56rem", color: "#94a3b8", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", color: "#e2e8f0", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
                   FOUR PILLARS
                 </p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.25rem" }}>
                   {PILLARS.map((p) => (
-                    <p key={p} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#94a3b8", lineHeight: 1.4 }}>— {p}</p>
+                    <p key={p} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#cbd5e1", lineHeight: 1.4 }}>— {p}</p>
                   ))}
                 </div>
               </div>
@@ -213,8 +213,8 @@ export default function ProtectionDiagramSection() {
             }}>
               {["THROUGH", "OVER"].map((d) => (
                 <div key={d} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span style={{ color: "#64748b", fontSize: "1rem" }}>←</span>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", color: "#64748b", letterSpacing: "0.1em" }}>{d}</p>
+                  <span style={{ color: "#94a3b8", fontSize: "1rem" }}>←</span>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
                 </div>
               ))}
             </div>
@@ -233,7 +233,7 @@ export default function ProtectionDiagramSection() {
             }}>
               PROTECTED AUTHORITY
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "rgba(34,197,94,0.65)" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "rgba(74,222,128,0.9)" }}>
               Stable Operation · Growth
             </p>
           </div>

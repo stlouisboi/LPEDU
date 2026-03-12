@@ -25,10 +25,10 @@ const TABLE_HEADER = {
   fontWeight: 700,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
-  color: "rgba(255,255,255,0.35)",
+  color: "rgba(255,255,255,0.65)",
   padding: "0.75rem 1.25rem",
-  background: "rgba(255,255,255,0.04)",
-  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  background: "rgba(255,255,255,0.06)",
+  borderBottom: "1px solid rgba(255,255,255,0.10)",
 };
 
 const CELL = {
@@ -45,7 +45,7 @@ const CODE_CELL = {
   ...CELL,
   fontFamily: "'JetBrains Mono', monospace",
   fontSize: "0.728rem",
-  color: "rgba(197,160,89,0.65)",
+  color: "#C5A059",
   whiteSpace: "nowrap",
 };
 
@@ -87,7 +87,7 @@ export default function SystemArchitectureSection() {
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.98rem",
-              color: "rgba(255,255,255,0.60)",
+              color: "rgba(255,255,255,0.82)",
               lineHeight: 1.8,
               maxWidth: 520,
             }}>
@@ -97,8 +97,8 @@ export default function SystemArchitectureSection() {
           <div style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.728rem",
-            color: "rgba(197,160,89,0.45)",
-            border: "1px solid rgba(197,160,89,0.15)",
+            color: "rgba(197,160,89,0.85)",
+            border: "1px solid rgba(197,160,89,0.35)",
             padding: "0.6rem 1rem",
             whiteSpace: "nowrap",
             alignSelf: "flex-start",
@@ -113,7 +113,7 @@ export default function SystemArchitectureSection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.35)", marginBottom: "0.75rem",
+            color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
           }}>
             Operational Systems
           </p>
@@ -131,7 +131,7 @@ export default function SystemArchitectureSection() {
                   <tr key={i} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.015)" : "transparent" }}>
                     <td style={CODE_CELL}>{row.code}</td>
                     <td style={{ ...CELL, fontWeight: 600, color: "rgba(255,255,255,0.90)" }}>{row.system}</td>
-                    <td style={{ ...CELL, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "rgba(255,255,255,0.55)" }}>{row.reg}</td>
+                    <td style={{ ...CELL, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "rgba(255,255,255,0.75)" }}>{row.reg}</td>
                     <td style={CELL}>{row.fn}</td>
                   </tr>
                 ))}
@@ -146,7 +146,7 @@ export default function SystemArchitectureSection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.35)", marginBottom: "0.75rem",
+            color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
           }}>
             Guard Installation
           </p>
@@ -165,7 +165,7 @@ export default function SystemArchitectureSection() {
                     <td style={CODE_CELL}>{row.code}</td>
                     <td style={{ ...CELL, fontWeight: 600, color: "rgba(255,255,255,0.90)" }}>{row.guard}</td>
                     <td style={CELL}>{row.protects}</td>
-                    <td style={{ ...CELL, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "rgba(255,255,255,0.55)" }}>{row.reg}</td>
+                    <td style={{ ...CELL, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "rgba(255,255,255,0.75)" }}>{row.reg}</td>
                   </tr>
                 ))}
               </tbody>
@@ -179,7 +179,7 @@ export default function SystemArchitectureSection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.35)", marginBottom: "0.75rem",
+            color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
           }}>
             AUTO Protection Model
           </p>

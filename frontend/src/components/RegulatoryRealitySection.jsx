@@ -61,7 +61,7 @@ export default function RegulatoryRealitySection() {
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ borderLeft: "2px solid rgba(197,160,89,0.4)", paddingLeft: "1.5rem", marginBottom: "3.5rem" }}>
+        <div style={{ borderLeft: "2px solid rgba(197,160,89,0.7)", paddingLeft: "1.5rem", marginBottom: "3.5rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
@@ -72,7 +72,7 @@ export default function RegulatoryRealitySection() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.896rem", color: "rgba(255,255,255,0.55)",
+            fontSize: "0.896rem", color: "rgba(255,255,255,0.78)",
             letterSpacing: "0.04em",
           }}>
             Common audit findings in new motor carriers.
@@ -93,7 +93,7 @@ export default function RegulatoryRealitySection() {
             </p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.008rem", color: "rgba(255,255,255,0.65)",
+              fontSize: "1.008rem", color: "rgba(255,255,255,0.82)",
               lineHeight: 1.85, marginBottom: "2rem",
             }}>
               These are not rare events. They are the predictable result of operating without a structured compliance system.
@@ -102,7 +102,7 @@ export default function RegulatoryRealitySection() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem", fontWeight: 700,
               letterSpacing: "0.14em", textTransform: "uppercase",
-              color: "rgba(197,160,89,0.6)", marginBottom: "1rem",
+              color: "#C5A059", marginBottom: "1rem",
             }}>
               Common findings include:
             </p>
@@ -112,8 +112,8 @@ export default function RegulatoryRealitySection() {
                 padding: "0.6rem 0",
                 borderBottom: i < FINDINGS.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
               }}>
-                <span style={{ color: "rgba(197,160,89,0.5)", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>
+                <span style={{ color: "#C5A059", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.6 }}>
                   {f}
                 </span>
               </div>
@@ -123,9 +123,9 @@ export default function RegulatoryRealitySection() {
           {/* Right: emphasis block */}
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <div style={{
-              border: "1px solid rgba(197,160,89,0.18)",
+              border: "1px solid rgba(197,160,89,0.3)",
               padding: "2.5rem 2rem",
-              background: "rgba(197,160,89,0.03)",
+              background: "rgba(197,160,89,0.05)",
             }}>
               <p style={{
                 fontFamily: "'Manrope', sans-serif",
@@ -149,7 +149,7 @@ export default function RegulatoryRealitySection() {
             </div>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.84rem", color: "rgba(255,255,255,0.55)",
+              fontSize: "0.84rem", color: "rgba(255,255,255,0.72)",
               lineHeight: 1.75, marginTop: "1.5rem",
             }}>
               Most of these violations are not caused by reckless behavior. They are caused by missing operational infrastructure.
@@ -183,7 +183,7 @@ export default function RegulatoryRealitySection() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.84rem",
-                color: "rgba(255,255,255,0.55)",
+                color: "rgba(255,255,255,0.75)",
                 lineHeight: 1.6,
               }}>
                 {s.label}
@@ -196,7 +196,7 @@ export default function RegulatoryRealitySection() {
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.84rem",
-          color: "rgba(255,255,255,0.38)",
+          color: "rgba(255,255,255,0.58)",
           textAlign: "center",
           marginTop: "1.5rem",
           letterSpacing: "0.02em",
