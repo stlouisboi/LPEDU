@@ -132,7 +132,7 @@ function PillarCard({ pillar, idx }) {
           marginBottom: "0.375rem",
           letterSpacing: "0.02em",
         }}>
-          Without it:
+          If absent:
         </p>
         <p style={{
           fontFamily: "'Inter', sans-serif",

@@ -24,18 +24,18 @@ export default function RecoveryPathBlock() {
             textTransform: "uppercase",
             marginBottom: "0.5rem",
           }}>
-            LP-STD-002
+            LP-STD-002 — The Recovery Path
           </p>
           <h2 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
             letterSpacing: "-0.02em",
             color: "#FFFFFF",
-            lineHeight: 1.15,
-            marginBottom: "0.625rem",
+            lineHeight: 1.1,
+            marginBottom: "0.75rem",
           }}>
-            The Recovery Path
+            Already Behind?
           </h2>
           <p style={{
             fontFamily: "'Manrope', sans-serif",
@@ -45,7 +45,7 @@ export default function RecoveryPathBlock() {
             lineHeight: 1.4,
             marginBottom: "1.75rem",
           }}>
-            Already behind? The standard still applies.
+            The standard still applies.
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -219,7 +219,7 @@ export default function RecoveryPathBlock() {
             color: "rgba(255,255,255,0.58)",
             textAlign: "center",
           }}>
-            The system is the same. The starting point is different.
+            The urgency is higher.
           </p>
         </FadeIn>
 
