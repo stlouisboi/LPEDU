@@ -102,7 +102,8 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Build `/auto-method` — AUTO Risk Doctrine page with 4 directions, pillars, guards, philosophy (Mar 2026)
 - [x] Build `/operating-standard` — The LaunchPath Operating Standard page (8 sections, institutional framework positioning) + two-zone navbar redesign (Mar 2026)
 - [x] Google Auth + server-issued session JWT for Operator Portal access (Mar 2026)
-- [ ] Update YouTube "Watch" CTA with actual video URL when ready
+- [x] Homepage Admission Gate section — 3 qualification conditions, "Begin Ground 0 Briefing" CTA to /ground-0-briefing (Mar 2026)
+- [x] Knowledge Center cross-linking — "Part of the LaunchPath Operating Standard Library" footer strip on all 5 articles (Mar 2026)
 
 ### P2 — Tool Pages
 - [x] `/auto-method` — AUTO method explainer page (COMPLETE)
