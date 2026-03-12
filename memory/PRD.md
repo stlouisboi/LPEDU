@@ -98,14 +98,18 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 ### P1 — Next Up
 - [x] Build `/ground-0-briefing` page — 6-lesson accordion, email capture, inline confirmation (Mar 2026)
 - [x] Build `/portal` page — cohort curriculum sidebar, locked modules, Stripe payment gate (Mar 2026)
+- [x] Build `/reach-assessment` — 15-question REACH diagnostic with GO/WAIT/NO-GO scoring and risk map (Mar 2026)
+- [x] Build `/auto-method` — AUTO Risk Doctrine page with 4 directions, pillars, guards, philosophy (Mar 2026)
+- [x] Google Auth + server-issued session JWT for Operator Portal access (Mar 2026)
 - [ ] Update YouTube "Watch" CTA with actual video URL when ready
 
 ### P2 — Tool Pages
-- [ ] `/auto-method` — AUTO method explainer page
+- [x] `/auto-method` — AUTO method explainer page (COMPLETE)
 
 ### P3 — Future
-- [ ] Operator Portal (JWT or Firebase Auth — decision pending)
-- [ ] Members-only content gating
+- [ ] Members-only content gating (post-auth, lock modules 1-7 to paying users)
+- [ ] B2B landing page for insurers/fleet operators
+- [ ] Video integration for homepage "Watch the Overview" CTA
 
 ## File Reference
 - `/app/frontend/src/App.js` — Router
