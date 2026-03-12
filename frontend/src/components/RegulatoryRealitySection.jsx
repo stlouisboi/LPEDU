@@ -25,6 +25,7 @@ function CountUp({ target, duration = 1400 }) {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
           const isPercent = target.includes("%");
+          const isPlus = target.endsWith("+");
           const num = parseInt(target.replace(/\D/g, ""), 10);
           const startTime = performance.now();
           const step = (now) => {
@@ -32,7 +33,7 @@ function CountUp({ target, duration = 1400 }) {
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             const current = Math.round(eased * num);
-            setDisplay(isPercent ? `${current}%` : String(current));
+            setDisplay(isPercent ? `${current}%` : isPlus ? `${current}+` : String(current));
             if (progress < 1) requestAnimationFrame(step);
           };
           requestAnimationFrame(step);
