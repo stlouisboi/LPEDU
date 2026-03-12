@@ -113,7 +113,7 @@ export default function VinceCTASection() {
             color: "var(--text-paper)",
             lineHeight: 1.8,
             marginBottom: "1.75rem",
-            opacity: 0.75,
+            opacity: 0.85,
           }}>
             And if you've already failed? The system still applies.<br />
             It's harder — but it's not over.

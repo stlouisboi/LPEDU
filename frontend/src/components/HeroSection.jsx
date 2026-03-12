@@ -141,7 +141,7 @@ export default function HeroSection() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.50)",
+                color: "rgba(255,255,255,0.65)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}

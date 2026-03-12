@@ -107,7 +107,7 @@ function PillarCard({ pillar, idx }) {
       <p style={{
         fontFamily: "'Inter', sans-serif",
         fontSize: "0.896rem",
-        color: "rgba(255,255,255,0.68)",
+        color: "rgba(255,255,255,0.82)",
         lineHeight: 1.65,
         marginBottom: "1.25rem",
         position: "relative",
@@ -128,7 +128,7 @@ function PillarCard({ pillar, idx }) {
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.784rem",
           fontWeight: 600,
-          color: "rgba(248,113,113,0.75)",
+          color: "rgba(248,113,113,0.92)",
           marginBottom: "0.375rem",
           letterSpacing: "0.02em",
         }}>
@@ -137,7 +137,7 @@ function PillarCard({ pillar, idx }) {
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.784rem",
-          color: "rgba(255,255,255,0.48)",
+          color: "rgba(255,255,255,0.72)",
           lineHeight: 1.6,
         }}>
           {pillar.without}
@@ -155,7 +155,7 @@ function PillarCard({ pillar, idx }) {
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: "0.616rem",
           letterSpacing: "0.12em",
-          color: "rgba(197,160,89,0.72)",
+          color: "rgba(197,160,89,0.88)",
           textTransform: "uppercase",
         }}>
           OUTPUT: {pillar.output}

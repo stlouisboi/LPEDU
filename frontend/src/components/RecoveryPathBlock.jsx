@@ -94,7 +94,7 @@ export default function RecoveryPathBlock() {
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "rgba(197,160,89,0.72)",
+                color: "rgba(197,160,89,0.88)",
                 marginBottom: "0.875rem",
               }}>
                 INSTALLATION
@@ -102,7 +102,7 @@ export default function RecoveryPathBlock() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.98rem",
-                color: "rgba(255,255,255,0.68)",
+                color: "rgba(255,255,255,0.82)",
                 lineHeight: 1.7,
                 marginBottom: "2rem",
                 flex: 1,
@@ -150,7 +150,7 @@ export default function RecoveryPathBlock() {
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "rgba(197,160,89,0.72)",
+                color: "rgba(197,160,89,0.88)",
                 marginBottom: "0.875rem",
               }}>
                 RECOVERY
@@ -158,7 +158,7 @@ export default function RecoveryPathBlock() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.98rem",
-                color: "rgba(255,255,255,0.68)",
+                color: "rgba(255,255,255,0.82)",
                 lineHeight: 1.7,
                 marginBottom: "2rem",
                 flex: 1,
@@ -204,7 +204,7 @@ export default function RecoveryPathBlock() {
             fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
             fontSize: "1rem",
-            color: "rgba(255,255,255,0.38)",
+            color: "rgba(255,255,255,0.58)",
             textAlign: "center",
           }}>
             The system is the same. The starting point is different.

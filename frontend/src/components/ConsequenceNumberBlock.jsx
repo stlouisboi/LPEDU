@@ -70,7 +70,7 @@ export default function ConsequenceNumberBlock() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.42)",
+                color: "rgba(255,255,255,0.72)",
                 lineHeight: 1.55,
               }}>
                 Average post-audit<br />remediation cost
@@ -80,7 +80,7 @@ export default function ConsequenceNumberBlock() {
             <p style={{
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: "0.98rem",
-              color: "rgba(255,255,255,0.18)",
+              color: "rgba(255,255,255,0.32)",
               alignSelf: "center",
               paddingTop: "0.125rem",
             }}>
@@ -102,7 +102,7 @@ export default function ConsequenceNumberBlock() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.42)",
+                color: "rgba(255,255,255,0.72)",
                 lineHeight: 1.55,
               }}>
                 The LaunchPath<br />Standard
@@ -118,7 +118,7 @@ export default function ConsequenceNumberBlock() {
             fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
             fontSize: "0.875rem",
-            color: "rgba(255,255,255,0.35)",
+            color: "rgba(255,255,255,0.58)",
             lineHeight: 1.65,
           }}>
             This does not include lost revenue from suspended operations, insurance premium increases, or the cost of rebuilding broker relationships.

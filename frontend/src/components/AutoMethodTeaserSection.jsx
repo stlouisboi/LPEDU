@@ -95,7 +95,7 @@ function AutoCard({ card, visible, delay }) {
       <p style={{
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: "0.616rem",
-        color: "rgba(197,160,89,0.65)",
+        color: "rgba(197,160,89,0.85)",
         letterSpacing: "0.08em",
         marginBottom: "0.75rem",
       }}>
@@ -114,7 +114,7 @@ function AutoCard({ card, visible, delay }) {
       <p style={{
         fontFamily: "'Inter', sans-serif",
         fontSize: "0.784rem",
-        color: "rgba(255,255,255,0.45)",
+        color: "rgba(255,255,255,0.72)",
         lineHeight: 1.65,
       }}>
         {card.detail}
