@@ -203,9 +203,9 @@ export default function FourPillarsSection() {
             color: "rgba(255,255,255,0.78)",
             lineHeight: 1.7,
             marginBottom: "2.75rem",
-            maxWidth: 540,
+            maxWidth: 580,
           }}>
-            The LaunchPath Standard installs four operational systems. Each addresses a documented failure category. Together, they form the complete protection architecture.
+            Together these four systems create the documented operating structure regulators, insurers, and freight partners expect to see.
           </p>
         </FadeIn>
 
