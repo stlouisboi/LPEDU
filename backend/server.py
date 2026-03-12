@@ -232,10 +232,48 @@ def get_stripe(request: Request) -> StripeCheckout:
     webhook_url = f"{host_url}/api/webhook/stripe"
     return StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=webhook_url)
 
+
+async def get_user_from_request(request: Request) -> Optional[dict]:
+    """Extract and validate the current user from session cookie or Bearer token."""
+    session_token = request.cookies.get("session_token")
+    if not session_token:
+        auth_header = request.headers.get("Authorization", "")
+        if auth_header.startswith("Bearer "):
+            session_token = auth_header[7:]
+    if not session_token:
+        return None
+    session = await db.user_sessions.find_one({"session_token": session_token}, {"_id": 0})
+    if not session:
+        return None
+    expires_at = session["expires_at"]
+    if isinstance(expires_at, str):
+        expires_at = datetime.fromisoformat(expires_at)
+    if expires_at.tzinfo is None:
+        expires_at = expires_at.replace(tzinfo=timezone.utc)
+    if expires_at < datetime.now(timezone.utc):
+        return None
+    return await db.users.find_one({"user_id": session["user_id"]}, {"_id": 0})
+
+
+@api_router.get("/portal/access")
+async def check_portal_access(request: Request):
+    """Return whether the authenticated user has paid cohort access."""
+    user = await get_user_from_request(request)
+    if not user:
+        return {"has_access": False}
+    record = await db.user_access.find_one({"user_id": user["user_id"]}, {"_id": 0})
+    has_access = bool(record and record.get("has_access") and record.get("access_level") == "cohort")
+    return {"has_access": has_access, "user_id": user["user_id"]}
+
+
 @api_router.post("/portal/checkout")
 async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=503, detail="Payment service not configured.")
+    # Attach user_id if authenticated
+    user = await get_user_from_request(request)
+    user_id = user["user_id"] if user else None
+
     stripe = get_stripe(request)
     success_url = f"{data.origin_url}/portal?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{data.origin_url}/portal"
@@ -244,11 +282,12 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
         currency="usd",
         success_url=success_url,
         cancel_url=cancel_url,
-        metadata={"product": "launchpath_cohort_admission"},
+        metadata={"product": "launchpath_cohort_admission", "user_id": user_id or ""},
     )
     session = await stripe.create_checkout_session(req)
     await db.payment_transactions.insert_one({
         "session_id": session.session_id,
+        "user_id": user_id,
         "amount": 2500.00,
         "currency": "usd",
         "payment_status": "pending",
@@ -264,15 +303,34 @@ async def get_portal_checkout_status(session_id: str, request: Request):
         raise HTTPException(status_code=503, detail="Payment service not configured.")
     stripe = get_stripe(request)
     status = await stripe.get_checkout_status(session_id)
+
+    update_fields = {
+        "payment_status": status.payment_status,
+        "status": status.status,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
     await db.payment_transactions.update_one(
         {"session_id": session_id},
-        {"$set": {
-            "payment_status": status.payment_status,
-            "status": status.status,
-            "updated_at": datetime.now(timezone.utc).isoformat(),
-        }},
+        {"$set": update_fields},
         upsert=True,
     )
+
+    # Grant cohort access to the user when payment is confirmed
+    if status.payment_status == "paid":
+        transaction = await db.payment_transactions.find_one({"session_id": session_id}, {"_id": 0})
+        user_id = transaction.get("user_id") if transaction else None
+        if user_id:
+            await db.user_access.update_one(
+                {"user_id": user_id},
+                {"$set": {
+                    "has_access": True,
+                    "access_level": "cohort",
+                    "granted_at": datetime.now(timezone.utc).isoformat(),
+                    "stripe_session_id": session_id,
+                }},
+                upsert=True,
+            )
+
     return {"status": status.status, "payment_status": status.payment_status}
 
 @api_router.post("/webhook/stripe")
@@ -294,6 +352,20 @@ async def stripe_webhook(request: Request):
                 }},
                 upsert=True,
             )
+            # Also grant access via webhook
+            transaction = await db.payment_transactions.find_one({"session_id": event.session_id}, {"_id": 0})
+            user_id = transaction.get("user_id") if transaction else None
+            if user_id:
+                await db.user_access.update_one(
+                    {"user_id": user_id},
+                    {"$set": {
+                        "has_access": True,
+                        "access_level": "cohort",
+                        "granted_at": datetime.now(timezone.utc).isoformat(),
+                        "stripe_session_id": event.session_id,
+                    }},
+                    upsert=True,
+                )
     except Exception as e:
         logger.error(f"Stripe webhook error: {e}")
         raise HTTPException(status_code=400, detail="Webhook processing failed.")

@@ -76,17 +76,21 @@ const GROUND0_LESSONS = [
 export default function PortalPage() {
   const location = useLocation();
   const [user, setUser] = useState(location.state?.user || null);
-  // null = checking, true = authenticated, false = not authenticated
   const [authChecked, setAuthChecked] = useState(location.state?.user ? true : null);
+  const [hasCohortAccess, setHasCohortAccess] = useState(null); // null=checking, true=paid, false=not paid
   const [selectedId, setSelectedId] = useState("ground-0");
-  const [paymentState, setPaymentState] = useState("idle"); // idle | loading | polling | success | error
+  const [paymentState, setPaymentState] = useState("idle");
   const [stripeSessionId, setStripeSessionId] = useState(null);
 
   const API = process.env.REACT_APP_BACKEND_URL;
 
-  // Check authentication status on mount (skip if user already passed from AuthCallback)
+  // Check authentication status on mount
   useEffect(() => {
-    if (location.state?.user) return;
+    if (location.state?.user) {
+      // Auth already confirmed — check access next
+      checkAccess();
+      return;
+    }
     const checkAuth = async () => {
       try {
         const resp = await fetch(`${API}/api/auth/me`, { credentials: "include" });
@@ -96,10 +100,28 @@ export default function PortalPage() {
         setAuthChecked(true);
       } catch {
         setAuthChecked(false);
+        setHasCohortAccess(false);
       }
     };
     checkAuth();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [API, location.state]);
+
+  const checkAccess = useCallback(async () => {
+    try {
+      const resp = await fetch(`${API}/api/portal/access`, { credentials: "include" });
+      if (!resp.ok) { setHasCohortAccess(false); return; }
+      const data = await resp.json();
+      setHasCohortAccess(data.has_access === true);
+    } catch {
+      setHasCohortAccess(false);
+    }
+  }, [API]);
+
+  // Once auth is confirmed, check cohort access
+  useEffect(() => {
+    if (authChecked === true) checkAccess();
+  }, [authChecked, checkAccess]);
 
   // On mount, check for Stripe return session_id in URL
   useEffect(() => {
@@ -125,6 +147,9 @@ export default function PortalPage() {
         const data = await resp.json();
         if (data.payment_status === "paid") {
           setPaymentState("success");
+          setHasCohortAccess(true);
+          // Deselect locked module so user sees unlocked content
+          setSelectedId("module-1");
         } else if (data.status === "expired") {
           setPaymentState("error");
         } else {
@@ -150,6 +175,7 @@ export default function PortalPage() {
       const resp = await fetch(`${API}/api/portal/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ origin_url: origin }),
       });
       if (!resp.ok) throw new Error("Checkout creation failed");
@@ -173,6 +199,8 @@ export default function PortalPage() {
   };
 
   const selected = CURRICULUM.find((m) => m.id === selectedId);
+  // A module is locked if hasCohortAccess is false (or null) AND it's not ground-0
+  const isModuleLocked = (mod) => mod.id !== "ground-0" && !hasCohortAccess;
 
   // ── Auth: Loading ──────────────────────────────────────
   if (authChecked === null) {
@@ -342,6 +370,7 @@ export default function PortalPage() {
 
           {CURRICULUM.map((mod) => {
             const isActive = selectedId === mod.id;
+            const locked = isModuleLocked(mod);
             return (
               <button
                 key={mod.id}
@@ -361,63 +390,35 @@ export default function PortalPage() {
                   justifyContent: "space-between",
                   gap: "0.75rem",
                 }}
-                onMouseEnter={(e) => {
-                  if (!isActive) e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive) e.currentTarget.style.background = "none";
-                }}
+                onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
+                onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.background = "none"; }}
               >
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.3rem" }}>
-                    {mod.locked && (
-                      <Lock
-                        size={12}
-                        weight="bold"
-                        color="#C5A059"
-                        style={{ flexShrink: 0 }}
-                      />
+                    {locked ? (
+                      <Lock size={12} weight="bold" color="#C5A059" style={{ flexShrink: 0 }} />
+                    ) : (
+                      <CheckCircle size={12} weight="bold" color="#22c55e" style={{ flexShrink: 0 }} />
                     )}
-                    {!mod.locked && (
-                      <CheckCircle
-                        size={12}
-                        weight="bold"
-                        color="#C5A059"
-                        style={{ flexShrink: 0 }}
-                      />
-                    )}
-                    <span
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontWeight: 700,
-                        fontSize: "0.784rem",
-                        color: mod.locked ? "rgba(255,255,255,0.75)" : "#FFFFFF",
-                        letterSpacing: "0.04em",
-                      }}
-                    >
+                    <span style={{
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.784rem",
+                      color: locked ? "rgba(255,255,255,0.75)" : "#FFFFFF", letterSpacing: "0.04em",
+                    }}>
                       {mod.code}
                     </span>
                   </div>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.784rem",
-                      color: mod.locked ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.90)",
-                      lineHeight: 1.4,
-                      marginBottom: "0.3rem",
-                    }}
-                  >
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.784rem",
+                    color: locked ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.90)",
+                    lineHeight: 1.4, marginBottom: "0.3rem",
+                  }}>
                     {mod.label}
                   </p>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.672rem",
-                      color: mod.locked ? "rgba(255,255,255,0.42)" : "rgba(197,160,89,0.9)",
-                      letterSpacing: "0.04em",
-                    }}
-                  >
-                    {mod.lessons} lessons{mod.status ? ` — ${mod.status}` : ""}
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.672rem",
+                    color: locked ? "rgba(255,255,255,0.42)" : "rgba(197,160,89,0.9)", letterSpacing: "0.04em",
+                  }}>
+                    {mod.lessons} lessons{mod.id === "ground-0" ? " — UNLOCKED" : locked ? "" : " — COHORT ACCESS"}
                   </p>
                 </div>
               </button>
@@ -475,8 +476,8 @@ export default function PortalPage() {
           {/* Normal content state */}
           {paymentState !== "success" && paymentState !== "polling" && (
             <>
-              {/* Ground 0 is selected (unlocked) */}
-              {!selected?.locked && (
+              {/* Ground 0 is selected (always unlocked) */}
+              {selected?.id === "ground-0" && (
                 <div data-testid="ground0-module-content">
                   <p
                     style={{
@@ -605,8 +606,41 @@ export default function PortalPage() {
                 </div>
               )}
 
+              {/* Paid module selected — show content */}
+              {selected?.id !== "ground-0" && !isModuleLocked(selected) && (
+                <div data-testid="unlocked-module-content">
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
+                    letterSpacing: "0.16em", textTransform: "uppercase", color: "#22c55e", marginBottom: "1.25rem",
+                  }}>
+                    {selected?.code} — COHORT ACCESS GRANTED
+                  </p>
+                  <h1 style={{
+                    fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                    fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF",
+                    marginBottom: "0.75rem", letterSpacing: "-0.02em",
+                  }}>
+                    {selected?.label}
+                  </h1>
+                  <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 540, marginBottom: "2.5rem" }}>
+                    {selected?.lessons} lessons. Content is being prepared for this cohort.
+                    You will receive an email when your module is released.
+                  </p>
+                  <div style={{
+                    background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.2)",
+                    padding: "1.5rem", maxWidth: 480,
+                  }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "rgba(255,255,255,0.87)", lineHeight: 1.7 }}>
+                      Your cohort access has been confirmed. LaunchPath curriculum releases are
+                      coordinated through your cohort schedule. Check your email for your next steps
+                      and release calendar.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Locked module selected — show payment screen */}
-              {selected?.locked && (
+              {selected?.id !== "ground-0" && isModuleLocked(selected) && (
                 <div
                   data-testid="payment-screen"
                   style={{ maxWidth: 540, margin: "2rem 0" }}
