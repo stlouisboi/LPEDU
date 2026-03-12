@@ -174,7 +174,8 @@ export default function AutoMethodTeaserSection() {
             lineHeight: 1.7,
             maxWidth: 520,
           }}>
-            Risk approaches a carrier authority from four directions. The AUTO model maps each threat vector to a defensive system.
+            Every new carrier authority faces predictable failure vectors.
+            The AUTO Method maps those threats — Around, Under, Through, and Over — and installs the guards that keep them from reaching your operation.
           </p>
         </div>
 
