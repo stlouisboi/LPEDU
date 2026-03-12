@@ -41,7 +41,7 @@ export default function ConsequenceNumberBlock() {
             marginBottom: "2rem",
             maxWidth: 620,
           }}>
-            A conditional safety rating following a new entrant audit can trigger insurance non-renewal and broker blacklisting — often within 30 days.
+            A conditional safety rating after a New Entrant Safety Audit can trigger insurance non-renewal, broker blacklisting, and authority shutdown within 30 days.
           </p>
 
           {/* Divider */}
