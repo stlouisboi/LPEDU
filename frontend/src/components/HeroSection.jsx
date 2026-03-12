@@ -135,6 +135,21 @@ export default function HeroSection() {
             }}>
               Ground 0 is the first installation phase of the LaunchPath Operating Standard.
             </p>
+            <Link
+              to="/knowledge-center/authority-reinstatement-brief"
+              data-testid="hero-recovery-link"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem",
+                color: "rgba(255,255,255,0.50)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "var(--gold-primary)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.50)")}
+            >
+              Already facing a compliance action? See the Recovery Path &rarr;
+            </Link>
           </div>
         </div>
 

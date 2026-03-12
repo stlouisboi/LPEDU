@@ -98,6 +98,18 @@ export default function VinceCTASection() {
             Ground 0 is the first installation phase of the LaunchPath Operating Standard.
           </p>
 
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.008rem",
+            color: "var(--text-paper)",
+            lineHeight: 1.8,
+            marginBottom: "1.75rem",
+            opacity: 0.75,
+          }}>
+            And if you've already failed? The system still applies.<br />
+            It's harder — but it's not over.
+          </p>
+
           <Link
             to="/ground-0-briefing"
             data-testid="vince-cta-btn"
