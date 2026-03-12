@@ -44,150 +44,6 @@ function useVisible(threshold = 0.12) {
   return [ref, vis];
 }
 
-function DiagramNode({ letter, dir, arrowDir, visible, delay }) {
-  const arrows = { top: "↓", bottom: "↑", left: "→", right: "←" };
-  const isVertical = arrowDir === "top" || arrowDir === "bottom";
-  const enterFrom = {
-    top: "translateY(-18px)",
-    bottom: "translateY(18px)",
-    left: "translateX(-18px)",
-    right: "translateX(18px)",
-  };
-
-  return (
-    <div style={{
-      display: "flex",
-      flexDirection: isVertical
-        ? arrowDir === "top" ? "column" : "column-reverse"
-        : arrowDir === "left" ? "row" : "row-reverse",
-      alignItems: "center",
-      gap: "0.25rem",
-      opacity: visible ? 1 : 0,
-      transform: visible ? "none" : enterFrom[arrowDir],
-      transition: `opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms`,
-    }}>
-      <span style={{
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: "1rem",
-        color: "rgba(197,160,89,0.5)",
-        lineHeight: 1,
-      }}>
-        {arrows[arrowDir]}
-      </span>
-      <div style={{ textAlign: "center" }}>
-        <p style={{
-          fontFamily: "'Manrope', sans-serif",
-          fontWeight: 800,
-          fontSize: "1.875rem",
-          color: "#C5A059",
-          lineHeight: 1,
-          marginBottom: "0.125rem",
-        }}>
-          {letter}
-        </p>
-        <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.5rem",
-          letterSpacing: "0.14em",
-          color: "rgba(255,255,255,0.38)",
-          textTransform: "uppercase",
-        }}>
-          {dir}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function ThreatDiagram({ visible }) {
-  return (
-    <div style={{ maxWidth: 380, margin: "0 auto 3.5rem", position: "relative" }}>
-      {/* Horizontal connecting line */}
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        left: "18%",
-        right: "18%",
-        height: "1px",
-        background: "rgba(197,160,89,0.2)",
-        transformOrigin: "center",
-        transform: visible ? "scaleX(1)" : "scaleX(0)",
-        transition: "transform 0.85s ease 0.15s",
-        zIndex: 0,
-      }} />
-      {/* Vertical connecting line */}
-      <div style={{
-        position: "absolute",
-        left: "50%",
-        top: "12%",
-        bottom: "12%",
-        width: "1px",
-        background: "rgba(197,160,89,0.2)",
-        transformOrigin: "center",
-        transform: visible ? "scaleY(1)" : "scaleY(0)",
-        transition: "transform 0.85s ease 0.15s",
-        zIndex: 0,
-      }} />
-
-      {/* 3×3 grid */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 108px 1fr",
-        gridTemplateRows: "auto auto auto",
-        rowGap: "1.25rem",
-        columnGap: "0.25rem",
-        alignItems: "center",
-        justifyItems: "center",
-        position: "relative",
-        zIndex: 1,
-      }}>
-        {/* Row 1 */}
-        <div />
-        <DiagramNode letter="O" dir="OVER" arrowDir="top" visible={visible} delay={150} />
-        <div />
-
-        {/* Row 2: A | CENTER | T */}
-        <DiagramNode letter="A" dir="AROUND" arrowDir="left" visible={visible} delay={50} />
-        <div style={{
-          background: "#001122",
-          border: "1.5px solid rgba(197,160,89,0.65)",
-          padding: "0.9rem 0.625rem",
-          textAlign: "center",
-          width: "100%",
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.6s ease 0.1s",
-          animation: visible ? "authPulse 3s ease-in-out infinite" : "none",
-        }}>
-          <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.475rem",
-            color: "rgba(197,160,89,0.6)",
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            marginBottom: "0.3rem",
-          }}>
-            LP-AUTH
-          </p>
-          <p style={{
-            fontFamily: "'Manrope', sans-serif",
-            fontWeight: 700,
-            fontSize: "0.72rem",
-            color: "#FFFFFF",
-            lineHeight: 1.35,
-          }}>
-            YOUR<br />AUTHORITY
-          </p>
-        </div>
-        <DiagramNode letter="T" dir="THROUGH" arrowDir="right" visible={visible} delay={250} />
-
-        {/* Row 3 */}
-        <div />
-        <DiagramNode letter="U" dir="UNDER" arrowDir="bottom" visible={visible} delay={350} />
-        <div />
-      </div>
-    </div>
-  );
-}
 
 function AutoCard({ card, visible, delay }) {
   const [hovered, setHovered] = useState(false);
@@ -322,9 +178,6 @@ export default function AutoMethodTeaserSection() {
           </p>
         </div>
 
-        {/* Threat Diagram */}
-        <ThreatDiagram visible={visible} />
-
         {/* 4 cards */}
         <div style={{
           display: "grid",
@@ -340,10 +193,6 @@ export default function AutoMethodTeaserSection() {
       </div>
 
       <style>{`
-        @keyframes authPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(197,160,89,0); border-color: rgba(197,160,89,0.55); }
-          50% { box-shadow: 0 0 20px 4px rgba(197,160,89,0.14); border-color: rgba(197,160,89,1); }
-        }
         @media (max-width: 680px) {
           .auto-teaser-grid { grid-template-columns: 1fr 1fr !important; }
         }
