@@ -102,7 +102,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Build `/auto-method` — AUTO Risk Doctrine page with 4 directions, pillars, guards, philosophy (Mar 2026)
 - [x] Build `/operating-standard` — The LaunchPath Operating Standard page (8 sections, institutional framework positioning) + two-zone navbar redesign (Mar 2026)
 - [x] Google Auth + server-issued session JWT for Operator Portal access (Mar 2026)
-- [x] Homepage 3 new sections: RegulatoryReality (FMCSA findings + countup stats), AuthorityClock (90-day timeline), SystemArchitecture (LP-STD-001 technical tables) (Mar 2026)
+- [x] Homepage refinement polish: 8 copy changes (subhead, stats, labels, microcopy) + Protection Diagram FIGURE LP-01 with IntersectionObserver animation (Mar 2026)
 - [x] Knowledge Center cross-linking — "Part of the LaunchPath Operating Standard Library" footer strip on all 5 articles (Mar 2026)
 
 ### P2 — Tool Pages
