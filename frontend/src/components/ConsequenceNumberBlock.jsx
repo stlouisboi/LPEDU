@@ -59,7 +59,7 @@ export default function ConsequenceNumberBlock() {
               <p style={{
                 fontFamily: "'Manrope', sans-serif",
                 fontWeight: 800,
-                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                fontSize: "clamp(2.25rem, 4.5vw, 3.25rem)",
                 color: "#f87171",
                 lineHeight: 1,
                 marginBottom: "0.5rem",
@@ -90,12 +90,12 @@ export default function ConsequenceNumberBlock() {
             <div>
               <p style={{
                 fontFamily: "'Manrope', sans-serif",
-                fontWeight: 800,
-                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                fontWeight: 700,
+                fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
                 color: "#C5A059",
                 lineHeight: 1,
                 marginBottom: "0.5rem",
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.01em",
               }}>
                 $5,000
               </p>
