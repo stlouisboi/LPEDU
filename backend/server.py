@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Request
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Response
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -9,7 +9,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import List, Optional
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
 
 
@@ -297,6 +297,112 @@ async def stripe_webhook(request: Request):
     except Exception as e:
         logger.error(f"Stripe webhook error: {e}")
         raise HTTPException(status_code=400, detail="Webhook processing failed.")
+    return {"ok": True}
+
+
+# ── Auth ─────────────────────────────────────────────────
+EMERGENT_AUTH_URL = "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data"
+
+class UserOut(BaseModel):
+    user_id: str
+    email: str
+    name: str
+    picture: Optional[str] = None
+
+@api_router.get("/auth/session")
+async def create_auth_session(session_id: str, response: Response):
+    """Exchange Emergent session_id for a stored session token and set httpOnly cookie."""
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.get(EMERGENT_AUTH_URL, headers={"X-Session-ID": session_id})
+    if resp.status_code != 200:
+        raise HTTPException(status_code=401, detail="Invalid session")
+
+    data = resp.json()
+    email = data["email"]
+    name = data.get("name", "")
+    picture = data.get("picture", "")
+    session_token = data["session_token"]
+
+    # Upsert user by email
+    existing = await db.users.find_one({"email": email}, {"_id": 0})
+    if existing:
+        user_id = existing["user_id"]
+        await db.users.update_one(
+            {"user_id": user_id},
+            {"$set": {"name": name, "picture": picture}},
+        )
+    else:
+        user_id = f"user_{uuid.uuid4().hex[:12]}"
+        await db.users.insert_one({
+            "user_id": user_id,
+            "email": email,
+            "name": name,
+            "picture": picture,
+            "created_at": datetime.now(timezone.utc),
+        })
+
+    # Upsert session
+    expires_at = datetime.now(timezone.utc) + timedelta(days=7)
+    await db.user_sessions.update_one(
+        {"user_id": user_id},
+        {"$set": {
+            "session_token": session_token,
+            "expires_at": expires_at,
+            "updated_at": datetime.now(timezone.utc),
+        }},
+        upsert=True,
+    )
+
+    response.set_cookie(
+        "session_token",
+        session_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        path="/",
+        max_age=604800,
+    )
+    user = await db.users.find_one({"user_id": user_id}, {"_id": 0})
+    return {"ok": True, "user": UserOut(**user).model_dump()}
+
+
+@api_router.get("/auth/me")
+async def get_current_user(request: Request):
+    """Verify session token and return current user."""
+    # Check cookie first, then Authorization header as fallback
+    session_token = request.cookies.get("session_token")
+    if not session_token:
+        auth_header = request.headers.get("Authorization", "")
+        if auth_header.startswith("Bearer "):
+            session_token = auth_header[7:]
+    if not session_token:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    session = await db.user_sessions.find_one({"session_token": session_token}, {"_id": 0})
+    if not session:
+        raise HTTPException(status_code=401, detail="Invalid session")
+
+    expires_at = session["expires_at"]
+    if isinstance(expires_at, str):
+        expires_at = datetime.fromisoformat(expires_at)
+    if expires_at.tzinfo is None:
+        expires_at = expires_at.replace(tzinfo=timezone.utc)
+    if expires_at < datetime.now(timezone.utc):
+        raise HTTPException(status_code=401, detail="Session expired")
+
+    user = await db.users.find_one({"user_id": session["user_id"]}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=401, detail="User not found")
+    return UserOut(**user).model_dump()
+
+
+@api_router.post("/auth/logout")
+async def logout(request: Request, response: Response):
+    """Delete session and clear cookie."""
+    session_token = request.cookies.get("session_token")
+    if session_token:
+        await db.user_sessions.delete_one({"session_token": session_token})
+    response.delete_cookie("session_token", path="/", samesite="none", secure=True)
     return {"ok": True}
 
 

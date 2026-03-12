@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Lock, CheckCircle, ArrowRight } from "@phosphor-icons/react";
+import { Lock, CheckCircle, ArrowRight, GoogleLogo, SignOut } from "@phosphor-icons/react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
@@ -73,20 +74,40 @@ const GROUND0_LESSONS = [
 ];
 
 export default function PortalPage() {
+  const location = useLocation();
+  const [user, setUser] = useState(location.state?.user || null);
+  // null = checking, true = authenticated, false = not authenticated
+  const [authChecked, setAuthChecked] = useState(location.state?.user ? true : null);
   const [selectedId, setSelectedId] = useState("ground-0");
   const [paymentState, setPaymentState] = useState("idle"); // idle | loading | polling | success | error
-  const [sessionId, setSessionId] = useState(null);
+  const [stripeSessionId, setStripeSessionId] = useState(null);
 
   const API = process.env.REACT_APP_BACKEND_URL;
+
+  // Check authentication status on mount (skip if user already passed from AuthCallback)
+  useEffect(() => {
+    if (location.state?.user) return;
+    const checkAuth = async () => {
+      try {
+        const resp = await fetch(`${API}/api/auth/me`, { credentials: "include" });
+        if (!resp.ok) throw new Error("Not authenticated");
+        const userData = await resp.json();
+        setUser(userData);
+        setAuthChecked(true);
+      } catch {
+        setAuthChecked(false);
+      }
+    };
+    checkAuth();
+  }, [API, location.state]);
 
   // On mount, check for Stripe return session_id in URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const sid = params.get("session_id");
     if (sid) {
-      setSessionId(sid);
+      setStripeSessionId(sid);
       setPaymentState("polling");
-      // Clean URL without reload
       window.history.replaceState({}, document.title, "/portal");
     }
   }, []);
@@ -117,10 +138,10 @@ export default function PortalPage() {
   );
 
   useEffect(() => {
-    if (paymentState === "polling" && sessionId) {
-      pollPaymentStatus(sessionId);
+    if (paymentState === "polling" && stripeSessionId) {
+      pollPaymentStatus(stripeSessionId);
     }
-  }, [paymentState, sessionId, pollPaymentStatus]);
+  }, [paymentState, stripeSessionId, pollPaymentStatus]);
 
   const handleCheckout = async () => {
     setPaymentState("loading");
@@ -139,8 +160,82 @@ export default function PortalPage() {
     }
   };
 
+  const handleLogout = async () => {
+    await fetch(`${API}/api/auth/logout`, { method: "POST", credentials: "include" });
+    setUser(null);
+    setAuthChecked(false);
+  };
+
+  // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
+  const handleGoogleLogin = () => {
+    const redirectUrl = window.location.origin + "/portal";
+    window.location.href = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(redirectUrl)}`;
+  };
+
   const selected = CURRICULUM.find((m) => m.id === selectedId);
 
+  // ── Auth: Loading ──────────────────────────────────────
+  if (authChecked === null) {
+    return (
+      <div style={{ fontFamily: "'Inter', sans-serif", background: "#001A33", minHeight: "100vh", color: "#FFFFFF" }}>
+        <Navbar />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
+          <p data-testid="portal-auth-loading" style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.5)" }}>
+            Verifying access...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Auth: Login Screen ──────────────────────────────────
+  if (!authChecked) {
+    return (
+      <div style={{ fontFamily: "'Inter', sans-serif", background: "#001A33", minHeight: "100vh", color: "#FFFFFF" }}>
+        <Navbar />
+        <div style={{ maxWidth: 520, margin: "0 auto", padding: "120px 2rem 80px", textAlign: "center" }}>
+          <p style={{
+            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.18em",
+            textTransform: "uppercase", color: "#C5A059", marginBottom: "1.5rem",
+          }}>
+            OPERATOR PORTAL
+          </p>
+          <h1 style={{
+            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em",
+            color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem",
+          }}>
+            LaunchPath Cohort Access
+          </h1>
+          <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.8, marginBottom: "3rem" }}>
+            Sign in to access your cohort curriculum, compliance tools, and the 90-Day Operating Standard.
+          </p>
+          <button
+            data-testid="google-login-btn"
+            onClick={handleGoogleLogin}
+            style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              gap: "0.75rem", minHeight: 52, background: "#FFFFFF", color: "#1A1A1A",
+              border: "none", fontFamily: "'Inter', sans-serif", fontWeight: 600,
+              fontSize: "1rem", cursor: "pointer", padding: "1rem 2.5rem",
+              transition: "background 0.2s", width: "100%",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#F0F0F0")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#FFFFFF")}
+          >
+            <GoogleLogo size={20} weight="bold" />
+            Continue with Google
+          </button>
+          <p style={{ fontSize: "0.784rem", color: "rgba(255,255,255,0.4)", marginTop: "1.5rem" }}>
+            Your Google account is used to verify identity only. No data is shared.
+          </p>
+        </div>
+        <FooterSection />
+      </div>
+    );
+  }
+
+  // ── Authenticated Portal ────────────────────────────────
   return (
     <div
       style={{
@@ -179,10 +274,34 @@ export default function PortalPage() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.784rem",
               color: "rgba(255,255,255,0.70)",
+              flex: 1,
             }}
           >
             90-Day Compliance Operating Standard
           </p>
+          {user && (
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <span style={{ fontSize: "0.784rem", color: "rgba(255,255,255,0.60)", fontFamily: "'Inter', sans-serif" }}>
+                {user.name || user.email}
+              </span>
+              <button
+                data-testid="portal-logout-btn"
+                onClick={handleLogout}
+                style={{
+                  display: "flex", alignItems: "center", gap: "0.4rem",
+                  background: "none", border: "1px solid rgba(255,255,255,0.15)",
+                  color: "rgba(255,255,255,0.60)", fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.728rem", cursor: "pointer", padding: "0.35rem 0.75rem",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"; e.currentTarget.style.color = "#FFFFFF"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "rgba(255,255,255,0.60)"; }}
+              >
+                <SignOut size={12} />
+                Sign out
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
