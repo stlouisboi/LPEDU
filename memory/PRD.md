@@ -109,7 +109,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] `/auto-method` — AUTO method explainer page (COMPLETE)
 
 ### P3 — Future
-- [ ] Members-only content gating (post-auth, lock modules 1-7 to paying users)
+- [x] Members-only content gating — Modules 1-7 locked to Stripe-paid users; user_access collection, /api/portal/access + /api/portal/checkout updated to link user_id, green/gold sidebar state (Mar 2026)
 - [ ] B2B landing page for insurers/fleet operators
 - [ ] Video integration for homepage "Watch the Overview" CTA
 
