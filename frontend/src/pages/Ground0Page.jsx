@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
+import REACHAssessmentWidget from "../components/REACHAssessmentWidget";
 
 const MODULES = [
   {
@@ -66,6 +67,7 @@ export default function Ground0Page() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showReachWidget, setShowReachWidget] = useState(false);
 
   const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -464,6 +466,43 @@ export default function Ground0Page() {
                         {module.outcome}
                       </p>
                     </div>
+
+                    {/* G0-6: embed the REACH Assessment widget inline */}
+                    {idx === 5 && (
+                      <div style={{
+                        borderTop: "1px solid rgba(197,160,89,0.2)",
+                        marginTop: "2rem",
+                        paddingTop: "0.5rem",
+                      }}>
+                        {!showReachWidget ? (
+                          <button
+                            data-testid="g0-begin-reach-btn"
+                            onClick={() => setShowReachWidget(true)}
+                            style={{
+                              marginTop: "1.25rem",
+                              background: "#C5A059",
+                              color: "#002244",
+                              border: "none",
+                              fontFamily: "'Inter', sans-serif",
+                              fontWeight: 700,
+                              fontSize: "0.875rem",
+                              letterSpacing: "0.1em",
+                              textTransform: "uppercase",
+                              cursor: "pointer",
+                              padding: "0.875rem 2rem",
+                              minHeight: 48,
+                              transition: "background 0.2s",
+                            }}
+                            onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
+                            onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+                          >
+                            Begin REACH Assessment
+                          </button>
+                        ) : (
+                          <REACHAssessmentWidget />
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
