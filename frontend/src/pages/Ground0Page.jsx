@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
-const LESSONS = [
+const MODULES = [
   {
     number: "0.1",
     title: "Welcome to LaunchPath",
     description:
-      "Most carriers enter the trucking industry believing the hardest part is behind them once the authority is issued. It is not. This lesson reframes what the first 90 days actually require and what LaunchPath is built to install.",
+      "Most carriers enter the trucking industry believing the hardest part is behind them once the authority is issued. It is not. This module covers what the first 90 days actually require and what LaunchPath is built to install.",
     duration: "8 minutes",
     outcome:
       "Understand what the LaunchPath Standard is, what it is not, and what the next 90 days require from you as an operator.",
@@ -16,7 +16,7 @@ const LESSONS = [
     number: "0.2",
     title: "The Four Pillars of Survival",
     description:
-      "Every new authority faces four categories of risk simultaneously. This lesson names them, maps them, and explains why the absence of any one of them is sufficient to end an operation before the first audit.",
+      "Every new authority faces four categories of risk simultaneously. This module names them, maps them, and explains why the absence of any one of them is sufficient to end an operation before the first audit.",
     duration: "15 minutes",
     outcome:
       "Identify the four systems every new authority must install — Authority Protection, Insurance Continuity, Compliance Backbone, Cash-Flow Oxygen — and understand how they interact.",
@@ -34,7 +34,7 @@ const LESSONS = [
     number: "0.4",
     title: "Personal Readiness Check",
     description:
-      "The LaunchPath Standard requires a carrier who is operationally, financially, and personally ready to implement a compliance system under federal oversight. This lesson provides the framework for assessing readiness honestly before the first dollar is spent.",
+      "The LaunchPath Standard requires a carrier who is operationally, financially, and personally ready to implement a compliance system under federal oversight. This module provides the framework for assessing readiness honestly before the first dollar is spent.",
     duration: "20 minutes",
     outcome:
       "Complete a structured assessment of your financial reserves, operational capacity, and personal readiness against documented first-year carrier requirements.",
@@ -43,7 +43,7 @@ const LESSONS = [
     number: "0.5",
     title: "Risk Tolerance Assessment",
     description:
-      "Every carrier has a stop-loss line — the point at which the cost of continuing exceeds the cost of stopping. Most carriers have never defined it. This lesson builds that line before the first load moves so that decisions under pressure have a framework behind them.",
+      "Every carrier has a stop-loss line — the point at which the cost of continuing exceeds the cost of stopping. Most carriers have never defined it. This module builds that line before the first load moves so that decisions under pressure have a framework behind them.",
     duration: "15 minutes",
     outcome:
       "Define your stop-loss line and your risk tolerance before the first load moves. Establish the decision criteria you will use when the operation faces financial or compliance pressure.",
@@ -52,7 +52,7 @@ const LESSONS = [
     number: "0.6",
     title: "The Go/No-Go Decision",
     description:
-      "The final lesson of Ground 0 applies everything from Lessons 0.1 through 0.5 to a single structured decision framework. The result is not a score. It is a decision — GO, WAIT, or NO-GO — with a specific next step attached to each outcome.",
+      "The final module of Ground 0 applies everything from Modules 0.1 through 0.5 to a single structured decision framework. The result is not a score. It is a decision — GO, WAIT, or NO-GO — with a specific next step attached to each outcome.",
     duration: "14 minutes",
     outcome:
       "Complete the structured decision framework that produces your GO, WAIT, or NO-GO result and receive your specific next step based on that result.",
@@ -143,7 +143,7 @@ export default function Ground0Page() {
               fontWeight: 500,
             }}
           >
-            Six lessons. Approximately 90 minutes. No charge. This is where the LaunchPath
+            Six implementation modules. Approximately 90 minutes. No charge. This is where the LaunchPath
             Standard begins.
           </p>
 
@@ -157,7 +157,7 @@ export default function Ground0Page() {
             }}
           >
             Ground 0 does not teach compliance. It establishes whether you are the carrier this
-            standard was built for. By the end of Lesson 0.6 you will have made a structured
+            standard was built for. By the end of Module 0.6 you will have made a structured
             Go/No-Go decision about your operation. That decision determines the next step.
           </p>
         </div>
@@ -190,17 +190,17 @@ export default function Ground0Page() {
                 margin: 0,
               }}
             >
-              {openedPanels.size} of 6 lessons
+              {openedPanels.size} of 6 modules
             </p>
           </div>
 
           {/* Accordion panels */}
-          {LESSONS.map((lesson, idx) => {
+          {MODULES.map((module, idx) => {
             const isOpen = openPanel === idx;
             return (
               <div
                 key={idx}
-                data-testid={`lesson-panel-${idx}`}
+                data-testid={`module-panel-${idx}`}
                 style={{
                   borderLeft: `3px solid ${isOpen ? "#C5A059" : "transparent"}`,
                   borderBottom: "1px solid rgba(255,255,255,0.08)",
@@ -208,7 +208,7 @@ export default function Ground0Page() {
                 }}
               >
                 <button
-                  data-testid={`lesson-toggle-${idx}`}
+                  data-testid={`module-toggle-${idx}`}
                   onClick={() => togglePanel(idx)}
                   style={{
                     width: "100%",
@@ -235,7 +235,7 @@ export default function Ground0Page() {
                         opacity: isOpen ? 1 : 0.9,
                       }}
                     >
-                      {lesson.number}
+                      {module.number}
                     </span>
                     <span
                       style={{
@@ -246,7 +246,7 @@ export default function Ground0Page() {
                         transition: "color 0.2s",
                       }}
                     >
-                      {lesson.title}
+                      {module.title}
                     </span>
                   </div>
                   <span
@@ -274,7 +274,7 @@ export default function Ground0Page() {
                         marginBottom: "1.25rem",
                       }}
                     >
-                      {lesson.description}
+                      {module.description}
                     </p>
 
                     <p
@@ -286,7 +286,7 @@ export default function Ground0Page() {
                         letterSpacing: "0.02em",
                       }}
                     >
-                      Estimated duration: {lesson.duration}
+                      Estimated duration: {module.duration}
                     </p>
 
                     <div
@@ -316,7 +316,7 @@ export default function Ground0Page() {
                           lineHeight: 1.8,
                         }}
                       >
-                        {lesson.outcome}
+                        {module.outcome}
                       </p>
                     </div>
                   </div>

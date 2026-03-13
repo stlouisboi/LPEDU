@@ -367,7 +367,7 @@ export default function OperatingStandardPage() {
             Motor carriers implement the LaunchPath Operating Standard through the Ground 0 program.
           </h2>
           <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
-            Ground 0 installs the operational infrastructure required to meet the standard and prepares the carrier for long-term compliance stability. It is the foundation of the LaunchPath system — six lessons, no charge.
+            Ground 0 installs the operational infrastructure required to meet the standard and prepares the carrier for long-term compliance stability. It is the foundation of the LaunchPath system — six implementation modules, no charge.
           </p>
 
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>

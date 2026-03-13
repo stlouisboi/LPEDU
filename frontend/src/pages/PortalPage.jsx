@@ -9,7 +9,7 @@ const CURRICULUM = [
     id: "ground-0",
     code: "GROUND 0",
     label: "The Wisdom Module",
-    lessons: 6,
+    modules: 6,
     locked: false,
     status: "UNLOCKED",
   },
@@ -17,54 +17,54 @@ const CURRICULUM = [
     id: "module-1",
     code: "MODULE 1",
     label: "Business and Authority Setup",
-    lessons: 7,
+    modules: 7,
     locked: true,
   },
   {
     id: "module-2",
     code: "MODULE 2",
     label: "Insurance Survival",
-    lessons: 6,
+    modules: 6,
     locked: true,
   },
   {
     id: "module-3",
     code: "MODULE 3",
     label: "The 16 Deadly Sins",
-    lessons: 8,
+    modules: 8,
     locked: true,
   },
   {
     id: "module-4",
     code: "MODULE 4",
     label: "New Entrant Audit Prep",
-    lessons: 6,
+    modules: 6,
     locked: true,
   },
   {
     id: "module-5",
     code: "MODULE 5",
     label: "Load Discipline and Cash Flow",
-    lessons: 6,
+    modules: 6,
     locked: true,
   },
   {
     id: "module-6",
     code: "MODULE 6",
     label: "Stabilization and Long-Term Authority Protection",
-    lessons: 5,
+    modules: 5,
     locked: true,
   },
   {
     id: "module-7",
     code: "MODULE 7",
     label: "Post-Audit Recovery",
-    lessons: 4,
+    modules: 4,
     locked: true,
   },
 ];
 
-const GROUND0_LESSONS = [
+const GROUND0_MODULES = [
   { number: "0.1", title: "Welcome to LaunchPath", duration: "8 min" },
   { number: "0.2", title: "The Four Pillars of Survival", duration: "15 min" },
   { number: "0.3", title: "Lane Selection", duration: "18 min" },
@@ -418,7 +418,7 @@ export default function PortalPage() {
                     fontFamily: "'Inter', sans-serif", fontSize: "0.672rem",
                     color: locked ? "rgba(255,255,255,0.42)" : "rgba(197,160,89,0.9)", letterSpacing: "0.04em",
                   }}>
-                    {mod.lessons} lessons{mod.id === "ground-0" ? " — UNLOCKED" : locked ? "" : " — COHORT ACCESS"}
+                    {mod.modules} implementation modules{mod.id === "ground-0" ? " — UNLOCKED" : locked ? "" : " — COHORT ACCESS"}
                   </p>
                 </div>
               </button>
@@ -515,11 +515,11 @@ export default function PortalPage() {
                       marginBottom: "2.5rem",
                     }}
                   >
-                    Ground 0 is the foundation of the LaunchPath Standard. Six lessons. Approximately
+                    Ground 0 is the foundation of the LaunchPath Standard. Six implementation modules. Approximately
                     90 minutes. No charge.
                   </p>
 
-                  {/* Lesson list */}
+                  {/* Implementation modules */}
                   <div
                     style={{
                       background: "rgba(255,255,255,0.04)",
@@ -527,7 +527,7 @@ export default function PortalPage() {
                       marginBottom: "2rem",
                     }}
                   >
-                    {GROUND0_LESSONS.map((l, idx) => (
+                    {GROUND0_MODULES.map((m, idx) => (
                       <div
                         key={idx}
                         style={{
@@ -536,7 +536,7 @@ export default function PortalPage() {
                           justifyContent: "space-between",
                           padding: "1rem 1.5rem",
                           borderBottom:
-                            idx < GROUND0_LESSONS.length - 1
+                            idx < GROUND0_MODULES.length - 1
                               ? "1px solid rgba(255,255,255,0.06)"
                               : "none",
                         }}
@@ -623,7 +623,7 @@ export default function PortalPage() {
                     {selected?.label}
                   </h1>
                   <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 540, marginBottom: "2.5rem" }}>
-                    {selected?.lessons} lessons. Content is being prepared for this cohort.
+                    {selected?.modules} implementation modules. Content is being prepared for this cohort.
                     You will receive an email when your module is released.
                   </p>
                   <div style={{
