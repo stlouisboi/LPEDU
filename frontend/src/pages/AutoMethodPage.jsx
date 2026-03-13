@@ -355,7 +355,7 @@ export default function AutoMethodPage() {
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link
               data-testid="auto-reach-cta"
-              to="/reach-assessment"
+              to="/reach-diagnostic"
               style={{
                 display: "inline-block", minHeight: 52, background: "#C5A059",
                 color: "#002244", fontFamily: "'Inter', sans-serif", fontWeight: 700,

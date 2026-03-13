@@ -264,7 +264,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
               </button>
             ) : (
               <Link
-                to="/reach-assessment"
+                to="/reach-diagnostic"
                 data-testid="reach-begin-diagnostic-btn"
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",

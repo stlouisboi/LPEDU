@@ -388,7 +388,7 @@ export default function OperatingStandardPage() {
             </Link>
             <Link
               data-testid="standard-reach-cta"
-              to="/reach-assessment"
+              to="/reach-diagnostic"
               style={{
                 display: "inline-block", minHeight: 52, background: "transparent",
                 color: "#C5A059", fontFamily: "'Inter', sans-serif", fontWeight: 700,

@@ -104,7 +104,7 @@ export default function HeroSection() {
             animationDelay: "0.48s",
           }}>
             <Link
-              to="/reach-assessment"
+              to="/reach-diagnostic"
               data-testid="hero-readiness-cta"
               style={{
                 display: "inline-block",

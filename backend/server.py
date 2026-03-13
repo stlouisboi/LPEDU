@@ -478,6 +478,32 @@ async def stripe_webhook(request: Request):
                     }},
                     upsert=True,
                 )
+                # Post-payment confirmation — update subscriber in MailerLite
+                # with paid cohort fields to trigger welcome automation
+                user_record = await db.users.find_one({"user_id": user_id}, {"_id": 0})
+                if user_record and user_record.get("email") and MAILERLITE_API_TOKEN:
+                    try:
+                        async with httpx.AsyncClient(timeout=8) as http:
+                            await http.post(
+                                MAILERLITE_URL,
+                                headers={
+                                    "Content-Type": "application/json",
+                                    "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+                                },
+                                json={
+                                    "email": user_record["email"],
+                                    "status": "active",
+                                    "fields": {
+                                        "name": user_record.get("name", ""),
+                                        "cohort_access": "true",
+                                        "cohort_tier": "LPOS_v1_Standard",
+                                        "payment_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                                        "stripe_session_id": event.session_id,
+                                    },
+                                },
+                            )
+                    except Exception as ml_err:
+                        logger.error(f"MailerLite post-payment update failed: {ml_err}")
     except Exception as e:
         logger.error(f"Stripe webhook error: {e}")
         raise HTTPException(status_code=400, detail="Webhook processing failed.")
