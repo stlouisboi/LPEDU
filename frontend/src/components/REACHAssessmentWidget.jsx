@@ -109,7 +109,7 @@ function RiskMap({ scores, animate }) {
   );
 }
 
-export default function REACHAssessmentWidget() {
+export default function REACHAssessmentWidget({ onEmailCaptured }) {
   const [phase, setPhase] = useState("intro"); // intro|questions|open|insight|analyzing|results
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState([]);
@@ -197,6 +197,7 @@ export default function REACHAssessmentWidget() {
           open_response: openAnswer,
         }),
       });
+      if (onEmailCaptured) onEmailCaptured(email);
     } catch { /* still confirm */ }
     setLoading(false);
     setSubmitted(true);

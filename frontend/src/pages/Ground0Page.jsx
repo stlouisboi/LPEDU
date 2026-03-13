@@ -71,6 +71,20 @@ export default function Ground0Page() {
 
   const API = process.env.REACT_APP_BACKEND_URL;
 
+  // Called when REACH widget captures operator email — auto-submits Ground 0 form
+  const handleReachEmailCaptured = async (capturedEmail) => {
+    if (submitted) return; // already submitted from bottom form
+    try {
+      await fetch(`${API}/api/ground0`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: capturedEmail }),
+      });
+    } catch { /* still confirm */ }
+    setEmail(capturedEmail);
+    setSubmitted(true);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
@@ -499,7 +513,7 @@ export default function Ground0Page() {
                             Begin REACH Assessment
                           </button>
                         ) : (
-                          <REACHAssessmentWidget />
+                          <REACHAssessmentWidget onEmailCaptured={handleReachEmailCaptured} />
                         )}
                       </div>
                     )}
@@ -751,6 +765,7 @@ export default function Ground0Page() {
                   >
                     Check your inbox. Your Go/No-Go assessment result and next steps will arrive
                     within the next few minutes.
+                    {email && <><br /><span style={{ fontStyle: "italic", fontSize: "0.875rem", opacity: 0.75 }}>Sent to: {email}</span></>}
                   </p>
                 </div>
 

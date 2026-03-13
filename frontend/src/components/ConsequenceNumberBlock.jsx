@@ -65,7 +65,7 @@ export default function ConsequenceNumberBlock() {
                 marginBottom: "0.5rem",
                 letterSpacing: "-0.02em",
               }}>
-                $15,000 – $30,000
+                $10,000 – $25,000+
               </p>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
@@ -73,39 +73,31 @@ export default function ConsequenceNumberBlock() {
                 color: "rgba(255,255,255,0.72)",
                 lineHeight: 1.55,
               }}>
-                Average post-audit<br />remediation cost
+                Average cost of a single<br />New Entrant audit failure
               </p>
             </div>
 
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.98rem",
-              color: "rgba(255,255,255,0.32)",
-              alignSelf: "center",
-              paddingTop: "0.125rem",
-            }}>
-              vs.
-            </p>
-
-            <div>
+            <div style={{ alignSelf: "center", paddingTop: "0.125rem" }}>
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.616rem",
                 fontWeight: 700,
-                fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
-                color: "#C5A059",
-                lineHeight: 1,
-                marginBottom: "0.5rem",
-                letterSpacing: "-0.01em",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "rgba(197,160,89,0.85)",
+                border: "1px solid rgba(197,160,89,0.3)",
+                padding: "0.35rem 0.875rem",
+                marginBottom: "0.3rem",
               }}>
-                $2,500
+                The LaunchPath Standard
               </p>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.72)",
-                lineHeight: 1.55,
+                fontSize: "0.784rem",
+                color: "rgba(255,255,255,0.55)",
+                fontStyle: "italic",
               }}>
-                The LaunchPath<br />Standard
+                Costs less than one audit failure.
               </p>
             </div>
           </div>
@@ -122,7 +114,7 @@ export default function ConsequenceNumberBlock() {
             lineHeight: 1.65,
             marginBottom: "1.5rem",
           }}>
-            This does not include lost revenue from suspended operations, insurance premium increases, or the cost of rebuilding broker relationships.
+            This does not include lost revenue from suspended operations, insurance premium increases, broker blacklisting, or the cost of restarting an authority.
           </p>
 
           {/* Closing argument */}
