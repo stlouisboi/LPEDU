@@ -111,8 +111,8 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Homepage Final Polish — ProtectionDiagramSection (FIGURE LP-01) added to homepage, $5,000 → $2,500 price fix in ConsequenceNumberBlock (Feb 2026)
 - [x] REACH Assessment inline widget embedded in Ground 0 G0-6 module panel — full 15-question flow, GO/WAIT/NO-GO result, Risk Map, email capture, and result CTA all inline without page navigation (Feb 2026)
 - [x] LPOS v1.0 portal redesign — SYSTEM_STATUS_MONITOR header, IMPLEMENTATION SEQUENCE sidebar, SignalMonitor (circular gauge + 3 indicator bars: Doc Integrity/System Pulse/Regulatory Alignment) injected into Ground 0 dashboard (Feb 2026)
-- [x] REACH Diagnostic section placed on /reach-assessment page — REACHTeaserSection embedded as intro phase; onBegin prop triggers assessment flow; old plain intro removed (Feb 2026)
-- [x] Pricing policy compliance (LP-COM-001) — $2,500 price removed from ConsequenceNumberBlock homepage; replaced with failure cost context + "The LaunchPath Standard costs less than one audit failure" (Feb 2026)
+- [x] Live Data Engine for SignalMonitor — GET /api/signal/{carrierId} endpoint with Documentary Integrity/System Pulse/Regulatory Alignment calculation from MongoDB; POST /api/signal/seed/{carrierId} for mock data; SignalMonitor.jsx fetches live data (Feb 2026)
+- [x] REACH Traffic Light UI — pillar cards (R-E-A-C-H) now show colored dot + status label: amber=PENDING_SCAN, green=COMPLETE, red=FAILED; optional pillarStatuses prop added to REACHTeaserSection (Feb 2026)
 
 ## File Reference
 - `/app/frontend/src/App.js` — Router
