@@ -62,7 +62,7 @@ const NOT_FOR_LIST = [
 // ── Shared styles ────────────────────────────────────────
 const sectionLabel = {
   fontFamily: "'Inter', sans-serif",
-  fontSize: "0.672rem",
+  fontSize: "0.78rem",
   fontWeight: 700,
   letterSpacing: "0.18em",
   textTransform: "uppercase",
@@ -105,7 +105,7 @@ export default function OperatingStandardPage() {
           </h1>
           <p style={{
             fontSize: "clamp(1rem, 2vw, 1.2rem)",
-            color: "rgba(255,255,255,0.75)",
+            color: "rgba(255,255,255,0.90)",
             lineHeight: 1.8,
             maxWidth: 620,
             marginBottom: "2.5rem",
@@ -116,7 +116,7 @@ export default function OperatingStandardPage() {
             <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#C5A059", marginBottom: "0.4rem" }}>
               Accuracy Over Hype.
             </p>
-            <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(197,160,89,0.65)" }}>
+            <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(197,160,89,0.90)" }}>
               Systems Over Shortcuts.
             </p>
           </div>
@@ -139,10 +139,10 @@ export default function OperatingStandardPage() {
             }}>
               Most new trucking companies do not fail because drivers lack skill.
             </h2>
-            <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.85, marginBottom: "2rem" }}>
+            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.90)", lineHeight: 1.85, marginBottom: "2rem" }}>
               They fail because the operational systems required to support a motor carrier were never installed.
             </p>
-            <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.85 }}>
+            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.90)", lineHeight: 1.85 }}>
               The LaunchPath Operating Standard was created to solve that problem. It defines the minimum operational systems a motor carrier must install in order to operate safely and remain compliant during the early stages of authority.
             </p>
           </div>
@@ -161,7 +161,7 @@ export default function OperatingStandardPage() {
                 alignItems: "flex-start",
               }}>
                 <span style={{ color: "#C5A059", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                <span style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.82)", fontStyle: "italic", lineHeight: 1.6 }}>{line}</span>
+                <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", fontStyle: "italic", lineHeight: 1.6 }}>{line}</span>
               </div>
             ))}
           </div>
@@ -179,14 +179,14 @@ export default function OperatingStandardPage() {
           }}>
             What the standard protects.
           </h2>
-          <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.65)", marginBottom: "3rem", maxWidth: 560, lineHeight: 1.8 }}>
+          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", marginBottom: "3rem", maxWidth: 560, lineHeight: 1.8 }}>
             The LaunchPath Operating Standard is organized around four operational pillars. Each pillar represents a domain of the carrier operation that must be actively protected.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.08)" }} className="pillars-grid">
             {PILLARS.map((p, i) => (
               <div key={i} style={{ background: "#002244", padding: "2.5rem 2rem" }}>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 700,
                   letterSpacing: "0.12em", textTransform: "uppercase", color: "#C5A059", marginBottom: "0.75rem",
                 }}>
                   PILLAR {String(i + 1).padStart(2, "0")}
@@ -194,7 +194,7 @@ export default function OperatingStandardPage() {
                 <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "0.875rem" }}>
                   {p.label}
                 </p>
-                <p style={{ fontSize: "0.98rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.75 }}>{p.desc}</p>
+                <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.75 }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -212,7 +212,7 @@ export default function OperatingStandardPage() {
           }}>
             Operational failures rarely occur because a single rule was broken.
           </h2>
-          <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.85 }}>
+          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.85 }}>
             They occur because risk reaches the operation around, under, through, or over the controls that were supposed to stop it. The LaunchPath standard installs operational guards designed to prevent risk from reaching the authority from any direction.
           </p>
         </div>
@@ -225,15 +225,15 @@ export default function OperatingStandardPage() {
               }}>
                 {item.v}
               </p>
-              <p style={{ fontWeight: 700, fontSize: "0.784rem", color: "#FFFFFF", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "1rem" }}>
+              <p style={{ fontWeight: 700, fontSize: "0.924rem", color: "#FFFFFF", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "1rem" }}>
                 {item.direction}
               </p>
-              <p style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7 }}>{item.body}</p>
+              <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.7 }}>{item.body}</p>
             </div>
           ))}
         </div>
         <div style={{ marginTop: "1.5rem", textAlign: "right" }}>
-          <Link to="/auto-method" style={{ fontSize: "0.784rem", color: "rgba(197,160,89,0.7)", textDecoration: "none", letterSpacing: "0.06em" }}>
+          <Link to="/auto-method" style={{ fontSize: "0.924rem", color: "rgba(197,160,89,0.92)", textDecoration: "none", letterSpacing: "0.06em" }}>
             VIEW FULL AUTO DOCTRINE →
           </Link>
         </div>
@@ -250,7 +250,7 @@ export default function OperatingStandardPage() {
           }}>
             Understanding the attack vectors is not enough. Guards must be installed.
           </h2>
-          <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 580 }}>
+          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 580 }}>
             Each guard is tied to specific FMCSA regulations and designed to intercept failure before it reaches the authority.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 0, border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -269,11 +269,11 @@ export default function OperatingStandardPage() {
                 }}
                 className="guard-row"
               >
-                <span style={{ fontWeight: 700, fontSize: "1.008rem", color: "#C5A059" }}>{g.name}</span>
-                <span style={{ fontSize: "0.728rem", color: "rgba(197,160,89,0.5)", fontFamily: "'JetBrains Mono', monospace", whiteSpace: "nowrap" }}>
+                <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#C5A059" }}>{g.name}</span>
+                <span style={{ fontSize: "0.875rem", color: "rgba(197,160,89,0.85)", fontFamily: "'JetBrains Mono', monospace", whiteSpace: "nowrap" }}>
                   {g.reg}
                 </span>
-                <span style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.5 }}>{g.stops}</span>
+                <span style={{ fontSize: "1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.5 }}>{g.stops}</span>
               </div>
             ))}
           </div>
@@ -298,15 +298,15 @@ export default function OperatingStandardPage() {
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "1.68rem", fontWeight: 700,
-                color: "rgba(197,160,89,0.25)",
+                color: "rgba(197,160,89,0.35)",
                 marginBottom: "1rem", lineHeight: 1,
               }}>
                 {p.num}
               </p>
-              <p style={{ fontWeight: 700, fontSize: "0.98rem", color: "#FFFFFF", marginBottom: "0.75rem", lineHeight: 1.3 }}>
+              <p style={{ fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF", marginBottom: "0.75rem", lineHeight: 1.3 }}>
                 {p.label}
               </p>
-              <p style={{ fontSize: "0.84rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.7 }}>{p.desc}</p>
+              <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -329,7 +329,7 @@ export default function OperatingStandardPage() {
               {FOR_LIST.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", marginBottom: "1.25rem", alignItems: "flex-start" }}>
                   <span style={{ color: "#C5A059", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                  <span style={{ fontSize: "0.98rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.7 }}>{item}</span>
+                  <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.7 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -346,8 +346,8 @@ export default function OperatingStandardPage() {
               </h2>
               {NOT_FOR_LIST.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", marginBottom: "1.25rem", alignItems: "flex-start" }}>
-                  <span style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                  <span style={{ fontSize: "0.98rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}>{item}</span>
+                  <span style={{ color: "rgba(255,255,255,0.85)", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
+                  <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -366,7 +366,7 @@ export default function OperatingStandardPage() {
           }}>
             Motor carriers implement the LaunchPath Operating Standard through the Ground 0 program.
           </h2>
-          <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
+          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
             Ground 0 installs the operational infrastructure required to meet the standard and prepares the carrier for long-term compliance stability. It is the foundation of the LaunchPath system — six lessons, no charge.
           </p>
 
@@ -377,7 +377,7 @@ export default function OperatingStandardPage() {
               style={{
                 display: "inline-block", minHeight: 52, background: "#C5A059",
                 color: "#002244", fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                fontSize: "0.98rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 transition: "background 0.2s",
               }}
@@ -392,7 +392,7 @@ export default function OperatingStandardPage() {
               style={{
                 display: "inline-block", minHeight: 52, background: "transparent",
                 color: "#C5A059", fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                fontSize: "0.98rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 border: "1px solid rgba(197,160,89,0.4)", transition: "all 0.2s",
               }}
