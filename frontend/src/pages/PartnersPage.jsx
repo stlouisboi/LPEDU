@@ -76,9 +76,9 @@ function PersonaCard({ p, idx }) {
       }}>
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.616rem",
+          fontSize: "0.75rem",
           letterSpacing: "0.12em",
-          color: "rgba(197,160,89,0.88)",
+          color: "rgba(197,160,89,1)",
           textTransform: "uppercase",
           marginBottom: "0.75rem",
         }}>
@@ -87,8 +87,8 @@ function PersonaCard({ p, idx }) {
         <p style={{
           fontFamily: "'Manrope', sans-serif",
           fontWeight: 700,
-          fontSize: "0.952rem",
-          color: "rgba(255,255,255,0.55)",
+          fontSize: "1rem",
+          color: "rgba(255,255,255,0.85)",
           letterSpacing: "0.06em",
           textTransform: "uppercase",
           marginBottom: "1rem",
@@ -108,8 +108,8 @@ function PersonaCard({ p, idx }) {
         </h3>
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.924rem",
-          color: "rgba(255,255,255,0.78)",
+          fontSize: "1.05rem",
+          color: "rgba(255,255,255,0.90)",
           lineHeight: 1.7,
           marginBottom: "1.5rem",
           flex: 1,
@@ -123,7 +123,7 @@ function PersonaCard({ p, idx }) {
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.672rem",
-            color: "rgba(197,160,89,0.82)",
+            color: "rgba(197,160,89,0.95)",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
           }}>
@@ -168,7 +168,7 @@ function ContactForm() {
     border: "1px solid rgba(255,255,255,0.14)",
     color: "#FFFFFF",
     fontFamily: "'Inter', sans-serif",
-    fontSize: "0.98rem",
+    fontSize: "1.05rem",
     outline: "none",
     boxSizing: "border-box",
     transition: "border-color 0.2s",
@@ -176,10 +176,10 @@ function ContactForm() {
 
   const labelStyle = {
     fontFamily: "'JetBrains Mono', monospace",
-    fontSize: "0.616rem",
+    fontSize: "0.75rem",
     letterSpacing: "0.12em",
     textTransform: "uppercase",
-    color: "rgba(197,160,89,0.82)",
+    color: "rgba(197,160,89,0.95)",
     display: "block",
     marginBottom: "0.4rem",
   };
@@ -192,7 +192,7 @@ function ContactForm() {
           fontSize: "0.672rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,0.88)",
+          color: "rgba(197,160,89,1)",
           marginBottom: "1rem",
         }}>
           LP-PARTNER-001 — INQUIRY RECEIVED
@@ -210,7 +210,7 @@ function ContactForm() {
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "1rem",
-          color: "rgba(255,255,255,0.72)",
+          color: "rgba(255,255,255,0.88)",
           lineHeight: 1.7,
           maxWidth: 440,
           margin: "0 auto",
@@ -321,7 +321,7 @@ function ContactForm() {
           color: "#001530",
           fontFamily: "'Inter', sans-serif",
           fontWeight: 700,
-          fontSize: "0.896rem",
+          fontSize: "1rem",
           letterSpacing: "0.1em",
           textTransform: "uppercase",
           padding: "1rem 2.5rem",
@@ -360,7 +360,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.88)",
+              color: "rgba(197,160,89,1)",
               marginBottom: "1.5rem",
             }}>
               LP-PARTNER-001 | REFERRAL & PARTNERSHIP NETWORK
@@ -380,7 +380,7 @@ export default function PartnersPage() {
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "1.125rem",
-              color: "rgba(255,255,255,0.82)",
+              color: "rgba(255,255,255,0.92)",
               lineHeight: 1.75,
               maxWidth: 600,
               marginBottom: "0.875rem",
@@ -390,7 +390,7 @@ export default function PartnersPage() {
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "1.125rem",
-              color: "rgba(255,255,255,0.82)",
+              color: "rgba(255,255,255,0.92)",
               lineHeight: 1.75,
               maxWidth: 600,
               marginBottom: "2.75rem",
@@ -405,7 +405,7 @@ export default function PartnersPage() {
                 color: "#001530",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "0.896rem",
+                fontSize: "1rem",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 padding: "1rem 2.25rem",
@@ -436,7 +436,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.88)",
+              color: "rgba(197,160,89,1)",
               marginBottom: "0.625rem",
             }}>
               WHO THIS SERVES
@@ -454,8 +454,8 @@ export default function PartnersPage() {
             </h2>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.008rem",
-              color: "rgba(255,255,255,0.78)",
+              fontSize: "1.05rem",
+              color: "rgba(255,255,255,0.90)",
               lineHeight: 1.7,
               maxWidth: 560,
               marginBottom: "3rem",
@@ -488,7 +488,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.88)",
+              color: "rgba(197,160,89,1)",
               marginBottom: "0.625rem",
             }}>
               THE REFERRAL PROCESS
@@ -531,7 +531,7 @@ export default function PartnersPage() {
                     <h3 style={{
                       fontFamily: "'Manrope', sans-serif",
                       fontWeight: 700,
-                      fontSize: "1.064rem",
+                      fontSize: "1.125rem",
                       color: "#FFFFFF",
                       marginBottom: "0.625rem",
                       lineHeight: 1.3,
@@ -540,8 +540,8 @@ export default function PartnersPage() {
                     </h3>
                     <p style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.952rem",
-                      color: "rgba(255,255,255,0.75)",
+                      fontSize: "1rem",
+                      color: "rgba(255,255,255,0.88)",
                       lineHeight: 1.7,
                     }}>
                       {step.body}
@@ -589,8 +589,8 @@ export default function PartnersPage() {
                 </p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.784rem",
-                  color: "rgba(255,255,255,0.68)",
+                  fontSize: "1.05rem",
+                  color: "rgba(255,255,255,0.85)",
                   lineHeight: 1.5,
                   letterSpacing: "0.02em",
                 }}>
@@ -619,7 +619,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.88)",
+              color: "rgba(197,160,89,1)",
               marginBottom: "0.625rem",
             }}>
               LP-PARTNER-INQUIRY
@@ -637,8 +637,8 @@ export default function PartnersPage() {
             </h2>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.008rem",
-              color: "rgba(255,255,255,0.75)",
+              fontSize: "1.05rem",
+              color: "rgba(255,255,255,0.88)",
               lineHeight: 1.7,
               marginBottom: "2.75rem",
               maxWidth: 560,
