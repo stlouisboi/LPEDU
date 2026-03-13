@@ -72,16 +72,16 @@ const SignalMonitor: React.FC<SignalMonitorProps> = ({ carrierId }) => {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-5xl font-black text-white tracking-tighter">{signal.overall}%</span>
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">SIGNAL</span>
+            <span className="text-5xl font-black text-white tracking-tighter font-mono">{signal.overall}%</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 font-mono">SIGNAL</span>
           </div>
         </div>
 
         {/* SYSTEM STATUS & INDICATORS */}
         <div className="flex-grow space-y-8 w-full">
-          <div className="flex justify-between items-start">
+              <div className="flex justify-between items-start">
             <div className="space-y-1">
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">SYSTEM_STATUS_MONITOR</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 font-mono">SYSTEM_STATUS_MONITOR</p>
               <h3 className={`text-2xl md:text-3xl font-black uppercase tracking-tight ${getGradeColor(signal.grade)}`}>
                 {signal.label}
               </h3>
@@ -91,9 +91,7 @@ const SignalMonitor: React.FC<SignalMonitorProps> = ({ carrierId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { label: 'Documentary Integrity', val: signal.indicators.integrity, icon: <FileText size={16} /> },
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6"            {[                  { label: 'Documentary Integrity', val: signal.indicators.integrity, icon: <FileText size={16} /> },
               { label: 'System Pulse', val: signal.indicators.pulse, icon: <Activity size={16} /> },
               { label: 'Regulatory Alignment', val: signal.indicators.alignment, icon: <ShieldCheck size={16} /> }
             ].map((indicator, i) => (
@@ -101,11 +99,10 @@ const SignalMonitor: React.FC<SignalMonitorProps> = ({ carrierId }) => {
                 <div className="flex items-center justify-between text-slate-400">
                   <div className="flex items-center gap-2">
                     {indicator.icon}
-                    <span className="text-[10px] font-black uppercase tracking-widest">{indicator.label}</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest font-mono">{indicator.label}</span>
                   </div>
-                  <span className="text-[12px] font-black text-white">{indicator.val}%</span>
-                </div>
-                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                  <span className="text-[12px] font-black text-white font-mono">{indicator.val}%</span>
+                </div>                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                   <div 
                     className={`h-full transition-all duration-1000 ease-out ${getSignalColor(indicator.val).replace('stroke', 'bg')}`}
                     style={{ width: `${indicator.val}%` }}
@@ -118,12 +115,12 @@ const SignalMonitor: React.FC<SignalMonitorProps> = ({ carrierId }) => {
       </div>
 
       {/* FOOTER - LAST UPDATE */}
-      <div className="mt-10 pt-6 border-t border-white/5 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-600">
+      <div className="mt-10 pt-6 border-t border-white/5 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-600 font-mono">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span>OPERATIONAL DOCTRINE: ACTIVE</span>
+          <span>OPERATIONAL_DOCTRINE: ACTIVE</span>
         </div>
-        <span>LAST SIGNAL UPDATE: {signal.lastUpdate.toLocaleTimeString()}</span>
+        <span>LAST_SIGNAL_UPDATE: {signal.lastUpdate.toLocaleTimeString()}</span>
       </div>
     </div>
   );
