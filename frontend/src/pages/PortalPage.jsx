@@ -639,7 +639,7 @@ export default function PortalPage() {
 
 
                   {/* ── Administrative Health Monitor ── */}
-                  <SignalMonitor integrity={48} pulse={88} alignment={52} />
+                  <SignalMonitor carrierId={user?.user_id} />
 
 
                   {/* Implementation modules */}

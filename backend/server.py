@@ -9,7 +9,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import List, Optional
 import uuid
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone, timedelta, date
 from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
 
 
@@ -554,6 +554,113 @@ async def logout(request: Request, response: Response):
         await db.user_sessions.delete_one({"session_token": session_token})
     response.delete_cookie("session_token", path="/", samesite="none", secure=True)
     return {"ok": True}
+
+
+# ── Administrative Signal ─────────────────────────────────
+
+class SignalResponse(BaseModel):
+    carrierId: str
+    integrity: int
+    pulse: int
+    alignment: int
+    signal: int
+    last_active_days: Optional[int] = None
+
+
+@api_router.get("/signal/{carrierId}", response_model=SignalResponse)
+async def get_carrier_signal(carrierId: str):
+    """
+    Calculate the Administrative Signal for a carrier.
+    Signal = 0.4 * Documentary Integrity + 0.3 * System Pulse + 0.3 * Regulatory Alignment
+    """
+    # 1. System Pulse — decay based on lastActiveAt
+    profile = await db.carrierProfiles.find_one({"carrierId": carrierId}, {"_id": 0})
+    last_active_days = None
+    if profile and profile.get("lastActiveAt"):
+        last_active = profile["lastActiveAt"]
+        if isinstance(last_active, str):
+            last_active = datetime.fromisoformat(last_active)
+        if last_active.tzinfo is None:
+            last_active = last_active.replace(tzinfo=timezone.utc)
+        last_active_days = (datetime.now(timezone.utc) - last_active).days
+        if last_active_days <= 3:
+            pulse = 100
+        elif last_active_days <= 7:
+            pulse = 70
+        elif last_active_days <= 14:
+            pulse = 40
+        else:
+            pulse = 20
+    else:
+        pulse = 100  # No profile yet — treat as fully active
+
+    # 2. Documentary Integrity — (Verified / Total) * 100
+    all_tasks = await db.tasks.find({"carrierId": carrierId}, {"_id": 0}).to_list(1000)
+    if all_tasks:
+        total = len(all_tasks)
+        verified = sum(1 for t in all_tasks if t.get("status") == "Verified")
+        integrity = round((verified / total) * 100)
+    else:
+        integrity = 0
+
+    # 3. Regulatory Alignment — (Verified this week / Total this week) * 100
+    current_week = date.today().isocalendar()[1]
+    week_tasks = [t for t in all_tasks if t.get("assignedWeek") == current_week]
+    if week_tasks:
+        total_week = len(week_tasks)
+        verified_week = sum(1 for t in week_tasks if t.get("status") == "Verified")
+        alignment = round((verified_week / total_week) * 100)
+    else:
+        alignment = 0
+
+    signal = round(0.4 * integrity + 0.3 * pulse + 0.3 * alignment)
+
+    return SignalResponse(
+        carrierId=carrierId,
+        integrity=integrity,
+        pulse=pulse,
+        alignment=alignment,
+        signal=signal,
+        last_active_days=last_active_days,
+    )
+
+
+@api_router.post("/signal/seed/{carrierId}")
+async def seed_carrier_data(carrierId: str):
+    """Seed realistic mock data for a carrier — for testing and demo purposes."""
+    current_week = date.today().isocalendar()[1]
+
+    # Upsert carrier profile — set lastActiveAt to 1 day ago
+    await db.carrierProfiles.update_one(
+        {"carrierId": carrierId},
+        {"$set": {
+            "carrierId": carrierId,
+            "lastActiveAt": (datetime.now(timezone.utc) - timedelta(days=1)).isoformat(),
+            "updatedAt": datetime.now(timezone.utc).isoformat(),
+        }},
+        upsert=True,
+    )
+
+    # Replace tasks for this carrier
+    await db.tasks.delete_many({"carrierId": carrierId})
+    task_templates = [
+        {"taskId": "DQ-001",    "name": "Driver Qualification File",         "status": "Verified", "assignedWeek": current_week},
+        {"taskId": "DA-001",    "name": "Drug & Alcohol Program Enrollment", "status": "Verified", "assignedWeek": current_week},
+        {"taskId": "INS-001",   "name": "Insurance Certificate Filed",       "status": "Verified", "assignedWeek": current_week},
+        {"taskId": "UCR-001",   "name": "UCR Registration Complete",         "status": "Verified", "assignedWeek": current_week - 1},
+        {"taskId": "BOC3-001",  "name": "BOC-3 Process Agent Filed",         "status": "Verified", "assignedWeek": current_week - 1},
+        {"taskId": "MCS150-001","name": "MCS-150 Update Filed",              "status": "Verified", "assignedWeek": current_week - 1},
+        {"taskId": "ELD-001",   "name": "ELD Provider Configured",           "status": "Pending",  "assignedWeek": current_week},
+        {"taskId": "IFTA-001",  "name": "IFTA Registration",                 "status": "Pending",  "assignedWeek": current_week},
+        {"taskId": "PM-001",    "name": "Preventive Maintenance Schedule",   "status": "Pending",  "assignedWeek": current_week + 1},
+        {"taskId": "HOS-001",   "name": "HOS Policy Document",               "status": "Pending",  "assignedWeek": current_week + 1},
+    ]
+    for task in task_templates:
+        task["carrierId"] = carrierId
+        task["createdAt"] = datetime.now(timezone.utc).isoformat()
+    await db.tasks.insert_many(task_templates)
+
+    return {"ok": True, "carrierId": carrierId, "tasks_seeded": len(task_templates)}
 
 
 # Include the router in the main app

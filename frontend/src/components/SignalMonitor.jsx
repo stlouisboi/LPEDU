@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
@@ -144,16 +144,42 @@ function IndicatorBar({ label, code, value, color, animate }) {
   );
 }
 
-export default function SignalMonitor({ integrity = 48, pulse = 88, alignment = 52 }) {
+export default function SignalMonitor({ carrierId }) {
   const [animate, setAnimate] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [signalData, setSignalData] = useState({ integrity: 0, pulse: 100, alignment: 0 });
+  const fetchedRef = useRef(false);
 
-  const signal = 0.4 * integrity + 0.3 * pulse + 0.3 * alignment;
-  const grade = getGrade(signal);
+  const API = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
+    if (!carrierId || fetchedRef.current) return;
+    fetchedRef.current = true;
+
+    const fetchSignal = async () => {
+      try {
+        const resp = await fetch(`${API}/api/signal/${carrierId}`, { credentials: "include" });
+        if (resp.ok) {
+          const json = await resp.json();
+          setSignalData({ integrity: json.integrity, pulse: json.pulse, alignment: json.alignment });
+        }
+      } catch { /* keep defaults */ }
+      setLoading(false);
+    };
+
+    fetchSignal();
+  }, [carrierId, API]);
+
+  // Trigger animation after data loads
+  useEffect(() => {
+    if (loading) return;
     const t = setTimeout(() => setAnimate(true), 200);
     return () => clearTimeout(t);
-  }, []);
+  }, [loading]);
+
+  const { integrity, pulse, alignment } = signalData;
+  const signal = 0.4 * integrity + 0.3 * pulse + 0.3 * alignment;
+  const grade = getGrade(signal);
 
   const indicators = [
     { label: "Documentary Integrity", code: "DOC_INTEGRITY", value: integrity, color: "#C5A059" },
@@ -169,8 +195,31 @@ export default function SignalMonitor({ integrity = 48, pulse = 88, alignment = 
         border: "1px solid rgba(197,160,89,0.14)",
         padding: "1.75rem",
         marginBottom: "2rem",
+        position: "relative",
       }}
     >
+      {/* Loading overlay */}
+      {loading && (
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "rgba(2,6,23,0.55)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          zIndex: 10,
+        }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
+            <div style={{
+              width: 28, height: 28, borderRadius: "50%",
+              border: "2px solid rgba(197,160,89,0.25)",
+              borderTopColor: "#C5A059",
+              animation: "spin 0.8s linear infinite",
+            }} />
+            <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.16em", color: "rgba(197,160,89,0.6)", textTransform: "uppercase" }}>
+              FETCHING_SIGNAL...
+            </p>
+          </div>
+        </div>
+      )}
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       {/* Header */}
       <div style={{
         display: "flex",

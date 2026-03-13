@@ -1,12 +1,25 @@
 import { Link } from "react-router-dom";
 
 const PILLARS = [
-  { letter: "R", name: "Resources", desc: "Capital runway, reserve depth, repair buffer" },
-  { letter: "E", name: "Experience", desc: "Logistics, HOS, broker contract knowledge" },
-  { letter: "A", name: "Authority Readiness", desc: "DQ file, D&A program, maintenance records" },
-  { letter: "C", name: "Commitment", desc: "Operational hours, long-term discipline index" },
-  { letter: "H", name: "Operational Discipline", desc: "Launch timeline, contingency structure" },
+  { letter: "R", name: "Resources", desc: "Capital runway, reserve depth, repair buffer", status: "PENDING_SCAN" },
+  { letter: "E", name: "Experience", desc: "Logistics, HOS, broker contract knowledge", status: "PENDING_SCAN" },
+  { letter: "A", name: "Authority Readiness", desc: "DQ file, D&A program, maintenance records", status: "PENDING_SCAN" },
+  { letter: "C", name: "Commitment", desc: "Operational hours, long-term discipline index", status: "PENDING_SCAN" },
+  { letter: "H", name: "Operational Discipline", desc: "Launch timeline, contingency structure", status: "PENDING_SCAN" },
 ];
+
+// Traffic-light color map — status → color + glow
+const TRAFFIC_LIGHT = {
+  COMPLETE:     { color: "#22c55e", glow: "rgba(34,197,94,0.55)" },
+  VERIFIED:     { color: "#22c55e", glow: "rgba(34,197,94,0.55)" },
+  GO:           { color: "#22c55e", glow: "rgba(34,197,94,0.55)" },
+  PENDING_SCAN: { color: "#F59E0B", glow: "rgba(245,158,11,0.55)" },
+  WAIT:         { color: "#F59E0B", glow: "rgba(245,158,11,0.55)" },
+  PENDING:      { color: "#F59E0B", glow: "rgba(245,158,11,0.55)" },
+  FAILED:       { color: "#f87171", glow: "rgba(248,113,113,0.55)" },
+  CRITICAL:     { color: "#f87171", glow: "rgba(248,113,113,0.55)" },
+  "NO-GO":      { color: "#f87171", glow: "rgba(248,113,113,0.55)" },
+};
 
 const METRICS = [
   { key: "MIN_COMMITMENT", value: "100%" },
@@ -21,7 +34,11 @@ const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
 const heading = "'Manrope', sans-serif";
 
-export function REACHTeaserSection({ onBegin }) {
+export function REACHTeaserSection({ onBegin, pillarStatuses }) {
+  // Merge any passed-in statuses over the defaults
+  const pillars = pillarStatuses
+    ? PILLARS.map((p, i) => ({ ...p, status: pillarStatuses[i] || p.status }))
+    : PILLARS;
   return (
     <section
       data-testid="reach-teaser-section"
@@ -89,7 +106,9 @@ export function REACHTeaserSection({ onBegin }) {
               gridTemplateColumns: "repeat(5, 1fr)",
               gap: "2px",
             }} className="pillar-grid">
-              {PILLARS.map((p) => (
+              {pillars.map((p) => {
+                const tl = TRAFFIC_LIGHT[p.status] || TRAFFIC_LIGHT.PENDING_SCAN;
+                return (
                 <div
                   key={p.letter}
                   data-testid={`reach-pillar-${p.letter.toLowerCase()}`}
@@ -144,23 +163,35 @@ export function REACHTeaserSection({ onBegin }) {
                     {p.desc}
                   </p>
 
-                  {/* Status label */}
+                  {/* Traffic-light status indicator */}
                   <div style={{
                     marginTop: "auto",
                     paddingTop: "0.625rem",
                     borderTop: "1px solid rgba(255,255,255,0.07)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.375rem",
                   }}>
+                    <div style={{
+                      width: 5,
+                      height: 5,
+                      borderRadius: "50%",
+                      background: tl.color,
+                      boxShadow: `0 0 5px ${tl.glow}`,
+                      flexShrink: 0,
+                    }} />
                     <p style={{
                       fontFamily: mono, fontSize: "0.504rem",
                       fontWeight: 700, letterSpacing: "0.14em",
-                      color: "rgba(232,93,4,0.75)",
+                      color: tl.color,
                       textTransform: "uppercase",
                     }}>
-                      STATUS: PENDING_SCAN
+                      {p.status}
                     </p>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* System Progress Monitor */}
