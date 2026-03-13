@@ -117,6 +117,9 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Submission & Verification Workflow — Standard 10 tasks auto-seeded on carrier first login; PATCH /api/tasks/{taskId}/submit (carrier), /verify (coach), /remediate (coach); TaskItem.jsx with clinical status indicators; task list in portal with optimistic UI + signal refresh; coach-only endpoints return 403 for unauthorized users (Feb 2026)
 - [x] Coach Registry — /coach-registry protected page for vince@launchpathedu.com showing cohort signal overview + submission queue with VERIFY/REMEDIATE actions (Feb 2026)
 - [x] Price anchoring — all references updated from $2,500 to $5,000 (Stripe checkout, portal CTA, TCOSection, ThreePathsSection) (Feb 2026)
+- [x] REACH Diagnostic funnel restructure — Removed full diagnostic UI from homepage; added AuthorityReadinessTestSection; created /reach-diagnostic route; updated headline copy; all internal links unified to /reach-diagnostic (Feb 2026)
+- [x] Post-payment confirmation email — MailerLite subscriber update triggered in Stripe webhook on payment_status=paid (Feb 2026)
+- [x] Knowledge Center portal cross-links — ArticlePortalBanner added to all 5 briefs; each maps to its Standard Task (DA-001, HOS-001, PM-001, INS-001, DQ-001) with OPEN OPERATOR PORTAL + BEGIN GROUND 0 CTAs (Feb 2026)
 
 ## File Reference
 - `/app/frontend/src/App.js` — Router

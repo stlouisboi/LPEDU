@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
+import ArticlePortalBanner from "../../components/ArticlePortalBanner";
 
 const AUTO_FAIL_TABLE = [
   {
@@ -1017,6 +1018,13 @@ export default function NewEntrantAuditBrief() {
         </div>
 
       </main>
+
+      {/* Portal cross-link */}
+      <ArticlePortalBanner
+        taskId="DQ-001"
+        taskName="Driver Qualification File"
+        message="A complete, auditor-ready DQ file is Standard Task DQ-001 in the LaunchPath Operating System. Operators enrolled in the Standard submit their DQ documentation for coach verification and track their Documentary Integrity score in the portal."
+      />
 
       {/* Operating Standard Library footer strip */}
       <div style={{

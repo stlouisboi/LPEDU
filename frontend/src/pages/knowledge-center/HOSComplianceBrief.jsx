@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
+import ArticlePortalBanner from "../../components/ArticlePortalBanner";
 
 const LOG_RISK_PATTERNS = [
   {
@@ -951,6 +952,13 @@ export default function HOSComplianceBrief() {
         </div>
 
       </main>
+
+      {/* Portal cross-link */}
+      <ArticlePortalBanner
+        taskId="HOS-001"
+        taskName="HOS Policy Document"
+        message="A written Hours of Service policy is Standard Task HOS-001 in the LaunchPath Operating System. Operators enrolled in the Standard document their HOS policy, submit it for coach verification, and track it as part of their Regulatory Alignment score."
+      />
 
       {/* Operating Standard Library footer strip */}
       <div style={{

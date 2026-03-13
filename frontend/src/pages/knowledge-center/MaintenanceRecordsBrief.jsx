@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
+import ArticlePortalBanner from "../../components/ArticlePortalBanner";
 
 const CHECKLIST_STEPS = [
   {
@@ -699,6 +700,13 @@ export default function MaintenanceRecordsBrief() {
         </div>
 
       </main>
+
+      {/* Portal cross-link */}
+      <ArticlePortalBanner
+        taskId="PM-001"
+        taskName="Preventive Maintenance Schedule"
+        message="A documented PM schedule is Standard Task PM-001 in the LaunchPath Operating System. Operators enrolled in the Standard submit their maintenance program for coach verification and track it as part of their Documentary Integrity score."
+      />
 
       {/* Operating Standard Library footer strip */}
       <div style={{

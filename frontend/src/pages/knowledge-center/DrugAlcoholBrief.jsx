@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
+import ArticlePortalBanner from "../../components/ArticlePortalBanner";
 
 const FAILURE_PATTERNS = [
   {
@@ -482,6 +483,13 @@ export default function DrugAlcoholBrief() {
           </div>
         </div>
       </main>
+
+      {/* Portal cross-link */}
+      <ArticlePortalBanner
+        taskId="DA-001"
+        taskName="Drug & Alcohol Program"
+        message="Installing a compliant D&A program is Standard Task DA-001 in the LaunchPath Operating System — one of three critical-priority tasks that must be completed in Week 1. Operators submit their consortium enrollment and written policy for coach verification."
+      />
 
       {/* Operating Standard Library footer strip */}
       <div style={{

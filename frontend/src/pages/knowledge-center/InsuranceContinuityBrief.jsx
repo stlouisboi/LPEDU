@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
+import ArticlePortalBanner from "../../components/ArticlePortalBanner";
 
 const RISK_PATTERNS = [
   {
@@ -524,6 +525,13 @@ export default function InsuranceContinuityBrief() {
           </div>
         </div>
       </main>
+
+      {/* Portal cross-link */}
+      <ArticlePortalBanner
+        taskId="INS-001"
+        taskName="Insurance Certificate Filed"
+        message="Filing and maintaining compliant insurance is Standard Task INS-001 in the LaunchPath Operating System. Operators enrolled in the Standard submit proof of filing for coach verification and track it as a critical-priority item in their implementation sequence."
+      />
 
       {/* Operating Standard Library footer strip */}
       <div style={{
