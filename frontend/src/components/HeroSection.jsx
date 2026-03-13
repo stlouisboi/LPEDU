@@ -71,31 +71,56 @@ export default function HeroSection() {
 
           <p style={{
             fontFamily: "'Manrope', sans-serif",
-            fontWeight: 600,
-            fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+            fontWeight: 700,
+            fontSize: "clamp(1.15rem, 2vw, 1.45rem)",
             color: "var(--text)",
-            lineHeight: 1.5,
+            lineHeight: 1.45,
             maxWidth: 560,
-            marginBottom: "1.5rem",
+            marginBottom: "1.25rem",
             letterSpacing: "-0.01em",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.25s",
           }}>
-            The first ninety days do not test ambition.<br />
-            They test operational structure.
+            You just got your authority. Now the clock is running.
           </p>
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.204rem",
+            fontSize: "1.12rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             maxWidth: 560,
-            marginBottom: "3rem",
+            marginBottom: "1.25rem",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.3s",
           }}>
-            LaunchPath installs the four compliance systems every new authority needs to survive FMCSA oversight in the first 90 days. This is not a course. It is an operating standard built around a federal audit timeline.
+            FMCSA has 12–24 months to audit your operation — your driver files, your logs, your maintenance records, your drug testing program. Most new carriers don't know what paperwork they need until an investigator shows up and tells them what's missing.
+          </p>
+
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.12rem",
+            color: "var(--text-muted)",
+            lineHeight: 1.8,
+            maxWidth: 560,
+            marginBottom: "1rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.33s",
+          }}>
+            LaunchPath installs the compliance system before the audit notice arrives.
+          </p>
+
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.008rem",
+            color: "rgba(255,255,255,0.52)",
+            lineHeight: 1.75,
+            maxWidth: 560,
+            marginBottom: "3rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.36s",
+          }}>
+            This is not a course. It's an operating standard built around a federal audit timeline. The carriers who survive the first 90 days aren't more talented. They're more prepared.
           </p>
 
           <div style={{
@@ -104,7 +129,7 @@ export default function HeroSection() {
             animationDelay: "0.48s",
           }}>
             <Link
-              to="/reach-diagnostic"
+              to="/ground-0-briefing"
               data-testid="hero-readiness-cta"
               style={{
                 display: "inline-block",
@@ -123,7 +148,7 @@ export default function HeroSection() {
               onMouseEnter={e => e.currentTarget.style.background = "var(--gold-light)"}
               onMouseLeave={e => e.currentTarget.style.background = "var(--gold-primary)"}
             >
-              Request an Authority Risk Review
+              Begin Ground 0
             </Link>
             <p style={{
               fontFamily: "'Inter', sans-serif",

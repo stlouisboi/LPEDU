@@ -11,6 +11,7 @@ import HOSComplianceBrief from "./pages/knowledge-center/HOSComplianceBrief";
 import MaintenanceRecordsBrief from "./pages/knowledge-center/MaintenanceRecordsBrief";
 import InsuranceContinuityBrief from "./pages/knowledge-center/InsuranceContinuityBrief";
 import DrugAlcoholBrief from "./pages/knowledge-center/DrugAlcoholBrief";
+import UCRRegistrationBrief from "./pages/knowledge-center/UCRRegistrationBrief";
 import AllChecklists from "./pages/knowledge-center/AllChecklists";
 import Ground0Page from "./pages/Ground0Page";
 import Ground0CompletePage from "./pages/Ground0CompletePage";
@@ -46,6 +47,7 @@ function AppRouter() {
       <Route path="/knowledge-center/maintenance-records-brief" element={<MaintenanceRecordsBrief />} />
       <Route path="/knowledge-center/insurance-continuity-brief" element={<InsuranceContinuityBrief />} />
       <Route path="/knowledge-center/drug-alcohol-program-brief" element={<DrugAlcoholBrief />} />
+      <Route path="/knowledge-center/authority-registrations-brief" element={<UCRRegistrationBrief />} />
       <Route path="/ground-0-briefing" element={<Ground0Page />} />
       <Route path="/ground-0-complete" element={<Ground0CompletePage />} />
       <Route path="/admission" element={<AdmissionPage />} />

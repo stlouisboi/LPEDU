@@ -47,6 +47,15 @@ const BRIEFS = [
     readTime: "14-minute brief",
     status: "published",
   },
+  {
+    slug: "/knowledge-center/authority-registrations-brief",
+    phase: "Ground 0 — Federal Authority Registration (UCR · BOC-3 · MCS-150)",
+    title: "Authority Registrations Brief: UCR, BOC-3, and MCS-150 Before Your First Dispatch",
+    teaser: "Three separate federal filings. One combined requirement. All of them must be active before the truck moves. This brief walks through what UCR, BOC-3, and MCS-150 actually are, what brokers and enforcement check in SAFER in real time, and the installation checklist to get all three current before dispatch.",
+    outcome: "Get all three federal registrations active, verified in SAFER, and documented in your compliance binder before your first load.",
+    readTime: "8-minute brief",
+    status: "published",
+  },
 ];
 
 export default function KnowledgeCenterIndex() {
@@ -96,7 +105,7 @@ export default function KnowledgeCenterIndex() {
           {/* Stats row */}
           <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
             {[
-              ["5", "Briefs in this series"],
+              ["6", "Briefs in this series"],
               ["8–12 min", "Average read time"],
               ["49 CFR", "Primary regulation source"],
             ].map(([val, label]) => (
@@ -139,11 +148,11 @@ export default function KnowledgeCenterIndex() {
             <h2 style={{
               fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.2rem",
               letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem",
-            }}>All 5 compliance checklists in one printable PDF</h2>
+            }}>All 6 compliance checklists in one printable PDF</h2>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)",
               lineHeight: 1.65,
-            }}>New Entrant — HOS — Drug & Alcohol — Maintenance — Insurance</p>
+            }}>New Entrant — HOS — Drug & Alcohol — Maintenance — Insurance — Authority Registrations</p>
           </div>
           <a
             href="/knowledge-center/all-checklists"
