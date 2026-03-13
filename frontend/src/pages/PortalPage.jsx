@@ -3,6 +3,7 @@ import { Lock, CheckCircle, ArrowRight, GoogleLogo, SignOut } from "@phosphor-ic
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
+import SignalMonitor from "../components/SignalMonitor";
 
 const CURRICULUM = [
   {
@@ -299,19 +300,28 @@ export default function PortalPage() {
           <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.8rem" }}>—</span>
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.784rem",
-              color: "rgba(255,255,255,0.70)",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.616rem",
+              fontWeight: 700,
+              color: "rgba(197,160,89,0.85)",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
               flex: 1,
             }}
           >
-            90-Day Compliance Operating Standard
+            SYSTEM_STATUS_MONITOR &nbsp;|&nbsp; LPOS v1.0
           </p>
           {user && (
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              <span style={{ fontSize: "0.784rem", color: "rgba(255,255,255,0.60)", fontFamily: "'Inter', sans-serif" }}>
-                {user.name || user.email}
-              </span>
+              <p style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.56rem",
+                letterSpacing: "0.12em",
+                color: "rgba(255,255,255,0.45)",
+                textTransform: "uppercase",
+              }}>
+                OPERATOR: {(user.name || user.email || "").toUpperCase().slice(0, 20)}
+              </p>
               <button
                 data-testid="portal-logout-btn"
                 onClick={handleLogout}
@@ -355,17 +365,17 @@ export default function PortalPage() {
         >
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.56rem",
               fontWeight: 700,
-              letterSpacing: "0.16em",
+              letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.75)",
+              color: "rgba(255,255,255,0.38)",
               padding: "0 1.5rem",
               marginBottom: "1.25rem",
             }}
           >
-            CURRICULUM
+            IMPLEMENTATION SEQUENCE
           </p>
 
           {CURRICULUM.map((mod) => {
@@ -626,6 +636,11 @@ export default function PortalPage() {
                   >
                     Six implementation modules. Approximately 95 minutes. No charge. This is the entry point for the LaunchPath Operating Standard.
                   </p>
+
+
+                  {/* ── Administrative Health Monitor ── */}
+                  <SignalMonitor integrity={48} pulse={88} alignment={52} />
+
 
                   {/* Implementation modules */}
                   <div
