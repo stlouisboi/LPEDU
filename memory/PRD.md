@@ -110,7 +110,8 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [ ] Knowledge Center → Portal contextual cross-links
 - [x] Homepage Final Polish — ProtectionDiagramSection (FIGURE LP-01) added to homepage, $5,000 → $2,500 price fix in ConsequenceNumberBlock (Feb 2026)
 - [x] REACH Assessment inline widget embedded in Ground 0 G0-6 module panel — full 15-question flow, GO/WAIT/NO-GO result, Risk Map, email capture, and result CTA all inline without page navigation (Feb 2026)
-- [x] LP-UI-G0-COMPLETION full implementation — Portal SYSTEM STATUS sidebar block, G0-x modules in portal, Ground 0 Next Steps banner, /admission form page with backend /api/admission endpoint, Ground0CompletePage Path A CTA wired to /admission (Feb 2026)
+- [x] LPOS v1.0 portal redesign — SYSTEM_STATUS_MONITOR header, IMPLEMENTATION SEQUENCE sidebar, SignalMonitor (circular gauge + 3 indicator bars: Doc Integrity/System Pulse/Regulatory Alignment) injected into Ground 0 dashboard (Feb 2026)
+- [x] REACH Diagnostic homepage section (REACHTeaserSection) — LPOS v1.0 clinical design: 5-column R-E-A-C-H pillar grid, STATUS: PENDING_SCAN labels, System Progress Monitor, Vector Analysis sidebar, Signal Orange CTA (Feb 2026)
 - [x] Pricing policy compliance (LP-COM-001) — $2,500 price removed from ConsequenceNumberBlock homepage; replaced with failure cost context + "The LaunchPath Standard costs less than one audit failure" (Feb 2026)
 
 ## File Reference
