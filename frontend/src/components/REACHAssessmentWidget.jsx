@@ -206,7 +206,7 @@ export default function REACHAssessmentWidget() {
   const cfg = result ? RESULT_CONFIG[result] : null;
 
   // ── Shared wrapper for all phases ─────────────────────
-  const box = { padding: "2rem 0 0.5rem" };
+  const box = { paddingTop: "2rem", paddingBottom: "0.5rem" };
 
   // ── INTRO ─────────────────────────────────────────────
   if (phase === "intro") return (
