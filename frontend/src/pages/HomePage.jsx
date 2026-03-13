@@ -2,6 +2,7 @@ import "../App.css";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import AuthorityClockSection from "../components/AuthorityClockSection";
+import PhilosophyQuoteBlock from "../components/PhilosophyQuoteBlock";
 import ConsequenceNumberBlock from "../components/ConsequenceNumberBlock";
 import AutoMethodTeaserSection from "../components/AutoMethodTeaserSection";
 import FourPillarsSection from "../components/FourPillarsSection";
@@ -17,6 +18,10 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <AuthorityClockSection />
+        <PhilosophyQuoteBlock
+          quote="Most failures in the first 90 days are not failures of commitment. They are failures of structure."
+          attribution="Vince Lawrence, Station Custodian"
+        />
         <ConsequenceNumberBlock />
         <AutoMethodTeaserSection />
         <FourPillarsSection />

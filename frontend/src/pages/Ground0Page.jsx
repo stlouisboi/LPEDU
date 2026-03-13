@@ -98,7 +98,7 @@ export default function Ground0Page() {
   };
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", background: "#F5F6F7", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: "#F5F6F7", minHeight: "100vh" }}>
       <Navbar />
 
       {/* ── Header Block ── Light background */}
@@ -107,7 +107,7 @@ export default function Ground0Page() {
           <p
             data-testid="ground0-section-label"
             style={{
-              fontFamily: "Arial, sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.728rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
@@ -121,13 +121,13 @@ export default function Ground0Page() {
 
           <h1
             style={{
-              fontFamily: "Arial, sans-serif",
+              fontFamily: "'Manrope', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3.25rem)",
               color: "#002244",
               lineHeight: 1.1,
               marginBottom: "1.5rem",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
             }}
           >
             Before admission is considered, every carrier completes Ground 0.
@@ -135,7 +135,7 @@ export default function Ground0Page() {
 
           <p
             style={{
-              fontFamily: "Arial, sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.12rem",
               color: "#444444",
               lineHeight: 1.7,
@@ -149,7 +149,7 @@ export default function Ground0Page() {
 
           <p
             style={{
-              fontFamily: "Arial, sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.008rem",
               color: "#555555",
               lineHeight: 1.9,
@@ -182,7 +182,7 @@ export default function Ground0Page() {
           >
             <p
               style={{
-                fontFamily: "Arial, sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.784rem",
                 fontWeight: 400,
                 color: "rgba(197,160,89,0.78)",
@@ -226,7 +226,7 @@ export default function Ground0Page() {
                   <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
                     <span
                       style={{
-                        fontFamily: "Arial, sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.896rem",
                         fontWeight: 700,
                         color: "#C5A059",
@@ -239,7 +239,7 @@ export default function Ground0Page() {
                     </span>
                     <span
                       style={{
-                        fontFamily: "Arial, sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontWeight: 700,
                         fontSize: "1.008rem",
                         color: isOpen ? "#FFFFFF" : "rgba(255,255,255,0.87)",
@@ -267,7 +267,7 @@ export default function Ground0Page() {
                   <div style={{ padding: "0 1.75rem 2.25rem 2.75rem" }}>
                     <p
                       style={{
-                        fontFamily: "Arial, sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.98rem",
                         color: "rgba(255,255,255,0.90)",
                         lineHeight: 1.9,
@@ -279,7 +279,7 @@ export default function Ground0Page() {
 
                     <p
                       style={{
-                        fontFamily: "Arial, sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.84rem",
                         color: "rgba(197,160,89,0.90)",
                         marginBottom: "1.5rem",
@@ -297,7 +297,7 @@ export default function Ground0Page() {
                     >
                       <p
                         style={{
-                          fontFamily: "Arial, sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "0.672rem",
                           fontWeight: 700,
                           letterSpacing: "0.16em",
@@ -310,7 +310,7 @@ export default function Ground0Page() {
                       </p>
                       <p
                         style={{
-                          fontFamily: "Arial, sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "0.98rem",
                           color: "#FFFFFF",
                           lineHeight: 1.8,
@@ -334,15 +334,28 @@ export default function Ground0Page() {
               >
                 <p
                   style={{
-                    fontFamily: "Arial, sans-serif",
+                    fontFamily: "'Manrope', sans-serif",
                     fontSize: "1.344rem",
                     color: "#FFFFFF",
                     lineHeight: 1.5,
-                    marginBottom: "2rem",
-                    fontWeight: 600,
+                    marginBottom: "0.625rem",
+                    fontWeight: 700,
+                    letterSpacing: "-0.01em",
                   }}
                 >
-                  Are you ready to find out where you stand?
+                  The Standard begins here.
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.98rem",
+                    color: "rgba(255,255,255,0.72)",
+                    lineHeight: 1.6,
+                    marginBottom: "2rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  Submit your operating email to receive your Go/No-Go assessment result and next steps.
                 </p>
 
                 <form onSubmit={handleSubmit}>
@@ -356,7 +369,7 @@ export default function Ground0Page() {
                     style={{
                       width: "100%",
                       padding: "1rem 1.25rem",
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "1.008rem",
                       background: "rgba(255,255,255,0.06)",
                       border: "1px solid rgba(255,255,255,0.18)",
@@ -373,7 +386,7 @@ export default function Ground0Page() {
                         color: "#ff6b6b",
                         fontSize: "0.896rem",
                         marginBottom: "1rem",
-                        fontFamily: "Arial, sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                       }}
                     >
                       {error}
@@ -390,7 +403,7 @@ export default function Ground0Page() {
                       background: "#C5A059",
                       color: "#002244",
                       border: "none",
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 700,
                       fontSize: "0.98rem",
                       letterSpacing: "0.08em",
@@ -407,13 +420,13 @@ export default function Ground0Page() {
                       if (!loading) e.currentTarget.style.background = "#C5A059";
                     }}
                   >
-                    {loading ? "Submitting..." : "Get My Assessment Result"}
+                    {loading ? "Submitting..." : "Receive My Go/No-Go Result"}
                   </button>
                 </form>
 
                 <p
                   style={{
-                    fontFamily: "Arial, sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.84rem",
                     color: "rgba(255,255,255,0.84)",
                     marginTop: "1.25rem",
@@ -434,7 +447,7 @@ export default function Ground0Page() {
                 <div style={{ marginBottom: "2rem" }}>
                   <p
                     style={{
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 700,
                       fontSize: "1.232rem",
                       color: "#FFFFFF",
@@ -445,7 +458,7 @@ export default function Ground0Page() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.98rem",
                       color: "rgba(255,255,255,0.88)",
                       lineHeight: 1.85,
@@ -466,7 +479,7 @@ export default function Ground0Page() {
                 <div>
                   <p
                     style={{
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 700,
                       fontSize: "0.896rem",
                       letterSpacing: "0.14em",
@@ -479,7 +492,7 @@ export default function Ground0Page() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.98rem",
                       color: "rgba(255,255,255,0.88)",
                       lineHeight: 1.85,
@@ -499,7 +512,7 @@ export default function Ground0Page() {
                       minHeight: 52,
                       background: "#C5A059",
                       color: "#002244",
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 700,
                       fontSize: "0.98rem",
                       letterSpacing: "0.08em",
@@ -518,7 +531,7 @@ export default function Ground0Page() {
 
                   <p
                     style={{
-                      fontFamily: "Arial, sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.784rem",
                       color: "rgba(255,255,255,0.75)",
                       marginTop: "1.25rem",

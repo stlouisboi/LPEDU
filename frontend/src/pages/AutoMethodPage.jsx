@@ -346,10 +346,10 @@ export default function AutoMethodPage() {
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "1rem",
           }}>
-            Find out whether your operation is ready for the LaunchPath Standard.
+            Find out whether the failure modes in the AUTO Method are active in your operation today.
           </h2>
           <p style={{ fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
-            The REACH Assessment evaluates your operation across five categories: Resources, Experience, Authority Readiness, Commitment, and Hustle Check. It takes approximately four minutes.
+            The REACH Assessment evaluates your operation across five categories: Resources, Experience, Authority Readiness, Commitment, and Operational Discipline. It takes approximately four minutes. It identifies the specific vectors — Around, Under, Through, or Over — where your authority is currently exposed.
           </p>
 
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>

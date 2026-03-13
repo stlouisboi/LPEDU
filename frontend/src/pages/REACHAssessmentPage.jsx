@@ -9,7 +9,7 @@ const CATEGORIES = [
   { key: "E", label: "Experience", full: "EXPERIENCE" },
   { key: "A", label: "Authority Readiness", full: "AUTHORITY READINESS" },
   { key: "C", label: "Commitment", full: "COMMITMENT" },
-  { key: "H", label: "Hustle Check", full: "HUSTLE CHECK" },
+  { key: "H", label: "Operational Discipline", full: "OPERATIONAL DISCIPLINE" },
 ];
 
 const QUESTIONS = [
@@ -152,7 +152,7 @@ function RiskMap({ scores, animate }) {
     { label: "Experience", val: scores.e, max: 9 },
     { label: "Authority Readiness", val: scores.a, max: 9 },
     { label: "Commitment", val: scores.c, max: 9 },
-    { label: "Hustle Check", val: scores.h, max: 6 },
+    { label: "Operational Discipline", val: scores.h, max: 6 },
   ];
 
   return (
@@ -475,7 +475,7 @@ export default function REACHAssessmentPage() {
             fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "2rem",
           }}>
-            HUSTLE CHECK — H
+            OPERATIONAL DISCIPLINE — H
           </p>
 
           <p style={{
