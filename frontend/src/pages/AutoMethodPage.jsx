@@ -82,7 +82,7 @@ export default function AutoMethodPage() {
       <div style={{ background: "#002244", padding: "100px 24px 80px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.18em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.18em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "1.5rem",
           }}>
             THE AUTO METHOD — RISK DOCTRINE
@@ -97,7 +97,7 @@ export default function AutoMethodPage() {
           <p style={{ fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 620, marginBottom: "1.5rem" }}>
             AUTO is not a checklist. It is a doctrine that maps every direction from which operational failure approaches a motor carrier authority.
           </p>
-          <p style={{ fontSize: "1.008rem", color: "var(--text-subtle)", lineHeight: 1.85, maxWidth: 600 }}>
+          <p style={{ fontSize: "1.05rem", color: "var(--text-subtle)", lineHeight: 1.85, maxWidth: 600 }}>
             Most authorities do not fail from one catastrophic mistake. They fail because risk entered from a direction that was never guarded — around the coverage, under the documentation, through the operations, or over the financial runway.
           </p>
         </div>
@@ -107,7 +107,7 @@ export default function AutoMethodPage() {
       <div style={{ padding: "80px 24px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "2rem",
           }}>
             WHAT AUTO DESCRIBES
@@ -134,10 +134,10 @@ export default function AutoMethodPage() {
                 }}>
                   {item.v}
                 </p>
-                <p style={{ fontWeight: 700, fontSize: "0.784rem", color: "#FFFFFF", letterSpacing: "0.06em", marginBottom: "0.3rem" }}>
+                <p style={{ fontWeight: 700, fontSize: "0.924rem", color: "#FFFFFF", letterSpacing: "0.06em", marginBottom: "0.3rem" }}>
                   {item.label}
                 </p>
-                <p style={{ fontSize: "0.728rem", color: "var(--text-subtle)" }}>{item.sub}</p>
+                <p style={{ fontSize: "0.875rem", color: "var(--text-subtle)" }}>{item.sub}</p>
               </div>
             ))}
           </div>
@@ -148,7 +148,7 @@ export default function AutoMethodPage() {
       <div style={{ padding: "80px 24px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "3rem",
           }}>
             THE FOUR DIRECTIONS
@@ -174,21 +174,21 @@ export default function AutoMethodPage() {
                   }}>
                     {d.vector}
                   </span>
-                  <span style={{ fontSize: "0.784rem", color: "var(--text-subtle)", letterSpacing: "0.04em" }}>
+                  <span style={{ fontSize: "0.924rem", color: "var(--text-subtle)", letterSpacing: "0.04em" }}>
                     {d.threat} — attacks {d.pillar}
                   </span>
                 </div>
-                <p style={{ fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1.5rem", maxWidth: 560 }}>
+                <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1.5rem", maxWidth: 560 }}>
                   {d.body}
                 </p>
-                <p style={{ fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "0.75rem" }}>
+                <p style={{ fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.92)", marginBottom: "0.75rem" }}>
                   FAILURE POINTS
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {d.sins.map((s, i) => (
                     <li key={i} style={{ display: "flex", gap: "0.75rem", marginBottom: "0.4rem", alignItems: "flex-start" }}>
-                      <span style={{ color: "rgba(197,160,89,0.5)", marginTop: "0.15rem", flexShrink: 0 }}>—</span>
-                      <span style={{ fontSize: "0.896rem", color: "var(--text-subtle)", lineHeight: 1.6 }}>{s}</span>
+                      <span style={{ color: "rgba(197,160,89,0.88)", marginTop: "0.15rem", flexShrink: 0 }}>—</span>
+                      <span style={{ fontSize: "1rem", color: "var(--text-subtle)", lineHeight: 1.6 }}>{s}</span>
                     </li>
                   ))}
                 </ul>
@@ -202,7 +202,7 @@ export default function AutoMethodPage() {
       <div style={{ background: "#002244", padding: "80px 24px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "0.75rem",
           }}>
             THE THREE-LAYER SYSTEM
@@ -214,7 +214,7 @@ export default function AutoMethodPage() {
           }}>
             AUTO does not stand alone.
           </h2>
-          <p style={{ fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.85, maxWidth: 580, marginBottom: "3rem" }}>
+          <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.85, maxWidth: 580, marginBottom: "3rem" }}>
             The AUTO model describes attack vectors. The Four Pillars describe what is being protected. The 16 Deadly Sins describe what actually fails. Three layers. One system.
           </p>
 
@@ -226,16 +226,16 @@ export default function AutoMethodPage() {
             ].map((col) => (
               <div key={col.label} style={{ background: "#002244", padding: "2rem 1.5rem" }}>
                 <p style={{
-                  fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.14em",
+                  fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.14em",
                   textTransform: "uppercase", color: "#C5A059", marginBottom: "0.4rem",
                 }}>
                   {col.label}
                 </p>
-                <p style={{ fontSize: "0.784rem", color: "var(--text-subtle)", marginBottom: "1.25rem", fontStyle: "italic" }}>
+                <p style={{ fontSize: "0.924rem", color: "var(--text-subtle)", marginBottom: "1.25rem", fontStyle: "italic" }}>
                   {col.role}
                 </p>
                 {col.items.map((item, i) => (
-                  <p key={i} style={{ fontSize: "0.896rem", color: "var(--text-muted)", marginBottom: "0.4rem", lineHeight: 1.5 }}>
+                  <p key={i} style={{ fontSize: "1rem", color: "var(--text-muted)", marginBottom: "0.4rem", lineHeight: 1.5 }}>
                     {item}
                   </p>
                 ))}
@@ -249,7 +249,7 @@ export default function AutoMethodPage() {
       <div style={{ padding: "80px 24px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "2.5rem",
           }}>
             THE FOUR PILLARS — WHAT MUST BE PROTECTED
@@ -257,10 +257,10 @@ export default function AutoMethodPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1px", background: "rgba(255,255,255,0.06)" }} className="pillars-grid">
             {PILLARS.map((p) => (
               <div key={p.label} style={{ background: "#001A33", padding: "2rem" }}>
-                <p style={{ fontWeight: 700, fontSize: "0.98rem", color: "#FFFFFF", marginBottom: "0.6rem" }}>
+                <p style={{ fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF", marginBottom: "0.6rem" }}>
                   {p.label}
                 </p>
-                <p style={{ fontSize: "0.896rem", color: "var(--text-subtle)", lineHeight: 1.7 }}>{p.desc}</p>
+                <p style={{ fontSize: "1rem", color: "var(--text-subtle)", lineHeight: 1.7 }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -271,7 +271,7 @@ export default function AutoMethodPage() {
       <div style={{ padding: "80px 24px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "0.75rem",
           }}>
             GUARD INSTALLATION — THE RESPONSE
@@ -283,7 +283,7 @@ export default function AutoMethodPage() {
           }}>
             Understanding the attack vectors is not enough. Guards must be installed.
           </h2>
-          <p style={{ fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.85, maxWidth: 580, marginBottom: "3rem" }}>
+          <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.85, maxWidth: 580, marginBottom: "3rem" }}>
             LaunchPath installs four operational guard systems that protect the Four Pillars against AUTO attack vectors. Each guard directly blocks specific sins before they can enter the authority.
           </p>
 
@@ -299,8 +299,8 @@ export default function AutoMethodPage() {
                   flexWrap: "wrap", gap: "0.5rem",
                 }}
               >
-                <span style={{ fontWeight: 700, fontSize: "1.008rem", color: "#C5A059" }}>{g.name}</span>
-                <span style={{ fontSize: "0.896rem", color: "var(--text-subtle)" }}>{g.stops}</span>
+                <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#C5A059" }}>{g.name}</span>
+                <span style={{ fontSize: "1rem", color: "var(--text-subtle)" }}>{g.stops}</span>
               </div>
             ))}
           </div>
@@ -336,7 +336,7 @@ export default function AutoMethodPage() {
       <div style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: 640, margin: "0 auto" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "1.25rem",
           }}>
             NEXT STEP
@@ -348,7 +348,7 @@ export default function AutoMethodPage() {
           }}>
             Find out whether the failure modes in the AUTO Method are active in your operation today.
           </h2>
-          <p style={{ fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
+          <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
             The REACH Assessment evaluates your operation across five categories: Resources, Experience, Authority Readiness, Commitment, and Operational Discipline. It takes approximately four minutes. It identifies the specific vectors — Around, Under, Through, or Over — where your authority is currently exposed.
           </p>
 
@@ -359,7 +359,7 @@ export default function AutoMethodPage() {
               style={{
                 display: "inline-block", minHeight: 52, background: "#C5A059",
                 color: "#002244", fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                fontSize: "0.98rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2rem", lineHeight: "32px",
                 transition: "background 0.2s",
               }}
@@ -374,7 +374,7 @@ export default function AutoMethodPage() {
               style={{
                 display: "inline-block", minHeight: 52, background: "transparent",
                 color: "#C5A059", fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                fontSize: "0.98rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2rem", lineHeight: "32px",
                 border: "1px solid rgba(197,160,89,0.4)", transition: "all 0.2s",
               }}
