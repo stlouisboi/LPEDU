@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RemediationProtocolBlock from '../components/RemediationProtocolBlock';
+import SignalMonitor from '../components/SignalMonitor';
 import { COURSE_MODULES } from '../constants';
 import { Link } from 'react-router-dom';
 import { 
@@ -132,24 +133,31 @@ const OperatorPortal: React.FC = () => {
   ];
 
   return (
-    <div className="bg-primary-light dark:bg-primary-dark min-h-screen">
+    <div className="bg-primary-light dark:bg-primary-dark min-h-screen font-sans selection:bg-signal-gold selection:text-authority-blue">
       <RemediationProtocolBlock />
 
-      <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 gap-6">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-black text-authority-blue dark:text-white uppercase tracking-tight">
+      <div className="max-w-7xl mx-auto px-6 py-20 space-y-16">
+        
+        {/* LPOS v1.0 HEADER */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div className="space-y-2">
+            <div className="inline-flex items-center space-x-3 bg-authority-blue/5 border border-authority-blue/10 px-4 py-1.5 rounded-full">
+              <span className="flex h-2 w-2 rounded-full bg-signal-gold animate-pulse"></span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-authority-blue dark:text-signal-gold">LPOS v1.0 // OPERATIONAL_STATE: STABLE</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-black text-authority-blue dark:text-white uppercase tracking-tighter leading-none">
               Operator Dashboard {userProfile?.displayName ? `// ${userProfile.displayName}` : ''}
             </h1>
-            <p className="text-text-muted mt-1 uppercase text-[10px] font-black tracking-widest">Registry ID: LP-AUTH-{userProfile?.uid.slice(0,4).toUpperCase() || '7729'} // SECURE_UPLINK_STABLE</p>
-          </div>
-          <div className="flex items-center space-x-3 bg-white dark:bg-surface-dark px-5 py-3 border border-slate-100 dark:border-border-dark rounded-2xl shadow-sm">
-            <Shield size={16} className="text-signal-gold" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-authority-blue dark:text-white">{userProfile?.role.toUpperCase()} Authority Standard</span>
+            <p className="text-text-muted uppercase text-[11px] font-black tracking-[0.2em]">Registry ID: LP-AUTH-{userProfile?.uid.slice(0,4).toUpperCase() || '7729'} // {userProfile?.role.toUpperCase()} AUTHORITY STANDARD</p>
           </div>
         </div>
 
-        <section className="mb-20">
+        {/* THE ADMINISTRATIVE SIGNAL (Build 6A/6B) */}
+        <section>
+          <SignalMonitor carrierId={currentUser?.uid || ''} />
+        </section>
+
+        <section>
           <div className="bg-white dark:bg-surface-dark rounded-[3rem] p-10 border border-slate-100 dark:border-border-dark shadow-sm overflow-hidden relative">
             <div className="absolute top-0 right-0 p-8 opacity-5 text-authority-blue">
                <Calendar size={120} />
