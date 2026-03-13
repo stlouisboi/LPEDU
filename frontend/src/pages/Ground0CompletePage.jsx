@@ -19,7 +19,7 @@ const PATHS = [
     ],
     best_for: "Operators ready to install the full system with guided implementation.",
     cta: "Request Admission",
-    href: "/portal",
+    href: "/admission",
     external: false,
     priceLabel: "Admission-based",
     borderTop: "#C5A059",

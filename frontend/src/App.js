@@ -14,6 +14,7 @@ import DrugAlcoholBrief from "./pages/knowledge-center/DrugAlcoholBrief";
 import AllChecklists from "./pages/knowledge-center/AllChecklists";
 import Ground0Page from "./pages/Ground0Page";
 import Ground0CompletePage from "./pages/Ground0CompletePage";
+import AdmissionPage from "./pages/AdmissionPage";
 import PortalPage from "./pages/PortalPage";
 import REACHAssessmentPage from "./pages/REACHAssessmentPage";
 import AutoMethodPage from "./pages/AutoMethodPage";
@@ -46,6 +47,7 @@ function AppRouter() {
       <Route path="/knowledge-center/drug-alcohol-program-brief" element={<DrugAlcoholBrief />} />
       <Route path="/ground-0-briefing" element={<Ground0Page />} />
       <Route path="/ground-0-complete" element={<Ground0CompletePage />} />
+      <Route path="/admission" element={<AdmissionPage />} />
       <Route path="/portal" element={<PortalPage />} />
       <Route path="/reach-assessment" element={<REACHAssessmentPage />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />

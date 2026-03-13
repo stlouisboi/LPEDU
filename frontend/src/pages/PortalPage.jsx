@@ -65,12 +65,12 @@ const CURRICULUM = [
 ];
 
 const GROUND0_MODULES = [
-  { number: "0.1", title: "Welcome to LaunchPath", duration: "8 min" },
-  { number: "0.2", title: "The Four Pillars of Survival", duration: "15 min" },
-  { number: "0.3", title: "Lane Selection", duration: "18 min" },
-  { number: "0.4", title: "Personal Readiness Check", duration: "20 min" },
-  { number: "0.5", title: "Risk Tolerance Assessment", duration: "15 min" },
-  { number: "0.6", title: "The Go/No-Go Decision", duration: "14 min" },
+  { number: "G0-1", title: "The Reality of Motor Carrier Authority", duration: "~12 min" },
+  { number: "G0-2", title: "The 90-Day Survival Window", duration: "~15 min" },
+  { number: "G0-3", title: "The AUTO Risk Model", duration: "~18 min" },
+  { number: "G0-4", title: "The Four Pillars of Survival", duration: "~14 min" },
+  { number: "G0-5", title: "The 16 Deadly Sins", duration: "~20 min" },
+  { number: "G0-6", title: "The GO / WAIT / NO-GO Decision", duration: "~16 min" },
 ];
 
 export default function PortalPage() {
@@ -424,6 +424,115 @@ export default function PortalPage() {
               </button>
             );
           })}
+
+          {/* ── SYSTEM STATUS block ── */}
+          <div
+            data-testid="system-status-block"
+            style={{
+              margin: "1.5rem 1rem 0",
+              borderTop: "1px solid rgba(255,255,255,0.08)",
+              paddingTop: "1.5rem",
+              paddingBottom: "0.5rem",
+            }}
+          >
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.616rem",
+              fontWeight: 700,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "rgba(197,160,89,0.85)",
+              marginBottom: "0.25rem",
+              padding: "0 0.5rem",
+            }}>
+              SYSTEM STATUS
+            </p>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.56rem",
+              letterSpacing: "0.1em",
+              color: "rgba(255,255,255,0.35)",
+              marginBottom: "1rem",
+              padding: "0 0.5rem",
+            }}>
+              LP-MOD-G0
+            </p>
+
+            <div style={{ padding: "0 0.5rem", marginBottom: "0.75rem" }}>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.784rem",
+                color: "rgba(255,255,255,0.80)",
+                marginBottom: "0.5rem",
+              }}>
+                Ground 0 Installation
+              </p>
+              {/* Full progress bar */}
+              <div style={{ background: "rgba(255,255,255,0.08)", height: 4, marginBottom: "0.4rem" }}>
+                <div style={{ background: "#22c55e", height: "100%", width: "100%" }} />
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.56rem",
+                  letterSpacing: "0.1em",
+                  color: "rgba(34,197,94,0.85)",
+                }}>
+                  Complete ✓
+                </p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.616rem",
+                  color: "rgba(255,255,255,0.4)",
+                }}>
+                  6 / 6
+                </p>
+              </div>
+            </div>
+
+            <div style={{ padding: "0.625rem 0.5rem", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.672rem",
+                fontWeight: 600,
+                color: "rgba(255,255,255,0.55)",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                marginBottom: "0.25rem",
+              }}>
+                Status
+              </p>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.784rem",
+                color: "rgba(255,255,255,0.80)",
+                marginBottom: "0.875rem",
+              }}>
+                Ready for Next Phase
+              </p>
+              <a
+                href="/ground-0-complete"
+                data-testid="sidebar-view-options-btn"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.375rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.784rem",
+                  fontWeight: 600,
+                  color: "#C5A059",
+                  textDecoration: "none",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  transition: "opacity 0.15s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                View Options <ArrowRight size={11} />
+              </a>
+            </div>
+          </div>
         </aside>
 
         {/* ── Main Content ── */}
@@ -490,7 +599,7 @@ export default function PortalPage() {
                       marginBottom: "1.25rem",
                     }}
                   >
-                    GROUND 0 — THE WISDOM MODULE
+                    LP-MOD-G0 | GROUND 0 — FREE ACCESS
                   </p>
 
                   <h1
@@ -503,7 +612,7 @@ export default function PortalPage() {
                       letterSpacing: "-0.02em",
                     }}
                   >
-                    The Wisdom Module
+                    Ground 0 Orientation
                   </h1>
 
                   <p
@@ -515,8 +624,7 @@ export default function PortalPage() {
                       marginBottom: "2.5rem",
                     }}
                   >
-                    Ground 0 is the foundation of the LaunchPath Standard. Six implementation modules. Approximately
-                    90 minutes. No charge.
+                    Six implementation modules. Approximately 95 minutes. No charge. This is the entry point for the LaunchPath Operating Standard.
                   </p>
 
                   {/* Implementation modules */}
@@ -551,7 +659,7 @@ export default function PortalPage() {
                               minWidth: 28,
                             }}
                           >
-                            {l.number}
+                            {m.number}
                           </span>
                           <span
                             style={{
@@ -560,7 +668,7 @@ export default function PortalPage() {
                               color: "rgba(255,255,255,0.93)",
                             }}
                           >
-                            {l.title}
+                            {m.title}
                           </span>
                         </div>
                         <span
@@ -570,7 +678,7 @@ export default function PortalPage() {
                             color: "rgba(255,255,255,0.78)",
                           }}
                         >
-                          {l.duration}
+                          {m.duration}
                         </span>
                       </div>
                     ))}
@@ -578,6 +686,7 @@ export default function PortalPage() {
 
                   <a
                     href="/ground-0-briefing"
+                    data-testid="go-to-ground0-btn"
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -603,6 +712,68 @@ export default function PortalPage() {
                   >
                     Go to Ground 0 Briefing <ArrowRight size={14} />
                   </a>
+
+                  {/* ── Ground 0 Complete — Next Steps banner ── */}
+                  <div
+                    data-testid="g0-next-steps-banner"
+                    style={{
+                      marginTop: "2.5rem",
+                      borderTop: "1px solid rgba(255,255,255,0.08)",
+                      paddingTop: "2rem",
+                    }}
+                  >
+                    <div style={{
+                      background: "rgba(34,197,94,0.06)",
+                      border: "1px solid rgba(34,197,94,0.18)",
+                      padding: "1.5rem",
+                      maxWidth: 520,
+                    }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.875rem" }}>
+                        <CheckCircle size={16} color="#22c55e" weight="bold" />
+                        <p style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: "0.616rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.16em",
+                          textTransform: "uppercase",
+                          color: "rgba(34,197,94,0.85)",
+                          margin: 0,
+                        }}>
+                          Ground 0 Complete — Your Next Step
+                        </p>
+                      </div>
+                      <p style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.875rem",
+                        color: "rgba(255,255,255,0.78)",
+                        lineHeight: 1.7,
+                        marginBottom: "1.25rem",
+                      }}>
+                        You have completed the orientation phase. Three paths forward are available based on your operational situation.
+                      </p>
+                      <a
+                        href="/ground-0-complete"
+                        data-testid="g0-view-options-btn"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.4rem",
+                          fontFamily: "'Inter', sans-serif",
+                          fontWeight: 600,
+                          fontSize: "0.784rem",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                          color: "#C5A059",
+                          textDecoration: "none",
+                          transition: "opacity 0.15s",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+                        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                      >
+                        View Your Options <ArrowRight size={12} />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               )}
 

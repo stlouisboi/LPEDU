@@ -239,6 +239,41 @@ async def submit_reach(data: REACHSubmit):
     return {"ok": True, "result": data.result}
 
 
+# ── Admission Request ─────────────────────────────────────
+class AdmissionSubmit(BaseModel):
+    name: str
+    email: EmailStr
+    usdot_number: str
+    cohort_preference: str
+    message: Optional[str] = None
+
+@api_router.post("/admission")
+async def submit_admission(data: AdmissionSubmit):
+    payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "name": data.name,
+            "lead_source": "admission_request",
+            "usdot_number": data.usdot_number,
+            "cohort_preference": data.cohort_preference,
+            "admission_message": data.message or "",
+            "admission_requested": "true",
+        },
+    }
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+    if resp.status_code not in (200, 201):
+        logger.error(f"MailerLite admission error {resp.status_code}: {resp.text}")
+        raise HTTPException(status_code=502, detail="Could not save submission.")
+    return {"ok": True}
+
+
 # ── Ground 0 ─────────────────────────────────────────────
 class Ground0Submit(BaseModel):
     email: EmailStr
