@@ -6,7 +6,7 @@ const sans = "'Inter', sans-serif";
 /**
  * ArticlePortalBanner
  * Contextual cross-link shown at the bottom of each Knowledge Center brief.
- * Maps the article topic to its corresponding Standard 10 task in the portal.
+ * Maps the article topic to its corresponding implementation sequence task in the portal.
  *
  * Props:
  *   taskId    — e.g. "DA-001"

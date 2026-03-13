@@ -26,7 +26,7 @@ MAILERLITE_URL = "https://connect.mailerlite.com/api/subscribers"
 STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY', '')
 COACH_EMAIL = "vince@launchpathedu.com"
 
-# ── Standard 10 Tasks Definition ─────────────────────────────
+# ── Implementation Sequence Tasks Definition ─────────────────────────────
 STANDARD_10_TASKS = [
     {"taskId": "DQ-001",     "name": "Driver Qualification File",         "category": "Documentation", "priority": "critical", "weekOffset": 1,  "description": "Compile complete DQ file per FMCSA §391. Include medical certificate, MVR, CDL copy, employment application, and prior employer verification."},
     {"taskId": "DA-001",     "name": "Drug & Alcohol Program",            "category": "Compliance",    "priority": "critical", "weekOffset": 1,  "description": "Enroll in FMCSA-compliant C/TPA consortium. Document designation and obtain written D&A testing policy."},
@@ -41,7 +41,7 @@ STANDARD_10_TASKS = [
 ]
 
 async def seed_standard_tasks_for_carrier(carrier_id: str):
-    """Auto-seed the Standard 10 compliance tasks for a new carrier."""
+    """Auto-seed the implementation sequence compliance tasks for a new carrier."""
     current_week = date.today().isocalendar()[1]
     now_iso = datetime.now(timezone.utc).isoformat()
     tasks = []
@@ -563,7 +563,7 @@ async def create_auth_session(session_id: str, response: Response):
         upsert=True,
     )
 
-    # Auto-seed Standard 10 tasks for new carriers (first-time login)
+    # Auto-seed implementation sequence tasks for new carriers (first-time login)
     existing_tasks = await db.tasks.count_documents({"carrierId": user_id})
     if existing_tasks == 0:
         await seed_standard_tasks_for_carrier(user_id)
@@ -712,7 +712,7 @@ async def seed_carrier_data(carrierId: str):
         upsert=True,
     )
 
-    # Replace tasks for this carrier — use full Standard 10 definitions
+    # Replace tasks for this carrier — use full implementation sequence definitions
     await db.tasks.delete_many({"carrierId": carrierId})
     current_week = date.today().isocalendar()[1]
     now_iso = datetime.now(timezone.utc).isoformat()

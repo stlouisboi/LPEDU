@@ -675,7 +675,7 @@ export default function PortalPage() {
                   {/* ── Administrative Health Monitor ── */}
                   <SignalMonitor carrierId={user?.user_id} refreshKey={signalRefreshKey} />
 
-                  {/* ── IMPLEMENTATION_SEQUENCE — Standard 10 Tasks ── */}
+                  {/* ── IMPLEMENTATION_SEQUENCE — Carrier Tasks ── */}
                   <div style={{ marginBottom: "2rem" }}>
                     <div style={{
                       display: "flex", alignItems: "center", gap: "0.875rem",
@@ -687,7 +687,7 @@ export default function PortalPage() {
                         fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em",
                         color: "rgba(197,160,89,0.85)", textTransform: "uppercase", margin: 0,
                       }}>
-                        IMPLEMENTATION_SEQUENCE — STANDARD 10
+                        IMPLEMENTATION_SEQUENCE
                       </p>
                       <div style={{ flex: 1, height: 1, background: "rgba(197,160,89,0.12)" }} />
                       {tasks.length > 0 && (
