@@ -8,6 +8,7 @@ const FRAMEWORK_LINKS = [
   { label: "AUTO Method", href: "/auto-method" },
   { label: "LaunchPath Standard", href: "/operating-standard" },
   { label: "REACH Assessment", href: "/reach-assessment" },
+  { label: "Partners", href: "/partners" },
 ];
 
 // Right zone: Access pages

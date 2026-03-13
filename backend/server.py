@@ -51,6 +51,13 @@ class ContactForm(BaseModel):
     inquiryType: Optional[str] = None
     message: Optional[str] = None
 
+class PartnerInquiryForm(BaseModel):
+    name: str
+    email: EmailStr
+    company: str
+    role: str
+    message: Optional[str] = None
+
 
 # ── Routes ──────────────────────────────────────────────
 @api_router.get("/")
@@ -112,6 +119,42 @@ async def submit_contact(form: ContactForm):
     if resp.status_code not in (200, 201):
         logger.error(f"MailerLite error {resp.status_code}: {resp.text}")
         raise HTTPException(status_code=502, detail="Could not save contact. Please try again.")
+
+    return {"ok": True}
+
+
+@api_router.post("/partners")
+async def submit_partner_inquiry(form: PartnerInquiryForm):
+    parts = form.name.strip().split(" ", 1)
+    first = parts[0]
+    last = parts[1] if len(parts) > 1 else ""
+
+    payload = {
+        "email": form.email,
+        "status": "active",
+        "fields": {
+            "name": first,
+            "last_name": last,
+            "company": form.company,
+            "lead_source": "partner_inquiry",
+            "partner_role": form.role,
+        },
+    }
+    if form.message:
+        payload["fields"]["contact_message"] = form.message[:1000]
+
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+
+    if resp.status_code not in (200, 201):
+        logger.error(f"MailerLite partner error {resp.status_code}: {resp.text}")
+        raise HTTPException(status_code=502, detail="Could not submit inquiry. Please try again.")
 
     return {"ok": True}
 

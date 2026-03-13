@@ -19,6 +19,7 @@ import AutoMethodPage from "./pages/AutoMethodPage";
 import AuthCallback from "./components/AuthCallback";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
+import PartnersPage from "./pages/PartnersPage";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 function AppRouter() {
@@ -47,6 +48,7 @@ function AppRouter() {
       <Route path="/reach-assessment" element={<REACHAssessmentPage />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
+          <Route path="/partners" element={<PartnersPage />} />
     </Routes>
   );
 }
