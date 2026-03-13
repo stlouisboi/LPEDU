@@ -84,7 +84,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             fontFamily: sans, fontSize: "clamp(0.925rem, 1.5vw, 1.05rem)",
             color: "rgba(255,255,255,0.62)", lineHeight: 1.7, maxWidth: 480,
           }}>
-            A clinical stress test of operational readiness. Not a quiz.
+            Test whether your operation can survive the first 90 days after receiving trucking authority.
             A threshold measurement for LaunchPath Standard admission.
           </p>
         </div>

@@ -7,7 +7,7 @@ import ConsequenceNumberBlock from "../components/ConsequenceNumberBlock";
 import AutoMethodTeaserSection from "../components/AutoMethodTeaserSection";
 import ProtectionDiagramSection from "../components/ProtectionDiagramSection";
 import FourPillarsSection from "../components/FourPillarsSection";
-import { REACHTeaserSection } from "../components/REACHTeaserSection";
+import AuthorityReadinessTestSection from "../components/AuthorityReadinessTestSection";
 import RecoveryPathBlock from "../components/RecoveryPathBlock";
 import ComplianceMapTeaser from "../components/ComplianceMapTeaser";
 import VinceCTASection from "../components/VinceCTASection";
@@ -28,7 +28,7 @@ export default function HomePage() {
         <AutoMethodTeaserSection />
         <ProtectionDiagramSection />
         <FourPillarsSection />
-        <REACHTeaserSection />
+        <AuthorityReadinessTestSection />
         <RecoveryPathBlock />
         <ComplianceMapTeaser />
         <VinceCTASection />

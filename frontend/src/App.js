@@ -52,6 +52,7 @@ function AppRouter() {
       <Route path="/portal" element={<PortalPage />} />
       <Route path="/coach-registry" element={<CoachRegistryPage />} />
       <Route path="/reach-assessment" element={<REACHAssessmentPage />} />
+      <Route path="/reach-diagnostic" element={<REACHAssessmentPage />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
           <Route path="/partners" element={<PartnersPage />} />
