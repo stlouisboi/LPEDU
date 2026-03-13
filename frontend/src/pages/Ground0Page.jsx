@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import REACHAssessmentWidget from "../components/REACHAssessmentWidget";
@@ -69,20 +70,20 @@ export default function Ground0Page() {
   const [error, setError] = useState("");
   const [showReachWidget, setShowReachWidget] = useState(false);
 
+  const navigate = useNavigate();
   const API = process.env.REACT_APP_BACKEND_URL;
 
-  // Called when REACH widget captures operator email — auto-submits Ground 0 form
+  // Called when REACH widget captures operator email — submits Ground 0 + redirects to completion
   const handleReachEmailCaptured = async (capturedEmail) => {
-    if (submitted) return; // already submitted from bottom form
+    if (submitted) return;
     try {
       await fetch(`${API}/api/ground0`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: capturedEmail }),
       });
-    } catch { /* still confirm */ }
-    setEmail(capturedEmail);
-    setSubmitted(true);
+    } catch { /* still navigate */ }
+    navigate("/ground-0-complete");
   };
 
   const handleSubmit = async (e) => {
@@ -97,10 +98,9 @@ export default function Ground0Page() {
         body: JSON.stringify({ email }),
       });
       if (!resp.ok) throw new Error("Submission failed");
-      setSubmitted(true);
+      navigate("/ground-0-complete");
     } catch {
       setError("Something went wrong. Please try again.");
-    } finally {
       setLoading(false);
     }
   };
