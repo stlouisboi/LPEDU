@@ -24,6 +24,40 @@ db = client[os.environ['DB_NAME']]
 MAILERLITE_API_TOKEN = os.environ.get('MAILERLITE_API_TOKEN', '')
 MAILERLITE_URL = "https://connect.mailerlite.com/api/subscribers"
 STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY', '')
+COACH_EMAIL = "vince@launchpathedu.com"
+
+# ── Standard 10 Tasks Definition ─────────────────────────────
+STANDARD_10_TASKS = [
+    {"taskId": "DQ-001",     "name": "Driver Qualification File",         "category": "Documentation", "priority": "critical", "weekOffset": 1,  "description": "Compile complete DQ file per FMCSA §391. Include medical certificate, MVR, CDL copy, employment application, and prior employer verification."},
+    {"taskId": "DA-001",     "name": "Drug & Alcohol Program",            "category": "Compliance",    "priority": "critical", "weekOffset": 1,  "description": "Enroll in FMCSA-compliant C/TPA consortium. Document designation and obtain written D&A testing policy."},
+    {"taskId": "INS-001",    "name": "Insurance Certificate Filed",       "category": "Authority",     "priority": "critical", "weekOffset": 1,  "description": "File Form H with FMCSA. Minimum $750K liability for general freight. Confirm MCS-90 endorsement on policy."},
+    {"taskId": "UCR-001",    "name": "UCR Registration",                  "category": "Authority",     "priority": "high",     "weekOffset": 2,  "description": "Complete Unified Carrier Registration for the current operating year. File in base state before operations begin."},
+    {"taskId": "BOC3-001",   "name": "BOC-3 Process Agent Filed",         "category": "Authority",     "priority": "high",     "weekOffset": 2,  "description": "Designate process agents in all states of operation via a registered BOC-3 service. File with FMCSA."},
+    {"taskId": "MCS150-001", "name": "MCS-150 Update Filed",              "category": "Authority",     "priority": "high",     "weekOffset": 2,  "description": "File or update USDOT biennial update (MCS-150). Required to maintain active operating authority."},
+    {"taskId": "ELD-001",    "name": "ELD Provider Configured",           "category": "Operations",    "priority": "high",     "weekOffset": 3,  "description": "Configure and test FMCSA-registered ELD in each CMV. Document provider name, model, and registration number."},
+    {"taskId": "IFTA-001",   "name": "IFTA Registration",                 "category": "Compliance",    "priority": "medium",   "weekOffset": 3,  "description": "Register for International Fuel Tax Agreement in base jurisdiction. Obtain IFTA license and decals for each CMV."},
+    {"taskId": "PM-001",     "name": "Preventive Maintenance Schedule",   "category": "Operations",    "priority": "medium",   "weekOffset": 4,  "description": "Establish documented PM schedule per FMCSA §396. Include oil changes, brake inspections, and annual vehicle inspection intervals."},
+    {"taskId": "HOS-001",    "name": "HOS Policy Document",               "category": "Compliance",    "priority": "medium",   "weekOffset": 4,  "description": "Create written Hours of Service policy. Document driver duties, 60/70-hour rules, and break requirements per 49 CFR Part 395."},
+]
+
+async def seed_standard_tasks_for_carrier(carrier_id: str):
+    """Auto-seed the Standard 10 compliance tasks for a new carrier."""
+    current_week = date.today().isocalendar()[1]
+    now_iso = datetime.now(timezone.utc).isoformat()
+    tasks = []
+    for t in STANDARD_10_TASKS:
+        tasks.append({
+            "carrierId": carrier_id,
+            "taskId": t["taskId"],
+            "name": t["name"],
+            "category": t["category"],
+            "priority": t["priority"],
+            "description": t["description"],
+            "status": "pending",
+            "assignedWeek": current_week + t["weekOffset"] - 1,
+            "createdAt": now_iso,
+        })
+    await db.tasks.insert_many(tasks)
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -356,7 +390,7 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
     success_url = f"{data.origin_url}/portal?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{data.origin_url}/portal"
     req = CheckoutSessionRequest(
-        amount=2500.00,
+        amount=5000.00,
         currency="usd",
         success_url=success_url,
         cancel_url=cancel_url,
@@ -366,7 +400,7 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
     await db.payment_transactions.insert_one({
         "session_id": session.session_id,
         "user_id": user_id,
-        "amount": 2500.00,
+        "amount": 5000.00,
         "currency": "usd",
         "payment_status": "pending",
         "status": "initiated",
@@ -503,6 +537,20 @@ async def create_auth_session(session_id: str, response: Response):
         upsert=True,
     )
 
+    # Auto-seed Standard 10 tasks for new carriers (first-time login)
+    existing_tasks = await db.tasks.count_documents({"carrierId": user_id})
+    if existing_tasks == 0:
+        await seed_standard_tasks_for_carrier(user_id)
+        await db.carrierProfiles.update_one(
+            {"carrierId": user_id},
+            {"$set": {
+                "carrierId": user_id,
+                "lastActiveAt": datetime.now(timezone.utc).isoformat(),
+                "createdAt": datetime.now(timezone.utc).isoformat(),
+            }},
+            upsert=True,
+        )
+
     response.set_cookie(
         "session_token",
         session_token,
@@ -598,7 +646,7 @@ async def get_carrier_signal(carrierId: str):
     all_tasks = await db.tasks.find({"carrierId": carrierId}, {"_id": 0}).to_list(1000)
     if all_tasks:
         total = len(all_tasks)
-        verified = sum(1 for t in all_tasks if t.get("status") == "Verified")
+        verified = sum(1 for t in all_tasks if t.get("status", "").lower() == "verified")
         integrity = round((verified / total) * 100)
     else:
         integrity = 0
@@ -608,7 +656,7 @@ async def get_carrier_signal(carrierId: str):
     week_tasks = [t for t in all_tasks if t.get("assignedWeek") == current_week]
     if week_tasks:
         total_week = len(week_tasks)
-        verified_week = sum(1 for t in week_tasks if t.get("status") == "Verified")
+        verified_week = sum(1 for t in week_tasks if t.get("status", "").lower() == "verified")
         alignment = round((verified_week / total_week) * 100)
     else:
         alignment = 0
@@ -628,9 +676,6 @@ async def get_carrier_signal(carrierId: str):
 @api_router.post("/signal/seed/{carrierId}")
 async def seed_carrier_data(carrierId: str):
     """Seed realistic mock data for a carrier — for testing and demo purposes."""
-    current_week = date.today().isocalendar()[1]
-
-    # Upsert carrier profile — set lastActiveAt to 1 day ago
     await db.carrierProfiles.update_one(
         {"carrierId": carrierId},
         {"$set": {
@@ -641,26 +686,181 @@ async def seed_carrier_data(carrierId: str):
         upsert=True,
     )
 
-    # Replace tasks for this carrier
+    # Replace tasks for this carrier — use full Standard 10 definitions
     await db.tasks.delete_many({"carrierId": carrierId})
-    task_templates = [
-        {"taskId": "DQ-001",    "name": "Driver Qualification File",         "status": "Verified", "assignedWeek": current_week},
-        {"taskId": "DA-001",    "name": "Drug & Alcohol Program Enrollment", "status": "Verified", "assignedWeek": current_week},
-        {"taskId": "INS-001",   "name": "Insurance Certificate Filed",       "status": "Verified", "assignedWeek": current_week},
-        {"taskId": "UCR-001",   "name": "UCR Registration Complete",         "status": "Verified", "assignedWeek": current_week - 1},
-        {"taskId": "BOC3-001",  "name": "BOC-3 Process Agent Filed",         "status": "Verified", "assignedWeek": current_week - 1},
-        {"taskId": "MCS150-001","name": "MCS-150 Update Filed",              "status": "Verified", "assignedWeek": current_week - 1},
-        {"taskId": "ELD-001",   "name": "ELD Provider Configured",           "status": "Pending",  "assignedWeek": current_week},
-        {"taskId": "IFTA-001",  "name": "IFTA Registration",                 "status": "Pending",  "assignedWeek": current_week},
-        {"taskId": "PM-001",    "name": "Preventive Maintenance Schedule",   "status": "Pending",  "assignedWeek": current_week + 1},
-        {"taskId": "HOS-001",   "name": "HOS Policy Document",               "status": "Pending",  "assignedWeek": current_week + 1},
-    ]
-    for task in task_templates:
-        task["carrierId"] = carrierId
-        task["createdAt"] = datetime.now(timezone.utc).isoformat()
+    current_week = date.today().isocalendar()[1]
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    # First 6 tasks verified, last 4 pending (for realistic demo data)
+    verified_ids = {"DQ-001", "DA-001", "INS-001", "UCR-001", "BOC3-001", "MCS150-001"}
+    task_templates = []
+    for t in STANDARD_10_TASKS:
+        status = "verified" if t["taskId"] in verified_ids else "pending"
+        week = current_week + t["weekOffset"] - 1
+        task = {
+            "carrierId": carrierId,
+            "taskId": t["taskId"],
+            "name": t["name"],
+            "category": t["category"],
+            "priority": t["priority"],
+            "description": t["description"],
+            "status": status,
+            "assignedWeek": week,
+            "createdAt": now_iso,
+        }
+        if status == "verified":
+            task["verifiedAt"] = now_iso
+            task["verifiedBy"] = COACH_EMAIL
+        task_templates.append(task)
+
     await db.tasks.insert_many(task_templates)
 
     return {"ok": True, "carrierId": carrierId, "tasks_seeded": len(task_templates)}
+
+
+# ── Task Submission & Verification Workflow ──────────────────
+
+class CoachActionRequest(BaseModel):
+    carrierId: str
+    coachNote: Optional[str] = None
+
+
+@api_router.get("/tasks/{carrierId}")
+async def get_carrier_tasks(carrierId: str, request: Request):
+    """Returns the full task list for a carrier. Carriers see own tasks; coach sees any."""
+    user = await get_user_from_request(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    if user.get("email") != COACH_EMAIL and user["user_id"] != carrierId:
+        raise HTTPException(status_code=403, detail="Access denied")
+    priority_rank = {"critical": 0, "high": 1, "medium": 2, "low": 3}
+    tasks = await db.tasks.find({"carrierId": carrierId}, {"_id": 0}).to_list(100)
+    tasks.sort(key=lambda t: (t.get("assignedWeek", 99), priority_rank.get(t.get("priority", "low"), 3)))
+    return {"tasks": tasks}
+
+
+@api_router.patch("/tasks/{taskId}/submit")
+async def submit_task(taskId: str, request: Request):
+    """Carrier submits a task for coach verification."""
+    user = await get_user_from_request(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    carrier_id = user["user_id"]
+    task = await db.tasks.find_one({"carrierId": carrier_id, "taskId": taskId}, {"_id": 0})
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    if task.get("status") == "verified":
+        raise HTTPException(status_code=400, detail="Task already verified")
+    now_iso = datetime.now(timezone.utc).isoformat()
+    await db.tasks.update_one(
+        {"carrierId": carrier_id, "taskId": taskId},
+        {"$set": {"status": "submitted", "submittedAt": now_iso}},
+    )
+    # Pulse boost — update lastActiveAt for immediate signal improvement
+    await db.carrierProfiles.update_one(
+        {"carrierId": carrier_id},
+        {"$set": {"lastActiveAt": now_iso, "updatedAt": now_iso}},
+        upsert=True,
+    )
+    return {"ok": True, "taskId": taskId, "status": "submitted"}
+
+
+@api_router.patch("/tasks/{taskId}/verify")
+async def verify_task(taskId: str, data: CoachActionRequest, request: Request):
+    """Coach verifies a submitted task — triggers Integrity increase."""
+    user = await get_user_from_request(request)
+    if not user or user.get("email") != COACH_EMAIL:
+        raise HTTPException(status_code=403, detail="Coach access required")
+    task = await db.tasks.find_one({"carrierId": data.carrierId, "taskId": taskId}, {"_id": 0})
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    now_iso = datetime.now(timezone.utc).isoformat()
+    await db.tasks.update_one(
+        {"carrierId": data.carrierId, "taskId": taskId},
+        {"$set": {"status": "verified", "verifiedAt": now_iso, "verifiedBy": user["email"], "coachNote": ""}},
+    )
+    return {"ok": True, "taskId": taskId, "status": "verified"}
+
+
+@api_router.patch("/tasks/{taskId}/remediate")
+async def remediate_task(taskId: str, data: CoachActionRequest, request: Request):
+    """Coach requests changes on a submitted task."""
+    user = await get_user_from_request(request)
+    if not user or user.get("email") != COACH_EMAIL:
+        raise HTTPException(status_code=403, detail="Coach access required")
+    task = await db.tasks.find_one({"carrierId": data.carrierId, "taskId": taskId}, {"_id": 0})
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    now_iso = datetime.now(timezone.utc).isoformat()
+    await db.tasks.update_one(
+        {"carrierId": data.carrierId, "taskId": taskId},
+        {"$set": {
+            "status": "needs_changes",
+            "coachNote": data.coachNote or "",
+            "remediationAt": now_iso,
+            "remediatedBy": user["email"],
+        }},
+    )
+    return {"ok": True, "taskId": taskId, "status": "needs_changes"}
+
+
+# ── Coach Registry ────────────────────────────────────────────
+
+@api_router.get("/coach/carriers")
+async def get_coach_carriers(request: Request):
+    """Coach command center: all carriers with signal + submitted task queue."""
+    user = await get_user_from_request(request)
+    if not user or user.get("email") != COACH_EMAIL:
+        raise HTTPException(status_code=403, detail="Coach access required")
+
+    pipeline = [
+        {"$group": {
+            "_id": "$carrierId",
+            "totalTasks": {"$sum": 1},
+            "verifiedTasks": {"$sum": {"$cond": [{"$eq": [{"$toLower": "$status"}, "verified"]}, 1, 0]}},
+            "submittedTasks": {"$sum": {"$cond": [{"$eq": ["$status", "submitted"]}, 1, 0]}},
+            "needsChangesTasks": {"$sum": {"$cond": [{"$eq": ["$status", "needs_changes"]}, 1, 0]}},
+        }},
+        {"$sort": {"submittedTasks": -1, "_id": 1}},
+    ]
+    carrier_stats = await db.tasks.aggregate(pipeline).to_list(100)
+
+    carriers = []
+    for stat in carrier_stats:
+        cid = stat["_id"]
+        user_info = await db.users.find_one({"user_id": cid}, {"_id": 0})
+        profile = await db.carrierProfiles.find_one({"carrierId": cid}, {"_id": 0})
+        # Pulse calculation
+        if profile and profile.get("lastActiveAt"):
+            la = profile["lastActiveAt"]
+            if isinstance(la, str):
+                la = datetime.fromisoformat(la)
+            if la.tzinfo is None:
+                la = la.replace(tzinfo=timezone.utc)
+            days = (datetime.now(timezone.utc) - la).days
+            pulse = 100 if days <= 3 else 70 if days <= 7 else 40 if days <= 14 else 20
+        else:
+            pulse = 100
+        integrity = round((stat["verifiedTasks"] / stat["totalTasks"]) * 100) if stat["totalTasks"] > 0 else 0
+        signal = round(0.4 * integrity + 0.3 * pulse)
+        carriers.append({
+            "carrierId": cid,
+            "name": (user_info or {}).get("name", "Unknown"),
+            "email": (user_info or {}).get("email", ""),
+            "totalTasks": stat["totalTasks"],
+            "verifiedTasks": stat["verifiedTasks"],
+            "submittedTasks": stat["submittedTasks"],
+            "needsChangesTasks": stat["needsChangesTasks"],
+            "integrity": integrity,
+            "pulse": pulse,
+            "signal": signal,
+        })
+
+    submitted_queue = await db.tasks.find(
+        {"status": "submitted"}, {"_id": 0}
+    ).sort("submittedAt", 1).to_list(200)
+
+    return {"carriers": carriers, "submittedQueue": submitted_queue}
 
 
 # Include the router in the main app

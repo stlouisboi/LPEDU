@@ -19,6 +19,7 @@ import PortalPage from "./pages/PortalPage";
 import REACHAssessmentPage from "./pages/REACHAssessmentPage";
 import AutoMethodPage from "./pages/AutoMethodPage";
 import AuthCallback from "./components/AuthCallback";
+import CoachRegistryPage from "./pages/CoachRegistryPage";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
 import PartnersPage from "./pages/PartnersPage";
@@ -49,6 +50,7 @@ function AppRouter() {
       <Route path="/ground-0-complete" element={<Ground0CompletePage />} />
       <Route path="/admission" element={<AdmissionPage />} />
       <Route path="/portal" element={<PortalPage />} />
+      <Route path="/coach-registry" element={<CoachRegistryPage />} />
       <Route path="/reach-assessment" element={<REACHAssessmentPage />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />

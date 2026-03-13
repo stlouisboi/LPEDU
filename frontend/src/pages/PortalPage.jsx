@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import SignalMonitor from "../components/SignalMonitor";
+import TaskItem from "../components/TaskItem";
 
 const CURRICULUM = [
   {
@@ -78,10 +79,14 @@ export default function PortalPage() {
   const location = useLocation();
   const [user, setUser] = useState(location.state?.user || null);
   const [authChecked, setAuthChecked] = useState(location.state?.user ? true : null);
-  const [hasCohortAccess, setHasCohortAccess] = useState(null); // null=checking, true=paid, false=not paid
+  const [hasCohortAccess, setHasCohortAccess] = useState(null);
   const [selectedId, setSelectedId] = useState("ground-0");
   const [paymentState, setPaymentState] = useState("idle");
   const [stripeSessionId, setStripeSessionId] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const [tasksLoading, setTasksLoading] = useState(true);
+  const [submittingTaskId, setSubmittingTaskId] = useState(null);
+  const [signalRefreshKey, setSignalRefreshKey] = useState(0);
 
   const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -191,6 +196,35 @@ export default function PortalPage() {
     await fetch(`${API}/api/auth/logout`, { method: "POST", credentials: "include" });
     setUser(null);
     setAuthChecked(false);
+  };
+
+  const fetchTasks = useCallback(async () => {
+    if (!user?.user_id) return;
+    setTasksLoading(true);
+    try {
+      const resp = await fetch(`${API}/api/tasks/${user.user_id}`, { credentials: "include" });
+      if (resp.ok) {
+        const data = await resp.json();
+        setTasks(data.tasks || []);
+      }
+    } catch { /* silent */ }
+    setTasksLoading(false);
+  }, [API, user?.user_id]);
+
+  useEffect(() => {
+    if (user?.user_id && hasCohortAccess) fetchTasks();
+  }, [user?.user_id, hasCohortAccess, fetchTasks]);
+
+  const handleTaskSubmit = async (taskId) => {
+    setSubmittingTaskId(taskId);
+    // Optimistic update
+    setTasks((prev) => prev.map((t) => t.taskId === taskId ? { ...t, status: "submitted" } : t));
+    try {
+      await fetch(`${API}/api/tasks/${taskId}/submit`, { method: "PATCH", credentials: "include" });
+      setSignalRefreshKey((k) => k + 1); // Refresh signal — pulse boost
+    } catch { /* silent */ }
+    setTimeout(() => fetchTasks(), 500); // Sync with server state
+    setSubmittingTaskId(null);
   };
 
   // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
@@ -639,8 +673,65 @@ export default function PortalPage() {
 
 
                   {/* ── Administrative Health Monitor ── */}
-                  <SignalMonitor carrierId={user?.user_id} />
+                  <SignalMonitor carrierId={user?.user_id} refreshKey={signalRefreshKey} />
 
+                  {/* ── IMPLEMENTATION_SEQUENCE — Standard 10 Tasks ── */}
+                  <div style={{ marginBottom: "2rem" }}>
+                    <div style={{
+                      display: "flex", alignItems: "center", gap: "0.875rem",
+                      paddingBottom: "0.875rem", marginBottom: "0.25rem",
+                      borderBottom: "1px solid rgba(197,160,89,0.12)",
+                    }}>
+                      <p style={{
+                        fontFamily: "'JetBrains Mono','Courier New',monospace",
+                        fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em",
+                        color: "rgba(197,160,89,0.85)", textTransform: "uppercase", margin: 0,
+                      }}>
+                        IMPLEMENTATION_SEQUENCE — STANDARD 10
+                      </p>
+                      <div style={{ flex: 1, height: 1, background: "rgba(197,160,89,0.12)" }} />
+                      {tasks.length > 0 && (
+                        <span style={{
+                          fontFamily: "'JetBrains Mono','Courier New',monospace",
+                          fontSize: "0.448rem", letterSpacing: "0.12em",
+                          color: "rgba(255,255,255,0.3)", textTransform: "uppercase",
+                        }}>
+                          {tasks.filter(t => t.status === "verified").length}/{tasks.length} VERIFIED
+                        </span>
+                      )}
+                    </div>
+
+                    {tasksLoading ? (
+                      <div style={{ padding: "1.5rem", textAlign: "center" }}>
+                        <p style={{
+                          fontFamily: "'JetBrains Mono','Courier New',monospace",
+                          fontSize: "0.504rem", letterSpacing: "0.16em",
+                          color: "rgba(197,160,89,0.5)", textTransform: "uppercase",
+                        }}>
+                          LOADING_SEQUENCE...
+                        </p>
+                      </div>
+                    ) : tasks.length === 0 ? (
+                      <div style={{ padding: "1.5rem", textAlign: "center", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                        <p style={{
+                          fontFamily: "'JetBrains Mono','Courier New',monospace",
+                          fontSize: "0.504rem", letterSpacing: "0.16em",
+                          color: "rgba(255,255,255,0.28)", textTransform: "uppercase",
+                        }}>
+                          NO_TASKS_ASSIGNED
+                        </p>
+                      </div>
+                    ) : (
+                      tasks.map((task) => (
+                        <TaskItem
+                          key={task.taskId}
+                          task={task}
+                          onSubmit={handleTaskSubmit}
+                          loading={submittingTaskId}
+                        />
+                      ))
+                    )}
+                  </div>
 
                   {/* Implementation modules */}
                   <div
@@ -904,7 +995,7 @@ export default function PortalPage() {
                         color: "#C5A059",
                       }}
                     >
-                      $2,500
+                      $5,000
                     </span>
                   </div>
 

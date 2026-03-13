@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
@@ -144,17 +144,17 @@ function IndicatorBar({ label, code, value, color, animate }) {
   );
 }
 
-export default function SignalMonitor({ carrierId }) {
+export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
   const [animate, setAnimate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [signalData, setSignalData] = useState({ integrity: 0, pulse: 100, alignment: 0 });
-  const fetchedRef = useRef(false);
 
   const API = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
-    if (!carrierId || fetchedRef.current) return;
-    fetchedRef.current = true;
+    if (!carrierId) { setLoading(false); return; }
+    setLoading(true);
+    setAnimate(false);
 
     const fetchSignal = async () => {
       try {
@@ -168,7 +168,7 @@ export default function SignalMonitor({ carrierId }) {
     };
 
     fetchSignal();
-  }, [carrierId, API]);
+  }, [carrierId, API, refreshKey]);
 
   // Trigger animation after data loads
   useEffect(() => {
