@@ -113,6 +113,9 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] LPOS v1.0 portal redesign — SYSTEM_STATUS_MONITOR header, IMPLEMENTATION SEQUENCE sidebar, SignalMonitor (circular gauge + 3 indicator bars: Doc Integrity/System Pulse/Regulatory Alignment) injected into Ground 0 dashboard (Feb 2026)
 - [x] Live Data Engine for SignalMonitor — GET /api/signal/{carrierId} endpoint with Documentary Integrity/System Pulse/Regulatory Alignment calculation from MongoDB; POST /api/signal/seed/{carrierId} for mock data; SignalMonitor.jsx fetches live data (Feb 2026)
 - [x] REACH Traffic Light UI — pillar cards (R-E-A-C-H) now show colored dot + status label: amber=PENDING_SCAN, green=COMPLETE, red=FAILED; optional pillarStatuses prop added to REACHTeaserSection (Feb 2026)
+- [x] Submission & Verification Workflow — Standard 10 tasks auto-seeded on carrier first login; PATCH /api/tasks/{taskId}/submit (carrier), /verify (coach), /remediate (coach); TaskItem.jsx with clinical status indicators; task list in portal with optimistic UI + signal refresh; coach-only endpoints return 403 for unauthorized users (Feb 2026)
+- [x] Coach Registry — /coach-registry protected page for vince@launchpathedu.com showing cohort signal overview + submission queue with VERIFY/REMEDIATE actions (Feb 2026)
+- [x] Price anchoring — all references updated from $2,500 to $5,000 (Stripe checkout, portal CTA, TCOSection, ThreePathsSection) (Feb 2026)
 
 ## File Reference
 - `/app/frontend/src/App.js` — Router
