@@ -108,6 +108,8 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [ ] B2B landing page for insurers/fleet operators
 - [ ] Post-payment confirmation email via MailerLite
 - [ ] Knowledge Center → Portal contextual cross-links
+- [x] Homepage Final Polish — ProtectionDiagramSection (FIGURE LP-01) added to homepage, $5,000 → $2,500 price fix in ConsequenceNumberBlock (Feb 2026)
+- [x] Ground 0 page LP-MOD-G0 overhaul — module codes G0-1 to G0-6, new content per LP-MOD-G0 spec, doctrine quote, Sin Wages/Wisdom Earnings philosophy section, Operator Voice note, GO/WAIT/NO-GO tier table (Feb 2026)
 
 ## File Reference
 - `/app/frontend/src/App.js` — Router
