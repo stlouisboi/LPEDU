@@ -5,6 +5,7 @@ import AuthorityClockSection from "../components/AuthorityClockSection";
 import PhilosophyQuoteBlock from "../components/PhilosophyQuoteBlock";
 import ConsequenceNumberBlock from "../components/ConsequenceNumberBlock";
 import AutoMethodTeaserSection from "../components/AutoMethodTeaserSection";
+import ProtectionDiagramSection from "../components/ProtectionDiagramSection";
 import FourPillarsSection from "../components/FourPillarsSection";
 import RecoveryPathBlock from "../components/RecoveryPathBlock";
 import ComplianceMapTeaser from "../components/ComplianceMapTeaser";
@@ -24,6 +25,7 @@ export default function HomePage() {
         />
         <ConsequenceNumberBlock />
         <AutoMethodTeaserSection />
+        <ProtectionDiagramSection />
         <FourPillarsSection />
         <RecoveryPathBlock />
         <ComplianceMapTeaser />

@@ -97,7 +97,7 @@ export default function ConsequenceNumberBlock() {
                 marginBottom: "0.5rem",
                 letterSpacing: "-0.01em",
               }}>
-                $5,000
+                $2,500
               </p>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
