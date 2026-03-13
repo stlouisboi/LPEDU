@@ -91,7 +91,9 @@ const SignalMonitor: React.FC<SignalMonitorProps> = ({ carrierId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6"            {[                  { label: 'Documentary Integrity', val: signal.indicators.integrity, icon: <FileText size={16} /> },
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { label: 'Documentary Integrity', val: signal.indicators.integrity, icon: <FileText size={16} /> },
               { label: 'System Pulse', val: signal.indicators.pulse, icon: <Activity size={16} /> },
               { label: 'Regulatory Alignment', val: signal.indicators.alignment, icon: <ShieldCheck size={16} /> }
             ].map((indicator, i) => (
@@ -102,7 +104,8 @@ const SignalMonitor: React.FC<SignalMonitorProps> = ({ carrierId }) => {
                     <span className="text-[10px] font-black uppercase tracking-widest font-mono">{indicator.label}</span>
                   </div>
                   <span className="text-[12px] font-black text-white font-mono">{indicator.val}%</span>
-                </div>                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                </div>
+                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                   <div 
                     className={`h-full transition-all duration-1000 ease-out ${getSignalColor(indicator.val).replace('stroke', 'bg')}`}
                     style={{ width: `${indicator.val}%` }}
