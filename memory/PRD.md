@@ -40,14 +40,20 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 **CTA Button Rule:** Gold background (`--gold-primary`) + Navy text (`--bg-onyx`)
 **Operator Portal Button:** Navy bg + Gold border + Gold text
 
-## Homepage Section Order (Consolidated — Feb 2026)
-1. **Hero** — DARK. Headline, subhead, gold CTA
+## Homepage Section Order (Consolidated — Mar 2026)
+1. **Hero** — DARK. "You just got your authority. Now the clock is running." plain-language bridge, gold CTA → "Begin Ground 0"
 2. **AuthorityClock** — DARK. 90-day compliance window urgency section
-3. **AutoMethodTeaser** — DARK (#002244). A/U/T/O 4-card risk vector grid
-4. **FourPillars** — DARK. 4 gold-bordered system pillars
-5. **ComplianceMapTeaser** — DARK (#001530). Banner strip → link to /operating-standard
-6. **VinceCTA** — LIGHT. Vince Lawrence bio + "Begin Ground 0 Briefing" CTA
-7. **Footer** — #001A33. Wordmark + nav + legal
+3. **PhilosophyQuoteBlock** — Quote from Vince Lawrence
+4. **ConsequenceNumberBlock** — DARK. Consequence stats ($15K–$30K)
+5. **AutoMethodTeaser** — DARK. A/U/T/O 4-card risk vector grid
+6. **ProtectionDiagram** — DARK. FIGURE LP-01 animated diagram
+7. **FourPillars** — DARK. 4 gold-bordered system pillars
+8. **EngagementSection** — DARK (#001023). LP-STD-001 | What Working Together Looks Like — 13-week timeline, deliverables, "Begin Ground 0" CTA
+9. **AuthorityReadinessTestSection** — DARK. REACH Diagnostic teaser
+10. **RecoveryPathBlock** — DARK. Recovery path for Post-Failure Frank
+11. **ComplianceMapTeaser** — DARK. Banner strip → /operating-standard
+12. **VinceCTA** — LIGHT. Vince Lawrence bio + "Begin Ground 0 Briefing" CTA
+13. **Footer**
 
 ## Key Copy Rules
 - LaunchPath price: **$2,500** (NOT $5,000)
@@ -107,6 +113,8 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] /partners B2B landing page — Hero, 3-persona section, How It Works, Trust Band, contact form + POST /api/partners backend endpoint (Feb 2026)
 - [ ] B2B landing page for insurers/fleet operators
 - [ ] Post-payment confirmation email via MailerLite
+- [x] Homepage copy fixes (Mar 2026) — Option B plain-language hero bridge; "The Engagement" section (LP-STD-001) with 13-week timeline; all primary CTAs consolidated to "Begin Ground 0" → /ground-0-briefing
+- [x] 6th Knowledge Center article — Authority Registrations Brief (UCR/BOC-3/MCS-150) integrated at /knowledge-center/authority-registrations-brief (Mar 2026)
 - [ ] Knowledge Center → Portal contextual cross-links
 - [x] Homepage Final Polish — ProtectionDiagramSection (FIGURE LP-01) added to homepage, $5,000 → $2,500 price fix in ConsequenceNumberBlock (Feb 2026)
 - [x] REACH Assessment inline widget embedded in Ground 0 G0-6 module panel — full 15-question flow, GO/WAIT/NO-GO result, Risk Map, email capture, and result CTA all inline without page navigation (Feb 2026)
@@ -121,10 +129,13 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Post-payment confirmation email — MailerLite subscriber update triggered in Stripe webhook on payment_status=paid (Feb 2026)
 - [x] Knowledge Center portal cross-links — ArticlePortalBanner added to all 5 briefs; each maps to its Standard Task (DA-001, HOS-001, PM-001, INS-001, DQ-001) with OPEN OPERATOR PORTAL + BEGIN GROUND 0 CTAs (Feb 2026)
 
-## File Reference
-- `/app/frontend/src/App.js` — Router
+- `/app/frontend/src/App.js` — Router (6 KC article routes)
 - `/app/frontend/src/index.css` — CSS color token system
-- `/app/frontend/src/pages/HomePage.jsx` — Full section assembly
+- `/app/frontend/src/pages/HomePage.jsx` — Full section assembly (13 sections incl. EngagementSection)
+- `/app/frontend/src/components/HeroSection.jsx` — Option B plain-language hero copy + "Begin Ground 0" CTA
+- `/app/frontend/src/components/EngagementSection.jsx` — LP-STD-001 | The Engagement (NEW Mar 2026)
 - `/app/frontend/src/components/` — All section components
-- `/app/backend/server.py` — MailerLite proxy
-- `/app/backend/.env` — MailerLite API key
+- `/app/frontend/src/pages/KnowledgeCenterIndex.jsx` — 6 briefs listed
+- `/app/frontend/src/pages/knowledge-center/UCRRegistrationBrief.jsx` — 6th article (NEW Mar 2026)
+- `/app/backend/server.py` — All API endpoints
+- `/app/backend/.env` — API keys
