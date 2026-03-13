@@ -158,7 +158,7 @@ function RiskMap({ scores, animate }) {
   return (
     <div data-testid="risk-map" style={{ marginBottom: "2.5rem" }}>
       <p style={{
-        fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
+        fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 700,
         letterSpacing: "0.16em", textTransform: "uppercase", color: "#C5A059",
         marginBottom: "1.25rem",
       }}>
@@ -170,10 +170,10 @@ function RiskMap({ scores, animate }) {
         return (
           <div key={row.label} style={{ marginBottom: "1rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.35rem" }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-muted)" }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)" }}>
                 {row.label}
               </span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", fontWeight: 600, color: barColor }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", fontWeight: 600, color: barColor }}>
                 {row.val}/{row.max}
               </span>
             </div>
@@ -317,7 +317,7 @@ export default function REACHAssessmentPage() {
       {phase === "intro" && (
         <div style={{ ...wrap, paddingTop: "120px", paddingBottom: "80px" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.18em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.18em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "1.5rem",
           }}>
             THE REACH ASSESSMENT
@@ -329,18 +329,18 @@ export default function REACHAssessmentPage() {
           }}>
             Authority Readiness Diagnostic
           </h1>
-          <p style={{ fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1rem", maxWidth: 520 }}>
+          <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1rem", maxWidth: 520 }}>
             Most new motor carrier authorities fail within the first year because critical operational systems were never installed.
           </p>
-          <p style={{ fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
+          <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
             This diagnostic evaluates whether your operation is prepared to survive the first 90 days.
           </p>
 
           <div style={{ display: "flex", gap: "2.5rem", marginBottom: "3rem", flexWrap: "wrap" }}>
             {CATEGORIES.map((c) => (
               <div key={c.key}>
-                <p style={{ fontSize: "0.896rem", fontWeight: 700, color: "#C5A059" }}>{c.key}</p>
-                <p style={{ fontSize: "0.784rem", color: "var(--text-subtle)" }}>{c.label}</p>
+                <p style={{ fontSize: "1rem", fontWeight: 700, color: "#C5A059" }}>{c.key}</p>
+                <p style={{ fontSize: "0.924rem", color: "var(--text-subtle)" }}>{c.label}</p>
               </div>
             ))}
           </div>
@@ -350,7 +350,7 @@ export default function REACHAssessmentPage() {
             onClick={() => setPhase("questions")}
             style={{
               minHeight: 52, background: "#C5A059", color: "#002244", border: "none",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.98rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.05rem",
               letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer",
               padding: "1rem 2.5rem", transition: "background 0.2s",
             }}
@@ -359,7 +359,7 @@ export default function REACHAssessmentPage() {
           >
             Run the Diagnostic
           </button>
-          <p style={{ fontSize: "0.784rem", color: "var(--text-subtle)", marginTop: "1rem", fontStyle: "italic" }}>
+          <p style={{ fontSize: "0.924rem", color: "var(--text-subtle)", marginTop: "1rem", fontStyle: "italic" }}>
             15 questions. Approximately 4 minutes.
           </p>
         </div>
@@ -380,13 +380,13 @@ export default function REACHAssessmentPage() {
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
             ))}
-            <span style={{ fontSize: "0.728rem", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>
+            <span style={{ fontSize: "0.875rem", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>
               {currentCatIdx + 1} of 5
             </span>
           </div>
 
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "2rem",
           }}>
             {CATEGORIES[currentCatIdx].full} — {CATEGORIES[currentCatIdx].key}
@@ -412,7 +412,7 @@ export default function REACHAssessmentPage() {
                     background: isSelected ? "rgba(197,160,89,0.15)" : "rgba(255,255,255,0.04)",
                     border: `1px solid ${isSelected ? "#C5A059" : "rgba(255,255,255,0.12)"}`,
                     color: isSelected ? "#C5A059" : "var(--text-muted)",
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.98rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
                     padding: "1.1rem 1.5rem", textAlign: "left", cursor: "pointer",
                     transition: "all 0.15s",
                   }}
@@ -435,7 +435,7 @@ export default function REACHAssessmentPage() {
             })}
           </div>
 
-          <p style={{ fontSize: "0.728rem", color: "rgba(255,255,255,0.3)", marginTop: "2rem" }}>
+          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", marginTop: "2rem" }}>
             Question {currentQ + 1} of 15
           </p>
         </div>
@@ -468,11 +468,11 @@ export default function REACHAssessmentPage() {
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
             ))}
-            <span style={{ fontSize: "0.728rem", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>5 of 5</span>
+            <span style={{ fontSize: "0.875rem", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>5 of 5</span>
           </div>
 
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#C5A059", marginBottom: "2rem",
           }}>
             OPERATIONAL DISCIPLINE — H
@@ -495,7 +495,7 @@ export default function REACHAssessmentPage() {
             style={{
               width: "100%", background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.15)", color: "#FFFFFF",
-              fontFamily: "'Inter', sans-serif", fontSize: "0.98rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
               padding: "1rem 1.25rem", resize: "vertical", boxSizing: "border-box",
               marginBottom: "1.5rem", outline: "none",
             }}
@@ -506,7 +506,7 @@ export default function REACHAssessmentPage() {
             onClick={handleOpenSubmit}
             style={{
               minHeight: 52, background: "#C5A059", color: "#002244", border: "none",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.98rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.05rem",
               letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer",
               padding: "1rem 2.5rem", transition: "background 0.2s",
             }}
@@ -515,7 +515,7 @@ export default function REACHAssessmentPage() {
           >
             Complete Assessment
           </button>
-          <p style={{ fontSize: "0.728rem", color: "rgba(255,255,255,0.3)", marginTop: "1rem" }}>
+          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", marginTop: "1rem" }}>
             Question 15 of 15
           </p>
         </div>
@@ -542,7 +542,7 @@ export default function REACHAssessmentPage() {
                   width: 6, height: 6, borderRadius: "50%",
                   background: analyzedCats > i ? "#C5A059" : "rgba(255,255,255,0.2)",
                 }} />
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-muted)" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)" }}>
                   {c.label}
                 </span>
               </div>
@@ -561,7 +561,7 @@ export default function REACHAssessmentPage() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 700,
-              fontSize: "0.728rem", letterSpacing: "0.16em",
+              fontSize: "0.875rem", letterSpacing: "0.16em",
               textTransform: "uppercase", color: cfg.color, margin: 0,
             }}>
               {cfg.label}
@@ -580,7 +580,7 @@ export default function REACHAssessmentPage() {
             {cfg.bullets.map((b, i) => (
               <li key={i} style={{ display: "flex", gap: "0.75rem", marginBottom: "0.75rem", alignItems: "flex-start" }}>
                 <span style={{ color: cfg.color, marginTop: "0.15rem", flexShrink: 0 }}>—</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.7 }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.7 }}>
                   {b}
                 </span>
               </li>
@@ -590,7 +590,7 @@ export default function REACHAssessmentPage() {
           {/* Risk Map */}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "2rem", marginBottom: "2.5rem" }}>
             <RiskMap scores={scores} animate={animateMap} />
-            <p style={{ fontSize: "0.784rem", color: "var(--text-subtle)", fontStyle: "italic", marginTop: "0.75rem" }}>
+            <p style={{ fontSize: "0.924rem", color: "var(--text-subtle)", fontStyle: "italic", marginTop: "0.75rem" }}>
               Total REACH score: {scores.total}/42
             </p>
           </div>
@@ -599,7 +599,7 @@ export default function REACHAssessmentPage() {
           {!submitted ? (
             <div data-testid="reach-email-block" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "2rem" }}>
               <p style={{
-                fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "1.5rem",
+                fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "1.5rem",
               }}>
                 Enter your email to receive your REACH assessment summary and preparation recommendations.
               </p>
@@ -610,7 +610,7 @@ export default function REACHAssessmentPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your operating email address"
                   style={{
-                    padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "0.98rem",
+                    padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
                     background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
                     color: "#FFFFFF", outline: "none", boxSizing: "border-box",
                   }}
@@ -620,7 +620,7 @@ export default function REACHAssessmentPage() {
                   type="submit" disabled={loading}
                   style={{
                     minHeight: 52, background: "#C5A059", color: "#002244", border: "none",
-                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.98rem",
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.05rem",
                     letterSpacing: "0.08em", textTransform: "uppercase",
                     cursor: loading ? "wait" : "pointer", padding: "1rem", opacity: loading ? 0.8 : 1,
                   }}
@@ -628,21 +628,21 @@ export default function REACHAssessmentPage() {
                   {loading ? "Sending..." : "Send My Results"}
                 </button>
               </form>
-              <p style={{ fontSize: "0.784rem", color: "rgba(255,255,255,0.35)", marginTop: "0.875rem", fontStyle: "italic" }}>
+              <p style={{ fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", marginTop: "0.875rem", fontStyle: "italic" }}>
                 No sales sequence. Results and preparation resources only.
               </p>
             </div>
           ) : (
             <div data-testid="reach-confirmed" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "2rem" }}>
               <div style={{ height: 2, background: "#C5A059", marginBottom: "1.5rem" }} />
-              <p style={{ fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "2rem" }}>
+              <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "2rem" }}>
                 {cfg.sub}
               </p>
               <Link
                 to={cfg.ctaHref}
                 style={{
                   display: "inline-block", minHeight: 52, background: "#C5A059", color: "#002244",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.98rem",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.05rem",
                   letterSpacing: "0.08em", textTransform: "uppercase",
                   textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 }}
