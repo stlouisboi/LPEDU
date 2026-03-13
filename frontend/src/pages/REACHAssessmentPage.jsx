@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
+import { REACHTeaserSection } from "../components/REACHTeaserSection";
 
 // ── Questions ────────────────────────────────────────────
 const CATEGORIES = [
@@ -313,56 +314,9 @@ export default function REACHAssessmentPage() {
     <div style={{ fontFamily: "'Inter', sans-serif", background: "#001A33", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
 
-      {/* ── INTRO ─────────────────────────────────────── */}
+      {/* ── INTRO — full clinical diagnostic section ─── */}
       {phase === "intro" && (
-        <div style={{ ...wrap, paddingTop: "120px", paddingBottom: "80px" }}>
-          <p style={{
-            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "#C5A059", marginBottom: "1.5rem",
-          }}>
-            THE REACH ASSESSMENT
-          </p>
-          <h1 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-            fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-            color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.5rem",
-          }}>
-            Authority Readiness Diagnostic
-          </h1>
-          <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1rem", maxWidth: 520 }}>
-            Most new motor carrier authorities fail within the first year because critical operational systems were never installed.
-          </p>
-          <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
-            This diagnostic evaluates whether your operation is prepared to survive the first 90 days.
-          </p>
-
-          <div style={{ display: "flex", gap: "2.5rem", marginBottom: "3rem", flexWrap: "wrap" }}>
-            {CATEGORIES.map((c) => (
-              <div key={c.key}>
-                <p style={{ fontSize: "1rem", fontWeight: 700, color: "#C5A059" }}>{c.key}</p>
-                <p style={{ fontSize: "0.924rem", color: "var(--text-subtle)" }}>{c.label}</p>
-              </div>
-            ))}
-          </div>
-
-          <button
-            data-testid="reach-start-btn"
-            onClick={() => setPhase("questions")}
-            style={{
-              minHeight: 52, background: "#C5A059", color: "#002244", border: "none",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.05rem",
-              letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer",
-              padding: "1rem 2.5rem", transition: "background 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
-          >
-            Run the Diagnostic
-          </button>
-          <p style={{ fontSize: "0.924rem", color: "var(--text-subtle)", marginTop: "1rem", fontStyle: "italic" }}>
-            15 questions. Approximately 4 minutes.
-          </p>
-        </div>
+        <REACHTeaserSection onBegin={() => setPhase("questions")} />
       )}
 
       {/* ── QUESTIONS ─────────────────────────────────── */}

@@ -21,7 +21,7 @@ const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
 const heading = "'Manrope', sans-serif";
 
-export function REACHTeaserSection() {
+export function REACHTeaserSection({ onBegin }) {
   return (
     <section
       data-testid="reach-teaser-section"
@@ -212,47 +212,43 @@ export function REACHTeaserSection() {
               </div>
             </div>
 
-            {/* CTA */}
-            <Link
-              to="/reach-assessment"
-              data-testid="reach-begin-diagnostic-btn"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "1.5rem",
-                background: "#E85D04",
-                padding: "1.375rem 1.75rem",
-                textDecoration: "none",
-                transition: "background 0.2s, transform 0.15s",
-                minHeight: 64,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#FF6B1A";
-                e.currentTarget.style.transform = "translateY(-1px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "#E85D04";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
-              <p style={{
-                fontFamily: sans, fontWeight: 800,
-                fontSize: "clamp(0.825rem, 1.5vw, 0.95rem)",
-                color: "#FFFFFF",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                lineHeight: 1.3,
-              }}>
-                BEGIN DIAGNOSTIC SCAN — STEP 1 OF THE STANDARD
-              </p>
-              <span style={{
-                fontFamily: mono, fontSize: "1.25rem",
-                color: "rgba(255,255,255,0.8)", flexShrink: 0,
-              }}>
-                →
-              </span>
-            </Link>
+            {/* CTA — button when embedded (onBegin), Link when standalone */}
+            {onBegin ? (
+              <button
+                onClick={onBegin}
+                data-testid="reach-begin-diagnostic-btn"
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  gap: "1.5rem", background: "#E85D04", padding: "1.375rem 1.75rem",
+                  border: "none", width: "100%", cursor: "pointer",
+                  transition: "background 0.2s, transform 0.15s", minHeight: 64,
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "#FF6B1A"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "#E85D04"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <p style={{ fontFamily: sans, fontWeight: 800, fontSize: "clamp(0.825rem, 1.5vw, 0.95rem)", color: "#FFFFFF", letterSpacing: "0.08em", textTransform: "uppercase", lineHeight: 1.3, margin: 0 }}>
+                  BEGIN DIAGNOSTIC SCAN — STEP 1 OF THE STANDARD
+                </p>
+                <span style={{ fontFamily: mono, fontSize: "1.25rem", color: "rgba(255,255,255,0.8)", flexShrink: 0 }}>→</span>
+              </button>
+            ) : (
+              <Link
+                to="/reach-assessment"
+                data-testid="reach-begin-diagnostic-btn"
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  gap: "1.5rem", background: "#E85D04", padding: "1.375rem 1.75rem",
+                  textDecoration: "none", transition: "background 0.2s, transform 0.15s", minHeight: 64,
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "#FF6B1A"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "#E85D04"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <p style={{ fontFamily: sans, fontWeight: 800, fontSize: "clamp(0.825rem, 1.5vw, 0.95rem)", color: "#FFFFFF", letterSpacing: "0.08em", textTransform: "uppercase", lineHeight: 1.3 }}>
+                  BEGIN DIAGNOSTIC SCAN — STEP 1 OF THE STANDARD
+                </p>
+                <span style={{ fontFamily: mono, fontSize: "1.25rem", color: "rgba(255,255,255,0.8)", flexShrink: 0 }}>→</span>
+              </Link>
+            )}
 
           </div>
 
