@@ -20,19 +20,36 @@ export default function VinceCTASection() {
       }} className="vince-grid">
 
         {/* Photo */}
-        <div style={{ overflow: "hidden" }} className="vince-photo-wrapper">
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
-            alt="Vince Lawrence"
-            style={{ width: "100%", height: 260, objectFit: "cover", objectPosition: "50% 10%", display: "block" }}
-          />
+        <div style={{ position: "relative" }} className="vince-photo-wrapper">
+          {/* Corner accents */}
+          <div style={{ position: "absolute", top: 0, left: 0, width: 20, height: 20, borderTop: "2px solid var(--gold-primary)", borderLeft: "2px solid var(--gold-primary)", zIndex: 2 }} />
+          <div style={{ position: "absolute", top: 0, right: 0, width: 20, height: 20, borderTop: "2px solid var(--gold-primary)", borderRight: "2px solid var(--gold-primary)", zIndex: 2 }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, width: 20, height: 20, borderBottom: "2px solid var(--gold-primary)", borderLeft: "2px solid var(--gold-primary)", zIndex: 2 }} />
+          <div style={{ position: "absolute", bottom: 0, right: 0, width: 20, height: 20, borderBottom: "2px solid var(--gold-primary)", borderRight: "2px solid var(--gold-primary)", zIndex: 2 }} />
+          {/* Photo */}
+          <div style={{ overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
+              alt="Vince Lawrence"
+              style={{
+                width: "100%",
+                height: 280,
+                objectFit: "cover",
+                objectPosition: "50% 10%",
+                display: "block",
+                filter: "contrast(1.06) brightness(0.94) saturate(0.92)",
+              }}
+            />
+          </div>
+          {/* Credential tag */}
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.616rem",
-            color: "var(--text-paper-heading)",
-            letterSpacing: "0.1em",
+            color: "var(--gold-primary)",
+            letterSpacing: "0.12em",
             textTransform: "uppercase",
-            marginTop: "0.5rem",
+            marginTop: "0.75rem",
+            paddingLeft: "2px",
           }}>
             STATION CUSTODIAN — LP-SYS-V4.2
           </p>

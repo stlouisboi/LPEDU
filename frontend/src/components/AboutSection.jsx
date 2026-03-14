@@ -82,25 +82,54 @@ export default function AboutSection() {
 
         <FadeIn delay={120}>
           <div style={{ position: "relative" }}>
-            <div style={{ overflow: "hidden", height: 520 }}>
+            {/* Corner accents */}
+            <div style={{ position: "absolute", top: -6, left: -6, width: 28, height: 28, borderTop: "2px solid var(--gold-primary)", borderLeft: "2px solid var(--gold-primary)", zIndex: 2 }} />
+            <div style={{ position: "absolute", top: -6, right: -6, width: 28, height: 28, borderTop: "2px solid var(--gold-primary)", borderRight: "2px solid var(--gold-primary)", zIndex: 2 }} />
+            <div style={{ position: "absolute", bottom: -6, left: -6, width: 28, height: 28, borderBottom: "2px solid var(--gold-primary)", borderLeft: "2px solid var(--gold-primary)", zIndex: 2 }} />
+            <div style={{ position: "absolute", bottom: -6, right: -6, width: 28, height: 28, borderBottom: "2px solid var(--gold-primary)", borderRight: "2px solid var(--gold-primary)", zIndex: 2 }} />
+            {/* Photo */}
+            <div style={{
+              overflow: "hidden",
+              height: 560,
+              boxShadow: "0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(197,160,89,0.15)",
+            }}>
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
                 alt="Vince Lawrence"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                  filter: "contrast(1.07) brightness(0.93) saturate(0.88)",
+                  display: "block",
+                }}
               />
             </div>
+            {/* Bottom credential overlay */}
             <div style={{
               position: "absolute", bottom: 0, left: 0, right: 0,
-              background: "linear-gradient(transparent, rgba(245,246,247,0.95))",
-              padding: "3rem 1.25rem 1.25rem",
+              background: "linear-gradient(transparent 0%, rgba(10,16,26,0.88) 55%, rgba(10,16,26,0.98) 100%)",
+              padding: "4rem 1.5rem 1.5rem",
+              zIndex: 1,
             }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.694rem",
-                color: "var(--text-paper-heading)",
-                letterSpacing: "0.1em",
+                fontSize: "0.65rem",
+                color: "var(--gold-primary)",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                marginBottom: "0.25rem",
               }}>
                 STATION CUSTODIAN — LP-SYS-V4.2
+              </p>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.5)",
+                letterSpacing: "0.06em",
+              }}>
+                U.S. Navy · OSHA Certified · 25 Yrs Ops
               </p>
             </div>
           </div>
