@@ -115,7 +115,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [ ] Post-payment confirmation email via MailerLite
 - [x] Homepage: "How the 90-Day Engagement Works" 3-phase section (DIAGNOSE/BUILD/VERIFY) inserted after ConsequenceNumberBlock (Mar 2026)
 - [x] Homepage: Transition sentence between LP-DOCTRINE quote and cost section (Mar 2026)
-- [x] REACH Diagnostic: Terminal-style "DIAGNOSTIC ENGINE RUNNING" scan animation replacing plain dot list (Mar 2026)
+- [x] REACH per-category gap summary (Mar 2026) — CategoryBreakdown component with 5 scored cards (R/E/A/C/H), pass/warning/critical color coding, feedback templates; result-specific CTAs (GO: Begin G0; WAIT: Begin G0 + Retake + Contact; NO-GO: Review G0 + Contact); "What This Means" section for WAIT/NO-GO showing flagged category names
 - [x] REACH Results: Redesigned with colored status banner, score display, and system labels (Mar 2026)
 - [x] 6th Knowledge Center article — Authority Registrations Brief (UCR/BOC-3/MCS-150) integrated at /knowledge-center/authority-registrations-brief (Mar 2026)
 - [ ] Knowledge Center → Portal contextual cross-links
