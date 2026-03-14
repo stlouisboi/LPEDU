@@ -135,7 +135,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - `/app/frontend/src/App.js` — Router (6 KC article routes)
 - `/app/frontend/src/index.css` — CSS color token system
 - `/app/frontend/src/pages/HomePage.jsx` — Full section assembly (13 sections incl. EngagementSection)
-- `/app/frontend/src/components/HeroSection.jsx` — Option B plain-language hero copy + "Begin Ground 0" CTA
+- `/app/frontend/src/components/HeroSection.jsx` — Hero hierarchy refinement (Mar 2026): H1 split two-block, gold bridge line, body line-height 2.0
 - `/app/frontend/src/components/EngagementSection.jsx` — LP-STD-001 | The Engagement (NEW Mar 2026)
 - `/app/frontend/src/components/` — All section components
 - `/app/frontend/src/pages/KnowledgeCenterIndex.jsx` — 6 briefs listed
