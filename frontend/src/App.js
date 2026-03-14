@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
@@ -26,6 +27,12 @@ import OperatingStandardPage from "./pages/OperatingStandardPage";
 import PartnersPage from "./pages/PartnersPage";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 function AppRouter() {
   const location = useLocation();
   // Detect session_id in URL fragment SYNCHRONOUSLY during render (before useEffect)
@@ -65,6 +72,7 @@ function AppRouter() {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AppRouter />
     </BrowserRouter>
   );
