@@ -4,10 +4,19 @@
 Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/conversion asset. Inner pages = resource hub. Operator Portal = future gated section.
 
 ## Architecture
-- **Frontend**: React.js (SPA, react-router-dom)
-- **Backend**: FastAPI (secure proxy to MailerLite)
+- **Frontend**: React.js (SPA, react-router-dom) → Deploy to **Vercel**
+- **Backend**: FastAPI (secure proxy to MailerLite) → Deploy to **Railway**
+- **Database**: MongoDB → **MongoDB Atlas** (free tier, cloud-hosted)
 - **Styling**: Tailwind CSS + custom CSS variables
 - **Fonts**: Manrope (headings), Inter (body), JetBrains Mono (data/code)
+
+## Deployment Files (Created Feb 2026)
+- `frontend/vercel.json` — Vercel build config + SPA rewrites
+- `frontend/.nvmrc` — Pins Node.js to v20.20.0
+- `frontend/.npmrc` — Disables engine-strict mode
+- `backend/Dockerfile` — Railway Docker container
+- `backend/.env.example` — Environment variable reference
+- `railway.toml` — Railway project config (root level)
 
 ## Visual Enhancement Layer (Option B+C — Mar 2026)
 - **Hero**: Animated gold dot-grid background, 5rem+ headline, gold CTA button
