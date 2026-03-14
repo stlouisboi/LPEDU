@@ -5,6 +5,7 @@ import AuthorityClockSection from "../components/AuthorityClockSection";
 import PhilosophyQuoteBlock from "../components/PhilosophyQuoteBlock";
 import ConsequenceNumberBlock from "../components/ConsequenceNumberBlock";
 import AutoMethodTeaserSection from "../components/AutoMethodTeaserSection";
+import HowItWorksSection from "../components/HowItWorksSection";
 import ProtectionDiagramSection from "../components/ProtectionDiagramSection";
 import FourPillarsSection from "../components/FourPillarsSection";
 import EngagementSection from "../components/EngagementSection";
@@ -26,6 +27,7 @@ export default function HomePage() {
           attribution="Vince Lawrence, Station Custodian"
         />
         <ConsequenceNumberBlock />
+        <HowItWorksSection />
         <AutoMethodTeaserSection />
         <ProtectionDiagramSection />
         <FourPillarsSection />

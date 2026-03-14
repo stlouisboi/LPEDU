@@ -11,7 +11,7 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
         padding: "56px 24px",
       }}
     >
-      <FadeIn>
+        <FadeIn>
         <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -46,7 +46,18 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
             </p>
           )}
         </div>
-      </FadeIn>
+        <div style={{ maxWidth: 680, margin: "1.75rem auto 0", textAlign: "center" }}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontStyle: "italic",
+            fontSize: "0.98rem",
+            color: "rgba(255,255,255,0.48)",
+            lineHeight: 1.7,
+          }}>
+            In trucking, that missing structure is usually discovered only when the New Entrant Safety Audit exposes it.
+          </p>
+        </div>
+        </FadeIn>
     </section>
   );
 }

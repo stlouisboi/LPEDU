@@ -107,7 +107,8 @@ const CATEGORY_INSIGHTS = [
 const RESULT_CONFIG = {
   GO: {
     label: "OPERATIONAL READINESS: GO",
-    color: "#C5A059",
+    color: "#22c55e",
+    rgb: "34,197,94",
     headline: "Your assessment indicates strong readiness for the LaunchPath Standard.",
     bullets: [
       "Capital runway shows sufficient operational buffer.",
@@ -120,7 +121,8 @@ const RESULT_CONFIG = {
   },
   WAIT: {
     label: "OPERATIONAL READINESS: WAIT",
-    color: "#A0A870",
+    color: "#F59E0B",
+    rgb: "245,158,11",
     headline: "Your assessment shows several areas that should be strengthened before launching authority.",
     bullets: [
       "One or more REACH categories indicate fixable gaps.",
@@ -133,7 +135,8 @@ const RESULT_CONFIG = {
   },
   "NO-GO": {
     label: "OPERATIONAL READINESS: NO-GO",
-    color: "#8A7060",
+    color: "#f87171",
+    rgb: "248,113,113",
     headline: "Based on your responses, launching authority right now would likely expose your operation to significant risk.",
     bullets: [
       "Multiple REACH categories indicate critical operational gaps.",
@@ -477,134 +480,366 @@ export default function REACHAssessmentPage() {
 
       {/* ── ANALYZING ─────────────────────────────────── */}
       {phase === "analyzing" && (
-        <div style={{ ...wrap, paddingTop: "140px", paddingBottom: "80px", textAlign: "center" }}>
-          <p style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-            fontSize: "1.232rem", color: "#FFFFFF", marginBottom: "2.5rem",
-          }}>
-            Analyzing Your Operational Readiness
-          </p>
-          <div style={{ textAlign: "left", maxWidth: 280, margin: "0 auto" }}>
-            {CATEGORIES.map((c, i) => (
-              <div key={i} style={{
-                display: "flex", alignItems: "center", gap: "0.75rem",
-                marginBottom: "0.875rem",
-                opacity: analyzedCats > i ? 1 : 0.2,
-                transition: "opacity 0.3s ease",
+        <div style={{
+          paddingTop: "80px",
+          paddingBottom: "80px",
+          background: "#000A14",
+          minHeight: "calc(100vh - 64px)",
+          fontFamily: "'JetBrains Mono', monospace",
+        }}>
+          <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 1.5rem" }}>
+
+            {/* System header */}
+            <div style={{ marginBottom: "2.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(197,160,89,0.15)" }}>
+              <p style={{
+                fontSize: "0.504rem",
+                color: "rgba(197,160,89,0.6)",
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                marginBottom: "0.625rem",
               }}>
-                <div style={{
-                  width: 6, height: 6, borderRadius: "50%",
-                  background: analyzedCats > i ? "#C5A059" : "rgba(255,255,255,0.2)",
-                }} />
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)" }}>
-                  {c.label}
-                </span>
-              </div>
-            ))}
+                LPOS v1.0 | LP-MOD-REACH | DIAGNOSTIC_ENGINE_v1
+              </p>
+              <p style={{
+                fontSize: "0.896rem",
+                color: "#FFFFFF",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+              }}>
+                DIAGNOSTIC ENGINE RUNNING
+              </p>
+            </div>
+
+            {/* Status line with blink */}
+            <p className="scan-blink" style={{
+              fontSize: "0.672rem",
+              color: "#22c55e",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginBottom: "1.5rem",
+            }}>
+              SYSTEM_SCAN_IN_PROGRESS...
+            </p>
+
+            {/* Progress bar */}
+            <div style={{
+              background: "rgba(255,255,255,0.06)",
+              height: 2,
+              marginBottom: "2.5rem",
+              overflow: "hidden",
+            }}>
+              <div style={{
+                background: "#C5A059",
+                height: "100%",
+                width: `${Math.round((analyzedCats / 5) * 100)}%`,
+                transition: "width 0.38s ease",
+              }} />
+            </div>
+
+            {/* Category scan entries */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+              {CATEGORIES.map((c, i) => {
+                const state = analyzedCats > i ? "done" : analyzedCats === i ? "scanning" : "pending";
+                return (
+                  <div key={i} style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "center",
+                    padding: "0.875rem 0",
+                    borderBottom: i < CATEGORIES.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                    opacity: state === "pending" ? 0.3 : 1,
+                    transition: "opacity 0.35s ease",
+                  }}>
+                    <span style={{
+                      fontSize: "0.784rem",
+                      color: state === "done" ? "#22c55e" : state === "scanning" ? "#C5A059" : "rgba(255,255,255,0.25)",
+                      fontWeight: 700,
+                      minWidth: 14,
+                    }}>
+                      {state === "done" ? "✓" : state === "scanning" ? "◉" : "○"}
+                    </span>
+                    <span style={{
+                      fontSize: "0.616rem",
+                      color: state === "done" ? "rgba(255,255,255,0.85)" : state === "scanning" ? "#C5A059" : "rgba(255,255,255,0.3)",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                    }}>
+                      {state === "done" ? "ANALYZED" : state === "scanning" ? "SCANNING..." : "PENDING"} — {c.full}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Footer note */}
+            <p style={{
+              fontSize: "0.448rem",
+              color: "rgba(255,255,255,0.15)",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              marginTop: "2.5rem",
+              lineHeight: 1.9,
+            }}>
+              ASSESSMENT_ID: LP-ASSESS-REACH-v1{"\n"}
+              DO_NOT_CLOSE_WINDOW — PROCESSING
+            </p>
           </div>
+
+          <style>{`
+            @keyframes scan-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.15; } }
+            .scan-blink { animation: scan-blink 1.1s steps(1) infinite; }
+          `}</style>
         </div>
       )}
 
       {/* ── RESULTS ───────────────────────────────────── */}
       {phase === "results" && cfg && scores && (
-        <div style={{ ...wrap, paddingTop: "100px", paddingBottom: "80px" }}>
-          {/* Result label */}
+        <div style={{ background: "#000A14", minHeight: "calc(100vh - 64px)", paddingBottom: "80px" }}>
+
+          {/* Status Banner */}
           <div style={{
-            display: "inline-block", border: `1px solid ${cfg.color}`,
-            padding: "0.4rem 0.875rem", marginBottom: "2rem",
+            borderBottom: `3px solid ${cfg.color}`,
+            background: `rgba(${cfg.rgb}, 0.04)`,
+            padding: "3rem 1.5rem 2.5rem",
           }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 700,
-              fontSize: "0.875rem", letterSpacing: "0.16em",
-              textTransform: "uppercase", color: cfg.color, margin: 0,
-            }}>
-              {cfg.label}
-            </p>
-          </div>
-
-          <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-            fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "#FFFFFF",
-            lineHeight: 1.3, marginBottom: "1.5rem", maxWidth: 520,
-          }}>
-            {cfg.headline}
-          </h2>
-
-          <ul style={{ listStyle: "none", padding: 0, marginBottom: "2.5rem" }}>
-            {cfg.bullets.map((b, i) => (
-              <li key={i} style={{ display: "flex", gap: "0.75rem", marginBottom: "0.75rem", alignItems: "flex-start" }}>
-                <span style={{ color: cfg.color, marginTop: "0.15rem", flexShrink: 0 }}>—</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.7 }}>
-                  {b}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Risk Map */}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "2rem", marginBottom: "2.5rem" }}>
-            <RiskMap scores={scores} animate={animateMap} />
-            <p style={{ fontSize: "0.924rem", color: "var(--text-subtle)", fontStyle: "italic", marginTop: "0.75rem" }}>
-              Total REACH score: {scores.total}/42
-            </p>
-          </div>
-
-          {/* Email capture — after results, not before */}
-          {!submitted ? (
-            <div data-testid="reach-email-block" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "2rem" }}>
+            <div style={{ maxWidth: 720, margin: "0 auto" }}>
               <p style={{
-                fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "1.5rem",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.504rem",
+                color: "rgba(197,160,89,0.55)",
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                marginBottom: "1.25rem",
               }}>
-                Enter your email to receive your REACH assessment summary and preparation recommendations.
+                LPOS v1.0 | LP-MOD-REACH | ASSESSMENT COMPLETE
               </p>
-              <form onSubmit={handleEmailSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                <input
-                  data-testid="reach-email-input"
-                  type="email" required value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your operating email address"
+
+              <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap", marginBottom: "1.75rem" }}>
+                <div style={{
+                  border: `1px solid ${cfg.color}`,
+                  background: `rgba(${cfg.rgb}, 0.1)`,
+                  padding: "0.5rem 1.25rem",
+                }}>
+                  <p style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontWeight: 700,
+                    fontSize: "0.784rem",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: cfg.color,
+                    margin: 0,
+                  }}>
+                    {cfg.label}
+                  </p>
+                </div>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.616rem",
+                  color: "rgba(255,255,255,0.35)",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                }}>
+                  REACH SCORE: {scores.total} / 42
+                </p>
+              </div>
+
+              <h2 style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
+                color: "#FFFFFF",
+                lineHeight: 1.35,
+                maxWidth: 560,
+                marginBottom: "1.75rem",
+              }}>
+                {cfg.headline}
+              </h2>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                {cfg.bullets.map((b, i) => (
+                  <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                    <span style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      color: cfg.color,
+                      fontSize: "0.672rem",
+                      marginTop: "0.25rem",
+                      flexShrink: 0,
+                      fontWeight: 700,
+                    }}>—</span>
+                    <span style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "1.008rem",
+                      color: "rgba(255,255,255,0.75)",
+                      lineHeight: 1.7,
+                    }}>{b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Risk Map + Email */}
+          <div style={{ maxWidth: 720, margin: "0 auto", padding: "2.5rem 1.5rem" }}>
+
+            {/* Risk Map */}
+            <div style={{ marginBottom: "2.5rem" }}>
+              <p style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.616rem",
+                fontWeight: 700,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(197,160,89,0.65)",
+                marginBottom: "1.5rem",
+              }}>
+                AUTHORITY RISK MAP
+              </p>
+              <RiskMap scores={scores} animate={animateMap} />
+              <p style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.56rem",
+                color: "rgba(255,255,255,0.28)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginTop: "1rem",
+              }}>
+                {scores.total >= 33 ? "GO THRESHOLD MET — PROCEED TO GROUND 0"
+                  : scores.total >= 22 ? "WAIT THRESHOLD — GAPS IDENTIFIED"
+                  : "NO-GO THRESHOLD — CRITICAL GAPS DETECTED"}
+              </p>
+            </div>
+
+            {/* Email capture */}
+            {!submitted ? (
+              <div data-testid="reach-email-block" style={{
+                borderTop: "1px solid rgba(255,255,255,0.07)",
+                paddingTop: "2rem",
+              }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.56rem",
+                  color: "rgba(197,160,89,0.65)",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  marginBottom: "1rem",
+                }}>
+                  RECEIVE YOUR RESULTS BRIEF
+                </p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "1.008rem",
+                  color: "rgba(255,255,255,0.65)",
+                  lineHeight: 1.75,
+                  marginBottom: "1.5rem",
+                }}>
+                  Enter your email to receive your REACH assessment summary and preparation recommendations.
+                </p>
+                <form onSubmit={handleEmailSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                  <input
+                    data-testid="reach-email-input"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your operating email address"
+                    style={{
+                      padding: "1rem 1.25rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "1rem",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      color: "#FFFFFF",
+                      outline: "none",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                  <button
+                    data-testid="reach-email-submit"
+                    type="submit"
+                    disabled={loading}
+                    style={{
+                      minHeight: 52,
+                      background: "#C5A059",
+                      color: "#002244",
+                      border: "none",
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 700,
+                      fontSize: "0.98rem",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      cursor: loading ? "wait" : "pointer",
+                      padding: "1rem",
+                      opacity: loading ? 0.8 : 1,
+                      transition: "background 0.2s",
+                    }}
+                    onMouseEnter={(e) => { if (!loading) e.currentTarget.style.background = "#D4B87A"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "#C5A059"; }}
+                  >
+                    {loading ? "Sending..." : "Send My Results"}
+                  </button>
+                </form>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.875rem",
+                  color: "rgba(255,255,255,0.4)",
+                  marginTop: "0.875rem",
+                  fontStyle: "italic",
+                }}>
+                  No sales sequence. Results and preparation resources only.
+                </p>
+              </div>
+            ) : (
+              <div data-testid="reach-confirmed" style={{
+                borderTop: "1px solid rgba(255,255,255,0.07)",
+                paddingTop: "2rem",
+              }}>
+                <div style={{ height: 2, background: cfg.color, marginBottom: "1.5rem" }} />
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.56rem",
+                  color: "rgba(197,160,89,0.65)",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  marginBottom: "1rem",
+                }}>
+                  NEXT STEP
+                </p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "1.008rem",
+                  color: "rgba(255,255,255,0.75)",
+                  lineHeight: 1.75,
+                  marginBottom: "2rem",
+                }}>
+                  {cfg.sub}
+                </p>
+                <Link
+                  to={cfg.ctaHref}
+                  data-testid="reach-result-cta"
                   style={{
-                    padding: "1rem 1.25rem", fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
-                    background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
-                    color: "#FFFFFF", outline: "none", boxSizing: "border-box",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    minHeight: 52,
+                    background: "#C5A059",
+                    color: "#002244",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.98rem",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                    padding: "1rem 2.5rem",
+                    transition: "background 0.2s",
                   }}
-                />
-                <button
-                  data-testid="reach-email-submit"
-                  type="submit" disabled={loading}
-                  style={{
-                    minHeight: 52, background: "#C5A059", color: "#002244", border: "none",
-                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.05rem",
-                    letterSpacing: "0.08em", textTransform: "uppercase",
-                    cursor: loading ? "wait" : "pointer", padding: "1rem", opacity: loading ? 0.8 : 1,
-                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
                 >
-                  {loading ? "Sending..." : "Send My Results"}
-                </button>
-              </form>
-              <p style={{ fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", marginTop: "0.875rem", fontStyle: "italic" }}>
-                No sales sequence. Results and preparation resources only.
-              </p>
-            </div>
-          ) : (
-            <div data-testid="reach-confirmed" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "2rem" }}>
-              <div style={{ height: 2, background: "#C5A059", marginBottom: "1.5rem" }} />
-              <p style={{ fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "2rem" }}>
-                {cfg.sub}
-              </p>
-              <Link
-                to={cfg.ctaHref}
-                style={{
-                  display: "inline-block", minHeight: 52, background: "#C5A059", color: "#002244",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.05rem",
-                  letterSpacing: "0.08em", textTransform: "uppercase",
-                  textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
-                }}
-              >
-                {cfg.cta}
-              </Link>
-            </div>
-          )}
+                  {cfg.cta} →
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
