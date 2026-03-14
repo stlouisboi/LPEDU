@@ -111,7 +111,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Post-Failure Frank recovery signals — Hero secondary link, RecoveryPathBlock (after FourPillars), Vince recovery line (Feb 2026)
 - [x] Homepage Final Refinements — ConsequenceNumberBlock ($15K-$30K vs $5K), FourPillar heading + "Without it:" lines, bolder Recovery Path two-column layout (Feb 2026)
 - [x] /partners B2B landing page — Hero, 3-persona section, How It Works, Trust Band, contact form + POST /api/partners backend endpoint (Feb 2026)
-- [ ] B2B landing page for insurers/fleet operators
+- [x] Mobile UX overhaul (Mar 2026) — Hero padding reduced on ≤640px; REACH pillar grid 2-col on ≤480px; Vince photo max-width 220px + face-centered objectPosition; ProtectionDiagram side arrows hidden on ≤480px; global html/body overflow-x hidden + 44px min tap targets
 - [ ] Post-payment confirmation email via MailerLite
 - [x] Homepage copy fixes (Mar 2026) — Option B plain-language hero bridge; "The Engagement" section (LP-STD-001) with 13-week timeline; all primary CTAs consolidated to "Begin Ground 0" → /ground-0-briefing
 - [x] 6th Knowledge Center article — Authority Registrations Brief (UCR/BOC-3/MCS-150) integrated at /knowledge-center/authority-registrations-brief (Mar 2026)
