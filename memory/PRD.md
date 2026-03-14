@@ -113,7 +113,10 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] /partners B2B landing page — Hero, 3-persona section, How It Works, Trust Band, contact form + POST /api/partners backend endpoint (Feb 2026)
 - [x] Mobile UX overhaul (Mar 2026) — Hero padding reduced on ≤640px; REACH pillar grid 2-col on ≤480px; Vince photo max-width 220px + face-centered objectPosition; ProtectionDiagram side arrows hidden on ≤480px; global html/body overflow-x hidden + 44px min tap targets
 - [ ] Post-payment confirmation email via MailerLite
-- [x] Homepage copy fixes (Mar 2026) — Option B plain-language hero bridge; "The Engagement" section (LP-STD-001) with 13-week timeline; all primary CTAs consolidated to "Begin Ground 0" → /ground-0-briefing
+- [x] Homepage: "How the 90-Day Engagement Works" 3-phase section (DIAGNOSE/BUILD/VERIFY) inserted after ConsequenceNumberBlock (Mar 2026)
+- [x] Homepage: Transition sentence between LP-DOCTRINE quote and cost section (Mar 2026)
+- [x] REACH Diagnostic: Terminal-style "DIAGNOSTIC ENGINE RUNNING" scan animation replacing plain dot list (Mar 2026)
+- [x] REACH Results: Redesigned with colored status banner, score display, and system labels (Mar 2026)
 - [x] 6th Knowledge Center article — Authority Registrations Brief (UCR/BOC-3/MCS-150) integrated at /knowledge-center/authority-registrations-brief (Mar 2026)
 - [ ] Knowledge Center → Portal contextual cross-links
 - [x] Homepage Final Polish — ProtectionDiagramSection (FIGURE LP-01) added to homepage, $5,000 → $2,500 price fix in ConsequenceNumberBlock (Feb 2026)
