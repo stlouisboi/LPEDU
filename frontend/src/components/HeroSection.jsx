@@ -50,9 +50,9 @@ export default function HeroSection() {
           {/* Credential line */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.72rem",
+            fontSize: "0.875rem",
             fontWeight: 600,
-            letterSpacing: "0.18em",
+            letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: "var(--gold-primary)",
             marginBottom: "1.5rem",
@@ -65,7 +65,7 @@ export default function HeroSection() {
           <h1 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(2.75rem, 5.5vw, 5rem)",
+            fontSize: "clamp(3rem, 6vw, 5.5rem)",
             lineHeight: 1.08,
             letterSpacing: "-0.025em",
             color: "var(--text)",
@@ -90,7 +90,7 @@ export default function HeroSection() {
           <p style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(1.35rem, 2.2vw, 1.6rem)",
+            fontSize: "clamp(1.5rem, 2.5vw, 1.85rem)",
             color: "var(--gold-primary)",
             lineHeight: 1.5,
             maxWidth: 560,
@@ -105,9 +105,9 @@ export default function HeroSection() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.12rem",
+            fontSize: "1.25rem",
             color: "var(--text-muted)",
-            lineHeight: 2.2,
+            lineHeight: 2.0,
             maxWidth: 560,
             marginBottom: "1.5rem",
             animation: "heroEnter 0.65s ease both",
@@ -118,9 +118,9 @@ export default function HeroSection() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.12rem",
+            fontSize: "1.25rem",
             color: "var(--text-muted)",
-            lineHeight: 2.2,
+            lineHeight: 2.0,
             maxWidth: 560,
             marginBottom: "1.5rem",
             animation: "heroEnter 0.65s ease both",
@@ -131,9 +131,9 @@ export default function HeroSection() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.12rem",
+            fontSize: "1.25rem",
             color: "var(--text-muted)",
-            lineHeight: 2.2,
+            lineHeight: 2.0,
             maxWidth: 560,
             marginBottom: "1rem",
             animation: "heroEnter 0.65s ease both",
@@ -144,9 +144,9 @@ export default function HeroSection() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.008rem",
+            fontSize: "1.1rem",
             color: "rgba(255,255,255,0.52)",
-            lineHeight: 2.15,
+            lineHeight: 2.0,
             maxWidth: 560,
             marginBottom: "3rem",
             animation: "heroEnter 0.65s ease both",
