@@ -149,7 +149,12 @@ const SERIES = [
 
 export default function AllChecklists() {
   useEffect(() => {
-    const timer = setTimeout(() => window.print(), 800);
+    const prev = document.title;
+    document.title = "LaunchPath-Compliance-Checklists";
+    const timer = setTimeout(() => {
+      window.print();
+      document.title = prev;
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -209,9 +214,10 @@ export default function AllChecklists() {
 
       {/* ── Screen-only fallback ── */}
       <div className="screen-fallback">
-        <p className="screen-msg">Preparing your download…</p>
+        <div className="screen-spinner" />
+        <p className="screen-msg">Opening download dialog…</p>
         <button onClick={() => window.print()} className="screen-btn">
-          Click here if print dialog did not open
+          Download PDF
         </button>
         <a href="/knowledge-center" className="screen-back">← Back to Knowledge Center</a>
       </div>
@@ -222,7 +228,9 @@ export default function AllChecklists() {
           .print-document { background: #020408; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
           .print-cover, .print-brief-section, .print-marker { display: none; }
           .screen-fallback { text-align: center; padding: 4rem 2rem; }
-          .screen-msg { font-family: 'Manrope', sans-serif; font-size: 1.5rem; font-weight: 700; color: #f0f4f8; margin-bottom: 1.5rem; }
+          .screen-msg { font-family: 'Manrope', sans-serif; font-size: 1.25rem; font-weight: 700; color: #f0f4f8; margin-bottom: 1.5rem; }
+          .screen-spinner { width: 36px; height: 36px; border: 2px solid rgba(197,160,89,0.2); border-top-color: #C5A059; border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 1.5rem; }
+          @keyframes spin { to { transform: rotate(360deg); } }
           .screen-btn { background: #E8590F; color: #fff; border: none; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2rem; cursor: pointer; margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto; }
           .screen-back { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #8a99aa; text-decoration: none; display: block; }
         }
