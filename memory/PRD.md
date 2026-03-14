@@ -117,6 +117,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Homepage: Transition sentence between LP-DOCTRINE quote and cost section (Mar 2026)
 - [x] REACH per-category gap summary (Mar 2026) — CategoryBreakdown component with 5 scored cards (R/E/A/C/H), pass/warning/critical color coding, feedback templates; result-specific CTAs (GO: Begin G0; WAIT: Begin G0 + Retake + Contact; NO-GO: Review G0 + Contact); "What This Means" section for WAIT/NO-GO showing flagged category names
 - [x] REACH Results: Redesigned with colored status banner, score display, and system labels (Mar 2026)
+- [x] Portal "Ground 0 Complete" banner (Mar 2026) — persistent banner for authenticated non-paid users, Request Admission + Run REACH CTAs, × dismiss persists via localStorage
 - [x] 6th Knowledge Center article — Authority Registrations Brief (UCR/BOC-3/MCS-150) integrated at /knowledge-center/authority-registrations-brief (Mar 2026)
 - [ ] Knowledge Center → Portal contextual cross-links
 - [x] Homepage Final Polish — ProtectionDiagramSection (FIGURE LP-01) added to homepage, $5,000 → $2,500 price fix in ConsequenceNumberBlock (Feb 2026)
