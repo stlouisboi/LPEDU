@@ -381,23 +381,29 @@ async def check_portal_access(request: Request):
 async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=503, detail="Payment service not configured.")
-    # Attach user_id if authenticated
     user = await get_user_from_request(request)
     user_id = user["user_id"] if user else None
 
-    stripe = get_stripe(request)
     success_url = f"{data.origin_url}/portal?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{data.origin_url}/portal"
-    req = CheckoutSessionRequest(
-        amount=5000.00,
-        currency="usd",
+    session = await asyncio.to_thread(
+        stripe_lib.checkout.Session.create,
+        payment_method_types=["card"],
+        line_items=[{
+            "price_data": {
+                "currency": "usd",
+                "product_data": {"name": "LaunchPath LPOS Cohort Access"},
+                "unit_amount": 500000,
+            },
+            "quantity": 1,
+        }],
+        mode="payment",
         success_url=success_url,
         cancel_url=cancel_url,
         metadata={"product": "launchpath_cohort_admission", "user_id": user_id or ""},
     )
-    session = await stripe.create_checkout_session(req)
     await db.payment_transactions.insert_one({
-        "session_id": session.session_id,
+        "session_id": session.id,
         "user_id": user_id,
         "amount": 5000.00,
         "currency": "usd",
@@ -406,18 +412,17 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
         "metadata": {"product": "launchpath_cohort_admission"},
         "created_at": datetime.now(timezone.utc).isoformat(),
     })
-    return {"url": session.url, "session_id": session.session_id}
+    return {"url": session.url, "session_id": session.id}
 
 @api_router.get("/portal/checkout/status/{session_id}")
 async def get_portal_checkout_status(session_id: str, request: Request):
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=503, detail="Payment service not configured.")
-    stripe = get_stripe(request)
-    status = await stripe.get_checkout_status(session_id)
+    session = await asyncio.to_thread(stripe_lib.checkout.Session.retrieve, session_id)
 
     update_fields = {
-        "payment_status": status.payment_status,
-        "status": status.status,
+        "payment_status": session.payment_status,
+        "status": session.status,
         "updated_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.payment_transactions.update_one(
@@ -426,8 +431,7 @@ async def get_portal_checkout_status(session_id: str, request: Request):
         upsert=True,
     )
 
-    # Grant cohort access to the user when payment is confirmed
-    if status.payment_status == "paid":
+    if session.payment_status == "paid":
         transaction = await db.payment_transactions.find_one({"session_id": session_id}, {"_id": 0})
         user_id = transaction.get("user_id") if transaction else None
         if user_id:
@@ -442,67 +446,69 @@ async def get_portal_checkout_status(session_id: str, request: Request):
                 upsert=True,
             )
 
-    return {"status": status.status, "payment_status": status.payment_status}
+    return {"status": session.status, "payment_status": session.payment_status}
 
 @api_router.post("/webhook/stripe")
 async def stripe_webhook(request: Request):
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=503, detail="Payment service not configured.")
-    stripe = get_stripe(request)
     body = await request.body()
     signature = request.headers.get("Stripe-Signature", "")
     try:
-        event = await stripe.handle_webhook(body, signature)
-        if event.payment_status == "paid":
-            await db.payment_transactions.update_one(
-                {"session_id": event.session_id},
-                {"$set": {
-                    "payment_status": "paid",
-                    "status": "complete",
-                    "updated_at": datetime.now(timezone.utc).isoformat(),
-                }},
-                upsert=True,
-            )
-            # Also grant access via webhook
-            transaction = await db.payment_transactions.find_one({"session_id": event.session_id}, {"_id": 0})
-            user_id = transaction.get("user_id") if transaction else None
-            if user_id:
-                await db.user_access.update_one(
-                    {"user_id": user_id},
+        if STRIPE_WEBHOOK_SECRET:
+            event = stripe_lib.Webhook.construct_event(body, signature, STRIPE_WEBHOOK_SECRET)
+        else:
+            event = stripe_lib.Event.construct_from(json.loads(body), stripe_lib.api_key)
+
+        if event.type == "checkout.session.completed":
+            checkout_session = event.data.object
+            if checkout_session.payment_status == "paid":
+                await db.payment_transactions.update_one(
+                    {"session_id": checkout_session.id},
                     {"$set": {
-                        "has_access": True,
-                        "access_level": "cohort",
-                        "granted_at": datetime.now(timezone.utc).isoformat(),
-                        "stripe_session_id": event.session_id,
+                        "payment_status": "paid",
+                        "status": "complete",
+                        "updated_at": datetime.now(timezone.utc).isoformat(),
                     }},
                     upsert=True,
                 )
-                # Post-payment confirmation — update subscriber in MailerLite
-                # with paid cohort fields to trigger welcome automation
-                user_record = await db.users.find_one({"user_id": user_id}, {"_id": 0})
-                if user_record and user_record.get("email") and MAILERLITE_API_TOKEN:
-                    try:
-                        async with httpx.AsyncClient(timeout=8) as http:
-                            await http.post(
-                                MAILERLITE_URL,
-                                headers={
-                                    "Content-Type": "application/json",
-                                    "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
-                                },
-                                json={
-                                    "email": user_record["email"],
-                                    "status": "active",
-                                    "fields": {
-                                        "name": user_record.get("name", ""),
-                                        "cohort_access": "true",
-                                        "cohort_tier": "LPOS_v1_Standard",
-                                        "payment_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-                                        "stripe_session_id": event.session_id,
+                transaction = await db.payment_transactions.find_one({"session_id": checkout_session.id}, {"_id": 0})
+                user_id = transaction.get("user_id") if transaction else None
+                if user_id:
+                    await db.user_access.update_one(
+                        {"user_id": user_id},
+                        {"$set": {
+                            "has_access": True,
+                            "access_level": "cohort",
+                            "granted_at": datetime.now(timezone.utc).isoformat(),
+                            "stripe_session_id": checkout_session.id,
+                        }},
+                        upsert=True,
+                    )
+                    user_record = await db.users.find_one({"user_id": user_id}, {"_id": 0})
+                    if user_record and user_record.get("email") and MAILERLITE_API_TOKEN:
+                        try:
+                            async with httpx.AsyncClient(timeout=8) as http:
+                                await http.post(
+                                    MAILERLITE_URL,
+                                    headers={
+                                        "Content-Type": "application/json",
+                                        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
                                     },
-                                },
-                            )
-                    except Exception as ml_err:
-                        logger.error(f"MailerLite post-payment update failed: {ml_err}")
+                                    json={
+                                        "email": user_record["email"],
+                                        "status": "active",
+                                        "fields": {
+                                            "name": user_record.get("name", ""),
+                                            "cohort_access": "true",
+                                            "cohort_tier": "LPOS_v1_Standard",
+                                            "payment_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                                            "stripe_session_id": checkout_session.id,
+                                        },
+                                    },
+                                )
+                        except Exception as ml_err:
+                            logger.error(f"MailerLite post-payment update failed: {ml_err}")
     except Exception as e:
         logger.error(f"Stripe webhook error: {e}")
         raise HTTPException(status_code=400, detail="Webhook processing failed.")
