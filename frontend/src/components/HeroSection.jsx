@@ -59,36 +59,36 @@ export default function HeroSection() {
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(2.75rem, 5.5vw, 5rem)",
-            lineHeight: 1.05,
+            lineHeight: 1.08,
             letterSpacing: "-0.025em",
             color: "var(--text)",
-            marginBottom: "2.5rem",
+            marginBottom: "0rem",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.15s",
           }}>
-            The 90-Day Compliance Operating Standard
+            The 90-Day Compliance<br />Operating Standard
             <span style={{
               display: "block",
               fontSize: "0.62em",
               fontWeight: 500,
               letterSpacing: "-0.015em",
               color: "rgba(255,255,255,0.72)",
-              lineHeight: 1.25,
-              marginTop: "0.45em",
+              lineHeight: 1.3,
+              marginTop: "0.55em",
             }}>
-              for new motor carrier authorities.
+              for new motor carrier<br />authorities.
             </span>
           </h1>
 
           <p style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(1.2rem, 2vw, 1.45rem)",
+            fontSize: "clamp(1.25rem, 2.1vw, 1.5rem)",
             color: "var(--gold-primary)",
-            lineHeight: 1.45,
+            lineHeight: 1.5,
             maxWidth: 560,
-            marginTop: "0.25rem",
-            marginBottom: "1.75rem",
+            marginTop: "2rem",
+            marginBottom: "2.25rem",
             letterSpacing: "-0.01em",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.25s",
@@ -100,7 +100,7 @@ export default function HeroSection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.12rem",
             color: "var(--text-muted)",
-            lineHeight: 2.0,
+            lineHeight: 2.2,
             maxWidth: 560,
             marginBottom: "1.25rem",
             animation: "heroEnter 0.65s ease both",
@@ -113,7 +113,7 @@ export default function HeroSection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.12rem",
             color: "var(--text-muted)",
-            lineHeight: 2.0,
+            lineHeight: 2.2,
             maxWidth: 560,
             marginBottom: "1rem",
             animation: "heroEnter 0.65s ease both",
@@ -126,7 +126,7 @@ export default function HeroSection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "1.008rem",
             color: "rgba(255,255,255,0.52)",
-            lineHeight: 1.95,
+            lineHeight: 2.15,
             maxWidth: 560,
             marginBottom: "3rem",
             animation: "heroEnter 0.65s ease both",
