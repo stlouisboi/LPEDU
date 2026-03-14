@@ -28,6 +28,32 @@ MAILERLITE_URL = "https://connect.mailerlite.com/api/subscribers"
 STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY', '')
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 stripe_lib.api_key = STRIPE_API_KEY
+MAILERSEND_API_KEY = os.environ.get('MAILERSEND_API_KEY', '')
+MAILERSEND_FROM_EMAIL = os.environ.get('MAILERSEND_FROM_EMAIL', '')
+MAILERSEND_FROM_NAME = os.environ.get('MAILERSEND_FROM_NAME', 'LaunchPath')
+
+
+async def send_mailersend_email(to_email: str, to_name: str, subject: str, html: str) -> None:
+    """Fire-and-forget transactional email via MailerSend REST API."""
+    if not MAILERSEND_API_KEY or not MAILERSEND_FROM_EMAIL:
+        return
+    try:
+        async with httpx.AsyncClient(timeout=10) as http:
+            await http.post(
+                "https://api.mailersend.com/v1/email",
+                headers={
+                    "Authorization": f"Bearer {MAILERSEND_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "from": {"email": MAILERSEND_FROM_EMAIL, "name": MAILERSEND_FROM_NAME},
+                    "to": [{"email": to_email, "name": to_name}],
+                    "subject": subject,
+                    "html": html,
+                },
+            )
+    except Exception as e:
+        logger.error(f"MailerSend send failed: {e}")
 COACH_EMAIL = "vince@launchpathedu.com"
 
 # ── Implementation Sequence Tasks Definition ─────────────────────────────
@@ -810,6 +836,26 @@ async def verify_task(taskId: str, data: CoachActionRequest, request: Request):
         {"carrierId": data.carrierId, "taskId": taskId},
         {"$set": {"status": "verified", "verifiedAt": now_iso, "verifiedBy": user["email"], "coachNote": ""}},
     )
+    # Send verified notification email
+    carrier = await db.users.find_one({"user_id": data.carrierId}, {"_id": 0})
+    if carrier and carrier.get("email"):
+        task_name = task.get("name", taskId)
+        html = f"""
+        <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:40px 32px;border-top:4px solid #C5A059;">
+          <p style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#C5A059;margin-bottom:24px;">LaunchPath Operating Standard</p>
+          <h1 style="font-size:24px;font-weight:700;margin-bottom:16px;color:#f4f7fb;">Compliance Item Verified</h1>
+          <p style="font-size:16px;color:#dde5ec;margin-bottom:24px;">Your submission for <strong style="color:#C5A059;">{task_name}</strong> has been reviewed and verified by your LaunchPath coach.</p>
+          <div style="background:#0F1E35;border-left:3px solid #C5A059;padding:16px 20px;margin-bottom:28px;">
+            <p style="margin:0;font-size:14px;color:#dde5ec;">This item is now marked <strong style="color:#C5A059;">VERIFIED</strong> in your Implementation Sequence. Your Administrative Signal has been updated.</p>
+          </div>
+          <p style="font-size:14px;color:#dde5ec;margin-bottom:32px;">Log in to your portal to view your updated compliance score and next priority items.</p>
+          <a href="https://lpedu.vercel.app/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;">View Portal</a>
+          <p style="font-size:12px;color:#8a9ab0;margin-top:32px;">This is an automated notification from the LaunchPath Operating Standard. Do not reply to this email.</p>
+        </div>"""
+        asyncio.create_task(send_mailersend_email(
+            carrier["email"], carrier.get("name", "Operator"),
+            f"Verified: {task_name}", html
+        ))
     return {"ok": True, "taskId": taskId, "status": "verified"}
 
 
@@ -823,15 +869,35 @@ async def remediate_task(taskId: str, data: CoachActionRequest, request: Request
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     now_iso = datetime.now(timezone.utc).isoformat()
+    coach_note = data.coachNote or ""
     await db.tasks.update_one(
         {"carrierId": data.carrierId, "taskId": taskId},
         {"$set": {
             "status": "needs_changes",
-            "coachNote": data.coachNote or "",
+            "coachNote": coach_note,
             "remediationAt": now_iso,
             "remediatedBy": user["email"],
         }},
     )
+    # Send action required notification email
+    carrier = await db.users.find_one({"user_id": data.carrierId}, {"_id": 0})
+    if carrier and carrier.get("email"):
+        task_name = task.get("name", taskId)
+        note_block = f'<div style="background:#1a0a00;border-left:3px solid #E8590F;padding:16px 20px;margin-bottom:28px;"><p style="margin:0 0 6px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#E8590F;">Coach Note</p><p style="margin:0;font-size:14px;color:#dde5ec;">{coach_note}</p></div>' if coach_note else ""
+        html = f"""
+        <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:40px 32px;border-top:4px solid #E8590F;">
+          <p style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#C5A059;margin-bottom:24px;">LaunchPath Operating Standard</p>
+          <h1 style="font-size:24px;font-weight:700;margin-bottom:16px;color:#f4f7fb;">Action Required</h1>
+          <p style="font-size:16px;color:#dde5ec;margin-bottom:24px;">Your submission for <strong style="color:#C5A059;">{task_name}</strong> requires additional attention before it can be verified.</p>
+          {note_block}
+          <p style="font-size:14px;color:#dde5ec;margin-bottom:32px;">Log in to your portal, review the note above, and resubmit when ready.</p>
+          <a href="https://lpedu.vercel.app/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;">Go to Portal</a>
+          <p style="font-size:12px;color:#8a9ab0;margin-top:32px;">This is an automated notification from the LaunchPath Operating Standard. Do not reply to this email.</p>
+        </div>"""
+        asyncio.create_task(send_mailersend_email(
+            carrier["email"], carrier.get("name", "Operator"),
+            f"Action Required: {task_name}", html
+        ))
     return {"ok": True, "taskId": taskId, "status": "needs_changes"}
 
 
