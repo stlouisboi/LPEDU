@@ -112,6 +112,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                 <div
                   key={p.letter}
                   data-testid={`reach-pillar-${p.letter.toLowerCase()}`}
+                  className="pillar-card"
                   style={{
                     background: "rgba(255,255,255,0.03)",
                     border: "1px solid rgba(197,160,89,0.14)",
@@ -370,17 +371,20 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             grid-template-columns: 1fr !important;
           }
           .pillar-grid {
-            grid-template-columns: repeat(5, 1fr) !important;
-          }
-        }
-        @media (max-width: 500px) {
-          .pillar-grid {
             grid-template-columns: repeat(3, 1fr) !important;
           }
         }
-        @media (max-width: 375px) {
+        @media (max-width: 480px) {
           .pillar-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .pillar-card {
+            padding: 1rem 0.75rem !important;
+          }
+        }
+        @media (max-width: 320px) {
+          .pillar-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

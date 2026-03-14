@@ -9,7 +9,7 @@ const FMCSA_DATA = [
 
 export default function HeroSection() {
   return (
-    <section data-testid="hero-section" style={{
+    <section data-testid="hero-section" className="hero-section" style={{
       position: "relative",
       background: "#002244",
       padding: "8rem 1.5rem 6rem",
@@ -251,6 +251,7 @@ export default function HeroSection() {
       <style>{`
         @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr !important; } }
         @media (max-width: 900px) { .hero-grid > div:last-child { display: none; } }
+        @media (max-width: 640px) { .hero-section { padding: 5rem 1.25rem 3.5rem !important; } }
       `}</style>
     </section>
   );

@@ -85,12 +85,25 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Prevent horizontal overflow on all screen sizes */
+html, body { overflow-x: hidden; max-width: 100%; }
+img { max-width: 100%; }
+
 body {
   font-family: 'Inter', -apple-system, sans-serif;
   background-color: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
+}
+
+/* ── Global mobile responsive improvements ── */
+@media (max-width: 480px) {
+  /* Touch-friendly minimum tap targets */
+  a, button { min-height: 44px; }
+
+  /* Tighten article/doc-style pages */
+  .article-body { font-size: 1rem !important; }
 }
 
 /* Typography */

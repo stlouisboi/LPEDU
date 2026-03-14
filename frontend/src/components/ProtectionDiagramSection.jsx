@@ -101,7 +101,7 @@ export default function ProtectionDiagramSection() {
           </div>
 
           {/* Threat arrows down */}
-          <div style={{ ...visible(1), display: "flex", gap: "3rem", marginBottom: "0.5rem" }}>
+          <div className="prot-threats" style={{ ...visible(1), display: "flex", gap: "3rem", marginBottom: "0.5rem" }}>
             {THREATS.map((t) => (
               <div key={t.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.35rem" }}>
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "#e2e8f0" }}>{t.label}</span>
@@ -119,7 +119,9 @@ export default function ProtectionDiagramSection() {
           }}>
 
             {/* Left side arrows */}
-            <div style={{
+            <div
+              className="prot-side-arrow"
+              style={{
               ...sideVisible(2),
               display: "flex",
               flexDirection: "column",
@@ -201,7 +203,9 @@ export default function ProtectionDiagramSection() {
             </div>
 
             {/* Right side arrows */}
-            <div style={{
+            <div
+              className="prot-side-arrow"
+              style={{
               ...sideVisible(2),
               display: "flex",
               flexDirection: "column",
@@ -246,6 +250,10 @@ export default function ProtectionDiagramSection() {
       <style>{`
         @media (max-width: 640px) {
           .guards-inner { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 480px) {
+          .prot-side-arrow { display: none !important; }
+          .prot-threats { gap: 1.5rem !important; }
         }
       `}</style>
     </section>

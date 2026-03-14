@@ -20,11 +20,11 @@ export default function VinceCTASection() {
       }} className="vince-grid">
 
         {/* Photo */}
-        <div style={{ overflow: "hidden" }}>
+        <div style={{ overflow: "hidden" }} className="vince-photo-wrapper">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
             alt="Vince Lawrence"
-            style={{ width: "100%", height: 260, objectFit: "cover", objectPosition: "top center", display: "block" }}
+            style={{ width: "100%", height: 260, objectFit: "cover", objectPosition: "50% 10%", display: "block" }}
           />
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -149,6 +149,7 @@ export default function VinceCTASection() {
       <style>{`
         @media (max-width: 700px) {
           .vince-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .vince-photo-wrapper { max-width: 220px; }
         }
       `}</style>
     </section>
