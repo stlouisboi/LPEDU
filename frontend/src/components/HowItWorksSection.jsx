@@ -158,7 +158,7 @@ export default function HowItWorksSection() {
         background: "#001023",
         borderTop: "1px solid rgba(197,160,89,0.12)",
         borderBottom: "1px solid rgba(197,160,89,0.12)",
-        padding: "72px 24px",
+        padding: "104px 24px",
       }}
     >
       <div style={{ maxWidth: 960, margin: "0 auto" }}>

@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 const TIMELINE = [
   {
     code: "DAY 1",
@@ -24,13 +26,28 @@ const TIMELINE = [
 ];
 
 export default function AuthorityClockSection() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold: 0.07 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section
       data-testid="authority-clock-section"
+      ref={ref}
       style={{
         background: "#001A33",
         borderBottom: "1px solid rgba(255,255,255,0.07)",
-        padding: "80px 24px",
+        padding: "112px 24px",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.7s ease, transform 0.7s ease",
       }}
     >
       <div style={{ maxWidth: 960, margin: "0 auto" }}>

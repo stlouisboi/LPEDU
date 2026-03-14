@@ -26,7 +26,7 @@ export default function EngagementSection() {
         background: "#001023",
         borderTop: "1px solid rgba(197,160,89,0.18)",
         borderBottom: "1px solid rgba(197,160,89,0.18)",
-        padding: "72px 24px",
+        padding: "104px 24px",
       }}
     >
       <div style={{ maxWidth: 960, margin: "0 auto" }}>

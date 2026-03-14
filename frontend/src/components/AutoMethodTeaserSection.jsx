@@ -134,7 +134,7 @@ export default function AutoMethodTeaserSection() {
         background: "#002244",
         borderTop: "1px solid rgba(197,160,89,0.15)",
         borderBottom: "1px solid rgba(197,160,89,0.15)",
-        padding: "72px 24px",
+        padding: "104px 24px",
       }}
     >
       <div style={{ maxWidth: 960, margin: "0 auto" }}>

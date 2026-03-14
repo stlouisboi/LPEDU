@@ -7,6 +7,7 @@ import ConsequenceNumberBlock from "../components/ConsequenceNumberBlock";
 import AutoMethodTeaserSection from "../components/AutoMethodTeaserSection";
 import HowItWorksSection from "../components/HowItWorksSection";
 import ProtectionDiagramSection from "../components/ProtectionDiagramSection";
+import MidPageStatement from "../components/MidPageStatement";
 import FourPillarsSection from "../components/FourPillarsSection";
 import EngagementSection from "../components/EngagementSection";
 import AuthorityReadinessTestSection from "../components/AuthorityReadinessTestSection";
@@ -30,6 +31,7 @@ export default function HomePage() {
         <HowItWorksSection />
         <AutoMethodTeaserSection />
         <ProtectionDiagramSection />
+        <MidPageStatement />
         <FourPillarsSection />
         <EngagementSection />
         <AuthorityReadinessTestSection />

@@ -43,8 +43,11 @@ function PillarCard({ pillar, idx }) {
       data-testid={`pillar-${idx + 1}`}
       style={{
         background: hovered ? "#002244" : "#001530",
-        padding: "2.5rem 2rem",
+        padding: "3rem 2.5rem",
         borderTop: "3px solid #C5A059",
+        borderLeft: hovered ? "1px solid rgba(197,160,89,0.25)" : "1px solid rgba(197,160,89,0.08)",
+        borderRight: hovered ? "1px solid rgba(197,160,89,0.25)" : "1px solid rgba(197,160,89,0.08)",
+        borderBottom: hovered ? "1px solid rgba(197,160,89,0.25)" : "1px solid rgba(197,160,89,0.08)",
         position: "relative",
         overflow: "hidden",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
@@ -66,7 +69,7 @@ function PillarCard({ pillar, idx }) {
         right: "1rem",
         fontFamily: "'Manrope', sans-serif",
         fontWeight: 800,
-        fontSize: "6.5rem",
+        fontSize: "8rem",
         lineHeight: 1,
         userSelect: "none",
         pointerEvents: "none",
@@ -170,7 +173,7 @@ export default function FourPillarsSection() {
   return (
     <section data-testid="four-pillars-section" style={{
       background: "#001530",
-      padding: "72px 24px",
+      padding: "104px 24px",
       borderBottom: "1px solid rgba(197,160,89,0.15)",
     }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>

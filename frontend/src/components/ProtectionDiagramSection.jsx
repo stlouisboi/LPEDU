@@ -66,7 +66,7 @@ export default function ProtectionDiagramSection() {
       style={{
         background: "#000F1F",
         borderBottom: "1px solid rgba(255,255,255,0.07)",
-        padding: "80px 24px",
+        padding: "112px 24px",
       }}
     >
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
