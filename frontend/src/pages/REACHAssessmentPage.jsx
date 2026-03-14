@@ -149,6 +149,230 @@ const RESULT_CONFIG = {
   },
 };
 
+// ── Category Gap Config ───────────────────────────────────
+const CATEGORY_GAP_CONFIG = [
+  {
+    key: "r",
+    code: "R",
+    name: "RESOURCES",
+    max: 9,
+    feedback: {
+      pass: "Your capital position appears sufficient for the implementation period.",
+      warning: "Your score indicates limited capital runway. Most new authorities need 3–6 months of operating reserves before consistent revenue arrives.",
+      critical: "Your score indicates significant financial constraints. Operating authority without adequate reserves dramatically increases early failure risk.",
+    },
+  },
+  {
+    key: "e",
+    code: "E",
+    name: "EXPERIENCE",
+    max: 9,
+    feedback: {
+      pass: "Your operational background appears sufficient.",
+      warning: "Your score indicates limited industry experience. Consider whether you have access to experienced operational support before launch.",
+      critical: "Your score indicates minimal trucking or compliance experience. The learning curve for new authority is steep without operational background.",
+    },
+  },
+  {
+    key: "a",
+    code: "A",
+    name: "AUTHORITY READINESS",
+    max: 9,
+    feedback: {
+      pass: "Registration and filing status appears aligned.",
+      warning: "Your score indicates incomplete authority setup. Verify USDOT, MC, BOC-3, and insurance filings are complete before operating.",
+      critical: "Your score indicates authority is not properly established. Complete all registration and filing requirements before proceeding.",
+    },
+  },
+  {
+    key: "c",
+    code: "C",
+    name: "COMMITMENT",
+    max: 9,
+    feedback: {
+      pass: "Your commitment level and operational discipline appear sufficient.",
+      warning: "Your score indicates limited time availability or conditional commitment. This increases implementation risk during the first 90 days.",
+      critical: "Your score indicates minimal commitment to ongoing compliance management. The Standard requires consistent attention — especially in the first 90 days.",
+    },
+  },
+  {
+    key: "h",
+    code: "H",
+    name: "OPERATIONAL DISCIPLINE",
+    max: 6,
+    feedback: {
+      pass: "Risk understanding and contingency planning appear adequate.",
+      warning: "Your score indicates gaps in operational planning. Ground 0 content directly addresses timeline and contingency planning.",
+      critical: "Your score indicates significant gaps in operational discipline. Review Ground 0 materials carefully before proceeding.",
+    },
+  },
+];
+
+function getGapStatus(score, max) {
+  const pct = score / max;
+  if (pct >= 0.78) return "pass";
+  if (pct >= 0.44) return "warning";
+  return "critical";
+}
+
+const STATUS_STYLE = {
+  pass:     { color: "#22c55e", icon: "✓", border: "rgba(34,197,94,0.15)",    bg: "rgba(34,197,94,0.03)"    },
+  warning:  { color: "#F59E0B", icon: "⚠", border: "rgba(245,158,11,0.3)",   bg: "rgba(245,158,11,0.04)"   },
+  critical: { color: "#ef4444", icon: "✗", border: "rgba(239,68,68,0.3)",    bg: "rgba(239,68,68,0.04)"    },
+};
+
+function CategoryBreakdown({ scores }) {
+  const mono = "'JetBrains Mono', monospace";
+  const sans = "'Inter', sans-serif";
+  return (
+    <div data-testid="category-breakdown" style={{ marginBottom: "2.5rem" }}>
+      <p style={{
+        fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
+        letterSpacing: "0.22em", textTransform: "uppercase",
+        color: "rgba(197,160,89,0.65)", marginBottom: "1.25rem",
+      }}>
+        CATEGORY BREAKDOWN
+      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+        {CATEGORY_GAP_CONFIG.map((cat) => {
+          const score = scores[cat.key];
+          const status = getGapStatus(score, cat.max);
+          const s = STATUS_STYLE[status];
+          return (
+            <div
+              key={cat.key}
+              data-testid={`gap-card-${cat.key}`}
+              style={{
+                background: s.bg,
+                border: `1px solid ${s.border}`,
+                padding: "0.875rem 1.25rem",
+              }}
+            >
+              {/* Header row */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: status === "pass" ? "0.25rem" : "0.5rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.9rem", color: "#C5A059", fontWeight: 700 }}>
+                    {cat.code}
+                  </span>
+                  <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                    — {cat.name}
+                  </span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.784rem", color: s.color, fontWeight: 700 }}>
+                    {score}/{cat.max}
+                  </span>
+                  <span style={{ fontSize: "0.72rem", color: s.color, lineHeight: 1 }}>
+                    {s.icon}
+                  </span>
+                </div>
+              </div>
+              {/* Feedback */}
+              <p style={{
+                fontFamily: sans,
+                fontSize: status === "pass" ? "0.868rem" : "0.924rem",
+                color: status === "pass" ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.72)",
+                lineHeight: 1.6,
+                margin: 0,
+                fontStyle: status === "pass" ? "italic" : "normal",
+              }}>
+                {cat.feedback[status]}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Returns display names of flagged (warning/critical) categories
+function getFlaggedNames(scores) {
+  return CATEGORY_GAP_CONFIG
+    .filter((cat) => getGapStatus(scores[cat.key], cat.max) !== "pass")
+    .map((cat) => cat.name.charAt(0) + cat.name.slice(1).toLowerCase());
+}
+
+// Result-specific CTA rows
+function ResultCTAs({ result }) {
+  const sans = "'Inter', sans-serif";
+  const btnBase = {
+    display: "inline-flex", alignItems: "center", justifyContent: "center",
+    minHeight: 48, fontFamily: sans, fontWeight: 700,
+    fontSize: "0.868rem", letterSpacing: "0.08em",
+    textTransform: "uppercase", textDecoration: "none",
+    padding: "0.875rem 1.75rem", transition: "background 0.2s",
+  };
+  if (result === "GO") {
+    return (
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+        <Link
+          to="/ground-0-briefing"
+          data-testid="cta-begin-ground-0"
+          style={{ ...btnBase, background: "#C5A059", color: "#000F1F" }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+        >
+          Begin Ground 0 →
+        </Link>
+      </div>
+    );
+  }
+  if (result === "WAIT") {
+    return (
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+        <Link
+          to="/ground-0-briefing"
+          data-testid="cta-begin-ground-0"
+          style={{ ...btnBase, background: "#C5A059", color: "#000F1F" }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+        >
+          Begin Ground 0 →
+        </Link>
+        <button
+          data-testid="cta-retake"
+          onClick={() => window.location.reload()}
+          style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.2)", cursor: "pointer" }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+        >
+          Retake Assessment
+        </button>
+        <Link
+          to="/contact"
+          data-testid="cta-contact"
+          style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.84rem" }}
+        >
+          Contact →
+        </Link>
+      </div>
+    );
+  }
+  // NO-GO
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+      <Link
+        to="/ground-0-briefing"
+        data-testid="cta-begin-ground-0"
+        style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.25)" }}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+      >
+        Review Ground 0 Materials
+      </Link>
+      <Link
+        to="/contact"
+        data-testid="cta-contact"
+        style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.84rem" }}
+      >
+        Contact →
+      </Link>
+    </div>
+  );
+}
+
+
 // ── Risk Map ─────────────────────────────────────────────
 function RiskMap({ scores, animate }) {
   const rows = [
@@ -682,6 +906,11 @@ export default function REACHAssessmentPage() {
           {/* Risk Map + Email */}
           <div style={{ maxWidth: 720, margin: "0 auto", padding: "2.5rem 1.5rem" }}>
 
+            {/* Category Breakdown */}
+            <div style={{ marginBottom: "2.5rem" }}>
+              <CategoryBreakdown scores={scores} />
+            </div>
+
             {/* Risk Map */}
             <div style={{ marginBottom: "2.5rem" }}>
               <p style={{
@@ -795,48 +1024,66 @@ export default function REACHAssessmentPage() {
                 paddingTop: "2rem",
               }}>
                 <div style={{ height: 2, background: cfg.color, marginBottom: "1.5rem" }} />
-                <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.56rem",
-                  color: "rgba(197,160,89,0.65)",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  marginBottom: "1rem",
-                }}>
-                  NEXT STEP
-                </p>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.008rem",
-                  color: "rgba(255,255,255,0.75)",
-                  lineHeight: 1.75,
-                  marginBottom: "2rem",
-                }}>
-                  {cfg.sub}
-                </p>
-                <Link
-                  to={cfg.ctaHref}
-                  data-testid="reach-result-cta"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    minHeight: 52,
-                    background: "#C5A059",
-                    color: "#002244",
+
+                {/* What This Means — only for WAIT/NO-GO */}
+                {result !== "GO" && (() => {
+                  const flagged = getFlaggedNames(scores);
+                  return (
+                    <div style={{ marginBottom: "2rem" }}>
+                      <p style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: "0.616rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.2em",
+                        textTransform: "uppercase",
+                        color: "rgba(197,160,89,0.65)",
+                        marginBottom: "0.875rem",
+                      }}>
+                        WHAT THIS MEANS
+                      </p>
+                      {flagged.length > 0 && (
+                        <p style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "1.008rem",
+                          color: "rgba(255,255,255,0.72)",
+                          lineHeight: 1.75,
+                          marginBottom: "1rem",
+                        }}>
+                          Your{" "}
+                          {flagged.length === 1
+                            ? flagged[0]
+                            : flagged.slice(0, -1).join(", ") + " and " + flagged[flagged.length - 1]}{" "}
+                          {flagged.length === 1 ? "score suggests" : "scores suggest"} areas that should be addressed before or during implementation.
+                        </p>
+                      )}
+                      <p style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.98rem",
+                        color: "rgba(255,255,255,0.52)",
+                        lineHeight: 1.7,
+                        marginBottom: 0,
+                      }}>
+                        {cfg.sub}
+                      </p>
+                    </div>
+                  );
+                })()}
+
+                {/* GO result simple message */}
+                {result === "GO" && (
+                  <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "0.98rem",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    textDecoration: "none",
-                    padding: "1rem 2.5rem",
-                    transition: "background 0.2s",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
-                >
-                  {cfg.cta} →
-                </Link>
+                    fontSize: "1.008rem",
+                    color: "rgba(255,255,255,0.75)",
+                    lineHeight: 1.75,
+                    marginBottom: "2rem",
+                  }}>
+                    {cfg.sub}
+                  </p>
+                )}
+
+                {/* Result-specific CTAs */}
+                <ResultCTAs result={result} />
               </div>
             )}
           </div>
