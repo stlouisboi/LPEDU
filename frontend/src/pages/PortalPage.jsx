@@ -87,6 +87,9 @@ export default function PortalPage() {
   const [tasksLoading, setTasksLoading] = useState(true);
   const [submittingTaskId, setSubmittingTaskId] = useState(null);
   const [signalRefreshKey, setSignalRefreshKey] = useState(0);
+  const [bannerDismissed, setBannerDismissed] = useState(
+    () => localStorage.getItem("g0_banner_dismissed") === "true"
+  );
 
   const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -581,6 +584,138 @@ export default function PortalPage() {
 
         {/* ── Main Content ── */}
         <main style={{ flex: 1, padding: "2.5rem 2.5rem" }} className="portal-main">
+
+          {/* ── G0 Complete Banner ── */}
+          {hasCohortAccess === false && !bannerDismissed && (
+            <div
+              data-testid="g0-complete-banner"
+              style={{
+                position: "relative",
+                background: "rgba(197,160,89,0.05)",
+                border: "1px solid rgba(197,160,89,0.22)",
+                borderLeft: "3px solid #C5A059",
+                padding: "1.25rem 3rem 1.25rem 1.5rem",
+                marginBottom: "2rem",
+              }}
+            >
+              {/* Dismiss button */}
+              <button
+                data-testid="g0-banner-dismiss"
+                onClick={() => {
+                  setBannerDismissed(true);
+                  localStorage.setItem("g0_banner_dismissed", "true");
+                }}
+                style={{
+                  position: "absolute",
+                  top: "0.875rem",
+                  right: "1rem",
+                  background: "none",
+                  border: "none",
+                  color: "rgba(255,255,255,0.35)",
+                  cursor: "pointer",
+                  fontSize: "1.25rem",
+                  lineHeight: 1,
+                  padding: "0.25rem",
+                  transition: "color 0.15s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
+                aria-label="Dismiss"
+              >
+                ×
+              </button>
+
+              {/* Code label */}
+              <p style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.504rem",
+                fontWeight: 700,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "rgba(197,160,89,0.7)",
+                marginBottom: "0.5rem",
+              }}>
+                LP-MOD-G0 | GROUND 0 COMPLETE
+              </p>
+
+              {/* Heading */}
+              <p style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontWeight: 700,
+                fontSize: "1.064rem",
+                color: "#FFFFFF",
+                letterSpacing: "-0.01em",
+                marginBottom: "0.5rem",
+              }}>
+                Ground 0 Complete — Choose Your Next Step
+              </p>
+
+              {/* Body */}
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.924rem",
+                color: "rgba(255,255,255,0.65)",
+                lineHeight: 1.65,
+                marginBottom: "1.125rem",
+                maxWidth: 560,
+              }}>
+                You've completed the Ground 0 orientation. To proceed with the LaunchPath Standard, request admission to the next cohort — or run your REACH diagnostic first to confirm readiness.
+              </p>
+
+              {/* CTAs */}
+              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "center" }}>
+                <a
+                  href="/admission"
+                  data-testid="g0-banner-admission-cta"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.375rem",
+                    background: "#C5A059",
+                    color: "#000F1F",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.784rem",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    padding: "0.625rem 1.25rem",
+                    textDecoration: "none",
+                    transition: "background 0.2s",
+                    minHeight: 36,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+                >
+                  Request Admission →
+                </a>
+                <a
+                  href="/reach-diagnostic"
+                  data-testid="g0-banner-reach-cta"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.375rem",
+                    background: "transparent",
+                    color: "rgba(255,255,255,0.75)",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 600,
+                    fontSize: "0.784rem",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    padding: "0.625rem 1.25rem",
+                    textDecoration: "none",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    transition: "all 0.2s",
+                    minHeight: 36,
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.06)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; }}
+                >
+                  Run REACH Diagnostic →
+                </a>
+              </div>
+            </div>
+          )}
           {/* Payment success state */}
           {paymentState === "success" && (
             <div
