@@ -47,12 +47,19 @@ export default function HeroSection() {
 
         {/* Left — Orientation */}
         <div>
-          <p className="overline" style={{
-            marginBottom: "2rem",
+          {/* Credential line */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.72rem",
+            fontWeight: 600,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "var(--gold-primary)",
+            marginBottom: "1.5rem",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.05s",
           }}>
-            90-Day Compliance Operating Standard — New Motor Carrier Authorities
+            U.S. Navy Veteran · 20+ Years Compliance &amp; Safety · Safety-Certified Operations
           </p>
 
           <h1 style={{
@@ -70,25 +77,25 @@ export default function HeroSection() {
             <span style={{
               display: "block",
               fontSize: "0.62em",
-              fontWeight: 500,
-              letterSpacing: "-0.015em",
-              color: "rgba(255,255,255,0.72)",
+              fontWeight: 300,
+              letterSpacing: "-0.01em",
+              color: "var(--gold-primary)",
               lineHeight: 1.3,
-              marginTop: "0.55em",
+              marginTop: "0.65em",
             }}>
-              for new motor carrier<br />authorities.
+              for new motor carrier authorities.
             </span>
           </h1>
 
           <p style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(1.25rem, 2.1vw, 1.5rem)",
+            fontSize: "clamp(1.35rem, 2.2vw, 1.6rem)",
             color: "var(--gold-primary)",
             lineHeight: 1.5,
             maxWidth: 560,
-            marginTop: "2rem",
-            marginBottom: "2.25rem",
+            marginTop: "2.75rem",
+            marginBottom: "2.75rem",
             letterSpacing: "-0.01em",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.25s",
@@ -102,11 +109,24 @@ export default function HeroSection() {
             color: "var(--text-muted)",
             lineHeight: 2.2,
             maxWidth: 560,
-            marginBottom: "1.25rem",
+            marginBottom: "1.5rem",
             animation: "heroEnter 0.65s ease both",
             animationDelay: "0.3s",
           }}>
-            FMCSA has 12–24 months to audit your operation — your driver files, your logs, your maintenance records, your drug testing program. Most new carriers don't know what paperwork they need until an investigator shows up and tells them what's missing.
+            FMCSA has 12–24 months to audit your operation — your driver files, your logs, your maintenance records, your drug testing program.
+          </p>
+
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.12rem",
+            color: "var(--text-muted)",
+            lineHeight: 2.2,
+            maxWidth: 560,
+            marginBottom: "1.5rem",
+            animation: "heroEnter 0.65s ease both",
+            animationDelay: "0.33s",
+          }}>
+            Most new carriers don't know what paperwork they need until an investigator shows up and tells them what's missing.
           </p>
 
           <p style={{
@@ -117,7 +137,7 @@ export default function HeroSection() {
             maxWidth: 560,
             marginBottom: "1rem",
             animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.33s",
+            animationDelay: "0.35s",
           }}>
             LaunchPath installs the compliance system before the audit notice arrives.
           </p>
@@ -130,7 +150,7 @@ export default function HeroSection() {
             maxWidth: 560,
             marginBottom: "3rem",
             animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.36s",
+            animationDelay: "0.38s",
           }}>
             This is not a course. It's an operating standard built around a federal audit timeline. The carriers who survive the first 90 days aren't more talented. They're more prepared.
           </p>
@@ -192,8 +212,9 @@ export default function HeroSection() {
 
         {/* Right — FMCSA New Entrant Brief */}
         <div style={{
-          border: "1px solid var(--border)",
-          background: "var(--bg-2)",
+          border: "1px solid rgba(197,160,89,0.5)",
+          borderLeft: "3px solid var(--gold-primary)",
+          background: "#00142a",
           padding: "1.75rem",
           position: "sticky",
           top: "80px",
@@ -206,10 +227,10 @@ export default function HeroSection() {
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "var(--text-subtle)",
+            color: "var(--gold-primary)",
             marginBottom: "1.5rem",
             paddingBottom: "1rem",
-            borderBottom: "1px solid var(--border)",
+            borderBottom: "1px solid rgba(197,160,89,0.25)",
           }}>
             FMCSA New Entrant Brief
           </p>
@@ -218,23 +239,27 @@ export default function HeroSection() {
             {FMCSA_DATA.map((item, i) => (
               <div key={i} style={{
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "baseline",
-                padding: "0.875rem 0",
-                borderBottom: i < FMCSA_DATA.length - 1 ? "1px solid var(--border)" : "none",
+                flexDirection: "column",
+                padding: "1rem 0",
+                borderBottom: i < FMCSA_DATA.length - 1 ? "1px solid rgba(197,160,89,0.15)" : "none",
                 animation: "fadeInRow 0.5s ease both",
                 animationDelay: `${0.3 + i * 0.07}s`,
               }}>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.924rem",
-                  color: "var(--text-subtle)",
+                  fontSize: "0.75rem",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.45)",
+                  marginBottom: "0.3rem",
                 }}>{item.label}</span>
                 <span style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.98rem",
+                  fontSize: "1.75rem",
                   color: "var(--text)",
-                  fontWeight: 500,
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.1,
                 }}>{item.value}</span>
               </div>
             ))}
@@ -243,13 +268,13 @@ export default function HeroSection() {
           <div style={{
             marginTop: "1.5rem",
             paddingTop: "1.25rem",
-            borderTop: "1px solid var(--border)",
+            borderTop: "1px solid rgba(197,160,89,0.2)",
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.98rem",
+              fontSize: "0.875rem",
               color: "var(--text-subtle)",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
             }}>
               The New Entrant period has a defined audit window, documented failure
               patterns, and predictable consequences. The carriers who survive it
