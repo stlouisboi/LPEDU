@@ -8,15 +8,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for layer caching
-COPY requirements.txt .
+COPY backend/requirements.txt .
 
-# Install Python dependencies (emergentintegrations uses a custom index)
-RUN pip install --no-cache-dir \
-    --extra-index-url https://d33sy5i8bnduwe.cloudfront.net/simple/ \
-    -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY backend/ .
 
 # Railway injects $PORT at runtime
 CMD ["sh", "-c", "uvicorn server:app --host 0.0.0.0 --port ${PORT:-8001}"]

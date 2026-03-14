@@ -9,8 +9,10 @@ from pathlib import Path
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import List, Optional
 import uuid
+import asyncio
+import json
 from datetime import datetime, timezone, timedelta, date
-from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
+import stripe as stripe_lib
 
 
 ROOT_DIR = Path(__file__).parent
@@ -24,6 +26,8 @@ db = client[os.environ['DB_NAME']]
 MAILERLITE_API_TOKEN = os.environ.get('MAILERLITE_API_TOKEN', '')
 MAILERLITE_URL = "https://connect.mailerlite.com/api/subscribers"
 STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY', '')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+stripe_lib.api_key = STRIPE_API_KEY
 COACH_EMAIL = "vince@launchpathedu.com"
 
 # ── Implementation Sequence Tasks Definition ─────────────────────────────
@@ -338,11 +342,6 @@ async def submit_ground0(data: Ground0Submit):
 # ── Portal / Stripe Checkout ──────────────────────────────
 class PortalCheckoutRequest(BaseModel):
     origin_url: str
-
-def get_stripe(request: Request) -> StripeCheckout:
-    host_url = str(request.base_url).rstrip("/")
-    webhook_url = f"{host_url}/api/webhook/stripe"
-    return StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=webhook_url)
 
 
 async def get_user_from_request(request: Request) -> Optional[dict]:
