@@ -149,12 +149,7 @@ const SERIES = [
 
 export default function AllChecklists() {
   useEffect(() => {
-    const prev = document.title;
-    document.title = "LaunchPath-Compliance-Checklists";
-    const timer = setTimeout(() => {
-      window.print();
-      document.title = prev;
-    }, 100);
+    const timer = setTimeout(() => window.print(), 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -214,14 +209,9 @@ export default function AllChecklists() {
 
       {/* ── Screen-only fallback ── */}
       <div className="screen-fallback">
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
-          alt="LaunchPath"
-          className="screen-logo"
-        />
-        <p className="screen-msg">Preparing document</p>
+        <p className="screen-msg">Preparing your download…</p>
         <button onClick={() => window.print()} className="screen-btn">
-          Download PDF
+          Click here if print dialog did not open
         </button>
         <a href="/knowledge-center" className="screen-back">← Back to Knowledge Center</a>
       </div>
@@ -232,9 +222,7 @@ export default function AllChecklists() {
           .print-document { background: #020408; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
           .print-cover, .print-brief-section, .print-marker { display: none; }
           .screen-fallback { text-align: center; padding: 4rem 2rem; }
-          .screen-msg { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(197,160,89,0.7); margin-top: 2rem; margin-bottom: 1.5rem; }
-          .screen-logo { width: 120px; display: block; margin: 0 auto; animation: logoPulse 1.8s ease-in-out infinite; }
-          @keyframes logoPulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+          .screen-msg { font-family: 'Manrope', sans-serif; font-size: 1.5rem; font-weight: 700; color: #f0f4f8; margin-bottom: 1.5rem; }
           .screen-btn { background: #E8590F; color: #fff; border: none; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2rem; cursor: pointer; margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto; }
           .screen-back { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #8a99aa; text-decoration: none; display: block; }
         }
