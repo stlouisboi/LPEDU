@@ -80,8 +80,16 @@ export default function VinceCTASection() {
             lineHeight: 1.8,
             marginBottom: "0.625rem",
           }}>
-            25 years in safety, compliance, and manufacturing operations.
-            U.S. Navy veteran. OSHA certified.
+            25 years in safety, compliance, and manufacturing operations. U.S. Navy veteran. OSHA certified.
+          </p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.008rem",
+            color: "var(--text-paper)",
+            lineHeight: 1.8,
+            marginBottom: "0.625rem",
+          }}>
+            The Station Custodian is your dedicated compliance coach — the person who has spent 25 years watching what FMCSA investigators look for, and building operating systems designed to survive it.
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -90,7 +98,7 @@ export default function VinceCTASection() {
             lineHeight: 1.8,
             marginBottom: "2rem",
           }}>
-            LaunchPath was built after observing the same operational failures repeat across new motor carriers year after year.
+            LaunchPath was built after watching the same operational failures repeat across new motor carriers year after year — not because operators lacked commitment, but because no one handed them the system.
           </p>
 
           {/* Divider */}
@@ -115,8 +123,7 @@ export default function VinceCTASection() {
             marginBottom: "1.75rem",
             opacity: 0.85,
           }}>
-            And if you've already failed? The system still applies.<br />
-            It's harder — but it's not over.
+            If you've already received findings — your authority is conditional, your rating is under review, or you're staring at a revocation notice — the system still applies. The window is shorter. The path is harder. But it exists.
           </p>
 
           <Link

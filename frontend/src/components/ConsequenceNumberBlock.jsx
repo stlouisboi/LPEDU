@@ -8,130 +8,127 @@ export default function ConsequenceNumberBlock() {
         background: "#000D1A",
         borderTop: "1px solid rgba(255,255,255,0.06)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
-        padding: "64px 24px",
+        padding: "80px 24px",
       }}
     >
       <FadeIn>
-        <div style={{
-          maxWidth: 800,
-          margin: "0 auto",
-          borderLeft: "3px solid rgba(248,113,113,0.55)",
-          paddingLeft: "2rem",
-        }}>
+        <div style={{ maxWidth: 820, margin: "0 auto" }}>
 
-          {/* Header */}
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.672rem",
+            fontSize: "0.72rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "rgba(248,113,113,0.85)",
-            marginBottom: "1.25rem",
-          }}>
-            The Cost of Getting This Wrong
-          </p>
-
-          {/* Body */}
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.125rem",
-            color: "rgba(255,255,255,0.75)",
-            lineHeight: 1.7,
-            marginBottom: "2rem",
-            maxWidth: 620,
-          }}>
-            A conditional safety rating after a New Entrant Safety Audit can trigger insurance non-renewal, broker blacklisting, and authority shutdown within 30 days.
-          </p>
-
-          {/* Divider */}
-          <div style={{ height: "1px", background: "rgba(255,255,255,0.08)", marginBottom: "2rem" }} />
-
-          {/* Comparison */}
-          <div style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: "2.5rem",
-            flexWrap: "wrap",
-            marginBottom: "2rem",
-          }}>
-            <div>
-              <p style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontWeight: 800,
-                fontSize: "clamp(2.25rem, 4.5vw, 3.25rem)",
-                color: "#f87171",
-                lineHeight: 1,
-                marginBottom: "0.5rem",
-                letterSpacing: "-0.02em",
-              }}>
-                $10,000 – $25,000+
-              </p>
-              <p style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.72)",
-                lineHeight: 1.55,
-              }}>
-                Average cost of a single<br />New Entrant audit failure
-              </p>
-            </div>
-
-            <div style={{ alignSelf: "center", paddingTop: "0.125rem" }}>
-              <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.616rem",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "rgba(197,160,89,0.85)",
-                border: "1px solid rgba(197,160,89,0.3)",
-                padding: "0.35rem 0.875rem",
-                marginBottom: "0.3rem",
-              }}>
-                The LaunchPath Standard
-              </p>
-              <p style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.784rem",
-                color: "rgba(255,255,255,0.55)",
-                fontStyle: "italic",
-              }}>
-                Costs less than one audit failure.
-              </p>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div style={{ height: "1px", background: "rgba(255,255,255,0.08)", marginBottom: "1.5rem" }} />
-
-          {/* Footer note */}
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontStyle: "italic",
-            fontSize: "0.875rem",
-            color: "rgba(255,255,255,0.58)",
-            lineHeight: 1.65,
             marginBottom: "1.5rem",
           }}>
-            This does not include lost revenue from suspended operations, insurance premium increases, broker blacklisting, or the cost of restarting an authority.
+            What Authority Revocation Actually Means
           </p>
 
-          {/* Closing argument */}
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.85rem, 3.8vw, 3rem)",
+            letterSpacing: "-0.025em",
+            color: "#FFFFFF",
+            lineHeight: 1.1,
+            marginBottom: "2rem",
+          }}>
+            A single letter.<br />
+            <span style={{ color: "#f87171" }}>Revenue stops overnight.</span><br />
+            <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400, fontSize: "0.72em" }}>Fixed costs don't.</span>
+          </h2>
+
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1rem",
-            color: "rgba(255,255,255,0.85)",
-            lineHeight: 1.75,
-            maxWidth: 640,
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-            paddingTop: "1.25rem",
+            fontSize: "1.15rem",
+            color: "rgba(255,255,255,0.8)",
+            lineHeight: 1.85,
+            maxWidth: 680,
+            marginBottom: "2.5rem",
           }}>
-            The engagement does not guarantee you will never face a compliance issue. It guarantees you will not face one because your operating standard did not exist.
+            When FMCSA revokes or suspends your operating authority, your MC number goes inactive in SAFER within hours. Brokers stop tendering loads. Drivers can't legally run under your authority. Shippers reassign your freight. Your insurance carrier is notified.
           </p>
+
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.15rem",
+            color: "rgba(255,255,255,0.8)",
+            lineHeight: 1.85,
+            maxWidth: 680,
+            marginBottom: "3rem",
+          }}>
+            The truck payment doesn't stop. The facility doesn't stop. The insurance premium doesn't stop. Every fixed cost you built your operation around keeps running — against zero revenue.
+          </p>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1px",
+            background: "rgba(248,113,113,0.15)",
+            marginBottom: "3rem",
+          }} className="consequence-grid">
+            {[
+              { stat: "$0", label: "Revenue — Day 1 of revocation" },
+              { stat: "30 days", label: "Window to cure a conditional rating before shutdown" },
+              { stat: "100%", label: "Of fixed costs that continue regardless" },
+            ].map((item, i) => (
+              <div key={i} style={{
+                background: "#000D1A",
+                padding: "2rem 1.75rem",
+                borderTop: "2px solid rgba(248,113,113,0.35)",
+              }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                  fontWeight: 700,
+                  color: "#f87171",
+                  marginBottom: "0.5rem",
+                  letterSpacing: "-0.02em",
+                }}>{item.stat}</p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.9rem",
+                  color: "rgba(255,255,255,0.55)",
+                  lineHeight: 1.5,
+                }}>{item.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{
+            borderLeft: "3px solid var(--gold-primary)",
+            paddingLeft: "1.75rem",
+          }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.05rem",
+              color: "rgba(255,255,255,0.85)",
+              lineHeight: 1.8,
+              marginBottom: "0.75rem",
+            }}>
+              I've seen operators survive ugly fines. I've seen operators survive conditional ratings with the right documentation in place. I have not seen many small carriers come back from a full revocation — because by the time it happens, the financial damage is already done.
+            </p>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.72rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "rgba(197,160,89,0.75)",
+            }}>
+              — Vince Lawrence, Station Custodian
+            </p>
+          </div>
 
         </div>
       </FadeIn>
+
+      <style>{`
+        @media (max-width: 680px) {
+          .consequence-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }

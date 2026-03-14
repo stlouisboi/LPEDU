@@ -102,7 +102,7 @@ export default function AdmissionPage() {
             marginBottom: "1.5rem",
           }}
         >
-          LP-STD-001 | ADMISSION REQUEST
+          LP-STD-001 | COHORT ADMISSION — LIMITED AVAILABILITY
         </p>
 
         <h1
@@ -116,7 +116,7 @@ export default function AdmissionPage() {
             marginBottom: "1.25rem",
           }}
         >
-          Request Admission to the LaunchPath Standard
+          Apply for Admission to the LaunchPath Standard
         </h1>
 
         <p
@@ -127,22 +127,20 @@ export default function AdmissionPage() {
             marginBottom: "0.875rem",
           }}
         >
-          Admission to the LaunchPath Standard is reviewed and cohort-based. Completing this form
-          places you in the queue for the next cohort.
+          The LaunchPath Standard accepts a limited cohort of motor carriers each quarter. This is not an open enrollment. Every application is reviewed individually — admission is based on your operational readiness, authority status, and REACH Assessment result.
         </p>
 
         <p
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.875rem",
+            fontSize: "0.95rem",
             color: "rgba(255,255,255,0.55)",
             fontStyle: "italic",
             lineHeight: 1.7,
             marginBottom: "3rem",
           }}
         >
-          Admission is subject to REACH Assessment result and cohort availability.
-          You will receive a response within 24–48 hours.
+          Not every applicant is admitted. You will receive a decision within 24–48 hours. If your situation requires urgent attention due to a conditional rating or pending authority action, note that in your message.
         </p>
 
         {/* Divider */}
