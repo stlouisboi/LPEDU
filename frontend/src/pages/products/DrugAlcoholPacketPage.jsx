@@ -39,7 +39,7 @@ export default function DrugAlcoholPacketPage() {
         "Discovering your policy was never put in writing during an audit.",
       ]}
       nextStepText="This packet is one of five domain-specific document systems in the LaunchPath New Carrier Document System ($497 bundle). The bundle includes all five packets, a unified folder structure, and a 0–30–90 day implementation guide. Carriers enrolled in the LaunchPath Standard receive the complete document system at no additional cost."
-      nextStepHref="/products/new-carrier-document-system"
+      nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
     >

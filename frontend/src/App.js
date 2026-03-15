@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -25,13 +25,16 @@ import CoachRegistryPage from "./pages/CoachRegistryPage";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
 import PartnersPage from "./pages/PartnersPage";
-import ProductsPage from "./pages/ProductsPage";
+
+// /standards routes
+import StandardsPage from "./pages/StandardsPage";
 import NewEntrantPacketPage from "./pages/products/NewEntrantPacketPage";
 import DrugAlcoholPacketPage from "./pages/products/DrugAlcoholPacketPage";
 import HOSPacketPage from "./pages/products/HOSPacketPage";
 import MaintenancePacketPage from "./pages/products/MaintenancePacketPage";
 import InsurancePacketPage from "./pages/products/InsurancePacketPage";
 import BundlePage from "./pages/products/BundlePage";
+import SixteenSinsPage from "./pages/standards/SixteenSinsPage";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 function ScrollToTop() {
@@ -72,13 +75,25 @@ function AppRouter() {
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
       <Route path="/partners" element={<PartnersPage />} />
-      <Route path="/products" element={<ProductsPage />} />
-      <Route path="/products/new-entrant-packet" element={<NewEntrantPacketPage />} />
-      <Route path="/products/drug-alcohol-packet" element={<DrugAlcoholPacketPage />} />
-      <Route path="/products/hos-packet" element={<HOSPacketPage />} />
-      <Route path="/products/maintenance-packet" element={<MaintenancePacketPage />} />
-      <Route path="/products/insurance-packet" element={<InsurancePacketPage />} />
-      <Route path="/products/new-carrier-document-system" element={<BundlePage />} />
+
+      {/* /standards routes */}
+      <Route path="/standards" element={<StandardsPage />} />
+      <Route path="/standards/new-entrant-packet" element={<NewEntrantPacketPage />} />
+      <Route path="/standards/drug-alcohol-packet" element={<DrugAlcoholPacketPage />} />
+      <Route path="/standards/hos-packet" element={<HOSPacketPage />} />
+      <Route path="/standards/maintenance-packet" element={<MaintenancePacketPage />} />
+      <Route path="/standards/insurance-packet" element={<InsurancePacketPage />} />
+      <Route path="/standards/new-carrier-document-system" element={<BundlePage />} />
+      <Route path="/standards/16-deadly-sins" element={<SixteenSinsPage />} />
+
+      {/* 301 redirects: /products → /standards */}
+      <Route path="/products" element={<Navigate to="/standards" replace />} />
+      <Route path="/products/new-entrant-packet" element={<Navigate to="/standards/new-entrant-packet" replace />} />
+      <Route path="/products/drug-alcohol-packet" element={<Navigate to="/standards/drug-alcohol-packet" replace />} />
+      <Route path="/products/hos-packet" element={<Navigate to="/standards/hos-packet" replace />} />
+      <Route path="/products/maintenance-packet" element={<Navigate to="/standards/maintenance-packet" replace />} />
+      <Route path="/products/insurance-packet" element={<Navigate to="/standards/insurance-packet" replace />} />
+      <Route path="/products/new-carrier-document-system" element={<Navigate to="/standards/new-carrier-document-system" replace />} />
     </Routes>
   );
 }

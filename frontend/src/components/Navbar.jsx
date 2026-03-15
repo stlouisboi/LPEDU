@@ -1,24 +1,34 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { List, X, LockSimple } from "@phosphor-icons/react";
+import { List, X, LockSimple, CaretDown } from "@phosphor-icons/react";
 
-// Left zone: Framework pages (conceptual progression)
 const FRAMEWORK_LINKS = [
   { label: "Knowledge Center", href: "/knowledge-center" },
-  { label: "Standards", href: "/products" },
+  {
+    label: "Standards",
+    href: "/standards",
+    subItems: [
+      { label: "Compliance System", href: "/standards" },
+      { label: "Audit Domains", href: "/standards#audit-domains" },
+      { label: "16 Deadly Sins", href: "/standards/16-deadly-sins" },
+    ],
+  },
   { label: "AUTO Method", href: "/auto-method" },
   { label: "LaunchPath Standard", href: "/operating-standard" },
-  { label: "REACH Assessment", href: "/reach-diagnostic" },
-  { label: "Partners", href: "/partners" },
 ];
 
-// Right zone: Access pages
+const GROUND0_SUB = [
+  { label: "Enter Ground 0", href: "/ground-0-briefing" },
+  { label: "REACH Assessment", href: "/reach-diagnostic" },
+];
+
 const ACCESS_LINKS = [
   { label: "About", href: "/about" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [scrollPct, setScrollPct] = useState(0);
   const location = useLocation();
 
@@ -31,7 +41,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (href) => !href.startsWith("http") && (location.pathname === href || location.pathname.startsWith(href + "/"));
+  const isActive = (href) => {
+    if (!href || href.startsWith("http")) return false;
+    const path = href.split("#")[0];
+    return location.pathname === path || location.pathname.startsWith(path + "/");
+  };
 
   const linkStyle = (href) => ({
     fontFamily: "'Inter', sans-serif",
@@ -45,6 +59,27 @@ export default function Navbar() {
     paddingBottom: "2px",
     whiteSpace: "nowrap",
   });
+
+  const dropdownPanel = {
+    position: "absolute", top: "calc(100% + 12px)", left: 0,
+    background: "#001530",
+    border: "1px solid rgba(197,160,89,0.15)",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.55)",
+    minWidth: 200, zIndex: 300,
+    padding: "0.375rem 0",
+  };
+
+  const dropdownItem = (href) => ({
+    display: "block", padding: "0.6rem 1.1rem",
+    fontFamily: "'Inter', sans-serif", fontSize: "0.88rem", fontWeight: 400,
+    color: isActive(href) ? "#FFFFFF" : "rgba(255,255,255,0.68)",
+    textDecoration: "none",
+    borderLeft: isActive(href) ? "2px solid #C5A059" : "2px solid transparent",
+    transition: "all 0.15s",
+    whiteSpace: "nowrap",
+  });
+
+  const ground0Active = isActive("/ground-0-briefing");
 
   return (
     <header style={{
@@ -69,62 +104,95 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop nav — two zones */}
+        {/* Desktop nav */}
         <nav style={{ display: "flex", alignItems: "center", gap: "0", flex: 1, justifyContent: "flex-end" }} className="desktop-nav">
-
-          {/* Zone 1: Framework links */}
           <div style={{ display: "flex", alignItems: "center", gap: "2rem", marginRight: "2rem" }}>
+
+            {/* Framework links */}
             {FRAMEWORK_LINKS.map(l => (
-              <Link key={l.label} to={l.href}
-                style={linkStyle(l.href)}
-                onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
-                onMouseLeave={e => (e.currentTarget.style.color = isActive(l.href) ? "var(--text)" : "var(--text-muted)")}
-              >
-                {l.label}
-              </Link>
+              l.subItems ? (
+                <div key={l.label} style={{ position: "relative" }}
+                  onMouseEnter={() => setOpenDropdown(l.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <span style={{
+                    ...linkStyle(l.href),
+                    cursor: "pointer",
+                    display: "flex", alignItems: "center", gap: "0.3rem",
+                    userSelect: "none",
+                    color: (isActive(l.href) || openDropdown === l.label) ? "var(--text)" : "var(--text-muted)",
+                  }}>
+                    {l.label}
+                    <CaretDown size={10} style={{ opacity: 0.6 }} />
+                  </span>
+                  {openDropdown === l.label && (
+                    <div style={dropdownPanel}>
+                      {l.subItems.map(sub => (
+                        <Link key={sub.href} to={sub.href}
+                          style={dropdownItem(sub.href)}
+                          onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#C5A059"; }}
+                          onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#C5A059" : "transparent"; }}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link key={l.label} to={l.href}
+                  style={linkStyle(l.href)}
+                  onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
+                  onMouseLeave={e => (e.currentTarget.style.color = isActive(l.href) ? "var(--text)" : "var(--text-muted)")}
+                >
+                  {l.label}
+                </Link>
+              )
             ))}
 
-            {/* Ground 0 — styled as gold entry CTA */}
-            <Link
-              to="/ground-0-briefing"
-              data-testid="nav-ground0-btn"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.874rem",
-                fontWeight: 700,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                color: isActive("/ground-0-briefing") ? "#002244" : "#C5A059",
-                background: isActive("/ground-0-briefing") ? "#C5A059" : "transparent",
-                border: "1px solid rgba(197,160,89,0.5)",
-                padding: "0.4rem 1rem",
-                textDecoration: "none",
-                transition: "all 0.2s",
-                whiteSpace: "nowrap",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = "#C5A059";
-                e.currentTarget.style.color = "#002244";
-              }}
-              onMouseLeave={e => {
-                if (!isActive("/ground-0-briefing")) {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.color = "#C5A059";
-                }
-              }}
+            {/* Ground 0 — gold CTA with dropdown */}
+            <div style={{ position: "relative" }}
+              onMouseEnter={() => setOpenDropdown("Ground 0")}
+              onMouseLeave={() => setOpenDropdown(null)}
             >
-              Ground 0
-            </Link>
+              <Link
+                to="/ground-0-briefing"
+                data-testid="nav-ground0-btn"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.874rem", fontWeight: 700,
+                  letterSpacing: "0.06em", textTransform: "uppercase",
+                  color: ground0Active ? "#002244" : "#C5A059",
+                  background: ground0Active ? "#C5A059" : "transparent",
+                  border: "1px solid rgba(197,160,89,0.5)",
+                  padding: "0.4rem 1rem",
+                  textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap",
+                  display: "flex", alignItems: "center", gap: "0.3rem",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = "#C5A059"; e.currentTarget.style.color = "#002244"; }}
+                onMouseLeave={e => { if (!ground0Active) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#C5A059"; } }}
+              >
+                Ground 0
+                <CaretDown size={10} style={{ opacity: 0.7 }} />
+              </Link>
+              {openDropdown === "Ground 0" && (
+                <div style={{ ...dropdownPanel, left: "50%", transform: "translateX(-50%)" }}>
+                  {GROUND0_SUB.map(sub => (
+                    <Link key={sub.href} to={sub.href}
+                      style={dropdownItem(sub.href)}
+                      onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#C5A059"; }}
+                      onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#C5A059" : "transparent"; }}
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Divider between zones */}
-          <div style={{
-            width: 1,
-            height: 24,
-            background: "rgba(255,255,255,0.12)",
-            marginRight: "2rem",
-            flexShrink: 0,
-          }} />
+          {/* Divider */}
+          <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.12)", marginRight: "2rem", flexShrink: 0 }} />
 
           {/* Zone 2: Access links */}
           <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
@@ -137,7 +205,6 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-
             <Link to="/portal"
               data-testid="nav-portal-btn"
               style={{
@@ -148,9 +215,7 @@ export default function Navbar() {
                 background: "transparent",
                 border: "1px solid var(--gold-primary)",
                 padding: "0.45rem 1rem",
-                textDecoration: "none",
-                transition: "background 0.2s",
-                whiteSpace: "nowrap",
+                textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap",
               }}
               onMouseEnter={e => (e.currentTarget.style.background = "rgba(197,160,89,0.1)")}
               onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
@@ -173,49 +238,66 @@ export default function Navbar() {
       {/* Scroll progress bar */}
       <div style={{
         position: "absolute", bottom: 0, left: 0,
-        height: "2px",
-        width: `${scrollPct}%`,
+        height: "2px", width: `${scrollPct}%`,
         background: "linear-gradient(90deg, var(--gold-primary), var(--gold-light))",
-        transition: "width 0.08s linear",
-        zIndex: 2,
+        transition: "width 0.08s linear", zIndex: 2,
       }} />
 
       {/* Mobile menu */}
       {open && (
         <div style={{
-          background: "#000F1F",
-          borderTop: "1px solid var(--divider-dark)",
-          padding: "1.5rem",
-          display: "flex", flexDirection: "column", gap: "0",
+          background: "#000F1F", borderTop: "1px solid var(--divider-dark)",
+          padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0",
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.6)",
             marginBottom: "1rem",
-          }}>
-            FRAMEWORK
-          </p>
+          }}>FRAMEWORK</p>
+
           {FRAMEWORK_LINKS.map(l => (
-            <Link key={l.label} to={l.href} onClick={() => setOpen(false)}
-              style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1.008rem",
-                color: isActive(l.href) ? "#FFFFFF" : "var(--text-muted)",
-                textDecoration: "none", padding: "0.75rem 0",
-                borderBottom: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
-              {l.label}
-            </Link>
+            <div key={l.label}>
+              <Link to={l.href} onClick={() => setOpen(false)}
+                style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "1.008rem",
+                  color: isActive(l.href) ? "#FFFFFF" : "var(--text-muted)",
+                  textDecoration: "none", padding: "0.75rem 0",
+                  borderBottom: l.subItems ? "none" : "1px solid rgba(255,255,255,0.06)",
+                  display: "block",
+                }}
+              >{l.label}</Link>
+              {l.subItems && l.subItems.map(sub => (
+                <Link key={sub.href} to={sub.href} onClick={() => setOpen(false)}
+                  style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
+                    color: isActive(sub.href) ? "#C5A059" : "rgba(255,255,255,0.5)",
+                    textDecoration: "none", padding: "0.5rem 0 0.5rem 1.25rem",
+                    borderBottom: "1px solid rgba(255,255,255,0.04)",
+                    display: "block",
+                  }}
+                >— {sub.label}</Link>
+              ))}
+            </div>
           ))}
+
           <Link to="/ground-0-briefing" onClick={() => setOpen(false)}
             style={{
               fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", fontWeight: 600,
               color: "#C5A059", textDecoration: "none", padding: "0.75rem 0",
-              borderBottom: "1px solid rgba(255,255,255,0.06)",
+              borderBottom: "none",
             }}
-          >
-            Ground 0
-          </Link>
+          >Ground 0</Link>
+          {GROUND0_SUB.map(sub => (
+            <Link key={sub.href} to={sub.href} onClick={() => setOpen(false)}
+              style={{
+                fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
+                color: isActive(sub.href) ? "#C5A059" : "rgba(255,255,255,0.5)",
+                textDecoration: "none", padding: "0.5rem 0 0.5rem 1.25rem",
+                borderBottom: "1px solid rgba(255,255,255,0.04)",
+                display: "block",
+              }}
+            >— {sub.label}</Link>
+          ))}
 
           <div style={{ height: 1, background: "rgba(255,255,255,0.1)", margin: "1.25rem 0 1rem" }} />
 
@@ -223,9 +305,7 @@ export default function Navbar() {
             fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.6)",
             marginBottom: "1rem",
-          }}>
-            ACCESS
-          </p>
+          }}>ACCESS</p>
           {ACCESS_LINKS.map(l => (
             <Link key={l.label} to={l.href} onClick={() => setOpen(false)}
               style={{
@@ -233,9 +313,7 @@ export default function Navbar() {
                 color: "var(--text-muted)", textDecoration: "none", padding: "0.75rem 0",
                 borderBottom: "1px solid rgba(255,255,255,0.06)",
               }}
-            >
-              {l.label}
-            </Link>
+            >{l.label}</Link>
           ))}
           <Link to="/portal"
             style={{

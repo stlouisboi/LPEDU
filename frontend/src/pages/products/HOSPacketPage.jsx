@@ -33,7 +33,7 @@ export default function HOSPacketPage() {
         "Reconstructing HOS records after receiving an audit notice",
       ]}
       nextStepText="The HOS & Dispatch Packet covers one of five compliance domains. The New Carrier Document System bundles all five with a 0–30–90 day implementation guide — the complete DIY operating standard for new authorities."
-      nextStepHref="/products/new-carrier-document-system"
+      nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
     />

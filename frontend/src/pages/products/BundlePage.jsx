@@ -4,11 +4,11 @@ import FooterSection from "../../components/FooterSection";
 import FadeIn from "../../components/FadeIn";
 
 const PACKETS = [
-  { code: "LP-PKT-001", title: "New Entrant Packet", price: "$97", href: "/products/new-entrant-packet" },
-  { code: "LP-PKT-002", title: "Drug & Alcohol Packet", price: "$127", href: "/products/drug-alcohol-packet" },
-  { code: "LP-PKT-003", title: "HOS & Dispatch Packet", price: "$127", href: "/products/hos-packet" },
-  { code: "LP-PKT-004", title: "Maintenance & Unit File Packet", price: "$127", href: "/products/maintenance-packet" },
-  { code: "LP-PKT-005", title: "Insurance & Authority Packet", price: "$127", href: "/products/insurance-packet" },
+  { code: "LP-PKT-001", title: "New Entrant Packet", price: "$97", href: "/standards/new-entrant-packet" },
+  { code: "LP-PKT-002", title: "Drug & Alcohol Packet", price: "$127", href: "/standards/drug-alcohol-packet" },
+  { code: "LP-PKT-003", title: "HOS & Dispatch Packet", price: "$127", href: "/standards/hos-packet" },
+  { code: "LP-PKT-004", title: "Maintenance & Unit File Packet", price: "$127", href: "/standards/maintenance-packet" },
+  { code: "LP-PKT-005", title: "Insurance & Authority Packet", price: "$127", href: "/standards/insurance-packet" },
 ];
 
 const PHASES = [
