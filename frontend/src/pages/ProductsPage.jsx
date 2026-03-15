@@ -15,15 +15,16 @@ const LADDER = [
   {
     tier: "$97–$127",
     label: "Individual Packets",
-    desc: "Five domain-specific operating standards. New Entrant, Drug & Alcohol, HOS & Dispatch, Maintenance, Insurance & Authority. Each one is a complete compliance system for its domain.",
+    desc: "Five domain-specific operating standards. New Entrant, Drug & Alcohol, HOS & Dispatch, Maintenance, Insurance & Authority. Install one domain at a time.",
     href: "#packets",
     cta: "View Packets →",
     gold: false,
   },
   {
     tier: "$497",
+    badge: "THE COMPLETE DIY SYSTEM",
     label: "New Carrier Document System",
-    desc: "All five packets unified. Includes the 0–30–90 Day Implementation Guide and the master folder structure. The complete DIY path for a new authority.",
+    desc: "Install the full LaunchPath document architecture in one step. Includes all five packets, the 0\u201330\u201390 Day Implementation Guide, and the unified folder structure.",
     href: "/products/new-carrier-document-system",
     cta: "View Bundle →",
     gold: true,
@@ -39,11 +40,11 @@ const LADDER = [
 ];
 
 const PACKETS = [
-  { code: "LP-PKT-001", title: "New Entrant Packet", price: "$97", href: "/products/new-entrant-packet", desc: "The 18-month monitoring period framework, DQ file system, and new entrant audit preparation." },
-  { code: "LP-PKT-002", title: "Drug & Alcohol Packet", price: "$127", href: "/products/drug-alcohol-packet", desc: "Part 382 compliance structure — enrollment documentation, clearinghouse logs, and supervisor training records." },
-  { code: "LP-PKT-003", title: "HOS & Dispatch Packet", price: "$127", href: "/products/hos-packet", desc: "Part 395 operating standard — ELD compliance, dispatch logs, and hours documentation." },
-  { code: "LP-PKT-004", title: "Maintenance & Unit File Packet", price: "$127", href: "/products/maintenance-packet", desc: "Part 396 compliance — per-VIN unit files, inspection documentation, and maintenance logs." },
-  { code: "LP-PKT-005", title: "Insurance & Authority Packet", price: "$127", href: "/products/insurance-packet", desc: "Authority accuracy, BOC-3 compliance, and insurance filing verification." },
+  { code: "LP-PKT-001", title: "New Entrant Packet", subtitle: "FMCSA New-Authority Operating Standard", price: "$97", href: "/products/new-entrant-packet", desc: "The 18-month monitoring period framework, DQ file system, and new entrant audit preparation." },
+  { code: "LP-PKT-002", title: "Drug & Alcohol Packet", subtitle: "Part 382 Compliance Operating Standard", price: "$127", href: "/products/drug-alcohol-packet", desc: "Enrollment documentation, clearinghouse logs, and supervisor training records." },
+  { code: "LP-PKT-003", title: "HOS & Dispatch Packet", subtitle: "Part 395 Hours-of-Service Operating Standard", price: "$127", href: "/products/hos-packet", desc: "ELD compliance, dispatch logs, and hours documentation." },
+  { code: "LP-PKT-004", title: "Maintenance & Unit File Packet", subtitle: "Part 396 Fleet Maintenance Operating Standard", price: "$127", href: "/products/maintenance-packet", desc: "Per-VIN unit files, inspection documentation, and maintenance logs." },
+  { code: "LP-PKT-005", title: "Insurance & Authority Packet", subtitle: "Carrier Authority & Insurance Operating Standard", price: "$127", href: "/products/insurance-packet", desc: "Authority accuracy, BOC-3 compliance, and insurance filing verification." },
 ];
 
 const MATRIX_ROWS = [
@@ -73,17 +74,17 @@ export default function ProductsPage() {
             <p style={{
               fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
-            }}>LP-SYS-PRODUCTS | DOCUMENT SYSTEM LIBRARY</p>
+            }}>LP-SYS-LIBRARY | OPERATING STANDARDS</p>
             <h1 style={{
               fontFamily: "'Manrope', sans-serif", fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFFFFF",
               lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1rem",
-            }}>The LaunchPath Product Line</h1>
+            }}>The LaunchPath Operating Standards Library</h1>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
               color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 580,
             }}>
-              Five domain-specific operating standards and one complete bundle — the DIY path to a compliant new-authority operation, priced above commodity kits and below consulting.
+              Five domain-specific operating standards and one complete document architecture bundle — the DIY path to installing a compliant new-authority operating system. Priced above commodity audit kits and below consulting.
             </p>
           </FadeIn>
         </div>
@@ -96,8 +97,14 @@ export default function ProductsPage() {
           <p style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
-            marginBottom: "1.5rem",
+            marginBottom: "1rem",
           }}>The Commercial Ladder</p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+            color: "rgba(255,255,255,0.55)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: 620,
+          }}>
+            Every carrier starts in a different place. LaunchPath offers three paths: learn the system, install the documents yourself, or implement the full operating standard with oversight.
+          </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(197,160,89,0.1)", marginBottom: "4rem" }}>
             {LADDER.map((tier, i) => (
               <div key={i} style={{
@@ -108,6 +115,13 @@ export default function ProductsPage() {
                 gap: "2rem", flexWrap: "wrap",
               }} className="ladder-row">
                 <div style={{ flex: 1 }}>
+                  {tier.badge && (
+                    <p style={{
+                      fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", fontWeight: 700,
+                      letterSpacing: "0.18em", textTransform: "uppercase",
+                      color: gold, marginBottom: "0.5rem",
+                    }}>{tier.badge}</p>
+                  )}
                   <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "0.5rem" }}>
                     <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: gold }}>{tier.tier}</span>
                     <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF" }}>{tier.label}</span>
@@ -136,8 +150,13 @@ export default function ProductsPage() {
           <p id="packets" style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
-            marginBottom: "1.5rem",
+            marginBottom: "0.6rem",
           }}>Individual Packets — $97–$127</p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+            color: "rgba(255,255,255,0.4)", lineHeight: 1.6, marginBottom: "1.5rem",
+            fontStyle: "italic",
+          }}>Each packet installs one domain of the LaunchPath operating standard.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(197,160,89,0.1)", marginBottom: "4rem" }}>
             {PACKETS.map((p, i) => (
               <div key={i} style={{
@@ -146,8 +165,9 @@ export default function ProductsPage() {
                 gap: "2rem", flexWrap: "wrap",
               }} className="ladder-row">
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(197,160,89,0.6)", letterSpacing: "0.1em", marginBottom: "0.3rem" }}>{p.code}</p>
-                  <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.4rem" }}>{p.title}</p>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(197,160,89,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
+                  <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "rgba(197,160,89,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>

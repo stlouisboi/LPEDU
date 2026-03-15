@@ -5,7 +5,7 @@ import { List, X, LockSimple } from "@phosphor-icons/react";
 // Left zone: Framework pages (conceptual progression)
 const FRAMEWORK_LINKS = [
   { label: "Knowledge Center", href: "/knowledge-center" },
-  { label: "Products", href: "/products" },
+  { label: "Standards Library", href: "/products" },
   { label: "AUTO Method", href: "/auto-method" },
   { label: "LaunchPath Standard", href: "/operating-standard" },
   { label: "REACH Assessment", href: "/reach-diagnostic" },
