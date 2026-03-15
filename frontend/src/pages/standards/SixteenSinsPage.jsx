@@ -5,6 +5,57 @@ import FadeIn from "../../components/FadeIn";
 
 const coral = "#D85A30";
 const gold = "#C5A059";
+const pageBg = "#020408";
+const cardBg = "#0B1927";
+
+const DOMAIN_GROUPS = [
+  {
+    domain: "Authority & Administrative Failures",
+    sins: [
+      { num: "01", name: "Authority Blindness" },
+      { num: "12", name: "Insurance Mismatch" },
+      { num: "15", name: "The 150 Delay" },
+      { num: "16", name: "Audit Defiance" },
+    ],
+  },
+  {
+    domain: "Driver Qualification Failures",
+    sins: [
+      { num: "02", name: "The Ghost Driver" },
+      { num: "03", name: "DQ Negligence" },
+      { num: "04", name: "Medical Lapse" },
+    ],
+  },
+  {
+    domain: "Drug & Alcohol Failures",
+    sins: [
+      { num: "05", name: "Clearinghouse Silence" },
+      { num: "11", name: "Policy Absence" },
+      { num: "14", name: "Consortium Dropout" },
+    ],
+  },
+  {
+    domain: "HOS & Dispatch Failures",
+    sins: [
+      { num: "06", name: "Logbook Fiction" },
+      { num: "07", name: "ELD Ignorance" },
+    ],
+  },
+  {
+    domain: "Maintenance & Inspection Failures",
+    sins: [
+      { num: "08", name: "Pencil-Whipping Inspections" },
+      { num: "09", name: "Maintenance Amnesia" },
+      { num: "10", name: "The Annual Skip" },
+    ],
+  },
+  {
+    domain: "Incident Reporting Failures",
+    sins: [
+      { num: "13", name: "Accident Erasure" },
+    ],
+  },
+];
 
 const SINS = [
   {
@@ -107,96 +158,241 @@ const SINS = [
 
 export default function SixteenSinsPage() {
   return (
-    <div style={{ background: "#020408", minHeight: "100vh", color: "#FFFFFF" }}>
+    <div style={{ background: pageBg, minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
 
-      <main style={{ maxWidth: 1200, margin: "0 auto", padding: "5rem 1.5rem 6rem" }}>
+      <main style={{ maxWidth: 1200, margin: "0 auto", padding: "5rem 1.5rem 7rem" }}>
+
+        {/* ── Header ── */}
         <FadeIn>
-          {/* Header */}
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: coral,
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.72rem",
+            fontWeight: 700,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: coral,
             marginBottom: "1rem",
           }}>LP-DOCTRINE-001 | THREAT MODEL</p>
+
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3rem)",
-            color: "#FFFFFF", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
+            color: "#FFFFFF",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            marginBottom: "0.75rem",
           }}>The 16 Deadly Sins of the New Authority</h1>
+
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.78rem",
-            color: "rgba(255,255,255,0.45)", letterSpacing: "0.08em", textTransform: "uppercase",
-            marginBottom: "1.5rem",
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.78rem",
+            color: "rgba(255,255,255,0.38)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            marginBottom: "1.75rem",
           }}>The LaunchPath Proprietary Threat Model</p>
 
-          {/* Coral rule */}
-          <div style={{ height: 2, background: coral, width: 64, marginBottom: "2.5rem" }} />
+          <div style={{ height: 2, background: coral, width: 64, marginBottom: "3rem" }} />
 
-          {/* Intro */}
-          <div style={{ maxWidth: 720, marginBottom: "4rem" }}>
+          {/* ── Intro ── */}
+          <div style={{ maxWidth: 720, marginBottom: "5.5rem" }}>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-              color: "rgba(255,255,255,0.88)", lineHeight: 1.85, marginBottom: "1rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
+              color: "rgba(255,255,255,0.88)",
+              lineHeight: 1.85,
+              marginBottom: "1rem",
             }}>
               Every motor carrier failure leaves a paper trail.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-              color: "rgba(255,255,255,0.7)", lineHeight: 1.85, marginBottom: "1rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: 1.85,
+              marginBottom: "1rem",
               fontStyle: "italic",
             }}>
               The investigator writes it down after the fact.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-              color: "rgba(255,255,255,0.7)", lineHeight: 1.85, marginBottom: "1.5rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: 1.85,
+              marginBottom: "1.75rem",
               fontStyle: "italic",
             }}>
               The LaunchPath system identifies the behaviors before they happen.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
-              color: "rgba(255,255,255,0.82)", lineHeight: 1.85,
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.05rem",
+              color: "rgba(255,255,255,0.78)",
+              lineHeight: 1.9,
             }}>
               Most new carrier authorities do not fail because the operator was careless. They fail because the operational behaviors that cause failure are invisible until an investigator documents them. These are the 16 behaviors the LaunchPath system is built to eliminate. Each one maps to a specific federal regulation. Each one has ended operating authority for carriers who did not know it was happening.
             </p>
           </div>
         </FadeIn>
 
-        {/* Sin card grid */}
+        {/* ── At a Glance ── */}
+        <FadeIn delay={40}>
+          <div style={{ marginBottom: "6rem" }}>
+            {/* Section label */}
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.68rem",
+              fontWeight: 700,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "rgba(197,160,89,0.7)",
+              marginBottom: "0.75rem",
+            }}>THE 16 DEADLY SINS — AT A GLANCE</p>
+
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.95rem",
+              color: "rgba(255,255,255,0.6)",
+              lineHeight: 1.75,
+              maxWidth: 680,
+              marginBottom: "2.5rem",
+            }}>
+              Most new authorities do not fail from one major violation. They fail from several smaller failures that go unnoticed until an investigator documents them.
+            </p>
+
+            {/* Domain groups grid */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "1px",
+              background: "rgba(255,255,255,0.05)",
+            }} className="glance-grid">
+              {DOMAIN_GROUPS.map((group, i) => (
+                <div key={i} style={{
+                  background: cardBg,
+                  borderTop: `2px solid ${coral}`,
+                  padding: "1.375rem 1.375rem 1.25rem",
+                }}>
+                  <p style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "rgba(216,90,48,0.75)",
+                    marginBottom: "1rem",
+                    lineHeight: 1.5,
+                  }}>{group.domain}</p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                    {group.sins.map(sin => (
+                      <div key={sin.num} style={{
+                        display: "flex",
+                        gap: "0.625rem",
+                        alignItems: "baseline",
+                      }}>
+                        <span style={{
+                          fontFamily: "'Courier New', Courier, monospace",
+                          fontSize: "0.62rem",
+                          color: "rgba(216,90,48,0.45)",
+                          letterSpacing: "0.06em",
+                          flexShrink: 0,
+                          textTransform: "uppercase",
+                        }}>{sin.num}</span>
+                        <span style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "0.82rem",
+                          color: "rgba(255,255,255,0.72)",
+                          lineHeight: 1.4,
+                        }}>{sin.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* ── Violation Records section label ── */}
         <FadeIn delay={60}>
+          <div style={{ marginBottom: "2.5rem" }}>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.68rem",
+              fontWeight: 700,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "rgba(197,160,89,0.7)",
+              marginBottom: "0.5rem",
+            }}>VIOLATION RECORDS</p>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.88rem",
+              color: "rgba(255,255,255,0.38)",
+              letterSpacing: "0.02em",
+            }}>Operational Behaviors Documented in New Authority Failures</p>
+            <div style={{
+              height: 1,
+              background: "rgba(255,255,255,0.07)",
+              marginTop: "1.5rem",
+            }} />
+          </div>
+        </FadeIn>
+
+        {/* ── Sin card grid ── */}
+        <FadeIn delay={70}>
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "1px",
-            background: "rgba(197,160,89,0.1)",
-            marginBottom: "4rem",
+            gap: "1.25rem",
+            marginBottom: "6rem",
           }} className="sins-grid">
             {SINS.map((sin, i) => (
               <div key={i} style={{
-                background: "#020408",
+                background: cardBg,
                 borderLeft: `3px solid ${coral}`,
-                padding: "1.5rem 1.5rem 1.25rem",
+                padding: "1.75rem 2rem 1.5rem",
+                position: "relative",
+                overflow: "hidden",
                 transition: "background 0.15s",
-              }}
-                className="sin-card"
-              >
-                {/* Number */}
+              }} className="sin-card">
+
+                {/* Faint archival background numeral */}
+                <span style={{
+                  position: "absolute",
+                  right: "1.25rem",
+                  top: "0.25rem",
+                  fontFamily: "'Courier New', Courier, monospace",
+                  fontSize: "5.5rem",
+                  fontWeight: 900,
+                  color: coral,
+                  opacity: 0.04,
+                  lineHeight: 1,
+                  userSelect: "none",
+                  letterSpacing: "-0.02em",
+                  pointerEvents: "none",
+                }}>{sin.num}</span>
+
+                {/* Record ID */}
                 <p style={{
                   fontFamily: "'Courier New', Courier, monospace",
-                  fontSize: "0.72rem",
-                  color: `rgba(216,90,48,0.6)`,
-                  letterSpacing: "0.08em",
-                  marginBottom: "0.35rem",
-                }}>SIN {sin.num}</p>
+                  fontSize: "0.68rem",
+                  color: "rgba(216,90,48,0.5)",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  marginBottom: "0.55rem",
+                }}>[SIN {sin.num}]</p>
 
                 {/* Name */}
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "1rem",
-                  fontWeight: 500,
+                  fontWeight: 600,
                   color: coral,
-                  marginBottom: "0.6rem",
+                  marginBottom: "0.875rem",
                   lineHeight: 1.3,
                 }}>{sin.name}</p>
 
@@ -204,18 +400,21 @@ export default function SixteenSinsPage() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.88rem",
-                  color: "rgba(255,255,255,0.78)",
-                  lineHeight: 1.65,
-                  marginBottom: "0.875rem",
+                  color: "rgba(255,255,255,0.75)",
+                  lineHeight: 1.75,
+                  marginBottom: "1.125rem",
                 }}>{sin.desc}</p>
 
                 {/* FMCSA mapping */}
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "0.625rem" }}>
+                <div style={{
+                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  paddingTop: "0.75rem",
+                }}>
                   <p style={{
                     fontFamily: "'Courier New', Courier, monospace",
-                    fontSize: "0.7rem",
-                    color: "rgba(255,255,255,0.35)",
-                    letterSpacing: "0.04em",
+                    fontSize: "0.65rem",
+                    color: "rgba(255,255,255,0.28)",
+                    letterSpacing: "0.06em",
                     textTransform: "uppercase",
                   }}>FMCSA MAPPING: {sin.mapping}</p>
                 </div>
@@ -224,38 +423,55 @@ export default function SixteenSinsPage() {
           </div>
         </FadeIn>
 
-        {/* Footer callout */}
+        {/* ── Closing CTA block ── */}
         <FadeIn delay={100}>
           <div style={{
+            background: "#0A1525",
             borderLeft: `3px solid ${gold}`,
-            background: "rgba(0,21,48,0.6)",
-            borderRadius: "0 6px 6px 0",
-            padding: "2rem 2.5rem",
-            marginBottom: "2rem",
+            padding: "2.75rem 3rem",
           }}>
             <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.65rem",
+              fontWeight: 700,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(197,160,89,0.55)",
+              marginBottom: "1.25rem",
+            }}>CONCLUSION</p>
+            <p style={{
               fontFamily: "'Manrope', sans-serif",
-              fontSize: "1.15rem",
+              fontSize: "1.25rem",
               fontWeight: 700,
               color: "#FFFFFF",
-              marginBottom: "0.5rem",
+              marginBottom: "0.875rem",
+              lineHeight: 1.4,
             }}>Every sin has a corresponding system that prevents it.</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
-              color: "rgba(255,255,255,0.78)",
-              lineHeight: 1.7,
-              marginBottom: "1.25rem",
+              color: "rgba(255,255,255,0.72)",
+              lineHeight: 1.75,
+              marginBottom: "2rem",
+              maxWidth: 540,
             }}>
               The LaunchPath New Carrier Document System installs the infrastructure that eliminates all 16.
             </p>
-            <Link to="/standards/new-carrier-document-system" style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
-              letterSpacing: "0.1em", textTransform: "uppercase",
-              color: "#001530", background: gold,
-              padding: "0.75rem 1.75rem", textDecoration: "none", display: "inline-block",
-              transition: "opacity 0.2s",
-            }}
+            <Link
+              to="/standards/new-carrier-document-system"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 700,
+                fontSize: "0.85rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "#001530",
+                background: gold,
+                padding: "0.875rem 2rem",
+                textDecoration: "none",
+                display: "inline-block",
+                transition: "opacity 0.2s",
+              }}
               onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
               onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
             >
@@ -263,14 +479,19 @@ export default function SixteenSinsPage() {
             </Link>
           </div>
         </FadeIn>
+
       </main>
 
       <FooterSection />
 
       <style>{`
-        .sin-card:hover { background: rgba(216,90,48,0.04) !important; }
+        .sin-card:hover { background: #0F2238 !important; }
         @media (max-width: 700px) {
           .sins-grid { grid-template-columns: 1fr !important; }
+          .glance-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (min-width: 701px) and (max-width: 1000px) {
+          .glance-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
       `}</style>
     </div>
