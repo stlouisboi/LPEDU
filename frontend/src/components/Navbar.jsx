@@ -4,6 +4,7 @@ import { List, X, LockSimple, CaretDown } from "@phosphor-icons/react";
 
 const FRAMEWORK_LINKS = [
   { label: "Knowledge Center", href: "/knowledge-center" },
+  { label: "AUTO Method", href: "/auto-method" },
   {
     label: "Standards",
     href: "/standards",
@@ -13,7 +14,6 @@ const FRAMEWORK_LINKS = [
       { label: "16 Deadly Sins", href: "/standards/16-deadly-sins" },
     ],
   },
-  { label: "AUTO Method", href: "/auto-method" },
   { label: "LaunchPath Standard", href: "/operating-standard" },
 ];
 
