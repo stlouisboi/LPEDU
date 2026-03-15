@@ -162,7 +162,14 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] jspdf ^4.2.0 installed for client-side PDF generation
 - All routes registered in App.js
 
-### P1 Backlog — Products
+## Standards Architecture Build (March 2026)
+- [x] /products → /standards migration (301 redirects for all 7 URLs)
+- [x] FMCSADomainTable.jsx — 7-row audit mapping table, packet badges, showPricing prop
+- [x] DoctrineStack.jsx — 5-layer clickable stack (coral/amber/teal/navy/purple)
+- [x] StandardsPage.jsx — full upgraded page: FMCSA table + Good Cop/Bad Cop + Doctrine Stack + 3-tier ladder + packet grid + 2-col Bundle vs Standard matrix
+- [x] SixteenSinsPage.jsx — /standards/16-deadly-sins — 16 sin cards, coral treatment, all FMCSA citations
+- [x] Navbar: Standards dropdown (Compliance System / Audit Domains / 16 Deadly Sins), Ground 0 dropdown (Enter Ground 0 / REACH Assessment), REACH Assessment + Partners removed from main nav
+- [x] Footer: Standards → /standards
 - [ ] Populate 5 individual packet pages with final copy (awaiting user)
 - [ ] Add real Gumroad URLs to all product pages (currently href="#")
 
