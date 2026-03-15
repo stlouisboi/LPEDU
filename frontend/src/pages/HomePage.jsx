@@ -15,6 +15,7 @@ import RecoveryPathBlock from "../components/RecoveryPathBlock";
 import ComplianceMapTeaser from "../components/ComplianceMapTeaser";
 import VinceCTASection from "../components/VinceCTASection";
 import FooterSection from "../components/FooterSection";
+import { DoctrineStack } from "../components/DoctrineStack";
 
 export default function HomePage() {
   return (
@@ -31,6 +32,28 @@ export default function HomePage() {
         <HowItWorksSection />
         <AutoMethodTeaserSection />
         <ProtectionDiagramSection />
+
+        {/* DoctrineStack — system reference block */}
+        <section style={{
+          background: "#000B17",
+          borderTop: "1px solid rgba(197,160,89,0.1)",
+          borderBottom: "1px solid rgba(255,255,255,0.04)",
+          padding: "4rem 1.5rem 0.5rem",
+        }}>
+          <div style={{ maxWidth: 840, margin: "0 auto" }}>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.68rem",
+              fontWeight: 700,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "rgba(197,160,89,0.5)",
+              marginBottom: "2rem",
+            }}>LP-SYS-001 | AUTHORITY SURVIVAL FRAMEWORK</p>
+            <DoctrineStack />
+          </div>
+        </section>
+
         <MidPageStatement />
         <FourPillarsSection />
         <EngagementSection />
