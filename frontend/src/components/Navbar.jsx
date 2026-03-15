@@ -9,9 +9,9 @@ const FRAMEWORK_LINKS = [
     label: "Standards",
     href: "/standards",
     subItems: [
-      { label: "Compliance System", href: "/standards" },
       { label: "Audit Domains", href: "/standards#audit-domains" },
       { label: "16 Deadly Sins", href: "/standards/16-deadly-sins" },
+      { label: "Compliance System", href: "/standards" },
     ],
   },
   { label: "LaunchPath Standard", href: "/operating-standard" },
@@ -162,15 +162,15 @@ export default function Navbar() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.874rem", fontWeight: 700,
                   letterSpacing: "0.06em", textTransform: "uppercase",
-                  color: ground0Active ? "#002244" : "#C5A059",
-                  background: ground0Active ? "#C5A059" : "transparent",
-                  border: "1px solid rgba(197,160,89,0.5)",
+                  color: ground0Active ? "#002244" : "#001530",
+                  background: ground0Active ? "#C5A059" : "#C5A059",
+                  border: "1px solid #C5A059",
                   padding: "0.4rem 1rem",
                   textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap",
                   display: "flex", alignItems: "center", gap: "0.3rem",
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = "#C5A059"; e.currentTarget.style.color = "#002244"; }}
-                onMouseLeave={e => { if (!ground0Active) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#C5A059"; } }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
               >
                 Ground 0
                 <CaretDown size={10} style={{ opacity: 0.7 }} />
