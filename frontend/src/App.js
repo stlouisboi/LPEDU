@@ -71,7 +71,14 @@ function AppRouter() {
       <Route path="/reach-diagnostic" element={<REACHAssessmentPage />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
-          <Route path="/partners" element={<PartnersPage />} />
+      <Route path="/partners" element={<PartnersPage />} />
+      <Route path="/products" element={<ProductsPage />} />
+      <Route path="/products/new-entrant-packet" element={<NewEntrantPacketPage />} />
+      <Route path="/products/drug-alcohol-packet" element={<DrugAlcoholPacketPage />} />
+      <Route path="/products/hos-packet" element={<HOSPacketPage />} />
+      <Route path="/products/maintenance-packet" element={<MaintenancePacketPage />} />
+      <Route path="/products/insurance-packet" element={<InsurancePacketPage />} />
+      <Route path="/products/new-carrier-document-system" element={<BundlePage />} />
     </Routes>
   );
 }
