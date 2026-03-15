@@ -54,7 +54,7 @@ const MATRIX_ROWS = [
   { feature: "Unified Folder Structure", individual: null,    bundle: "check", standard: "check" },
   { feature: "0\u201330\u201390 Day Guide", individual: null, bundle: "check", standard: "check" },
   { feature: "Audit-Ready \"Grab Folder\"", individual: null, bundle: "check", standard: "check" },
-  { feature: "Cost Savings",             individual: null,    bundle: { label: "$128 Savings" }, standard: null },
+  { feature: "Cost Savings vs. Individual Packets", individual: null,    bundle: { label: "Save $128" }, standard: { label: "Included" } },
   { feature: "Guided Implementation",    individual: null,    bundle: null,    standard: { label: "Full Support" } },
   { feature: "Cohort Access & Q&A",      individual: null,    bundle: null,    standard: { label: "Included" } },
   { feature: "TCO & Financial Tools",    individual: null,    bundle: null,    standard: { label: "Included" } },
@@ -85,7 +85,7 @@ export default function ProductsPage() {
               color: "#FFFFFF",
               lineHeight: 1.8, maxWidth: 580,
             }}>
-              Five domain-specific operating standards and one complete document architecture bundle — the DIY path to installing a compliant new-authority operating system. Priced above commodity audit kits and below consulting.
+              Five domain-specific operating standards and one complete document architecture bundle — the DIY path to installing a compliant new-authority operating system. Designed for carriers building their compliance structure before seeking guided implementation.
             </p>
           </FadeIn>
         </div>
@@ -146,13 +146,36 @@ export default function ProductsPage() {
           </div>
         </FadeIn>
 
-        {/* Individual Packets */}
-        <FadeIn delay={100}>
+        {/* THE COMPLETE DIY SYSTEM — Featured Bundle */}
+        <FadeIn delay={90}>
+          <div style={{
+            background: "#001530", border: `1px solid rgba(197,160,89,0.2)`,
+            borderTop: `3px solid ${gold}`, padding: "2.5rem", marginBottom: "4rem",
+          }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>THE COMPLETE DIY SYSTEM</p>
+            <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
+              Install the full LaunchPath document architecture in one step. Includes all five packets, the 0–30–90 Day Implementation Guide, and the unified folder structure. $128 less than purchasing the five packets individually.
+            </p>
+            <Link to="/products/new-carrier-document-system" style={{
+              display: "inline-block", background: gold, color: "#001530",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+              letterSpacing: "0.1em", textTransform: "uppercase",
+              padding: "0.875rem 2rem", textDecoration: "none", transition: "opacity 0.2s",
+            }}
+              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+            >View Bundle →</Link>
+          </div>
+        </FadeIn>
+
+        {/* SYSTEM MODULES */}
+        <FadeIn delay={130}>
           <p id="packets" style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
             marginBottom: "0.6rem",
-          }}>Individual Packets — $97–$127</p>
+          }}>System Modules</p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
             color: "rgba(255,255,255,0.6)", lineHeight: 1.6, marginBottom: "1.5rem",
@@ -198,7 +221,7 @@ export default function ProductsPage() {
           <h2 style={{
             fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.35rem",
             color: "#FFFFFF", letterSpacing: "-0.01em", marginBottom: "2rem",
-          }}>LaunchPath Document Systems: Product Comparison</h2>
+          }}>LaunchPath System Comparison</h2>
           <div style={{ overflowX: "auto", marginBottom: "4rem" }}>
             <table data-testid="comparison-matrix" style={{ width: "100%", borderCollapse: "collapse", minWidth: 560 }}>
               <colgroup>
@@ -341,13 +364,13 @@ export default function ProductsPage() {
                     <Link to="/ground-0-briefing" style={{
                       fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.6)", textDecoration: "none",
-                      border: "1px solid rgba(255,255,255,0.2)", padding: "0.5rem 0.875rem",
+                      color: gold, textDecoration: "none",
+                      border: `1px solid rgba(197,160,89,0.35)`, padding: "0.5rem 0.875rem",
                       display: "inline-block", transition: "all 0.2s",
                     }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#fff"}
-                      onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}
-                    >Begin Ground 0 →</Link>
+                      onMouseEnter={e => e.currentTarget.style.background = "rgba(197,160,89,0.08)"}
+                      onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                    >Apply for Admission →</Link>
                   </td>
                 </tr>
               </tfoot>
@@ -355,25 +378,6 @@ export default function ProductsPage() {
           </div>
         </FadeIn>
 
-        {/* Bundle CTA */}
-        <FadeIn delay={200}>
-          <div style={{
-            background: "#001530", border: `1px solid rgba(197,160,89,0.2)`,
-            borderTop: `3px solid ${gold}`, padding: "2.5rem",
-          }}>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Best Value</p>
-            <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
-              All five packets plus the 0–30–90 Day Implementation Guide and unified folder structure. The complete DIY path — $108 less than buying separately.
-            </p>
-            <Link to="/products/new-carrier-document-system" style={{
-              display: "inline-block", background: gold, color: "#001530",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
-              letterSpacing: "0.1em", textTransform: "uppercase",
-              padding: "0.875rem 2rem", textDecoration: "none",
-            }}>View Bundle →</Link>
-          </div>
-        </FadeIn>
       </div>
 
       <FooterSection />
