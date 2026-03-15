@@ -143,7 +143,15 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Knowledge Center portal cross-links — ArticlePortalBanner added to all 5 briefs; each maps to its Standard Task (DA-001, HOS-001, PM-001, INS-001, DQ-001) with OPEN OPERATOR PORTAL + BEGIN GROUND 0 CTAs (Feb 2026)
 
 ## Gumroad Product Line (Feb 2026)
-- [x] `/products` — Main product line page with Commercial Ladder + 5 individual packet listings
+- [x] Standards Library page positioning overhaul (Feb 2026):
+  - Headline → "The LaunchPath Operating Standards Library"
+  - Label → "LP-SYS-LIBRARY | OPERATING STANDARDS"
+  - Guidance sentence above Commercial Ladder
+  - Bundle badge: "THE COMPLETE DIY SYSTEM" tier signal in ladder
+  - Bundle desc rewrite: "Install the full LaunchPath document architecture in one step..."
+  - Quiet line under packets header: "Each packet installs one domain..."
+  - Operating standard subtitles on all 5 packets (Part 382, Part 395, Part 396, etc.)
+  - Navbar + Footer: "Products" → "Standards Library"
 - [x] `/products/new-entrant-packet` — New Entrant Packet ($97) — placeholder copy, awaiting user content
 - [x] `/products/drug-alcohol-packet` — Drug & Alcohol Packet ($127) — placeholder copy
 - [x] `/products/hos-packet` — HOS & Dispatch Packet ($127) — placeholder copy
