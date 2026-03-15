@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
@@ -157,6 +158,14 @@ const SINS = [
 ];
 
 export default function SixteenSinsPage() {
+  const [copied, setCopied] = useState(false);
+
+  function handleCopyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
   return (
     <div style={{ background: pageBg, minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
@@ -196,7 +205,29 @@ export default function SixteenSinsPage() {
 
           <div style={{ height: 2, background: coral, width: 64, marginBottom: "3rem" }} />
 
-          {/* ── Intro ── */}
+          {/* Copy link utility */}
+          <div style={{ marginBottom: "3.5rem" }}>
+            <button
+              data-testid="copy-link-btn"
+              onClick={handleCopyLink}
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: copied ? "#C5A059" : "rgba(255,255,255,0.38)",
+                background: "transparent",
+                border: `1px solid ${copied ? "rgba(197,160,89,0.35)" : "rgba(255,255,255,0.1)"}`,
+                padding: "0.45rem 1rem",
+                cursor: "pointer",
+                transition: "all 0.2s",
+                outline: "none",
+              }}
+            >
+              {copied ? "Copied" : "Copy Link"}
+            </button>
+          </div>
           <div style={{ maxWidth: 720, marginBottom: "5.5rem" }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const gold = "#C5A059";
@@ -57,6 +58,15 @@ const DOMAINS = [
 
 // showPricing: true on /standards, false on homepage
 export function FMCSADomainTable({ showPricing = true }) {
+  const [copied, setCopied] = useState(false);
+
+  function handleCopyLink() {
+    const url = window.location.origin + "/standards#audit-domains";
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
   return (
     <div id="audit-domains" style={{ marginBottom: "4rem" }}>
       <div style={{ overflowX: "auto" }}>
@@ -144,23 +154,52 @@ export function FMCSADomainTable({ showPricing = true }) {
         borderRadius: "0 6px 6px 0",
         padding: "1.25rem 1.5rem",
         marginTop: "1px",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        gap: "2rem",
+        flexWrap: "wrap",
       }}>
-        <p style={{
-          fontFamily: "'Manrope', sans-serif",
-          fontSize: "1rem",
-          fontWeight: 700,
-          color: "#FFFFFF",
-          marginBottom: "0.35rem",
-        }}>Every audit domain. One document system.</p>
-        <p style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "0.9rem",
-          color: "rgba(255,255,255,0.68)",
-          lineHeight: 1.6,
-        }}>
-          The New Carrier Document System covers all seven domains across five packets
-          {showPricing && " — $497 or included in the LaunchPath Standard"}.
-        </p>
+        <div>
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontSize: "1rem",
+            fontWeight: 700,
+            color: "#FFFFFF",
+            marginBottom: "0.35rem",
+          }}>Every audit domain. One document system.</p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.9rem",
+            color: "rgba(255,255,255,0.68)",
+            lineHeight: 1.6,
+          }}>
+            The New Carrier Document System covers all seven domains across five packets
+            {showPricing && " — $497 or included in the LaunchPath Standard"}.
+          </p>
+        </div>
+        <button
+          data-testid="copy-audit-link-btn"
+          onClick={handleCopyLink}
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.65rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: copied ? "#C5A059" : "rgba(255,255,255,0.38)",
+            background: "transparent",
+            border: `1px solid ${copied ? "rgba(197,160,89,0.35)" : "rgba(255,255,255,0.1)"}`,
+            padding: "0.45rem 1rem",
+            cursor: "pointer",
+            transition: "all 0.2s",
+            outline: "none",
+            flexShrink: 0,
+            alignSelf: "center",
+          }}
+        >
+          {copied ? "Copied" : "Copy Link"}
+        </button>
       </div>
 
       <style>{`

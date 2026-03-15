@@ -4,35 +4,33 @@ export default function HOSPacketPage() {
   return (
     <ProductPageTemplate
       label="LP-PKT-003 | HOS & DISPATCH PACKET"
-      title="HOS & Dispatch Packet"
+      title="HOS & Dispatch Compliance Packet"
       subtitle="FMCSA Part 395 Hours of Service Operating Standard (Document System)"
       price="$127"
-      tagline="A complete Hours of Service and dispatch document system for FMCSA-regulated carriers — not an ELD instruction guide, a full HOS operating standard in document form."
+      tagline="The document system for Hours of Service compliance and dispatch standards under 49 CFR Part 395."
       positioning={[
-        "[Copy to be provided. Follows the standard architecture: what this is and what it is not — first two sentences draw the distinction from ELD vendor documentation and generic HOS guides.]",
-        "[Second paragraph establishes depth: what an experienced safety manager builds for Part 395 compliance vs. what most carriers receive from their ELD provider.]",
+        "This is not an ELD provider or dispatch software. It is a document system built to install the operational standards, dispatch discipline, and recordkeeping framework that FMCSA expects when they review your Hours of Service compliance in a safety audit.",
+        "Having an ELD in the truck is not the same as having a compliant HOS system. This packet closes the gap between the device and the documented standard.",
       ]}
       whatsInside={[
-        "Part 395 Regulatory Brief — the hours rules, exception categories, and ELD mandate requirements",
-        "HOS Violation Checklist — the most common log violations and how to document corrections",
-        "ELD Malfunction Response Sheet — the required paper log procedure and driver notification template",
-        "Dispatch Log Template — BOL filing by trip number with driver HOS tracking",
-        "Driver HOS Instruction Card — vehicle-ready reference for drivers on duty/off-duty rules",
-        "Folder Structure — digital directory for HOS and dispatch records",
+        "Hours of Service Rules Brief — Property Carrier Focus: A plain-language explanation of the core HOS limits for property carriers — 11-hour driving limit, 14-hour on-duty window, 30-minute rest break, 60/70-hour weekly cycle, and 10-hour off-duty requirement. Covers short-haul exemption conditions, required supporting documents, and the automatic failure items that will end operating authority. Citations current as of publication.",
+        "Dispatch Standards Checklist — What Not to Ask a Driver to Do: Every carrier dispatch obligation under 49 CFR 392.6 and 395.3. Pre-dispatch hour verification, load scheduling standards, prohibited dispatch instructions, and post-delivery load file documentation. The carrier is responsible for dispatch decisions — not just the driver.",
+        "ELD Usage Checklist — Required Data, Edits, Annotations: Device registration verification, required data fields, annotation procedures, edit protocols, and malfunction reporting requirements. Covers carrier obligations under 49 CFR 395.22 and 395.26 — including what happens when the ELD malfunctions and what the driver and carrier are each required to do.",
+        "Daily and Weekly Compliance Review Checklist: A repeatable review process for owner-operators and small fleet managers. Daily post-shift review steps (5–10 minutes) and a weekly compliance review (20–30 minutes) that catches HOS drift before it becomes an audit finding.",
       ]}
       whoItsFor={[
-        "New carriers building their first HOS compliance structure",
-        "Owner-operators who need documentation beyond what their ELD provides",
-        "Carriers who received an HOS violation in a roadside inspection or audit",
-        "Dispatchers who need a structured log and filing system",
+        "Owner-operators and small fleets (1–5 trucks) operating under 49 CFR Part 395",
+        "Carriers setting up ELD compliance infrastructure for the first time",
+        "Dispatch operations that have not formalized what they can and cannot ask a driver to do",
+        "Carriers whose HOS records were flagged or incomplete during a New Entrant Safety Audit",
       ]}
       whatItReplaces={[
-        "ELD vendor documentation that covers the device but not the compliance framework",
-        "Generic HOS guides that don't address the documentation FMCSA actually reviews",
-        "Paying a safety consultant to build dispatch documentation",
-        "Reconstructing HOS records after receiving an audit notice",
+        "Discovering your ELD device is not on the FMCSA registered list during an audit",
+        "Dispatching loads without a process to verify available driver hours",
+        "Having no written record of what your dispatch operation is and is not permitted to do",
+        "Realizing your supporting documents do not match your ELD data after an investigator points it out",
       ]}
-      nextStepText="The HOS & Dispatch Packet covers one of five compliance domains. The New Carrier Document System bundles all five with a 0–30–90 day implementation guide — the complete DIY operating standard for new authorities."
+      nextStepText="The HOS & Dispatch Compliance Packet covers one of five compliance domains. The New Carrier Document System bundles all five with a 0–30–90 day implementation guide — the complete DIY operating standard for new authorities."
       nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
