@@ -171,7 +171,9 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] SixteenSinsPage.jsx visual refinement (March 2026) — "At a Glance" 3-col domain-grouped summary, "VIOLATION RECORDS" section label, file-card sin cards ([SIN XX] record IDs, lighter navy surface #0B1927, coral left border, faint archival bg numeral), increased spacing, "CONCLUSION" CTA block
 - [x] Navbar: Standards dropdown (Compliance System / Audit Domains / 16 Deadly Sins), Ground 0 dropdown (Enter Ground 0 / REACH Assessment), REACH Assessment + Partners removed from main nav
 - [x] Footer: Standards → /standards
-- [ ] Populate 5 individual packet pages with final copy (awaiting user)
+- [x] Populate 5 individual packet pages with final copy (New Entrant, Drug & Alcohol, HOS, Maintenance, Insurance — all complete)
+- [x] Copy Link button on /standards/16-deadly-sins (data-testid=copy-link-btn) — copies page URL, institutional style, no platform branding
+- [x] Copy Link button on /standards Audit Domains section (data-testid=copy-audit-link-btn) — copies /standards#audit-domains URL
 - [ ] Add real Gumroad URLs to all product pages (currently href="#")
 
 ### P2 Backlog — External
