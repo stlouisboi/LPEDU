@@ -46,6 +46,19 @@ const PACKETS = [
   { code: "LP-PKT-005", title: "Insurance & Authority Packet", price: "$127", href: "/products/insurance-packet", desc: "Authority accuracy, BOC-3 compliance, and insurance filing verification." },
 ];
 
+const MATRIX_ROWS = [
+  { feature: "Domain-Specific Brief",    individual: "check", bundle: "check", standard: "check" },
+  { feature: "Operational Checklists",   individual: "check", bundle: "check", standard: "check" },
+  { feature: "Templates & Forms",        individual: "check", bundle: "check", standard: "check" },
+  { feature: "Unified Folder Structure", individual: null,    bundle: "check", standard: "check" },
+  { feature: "0\u201330\u201390 Day Guide", individual: null, bundle: "check", standard: "check" },
+  { feature: "Audit-Ready \"Grab Folder\"", individual: null, bundle: "check", standard: "check" },
+  { feature: "Cost Savings",             individual: null,    bundle: { label: "$128 Savings" }, standard: null },
+  { feature: "Guided Implementation",    individual: null,    bundle: null,    standard: { label: "Full Support" } },
+  { feature: "Cohort Access & Q&A",      individual: null,    bundle: null,    standard: { label: "Included" } },
+  { feature: "TCO & Financial Tools",    individual: null,    bundle: null,    standard: { label: "Included" } },
+];
+
 export default function ProductsPage() {
   const gold = "#C5A059";
 
@@ -156,6 +169,173 @@ export default function ProductsPage() {
 
         {/* Bundle CTA */}
         <FadeIn delay={160}>
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+            marginBottom: "1.5rem",
+          }}>LP-SPEC-001 | Comparison Matrix</p>
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.35rem",
+            color: "#FFFFFF", letterSpacing: "-0.01em", marginBottom: "2rem",
+          }}>LaunchPath Document Systems: Product Comparison</h2>
+          <div style={{ overflowX: "auto", marginBottom: "4rem" }}>
+            <table data-testid="comparison-matrix" style={{ width: "100%", borderCollapse: "collapse", minWidth: 560 }}>
+              <colgroup>
+                <col style={{ width: "32%" }} />
+                <col style={{ width: "22.7%" }} />
+                <col style={{ width: "22.7%" }} />
+                <col style={{ width: "22.7%" }} />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th style={{
+                    textAlign: "left", padding: "0.875rem 1rem",
+                    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem",
+                    fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.35)", borderBottom: "1px solid rgba(255,255,255,0.08)",
+                    background: "#020408",
+                  }}>Feature / Deliverable</th>
+
+                  {/* Individual column */}
+                  <th style={{
+                    textAlign: "center", padding: "1rem 0.875rem 0.875rem",
+                    background: "#001530", borderTop: "2px solid rgba(255,255,255,0.2)",
+                    borderBottom: "1px solid rgba(255,255,255,0.08)",
+                    borderLeft: "1px solid rgba(255,255,255,0.06)",
+                  }}>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>Individual Packet</p>
+                    <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$97–$127</p>
+                  </th>
+
+                  {/* Bundle column — gold highlight */}
+                  <th style={{
+                    textAlign: "center", padding: "1rem 0.875rem 0.875rem",
+                    background: "rgba(197,160,89,0.07)", borderTop: "3px solid #C5A059",
+                    borderBottom: "1px solid rgba(197,160,89,0.2)",
+                    borderLeft: "1px solid rgba(197,160,89,0.15)",
+                    borderRight: "1px solid rgba(197,160,89,0.15)",
+                  }}>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.58rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Recommended DIY</p>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>New Carrier System</p>
+                    <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$497</p>
+                  </th>
+
+                  {/* Standard column — institutional */}
+                  <th style={{
+                    textAlign: "center", padding: "1rem 0.875rem 0.875rem",
+                    background: "#000D1A", borderTop: "2px solid rgba(255,255,255,0.15)",
+                    borderBottom: "1px solid rgba(255,255,255,0.08)",
+                    borderLeft: "1px solid rgba(255,255,255,0.06)",
+                  }}>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>LaunchPath Standard</p>
+                    <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {MATRIX_ROWS.map((row, i) => (
+                  <tr key={i} style={{ background: i % 2 === 0 ? "#020408" : "rgba(0,21,48,0.45)" }}>
+                    <td style={{
+                      padding: "0.875rem 1rem",
+                      fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+                      color: "rgba(255,255,255,0.72)", lineHeight: 1.5,
+                      borderBottom: "1px solid rgba(255,255,255,0.05)",
+                    }}>{row.feature}</td>
+
+                    <td style={{
+                      textAlign: "center", padding: "0.875rem 0.875rem",
+                      background: i % 2 === 0 ? "#001530" : "#001730",
+                      borderBottom: "1px solid rgba(255,255,255,0.05)",
+                      borderLeft: "1px solid rgba(255,255,255,0.06)",
+                    }}>
+                      <MatrixCell value={row.individual} col="individual" />
+                    </td>
+
+                    <td style={{
+                      textAlign: "center", padding: "0.875rem 0.875rem",
+                      background: i % 2 === 0 ? "rgba(197,160,89,0.06)" : "rgba(197,160,89,0.04)",
+                      borderBottom: "1px solid rgba(197,160,89,0.1)",
+                      borderLeft: "1px solid rgba(197,160,89,0.15)",
+                      borderRight: "1px solid rgba(197,160,89,0.15)",
+                    }}>
+                      <MatrixCell value={row.bundle} col="bundle" />
+                    </td>
+
+                    <td style={{
+                      textAlign: "center", padding: "0.875rem 0.875rem",
+                      background: i % 2 === 0 ? "#000D1A" : "#001020",
+                      borderBottom: "1px solid rgba(255,255,255,0.05)",
+                      borderLeft: "1px solid rgba(255,255,255,0.06)",
+                    }}>
+                      <MatrixCell value={row.standard} col="standard" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td style={{ padding: "1.25rem 1rem" }} />
+                  <td style={{
+                    textAlign: "center", padding: "1.25rem 0.875rem",
+                    background: "#001530",
+                    borderTop: "1px solid rgba(255,255,255,0.08)",
+                    borderLeft: "1px solid rgba(255,255,255,0.06)",
+                  }}>
+                    <a href="#packets" style={{
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      letterSpacing: "0.08em", textTransform: "uppercase",
+                      color: "rgba(255,255,255,0.6)", textDecoration: "none",
+                      border: "1px solid rgba(255,255,255,0.2)", padding: "0.5rem 0.875rem",
+                      display: "inline-block", transition: "all 0.2s",
+                    }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#fff"}
+                      onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}
+                    >View Packets ↓</a>
+                  </td>
+                  <td style={{
+                    textAlign: "center", padding: "1.25rem 0.875rem",
+                    background: "rgba(197,160,89,0.08)",
+                    borderTop: "1px solid rgba(197,160,89,0.2)",
+                    borderLeft: "1px solid rgba(197,160,89,0.15)",
+                    borderRight: "1px solid rgba(197,160,89,0.15)",
+                  }}>
+                    <Link to="/products/new-carrier-document-system" style={{
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      letterSpacing: "0.08em", textTransform: "uppercase",
+                      color: "#001530", background: gold, textDecoration: "none",
+                      padding: "0.5rem 0.875rem", display: "inline-block", transition: "opacity 0.2s",
+                    }}
+                      onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+                      onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                    >View Bundle →</Link>
+                  </td>
+                  <td style={{
+                    textAlign: "center", padding: "1.25rem 0.875rem",
+                    background: "#000D1A",
+                    borderTop: "1px solid rgba(255,255,255,0.08)",
+                    borderLeft: "1px solid rgba(255,255,255,0.06)",
+                  }}>
+                    <Link to="/ground-0-briefing" style={{
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      letterSpacing: "0.08em", textTransform: "uppercase",
+                      color: "rgba(255,255,255,0.6)", textDecoration: "none",
+                      border: "1px solid rgba(255,255,255,0.2)", padding: "0.5rem 0.875rem",
+                      display: "inline-block", transition: "all 0.2s",
+                    }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#fff"}
+                      onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}
+                    >Begin Ground 0 →</Link>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </FadeIn>
+
+        {/* Bundle CTA */}
+        <FadeIn delay={200}>
           <div style={{
             background: "#001530", border: `1px solid rgba(197,160,89,0.2)`,
             borderTop: `3px solid ${gold}`, padding: "2.5rem",
@@ -181,7 +361,35 @@ export default function ProductsPage() {
         @media (max-width: 680px) {
           .ladder-row { flex-direction: column; align-items: flex-start !important; }
         }
+        @media (max-width: 560px) {
+          table[data-testid="comparison-matrix"] { font-size: 0.82rem; }
+        }
       `}</style>
     </div>
   );
+}
+
+function MatrixCell({ value, col }) {
+  if (value === "check") {
+    return (
+      <span style={{
+        fontSize: "1rem",
+        color: col === "bundle" ? "#C5A059" : col === "standard" ? "#FFFFFF" : "rgba(255,255,255,0.65)",
+        fontWeight: col === "bundle" ? 700 : 400,
+      }}>✓</span>
+    );
+  }
+  if (value === null) {
+    return <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.9rem" }}>—</span>;
+  }
+  if (value && value.label) {
+    return (
+      <span style={{
+        fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
+        color: col === "bundle" ? "#C5A059" : "#FFFFFF",
+        fontWeight: 600, letterSpacing: "0.04em",
+      }}>{value.label}</span>
+    );
+  }
+  return null;
 }
