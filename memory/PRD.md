@@ -142,7 +142,29 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Post-payment confirmation email — MailerLite subscriber update triggered in Stripe webhook on payment_status=paid (Feb 2026)
 - [x] Knowledge Center portal cross-links — ArticlePortalBanner added to all 5 briefs; each maps to its Standard Task (DA-001, HOS-001, PM-001, INS-001, DQ-001) with OPEN OPERATOR PORTAL + BEGIN GROUND 0 CTAs (Feb 2026)
 
-- `/app/frontend/src/App.js` — Router (6 KC article routes)
+## Gumroad Product Line (Feb 2026)
+- [x] `/products` — Main product line page with Commercial Ladder + 5 individual packet listings
+- [x] `/products/new-entrant-packet` — New Entrant Packet ($97) — placeholder copy, awaiting user content
+- [x] `/products/drug-alcohol-packet` — Drug & Alcohol Packet ($127) — placeholder copy
+- [x] `/products/hos-packet` — HOS & Dispatch Packet ($127) — placeholder copy
+- [x] `/products/maintenance-packet` — Maintenance & Unit File Packet ($127) — placeholder copy
+- [x] `/products/insurance-packet` — Insurance & Authority Packet ($127) — placeholder copy
+- [x] `/products/new-carrier-document-system` — Bundle Page ($497) — full copy + jsPDF implementation guide download
+- [x] Navbar + Footer updated with Products link
+- [x] jspdf ^4.2.0 installed for client-side PDF generation
+- All routes registered in App.js
+
+### P1 Backlog — Products
+- [ ] Populate 5 individual packet pages with final copy (awaiting user)
+- [ ] Add real Gumroad URLs to all product pages (currently href="#")
+
+### P2 Backlog — External
+- [ ] MailerSend sender swap: switch from temp Gmail to noreply@launchpathedu.com (one-line Railway env var change, awaiting domain verification)
+- [ ] Add YouTube URL to "Watch the Overview" homepage CTA
+- [ ] Stripe live key switch (test → production)
+- [ ] Stripe webhook secret on Railway
+
+- `/app/frontend/src/App.js` — Router (6 KC article routes + 7 product routes)
 - `/app/frontend/src/index.css` — CSS color token system
 - `/app/frontend/src/pages/HomePage.jsx` — Full section assembly (13 sections incl. EngagementSection)
 - `/app/frontend/src/components/HeroSection.jsx` — Hero hierarchy refinement (Mar 2026): H1 split two-block, gold bridge line, body line-height 2.0
