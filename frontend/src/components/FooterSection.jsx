@@ -1,9 +1,10 @@
 export default function FooterSection() {
   const NAV_ITEMS = [
     { label: "Knowledge Center", href: "/knowledge-center", external: false },
-    { label: "AUTO Method", href: "https://www.launchpathedu.com/auto-method", external: true },
-    { label: "AUTO Diagnostic", href: "/auto-diagnostic", external: false },
-    { label: "Ground 0 Briefing", href: "https://www.launchpathedu.com/ground-0-briefing", external: true },
+    { label: "Products", href: "/products", external: false },
+    { label: "AUTO Method", href: "/auto-method", external: false },
+    { label: "Ground 0 Briefing", href: "/ground-0-briefing", external: false },
+    { label: "Partners", href: "/partners", external: false },
     { label: "About", href: "/about", external: false },
   ];
 

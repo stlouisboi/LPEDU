@@ -25,6 +25,13 @@ import CoachRegistryPage from "./pages/CoachRegistryPage";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
 import PartnersPage from "./pages/PartnersPage";
+import ProductsPage from "./pages/ProductsPage";
+import NewEntrantPacketPage from "./pages/products/NewEntrantPacketPage";
+import DrugAlcoholPacketPage from "./pages/products/DrugAlcoholPacketPage";
+import HOSPacketPage from "./pages/products/HOSPacketPage";
+import MaintenancePacketPage from "./pages/products/MaintenancePacketPage";
+import InsurancePacketPage from "./pages/products/InsurancePacketPage";
+import BundlePage from "./pages/products/BundlePage";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 function ScrollToTop() {
