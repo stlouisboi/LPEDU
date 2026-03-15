@@ -61,8 +61,8 @@ export default function NewEntrantPacketPage() {
           <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
             {WHO_NOT_FOR.map((item, i) => (
               <li key={i} style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-                color: "rgba(255,255,255,0.78)", lineHeight: 1.7,
+                fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                color: "rgba(255,255,255,0.88)", lineHeight: 1.7,
                 paddingLeft: "1.25rem", position: "relative",
               }}>
                 <span style={{ position: "absolute", left: 0, color: "rgba(248,113,113,0.7)" }}>×</span>
@@ -85,8 +85,8 @@ export default function NewEntrantPacketPage() {
           <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
             {WHAT_NOT_REPLACES.map((item, i) => (
               <li key={i} style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-                color: "rgba(255,255,255,0.5)", lineHeight: 1.7,
+                fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                color: "rgba(255,255,255,0.68)", lineHeight: 1.7,
                 paddingLeft: "1.25rem", position: "relative",
               }}>
                 <span style={{ position: "absolute", left: 0, color: "rgba(255,255,255,0.2)" }}>—</span>
@@ -110,7 +110,7 @@ export default function NewEntrantPacketPage() {
               }}>Format</p>
               <p style={{
                 fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
-                color: "rgba(255,255,255,0.6)", lineHeight: 1.65,
+                color: "rgba(255,255,255,0.75)", lineHeight: 1.65,
               }}>PDF — immediate download upon purchase.<br />Print-ready. Checkbox layout throughout.</p>
             </div>
             <div>
@@ -140,7 +140,7 @@ export default function NewEntrantPacketPage() {
           }}>Already operating and behind on compliance?</p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-            color: "rgba(255,255,255,0.78)", lineHeight: 1.75,
+            color: "rgba(255,255,255,0.88)", lineHeight: 1.75,
           }}>
             If you have received an audit notice or failed your New Entrant Safety Audit, this packet applies to you. The window to correct deficiencies is narrow. Start with the audit prep checklist on page 5.
           </p>

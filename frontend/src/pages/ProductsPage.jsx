@@ -82,7 +82,8 @@ export default function ProductsPage() {
             }}>The LaunchPath Operating Standards Library</h1>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-              color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 580,
+              color: "#FFFFFF",
+              lineHeight: 1.8, maxWidth: 580,
             }}>
               Five domain-specific operating standards and one complete document architecture bundle — the DIY path to installing a compliant new-authority operating system. Priced above commodity audit kits and below consulting.
             </p>
@@ -101,7 +102,7 @@ export default function ProductsPage() {
           }}>The Commercial Ladder</p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-            color: "rgba(255,255,255,0.55)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: 620,
+            color: "rgba(255,255,255,0.72)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: 620,
           }}>
             Every carrier starts in a different place. LaunchPath offers three paths: learn the system, install the documents yourself, or implement the full operating standard with oversight.
           </p>
@@ -126,7 +127,7 @@ export default function ProductsPage() {
                     <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: gold }}>{tier.tier}</span>
                     <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF" }}>{tier.label}</span>
                   </div>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>{tier.desc}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>{tier.desc}</p>
                 </div>
                 <Link to={tier.href} style={{
                   fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
@@ -154,7 +155,7 @@ export default function ProductsPage() {
           }}>Individual Packets — $97–$127</p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
-            color: "rgba(255,255,255,0.4)", lineHeight: 1.6, marginBottom: "1.5rem",
+            color: "rgba(255,255,255,0.6)", lineHeight: 1.6, marginBottom: "1.5rem",
             fontStyle: "italic",
           }}>Each packet installs one domain of the LaunchPath operating standard.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(197,160,89,0.1)", marginBottom: "4rem" }}>
@@ -168,7 +169,7 @@ export default function ProductsPage() {
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(197,160,89,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
                   <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "rgba(197,160,89,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{p.desc}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1rem", color: "rgba(255,255,255,0.55)" }}>{p.price}</span>
@@ -362,7 +363,7 @@ export default function ProductsPage() {
           }}>
             <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Best Value</p>
             <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
               All five packets plus the 0–30–90 Day Implementation Guide and unified folder structure. The complete DIY path — $108 less than buying separately.
             </p>
             <Link to="/products/new-carrier-document-system" style={{

@@ -81,8 +81,8 @@ export default function ProductPageTemplate({
       }}>
         <p style={{
           maxWidth: 820, margin: "0 auto",
-          fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
-          color: "rgba(255,255,255,0.7)", lineHeight: 1.7, fontStyle: "italic",
+          fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+          color: "rgba(255,255,255,0.82)", lineHeight: 1.7, fontStyle: "italic",
         }}>{tagline}</p>
       </div>
 
@@ -94,8 +94,8 @@ export default function ProductPageTemplate({
             <SectionLabel>What This Is — And What It Is Not</SectionLabel>
             {positioning.map((p, i) => (
               <p key={i} style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-                color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "1.25rem",
+                fontFamily: "'Inter', sans-serif", fontSize: "1.15rem",
+                color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.25rem",
               }}>{p}</p>
             ))}
           </section>
@@ -118,8 +118,8 @@ export default function ProductPageTemplate({
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-                    color: "rgba(255,255,255,0.82)", lineHeight: 1.7,
+                    fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                    color: "rgba(255,255,255,0.9)", lineHeight: 1.7,
                   }}>{item}</span>
                 </li>
               ))}
@@ -136,8 +136,8 @@ export default function ProductPageTemplate({
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               {whoItsFor.map((item, i) => (
                 <li key={i} style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-                  color: "rgba(255,255,255,0.78)", lineHeight: 1.7,
+                  fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                  color: "rgba(255,255,255,0.88)", lineHeight: 1.7,
                   paddingLeft: "1.25rem", position: "relative",
                 }}>
                   <span style={{ position: "absolute", left: 0, color: gold }}>—</span>
@@ -157,8 +157,8 @@ export default function ProductPageTemplate({
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               {whatItReplaces.map((item, i) => (
                 <li key={i} style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-                  color: "rgba(255,255,255,0.78)", lineHeight: 1.7,
+                  fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                  color: "rgba(255,255,255,0.88)", lineHeight: 1.7,
                   paddingLeft: "1.25rem", position: "relative",
                 }}>
                   <span style={{ position: "absolute", left: 0, color: "rgba(248,113,113,0.7)" }}>×</span>
@@ -184,8 +184,8 @@ export default function ProductPageTemplate({
               color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem",
             }}>Next Step</p>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
-              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, marginBottom: "1.25rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+              color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "1.25rem",
             }}>{nextStepText}</p>
             <Link to={nextStepHref} style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",

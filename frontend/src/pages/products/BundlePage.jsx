@@ -271,10 +271,10 @@ export default function BundlePage() {
         {/* Positioning */}
         <FadeIn>
           <SectionLabel>What This Is — And What It Is Not</SectionLabel>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
             This is not an audit folder bundle or a collection of generic compliance downloads. It is a complete new-authority operating standard in document form — five domain-specific systems unified into a single implementation sequence that a carrier can install without a consultant.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "3rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "3rem" }}>
             The competitor landscape includes $150–$550 DIY audit kits and $1,800+ filing-only bundles. This is neither. It is a complete operating standard priced above commodity kits and below consulting — intentionally. The content depth justifies it.
           </p>
         </FadeIn>
@@ -331,7 +331,7 @@ export default function BundlePage() {
         {/* 0-30-90 Guide */}
         <FadeIn delay={120}>
           <SectionLabel>The 0–30–90 Day Implementation Guide</SectionLabel>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
             The guide that separates the $497 bundle from a folder of PDFs. It dictates the order of operations for installing all five packets in sequence — the DIY version of the LaunchPath Standard implementation sequence.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: "rgba(197,160,89,0.1)", marginBottom: "2rem" }} className="phases-grid">
@@ -368,10 +368,10 @@ export default function BundlePage() {
             borderLeft: `3px solid ${gold}`, padding: "2rem 2.5rem", marginBottom: "2rem",
           }}>
             <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Next Step</p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "0.5rem" }}>
               The bundle is the complete DIY path. The LaunchPath Standard is the guided path — with a dedicated coach, a verified implementation sequence, and live compliance monitoring through the 90-day window.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, marginBottom: "1.25rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "1.25rem" }}>
               Inside the Standard, the New Carrier Document System is not optional or discounted — it is automatically provided to every enrolled carrier as part of their cohort materials.
             </p>
             <Link to="/ground-0-briefing" style={{
