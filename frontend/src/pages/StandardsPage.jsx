@@ -276,6 +276,17 @@ export default function StandardsPage() {
             fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.35rem",
             color: "#FFFFFF", letterSpacing: "-0.01em", marginBottom: "2rem",
           }}>LaunchPath System Comparison</h2>
+          {/* Mobile scroll hint */}
+          <p className="matrix-scroll-hint" style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.62rem",
+            color: "rgba(197,160,89,0.5)",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            marginBottom: "0.5rem",
+            textAlign: "right",
+            display: "none",
+          }}>SCROLL TABLE →</p>
           <div style={{ overflowX: "auto", marginBottom: "4rem" }}>
             <table data-testid="comparison-matrix" style={{ width: "100%", borderCollapse: "collapse", minWidth: 480 }}>
               <colgroup>
@@ -394,6 +405,7 @@ export default function StandardsPage() {
         @media (max-width: 680px) {
           .ladder-row { flex-direction: column; align-items: flex-start !important; }
           .connector-grid { grid-template-columns: 1fr !important; }
+          .matrix-scroll-hint { display: block !important; }
         }
       `}</style>
     </div>

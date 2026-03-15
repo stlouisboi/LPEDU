@@ -69,7 +69,19 @@ export function FMCSADomainTable({ showPricing = true }) {
   }
   return (
     <div id="audit-domains" style={{ marginBottom: "4rem" }}>
-      <div style={{ overflowX: "auto" }}>
+      {/* Mobile scroll hint */}
+      <p className="table-scroll-hint" style={{
+        display: "none",
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: "0.62rem",
+        color: "rgba(197,160,89,0.5)",
+        letterSpacing: "0.1em",
+        textTransform: "uppercase",
+        marginBottom: "0.5rem",
+        textAlign: "right",
+      }}>SCROLL TABLE →</p>
+
+      <div style={{ overflowX: "auto", position: "relative" }}>
         <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 560 }}>
           <thead>
             <tr>
@@ -204,6 +216,9 @@ export function FMCSADomainTable({ showPricing = true }) {
 
       <style>{`
         .fmcsa-row:hover td { background: rgba(197,160,89,0.04) !important; }
+        @media (max-width: 700px) {
+          .table-scroll-hint { display: block !important; }
+        }
       `}</style>
     </div>
   );
