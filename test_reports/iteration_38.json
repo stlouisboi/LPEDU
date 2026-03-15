@@ -1,0 +1,37 @@
+{
+  "summary": "Targeted retest of mobile UX fixes at 390px viewport. All 4 checks PASS. Portal header overflow fixed, portal-header-userinfo hidden on mobile, SYSTEM_STATUS_MONITOR strip still visible, and all G0-1 through G0-6 accordion labels display on a single line with whiteSpace:nowrap applied.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_results": {
+    "portal_overflow": {
+      "status": "PASS",
+      "detail": "scrollWidth=390, innerWidth=390 — no horizontal overflow"
+    },
+    "portal_header_userinfo_hidden": {
+      "status": "PASS",
+      "detail": "portal-header-userinfo found in DOM with display:none at 390px"
+    },
+    "system_status_monitor_visible": {
+      "status": "PASS",
+      "detail": "SYSTEM_STATUS_MONITOR text still present on page"
+    },
+    "accordion_labels_single_line": {
+      "status": "PASS",
+      "detail": "G0-1 through G0-6 all height=25.1px == lineHeight=25.1px, whiteSpace:nowrap applied"
+    }
+  },
+  "test_report_links": ["/app/test_reports/test_mobile_ux.py"],
+  "action_items": [],
+  "updated_files": [],
+  "success_rate": {"frontend": "100%"},
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Both mobile UX fixes verified at 390px. Portal header overflow fix (portal-header-userinfo display:none @media max-width:768px) and accordion label whiteSpace:nowrap fix both working correctly."
+}

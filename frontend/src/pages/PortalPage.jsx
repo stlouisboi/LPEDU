@@ -349,7 +349,7 @@ export default function PortalPage() {
             SYSTEM_STATUS_MONITOR &nbsp;|&nbsp; LPOS v1.0
           </p>
           {user && (
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <div className="portal-header-userinfo" style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "0.56rem",
@@ -1205,6 +1205,7 @@ export default function PortalPage() {
           .portal-layout { flex-direction: column !important; }
           .portal-sidebar { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 0 !important; }
           .portal-main { padding: 2rem 1.25rem !important; }
+          .portal-header-userinfo { display: none !important; }
         }
       `}</style>
     </div>

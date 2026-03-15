@@ -393,6 +393,7 @@ export default function Ground0Page() {
                         color: "#C5A059",
                         letterSpacing: "0.04em",
                         minWidth: 28,
+                        whiteSpace: "nowrap",
                         opacity: isOpen ? 1 : 0.9,
                       }}
                     >
