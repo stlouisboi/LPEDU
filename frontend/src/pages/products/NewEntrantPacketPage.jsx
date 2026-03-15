@@ -22,14 +22,14 @@ export default function NewEntrantPacketPage() {
       title="New Entrant Compliance Packet"
       subtitle="FMCSA New-Authority Operating Standard — Document System"
       price="$97"
-      tagline="The document system for new FMCSA motor carrier authorities."
+      tagline="The document system for new FMCSA motor carrier authorities — from first filing through the New Entrant Safety Audit."
       positioning={[
         "This is not an audit prep kit. It is a document system — built to install a functional compliance infrastructure in a new carrier operation before the first audit notice arrives.",
         "The New Entrant Compliance Packet covers the single most critical compliance domain for any carrier in the 18-month FMCSA New Entrant Safety Assurance Program: authority identity, pre-launch filings, and audit-ready record organization.",
       ]}
       whatsInside={[
         "New Entrant Safety Audit Brief — A plain-language explanation of what the New Entrant Safety Audit is, when it happens, what FMCSA investigators are looking for across six compliance domains, and the automatic failure items that end operating authority — regardless of how well everything else is organized.",
-        "Pre-Launch Compliance Checklist — Every filing, registration, and record that must be in place before your carrier moves a single load. Organized by domain with CFR citations. If an item is incomplete, your authority is not fully operational.",
+        "Pre-Launch Compliance Checklist — Every filing, registration, and record that must be in place before your carrier moves a single load. Organized by domain — authority and identity, insurance filings, driver files, drug and alcohol, hours of service, and maintenance — with CFR citations. If an item is incomplete, your authority is not fully operational.",
         "New Entrant Audit Prep Checklist & Documentation Index — The document request list mapped to what an FMCSA investigator will ask for. Use it when an audit notice arrives — or use it quarterly to verify your records are audit-ready before any notice comes.",
         "Unified Folder Structure Map — The digital filing architecture for new carrier compliance records. Every document referenced in this packet has a designated folder location. Set this up before you move a single file.",
       ]}
@@ -49,6 +49,17 @@ export default function NewEntrantPacketPage() {
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
     >
+      {/* What This Replaces — closing note */}
+      <FadeIn delay={165}>
+        <p style={{
+          fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+          color: "rgba(255,255,255,0.75)", lineHeight: 1.75,
+          marginBottom: "3.5rem", fontStyle: "italic",
+        }}>
+          This packet gives you the structure, the checklist, and the filing architecture in one document system — organized so you can install it yourself.
+        </p>
+      </FadeIn>
+
       {/* Who This Is Not For */}
       <FadeIn delay={170}>
         <div style={{ height: 1, background: "rgba(197,160,89,0.1)", margin: "0 0 3.5rem" }} />
@@ -122,7 +133,7 @@ export default function NewEntrantPacketPage() {
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace", fontSize: "0.82rem",
                 color: "rgba(255,255,255,0.6)", lineHeight: 1.65, letterSpacing: "0.04em",
-              }}>49 CFR Parts 385, 390, 391, 382, 395, 396</p>
+              }}>49 CFR Parts 385, 390, 391, 382, 395, 396<br />(citations current as of publication)</p>
             </div>
           </div>
         </section>
