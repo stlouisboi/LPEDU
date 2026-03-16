@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
@@ -41,6 +41,54 @@ function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
+}
+
+function BackToTop() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <button
+      data-testid="back-to-top-btn"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+      style={{
+        position: "fixed",
+        bottom: 24,
+        right: 24,
+        width: 44,
+        height: 44,
+        background: "#001833",
+        border: "1px solid rgba(197,160,89,0.35)",
+        borderRadius: 4,
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 9000,
+        transition: "border-color 0.2s, background 0.2s",
+        boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = "rgba(197,160,89,0.75)";
+        e.currentTarget.style.background = "#002244";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = "rgba(197,160,89,0.35)";
+        e.currentTarget.style.background = "#001833";
+      }}
+    >
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 11V3M7 3L3 7M7 3L11 7" stroke="#C5A059" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </button>
+  );
 }
 
 function AppRouter() {
@@ -103,6 +151,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <AppRouter />
+      <BackToTop />
     </BrowserRouter>
   );
 }
