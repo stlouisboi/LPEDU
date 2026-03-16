@@ -183,7 +183,11 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Updated `.env.example` with `FRONTEND_URL`, `EMERGENT_AUTH_URL`, `MAILERSEND_*` docs
 - [x] Welcome email on first login — triggered in `/api/auth/session` when `existing_tasks == 0`; subject "Your authority is active. Now the clock is running."; 3-step onboarding block + Begin Ground 0 CTA; fire-and-forget via MailerSend
 - [x] Post-REACH result emails — `_build_reach_email()` helper builds 3 distinct emails (GO/WAIT/NO-GO) with score breakdown table, flagged category list, and tailored CTAs; triggered in `/api/reach` after MailerLite update
-- [x] 7-day follow-up email worker — `followup_email_worker()` background task starts on app startup (1hr initial delay, then every 24h); queries users created 7+ days ago with no submitted/verified tasks; sends personalized nudge with top 2 pending tasks + priority badges; marks `followup_7d_sent_at` to prevent duplicates
+- [x] Post-payment onboarding email sequence (3 emails):
+  - Email 1 (immediate): Stripe webhook fires "Payment confirmed. You have cohort access." with what's unlocked + Module 1 CTA
+  - Email 2 (Day 3): Daily worker checks `granted_at` 3 days ago → "Have you opened Module 1 yet?" with live task progress block
+  - Email 3 (Day 14): Daily worker checks `granted_at` 14 days ago → "Two weeks in. Where does your compliance stand?" with Documentary Integrity % + pace status (on-pace green / behind red)
+  - Deduplication: `onboarding_day3_sent_at` / `onboarding_day14_sent_at` flags on `user_access` record
 
 ### P1 — iPad Readability (Definitive Fix — March 2026)
 - [x] Split HeroSection.jsx breakpoints: mid-tablet (681–980px) + iPad (981–1100px, separate breakpoint)

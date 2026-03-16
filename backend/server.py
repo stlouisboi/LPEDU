@@ -668,6 +668,29 @@ async def stripe_webhook(request: Request):
                                 )
                         except Exception as ml_err:
                             logger.error(f"MailerLite post-payment update failed: {ml_err}")
+                    # Email 1 — Immediate payment confirmation
+                    if user_record and user_record.get("email"):
+                        first_name = (user_record.get("name") or "").split()[0] or "Operator"
+                        conf_html = f"""
+                        <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:48px 40px;border-top:4px solid #C5A059;">
+                          <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;margin:0 0 28px;">LaunchPath Operating Standard &nbsp;|&nbsp; Payment Confirmed</p>
+                          <h1 style="font-family:'Manrope',sans-serif;font-size:28px;font-weight:700;color:#ffffff;margin:0 0 8px;">You're in the cohort.</h1>
+                          <p style="font-size:16px;color:rgba(255,255,255,0.65);margin:0 0 28px;line-height:1.75;">Your payment has been confirmed and your Operator Portal access is active.</p>
+                          <div style="background:#0F1E35;border-left:3px solid #C5A059;padding:20px 24px;margin:0 0 28px;">
+                            <p style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#C5A059;margin:0 0 14px;">What's unlocked</p>
+                            <p style="font-size:14px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0 0 8px;"><strong style="color:#fff;">Modules 1–7</strong> — The full 90-day LaunchPath Operating Standard curriculum, from Business Setup through Post-Audit Recovery.</p>
+                            <p style="font-size:14px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0 0 8px;"><strong style="color:#fff;">Implementation Sequence</strong> — 10 coach-verified compliance tasks assigned by week.</p>
+                            <p style="font-size:14px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0;"><strong style="color:#fff;">Administrative Signal</strong> — Live compliance score tracking your Documentary Integrity, System Pulse, and Regulatory Alignment.</p>
+                          </div>
+                          <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;margin:0 0 28px;">Your 90-day window is running. The fastest path forward is to open Module 1 today — Business and Authority Setup. It takes less than 30 minutes and sets the foundation for everything else.</p>
+                          <a href="{FRONTEND_URL}/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;text-decoration:none;border-radius:4px;">Enter the Operator Portal →</a>
+                          <p style="font-size:12px;color:rgba(255,255,255,0.28);margin:36px 0 0;line-height:1.6;">LaunchPath Operating Standard &nbsp;·&nbsp; Accuracy Over Hype. Systems Over Shortcuts.</p>
+                        </div>"""
+                        asyncio.create_task(send_mailersend_email(
+                            user_record["email"], first_name,
+                            "Payment confirmed. You have cohort access.",
+                            conf_html,
+                        ))
     except Exception as e:
         logger.error(f"Stripe webhook error: {e}")
         raise HTTPException(status_code=400, detail="Webhook processing failed.")
@@ -1136,6 +1159,99 @@ async def get_coach_carriers(request: Request):
 
 # ── 7-Day Follow-Up Email Worker ─────────────────────────────
 
+async def _send_onboarding_checkin_emails():
+    """Send Day 3 and Day 14 post-payment check-in emails to cohort members."""
+    now = datetime.now(timezone.utc)
+    day3_start = now - timedelta(days=4)
+    day3_end = now - timedelta(days=3)
+    day14_start = now - timedelta(days=15)
+    day14_end = now - timedelta(days=14)
+
+    for day, start, end, flag, subject_prefix in [
+        (3, day3_start, day3_end, "onboarding_day3_sent_at", "Day 3"),
+        (14, day14_start, day14_end, "onboarding_day14_sent_at", "Day 14"),
+    ]:
+        records = await db.user_access.find(
+            {
+                "has_access": True,
+                "access_level": "cohort",
+                "granted_at": {"$gte": start.isoformat(), "$lte": end.isoformat()},
+                flag: {"$exists": False},
+            },
+            {"_id": 0},
+        ).to_list(100)
+
+        for record in records:
+            user_id = record.get("user_id")
+            if not user_id:
+                continue
+            user = await db.users.find_one({"user_id": user_id}, {"_id": 0})
+            if not user or not user.get("email"):
+                continue
+
+            first_name = (user.get("name") or "").split()[0] or "Operator"
+            email = user["email"]
+
+            # Get task progress
+            all_tasks = await db.tasks.find({"carrierId": user_id}, {"_id": 0}).to_list(20)
+            verified = sum(1 for t in all_tasks if t.get("status") == "verified")
+            submitted = sum(1 for t in all_tasks if t.get("status") == "submitted")
+            pending = sum(1 for t in all_tasks if t.get("status") == "pending")
+            total = len(all_tasks)
+
+            if day == 3:
+                subject = "Day 3: Have you opened Module 1 yet?"
+                html = f"""
+                <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:48px 40px;border-top:4px solid #C5A059;">
+                  <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;margin:0 0 28px;">LaunchPath Operating Standard &nbsp;|&nbsp; Day 3 Check-In</p>
+                  <h1 style="font-family:'Manrope',sans-serif;font-size:26px;font-weight:700;color:#ffffff;margin:0 0 8px;">You're 3 days into your<br>90-day window.</h1>
+                  <p style="font-size:15px;color:rgba(255,255,255,0.65);margin:0 0 28px;line-height:1.75;">Most carriers who lose their authority made the same mistake: they assumed the compliance work could wait. Day 3 is when the operators who succeed start.</p>
+                  <div style="background:#0F1E35;border-radius:6px;padding:20px 24px;margin:0 0 28px;">
+                    <p style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(197,160,89,0.75);margin:0 0 14px;">Your progress so far</p>
+                    <div style="display:flex;gap:24px;">
+                      <div><p style="font-size:28px;font-weight:700;color:#C5A059;margin:0 0 2px;">{verified}</p><p style="font-size:12px;color:rgba(255,255,255,0.55);margin:0;">Verified</p></div>
+                      <div><p style="font-size:28px;font-weight:700;color:#F59E0B;margin:0 0 2px;">{submitted}</p><p style="font-size:12px;color:rgba(255,255,255,0.55);margin:0;">Submitted</p></div>
+                      <div><p style="font-size:28px;font-weight:700;color:rgba(255,255,255,0.35);margin:0 0 2px;">{pending}</p><p style="font-size:12px;color:rgba(255,255,255,0.55);margin:0;">Pending</p></div>
+                    </div>
+                  </div>
+                  <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;margin:0 0 14px;"><strong style="color:#fff;">Module 1 — Business and Authority Setup</strong> covers the foundational documents every new carrier must have in place before FMCSA starts the clock on your New Entrant Safety Audit window. It takes under an hour.</p>
+                  <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;margin:0 0 28px;">Open the portal, find Module 1 in your curriculum, and complete the first lesson today.</p>
+                  <a href="{FRONTEND_URL}/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;text-decoration:none;border-radius:4px;">Open Module 1 →</a>
+                  <p style="font-size:12px;color:rgba(255,255,255,0.28);margin:36px 0 0;line-height:1.6;">LaunchPath Operating Standard &nbsp;·&nbsp; Accuracy Over Hype. Systems Over Shortcuts.</p>
+                </div>"""
+            else:  # day == 14
+                subject = "Two weeks in. Where does your compliance stand?"
+                integrity_pct = round((verified / total) * 100) if total else 0
+                if verified >= 3:
+                    pace_msg = '<p style="font-size:13px;color:#4CAF50;margin:0;">You\'re on pace. Keep submitting tasks to maintain momentum.</p>'
+                else:
+                    pace_msg = '<p style="font-size:13px;color:#E8590F;margin:0;">You\'re behind pace. Prioritize the critical items in your Implementation Sequence this week.</p>'
+                html = f"""
+                <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:48px 40px;border-top:4px solid #C5A059;">
+                  <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;margin:0 0 28px;">LaunchPath Operating Standard &nbsp;|&nbsp; Day 14 Milestone</p>
+                  <h1 style="font-family:'Manrope',sans-serif;font-size:26px;font-weight:700;color:#ffffff;margin:0 0 8px;">Two weeks in,<br>{90 - 14} days remaining.</h1>
+                  <p style="font-size:15px;color:rgba(255,255,255,0.65);margin:0 0 28px;line-height:1.75;">At the two-week mark, operators on pace with the LaunchPath Standard have typically completed their first 3–4 critical compliance items. Here's where you stand.</p>
+                  <div style="background:#0F1E35;border-radius:6px;padding:20px 24px;margin:0 0 28px;">
+                    <p style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(197,160,89,0.75);margin:0 0 14px;">Administrative Signal — Day 14</p>
+                    <div style="display:flex;gap:32px;margin-bottom:16px;">
+                      <div><p style="font-size:32px;font-weight:700;color:#C5A059;margin:0 0 2px;">{verified}/{total}</p><p style="font-size:12px;color:rgba(255,255,255,0.55);margin:0;">Tasks verified</p></div>
+                      <div><p style="font-size:32px;font-weight:700;color:#C5A059;margin:0 0 2px;">{integrity_pct}%</p><p style="font-size:12px;color:rgba(255,255,255,0.55);margin:0;">Documentary Integrity</p></div>
+                    </div>
+                    {pace_msg}
+                  </div>
+                  <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;margin:0 0 28px;">Your LaunchPath coach is ready to verify any submitted tasks. Submit your completed items in the portal — each verification increases your Documentary Integrity score and moves your signal higher.</p>
+                  <a href="{FRONTEND_URL}/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;text-decoration:none;border-radius:4px;">Check Your Signal →</a>
+                  <p style="font-size:12px;color:rgba(255,255,255,0.28);margin:36px 0 0;line-height:1.6;">LaunchPath Operating Standard &nbsp;·&nbsp; Accuracy Over Hype. Systems Over Shortcuts.</p>
+                </div>"""
+
+            await send_mailersend_email(email, first_name, subject, html)
+            await db.user_access.update_one(
+                {"user_id": user_id},
+                {"$set": {flag: now.isoformat()}},
+            )
+            logger.info(f"Onboarding Day {day} email sent to {user_id}")
+
+
 async def _send_followup_emails():
     """Find users who signed in 7+ days ago but never submitted a task, and nudge them."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=7)
@@ -1242,10 +1358,11 @@ async def _send_followup_emails():
 
 
 async def followup_email_worker():
-    """Background worker — runs once daily, sends 7-day nudge emails."""
+    """Background worker — runs once daily. Handles: 7-day nudge + Day 3/14 onboarding check-ins."""
     await asyncio.sleep(3600)  # Initial delay: 1 hour after startup
     while True:
         try:
+            await _send_onboarding_checkin_emails()
             await _send_followup_emails()
         except Exception as e:
             logger.error(f"Followup email worker error: {e}")
