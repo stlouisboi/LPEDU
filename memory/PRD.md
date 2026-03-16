@@ -174,6 +174,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Populate 5 individual packet pages with final copy (New Entrant, Drug & Alcohol, HOS, Maintenance, Insurance — all complete)
 - [x] Copy Link button on /standards/16-deadly-sins (data-testid=copy-link-btn) — copies page URL, institutional style, no platform branding
 - [x] Copy Link button on /standards Audit Domains section (data-testid=copy-audit-link-btn) — copies /standards#audit-domains URL
+- [x] Production backend outage resolved (Mar 16 2026) — MONGO_URL credentials fixed, Railway networking port set to 8080 to match uvicorn startup port, Dockerfile reverted to ${PORT:-8001} for dynamic port binding
 - [ ] Add real Gumroad URLs to all product pages (currently href="#")
 
 ### P0 — Production Portal Fixes (March 2026)
