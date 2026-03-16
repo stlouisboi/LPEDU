@@ -189,7 +189,9 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
   - Email 3 (Day 14): Daily worker checks `granted_at` 14 days ago → "Two weeks in. Where does your compliance stand?" with Documentary Integrity % + pace status (on-pace green / behind red)
   - Deduplication: `onboarding_day3_sent_at` / `onboarding_day14_sent_at` flags on `user_access` record
 
-### P1 — iPad Readability (Definitive Fix — March 2026)
+- [x] Footer updated: 3-column layout (brand | navigation | contact), Contact section with hello@/support@/payment@launchpathedu.com as mailto links with gold hover
+- [x] send_mailersend_email: optional reply_to param added; payment confirmation email uses reply_to=payment@launchpathedu.com
+- [x] SUPPORT_EMAIL + PAYMENT_EMAIL env vars added to server.py (default to @launchpathedu.com addresses)
 - [x] Split HeroSection.jsx breakpoints: mid-tablet (681–980px) + iPad (981–1100px, separate breakpoint)
 - [x] iPad breakpoint: 288px right column preserved, font sizes boosted (label→12px/0.92, sub→13px/0.80, title→15px, domain→14px/0.92)
 - [x] Proof strip labels opacity raised: 0.65 → 0.78
