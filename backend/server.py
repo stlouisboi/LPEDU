@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Request, Response
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, UploadFile, File, Form
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -35,6 +35,43 @@ FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://launchpathedu.com')
 EMERGENT_AUTH_URL = os.environ.get('EMERGENT_AUTH_URL', 'https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data')
 SUPPORT_EMAIL = os.environ.get('SUPPORT_EMAIL', 'support@launchpathedu.com')
 PAYMENT_EMAIL = os.environ.get('PAYMENT_EMAIL', 'payment@launchpathedu.com')
+EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', '')
+
+# ── Emergent Object Storage ───────────────────────────────────────────────────
+import requests as sync_requests
+STORAGE_URL = "https://integrations.emergentagent.com/objstore/api/v1/storage"
+APP_NAME = "launchpath"
+_storage_key = None
+
+def init_storage():
+    global _storage_key
+    if _storage_key:
+        return _storage_key
+    if not EMERGENT_LLM_KEY:
+        return None
+    resp = sync_requests.post(f"{STORAGE_URL}/init", json={"emergent_key": EMERGENT_LLM_KEY}, timeout=30)
+    resp.raise_for_status()
+    _storage_key = resp.json()["storage_key"]
+    return _storage_key
+
+def storage_put(path: str, data: bytes, content_type: str) -> dict:
+    key = init_storage()
+    resp = sync_requests.put(
+        f"{STORAGE_URL}/objects/{path}",
+        headers={"X-Storage-Key": key, "Content-Type": content_type},
+        data=data, timeout=120,
+    )
+    resp.raise_for_status()
+    return resp.json()
+
+def storage_get(path: str) -> tuple:
+    key = init_storage()
+    resp = sync_requests.get(
+        f"{STORAGE_URL}/objects/{path}",
+        headers={"X-Storage-Key": key}, timeout=60,
+    )
+    resp.raise_for_status()
+    return resp.content, resp.headers.get("Content-Type", "application/octet-stream")
 
 
 async def send_mailersend_email(to_email: str, to_name: str, subject: str, html: str, reply_to: str = None) -> None:
@@ -1161,6 +1198,128 @@ async def get_coach_carriers(request: Request):
     ).sort("submittedAt", 1).to_list(200)
 
     return {"carriers": carriers, "submittedQueue": submitted_queue}
+
+
+# ── PDF / Deliverables Endpoints ──────────────────────────────────────────────
+
+COACH_EMAIL = "vince@launchpathedu.com"
+
+async def _require_coach(request: Request):
+    session_token = request.cookies.get("session_token")
+    if not session_token:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    session = await db.user_sessions.find_one({"session_token": session_token}, {"_id": 0})
+    if not session:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    user = await db.users.find_one({"user_id": session["user_id"]}, {"_id": 0})
+    if not user or user.get("email") != COACH_EMAIL:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    return session["user_id"]
+
+async def _require_paid(request: Request):
+    session_token = request.cookies.get("session_token")
+    if not session_token:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    session = await db.user_sessions.find_one({"session_token": session_token}, {"_id": 0})
+    if not session:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    access = await db.user_access.find_one({"user_id": session["user_id"]}, {"_id": 0})
+    if not access or not access.get("has_access"):
+        raise HTTPException(status_code=403, detail="Access not granted")
+    return session["user_id"]
+
+@api_router.post("/admin/pdfs/upload")
+async def upload_pdf(
+    request: Request,
+    file: UploadFile = File(...),
+    display_name: str = Form(...),
+    description: str = Form(""),
+    category: str = Form("general"),
+):
+    await _require_coach(request)
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Only PDF files are accepted")
+    data = await file.read()
+    if len(data) > 50 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="File too large (max 50MB)")
+    file_id = str(uuid.uuid4())
+    path = f"{APP_NAME}/pdfs/{file_id}.pdf"
+    try:
+        result = await asyncio.get_event_loop().run_in_executor(
+            None, lambda: storage_put(path, data, "application/pdf")
+        )
+    except Exception as e:
+        logger.error(f"Storage upload failed: {e}")
+        raise HTTPException(status_code=502, detail="Storage upload failed")
+    doc = {
+        "id": file_id,
+        "storage_path": result["path"],
+        "original_filename": file.filename,
+        "display_name": display_name,
+        "description": description,
+        "category": category,
+        "size": len(data),
+        "is_deleted": False,
+        "download_count": 0,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.pdfs.insert_one({**doc, "_id": file_id})
+    return {k: v for k, v in doc.items()}
+
+@api_router.get("/admin/pdfs")
+async def list_pdfs_admin(request: Request):
+    await _require_coach(request)
+    docs = await db.pdfs.find({"is_deleted": False}, {"_id": 0}).sort("created_at", -1).to_list(200)
+    return docs
+
+@api_router.patch("/admin/pdfs/{pdf_id}")
+async def update_pdf(pdf_id: str, request: Request):
+    await _require_coach(request)
+    body = await request.json()
+    allowed = {k: v for k, v in body.items() if k in ("display_name", "description", "category")}
+    if not allowed:
+        raise HTTPException(status_code=400, detail="Nothing to update")
+    result = await db.pdfs.update_one({"id": pdf_id, "is_deleted": False}, {"$set": allowed})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="PDF not found")
+    return {"ok": True}
+
+@api_router.delete("/admin/pdfs/{pdf_id}")
+async def delete_pdf(pdf_id: str, request: Request):
+    await _require_coach(request)
+    result = await db.pdfs.update_one({"id": pdf_id}, {"$set": {"is_deleted": True}})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="PDF not found")
+    return {"ok": True}
+
+@api_router.get("/portal/pdfs")
+async def list_pdfs_portal(request: Request):
+    await _require_paid(request)
+    docs = await db.pdfs.find(
+        {"is_deleted": False}, {"_id": 0, "storage_path": 0}
+    ).sort("created_at", -1).to_list(200)
+    return docs
+
+@api_router.get("/portal/pdfs/{pdf_id}/download")
+async def download_pdf(pdf_id: str, request: Request):
+    await _require_paid(request)
+    doc = await db.pdfs.find_one({"id": pdf_id, "is_deleted": False}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="PDF not found")
+    try:
+        data, content_type = await asyncio.get_event_loop().run_in_executor(
+            None, lambda: storage_get(doc["storage_path"])
+        )
+    except Exception as e:
+        logger.error(f"Storage download failed: {e}")
+        raise HTTPException(status_code=502, detail="Could not retrieve file")
+    await db.pdfs.update_one({"id": pdf_id}, {"$inc": {"download_count": 1}})
+    safe_name = doc.get("original_filename", "document.pdf").replace('"', '')
+    return Response(
+        content=data,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{safe_name}"'},
+    )
 
 
 # ── 7-Day Follow-Up Email Worker ─────────────────────────────

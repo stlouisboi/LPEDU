@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -168,6 +168,7 @@ export default function CoachRegistryPage() {
   const [loading, setLoading] = useState(true);
   const [loadingTaskId, setLoadingTaskId] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [activeTab, setActiveTab] = useState("registry");
 
   const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -302,7 +303,21 @@ export default function CoachRegistryPage() {
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "2.5rem 2rem" }}>
 
-        {/* Submission queue alert */}
+        {/* Tab Nav */}
+        <div style={{ display: "flex", gap: 0, marginBottom: "2.5rem", borderBottom: "1px solid rgba(197,160,89,0.15)" }}>
+          {[["registry", "REGISTRY"], ["deliverables", "DELIVERABLES"]].map(([id, label]) => (
+            <button key={id} data-testid={`tab-${id}`} onClick={() => setActiveTab(id)} style={{
+              fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.18em",
+              textTransform: "uppercase", padding: "0.75rem 1.5rem", background: "transparent",
+              border: "none", borderBottom: activeTab === id ? "2px solid #C5A059" : "2px solid transparent",
+              color: activeTab === id ? "#C5A059" : "rgba(255,255,255,0.38)",
+              cursor: "pointer", transition: "color 0.2s", marginBottom: "-1px",
+            }}>{label}</button>
+          ))}
+        </div>
+
+        {activeTab === "registry" && (<>
+
         {submittedQueue.length > 0 && (
           <div style={{
             background: "rgba(125,211,252,0.04)",
@@ -463,6 +478,10 @@ export default function CoachRegistryPage() {
           )}
         </section>
 
+        </>)}
+
+        {activeTab === "deliverables" && <DeliverablesAdmin API={process.env.REACT_APP_BACKEND_URL} mono={mono} />}
+
       </div>
 
       <style>{`
@@ -470,6 +489,133 @@ export default function CoachRegistryPage() {
           .carrier-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
+    </div>
+  );
+}
+
+// ── Deliverables Admin Panel ──────────────────────────────────────────────────
+const CATEGORIES = [
+  { value: "hos", label: "HOS Compliance Packet" },
+  { value: "maintenance", label: "Maintenance Packet" },
+  { value: "insurance", label: "Insurance & Authority Packet" },
+  { value: "drug_alcohol", label: "Drug & Alcohol Packet" },
+  { value: "new_entrant", label: "New Entrant Packet" },
+  { value: "general", label: "General / All Cohort" },
+];
+
+function DeliverablesAdmin({ API, mono }) {
+  const [pdfs, setPdfs] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const [uploadSuccess, setUploadSuccess] = useState("");
+  const [form, setForm] = useState({ display_name: "", description: "", category: "general" });
+  const fileRef = useRef(null);
+
+  const load = useCallback(async () => {
+    const r = await fetch(`${API}/api/admin/pdfs`, { credentials: "include" });
+    if (r.ok) setPdfs(await r.json());
+  }, [API]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    setUploadError(""); setUploadSuccess("");
+    const file = fileRef.current?.files?.[0];
+    if (!file) { setUploadError("Please select a PDF file."); return; }
+    if (!form.display_name.trim()) { setUploadError("Display name is required."); return; }
+    const fd = new FormData();
+    fd.append("file", file);
+    fd.append("display_name", form.display_name);
+    fd.append("description", form.description);
+    fd.append("category", form.category);
+    setUploading(true);
+    try {
+      const r = await fetch(`${API}/api/admin/pdfs/upload`, { method: "POST", credentials: "include", body: fd });
+      if (!r.ok) { const d = await r.json(); throw new Error(d.detail || "Upload failed"); }
+      setUploadSuccess("PDF uploaded successfully.");
+      setForm({ display_name: "", description: "", category: "general" });
+      if (fileRef.current) fileRef.current.value = "";
+      load();
+    } catch (err) { setUploadError(err.message); }
+    finally { setUploading(false); }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Remove this PDF from the portal?")) return;
+    await fetch(`${API}/api/admin/pdfs/${id}`, { method: "DELETE", credentials: "include" });
+    load();
+  };
+
+  const formatSize = (bytes) => bytes > 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
+
+  const labelStyle = { fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", display: "block", marginBottom: "0.4rem" };
+  const inputStyle = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", padding: "0.6rem 0.75rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", borderRadius: 2, boxSizing: "border-box" };
+
+  return (
+    <div>
+      {/* Upload form */}
+      <div style={{ background: "#000A14", border: "1px solid rgba(197,160,89,0.15)", padding: "2rem", marginBottom: "2rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.5rem" }}>
+          UPLOAD NEW DELIVERABLE
+        </p>
+        <form onSubmit={handleUpload}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+            <div>
+              <label style={labelStyle}>Display Name *</label>
+              <input data-testid="pdf-display-name" style={inputStyle} value={form.display_name} onChange={e => setForm(f => ({ ...f, display_name: e.target.value }))} placeholder="HOS Compliance Packet" />
+            </div>
+            <div>
+              <label style={labelStyle}>Category</label>
+              <select data-testid="pdf-category" style={{ ...inputStyle, cursor: "pointer" }} value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
+                {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+              </select>
+            </div>
+          </div>
+          <div style={{ marginBottom: "1rem" }}>
+            <label style={labelStyle}>Description</label>
+            <input style={inputStyle} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Brief description of this document..." />
+          </div>
+          <div style={{ marginBottom: "1.5rem" }}>
+            <label style={labelStyle}>PDF File *</label>
+            <input data-testid="pdf-file-input" ref={fileRef} type="file" accept=".pdf" style={{ ...inputStyle, padding: "0.45rem 0.75rem", cursor: "pointer" }} />
+          </div>
+          {uploadError && <p style={{ color: "#E8590F", fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadError}</p>}
+          {uploadSuccess && <p style={{ color: "#4CAF50", fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadSuccess}</p>}
+          <button data-testid="pdf-upload-btn" type="submit" disabled={uploading} style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", background: uploading ? "rgba(197,160,89,0.3)" : "#C5A059", color: "#001833", border: "none", padding: "0.75rem 1.75rem", cursor: uploading ? "not-allowed" : "pointer" }}>
+            {uploading ? "UPLOADING..." : "UPLOAD PDF →"}
+          </button>
+        </form>
+      </div>
+
+      {/* PDF library */}
+      <div>
+        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.25rem" }}>
+          DELIVERABLE LIBRARY — {pdfs.length} FILE{pdfs.length !== 1 ? "S" : ""}
+        </p>
+        {pdfs.length === 0 ? (
+          <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "2.5rem", textAlign: "center" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.616rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>NO DELIVERABLES UPLOADED YET</p>
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            {pdfs.map(pdf => (
+              <div key={pdf.id} style={{ background: "#000A14", border: "1px solid rgba(255,255,255,0.07)", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 4px" }}>{pdf.display_name}</p>
+                  {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 6px" }}>{pdf.description}</p>}
+                  <div style={{ display: "flex", gap: "1.25rem" }}>
+                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#C5A059" }}>{CATEGORIES.find(c => c.value === pdf.category)?.label || pdf.category}</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{formatSize(pdf.size)}</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{pdf.download_count} DOWNLOADS</span>
+                  </div>
+                </div>
+                <button onClick={() => handleDelete(pdf.id)} style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", border: "1px solid rgba(232,89,48,0.3)", color: "rgba(232,89,48,0.7)", padding: "0.45rem 0.875rem", cursor: "pointer" }}>REMOVE</button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

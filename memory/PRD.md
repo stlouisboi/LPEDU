@@ -214,3 +214,10 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - `/app/frontend/src/pages/knowledge-center/UCRRegistrationBrief.jsx` — 6th article (NEW Mar 2026)
 - `/app/backend/server.py` — All API endpoints
 - `/app/backend/.env` — API keys
+
+### PDF Deliverables System (March 2026)
+- [x] Storage: Emergent Object Storage via storage_put() / storage_get() helpers in server.py
+- [x] Admin endpoints: POST /api/admin/pdfs/upload, GET /api/admin/pdfs, PATCH /api/admin/pdfs/{id}, DELETE /api/admin/pdfs/{id} — coach-only
+- [x] Portal endpoints: GET /api/portal/pdfs, GET /api/portal/pdfs/{id}/download — paid users only, streams PDF
+- [x] CoachRegistryPage: REGISTRY | DELIVERABLES tab system; upload form + library table with download count + remove button
+- [x] PortalPage: DeliverablesPortal renders below curriculum for paid users — gold cards with DOWNLOAD button
