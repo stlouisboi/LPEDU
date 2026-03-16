@@ -608,6 +608,48 @@ async def create_auth_session(session_id: str, response: Response):
             }},
             upsert=True,
         )
+        # Send welcome email on first login
+        first_name = name.split()[0] if name else "Operator"
+        welcome_html = f"""
+        <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:48px 40px;border-top:4px solid #C5A059;">
+          <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;margin:0 0 28px;">LaunchPath Operating Standard &nbsp;|&nbsp; LP-SYS-001</p>
+
+          <h1 style="font-family:'Manrope',sans-serif;font-size:28px;font-weight:700;line-height:1.2;color:#ffffff;margin:0 0 8px;">Your authority is active.</h1>
+          <h2 style="font-family:'Manrope',sans-serif;font-size:22px;font-weight:500;line-height:1.2;color:#C5A059;margin:0 0 28px;">Now the clock is running.</h2>
+
+          <p style="font-size:15px;color:rgba(255,255,255,0.78);line-height:1.85;margin:0 0 24px;">
+            Welcome, {first_name}. You've been enrolled in the LaunchPath Operating Standard — a 90-day guided implementation program built specifically for new motor carriers navigating the FMCSA compliance window.
+          </p>
+
+          <div style="background:#0F1E35;border-left:3px solid #C5A059;padding:20px 24px;margin:0 0 28px;">
+            <p style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#C5A059;margin:0 0 12px;">What happens next</p>
+            <p style="font-size:14px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0 0 8px;">
+              <strong style="color:#ffffff;">Step 1 — Begin Ground 0.</strong> Six foundational modules that establish the operational reality every new carrier must understand before touching a compliance document.
+            </p>
+            <p style="font-size:14px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0 0 8px;">
+              <strong style="color:#ffffff;">Step 2 — Run the REACH Assessment.</strong> A 15-question readiness diagnostic that scores your current position across five compliance domains and returns a GO / WAIT / NO-GO result.
+            </p>
+            <p style="font-size:14px;color:rgba(255,255,255,0.78);line-height:1.75;margin:0;">
+              <strong style="color:#ffffff;">Step 3 — Work the Implementation Sequence.</strong> Ten prioritized compliance tasks, assigned by week, verified by your LaunchPath coach.
+            </p>
+          </div>
+
+          <p style="font-size:14px;color:rgba(255,255,255,0.60);line-height:1.75;margin:0 0 32px;">
+            Most carriers focus on loads in the first 90 days. FMCSA is already watching. What you build now shapes what the agency finds between Month 9 and Month 18. Authority failure is rarely caused by lack of effort — it is caused by missing operational infrastructure.
+          </p>
+
+          <a href="{FRONTEND_URL}/ground-0-briefing" style="display:inline-block;background:#C5A059;color:#002244;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;text-decoration:none;border-radius:4px;">Begin Ground 0 →</a>
+
+          <p style="font-size:12px;color:rgba(255,255,255,0.30);margin:36px 0 0;line-height:1.6;">
+            This message was sent because you signed in to LaunchPath for the first time.<br>
+            LaunchPath Operating Standard &nbsp;·&nbsp; Accuracy Over Hype. Systems Over Shortcuts.
+          </p>
+        </div>"""
+        asyncio.create_task(send_mailersend_email(
+            email, first_name,
+            "Your authority is active. Now the clock is running.",
+            welcome_html,
+        ))
 
     response.set_cookie(
         "session_token",
