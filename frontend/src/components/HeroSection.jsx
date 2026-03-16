@@ -331,7 +331,7 @@ export default function HeroSection() {
           .hero-left { padding: 90px 36px 72px 44px !important; }
           .hero-right { padding: 90px 24px 72px !important; }
           .hero-headline-line { font-size: 52px !important; }
-          .hero-rp-label { font-size: 12px !important; color: rgba(197,160,89,0.92) !important; }
+          .hero-rp-label { font-size: 11px !important; letter-spacing: 0.10em !important; color: rgba(197,160,89,0.92) !important; }
           .hero-rp-sub { font-size: 13px !important; color: rgba(255,255,255,0.80) !important; }
           .hero-rp-title { font-size: 15px !important; }
           .hero-domain-name { font-size: 14px !important; color: rgba(255,255,255,0.92) !important; }

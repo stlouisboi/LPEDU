@@ -115,7 +115,7 @@ export default function EngagementSection() {
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: "0.56rem",
-                    color: "rgba(197,160,89,0.5)",
+                    color: "rgba(197,160,89,0.72)",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
                     display: "block",
@@ -231,7 +231,7 @@ export default function EngagementSection() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
-                color: "rgba(255,255,255,0.58)",
+                color: "rgba(255,255,255,0.70)",
                 lineHeight: 1.75,
                 marginBottom: "2rem",
               }}>

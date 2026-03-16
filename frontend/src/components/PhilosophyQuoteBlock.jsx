@@ -51,7 +51,7 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
             fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
             fontSize: "0.98rem",
-            color: "rgba(255,255,255,0.48)",
+            color: "rgba(255,255,255,0.68)",
             lineHeight: 1.7,
           }}>
             In trucking, that missing structure is usually discovered only when the New Entrant Safety Audit exposes it.
