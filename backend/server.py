@@ -1134,6 +1134,129 @@ async def get_coach_carriers(request: Request):
     return {"carriers": carriers, "submittedQueue": submitted_queue}
 
 
+# ── 7-Day Follow-Up Email Worker ─────────────────────────────
+
+async def _send_followup_emails():
+    """Find users who signed in 7+ days ago but never submitted a task, and nudge them."""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7)
+    # Users created before the cutoff who haven't been sent a followup yet
+    candidates = await db.users.find(
+        {
+            "created_at": {"$lte": cutoff},
+            "followup_7d_sent_at": {"$exists": False},
+        },
+        {"_id": 0},
+    ).to_list(200)
+
+    sent_count = 0
+    for user in candidates:
+        user_id = user.get("user_id")
+        email = user.get("email")
+        if not user_id or not email:
+            continue
+
+        # Skip if they've already submitted or verified any task
+        active = await db.tasks.count_documents(
+            {"carrierId": user_id, "status": {"$in": ["submitted", "verified"]}}
+        )
+        if active > 0:
+            # They're engaged — just mark so we don't re-check endlessly
+            await db.users.update_one(
+                {"user_id": user_id},
+                {"$set": {"followup_7d_sent_at": "skipped_engaged"}},
+            )
+            continue
+
+        # Get their top 2 pending tasks (critical → high → medium)
+        priority_rank = {"critical": 0, "high": 1, "medium": 2, "low": 3}
+        pending = await db.tasks.find(
+            {"carrierId": user_id, "status": "pending"},
+            {"_id": 0},
+        ).to_list(20)
+        pending.sort(key=lambda t: priority_rank.get(t.get("priority", "low"), 3))
+        top_tasks = pending[:2]
+
+        task_rows = ""
+        for t in top_tasks:
+            priority_color = {"critical": "#E8590F", "high": "#F59E0B", "medium": "#C5A059"}.get(
+                t.get("priority", "medium"), "#C5A059"
+            )
+            task_rows += f"""
+            <tr>
+              <td style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);">
+                <p style="font-size:13px;font-weight:600;color:#ffffff;margin:0 0 3px;">{t.get("name","")}</p>
+                <p style="font-size:12px;color:rgba(255,255,255,0.55);margin:0;">{t.get("description","")[:90]}...</p>
+              </td>
+              <td style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);white-space:nowrap;vertical-align:top;">
+                <span style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:{priority_color};">{t.get("priority","").upper()}</span>
+              </td>
+            </tr>"""
+
+        task_table = f"""
+          <table style="width:100%;border-collapse:collapse;background:#0F1E35;border-radius:6px;overflow:hidden;margin:0 0 28px;">
+            <thead>
+              <tr style="background:#0A1520;">
+                <th style="padding:10px 16px;text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(197,160,89,0.75);font-weight:600;">Pending Task</th>
+                <th style="padding:10px 16px;text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(197,160,89,0.75);font-weight:600;">Priority</th>
+              </tr>
+            </thead>
+            <tbody>{task_rows}</tbody>
+          </table>""" if task_rows else ""
+
+        first_name = user.get("name", "").split()[0] if user.get("name") else "Operator"
+        html = f"""
+        <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:48px 40px;border-top:4px solid #C5A059;">
+          <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;margin:0 0 28px;">LaunchPath Operating Standard &nbsp;|&nbsp; Implementation Sequence</p>
+
+          <h1 style="font-family:'Manrope',sans-serif;font-size:26px;font-weight:700;color:#ffffff;margin:0 0 8px;">Your Implementation Sequence<br>is still waiting.</h1>
+          <p style="font-size:15px;color:rgba(255,255,255,0.65);margin:0 0 28px;line-height:1.75;">
+            {first_name}, you signed in to LaunchPath but your compliance tasks haven't moved yet. Every day inside the 90-day window that passes without action narrows your margin.
+          </p>
+
+          {task_table}
+
+          <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;margin:0 0 28px;">
+            Your Implementation Sequence has {len(pending)} item{"s" if len(pending) != 1 else ""} pending. Your LaunchPath coach is ready to verify each one as you complete it. The portal is where the work happens.
+          </p>
+
+          <a href="{FRONTEND_URL}/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;text-decoration:none;border-radius:4px;">Return to the Portal →</a>
+
+          <p style="font-size:12px;color:rgba(255,255,255,0.28);margin:36px 0 0;line-height:1.6;">
+            You're receiving this because you enrolled in the LaunchPath Operating Standard 7 days ago and your implementation sequence hasn't started. Reply to opt out of follow-up reminders.<br>
+            LaunchPath Operating Standard &nbsp;·&nbsp; Accuracy Over Hype. Systems Over Shortcuts.
+          </p>
+        </div>"""
+
+        await send_mailersend_email(
+            email, first_name,
+            "Your Implementation Sequence is still waiting.",
+            html,
+        )
+        await db.users.update_one(
+            {"user_id": user_id},
+            {"$set": {"followup_7d_sent_at": datetime.now(timezone.utc).isoformat()}},
+        )
+        sent_count += 1
+
+    logger.info(f"7-day followup worker: {sent_count} emails sent out of {len(candidates)} candidates.")
+
+
+async def followup_email_worker():
+    """Background worker — runs once daily, sends 7-day nudge emails."""
+    await asyncio.sleep(3600)  # Initial delay: 1 hour after startup
+    while True:
+        try:
+            await _send_followup_emails()
+        except Exception as e:
+            logger.error(f"Followup email worker error: {e}")
+        await asyncio.sleep(86400)  # Run every 24 hours
+
+
+@app.on_event("startup")
+async def startup_event():
+    asyncio.create_task(followup_email_worker())
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
