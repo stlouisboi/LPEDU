@@ -19,7 +19,6 @@ const FRAMEWORK_LINKS = [
 
 const GROUND0_SUB = [
   { label: "Enter Ground 0", href: "/ground-0-briefing" },
-  { label: "REACH Assessment", href: "/reach-diagnostic" },
 ];
 
 const ACCESS_LINKS = [
@@ -196,6 +195,25 @@ export default function Navbar() {
 
           {/* Zone 2: Access links */}
           <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+            {/* REACH Diagnostic — standalone prominent link */}
+            <Link to="/reach-diagnostic"
+              data-testid="nav-reach-btn"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.874rem", fontWeight: 600,
+                letterSpacing: "0.04em",
+                color: isActive("/reach-diagnostic") ? "#C5A059" : "rgba(197,160,89,0.80)",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                borderBottom: isActive("/reach-diagnostic") ? "1px solid #C5A059" : "1px solid transparent",
+                paddingBottom: "2px",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#C5A059"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = isActive("/reach-diagnostic") ? "#C5A059" : "rgba(197,160,89,0.80)"; }}
+            >
+              REACH Diagnostic
+            </Link>
             {ACCESS_LINKS.map(l => (
               <Link key={l.label} to={l.href}
                 style={linkStyle(l.href)}
@@ -306,6 +324,14 @@ export default function Navbar() {
             letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.6)",
             marginBottom: "1rem",
           }}>ACCESS</p>
+          <Link to="/reach-diagnostic" onClick={() => setOpen(false)}
+            data-testid="mobile-nav-reach-btn"
+            style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", fontWeight: 600,
+              color: "#C5A059", textDecoration: "none", padding: "0.75rem 0",
+              borderBottom: "1px solid rgba(255,255,255,0.06)", display: "block",
+            }}
+          >REACH Diagnostic</Link>
           {ACCESS_LINKS.map(l => (
             <Link key={l.label} to={l.href} onClick={() => setOpen(false)}
               style={{
