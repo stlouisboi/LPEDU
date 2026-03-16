@@ -8,6 +8,12 @@ export default function FooterSection() {
     { label: "About", href: "/about", external: false },
   ];
 
+  const CONTACT_ITEMS = [
+    { label: "General", href: "mailto:hello@launchpathedu.com" },
+    { label: "Support", href: "mailto:support@launchpathedu.com" },
+    { label: "Payments", href: "mailto:payment@launchpathedu.com" },
+  ];
+
   const linkStyle = {
     fontFamily: "'Inter', sans-serif",
     fontSize: "1.12rem",
@@ -25,7 +31,7 @@ export default function FooterSection() {
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{
           display: "grid",
-          gridTemplateColumns: "2fr 1fr",
+          gridTemplateColumns: "2fr 1fr 1fr",
           gap: "4rem",
           marginBottom: "3.5rem",
           alignItems: "start",
@@ -70,6 +76,29 @@ export default function FooterSection() {
                     onMouseLeave={e => e.currentTarget.style.color = "#BBBBBB"}
                   >{item.label}</a>
                 )
+              ))}
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 700,
+              letterSpacing: "0.12em", textTransform: "uppercase", color: "#BBBBBB",
+              marginBottom: "1.25rem",
+            }}>
+              Contact
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {CONTACT_ITEMS.map(item => (
+                <div key={item.label}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", margin: "0 0 2px" }}>{item.label}</p>
+                  <a href={item.href}
+                    style={{ ...linkStyle, fontSize: "0.92rem" }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#C5A059"}
+                    onMouseLeave={e => e.currentTarget.style.color = "#BBBBBB"}
+                  >{item.href.replace("mailto:", "")}</a>
+                </div>
               ))}
             </div>
           </div>

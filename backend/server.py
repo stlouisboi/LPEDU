@@ -33,13 +33,23 @@ MAILERSEND_FROM_EMAIL = os.environ.get('MAILERSEND_FROM_EMAIL', '')
 MAILERSEND_FROM_NAME = os.environ.get('MAILERSEND_FROM_NAME', 'LaunchPath')
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://launchpathedu.com')
 EMERGENT_AUTH_URL = os.environ.get('EMERGENT_AUTH_URL', 'https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data')
+SUPPORT_EMAIL = os.environ.get('SUPPORT_EMAIL', 'support@launchpathedu.com')
+PAYMENT_EMAIL = os.environ.get('PAYMENT_EMAIL', 'payment@launchpathedu.com')
 
 
-async def send_mailersend_email(to_email: str, to_name: str, subject: str, html: str) -> None:
+async def send_mailersend_email(to_email: str, to_name: str, subject: str, html: str, reply_to: str = None) -> None:
     """Fire-and-forget transactional email via MailerSend REST API."""
     if not MAILERSEND_API_KEY or not MAILERSEND_FROM_EMAIL:
         return
     try:
+        payload = {
+            "from": {"email": MAILERSEND_FROM_EMAIL, "name": MAILERSEND_FROM_NAME},
+            "to": [{"email": to_email, "name": to_name}],
+            "subject": subject,
+            "html": html,
+        }
+        if reply_to:
+            payload["reply_to"] = {"email": reply_to, "name": MAILERSEND_FROM_NAME}
         async with httpx.AsyncClient(timeout=10) as http:
             await http.post(
                 "https://api.mailersend.com/v1/email",
@@ -47,12 +57,7 @@ async def send_mailersend_email(to_email: str, to_name: str, subject: str, html:
                     "Authorization": f"Bearer {MAILERSEND_API_KEY}",
                     "Content-Type": "application/json",
                 },
-                json={
-                    "from": {"email": MAILERSEND_FROM_EMAIL, "name": MAILERSEND_FROM_NAME},
-                    "to": [{"email": to_email, "name": to_name}],
-                    "subject": subject,
-                    "html": html,
-                },
+                json=payload,
             )
     except Exception as e:
         logger.error(f"MailerSend send failed: {e}")
@@ -690,6 +695,7 @@ async def stripe_webhook(request: Request):
                             user_record["email"], first_name,
                             "Payment confirmed. You have cohort access.",
                             conf_html,
+                            reply_to=PAYMENT_EMAIL,
                         ))
     except Exception as e:
         logger.error(f"Stripe webhook error: {e}")
