@@ -96,13 +96,13 @@ export default function MidPageStatement() {
               }}>
                 <span style={{
                   fontFamily: "'Courier New', Courier, monospace",
-                  fontSize: "0.65rem",
-                  color: "rgba(216,90,48,0.5)",
-                  letterSpacing: "0.1em",
+                  fontSize: "0.78rem",
+                  color: "rgba(216,90,48,0.75)",
+                  letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   flexShrink: 0,
-                  marginTop: "0.2rem",
-                  minWidth: 52,
+                  marginTop: "0.1rem",
+                  minWidth: 58,
                 }}>[SIN {sin.num}]</span>
                 <div>
                   <p style={{

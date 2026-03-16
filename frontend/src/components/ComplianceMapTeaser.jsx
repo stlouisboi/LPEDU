@@ -16,11 +16,11 @@ export default function ComplianceMapTeaser() {
       }}>
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.65rem",
+          fontSize: "0.78rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,0.45)",
+          color: "rgba(197,160,89,0.72)",
           marginBottom: "1rem",
         }}>
           SELF-DIRECTED OPTION

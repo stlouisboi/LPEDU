@@ -209,8 +209,8 @@ export default function HeroSection() {
                 }}>{item.number}</p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: 11,
-                  color: "rgba(255,255,255,0.42)",
+                  fontSize: 13,
+                  color: "rgba(255,255,255,0.65)",
                   lineHeight: 1.4,
                   margin: 0,
                 }}>{item.label}</p>
@@ -232,7 +232,7 @@ export default function HeroSection() {
         >
 
           {/* Label 1 */}
-          <p style={{
+          <p className="hero-rp-label" style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: 11,
             fontWeight: 500,
@@ -249,14 +249,14 @@ export default function HeroSection() {
             padding: "16px 18px",
             marginBottom: 8,
           }}>
-            <p style={{
+            <p className="hero-rp-title" style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 14,
               fontWeight: 500,
               color: "rgba(255,255,255,0.88)",
               margin: "0 0 6px",
             }}>Audit failure + remediation</p>
-            <p style={{
+            <p className="hero-rp-sub" style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 12,
               color: "rgba(255,255,255,0.55)",
@@ -294,14 +294,14 @@ export default function HeroSection() {
             padding: "16px 18px",
             marginBottom: 28,
           }}>
-            <p style={{
+            <p className="hero-rp-title" style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 14,
               fontWeight: 500,
               color: "#C5A059",
               margin: "0 0 6px",
             }}>LaunchPath Standard</p>
-            <p style={{
+            <p className="hero-rp-sub" style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 12,
               color: "rgba(255,255,255,0.62)",
@@ -320,7 +320,7 @@ export default function HeroSection() {
           </div>
 
           {/* Label 2 */}
-          <p style={{
+          <p className="hero-rp-label" style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: 11,
             fontWeight: 500,
@@ -345,7 +345,7 @@ export default function HeroSection() {
                   width: 22,
                   flexShrink: 0,
                 }}>{d.num}</span>
-                <span style={{
+                <span className="hero-domain-name" style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: 13,
                   color: "rgba(255,255,255,0.82)",
@@ -399,6 +399,10 @@ export default function HeroSection() {
             padding: 80px 22px 64px !important;
           }
           .hero-headline-line { font-size: 46px !important; }
+          .hero-rp-label { font-size: 12px !important; color: rgba(197,160,89,0.85) !important; }
+          .hero-rp-sub { font-size: 13px !important; color: rgba(255,255,255,0.72) !important; }
+          .hero-rp-title { font-size: 15px !important; }
+          .hero-domain-name { font-size: 14px !important; color: rgba(255,255,255,0.88) !important; }
         }
       `}</style>
     </section>
