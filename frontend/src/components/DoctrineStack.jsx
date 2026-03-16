@@ -81,14 +81,15 @@ export function DoctrineStack() {
                 }}>{layer.name}</p>
               </div>
 
-              {/* Right: descriptor */}
+              {/* Right: descriptor — hidden on very small screens */}
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.82rem",
-                color: "rgba(255,255,255,0.72)",
+                color: "rgba(255,255,255,0.78)",
                 textAlign: "right",
                 letterSpacing: "0.02em",
-              }}>{layer.desc}</p>
+                maxWidth: 140,
+              }} className="doctrine-desc">{layer.desc}</p>
             </Link>
 
             {/* Arrow connector between layers */}
@@ -118,11 +119,12 @@ export function DoctrineStack() {
         }}>LaunchPath Authority Survival Framework</p>
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.8rem",
-          color: "rgba(255,255,255,0.45)",
+          fontSize: "0.82rem",
+          color: "rgba(255,255,255,0.62)",
           letterSpacing: "0.03em",
         }}>The 90-Day Compliance Operating Standard for new motor carrier authorities</p>
       </div>
+      <style>{`@media (max-width: 480px) { .doctrine-desc { display: none !important; } }`}</style>
     </div>
   );
 }

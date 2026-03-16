@@ -166,7 +166,7 @@ export default function HeroSection() {
             >See what gets installed →</Link>
           </div>
 
-          {/* Proof strip — ultra-premium */}
+          {/* Proof strip — hidden on mobile (shown as compact row instead) */}
           <div className="proof-strip" style={{
             display: "flex",
             background: "rgba(0,10,22,0.65)",
@@ -179,8 +179,33 @@ export default function HeroSection() {
             {PROOF.map((item, i) => (
               <ProofCard key={i} item={item} triggered={inView} delay={i * 100} />
             ))}
-            {/* Remove right border from last card */}
             <style>{`.proof-strip > div:last-child { border-right: none !important; }`}</style>
+          </div>
+
+          {/* Mobile proof row — shown only on mobile */}
+          <div className="proof-mobile" style={{
+            display: "none",
+            gap: 0,
+            border: "0.5px solid rgba(197,160,89,0.20)",
+            background: "rgba(0,10,22,0.65)",
+            overflow: "hidden",
+          }}>
+            {PROOF.map((item, i) => (
+              <div key={i} style={{
+                flex: 1,
+                padding: "14px 12px",
+                borderRight: i < PROOF.length - 1 ? "0.5px solid rgba(197,160,89,0.14)" : "none",
+                position: "relative",
+              }}>
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #C5A059, rgba(197,160,89,0.2))" }} />
+                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 28, fontWeight: 700, color: "#C5A059", margin: "0 0 2px", lineHeight: 1, textShadow: "0 0 16px rgba(197,160,89,0.3)" }}>
+                  {item.target}
+                </p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", margin: 0 }}>
+                  {item.label}
+                </p>
+              </div>
+            ))}
           </div>
 
         </div>
@@ -287,6 +312,7 @@ export default function HeroSection() {
           .hero-left { padding: 64px 28px 48px !important; }
           .hero-headline-line { font-size: 40px !important; }
           .proof-strip { display: none !important; }
+          .proof-mobile { display: flex !important; }
           .hero-cta-primary, .hero-cta-secondary { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
           .hero-right { border-left: none !important; border-top: 0.5px solid rgba(197,160,89,0.14) !important; padding: 40px 28px 56px !important; width: 100% !important; box-sizing: border-box !important; }
         }

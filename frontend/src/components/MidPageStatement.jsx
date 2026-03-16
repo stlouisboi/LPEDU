@@ -44,7 +44,7 @@ export default function MidPageStatement() {
             fontWeight: 700,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.6)",
+            color: "rgba(197,160,89,0.82)",
             marginBottom: "2rem",
           }}>
             LP-SYS-RECORD | FAILURE ANALYSIS
