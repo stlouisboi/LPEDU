@@ -22,11 +22,11 @@ export default function HeroSection() {
       style={{
         position: "relative",
         background: "#002244",
-        minHeight: 500,
+        minHeight: 620,
         overflow: "hidden",
       }}
     >
-      {/* Gold bar — pinned top, full width */}
+      {/* Gold bar — 3px, full width, pinned top */}
       <div style={{
         position: "absolute",
         top: 0, left: 0, right: 0,
@@ -62,23 +62,21 @@ export default function HeroSection() {
           zIndex: 1,
           maxWidth: 1200,
           margin: "0 auto",
-          padding: "72px 28px 64px",
           display: "grid",
-          gridTemplateColumns: "1fr 300px",
-          gap: "4rem",
+          gridTemplateColumns: "1fr 280px",
           alignItems: "start",
         }}
       >
 
         {/* ── LEFT COLUMN ── */}
-        <div>
+        <div style={{ padding: "100px 44px 80px 56px" }}>
 
           {/* Eyebrow */}
           <div style={{
             display: "flex",
             alignItems: "center",
             gap: 10,
-            marginBottom: 28,
+            marginBottom: 32,
           }}>
             <div style={{ width: 28, height: 1, background: "#C5A059", flexShrink: 0 }} />
             <p style={{
@@ -97,9 +95,9 @@ export default function HeroSection() {
             <span className="hero-headline-line" style={{
               display: "block",
               fontFamily: "'Manrope', sans-serif",
-              fontSize: 40,
+              fontSize: 60,
               fontWeight: 500,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               color: "#FFFFFF",
             }}>
               Your authority is active.
@@ -107,9 +105,9 @@ export default function HeroSection() {
             <span className="hero-headline-line" style={{
               display: "block",
               fontFamily: "'Manrope', sans-serif",
-              fontSize: 40,
+              fontSize: 60,
               fontWeight: 500,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               color: "#C5A059",
             }}>
               Your exposure window just opened.
@@ -117,16 +115,16 @@ export default function HeroSection() {
           </h1>
 
           {/* Gold divider */}
-          <div style={{ width: 36, height: 2, background: "#C5A059", margin: "22px 0" }} />
+          <div style={{ width: 40, height: 2, background: "#C5A059", margin: "28px 0" }} />
 
           {/* Body paragraph */}
-          <p className="hero-body" style={{
+          <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: 15,
-            color: "rgba(255,255,255,0.82)",
+            color: "rgba(255,255,255,0.62)",
             lineHeight: 1.75,
-            maxWidth: 410,
-            marginBottom: 28,
+            maxWidth: 480,
+            marginBottom: 36,
           }}>
             Most carriers focus on loads first. FMCSA is already watching.{" "}
             <span style={{ color: "rgba(255,255,255,0.92)", fontWeight: 500 }}>
@@ -143,19 +141,19 @@ export default function HeroSection() {
               border: "0.5px solid rgba(197,160,89,0.22)",
               borderRadius: 6,
               overflow: "hidden",
-              marginBottom: 32,
-              maxWidth: 410,
+              marginBottom: 40,
+              maxWidth: 480,
             }}
           >
             {PROOF.map((item, i) => (
               <div key={i} style={{
                 flex: 1,
-                padding: "14px 16px",
+                padding: "16px 18px",
                 borderRight: i < PROOF.length - 1 ? "0.5px solid rgba(197,160,89,0.22)" : "none",
               }}>
                 <p style={{
                   fontFamily: "'Manrope', sans-serif",
-                  fontSize: 22,
+                  fontSize: 26,
                   fontWeight: 500,
                   color: "#C5A059",
                   margin: "0 0 4px",
@@ -163,8 +161,8 @@ export default function HeroSection() {
                 }}>{item.number}</p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: 10,
-                  color: "rgba(255,255,255,0.6)",
+                  fontSize: 11,
+                  color: "rgba(255,255,255,0.42)",
                   lineHeight: 1.4,
                   margin: 0,
                 }}>{item.label}</p>
@@ -173,23 +171,25 @@ export default function HeroSection() {
           </div>
 
           {/* CTA row */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
             <Link
               to="/ground-0-briefing"
               data-testid="hero-primary-cta"
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: 14,
+                fontSize: 15,
                 fontWeight: 500,
                 letterSpacing: "0.02em",
                 color: "#001833",
                 background: "#C5A059",
-                padding: "14px 30px",
+                padding: "16px 36px",
+                height: 52,
                 borderRadius: 4,
                 textDecoration: "none",
                 boxShadow: "0 0 0 3px rgba(197,160,89,0.22)",
                 transition: "background 0.2s",
-                display: "inline-block",
+                display: "inline-flex",
+                alignItems: "center",
               }}
               onMouseEnter={e => (e.currentTarget.style.background = "#d4b572")}
               onMouseLeave={e => (e.currentTarget.style.background = "#C5A059")}
@@ -202,13 +202,13 @@ export default function HeroSection() {
               data-testid="hero-secondary-cta"
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: 13,
-                color: "rgba(255,255,255,0.62)",
+                fontSize: 14,
+                color: "rgba(255,255,255,0.48)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.82)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.62)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.48)")}
             >
               See what the standard installs →
             </Link>
@@ -216,22 +216,21 @@ export default function HeroSection() {
 
         </div>
 
-        {/* ── RIGHT COLUMN ── */}
+        {/* ── RIGHT COLUMN (280px) ── */}
         <div style={{
           borderLeft: "0.5px solid rgba(197,160,89,0.14)",
-          paddingLeft: 28,
-          paddingTop: 0,
+          padding: "100px 28px 80px",
           display: "flex",
           flexDirection: "column",
           gap: 16,
         }}>
 
           {/* Label 1 */}
-          <p className="hero-rp-label" style={{
+          <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 10,
+            fontSize: 9,
             fontWeight: 500,
-            color: "rgba(197,160,89,0.8)",
+            color: "rgba(197,160,89,0.6)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             margin: 0,
@@ -245,15 +244,15 @@ export default function HeroSection() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 500,
-              color: "rgba(255,255,255,0.9)",
+              color: "rgba(255,255,255,0.78)",
               margin: "0 0 6px",
             }}>Audit failure + remediation</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 12,
-              color: "rgba(255,255,255,0.6)",
+              fontSize: 11,
+              color: "rgba(255,255,255,0.36)",
               lineHeight: 1.5,
               margin: "0 0 10px",
             }}>
@@ -265,14 +264,15 @@ export default function HeroSection() {
               fontWeight: 500,
               color: "#D85A30",
               margin: 0,
+              whiteSpace: "nowrap",
             }}>$10,000 – $25,000+</p>
           </div>
 
           {/* Versus */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 11,
-            color: "rgba(255,255,255,0.45)",
+            fontSize: 10,
+            color: "rgba(255,255,255,0.2)",
             letterSpacing: "0.1em",
             textAlign: "center",
             margin: 0,
@@ -287,15 +287,15 @@ export default function HeroSection() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 500,
               color: "#C5A059",
               margin: "0 0 6px",
             }}>LaunchPath Standard</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 12,
-              color: "rgba(255,255,255,0.65)",
+              fontSize: 11,
+              color: "rgba(255,255,255,0.42)",
               lineHeight: 1.5,
               margin: "0 0 10px",
             }}>
@@ -311,11 +311,11 @@ export default function HeroSection() {
           </div>
 
           {/* Label 2 */}
-          <p className="hero-rp-label" style={{
+          <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 10,
+            fontSize: 9,
             fontWeight: 500,
-            color: "rgba(197,160,89,0.8)",
+            color: "rgba(197,160,89,0.6)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             margin: 0,
@@ -331,15 +331,15 @@ export default function HeroSection() {
               }}>
                 <span style={{
                   fontFamily: "'Courier New', Courier, monospace",
-                  fontSize: 11,
-                  color: "rgba(197,160,89,0.65)",
+                  fontSize: 10,
+                  color: "rgba(197,160,89,0.5)",
                   width: 20,
                   flexShrink: 0,
                 }}>{d.num}</span>
-                <span className="hero-domain-name" style={{
+                <span style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: 13,
-                  color: "rgba(255,255,255,0.78)",
+                  fontSize: 12,
+                  color: "rgba(255,255,255,0.58)",
                 }}>{d.name}</span>
               </div>
             ))}
@@ -349,20 +349,28 @@ export default function HeroSection() {
       </div>
 
       <style>{`
-        @media (max-width: 620px) {
+        @media (max-width: 680px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            padding: 52px 24px 48px !important;
+          }
+          .hero-grid > div:first-child {
+            padding: 64px 28px 56px !important;
           }
           .hero-grid > div:last-child { display: none !important; }
-          .hero-headline-line { font-size: 28px !important; }
+          .hero-headline-line { font-size: 40px !important; }
           .proof-strip { max-width: 100% !important; }
         }
-        @media (min-width: 621px) and (max-width: 1100px) {
-          .hero-grid { grid-template-columns: 1fr 260px !important; gap: 2.5rem !important; }
-          .hero-body { font-size: 16px !important; }
-          .hero-rp-label { font-size: 11px !important; }
-          .hero-domain-name { font-size: 14px !important; }
+        @media (min-width: 681px) and (max-width: 960px) {
+          .hero-grid {
+            grid-template-columns: 1fr 220px !important;
+          }
+          .hero-grid > div:first-child {
+            padding: 80px 32px 64px 40px !important;
+          }
+          .hero-grid > div:last-child {
+            padding: 80px 20px 64px !important;
+          }
+          .hero-headline-line { font-size: 46px !important; }
         }
       `}</style>
     </section>
