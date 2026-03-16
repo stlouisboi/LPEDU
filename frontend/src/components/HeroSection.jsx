@@ -35,25 +35,6 @@ export default function HeroSection() {
         zIndex: 10,
       }} />
 
-      {/* Ambient background */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.11) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          animation: "dotDrift 22s linear infinite",
-        }} />
-        <div style={{
-          position: "absolute", left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent 0%, rgba(197,160,89,0.2) 50%, transparent 100%)",
-          animation: "scanLine 9s linear infinite",
-        }} />
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 70% 55% at 30% 50%, rgba(197,160,89,0.04) 0%, transparent 70%)",
-        }} />
-      </div>
-
       {/* Main grid */}
       <div
         className="hero-grid"
@@ -63,13 +44,13 @@ export default function HeroSection() {
           maxWidth: 1200,
           margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "1fr 280px",
+          gridTemplateColumns: "1fr 288px",
           alignItems: "start",
         }}
       >
 
         {/* ── LEFT COLUMN ── */}
-        <div style={{ padding: "100px 44px 80px 56px" }}>
+        <div className="hero-left" style={{ padding: "100px 44px 80px 56px" }}>
 
           {/* Eyebrow */}
           <div style={{
@@ -99,6 +80,7 @@ export default function HeroSection() {
               fontWeight: 500,
               lineHeight: 1.05,
               color: "#FFFFFF",
+              marginBottom: 4,
             }}>
               Your authority is active.
             </span>
@@ -121,60 +103,30 @@ export default function HeroSection() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: 15,
-            color: "rgba(255,255,255,0.62)",
-            lineHeight: 1.75,
+            color: "rgba(255,255,255,0.65)",
+            lineHeight: 1.8,
             maxWidth: 480,
             marginBottom: 36,
           }}>
             Most carriers focus on loads first. FMCSA is already watching.{" "}
             <span style={{ color: "rgba(255,255,255,0.92)", fontWeight: 500 }}>
-              What you build in the first 90 days decides what FMCSA finds between Month 9 and Month 18.
+              What you build in the first 90 days shapes what the agency finds between Month 9 and Month 18.
             </span>
-            {" "}Authority failure is rarely caused by lack of effort — it is caused by missing operational infrastructure.
+            {" "}Authority failure is rarely caused by lack of effort. It is caused by missing operational infrastructure.
           </p>
 
-          {/* Proof strip */}
-          <div
-            className="proof-strip"
-            style={{
-              display: "flex",
-              border: "0.5px solid rgba(197,160,89,0.22)",
-              borderRadius: 6,
-              overflow: "hidden",
-              marginBottom: 40,
-              maxWidth: 480,
-            }}
-          >
-            {PROOF.map((item, i) => (
-              <div key={i} style={{
-                flex: 1,
-                padding: "16px 18px",
-                borderRight: i < PROOF.length - 1 ? "0.5px solid rgba(197,160,89,0.22)" : "none",
-              }}>
-                <p style={{
-                  fontFamily: "'Manrope', sans-serif",
-                  fontSize: 26,
-                  fontWeight: 500,
-                  color: "#C5A059",
-                  margin: "0 0 4px",
-                  lineHeight: 1,
-                }}>{item.number}</p>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: 11,
-                  color: "rgba(255,255,255,0.42)",
-                  lineHeight: 1.4,
-                  margin: 0,
-                }}>{item.label}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA row */}
-          <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+          {/* CTA row — above proof strip */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            flexWrap: "wrap",
+            marginBottom: 36,
+          }}>
             <Link
               to="/ground-0-briefing"
               data-testid="hero-primary-cta"
+              className="hero-cta-primary"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: 15,
@@ -200,30 +152,84 @@ export default function HeroSection() {
             <Link
               to="/standards"
               data-testid="hero-secondary-cta"
+              className="hero-cta-secondary"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: 14,
-                color: "rgba(255,255,255,0.48)",
+                letterSpacing: "0.01em",
+                color: "rgba(255,255,255,0.65)",
+                background: "transparent",
+                border: "0.5px solid rgba(255,255,255,0.25)",
+                padding: "0 20px",
+                height: 52,
+                borderRadius: 4,
                 textDecoration: "none",
-                transition: "color 0.2s",
+                transition: "border-color 0.2s, color 0.2s",
+                display: "inline-flex",
+                alignItems: "center",
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.82)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.48)")}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)";
+                e.currentTarget.style.color = "rgba(255,255,255,0.9)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
+                e.currentTarget.style.color = "rgba(255,255,255,0.65)";
+              }}
             >
-              See what the standard installs →
+              See what gets installed →
             </Link>
+          </div>
+
+          {/* Proof strip — below CTAs */}
+          <div
+            className="proof-strip"
+            style={{
+              display: "flex",
+              border: "0.5px solid rgba(197,160,89,0.22)",
+              borderRadius: 6,
+              overflow: "hidden",
+              maxWidth: 480,
+            }}
+          >
+            {PROOF.map((item, i) => (
+              <div key={i} style={{
+                flex: 1,
+                padding: "16px 18px",
+                borderRight: i < PROOF.length - 1 ? "0.5px solid rgba(197,160,89,0.22)" : "none",
+              }}>
+                <p style={{
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 26,
+                  fontWeight: 500,
+                  color: "#C5A059",
+                  display: "block",
+                  margin: "0 0 4px",
+                  lineHeight: 1,
+                }}>{item.number}</p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 11,
+                  color: "rgba(255,255,255,0.42)",
+                  lineHeight: 1.4,
+                  margin: 0,
+                }}>{item.label}</p>
+              </div>
+            ))}
           </div>
 
         </div>
 
-        {/* ── RIGHT COLUMN (280px) ── */}
-        <div style={{
-          borderLeft: "0.5px solid rgba(197,160,89,0.14)",
-          padding: "100px 28px 80px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 16,
-        }}>
+        {/* ── RIGHT COLUMN (288px) ── */}
+        <div
+          className="hero-right"
+          style={{
+            borderLeft: "0.5px solid rgba(197,160,89,0.14)",
+            padding: "100px 32px 80px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
 
           {/* Label 1 */}
           <p style={{
@@ -233,34 +239,35 @@ export default function HeroSection() {
             color: "rgba(197,160,89,0.6)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            margin: 0,
+            margin: "0 0 14px",
           }}>THE COST OF BEING UNDERBUILT</p>
 
           {/* Risk card */}
           <div style={{
             background: "rgba(0,0,0,0.32)",
             borderRadius: 6,
-            padding: "15px 16px",
+            padding: "16px 18px",
+            marginBottom: 8,
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: 500,
               color: "rgba(255,255,255,0.78)",
-              margin: "0 0 6px",
+              margin: "0 0 5px",
             }}>Audit failure + remediation</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 11,
               color: "rgba(255,255,255,0.36)",
-              lineHeight: 1.5,
+              lineHeight: 1.55,
               margin: "0 0 10px",
             }}>
               Deficiency findings, corrective action window, potential authority revocation
             </p>
             <p style={{
               fontFamily: "'Manrope', sans-serif",
-              fontSize: 21,
+              fontSize: 24,
               fontWeight: 500,
               color: "#D85A30",
               margin: 0,
@@ -276,6 +283,7 @@ export default function HeroSection() {
             letterSpacing: "0.1em",
             textAlign: "center",
             margin: 0,
+            padding: "7px 0 9px",
           }}>versus</p>
 
           {/* Solution card */}
@@ -283,20 +291,21 @@ export default function HeroSection() {
             background: "rgba(197,160,89,0.08)",
             border: "0.5px solid rgba(197,160,89,0.26)",
             borderRadius: 6,
-            padding: "15px 16px",
+            padding: "16px 18px",
+            marginBottom: 28,
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: 500,
               color: "#C5A059",
-              margin: "0 0 6px",
+              margin: "0 0 5px",
             }}>LaunchPath Standard</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 11,
               color: "rgba(255,255,255,0.42)",
-              lineHeight: 1.5,
+              lineHeight: 1.55,
               margin: "0 0 10px",
             }}>
               90-day guided implementation — all five domains installed, verified, and audit-ready
@@ -318,28 +327,29 @@ export default function HeroSection() {
             color: "rgba(197,160,89,0.6)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            margin: 0,
+            margin: "0 0 14px",
           }}>WHAT THE STANDARD INSTALLS</p>
 
           {/* Domain list */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {DOMAINS.map((d) => (
               <div key={d.num} style={{
                 display: "flex",
-                alignItems: "baseline",
-                gap: 10,
+                gap: 14,
+                alignItems: "center",
               }}>
                 <span style={{
                   fontFamily: "'Courier New', Courier, monospace",
-                  fontSize: 10,
-                  color: "rgba(197,160,89,0.5)",
-                  width: 20,
+                  fontSize: 11,
+                  color: "rgba(197,160,89,0.55)",
+                  width: 22,
                   flexShrink: 0,
                 }}>{d.num}</span>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: 12,
-                  color: "rgba(255,255,255,0.58)",
+                  fontSize: 13,
+                  color: "rgba(255,255,255,0.7)",
+                  letterSpacing: "0.01em",
                 }}>{d.name}</span>
               </div>
             ))}
@@ -349,26 +359,41 @@ export default function HeroSection() {
       </div>
 
       <style>{`
+        /* Mobile — stack, right flows below */
         @media (max-width: 680px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
           }
-          .hero-grid > div:first-child {
-            padding: 64px 28px 56px !important;
+          .hero-left {
+            padding: 64px 28px 48px !important;
           }
-          .hero-grid > div:last-child { display: none !important; }
-          .hero-headline-line { font-size: 40px !important; }
-          .proof-strip { max-width: 100% !important; }
+          .hero-headline-line {
+            font-size: 40px !important;
+          }
+          .proof-strip {
+            display: none !important;
+          }
+          .hero-cta-primary,
+          .hero-cta-secondary {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .hero-right {
+            border-left: none !important;
+            border-top: 0.5px solid rgba(197,160,89,0.14) !important;
+            padding: 40px 28px 56px !important;
+          }
         }
-        @media (min-width: 681px) and (max-width: 960px) {
+        /* Mid tablet */
+        @media (min-width: 681px) and (max-width: 980px) {
           .hero-grid {
             grid-template-columns: 1fr 220px !important;
           }
-          .hero-grid > div:first-child {
+          .hero-left {
             padding: 80px 32px 64px 40px !important;
           }
-          .hero-grid > div:last-child {
-            padding: 80px 20px 64px !important;
+          .hero-right {
+            padding: 80px 22px 64px !important;
           }
           .hero-headline-line { font-size: 46px !important; }
         }
