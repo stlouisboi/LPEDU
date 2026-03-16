@@ -182,6 +182,7 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Capped unbounded `.to_list(1000)` queries to `.to_list(100)` in status_checks and signal endpoint
 - [x] Updated `.env.example` with `FRONTEND_URL`, `EMERGENT_AUTH_URL`, `MAILERSEND_*` docs
 - [x] Welcome email on first login — triggered in `/api/auth/session` when `existing_tasks == 0`; subject "Your authority is active. Now the clock is running."; 3-step onboarding block + Begin Ground 0 CTA; fire-and-forget via MailerSend
+- [x] Post-REACH result emails — `_build_reach_email()` helper builds 3 distinct emails (GO/WAIT/NO-GO) with score breakdown table, flagged category list, and tailored CTAs; triggered in `/api/reach` after MailerLite update
 
 ### P1 — iPad Readability (Definitive Fix — March 2026)
 - [x] Split HeroSection.jsx breakpoints: mid-tablet (681–980px) + iPad (981–1100px, separate breakpoint)
