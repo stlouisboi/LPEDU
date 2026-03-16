@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { List, X, LockSimple, CaretDown } from "@phosphor-icons/react";
 
 const FRAMEWORK_LINKS = [
@@ -28,6 +28,15 @@ const ACCESS_LINKS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const closeTimer = useRef(null);
+
+  const openMenu = (name) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenDropdown(name);
+  };
+  const closeMenu = () => {
+    closeTimer.current = setTimeout(() => setOpenDropdown(null), 180);
+  };
   const [scrollPct, setScrollPct] = useState(0);
   const location = useLocation();
 
@@ -60,7 +69,7 @@ export default function Navbar() {
   });
 
   const dropdownPanel = {
-    position: "absolute", top: "calc(100% + 12px)", left: 0,
+    position: "absolute", top: "calc(100% + 4px)", left: 0,
     background: "#001530",
     border: "1px solid rgba(197,160,89,0.15)",
     boxShadow: "0 8px 32px rgba(0,0,0,0.55)",
@@ -111,8 +120,8 @@ export default function Navbar() {
             {FRAMEWORK_LINKS.map(l => (
               l.subItems ? (
                 <div key={l.label} style={{ position: "relative" }}
-                  onMouseEnter={() => setOpenDropdown(l.label)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  onMouseEnter={() => openMenu(l.label)}
+                  onMouseLeave={closeMenu}
                 >
                   <span style={{
                     ...linkStyle(l.href),
@@ -125,7 +134,10 @@ export default function Navbar() {
                     <CaretDown size={10} style={{ opacity: 0.6 }} />
                   </span>
                   {openDropdown === l.label && (
-                    <div style={dropdownPanel}>
+                    <div style={dropdownPanel}
+                      onMouseEnter={() => openMenu(l.label)}
+                      onMouseLeave={closeMenu}
+                    >
                       {l.subItems.map(sub => (
                         <Link key={sub.href} to={sub.href}
                           style={dropdownItem(sub.href)}
@@ -151,8 +163,8 @@ export default function Navbar() {
 
             {/* Ground 0 — gold CTA with dropdown */}
             <div style={{ position: "relative" }}
-              onMouseEnter={() => setOpenDropdown("Ground 0")}
-              onMouseLeave={() => setOpenDropdown(null)}
+              onMouseEnter={() => openMenu("Ground 0")}
+              onMouseLeave={closeMenu}
             >
               <Link
                 to="/ground-0-briefing"
@@ -175,7 +187,10 @@ export default function Navbar() {
                 <CaretDown size={10} style={{ opacity: 0.7 }} />
               </Link>
               {openDropdown === "Ground 0" && (
-                <div style={{ ...dropdownPanel, left: "50%", transform: "translateX(-50%)" }}>
+                <div style={{ ...dropdownPanel, left: "50%", transform: "translateX(-50%)" }}
+                  onMouseEnter={() => openMenu("Ground 0")}
+                  onMouseLeave={closeMenu}
+                >
                   {GROUND0_SUB.map(sub => (
                     <Link key={sub.href} to={sub.href}
                       style={dropdownItem(sub.href)}
