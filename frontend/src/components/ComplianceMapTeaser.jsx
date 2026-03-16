@@ -5,66 +5,52 @@ export default function ComplianceMapTeaser() {
     <section
       data-testid="compliance-map-teaser"
       style={{
-        background: "#001530",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        padding: "48px 24px",
+        background: "#000D1A",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+        padding: "52px 24px",
       }}
     >
       <div style={{
-        maxWidth: 720,
+        maxWidth: 680,
         margin: "0 auto",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: "2.5rem",
-        flexWrap: "wrap",
       }}>
-        <div>
-          <p style={{
-            fontFamily: "'Manrope', sans-serif",
-            fontWeight: 700,
-            fontSize: "1.12rem",
-            color: "#FFFFFF",
-            marginBottom: "0.375rem",
-          }}>
-            See the complete regulatory architecture.
-          </p>
-          <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.784rem",
-            color: "rgba(197,160,89,0.8)",
-            letterSpacing: "0.06em",
-          }}>
-            48 compliance elements. One map.
-          </p>
-        </div>
+        <p style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: "0.65rem",
+          fontWeight: 700,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          color: "rgba(197,160,89,0.45)",
+          marginBottom: "1rem",
+        }}>
+          SELF-DIRECTED OPTION
+        </p>
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.975rem",
+          color: "rgba(255,255,255,0.58)",
+          lineHeight: 1.8,
+          marginBottom: "1.5rem",
+          maxWidth: 600,
+        }}>
+          For operators who prefer to install the compliance structure independently, the LaunchPath New Carrier Document System is available as a self-directed package — all five domain packets, the unified folder structure, and the 0–30–90 day implementation guide.
+        </p>
         <Link
-          to="/operating-standard"
+          to="/standards"
           data-testid="compliance-map-link"
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.784rem",
-            fontWeight: 700,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "#C5A059",
+            fontSize: "0.84rem",
+            fontWeight: 600,
+            letterSpacing: "0.06em",
+            color: "rgba(197,160,89,0.75)",
             textDecoration: "none",
-            border: "1px solid rgba(197,160,89,0.4)",
-            padding: "0.6rem 1.5rem",
-            whiteSpace: "nowrap",
-            transition: "all 0.2s",
+            transition: "color 0.2s",
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(197,160,89,0.08)";
-            e.currentTarget.style.borderColor = "rgba(197,160,89,0.7)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.borderColor = "rgba(197,160,89,0.4)";
-          }}
+          onMouseEnter={e => (e.currentTarget.style.color = "#C5A059")}
+          onMouseLeave={e => (e.currentTarget.style.color = "rgba(197,160,89,0.75)")}
         >
-          View Compliance Map →
+          Explore the Standards Library →
         </Link>
       </div>
     </section>

@@ -170,7 +170,7 @@ export default function AuthorityReadinessTestSection() {
             e.currentTarget.style.transform = "translateX(0)";
           }}
         >
-          RUN THE REACH DIAGNOSTIC →
+          RUN THE AUTHORITY READINESS TEST →
         </button>
 
         {/* Footnote */}

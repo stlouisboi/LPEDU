@@ -237,30 +237,56 @@ export default function EngagementSection() {
               }}>
                 Ground 0 is the qualification phase — a free orientation that shows you exactly what the Standard installs. Complete Ground 0, then request admission to the next cohort.
               </p>
-              <Link
-                to="/ground-0-briefing"
-                data-testid="engagement-cta-btn"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  background: "#C5A059",
-                  color: "#000F1F",
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "0.896rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  padding: "1rem 2rem",
-                  textDecoration: "none",
-                  transition: "background 0.2s",
-                  minHeight: 48,
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
-              >
-                Begin Ground 0 →
-              </Link>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <button
+                  data-testid="engagement-readiness-test-btn"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    background: "#C5A059",
+                    color: "#000F1F",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.896rem",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    padding: "1rem 2rem",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "background 0.2s",
+                    minHeight: 48,
+                  }}
+                  onClick={() => window.location.href = "/reach-diagnostic"}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+                >
+                  Run the Authority Readiness Test →
+                </button>
+                <Link
+                  to="/ground-0-briefing"
+                  data-testid="engagement-cta-btn"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "rgba(255,255,255,0.55)",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 600,
+                    fontSize: "0.84rem",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    padding: "0.5rem 0",
+                    textDecoration: "none",
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.85)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+                >
+                  Begin Ground 0 →
+                </Link>
+              </div>
             </div>
           </div>
         </FadeIn>

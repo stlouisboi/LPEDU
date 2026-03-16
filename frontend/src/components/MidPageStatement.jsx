@@ -1,4 +1,28 @@
+import { Link } from "react-router-dom";
 import FadeIn from "./FadeIn";
+
+const SINS_TEASER = [
+  {
+    num: "02",
+    name: "The Ghost Driver",
+    desc: "Dispatching before a pre-employment drug test result is filed.",
+  },
+  {
+    num: "05",
+    name: "Clearinghouse Silence",
+    desc: "Failing to run mandatory Clearinghouse queries on every driver.",
+  },
+  {
+    num: "08",
+    name: "Pencil-Whipping Inspections",
+    desc: "Signing DVIRs without inspecting the equipment.",
+  },
+  {
+    num: "16",
+    name: "Audit Defiance",
+    desc: "Failing to respond to a New Entrant Safety Audit within the response window.",
+  },
+];
 
 export default function MidPageStatement() {
   return (
@@ -8,11 +32,12 @@ export default function MidPageStatement() {
         background: "#000508",
         borderTop: "1px solid rgba(197,160,89,0.2)",
         borderBottom: "1px solid rgba(197,160,89,0.2)",
-        padding: "120px 24px",
+        padding: "104px 24px",
       }}
     >
-      <div style={{ maxWidth: 780, margin: "0 auto", textAlign: "center" }}>
+      <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <FadeIn y={24}>
+
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.72rem",
@@ -20,7 +45,7 @@ export default function MidPageStatement() {
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "rgba(197,160,89,0.6)",
-            marginBottom: "3rem",
+            marginBottom: "2rem",
           }}>
             LP-SYS-RECORD | FAILURE ANALYSIS
           </p>
@@ -28,33 +53,124 @@ export default function MidPageStatement() {
           <h2 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(1.85rem, 4.5vw, 3.5rem)",
+            fontSize: "clamp(1.85rem, 4.5vw, 3rem)",
             letterSpacing: "-0.03em",
             color: "#FFFFFF",
             lineHeight: 1.1,
-            marginBottom: "2.5rem",
+            marginBottom: "1.5rem",
           }}>
-            There are 49 documented failure patterns<br />
-            <span style={{ color: "rgba(255,255,255,0.38)", fontWeight: 400 }}>in the new entrant record.</span>
+            There are 16 documented failure patterns<br />
+            <span style={{ color: "rgba(255,255,255,0.38)", fontWeight: 400 }}>in new carrier compliance.</span>
           </h2>
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
+            fontSize: "clamp(1rem, 2vw, 1.2rem)",
             color: "rgba(255,255,255,0.65)",
-            lineHeight: 1.9,
+            lineHeight: 1.85,
             maxWidth: 620,
-            margin: "0 auto 2.5rem",
+            marginBottom: "3rem",
           }}>
-            None of them are surprises. Every one is predictable, recurring, and preventable. The carriers who failed were not unlucky — they were unstructured.
+            The LaunchPath system is built around 16 operational behaviors that most commonly end new carrier operating authority. They are not freak accidents. They are predictable, preventable, and almost always administrative.
           </p>
 
+        </FadeIn>
+
+        {/* Sin teasers */}
+        <FadeIn delay={60}>
           <div style={{
-            width: 48,
-            height: 2,
-            background: "var(--gold-primary)",
-            margin: "0 auto",
-          }} />
+            display: "flex",
+            flexDirection: "column",
+            gap: "1px",
+            background: "rgba(255,255,255,0.05)",
+            marginBottom: "2.5rem",
+          }}>
+            {SINS_TEASER.map((sin) => (
+              <div key={sin.num} style={{
+                background: "#0B1927",
+                borderLeft: "3px solid rgba(216,90,48,0.6)",
+                padding: "1.25rem 1.5rem",
+                display: "flex",
+                gap: "1.25rem",
+                alignItems: "flex-start",
+              }}>
+                <span style={{
+                  fontFamily: "'Courier New', Courier, monospace",
+                  fontSize: "0.65rem",
+                  color: "rgba(216,90,48,0.5)",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  flexShrink: 0,
+                  marginTop: "0.2rem",
+                  minWidth: 52,
+                }}>[SIN {sin.num}]</span>
+                <div>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.95rem",
+                    fontWeight: 600,
+                    color: "#D85A30",
+                    marginBottom: "0.2rem",
+                  }}>{sin.name}</p>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.88rem",
+                    color: "rgba(255,255,255,0.62)",
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}>{sin.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={100}>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "1.5rem",
+          }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.95rem",
+              color: "rgba(255,255,255,0.55)",
+              lineHeight: 1.7,
+              maxWidth: 420,
+              margin: 0,
+            }}>
+              Every one of these is preventable. The LaunchPath system installs the controls that prevent them.
+            </p>
+            <Link
+              to="/standards/16-deadly-sins"
+              data-testid="view-16-sins-link"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#C5A059",
+                textDecoration: "none",
+                border: "1px solid rgba(197,160,89,0.35)",
+                padding: "0.65rem 1.5rem",
+                whiteSpace: "nowrap",
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = "rgba(197,160,89,0.06)";
+                e.currentTarget.style.borderColor = "rgba(197,160,89,0.65)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.borderColor = "rgba(197,160,89,0.35)";
+              }}
+            >
+              View All 16 Deadly Sins →
+            </Link>
+          </div>
         </FadeIn>
       </div>
     </section>

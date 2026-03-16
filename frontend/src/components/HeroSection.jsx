@@ -234,9 +234,9 @@ export default function HeroSection() {
           {/* Label 1 */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 9,
+            fontSize: 11,
             fontWeight: 500,
-            color: "rgba(197,160,89,0.6)",
+            color: "rgba(197,160,89,0.75)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             margin: "0 0 14px",
@@ -251,15 +251,15 @@ export default function HeroSection() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 13,
+              fontSize: 14,
               fontWeight: 500,
-              color: "rgba(255,255,255,0.78)",
-              margin: "0 0 5px",
+              color: "rgba(255,255,255,0.88)",
+              margin: "0 0 6px",
             }}>Audit failure + remediation</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 11,
-              color: "rgba(255,255,255,0.36)",
+              fontSize: 12,
+              color: "rgba(255,255,255,0.55)",
               lineHeight: 1.55,
               margin: "0 0 10px",
             }}>
@@ -278,8 +278,8 @@ export default function HeroSection() {
           {/* Versus */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 10,
-            color: "rgba(255,255,255,0.2)",
+            fontSize: 11,
+            color: "rgba(255,255,255,0.35)",
             letterSpacing: "0.1em",
             textAlign: "center",
             margin: 0,
@@ -296,15 +296,15 @@ export default function HeroSection() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 13,
+              fontSize: 14,
               fontWeight: 500,
               color: "#C5A059",
-              margin: "0 0 5px",
+              margin: "0 0 6px",
             }}>LaunchPath Standard</p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 11,
-              color: "rgba(255,255,255,0.42)",
+              fontSize: 12,
+              color: "rgba(255,255,255,0.62)",
               lineHeight: 1.55,
               margin: "0 0 10px",
             }}>
@@ -312,7 +312,7 @@ export default function HeroSection() {
             </p>
             <p style={{
               fontFamily: "'Manrope', sans-serif",
-              fontSize: 13,
+              fontSize: 14,
               fontWeight: 500,
               color: "#C5A059",
               margin: 0,
@@ -322,9 +322,9 @@ export default function HeroSection() {
           {/* Label 2 */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 9,
+            fontSize: 11,
             fontWeight: 500,
-            color: "rgba(197,160,89,0.6)",
+            color: "rgba(197,160,89,0.75)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             margin: "0 0 14px",
@@ -341,14 +341,14 @@ export default function HeroSection() {
                 <span style={{
                   fontFamily: "'Courier New', Courier, monospace",
                   fontSize: 11,
-                  color: "rgba(197,160,89,0.55)",
+                  color: "rgba(197,160,89,0.65)",
                   width: 22,
                   flexShrink: 0,
                 }}>{d.num}</span>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: 13,
-                  color: "rgba(255,255,255,0.7)",
+                  color: "rgba(255,255,255,0.82)",
                   letterSpacing: "0.01em",
                 }}>{d.name}</span>
               </div>
@@ -377,11 +377,14 @@ export default function HeroSection() {
           .hero-cta-secondary {
             width: 100% !important;
             justify-content: center !important;
+            box-sizing: border-box !important;
           }
           .hero-right {
             border-left: none !important;
             border-top: 0.5px solid rgba(197,160,89,0.14) !important;
             padding: 40px 28px 56px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
         }
         /* Mid tablet */

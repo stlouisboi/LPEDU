@@ -129,22 +129,23 @@ export default function VinceCTASection() {
             lineHeight: 1.8,
             marginBottom: "1.75rem",
           }}>
-            Ground 0 is the first installation phase of the LaunchPath Operating Standard.
+            "Wisdom sees ahead and prepares for what's coming."
           </p>
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.008rem",
+            fontSize: "1rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
-            marginBottom: "1.75rem",
-            opacity: 0.85,
+            marginBottom: "2rem",
+            opacity: 0.78,
+            maxWidth: 520,
           }}>
-            If you've already received findings — your authority is conditional, your rating is under review, or you're staring at a revocation notice — the system still applies. The window is shorter. The path is harder. But it exists.
+            Whether you are pre-authority, in your first 30 days, or approaching Month 9 of the New Entrant period — the Authority Readiness Test tells you where your operation stands and what needs to be built first.
           </p>
 
           <Link
-            to="/ground-0-briefing"
+            to="/reach-diagnostic"
             data-testid="vince-cta-btn"
             style={{
               display: "inline-flex",
@@ -164,7 +165,7 @@ export default function VinceCTASection() {
             onMouseEnter={(e) => (e.currentTarget.style.background = "var(--gold-light)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "var(--gold-primary)")}
           >
-            Begin Ground 0 Briefing
+            Run the Authority Readiness Test →
           </Link>
         </div>
 
