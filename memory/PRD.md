@@ -176,7 +176,20 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Copy Link button on /standards Audit Domains section (data-testid=copy-audit-link-btn) — copies /standards#audit-domains URL
 - [ ] Add real Gumroad URLs to all product pages (currently href="#")
 
-### P2 Backlog — External
+### P0 — Production Portal Fixes (March 2026)
+- [x] Moved `EMERGENT_AUTH_URL` to env var (`os.environ.get('EMERGENT_AUTH_URL', ...)`) in server.py
+- [x] Added `FRONTEND_URL` env var — replaced hardcoded `https://lpedu.vercel.app/portal` in 2 email templates (verify_task + remediate_task)
+- [x] Capped unbounded `.to_list(1000)` queries to `.to_list(100)` in status_checks and signal endpoint
+- [x] Updated `.env.example` with `FRONTEND_URL`, `EMERGENT_AUTH_URL`, `MAILERSEND_*` docs
+
+### P1 — iPad Readability (Definitive Fix — March 2026)
+- [x] Split HeroSection.jsx breakpoints: mid-tablet (681–980px) + iPad (981–1100px, separate breakpoint)
+- [x] iPad breakpoint: 288px right column preserved, font sizes boosted (label→12px/0.92, sub→13px/0.80, title→15px, domain→14px/0.92)
+- [x] Proof strip labels opacity raised: 0.65 → 0.78
+- [x] MidPageStatement: [SIN XX] opacity 0.75→0.88, sin desc opacity 0.62→0.76, bottom para 0.55→0.70
+- [x] ComplianceMapTeaser: SELF-DIRECTED OPTION opacity 0.72→0.88, body text 0.58→0.72
+
+
 - [ ] MailerSend sender swap: switch from temp Gmail to noreply@launchpathedu.com (one-line Railway env var change, awaiting domain verification)
 - [ ] Add YouTube URL to "Watch the Overview" homepage CTA
 - [ ] Stripe live key switch (test → production)
