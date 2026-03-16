@@ -210,7 +210,7 @@ export default function HeroSection() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: 13,
-                  color: "rgba(255,255,255,0.65)",
+                  color: "rgba(255,255,255,0.78)",
                   lineHeight: 1.4,
                   margin: 0,
                 }}>{item.label}</p>
@@ -387,22 +387,39 @@ export default function HeroSection() {
             box-sizing: border-box !important;
           }
         }
-        /* Mid tablet */
+        /* Tablet — mid-size (681px–980px) */
         @media (min-width: 681px) and (max-width: 980px) {
           .hero-grid {
             grid-template-columns: 1fr 220px !important;
           }
           .hero-left {
-            padding: 80px 32px 64px 40px !important;
+            padding: 80px 28px 64px 36px !important;
           }
           .hero-right {
-            padding: 80px 22px 64px !important;
+            padding: 80px 18px 64px !important;
           }
-          .hero-headline-line { font-size: 46px !important; }
-          .hero-rp-label { font-size: 12px !important; color: rgba(197,160,89,0.85) !important; }
-          .hero-rp-sub { font-size: 13px !important; color: rgba(255,255,255,0.72) !important; }
+          .hero-headline-line { font-size: 42px !important; }
+          .hero-rp-label { font-size: 11px !important; color: rgba(197,160,89,0.88) !important; }
+          .hero-rp-sub { font-size: 12px !important; color: rgba(255,255,255,0.76) !important; }
+          .hero-rp-title { font-size: 14px !important; }
+          .hero-domain-name { font-size: 13px !important; color: rgba(255,255,255,0.90) !important; }
+        }
+        /* iPad — large tablet (981px–1100px) */
+        @media (min-width: 981px) and (max-width: 1100px) {
+          .hero-grid {
+            grid-template-columns: 1fr 288px !important;
+          }
+          .hero-left {
+            padding: 90px 36px 72px 44px !important;
+          }
+          .hero-right {
+            padding: 90px 28px 72px !important;
+          }
+          .hero-headline-line { font-size: 52px !important; }
+          .hero-rp-label { font-size: 12px !important; color: rgba(197,160,89,0.92) !important; }
+          .hero-rp-sub { font-size: 13px !important; color: rgba(255,255,255,0.80) !important; }
           .hero-rp-title { font-size: 15px !important; }
-          .hero-domain-name { font-size: 14px !important; color: rgba(255,255,255,0.88) !important; }
+          .hero-domain-name { font-size: 14px !important; color: rgba(255,255,255,0.92) !important; }
         }
       `}</style>
     </section>

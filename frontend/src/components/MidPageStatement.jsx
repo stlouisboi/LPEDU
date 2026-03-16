@@ -97,7 +97,7 @@ export default function MidPageStatement() {
                 <span style={{
                   fontFamily: "'Courier New', Courier, monospace",
                   fontSize: "0.78rem",
-                  color: "rgba(216,90,48,0.75)",
+                  color: "rgba(216,90,48,0.88)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   flexShrink: 0,
@@ -115,7 +115,7 @@ export default function MidPageStatement() {
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.88rem",
-                    color: "rgba(255,255,255,0.62)",
+                    color: "rgba(255,255,255,0.76)",
                     lineHeight: 1.6,
                     margin: 0,
                   }}>{sin.desc}</p>
@@ -136,7 +136,7 @@ export default function MidPageStatement() {
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.95rem",
-              color: "rgba(255,255,255,0.55)",
+              color: "rgba(255,255,255,0.70)",
               lineHeight: 1.7,
               maxWidth: 420,
               margin: 0,

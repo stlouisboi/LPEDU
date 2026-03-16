@@ -31,6 +31,8 @@ stripe_lib.api_key = STRIPE_API_KEY
 MAILERSEND_API_KEY = os.environ.get('MAILERSEND_API_KEY', '')
 MAILERSEND_FROM_EMAIL = os.environ.get('MAILERSEND_FROM_EMAIL', '')
 MAILERSEND_FROM_NAME = os.environ.get('MAILERSEND_FROM_NAME', 'LaunchPath')
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://launchpathedu.com')
+EMERGENT_AUTH_URL = os.environ.get('EMERGENT_AUTH_URL', 'https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data')
 
 
 async def send_mailersend_email(to_email: str, to_name: str, subject: str, html: str) -> None:
@@ -139,7 +141,7 @@ async def create_status_check(input: StatusCheckCreate):
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(100)
     for check in status_checks:
         if isinstance(check['timestamp'], str):
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
@@ -542,7 +544,6 @@ async def stripe_webhook(request: Request):
 
 
 # ── Auth ─────────────────────────────────────────────────
-EMERGENT_AUTH_URL = "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data"
 
 class UserOut(BaseModel):
     user_id: str
@@ -700,7 +701,7 @@ async def get_carrier_signal(carrierId: str):
         pulse = 100  # No profile yet — treat as fully active
 
     # 2. Documentary Integrity — (Verified / Total) * 100
-    all_tasks = await db.tasks.find({"carrierId": carrierId}, {"_id": 0}).to_list(1000)
+    all_tasks = await db.tasks.find({"carrierId": carrierId}, {"_id": 0}).to_list(100)
     if all_tasks:
         total = len(all_tasks)
         verified = sum(1 for t in all_tasks if t.get("status", "").lower() == "verified")
@@ -849,7 +850,7 @@ async def verify_task(taskId: str, data: CoachActionRequest, request: Request):
             <p style="margin:0;font-size:14px;color:#dde5ec;">This item is now marked <strong style="color:#C5A059;">VERIFIED</strong> in your Implementation Sequence. Your Administrative Signal has been updated.</p>
           </div>
           <p style="font-size:14px;color:#dde5ec;margin-bottom:32px;">Log in to your portal to view your updated compliance score and next priority items.</p>
-          <a href="https://lpedu.vercel.app/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;">View Portal</a>
+          <a href="{FRONTEND_URL}/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;">View Portal</a>
           <p style="font-size:12px;color:#8a9ab0;margin-top:32px;">This is an automated notification from the LaunchPath Operating Standard. Do not reply to this email.</p>
         </div>"""
         asyncio.create_task(send_mailersend_email(
@@ -891,7 +892,7 @@ async def remediate_task(taskId: str, data: CoachActionRequest, request: Request
           <p style="font-size:16px;color:#dde5ec;margin-bottom:24px;">Your submission for <strong style="color:#C5A059;">{task_name}</strong> requires additional attention before it can be verified.</p>
           {note_block}
           <p style="font-size:14px;color:#dde5ec;margin-bottom:32px;">Log in to your portal, review the note above, and resubmit when ready.</p>
-          <a href="https://lpedu.vercel.app/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;">Go to Portal</a>
+          <a href="{FRONTEND_URL}/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;">Go to Portal</a>
           <p style="font-size:12px;color:#8a9ab0;margin-top:32px;">This is an automated notification from the LaunchPath Operating Standard. Do not reply to this email.</p>
         </div>"""
         asyncio.create_task(send_mailersend_email(

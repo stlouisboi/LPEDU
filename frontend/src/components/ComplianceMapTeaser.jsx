@@ -20,7 +20,7 @@ export default function ComplianceMapTeaser() {
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,0.72)",
+          color: "rgba(197,160,89,0.88)",
           marginBottom: "1rem",
         }}>
           SELF-DIRECTED OPTION
@@ -28,7 +28,7 @@ export default function ComplianceMapTeaser() {
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.975rem",
-          color: "rgba(255,255,255,0.58)",
+          color: "rgba(255,255,255,0.72)",
           lineHeight: 1.8,
           marginBottom: "1.5rem",
           maxWidth: 600,
