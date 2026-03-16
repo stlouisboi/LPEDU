@@ -1,294 +1,366 @@
 import { Link } from "react-router-dom";
 
-const FMCSA_DATA = [
-  { label: "Audit window", value: "12–24 months" },
-  { label: "Required filings", value: "10+" },
-  { label: "Documented failure points", value: "49" },
-  { label: "Standard implementation", value: "90 days" },
+const DOMAINS = [
+  { num: "01", name: "Authority & Identity" },
+  { num: "02", name: "Driver Qualification Files" },
+  { num: "03", name: "Drug & Alcohol Program" },
+  { num: "04", name: "Hours of Service & Dispatch" },
+  { num: "05", name: "Vehicle Maintenance" },
+  { num: "06", name: "Insurance & Authority" },
+];
+
+const PROOF = [
+  { number: "90", label: "Days — Guided implementation" },
+  { number: "5",  label: "Domains — Audit coverage" },
+  { number: "5",  label: "Checkpoints — Custodian review" },
 ];
 
 export default function HeroSection() {
   return (
-    <section data-testid="hero-section" className="hero-section" style={{
-      position: "relative",
-      background: "#002244",
-      padding: "8rem 1.5rem 6rem",
-      borderBottom: "1px solid rgba(197,160,89,0.25)",
-      overflow: "hidden",
-    }}>
+    <section
+      data-testid="hero-section"
+      style={{
+        position: "relative",
+        background: "#002244",
+        minHeight: 500,
+        overflow: "hidden",
+      }}
+    >
+      {/* Gold bar — pinned top, full width */}
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0, right: 0,
+        height: 3,
+        background: "#C5A059",
+        zIndex: 10,
+      }} />
 
-      {/* Ambient background — animated dot grid */}
+      {/* Ambient background */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.12) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.11) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           animation: "dotDrift 22s linear infinite",
         }} />
         <div style={{
           position: "absolute", left: 0, right: 0, height: "1px",
-          background: "linear-gradient(90deg, transparent 0%, rgba(197,160,89,0.22) 50%, transparent 100%)",
+          background: "linear-gradient(90deg, transparent 0%, rgba(197,160,89,0.2) 50%, transparent 100%)",
           animation: "scanLine 9s linear infinite",
         }} />
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 70% 55% at 30% 50%, rgba(197,160,89,0.05) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 70% 55% at 30% 50%, rgba(197,160,89,0.04) 0%, transparent 70%)",
         }} />
       </div>
 
-      <div style={{
-        position: "relative", zIndex: 1,
-        maxWidth: 1200, margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "1fr 340px",
-        gap: "5rem",
-        alignItems: "start",
-      }} className="hero-grid">
+      {/* Main grid */}
+      <div
+        className="hero-grid"
+        style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "72px 28px 64px",
+          display: "grid",
+          gridTemplateColumns: "1fr 300px",
+          gap: "4rem",
+          alignItems: "start",
+        }}
+      >
 
-        {/* Left — Orientation */}
+        {/* ── LEFT COLUMN ── */}
         <div>
-          {/* Credential line */}
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.875rem",
-            fontWeight: 600,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: "var(--gold-primary)",
-            marginBottom: "1.5rem",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.05s",
-          }}>
-            U.S. Navy Veteran · 20+ Years Compliance &amp; Safety · Safety-Certified Operations
-          </p>
 
-          <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
-            fontWeight: 700,
-            fontSize: "clamp(3rem, 6vw, 5.5rem)",
-            lineHeight: 1.08,
-            letterSpacing: "-0.025em",
-            color: "var(--text)",
-            marginBottom: "0rem",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.15s",
+          {/* Eyebrow */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            marginBottom: 28,
           }}>
-            The 90-Day Compliance<br />Operating Standard
-            <span style={{
+            <div style={{ width: 28, height: 1, background: "#C5A059", flexShrink: 0 }} />
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 10,
+              fontWeight: 500,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#C5A059",
+              margin: 0,
+            }}>NEW MOTOR CARRIER AUTHORITY</p>
+          </div>
+
+          {/* Headline */}
+          <h1 style={{ margin: 0 }}>
+            <span className="hero-headline-line" style={{
               display: "block",
-              fontSize: "0.62em",
-              fontWeight: 300,
-              letterSpacing: "-0.01em",
-              color: "var(--gold-primary)",
-              lineHeight: 1.3,
-              marginTop: "0.65em",
+              fontFamily: "'Manrope', sans-serif",
+              fontSize: 40,
+              fontWeight: 500,
+              lineHeight: 1.1,
+              color: "#FFFFFF",
             }}>
-              for new motor carrier authorities.
+              Your authority is active.
+            </span>
+            <span className="hero-headline-line" style={{
+              display: "block",
+              fontFamily: "'Manrope', sans-serif",
+              fontSize: 40,
+              fontWeight: 500,
+              lineHeight: 1.1,
+              color: "#C5A059",
+            }}>
+              Your exposure window just opened.
             </span>
           </h1>
 
-          <p style={{
-            fontFamily: "'Manrope', sans-serif",
-            fontWeight: 700,
-            fontSize: "clamp(1.5rem, 2.5vw, 1.85rem)",
-            color: "var(--gold-primary)",
-            lineHeight: 1.5,
-            maxWidth: 560,
-            marginTop: "2.75rem",
-            marginBottom: "2.75rem",
-            letterSpacing: "-0.01em",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.25s",
-          }}>
-            You just got your authority. Now the clock is running.
-          </p>
+          {/* Gold divider */}
+          <div style={{ width: 36, height: 2, background: "#C5A059", margin: "22px 0" }} />
 
+          {/* Body paragraph */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.25rem",
-            color: "var(--text-muted)",
-            lineHeight: 2.0,
-            maxWidth: 560,
-            marginBottom: "1.5rem",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.3s",
+            fontSize: 14,
+            color: "rgba(255,255,255,0.62)",
+            lineHeight: 1.75,
+            maxWidth: 410,
+            marginBottom: 28,
           }}>
-            FMCSA has 12–24 months to audit your operation — your driver files, your logs, your maintenance records, your drug testing program.
+            Most carriers focus on loads first. FMCSA is already watching.{" "}
+            <span style={{ color: "rgba(255,255,255,0.92)", fontWeight: 500 }}>
+              What you build in the first 90 days decides what FMCSA finds between Month 9 and Month 18.
+            </span>
+            {" "}Authority failure is rarely caused by lack of effort — it is caused by missing operational infrastructure.
           </p>
 
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.25rem",
-            color: "var(--text-muted)",
-            lineHeight: 2.0,
-            maxWidth: 560,
-            marginBottom: "1.5rem",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.33s",
-          }}>
-            Most new carriers don't know what paperwork they need until an investigator shows up and tells them what's missing.
-          </p>
-
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.25rem",
-            color: "var(--text-muted)",
-            lineHeight: 2.0,
-            maxWidth: 560,
-            marginBottom: "1rem",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.35s",
-          }}>
-            LaunchPath installs the compliance system before the audit notice arrives.
-          </p>
-
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.1rem",
-            color: "rgba(255,255,255,0.52)",
-            lineHeight: 2.0,
-            maxWidth: 560,
-            marginBottom: "3rem",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.38s",
-          }}>
-            This is not a course. It's an operating standard built around a federal audit timeline. The carriers who survive the first 90 days aren't more talented. They're more prepared.
-          </p>
-
-          <div style={{
-            display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start",
-            animation: "heroEnter 0.65s ease both",
-            animationDelay: "0.48s",
-          }}>
-            <Link
-              to="/ground-0-briefing"
-              data-testid="hero-readiness-cta"
-              style={{
-                display: "inline-block",
-                background: "var(--gold-primary)",
-                color: "var(--bg-onyx)",
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.98rem",
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                padding: "1rem 2rem",
-                textDecoration: "none",
-                transition: "background 0.2s",
-                minHeight: 52,
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = "var(--gold-light)"}
-              onMouseLeave={e => e.currentTarget.style.background = "var(--gold-primary)"}
-            >
-              Begin Ground 0
-            </Link>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontStyle: "italic",
-              fontSize: "0.98rem",
-              color: "var(--text-subtle)",
-              maxWidth: 420,
-              lineHeight: 1.6,
-            }}>
-              Ground 0 is the first installation phase of the LaunchPath Operating Standard.
-            </p>
-            <Link
-              to="/knowledge-center/authority-reinstatement-brief"
-              data-testid="hero-recovery-link"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.65)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--gold-primary)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.50)")}
-            >
-              Already facing a compliance action? See the Recovery Path &rarr;
-            </Link>
-          </div>
-        </div>
-
-        {/* Right — FMCSA New Entrant Brief */}
-        <div style={{
-          border: "1px solid rgba(197,160,89,0.5)",
-          borderLeft: "3px solid var(--gold-primary)",
-          background: "#00142a",
-          padding: "1.75rem",
-          position: "sticky",
-          top: "80px",
-          animation: "heroEnter 0.65s ease both",
-          animationDelay: "0.2s",
-        }}>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.728rem",
-            fontWeight: 700,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--gold-primary)",
-            marginBottom: "1.5rem",
-            paddingBottom: "1rem",
-            borderBottom: "1px solid rgba(197,160,89,0.25)",
-          }}>
-            FMCSA New Entrant Brief
-          </p>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            {FMCSA_DATA.map((item, i) => (
+          {/* Proof strip */}
+          <div
+            className="proof-strip"
+            style={{
+              display: "flex",
+              border: "0.5px solid rgba(197,160,89,0.22)",
+              borderRadius: 6,
+              overflow: "hidden",
+              marginBottom: 32,
+              maxWidth: 410,
+            }}
+          >
+            {PROOF.map((item, i) => (
               <div key={i} style={{
-                display: "flex",
-                flexDirection: "column",
-                padding: "1rem 0",
-                borderBottom: i < FMCSA_DATA.length - 1 ? "1px solid rgba(197,160,89,0.15)" : "none",
-                animation: "fadeInRow 0.5s ease both",
-                animationDelay: `${0.3 + i * 0.07}s`,
+                flex: 1,
+                padding: "14px 16px",
+                borderRight: i < PROOF.length - 1 ? "0.5px solid rgba(197,160,89,0.22)" : "none",
               }}>
-                <span style={{
+                <p style={{
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 22,
+                  fontWeight: 500,
+                  color: "#C5A059",
+                  margin: "0 0 4px",
+                  lineHeight: 1,
+                }}>{item.number}</p>
+                <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.45)",
-                  marginBottom: "0.3rem",
-                }}>{item.label}</span>
-                <span style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "1.75rem",
-                  color: "var(--text)",
-                  fontWeight: 600,
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.1,
-                }}>{item.value}</span>
+                  fontSize: 10,
+                  color: "rgba(255,255,255,0.42)",
+                  lineHeight: 1.4,
+                  margin: 0,
+                }}>{item.label}</p>
               </div>
             ))}
           </div>
 
+          {/* CTA row */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+            <Link
+              to="/ground-0-briefing"
+              data-testid="hero-primary-cta"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 14,
+                fontWeight: 500,
+                letterSpacing: "0.02em",
+                color: "#001833",
+                background: "#C5A059",
+                padding: "14px 30px",
+                borderRadius: 4,
+                textDecoration: "none",
+                boxShadow: "0 0 0 3px rgba(197,160,89,0.22)",
+                transition: "background 0.2s",
+                display: "inline-block",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.background = "#d4b572")}
+              onMouseLeave={e => (e.currentTarget.style.background = "#C5A059")}
+            >
+              Begin Ground 0
+            </Link>
+
+            <Link
+              to="/standards"
+              data-testid="hero-secondary-cta"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 13,
+                color: "rgba(255,255,255,0.48)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.82)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.48)")}
+            >
+              See what the standard installs →
+            </Link>
+          </div>
+
+        </div>
+
+        {/* ── RIGHT COLUMN ── */}
+        <div style={{
+          borderLeft: "0.5px solid rgba(197,160,89,0.14)",
+          paddingLeft: 28,
+          paddingTop: 0,
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+        }}>
+
+          {/* Label 1 */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 9,
+            fontWeight: 500,
+            color: "rgba(197,160,89,0.6)",
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            margin: 0,
+          }}>THE COST OF BEING UNDERBUILT</p>
+
+          {/* Risk card */}
           <div style={{
-            marginTop: "1.5rem",
-            paddingTop: "1.25rem",
-            borderTop: "1px solid rgba(197,160,89,0.2)",
+            background: "rgba(0,0,0,0.32)",
+            borderRadius: 6,
+            padding: "15px 16px",
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.875rem",
-              color: "var(--text-subtle)",
-              lineHeight: 1.7,
+              fontSize: 12,
+              fontWeight: 500,
+              color: "rgba(255,255,255,0.78)",
+              margin: "0 0 6px",
+            }}>Audit failure + remediation</p>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 11,
+              color: "rgba(255,255,255,0.36)",
+              lineHeight: 1.5,
+              margin: "0 0 10px",
             }}>
-              The New Entrant period has a defined audit window, documented failure
-              patterns, and predictable consequences. The carriers who survive it
-              are not more talented. They are more prepared.
+              Deficiency findings, corrective action window, potential authority revocation
             </p>
+            <p style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontSize: 21,
+              fontWeight: 500,
+              color: "#D85A30",
+              margin: 0,
+            }}>$10,000 – $25,000+</p>
           </div>
-        </div>
 
+          {/* Versus */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 10,
+            color: "rgba(255,255,255,0.2)",
+            letterSpacing: "0.1em",
+            textAlign: "center",
+            margin: 0,
+          }}>versus</p>
+
+          {/* Solution card */}
+          <div style={{
+            background: "rgba(197,160,89,0.08)",
+            border: "0.5px solid rgba(197,160,89,0.26)",
+            borderRadius: 6,
+            padding: "15px 16px",
+          }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 12,
+              fontWeight: 500,
+              color: "#C5A059",
+              margin: "0 0 6px",
+            }}>LaunchPath Standard</p>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 11,
+              color: "rgba(255,255,255,0.42)",
+              lineHeight: 1.5,
+              margin: "0 0 10px",
+            }}>
+              90-day guided implementation — all five domains installed, verified, and audit-ready
+            </p>
+            <p style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontSize: 13,
+              fontWeight: 500,
+              color: "#C5A059",
+              margin: 0,
+            }}>Costs less than one audit failure</p>
+          </div>
+
+          {/* Label 2 */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 9,
+            fontWeight: 500,
+            color: "rgba(197,160,89,0.6)",
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            margin: 0,
+          }}>WHAT THE STANDARD INSTALLS</p>
+
+          {/* Domain list */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+            {DOMAINS.map((d) => (
+              <div key={d.num} style={{
+                display: "flex",
+                alignItems: "baseline",
+                gap: 10,
+              }}>
+                <span style={{
+                  fontFamily: "'Courier New', Courier, monospace",
+                  fontSize: 10,
+                  color: "rgba(197,160,89,0.5)",
+                  width: 20,
+                  flexShrink: 0,
+                }}>{d.num}</span>
+                <span style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 12,
+                  color: "rgba(255,255,255,0.58)",
+                }}>{d.name}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr !important; } }
-        @media (max-width: 900px) { .hero-grid > div:last-child { display: none; } }
-        @media (max-width: 640px) { .hero-section { padding: 5rem 1.25rem 3.5rem !important; } }
+        @media (max-width: 620px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            padding: 52px 24px 48px !important;
+          }
+          .hero-grid > div:last-child { display: none !important; }
+          .hero-headline-line { font-size: 28px !important; }
+          .proof-strip { max-width: 100% !important; }
+        }
+        @media (min-width: 621px) and (max-width: 900px) {
+          .hero-grid { grid-template-columns: 1fr 240px !important; gap: 2.5rem !important; }
+        }
       `}</style>
     </section>
   );
