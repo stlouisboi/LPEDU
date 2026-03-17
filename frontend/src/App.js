@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import BookMockupPage from "./pages/BookMockupPage";
 import ReadinessPage from "./pages/ReadinessPage"; // kept only for legacy redirect
 import AutoDiagnosticPage from "./pages/AutoDiagnosticPage";
 import KnowledgeCenterIndex from "./pages/KnowledgeCenterIndex";
@@ -106,7 +107,7 @@ function AppRouter() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
-      <Route path="/readiness" element={<Navigate to="/reach-diagnostic" replace />} />
+      <Route path="/reach-diagnostic" element={<REACHAssessmentPage />} />
       <Route path="/auto-diagnostic" element={<AutoDiagnosticPage />} />
       <Route path="/knowledge-center" element={<KnowledgeCenterIndex />} />
       <Route path="/knowledge-center/all-checklists" element={<AllChecklists />} />
@@ -116,13 +117,14 @@ function AppRouter() {
       <Route path="/knowledge-center/insurance-continuity-brief" element={<InsuranceContinuityBrief />} />
       <Route path="/knowledge-center/drug-alcohol-program-brief" element={<DrugAlcoholBrief />} />
       <Route path="/knowledge-center/authority-registrations-brief" element={<UCRRegistrationBrief />} />
+      <Route path="/mockups" element={<BookMockupPage />} />
       <Route path="/ground-0-briefing" element={<Ground0Page />} />
       <Route path="/ground-0-complete" element={<Ground0CompletePage />} />
       <Route path="/admission" element={<AdmissionPage />} />
       <Route path="/portal" element={<PortalPage />} />
       <Route path="/coach-registry" element={<CoachRegistryPage />} />
+      <Route path="/readiness" element={<Navigate to="/reach-diagnostic" replace />} />
       <Route path="/reach-assessment" element={<Navigate to="/reach-diagnostic" replace />} />
-      <Route path="/reach-diagnostic" element={<REACHAssessmentPage />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
       <Route path="/partners" element={<PartnersPage />} />
