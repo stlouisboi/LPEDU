@@ -163,10 +163,10 @@ function createCoverTexture(product) {
   topGrad.addColorStop(0.65, "#C5A059");
   topGrad.addColorStop(1, "#A8883A");
   ctx.fillStyle = topGrad;
-  ctx.fillRect(0, 0, W, 52);   // thicker band — 52px
+  ctx.fillRect(0, 0, W, 90);   // 90px — prominent at render size
 
   // Gold bottom band
-  ctx.fillRect(0, H - 52, W, 52);
+  ctx.fillRect(0, H - 90, W, 90);
 
   // Thin inner rule (separation line below top band)
   ctx.fillStyle = "rgba(197,160,89,0.35)";
@@ -177,8 +177,8 @@ function createCoverTexture(product) {
   ctx.font = 'bold 40px "Courier New", Courier, monospace';
   ctx.fillText(`PACKET ${product.packetNum}  \u00B7  ${product.domainLabel}`, 80, 150);
 
-  // Large faint LP watermark
-  ctx.fillStyle = "rgba(197,160,89,0.04)";
+  // Large faint LP watermark — very subtle
+  ctx.fillStyle = "rgba(197,160,89,0.025)";
   ctx.font = 'bold 500px Georgia, "Times New Roman", serif';
   ctx.fillText("LP", 1350, 1250);
 
@@ -207,7 +207,9 @@ function createCoverTexture(product) {
   ctx.font = 'bold 34px "Courier New", Courier, monospace';
   ctx.fillText("LAUNCHPATHEDU.COM", 80, 1260);
 
-  return new THREE.CanvasTexture(c);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
 }
 
 function createSpineTexture(spineLabel) {
@@ -247,7 +249,9 @@ function createSpineTexture(spineLabel) {
   ctx.fillText("LaunchPath", 0, 0);
   ctx.restore();
 
-  return new THREE.CanvasTexture(c);
+  const spineTex = new THREE.CanvasTexture(c);
+  spineTex.colorSpace = THREE.SRGBColorSpace;
+  return spineTex;
 }
 
 function createPageEdgeTexture() {
@@ -256,11 +260,9 @@ function createPageEdgeTexture() {
   c.width = W; c.height = H;
   const ctx = c.getContext("2d");
 
-  // Warm cream base
   ctx.fillStyle = CREAM;
   ctx.fillRect(0, 0, W, H);
 
-  // Fine horizontal lines with variation
   for (let y = 0; y < H; y += 2 + Math.random() * 3) {
     const alpha = 0.08 + Math.random() * 0.12;
     ctx.strokeStyle = `rgba(140,120,95,${alpha})`;
@@ -271,14 +273,15 @@ function createPageEdgeTexture() {
     ctx.stroke();
   }
 
-  // Spine-side shadow (gradient from left)
   const spineGrad = ctx.createLinearGradient(0, 0, 80, 0);
   spineGrad.addColorStop(0, "rgba(0,0,0,0.4)");
   spineGrad.addColorStop(1, "rgba(0,0,0,0)");
   ctx.fillStyle = spineGrad;
   ctx.fillRect(0, 0, 80, H);
 
-  return new THREE.CanvasTexture(c);
+  const pageTex = new THREE.CanvasTexture(c);
+  pageTex.colorSpace = THREE.SRGBColorSpace;
+  return pageTex;
 }
 
 function createBackCoverTexture() {
@@ -290,18 +293,15 @@ function createBackCoverTexture() {
   ctx.fillStyle = "#001428";
   ctx.fillRect(0, 0, W, H);
 
-  // Gold bands
   ctx.fillStyle = GOLD;
   ctx.fillRect(0, 0, W, 14);
   ctx.fillRect(0, H - 14, W, 14);
 
-  // Faint LP
   ctx.fillStyle = "rgba(197,160,89,0.08)";
   ctx.font = 'bold 320px Georgia, "Times New Roman", serif';
   ctx.textAlign = "center";
   ctx.fillText("LP", W / 2, H / 2 + 90);
 
-  // Brand
   ctx.fillStyle = "rgba(197,160,89,0.65)";
   ctx.font = 'bold 44px "Courier New", Courier, monospace';
   ctx.textAlign = "center";
@@ -309,7 +309,9 @@ function createBackCoverTexture() {
   ctx.font = '32px "Courier New", Courier, monospace';
   ctx.fillText("launchpathedu.com", W / 2, H - 44);
 
-  return new THREE.CanvasTexture(c);
+  const backTex = new THREE.CanvasTexture(c);
+  backTex.colorSpace = THREE.SRGBColorSpace;
+  return backTex;
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
@@ -355,10 +357,10 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     scene.environmentIntensity = 0.12;   // low: just adds specular sheen, no colour cast
     pmrem.dispose();
 
-    // ── Camera ────────────────────────────────────────────────────────────────
-    const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 60);
-    camera.position.set(0.2, 1.0, 5.2);
-    camera.lookAt(0, 0.15, 0);
+    // ── Camera — pulled in closer, fills frame better ─────────────────────────
+    const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 60);
+    camera.position.set(0.1, 0.8, 3.8);
+    camera.lookAt(0, 0.3, 0);
     cameraRef.current = camera;
 
     // ── Textures ──────────────────────────────────────────────────────────────
