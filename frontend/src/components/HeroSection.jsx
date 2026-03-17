@@ -6,12 +6,13 @@ const DOMAINS = [
   { num: "02", name: "Driver Qualification Files" },
   { num: "03", name: "Drug & Alcohol Program" },
   { num: "04", name: "Hours of Service & Dispatch" },
-  { num: "05", name: "Vehicle Maintenance & Insurance" },
+  { num: "05", name: "Vehicle Maintenance" },
+  { num: "06", name: "Insurance & Filings" },
 ];
 
 const PROOF = [
   { target: 90, suffix: "", label: "Days", sublabel: "Guided implementation" },
-  { target: 5,  suffix: "", label: "Domains", sublabel: "Operational coverage" },
+  { target: 6,  suffix: "", label: "Domains", sublabel: "Operational coverage" },
   { target: 5,  suffix: "", label: "Checkpoints", sublabel: "Custodian review" },
 ];
 
