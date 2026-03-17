@@ -532,11 +532,13 @@ async def submit_ground0(data: Ground0Submit):
         "Content-Type": "application/json",
         "Accept": "application/json",
     }
-    async with httpx.AsyncClient(timeout=10) as http:
-        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
-    if resp.status_code not in (200, 201):
-        logger.error(f"MailerLite Ground 0 error {resp.status_code}: {resp.text}")
-        raise HTTPException(status_code=502, detail="Could not save submission.")
+    try:
+        async with httpx.AsyncClient(timeout=10) as http:
+            resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+        if resp.status_code not in (200, 201):
+            logger.error(f"MailerLite Ground 0 error {resp.status_code}: {resp.text}")
+    except Exception as exc:
+        logger.error(f"MailerLite Ground 0 request failed: {exc}")
     return {"ok": True}
 
 

@@ -67,7 +67,7 @@ export default function Ground0Page() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); // kept for potential future use
   const [showReachWidget, setShowReachWidget] = useState(false);
 
   const navigate = useNavigate();
@@ -90,19 +90,13 @@ export default function Ground0Page() {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
-    setError("");
-    try {
-      const resp = await fetch(`${API}/api/ground0`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (!resp.ok) throw new Error("Submission failed");
-      navigate("/ground-0-complete");
-    } catch {
-      setError("Something went wrong. Please try again.");
-      setLoading(false);
-    }
+    // Fire-and-forget — email capture is secondary; user always proceeds
+    fetch(`${API}/api/ground0`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    }).catch(() => {});
+    navigate("/ground-0-complete");
   };
 
   const togglePanel = (idx) => {
