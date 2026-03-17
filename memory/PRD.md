@@ -178,7 +178,14 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] 3D Book Mockup System built (Mar 17 2026) — Three.js 0.183.2, BookMockup3D component with RoomEnvironment reflections, ACES filmic tone mapping, MeshPhysicalMaterial clearcoat, gold metallic bands, canvas textures at 2048px; /product-preview export tool (all 7 products, drag-to-rotate, cover 1280×720 + thumbnail 600×600 export); embedded in all 5 packet pages + bundle page hero
 - [x] Knowledge Center → Packet cross-links added ("LP-PKT-00X — Install this system →" on each brief card)
 - [x] Packet descriptions updated to "document system" language on /standards page
-- [ ] Add real Gumroad URLs to all product pages (currently href="#")
+- [x] Video-Led Lesson Workbench built (Mar 2026):
+  - VideoLessonWorkbench.jsx component with react-player, video placeholder, lesson track, supporting resources
+  - MODULE_1_DATA: 7 real lessons (1.1–1.7) with titles, descriptions, subtitles, resources for Business & Authority Setup
+  - ModuleOverviewCard for modules 2-9: topic list + cohort delivery note + type badges (Recovery/Extension)
+  - CURRICULUM updated to 10 modules (Ground 0 + Modules 1-9) with type field (core/recovery/extension)
+  - Module 7 = Recovery (optional), Modules 8-9 = Standard Extensions — type-specific sidebar color badges
+  - No content gating — all paid users see all modules immediately
+  - Sidebar type labels: UNLOCKED / COHORT ACCESS / RECOVERY / EXTENSION
 
 ### P0 — Production Portal Fixes (March 2026)
 - [x] Moved `EMERGENT_AUTH_URL` to env var (`os.environ.get('EMERGENT_AUTH_URL', ...)`) in server.py
