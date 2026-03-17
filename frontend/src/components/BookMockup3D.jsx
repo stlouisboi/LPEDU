@@ -156,16 +156,19 @@ function createCoverTexture(product) {
   for (let x = 0; x < W; x += 80) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
   for (let y = 0; y < H; y += 80) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
 
-  // Gold top band (with gradient)
+  // Gold top band — thick, full-bleed, gradient
   const topGrad = ctx.createLinearGradient(0, 0, W, 0);
-  topGrad.addColorStop(0, "#C5A059"); topGrad.addColorStop(0.5, "#D4B87A"); topGrad.addColorStop(1, "#C5A059");
+  topGrad.addColorStop(0, "#A8883A");
+  topGrad.addColorStop(0.35, "#D4B87A");
+  topGrad.addColorStop(0.65, "#C5A059");
+  topGrad.addColorStop(1, "#A8883A");
   ctx.fillStyle = topGrad;
-  ctx.fillRect(0, 0, W, 18);
+  ctx.fillRect(0, 0, W, 52);   // thicker band — 52px
 
   // Gold bottom band
-  ctx.fillRect(0, H - 18, W, 18);
+  ctx.fillRect(0, H - 52, W, 52);
 
-  // Thin separator line below label
+  // Thin inner rule (separation line below top band)
   ctx.fillStyle = "rgba(197,160,89,0.35)";
   ctx.fillRect(0, 205, W, 2);
 
@@ -375,10 +378,6 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     const pageMat  = new THREE.MeshStandardMaterial({ map: pageTex, roughness: 0.82 });
     const backMat  = new THREE.MeshStandardMaterial({ map: backTex, roughness: 0.4 });
 
-    const goldMat = new THREE.MeshPhysicalMaterial({
-      color: 0xC5A059, metalness: 0.92, roughness: 0.18, reflectivity: 1,
-    });
-
     // ── Book dimensions ───────────────────────────────────────────────────────
     const bW = 2.4, bH = 1.65, bD = 0.28;
     // Face order: [+x right=pages, -x left=spine, +y top, -y bottom, +z front=cover, -z back]
@@ -402,25 +401,8 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     book2.castShadow = true;
     group.add(book2);
 
-    // Gold bands on top book (cover face, slightly proud)
-    const bandGeo = new THREE.BoxGeometry(bW + 0.01, 0.045, 0.006);
-    const topBand = new THREE.Mesh(bandGeo, goldMat);
-    topBand.position.set(0, bH / 2 - 0.022 + bH + 0.015, bD / 2 + 0.004);
-    topBand.castShadow = false;
-    group.add(topBand);
-
-    const botBand = new THREE.Mesh(bandGeo, goldMat);
-    botBand.position.set(0, -(bH / 2 - 0.022) + bH + 0.015, bD / 2 + 0.004);
-    botBand.castShadow = false;
-    group.add(botBand);
-
-    // Gold bands on bottom book
-    const topBand2 = new THREE.Mesh(bandGeo, goldMat);
-    topBand2.position.set(0.05, bH / 2 - 0.022, bD / 2 + 0.004 - 0.06);
-    group.add(topBand2);
-    const botBand2 = new THREE.Mesh(bandGeo, goldMat);
-    botBand2.position.set(0.05, -(bH / 2 - 0.022), bD / 2 + 0.004 - 0.06);
-    group.add(botBand2);
+    // No separate 3D band geometry — canvas texture owns the gold bands at full bleed.
+    // The clearcoat on coverMat gives the metallic sheen without alignment issues.
 
     group.position.set(-0.15, -0.9, 0);
     scene.add(group);
