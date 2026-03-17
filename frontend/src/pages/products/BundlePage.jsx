@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import FadeIn from "../../components/FadeIn";
+import { BookMockup3D } from "../../components/BookMockup3D";
 
 const PACKETS = [
   { code: "LP-PKT-001", title: "New Entrant Packet", price: "$97", href: "/standards/new-entrant-packet" },
@@ -196,75 +197,90 @@ export default function BundlePage() {
 
       {/* Header */}
       <section style={{ background: "#001530", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <FadeIn>
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
-            }}>LP-BUNDLE-001 | NEW CARRIER DOCUMENT SYSTEM</p>
-
-            <h1 style={{
-              fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3.25rem)", color: "#FFFFFF",
-              lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
-            }}>New Carrier Document System</h1>
-
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
-              color: "rgba(255,255,255,0.55)", marginBottom: "2.5rem", fontStyle: "italic",
-            }}>
-              Full new-authority operating standard in document form — all five compliance domains, unified folder structure, and 0–30–90 day implementation guide.
-            </p>
-
-            {/* Price block */}
-            <div style={{
-              display: "flex", alignItems: "center", gap: "2rem",
-              flexWrap: "wrap", marginBottom: "1.5rem",
-            }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 420px", gap: "3rem", alignItems: "center" }} className="packet-hero-grid">
               <div>
-                <span style={{
-                  fontFamily: "'JetBrains Mono', monospace", fontSize: "2.5rem",
-                  fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em",
-                }}>$497</span>
-                <span style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
-                  color: "rgba(255,255,255,0.45)", marginLeft: "0.75rem",
-                }}>vs. $605 purchased separately</span>
-              </div>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="bundle-buy-btn"
-                style={{
-                  display: "inline-block", background: gold, color: "#001530",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.9rem",
-                  letterSpacing: "0.1em", textTransform: "uppercase",
-                  padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = "#d4b06a"}
-                onMouseLeave={e => e.currentTarget.style.background = gold}
-              >
-                Get on Gumroad →
-              </a>
-            </div>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+                  letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
+                }}>LP-BUNDLE-001 | NEW CARRIER DOCUMENT SYSTEM</p>
 
-            {/* Standard inclusion line */}
-            <div style={{
-              borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem",
-              padding: "0.875rem 1.25rem",
-              background: "rgba(197,160,89,0.06)",
-            }}>
-              <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
-                color: "rgba(255,255,255,0.75)", lineHeight: 1.7,
+                <h1 style={{
+                  fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                  fontSize: "clamp(2rem, 4vw, 3.25rem)", color: "#FFFFFF",
+                  lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
+                }}>New Carrier Document System</h1>
+
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                  color: "rgba(255,255,255,0.55)", marginBottom: "2.5rem", fontStyle: "italic",
+                }}>
+                  Full new-authority operating standard in document form — all five compliance domains, unified folder structure, and 0–30–90 day implementation guide.
+                </p>
+
+                {/* Price block */}
+                <div style={{
+                  display: "flex", alignItems: "center", gap: "2rem",
+                  flexWrap: "wrap", marginBottom: "1.5rem",
+                }}>
+                  <div>
+                    <span style={{
+                      fontFamily: "'JetBrains Mono', monospace", fontSize: "2.5rem",
+                      fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em",
+                    }}>$497</span>
+                    <span style={{
+                      fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+                      color: "rgba(255,255,255,0.45)", marginLeft: "0.75rem",
+                    }}>vs. $605 purchased separately</span>
+                  </div>
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="bundle-buy-btn"
+                    style={{
+                      display: "inline-block", background: gold, color: "#001530",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.9rem",
+                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s",
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = "#d4b06a"}
+                    onMouseLeave={e => e.currentTarget.style.background = gold}
+                  >
+                    Get on Gumroad →
+                  </a>
+                </div>
+
+                {/* Standard inclusion line */}
+                <div style={{
+                  borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem",
+                  padding: "0.875rem 1.25rem",
+                  background: "rgba(197,160,89,0.06)",
+                }}>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
+                    color: "rgba(255,255,255,0.75)", lineHeight: 1.7,
               }}>
                 The complete document system is included for carriers enrolled in the LaunchPath Standard. If you're weighing both, that's worth knowing.
               </p>
             </div>
+              </div>{/* end left col */}
+
+              {/* Right: 3D book */}
+              <div style={{ borderRadius: "6px", overflow: "hidden" }}>
+                <BookMockup3D productId="bundle" mode="embed" />
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem",
+                  color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em",
+                  textAlign: "center", marginTop: "0.5rem",
+                }}>DRAG TO ROTATE</p>
+              </div>
+            </div>{/* end grid */}
           </FadeIn>
         </div>
       </section>
+      <style>{`@media(max-width:760px){.packet-hero-grid{grid-template-columns:1fr!important;}}`}</style>
 
       <div style={{ maxWidth: 860, margin: "0 auto", padding: "64px 24px" }}>
 

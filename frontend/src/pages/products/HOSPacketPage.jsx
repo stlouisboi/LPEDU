@@ -34,6 +34,7 @@ export default function HOSPacketPage() {
       nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
+      mockupId="hos-dispatch"
     />
   );
 }

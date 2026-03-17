@@ -42,6 +42,7 @@ export default function DrugAlcoholPacketPage() {
       nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
+      mockupId="drug-alcohol"
     >
       {/* Who This Is Not For */}
       <FadeIn delay={170}>

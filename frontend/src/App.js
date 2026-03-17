@@ -25,6 +25,7 @@ import CoachRegistryPage from "./pages/CoachRegistryPage";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
 import PartnersPage from "./pages/PartnersPage";
+import ProductPreviewPage from "./pages/ProductPreviewPage";
 
 // /standards routes
 import StandardsPage from "./pages/StandardsPage";
@@ -133,6 +134,9 @@ function AppRouter() {
       <Route path="/standards/insurance-packet" element={<InsurancePacketPage />} />
       <Route path="/standards/new-carrier-document-system" element={<BundlePage />} />
       <Route path="/standards/16-deadly-sins" element={<SixteenSinsPage />} />
+
+      {/* Product preview/export tool */}
+      <Route path="/product-preview" element={<ProductPreviewPage />} />
 
       {/* 301 redirects: /products → /standards */}
       <Route path="/products" element={<Navigate to="/standards" replace />} />

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import FooterSection from "./FooterSection";
 import FadeIn from "./FadeIn";
+import { BookMockup3D } from "./BookMockup3D";
 
 export default function ProductPageTemplate({
   label,
@@ -18,6 +19,7 @@ export default function ProductPageTemplate({
   nextStepLabel,
   gumroadUrl = "#",
   standardInclusion = true,
+  mockupId = null,
   children,
 }) {
   const gold = "#C5A059";
@@ -29,46 +31,68 @@ export default function ProductPageTemplate({
 
       {/* Header */}
       <section style={{ background: "#001530", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
-        <div style={{ maxWidth: 820, margin: "0 auto" }}>
+        <div style={{ maxWidth: mockupId ? 1100 : 820, margin: "0 auto" }}>
           <FadeIn>
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
-            }}>{label}</p>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mockupId ? "1fr 420px" : "1fr",
+              gap: "3rem",
+              alignItems: "center",
+            }} className="packet-hero-grid">
+              {/* Left: text */}
+              <div>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+                  letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
+                }}>{label}</p>
 
-            <h1 style={{
-              fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFFFFF",
-              lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
-            }}>{title}</h1>
+                <h1 style={{
+                  fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                  fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFFFFF",
+                  lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
+                }}>{title}</h1>
 
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
-              color: "rgba(255,255,255,0.55)", marginBottom: "2rem", fontStyle: "italic",
-            }}>{subtitle}</p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                  color: "rgba(255,255,255,0.55)", marginBottom: "2rem", fontStyle: "italic",
+                }}>{subtitle}</p>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
-              <span style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem",
-                fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em",
-              }}>{price}</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
+                  <span style={{
+                    fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem",
+                    fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em",
+                  }}>{price}</span>
 
-              <a
-                href={gumroadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="buy-on-gumroad-btn"
-                style={{
-                  display: "inline-block", background: gold, color: "#001530",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
-                  letterSpacing: "0.1em", textTransform: "uppercase",
-                  padding: "0.875rem 2rem", textDecoration: "none", transition: "background 0.2s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = "#d4b06a"}
-                onMouseLeave={e => e.currentTarget.style.background = gold}
-              >
-                Get on Gumroad →
-              </a>
+                  <a
+                    href={gumroadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="buy-on-gumroad-btn"
+                    style={{
+                      display: "inline-block", background: gold, color: "#001530",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      padding: "0.875rem 2rem", textDecoration: "none", transition: "background 0.2s",
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = "#d4b06a"}
+                    onMouseLeave={e => e.currentTarget.style.background = gold}
+                  >
+                    Get on Gumroad →
+                  </a>
+                </div>
+              </div>
+
+              {/* Right: 3D book mockup */}
+              {mockupId && (
+                <div style={{ borderRadius: "6px", overflow: "hidden" }}>
+                  <BookMockup3D productId={mockupId} mode="embed" />
+                  <p style={{
+                    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem",
+                    color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em",
+                    textAlign: "center", marginTop: "0.5rem",
+                  }}>DRAG TO ROTATE</p>
+                </div>
+              )}
             </div>
           </FadeIn>
         </div>
@@ -213,6 +237,11 @@ export default function ProductPageTemplate({
       </div>
 
       <FooterSection />
+      <style>{`
+        @media (max-width: 760px) {
+          .packet-hero-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

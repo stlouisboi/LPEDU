@@ -48,6 +48,7 @@ export default function NewEntrantPacketPage() {
       nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
+      mockupId="new-entrant"
     >
       {/* What This Replaces — closing note */}
       <FadeIn delay={165}>

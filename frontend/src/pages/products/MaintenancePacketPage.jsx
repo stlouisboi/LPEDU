@@ -34,6 +34,7 @@ export default function MaintenancePacketPage() {
       nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
       gumroadUrl="#"
+      mockupId="maintenance"
     />
   );
 }
