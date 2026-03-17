@@ -4,24 +4,30 @@ const TIMELINE = [
   {
     code: "DAY 1",
     label: "Authority Active",
-    body: "Insurance filings, driver files, safety systems, and compliance records must already be operational. The compliance clock starts at activation, not at the first load.",
+    body: "Insurance filings, driver files, safety controls, and compliance records should already be operational. The compliance clock starts at activation, not at the first load.",
     accent: true,
   },
   {
-    code: "DAYS 1–60",
+    code: "DAYS 1–30",
+    label: "Systems Installation",
+    body: "The carrier's documentary structure, dispatch rhythm, and monitoring habits begin taking shape. Missing systems at this stage become future exposure.",
+  },
+  {
+    code: "DAYS 30–60",
     label: "Operational Pattern Formation",
-    body: "Driver logs, maintenance records, and dispatch behavior begin establishing the compliance patterns investigators later review. What is built here defines the audit record.",
+    body: "Logs, maintenance activity, dispatch behavior, and file upkeep begin establishing the operating patterns later reviewed under audit conditions.",
   },
   {
     code: "DAYS 60–90",
     label: "Audit Exposure Window",
-    body: "Many carriers receive their New Entrant Safety Audit notification during this period. If operational systems are not installed, the audit becomes a reconstruction exercise rather than verification.",
+    body: "If the core systems are not installed by this stage, audit preparation becomes reconstruction rather than verification.",
     warning: true,
   },
   {
-    code: "MONTHS 12–24",
-    label: "Safety Review Monitoring",
-    body: "The New Entrant monitoring period continues until the carrier successfully passes the safety audit and maintains compliance performance.",
+    code: "MONTHS 9–18",
+    label: "What Was Built Gets Tested",
+    body: "The operational patterns created in the first months of authority become visible under scrutiny. Early discipline determines later defensibility.",
+    consequence: true,
   },
 ];
 
@@ -92,7 +98,7 @@ export default function AuthorityClockSection() {
             lineHeight: 1.85,
             maxWidth: 580,
           }}>
-            The first ninety days are not a grace period. They are the period when the operational systems that determine long-term survival must be installed. Carriers that wait until the audit notice arrives are already behind.
+            The first ninety days are not a grace period. They are the installation window. The files, monitoring rhythms, operating controls, and compliance patterns built here determine what investigators later find under scrutiny. Carriers who wait for the audit notice are already behind.
           </p>
         </div>
 
@@ -106,7 +112,12 @@ export default function AuthorityClockSection() {
                 display: "grid",
                 gridTemplateColumns: "180px 1fr",
                 gap: "2.5rem",
-                borderLeft: `3px solid ${item.accent ? "#C5A059" : item.warning ? "#fb923c" : "rgba(197,160,89,0.45)"}`,
+                borderLeft: `3px solid ${
+                  item.accent      ? "#C5A059"
+                  : item.warning   ? "#fb923c"
+                  : item.consequence ? "rgba(255,255,255,0.22)"
+                  : "rgba(197,160,89,0.35)"
+                }`,
                 padding: "2rem 0 2rem 2.5rem",
                 borderBottom: idx < TIMELINE.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
               }}
@@ -117,7 +128,7 @@ export default function AuthorityClockSection() {
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.784rem",
                   fontWeight: 700,
-                  color: item.accent ? "#C5A059" : item.warning ? "#fb923c" : "rgba(197,160,89,0.80)",
+                  color: item.accent ? "#C5A059" : item.warning ? "#fb923c" : item.consequence ? "rgba(255,255,255,0.45)" : "rgba(197,160,89,0.80)",
                   letterSpacing: "0.06em",
                   marginBottom: "0.3rem",
                 }}>
@@ -136,7 +147,7 @@ export default function AuthorityClockSection() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.98rem",
-                color: "rgba(255,255,255,0.86)",
+                color: item.consequence ? "rgba(255,255,255,0.62)" : "rgba(255,255,255,0.86)",
                 lineHeight: 1.8,
                 alignSelf: "center",
               }}>
