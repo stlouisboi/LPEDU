@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { Reflector } from "three/addons/objects/Reflector.js";
 
 // ── Brand constants ─────────────────────────────────────────────────────────
 const NAVY   = "#002244";
@@ -344,11 +345,11 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     scene.fog = new THREE.FogExp2(0x000814, 0.055);
     sceneRef.current = scene;
 
-    // ── Environment (Room Environment for reflections) ────────────────────────
+    // ── Environment — keep intensity very low so canvas colors dominate ────────
     const pmrem = new THREE.PMREMGenerator(renderer);
     const envTexture = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
     scene.environment = envTexture;
-    scene.environmentIntensity = 0.6;
+    scene.environmentIntensity = 0.12;   // low: just adds specular sheen, no colour cast
     pmrem.dispose();
 
     // ── Camera ────────────────────────────────────────────────────────────────
@@ -368,6 +369,7 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     const coverMat = new THREE.MeshPhysicalMaterial({
       map: coverTex, roughness: 0.35, metalness: 0.08,
       clearcoat: 0.3, clearcoatRoughness: 0.2,
+      envMapIntensity: 0.25,   // subtle specular only — canvas colors stay true
     });
     const spineMat = new THREE.MeshStandardMaterial({ map: spineTex, roughness: 0.45 });
     const pageMat  = new THREE.MeshStandardMaterial({ map: pageTex, roughness: 0.82 });
@@ -423,34 +425,71 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     group.position.set(-0.15, -0.9, 0);
     scene.add(group);
 
-    // ── Floor ─────────────────────────────────────────────────────────────────
+    // ── Floor — dark matte base ───────────────────────────────────────────────
+    const floorGeo = new THREE.PlaneGeometry(24, 24);
+
+    // Grain texture for the floor
+    const grainCanvas = document.createElement("canvas");
+    grainCanvas.width = 512; grainCanvas.height = 512;
+    const gctx = grainCanvas.getContext("2d");
+    gctx.fillStyle = "#000814";
+    gctx.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 18000; i++) {
+      const x = Math.random() * 512, y = Math.random() * 512;
+      const a = Math.random() * 0.06;
+      gctx.fillStyle = `rgba(197,160,89,${a})`;
+      gctx.fillRect(x, y, 1, 1);
+    }
+    // Subtle LP watermark on floor
+    gctx.fillStyle = "rgba(197,160,89,0.04)";
+    gctx.font = 'bold 140px Georgia, serif';
+    gctx.textAlign = "center";
+    gctx.fillText("LP", 256, 300);
+
+    const grainTex = new THREE.CanvasTexture(grainCanvas);
+    grainTex.wrapS = grainTex.wrapT = THREE.RepeatWrapping;
+    grainTex.repeat.set(3, 3);
+
     const floor = new THREE.Mesh(
-      new THREE.PlaneGeometry(24, 24),
-      new THREE.MeshStandardMaterial({ color: 0x000814, roughness: 0.95 })
+      floorGeo,
+      new THREE.MeshStandardMaterial({ map: grainTex, roughness: 0.92 })
     );
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -0.9;
     floor.receiveShadow = true;
     scene.add(floor);
 
-    // Contact shadow circle under books
-    const shadowGeo = new THREE.CircleGeometry(1.8, 32);
-    const shadowCanvas = document.createElement("canvas");
-    shadowCanvas.width = 256; shadowCanvas.height = 256;
-    const sctx = shadowCanvas.getContext("2d");
-    const radGrad = sctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-    radGrad.addColorStop(0, "rgba(0,0,0,0.55)");
-    radGrad.addColorStop(1, "rgba(0,0,0,0)");
-    sctx.fillStyle = radGrad;
-    sctx.fillRect(0, 0, 256, 256);
-    const shadowMat = new THREE.MeshBasicMaterial({
-      map: new THREE.CanvasTexture(shadowCanvas),
-      transparent: true, depthWrite: false,
+    // ── Mirror floor reflection ────────────────────────────────────────────────
+    const reflector = new Reflector(new THREE.CircleGeometry(3.0, 48), {
+      clipBias: 0.003,
+      textureWidth:  512,
+      textureHeight: 512,
+      color: new THREE.Color(0x050c1a),   // very dark tint — subtle studio reflection
     });
-    const contactShadow = new THREE.Mesh(shadowGeo, shadowMat);
-    contactShadow.rotation.x = -Math.PI / 2;
-    contactShadow.position.set(-0.1, -0.899, 0);
-    scene.add(contactShadow);
+    reflector.rotation.x = -Math.PI / 2;
+    reflector.position.set(-0.1, -0.898, 0);   // just above the floor plane
+    scene.add(reflector);
+
+    // Fade mask: transparency fades the reflection at the edges
+    const fadeCvs = document.createElement("canvas");
+    fadeCvs.width = 256; fadeCvs.height = 256;
+    const fctx = fadeCvs.getContext("2d");
+    const fadeGrad = fctx.createRadialGradient(128, 128, 20, 128, 128, 128);
+    fadeGrad.addColorStop(0, "rgba(0,0,0,0.55)");
+    fadeGrad.addColorStop(0.5, "rgba(0,0,0,0.25)");
+    fadeGrad.addColorStop(1, "rgba(0,0,0,0)");
+    fctx.fillStyle = fadeGrad;
+    fctx.fillRect(0, 0, 256, 256);
+    const fadeMesh = new THREE.Mesh(
+      new THREE.CircleGeometry(3.2, 48),
+      new THREE.MeshBasicMaterial({
+        map: new THREE.CanvasTexture(fadeCvs),
+        transparent: true, depthWrite: false, opacity: 0.75,
+      })
+    );
+    fadeMesh.rotation.x = -Math.PI / 2;
+    fadeMesh.position.set(-0.1, -0.897, 0);
+    scene.add(fadeMesh);
 
     // ── Lighting ──────────────────────────────────────────────────────────────
     scene.add(new THREE.AmbientLight(0xffffff, 0.35));
@@ -466,7 +505,7 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     key.shadow.bias = -0.0005;
     scene.add(key);
 
-    const fill = new THREE.DirectionalLight(0x8090cc, 0.55);
+    const fill = new THREE.DirectionalLight(0xffffff, 0.35);  // neutral white, not blue
     fill.position.set(-5, 2, 3);
     scene.add(fill);
 
@@ -515,7 +554,6 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
       renderer.render(scene, camera);
     };
     animate();
-
     // ── Resize handler ────────────────────────────────────────────────────────
     const onResize = () => {
       const nW = container.clientWidth;
