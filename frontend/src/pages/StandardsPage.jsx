@@ -184,6 +184,20 @@ export default function StandardsPage() {
                   </div>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>{tier.desc}</p>
                 </div>
+                {tier.href.startsWith("#") ? (
+                  <a href={tier.href} style={{
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+                    letterSpacing: "0.1em", textTransform: "uppercase",
+                    color: gold,
+                    background: "transparent",
+                    border: `1px solid rgba(197,160,89,0.4)`,
+                    padding: "0.75rem 1.5rem", textDecoration: "none",
+                    whiteSpace: "nowrap", flexShrink: 0, transition: "all 0.2s",
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
+                    onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+                  >{tier.cta}</a>
+                ) : (
                 <Link to={tier.href} style={{
                   fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                   letterSpacing: "0.1em", textTransform: "uppercase",
@@ -196,6 +210,7 @@ export default function StandardsPage() {
                   onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
                   onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
                 >{tier.cta}</Link>
+                )}
               </div>
             ))}
           </div>
