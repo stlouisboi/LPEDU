@@ -6,13 +6,12 @@ const DOMAINS = [
   { num: "02", name: "Driver Qualification Files" },
   { num: "03", name: "Drug & Alcohol Program" },
   { num: "04", name: "Hours of Service & Dispatch" },
-  { num: "05", name: "Vehicle Maintenance" },
-  { num: "06", name: "Insurance & Authority" },
+  { num: "05", name: "Vehicle Maintenance & Insurance" },
 ];
 
 const PROOF = [
   { target: 90, suffix: "", label: "Days", sublabel: "Guided implementation" },
-  { target: 5,  suffix: "", label: "Domains", sublabel: "Audit coverage" },
+  { target: 5,  suffix: "", label: "Domains", sublabel: "Operational coverage" },
   { target: 5,  suffix: "", label: "Checkpoints", sublabel: "Custodian review" },
 ];
 
@@ -133,27 +132,29 @@ export default function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 style={{ margin: 0 }}>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 60, fontWeight: 500, lineHeight: 1.05, color: "#FFFFFF", marginBottom: 4 }}>
+          <h1 style={{ margin: "0 0 0 0" }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#FFFFFF", marginBottom: 6 }}>
               Your authority is active.
             </span>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 60, fontWeight: 500, lineHeight: 1.05, color: "#C5A059" }}>
-              Your exposure window just opened.
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#C5A059" }}>
+              The first 90 days<br />determine what survives.
             </span>
           </h1>
 
-          <div style={{ width: 40, height: 2, background: "#C5A059", margin: "28px 0" }} />
+          <div style={{ width: 40, height: 2, background: "#C5A059", margin: "26px 0 20px" }} />
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 480, marginBottom: 36 }}>
-            Most carriers focus on loads first. FMCSA is already watching.{" "}
-            <span style={{ color: "rgba(255,255,255,0.92)", fontWeight: 500 }}>
-              What you build in the first 90 days shapes what the agency finds between Month 9 and Month 18.
-            </span>
-            {" "}Authority failure is rarely caused by lack of effort. It is caused by missing operational infrastructure.
+          {/* Primary supporting paragraph — what LaunchPath is */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 16 }}>
+            LaunchPath is a 90-day guided installation for new motor carriers. We help you build the compliance infrastructure FMCSA expects before missing systems become audit exposure.
+          </p>
+
+          {/* Secondary body — operator-readable operational context */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 32 }}>
+            Most carriers chase loads first and build controls later. LaunchPath reverses that — installing the files, programs, monitoring rhythm, and operating structure that protect authority before drift, scrutiny, and remediation costs set in.
           </p>
 
           {/* CTAs */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", marginBottom: 36 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
             <Link to="/ground-0-briefing" data-testid="hero-primary-cta" className="hero-cta-primary"
               style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: "0.02em", color: "#001833", background: "#C5A059", padding: "16px 36px", height: 52, borderRadius: 4, textDecoration: "none", boxShadow: "0 0 0 3px rgba(197,160,89,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center" }}
               onMouseEnter={e => (e.currentTarget.style.background = "#d4b572")}
@@ -239,8 +240,11 @@ export default function HeroSection() {
             <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.92)", margin: "0 0 6px" }}>
               Audit failure + remediation
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.52)", lineHeight: 1.55, margin: "0 0 14px" }}>
-              Deficiency findings, corrective action window, potential authority revocation
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.6, margin: "0 0 10px" }}>
+              Deficiency findings, corrective action exposure, service disruption, and preventable authority risk.
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.40)", lineHeight: 1.5, margin: "0 0 12px", fontStyle: "italic" }}>
+              Costs can exceed one preventable build.
             </p>
             {/* Animated price */}
             <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 20, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
@@ -275,11 +279,11 @@ export default function HeroSection() {
             <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: "#C5A059", margin: "0 0 6px" }}>
               LaunchPath Standard
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.62)", lineHeight: 1.55, margin: "0 0 12px" }}>
-              90-day guided implementation — all five domains installed, verified, and audit-ready
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.65)", lineHeight: 1.6, margin: "0 0 12px" }}>
+              90-day guided installation of the compliance systems new carriers need to operate with structure, proof, and audit readiness.
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 600, color: "#C5A059", margin: 0, letterSpacing: "0.02em" }}>
-              Costs less than one audit failure
+              Costs less than one preventable failure
             </p>
           </div>
 
@@ -310,7 +314,7 @@ export default function HeroSection() {
         @media (max-width: 680px) {
           .hero-grid { grid-template-columns: 1fr !important; }
           .hero-left { padding: 64px 28px 48px !important; }
-          .hero-headline-line { font-size: 40px !important; }
+          .hero-headline-line { font-size: 36px !important; line-height: 1.1 !important; }
           .proof-strip { display: none !important; }
           .proof-mobile { display: flex !important; }
           .hero-cta-primary, .hero-cta-secondary { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
@@ -320,7 +324,7 @@ export default function HeroSection() {
           .hero-grid { grid-template-columns: 1fr 220px !important; }
           .hero-left { padding: 80px 28px 64px 36px !important; }
           .hero-right { padding: 80px 16px 64px !important; }
-          .hero-headline-line { font-size: 42px !important; }
+          .hero-headline-line { font-size: 38px !important; line-height: 1.1 !important; }
           .hero-rp-label { font-size: 11px !important; color: rgba(197,160,89,0.90) !important; }
           .hero-rp-sub { font-size: 12px !important; color: rgba(255,255,255,0.76) !important; }
           .hero-rp-title { font-size: 13px !important; }
@@ -330,7 +334,7 @@ export default function HeroSection() {
           .hero-grid { grid-template-columns: 1fr 296px !important; }
           .hero-left { padding: 90px 36px 72px 44px !important; }
           .hero-right { padding: 90px 24px 72px !important; }
-          .hero-headline-line { font-size: 52px !important; }
+          .hero-headline-line { font-size: 46px !important; }
           .hero-rp-label { font-size: 11px !important; letter-spacing: 0.10em !important; color: rgba(197,160,89,0.92) !important; }
           .hero-rp-sub { font-size: 13px !important; color: rgba(255,255,255,0.80) !important; }
           .hero-rp-title { font-size: 15px !important; }

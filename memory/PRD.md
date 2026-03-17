@@ -248,4 +248,16 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Removed REACH widget from G0-6 accordion (replaced with directional note)
 - [x] /ground-0-complete reads ?result param via useSearchParams — color-coded dynamic header
 - [x] /readiness and /reach-assessment both redirect to /reach-diagnostic
+
+### Homepage Hero Refinement (March 2026)
+- [x] Fixed architecture inconsistency: DOMAINS array reduced from 6 to 5 (combined "Vehicle Maintenance & Insurance")
+- [x] Updated headline: "Your authority is active." + "The first 90 days / determine what survives." (intentional <br/>)
+- [x] Removed headline maxWidth constraint — full column width controls line breaks
+- [x] Two-paragraph body structure: primary intro paragraph (what LaunchPath is) + secondary context paragraph
+- [x] Stats sublabel updated: "Audit coverage" → "Operational coverage"
+- [x] Risk card copy: updated description + added "Costs can exceed one preventable build." line
+- [x] Standard card copy: updated description + "Costs less than one preventable failure"
+- [x] Paragraph maxWidths widened (520/540 → 600/620px) to reduce horizontal dead space
+- [x] Mobile headline font size updated in media queries (40px → 36px at <680px)
+
 - [x] Internal links to /readiness updated across NextStepSection, AutoDiagnosticPage, AboutPage
