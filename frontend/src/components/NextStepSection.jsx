@@ -123,7 +123,7 @@ export default function NextStepSection() {
           </p>
 
           <Link
-            to="/readiness"
+            to="/ground-0-briefing"
             data-testid="sequence-cta-btn"
             style={{
               display: "inline-flex",

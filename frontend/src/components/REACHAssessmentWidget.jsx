@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ── Questions ────────────────────────────────────────────
 const CATEGORIES = [
@@ -125,6 +125,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   const [animateMap, setAnimateMap] = useState(false);
 
   const API = process.env.REACT_APP_BACKEND_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (phase !== "analyzing") return;
@@ -201,6 +202,10 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
     } catch { /* still confirm */ }
     setLoading(false);
     setSubmitted(true);
+    // Auto-navigate to the completion page with the result after a brief moment
+    setTimeout(() => {
+      navigate(`/ground-0-complete?result=${result}`);
+    }, 1800);
   };
 
   const currentCatIdx = phase === "questions" ? (QUESTIONS[currentQ]?.cat ?? 0) : 0;

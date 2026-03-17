@@ -187,7 +187,7 @@ export default function AutoDiagnosticPage() {
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 480, margin: "0 auto 2.5rem" }}>
               7 questions. 3 minutes. A GO, WAIT, or STOP classification that reflects where you actually stand.
             </p>
-            <Link to="/readiness"
+            <Link to="/reach-diagnostic"
               data-testid="run-diagnostic-cta"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "0.6rem",

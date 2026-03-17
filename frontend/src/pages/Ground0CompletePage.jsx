@@ -1,9 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
 // ── Replace with actual Gumroad bundle URL when available ──
 const GUMROAD_BUNDLE_URL = "https://launchpath.gumroad.com/l/document-system";
+
+const RESULT_HEADER = {
+  GO: {
+    color: "#22c55e",
+    label: "REACH RESULT: GO",
+    headline: "Your result: GO — your operational infrastructure is aligned.",
+    sub: "You are cleared to proceed. Review your recommended next step below.",
+  },
+  WAIT: {
+    color: "#fbbf24",
+    label: "REACH RESULT: WAIT",
+    headline: "Your result: WAIT — gaps have been identified in your assessment.",
+    sub: "Address the flagged areas before proceeding to Standard admission.",
+  },
+  "NO-GO": {
+    color: "#f87171",
+    label: "REACH RESULT: NO-GO",
+    headline: "Your result: NO-GO — critical operational gaps require resolution.",
+    sub: "LaunchPath will be here when the conditions improve. Review the preparation path below.",
+  },
+};
 
 const PATHS = [
   {
@@ -234,6 +255,10 @@ function PathCard({ path }) {
 }
 
 export default function Ground0CompletePage() {
+  const [searchParams] = useSearchParams();
+  const resultParam = searchParams.get("result"); // "GO", "WAIT", "NO-GO", or null
+  const resultCfg = resultParam ? RESULT_HEADER[resultParam] : null;
+
   return (
     <div style={{ background: "#000D1A", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
@@ -259,30 +284,54 @@ export default function Ground0CompletePage() {
             LP-MOD-G0 | GROUND 0 COMPLETE
           </p>
 
-          {/* Completion indicator */}
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.75rem",
-            background: "rgba(34,197,94,0.08)",
-            border: "1px solid rgba(34,197,94,0.25)",
-            padding: "0.6rem 1.25rem",
-            marginBottom: "2rem",
-          }}>
-            <span style={{ color: "#22c55e", fontSize: "1.1rem", lineHeight: 1 }}>✓</span>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 600,
-              fontSize: "0.875rem",
-              color: "rgba(34,197,94,0.95)",
-              letterSpacing: "0.04em",
-              margin: 0,
+          {/* Dynamic result badge — shown when result is present, else generic completion indicator */}
+          {resultCfg ? (
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.75rem",
+              border: `1px solid ${resultCfg.color}`,
+              background: `rgba(${resultCfg.color === "#22c55e" ? "34,197,94" : resultCfg.color === "#fbbf24" ? "251,191,36" : "248,113,113"},0.08)`,
+              padding: "0.6rem 1.25rem",
+              marginBottom: "2rem",
             }}>
-              Ground 0 Installation Complete
-            </p>
-          </div>
+              <p style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontWeight: 700,
+                fontSize: "0.784rem",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: resultCfg.color,
+                margin: 0,
+              }}>
+                {resultCfg.label}
+              </p>
+            </div>
+          ) : (
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.75rem",
+              background: "rgba(34,197,94,0.08)",
+              border: "1px solid rgba(34,197,94,0.25)",
+              padding: "0.6rem 1.25rem",
+              marginBottom: "2rem",
+            }}>
+              <span style={{ color: "#22c55e", fontSize: "1.1rem", lineHeight: 1 }}>✓</span>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.875rem",
+                color: "rgba(34,197,94,0.95)",
+                letterSpacing: "0.04em",
+                margin: 0,
+              }}>
+                Ground 0 Installation Complete
+              </p>
+            </div>
+          )}
 
-          {/* Body */}
+          {/* Dynamic headline */}
           <h1 style={{
             fontFamily: "'Manrope', sans-serif",
             fontWeight: 700,
@@ -292,7 +341,7 @@ export default function Ground0CompletePage() {
             letterSpacing: "-0.02em",
             marginBottom: "1.5rem",
           }}>
-            The next step depends on your operational situation.
+            {resultCfg ? resultCfg.headline : "The next step depends on your operational situation."}
           </h1>
 
           <p style={{
@@ -302,7 +351,10 @@ export default function Ground0CompletePage() {
             lineHeight: 1.8,
             maxWidth: 620,
           }}>
-            You've completed the orientation phase of the LaunchPath Operating Standard. You now understand the regulatory architecture, the 90-day timeline, and the systems required to protect your authority.
+            {resultCfg
+              ? resultCfg.sub
+              : "You've completed the orientation phase of the LaunchPath Operating Standard. You now understand the regulatory architecture, the 90-day timeline, and the systems required to protect your authority."
+            }
           </p>
         </div>
       </div>

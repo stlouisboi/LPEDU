@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import ReadinessPage from "./pages/ReadinessPage";
+import ReadinessPage from "./pages/ReadinessPage"; // kept only for legacy redirect
 import AutoDiagnosticPage from "./pages/AutoDiagnosticPage";
 import KnowledgeCenterIndex from "./pages/KnowledgeCenterIndex";
 import NewEntrantAuditBrief from "./pages/knowledge-center/NewEntrantAuditBrief";
@@ -106,7 +106,7 @@ function AppRouter() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
-      <Route path="/readiness" element={<ReadinessPage />} />
+      <Route path="/readiness" element={<Navigate to="/reach-diagnostic" replace />} />
       <Route path="/auto-diagnostic" element={<AutoDiagnosticPage />} />
       <Route path="/knowledge-center" element={<KnowledgeCenterIndex />} />
       <Route path="/knowledge-center/all-checklists" element={<AllChecklists />} />
@@ -121,7 +121,7 @@ function AppRouter() {
       <Route path="/admission" element={<AdmissionPage />} />
       <Route path="/portal" element={<PortalPage />} />
       <Route path="/coach-registry" element={<CoachRegistryPage />} />
-      <Route path="/reach-assessment" element={<REACHAssessmentPage />} />
+      <Route path="/reach-assessment" element={<Navigate to="/reach-diagnostic" replace />} />
       <Route path="/reach-diagnostic" element={<REACHAssessmentPage />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />

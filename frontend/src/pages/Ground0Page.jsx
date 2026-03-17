@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import REACHAssessmentWidget from "../components/REACHAssessmentWidget";
@@ -64,40 +63,6 @@ const MODULES = [
 export default function Ground0Page() {
   const [openPanel, setOpenPanel] = useState(0);
   const [openedPanels, setOpenedPanels] = useState(new Set([0]));
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(""); // kept for potential future use
-  const [showReachWidget, setShowReachWidget] = useState(false);
-
-  const navigate = useNavigate();
-  const API = process.env.REACT_APP_BACKEND_URL;
-
-  // Called when REACH widget captures operator email — submits Ground 0 + redirects to completion
-  const handleReachEmailCaptured = async (capturedEmail) => {
-    if (submitted) return;
-    try {
-      await fetch(`${API}/api/ground0`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: capturedEmail }),
-      });
-    } catch { /* still navigate */ }
-    navigate("/ground-0-complete");
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!email) return;
-    setLoading(true);
-    // Fire-and-forget — email capture is secondary; user always proceeds
-    fetch(`${API}/api/ground0`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    }).catch(() => {});
-    navigate("/ground-0-complete");
-  };
 
   const togglePanel = (idx) => {
     const isOpening = openPanel !== idx;
@@ -197,6 +162,55 @@ export default function Ground0Page() {
               — Operator Note / Vince Lawrence, Station Custodian
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* ── REACH Assessment Section ── dark, before accordion content */}
+      <div style={{ background: "#001530", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "72px 24px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.672rem",
+            fontWeight: 700,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "rgba(197,160,89,0.85)",
+            marginBottom: "1.25rem",
+          }}>
+            LP-MOD-G0-6 — Operational Readiness Diagnostic
+          </p>
+          <h2 style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+            color: "#FFFFFF",
+            lineHeight: 1.15,
+            letterSpacing: "-0.02em",
+            marginBottom: "1.25rem",
+          }}>
+            The REACH Assessment
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.008rem",
+            color: "rgba(255,255,255,0.72)",
+            lineHeight: 1.8,
+            maxWidth: 580,
+            marginBottom: "0.375rem",
+          }}>
+            15 questions across five operational categories. Approximately 4 minutes. Complete this before reviewing the Ground 0 module content below.
+          </p>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.875rem",
+            color: "rgba(255,255,255,0.45)",
+            lineHeight: 1.7,
+            maxWidth: 580,
+            fontStyle: "italic",
+          }}>
+            Your result — GO, WAIT, or NO-GO — will determine your recommended next step.
+          </p>
+          <REACHAssessmentWidget />
         </div>
       </div>
 
@@ -476,40 +490,22 @@ export default function Ground0Page() {
                       </p>
                     </div>
 
-                    {/* G0-6: embed the REACH Assessment widget inline */}
+                    {/* G0-6 outcome note */}
                     {idx === 5 && (
                       <div style={{
-                        borderTop: "1px solid rgba(197,160,89,0.2)",
-                        marginTop: "2rem",
-                        paddingTop: "0.5rem",
+                        borderTop: "1px solid rgba(197,160,89,0.15)",
+                        marginTop: "1.5rem",
+                        paddingTop: "1.25rem",
                       }}>
-                        {!showReachWidget ? (
-                          <button
-                            data-testid="g0-begin-reach-btn"
-                            onClick={() => setShowReachWidget(true)}
-                            style={{
-                              marginTop: "1.25rem",
-                              background: "#C5A059",
-                              color: "#002244",
-                              border: "none",
-                              fontFamily: "'Inter', sans-serif",
-                              fontWeight: 700,
-                              fontSize: "0.875rem",
-                              letterSpacing: "0.1em",
-                              textTransform: "uppercase",
-                              cursor: "pointer",
-                              padding: "0.875rem 2rem",
-                              minHeight: 48,
-                              transition: "background 0.2s",
-                            }}
-                            onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-                            onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
-                          >
-                            Begin REACH Assessment
-                          </button>
-                        ) : (
-                          <REACHAssessmentWidget onEmailCaptured={handleReachEmailCaptured} />
-                        )}
+                        <p style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "0.875rem",
+                          color: "rgba(197,160,89,0.75)",
+                          lineHeight: 1.7,
+                          fontStyle: "italic",
+                        }}>
+                          Complete the REACH Assessment at the top of this page to receive your GO / WAIT / NO-GO classification.
+                        </p>
                       </div>
                     )}
                   </div>
@@ -565,8 +561,7 @@ export default function Ground0Page() {
           </div>
 
           {/* ── Readiness Tier Table ── */}
-          <div style={{ marginBottom: "3rem" }}>
-            <p style={{
+          <div style={{ marginBottom: "3rem" }}>            <p style={{
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: "0.672rem",
               fontWeight: 700,
@@ -619,236 +614,12 @@ export default function Ground0Page() {
             </div>
           </div>
 
-          {/* ── Email Capture / Confirmation Block ── */}
-          <div style={{ paddingTop: 72 }}>
-            {!submitted ? (
-              <div
-                data-testid="email-capture-block"
-                style={{ textAlign: "center", maxWidth: 520, margin: "0 auto" }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'Manrope', sans-serif",
-                    fontSize: "1.344rem",
-                    color: "#FFFFFF",
-                    lineHeight: 1.5,
-                    marginBottom: "0.625rem",
-                    fontWeight: 700,
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  The Standard begins here.
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.98rem",
-                    color: "rgba(255,255,255,0.72)",
-                    lineHeight: 1.6,
-                    marginBottom: "2rem",
-                    fontWeight: 400,
-                  }}
-                >
-                  Submit your operating email to receive your Go/No-Go assessment result and next steps.
-                </p>
-
-                <form onSubmit={handleSubmit}>
-                  <input
-                    data-testid="ground0-email-input"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your operating email address"
-                    style={{
-                      width: "100%",
-                      padding: "1rem 1.25rem",
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "1.008rem",
-                      background: "rgba(255,255,255,0.06)",
-                      border: "1px solid rgba(255,255,255,0.18)",
-                      color: "#FFFFFF",
-                      outline: "none",
-                      marginBottom: "1rem",
-                      boxSizing: "border-box",
-                    }}
-                  />
-
-                  {error && (
-                    <p
-                      style={{
-                        color: "#ff6b6b",
-                        fontSize: "0.896rem",
-                        marginBottom: "1rem",
-                        fontFamily: "'Inter', sans-serif",
-                      }}
-                    >
-                      {error}
-                    </p>
-                  )}
-
-                  <button
-                    data-testid="ground0-submit-btn"
-                    type="submit"
-                    disabled={loading}
-                    style={{
-                      width: "100%",
-                      minHeight: 52,
-                      background: "#C5A059",
-                      color: "#002244",
-                      border: "none",
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "0.98rem",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      cursor: loading ? "wait" : "pointer",
-                      padding: "1rem",
-                      transition: "background 0.2s",
-                      opacity: loading ? 0.8 : 1,
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!loading) e.currentTarget.style.background = "#D4B87A";
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!loading) e.currentTarget.style.background = "#C5A059";
-                    }}
-                  >
-                    {loading ? "Submitting..." : "Receive My Go/No-Go Result"}
-                  </button>
-                </form>
-
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.84rem",
-                    color: "rgba(255,255,255,0.84)",
-                    marginTop: "1.25rem",
-                    fontStyle: "italic",
-                  }}
-                >
-                  You will receive your Go/No-Go result and next steps. No sales sequence. No
-                  pressure.
-                </p>
-              </div>
-            ) : (
-              /* Confirmation block — replaces email capture in place */
-              <div
-                data-testid="confirmation-block"
-                style={{ textAlign: "center", maxWidth: 520, margin: "0 auto" }}
-              >
-                {/* Part 1 */}
-                <div style={{ marginBottom: "2rem" }}>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "1.232rem",
-                      color: "#FFFFFF",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    Your result is on its way.
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.98rem",
-                      color: "rgba(255,255,255,0.88)",
-                      lineHeight: 1.85,
-                    }}
-                  >
-                    Check your inbox. Your Go/No-Go assessment result and next steps will arrive
-                    within the next few minutes.
-                    {email && <><br /><span style={{ fontStyle: "italic", fontSize: "0.875rem", opacity: 0.75 }}>Sent to: {email}</span></>}
-                  </p>
-                </div>
-
-                {/* Gold rule — 2px minimum */}
-                <div
-                  style={{ height: 2, background: "#C5A059", margin: "2rem 0" }}
-                  data-testid="gold-rule"
-                />
-
-                {/* Part 2 */}
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "0.896rem",
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color: "#C5A059",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    While you wait.
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.98rem",
-                      color: "rgba(255,255,255,0.88)",
-                      lineHeight: 1.85,
-                      marginBottom: "2rem",
-                    }}
-                  >
-                    If Ground 0 confirmed what you already suspected — that your operation needs
-                    a documented compliance system before the audit window opens — the next step
-                    is available now.
-                  </p>
-
-                  <a
-                    data-testid="portal-cta-btn"
-                    href="/portal"
-                    style={{
-                      display: "block",
-                      minHeight: 52,
-                      background: "#C5A059",
-                      color: "#002244",
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "0.98rem",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      textDecoration: "none",
-                      padding: "1rem",
-                      textAlign: "center",
-                      lineHeight: "32px",
-                      transition: "background 0.2s",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
-                  >
-                    Request Cohort Placement
-                  </a>
-
-                  <p
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.784rem",
-                      color: "rgba(255,255,255,0.75)",
-                      marginTop: "1.25rem",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    Admission is not guaranteed. Placement is based on assessment result and
-                    cohort availability.
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
         </div>
       </div>
 
       <FooterSection />
 
       <style>{`
-        @media (max-width: 390px) {
-          input[type="email"] { font-size: 16px !important; }
-        }
         @media (max-width: 600px) {
           .sinwages-grid { grid-template-columns: 1fr !important; }
           .tier-list > div { grid-template-columns: 60px 1fr !important; }

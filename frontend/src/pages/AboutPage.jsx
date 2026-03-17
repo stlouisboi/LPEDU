@@ -343,7 +343,7 @@ export default function AboutPage() {
             </p>
 
             <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
-              <a href="https://www.launchpathedu.com/readiness" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.launchpathedu.com/reach-diagnostic" target="_blank" rel="noopener noreferrer"
                 data-testid="about-admission-cta"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "0.6rem",
