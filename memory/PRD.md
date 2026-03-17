@@ -232,3 +232,10 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Portal endpoints: GET /api/portal/pdfs, GET /api/portal/pdfs/{id}/download — paid users only, streams PDF
 - [x] CoachRegistryPage: REGISTRY | DELIVERABLES tab system; upload form + library table with download count + remove button
 - [x] PortalPage: DeliverablesPortal renders below curriculum for paid users — gold cards with DOWNLOAD button
+
+### CPM Calculator (March 2026)
+- [x] Public: /tools/cpm-calculator — 3 steps, email gate before results, MailerLite tag `lead_source: cpm_calculator`
+- [x] Portal: sidebar "Tools" section, 4 steps (+ Step 4 Load Profitability), no gate, saves to MongoDB
+- [x] Formulas: fixed_cpm=costs/miles, variable_cpm=fuel+maint+tires, load badges GO/NEGOTIATE/DECLINE
+- [x] Backend: POST /api/cpm/email-capture, POST /api/cpm/save, GET /api/cpm/saved
+- [x] 17/17 tests passed, math verified
