@@ -36,6 +36,7 @@ import MaintenancePacketPage from "./pages/products/MaintenancePacketPage";
 import InsurancePacketPage from "./pages/products/InsurancePacketPage";
 import BundlePage from "./pages/products/BundlePage";
 import SixteenSinsPage from "./pages/standards/SixteenSinsPage";
+import CPMPublicPage from "./pages/CPMPublicPage";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 function ScrollToTop() {
@@ -137,6 +138,7 @@ function AppRouter() {
 
       {/* Product preview/export tool */}
       <Route path="/product-preview" element={<ProductPreviewPage />} />
+      <Route path="/tools/cpm-calculator" element={<CPMPublicPage />} />
 
       {/* 301 redirects: /products → /standards */}
       <Route path="/products" element={<Navigate to="/standards" replace />} />

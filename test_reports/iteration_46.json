@@ -1,0 +1,49 @@
+{
+  "summary": "Full testing of CPM Calculator — public /tools/cpm-calculator and portal sidebar. All 17 scenarios passed. Backend: 7/7 pytest tests passed. Frontend: all critical flows verified including email gate, results reveal, correct CPM math ($1.0375), back navigation, and portal STEP 1 OF 4.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_cpm.py",
+    "/app/test_reports/pytest/cpm_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "CPMSaveRequest.inputs field is required (not optional) — frontend always sends it, OK",
+    "No division-by-zero: calcFixed guards miles>0, calcVariable guards mpg>0 and tireMiles>0",
+    "Email gate fires async fetch fire-and-forget (catch ignored) — MailerLite failures are silent, acceptable design"
+  ],
+  "updated_files": ["/app/backend/tests/test_cpm.py"],
+  "success_rate": {"backend": "100% (7/7)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Paid user session sess_paid_1773353168 still valid and has cohort access. Public CPM at /tools/cpm-calculator: 3-step flow with email gate working. Portal CPM: 4-step flow no gate, saves to MongoDB. Total CPM $1.0375 verified with test inputs (truckPayment=1800, insurance=1200, miles=10000, diesel=3.85, mpg=7, maint=0.12, tires=18, costPerTire=450, tireMiles=120000).",
+  "test_results": {
+    "public_page_loads": "PASS",
+    "step1_of_3_indicator": "PASS",
+    "step1_next_disabled_empty": "PASS",
+    "step1_next_enabled_after_miles": "PASS",
+    "step1_to_step2_nav": "PASS",
+    "step2_live_preview": "PASS",
+    "step2_next_enabled_after_diesel": "PASS",
+    "step2_to_step3_nav": "PASS",
+    "step3_email_gate_visible": "PASS",
+    "step3_results_hidden_before_email": "PASS",
+    "step3_results_revealed_after_email": "PASS",
+    "total_cpm_1_0375": "PASS",
+    "fixed_variable_breakdown": "PASS - Fixed=$0.3000, Variable=$0.7375",
+    "back_button_step3_to_step2": "PASS",
+    "portal_sidebar_tool_cpm": "PASS - data-testid=sidebar-tool-cpm present",
+    "portal_step1_of_4": "PASS",
+    "backend_email_capture_ok": "PASS",
+    "backend_saved_unauthenticated_null": "PASS",
+    "backend_paid_user_save": "PASS"
+  }
+}
