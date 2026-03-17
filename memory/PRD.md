@@ -239,3 +239,13 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Formulas: fixed_cpm=costs/miles, variable_cpm=fuel+maint+tires, load badges GO/NEGOTIATE/DECLINE
 - [x] Backend: POST /api/cpm/email-capture, POST /api/cpm/save, GET /api/cpm/saved
 - [x] 17/17 tests passed, math verified
+
+
+### Ground-0 User Flow Refactor (March 2026)
+- [x] REACH Assessment widget moved to TOP of /ground-0-briefing (dark section before accordion)
+- [x] Widget auto-navigates to /ground-0-complete?result=GO/WAIT/NO-GO after email submission (1.8s delay)
+- [x] Removed redundant email capture form from bottom of /ground-0-briefing
+- [x] Removed REACH widget from G0-6 accordion (replaced with directional note)
+- [x] /ground-0-complete reads ?result param via useSearchParams — color-coded dynamic header
+- [x] /readiness and /reach-assessment both redirect to /reach-diagnostic
+- [x] Internal links to /readiness updated across NextStepSection, AutoDiagnosticPage, AboutPage
