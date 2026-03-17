@@ -10,6 +10,8 @@ const BRIEFS = [
     outcome: "Walk away with a one-binder audit prep checklist and a map of every automatic-failure condition.",
     readTime: "12-minute brief",
     status: "published",
+    packetHref: "/standards/new-entrant-packet",
+    packetCode: "LP-PKT-001",
   },
   {
     slug: "/knowledge-center/hos-compliance-brief",
@@ -19,6 +21,8 @@ const BRIEFS = [
     outcome: "Build a retrievable HOS record system that holds up to audit review.",
     readTime: "12-minute brief",
     status: "published",
+    packetHref: "/standards/hos-packet",
+    packetCode: "LP-PKT-003",
   },
   {
     slug: "/knowledge-center/maintenance-records-brief",
@@ -28,6 +32,8 @@ const BRIEFS = [
     outcome: "Build unit files that survive roadside, audits, and post-crash investigations.",
     readTime: "14-minute brief",
     status: "published",
+    packetHref: "/standards/maintenance-packet",
+    packetCode: "LP-PKT-004",
   },
   {
     slug: "/knowledge-center/drug-alcohol-program-brief",
@@ -37,6 +43,8 @@ const BRIEFS = [
     outcome: "Install a compliant testing program before the first driver dispatch.",
     readTime: "9-minute brief",
     status: "published",
+    packetHref: "/standards/drug-alcohol-packet",
+    packetCode: "LP-PKT-002",
   },
   {
     slug: "/knowledge-center/insurance-continuity-brief",
@@ -46,6 +54,8 @@ const BRIEFS = [
     outcome: "Keep authority active and rates manageable through the first renewal cycle.",
     readTime: "14-minute brief",
     status: "published",
+    packetHref: "/standards/insurance-packet",
+    packetCode: "LP-PKT-005",
   },
   {
     slug: "/knowledge-center/authority-registrations-brief",
@@ -55,6 +65,8 @@ const BRIEFS = [
     outcome: "Get all three federal registrations active, verified in SAFER, and documented in your compliance binder before your first load.",
     readTime: "8-minute brief",
     status: "published",
+    packetHref: "/standards/new-entrant-packet",
+    packetCode: "LP-PKT-001",
   },
 ];
 
@@ -349,6 +361,32 @@ function BriefCard({ brief, index }) {
             }}>Coming Soon</span>
           )}
         </div>
+
+        {/* Packet cross-link */}
+        {isPublished && brief.packetHref && (
+          <div style={{ marginTop: "0.875rem" }}>
+            <a
+              href={brief.packetHref}
+              onClick={e => e.stopPropagation()}
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "#C5A059",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(197,160,89,0.3)",
+                paddingBottom: "1px",
+                transition: "border-color 0.15s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(197,160,89,0.8)"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(197,160,89,0.3)"}
+            >
+              {brief.packetCode} — Install this system →
+            </a>
+          </div>
+        )}
       </div>
 
       {/* Arrow (published only) */}

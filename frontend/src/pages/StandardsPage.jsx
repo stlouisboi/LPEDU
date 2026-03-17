@@ -37,11 +37,11 @@ const LADDER = [
 ];
 
 const PACKETS = [
-  { code: "LP-PKT-001", title: "New Entrant Compliance Packet",    subtitle: "FMCSA New-Authority Operating Standard",           price: "$97",  href: "/standards/new-entrant-packet",   desc: "The 18-month monitoring period framework, DQ file system, and new entrant audit preparation." },
-  { code: "LP-PKT-002", title: "Drug & Alcohol Compliance Packet", subtitle: "Part 382 Compliance Operating Standard",            price: "$127", href: "/standards/drug-alcohol-packet",  desc: "Enrollment documentation, clearinghouse logs, and supervisor training records." },
-  { code: "LP-PKT-003", title: "HOS & Dispatch Packet",            subtitle: "Part 395 Hours-of-Service Operating Standard",     price: "$127", href: "/standards/hos-packet",           desc: "ELD compliance, dispatch logs, and hours documentation." },
-  { code: "LP-PKT-004", title: "Maintenance & Unit File Packet",   subtitle: "Part 396 Fleet Maintenance Operating Standard",    price: "$127", href: "/standards/maintenance-packet",   desc: "Per-VIN unit files, inspection documentation, and maintenance logs." },
-  { code: "LP-PKT-005", title: "Insurance & Authority Packet",     subtitle: "Carrier Authority & Insurance Operating Standard", price: "$127", href: "/standards/insurance-packet",     desc: "Authority accuracy, BOC-3 compliance, and insurance filing verification." },
+  { code: "LP-PKT-001", title: "New Entrant Compliance Packet",    subtitle: "FMCSA New-Authority Operating Standard",           price: "$97",  href: "/standards/new-entrant-packet",   desc: "Regulatory brief, pre-launch checklist, audit prep documentation index, folder architecture, and weekend install guide. The complete document system for the 18-month New Entrant monitoring period." },
+  { code: "LP-PKT-002", title: "Drug & Alcohol Compliance Packet", subtitle: "Part 382 Compliance Operating Standard",            price: "$127", href: "/standards/drug-alcohol-packet",  desc: "Regulatory brief, program build checklist, 10-section policy outline, testing trigger log format, driver handout template, and folder architecture. The complete document system for Part 382 compliance." },
+  { code: "LP-PKT-003", title: "HOS & Dispatch Packet",            subtitle: "Part 395 Hours-of-Service Operating Standard",     price: "$127", href: "/standards/hos-packet",           desc: "Regulatory brief, ELD compliance checklist, dispatch record structure, HOS documentation guide, and folder architecture. The complete document system for Part 395 compliance." },
+  { code: "LP-PKT-004", title: "Maintenance & Unit File Packet",   subtitle: "Part 396 Fleet Maintenance Operating Standard",    price: "$127", href: "/standards/maintenance-packet",   desc: "Regulatory brief, per-VIN unit file checklist, fillable PM schedule template, defect and repair tracking sheet, and folder architecture. The complete document system for Part 396 compliance." },
+  { code: "LP-PKT-005", title: "Insurance & Authority Packet",     subtitle: "Carrier Authority & Insurance Operating Standard", price: "$127", href: "/standards/insurance-packet",     desc: "Regulatory brief, authority accuracy checklist, BOC-3 verification guide, insurance filing tracker, and folder architecture. The complete document system for carrier authority compliance." },
 ];
 
 const MATRIX_ROWS = [
