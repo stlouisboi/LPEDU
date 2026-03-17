@@ -13,7 +13,7 @@ const DOMAINS = [
 const PROOF = [
   { target: 90, suffix: "", label: "Days", sublabel: "Guided implementation" },
   { target: 6,  suffix: "", label: "Domains", sublabel: "Operational coverage" },
-  { target: 5,  suffix: "", label: "Checkpoints", sublabel: "Custodian review" },
+  { target: 5,  suffix: "", label: "Checkpoints", sublabel: "Structured submission reviews" },
 ];
 
 function useCountUp(target, duration, triggered) {
@@ -150,17 +150,25 @@ export default function HeroSection() {
           </p>
 
           {/* Secondary body — operator-readable operational context */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 32 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 16 }}>
             Most carriers chase loads first and build controls later. LaunchPath reverses that — installing the files, programs, monitoring rhythm, and operating structure that protect authority before drift, scrutiny, and remediation costs set in.
           </p>
 
+          {/* Buyer identification — supporting copy, not a tag */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.65, maxWidth: 560, marginBottom: 28 }}>
+            Built for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
+          </p>
+
           {/* CTAs */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
-            <Link to="/ground-0-briefing" data-testid="hero-primary-cta" className="hero-cta-primary"
-              style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: "0.02em", color: "#001833", background: "#C5A059", padding: "16px 36px", height: 52, borderRadius: 4, textDecoration: "none", boxShadow: "0 0 0 3px rgba(197,160,89,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center" }}
-              onMouseEnter={e => (e.currentTarget.style.background = "#d4b572")}
-              onMouseLeave={e => (e.currentTarget.style.background = "#C5A059")}
-            >Begin Ground 0</Link>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <Link to="/ground-0-briefing" data-testid="hero-primary-cta" className="hero-cta-primary"
+                style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: "0.02em", color: "#001833", background: "#C5A059", padding: "16px 36px", height: 52, borderRadius: 4, textDecoration: "none", boxShadow: "0 0 0 3px rgba(197,160,89,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "#d4b572")}
+                onMouseLeave={e => (e.currentTarget.style.background = "#C5A059")}
+              >Begin Ground 0</Link>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.38)", margin: "6px 0 0", letterSpacing: "0.07em", textTransform: "uppercase" }}>Free Readiness Module</p>
+            </div>
             <Link to="/standards" data-testid="hero-secondary-cta" className="hero-cta-secondary"
               style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, letterSpacing: "0.01em", color: "rgba(255,255,255,0.65)", background: "transparent", border: "0.5px solid rgba(255,255,255,0.25)", padding: "0 20px", height: 52, borderRadius: 4, textDecoration: "none", transition: "border-color 0.2s, color 0.2s", display: "inline-flex", alignItems: "center" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "rgba(255,255,255,0.9)"; }}
@@ -241,13 +249,10 @@ export default function HeroSection() {
             <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.92)", margin: "0 0 6px" }}>
               Audit failure + remediation
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.6, margin: "0 0 10px" }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.6, margin: "0 0 12px" }}>
               Deficiency findings, corrective action exposure, service disruption, and preventable authority risk.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.40)", lineHeight: 1.5, margin: "0 0 12px", fontStyle: "italic" }}>
-              Costs can exceed one preventable build.
-            </p>
-            {/* Animated price */}
+            {/* Animated price — supported by ConsequenceNumberBlock lower on page */}
             <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 20, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
               ${costLow.toLocaleString()},000 – ${costHigh.toLocaleString()},000+
             </p>
@@ -284,7 +289,7 @@ export default function HeroSection() {
               90-day guided installation of the compliance systems new carriers need to operate with structure, proof, and audit readiness.
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 600, color: "#C5A059", margin: 0, letterSpacing: "0.02em" }}>
-              Costs less than one preventable failure
+              Costs less than one audit failure
             </p>
           </div>
 
