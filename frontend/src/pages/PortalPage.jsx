@@ -5,66 +5,63 @@ import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import SignalMonitor from "../components/SignalMonitor";
 import TaskItem from "../components/TaskItem";
+import { VideoLessonWorkbench, MODULE_1_DATA } from "../components/VideoLessonWorkbench";
 
 const CURRICULUM = [
-  {
-    id: "ground-0",
-    code: "GROUND 0",
-    label: "The Wisdom Module",
-    modules: 6,
-    locked: false,
-    status: "UNLOCKED",
-  },
-  {
-    id: "module-1",
-    code: "MODULE 1",
-    label: "Business and Authority Setup",
-    modules: 7,
-    locked: true,
-  },
-  {
-    id: "module-2",
-    code: "MODULE 2",
-    label: "Insurance Survival",
-    modules: 6,
-    locked: true,
-  },
-  {
-    id: "module-3",
-    code: "MODULE 3",
-    label: "The 16 Deadly Sins",
-    modules: 8,
-    locked: true,
-  },
-  {
-    id: "module-4",
-    code: "MODULE 4",
-    label: "New Entrant Audit Prep",
-    modules: 6,
-    locked: true,
-  },
-  {
-    id: "module-5",
-    code: "MODULE 5",
-    label: "Load Discipline and Cash Flow",
-    modules: 6,
-    locked: true,
-  },
-  {
-    id: "module-6",
-    code: "MODULE 6",
-    label: "Stabilization and Long-Term Authority Protection",
-    modules: 5,
-    locked: true,
-  },
-  {
-    id: "module-7",
-    code: "MODULE 7",
-    label: "Post-Audit Recovery",
-    modules: 4,
-    locked: true,
-  },
+  { id: "ground-0", code: "GROUND 0", label: "The Mindset Module",           locked: false, type: "foundation", lessonCount: 6  },
+  { id: "module-1", code: "MODULE 1", label: "Business & Authority Setup",   locked: true,  type: "core",       lessonCount: 7  },
+  { id: "module-2", code: "MODULE 2", label: "Insurance Survival",           locked: true,  type: "core",       lessonCount: 6  },
+  { id: "module-3", code: "MODULE 3", label: "The 16 Deadly Sins",           locked: true,  type: "core",       lessonCount: 8  },
+  { id: "module-4", code: "MODULE 4", label: "New Entrant Audit Prep",       locked: true,  type: "core",       lessonCount: 6  },
+  { id: "module-5", code: "MODULE 5", label: "Cash-Flow Oxygen",             locked: true,  type: "core",       lessonCount: 6  },
+  { id: "module-6", code: "MODULE 6", label: "Operational Discipline",       locked: true,  type: "core",       lessonCount: 6  },
+  { id: "module-7", code: "MODULE 7", label: "Post-Audit Recovery",          locked: true,  type: "recovery",   lessonCount: 4  },
+  { id: "module-8", code: "MODULE 8", label: "ELD Compliance",               locked: true,  type: "extension",  lessonCount: 5  },
+  { id: "module-9", code: "MODULE 9", label: "Hazmat Decisions",             locked: true,  type: "extension",  lessonCount: 4  },
 ];
+
+const MODULE_OVERVIEWS = {
+  "module-2": {
+    code: "MOD-2", title: "Insurance Survival", lessonCount: 6, duration: "~2 hrs",
+    description: "Understand exactly what coverage FMCSA requires, how the commercial insurance market evaluates new carriers, and what certificate failures look like at audit.",
+    topics: ["Primary liability minimums by operation type", "Cargo insurance structures and coverage gaps", "BMC-91/91X filing mechanics", "Common violations and how they appear in audits", "Renewal timing and lapse protection strategies", "Building safety history to reduce premiums"],
+  },
+  "module-3": {
+    code: "MOD-3", title: "The 16 Deadly Sins", lessonCount: 8, duration: "~3 hrs",
+    description: "A structured walkthrough of the 16 most cited FMCSA violation categories — the ones that trigger SMS alerts, audits, and authority revocation proceedings.",
+    topics: ["Hours of Service violations (Part 395)", "Driver Qualification file failures (Part 391)", "Controlled Substances & Alcohol testing (Part 382)", "Vehicle maintenance and inspection records (Part 396)", "Financial responsibility / insurance lapse", "Hazardous materials missteps", "Accident register and recordkeeping failures", "Operating beyond authority scope"],
+  },
+  "module-4": {
+    code: "MOD-4", title: "New Entrant Audit Prep", lessonCount: 6, duration: "~2.5 hrs",
+    description: "Prepare your operation for the FMCSA New Entrant Safety Audit — what they examine, what documentation you must have ready, and how to respond to findings.",
+    topics: ["Audit triggers and the 12-month new entrant timeline", "The Safety Audit examination checklist", "Document control system setup", "Driver file requirements and verification", "Responding to Conditional safety ratings", "Corrective Action Plan development"],
+  },
+  "module-5": {
+    code: "MOD-5", title: "Cash-Flow Oxygen", lessonCount: 6, duration: "~2 hrs",
+    description: "Build the financial operating systems that keep a new motor carrier solvent through the first year — load selection, factoring, and cash cycle discipline.",
+    topics: ["Load-to-overhead ratio analysis", "Invoice factoring vs. direct billing", "Fuel surcharge and cost exposure management", "Tax reserve discipline for new carriers", "Broker credit vetting and payment terms", "Building toward cash flow stability"],
+  },
+  "module-6": {
+    code: "MOD-6", title: "Operational Discipline", lessonCount: 6, duration: "~2 hrs",
+    description: "Install the daily, weekly, and monthly operational rhythms that define a compliant, audit-ready carrier operation.",
+    topics: ["Pre/post-trip inspection protocols", "ELD and HOS log discipline", "Maintenance record cadence and filing", "Driver Vehicle Inspection Report (DVIR) management", "Incident reporting timelines and procedures", "Monthly self-audit routine"],
+  },
+  "module-7": {
+    code: "MOD-7", title: "Post-Audit Recovery", lessonCount: 4, duration: "~1.5 hrs", type: "recovery",
+    description: "For carriers who have received a Conditional or Unsatisfactory safety rating — this module provides the structured path back to Satisfactory status.",
+    topics: ["Understanding your safety rating and what it means", "Building your Corrective Action Plan", "Document reconstruction and evidence preparation", "Rebuttal submission and timeline for rating improvement"],
+  },
+  "module-8": {
+    code: "MOD-8", title: "ELD Compliance", lessonCount: 5, duration: "~1.75 hrs", type: "extension",
+    description: "Everything a regulated carrier needs to know about Electronic Logging Device compliance — applicability, device selection, and audit presentation.",
+    topics: ["ELD mandate applicability and exemptions", "Approved device selection criteria", "Driver training and adoption requirements", "ELD malfunction and exception protocols", "Data transfer for roadside inspections", "Common ELD audit violations and remedies"],
+  },
+  "module-9": {
+    code: "MOD-9", title: "Hazmat Decisions", lessonCount: 4, duration: "~1.5 hrs", type: "extension",
+    description: "A structured decision framework for carriers considering or already handling hazardous materials — federal requirements, registrations, and risk exposure.",
+    topics: ["Hazmat classification and definition boundaries", "PHMSA registration requirements and thresholds", "Placarding rules and shipper responsibilities", "Emergency Response Information requirements", "Carrier training documentation", "Hazmat liability exposure for non-specialist carriers"],
+  },
+};
 
 const GROUND0_MODULES = [
   { number: "G0-1", title: "The Reality of Motor Carrier Authority", duration: "~12 min" },
@@ -463,9 +460,15 @@ export default function PortalPage() {
                   </p>
                   <p style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "0.672rem",
-                    color: locked ? "rgba(255,255,255,0.42)" : "rgba(197,160,89,0.9)", letterSpacing: "0.04em",
+                    color: locked ? "rgba(255,255,255,0.42)" : (mod.type === "recovery" ? "rgba(251,146,60,0.75)" : mod.type === "extension" ? "rgba(129,140,248,0.75)" : "rgba(197,160,89,0.9)"),
+                    letterSpacing: "0.04em",
                   }}>
-                    {mod.modules} implementation modules{mod.id === "ground-0" ? " — UNLOCKED" : locked ? "" : " — COHORT ACCESS"}
+                    {mod.lessonCount} lessons
+                    {mod.id === "ground-0" ? " — UNLOCKED"
+                      : mod.type === "recovery" ? " — RECOVERY"
+                      : mod.type === "extension" ? " — EXTENSION"
+                      : locked ? ""
+                      : " — COHORT ACCESS"}
                   </p>
                 </div>
               </button>
@@ -1018,37 +1021,18 @@ export default function PortalPage() {
                 </div>
               )}
 
-              {/* Paid module selected — show content */}
+              {/* Paid module selected — route to workbench or overview */}
               {selected?.id !== "ground-0" && !isModuleLocked(selected) && (
-                <div data-testid="unlocked-module-content">
-                  <p style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
-                    letterSpacing: "0.16em", textTransform: "uppercase", color: "#22c55e", marginBottom: "1.25rem",
-                  }}>
-                    {selected?.code} — COHORT ACCESS GRANTED
-                  </p>
-                  <h1 style={{
-                    fontFamily: "'Manrope', sans-serif", fontWeight: 700,
-                    fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF",
-                    marginBottom: "0.75rem", letterSpacing: "-0.02em",
-                  }}>
-                    {selected?.label}
-                  </h1>
-                  <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 540, marginBottom: "2.5rem" }}>
-                    {selected?.modules} implementation modules. Content is being prepared for this cohort.
-                    You will receive an email when your module is released.
-                  </p>
-                  <div style={{
-                    background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.2)",
-                    padding: "1.5rem", maxWidth: 480,
-                  }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "rgba(255,255,255,0.87)", lineHeight: 1.7 }}>
-                      Your cohort access has been confirmed. LaunchPath curriculum releases are
-                      coordinated through your cohort schedule. Check your email for your next steps
-                      and release calendar.
-                    </p>
-                  </div>
-                </div>
+                <>
+                  {selected?.id === "module-1" ? (
+                    <VideoLessonWorkbench moduleData={MODULE_1_DATA} />
+                  ) : (
+                    <ModuleOverviewCard
+                      moduleInfo={MODULE_OVERVIEWS[selected?.id]}
+                      type={selected?.type}
+                    />
+                  )}
+                </>
               )}
 
               {/* Locked module selected — show payment screen */}
@@ -1210,6 +1194,72 @@ export default function PortalPage() {
           .portal-header-userinfo { display: none !important; }
         }
       `}</style>
+    </div>
+  );
+}
+
+// ── ModuleOverviewCard (modules 2-9 — cohort delivery sequence) ──────────────
+function ModuleOverviewCard({ moduleInfo, type }) {
+  const mono = "'JetBrains Mono', 'Courier New', monospace";
+  if (!moduleInfo) return null;
+
+  const isRecovery = type === "recovery";
+  const isExtension = type === "extension";
+  const accentColor = isRecovery ? "rgba(251,146,60,0.85)" : isExtension ? "rgba(129,140,248,0.85)" : "#C5A059";
+  const accentBg = isRecovery ? "rgba(251,146,60,0.07)" : isExtension ? "rgba(99,102,241,0.07)" : "rgba(197,160,89,0.05)";
+  const accentBorder = isRecovery ? "rgba(251,146,60,0.22)" : isExtension ? "rgba(99,102,241,0.22)" : "rgba(197,160,89,0.16)";
+
+  return (
+    <div data-testid="module-overview-card">
+      <p style={{ fontFamily: mono, fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#C5A059", marginBottom: "1.25rem" }}>
+        LP-{moduleInfo.code} | {moduleInfo.title.toUpperCase()}
+      </p>
+
+      {(isRecovery || isExtension) && (
+        <div style={{ display: "inline-block", background: accentBg, border: `1px solid ${accentBorder}`, padding: "0.25rem 0.875rem", marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.2em", color: accentColor, textTransform: "uppercase", margin: 0 }}>
+            {isRecovery ? "RECOVERY MODULE — OPTIONAL" : "STANDARD EXTENSION — INCLUDED IN ENROLLMENT"}
+          </p>
+        </div>
+      )}
+
+      <div style={{ display: "flex", alignItems: "baseline", gap: "1.25rem", marginBottom: "0.625rem", flexWrap: "wrap" }}>
+        <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
+          {moduleInfo.title}
+        </h1>
+        <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
+          {moduleInfo.lessonCount} LESSONS · {moduleInfo.duration}
+        </span>
+      </div>
+
+      <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.78, maxWidth: 580, marginBottom: "2.5rem" }}>
+        {moduleInfo.description}
+      </p>
+
+      <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "1.75rem", maxWidth: 560 }}>
+        <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", marginBottom: "1.25rem" }}>
+          KEY TOPICS — {moduleInfo.lessonCount} IMPLEMENTATION UNITS
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+          {moduleInfo.topics.map((topic, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem" }}>
+              <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(197,160,89,0.55)", flexShrink: 0, paddingTop: "0.18rem", letterSpacing: "0.1em" }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.73)", lineHeight: 1.55 }}>
+                {topic}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "0.875rem" }}>
+        <div style={{ width: 7, height: 7, background: "rgba(197,160,89,0.45)", borderRadius: "50%", flexShrink: 0 }} />
+        <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
+          COHORT DELIVERY SEQUENCE — YOUR FACILITATOR WILL ACTIVATE THIS MODULE
+        </p>
+      </div>
     </div>
   );
 }
