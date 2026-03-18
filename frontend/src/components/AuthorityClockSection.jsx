@@ -2,31 +2,36 @@ import { useEffect, useRef, useState } from "react";
 
 const TIMELINE = [
   {
-    code: "DAY 1",
-    label: "Authority Active",
-    body: "Insurance filings, driver files, safety controls, and compliance records should already be operational. The compliance clock starts at activation, not at the first load.",
+    code: "D1",
+    label: "Day 1 — Authority Active",
+    sublabel: "Systems Must Already Be Running",
+    body: "Insurance filings, driver files, safety controls, and compliance records should already be operational. There is no grace period.",
     accent: true,
   },
   {
-    code: "DAYS 1–30",
-    label: "Systems Installation",
-    body: "The carrier's documentary structure, dispatch rhythm, and monitoring habits begin taking shape. Missing systems at this stage become future exposure.",
+    code: "30",
+    label: "Days 1–30 — Installation Window",
+    sublabel: "Documentary Structure Takes Shape",
+    body: "The carrier's documentary structure, dispatch rhythm, and monitoring habits begin forming. Missed steps here become invisible vulnerabilities.",
   },
   {
-    code: "DAYS 30–60",
-    label: "Operational Pattern Formation",
-    body: "Logs, maintenance activity, dispatch behavior, and file upkeep begin establishing the operating patterns later reviewed under audit conditions.",
+    code: "60",
+    label: "Days 30–60 — Pattern Formation",
+    sublabel: "Operational Records Begin Accumulating",
+    body: "Logs, maintenance activity, dispatch behavior, and file upkeep begin establishing the operating pattern later reviewed under scrutiny.",
   },
   {
-    code: "DAYS 60–90",
-    label: "Audit Exposure Window",
-    body: "If the core systems are not installed by this stage, audit preparation becomes reconstruction rather than verification.",
+    code: "90",
+    label: "Days 60–90 — Audit Exposure Window",
+    sublabel: "Preparation or Reconstruction",
+    body: "If core systems are not installed by this stage, audit preparation becomes reconstruction. Reconstruction under scrutiny is a different problem entirely.",
     warning: true,
   },
   {
-    code: "MONTHS 9–18",
-    label: "What Was Built Gets Tested",
-    body: "The operational patterns created in the first months of authority become visible under scrutiny. Early discipline determines later defensibility.",
+    code: "9M",
+    label: "Months 9–18 — What You Built Gets Tested",
+    sublabel: "Scrutiny Makes Early Gaps Visible",
+    body: "The operational patterns created in the first months of authority become visible later under scrutiny. Each gap compounds. Each missing record becomes harder to defend.",
     consequence: true,
   },
 ];
@@ -119,7 +124,7 @@ export default function AuthorityClockSection() {
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#d4900a",
-            marginBottom: "1.25rem",
+            marginBottom: "0.75rem",
           }}>
             The 90-Day Authority Clock
           </p>
@@ -129,11 +134,23 @@ export default function AuthorityClockSection() {
             fontSize: "var(--text-2xl)",
             letterSpacing: "-0.02em",
             color: "#FFFFFF",
-            lineHeight: 1.18,
+            lineHeight: 1.1,
+            marginBottom: "0.25rem",
+            maxWidth: 560,
+          }}>
+            The Clock Starts
+          </h2>
+          <h2 style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontWeight: 700,
+            fontSize: "var(--text-2xl)",
+            letterSpacing: "-0.02em",
+            color: "#d4900a",
+            lineHeight: 1.1,
             marginBottom: "1.5rem",
             maxWidth: 560,
           }}>
-            When a motor carrier activates authority, the compliance timeline begins immediately.
+            Day One.
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -231,9 +248,24 @@ export default function AuthorityClockSection() {
                       color: cfg.titleColor,
                       lineHeight: 1.22,
                       letterSpacing: "-0.01em",
+                      marginBottom: item.sublabel ? "0.3rem" : 0,
                     }}>
                       {item.label}
                     </p>
+                    {item.sublabel && (
+                      <p style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.72rem",
+                        fontWeight: 600,
+                        letterSpacing: "0.10em",
+                        textTransform: "uppercase",
+                        color: cfg.badgeColor,
+                        opacity: 0.75,
+                        lineHeight: 1.3,
+                      }}>
+                        {item.sublabel}
+                      </p>
+                    )}
                   </div>
 
                   {/* Right: body copy */}
