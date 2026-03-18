@@ -9,6 +9,7 @@ import HowItWorksSection from "../components/HowItWorksSection";
 import ProtectionDiagramSection from "../components/ProtectionDiagramSection";
 import MidPageStatement from "../components/MidPageStatement";
 import FourPillarsSection from "../components/FourPillarsSection";
+import TruckDividerSection from "../components/TruckDividerSection";
 import EngagementSection from "../components/EngagementSection";
 import AuthorityReadinessTestSection from "../components/AuthorityReadinessTestSection";
 import RecoveryPathBlock from "../components/RecoveryPathBlock";
@@ -75,6 +76,7 @@ export default function HomePage() {
 
         <MidPageStatement />
         <FourPillarsSection />
+        <TruckDividerSection />
         <EngagementSection />
         <AuthorityReadinessTestSection />
         <RecoveryPathBlock />
