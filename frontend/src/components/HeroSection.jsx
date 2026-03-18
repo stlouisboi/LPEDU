@@ -160,7 +160,7 @@ export default function HeroSection() {
           </p>
 
           {/* Buyer identification */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.65, maxWidth: 560, marginBottom: 24 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, maxWidth: 560, marginBottom: 24 }}>
             Designed for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
           </p>
 
