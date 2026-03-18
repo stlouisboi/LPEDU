@@ -67,11 +67,11 @@ export default function ComplianceLibraryPage() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }} />
-        {/* Dark overlay */}
+        {/* Dark overlay — left heavy on desktop, uniform on mobile */}
         <div style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(to right, rgba(0,20,50,0.92) 40%, rgba(0,20,50,0.70) 100%)",
-        }} />
+        }} className="hero-overlay" />
 
         {/* Text content */}
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "6rem 1.5rem 5rem" }}>
@@ -285,6 +285,7 @@ export default function ComplianceLibraryPage() {
       <style>{`
         @media (max-width: 680px) {
           .product-grid { grid-template-columns: 1fr !important; }
+          .hero-overlay { background: rgba(0,20,50,0.88) !important; }
           .hero-img-wrap { display: none; }
         }
       `}</style>
