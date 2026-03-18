@@ -134,10 +134,10 @@ export default function HeroSection() {
 
           {/* Headline */}
           <h1 style={{ margin: "0 0 0 0" }}>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#FFFFFF", marginBottom: 6 }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 500, lineHeight: 1.07, color: "#FFFFFF", marginBottom: 6 }}>
               Your authority is active.
             </span>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#C5A059" }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 500, lineHeight: 1.07, color: "#C5A059" }}>
               The first 90 days<br />determine what survives.
             </span>
           </h1>
@@ -145,12 +145,12 @@ export default function HeroSection() {
           <div style={{ width: 40, height: 2, background: "#C5A059", margin: "26px 0 20px" }} />
 
           {/* Primary supporting paragraph */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 14 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 14 }}>
             You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
           </p>
 
           {/* Secondary body */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 14 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 14 }}>
             You build the files, programs, monitoring systems, and operating structure required to keep your authority active under real-world conditions.
           </p>
 

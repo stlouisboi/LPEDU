@@ -83,7 +83,7 @@ export default function VinceCTASection() {
           <h2 style={{
             fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+            fontSize: "var(--text-2xl)",
             letterSpacing: "-0.02em",
             color: "var(--text-paper-heading)",
             marginBottom: "0.5rem",
