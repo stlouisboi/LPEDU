@@ -1,153 +1,132 @@
 import { Link } from "react-router-dom";
 import FadeIn from "./FadeIn";
 
-const CONDITIONS = [
-  "Authority is active or scheduled to activate.",
-  "The operator intends to run the business as a compliant carrier, not a temporary experiment.",
-  "The operator is prepared to install operational systems rather than rely on shortcuts.",
-];
-
 export default function FinalCTASection() {
   return (
     <section data-testid="final-cta-section" style={{
       background: "#0b1628",
       padding: "8rem 1.5rem",
-      borderBottom: "1px solid rgba(212,144,10,0.2)",
+      borderTop: "1px solid rgba(212,144,10,0.15)",
+      borderBottom: "1px solid rgba(212,144,10,0.15)",
     }}>
-      <div style={{ maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
 
         <FadeIn>
-          <p className="overline" style={{ marginBottom: "1.5rem", color: "var(--gold-primary)", textAlign: "center" }}>
-            Admission
+          {/* Section code */}
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.60rem",
+            fontWeight: 700,
+            letterSpacing: "0.20em",
+            textTransform: "uppercase",
+            color: "rgba(212,144,10,0.65)",
+            marginBottom: "1.5rem",
+          }}>
+            LPOS V1.0 — GROUND 0 ENTRY
           </p>
+
+          {/* Headline */}
           <h2 style={{
             fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            fontSize: "var(--text-2xl)",
             letterSpacing: "-0.02em",
-            color: "var(--text)",
-            marginBottom: "1.75rem",
-            lineHeight: 1.2,
-            textAlign: "center",
-          }}>
-            LaunchPath is not an open enrollment program.
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.064rem",
-            color: "var(--text-muted)",
-            lineHeight: 1.8,
-            marginBottom: "3rem",
-            textAlign: "center",
-            maxWidth: 580,
-            margin: "0 auto 3rem",
-          }}>
-            It is designed for operators who intend to build a compliant, durable motor carrier operation from the start.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={60}>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
-            fontWeight: 700,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: "rgba(212,144,10,0.7)",
+            color: "#FFFFFF",
+            lineHeight: 1.1,
             marginBottom: "1.5rem",
           }}>
-            Before entering the system, operators should confirm three conditions:
-          </p>
+            Ready to Build the System?
+          </h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 0, marginBottom: "3rem" }}>
-            {CONDITIONS.map((cond, i) => (
-              <div key={i} style={{
-                display: "flex",
-                gap: "1.25rem",
-                alignItems: "flex-start",
-                padding: "1.25rem 0",
-                borderBottom: i < CONDITIONS.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-              }}>
-                <div style={{
-                  width: 20, height: 20, minWidth: 20,
-                  border: "1px solid rgba(212,144,10,0.5)",
-                  marginTop: "0.1rem",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <div style={{ width: 8, height: 8, background: "#d4900a" }} />
-                </div>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.008rem",
-                  color: "var(--text-muted)",
-                  lineHeight: 1.75,
-                }}>
-                  {cond}
-                </p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={120}>
+          {/* Subtext */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.008rem",
-            color: "var(--text-muted)",
+            fontSize: "var(--text-base)",
+            color: "rgba(255,255,255,0.68)",
             lineHeight: 1.8,
-            marginBottom: "2.5rem",
+            marginBottom: "3rem",
+            maxWidth: 560,
+            margin: "0 auto 3rem",
           }}>
-            Operators who meet these conditions can proceed to Ground 0, the first installation phase of the LaunchPath Operating Standard.
-          </p>
-
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontStyle: "italic",
-            fontSize: "1.008rem",
-            color: "var(--text-subtle)",
-            marginBottom: "2.5rem",
-            lineHeight: 1.7,
-          }}>
-            If this feels expensive, you are likely not ready.<br />
-            If it feels reasonable, you are already thinking like an operator.
+            Ground 0 is the free qualification module. Complete it in 4–6 minutes. No account required. No sales call. Just a clear read on where your operation stands — and what needs to be built first.
           </p>
         </FadeIn>
 
-        <FadeIn delay={180}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+        <FadeIn delay={80}>
+          {/* Buttons */}
+          <div style={{
+            display: "flex",
+            gap: "1rem",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            marginBottom: "2rem",
+          }}>
             <Link
               to="/ground-0-briefing"
               data-testid="final-cta-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                background: "var(--gold-primary)",
-                color: "var(--bg-onyx)",
+                background: "#d4900a",
+                color: "#060d19",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "1.008rem",
-                letterSpacing: "0.06em",
+                fontSize: "var(--text-sm)",
+                letterSpacing: "0.10em",
                 textTransform: "uppercase",
-                padding: "1.1rem 2.5rem",
+                padding: "1.1rem 2.25rem",
                 textDecoration: "none",
                 transition: "background 0.2s",
-                minHeight: 52,
+                whiteSpace: "nowrap",
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = "var(--gold-light)")}
-              onMouseLeave={e => (e.currentTarget.style.background = "var(--gold-primary)")}
+              onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+              onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
             >
-              Begin Ground 0 Briefing
+              INITIATE GROUND 0 →
             </Link>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontStyle: "italic",
-              fontSize: "0.896rem",
-              color: "var(--text-subtle)",
-              textAlign: "center",
-            }}>
-              Ground 0 is the first installation phase of the LaunchPath Operating Standard. No charge.
-            </p>
+
+            <Link
+              to="/reach-diagnostic"
+              data-testid="reach-cta-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                background: "transparent",
+                color: "#d4900a",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 700,
+                fontSize: "var(--text-sm)",
+                letterSpacing: "0.10em",
+                textTransform: "uppercase",
+                padding: "1.1rem 2.25rem",
+                textDecoration: "none",
+                border: "1px solid rgba(212,144,10,0.50)",
+                transition: "border-color 0.2s, color 0.2s",
+                whiteSpace: "nowrap",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = "#d4900a";
+                e.currentTarget.style.color = "#e8a520";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "rgba(212,144,10,0.50)";
+                e.currentTarget.style.color = "#d4900a";
+              }}
+            >
+              RUN THE REACH DIAGNOSTIC →
+            </Link>
           </div>
+
+          {/* Disclaimer */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-xs)",
+            color: "rgba(255,255,255,0.32)",
+            lineHeight: 1.7,
+            letterSpacing: "0.02em",
+          }}>
+            This is not done-for-you compliance. LaunchPath is a video-led implementation program. You do the work. The system shows you what, when, and how.
+          </p>
         </FadeIn>
 
       </div>
