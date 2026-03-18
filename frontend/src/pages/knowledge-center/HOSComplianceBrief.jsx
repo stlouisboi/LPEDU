@@ -247,7 +247,7 @@ export default function HOSComplianceBrief() {
             gap: "0.4rem",
             marginBottom: "2.5rem",
           }}>
-            ← Knowledge Center
+            ← Operational Library
           </Link>
 
           <p style={{

@@ -78,7 +78,7 @@ const PATHS = [
     code: null,
     title: "Return When Ready",
     includes: [
-      "Access the Knowledge Center briefs",
+      "Access the Operational Library briefs",
       "Review the 90-day authority timeline",
       "Revisit your REACH Assessment result",
       "Ground 0 completion is saved permanently",

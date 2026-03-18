@@ -1078,7 +1078,7 @@ export default function PortalPage() {
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#C5A059", marginBottom: "1.25rem" }}>
                     LP-TOOLS | CPM CALCULATOR
                   </p>
-                  <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Calculator</h1>
+                  <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
                   <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 480, marginBottom: "2rem" }}>
                     The full CPM Calculator — including Step 4 load profitability analysis — is part of the LaunchPath Standard cohort.
                   </p>
@@ -1374,6 +1374,9 @@ function DeliverablesPortal({ API }) {
               <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)" }}>
                 {CATEGORY_LABELS[pdf.category] || pdf.category}
               </span>
+              <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.30)", margin: "4px 0 0" }}>
+                This asset is designed to be used in your daily operation — not stored.
+              </p>
             </div>
             <button
               data-testid={`download-${pdf.id}`}

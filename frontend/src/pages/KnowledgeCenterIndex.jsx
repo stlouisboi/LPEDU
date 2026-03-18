@@ -89,7 +89,7 @@ export default function KnowledgeCenterIndex() {
             textTransform: "uppercase",
             color: "var(--text-subtle)",
             marginBottom: "1.5rem",
-          }}>LaunchPath / Knowledge Center</p>
+          }}>LaunchPath / Operational Library</p>
 
           <h1 style={{
             fontFamily: "'Manrope', sans-serif",
@@ -99,7 +99,7 @@ export default function KnowledgeCenterIndex() {
             lineHeight: 1.1,
             color: "var(--text)",
             marginBottom: "1.5rem",
-          }}>Knowledge Center</h1>
+          }}>Operational Library</h1>
 
           <p style={{
             fontFamily: "'Inter', sans-serif",

@@ -1,6 +1,6 @@
 export default function FooterSection() {
   const NAV_ITEMS = [
-    { label: "Knowledge Center", href: "/knowledge-center", external: false },
+    { label: "Operational Library", href: "/knowledge-center", external: false },
     { label: "Standards", href: "/standards", external: false },
     { label: "AUTO Method", href: "/auto-method", external: false },
     { label: "Ground 0 Briefing", href: "/ground-0-briefing", external: false },

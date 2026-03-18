@@ -7,9 +7,9 @@ const TOOLS = [
   {
     id: "cpm-calculator",
     code: "LP-TOOL-001",
-    title: "Cost Per Mile Calculator",
+    title: "Cost Per Mile Control System",
     description:
-      "Enter your fixed and variable operating costs. The calculator tells you exactly what it costs to move a mile — and the minimum rate you can accept on any load before you lose money.",
+      "Enter your fixed and variable operating costs. This control system sets your minimum acceptable rate — and prevents operating below profitability thresholds on any load.",
     inputs: ["Fixed monthly costs", "Fuel & tire variables", "Maintenance reserve"],
     outputs: ["Fixed CPM", "Variable CPM", "Total CPM", "Minimum acceptable rate"],
     href: "/tools/cpm-calculator",

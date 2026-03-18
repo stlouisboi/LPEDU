@@ -25,6 +25,23 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <WhatGetsInstalledSection />
+
+        {/* Transition line */}
+        <div style={{ background: "#000C1A", borderBottom: "0.5px solid rgba(197,160,89,0.12)", padding: "2.5rem 1.5rem", textAlign: "center" }}>
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+            color: "#FFFFFF",
+            letterSpacing: "-0.01em",
+            lineHeight: 1.4,
+            maxWidth: 680,
+            margin: "0 auto",
+          }}>
+            By the end of this system, your operation will not run the way it does today—and it shouldn't.
+          </p>
+        </div>
+
         <AuthorityClockSection />
         <PhilosophyQuoteBlock
           quote="Most failures in the first 90 days are not failures of commitment. They are failures of structure."

@@ -56,9 +56,9 @@ const RESULT_CONFIG = {
     bullets: [
       "One or more REACH categories indicate fixable gaps.",
       "Proceeding without addressing these areas increases early failure risk.",
-      "Review the relevant Knowledge Center briefs before activating authority.",
+      "Review the relevant Operational Library briefs before activating authority.",
     ],
-    cta: "Review the Knowledge Center",
+    cta: "Review the Operational Library",
     ctaHref: "/knowledge-center",
     sub: "Launching before gaps are resolved is the most common cause of first-year authority failure.",
   },

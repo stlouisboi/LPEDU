@@ -15,7 +15,7 @@ export default function CPMPublicPage() {
           Know Your Real Cost Per Mile.
         </h1>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "rgba(0,34,68,0.62)", lineHeight: 1.75, maxWidth: 540, marginBottom: "3.5rem" }}>
-          Enter your fixed and variable operating costs. The calculator tells you exactly what it costs to move a mile — and the minimum rate you can accept on any load.
+          Enter your fixed and variable operating costs. This control system sets your minimum acceptable rate — and prevents you from operating below profitability thresholds on any load.
         </p>
         <CPMCalculator variant="public" />
       </div>

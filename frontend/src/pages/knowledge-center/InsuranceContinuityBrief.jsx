@@ -205,7 +205,7 @@ export default function InsuranceContinuityBrief() {
             fontFamily: "'Inter', sans-serif", fontSize: "0.84rem", color: "var(--text-subtle)",
             textDecoration: "none", letterSpacing: "0.04em", display: "inline-flex",
             alignItems: "center", gap: "0.4rem", marginBottom: "2.5rem",
-          }}>← Knowledge Center</Link>
+          }}>← Operational Library</Link>
 
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "1.5rem" }}>
             Compliance Systems — Insurance & Authority (49 CFR Part 387)

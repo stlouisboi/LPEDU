@@ -108,6 +108,16 @@ export default function ProductPageTemplate({
           fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
           color: "rgba(255,255,255,0.82)", lineHeight: 1.7, fontStyle: "italic",
         }}>{tagline}</p>
+
+        {/* Operational system line */}
+        <p style={{
+          maxWidth: 820, margin: "0.75rem auto 0",
+          fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem",
+          fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+          color: "rgba(197,160,89,0.60)",
+        }}>
+          This is not a standalone file. This document becomes part of your operational system.
+        </p>
       </div>
 
       <div style={{ maxWidth: 820, margin: "0 auto", padding: "64px 24px" }}>

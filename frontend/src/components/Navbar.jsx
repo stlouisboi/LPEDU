@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { List, X, LockSimple, CaretDown } from "@phosphor-icons/react";
 
 const FRAMEWORK_LINKS = [
-  { label: "Knowledge Center", href: "/knowledge-center" },
+  { label: "Operational Library", href: "/knowledge-center" },
   { label: "AUTO Method", href: "/auto-method" },
   {
     label: "Standards",

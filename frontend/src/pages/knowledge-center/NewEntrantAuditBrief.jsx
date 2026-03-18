@@ -279,7 +279,7 @@ export default function NewEntrantAuditBrief() {
             gap: "0.4rem",
             marginBottom: "2.5rem",
           }}>
-            ← Knowledge Center
+            ← Operational Library
           </Link>
 
           <p style={{
