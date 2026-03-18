@@ -93,7 +93,7 @@ export const MODULE_1_DATA = {
       subtitle: "Checklist verification and handoff to Module 2: Insurance Survival",
       duration: "~10 min",
       description:
-        "Authority is active. The foundation is installed. This closing session reviews the Module 1 implementation checklist, confirms your authority status through FMCSA's carrier portal, and sets the context for Module 2 — where we build the insurance layer before the audit window narrows further.",
+        "Authority is active. The foundation is installed. This closing session reviews the Module 1 implementation checklist, confirms your authority status through FMCSA's carrier portal, and sets the context for Module 2 — where you build the insurance layer before the audit window narrows further.",
       videoUrl: null,
       resources: [
         { label: "New Entrant Compliance Packet — LP-PKT-001", href: "/standards/new-entrant-packet" },

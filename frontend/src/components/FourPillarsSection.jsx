@@ -6,7 +6,7 @@ const PILLARS = [
     code: "LP-SYS-01",
     num: "01",
     name: "Authority Protection",
-    detail: "Federal filing continuity, FMCSA operating authority maintenance, and structured audit-readiness protocol for the new entrant review period.",
+    detail: "Federal filing continuity, authority maintenance, and structured audit-readiness controls. Missing filings, weak documentation, or unmanaged gaps can quickly turn authority into exposure.",
     output: "Avoids a conditional safety rating from a single missing DQ file or lapsed medical certificate.",
     without: "A single documentation gap — one missing DQ file, one lapsed medical certificate — can trigger a conditional rating that freezes operations within 30 days.",
   },
@@ -14,7 +14,7 @@ const PILLARS = [
     code: "LP-SYS-02",
     num: "02",
     name: "Insurance Continuity",
-    detail: "BMC-91 filing compliance, continuous coverage verification, policy gap prevention, and cargo insurance alignment with freight contract requirements.",
+    detail: "BMC-91 filing integrity, continuous coverage verification, and policy gap prevention. When insurance posture weakens, authority stability weakens with it.",
     output: "Avoids insurance non-renewal — the leading direct trigger for authority revocation.",
     without: "Insurance non-renewal after an audit finding is the most common cause of authority revocation. Most carriers don't lose authority directly — they lose insurance, and authority follows.",
   },
@@ -22,7 +22,7 @@ const PILLARS = [
     code: "LP-SYS-03",
     num: "03",
     name: "Compliance Backbone",
-    detail: "HOS documentation, D&A program enrollment, driver qualification file management, and vehicle inspection and maintenance record systems.",
+    detail: "Hours-of-service records, drug and alcohol program enrollment, driver qualification file management, and vehicle inspection documentation. Investigators do not review one clean area in isolation — they review the operating system as a whole.",
     output: "Avoids audit failure from cross-area record gaps — a clean HOS file does not protect an incomplete D&A program.",
     without: "Investigators don't audit one area. They pull records across all four. A clean HOS file means nothing if your D&A program is incomplete. Failure in one area exposes all the others.",
   },
@@ -30,7 +30,7 @@ const PILLARS = [
     code: "LP-SYS-04",
     num: "04",
     name: "Cash-Flow Oxygen",
-    detail: "Freight rate floor calculations, cost-per-mile control systems, factoring structure, and financial runway management through the first 90 operating days.",
+    detail: "Rate floor discipline, cost-per-mile control, and financial runway protection. When cash flow tightens, compliance decisions collapse under pressure. Financial control is an operating safeguard — not a separate business concern.",
     output: "Avoids the financial pressure that forces compliance shortcuts and non-compliance within 60 days.",
     without: "Carriers who cannot maintain cash-flow discipline become non-compliant within 60 days — not from negligence, but from financial pressure that forces operational shortcuts.",
   },
@@ -188,7 +188,7 @@ export default function FourPillarsSection() {
             color: "#d4900a",
             marginBottom: "0.625rem",
           }}>
-            SYSTEM ARCHITECTURE
+            LP-SYS-001 — THE FOUR PILLAR STANDARD
           </p>
           <h2 style={{
             fontFamily: "'Barlow Condensed', sans-serif",
@@ -199,7 +199,7 @@ export default function FourPillarsSection() {
             lineHeight: 1.15,
             marginBottom: "0.75rem",
           }}>
-            Four Pillar Standard
+            Four Pillars. Six Installed Domains. One Audit-Ready Authority.
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -207,9 +207,9 @@ export default function FourPillarsSection() {
             color: "rgba(255,255,255,0.78)",
             lineHeight: 1.7,
             marginBottom: "2.75rem",
-            maxWidth: 580,
+            maxWidth: 620,
           }}>
-            Together these four systems create the documented operating structure regulators, insurers, and freight partners expect to see.
+            Every motor carrier authority depends on four operating systems to survive the New Entrant period. You install all four — in sequence, with documented proof, structured controls, and operational accountability at each stage.
           </p>
         </FadeIn>
 
