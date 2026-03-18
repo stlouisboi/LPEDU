@@ -146,12 +146,12 @@ export default function HeroSection() {
 
           {/* Primary supporting paragraph */}
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 14 }}>
-            LaunchPath installs the compliance infrastructure FMCSA expects into your operation — before gaps become audit exposure.
+            You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
           </p>
 
           {/* Secondary body */}
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 14 }}>
-            We install the files, programs, monitoring systems, and operating structure required to keep your authority active under real-world conditions.
+            You build the files, programs, monitoring systems, and operating structure required to keep your authority active under real-world conditions.
           </p>
 
           {/* System identity line */}
@@ -182,6 +182,11 @@ export default function HeroSection() {
           </div>
 
           {/* Fix 2 — self-installation clarifier — removed, replaced by system identity line above */}
+
+          {/* Clarifier — who does the work */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.45)", letterSpacing: "0.02em", lineHeight: 1.5, marginBottom: 20, maxWidth: 420 }}>
+            This is not done-for-you compliance. You do the work. The system shows you what, when, and how.
+          </p>
 
           {/* Proof strip — hidden on mobile (shown as compact row instead) */}
           <div className="proof-strip" style={{
