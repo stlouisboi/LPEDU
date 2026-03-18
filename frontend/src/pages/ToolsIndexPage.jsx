@@ -35,7 +35,7 @@ const COMING = [
 
 const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
-const display = "'Manrope', sans-serif";
+const display = "'Barlow Condensed', sans-serif";
 
 export default function ToolsIndexPage() {
   return (

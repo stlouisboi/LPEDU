@@ -24,7 +24,7 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
             LP-DOCTRINE
           </p>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 600,
             fontSize: "clamp(1.1rem, 2.2vw, 1.35rem)",
             color: "rgba(255,255,255,0.92)",

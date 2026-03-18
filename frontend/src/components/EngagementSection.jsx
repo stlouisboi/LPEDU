@@ -45,7 +45,7 @@ export default function EngagementSection() {
           </p>
 
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
             letterSpacing: "-0.02em",
@@ -135,7 +135,7 @@ export default function EngagementSection() {
                 </div>
                 <div>
                   <p style={{
-                    fontFamily: "'Manrope', sans-serif",
+                    fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 700,
                     fontSize: "1.008rem",
                     color: "#FFFFFF",

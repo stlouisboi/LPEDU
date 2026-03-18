@@ -3,7 +3,7 @@ import FadeIn from "./FadeIn";
 
 const mono = "'JetBrains Mono', monospace";
 const sans = "'Inter', sans-serif";
-const heading = "'Manrope', sans-serif";
+const heading = "'Barlow Condensed', sans-serif";
 
 const PHASES = [
   {

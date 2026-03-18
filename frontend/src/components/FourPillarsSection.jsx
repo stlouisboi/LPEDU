@@ -67,7 +67,7 @@ function PillarCard({ pillar, idx }) {
         position: "absolute",
         top: "-0.5rem",
         right: "1rem",
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 800,
         fontSize: "8rem",
         lineHeight: 1,
@@ -94,7 +94,7 @@ function PillarCard({ pillar, idx }) {
 
       {/* Name */}
       <h3 style={{
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 700,
         fontSize: "1.12rem",
         color: "#FFFFFF",
@@ -191,7 +191,7 @@ export default function FourPillarsSection() {
             SYSTEM ARCHITECTURE
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
             letterSpacing: "-0.02em",

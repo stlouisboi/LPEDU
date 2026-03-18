@@ -144,7 +144,7 @@ function SectionHeader({ overline, title, id }) {
         }}>{overline}</p>
       )}
       <h2 style={{
-        fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+        fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
         fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em",
         color: "var(--text)", lineHeight: 1.25,
       }}>{title}</h2>
@@ -211,7 +211,7 @@ export default function InsuranceContinuityBrief() {
             Compliance Systems — Insurance & Authority (49 CFR Part 387)
           </p>
 
-          <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.9rem, 4vw, 3rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "var(--text)", marginBottom: "1.25rem" }}>
+          <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.9rem, 4vw, 3rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "var(--text)", marginBottom: "1.25rem" }}>
             Insurance Continuity Brief:<br />What Your Policy and Filings Actually Have to Prove
           </h1>
 
@@ -284,7 +284,7 @@ export default function InsuranceContinuityBrief() {
         <div style={{ marginBottom: "4.5rem" }}>
           <SectionHeader overline="Section 2" title="How Filings and Endorsements Actually Work" id="filings-endorsements" />
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>Minimum financial responsibility and Part 387</h3>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>Minimum financial responsibility and Part 387</h3>
           <Body>
             Part 387 sets minimum levels of financial responsibility for motor carriers of property and prescribes how carriers must prove they meet those levels. A motor carrier may not operate until it has obtained and has in effect the minimum levels required, and must maintain proof at its place of business in the form of an MCS-90 endorsement, surety bond, or self-insurance authorization.
           </Body>
@@ -292,7 +292,7 @@ export default function InsuranceContinuityBrief() {
             For most for-hire property carriers hauling non-hazardous freight in interstate commerce with vehicles over 10,000 pounds, that minimum is $750,000 in public liability — with higher limits for certain hazardous materials categories.
           </Body>
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>BMC-91/BMC-91X filings: how your authority comes alive</h3>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>BMC-91/BMC-91X filings: how your authority comes alive</h3>
           <Body>
             Your insurance company proves to FMCSA that you have required liability coverage by filing forms such as BMC-91 or BMC-91X. A BMC-91 is a filing from a single insurer certifying your policy meets federal minimums. A BMC-91X is used when multiple insurers provide layers of coverage that together meet the requirement.
           </Body>
@@ -303,7 +303,7 @@ export default function InsuranceContinuityBrief() {
             Your operating authority is physically tied to a live BMC-91/BMC-91X filing from your insurer. When that filing goes away, your authority goes with it — whether or not you know it happened.
           </Callout>
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>MCS-90: what it guarantees — and what it doesn't</h3>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>MCS-90: what it guarantees — and what it doesn't</h3>
           <Body>
             The MCS-90 endorsement obligates the insurer to pay judgments for bodily injury, property damage, or environmental restoration up to federal minimums — even if the underlying policy would otherwise exclude the loss. It is designed to protect the public, not to expand your coverage beyond what you bought.
           </Body>
@@ -340,7 +340,7 @@ export default function InsuranceContinuityBrief() {
             },
           ].map((block) => (
             <div key={block.title} style={{ marginBottom: "2rem" }}>
-              <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem" }}>{block.title}</h3>
+              <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem" }}>{block.title}</h3>
               <BulletList items={block.items} />
             </div>
           ))}
@@ -356,7 +356,7 @@ export default function InsuranceContinuityBrief() {
       <section data-testid="risk-patterns" style={{ background: "var(--bg-2)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "5rem 1.5rem" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 4</p>
-          <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
             Patterns That Create the Most Insurance and Authority Risk
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 680, marginBottom: "3rem" }}>
@@ -386,7 +386,7 @@ export default function InsuranceContinuityBrief() {
           <SectionHeader overline="Section 5" title="The LaunchPath Insurance Operating Standard" id="insurance-standard" />
           <Body>Instead of treating insurance as a once-a-year renewal event, you run it like part of your compliance operating system — with a defined file, defined inputs, and a quarterly rhythm.</Body>
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>System inputs</h3>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>System inputs</h3>
           <Body>Five sources feed your insurance standard:</Body>
           <BulletList items={[
             "FMCSA records: your public L&I snapshot — authority status, active filings, required limits.",
@@ -396,7 +396,7 @@ export default function InsuranceContinuityBrief() {
             "Operations profile: commodities, lanes, and customer requirements you are actually running.",
           ]} />
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "1rem" }}>Quarterly behaviors</h3>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "1rem" }}>Quarterly behaviors</h3>
           <BulletList items={[
             "Compare your fleet roster and driver list against what your policy declarations show as covered units and drivers. Document and correct discrepancies.",
             "Review your L&I record to confirm authority is active, required filings are on file, and there are no pending cancellations.",
@@ -414,7 +414,7 @@ export default function InsuranceContinuityBrief() {
       <section data-testid="insurance-checklist-table" style={{ background: "var(--bg-2)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "5rem 1.5rem" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6</p>
-          <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
             90-Day Insurance Continuity Readiness Checklist
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 680, marginBottom: "2.5rem" }}>
@@ -447,7 +447,7 @@ export default function InsuranceContinuityBrief() {
       <section data-testid="insurance-binder" className="audit-binder-section" style={{ background: "var(--bg)", borderBottom: "1px solid var(--border)", padding: "5rem 1.5rem" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6 — Supplement</p>
-          <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem" }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem" }}>
             Insurance & Authority File — 2026
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 620 }}>
@@ -459,7 +459,7 @@ export default function InsuranceContinuityBrief() {
               <div key={tab.num} className="binder-tab" style={{ background: "var(--bg)", padding: "2rem" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "1.25rem", paddingBottom: "0.875rem", borderBottom: "1px solid var(--border)" }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>TAB {tab.num}</span>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", lineHeight: 1.3 }}>{tab.title}</h3>
+                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", lineHeight: 1.3 }}>{tab.title}</h3>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
                   {tab.items.map((item, i) => (
@@ -502,7 +502,7 @@ export default function InsuranceContinuityBrief() {
 
         <div data-testid="article-cta" style={{ borderTop: "1px solid var(--border)", paddingTop: "3.5rem" }}>
           <p className="overline" style={{ marginBottom: "1rem" }}>What Happens Next</p>
-          <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.5rem, 2.5vw, 2rem)", letterSpacing: "-0.02em", color: "var(--text)", marginBottom: "1rem" }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.5rem, 2.5vw, 2rem)", letterSpacing: "-0.02em", color: "var(--text)", marginBottom: "1rem" }}>
             Pull your L&I snapshot today. Look at your declarations page. See if they match.
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem", maxWidth: 520 }}>

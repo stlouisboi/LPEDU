@@ -56,7 +56,7 @@ export default function DeadlySinsSection() {
           <div style={{ maxWidth: 680, marginBottom: "5rem" }}>
             <p className="overline" style={{ marginBottom: "1.25rem", color: "var(--text-paper-heading)" }}>Failure Documentation</p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
               letterSpacing: "-0.02em",
@@ -66,7 +66,7 @@ export default function DeadlySinsSection() {
               How new authorities fail in the first 90 days.
             </h2>
             <p style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 600,
               fontSize: "1.12rem",
               color: "var(--text-paper)",

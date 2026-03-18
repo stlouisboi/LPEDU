@@ -146,7 +146,7 @@ function SectionHeader({ overline, title, id }) {
         }}>{overline}</p>
       )}
       <h2 style={{
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 700,
         fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
         letterSpacing: "-0.015em",
@@ -241,7 +241,7 @@ export default function MaintenanceRecordsBrief() {
           </p>
 
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.9rem, 4vw, 3rem)",
             letterSpacing: "-0.025em",
@@ -359,7 +359,7 @@ export default function MaintenanceRecordsBrief() {
         <div style={{ marginBottom: "4.5rem" }}>
           <SectionHeader overline="Section 2" title="What FMCSA Is Really Checking in Your Unit Files" id="what-fmcsa-checks" />
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>
             What they want to see for each truck
           </h3>
           <Body>When an investigator picks a unit and asks "Show me the file for this truck," they are looking for four things:</Body>
@@ -375,7 +375,7 @@ export default function MaintenanceRecordsBrief() {
             </div>
           ))}
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem", marginTop: "2rem" }}>
             How they connect your paperwork to the real truck
           </h3>
           <Body>Investigators cross-check three things:</Body>
@@ -431,7 +431,7 @@ export default function MaintenanceRecordsBrief() {
             },
           ].map((block) => (
             <div key={block.title} style={{ marginBottom: "2rem" }}>
-              <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem" }}>{block.title}</h3>
+              <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem" }}>{block.title}</h3>
               {block.items.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "var(--orange)", marginTop: "0.28rem", flexShrink: 0 }}>—</span>
@@ -457,7 +457,7 @@ export default function MaintenanceRecordsBrief() {
       }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 4</p>
-          <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
             The DVIR Lifecycle: From Defect to Proof of Repair
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 640, marginBottom: "3rem" }}>
@@ -478,7 +478,7 @@ export default function MaintenanceRecordsBrief() {
               }}>
                 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", paddingTop: "0.3rem", letterSpacing: "0.05em" }}>{s.num}</span>
                 <div>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.4rem" }}>{s.title}</h3>
+                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.4rem" }}>{s.title}</h3>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.75 }}>{s.detail}</p>
                 </div>
               </div>
@@ -502,7 +502,7 @@ export default function MaintenanceRecordsBrief() {
             Instead of throwing invoices in a drawer, you treat your maintenance system like every other binder in the LaunchPath Standard. One file per truck, one rhythm per week, one review per month.
           </Body>
 
-          <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>System inputs</h3>
+          <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.75rem" }}>System inputs</h3>
           <Body>Four sources feed your maintenance standard:</Body>
           {[
             "Driver inputs: DVIRs, roadside inspection reports, and driver complaints.",
@@ -558,7 +558,7 @@ export default function MaintenanceRecordsBrief() {
       }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6</p>
-          <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.75rem" }}>
             90-Day Maintenance Readiness Checklist
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 680, marginBottom: "2.5rem" }}>
@@ -595,7 +595,7 @@ export default function MaintenanceRecordsBrief() {
       }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.75rem" }}>Section 6 — Supplement</p>
-          <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem" }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem" }}>
             Example Unit File: Tractor 101
           </h2>
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.08em", marginBottom: "1.25rem" }}>
@@ -610,7 +610,7 @@ export default function MaintenanceRecordsBrief() {
               <div key={tab.num} className="binder-tab" style={{ background: "var(--bg)", padding: "2rem" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "1.25rem", paddingBottom: "0.875rem", borderBottom: "1px solid var(--border)" }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>TAB {tab.num}</span>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", lineHeight: 1.3 }}>{tab.title}</h3>
+                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", lineHeight: 1.3 }}>{tab.title}</h3>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
                   {tab.items.map((item, i) => (
@@ -658,7 +658,7 @@ export default function MaintenanceRecordsBrief() {
         <div data-testid="article-cta" style={{ borderTop: "1px solid var(--border)", paddingTop: "3.5rem" }}>
           <p className="overline" style={{ marginBottom: "1rem" }}>What Happens Next</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 2.5vw, 2rem)", letterSpacing: "-0.02em",
             color: "var(--text)", marginBottom: "1rem",
           }}>

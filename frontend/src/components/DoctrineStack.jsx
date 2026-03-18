@@ -111,7 +111,7 @@ export function DoctrineStack() {
       {/* Caption */}
       <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
         <p style={{
-          fontFamily: "'Manrope', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           fontSize: "0.9rem",
           fontWeight: 700,
           color: "rgba(255,255,255,0.8)",

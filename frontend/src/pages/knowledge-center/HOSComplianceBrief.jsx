@@ -167,7 +167,7 @@ function SectionHeader({ overline, title, id }) {
         }}>{overline}</p>
       )}
       <h2 style={{
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 700,
         fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
         letterSpacing: "-0.015em",
@@ -262,7 +262,7 @@ export default function HOSComplianceBrief() {
           </p>
 
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.9rem, 4vw, 3rem)",
             letterSpacing: "-0.025em",
@@ -414,7 +414,7 @@ export default function HOSComplianceBrief() {
           <SectionHeader overline="Section 2" title="What FMCSA Is Really Checking in Your Logs" id="what-fmcsa-checks" />
 
           <h3 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "1.12rem",
             color: "var(--text)",
@@ -425,7 +425,7 @@ export default function HOSComplianceBrief() {
           </Body>
 
           <h3 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "1.12rem",
             color: "var(--text)",
@@ -520,7 +520,7 @@ export default function HOSComplianceBrief() {
             marginBottom: "0.75rem",
           }}>Section 4</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
             letterSpacing: "-0.015em",
@@ -594,7 +594,7 @@ export default function HOSComplianceBrief() {
           </Body>
 
           <h3 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "1.12rem",
             color: "var(--text)",
@@ -626,7 +626,7 @@ export default function HOSComplianceBrief() {
           </div>
 
           <h3 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "1.12rem",
             color: "var(--text)",
@@ -681,7 +681,7 @@ export default function HOSComplianceBrief() {
             marginBottom: "0.75rem",
           }}>Section 6</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
             letterSpacing: "-0.015em",
@@ -769,7 +769,7 @@ export default function HOSComplianceBrief() {
             marginBottom: "0.75rem",
           }}>Section 6 — Supplement</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
             letterSpacing: "-0.015em",
@@ -805,7 +805,7 @@ export default function HOSComplianceBrief() {
                     letterSpacing: "0.1em",
                   }}>TAB {tab.num}</span>
                   <h3 style={{
-                    fontFamily: "'Manrope', sans-serif",
+                    fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 700,
                     fontSize: "1.12rem",
                     color: "var(--text)",
@@ -885,7 +885,7 @@ export default function HOSComplianceBrief() {
         }}>
           <p className="overline" style={{ marginBottom: "1rem" }}>What Happens Next</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
             letterSpacing: "-0.02em",

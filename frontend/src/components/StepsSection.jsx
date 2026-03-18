@@ -15,7 +15,7 @@ export default function StepsSection() {
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <p className="overline" style={{ marginBottom: "1.25rem" }}>The System</p>
         <h2 style={{
-          fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+          fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
           fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
           letterSpacing: "-0.02em", marginBottom: "4rem",
         }}>
@@ -42,7 +42,7 @@ export default function StepsSection() {
                   padding: "0.2rem 0.5rem",
                 }}>{s.badge}</span>
               </div>
-              <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.176rem", color: "var(--text)" }}>{s.name}</h3>
+              <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.176rem", color: "var(--text)" }}>{s.name}</h3>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.7, flex: 1 }}>{s.desc}</p>
             </div>
           ))}

@@ -574,7 +574,7 @@ export default function REACHAssessmentPage() {
           </p>
 
           <p style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 600,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600,
             fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)", color: "#FFFFFF",
             lineHeight: 1.55, marginBottom: "2.5rem", maxWidth: 540,
           }}>
@@ -627,7 +627,7 @@ export default function REACHAssessmentPage() {
         <div style={{ ...wrap, paddingTop: "120px", paddingBottom: "80px" }}>
           <div style={{ borderLeft: "2px solid #C5A059", paddingLeft: "1.5rem", maxWidth: 480 }}>
             <p style={{
-              fontFamily: "'Manrope', sans-serif", fontSize: "1.12rem",
+              fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.12rem",
               color: "var(--text-muted)", lineHeight: 1.8, fontStyle: "italic",
             }}>
               {CATEGORY_INSIGHTS[insightIdx]}
@@ -660,7 +660,7 @@ export default function REACHAssessmentPage() {
           </p>
 
           <p style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 600,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600,
             fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)", color: "#FFFFFF",
             lineHeight: 1.55, marginBottom: "2rem", maxWidth: 540,
           }}>
@@ -869,7 +869,7 @@ export default function REACHAssessmentPage() {
               </div>
 
               <h2 style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
                 color: "#FFFFFF",

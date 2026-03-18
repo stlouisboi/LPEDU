@@ -128,7 +128,7 @@ export default function RegulatoryRealitySection() {
               background: "rgba(197,160,89,0.05)",
             }}>
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(1rem, 2vw, 1.232rem)",
                 color: "rgba(255,255,255,0.9)",
@@ -138,7 +138,7 @@ export default function RegulatoryRealitySection() {
                 Authority failure is rarely caused by lack of effort.
               </p>
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(1rem, 2vw, 1.232rem)",
                 color: "#C5A059",
@@ -170,7 +170,7 @@ export default function RegulatoryRealitySection() {
               padding: "2rem 1.75rem",
             }}>
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4vw, 2.75rem)",
                 color: "#C5A059",

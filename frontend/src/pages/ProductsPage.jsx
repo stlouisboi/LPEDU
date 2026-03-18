@@ -76,7 +76,7 @@ export default function ProductsPage() {
               letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
             }}>LP-SYS-LIBRARY | OPERATING STANDARDS</p>
             <h1 style={{
-              fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+              fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFFFFF",
               lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1rem",
             }}>The LaunchPath Operating Standards Library</h1>
@@ -125,7 +125,7 @@ export default function ProductsPage() {
                   )}
                   <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "0.5rem" }}>
                     <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: gold }}>{tier.tier}</span>
-                    <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF" }}>{tier.label}</span>
+                    <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF" }}>{tier.label}</span>
                   </div>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>{tier.desc}</p>
                 </div>
@@ -153,7 +153,7 @@ export default function ProductsPage() {
             borderTop: `3px solid ${gold}`, padding: "2.5rem", marginBottom: "4rem",
           }}>
             <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>THE COMPLETE DIY SYSTEM</p>
-            <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
+            <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
               Install the full LaunchPath document architecture in one step. Includes all five packets, the 0–30–90 Day Implementation Guide, and the unified folder structure. $128 less than purchasing the five packets individually.
             </p>
@@ -190,7 +190,7 @@ export default function ProductsPage() {
               }} className="ladder-row">
                 <div style={{ flex: 1 }}>
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(197,160,89,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
-                  <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
+                  <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "rgba(197,160,89,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
@@ -219,7 +219,7 @@ export default function ProductsPage() {
             marginBottom: "1.5rem",
           }}>LP-SPEC-001 | Comparison Matrix</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.35rem",
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.35rem",
             color: "#FFFFFF", letterSpacing: "-0.01em", marginBottom: "2rem",
           }}>LaunchPath System Comparison</h2>
           <div style={{ overflowX: "auto", marginBottom: "4rem" }}>
@@ -248,7 +248,7 @@ export default function ProductsPage() {
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
                     <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>Individual Packet</p>
-                    <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$97–$127</p>
+                    <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$97–$127</p>
                   </th>
 
                   {/* Bundle column — gold highlight */}
@@ -261,7 +261,7 @@ export default function ProductsPage() {
                   }}>
                     <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.58rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Recommended DIY</p>
                     <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>New Carrier System</p>
-                    <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$497</p>
+                    <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$497</p>
                   </th>
 
                   {/* Standard column — institutional */}
@@ -272,7 +272,7 @@ export default function ProductsPage() {
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
                     <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>LaunchPath Standard</p>
-                    <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
+                    <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
                   </th>
                 </tr>
               </thead>

@@ -31,7 +31,7 @@ export default function TCOSection() {
           Run Your Own Numbers
         </p>
         <h2 style={{
-          fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+          fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
           fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
           letterSpacing: "-0.02em", marginBottom: "1rem",
           color: "var(--text-paper-heading)",

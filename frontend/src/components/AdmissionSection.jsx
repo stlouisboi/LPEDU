@@ -10,7 +10,7 @@ export default function AdmissionSection() {
       <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
         <p className="overline" style={{ marginBottom: "1.5rem" }}>Request Admission</p>
         <h2 style={{
-          fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+          fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
           fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
           letterSpacing: "-0.02em", marginBottom: "1.25rem",
         }}>

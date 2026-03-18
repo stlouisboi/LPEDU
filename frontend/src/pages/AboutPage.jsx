@@ -79,7 +79,7 @@ export default function AboutPage() {
               Station Custodian — LP-SYS-V4.2
             </p>
             <h1 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
               letterSpacing: "-0.03em",
@@ -148,7 +148,7 @@ export default function AboutPage() {
                 ["20+ Yrs", "Manufacturing & Safety Systems"],
               ].map(([val, label]) => (
                 <div key={val} style={{ background: "var(--bg-2)", padding: "0.875rem 1rem" }}>
-                  <div style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.008rem", color: "var(--text)", marginBottom: "0.2rem" }}>{val}</div>
+                  <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.008rem", color: "var(--text)", marginBottom: "0.2rem" }}>{val}</div>
                   <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", lineHeight: 1.4 }}>{label}</div>
                 </div>
               ))}
@@ -166,7 +166,7 @@ export default function AboutPage() {
           <FadeIn>
             <p className="overline" style={{ marginBottom: "1.5rem" }}>In Vince's Words</p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -206,7 +206,7 @@ export default function AboutPage() {
               margin: "0 0 1rem",
             }}>
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 600,
                 fontSize: "1.288rem",
                 color: "var(--text)",
@@ -232,7 +232,7 @@ export default function AboutPage() {
                 48 CFR Subpart — Operational Doctrine
               </p>
               <h2 style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
                 letterSpacing: "-0.02em",
@@ -262,7 +262,7 @@ export default function AboutPage() {
                   onMouseLeave={e => e.currentTarget.style.background = "var(--bg)"}
                 >
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.12em", marginBottom: "1rem" }}>{d.ref}</p>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.092rem", color: "var(--text)", marginBottom: "0.875rem", lineHeight: 1.3 }}>{d.title}</h3>
+                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.092rem", color: "var(--text)", marginBottom: "0.875rem", lineHeight: 1.3 }}>{d.title}</h3>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{d.body}</p>
                 </div>
               </FadeIn>
@@ -277,7 +277,7 @@ export default function AboutPage() {
           <FadeIn>
             <p className="overline" style={{ marginBottom: "1.25rem" }}>Institutional Boundaries</p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -322,7 +322,7 @@ export default function AboutPage() {
           <FadeIn>
             <blockquote style={{ marginBottom: "3rem" }}>
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 600,
                 fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
                 color: "var(--text)",

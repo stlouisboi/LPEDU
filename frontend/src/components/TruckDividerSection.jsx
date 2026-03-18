@@ -40,7 +40,7 @@ export default function TruckDividerSection() {
         padding: "0 1.5rem",
       }}>
         <p style={{
-          fontFamily: "'Manrope', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           fontWeight: 700,
           fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
           color: "rgba(255,255,255,0.80)",

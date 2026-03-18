@@ -468,7 +468,7 @@ export default function BookMockupPage() {
             LP-ART-001 | Product Mockup Library
           </p>
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
             color: "#FFFFFF",
@@ -511,7 +511,7 @@ export default function BookMockupPage() {
                   {product.code}
                 </p>
                 <p style={{
-                  fontFamily: "'Manrope', sans-serif",
+                  fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.94rem",
                   color: "rgba(255,255,255,0.85)",

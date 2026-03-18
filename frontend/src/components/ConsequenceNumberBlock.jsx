@@ -27,7 +27,7 @@ export default function ConsequenceNumberBlock() {
           </p>
 
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.85rem, 3.8vw, 3rem)",
             letterSpacing: "-0.025em",

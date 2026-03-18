@@ -124,7 +124,7 @@ export default function AuthorityClockSection() {
             The 90-Day Authority Clock
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
             letterSpacing: "-0.02em",
@@ -225,7 +225,7 @@ export default function AuthorityClockSection() {
                       {item.code}
                     </div>
                     <p style={{
-                      fontFamily: "'Manrope', sans-serif",
+                      fontFamily: "'Barlow Condensed', sans-serif",
                       fontWeight: 700,
                       fontSize: cfg.titleSize,
                       color: cfg.titleColor,
@@ -271,7 +271,7 @@ export default function AuthorityClockSection() {
             LP-DOC-001 | Doctrine
           </p>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.1rem, 2.2vw, 1.35rem)",
             color: "rgba(255,255,255,0.95)",
@@ -282,7 +282,7 @@ export default function AuthorityClockSection() {
             FMCSA does not audit paperwork.
           </p>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.1rem, 2.2vw, 1.35rem)",
             color: "#C5A059",

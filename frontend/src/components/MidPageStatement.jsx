@@ -51,7 +51,7 @@ export default function MidPageStatement() {
           </p>
 
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.85rem, 4.5vw, 3rem)",
             letterSpacing: "-0.03em",

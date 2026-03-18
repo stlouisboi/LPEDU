@@ -112,7 +112,7 @@ export default function FailureRealitySection() {
           </p>
 
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 500,
             fontStyle: "italic",
             fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
@@ -223,7 +223,7 @@ export default function FailureRealitySection() {
         {/* Exposure Inventory */}
         <FadeIn>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "1.232rem",
             color: "var(--text)",
@@ -298,7 +298,7 @@ export default function FailureRealitySection() {
             marginBottom: "3.5rem",
           }}>
             <p style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 500,
               fontStyle: "italic",
               fontSize: "clamp(1.05rem, 2vw, 1.35rem)",
@@ -328,7 +328,7 @@ export default function FailureRealitySection() {
                 textAlign: "center",
               }}>
                 <div style={{
-                  fontFamily: "'Manrope', sans-serif",
+                  fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 700,
                   fontSize: "clamp(2.5rem, 4vw, 3rem)",
                   color: "var(--gold-primary)",
@@ -351,7 +351,7 @@ export default function FailureRealitySection() {
 
         <FadeIn>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 600,
             fontStyle: "italic",
             fontSize: "clamp(1rem, 1.5vw, 1.15rem)",

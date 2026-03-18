@@ -265,7 +265,7 @@ export default function PortalPage() {
             OPERATOR PORTAL
           </p>
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em",
             color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem",
           }}>
@@ -677,7 +677,7 @@ export default function PortalPage() {
 
               {/* Heading */}
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "1.064rem",
                 color: "#FFFFFF",
@@ -766,7 +766,7 @@ export default function PortalPage() {
               <CheckCircle size={48} color="#C5A059" weight="light" style={{ marginBottom: "1.5rem" }} />
               <h2
                 style={{
-                  fontFamily: "'Manrope', sans-serif",
+                  fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 700,
                   fontSize: "clamp(1.5rem, 3vw, 2rem)",
                   color: "#FFFFFF",
@@ -820,7 +820,7 @@ export default function PortalPage() {
 
                   <h1
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
+                      fontFamily: "'Barlow Condensed', sans-serif",
                       fontWeight: 700,
                       fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                       color: "#FFFFFF",
@@ -1078,7 +1078,7 @@ export default function PortalPage() {
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#C5A059", marginBottom: "1.25rem" }}>
                     LP-TOOLS | CPM CALCULATOR
                   </p>
-                  <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
+                  <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
                   <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 480, marginBottom: "2rem" }}>
                     The full CPM Calculator — including Step 4 load profitability analysis — is part of the LaunchPath Standard cohort.
                   </p>
@@ -1110,7 +1110,7 @@ export default function PortalPage() {
 
                   <h2
                     style={{
-                      fontFamily: "'Manrope', sans-serif",
+                      fontFamily: "'Barlow Condensed', sans-serif",
                       fontWeight: 700,
                       fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
                       color: "#FFFFFF",
@@ -1277,7 +1277,7 @@ function ModuleOverviewCard({ moduleInfo, type }) {
       )}
 
       <div style={{ display: "flex", alignItems: "baseline", gap: "1.25rem", marginBottom: "0.625rem", flexWrap: "wrap" }}>
-        <h1 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
+        <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
           {moduleInfo.title}
         </h1>
         <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>

@@ -81,7 +81,7 @@ export default function ComplianceLibraryPage() {
           }}>LP-SYS-LIBRARY | COMPLIANCE RESOURCES</p>
 
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 3rem)",
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 3rem)",
             color: "#FFFFFF", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "1.25rem", maxWidth: 580,
           }}>Compliance Reference Library</h1>
 
@@ -142,7 +142,7 @@ export default function ComplianceLibraryPage() {
             }}>LP-BUNDLE-001</p>
 
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2rem)",
               color: "#FFFFFF",
@@ -212,7 +212,7 @@ export default function ComplianceLibraryPage() {
           textAlign: "center",
         }}>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)",
             color: navy,
@@ -323,7 +323,7 @@ function ProductCard({ product, index }) {
       {/* Title + Price row */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
         <h3 style={{
-          fontFamily: "'Manrope', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           fontWeight: 700,
           fontSize: "1.1rem",
           color: navy,

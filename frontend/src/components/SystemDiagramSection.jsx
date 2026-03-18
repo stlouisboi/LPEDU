@@ -19,7 +19,7 @@ export default function SystemDiagramSection() {
             marginBottom: "1rem",
           }}>System Architecture — LP-AUTH-SYS-V4</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
             letterSpacing: "-0.02em",
@@ -143,7 +143,7 @@ export default function SystemDiagramSection() {
             <circle cx="400" cy="240" r="40" fill="#0B1120" stroke="#E8590F" strokeWidth="1" filter="url(#glow)" />
             {/* Hub label */}
             <text x="400" y="234" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="7" fill="#8A96A3" letterSpacing="1.5">THE</text>
-            <text x="400" y="245" textAnchor="middle" fontFamily="'Manrope', sans-serif" fontSize="10" fontWeight="700" fill="#f0f4f8">CARRIER</text>
+            <text x="400" y="245" textAnchor="middle" fontFamily="'Barlow Condensed', sans-serif" fontSize="10" fontWeight="700" fill="#f0f4f8">CARRIER</text>
             <text x="400" y="258" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="6.5" fill="#E8590F" letterSpacing="1">● PROTECTED</text>
 
             {/* ── NODE 01 — Authority Protection (TOP) ── */}
@@ -153,7 +153,7 @@ export default function SystemDiagramSection() {
             <line x1="500" y1="56" x2="490" y2="56" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="500" y1="56" x2="500" y2="66" stroke="#E8590F" strokeWidth="1.5" />
             <text x="400" y="76" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="7.5" fill="#8A96A3" letterSpacing="1.5">NODE-01</text>
-            <text x="400" y="92" textAnchor="middle" fontFamily="'Manrope', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Authority Protection</text>
+            <text x="400" y="92" textAnchor="middle" fontFamily="'Barlow Condensed', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Authority Protection</text>
             <circle cx="472" cy="76" r="3" fill="#E8590F" />
 
             {/* ── NODE 02 — Insurance Continuity (RIGHT) ── */}
@@ -163,8 +163,8 @@ export default function SystemDiagramSection() {
             <line x1="780" y1="212" x2="770" y2="212" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="780" y1="212" x2="780" y2="222" stroke="#E8590F" strokeWidth="1.5" />
             <text x="696" y="231" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="7.5" fill="#8A96A3" letterSpacing="1.5">NODE-02</text>
-            <text x="696" y="247" textAnchor="middle" fontFamily="'Manrope', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Insurance</text>
-            <text x="696" y="261" textAnchor="middle" fontFamily="'Manrope', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Continuity</text>
+            <text x="696" y="247" textAnchor="middle" fontFamily="'Barlow Condensed', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Insurance</text>
+            <text x="696" y="261" textAnchor="middle" fontFamily="'Barlow Condensed', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Continuity</text>
             <circle cx="752" cy="231" r="3" fill="#E8590F" />
 
             {/* ── NODE 03 — Compliance Backbone (BOTTOM) ── */}
@@ -174,7 +174,7 @@ export default function SystemDiagramSection() {
             <line x1="506" y1="368" x2="496" y2="368" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="506" y1="368" x2="506" y2="378" stroke="#E8590F" strokeWidth="1.5" />
             <text x="400" y="387" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="7.5" fill="#8A96A3" letterSpacing="1.5">NODE-03</text>
-            <text x="400" y="403" textAnchor="middle" fontFamily="'Manrope', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Compliance Backbone</text>
+            <text x="400" y="403" textAnchor="middle" fontFamily="'Barlow Condensed', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Compliance Backbone</text>
             <circle cx="472" cy="387" r="3" fill="#E8590F" />
 
             {/* ── NODE 04 — Cash-Flow Oxygen (LEFT) ── */}
@@ -184,8 +184,8 @@ export default function SystemDiagramSection() {
             <line x1="188" y1="212" x2="178" y2="212" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="188" y1="212" x2="188" y2="222" stroke="#E8590F" strokeWidth="1.5" />
             <text x="104" y="231" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="7.5" fill="#8A96A3" letterSpacing="1.5">NODE-04</text>
-            <text x="104" y="247" textAnchor="middle" fontFamily="'Manrope', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Cash-Flow</text>
-            <text x="104" y="261" textAnchor="middle" fontFamily="'Manrope', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Oxygen</text>
+            <text x="104" y="247" textAnchor="middle" fontFamily="'Barlow Condensed', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Cash-Flow</text>
+            <text x="104" y="261" textAnchor="middle" fontFamily="'Barlow Condensed', sans-serif" fontSize="11.5" fontWeight="700" fill="#f0f4f8" letterSpacing="-0.3">Oxygen</text>
             <circle cx="160" cy="231" r="3" fill="#E8590F" />
 
             {/* ── Status bar bottom ── */}

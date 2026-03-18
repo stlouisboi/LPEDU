@@ -191,7 +191,7 @@ function PathCard({ path }) {
 
       {/* Title */}
       <h3 style={{
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 700,
         fontSize: "1.05rem",
         color: "#FFFFFF",
@@ -333,7 +333,7 @@ export default function Ground0CompletePage() {
 
           {/* Dynamic headline */}
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
             color: "#FFFFFF",
@@ -411,7 +411,7 @@ export default function Ground0CompletePage() {
             LP-DOCTRINE
           </p>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 600,
             fontSize: "clamp(1.05rem, 2.2vw, 1.3rem)",
             color: "rgba(255,255,255,0.90)",

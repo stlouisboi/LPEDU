@@ -44,7 +44,7 @@ export default function ThreePathsSection() {
             The Decision Framework
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
             letterSpacing: "-0.02em",
@@ -54,7 +54,7 @@ export default function ThreePathsSection() {
             Three paths. One decision.
           </h2>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 500,
             fontSize: "1.12rem",
             color: "var(--text-muted)",
@@ -101,7 +101,7 @@ export default function ThreePathsSection() {
               }}>
                 <div>
                   <span style={{
-                    fontFamily: "'Manrope', sans-serif",
+                    fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 700,
                     fontSize: "1.232rem",
                     letterSpacing: "0.1em",
@@ -149,7 +149,7 @@ export default function ThreePathsSection() {
 
         <FadeIn delay={120}>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 500,
             fontStyle: "italic",
             fontSize: "1.176rem",

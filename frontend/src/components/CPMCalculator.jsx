@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from "react";
 const API = process.env.REACT_APP_BACKEND_URL;
 const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
-const display = "'Manrope', sans-serif";
+const display = "'Barlow Condensed', sans-serif";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 const n = (v) => parseFloat(v) || 0;

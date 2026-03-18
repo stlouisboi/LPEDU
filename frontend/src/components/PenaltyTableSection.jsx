@@ -49,7 +49,7 @@ export default function PenaltyTableSection() {
             The Real Cost of Non-Compliance
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
             letterSpacing: "-0.02em",
@@ -163,7 +163,7 @@ export default function PenaltyTableSection() {
             Current as of March 2026. Verified against ecfr.gov.
           </p>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontStyle: "italic",
             fontSize: "1.232rem",
             color: "var(--text-muted)",

@@ -96,7 +96,7 @@ export default function Ground0Page() {
 
           <h1
             style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3.25rem)",
               color: "#002244",
@@ -143,7 +143,7 @@ export default function Ground0Page() {
             marginTop: "1rem",
           }}>
             <p style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontStyle: "italic",
               fontSize: "1.008rem",
               color: "#333333",
@@ -180,7 +180,7 @@ export default function Ground0Page() {
             LP-MOD-G0-6 — Operational Readiness Diagnostic
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
             color: "#FFFFFF",
@@ -229,7 +229,7 @@ export default function Ground0Page() {
             The Ground 0 Philosophy
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.8vw, 1.85rem)",
             color: "#FFFFFF",

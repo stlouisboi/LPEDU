@@ -42,7 +42,7 @@ export default function AutoDiagnosticPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p className="overline" style={{ marginBottom: "1.25rem", animation: "heroEnter 0.65s ease both" }}>Standard Diagnostic Protocol</p>
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(2.5rem, 6vw, 4.5rem)", letterSpacing: "-0.03em",
             lineHeight: 1.0, color: "var(--text)", marginBottom: "1rem",
             animation: "heroEnter 0.65s ease both", animationDelay: "0.1s",
@@ -50,7 +50,7 @@ export default function AutoDiagnosticPage() {
             The <span style={{ color: "var(--orange)" }}>AUTO</span> Diagnostic
           </h1>
           <p style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 600,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600,
             fontSize: "clamp(0.875rem, 1.5vw, 1.05rem)",
             color: "var(--text-muted)", letterSpacing: "0.04em",
             textTransform: "uppercase", marginBottom: "1rem",
@@ -108,7 +108,7 @@ export default function AutoDiagnosticPage() {
             <div style={{ maxWidth: 600, marginBottom: "4.5rem" }}>
               <p className="overline" style={{ marginBottom: "1rem" }}>Five Points of Failure</p>
               <h2 style={{
-                fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                 fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em",
               }}>
                 Hierarchical Exposure Vectors
@@ -128,7 +128,7 @@ export default function AutoDiagnosticPage() {
                   onMouseLeave={e => e.currentTarget.style.background = "var(--bg)"}
                 >
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.1em", marginBottom: "1rem" }}>{v.num}</p>
-                  <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem", textTransform: "uppercase", letterSpacing: "0.04em" }}>{v.name}</h3>
+                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem", textTransform: "uppercase", letterSpacing: "0.04em" }}>{v.name}</h3>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{v.body}</p>
                 </div>
               </FadeIn>
@@ -140,7 +140,7 @@ export default function AutoDiagnosticPage() {
                   OSHA STANDARD APPLIED
                 </p>
                 <p style={{
-                  fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                  fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                   fontSize: "1.232rem", color: "var(--text)", lineHeight: 1.4,
                   marginBottom: "1rem",
                 }}>
@@ -181,7 +181,7 @@ export default function AutoDiagnosticPage() {
         <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
             <p className="overline" style={{ marginBottom: "1.5rem" }}>Verified Stewardship Before Operational Movement</p>
-            <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em", marginBottom: "2rem" }}>
+            <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em", marginBottom: "2rem" }}>
               Run the AUTO Diagnostic
             </h2>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 480, margin: "0 auto 2.5rem" }}>

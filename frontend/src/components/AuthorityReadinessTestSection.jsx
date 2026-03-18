@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
-const heading = "'Manrope', sans-serif";
+const heading = "'Barlow Condensed', sans-serif";
 
 const PILLARS = [
   { code: "R", name: "Resources" },

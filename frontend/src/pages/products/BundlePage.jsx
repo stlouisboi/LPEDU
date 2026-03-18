@@ -207,7 +207,7 @@ export default function BundlePage() {
                 }}>LP-BUNDLE-001 | NEW CARRIER DOCUMENT SYSTEM</p>
 
                 <h1 style={{
-                  fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                  fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                   fontSize: "clamp(2rem, 4vw, 3.25rem)", color: "#FFFFFF",
                   lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
                 }}>New Carrier Document System</h1>

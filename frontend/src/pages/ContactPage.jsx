@@ -85,7 +85,7 @@ export default function ContactPage() {
               Direct Contact
             </p>
             <h1 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3rem)",
               letterSpacing: "-0.025em",
@@ -141,7 +141,7 @@ export default function ContactPage() {
                 textAlign: "center",
               }}>
                 <CheckCircle size={40} color="var(--orange)" weight="duotone" style={{ marginBottom: "1.5rem" }} />
-                <h2 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "var(--text)", marginBottom: "1rem" }}>
+                <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "var(--text)", marginBottom: "1rem" }}>
                   Message received.
                 </h2>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 360, margin: "0 auto" }}>

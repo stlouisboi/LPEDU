@@ -107,7 +107,7 @@ export default function AdmissionPage() {
 
         <h1
           style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
             color: "#FFFFFF",
@@ -171,7 +171,7 @@ export default function AdmissionPage() {
             </div>
 
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
               color: "#FFFFFF",
@@ -195,7 +195,7 @@ export default function AdmissionPage() {
             <div style={{ height: 2, background: "#C5A059", maxWidth: 120, marginBottom: "2rem" }} />
 
             <p style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 600,
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.85)",

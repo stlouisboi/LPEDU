@@ -56,7 +56,7 @@ export default function WhoNotForSection() {
             paddingTop: "2.5rem",
           }}>
             <p style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 500,
               fontStyle: "italic",
               fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",

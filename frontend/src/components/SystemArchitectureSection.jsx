@@ -73,7 +73,7 @@ export default function SystemArchitectureSection() {
               LaunchPath Operational Architecture
             </p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2rem)",
               letterSpacing: "-0.02em",

@@ -92,7 +92,7 @@ export default function OperatingStandardPage() {
             LAUNCHPATH — OPERATING STANDARD
           </p>
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(2.25rem, 5vw, 4rem)",
             letterSpacing: "-0.025em",
@@ -113,10 +113,10 @@ export default function OperatingStandardPage() {
             A structured operational framework for new motor carriers designed to prevent authority loss, insurance failure, and compliance breakdown during the first 90 days of operation.
           </p>
           <div style={{ borderLeft: "2px solid rgba(197,160,89,0.4)", paddingLeft: "1.5rem" }}>
-            <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#C5A059", marginBottom: "0.4rem" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#C5A059", marginBottom: "0.4rem" }}>
               Accuracy Over Hype.
             </p>
-            <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(197,160,89,0.90)" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(197,160,89,0.90)" }}>
               Systems Over Shortcuts.
             </p>
           </div>
@@ -129,7 +129,7 @@ export default function OperatingStandardPage() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }} className="standard-two-col">
           <div>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               color: "#FFFFFF",
@@ -173,7 +173,7 @@ export default function OperatingStandardPage() {
         <div style={{ ...sectionWrap, padding: "80px 24px" }}>
           <p style={sectionLabel}>SECTION 02 — THE FOUR PILLARS</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "0.75rem",
           }}>
@@ -191,7 +191,7 @@ export default function OperatingStandardPage() {
                 }}>
                   PILLAR {String(i + 1).padStart(2, "0")}
                 </p>
-                <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "0.875rem" }}>
+                <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "0.875rem" }}>
                   {p.label}
                 </p>
                 <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.75 }}>{p.desc}</p>
@@ -206,7 +206,7 @@ export default function OperatingStandardPage() {
         <p style={sectionLabel}>SECTION 03 — THE AUTO GUARDING MODEL</p>
         <div style={{ maxWidth: 660, marginBottom: "3rem" }}>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "1.25rem",
           }}>
@@ -220,7 +220,7 @@ export default function OperatingStandardPage() {
           {AUTO_VECTORS.map((item) => (
             <div key={item.v} style={{ background: "#001A33", padding: "2rem 1.5rem" }}>
               <p style={{
-                fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                 fontSize: "2.25rem", color: "#C5A059", marginBottom: "0.5rem", lineHeight: 1,
               }}>
                 {item.v}
@@ -244,7 +244,7 @@ export default function OperatingStandardPage() {
         <div style={{ ...sectionWrap, padding: "80px 24px" }}>
           <p style={sectionLabel}>SECTION 04 — THE 6 OPERATIONAL GUARDS</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "1rem",
           }}>
@@ -285,7 +285,7 @@ export default function OperatingStandardPage() {
         <p style={sectionLabel}>SECTION 05 — THE 90-DAY INSTALLATION SEQUENCE</p>
         <div style={{ maxWidth: 560, marginBottom: "3.5rem" }}>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "1.25rem",
           }}>
@@ -320,7 +320,7 @@ export default function OperatingStandardPage() {
             <div>
               <p style={sectionLabel}>SECTION 06 — WHO THIS STANDARD IS FOR</p>
               <h2 style={{
-                fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                 fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
                 letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "2rem",
               }}>
@@ -338,7 +338,7 @@ export default function OperatingStandardPage() {
             <div style={{ borderLeft: "1px solid rgba(255,255,255,0.08)", paddingLeft: "3rem" }}>
               <p style={sectionLabel}>SECTION 07 — WHO THIS STANDARD IS NOT FOR</p>
               <h2 style={{
-                fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                 fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
                 letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "2rem",
               }}>
@@ -360,7 +360,7 @@ export default function OperatingStandardPage() {
         <div style={{ maxWidth: 640, margin: "0 auto" }}>
           <p style={sectionLabel}>SECTION 08 — ADOPTION</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "1.5rem",
           }}>

@@ -670,7 +670,7 @@ export function BookInfoPanel({ productId }) {
         marginBottom: "0.5rem",
       }}>{product.code}</p>
       <h3 style={{
-        fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+        fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
         fontSize: "1rem", lineHeight: 1.3, color: "#FFFFFF",
         marginBottom: "1.5rem",
       }}>{product.name}</h3>

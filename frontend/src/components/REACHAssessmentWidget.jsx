@@ -269,7 +269,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         {CATEGORIES[currentCatIdx].full} — {CATEGORIES[currentCatIdx].key}
       </p>
 
-      <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#FFFFFF", lineHeight: 1.55, marginBottom: "2rem", maxWidth: 520 }}>
+      <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#FFFFFF", lineHeight: 1.55, marginBottom: "2rem", maxWidth: 520 }}>
         {QUESTIONS[currentQ].text}
       </p>
 
@@ -307,7 +307,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   if (phase === "insight" && insightIdx !== null) return (
     <div style={box}>
       <div style={{ borderLeft: "2px solid #C5A059", paddingLeft: "1.25rem", maxWidth: 460 }}>
-        <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, fontStyle: "italic" }}>
+        <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, fontStyle: "italic" }}>
           {CATEGORY_INSIGHTS[insightIdx]}
         </p>
       </div>
@@ -320,7 +320,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.5rem" }}>
         OPERATIONAL DISCIPLINE — H
       </p>
-      <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#FFFFFF", lineHeight: 1.55, marginBottom: "1.75rem", maxWidth: 520 }}>
+      <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#FFFFFF", lineHeight: 1.55, marginBottom: "1.75rem", maxWidth: 520 }}>
         What concerns you most about starting a trucking operation?
       </p>
       <textarea
@@ -358,7 +358,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   // ── ANALYZING ─────────────────────────────────────────
   if (phase === "analyzing") return (
     <div style={{ ...box, textAlign: "center", paddingTop: "2.5rem" }}>
-      <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "2rem" }}>
+      <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "2rem" }}>
         Analyzing Operational Readiness
       </p>
       <div style={{ textAlign: "left", maxWidth: 240, margin: "0 auto" }}>
@@ -382,7 +382,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         </p>
       </div>
 
-      <h3 style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(1.12rem, 2.5vw, 1.5rem)", color: "#FFFFFF", lineHeight: 1.3, marginBottom: "1.25rem", maxWidth: 500 }}>
+      <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.12rem, 2.5vw, 1.5rem)", color: "#FFFFFF", lineHeight: 1.3, marginBottom: "1.25rem", maxWidth: 500 }}>
         {cfg.headline}
       </h3>
 

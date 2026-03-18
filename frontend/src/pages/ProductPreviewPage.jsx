@@ -21,7 +21,7 @@ export default function ProductPreviewPage() {
             marginBottom: "0.5rem",
           }}>LP-SYS-LIBRARY | PRODUCT PREVIEW TOOL</p>
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em",
           }}>3D Book Mockup Export</h1>
@@ -138,7 +138,7 @@ export default function ProductPreviewPage() {
             marginBottom: "0.25rem",
           }}>Currently previewing</p>
           <p style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "1.1rem", color: "#FFFFFF",
           }}>{product.name}</p>
           <p style={{

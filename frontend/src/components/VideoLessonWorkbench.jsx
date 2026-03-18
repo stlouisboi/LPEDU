@@ -136,7 +136,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
         </p>
         <p
           style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 600,
             fontSize: "1.05rem",
             color: "rgba(255,255,255,0.62)",
@@ -198,7 +198,7 @@ export function VideoLessonWorkbench({ moduleData }) {
       >
         <h1
           style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
             color: "#FFFFFF",
@@ -292,7 +292,7 @@ export function VideoLessonWorkbench({ moduleData }) {
             </p>
             <h2
               style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "1.4rem",
                 color: "#FFFFFF",

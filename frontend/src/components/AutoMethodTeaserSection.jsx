@@ -68,7 +68,7 @@ function AutoCard({ card, visible, delay }) {
       onMouseLeave={() => setHovered(false)}
     >
       <p style={{
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 800,
         fontSize: "3.5rem",
         color: "#C5A059",
@@ -157,7 +157,7 @@ export default function AutoMethodTeaserSection() {
             LP-MOD-AUTO | AUTHORITY PROTECTION MODEL
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
             letterSpacing: "-0.02em",

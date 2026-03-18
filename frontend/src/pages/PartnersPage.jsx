@@ -85,7 +85,7 @@ function PersonaCard({ p, idx }) {
           {p.code}
         </p>
         <p style={{
-          fontFamily: "'Manrope', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           fontWeight: 700,
           fontSize: "1rem",
           color: "rgba(255,255,255,0.85)",
@@ -96,7 +96,7 @@ function PersonaCard({ p, idx }) {
           {p.role}
         </p>
         <h3 style={{
-          fontFamily: "'Manrope', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           fontWeight: 700,
           fontSize: "1.12rem",
           color: "#FFFFFF",
@@ -198,7 +198,7 @@ function ContactForm() {
           LP-PARTNER-001 — INQUIRY RECEIVED
         </p>
         <p style={{
-          fontFamily: "'Manrope', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           fontWeight: 700,
           fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
           color: "#FFFFFF",
@@ -366,7 +366,7 @@ export default function PartnersPage() {
               LP-PARTNER-001 | REFERRAL & PARTNERSHIP NETWORK
             </p>
             <h1 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
               letterSpacing: "-0.03em",
@@ -442,7 +442,7 @@ export default function PartnersPage() {
               WHO THIS SERVES
             </p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -494,7 +494,7 @@ export default function PartnersPage() {
               THE REFERRAL PROCESS
             </p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -517,7 +517,7 @@ export default function PartnersPage() {
                   alignItems: "flex-start",
                 }}>
                   <p style={{
-                    fontFamily: "'Manrope', sans-serif",
+                    fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 800,
                     fontSize: "2.5rem",
                     color: "rgba(197,160,89,0.2)",
@@ -529,7 +529,7 @@ export default function PartnersPage() {
                   </p>
                   <div>
                     <h3 style={{
-                      fontFamily: "'Manrope', sans-serif",
+                      fontFamily: "'Barlow Condensed', sans-serif",
                       fontWeight: 700,
                       fontSize: "1.125rem",
                       color: "#FFFFFF",
@@ -577,7 +577,7 @@ export default function PartnersPage() {
                 textAlign: "center",
               }}>
                 <p style={{
-                  fontFamily: "'Manrope', sans-serif",
+                  fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 800,
                   fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
                   color: "#C5A059",
@@ -625,7 +625,7 @@ export default function PartnersPage() {
               LP-PARTNER-INQUIRY
             </p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",

@@ -32,7 +32,7 @@ const METRICS = [
 
 const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
-const heading = "'Manrope', sans-serif";
+const heading = "'Barlow Condensed', sans-serif";
 
 export function REACHTeaserSection({ onBegin, pillarStatuses }) {
   // Merge any passed-in statuses over the defaults

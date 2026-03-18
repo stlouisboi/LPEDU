@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 const mono = "'JetBrains Mono', 'Courier New', monospace";
 const sans = "'Inter', sans-serif";
-const heading = "'Manrope', sans-serif";
+const heading = "'Barlow Condensed', sans-serif";
 
 const STATUS_COLORS = {
   pending:       { color: "#64748B", label: "PENDING"       },

@@ -64,7 +64,7 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
           {/* Left: copy */}
           <div>
             <h3 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 800,
               fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
               color: "#FFFFFF",

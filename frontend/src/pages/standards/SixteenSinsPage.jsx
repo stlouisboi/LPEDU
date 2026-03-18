@@ -185,7 +185,7 @@ export default function SixteenSinsPage() {
           }}>LP-DOCTRINE-001 | THREAT MODEL</p>
 
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3rem)",
             color: "#FFFFFF",
@@ -471,7 +471,7 @@ export default function SixteenSinsPage() {
               marginBottom: "1.25rem",
             }}>CONCLUSION</p>
             <p style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontSize: "1.25rem",
               fontWeight: 700,
               color: "#FFFFFF",

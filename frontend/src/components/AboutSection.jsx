@@ -22,7 +22,7 @@ export default function AboutSection() {
               Standard Custodian
             </p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
               letterSpacing: "-0.02em",
@@ -67,7 +67,7 @@ export default function AboutSection() {
               marginBottom: "2.5rem",
             }}>
               <p style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "1.176rem",

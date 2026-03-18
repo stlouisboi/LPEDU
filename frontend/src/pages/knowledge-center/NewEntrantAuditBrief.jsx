@@ -175,7 +175,7 @@ function SectionHeader({ overline, title, id }) {
         }}>{overline}</p>
       )}
       <h2 style={{
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 700,
         fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
         letterSpacing: "-0.015em",
@@ -294,7 +294,7 @@ export default function NewEntrantAuditBrief() {
           </p>
 
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.9rem, 4vw, 3rem)",
             letterSpacing: "-0.025em",
@@ -522,7 +522,7 @@ export default function NewEntrantAuditBrief() {
           ].map((bucket) => (
             <div key={bucket.title} style={{ marginBottom: "2rem" }}>
               <h3 style={{
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "1.176rem",
                 color: "var(--text)",
@@ -553,7 +553,7 @@ export default function NewEntrantAuditBrief() {
             marginBottom: "0.75rem",
           }}>Section 3</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
             letterSpacing: "-0.015em",
@@ -654,7 +654,7 @@ export default function NewEntrantAuditBrief() {
             marginBottom: "0.75rem",
           }}>Section 3 — Supplement</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
             letterSpacing: "-0.015em",
@@ -693,7 +693,7 @@ export default function NewEntrantAuditBrief() {
                     letterSpacing: "0.1em",
                   }}>TAB {tab.num}</span>
                   <h3 style={{
-                    fontFamily: "'Manrope', sans-serif",
+                    fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 700,
                     fontSize: "1.12rem",
                     color: "var(--text)",
@@ -839,7 +839,7 @@ export default function NewEntrantAuditBrief() {
                 }}>{sys.system}</span>
                 <div>
                   <h3 style={{
-                    fontFamily: "'Manrope', sans-serif",
+                    fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 700,
                     fontSize: "1.176rem",
                     color: "var(--text)",
@@ -951,7 +951,7 @@ export default function NewEntrantAuditBrief() {
         }}>
           <p className="overline" style={{ marginBottom: "1rem" }}>What Happens Next</p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
             letterSpacing: "-0.02em",

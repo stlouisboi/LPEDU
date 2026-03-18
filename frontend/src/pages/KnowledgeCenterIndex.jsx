@@ -92,7 +92,7 @@ export default function KnowledgeCenterIndex() {
           }}>LaunchPath / Operational Library</p>
 
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3rem)",
             letterSpacing: "-0.025em",
@@ -123,7 +123,7 @@ export default function KnowledgeCenterIndex() {
             ].map(([val, label]) => (
               <div key={val}>
                 <div style={{
-                  fontFamily: "'Manrope', sans-serif",
+                  fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 700,
                   fontSize: "1.5rem",
                   color: "var(--text)",
@@ -158,7 +158,7 @@ export default function KnowledgeCenterIndex() {
               textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.625rem",
             }}>The Complete Audit Binder Series</p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.2rem",
+              fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.2rem",
               letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem",
             }}>All 6 compliance checklists in one printable PDF</h2>
             <p style={{
@@ -236,7 +236,7 @@ export default function KnowledgeCenterIndex() {
               marginBottom: "0.75rem",
             }}>Not sure where to start?</p>
             <h2 style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "1.35rem",
               letterSpacing: "-0.015em",
@@ -322,7 +322,7 @@ function BriefCard({ brief, index }) {
 
         {/* Title */}
         <h3 style={{
-          fontFamily: "'Manrope', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           fontWeight: 700,
           fontSize: "1.232rem",
           letterSpacing: "-0.01em",

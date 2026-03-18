@@ -222,7 +222,7 @@ export default function AllChecklists() {
           .print-document { background: #020408; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
           .print-cover, .print-brief-section, .print-marker { display: none; }
           .screen-fallback { text-align: center; padding: 4rem 2rem; }
-          .screen-msg { font-family: 'Manrope', sans-serif; font-size: 1.5rem; font-weight: 700; color: #f0f4f8; margin-bottom: 1.5rem; }
+          .screen-msg { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: #f0f4f8; margin-bottom: 1.5rem; }
           .screen-btn { background: #E8590F; color: #fff; border: none; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2rem; cursor: pointer; margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto; }
           .screen-back { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #8a99aa; text-decoration: none; display: block; }
         }
@@ -238,7 +238,7 @@ export default function AllChecklists() {
           .print-cover { padding: 3rem 3rem 2rem; page-break-after: always; }
           .print-cover-rule { height: 3px; background: #E8590F; margin-bottom: 2rem; }
           .print-overline { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #555; margin-bottom: 1rem; }
-          .print-h1 { font-family: 'Manrope', Arial, sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; color: #0a0a0a; margin-bottom: 0.75rem; line-height: 1.1; }
+          .print-h1 { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; color: #0a0a0a; margin-bottom: 0.75rem; line-height: 1.1; }
           .print-lead { font-size: 0.95rem; color: #444; margin-bottom: 1rem; line-height: 1.6; }
           .print-meta-row { font-size: 0.75rem; color: #777; display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
@@ -246,13 +246,13 @@ export default function AllChecklists() {
           .print-brief-section { padding: 2rem 3rem; page-break-before: always; }
           .print-brief-header { border-bottom: 2px solid #E8590F; padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
           .print-regulation { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #777; display: block; margin-bottom: 0.25rem; }
-          .print-h2 { font-family: 'Manrope', Arial, sans-serif; font-size: 1.35rem; font-weight: 700; color: #0a0a0a; margin: 0; }
+          .print-h2 { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 1.35rem; font-weight: 700; color: #0a0a0a; margin: 0; }
 
           /* Tabs */
           .print-tab { margin-bottom: 1.5rem; border: 1px solid #ddd; padding: 1rem 1.25rem; break-inside: avoid; }
           .print-tab-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.875rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; }
           .print-tab-num { font-size: 0.6rem; letter-spacing: 0.1em; color: #999; text-transform: uppercase; white-space: nowrap; }
-          .print-h3 { font-family: 'Manrope', Arial, sans-serif; font-size: 0.9rem; font-weight: 700; color: #111; margin: 0; }
+          .print-h3 { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 0.9rem; font-weight: 700; color: #111; margin: 0; }
 
           /* Checklist */
           .print-checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }

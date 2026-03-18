@@ -88,7 +88,7 @@ export default function AutoMethodPage() {
             THE AUTO METHOD — RISK DOCTRINE
           </p>
           <h1 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3.25rem)", letterSpacing: "-0.02em",
             color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.5rem",
           }}>
@@ -129,7 +129,7 @@ export default function AutoMethodPage() {
                 }}
               >
                 <p style={{
-                  fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                  fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                   fontSize: "2rem", color: "#C5A059", marginBottom: "0.5rem",
                 }}>
                   {item.v}
@@ -169,7 +169,7 @@ export default function AutoMethodPage() {
               >
                 <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "0.5rem", flexWrap: "wrap" }}>
                   <span style={{
-                    fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                    fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                     fontSize: "1.232rem", color: "#C5A059", letterSpacing: "0.1em",
                   }}>
                     {d.vector}
@@ -208,7 +208,7 @@ export default function AutoMethodPage() {
             THE THREE-LAYER SYSTEM
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "1.25rem",
           }}>
@@ -277,7 +277,7 @@ export default function AutoMethodPage() {
             GUARD INSTALLATION — THE RESPONSE
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "1.25rem",
           }}>
@@ -319,7 +319,7 @@ export default function AutoMethodPage() {
             <p
               key={i}
               style={{
-                fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
                 fontSize: "clamp(1rem, 2vw, 1.232rem)", color: i === 0 ? "#C5A059" : "var(--text-muted)",
                 marginBottom: i < 3 ? "0.75rem" : 0,
                 borderLeft: "2px solid rgba(197,160,89,0.3)",
@@ -342,7 +342,7 @@ export default function AutoMethodPage() {
             NEXT STEP
           </p>
           <h2 style={{
-            fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "1rem",
           }}>

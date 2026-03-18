@@ -200,7 +200,7 @@ export default function ReadinessPage() {
       <div>
         <p className="overline" style={{ marginBottom: "1.5rem" }}>Ground 0 Briefing // REACH Assessment</p>
         <h1 style={{
-          fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+          fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
           fontSize: "clamp(2.5rem, 6vw, 4rem)", letterSpacing: "-0.03em", lineHeight: 1.0,
           color: "var(--text)", marginBottom: "1.75rem", animation: "heroEnter 0.65s ease both",
         }}>
@@ -292,7 +292,7 @@ export default function ReadinessPage() {
 
         {/* Question */}
         <h2 style={{
-          fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+          fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
           fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", letterSpacing: "-0.02em",
           lineHeight: 1.15, color: "var(--text)", marginBottom: "2.5rem",
           textTransform: "uppercase",
@@ -366,7 +366,7 @@ export default function ReadinessPage() {
     <div style={{ maxWidth: 600, margin: "2rem auto" }}>
       <p className="overline" style={{ marginBottom: "1.25rem" }}>Assessment Complete</p>
       <h2 style={{
-        fontFamily: "'Manrope', sans-serif", fontWeight: 700,
+        fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
         fontSize: "clamp(2rem, 5vw, 3rem)", letterSpacing: "-0.03em",
         lineHeight: 1.05, color: "var(--text)", marginBottom: "1.25rem",
         animation: "heroEnter 0.5s ease both",
@@ -442,12 +442,12 @@ export default function ReadinessPage() {
         <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", marginBottom: "2rem", animation: "heroEnter 0.5s ease both" }}>
           <span style={{
             background: r.tagBg, border: `1px solid ${r.tagBorder}`, color: r.color,
-            fontFamily: "'Manrope', sans-serif", fontWeight: 800,
+            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800,
             fontSize: "2rem", letterSpacing: "0.08em",
             padding: "0.5rem 1.5rem",
           }}>{result}</span>
           <div>
-            <p style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "1.25rem", color: "var(--text)", lineHeight: 1.2 }}>{r.headline}</p>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.25rem", color: "var(--text)", lineHeight: 1.2 }}>{r.headline}</p>
             <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", marginTop: "0.35rem" }}>Score: {totalScore} of 28</p>
           </div>
         </div>

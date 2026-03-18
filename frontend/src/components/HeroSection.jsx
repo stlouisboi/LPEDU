@@ -53,7 +53,7 @@ function ProofCard({ item, triggered, delay }) {
         background: "linear-gradient(90deg, #C5A059, rgba(197,160,89,0.2))",
       }} />
       <p style={{
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: "'Barlow Condensed', sans-serif",
         fontSize: 34,
         fontWeight: 700,
         color: "#C5A059",
@@ -134,10 +134,10 @@ export default function HeroSection() {
 
           {/* Headline */}
           <h1 style={{ margin: "0 0 0 0" }}>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#FFFFFF", marginBottom: 6 }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#FFFFFF", marginBottom: 6 }}>
               Your authority is active.
             </span>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#C5A059" }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: 54, fontWeight: 500, lineHeight: 1.07, color: "#C5A059" }}>
               The first 90 days<br />determine what survives.
             </span>
           </h1>
@@ -220,7 +220,7 @@ export default function HeroSection() {
                 position: "relative",
               }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #C5A059, rgba(197,160,89,0.2))" }} />
-                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 28, fontWeight: 700, color: "#C5A059", margin: "0 0 2px", lineHeight: 1, textShadow: "0 0 16px rgba(197,160,89,0.3)" }}>
+                <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 28, fontWeight: 700, color: "#C5A059", margin: "0 0 2px", lineHeight: 1, textShadow: "0 0 16px rgba(197,160,89,0.3)" }}>
                   {item.target}
                 </p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", margin: 0 }}>
@@ -268,7 +268,7 @@ export default function HeroSection() {
               Deficiency findings, corrective action exposure, service disruption, and preventable authority risk.
             </p>
             {/* Animated price — supported by ConsequenceNumberBlock lower on page */}
-            <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 20, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 20, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
               ${costLow.toLocaleString()},000 – ${costHigh.toLocaleString()},000+
             </p>
           </div>

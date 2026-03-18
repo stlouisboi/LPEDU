@@ -30,7 +30,7 @@ export default function HomePage() {
         {/* Transition line */}
         <div style={{ background: "#000C1A", borderBottom: "0.5px solid rgba(197,160,89,0.12)", padding: "2.5rem 1.5rem", textAlign: "center" }}>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
             color: "#FFFFFF",

@@ -174,7 +174,7 @@ export function FMCSADomainTable({ showPricing = true }) {
       }}>
         <div>
           <p style={{
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             fontSize: "1rem",
             fontWeight: 700,
             color: "#FFFFFF",
