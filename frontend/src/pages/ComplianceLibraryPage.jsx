@@ -58,73 +58,46 @@ export default function ComplianceLibraryPage() {
     <div style={{ background: "#F0F2F4", minHeight: "100vh" }}>
       <Navbar />
 
-      {/* Hero — dark, institutional */}
-      <div style={{ background: navy, borderBottom: `3px solid ${gold}` }}>
+      {/* Hero — full-width background image with overlay */}
+      <div style={{ position: "relative", borderBottom: `3px solid ${gold}`, overflow: "hidden" }}>
+        {/* Background image */}
         <div style={{
-          maxWidth: 1100,
-          margin: "0 auto",
-          padding: "5rem 1.5rem 4rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "4rem",
-          flexWrap: "wrap",
-        }}>
-          {/* Left — text */}
-          <div style={{ flex: "1 1 400px", minWidth: 280 }}>
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.68rem",
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: gold,
-              marginBottom: "1.25rem",
-            }}>LP-SYS-LIBRARY | COMPLIANCE RESOURCES</p>
+          position: "absolute", inset: 0,
+          backgroundImage: "url(https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/vpafe5mz_compliance-docs.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }} />
+        {/* Dark overlay */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to right, rgba(0,20,50,0.92) 40%, rgba(0,20,50,0.70) 100%)",
+        }} />
 
-            <h1 style={{
-              fontFamily: "'Manrope', sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              color: "#FFFFFF",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-              marginBottom: "1.25rem",
-            }}>Compliance Reference Library</h1>
+        {/* Text content */}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "6rem 1.5rem 5rem" }}>
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
+          }}>LP-SYS-LIBRARY | COMPLIANCE RESOURCES</p>
 
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "1.05rem",
-              color: "rgba(255,255,255,0.72)",
-              lineHeight: 1.7,
-              marginBottom: "1rem",
-            }}>
-              Standalone tools for new motor carrier operators. Each resource targets a specific compliance problem — no course enrollment required.
-            </p>
+          <h1 style={{
+            fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: "clamp(2rem, 4vw, 3rem)",
+            color: "#FFFFFF", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "1.25rem", maxWidth: 580,
+          }}>Compliance Reference Library</h1>
 
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.9rem",
-              color: "rgba(197,160,89,0.75)",
-              lineHeight: 1.7,
-            }}>
-              These are not course materials. They are diagnostic and reference tools built on the LaunchPath Four Pillars framework. Buy what you need, use it immediately.
-            </p>
-          </div>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.80)",
+            lineHeight: 1.7, maxWidth: 520, marginBottom: "1rem",
+          }}>
+            Standalone tools for new motor carrier operators. Each resource targets a specific compliance problem — no course enrollment required.
+          </p>
 
-          {/* Right — photo */}
-          <div style={{ flex: "0 0 420px", maxWidth: "100%" }} className="hero-img-wrap">
-            <img
-              src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/vpafe5mz_compliance-docs.png"
-              alt="USDOT compliance binder with tabbed sections and digital checklist"
-              style={{
-                width: "100%",
-                display: "block",
-                borderRadius: "2px",
-                border: `1px solid rgba(197,160,89,0.25)`,
-                boxShadow: "0 8px 40px rgba(0,0,0,0.5)",
-              }}
-            />
-          </div>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(197,160,89,0.85)",
+            lineHeight: 1.7, maxWidth: 520,
+          }}>
+            These are not course materials. They are diagnostic and reference tools built on the LaunchPath Four Pillars framework. Buy what you need, use it immediately.
+          </p>
         </div>
       </div>
 
