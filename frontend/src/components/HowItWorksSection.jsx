@@ -23,7 +23,7 @@ const PHASES = [
     phase: "PHASE 2",
     label: "BUILD",
     weeks: "Weeks 3–8",
-    desc: "We build your driver files, policies, drug program, HOS system, and maintenance records.",
+    desc: "You build your driver files, policies, drug program, HOS system, and maintenance records — following the installation sequence.",
     deliverables: [
       "30+ compliance forms",
       "Complete DQ files",

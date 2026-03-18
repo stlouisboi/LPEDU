@@ -21,6 +21,18 @@ export default function VinceCTASection() {
 
         {/* Photo */}
         <div style={{ position: "relative" }} className="vince-photo-wrapper">
+          {/* Fix 6 — micro-quote above photo */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.82rem",
+            fontStyle: "italic",
+            color: "rgba(197,160,89,0.80)",
+            lineHeight: 1.5,
+            marginBottom: "0.875rem",
+            paddingLeft: "2px",
+          }}>
+            "I don't do your compliance. I built the system so you can do it yourself."
+          </p>
           {/* Corner accents */}
           <div style={{ position: "absolute", top: 0, left: 0, width: 20, height: 20, borderTop: "2px solid var(--gold-primary)", borderLeft: "2px solid var(--gold-primary)", zIndex: 2 }} />
           <div style={{ position: "absolute", top: 0, right: 0, width: 20, height: 20, borderTop: "2px solid var(--gold-primary)", borderRight: "2px solid var(--gold-primary)", zIndex: 2 }} />
@@ -106,7 +118,7 @@ export default function VinceCTASection() {
             lineHeight: 1.8,
             marginBottom: "0.625rem",
           }}>
-            The Station Custodian is your dedicated compliance coach — the person who has spent 25 years watching what FMCSA investigators look for, and building operating systems designed to survive it.
+            The Station Custodian built this system after watching the same compliance failures repeat across new carriers for 25 years. He doesn't do your compliance — he built the structure so you can do it yourself.
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",

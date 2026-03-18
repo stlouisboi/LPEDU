@@ -64,7 +64,7 @@ export default function EngagementSection() {
             maxWidth: 620,
             marginBottom: "0.875rem",
           }}>
-            The LaunchPath Standard is a 90-day engagement designed to make your authority audit-ready and insurable before the New Entrant window closes.
+            The LaunchPath Standard is a 90-day implementation you complete — designed to make your authority audit-ready and insurable before the New Entrant window closes.
           </p>
 
           <p style={{
@@ -75,7 +75,7 @@ export default function EngagementSection() {
             maxWidth: 620,
             marginBottom: "3.5rem",
           }}>
-            This is not a course you watch. It's a system you install — with direct oversight from someone who's built compliance programs for 25 years.
+            This is not a course you watch. It's a system you install yourself — with structured guidance from someone who's built compliance programs for 25 years.
           </p>
         </FadeIn>
 

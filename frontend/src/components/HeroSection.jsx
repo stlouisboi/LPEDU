@@ -146,7 +146,7 @@ export default function HeroSection() {
 
           {/* Primary supporting paragraph — what LaunchPath is */}
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 16 }}>
-            LaunchPath is a 90-day guided installation for new motor carriers. We help you build the compliance infrastructure FMCSA expects before missing systems become audit exposure.
+            LaunchPath is a 90-day compliance installation for new motor carriers. You build the compliance infrastructure FMCSA expects — using a system designed to close gaps before they become audit exposure.
           </p>
 
           {/* Secondary body — operator-readable operational context */}
@@ -175,6 +175,19 @@ export default function HeroSection() {
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
             >See what gets installed →</Link>
           </div>
+
+          {/* Fix 2 — self-installation clarifier */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 12,
+            color: "rgba(255,255,255,0.45)",
+            letterSpacing: "0.02em",
+            lineHeight: 1.5,
+            marginBottom: 20,
+            maxWidth: 420,
+          }}>
+            This is not done-for-you compliance. You do the work. The system shows you what, when, and how.
+          </p>
 
           {/* Proof strip — hidden on mobile (shown as compact row instead) */}
           <div className="proof-strip" style={{
