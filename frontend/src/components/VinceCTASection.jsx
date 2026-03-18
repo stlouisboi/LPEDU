@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// VinceCTASection
 
 export default function VinceCTASection() {
   return (
@@ -155,30 +155,6 @@ export default function VinceCTASection() {
           }}>
             Whether you are pre-authority, in your first 30 days, or approaching Month 9 of the New Entrant period — the Authority Readiness Test tells you where your operation stands and what needs to be built first.
           </p>
-
-          <Link
-            to="/reach-diagnostic"
-            data-testid="vince-cta-btn"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              background: "var(--gold-primary)",
-              color: "var(--bg-onyx)",
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 700,
-              fontSize: "0.896rem",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              padding: "1rem 2.25rem",
-              textDecoration: "none",
-              transition: "background 0.2s",
-              minHeight: 48,
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--gold-light)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--gold-primary)")}
-          >
-            Run the Authority Readiness Test →
-          </Link>
         </div>
 
       </div>
