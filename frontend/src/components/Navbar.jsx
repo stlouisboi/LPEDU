@@ -14,6 +14,7 @@ const FRAMEWORK_LINKS = [
       { label: "Compliance System", href: "/standards" },
     ],
   },
+  { label: "Compliance Library", href: "/compliance-library" },
   { label: "LaunchPath Standard", href: "/operating-standard" },
 ];
 

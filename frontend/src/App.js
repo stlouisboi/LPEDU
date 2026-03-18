@@ -29,6 +29,7 @@ import PartnersPage from "./pages/PartnersPage";
 import ProductPreviewPage from "./pages/ProductPreviewPage";
 
 // /standards routes
+import ComplianceLibraryPage from "./pages/ComplianceLibraryPage";
 import StandardsPage from "./pages/StandardsPage";
 import NewEntrantPacketPage from "./pages/products/NewEntrantPacketPage";
 import DrugAlcoholPacketPage from "./pages/products/DrugAlcoholPacketPage";
@@ -128,6 +129,8 @@ function AppRouter() {
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
       <Route path="/partners" element={<PartnersPage />} />
+
+      <Route path="/compliance-library" element={<ComplianceLibraryPage />} />
 
       {/* /standards routes */}
       <Route path="/standards" element={<StandardsPage />} />

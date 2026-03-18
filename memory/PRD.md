@@ -142,6 +142,12 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Post-payment confirmation email — MailerLite subscriber update triggered in Stripe webhook on payment_status=paid (Feb 2026)
 - [x] Knowledge Center portal cross-links — ArticlePortalBanner added to all 5 briefs; each maps to its Standard Task (DA-001, HOS-001, PM-001, INS-001, DQ-001) with OPEN OPERATOR PORTAL + BEGIN GROUND 0 CTAs (Feb 2026)
 
+## Compliance Library Page (Mar 2026)
+- [x] `/compliance-library` — 5 entry-level product cards ($17–$97), bundle banner ($197), contextual section, footer disclaimer
+- [x] Added "Compliance Library" to main nav between Standards and LaunchPath Standard
+- [ ] Wire in 5 Gumroad product slugs when listings go live (all CTAs currently `#`)
+- [ ] Wire in bundle Gumroad link ($197)
+
 ## Gumroad Product Line URLs (Wired Mar 2026)
 - LP-PKT-001 New Entrant: https://launchpathedu.gumroad.com/l/NewEntrantCompliancePacket
 - LP-PKT-002 Drug & Alcohol: https://launchpathedu.gumroad.com/l/DrugAlcoholCompliancePacket
