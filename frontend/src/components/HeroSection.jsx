@@ -144,19 +144,19 @@ export default function HeroSection() {
 
           <div style={{ width: 40, height: 2, background: "#C5A059", margin: "26px 0 20px" }} />
 
-          {/* Primary supporting paragraph — what LaunchPath is */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 16 }}>
-            LaunchPath is a 90-day compliance installation for new motor carriers. You build the compliance infrastructure FMCSA expects — using a system designed to close gaps before they become audit exposure.
+          {/* Primary supporting paragraph */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 14 }}>
+            LaunchPath installs the compliance infrastructure FMCSA expects into your operation — before gaps become audit exposure.
           </p>
 
-          {/* Secondary body — operator-readable operational context */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 16 }}>
-            Most carriers chase loads first and build controls later. LaunchPath reverses that — installing the files, programs, monitoring rhythm, and operating structure that protect authority before drift, scrutiny, and remediation costs set in.
+          {/* Secondary body */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 14 }}>
+            We install the files, programs, monitoring systems, and operating structure required to keep your authority active under real-world conditions.
           </p>
 
-          {/* Buyer identification — supporting copy, not a tag */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.65, maxWidth: 560, marginBottom: 28 }}>
-            Built for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
+          {/* System identity line */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(197,160,89,0.70)", lineHeight: 1.65, maxWidth: 560, marginBottom: 28, letterSpacing: "0.01em" }}>
+            This is not a resource platform. This is a system that becomes part of your business.
           </p>
 
           {/* CTAs */}
@@ -166,28 +166,17 @@ export default function HeroSection() {
                 style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: "0.02em", color: "#001833", background: "#C5A059", padding: "16px 36px", height: 52, borderRadius: 4, textDecoration: "none", boxShadow: "0 0 0 3px rgba(197,160,89,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center" }}
                 onMouseEnter={e => (e.currentTarget.style.background = "#d4b572")}
                 onMouseLeave={e => (e.currentTarget.style.background = "#C5A059")}
-              >Begin Ground 0</Link>
+              >INITIATE GROUND 0</Link>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.38)", margin: "6px 0 0", letterSpacing: "0.07em", textTransform: "uppercase" }}>Free Readiness Module</p>
             </div>
             <Link to="/standards" data-testid="hero-secondary-cta" className="hero-cta-secondary"
               style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, letterSpacing: "0.01em", color: "rgba(255,255,255,0.65)", background: "transparent", border: "0.5px solid rgba(255,255,255,0.25)", padding: "0 20px", height: 52, borderRadius: 4, textDecoration: "none", transition: "border-color 0.2s, color 0.2s", display: "inline-flex", alignItems: "center" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "rgba(255,255,255,0.9)"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
-            >See what gets installed →</Link>
+            >VIEW THE SYSTEM INSTALLATION →</Link>
           </div>
 
-          {/* Fix 2 — self-installation clarifier */}
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: 12,
-            color: "rgba(255,255,255,0.45)",
-            letterSpacing: "0.02em",
-            lineHeight: 1.5,
-            marginBottom: 20,
-            maxWidth: 420,
-          }}>
-            This is not done-for-you compliance. You do the work. The system shows you what, when, and how.
-          </p>
+          {/* Fix 2 — self-installation clarifier — removed, replaced by system identity line above */}
 
           {/* Proof strip — hidden on mobile (shown as compact row instead) */}
           <div className="proof-strip" style={{
@@ -258,6 +247,9 @@ export default function HeroSection() {
             {/* Corner glow */}
             <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(232,89,48,0.18) 0%, transparent 70%)", pointerEvents: "none" }} />
 
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, color: "rgba(255,255,255,0.38)", lineHeight: 1.5, margin: "0 0 10px", fontStyle: "italic" }}>
+              This is what happens when systems are missing.
+            </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,89,48,0.70)", margin: "0 0 8px" }}>EXPOSURE RISK</p>
             <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.92)", margin: "0 0 6px" }}>
               Audit failure + remediation

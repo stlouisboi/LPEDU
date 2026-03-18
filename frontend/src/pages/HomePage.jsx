@@ -14,6 +14,7 @@ import AuthorityReadinessTestSection from "../components/AuthorityReadinessTestS
 import RecoveryPathBlock from "../components/RecoveryPathBlock";
 import ComplianceMapTeaser from "../components/ComplianceMapTeaser";
 import VinceCTASection from "../components/VinceCTASection";
+import WhatGetsInstalledSection from "../components/WhatGetsInstalledSection";
 import FooterSection from "../components/FooterSection";
 import { DoctrineStack } from "../components/DoctrineStack";
 
@@ -23,6 +24,7 @@ export default function HomePage() {
       <Navbar />
       <main>
         <HeroSection />
+        <WhatGetsInstalledSection />
         <AuthorityClockSection />
         <PhilosophyQuoteBlock
           quote="Most failures in the first 90 days are not failures of commitment. They are failures of structure."
