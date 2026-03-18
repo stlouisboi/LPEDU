@@ -235,7 +235,7 @@ export default function BundlePage() {
                     }}>vs. $605 purchased separately</span>
                   </div>
                   <a
-                    href="#"
+                    href="https://launchpathedu.gumroad.com/l/NewCarrierDocumentSystem"
                     target="_blank"
                     rel="noopener noreferrer"
                     data-testid="bundle-buy-btn"

@@ -33,7 +33,7 @@ export default function InsurancePacketPage() {
       nextStepText="The Insurance & Authority Packet covers one of five compliance domains. The New Carrier Document System bundles all five with a 0–30–90 day implementation guide — the complete DIY operating standard for new authorities."
       nextStepHref="/standards/new-carrier-document-system"
       nextStepLabel="View the New Carrier Document System ($497) →"
-      gumroadUrl="#"
+      gumroadUrl="https://launchpathedu.gumroad.com/l/Insurance_Authority"
       mockupId="insurance"
     />
   );
