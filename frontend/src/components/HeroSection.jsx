@@ -159,6 +159,11 @@ export default function HeroSection() {
             This is not a resource platform. This is a system that becomes part of your business.
           </p>
 
+          {/* Buyer identification */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.65, maxWidth: 560, marginBottom: 24 }}>
+            Designed for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
+          </p>
+
           {/* CTAs */}
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
