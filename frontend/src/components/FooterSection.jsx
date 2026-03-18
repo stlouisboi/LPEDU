@@ -1,132 +1,122 @@
 export default function FooterSection() {
-  const NAV_ITEMS = [
-    { label: "Operational Library", href: "/knowledge-center", external: false },
-    { label: "Standards", href: "/standards", external: false },
-    { label: "AUTO Method", href: "/auto-method", external: false },
-    { label: "Ground 0 Briefing", href: "/ground-0-briefing", external: false },
-    { label: "Partners", href: "/partners", external: false },
-    { label: "About", href: "/about", external: false },
+  const PLATFORM = [
+    { label: "LaunchPath Standard", href: "/operating-standard" },
+    { label: "Ground 0", href: "/ground-0-briefing" },
+    { label: "REACH Diagnostic", href: "/reach-diagnostic" },
+    { label: "Compliance Library", href: "/compliance-library" },
   ];
 
-  const CONTACT_ITEMS = [
-    { label: "General", href: "mailto:hello@launchpathedu.com" },
-    { label: "Support", href: "mailto:support@launchpathedu.com" },
-    { label: "Payments", href: "mailto:payment@launchpathedu.com" },
+  const RESOURCES = [
+    { label: "Operational Library", href: "/knowledge-center" },
+    { label: "AUTO Method", href: "/auto-method" },
+    { label: "About", href: "/about" },
+    { label: "Operator Portal", href: "/portal" },
   ];
+
+  const AUTHORITY = [
+    { label: "FMCSA SAFER", href: "https://safer.fmcsa.dot.gov", external: true },
+    { label: "49 CFR (ecfr.gov)", href: "https://www.ecfr.gov/current/title-49", external: true },
+    { label: "FMCSA Clearinghouse", href: "https://clearinghouse.fmcsa.dot.gov", external: true },
+  ];
+
+  const colHead = {
+    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", fontWeight: 700,
+    letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
+    marginBottom: "1.1rem",
+  };
 
   const linkStyle = {
-    fontFamily: "'Inter', sans-serif",
-    fontSize: "1.12rem",
-    color: "#BBBBBB",
-    textDecoration: "none",
-    transition: "color 0.2s",
+    fontFamily: "'Inter', sans-serif", fontSize: "0.92rem",
+    color: "#BBBBBB", textDecoration: "none", transition: "color 0.2s", display: "block",
   };
+
+  const ColLinks = ({ items }) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+      {items.map(item => (
+        <a
+          key={item.label}
+          href={item.href}
+          target={item.external ? "_blank" : undefined}
+          rel={item.external ? "noopener noreferrer" : undefined}
+          style={linkStyle}
+          onMouseEnter={e => e.currentTarget.style.color = "#d4900a"}
+          onMouseLeave={e => e.currentTarget.style.color = "#BBBBBB"}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  );
 
   return (
     <footer data-testid="footer-section" style={{
       background: "#0d1c30",
-      borderTop: "1px solid var(--divider-dark)",
+      borderTop: "1px solid rgba(255,255,255,0.06)",
       padding: "4rem 1.5rem 2.5rem",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{
           display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr",
-          gap: "4rem",
+          gridTemplateColumns: "2fr 1fr 1fr 1fr",
+          gap: "3rem",
           marginBottom: "3.5rem",
           alignItems: "start",
         }} className="footer-grid">
 
-          {/* Left column */}
+          {/* Brand */}
           <div>
             <img
               src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
               alt="LaunchPath Transportation EDU"
               style={{ height: 26, marginBottom: "1.25rem", display: "block" }}
             />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "#BBBBBB", lineHeight: 1.5, marginBottom: "0.4rem" }}>
-              Accuracy Over Hype.
-            </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "#BBBBBB", lineHeight: 1.5 }}>
-              Systems Over Shortcuts.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.92rem", color: "#BBBBBB", lineHeight: 1.6 }}>
+              Accuracy Over Hype.<br />Systems Over Shortcuts.
             </p>
           </div>
 
-          {/* Nav links */}
+          {/* Platform */}
           <div>
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 700,
-              letterSpacing: "0.12em", textTransform: "uppercase", color: "#BBBBBB",
-              marginBottom: "1.25rem",
-            }}>
-              Navigation
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              {NAV_ITEMS.map(item => (
-                item.external ? (
-                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-                    style={linkStyle}
-                    onMouseEnter={e => e.currentTarget.style.color = "#fff"}
-                    onMouseLeave={e => e.currentTarget.style.color = "#BBBBBB"}
-                  >{item.label}</a>
-                ) : (
-                  <a key={item.label} href={item.href}
-                    style={linkStyle}
-                    onMouseEnter={e => e.currentTarget.style.color = "#fff"}
-                    onMouseLeave={e => e.currentTarget.style.color = "#BBBBBB"}
-                  >{item.label}</a>
-                )
-              ))}
-            </div>
+            <p style={colHead}>Platform</p>
+            <ColLinks items={PLATFORM} />
           </div>
 
-          {/* Contact */}
+          {/* Resources */}
           <div>
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 700,
-              letterSpacing: "0.12em", textTransform: "uppercase", color: "#BBBBBB",
-              marginBottom: "1.25rem",
-            }}>
-              Contact
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              {CONTACT_ITEMS.map(item => (
-                <div key={item.label}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", margin: "0 0 2px" }}>{item.label}</p>
-                  <a href={item.href}
-                    style={{ ...linkStyle, fontSize: "0.92rem" }}
-                    onMouseEnter={e => e.currentTarget.style.color = "#d4900a"}
-                    onMouseLeave={e => e.currentTarget.style.color = "#BBBBBB"}
-                  >{item.href.replace("mailto:", "")}</a>
-                </div>
-              ))}
-            </div>
+            <p style={colHead}>Resources</p>
+            <ColLinks items={RESOURCES} />
+          </div>
+
+          {/* Authority */}
+          <div>
+            <p style={colHead}>Authority</p>
+            <ColLinks items={AUTHORITY} />
           </div>
         </div>
 
         {/* Legal */}
         <div style={{
-          borderTop: "1px solid var(--divider-dark)",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
           paddingTop: "1.75rem",
           display: "flex",
           flexDirection: "column",
-          gap: "0.875rem",
+          gap: "0.6rem",
         }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "#BBBBBB" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.88rem", color: "#BBBBBB" }}>
             &copy; {new Date().getFullYear()} LaunchPath Transportation EDU. All rights reserved.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "#AAAAAA", lineHeight: 1.7, maxWidth: 800 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.82rem", color: "#888", lineHeight: 1.7, maxWidth: 800 }}>
             LaunchPath is an educational program. Content does not constitute legal, tax, financial, or compliance advice. Verify all information with appropriate professionals and regulatory agencies before making business decisions.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.918rem", color: "#AAAAAA" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.80rem", color: "#666" }}>
             Current as of March 2026. Verified against ecfr.gov.
           </p>
         </div>
-
       </div>
 
       <style>{`
-        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; } }
+        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; } }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </footer>
   );
