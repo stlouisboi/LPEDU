@@ -145,22 +145,22 @@ export default function HeroSection() {
           <div style={{ width: 40, height: 2, background: "#C5A059", margin: "26px 0 20px" }} />
 
           {/* Primary supporting paragraph */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 14 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 16 }}>
             You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
           </p>
 
           {/* Secondary body */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", lineHeight: 1.8, maxWidth: 600, marginBottom: 14 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)", color: "rgba(255,255,255,0.62)", lineHeight: 1.8, maxWidth: 600, marginBottom: 16 }}>
             You build the files, programs, monitoring systems, and operating structure required to keep your authority active under real-world conditions.
           </p>
 
           {/* System identity line */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(197,160,89,0.70)", lineHeight: 1.65, maxWidth: 560, marginBottom: 28, letterSpacing: "0.01em" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)", color: "rgba(197,160,89,0.80)", lineHeight: 1.65, maxWidth: 560, marginBottom: 20, letterSpacing: "0.01em" }}>
             This is not a resource platform. This is a system that becomes part of your business.
           </p>
 
           {/* Buyer identification */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, maxWidth: 560, marginBottom: 24 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", lineHeight: 1.65, maxWidth: 560, marginBottom: 28 }}>
             Designed for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
           </p>
 
@@ -184,7 +184,7 @@ export default function HeroSection() {
           {/* Fix 2 — self-installation clarifier — removed, replaced by system identity line above */}
 
           {/* Clarifier — who does the work */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.45)", letterSpacing: "0.02em", lineHeight: 1.5, marginBottom: 20, maxWidth: 420 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.50)", letterSpacing: "0.02em", lineHeight: 1.5, marginBottom: 20, maxWidth: 460 }}>
             This is not done-for-you compliance. You do the work. The system shows you what, when, and how.
           </p>
 
