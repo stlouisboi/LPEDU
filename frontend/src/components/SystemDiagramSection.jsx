@@ -1,9 +1,9 @@
 export default function SystemDiagramSection() {
   return (
     <section data-testid="system-diagram" style={{
-      background: "#002244",
-      borderTop: "1px solid rgba(197,160,89,0.2)",
-      borderBottom: "1px solid rgba(197,160,89,0.2)",
+      background: "#0b1628",
+      borderTop: "1px solid rgba(212,144,10,0.2)",
+      borderBottom: "1px solid rgba(212,144,10,0.2)",
       padding: "6rem 1.5rem",
     }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
@@ -147,7 +147,7 @@ export default function SystemDiagramSection() {
             <text x="400" y="258" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="6.5" fill="#E8590F" letterSpacing="1">● PROTECTED</text>
 
             {/* ── NODE 01 — Authority Protection (TOP) ── */}
-            <rect x="300" y="56" width="200" height="56" rx="0" fill="#020408" stroke="#2d3d50" strokeWidth="1" />
+            <rect x="300" y="56" width="200" height="56" rx="0" fill="#060d19" stroke="#2d3d50" strokeWidth="1" />
             <line x1="300" y1="56" x2="310" y2="56" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="300" y1="56" x2="300" y2="66" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="500" y1="56" x2="490" y2="56" stroke="#E8590F" strokeWidth="1.5" />
@@ -157,7 +157,7 @@ export default function SystemDiagramSection() {
             <circle cx="472" cy="76" r="3" fill="#E8590F" />
 
             {/* ── NODE 02 — Insurance Continuity (RIGHT) ── */}
-            <rect x="612" y="212" width="168" height="56" rx="0" fill="#020408" stroke="#2d3d50" strokeWidth="1" />
+            <rect x="612" y="212" width="168" height="56" rx="0" fill="#060d19" stroke="#2d3d50" strokeWidth="1" />
             <line x1="612" y1="212" x2="622" y2="212" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="612" y1="212" x2="612" y2="222" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="780" y1="212" x2="770" y2="212" stroke="#E8590F" strokeWidth="1.5" />
@@ -168,7 +168,7 @@ export default function SystemDiagramSection() {
             <circle cx="752" cy="231" r="3" fill="#E8590F" />
 
             {/* ── NODE 03 — Compliance Backbone (BOTTOM) ── */}
-            <rect x="294" y="368" width="212" height="56" rx="0" fill="#020408" stroke="#2d3d50" strokeWidth="1" />
+            <rect x="294" y="368" width="212" height="56" rx="0" fill="#060d19" stroke="#2d3d50" strokeWidth="1" />
             <line x1="294" y1="368" x2="304" y2="368" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="294" y1="368" x2="294" y2="378" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="506" y1="368" x2="496" y2="368" stroke="#E8590F" strokeWidth="1.5" />
@@ -178,7 +178,7 @@ export default function SystemDiagramSection() {
             <circle cx="472" cy="387" r="3" fill="#E8590F" />
 
             {/* ── NODE 04 — Cash-Flow Oxygen (LEFT) ── */}
-            <rect x="20" y="212" width="168" height="56" rx="0" fill="#020408" stroke="#2d3d50" strokeWidth="1" />
+            <rect x="20" y="212" width="168" height="56" rx="0" fill="#060d19" stroke="#2d3d50" strokeWidth="1" />
             <line x1="20" y1="212" x2="30" y2="212" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="20" y1="212" x2="20" y2="222" stroke="#E8590F" strokeWidth="1.5" />
             <line x1="188" y1="212" x2="178" y2="212" stroke="#E8590F" strokeWidth="1.5" />

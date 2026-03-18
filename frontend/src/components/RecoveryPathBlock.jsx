@@ -68,19 +68,19 @@ export default function RecoveryPathBlock() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "1px",
-          background: "rgba(197,160,89,0.1)",
+          background: "rgba(212,144,10,0.1)",
           marginBottom: "2.5rem",
         }} className="recovery-grid">
 
           <FadeIn delay={100}>
             <div style={{
-              background: "#001530",
+              background: "#0b1628",
               padding: "2.5rem 2rem",
               display: "flex",
               flexDirection: "column",
               height: "100%",
               boxSizing: "border-box",
-              borderTop: "2px solid rgba(197,160,89,0.4)",
+              borderTop: "2px solid rgba(212,144,10,0.4)",
             }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
@@ -88,7 +88,7 @@ export default function RecoveryPathBlock() {
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "rgba(197,160,89,0.88)",
+                color: "rgba(212,144,10,0.88)",
                 marginBottom: "0.875rem",
               }}>
                 Pre-Audit / New Authority

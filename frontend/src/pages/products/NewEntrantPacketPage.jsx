@@ -14,7 +14,7 @@ const WHAT_NOT_REPLACES = [
 ];
 
 export default function NewEntrantPacketPage() {
-  const gold = "#C5A059";
+  const gold = "#d4900a";
 
   return (
     <ProductPageTemplate
@@ -63,11 +63,11 @@ export default function NewEntrantPacketPage() {
 
       {/* Who This Is Not For */}
       <FadeIn delay={170}>
-        <div style={{ height: 1, background: "rgba(197,160,89,0.1)", margin: "0 0 3.5rem" }} />
+        <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>Who This Is Not For</p>
           <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
@@ -87,11 +87,11 @@ export default function NewEntrantPacketPage() {
 
       {/* What This Does Not Replace */}
       <FadeIn delay={180}>
-        <div style={{ height: 1, background: "rgba(197,160,89,0.1)", margin: "0 0 3.5rem" }} />
+        <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>What This Does Not Replace</p>
           <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
@@ -111,13 +111,13 @@ export default function NewEntrantPacketPage() {
 
       {/* Format & Regulatory Standard */}
       <FadeIn delay={185}>
-        <div style={{ height: 1, background: "rgba(197,160,89,0.1)", margin: "0 0 3.5rem" }} />
+        <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
             <div>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
-                letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)",
+                letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)",
                 marginBottom: "0.5rem",
               }}>Format</p>
               <p style={{
@@ -128,7 +128,7 @@ export default function NewEntrantPacketPage() {
             <div>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
-                letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)",
+                letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)",
                 marginBottom: "0.5rem",
               }}>Regulatory Standard</p>
               <p style={{
@@ -143,7 +143,7 @@ export default function NewEntrantPacketPage() {
       {/* Already operating callout */}
       <FadeIn delay={190}>
         <div style={{
-          background: "rgba(197,160,89,0.06)", border: "1px solid rgba(197,160,89,0.2)",
+          background: "rgba(212,144,10,0.06)", border: "1px solid rgba(212,144,10,0.2)",
           borderLeft: `3px solid ${gold}`, padding: "1.5rem 1.75rem", marginBottom: "3.5rem",
         }}>
           <p style={{

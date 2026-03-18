@@ -10,9 +10,9 @@ const INSTALLS = [
 export default function WhatGetsInstalledSection() {
   return (
     <div style={{
-      background: "#000C1A",
-      borderTop: "0.5px solid rgba(197,160,89,0.15)",
-      borderBottom: "0.5px solid rgba(197,160,89,0.15)",
+      background: "#060d19",
+      borderTop: "0.5px solid rgba(212,144,10,0.15)",
+      borderBottom: "0.5px solid rgba(212,144,10,0.15)",
     }}>
       <div style={{
         maxWidth: 1100,
@@ -30,7 +30,7 @@ export default function WhatGetsInstalledSection() {
           fontWeight: 700,
           letterSpacing: "0.20em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,0.75)",
+          color: "rgba(212,144,10,0.75)",
           whiteSpace: "nowrap",
           flexShrink: 0,
           paddingTop: "0.2rem",
@@ -56,7 +56,7 @@ export default function WhatGetsInstalledSection() {
               <div style={{
                 width: 4,
                 height: 4,
-                background: "#C5A059",
+                background: "#d4900a",
                 flexShrink: 0,
               }} />
               <p style={{

@@ -14,7 +14,7 @@ const STATUS_COLORS = {
 };
 
 function SignalBadge({ signal, integrity, pulse }) {
-  const color = signal >= 90 ? "#C5A059" : signal >= 60 ? "#22c55e" : "#f87171";
+  const color = signal >= 90 ? "#d4900a" : signal >= 60 ? "#22c55e" : "#f87171";
   return (
     <div style={{
       display: "inline-flex", alignItems: "center", gap: "0.5rem",
@@ -56,7 +56,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
         {/* Carrier ID */}
         <span style={{
           fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
-          letterSpacing: "0.12em", color: "rgba(197,160,89,0.75)",
+          letterSpacing: "0.12em", color: "rgba(212,144,10,0.75)",
           textTransform: "uppercase", minWidth: 120,
         }}>
           {task.carrierId?.slice(0, 18)}...
@@ -237,7 +237,7 @@ export default function CoachRegistryPage() {
       <div style={{ fontFamily: sans, background: "#020617", minHeight: "100vh", color: "#FFF" }}>
         <Navbar />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.18em", color: "rgba(197,160,89,0.6)", textTransform: "uppercase" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.18em", color: "rgba(212,144,10,0.6)", textTransform: "uppercase" }}>
             INITIALIZING_REGISTRY...
           </p>
         </div>
@@ -254,7 +254,7 @@ export default function CoachRegistryPage() {
       {/* Registry header */}
       <div style={{
         background: "#000A14",
-        borderBottom: "1px solid rgba(197,160,89,0.16)",
+        borderBottom: "1px solid rgba(212,144,10,0.16)",
         padding: "1.5rem 2rem",
       }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
@@ -262,7 +262,7 @@ export default function CoachRegistryPage() {
             <p style={{
               fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
               letterSpacing: "0.2em", textTransform: "uppercase",
-              color: "rgba(197,160,89,0.65)", marginBottom: "0.25rem",
+              color: "rgba(212,144,10,0.65)", marginBottom: "0.25rem",
             }}>
               LPOS v1.0 | LP-CMD-001 | COACH_REGISTRY
             </p>
@@ -285,12 +285,12 @@ export default function CoachRegistryPage() {
               style={{
                 fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
                 letterSpacing: "0.12em", textTransform: "uppercase",
-                background: "rgba(197,160,89,0.08)", border: "1px solid rgba(197,160,89,0.25)",
-                color: "#C5A059", padding: "0.45rem 0.875rem", cursor: "pointer",
+                background: "rgba(212,144,10,0.08)", border: "1px solid rgba(212,144,10,0.25)",
+                color: "#d4900a", padding: "0.45rem 0.875rem", cursor: "pointer",
                 transition: "all 0.15s",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(197,160,89,0.15)"}
-              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(197,160,89,0.08)"}
+              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(212,144,10,0.15)"}
+              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(212,144,10,0.08)"}
             >
               [REFRESH_REGISTRY]
             </button>
@@ -304,13 +304,13 @@ export default function CoachRegistryPage() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "2.5rem 2rem" }}>
 
         {/* Tab Nav */}
-        <div style={{ display: "flex", gap: 0, marginBottom: "2.5rem", borderBottom: "1px solid rgba(197,160,89,0.15)" }}>
+        <div style={{ display: "flex", gap: 0, marginBottom: "2.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)" }}>
           {[["registry", "REGISTRY"], ["deliverables", "DELIVERABLES"]].map(([id, label]) => (
             <button key={id} data-testid={`tab-${id}`} onClick={() => setActiveTab(id)} style={{
               fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.18em",
               textTransform: "uppercase", padding: "0.75rem 1.5rem", background: "transparent",
-              border: "none", borderBottom: activeTab === id ? "2px solid #C5A059" : "2px solid transparent",
-              color: activeTab === id ? "#C5A059" : "rgba(255,255,255,0.38)",
+              border: "none", borderBottom: activeTab === id ? "2px solid #d4900a" : "2px solid transparent",
+              color: activeTab === id ? "#d4900a" : "rgba(255,255,255,0.38)",
               cursor: "pointer", transition: "color 0.2s", marginBottom: "-1px",
             }}>{label}</button>
           ))}
@@ -340,11 +340,11 @@ export default function CoachRegistryPage() {
             <p style={{
               fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "rgba(197,160,89,0.85)",
+              color: "rgba(212,144,10,0.85)",
             }}>
               COHORT_SIGNAL_OVERVIEW
             </p>
-            <div style={{ flex: 1, height: 1, background: "rgba(197,160,89,0.15)" }} />
+            <div style={{ flex: 1, height: 1, background: "rgba(212,144,10,0.15)" }} />
             <span style={{ fontFamily: mono, fontSize: "0.448rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
               {carriers.length} CARRIER{carriers.length !== 1 ? "S" : ""}
             </span>
@@ -389,7 +389,7 @@ export default function CoachRegistryPage() {
                   onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
                   onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
                 >
-                  <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", color: "rgba(197,160,89,0.75)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", color: "rgba(212,144,10,0.75)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {c.carrierId}
                   </span>
                   <span style={{ fontFamily: sans, fontSize: "0.875rem", fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>
@@ -408,7 +408,7 @@ export default function CoachRegistryPage() {
                   </span>
                   <span style={{
                     fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
-                    color: c.integrity >= 80 ? "#22C55E" : c.integrity >= 50 ? "#C5A059" : "#F87171",
+                    color: c.integrity >= 80 ? "#22C55E" : c.integrity >= 50 ? "#d4900a" : "#F87171",
                   }}>
                     {c.integrity}%
                   </span>
@@ -549,14 +549,14 @@ function DeliverablesAdmin({ API, mono }) {
 
   const formatSize = (bytes) => bytes > 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
 
-  const labelStyle = { fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", display: "block", marginBottom: "0.4rem" };
+  const labelStyle = { fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", display: "block", marginBottom: "0.4rem" };
   const inputStyle = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", padding: "0.6rem 0.75rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", borderRadius: 2, boxSizing: "border-box" };
 
   return (
     <div>
       {/* Upload form */}
-      <div style={{ background: "#000A14", border: "1px solid rgba(197,160,89,0.15)", padding: "2rem", marginBottom: "2rem" }}>
-        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.5rem" }}>
+      <div style={{ background: "#000A14", border: "1px solid rgba(212,144,10,0.15)", padding: "2rem", marginBottom: "2rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
           UPLOAD NEW DELIVERABLE
         </p>
         <form onSubmit={handleUpload}>
@@ -582,7 +582,7 @@ function DeliverablesAdmin({ API, mono }) {
           </div>
           {uploadError && <p style={{ color: "#E8590F", fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadError}</p>}
           {uploadSuccess && <p style={{ color: "#4CAF50", fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadSuccess}</p>}
-          <button data-testid="pdf-upload-btn" type="submit" disabled={uploading} style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", background: uploading ? "rgba(197,160,89,0.3)" : "#C5A059", color: "#001833", border: "none", padding: "0.75rem 1.75rem", cursor: uploading ? "not-allowed" : "pointer" }}>
+          <button data-testid="pdf-upload-btn" type="submit" disabled={uploading} style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", background: uploading ? "rgba(212,144,10,0.3)" : "#d4900a", color: "#0b1628", border: "none", padding: "0.75rem 1.75rem", cursor: uploading ? "not-allowed" : "pointer" }}>
             {uploading ? "UPLOADING..." : "UPLOAD PDF →"}
           </button>
         </form>
@@ -590,7 +590,7 @@ function DeliverablesAdmin({ API, mono }) {
 
       {/* PDF library */}
       <div>
-        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.25rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
           DELIVERABLE LIBRARY — {pdfs.length} FILE{pdfs.length !== 1 ? "S" : ""}
         </p>
         {pdfs.length === 0 ? (
@@ -605,7 +605,7 @@ function DeliverablesAdmin({ API, mono }) {
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 4px" }}>{pdf.display_name}</p>
                   {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 6px" }}>{pdf.description}</p>}
                   <div style={{ display: "flex", gap: "1.25rem" }}>
-                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#C5A059" }}>{CATEGORIES.find(c => c.value === pdf.category)?.label || pdf.category}</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#d4900a" }}>{CATEGORIES.find(c => c.value === pdf.category)?.label || pdf.category}</span>
                     <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{formatSize(pdf.size)}</span>
                     <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{pdf.download_count} DOWNLOADS</span>
                   </div>

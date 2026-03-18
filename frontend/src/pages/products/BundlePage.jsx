@@ -189,14 +189,14 @@ async function downloadGuide() {
 }
 
 export default function BundlePage() {
-  const gold = "#C5A059";
+  const gold = "#d4900a";
 
   return (
-    <div style={{ background: "#020408", minHeight: "100vh" }}>
+    <div style={{ background: "#060d19", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Header */}
-      <section style={{ background: "#001530", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
+      <section style={{ background: "#0b1628", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 420px", gap: "3rem", alignItems: "center" }} className="packet-hero-grid">
@@ -240,12 +240,12 @@ export default function BundlePage() {
                     rel="noopener noreferrer"
                     data-testid="bundle-buy-btn"
                     style={{
-                      display: "inline-block", background: gold, color: "#001530",
+                      display: "inline-block", background: gold, color: "#0b1628",
                       fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.9rem",
                       letterSpacing: "0.1em", textTransform: "uppercase",
                       padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s",
                     }}
-                    onMouseEnter={e => e.currentTarget.style.background = "#d4b06a"}
+                    onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
                     onMouseLeave={e => e.currentTarget.style.background = gold}
                   >
                     Get on Gumroad →
@@ -256,7 +256,7 @@ export default function BundlePage() {
                 <div style={{
                   borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem",
                   padding: "0.875rem 1.25rem",
-                  background: "rgba(197,160,89,0.06)",
+                  background: "rgba(212,144,10,0.06)",
                 }}>
                   <p style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
@@ -305,11 +305,11 @@ export default function BundlePage() {
               <div key={i} style={{
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 padding: "1rem 1.25rem",
-                background: "#001530", border: "1px solid rgba(197,160,89,0.1)",
+                background: "#0b1628", border: "1px solid rgba(212,144,10,0.1)",
                 borderLeft: `2px solid ${gold}`,
               }} className="packet-row">
                 <div>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(197,160,89,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>{p.code}</p>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>{p.code}</p>
                   <Link to={p.href} style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF", textDecoration: "none" }}
                     onMouseEnter={e => e.currentTarget.style.color = gold}
                     onMouseLeave={e => e.currentTarget.style.color = "#FFFFFF"}
@@ -321,23 +321,23 @@ export default function BundlePage() {
             <div style={{
               display: "flex", justifyContent: "space-between", alignItems: "center",
               padding: "1rem 1.25rem",
-              background: "rgba(197,160,89,0.06)", border: `1px solid rgba(197,160,89,0.25)`,
+              background: "rgba(212,144,10,0.06)", border: `1px solid rgba(212,144,10,0.25)`,
               borderLeft: `2px solid ${gold}`,
             }}>
               <div>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(197,160,89,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>LP-GUIDE-001</p>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>LP-GUIDE-001</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF" }}>0–30–90 Day Implementation Guide</p>
               </div>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "rgba(197,160,89,0.65)" }}>Included</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "rgba(212,144,10,0.65)" }}>Included</span>
             </div>
             <div style={{
               display: "flex", justifyContent: "space-between", alignItems: "center",
               padding: "1rem 1.25rem",
-              background: "rgba(197,160,89,0.06)", border: `1px solid rgba(197,160,89,0.25)`,
+              background: "rgba(212,144,10,0.06)", border: `1px solid rgba(212,144,10,0.25)`,
               borderLeft: `2px solid ${gold}`,
             }}>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF" }}>Unified Folder Structure — Company, DQ, Unit/Maintenance, Audit Grab Folder</p>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "rgba(197,160,89,0.65)" }}>Included</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "rgba(212,144,10,0.65)" }}>Included</span>
             </div>
           </div>
         </FadeIn>
@@ -350,9 +350,9 @@ export default function BundlePage() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
             The guide that separates the $497 bundle from a folder of PDFs. It dictates the order of operations for installing all five packets in sequence — the DIY version of the LaunchPath Standard implementation sequence.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: "rgba(197,160,89,0.1)", marginBottom: "2rem" }} className="phases-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: "rgba(212,144,10,0.1)", marginBottom: "2rem" }} className="phases-grid">
             {PHASES.map((ph, i) => (
-              <div key={i} style={{ background: "#001530", padding: "1.5rem", borderTop: `2px solid ${gold}` }}>
+              <div key={i} style={{ background: "#0b1628", padding: "1.5rem", borderTop: `2px solid ${gold}` }}>
                 <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.12em", marginBottom: "0.5rem" }}>{ph.phase}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#FFFFFF", marginBottom: "0.5rem" }}>Focus: {ph.label}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.5)" }}>{ph.steps.length} steps</p>
@@ -363,13 +363,13 @@ export default function BundlePage() {
             onClick={downloadGuide}
             data-testid="download-guide-btn"
             style={{
-              background: "transparent", border: `1px solid rgba(197,160,89,0.5)`,
+              background: "transparent", border: `1px solid rgba(212,144,10,0.5)`,
               color: gold, fontFamily: "'Inter', sans-serif", fontWeight: 700,
               fontSize: "0.85rem", letterSpacing: "0.1em", textTransform: "uppercase",
               padding: "0.875rem 1.75rem", cursor: "pointer", transition: "all 0.2s",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = "rgba(197,160,89,0.08)"; e.currentTarget.style.borderColor = gold; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(197,160,89,0.5)"; }}
+            onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,144,10,0.08)"; e.currentTarget.style.borderColor = gold; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)"; }}
           >
             Preview Implementation Guide (PDF) →
           </button>
@@ -380,7 +380,7 @@ export default function BundlePage() {
         {/* Next Step — The Standard */}
         <FadeIn delay={180}>
           <div style={{
-            background: "#001530", border: `1px solid rgba(197,160,89,0.15)`,
+            background: "#0b1628", border: `1px solid rgba(212,144,10,0.15)`,
             borderLeft: `3px solid ${gold}`, padding: "2rem 2.5rem", marginBottom: "2rem",
           }}>
             <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Next Step</p>
@@ -427,12 +427,12 @@ function SectionLabel({ children }) {
   return (
     <p style={{
       fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-      letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+      letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
       marginBottom: "1.5rem",
     }}>{children}</p>
   );
 }
 
 function Divider() {
-  return <div style={{ height: 1, background: "rgba(197,160,89,0.1)", marginBottom: "3.5rem" }} />;
+  return <div style={{ height: 1, background: "rgba(212,144,10,0.1)", marginBottom: "3.5rem" }} />;
 }

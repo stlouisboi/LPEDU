@@ -26,7 +26,7 @@ export default function VinceCTASection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.82rem",
             fontStyle: "italic",
-            color: "rgba(197,160,89,0.80)",
+            color: "rgba(212,144,10,0.80)",
             lineHeight: 1.5,
             marginBottom: "0.875rem",
             paddingLeft: "2px",

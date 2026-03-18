@@ -76,7 +76,7 @@ function drawFrontCover(product) {
   ctx.fillRect(0, 0, W, H);
 
   // Subtle document lines
-  ctx.strokeStyle = "rgba(197,160,89,0.04)";
+  ctx.strokeStyle = "rgba(212,144,10,0.04)";
   ctx.lineWidth = 1;
   for (let y = 60; y < H; y += 27) {
     ctx.beginPath();
@@ -87,35 +87,35 @@ function drawFrontCover(product) {
 
   // Left accent stripe with gradient
   const lGrad = ctx.createLinearGradient(0, 80, 0, H - 80);
-  lGrad.addColorStop(0, "rgba(197,160,89,0.90)");
-  lGrad.addColorStop(0.55, "rgba(197,160,89,0.55)");
-  lGrad.addColorStop(1, "rgba(197,160,89,0.15)");
+  lGrad.addColorStop(0, "rgba(212,144,10,0.90)");
+  lGrad.addColorStop(0.55, "rgba(212,144,10,0.55)");
+  lGrad.addColorStop(1, "rgba(212,144,10,0.15)");
   ctx.fillStyle = lGrad;
   ctx.fillRect(50, 80, product.isBundle ? 4 : 3, H - 160);
 
   // Top rule
-  ctx.fillStyle = "#C5A059";
+  ctx.fillStyle = "#d4900a";
   ctx.fillRect(mX, 72, W - mX * 2, product.isBundle ? 3 : 2);
   if (product.isBundle) {
-    ctx.fillStyle = "rgba(197,160,89,0.35)";
+    ctx.fillStyle = "rgba(212,144,10,0.35)";
     ctx.fillRect(mX, 78, W - mX * 2, 1);
   }
 
   // LP code badge
   const bH = 50;
-  ctx.strokeStyle = "rgba(197,160,89,0.42)";
+  ctx.strokeStyle = "rgba(212,144,10,0.42)";
   ctx.lineWidth = 1;
   ctx.strokeRect(mX + 0.5, 100.5, 228, bH);
-  ctx.fillStyle = "rgba(197,160,89,0.07)";
+  ctx.fillStyle = "rgba(212,144,10,0.07)";
   ctx.fillRect(mX, 100, 228, bH);
-  ctx.fillStyle = "#C5A059";
+  ctx.fillStyle = "#d4900a";
   ctx.font = "bold 21px 'Courier New', monospace";
   ctx.textBaseline = "middle";
   ctx.fillText(product.code, mX + 14, 125);
   ctx.textBaseline = "alphabetic";
 
   // Product type
-  ctx.fillStyle = "rgba(197,160,89,0.52)";
+  ctx.fillStyle = "rgba(212,144,10,0.52)";
   ctx.font = "600 16px Arial, sans-serif";
   ctx.fillText(product.type.toUpperCase(), mX, 196);
 
@@ -127,7 +127,7 @@ function drawFrontCover(product) {
 
   // Bundle gets extra treatment — faint rule above title
   if (product.isBundle) {
-    ctx.fillStyle = "rgba(197,160,89,0.18)";
+    ctx.fillStyle = "rgba(212,144,10,0.18)";
     ctx.fillRect(mX, titleY - 42, 320, 1);
   }
 
@@ -139,7 +139,7 @@ function drawFrontCover(product) {
 
   // Mid divider
   const divY = titleY + product.name.length * lH + 52;
-  ctx.fillStyle = "rgba(197,160,89,0.38)";
+  ctx.fillStyle = "rgba(212,144,10,0.38)";
   ctx.fillRect(mX, divY, W - mX * 2 - 80, 1.5);
 
   // Subtitle
@@ -149,21 +149,21 @@ function drawFrontCover(product) {
 
   // Bundle note line
   if (product.note) {
-    ctx.fillStyle = "rgba(197,160,89,0.58)";
+    ctx.fillStyle = "rgba(212,144,10,0.58)";
     ctx.font = "400 24px Arial, sans-serif";
     ctx.fillText(product.note, mX, divY + 96);
   }
 
   // Bottom rule (double for bundle)
-  ctx.fillStyle = "#C5A059";
+  ctx.fillStyle = "#d4900a";
   ctx.fillRect(mX, H - 192, W - mX * 2, product.isBundle ? 3 : 2);
   if (product.isBundle) {
-    ctx.fillStyle = "rgba(197,160,89,0.35)";
+    ctx.fillStyle = "rgba(212,144,10,0.35)";
     ctx.fillRect(mX, H - 186, W - mX * 2, 1);
   }
 
   // LaunchPath wordmark
-  ctx.fillStyle = "rgba(197,160,89,0.88)";
+  ctx.fillStyle = "rgba(212,144,10,0.88)";
   ctx.font = "bold 25px Arial, sans-serif";
   ctx.fillText("LAUNCHPATH", mX, H - 148);
   ctx.fillStyle = "rgba(255,255,255,0.38)";
@@ -171,7 +171,7 @@ function drawFrontCover(product) {
   ctx.fillText("TRANSPORTATION EDUCATION", mX, H - 118);
 
   // Price (bottom right)
-  ctx.fillStyle = "rgba(197,160,89,0.72)";
+  ctx.fillStyle = "rgba(212,144,10,0.72)";
   ctx.font = `600 ${product.isBundle ? 32 : 28}px Arial, sans-serif`;
   ctx.textAlign = "right";
   ctx.fillText(product.price, W - mX, H - 148);
@@ -191,7 +191,7 @@ function drawSpine(product) {
   ctx.fillRect(0, 0, 80, 1120);
 
   // Gold edge line
-  ctx.fillStyle = "rgba(197,160,89,0.65)";
+  ctx.fillStyle = "rgba(212,144,10,0.65)";
   ctx.fillRect(77, 0, 3, 1120);
 
   // Rotated text (standard book: reads bottom-to-top)
@@ -204,7 +204,7 @@ function drawSpine(product) {
   ctx.font = "bold 32px Arial, sans-serif";
   ctx.fillText(product.name.join(" "), 0, -8);
 
-  ctx.fillStyle = "rgba(197,160,89,0.60)";
+  ctx.fillStyle = "rgba(212,144,10,0.60)";
   ctx.font = "600 20px Arial, sans-serif";
   ctx.fillText("LAUNCHPATH", 0, 22);
 
@@ -223,30 +223,30 @@ function drawBack(product) {
   ctx.fillRect(0, 0, W, H);
 
   // Subtle lines
-  ctx.strokeStyle = "rgba(197,160,89,0.03)";
+  ctx.strokeStyle = "rgba(212,144,10,0.03)";
   ctx.lineWidth = 1;
   for (let y = 60; y < H; y += 27) {
     ctx.beginPath(); ctx.moveTo(mX, y); ctx.lineTo(W - mX, y); ctx.stroke();
   }
 
   // Center LP mark
-  ctx.fillStyle = "rgba(197,160,89,0.12)";
+  ctx.fillStyle = "rgba(212,144,10,0.12)";
   ctx.font = "bold 96px Arial, sans-serif";
   ctx.textAlign = "center";
   ctx.fillText("LP", W / 2, H / 2 - 20);
 
-  ctx.fillStyle = "rgba(197,160,89,0.08)";
+  ctx.fillStyle = "rgba(212,144,10,0.08)";
   ctx.font = "400 22px Arial, sans-serif";
   ctx.fillText("LAUNCHPATH TRANSPORTATION EDUCATION", W / 2, H / 2 + 40);
   ctx.textAlign = "left";
 
   // Top and bottom rules
-  ctx.fillStyle = "rgba(197,160,89,0.5)";
+  ctx.fillStyle = "rgba(212,144,10,0.5)";
   ctx.fillRect(mX, 72, W - mX * 2, 1.5);
   ctx.fillRect(mX, H - 100, W - mX * 2, 1.5);
 
   // Product code bottom
-  ctx.fillStyle = "rgba(197,160,89,0.45)";
+  ctx.fillStyle = "rgba(212,144,10,0.45)";
   ctx.font = "600 18px 'Courier New', monospace";
   ctx.fillText(product.code, mX, H - 68);
 
@@ -412,7 +412,7 @@ function BookRenderer({ product }) {
         ref={mountRef}
         style={{
           width: 360, height: 504,
-          background: "#000c1a",
+          background: "#060d19",
           cursor: "grab",
           borderRadius: 2,
           overflow: "hidden",
@@ -430,14 +430,14 @@ function BookRenderer({ product }) {
           fontWeight: 600,
           letterSpacing: "0.1em",
           textTransform: "uppercase",
-          color: ready ? "#C5A059" : "rgba(197,160,89,0.35)",
+          color: ready ? "#d4900a" : "rgba(212,144,10,0.35)",
           background: "transparent",
-          border: `1px solid ${ready ? "rgba(197,160,89,0.45)" : "rgba(197,160,89,0.15)"}`,
+          border: `1px solid ${ready ? "rgba(212,144,10,0.45)" : "rgba(212,144,10,0.15)"}`,
           padding: "0.6rem 1.5rem",
           cursor: ready ? "pointer" : "not-allowed",
           transition: "all 0.2s",
         }}
-        onMouseEnter={(e) => { if (ready) { e.currentTarget.style.background = "rgba(197,160,89,0.08)"; }}}
+        onMouseEnter={(e) => { if (ready) { e.currentTarget.style.background = "rgba(212,144,10,0.08)"; }}}
         onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
       >
         {ready ? "Download PNG" : "Loading…"}
@@ -450,7 +450,7 @@ function BookRenderer({ product }) {
 
 export default function BookMockupPage() {
   return (
-    <div style={{ minHeight: "100vh", background: "#000C1A" }}>
+    <div style={{ minHeight: "100vh", background: "#060d19" }}>
       <Navbar />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 32px 120px" }}>
@@ -460,7 +460,7 @@ export default function BookMockupPage() {
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.616rem",
-            color: "rgba(197,160,89,0.75)",
+            color: "rgba(212,144,10,0.75)",
             letterSpacing: "0.16em",
             textTransform: "uppercase",
             marginBottom: "1.25rem",
@@ -485,7 +485,7 @@ export default function BookMockupPage() {
             lineHeight: 1.7,
             maxWidth: 480,
           }}>
-            Drag to rotate each book. Click <strong style={{ color: "rgba(197,160,89,0.8)" }}>Download PNG</strong> to save the render for your Gumroad product listing.
+            Drag to rotate each book. Click <strong style={{ color: "rgba(212,144,10,0.8)" }}>Download PNG</strong> to save the render for your Gumroad product listing.
           </p>
         </div>
 
@@ -504,7 +504,7 @@ export default function BookMockupPage() {
                   fontSize: "0.608rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
-                  color: "rgba(197,160,89,0.65)",
+                  color: "rgba(212,144,10,0.65)",
                   textTransform: "uppercase",
                   marginBottom: "0.25rem",
                 }}>
@@ -526,7 +526,7 @@ export default function BookMockupPage() {
                 }}>
                   {product.price}
                   {product.isBundle && (
-                    <span style={{ color: "rgba(197,160,89,0.55)", marginLeft: "0.75rem" }}>
+                    <span style={{ color: "rgba(212,144,10,0.55)", marginLeft: "0.75rem" }}>
                       Bundle
                     </span>
                   )}
@@ -548,7 +548,7 @@ export default function BookMockupPage() {
           alignItems: "flex-start",
           maxWidth: 640,
         }}>
-          <div style={{ width: 3, height: 48, background: "rgba(197,160,89,0.4)", flexShrink: 0, marginTop: 2 }} />
+          <div style={{ width: 3, height: 48, background: "rgba(212,144,10,0.4)", flexShrink: 0, marginTop: 2 }} />
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.875rem",

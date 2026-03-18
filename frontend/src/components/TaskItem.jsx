@@ -12,7 +12,7 @@ const STATUS_CONFIG = {
 
 const PRIORITY_CONFIG = {
   critical: { label: "CRITICAL", color: "#F87171" },
-  high:     { label: "HIGH",     color: "#C5A059" },
+  high:     { label: "HIGH",     color: "#d4900a" },
   medium:   { label: "MEDIUM",   color: "#94A3B8" },
   low:      { label: "LOW",      color: "#64748B" },
 };
@@ -57,7 +57,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
         {/* Task ID */}
         <span style={{
           fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
-          letterSpacing: "0.14em", color: "rgba(197,160,89,0.85)",
+          letterSpacing: "0.14em", color: "rgba(212,144,10,0.85)",
           textTransform: "uppercase", flexShrink: 0,
         }}>
           LP/{task.taskId}

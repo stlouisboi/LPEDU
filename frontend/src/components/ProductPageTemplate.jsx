@@ -22,15 +22,15 @@ export default function ProductPageTemplate({
   mockupId = null,
   children,
 }) {
-  const gold = "#C5A059";
-  const goldFaint = "rgba(197,160,89,0.15)";
+  const gold = "#d4900a";
+  const goldFaint = "rgba(212,144,10,0.15)";
 
   return (
-    <div style={{ background: "#020408", minHeight: "100vh" }}>
+    <div style={{ background: "#060d19", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Header */}
-      <section style={{ background: "#001530", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
+      <section style={{ background: "#0b1628", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
         <div style={{ maxWidth: mockupId ? 1100 : 820, margin: "0 auto" }}>
           <FadeIn>
             <div style={{
@@ -69,12 +69,12 @@ export default function ProductPageTemplate({
                     rel="noopener noreferrer"
                     data-testid="buy-on-gumroad-btn"
                     style={{
-                      display: "inline-block", background: gold, color: "#001530",
+                      display: "inline-block", background: gold, color: "#0b1628",
                       fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
                       letterSpacing: "0.1em", textTransform: "uppercase",
                       padding: "0.875rem 2rem", textDecoration: "none", transition: "background 0.2s",
                     }}
-                    onMouseEnter={e => e.currentTarget.style.background = "#d4b06a"}
+                    onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
                     onMouseLeave={e => e.currentTarget.style.background = gold}
                   >
                     Get on Gumroad →
@@ -100,7 +100,7 @@ export default function ProductPageTemplate({
 
       {/* Tagline strip */}
       <div style={{
-        background: "#000D1A", borderBottom: "1px solid rgba(197,160,89,0.15)",
+        background: "#080f1e", borderBottom: "1px solid rgba(212,144,10,0.15)",
         padding: "1.5rem 24px",
       }}>
         <p style={{
@@ -114,7 +114,7 @@ export default function ProductPageTemplate({
           maxWidth: 820, margin: "0.75rem auto 0",
           fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem",
           fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
-          color: "rgba(197,160,89,0.60)",
+          color: "rgba(212,144,10,0.60)",
         }}>
           This is not a standalone file. This document becomes part of your operational system.
         </p>
@@ -210,7 +210,7 @@ export default function ProductPageTemplate({
         {/* Next Step */}
         <FadeIn delay={200}>
           <section style={{
-            background: "#001530", border: `1px solid ${goldFaint}`,
+            background: "#0b1628", border: `1px solid ${goldFaint}`,
             borderLeft: `3px solid ${gold}`, padding: "2rem 2.5rem", marginBottom: "3rem",
           }}>
             <p style={{
@@ -260,12 +260,12 @@ function SectionLabel({ children }) {
   return (
     <p style={{
       fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-      letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+      letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
       marginBottom: "1.5rem",
     }}>{children}</p>
   );
 }
 
 function Divider() {
-  return <div style={{ height: 1, background: "rgba(197,160,89,0.1)", marginBottom: "3.5rem" }} />;
+  return <div style={{ height: 1, background: "rgba(212,144,10,0.1)", marginBottom: "3.5rem" }} />;
 }

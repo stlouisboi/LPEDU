@@ -19,8 +19,8 @@ export default function AuthorityReadinessTestSection() {
     <section
       style={{
         background: "#000A14",
-        borderTop: "1px solid rgba(197,160,89,0.12)",
-        borderBottom: "1px solid rgba(197,160,89,0.12)",
+        borderTop: "1px solid rgba(212,144,10,0.12)",
+        borderBottom: "1px solid rgba(212,144,10,0.12)",
         padding: "6rem 2rem",
       }}
     >
@@ -33,7 +33,7 @@ export default function AuthorityReadinessTestSection() {
           fontWeight: 700,
           letterSpacing: "0.22em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,0.65)",
+          color: "rgba(212,144,10,0.65)",
           marginBottom: "1.25rem",
         }}>
           LPOS v1.0 | LP-DX-001 | DIAGNOSTIC_ENGINE
@@ -57,7 +57,7 @@ export default function AuthorityReadinessTestSection() {
         <div style={{
           width: 40,
           height: 2,
-          background: "#C5A059",
+          background: "#d4900a",
           marginBottom: "2rem",
         }} />
 
@@ -112,8 +112,8 @@ export default function AuthorityReadinessTestSection() {
                 gap: "1rem",
                 padding: "0.75rem 1rem",
                 background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(197,160,89,0.1)",
-                borderLeft: "3px solid rgba(197,160,89,0.4)",
+                border: "1px solid rgba(212,144,10,0.1)",
+                borderLeft: "3px solid rgba(212,144,10,0.4)",
                 animation: `fadeSlideIn 0.4s ease both`,
                 animationDelay: `${i * 0.07}s`,
               }}
@@ -122,7 +122,7 @@ export default function AuthorityReadinessTestSection() {
                 fontFamily: mono,
                 fontWeight: 700,
                 fontSize: "1rem",
-                color: "#C5A059",
+                color: "#d4900a",
                 minWidth: 20,
               }}>
                 {p.code}
@@ -149,7 +149,7 @@ export default function AuthorityReadinessTestSection() {
             display: "inline-flex",
             alignItems: "center",
             gap: "0.75rem",
-            background: "#C5A059",
+            background: "#d4900a",
             border: "none",
             color: "#020617",
             fontFamily: mono,
@@ -162,11 +162,11 @@ export default function AuthorityReadinessTestSection() {
             transition: "background 0.2s, transform 0.15s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "#d4b06a";
+            e.currentTarget.style.background = "#e8a520";
             e.currentTarget.style.transform = "translateX(3px)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = "#C5A059";
+            e.currentTarget.style.background = "#d4900a";
             e.currentTarget.style.transform = "translateX(0)";
           }}
         >

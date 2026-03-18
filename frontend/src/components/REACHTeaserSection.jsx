@@ -44,8 +44,8 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
       data-testid="reach-teaser-section"
       style={{
         background: "#020617",
-        borderTop: "1px solid rgba(197,160,89,0.18)",
-        borderBottom: "1px solid rgba(197,160,89,0.18)",
+        borderTop: "1px solid rgba(212,144,10,0.18)",
+        borderBottom: "1px solid rgba(212,144,10,0.18)",
         padding: "88px 0 80px",
         position: "relative",
         overflow: "hidden",
@@ -54,7 +54,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
       {/* Subtle grid texture */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        backgroundImage: "linear-gradient(rgba(197,160,89,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.025) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(212,144,10,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(212,144,10,0.025) 1px, transparent 1px)",
         backgroundSize: "48px 48px",
       }} />
 
@@ -65,7 +65,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           <p style={{
             fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
-            color: "rgba(197,160,89,0.75)", marginBottom: "0.625rem",
+            color: "rgba(212,144,10,0.75)", marginBottom: "0.625rem",
           }}>
             LPOS v1.0 | LP-MOD-REACH | DIAGNOSTIC_ENGINE_v1
           </p>
@@ -115,7 +115,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   className="pillar-card"
                   style={{
                     background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(197,160,89,0.14)",
+                    border: "1px solid rgba(212,144,10,0.14)",
                     padding: "1.5rem 1.125rem 1.25rem",
                     display: "flex",
                     flexDirection: "column",
@@ -129,7 +129,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                     e.currentTarget.style.background = "rgba(232,93,4,0.04)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(197,160,89,0.14)";
+                    e.currentTarget.style.borderColor = "rgba(212,144,10,0.14)";
                     e.currentTarget.style.background = "rgba(255,255,255,0.03)";
                   }}
                 >
@@ -137,7 +137,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   <p style={{
                     fontFamily: mono, fontWeight: 700,
                     fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                    color: "#C5A059", lineHeight: 1,
+                    color: "#d4900a", lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}>
                     {p.letter}
@@ -198,7 +198,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             {/* System Progress Monitor */}
             <div style={{
               background: "rgba(255,255,255,0.025)",
-              border: "1px solid rgba(197,160,89,0.12)",
+              border: "1px solid rgba(212,144,10,0.12)",
               padding: "1.25rem 1.5rem",
             }}>
               <div style={{
@@ -287,7 +287,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           {/* RIGHT: Vector Analysis Sidebar */}
           <div style={{
             background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(197,160,89,0.14)",
+            border: "1px solid rgba(212,144,10,0.14)",
             padding: "1.75rem 1.5rem",
             display: "flex",
             flexDirection: "column",
@@ -297,13 +297,13 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
               fontFamily: mono, fontSize: "0.56rem",
               fontWeight: 700, letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.75)",
+              color: "rgba(212,144,10,0.75)",
               marginBottom: "0.25rem",
             }}>
               REACH_THRESHOLD_METRICS
             </p>
             <div style={{
-              height: 1, background: "rgba(197,160,89,0.22)",
+              height: 1, background: "rgba(212,144,10,0.22)",
               marginBottom: "1.5rem",
             }} />
 
@@ -333,7 +333,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                     letterSpacing: "0.06em",
                     color: m.value === "100%" ? "#22c55e"
                       : m.value === "REQUIRED" || m.value === "ABSOLUTE" ? "#E85D04"
-                      : m.value === "VERIFIED" ? "#C5A059"
+                      : m.value === "VERIFIED" ? "#d4900a"
                       : "rgba(255,255,255,0.72)",
                   }}>
                     {m.value}

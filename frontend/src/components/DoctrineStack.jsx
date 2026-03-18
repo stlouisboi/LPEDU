@@ -26,7 +26,7 @@ const LAYERS = [
     label: "LAYER 4 — INFRASTRUCTURE",
     name: "Compliance Packets",
     desc: "Five domains \u00b7 Documents installed",
-    color: "#002244",
+    color: "#0b1628",
     href: "/standards#packets",
   },
   {
@@ -100,7 +100,7 @@ export function DoctrineStack() {
                 background: "transparent",
               }}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M7 0 L7 10 M3 7 L7 11 L11 7" stroke="rgba(197,160,89,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M7 0 L7 10 M3 7 L7 11 L11 7" stroke="rgba(212,144,10,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             )}

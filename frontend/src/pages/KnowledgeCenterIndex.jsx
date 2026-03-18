@@ -374,14 +374,14 @@ function BriefCard({ brief, index }) {
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: "#C5A059",
+                color: "#d4900a",
                 textDecoration: "none",
-                borderBottom: "1px solid rgba(197,160,89,0.3)",
+                borderBottom: "1px solid rgba(212,144,10,0.3)",
                 paddingBottom: "1px",
                 transition: "border-color 0.15s",
               }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(197,160,89,0.8)"}
-              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(197,160,89,0.3)"}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.8)"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.3)"}
             >
               {brief.packetCode} — Install this system →
             </a>

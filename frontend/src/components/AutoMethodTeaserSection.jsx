@@ -51,9 +51,9 @@ function AutoCard({ card, visible, delay }) {
     <div
       data-testid={`auto-card-${card.letter.toLowerCase()}`}
       style={{
-        background: hovered ? "#003366" : "#002244",
+        background: hovered ? "#003366" : "#0b1628",
         padding: "2rem 1.5rem",
-        boxShadow: hovered ? "inset 0 0 0 1px rgba(197,160,89,0.32)" : "none",
+        boxShadow: hovered ? "inset 0 0 0 1px rgba(212,144,10,0.32)" : "none",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(24px)",
         transition: [
@@ -71,7 +71,7 @@ function AutoCard({ card, visible, delay }) {
         fontFamily: "'Barlow Condensed', sans-serif",
         fontWeight: 800,
         fontSize: "3.5rem",
-        color: "#C5A059",
+        color: "#d4900a",
         lineHeight: 1,
         marginBottom: "0.375rem",
         display: "inline-block",
@@ -95,7 +95,7 @@ function AutoCard({ card, visible, delay }) {
       <p style={{
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: "0.616rem",
-        color: "rgba(197,160,89,0.85)",
+        color: "rgba(212,144,10,0.85)",
         letterSpacing: "0.08em",
         marginBottom: "0.75rem",
       }}>
@@ -131,9 +131,9 @@ export default function AutoMethodTeaserSection() {
       data-testid="auto-method-teaser"
       ref={sectionRef}
       style={{
-        background: "#002244",
-        borderTop: "1px solid rgba(197,160,89,0.15)",
-        borderBottom: "1px solid rgba(197,160,89,0.15)",
+        background: "#0b1628",
+        borderTop: "1px solid rgba(212,144,10,0.15)",
+        borderBottom: "1px solid rgba(212,144,10,0.15)",
         padding: "104px 24px",
       }}
     >
@@ -149,7 +149,7 @@ export default function AutoMethodTeaserSection() {
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.672rem",
-            color: "rgba(197,160,89,0.85)",
+            color: "rgba(212,144,10,0.85)",
             letterSpacing: "0.16em",
             textTransform: "uppercase",
             marginBottom: "1rem",
@@ -184,7 +184,7 @@ export default function AutoMethodTeaserSection() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1px",
-          background: "rgba(197,160,89,0.12)",
+          background: "rgba(212,144,10,0.12)",
         }} className="auto-teaser-grid">
           {AUTO_CARDS.map((card, i) => (
             <AutoCard key={card.letter} card={card} visible={visible} delay={i * 100} />

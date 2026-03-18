@@ -5,7 +5,7 @@ export default function ComplianceMapTeaser() {
     <section
       data-testid="compliance-map-teaser"
       style={{
-        background: "#000D1A",
+        background: "#080f1e",
         borderTop: "1px solid rgba(255,255,255,0.05)",
         padding: "52px 24px",
       }}
@@ -20,7 +20,7 @@ export default function ComplianceMapTeaser() {
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,0.88)",
+          color: "rgba(212,144,10,0.88)",
           marginBottom: "1rem",
         }}>
           SELF-DIRECTED OPTION
@@ -43,12 +43,12 @@ export default function ComplianceMapTeaser() {
             fontSize: "0.84rem",
             fontWeight: 600,
             letterSpacing: "0.06em",
-            color: "rgba(197,160,89,0.75)",
+            color: "rgba(212,144,10,0.75)",
             textDecoration: "none",
             transition: "color 0.2s",
           }}
-          onMouseEnter={e => (e.currentTarget.style.color = "#C5A059")}
-          onMouseLeave={e => (e.currentTarget.style.color = "rgba(197,160,89,0.75)")}
+          onMouseEnter={e => (e.currentTarget.style.color = "#d4900a")}
+          onMouseLeave={e => (e.currentTarget.style.color = "rgba(212,144,10,0.75)")}
         >
           Explore the Standards Library →
         </Link>

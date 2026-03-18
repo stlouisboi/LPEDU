@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
-const gold = "#C5A059";
-const navy = "#002244";
+const gold = "#d4900a";
+const navy = "#0b1628";
 
 const PRODUCTS = [
   {
@@ -93,7 +93,7 @@ export default function ComplianceLibraryPage() {
           </p>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(197,160,89,0.85)",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(212,144,10,0.85)",
             lineHeight: 1.7, maxWidth: 520,
           }}>
             These are not course materials. They are diagnostic and reference tools built on the LaunchPath Four Pillars framework. Buy what you need, use it immediately.
@@ -156,7 +156,7 @@ export default function ComplianceLibraryPage() {
               color: gold,
               fontWeight: 600,
               marginBottom: "0.6rem",
-            }}>All five products — $197 <span style={{ fontSize: "0.85rem", fontWeight: 400, color: "rgba(197,160,89,0.6)" }}>(save $68)</span></p>
+            }}>All five products — $197 <span style={{ fontSize: "0.85rem", fontWeight: 400, color: "rgba(212,144,10,0.6)" }}>(save $68)</span></p>
 
             <p style={{
               fontFamily: "'Inter', sans-serif",
@@ -257,7 +257,7 @@ export default function ComplianceLibraryPage() {
               textDecoration: "none",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => e.currentTarget.style.background = "#001A33"}
+            onMouseEnter={e => e.currentTarget.style.background = "#0d1c30"}
             onMouseLeave={e => e.currentTarget.style.background = navy}
           >
             Begin with Ground 0 →

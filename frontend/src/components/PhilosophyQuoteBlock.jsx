@@ -5,9 +5,9 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
     <section
       data-testid="philosophy-quote-block"
       style={{
-        background: "#001530",
-        borderTop: "1px solid rgba(197,160,89,0.1)",
-        borderBottom: "1px solid rgba(197,160,89,0.1)",
+        background: "#0b1628",
+        borderTop: "1px solid rgba(212,144,10,0.1)",
+        borderBottom: "1px solid rgba(212,144,10,0.1)",
         padding: "56px 24px",
       }}
     >
@@ -18,7 +18,7 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
             fontSize: "0.616rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.6)",
+            color: "rgba(212,144,10,0.6)",
             marginBottom: "1.5rem",
           }}>
             LP-DOCTRINE
@@ -39,7 +39,7 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: "0.616rem",
               letterSpacing: "0.12em",
-              color: "rgba(197,160,89,0.7)",
+              color: "rgba(212,144,10,0.7)",
               textTransform: "uppercase",
             }}>
               — {attribution}

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const gold = "#C5A059";
-const navy = "#002244";
+const gold = "#d4900a";
+const navy = "#0b1628";
 
 const DOMAINS = [
   {
@@ -74,7 +74,7 @@ export function FMCSADomainTable({ showPricing = true }) {
         display: "none",
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: "0.62rem",
-        color: "rgba(197,160,89,0.5)",
+        color: "rgba(212,144,10,0.5)",
         letterSpacing: "0.1em",
         textTransform: "uppercase",
         marginBottom: "0.5rem",
@@ -105,7 +105,7 @@ export function FMCSADomainTable({ showPricing = true }) {
           </thead>
           <tbody>
             {DOMAINS.map((row, i) => (
-              <tr key={i} className="fmcsa-row" style={{ background: i % 2 === 0 ? "#020408" : "rgba(0,21,48,0.5)" }}>
+              <tr key={i} className="fmcsa-row" style={{ background: i % 2 === 0 ? "#060d19" : "rgba(0,21,48,0.5)" }}>
                 <td style={{ padding: "0.875rem 1rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
@@ -146,7 +146,7 @@ export function FMCSADomainTable({ showPricing = true }) {
                     padding: "3px 9px",
                     borderRadius: "4px",
                     textDecoration: "none",
-                    border: `1px solid rgba(197,160,89,0.3)`,
+                    border: `1px solid rgba(212,144,10,0.3)`,
                     whiteSpace: "nowrap",
                     transition: "border-color 0.15s",
                   }}>
@@ -199,9 +199,9 @@ export function FMCSADomainTable({ showPricing = true }) {
             fontWeight: 700,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: copied ? "#C5A059" : "rgba(255,255,255,0.38)",
+            color: copied ? "#d4900a" : "rgba(255,255,255,0.38)",
             background: "transparent",
-            border: `1px solid ${copied ? "rgba(197,160,89,0.35)" : "rgba(255,255,255,0.1)"}`,
+            border: `1px solid ${copied ? "rgba(212,144,10,0.35)" : "rgba(255,255,255,0.1)"}`,
             padding: "0.45rem 1rem",
             cursor: "pointer",
             transition: "all 0.2s",
@@ -215,7 +215,7 @@ export function FMCSADomainTable({ showPricing = true }) {
       </div>
 
       <style>{`
-        .fmcsa-row:hover td { background: rgba(197,160,89,0.04) !important; }
+        .fmcsa-row:hover td { background: rgba(212,144,10,0.04) !important; }
         @media (max-width: 700px) {
           .table-scroll-hint { display: block !important; }
         }

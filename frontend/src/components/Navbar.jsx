@@ -71,8 +71,8 @@ export default function Navbar() {
 
   const dropdownPanel = {
     position: "absolute", top: "calc(100% + 4px)", left: 0,
-    background: "#001530",
-    border: "1px solid rgba(197,160,89,0.15)",
+    background: "#0b1628",
+    border: "1px solid rgba(212,144,10,0.15)",
     boxShadow: "0 8px 32px rgba(0,0,0,0.55)",
     minWidth: 200, zIndex: 300,
     padding: "0.375rem 0",
@@ -83,7 +83,7 @@ export default function Navbar() {
     fontFamily: "'Inter', sans-serif", fontSize: "0.88rem", fontWeight: 400,
     color: isActive(href) ? "#FFFFFF" : "rgba(255,255,255,0.68)",
     textDecoration: "none",
-    borderLeft: isActive(href) ? "2px solid #C5A059" : "2px solid transparent",
+    borderLeft: isActive(href) ? "2px solid #d4900a" : "2px solid transparent",
     transition: "all 0.15s",
     whiteSpace: "nowrap",
   });
@@ -142,8 +142,8 @@ export default function Navbar() {
                       {l.subItems.map(sub => (
                         <Link key={sub.href} to={sub.href}
                           style={dropdownItem(sub.href)}
-                          onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#C5A059"; }}
-                          onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#C5A059" : "transparent"; }}
+                          onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#d4900a"; }}
+                          onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#d4900a" : "transparent"; }}
                         >
                           {sub.label}
                         </Link>
@@ -174,9 +174,9 @@ export default function Navbar() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.874rem", fontWeight: 700,
                   letterSpacing: "0.06em", textTransform: "uppercase",
-                  color: ground0Active ? "#002244" : "#001530",
-                  background: ground0Active ? "#C5A059" : "#C5A059",
-                  border: "1px solid #C5A059",
+                  color: ground0Active ? "#0b1628" : "#0b1628",
+                  background: ground0Active ? "#d4900a" : "#d4900a",
+                  border: "1px solid #d4900a",
                   padding: "0.4rem 1rem",
                   textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap",
                   display: "flex", alignItems: "center", gap: "0.3rem",
@@ -195,8 +195,8 @@ export default function Navbar() {
                   {GROUND0_SUB.map(sub => (
                     <Link key={sub.href} to={sub.href}
                       style={dropdownItem(sub.href)}
-                      onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#C5A059"; }}
-                      onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#C5A059" : "transparent"; }}
+                      onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#d4900a"; }}
+                      onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#d4900a" : "transparent"; }}
                     >
                       {sub.label}
                     </Link>
@@ -218,15 +218,15 @@ export default function Navbar() {
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.874rem", fontWeight: 600,
                 letterSpacing: "0.04em",
-                color: isActive("/reach-diagnostic") ? "#C5A059" : "rgba(197,160,89,0.80)",
+                color: isActive("/reach-diagnostic") ? "#d4900a" : "rgba(212,144,10,0.80)",
                 textDecoration: "none",
                 whiteSpace: "nowrap",
-                borderBottom: isActive("/reach-diagnostic") ? "1px solid #C5A059" : "1px solid transparent",
+                borderBottom: isActive("/reach-diagnostic") ? "1px solid #d4900a" : "1px solid transparent",
                 paddingBottom: "2px",
                 transition: "color 0.2s",
               }}
-              onMouseEnter={e => { e.currentTarget.style.color = "#C5A059"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = isActive("/reach-diagnostic") ? "#C5A059" : "rgba(197,160,89,0.80)"; }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#d4900a"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = isActive("/reach-diagnostic") ? "#d4900a" : "rgba(212,144,10,0.80)"; }}
             >
               REACH Diagnostic
             </Link>
@@ -251,7 +251,7 @@ export default function Navbar() {
                 padding: "0.45rem 1rem",
                 textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap",
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = "rgba(197,160,89,0.1)")}
+              onMouseEnter={e => (e.currentTarget.style.background = "rgba(212,144,10,0.1)")}
               onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
             >
               <LockSimple size={12} weight="bold" />
@@ -285,7 +285,7 @@ export default function Navbar() {
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
-            letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.6)",
+            letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.6)",
             marginBottom: "1rem",
           }}>FRAMEWORK</p>
 
@@ -304,7 +304,7 @@ export default function Navbar() {
                 <Link key={sub.href} to={sub.href} onClick={() => setOpen(false)}
                   style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
-                    color: isActive(sub.href) ? "#C5A059" : "rgba(255,255,255,0.5)",
+                    color: isActive(sub.href) ? "#d4900a" : "rgba(255,255,255,0.5)",
                     textDecoration: "none", padding: "0.5rem 0 0.5rem 1.25rem",
                     borderBottom: "1px solid rgba(255,255,255,0.04)",
                     display: "block",
@@ -317,7 +317,7 @@ export default function Navbar() {
           <Link to="/ground-0-briefing" onClick={() => setOpen(false)}
             style={{
               fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", fontWeight: 600,
-              color: "#C5A059", textDecoration: "none", padding: "0.75rem 0",
+              color: "#d4900a", textDecoration: "none", padding: "0.75rem 0",
               borderBottom: "none",
             }}
           >Ground 0</Link>
@@ -325,7 +325,7 @@ export default function Navbar() {
             <Link key={sub.href} to={sub.href} onClick={() => setOpen(false)}
               style={{
                 fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
-                color: isActive(sub.href) ? "#C5A059" : "rgba(255,255,255,0.5)",
+                color: isActive(sub.href) ? "#d4900a" : "rgba(255,255,255,0.5)",
                 textDecoration: "none", padding: "0.5rem 0 0.5rem 1.25rem",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
                 display: "block",
@@ -337,14 +337,14 @@ export default function Navbar() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
-            letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.6)",
+            letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.6)",
             marginBottom: "1rem",
           }}>ACCESS</p>
           <Link to="/reach-diagnostic" onClick={() => setOpen(false)}
             data-testid="mobile-nav-reach-btn"
             style={{
               fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", fontWeight: 600,
-              color: "#C5A059", textDecoration: "none", padding: "0.75rem 0",
+              color: "#d4900a", textDecoration: "none", padding: "0.75rem 0",
               borderBottom: "1px solid rgba(255,255,255,0.06)", display: "block",
             }}
           >REACH Diagnostic</Link>

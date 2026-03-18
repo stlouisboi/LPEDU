@@ -61,14 +61,14 @@ const MATRIX_ROWS = [
 ];
 
 export default function ProductsPage() {
-  const gold = "#C5A059";
+  const gold = "#d4900a";
 
   return (
-    <div style={{ background: "#020408", minHeight: "100vh" }}>
+    <div style={{ background: "#060d19", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Header */}
-      <section style={{ background: "#001530", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
+      <section style={{ background: "#0b1628", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
@@ -97,7 +97,7 @@ export default function ProductsPage() {
         <FadeIn>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1rem",
           }}>The Commercial Ladder</p>
           <p style={{
@@ -106,10 +106,10 @@ export default function ProductsPage() {
           }}>
             Every carrier starts in a different place. LaunchPath offers three paths: learn the system, install the documents yourself, or implement the full operating standard with oversight.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(197,160,89,0.1)", marginBottom: "4rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(212,144,10,0.1)", marginBottom: "4rem" }}>
             {LADDER.map((tier, i) => (
               <div key={i} style={{
-                background: tier.gold ? "#001530" : "#020408",
+                background: tier.gold ? "#0b1628" : "#060d19",
                 borderLeft: tier.gold ? `3px solid ${gold}` : "3px solid transparent",
                 padding: "1.75rem 2rem",
                 display: "flex", justifyContent: "space-between", alignItems: "center",
@@ -132,9 +132,9 @@ export default function ProductsPage() {
                 <Link to={tier.href} style={{
                   fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                   letterSpacing: "0.1em", textTransform: "uppercase",
-                  color: tier.gold ? "#001530" : gold,
+                  color: tier.gold ? "#0b1628" : gold,
                   background: tier.gold ? gold : "transparent",
-                  border: `1px solid ${tier.gold ? gold : "rgba(197,160,89,0.4)"}`,
+                  border: `1px solid ${tier.gold ? gold : "rgba(212,144,10,0.4)"}`,
                   padding: "0.75rem 1.5rem", textDecoration: "none",
                   whiteSpace: "nowrap", flexShrink: 0, transition: "all 0.2s",
                 }}
@@ -149,7 +149,7 @@ export default function ProductsPage() {
         {/* THE COMPLETE DIY SYSTEM — Featured Bundle */}
         <FadeIn delay={90}>
           <div style={{
-            background: "#001530", border: `1px solid rgba(197,160,89,0.2)`,
+            background: "#0b1628", border: `1px solid rgba(212,144,10,0.2)`,
             borderTop: `3px solid ${gold}`, padding: "2.5rem", marginBottom: "4rem",
           }}>
             <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>THE COMPLETE DIY SYSTEM</p>
@@ -158,7 +158,7 @@ export default function ProductsPage() {
               Install the full LaunchPath document architecture in one step. Includes all five packets, the 0–30–90 Day Implementation Guide, and the unified folder structure. $128 less than purchasing the five packets individually.
             </p>
             <Link to="/products/new-carrier-document-system" style={{
-              display: "inline-block", background: gold, color: "#001530",
+              display: "inline-block", background: gold, color: "#0b1628",
               fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
               letterSpacing: "0.1em", textTransform: "uppercase",
               padding: "0.875rem 2rem", textDecoration: "none", transition: "opacity 0.2s",
@@ -173,7 +173,7 @@ export default function ProductsPage() {
         <FadeIn delay={130}>
           <p id="packets" style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "0.6rem",
           }}>System Modules</p>
           <p style={{
@@ -181,17 +181,17 @@ export default function ProductsPage() {
             color: "rgba(255,255,255,0.6)", lineHeight: 1.6, marginBottom: "1.5rem",
             fontStyle: "italic",
           }}>Each packet installs one domain of the LaunchPath operating standard.</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(197,160,89,0.1)", marginBottom: "4rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(212,144,10,0.1)", marginBottom: "4rem" }}>
             {PACKETS.map((p, i) => (
               <div key={i} style={{
-                background: "#020408", padding: "1.5rem 2rem",
+                background: "#060d19", padding: "1.5rem 2rem",
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 gap: "2rem", flexWrap: "wrap",
               }} className="ladder-row">
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(197,160,89,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
                   <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "rgba(197,160,89,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "rgba(212,144,10,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>
@@ -199,10 +199,10 @@ export default function ProductsPage() {
                   <Link to={p.href} style={{
                     fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                     letterSpacing: "0.1em", textTransform: "uppercase", color: gold,
-                    border: `1px solid rgba(197,160,89,0.4)`, padding: "0.625rem 1.25rem",
+                    border: `1px solid rgba(212,144,10,0.4)`, padding: "0.625rem 1.25rem",
                     textDecoration: "none", whiteSpace: "nowrap", transition: "all 0.2s",
                   }}
-                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(197,160,89,0.08)"; }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,144,10,0.08)"; }}
                     onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
                   >View →</Link>
                 </div>
@@ -215,7 +215,7 @@ export default function ProductsPage() {
         <FadeIn delay={160}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>LP-SPEC-001 | Comparison Matrix</p>
           <h2 style={{
@@ -237,13 +237,13 @@ export default function ProductsPage() {
                     fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem",
                     fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                     color: "rgba(255,255,255,0.35)", borderBottom: "1px solid rgba(255,255,255,0.08)",
-                    background: "#020408",
+                    background: "#060d19",
                   }}>Feature / Deliverable</th>
 
                   {/* Individual column */}
                   <th style={{
                     textAlign: "center", padding: "1rem 0.875rem 0.875rem",
-                    background: "#001530", borderTop: "2px solid rgba(255,255,255,0.2)",
+                    background: "#0b1628", borderTop: "2px solid rgba(255,255,255,0.2)",
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
@@ -254,10 +254,10 @@ export default function ProductsPage() {
                   {/* Bundle column — gold highlight */}
                   <th style={{
                     textAlign: "center", padding: "1rem 0.875rem 0.875rem",
-                    background: "rgba(197,160,89,0.07)", borderTop: "3px solid #C5A059",
-                    borderBottom: "1px solid rgba(197,160,89,0.2)",
-                    borderLeft: "1px solid rgba(197,160,89,0.15)",
-                    borderRight: "1px solid rgba(197,160,89,0.15)",
+                    background: "rgba(212,144,10,0.07)", borderTop: "3px solid #d4900a",
+                    borderBottom: "1px solid rgba(212,144,10,0.2)",
+                    borderLeft: "1px solid rgba(212,144,10,0.15)",
+                    borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
                     <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.58rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Recommended DIY</p>
                     <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>New Carrier System</p>
@@ -267,7 +267,7 @@ export default function ProductsPage() {
                   {/* Standard column — institutional */}
                   <th style={{
                     textAlign: "center", padding: "1rem 0.875rem 0.875rem",
-                    background: "#000D1A", borderTop: "2px solid rgba(255,255,255,0.15)",
+                    background: "#080f1e", borderTop: "2px solid rgba(255,255,255,0.15)",
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
@@ -279,7 +279,7 @@ export default function ProductsPage() {
 
               <tbody>
                 {MATRIX_ROWS.map((row, i) => (
-                  <tr key={i} style={{ background: i % 2 === 0 ? "#020408" : "rgba(0,21,48,0.45)" }}>
+                  <tr key={i} style={{ background: i % 2 === 0 ? "#060d19" : "rgba(0,21,48,0.45)" }}>
                     <td style={{
                       padding: "0.875rem 1rem",
                       fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
@@ -289,7 +289,7 @@ export default function ProductsPage() {
 
                     <td style={{
                       textAlign: "center", padding: "0.875rem 0.875rem",
-                      background: i % 2 === 0 ? "#001530" : "#001730",
+                      background: i % 2 === 0 ? "#0b1628" : "#001730",
                       borderBottom: "1px solid rgba(255,255,255,0.05)",
                       borderLeft: "1px solid rgba(255,255,255,0.06)",
                     }}>
@@ -298,17 +298,17 @@ export default function ProductsPage() {
 
                     <td style={{
                       textAlign: "center", padding: "0.875rem 0.875rem",
-                      background: i % 2 === 0 ? "rgba(197,160,89,0.06)" : "rgba(197,160,89,0.04)",
-                      borderBottom: "1px solid rgba(197,160,89,0.1)",
-                      borderLeft: "1px solid rgba(197,160,89,0.15)",
-                      borderRight: "1px solid rgba(197,160,89,0.15)",
+                      background: i % 2 === 0 ? "rgba(212,144,10,0.06)" : "rgba(212,144,10,0.04)",
+                      borderBottom: "1px solid rgba(212,144,10,0.1)",
+                      borderLeft: "1px solid rgba(212,144,10,0.15)",
+                      borderRight: "1px solid rgba(212,144,10,0.15)",
                     }}>
                       <MatrixCell value={row.bundle} col="bundle" />
                     </td>
 
                     <td style={{
                       textAlign: "center", padding: "0.875rem 0.875rem",
-                      background: i % 2 === 0 ? "#000D1A" : "#001020",
+                      background: i % 2 === 0 ? "#080f1e" : "#001020",
                       borderBottom: "1px solid rgba(255,255,255,0.05)",
                       borderLeft: "1px solid rgba(255,255,255,0.06)",
                     }}>
@@ -323,7 +323,7 @@ export default function ProductsPage() {
                   <td style={{ padding: "1.25rem 1rem" }} />
                   <td style={{
                     textAlign: "center", padding: "1.25rem 0.875rem",
-                    background: "#001530",
+                    background: "#0b1628",
                     borderTop: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
@@ -340,15 +340,15 @@ export default function ProductsPage() {
                   </td>
                   <td style={{
                     textAlign: "center", padding: "1.25rem 0.875rem",
-                    background: "rgba(197,160,89,0.08)",
-                    borderTop: "1px solid rgba(197,160,89,0.2)",
-                    borderLeft: "1px solid rgba(197,160,89,0.15)",
-                    borderRight: "1px solid rgba(197,160,89,0.15)",
+                    background: "rgba(212,144,10,0.08)",
+                    borderTop: "1px solid rgba(212,144,10,0.2)",
+                    borderLeft: "1px solid rgba(212,144,10,0.15)",
+                    borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
                     <Link to="/products/new-carrier-document-system" style={{
                       fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
-                      color: "#001530", background: gold, textDecoration: "none",
+                      color: "#0b1628", background: gold, textDecoration: "none",
                       padding: "0.5rem 0.875rem", display: "inline-block", transition: "opacity 0.2s",
                     }}
                       onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
@@ -357,7 +357,7 @@ export default function ProductsPage() {
                   </td>
                   <td style={{
                     textAlign: "center", padding: "1.25rem 0.875rem",
-                    background: "#000D1A",
+                    background: "#080f1e",
                     borderTop: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
@@ -365,10 +365,10 @@ export default function ProductsPage() {
                       fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       color: gold, textDecoration: "none",
-                      border: `1px solid rgba(197,160,89,0.35)`, padding: "0.5rem 0.875rem",
+                      border: `1px solid rgba(212,144,10,0.35)`, padding: "0.5rem 0.875rem",
                       display: "inline-block", transition: "all 0.2s",
                     }}
-                      onMouseEnter={e => e.currentTarget.style.background = "rgba(197,160,89,0.08)"}
+                      onMouseEnter={e => e.currentTarget.style.background = "rgba(212,144,10,0.08)"}
                       onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                     >Apply for Admission →</Link>
                   </td>
@@ -399,7 +399,7 @@ function MatrixCell({ value, col }) {
     return (
       <span style={{
         fontSize: "1rem",
-        color: col === "bundle" ? "#C5A059" : col === "standard" ? "#FFFFFF" : "rgba(255,255,255,0.65)",
+        color: col === "bundle" ? "#d4900a" : col === "standard" ? "#FFFFFF" : "rgba(255,255,255,0.65)",
         fontWeight: col === "bundle" ? 700 : 400,
       }}>✓</span>
     );
@@ -411,7 +411,7 @@ function MatrixCell({ value, col }) {
     return (
       <span style={{
         fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
-        color: col === "bundle" ? "#C5A059" : "#FFFFFF",
+        color: col === "bundle" ? "#d4900a" : "#FFFFFF",
         fontWeight: 600, letterSpacing: "0.04em",
       }}>{value.label}</span>
     );

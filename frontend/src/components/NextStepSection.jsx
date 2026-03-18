@@ -27,9 +27,9 @@ const STAGES = [
 export default function NextStepSection() {
   return (
     <section data-testid="next-step-section" style={{
-      background: "#001A33",
+      background: "#0d1c30",
       padding: "7rem 1.5rem",
-      borderBottom: "1px solid rgba(197,160,89,0.2)",
+      borderBottom: "1px solid rgba(212,144,10,0.2)",
     }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
 

@@ -42,17 +42,17 @@ function PillarCard({ pillar, idx }) {
     <div
       data-testid={`pillar-${idx + 1}`}
       style={{
-        background: hovered ? "#002244" : "#001530",
+        background: hovered ? "#0b1628" : "#0b1628",
         padding: "3rem 2.5rem",
-        borderTop: "3px solid #C5A059",
-        borderLeft: hovered ? "1px solid rgba(197,160,89,0.25)" : "1px solid rgba(197,160,89,0.08)",
-        borderRight: hovered ? "1px solid rgba(197,160,89,0.25)" : "1px solid rgba(197,160,89,0.08)",
-        borderBottom: hovered ? "1px solid rgba(197,160,89,0.25)" : "1px solid rgba(197,160,89,0.08)",
+        borderTop: "3px solid #d4900a",
+        borderLeft: hovered ? "1px solid rgba(212,144,10,0.25)" : "1px solid rgba(212,144,10,0.08)",
+        borderRight: hovered ? "1px solid rgba(212,144,10,0.25)" : "1px solid rgba(212,144,10,0.08)",
+        borderBottom: hovered ? "1px solid rgba(212,144,10,0.25)" : "1px solid rgba(212,144,10,0.08)",
         position: "relative",
         overflow: "hidden",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
         boxShadow: hovered
-          ? "0 12px 40px rgba(197,160,89,0.1), 0 4px 20px rgba(0,0,0,0.35)"
+          ? "0 12px 40px rgba(212,144,10,0.1), 0 4px 20px rgba(0,0,0,0.35)"
           : "none",
         transition: "background 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease",
         cursor: "default",
@@ -73,7 +73,7 @@ function PillarCard({ pillar, idx }) {
         lineHeight: 1,
         userSelect: "none",
         pointerEvents: "none",
-        color: hovered ? "rgba(197,160,89,0.09)" : "rgba(197,160,89,0.055)",
+        color: hovered ? "rgba(212,144,10,0.09)" : "rgba(212,144,10,0.055)",
         transition: "color 0.3s ease",
       }}>
         {pillar.num}
@@ -83,7 +83,7 @@ function PillarCard({ pillar, idx }) {
       <p style={{
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: "0.672rem",
-        color: "#C5A059",
+        color: "#d4900a",
         letterSpacing: "0.1em",
         marginBottom: "0.75rem",
         position: "relative",
@@ -150,7 +150,7 @@ function PillarCard({ pillar, idx }) {
       {/* Output — loss aversion */}
       <div style={{
         paddingTop: "0.875rem",
-        borderTop: "1px solid rgba(197,160,89,0.14)",
+        borderTop: "1px solid rgba(212,144,10,0.14)",
         position: "relative",
         zIndex: 1,
       }}>
@@ -159,7 +159,7 @@ function PillarCard({ pillar, idx }) {
           fontSize: "0.784rem",
           fontWeight: 600,
           letterSpacing: "0.04em",
-          color: "rgba(197,160,89,0.92)",
+          color: "rgba(212,144,10,0.92)",
           lineHeight: 1.55,
         }}>
           {pillar.output}
@@ -172,9 +172,9 @@ function PillarCard({ pillar, idx }) {
 export default function FourPillarsSection() {
   return (
     <section data-testid="four-pillars-section" style={{
-      background: "#001530",
+      background: "#0b1628",
       padding: "104px 24px",
-      borderBottom: "1px solid rgba(197,160,89,0.15)",
+      borderBottom: "1px solid rgba(212,144,10,0.15)",
     }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
 
@@ -185,7 +185,7 @@ export default function FourPillarsSection() {
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
-            color: "#C5A059",
+            color: "#d4900a",
             marginBottom: "0.625rem",
           }}>
             SYSTEM ARCHITECTURE
@@ -217,7 +217,7 @@ export default function FourPillarsSection() {
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
           gap: "1px",
-          background: "rgba(197,160,89,0.12)",
+          background: "rgba(212,144,10,0.12)",
         }} className="pillars-grid">
           {PILLARS.map((pillar, i) => (
             <FadeIn key={pillar.code} delay={i * 70}>

@@ -30,8 +30,8 @@ export default function MidPageStatement() {
       data-testid="mid-page-statement"
       style={{
         background: "#000508",
-        borderTop: "1px solid rgba(197,160,89,0.2)",
-        borderBottom: "1px solid rgba(197,160,89,0.2)",
+        borderTop: "1px solid rgba(212,144,10,0.2)",
+        borderBottom: "1px solid rgba(212,144,10,0.2)",
         padding: "104px 24px",
       }}
     >
@@ -44,7 +44,7 @@ export default function MidPageStatement() {
             fontWeight: 700,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.82)",
+            color: "rgba(212,144,10,0.82)",
             marginBottom: "2rem",
           }}>
             LP-SYS-RECORD | FAILURE ANALYSIS
@@ -152,20 +152,20 @@ export default function MidPageStatement() {
                 fontWeight: 700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#C5A059",
+                color: "#d4900a",
                 textDecoration: "none",
-                border: "1px solid rgba(197,160,89,0.35)",
+                border: "1px solid rgba(212,144,10,0.35)",
                 padding: "0.65rem 1.5rem",
                 whiteSpace: "nowrap",
                 transition: "all 0.2s",
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(197,160,89,0.06)";
-                e.currentTarget.style.borderColor = "rgba(197,160,89,0.65)";
+                e.currentTarget.style.background = "rgba(212,144,10,0.06)";
+                e.currentTarget.style.borderColor = "rgba(212,144,10,0.65)";
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(197,160,89,0.35)";
+                e.currentTarget.style.borderColor = "rgba(212,144,10,0.35)";
               }}
             >
               View All 16 Deadly Sins →

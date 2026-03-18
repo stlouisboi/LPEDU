@@ -66,8 +66,8 @@ function PersonaCard({ p, idx }) {
   return (
     <FadeIn delay={idx * 80}>
       <div style={{
-        background: "#001530",
-        borderTop: "3px solid #C5A059",
+        background: "#0b1628",
+        borderTop: "3px solid #d4900a",
         padding: "2.5rem 2rem",
         height: "100%",
         boxSizing: "border-box",
@@ -78,7 +78,7 @@ function PersonaCard({ p, idx }) {
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: "0.75rem",
           letterSpacing: "0.12em",
-          color: "rgba(197,160,89,1)",
+          color: "rgba(212,144,10,1)",
           textTransform: "uppercase",
           marginBottom: "0.75rem",
         }}>
@@ -117,13 +117,13 @@ function PersonaCard({ p, idx }) {
           {p.body}
         </p>
         <div style={{
-          borderTop: "1px solid rgba(197,160,89,0.14)",
+          borderTop: "1px solid rgba(212,144,10,0.14)",
           paddingTop: "0.875rem",
         }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.672rem",
-            color: "rgba(197,160,89,0.95)",
+            color: "rgba(212,144,10,0.95)",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
           }}>
@@ -179,7 +179,7 @@ function ContactForm() {
     fontSize: "0.75rem",
     letterSpacing: "0.12em",
     textTransform: "uppercase",
-    color: "rgba(197,160,89,0.95)",
+    color: "rgba(212,144,10,0.95)",
     display: "block",
     marginBottom: "0.4rem",
   };
@@ -192,7 +192,7 @@ function ContactForm() {
           fontSize: "0.672rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,1)",
+          color: "rgba(212,144,10,1)",
           marginBottom: "1rem",
         }}>
           LP-PARTNER-001 — INQUIRY RECEIVED
@@ -234,7 +234,7 @@ function ContactForm() {
             onChange={set("name")}
             placeholder="Your name"
             style={inputStyle}
-            onFocus={e => (e.target.style.borderColor = "rgba(197,160,89,0.5)")}
+            onFocus={e => (e.target.style.borderColor = "rgba(212,144,10,0.5)")}
             onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.14)")}
           />
         </div>
@@ -248,7 +248,7 @@ function ContactForm() {
             onChange={set("email")}
             placeholder="your@company.com"
             style={inputStyle}
-            onFocus={e => (e.target.style.borderColor = "rgba(197,160,89,0.5)")}
+            onFocus={e => (e.target.style.borderColor = "rgba(212,144,10,0.5)")}
             onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.14)")}
           />
         </div>
@@ -265,7 +265,7 @@ function ContactForm() {
             onChange={set("company")}
             placeholder="Company or agency name"
             style={inputStyle}
-            onFocus={e => (e.target.style.borderColor = "rgba(197,160,89,0.5)")}
+            onFocus={e => (e.target.style.borderColor = "rgba(212,144,10,0.5)")}
             onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.14)")}
           />
         </div>
@@ -277,12 +277,12 @@ function ContactForm() {
             value={form.role}
             onChange={set("role")}
             style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}
-            onFocus={e => (e.target.style.borderColor = "rgba(197,160,89,0.5)")}
+            onFocus={e => (e.target.style.borderColor = "rgba(212,144,10,0.5)")}
             onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.14)")}
           >
-            <option value="" style={{ background: "#001530" }}>Select your role</option>
+            <option value="" style={{ background: "#0b1628" }}>Select your role</option>
             {ROLES.map(r => (
-              <option key={r} value={r} style={{ background: "#001530" }}>{r}</option>
+              <option key={r} value={r} style={{ background: "#0b1628" }}>{r}</option>
             ))}
           </select>
         </div>
@@ -297,7 +297,7 @@ function ContactForm() {
           placeholder="Describe your carrier referral volume, fleet size, or specific inquiry."
           rows={4}
           style={{ ...inputStyle, resize: "vertical" }}
-          onFocus={e => (e.target.style.borderColor = "rgba(197,160,89,0.5)")}
+          onFocus={e => (e.target.style.borderColor = "rgba(212,144,10,0.5)")}
           onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.14)")}
         />
       </div>
@@ -317,8 +317,8 @@ function ContactForm() {
         type="submit"
         disabled={status === "loading"}
         style={{
-          background: status === "loading" ? "rgba(197,160,89,0.5)" : "#C5A059",
-          color: "#001530",
+          background: status === "loading" ? "rgba(212,144,10,0.5)" : "#d4900a",
+          color: "#0b1628",
           fontFamily: "'Inter', sans-serif",
           fontWeight: 700,
           fontSize: "1rem",
@@ -331,7 +331,7 @@ function ContactForm() {
           alignSelf: "flex-start",
         }}
         onMouseEnter={e => { if (status !== "loading") e.currentTarget.style.background = "#D4B87A"; }}
-        onMouseLeave={e => { if (status !== "loading") e.currentTarget.style.background = "#C5A059"; }}
+        onMouseLeave={e => { if (status !== "loading") e.currentTarget.style.background = "#d4900a"; }}
       >
         {status === "loading" ? "Submitting..." : "Request a Partnership Conversation"}
       </button>
@@ -344,13 +344,13 @@ export default function PartnersPage() {
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   return (
-    <div style={{ background: "#000D1A", minHeight: "100vh" }}>
+    <div style={{ background: "#080f1e", minHeight: "100vh" }}>
       <Navbar />
 
       {/* ── Hero ── */}
       <section data-testid="partners-hero" style={{
-        background: "#000D1A",
-        borderBottom: "1px solid rgba(197,160,89,0.12)",
+        background: "#080f1e",
+        borderBottom: "1px solid rgba(212,144,10,0.12)",
         padding: "96px 24px 80px",
       }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
@@ -360,7 +360,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,1)",
+              color: "rgba(212,144,10,1)",
               marginBottom: "1.5rem",
             }}>
               LP-PARTNER-001 | REFERRAL & PARTNERSHIP NETWORK
@@ -401,8 +401,8 @@ export default function PartnersPage() {
               data-testid="partners-hero-cta"
               onClick={scrollToForm}
               style={{
-                background: "#C5A059",
-                color: "#001530",
+                background: "#d4900a",
+                color: "#0b1628",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
                 fontSize: "1rem",
@@ -415,7 +415,7 @@ export default function PartnersPage() {
                 minHeight: 52,
               }}
               onMouseEnter={e => (e.currentTarget.style.background = "#D4B87A")}
-              onMouseLeave={e => (e.currentTarget.style.background = "#C5A059")}
+              onMouseLeave={e => (e.currentTarget.style.background = "#d4900a")}
             >
               Request a Partnership Conversation
             </button>
@@ -426,7 +426,7 @@ export default function PartnersPage() {
       {/* ── Three Personas ── */}
       <section data-testid="partners-personas" style={{
         background: "#001020",
-        borderBottom: "1px solid rgba(197,160,89,0.12)",
+        borderBottom: "1px solid rgba(212,144,10,0.12)",
         padding: "72px 24px",
       }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
@@ -436,7 +436,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,1)",
+              color: "rgba(212,144,10,1)",
               marginBottom: "0.625rem",
             }}>
               WHO THIS SERVES
@@ -468,7 +468,7 @@ export default function PartnersPage() {
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: "1px",
-            background: "rgba(197,160,89,0.1)",
+            background: "rgba(212,144,10,0.1)",
           }} className="persona-grid">
             {PERSONAS.map((p, i) => <PersonaCard key={p.code} p={p} idx={i} />)}
           </div>
@@ -477,8 +477,8 @@ export default function PartnersPage() {
 
       {/* ── How It Works ── */}
       <section data-testid="partners-how-it-works" style={{
-        background: "#000D1A",
-        borderBottom: "1px solid rgba(197,160,89,0.12)",
+        background: "#080f1e",
+        borderBottom: "1px solid rgba(212,144,10,0.12)",
         padding: "72px 24px",
       }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -488,7 +488,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,1)",
+              color: "rgba(212,144,10,1)",
               marginBottom: "0.625rem",
             }}>
               THE REFERRAL PROCESS
@@ -506,7 +506,7 @@ export default function PartnersPage() {
             </h2>
           </FadeIn>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(197,160,89,0.1)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(212,144,10,0.1)" }}>
             {STEPS.map((step, i) => (
               <FadeIn key={step.num} delay={i * 80}>
                 <div style={{
@@ -520,7 +520,7 @@ export default function PartnersPage() {
                     fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 800,
                     fontSize: "2.5rem",
-                    color: "rgba(197,160,89,0.2)",
+                    color: "rgba(212,144,10,0.2)",
                     lineHeight: 1,
                     minWidth: 56,
                     letterSpacing: "-0.02em",
@@ -556,9 +556,9 @@ export default function PartnersPage() {
 
       {/* ── Trust Band ── */}
       <section data-testid="partners-trust-band" style={{
-        background: "#001530",
-        borderTop: "1px solid rgba(197,160,89,0.15)",
-        borderBottom: "1px solid rgba(197,160,89,0.15)",
+        background: "#0b1628",
+        borderTop: "1px solid rgba(212,144,10,0.15)",
+        borderBottom: "1px solid rgba(212,144,10,0.15)",
         padding: "56px 24px",
       }}>
         <div style={{
@@ -567,12 +567,12 @@ export default function PartnersPage() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1px",
-          background: "rgba(197,160,89,0.1)",
+          background: "rgba(212,144,10,0.1)",
         }} className="stats-grid">
           {STATS.map((s) => (
             <FadeIn key={s.label}>
               <div style={{
-                background: "#001530",
+                background: "#0b1628",
                 padding: "2rem 1.5rem",
                 textAlign: "center",
               }}>
@@ -580,7 +580,7 @@ export default function PartnersPage() {
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 800,
                   fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
-                  color: "#C5A059",
+                  color: "#d4900a",
                   lineHeight: 1,
                   marginBottom: "0.5rem",
                   letterSpacing: "-0.02em",
@@ -608,7 +608,7 @@ export default function PartnersPage() {
         data-testid="partners-contact-section"
         style={{
           background: "#001020",
-          borderBottom: "1px solid rgba(197,160,89,0.12)",
+          borderBottom: "1px solid rgba(212,144,10,0.12)",
           padding: "80px 24px",
         }}
       >
@@ -619,7 +619,7 @@ export default function PartnersPage() {
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,1)",
+              color: "rgba(212,144,10,1)",
               marginBottom: "0.625rem",
             }}>
               LP-PARTNER-INQUIRY

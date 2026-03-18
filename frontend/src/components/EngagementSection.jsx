@@ -23,9 +23,9 @@ export default function EngagementSection() {
     <section
       data-testid="engagement-section"
       style={{
-        background: "#001023",
-        borderTop: "1px solid rgba(197,160,89,0.18)",
-        borderBottom: "1px solid rgba(197,160,89,0.18)",
+        background: "#080f1e",
+        borderTop: "1px solid rgba(212,144,10,0.18)",
+        borderBottom: "1px solid rgba(212,144,10,0.18)",
         padding: "104px 24px",
       }}
     >
@@ -38,7 +38,7 @@ export default function EngagementSection() {
             fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.65)",
+            color: "rgba(212,144,10,0.65)",
             marginBottom: "1.25rem",
           }}>
             LP-STD-001 | THE ENGAGEMENT
@@ -87,10 +87,10 @@ export default function EngagementSection() {
             fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.65)",
+            color: "rgba(212,144,10,0.65)",
             marginBottom: "1.5rem",
             paddingBottom: "1rem",
-            borderBottom: "1px solid rgba(197,160,89,0.12)",
+            borderBottom: "1px solid rgba(212,144,10,0.12)",
           }}>
             THE 90-DAY IMPLEMENTATION SEQUENCE
           </p>
@@ -115,7 +115,7 @@ export default function EngagementSection() {
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: "0.56rem",
-                    color: "rgba(197,160,89,0.72)",
+                    color: "rgba(212,144,10,0.72)",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
                     display: "block",
@@ -126,7 +126,7 @@ export default function EngagementSection() {
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: "1.064rem",
-                    color: "#C5A059",
+                    color: "#d4900a",
                     fontWeight: 700,
                     letterSpacing: "-0.02em",
                   }}>
@@ -167,7 +167,7 @@ export default function EngagementSection() {
               gridTemplateColumns: "1fr 1fr",
               gap: "4rem",
               paddingTop: "3rem",
-              borderTop: "1px solid rgba(197,160,89,0.12)",
+              borderTop: "1px solid rgba(212,144,10,0.12)",
             }}
           >
             {/* What You Get */}
@@ -178,7 +178,7 @@ export default function EngagementSection() {
                 fontWeight: 700,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "rgba(197,160,89,0.65)",
+                color: "rgba(212,144,10,0.65)",
                 marginBottom: "1.5rem",
               }}>
                 WHAT YOU GET
@@ -189,7 +189,7 @@ export default function EngagementSection() {
                     <span style={{
                       fontFamily: "'JetBrains Mono', monospace",
                       fontSize: "0.784rem",
-                      color: "#C5A059",
+                      color: "#d4900a",
                       marginTop: "0.2rem",
                       flexShrink: 0,
                     }}>→</span>
@@ -212,7 +212,7 @@ export default function EngagementSection() {
                 fontWeight: 700,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "rgba(197,160,89,0.65)",
+                color: "rgba(212,144,10,0.65)",
                 marginBottom: "1.5rem",
               }}>
                 HOW TO START
@@ -245,7 +245,7 @@ export default function EngagementSection() {
                     alignItems: "center",
                     justifyContent: "center",
                     gap: "0.5rem",
-                    background: "#C5A059",
+                    background: "#d4900a",
                     color: "#000F1F",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
@@ -259,8 +259,8 @@ export default function EngagementSection() {
                     minHeight: 48,
                   }}
                   onClick={() => window.location.href = "/reach-diagnostic"}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
                 >
                   Run the Authority Readiness Test →
                 </button>

@@ -18,7 +18,7 @@ export default function TruckDividerSection() {
       {/* Top fade — blends with section above */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: "120px",
-        background: "linear-gradient(to bottom, #001023 0%, transparent 100%)",
+        background: "linear-gradient(to bottom, #080f1e 0%, transparent 100%)",
       }} />
 
       {/* Dark overlay */}
@@ -30,7 +30,7 @@ export default function TruckDividerSection() {
       {/* Bottom fade — blends into EngagementSection */}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0, height: "140px",
-        background: "linear-gradient(to top, #001023 0%, transparent 100%)",
+        background: "linear-gradient(to top, #080f1e 0%, transparent 100%)",
       }} />
 
       {/* Caption */}

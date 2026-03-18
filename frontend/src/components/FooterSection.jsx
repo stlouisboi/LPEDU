@@ -24,7 +24,7 @@ export default function FooterSection() {
 
   return (
     <footer data-testid="footer-section" style={{
-      background: "#001A33",
+      background: "#0d1c30",
       borderTop: "1px solid var(--divider-dark)",
       padding: "4rem 1.5rem 2.5rem",
     }}>
@@ -95,7 +95,7 @@ export default function FooterSection() {
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", margin: "0 0 2px" }}>{item.label}</p>
                   <a href={item.href}
                     style={{ ...linkStyle, fontSize: "0.92rem" }}
-                    onMouseEnter={e => e.currentTarget.style.color = "#C5A059"}
+                    onMouseEnter={e => e.currentTarget.style.color = "#d4900a"}
                     onMouseLeave={e => e.currentTarget.style.color = "#BBBBBB"}
                   >{item.href.replace("mailto:", "")}</a>
                 </div>

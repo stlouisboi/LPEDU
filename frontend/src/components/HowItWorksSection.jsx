@@ -54,8 +54,8 @@ function PhaseCard({ item, idx }) {
         data-testid={`how-it-works-phase-${idx + 1}`}
         style={{
           background: "rgba(255,255,255,0.025)",
-          border: "1px solid rgba(197,160,89,0.12)",
-          borderTop: "3px solid rgba(197,160,89,0.45)",
+          border: "1px solid rgba(212,144,10,0.12)",
+          borderTop: "3px solid rgba(212,144,10,0.45)",
           padding: "2rem 1.5rem",
           height: "100%",
           boxSizing: "border-box",
@@ -70,7 +70,7 @@ function PhaseCard({ item, idx }) {
           fontWeight: 700,
           letterSpacing: "0.22em",
           textTransform: "uppercase",
-          color: "rgba(197,160,89,0.65)",
+          color: "rgba(212,144,10,0.65)",
           marginBottom: "0.625rem",
         }}>
           {item.phase}
@@ -93,7 +93,7 @@ function PhaseCard({ item, idx }) {
         <p style={{
           fontFamily: mono,
           fontSize: "0.784rem",
-          color: "#C5A059",
+          color: "#d4900a",
           letterSpacing: "0.06em",
           marginBottom: "1.25rem",
         }}>
@@ -120,7 +120,7 @@ function PhaseCard({ item, idx }) {
             fontWeight: 700,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.6)",
+            color: "rgba(212,144,10,0.6)",
             marginBottom: "0.625rem",
           }}>
             YOU GET:
@@ -131,7 +131,7 @@ function PhaseCard({ item, idx }) {
                 <span style={{
                   fontFamily: mono,
                   fontSize: "0.616rem",
-                  color: "rgba(197,160,89,0.45)",
+                  color: "rgba(212,144,10,0.45)",
                   marginTop: "0.2rem",
                   flexShrink: 0,
                 }}>→</span>
@@ -155,9 +155,9 @@ export default function HowItWorksSection() {
     <section
       data-testid="how-it-works-section"
       style={{
-        background: "#001023",
-        borderTop: "1px solid rgba(197,160,89,0.12)",
-        borderBottom: "1px solid rgba(197,160,89,0.12)",
+        background: "#080f1e",
+        borderTop: "1px solid rgba(212,144,10,0.12)",
+        borderBottom: "1px solid rgba(212,144,10,0.12)",
         padding: "104px 24px",
       }}
     >
@@ -171,10 +171,10 @@ export default function HowItWorksSection() {
             fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.65)",
+            color: "rgba(212,144,10,0.65)",
             marginBottom: "3rem",
             paddingBottom: "1rem",
-            borderBottom: "1px solid rgba(197,160,89,0.1)",
+            borderBottom: "1px solid rgba(212,144,10,0.1)",
           }}>
             HOW THE 90-DAY ENGAGEMENT WORKS
           </p>
@@ -200,7 +200,7 @@ export default function HowItWorksSection() {
                     alignItems: "flex-start",
                     justifyContent: "center",
                     paddingTop: "3rem",
-                    color: "rgba(197,160,89,0.3)",
+                    color: "rgba(212,144,10,0.3)",
                     fontFamily: mono,
                     fontSize: "1.25rem",
                   }}>
@@ -215,7 +215,7 @@ export default function HowItWorksSection() {
         {/* Footer */}
         <FadeIn delay={350}>
           <div style={{
-            borderTop: "1px solid rgba(197,160,89,0.1)",
+            borderTop: "1px solid rgba(212,144,10,0.1)",
             marginTop: "3.5rem",
             paddingTop: "2.5rem",
             display: "flex",
@@ -239,7 +239,7 @@ export default function HowItWorksSection() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.5rem",
-                background: "#C5A059",
+                background: "#d4900a",
                 color: "#000F1F",
                 fontFamily: sans,
                 fontWeight: 700,
@@ -251,8 +251,8 @@ export default function HowItWorksSection() {
                 transition: "background 0.2s",
                 minHeight: 48,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
             >
               Begin Ground 0 →
             </Link>

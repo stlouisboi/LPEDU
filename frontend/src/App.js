@@ -69,8 +69,8 @@ function BackToTop() {
         right: 24,
         width: 44,
         height: 44,
-        background: "#001833",
-        border: "1px solid rgba(197,160,89,0.35)",
+        background: "#0b1628",
+        border: "1px solid rgba(212,144,10,0.35)",
         borderRadius: 4,
         cursor: "pointer",
         display: "flex",
@@ -81,16 +81,16 @@ function BackToTop() {
         boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = "rgba(197,160,89,0.75)";
-        e.currentTarget.style.background = "#002244";
+        e.currentTarget.style.borderColor = "rgba(212,144,10,0.75)";
+        e.currentTarget.style.background = "#0b1628";
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.borderColor = "rgba(197,160,89,0.35)";
-        e.currentTarget.style.background = "#001833";
+        e.currentTarget.style.borderColor = "rgba(212,144,10,0.35)";
+        e.currentTarget.style.background = "#0b1628";
       }}
     >
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 11V3M7 3L3 7M7 3L11 7" stroke="#C5A059" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M7 11V3M7 3L3 7M7 3L11 7" stroke="#d4900a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </button>
   );

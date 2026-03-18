@@ -87,7 +87,7 @@ export default function Ground0Page() {
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#C5A059",
+              color: "#d4900a",
               marginBottom: "1.5rem",
             }}
           >
@@ -99,7 +99,7 @@ export default function Ground0Page() {
               fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3.25rem)",
-              color: "#002244",
+              color: "#0b1628",
               lineHeight: 1.1,
               marginBottom: "1.5rem",
               letterSpacing: "-0.02em",
@@ -138,7 +138,7 @@ export default function Ground0Page() {
 
           {/* Doctrine quote */}
           <div style={{
-            borderLeft: "3px solid #C5A059",
+            borderLeft: "3px solid #d4900a",
             paddingLeft: "1.5rem",
             marginTop: "1rem",
           }}>
@@ -157,7 +157,7 @@ export default function Ground0Page() {
               fontSize: "0.616rem",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "#C5A059",
+              color: "#d4900a",
             }}>
               — Operator Note / Vince Lawrence, Station Custodian
             </p>
@@ -166,7 +166,7 @@ export default function Ground0Page() {
       </div>
 
       {/* ── REACH Assessment Section ── dark, before accordion content */}
-      <div style={{ background: "#001530", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "72px 24px" }}>
+      <div style={{ background: "#0b1628", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "72px 24px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -174,7 +174,7 @@ export default function Ground0Page() {
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.85)",
+            color: "rgba(212,144,10,0.85)",
             marginBottom: "1.25rem",
           }}>
             LP-MOD-G0-6 — Operational Readiness Diagnostic
@@ -215,7 +215,7 @@ export default function Ground0Page() {
       </div>
 
       {/* ── Sin Wages / Wisdom Earnings Philosophy ── Very dark bg */}
-      <div style={{ background: "#000D1A", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "64px 24px" }}>
+      <div style={{ background: "#080f1e", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "64px 24px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -223,7 +223,7 @@ export default function Ground0Page() {
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.85)",
+            color: "rgba(212,144,10,0.85)",
             marginBottom: "1.25rem",
           }}>
             The Ground 0 Philosophy
@@ -333,7 +333,7 @@ export default function Ground0Page() {
       </div>
 
       {/* ── Accordion Section ── Dark navy */}
-      <div style={{ background: "#002244", padding: "72px 24px 80px" }}>
+      <div style={{ background: "#0b1628", padding: "72px 24px 80px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
 
           {/* Progress indicator — sticky, one line, institutional */}
@@ -342,7 +342,7 @@ export default function Ground0Page() {
             style={{
               position: "sticky",
               top: 64,
-              background: "#002244",
+              background: "#0b1628",
               zIndex: 10,
               padding: "0.875rem 0",
               marginBottom: "0.5rem",
@@ -354,7 +354,7 @@ export default function Ground0Page() {
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.784rem",
                 fontWeight: 400,
-                color: "rgba(197,160,89,0.78)",
+                color: "rgba(212,144,10,0.78)",
                 letterSpacing: "0.02em",
                 margin: 0,
               }}
@@ -371,7 +371,7 @@ export default function Ground0Page() {
                 key={idx}
                 data-testid={`module-panel-${idx}`}
                 style={{
-                  borderLeft: `3px solid ${isOpen ? "#C5A059" : "transparent"}`,
+                  borderLeft: `3px solid ${isOpen ? "#d4900a" : "transparent"}`,
                   borderBottom: "1px solid rgba(255,255,255,0.08)",
                   transition: "border-color 0.2s",
                 }}
@@ -398,7 +398,7 @@ export default function Ground0Page() {
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.896rem",
                         fontWeight: 700,
-                        color: "#C5A059",
+                        color: "#d4900a",
                         letterSpacing: "0.04em",
                         minWidth: 28,
                         whiteSpace: "nowrap",
@@ -421,7 +421,7 @@ export default function Ground0Page() {
                   </div>
                   <span
                     style={{
-                      color: isOpen ? "#C5A059" : "rgba(255,255,255,0.60)",
+                      color: isOpen ? "#d4900a" : "rgba(255,255,255,0.60)",
                       fontSize: "1.4rem",
                       lineHeight: 1,
                       transition: "all 0.2s",
@@ -451,7 +451,7 @@ export default function Ground0Page() {
                       style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.84rem",
-                        color: "rgba(197,160,89,0.90)",
+                        color: "rgba(212,144,10,0.90)",
                         marginBottom: "1.5rem",
                         letterSpacing: "0.02em",
                       }}
@@ -472,7 +472,7 @@ export default function Ground0Page() {
                           fontWeight: 700,
                           letterSpacing: "0.16em",
                           textTransform: "uppercase",
-                          color: "#C5A059",
+                          color: "#d4900a",
                           marginBottom: "0.6rem",
                         }}
                       >
@@ -493,14 +493,14 @@ export default function Ground0Page() {
                     {/* G0-6 outcome note */}
                     {idx === 5 && (
                       <div style={{
-                        borderTop: "1px solid rgba(197,160,89,0.15)",
+                        borderTop: "1px solid rgba(212,144,10,0.15)",
                         marginTop: "1.5rem",
                         paddingTop: "1.25rem",
                       }}>
                         <p style={{
                           fontFamily: "'Inter', sans-serif",
                           fontSize: "0.875rem",
-                          color: "rgba(197,160,89,0.75)",
+                          color: "rgba(212,144,10,0.75)",
                           lineHeight: 1.7,
                           fontStyle: "italic",
                         }}>
@@ -516,7 +516,7 @@ export default function Ground0Page() {
 
           {/* ── Operator Voice note ── */}
           <div style={{
-            borderLeft: "3px solid rgba(197,160,89,0.4)",
+            borderLeft: "3px solid rgba(212,144,10,0.4)",
             paddingLeft: "1.75rem",
             marginBottom: "3rem",
             marginTop: "1rem",
@@ -527,7 +527,7 @@ export default function Ground0Page() {
               fontWeight: 700,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.75)",
+              color: "rgba(212,144,10,0.75)",
               marginBottom: "0.875rem",
             }}>
               — Station Custodian / Operator Note
@@ -567,7 +567,7 @@ export default function Ground0Page() {
               fontWeight: 700,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.85)",
+              color: "rgba(212,144,10,0.85)",
               marginBottom: "1.25rem",
             }}>
               GO / WAIT / NO-GO — Readiness Classifications
@@ -582,7 +582,7 @@ export default function Ground0Page() {
                   display: "grid",
                   gridTemplateColumns: "80px 1fr",
                   gap: "1.5rem",
-                  background: "#001530",
+                  background: "#0b1628",
                   padding: "1.25rem 1.5rem",
                   alignItems: "start",
                 }}>

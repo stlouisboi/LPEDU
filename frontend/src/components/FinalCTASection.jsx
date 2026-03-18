@@ -10,9 +10,9 @@ const CONDITIONS = [
 export default function FinalCTASection() {
   return (
     <section data-testid="final-cta-section" style={{
-      background: "#001530",
+      background: "#0b1628",
       padding: "8rem 1.5rem",
-      borderBottom: "1px solid rgba(197,160,89,0.2)",
+      borderBottom: "1px solid rgba(212,144,10,0.2)",
     }}>
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
 
@@ -53,7 +53,7 @@ export default function FinalCTASection() {
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.7)",
+            color: "rgba(212,144,10,0.7)",
             marginBottom: "1.5rem",
           }}>
             Before entering the system, operators should confirm three conditions:
@@ -70,11 +70,11 @@ export default function FinalCTASection() {
               }}>
                 <div style={{
                   width: 20, height: 20, minWidth: 20,
-                  border: "1px solid rgba(197,160,89,0.5)",
+                  border: "1px solid rgba(212,144,10,0.5)",
                   marginTop: "0.1rem",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
-                  <div style={{ width: 8, height: 8, background: "#C5A059" }} />
+                  <div style={{ width: 8, height: 8, background: "#d4900a" }} />
                 </div>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",

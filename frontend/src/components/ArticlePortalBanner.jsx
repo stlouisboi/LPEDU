@@ -21,8 +21,8 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
   return (
     <div style={{
       background: "#000A14",
-      borderTop: "1px solid rgba(197,160,89,0.14)",
-      borderBottom: "1px solid rgba(197,160,89,0.14)",
+      borderTop: "1px solid rgba(212,144,10,0.14)",
+      borderBottom: "1px solid rgba(212,144,10,0.14)",
       padding: "3rem 2.5rem",
     }}>
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
@@ -36,8 +36,8 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
         }}>
           <div style={{
             width: 5, height: 5, borderRadius: "50%",
-            background: "#C5A059",
-            boxShadow: "0 0 5px rgba(197,160,89,0.5)",
+            background: "#d4900a",
+            boxShadow: "0 0 5px rgba(212,144,10,0.5)",
             flexShrink: 0,
           }} />
           <p style={{
@@ -46,7 +46,7 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
             fontWeight: 700,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.75)",
+            color: "rgba(212,144,10,0.75)",
             margin: 0,
           }}>
             LPOS v1.0 | STANDARD_TASK: {taskId} — {taskName?.toUpperCase()}
@@ -97,7 +97,7 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
               data-testid={`portal-crosslink-${taskId?.toLowerCase().replace("-", "")}`}
               onClick={() => navigate("/portal")}
               style={{
-                background: "#C5A059",
+                background: "#d4900a",
                 border: "none",
                 color: "#020617",
                 fontFamily: mono,
@@ -110,8 +110,8 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
                 transition: "background 0.2s",
                 whiteSpace: "nowrap",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = "#d4b06a"}
-              onMouseLeave={(e) => e.currentTarget.style.background = "#C5A059"}
+              onMouseEnter={(e) => e.currentTarget.style.background = "#e8a520"}
+              onMouseLeave={(e) => e.currentTarget.style.background = "#d4900a"}
             >
               OPEN OPERATOR PORTAL →
             </button>
@@ -120,8 +120,8 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
               onClick={() => navigate("/ground-0")}
               style={{
                 background: "transparent",
-                border: "1px solid rgba(197,160,89,0.25)",
-                color: "rgba(197,160,89,0.75)",
+                border: "1px solid rgba(212,144,10,0.25)",
+                color: "rgba(212,144,10,0.75)",
                 fontFamily: mono,
                 fontWeight: 700,
                 fontSize: "0.504rem",
@@ -133,12 +133,12 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
                 whiteSpace: "nowrap",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(197,160,89,0.55)";
-                e.currentTarget.style.color = "#C5A059";
+                e.currentTarget.style.borderColor = "rgba(212,144,10,0.55)";
+                e.currentTarget.style.color = "#d4900a";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(197,160,89,0.25)";
-                e.currentTarget.style.color = "rgba(197,160,89,0.75)";
+                e.currentTarget.style.borderColor = "rgba(212,144,10,0.25)";
+                e.currentTarget.style.color = "rgba(212,144,10,0.75)";
               }}
             >
               BEGIN GROUND 0 BRIEFING →

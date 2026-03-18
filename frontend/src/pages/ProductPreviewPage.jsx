@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { BookMockup3D, BookInfoPanel, BOOK_PRODUCTS } from "../components/BookMockup3D";
 
-const gold = "#C5A059";
+const gold = "#d4900a";
 
 export default function ProductPreviewPage() {
   const [activeId, setActiveId] = useState("new-entrant");
@@ -54,7 +54,7 @@ export default function ProductPreviewPage() {
                   ? `1px solid ${gold}`
                   : "1px solid rgba(255,255,255,0.15)",
                 background: activeId === p.id
-                  ? "rgba(197,160,89,0.12)"
+                  ? "rgba(212,144,10,0.12)"
                   : "transparent",
                 color: activeId === p.id ? gold : "rgba(255,255,255,0.5)",
                 borderRadius: "3px",
@@ -76,7 +76,7 @@ export default function ProductPreviewPage() {
           {/* Three.js scene */}
           <div>
             <div style={{
-              border: "1px solid rgba(197,160,89,0.12)",
+              border: "1px solid rgba(212,144,10,0.12)",
               borderRadius: "6px",
               overflow: "hidden",
             }}>
@@ -130,7 +130,7 @@ export default function ProductPreviewPage() {
           marginTop: "2rem",
           padding: "1rem 1.5rem",
           borderLeft: `3px solid ${gold}`,
-          background: "rgba(197,160,89,0.04)",
+          background: "rgba(212,144,10,0.04)",
         }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem",

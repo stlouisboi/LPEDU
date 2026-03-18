@@ -28,7 +28,7 @@ export default function HomePage() {
         <WhatGetsInstalledSection />
 
         {/* Transition line */}
-        <div style={{ background: "#000C1A", borderBottom: "0.5px solid rgba(197,160,89,0.12)", padding: "2.5rem 1.5rem", textAlign: "center" }}>
+        <div style={{ background: "#060d19", borderBottom: "0.5px solid rgba(212,144,10,0.12)", padding: "2.5rem 1.5rem", textAlign: "center" }}>
           <p style={{
             fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
@@ -56,7 +56,7 @@ export default function HomePage() {
         {/* DoctrineStack — system reference block */}
         <section style={{
           background: "#000B17",
-          borderTop: "1px solid rgba(197,160,89,0.1)",
+          borderTop: "1px solid rgba(212,144,10,0.1)",
           borderBottom: "1px solid rgba(255,255,255,0.04)",
           padding: "4rem 1.5rem 0.5rem",
         }}>
@@ -67,7 +67,7 @@ export default function HomePage() {
               fontWeight: 700,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.5)",
+              color: "rgba(212,144,10,0.5)",
               marginBottom: "2rem",
             }}>LP-SYS-001 | AUTHORITY SURVIVAL FRAMEWORK</p>
             <DoctrineStack />

@@ -66,7 +66,7 @@ const sectionLabel = {
   fontWeight: 700,
   letterSpacing: "0.18em",
   textTransform: "uppercase",
-  color: "#C5A059",
+  color: "#d4900a",
   marginBottom: "1.5rem",
 };
 
@@ -82,11 +82,11 @@ const divider = {
 
 export default function OperatingStandardPage() {
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", background: "#001A33", minHeight: "100vh", color: "#FFFFFF" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <div style={{ background: "#000F1F", borderBottom: "1px solid rgba(197,160,89,0.2)", padding: "100px 24px 80px" }}>
+      <div style={{ background: "#000F1F", borderBottom: "1px solid rgba(212,144,10,0.2)", padding: "100px 24px 80px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{ ...sectionLabel, marginBottom: "2rem" }}>
             LAUNCHPATH — OPERATING STANDARD
@@ -112,11 +112,11 @@ export default function OperatingStandardPage() {
           }}>
             A structured operational framework for new motor carriers designed to prevent authority loss, insurance failure, and compliance breakdown during the first 90 days of operation.
           </p>
-          <div style={{ borderLeft: "2px solid rgba(197,160,89,0.4)", paddingLeft: "1.5rem" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#C5A059", marginBottom: "0.4rem" }}>
+          <div style={{ borderLeft: "2px solid rgba(212,144,10,0.4)", paddingLeft: "1.5rem" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#d4900a", marginBottom: "0.4rem" }}>
               Accuracy Over Hype.
             </p>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(197,160,89,0.90)" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(212,144,10,0.90)" }}>
               Systems Over Shortcuts.
             </p>
           </div>
@@ -160,7 +160,7 @@ export default function OperatingStandardPage() {
                 gap: "1rem",
                 alignItems: "flex-start",
               }}>
-                <span style={{ color: "#C5A059", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
+                <span style={{ color: "#d4900a", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
                 <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", fontStyle: "italic", lineHeight: 1.6 }}>{line}</span>
               </div>
             ))}
@@ -169,7 +169,7 @@ export default function OperatingStandardPage() {
       </div>
 
       {/* ── SECTION 2: THE FOUR PILLARS ──────────────── */}
-      <div style={{ background: "#002244", ...divider }}>
+      <div style={{ background: "#0b1628", ...divider }}>
         <div style={{ ...sectionWrap, padding: "80px 24px" }}>
           <p style={sectionLabel}>SECTION 02 — THE FOUR PILLARS</p>
           <h2 style={{
@@ -184,10 +184,10 @@ export default function OperatingStandardPage() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.08)" }} className="pillars-grid">
             {PILLARS.map((p, i) => (
-              <div key={i} style={{ background: "#002244", padding: "2.5rem 2rem" }}>
+              <div key={i} style={{ background: "#0b1628", padding: "2.5rem 2rem" }}>
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 700,
-                  letterSpacing: "0.12em", textTransform: "uppercase", color: "#C5A059", marginBottom: "0.75rem",
+                  letterSpacing: "0.12em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.75rem",
                 }}>
                   PILLAR {String(i + 1).padStart(2, "0")}
                 </p>
@@ -216,12 +216,12 @@ export default function OperatingStandardPage() {
             They occur because risk reaches the operation around, under, through, or over the controls that were supposed to stop it. The LaunchPath standard installs operational guards designed to prevent risk from reaching the authority from any direction.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "rgba(197,160,89,0.15)" }} className="auto-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "rgba(212,144,10,0.15)" }} className="auto-grid">
           {AUTO_VECTORS.map((item) => (
-            <div key={item.v} style={{ background: "#001A33", padding: "2rem 1.5rem" }}>
+            <div key={item.v} style={{ background: "#0d1c30", padding: "2rem 1.5rem" }}>
               <p style={{
                 fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
-                fontSize: "2.25rem", color: "#C5A059", marginBottom: "0.5rem", lineHeight: 1,
+                fontSize: "2.25rem", color: "#d4900a", marginBottom: "0.5rem", lineHeight: 1,
               }}>
                 {item.v}
               </p>
@@ -233,14 +233,14 @@ export default function OperatingStandardPage() {
           ))}
         </div>
         <div style={{ marginTop: "1.5rem", textAlign: "right" }}>
-          <Link to="/auto-method" style={{ fontSize: "0.924rem", color: "rgba(197,160,89,0.92)", textDecoration: "none", letterSpacing: "0.06em" }}>
+          <Link to="/auto-method" style={{ fontSize: "0.924rem", color: "rgba(212,144,10,0.92)", textDecoration: "none", letterSpacing: "0.06em" }}>
             VIEW FULL AUTO DOCTRINE →
           </Link>
         </div>
       </div>
 
       {/* ── SECTION 4: THE 6 OPERATIONAL GUARDS ─────── */}
-      <div style={{ background: "#002244", ...divider }}>
+      <div style={{ background: "#0b1628", ...divider }}>
         <div style={{ ...sectionWrap, padding: "80px 24px" }}>
           <p style={sectionLabel}>SECTION 04 — THE 6 OPERATIONAL GUARDS</p>
           <h2 style={{
@@ -269,8 +269,8 @@ export default function OperatingStandardPage() {
                 }}
                 className="guard-row"
               >
-                <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#C5A059" }}>{g.name}</span>
-                <span style={{ fontSize: "0.875rem", color: "rgba(197,160,89,0.85)", fontFamily: "'JetBrains Mono', monospace", whiteSpace: "nowrap" }}>
+                <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#d4900a" }}>{g.name}</span>
+                <span style={{ fontSize: "0.875rem", color: "rgba(212,144,10,0.85)", fontFamily: "'JetBrains Mono', monospace", whiteSpace: "nowrap" }}>
                   {g.reg}
                 </span>
                 <span style={{ fontSize: "1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.5 }}>{g.stops}</span>
@@ -294,11 +294,11 @@ export default function OperatingStandardPage() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "rgba(255,255,255,0.08)" }} className="phases-grid">
           {PHASES.map((p) => (
-            <div key={p.num} style={{ background: "#001A33", padding: "2rem 1.5rem" }}>
+            <div key={p.num} style={{ background: "#0d1c30", padding: "2rem 1.5rem" }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "1.68rem", fontWeight: 700,
-                color: "rgba(197,160,89,0.35)",
+                color: "rgba(212,144,10,0.35)",
                 marginBottom: "1rem", lineHeight: 1,
               }}>
                 {p.num}
@@ -313,7 +313,7 @@ export default function OperatingStandardPage() {
       </div>
 
       {/* ── SECTION 6 & 7: WHO THIS IS FOR / NOT FOR ── */}
-      <div style={{ background: "#002244", ...divider }}>
+      <div style={{ background: "#0b1628", ...divider }}>
         <div style={{ ...sectionWrap, padding: "80px 24px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem" }} className="for-grid">
             {/* For */}
@@ -328,7 +328,7 @@ export default function OperatingStandardPage() {
               </h2>
               {FOR_LIST.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", marginBottom: "1.25rem", alignItems: "flex-start" }}>
-                  <span style={{ color: "#C5A059", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
+                  <span style={{ color: "#d4900a", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
                   <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.7 }}>{item}</span>
                 </div>
               ))}
@@ -375,14 +375,14 @@ export default function OperatingStandardPage() {
               data-testid="standard-ground0-cta"
               to="/ground-0-briefing"
               style={{
-                display: "inline-block", minHeight: 52, background: "#C5A059",
-                color: "#002244", fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                display: "inline-block", minHeight: 52, background: "#d4900a",
+                color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700,
                 fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 transition: "background 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
             >
               Enter Ground 0
             </Link>
@@ -391,12 +391,12 @@ export default function OperatingStandardPage() {
               to="/reach-diagnostic"
               style={{
                 display: "inline-block", minHeight: 52, background: "transparent",
-                color: "#C5A059", fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                color: "#d4900a", fontFamily: "'Inter', sans-serif", fontWeight: 700,
                 fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
-                border: "1px solid rgba(197,160,89,0.4)", transition: "all 0.2s",
+                border: "1px solid rgba(212,144,10,0.4)", transition: "all 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(197,160,89,0.08)")}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(212,144,10,0.08)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               Run the REACH Diagnostic

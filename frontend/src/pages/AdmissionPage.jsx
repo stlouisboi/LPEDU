@@ -57,12 +57,12 @@ export default function AdmissionPage() {
     fontWeight: 700,
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "rgba(197,160,89,0.85)",
+    color: "rgba(212,144,10,0.85)",
     marginBottom: "0.5rem",
   };
 
   return (
-    <div style={{ background: "#000D1A", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
       <Navbar />
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px" }}>
@@ -75,7 +75,7 @@ export default function AdmissionPage() {
             fontSize: "0.616rem",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.65)",
+            color: "rgba(212,144,10,0.65)",
             textDecoration: "none",
             display: "inline-flex",
             alignItems: "center",
@@ -98,7 +98,7 @@ export default function AdmissionPage() {
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.85)",
+            color: "rgba(212,144,10,0.85)",
             marginBottom: "1.5rem",
           }}
         >
@@ -192,7 +192,7 @@ export default function AdmissionPage() {
               Check your inbox at {form.email} for confirmation and next steps.
             </p>
 
-            <div style={{ height: 2, background: "#C5A059", maxWidth: 120, marginBottom: "2rem" }} />
+            <div style={{ height: 2, background: "#d4900a", maxWidth: 120, marginBottom: "2rem" }} />
 
             <p style={{
               fontFamily: "'Barlow Condensed', sans-serif",
@@ -218,7 +218,7 @@ export default function AdmissionPage() {
                 fontSize: "0.875rem",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "#C5A059",
+                color: "#d4900a",
                 textDecoration: "none",
               }}
             >
@@ -243,7 +243,7 @@ export default function AdmissionPage() {
                   onChange={handleChange}
                   placeholder="Your full legal name"
                   style={inputStyle}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(197,160,89,0.5)")}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
                   onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
                 />
               </div>
@@ -261,7 +261,7 @@ export default function AdmissionPage() {
                   onChange={handleChange}
                   placeholder="Your business email address"
                   style={inputStyle}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(197,160,89,0.5)")}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
                   onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
                 />
               </div>
@@ -278,7 +278,7 @@ export default function AdmissionPage() {
                   onChange={handleChange}
                   placeholder="USDOT# (leave blank if not yet issued)"
                   style={inputStyle}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(197,160,89,0.5)")}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
                   onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
                 />
                 <p style={{
@@ -331,7 +331,7 @@ export default function AdmissionPage() {
                   onChange={handleChange}
                   placeholder="REACH Assessment result, current operational status, questions for the Station Custodian..."
                   style={{ ...inputStyle, resize: "vertical" }}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(197,160,89,0.5)")}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
                   onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
                 />
               </div>
@@ -355,8 +355,8 @@ export default function AdmissionPage() {
                 disabled={state === "loading" || !form.name || !form.email || !form.cohort_preference}
                 style={{
                   minHeight: 52,
-                  background: "#C5A059",
-                  color: "#002244",
+                  background: "#d4900a",
+                  color: "#0b1628",
                   border: "none",
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 700,
@@ -370,7 +370,7 @@ export default function AdmissionPage() {
                   padding: "0 2.5rem",
                 }}
                 onMouseEnter={(e) => { if (state !== "loading") e.currentTarget.style.background = "#D4B87A"; }}
-                onMouseLeave={(e) => { if (state !== "loading") e.currentTarget.style.background = "#C5A059"; }}
+                onMouseLeave={(e) => { if (state !== "loading") e.currentTarget.style.background = "#d4900a"; }}
               >
                 {state === "loading" ? "Submitting..." : "Submit Admission Request"}
               </button>

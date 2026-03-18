@@ -62,7 +62,7 @@ function StepIndicator({ step, total, dark }) {
             width: i + 1 === step ? 28 : 10,
             height: 10,
             borderRadius: 5,
-            background: i + 1 === step ? "#C5A059" : i + 1 < step ? "#22c55e" : dark ? "rgba(255,255,255,0.12)" : "rgba(0,34,68,0.15)",
+            background: i + 1 === step ? "#d4900a" : i + 1 < step ? "#22c55e" : dark ? "rgba(255,255,255,0.12)" : "rgba(0,34,68,0.15)",
             transition: "all 0.2s",
           }} />
         </React.Fragment>
@@ -99,7 +99,7 @@ function Field({ label, id, value, onChange, prefix, suffix, step = "any", min =
             fontSize: "0.98rem",
             background: dark ? "rgba(255,255,255,0.04)" : "#FFFFFF",
             border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(0,34,68,0.14)"}`,
-            color: dark ? "#FFFFFF" : "#002244",
+            color: dark ? "#FFFFFF" : "#0b1628",
             outline: "none",
             boxSizing: "border-box",
             MozAppearance: "textfield",
@@ -122,7 +122,7 @@ function NavButtons({ onBack, onNext, nextLabel = "Next →", nextDisabled, dark
         </button>
       )}
       {onNext && (
-        <button onClick={onNext} data-testid="cpm-next-btn" disabled={nextDisabled} style={{ padding: "0.75rem 2rem", fontFamily: sans, fontWeight: 700, fontSize: "0.896rem", letterSpacing: "0.08em", textTransform: "uppercase", background: nextDisabled ? (dark ? "rgba(197,160,89,0.3)" : "rgba(0,34,68,0.2)") : "#C5A059", border: "none", color: nextDisabled ? (dark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)") : "#002244", cursor: nextDisabled ? "not-allowed" : "pointer", transition: "opacity 0.15s" }}>
+        <button onClick={onNext} data-testid="cpm-next-btn" disabled={nextDisabled} style={{ padding: "0.75rem 2rem", fontFamily: sans, fontWeight: 700, fontSize: "0.896rem", letterSpacing: "0.08em", textTransform: "uppercase", background: nextDisabled ? (dark ? "rgba(212,144,10,0.3)" : "rgba(0,34,68,0.2)") : "#d4900a", border: "none", color: nextDisabled ? (dark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)") : "#0b1628", cursor: nextDisabled ? "not-allowed" : "pointer", transition: "opacity 0.15s" }}>
           {nextLabel}
         </button>
       )}
@@ -133,7 +133,7 @@ function NavButtons({ onBack, onNext, nextLabel = "Next →", nextDisabled, dark
 // ── Section Header ────────────────────────────────────────────────────────────
 function SectionLabel({ text, dark }) {
   return (
-    <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(197,160,89,0.7)" : "#C5A059", marginBottom: "1.5rem" }}>
+    <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(212,144,10,0.7)" : "#d4900a", marginBottom: "1.5rem" }}>
       {text}
     </p>
   );
@@ -144,11 +144,11 @@ function ResultsCard({ fixedCPM, variableCPM, totalCPM }) {
   return (
     <div data-testid="cpm-results-card">
       {/* Hero CPM */}
-      <div style={{ background: "#002244", padding: "2.5rem 2rem", marginBottom: "1.5rem", textAlign: "center", border: "1px solid rgba(197,160,89,0.25)" }}>
-        <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "0.75rem" }}>
+      <div style={{ background: "#0b1628", padding: "2.5rem 2rem", marginBottom: "1.5rem", textAlign: "center", border: "1px solid rgba(212,144,10,0.25)" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
           YOUR TOTAL COST PER MILE
         </p>
-        <p data-testid="cpm-total-display" style={{ fontFamily: display, fontWeight: 800, fontSize: "clamp(3rem, 8vw, 4.5rem)", color: "#C5A059", letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "0.5rem" }}>
+        <p data-testid="cpm-total-display" style={{ fontFamily: display, fontWeight: 800, fontSize: "clamp(3rem, 8vw, 4.5rem)", color: "#d4900a", letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "0.5rem" }}>
           {fmtCPM(totalCPM)}
         </p>
         <p style={{ fontFamily: sans, fontSize: "0.896rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.04em" }}>
@@ -164,7 +164,7 @@ function ResultsCard({ fixedCPM, variableCPM, totalCPM }) {
         ].map((item) => (
           <div key={item.label} style={{ background: "#F8F9FB", padding: "1.25rem 1.5rem" }}>
             <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,34,68,0.45)", marginBottom: "0.4rem" }}>{item.label}</p>
-            <p data-testid={item.testid} style={{ fontFamily: display, fontWeight: 700, fontSize: "1.5rem", color: "#002244", letterSpacing: "-0.01em" }}>{item.value}</p>
+            <p data-testid={item.testid} style={{ fontFamily: display, fontWeight: 700, fontSize: "1.5rem", color: "#0b1628", letterSpacing: "-0.01em" }}>{item.value}</p>
           </div>
         ))}
       </div>
@@ -174,7 +174,7 @@ function ResultsCard({ fixedCPM, variableCPM, totalCPM }) {
 
 // ── Load Profitability Output ─────────────────────────────────────────────────
 function LoadOutput({ result }) {
-  const badgeColor = result.badge === "GO" ? "#1D9E75" : result.badge === "NEGOTIATE" ? "#C5A059" : "#E24B4A";
+  const badgeColor = result.badge === "GO" ? "#1D9E75" : result.badge === "NEGOTIATE" ? "#d4900a" : "#E24B4A";
   const profitColor = result.loadProfit >= 0 ? "#1D9E75" : "#E24B4A";
   return (
     <div data-testid="cpm-load-output" style={{ marginTop: "1.5rem" }}>
@@ -199,7 +199,7 @@ function LoadOutput({ result }) {
         ].map((item) => (
           <div key={item.label} style={{ background: "#F8F9FB", padding: "1rem 1.25rem" }}>
             <p style={{ fontFamily: mono, fontSize: "0.44rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(0,34,68,0.4)", marginBottom: "0.35rem" }}>{item.label}</p>
-            <p style={{ fontFamily: display, fontWeight: 700, fontSize: "1.15rem", color: "#002244" }}>{item.value}</p>
+            <p style={{ fontFamily: display, fontWeight: 700, fontSize: "1.15rem", color: "#0b1628" }}>{item.value}</p>
           </div>
         ))}
       </div>
@@ -219,8 +219,8 @@ function LoadOutput({ result }) {
 function EmailGate({ onSubmit, loading, dark }) {
   const [email, setEmail] = useState("");
   return (
-    <div style={{ background: dark ? "rgba(197,160,89,0.06)" : "#002244", border: "1px solid rgba(197,160,89,0.25)", padding: "2rem", marginBottom: "1.5rem" }}>
-      <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C5A059", marginBottom: "0.625rem" }}>
+    <div style={{ background: dark ? "rgba(212,144,10,0.06)" : "#0b1628", border: "1px solid rgba(212,144,10,0.25)", padding: "2rem", marginBottom: "1.5rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.625rem" }}>
         YOUR RESULTS ARE READY
       </p>
       <h3 style={{ fontFamily: display, fontWeight: 700, fontSize: "1.25rem", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em" }}>
@@ -239,7 +239,7 @@ function EmailGate({ onSubmit, loading, dark }) {
           placeholder="Your operating email"
           style={{ flex: 1, minWidth: 200, padding: "0.875rem 1rem", fontFamily: sans, fontSize: "0.98rem", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.2)", color: "#FFFFFF", outline: "none", boxSizing: "border-box" }}
         />
-        <button data-testid="cpm-email-submit" type="submit" disabled={loading} style={{ padding: "0.875rem 1.75rem", fontFamily: sans, fontWeight: 700, fontSize: "0.896rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "#C5A059", border: "none", color: "#002244", cursor: loading ? "wait" : "pointer" }}>
+        <button data-testid="cpm-email-submit" type="submit" disabled={loading} style={{ padding: "0.875rem 1.75rem", fontFamily: sans, fontWeight: 700, fontSize: "0.896rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "#d4900a", border: "none", color: "#0b1628", cursor: loading ? "wait" : "pointer" }}>
           {loading ? "Sending…" : "REVEAL RESULTS"}
         </button>
       </form>
@@ -317,7 +317,7 @@ export function CPMCalculator({ variant = "public" }) {
   // Card style
   const card = { background: dark ? "rgba(255,255,255,0.02)" : "#FFFFFF", border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(0,34,68,0.1)"}`, padding: "2rem", marginBottom: "1.25rem" };
   const grid2 = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "1.25rem" };
-  const headingColor = dark ? "#FFFFFF" : "#002244";
+  const headingColor = dark ? "#FFFFFF" : "#0b1628";
 
   return (
     <div data-testid="cpm-calculator" style={{ fontFamily: sans, maxWidth: 860, margin: "0 auto" }}>
@@ -349,7 +349,7 @@ export function CPMCalculator({ variant = "public" }) {
             </div>
           </div>
 
-          <div style={{ ...card, borderColor: dark ? "rgba(197,160,89,0.25)" : "rgba(197,160,89,0.4)" }}>
+          <div style={{ ...card, borderColor: dark ? "rgba(212,144,10,0.25)" : "rgba(212,144,10,0.4)" }}>
             <Field label="Projected Monthly Miles" id="projectedMiles" value={inp.projectedMiles} onChange={set("projectedMiles")} step="1" dark={dark} helpText="Your estimated miles per month (required)" />
           </div>
 
@@ -392,16 +392,16 @@ export function CPMCalculator({ variant = "public" }) {
 
           {/* Live preview */}
           {n(inp.dieselPrice) > 0 && n(inp.mpg) > 0 && (
-            <div style={{ display: "flex", gap: "1px", background: "rgba(197,160,89,0.15)", border: "1px solid rgba(197,160,89,0.2)", marginBottom: "0.5rem" }}>
+            <div style={{ display: "flex", gap: "1px", background: "rgba(212,144,10,0.15)", border: "1px solid rgba(212,144,10,0.2)", marginBottom: "0.5rem" }}>
               {[
                 { l: "Fuel CPM", v: fmtCPM(fuelCPM) },
                 { l: "Maint CPM", v: fmtCPM(maintenanceCPM) },
                 { l: "Tire CPM", v: fmtCPM(tireCPM) },
                 { l: "Variable Total", v: fmtCPM(variableCPM) },
               ].map((item) => (
-                <div key={item.l} style={{ flex: 1, padding: "0.75rem 1rem", background: dark ? "rgba(197,160,89,0.05)" : "rgba(197,160,89,0.04)" }}>
-                  <p style={{ fontFamily: mono, fontSize: "0.44rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.7)", marginBottom: "0.25rem" }}>{item.l}</p>
-                  <p style={{ fontFamily: display, fontWeight: 700, fontSize: "1rem", color: dark ? "#C5A059" : "#002244" }}>{item.v}</p>
+                <div key={item.l} style={{ flex: 1, padding: "0.75rem 1rem", background: dark ? "rgba(212,144,10,0.05)" : "rgba(212,144,10,0.04)" }}>
+                  <p style={{ fontFamily: mono, fontSize: "0.44rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.7)", marginBottom: "0.25rem" }}>{item.l}</p>
+                  <p style={{ fontFamily: display, fontWeight: 700, fontSize: "1rem", color: dark ? "#d4900a" : "#0b1628" }}>{item.v}</p>
                 </div>
               ))}
             </div>
@@ -454,8 +454,8 @@ export function CPMCalculator({ variant = "public" }) {
           </h2>
 
           {savedCPM && totalCPM === 0 && (
-            <div style={{ background: "rgba(197,160,89,0.07)", border: "1px solid rgba(197,160,89,0.2)", padding: "0.875rem 1.25rem", marginBottom: "1.5rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#C5A059" }}>
+            <div style={{ background: "rgba(212,144,10,0.07)", border: "1px solid rgba(212,144,10,0.2)", padding: "0.875rem 1.25rem", marginBottom: "1.5rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>
                 Using your saved CPM: {fmtCPM(savedCPM)}
               </p>
             </div>

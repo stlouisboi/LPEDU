@@ -5,7 +5,7 @@ export default function ConsequenceNumberBlock() {
     <section
       data-testid="consequence-number-block"
       style={{
-        background: "#000D1A",
+        background: "#080f1e",
         borderTop: "1px solid rgba(255,255,255,0.06)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
         padding: "80px 24px",
@@ -75,7 +75,7 @@ export default function ConsequenceNumberBlock() {
               { stat: "100%", label: "Of fixed costs that continue regardless" },
             ].map((item, i) => (
               <div key={i} style={{
-                background: "#000D1A",
+                background: "#080f1e",
                 padding: "2rem 1.75rem",
                 borderTop: "2px solid rgba(248,113,113,0.35)",
               }}>
@@ -115,7 +115,7 @@ export default function ConsequenceNumberBlock() {
               fontSize: "0.72rem",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.75)",
+              color: "rgba(212,144,10,0.75)",
             }}>
               — Vince Lawrence, Station Custodian
             </p>

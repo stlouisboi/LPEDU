@@ -5,7 +5,7 @@ const sans = "'Inter', sans-serif";
 
 // Grade thresholds
 function getGrade(pct) {
-  if (pct >= 90) return { letter: "A", label: "INSTITUTIONAL GRADE", color: "#C5A059" };
+  if (pct >= 90) return { letter: "A", label: "INSTITUTIONAL GRADE", color: "#d4900a" };
   if (pct >= 60) return { letter: "B", label: "OPERATIONAL", color: "#22c55e" };
   return { letter: "C", label: "SUB-STANDARD", color: "#f87171" };
 }
@@ -182,7 +182,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
   const grade = getGrade(signal);
 
   const indicators = [
-    { label: "Documentary Integrity", code: "DOC_INTEGRITY", value: integrity, color: "#C5A059" },
+    { label: "Documentary Integrity", code: "DOC_INTEGRITY", value: integrity, color: "#d4900a" },
     { label: "System Pulse", code: "SYS_PULSE", value: pulse, color: "#22c55e" },
     { label: "Regulatory Alignment", code: "REG_ALIGNMENT", value: alignment, color: "#7dd3fc" },
   ];
@@ -192,7 +192,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
       data-testid="signal-monitor"
       style={{
         background: "rgba(255,255,255,0.025)",
-        border: "1px solid rgba(197,160,89,0.14)",
+        border: "1px solid rgba(212,144,10,0.14)",
         padding: "1.75rem",
         marginBottom: "2rem",
         position: "relative",
@@ -209,11 +209,11 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
             <div style={{
               width: 28, height: 28, borderRadius: "50%",
-              border: "2px solid rgba(197,160,89,0.25)",
-              borderTopColor: "#C5A059",
+              border: "2px solid rgba(212,144,10,0.25)",
+              borderTopColor: "#d4900a",
               animation: "spin 0.8s linear infinite",
             }} />
-            <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.16em", color: "rgba(197,160,89,0.6)", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.16em", color: "rgba(212,144,10,0.6)", textTransform: "uppercase" }}>
               FETCHING_SIGNAL...
             </p>
           </div>
@@ -232,7 +232,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
         gap: "0.75rem",
       }}>
         <div>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "0.25rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "0.25rem" }}>
             ADMINISTRATIVE_HEALTH_MONITOR
           </p>
           <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)" }}>

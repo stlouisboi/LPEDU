@@ -33,9 +33,9 @@ const TIMELINE = [
 
 function getRowConfig(item) {
   if (item.accent) return {
-    nodeSize: 10, nodeFill: "#C5A059", nodeBorder: "#C5A059",
-    connectorColor: "rgba(197,160,89,0.50)",
-    badgeBorder: "rgba(197,160,89,0.65)", badgeColor: "#C5A059",
+    nodeSize: 10, nodeFill: "#d4900a", nodeBorder: "#d4900a",
+    connectorColor: "rgba(212,144,10,0.50)",
+    badgeBorder: "rgba(212,144,10,0.65)", badgeColor: "#d4900a",
     titleColor: "#FFFFFF", titleSize: "1rem",
     bodyColor: "rgba(255,255,255,0.86)", bodyItalic: false,
     rowBg: "transparent", rowBorderTop: "none",
@@ -57,9 +57,9 @@ function getRowConfig(item) {
     rowBg: "transparent", rowBorderTop: "1px solid rgba(255,255,255,0.04)",
   };
   return {
-    nodeSize: 8, nodeFill: "transparent", nodeBorder: "rgba(197,160,89,0.45)",
-    connectorColor: "rgba(197,160,89,0.36)",
-    badgeBorder: "rgba(197,160,89,0.30)", badgeColor: "rgba(197,160,89,0.70)",
+    nodeSize: 8, nodeFill: "transparent", nodeBorder: "rgba(212,144,10,0.45)",
+    connectorColor: "rgba(212,144,10,0.36)",
+    badgeBorder: "rgba(212,144,10,0.30)", badgeColor: "rgba(212,144,10,0.70)",
     titleColor: "rgba(255,255,255,0.88)", titleSize: "0.94rem",
     bodyColor: "rgba(255,255,255,0.72)", bodyItalic: false,
     rowBg: "transparent", rowBorderTop: "none",
@@ -84,7 +84,7 @@ export default function AuthorityClockSection() {
       data-testid="authority-clock-section"
       ref={ref}
       style={{
-        background: "#001A33",
+        background: "#0d1c30",
         borderBottom: "1px solid rgba(255,255,255,0.07)",
         padding: "112px 24px",
         opacity: visible ? 1 : 0,
@@ -98,7 +98,7 @@ export default function AuthorityClockSection() {
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: "0.616rem",
-          color: "rgba(197,160,89,0.80)",
+          color: "rgba(212,144,10,0.80)",
           letterSpacing: "0.16em",
           textTransform: "uppercase",
           marginBottom: "2.5rem",
@@ -118,7 +118,7 @@ export default function AuthorityClockSection() {
             fontWeight: 700,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "#C5A059",
+            color: "#d4900a",
             marginBottom: "1.25rem",
           }}>
             The 90-Day Authority Clock
@@ -255,7 +255,7 @@ export default function AuthorityClockSection() {
 
         {/* ── Doctrine closing statement — left-aligned, final authority ── */}
         <div style={{
-          borderTop: "2px solid rgba(197,160,89,0.20)",
+          borderTop: "2px solid rgba(212,144,10,0.20)",
           paddingTop: "3rem",
           maxWidth: 680,
         }}>
@@ -264,7 +264,7 @@ export default function AuthorityClockSection() {
             fontSize: "0.608rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
-            color: "rgba(197,160,89,0.55)",
+            color: "rgba(212,144,10,0.55)",
             textTransform: "uppercase",
             marginBottom: "1.25rem",
           }}>
@@ -285,7 +285,7 @@ export default function AuthorityClockSection() {
             fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
             fontSize: "clamp(1.1rem, 2.2vw, 1.35rem)",
-            color: "#C5A059",
+            color: "#d4900a",
             lineHeight: 1.5,
             letterSpacing: "-0.015em",
           }}>

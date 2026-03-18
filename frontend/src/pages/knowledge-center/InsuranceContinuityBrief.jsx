@@ -547,7 +547,7 @@ export default function InsuranceContinuityBrief() {
             lineHeight: 1.6,
           }}>
             This brief is part of the{" "}
-            <a href="/operating-standard" style={{ color: "#C5A059", textDecoration: "none" }}>
+            <a href="/operating-standard" style={{ color: "#d4900a", textDecoration: "none" }}>
               LaunchPath Operating Standard Library
             </a>
             .
@@ -558,7 +558,7 @@ export default function InsuranceContinuityBrief() {
             fontWeight: 700,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.7)",
+            color: "rgba(212,144,10,0.7)",
             textDecoration: "none",
             whiteSpace: "nowrap",
           }}>

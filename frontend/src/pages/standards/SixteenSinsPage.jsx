@@ -5,8 +5,8 @@ import FooterSection from "../../components/FooterSection";
 import FadeIn from "../../components/FadeIn";
 
 const coral = "#D85A30";
-const gold = "#C5A059";
-const pageBg = "#020408";
+const gold = "#d4900a";
+const pageBg = "#060d19";
 const cardBg = "#0B1927";
 
 const DOMAIN_GROUPS = [
@@ -216,9 +216,9 @@ export default function SixteenSinsPage() {
                 fontWeight: 700,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: copied ? "#C5A059" : "rgba(255,255,255,0.38)",
+                color: copied ? "#d4900a" : "rgba(255,255,255,0.38)",
                 background: "transparent",
-                border: `1px solid ${copied ? "rgba(197,160,89,0.35)" : "rgba(255,255,255,0.1)"}`,
+                border: `1px solid ${copied ? "rgba(212,144,10,0.35)" : "rgba(255,255,255,0.1)"}`,
                 padding: "0.45rem 1rem",
                 cursor: "pointer",
                 transition: "all 0.2s",
@@ -279,7 +279,7 @@ export default function SixteenSinsPage() {
               fontWeight: 700,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.7)",
+              color: "rgba(212,144,10,0.7)",
               marginBottom: "0.75rem",
             }}>THE 16 DEADLY SINS — AT A GLANCE</p>
 
@@ -356,7 +356,7 @@ export default function SixteenSinsPage() {
               fontWeight: 700,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.7)",
+              color: "rgba(212,144,10,0.7)",
               marginBottom: "0.5rem",
             }}>VIOLATION RECORDS</p>
             <p style={{
@@ -467,7 +467,7 @@ export default function SixteenSinsPage() {
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.55)",
+              color: "rgba(212,144,10,0.55)",
               marginBottom: "1.25rem",
             }}>CONCLUSION</p>
             <p style={{
@@ -496,7 +496,7 @@ export default function SixteenSinsPage() {
                 fontSize: "0.85rem",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: "#001530",
+                color: "#0b1628",
                 background: gold,
                 padding: "0.875rem 2rem",
                 textDecoration: "none",

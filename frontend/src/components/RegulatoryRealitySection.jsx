@@ -61,12 +61,12 @@ export default function RegulatoryRealitySection() {
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ borderLeft: "2px solid rgba(197,160,89,0.7)", paddingLeft: "1.5rem", marginBottom: "3.5rem" }}>
+        <div style={{ borderLeft: "2px solid rgba(212,144,10,0.7)", paddingLeft: "1.5rem", marginBottom: "3.5rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
-            color: "#C5A059", marginBottom: "0.6rem",
+            color: "#d4900a", marginBottom: "0.6rem",
           }}>
             FMCSA Oversight Record
           </p>
@@ -102,7 +102,7 @@ export default function RegulatoryRealitySection() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem", fontWeight: 700,
               letterSpacing: "0.14em", textTransform: "uppercase",
-              color: "#C5A059", marginBottom: "1rem",
+              color: "#d4900a", marginBottom: "1rem",
             }}>
               Common findings include:
             </p>
@@ -112,7 +112,7 @@ export default function RegulatoryRealitySection() {
                 padding: "0.6rem 0",
                 borderBottom: i < FINDINGS.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
               }}>
-                <span style={{ color: "#C5A059", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
+                <span style={{ color: "#d4900a", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.6 }}>
                   {f}
                 </span>
@@ -123,9 +123,9 @@ export default function RegulatoryRealitySection() {
           {/* Right: emphasis block */}
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <div style={{
-              border: "1px solid rgba(197,160,89,0.3)",
+              border: "1px solid rgba(212,144,10,0.3)",
               padding: "2.5rem 2rem",
-              background: "rgba(197,160,89,0.05)",
+              background: "rgba(212,144,10,0.05)",
             }}>
               <p style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
@@ -141,7 +141,7 @@ export default function RegulatoryRealitySection() {
                 fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(1rem, 2vw, 1.232rem)",
-                color: "#C5A059",
+                color: "#d4900a",
                 lineHeight: 1.65,
               }}>
                 It is usually caused by missing operational infrastructure.
@@ -173,7 +173,7 @@ export default function RegulatoryRealitySection() {
                 fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4vw, 2.75rem)",
-                color: "#C5A059",
+                color: "#d4900a",
                 marginBottom: "0.6rem",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",

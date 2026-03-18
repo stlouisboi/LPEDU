@@ -241,7 +241,7 @@ export default function PortalPage() {
   // ── Auth: Loading ──────────────────────────────────────
   if (authChecked === null) {
     return (
-      <div style={{ fontFamily: "'Inter', sans-serif", background: "#001A33", minHeight: "100vh", color: "#FFFFFF" }}>
+      <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
         <Navbar />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
           <p data-testid="portal-auth-loading" style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.5)" }}>
@@ -255,12 +255,12 @@ export default function PortalPage() {
   // ── Auth: Login Screen ──────────────────────────────────
   if (!authChecked) {
     return (
-      <div style={{ fontFamily: "'Inter', sans-serif", background: "#001A33", minHeight: "100vh", color: "#FFFFFF" }}>
+      <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
         <Navbar />
         <div style={{ maxWidth: 520, margin: "0 auto", padding: "120px 2rem 80px", textAlign: "center" }}>
           <p style={{
             fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "#C5A059", marginBottom: "1.5rem",
+            textTransform: "uppercase", color: "#d4900a", marginBottom: "1.5rem",
           }}>
             OPERATOR PORTAL
           </p>
@@ -304,7 +304,7 @@ export default function PortalPage() {
     <div
       style={{
         fontFamily: "'Inter', sans-serif",
-        background: "#001A33",
+        background: "#0d1c30",
         minHeight: "100vh",
         color: "#FFFFFF",
       }}
@@ -327,7 +327,7 @@ export default function PortalPage() {
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#C5A059",
+              color: "#d4900a",
             }}
           >
             LAUNCHPATH COHORT PORTAL
@@ -338,7 +338,7 @@ export default function PortalPage() {
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: "0.616rem",
               fontWeight: 700,
-              color: "rgba(197,160,89,0.85)",
+              color: "rgba(212,144,10,0.85)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               flex: 1,
@@ -423,9 +423,9 @@ export default function PortalPage() {
                 onClick={() => setSelectedId(mod.id)}
                 style={{
                   width: "100%",
-                  background: isActive ? "rgba(197,160,89,0.08)" : "none",
+                  background: isActive ? "rgba(212,144,10,0.08)" : "none",
                   border: "none",
-                  borderLeft: isActive ? "3px solid #C5A059" : "3px solid transparent",
+                  borderLeft: isActive ? "3px solid #d4900a" : "3px solid transparent",
                   cursor: "pointer",
                   padding: "1rem 1.5rem",
                   textAlign: "left",
@@ -441,7 +441,7 @@ export default function PortalPage() {
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.3rem" }}>
                     {locked ? (
-                      <Lock size={12} weight="bold" color="#C5A059" style={{ flexShrink: 0 }} />
+                      <Lock size={12} weight="bold" color="#d4900a" style={{ flexShrink: 0 }} />
                     ) : (
                       <CheckCircle size={12} weight="bold" color="#22c55e" style={{ flexShrink: 0 }} />
                     )}
@@ -461,7 +461,7 @@ export default function PortalPage() {
                   </p>
                   <p style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "0.672rem",
-                    color: locked ? "rgba(255,255,255,0.42)" : (mod.type === "recovery" ? "rgba(251,146,60,0.75)" : mod.type === "extension" ? "rgba(129,140,248,0.75)" : "rgba(197,160,89,0.9)"),
+                    color: locked ? "rgba(255,255,255,0.42)" : (mod.type === "recovery" ? "rgba(251,146,60,0.75)" : mod.type === "extension" ? "rgba(129,140,248,0.75)" : "rgba(212,144,10,0.9)"),
                     letterSpacing: "0.04em",
                   }}>
                     {mod.lessonCount} lessons
@@ -492,7 +492,7 @@ export default function PortalPage() {
               fontWeight: 700,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(197,160,89,0.85)",
+              color: "rgba(212,144,10,0.85)",
               marginBottom: "0.25rem",
               padding: "0 0.5rem",
             }}>
@@ -571,7 +571,7 @@ export default function PortalPage() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.784rem",
                   fontWeight: 600,
-                  color: "#C5A059",
+                  color: "#d4900a",
                   textDecoration: "none",
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -595,9 +595,9 @@ export default function PortalPage() {
               onClick={() => setSelectedId("tool-cpm")}
               style={{
                 width: "100%",
-                background: selectedId === "tool-cpm" ? "rgba(197,160,89,0.08)" : "none",
+                background: selectedId === "tool-cpm" ? "rgba(212,144,10,0.08)" : "none",
                 border: "none",
-                borderLeft: selectedId === "tool-cpm" ? "3px solid #C5A059" : "3px solid transparent",
+                borderLeft: selectedId === "tool-cpm" ? "3px solid #d4900a" : "3px solid transparent",
                 cursor: "pointer",
                 padding: "0.875rem 1.5rem",
                 textAlign: "left",
@@ -612,7 +612,7 @@ export default function PortalPage() {
               <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.784rem", color: "#FFFFFF", letterSpacing: "0.03em" }}>
                 CPM Calculator
               </span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "rgba(197,160,89,0.75)" }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "rgba(212,144,10,0.75)" }}>
                 Cost per mile · load profitability
               </span>
             </button>
@@ -628,9 +628,9 @@ export default function PortalPage() {
               data-testid="g0-complete-banner"
               style={{
                 position: "relative",
-                background: "rgba(197,160,89,0.05)",
-                border: "1px solid rgba(197,160,89,0.22)",
-                borderLeft: "3px solid #C5A059",
+                background: "rgba(212,144,10,0.05)",
+                border: "1px solid rgba(212,144,10,0.22)",
+                borderLeft: "3px solid #d4900a",
                 padding: "1.25rem 3rem 1.25rem 1.5rem",
                 marginBottom: "2rem",
               }}
@@ -669,7 +669,7 @@ export default function PortalPage() {
                 fontWeight: 700,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "rgba(197,160,89,0.7)",
+                color: "rgba(212,144,10,0.7)",
                 marginBottom: "0.5rem",
               }}>
                 LP-MOD-G0 | GROUND 0 COMPLETE
@@ -708,7 +708,7 @@ export default function PortalPage() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "0.375rem",
-                    background: "#C5A059",
+                    background: "#d4900a",
                     color: "#000F1F",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
@@ -720,8 +720,8 @@ export default function PortalPage() {
                     transition: "background 0.2s",
                     minHeight: 36,
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#d4b06a")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
                 >
                   Request Admission →
                 </a>
@@ -763,7 +763,7 @@ export default function PortalPage() {
                 margin: "4rem auto",
               }}
             >
-              <CheckCircle size={48} color="#C5A059" weight="light" style={{ marginBottom: "1.5rem" }} />
+              <CheckCircle size={48} color="#d4900a" weight="light" style={{ marginBottom: "1.5rem" }} />
               <h2
                 style={{
                   fontFamily: "'Barlow Condensed', sans-serif",
@@ -779,7 +779,7 @@ export default function PortalPage() {
                 Your cohort placement request has been received. You will receive a confirmation
                 and next steps within 24 hours.
               </p>
-              <div style={{ height: 2, background: "#C5A059", margin: "2rem 0" }} />
+              <div style={{ height: 2, background: "#d4900a", margin: "2rem 0" }} />
               <p style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.87)", fontStyle: "italic" }}>
                 Admission is subject to assessment result and cohort availability.
               </p>
@@ -811,7 +811,7 @@ export default function PortalPage() {
                       fontWeight: 700,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
-                      color: "#C5A059",
+                      color: "#d4900a",
                       marginBottom: "1.25rem",
                     }}
                   >
@@ -852,16 +852,16 @@ export default function PortalPage() {
                     <div style={{
                       display: "flex", alignItems: "center", gap: "0.875rem",
                       paddingBottom: "0.875rem", marginBottom: "0.25rem",
-                      borderBottom: "1px solid rgba(197,160,89,0.12)",
+                      borderBottom: "1px solid rgba(212,144,10,0.12)",
                     }}>
                       <p style={{
                         fontFamily: "'JetBrains Mono','Courier New',monospace",
                         fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em",
-                        color: "rgba(197,160,89,0.85)", textTransform: "uppercase", margin: 0,
+                        color: "rgba(212,144,10,0.85)", textTransform: "uppercase", margin: 0,
                       }}>
                         IMPLEMENTATION_SEQUENCE
                       </p>
-                      <div style={{ flex: 1, height: 1, background: "rgba(197,160,89,0.12)" }} />
+                      <div style={{ flex: 1, height: 1, background: "rgba(212,144,10,0.12)" }} />
                       {tasks.length > 0 && (
                         <span style={{
                           fontFamily: "'JetBrains Mono','Courier New',monospace",
@@ -878,7 +878,7 @@ export default function PortalPage() {
                         <p style={{
                           fontFamily: "'JetBrains Mono','Courier New',monospace",
                           fontSize: "0.504rem", letterSpacing: "0.16em",
-                          color: "rgba(197,160,89,0.5)", textTransform: "uppercase",
+                          color: "rgba(212,144,10,0.5)", textTransform: "uppercase",
                         }}>
                           LOADING_SEQUENCE...
                         </p>
@@ -933,7 +933,7 @@ export default function PortalPage() {
                               fontFamily: "'Inter', sans-serif",
                               fontWeight: 700,
                               fontSize: "0.784rem",
-                              color: "#C5A059",
+                              color: "#d4900a",
                               minWidth: 28,
                             }}
                           >
@@ -969,9 +969,9 @@ export default function PortalPage() {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "0.5rem",
-                      background: "rgba(197,160,89,0.1)",
-                      border: "1px solid rgba(197,160,89,0.4)",
-                      color: "#C5A059",
+                      background: "rgba(212,144,10,0.1)",
+                      border: "1px solid rgba(212,144,10,0.4)",
+                      color: "#d4900a",
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.84rem",
@@ -982,10 +982,10 @@ export default function PortalPage() {
                       transition: "background 0.2s",
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.background = "rgba(197,160,89,0.18)")
+                      (e.currentTarget.style.background = "rgba(212,144,10,0.18)")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.background = "rgba(197,160,89,0.1)")
+                      (e.currentTarget.style.background = "rgba(212,144,10,0.1)")
                     }
                   >
                     Go to Ground 0 Briefing <ArrowRight size={14} />
@@ -1041,7 +1041,7 @@ export default function PortalPage() {
                           fontSize: "0.784rem",
                           letterSpacing: "0.08em",
                           textTransform: "uppercase",
-                          color: "#C5A059",
+                          color: "#d4900a",
                           textDecoration: "none",
                           transition: "opacity 0.15s",
                         }}
@@ -1075,14 +1075,14 @@ export default function PortalPage() {
               )}
               {selectedId === "tool-cpm" && !hasCohortAccess && (
                 <div data-testid="tool-locked-screen">
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#C5A059", marginBottom: "1.25rem" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
                     LP-TOOLS | CPM CALCULATOR
                   </p>
                   <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
                   <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 480, marginBottom: "2rem" }}>
                     The full CPM Calculator — including Step 4 load profitability analysis — is part of the LaunchPath Standard cohort.
                   </p>
-                  <a href="/tools/cpm-calculator" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.896rem", color: "#C5A059", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(197,160,89,0.3)", transition: "background 0.15s" }}>
+                  <a href="/tools/cpm-calculator" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.896rem", color: "#d4900a", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(212,144,10,0.3)", transition: "background 0.15s" }}>
                     Use the free public version →
                   </a>
                 </div>
@@ -1101,7 +1101,7 @@ export default function PortalPage() {
                       fontWeight: 700,
                       letterSpacing: "0.18em",
                       textTransform: "uppercase",
-                      color: "#C5A059",
+                      color: "#d4900a",
                       marginBottom: "1.5rem",
                     }}
                   >
@@ -1164,7 +1164,7 @@ export default function PortalPage() {
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 700,
                         fontSize: "1.344rem",
-                        color: "#C5A059",
+                        color: "#d4900a",
                       }}
                     >
                       $5,000
@@ -1191,8 +1191,8 @@ export default function PortalPage() {
                     style={{
                       width: "100%",
                       minHeight: 52,
-                      background: "#C5A059",
-                      color: "#002244",
+                      background: "#d4900a",
+                      color: "#0b1628",
                       border: "none",
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 700,
@@ -1210,7 +1210,7 @@ export default function PortalPage() {
                     }}
                     onMouseLeave={(e) => {
                       if (paymentState !== "loading")
-                        e.currentTarget.style.background = "#C5A059";
+                        e.currentTarget.style.background = "#d4900a";
                     }}
                   >
                     {paymentState === "loading" ? "Preparing checkout..." : "Request Cohort Placement"}
@@ -1258,13 +1258,13 @@ function ModuleOverviewCard({ moduleInfo, type }) {
 
   const isRecovery = type === "recovery";
   const isExtension = type === "extension";
-  const accentColor = isRecovery ? "rgba(251,146,60,0.85)" : isExtension ? "rgba(129,140,248,0.85)" : "#C5A059";
-  const accentBg = isRecovery ? "rgba(251,146,60,0.07)" : isExtension ? "rgba(99,102,241,0.07)" : "rgba(197,160,89,0.05)";
-  const accentBorder = isRecovery ? "rgba(251,146,60,0.22)" : isExtension ? "rgba(99,102,241,0.22)" : "rgba(197,160,89,0.16)";
+  const accentColor = isRecovery ? "rgba(251,146,60,0.85)" : isExtension ? "rgba(129,140,248,0.85)" : "#d4900a";
+  const accentBg = isRecovery ? "rgba(251,146,60,0.07)" : isExtension ? "rgba(99,102,241,0.07)" : "rgba(212,144,10,0.05)";
+  const accentBorder = isRecovery ? "rgba(251,146,60,0.22)" : isExtension ? "rgba(99,102,241,0.22)" : "rgba(212,144,10,0.16)";
 
   return (
     <div data-testid="module-overview-card">
-      <p style={{ fontFamily: mono, fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#C5A059", marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
         LP-{moduleInfo.code} | {moduleInfo.title.toUpperCase()}
       </p>
 
@@ -1296,7 +1296,7 @@ function ModuleOverviewCard({ moduleInfo, type }) {
         <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
           {moduleInfo.topics.map((topic, i) => (
             <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem" }}>
-              <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(197,160,89,0.55)", flexShrink: 0, paddingTop: "0.18rem", letterSpacing: "0.1em" }}>
+              <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(212,144,10,0.55)", flexShrink: 0, paddingTop: "0.18rem", letterSpacing: "0.1em" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.73)", lineHeight: 1.55 }}>
@@ -1308,7 +1308,7 @@ function ModuleOverviewCard({ moduleInfo, type }) {
       </div>
 
       <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "0.875rem" }}>
-        <div style={{ width: 7, height: 7, background: "rgba(197,160,89,0.45)", borderRadius: "50%", flexShrink: 0 }} />
+        <div style={{ width: 7, height: 7, background: "rgba(212,144,10,0.45)", borderRadius: "50%", flexShrink: 0 }} />
         <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
           COHORT DELIVERY SEQUENCE — YOUR FACILITATOR WILL ACTIVATE THIS MODULE
         </p>
@@ -1357,21 +1357,21 @@ function DeliverablesPortal({ API }) {
   };
 
   return (
-    <section style={{ borderTop: "1px solid rgba(197,160,89,0.15)", padding: "2.5rem 2.5rem 3rem", marginTop: "1rem" }}>
-      <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.82)", marginBottom: "1.5rem" }}>
+    <section style={{ borderTop: "1px solid rgba(212,144,10,0.15)", padding: "2.5rem 2.5rem 3rem", marginTop: "1rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.82)", marginBottom: "1.5rem" }}>
         DELIVERABLES — {pdfs.length} FILE{pdfs.length !== 1 ? "S" : ""}
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
         {pdfs.map(pdf => (
           <div key={pdf.id} data-testid={`deliverable-${pdf.id}`} style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
-            background: "rgba(197,160,89,0.04)", border: "1px solid rgba(197,160,89,0.14)",
-            borderLeft: "3px solid #C5A059", padding: "1rem 1.25rem", gap: "1rem", flexWrap: "wrap",
+            background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.14)",
+            borderLeft: "3px solid #d4900a", padding: "1rem 1.25rem", gap: "1rem", flexWrap: "wrap",
           }}>
             <div>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 3px" }}>{pdf.display_name}</p>
               {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 5px" }}>{pdf.description}</p>}
-              <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)" }}>
+              <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)" }}>
                 {CATEGORY_LABELS[pdf.category] || pdf.category}
               </span>
               <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.30)", margin: "4px 0 0" }}>
@@ -1384,8 +1384,8 @@ function DeliverablesPortal({ API }) {
               disabled={downloading === pdf.id}
               style={{
                 fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em",
-                textTransform: "uppercase", background: downloading === pdf.id ? "rgba(197,160,89,0.3)" : "#C5A059",
-                color: "#001833", border: "none", padding: "0.65rem 1.25rem", cursor: downloading === pdf.id ? "not-allowed" : "pointer",
+                textTransform: "uppercase", background: downloading === pdf.id ? "rgba(212,144,10,0.3)" : "#d4900a",
+                color: "#0b1628", border: "none", padding: "0.65rem 1.25rem", cursor: downloading === pdf.id ? "not-allowed" : "pointer",
                 flexShrink: 0,
               }}
             >{downloading === pdf.id ? "DOWNLOADING..." : "DOWNLOAD →"}</button>

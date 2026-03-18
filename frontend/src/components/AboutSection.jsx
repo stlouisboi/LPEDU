@@ -91,7 +91,7 @@ export default function AboutSection() {
             <div style={{
               overflow: "hidden",
               height: 560,
-              boxShadow: "0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(197,160,89,0.15)",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,144,10,0.15)",
             }}>
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"

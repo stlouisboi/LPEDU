@@ -219,7 +219,7 @@ export default function AllChecklists() {
       <style>{`
         /* ── SCREEN: hide document, show fallback ── */
         @media screen {
-          .print-document { background: #020408; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+          .print-document { background: #060d19; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
           .print-cover, .print-brief-section, .print-marker { display: none; }
           .screen-fallback { text-align: center; padding: 4rem 2rem; }
           .screen-msg { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: #f0f4f8; margin-bottom: 1.5rem; }

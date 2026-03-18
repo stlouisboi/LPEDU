@@ -45,7 +45,7 @@ const CODE_CELL = {
   ...CELL,
   fontFamily: "'JetBrains Mono', monospace",
   fontSize: "0.728rem",
-  color: "#C5A059",
+  color: "#d4900a",
   whiteSpace: "nowrap",
 };
 
@@ -68,7 +68,7 @@ export default function SystemArchitectureSection() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "#C5A059", marginBottom: "0.75rem",
+              color: "#d4900a", marginBottom: "0.75rem",
             }}>
               LaunchPath Operational Architecture
             </p>
@@ -97,8 +97,8 @@ export default function SystemArchitectureSection() {
           <div style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.728rem",
-            color: "rgba(197,160,89,0.85)",
-            border: "1px solid rgba(197,160,89,0.35)",
+            color: "rgba(212,144,10,0.85)",
+            border: "1px solid rgba(212,144,10,0.35)",
             padding: "0.6rem 1rem",
             whiteSpace: "nowrap",
             alignSelf: "flex-start",
@@ -196,7 +196,7 @@ export default function SystemArchitectureSection() {
                 {AUTO_MODEL.map((row, i) => (
                   <tr key={i} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.015)" : "transparent" }}>
                     <td style={CODE_CELL}>{row.code}</td>
-                    <td style={{ ...CELL, fontWeight: 700, color: "#C5A059" }}>{row.dir}</td>
+                    <td style={{ ...CELL, fontWeight: 700, color: "#d4900a" }}>{row.dir}</td>
                     <td style={CELL}>{row.threat}</td>
                     <td style={{ ...CELL, color: "rgba(255,255,255,0.85)" }}>{row.defense}</td>
                   </tr>

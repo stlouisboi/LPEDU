@@ -43,9 +43,9 @@ const PATHS = [
     href: "/admission",
     external: false,
     priceLabel: "Admission-based",
-    borderTop: "#C5A059",
-    ctaBg: "#C5A059",
-    ctaColor: "#002244",
+    borderTop: "#d4900a",
+    ctaBg: "#d4900a",
+    ctaColor: "#0b1628",
     primary: true,
   },
   {
@@ -170,7 +170,7 @@ function PathCard({ path }) {
         fontWeight: 700,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
-        color: path.primary ? "rgba(197,160,89,0.9)" : "rgba(148,163,184,0.8)",
+        color: path.primary ? "rgba(212,144,10,0.9)" : "rgba(148,163,184,0.8)",
         marginBottom: "0.375rem",
       }}>
         {path.label}
@@ -260,12 +260,12 @@ export default function Ground0CompletePage() {
   const resultCfg = resultParam ? RESULT_HEADER[resultParam] : null;
 
   return (
-    <div style={{ background: "#000D1A", minHeight: "100vh", color: "#FFFFFF" }}>
+    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
 
       {/* ── Header Block ─────────────────────────────────── */}
       <div style={{
-        background: "#000D1A",
+        background: "#080f1e",
         padding: "96px 24px 64px",
         borderBottom: "1px solid rgba(255,255,255,0.07)",
       }}>
@@ -278,7 +278,7 @@ export default function Ground0CompletePage() {
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.85)",
+            color: "rgba(212,144,10,0.85)",
             marginBottom: "2rem",
           }}>
             LP-MOD-G0 | GROUND 0 COMPLETE
@@ -397,7 +397,7 @@ export default function Ground0CompletePage() {
       <div style={{
         background: "#000810",
         padding: "64px 24px",
-        borderBottom: "1px solid rgba(197,160,89,0.1)",
+        borderBottom: "1px solid rgba(212,144,10,0.1)",
       }}>
         <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
           <p style={{
@@ -405,7 +405,7 @@ export default function Ground0CompletePage() {
             fontSize: "0.616rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(197,160,89,0.55)",
+            color: "rgba(212,144,10,0.55)",
             marginBottom: "1.75rem",
           }}>
             LP-DOCTRINE
@@ -425,7 +425,7 @@ export default function Ground0CompletePage() {
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.616rem",
             letterSpacing: "0.12em",
-            color: "rgba(197,160,89,0.65)",
+            color: "rgba(212,144,10,0.65)",
             textTransform: "uppercase",
           }}>
             — Vince Lawrence, Station Custodian

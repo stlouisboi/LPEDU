@@ -87,12 +87,12 @@ function RiskMap({ scores, animate }) {
   ];
   return (
     <div style={{ marginBottom: "2rem" }}>
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
         AUTHORITY RISK MAP
       </p>
       {rows.map((row) => {
         const pct = Math.round((row.val / row.max) * 100);
-        const barColor = pct >= 78 ? "#C5A059" : pct >= 55 ? "#7A9BB5" : "#6B7A82";
+        const barColor = pct >= 78 ? "#d4900a" : pct >= 55 ? "#7A9BB5" : "#6B7A82";
         return (
           <div key={row.label} style={{ marginBottom: "0.875rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.3rem" }}>
@@ -217,7 +217,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   // ── INTRO ─────────────────────────────────────────────
   if (phase === "intro") return (
     <div style={box}>
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
         THE REACH ASSESSMENT — G0-6 INLINE
       </p>
       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, marginBottom: "0.875rem", maxWidth: 500 }}>
@@ -229,7 +229,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       <div style={{ display: "flex", gap: "2rem", marginBottom: "2rem", flexWrap: "wrap" }}>
         {CATEGORIES.map((c) => (
           <div key={c.key}>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.875rem", fontWeight: 700, color: "#C5A059" }}>{c.key}</p>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.875rem", fontWeight: 700, color: "#d4900a" }}>{c.key}</p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "rgba(255,255,255,0.60)" }}>{c.label}</p>
           </div>
         ))}
@@ -238,13 +238,13 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         data-testid="widget-reach-start"
         onClick={() => setPhase("questions")}
         style={{
-          background: "#C5A059", color: "#002244", border: "none",
+          background: "#d4900a", color: "#0b1628", border: "none",
           fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem",
           letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer",
           padding: "0.875rem 2rem", minHeight: 48, transition: "background 0.2s",
         }}
         onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
       >
         Run the Diagnostic
       </button>
@@ -258,14 +258,14 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       <div style={{ display: "flex", gap: "0.4rem", marginBottom: "1.75rem", alignItems: "center" }}>
         {CATEGORIES.map((c, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
-            <div style={{ width: 7, height: 7, borderRadius: "50%", background: i <= currentCatIdx ? "#C5A059" : "rgba(255,255,255,0.2)", opacity: i === currentCatIdx ? 1 : i < currentCatIdx ? 0.55 : 0.25 }} />
+            <div style={{ width: 7, height: 7, borderRadius: "50%", background: i <= currentCatIdx ? "#d4900a" : "rgba(255,255,255,0.2)", opacity: i === currentCatIdx ? 1 : i < currentCatIdx ? 0.55 : 0.25 }} />
             {i < 4 && <div style={{ width: 18, height: 1, background: "rgba(255,255,255,0.1)" }} />}
           </div>
         ))}
         <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", color: "rgba(255,255,255,0.55)", marginLeft: "0.4rem" }}>{currentCatIdx + 1} of 5</span>
       </div>
 
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.5rem" }}>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
         {CATEGORIES[currentCatIdx].full} — {CATEGORIES[currentCatIdx].key}
       </p>
 
@@ -282,14 +282,14 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
               data-testid={`widget-option-${i}`}
               onClick={() => handleOptionSelect(opt.score, currentQ)}
               style={{
-                background: isSel ? "rgba(197,160,89,0.15)" : "rgba(255,255,255,0.04)",
-                border: `1px solid ${isSel ? "#C5A059" : "rgba(255,255,255,0.12)"}`,
-                color: isSel ? "#C5A059" : "rgba(255,255,255,0.80)",
+                background: isSel ? "rgba(212,144,10,0.15)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${isSel ? "#d4900a" : "rgba(255,255,255,0.12)"}`,
+                color: isSel ? "#d4900a" : "rgba(255,255,255,0.80)",
                 fontFamily: "'Inter', sans-serif", fontSize: "0.98rem",
                 padding: "0.875rem 1.25rem", textAlign: "left", cursor: "pointer",
                 transition: "all 0.15s",
               }}
-              onMouseEnter={(e) => { if (!isSel) { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.borderColor = "rgba(197,160,89,0.4)"; }}}
+              onMouseEnter={(e) => { if (!isSel) { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.borderColor = "rgba(212,144,10,0.4)"; }}}
               onMouseLeave={(e) => { if (!isSel) { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; }}}
             >
               {opt.text}
@@ -306,7 +306,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   // ── INSIGHT ───────────────────────────────────────────
   if (phase === "insight" && insightIdx !== null) return (
     <div style={box}>
-      <div style={{ borderLeft: "2px solid #C5A059", paddingLeft: "1.25rem", maxWidth: 460 }}>
+      <div style={{ borderLeft: "2px solid #d4900a", paddingLeft: "1.25rem", maxWidth: 460 }}>
         <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, fontStyle: "italic" }}>
           {CATEGORY_INSIGHTS[insightIdx]}
         </p>
@@ -317,7 +317,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   // ── OPEN TEXT (Q15) ───────────────────────────────────
   if (phase === "open") return (
     <div style={box}>
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.85)", marginBottom: "1.5rem" }}>
+      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
         OPERATIONAL DISCIPLINE — H
       </p>
       <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#FFFFFF", lineHeight: 1.55, marginBottom: "1.75rem", maxWidth: 520 }}>
@@ -341,13 +341,13 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         data-testid="widget-open-submit"
         onClick={handleOpenSubmit}
         style={{
-          background: "#C5A059", color: "#002244", border: "none",
+          background: "#d4900a", color: "#0b1628", border: "none",
           fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem",
           letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer",
           padding: "0.875rem 2rem", minHeight: 48, transition: "background 0.2s",
         }}
         onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#C5A059")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
       >
         Complete Assessment
       </button>
@@ -364,7 +364,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       <div style={{ textAlign: "left", maxWidth: 240, margin: "0 auto" }}>
         {CATEGORIES.map((c, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.75rem", opacity: analyzedCats > i ? 1 : 0.2, transition: "opacity 0.3s ease" }}>
-            <div style={{ width: 5, height: 5, borderRadius: "50%", background: analyzedCats > i ? "#C5A059" : "rgba(255,255,255,0.2)" }} />
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: analyzedCats > i ? "#d4900a" : "rgba(255,255,255,0.2)" }} />
             <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.80)" }}>{c.label}</span>
           </div>
         ))}
@@ -425,7 +425,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
               data-testid="widget-email-submit"
               type="submit" disabled={loading}
               style={{
-                minHeight: 48, background: "#C5A059", color: "#002244", border: "none",
+                minHeight: 48, background: "#d4900a", color: "#0b1628", border: "none",
                 fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem",
                 letterSpacing: "0.1em", textTransform: "uppercase",
                 cursor: loading ? "wait" : "pointer", opacity: loading ? 0.8 : 1,
@@ -440,7 +440,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         </div>
       ) : (
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.75rem" }}>
-          <div style={{ height: 2, background: "#C5A059", marginBottom: "1.25rem", maxWidth: 420 }} />
+          <div style={{ height: 2, background: "#d4900a", marginBottom: "1.25rem", maxWidth: 420 }} />
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75, marginBottom: "1.5rem", maxWidth: 460 }}>
             {cfg.sub}
           </p>
@@ -448,7 +448,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
             to={cfg.ctaHref}
             data-testid="widget-result-cta"
             style={{
-              display: "inline-block", minHeight: 48, background: "#C5A059", color: "#002244",
+              display: "inline-block", minHeight: 48, background: "#d4900a", color: "#0b1628",
               fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem",
               letterSpacing: "0.1em", textTransform: "uppercase",
               textDecoration: "none", padding: "0.875rem 2rem",

@@ -4,8 +4,8 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { Reflector } from "three/addons/objects/Reflector.js";
 
 // ── Brand constants ─────────────────────────────────────────────────────────
-const NAVY   = "#002244";
-const GOLD   = "#C5A059";
+const NAVY   = "#0b1628";
+const GOLD   = "#d4900a";
 const SPINE  = "#000c1c";
 const CREAM  = "#ede8dc";
 
@@ -151,7 +151,7 @@ function createCoverTexture(product) {
   ctx.fillRect(0, 0, W, H);
 
   // Subtle grid pattern
-  ctx.strokeStyle = "rgba(197,160,89,0.04)";
+  ctx.strokeStyle = "rgba(212,144,10,0.04)";
   ctx.lineWidth = 1;
   for (let x = 0; x < W; x += 80) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
   for (let y = 0; y < H; y += 80) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
@@ -160,7 +160,7 @@ function createCoverTexture(product) {
   const topGrad = ctx.createLinearGradient(0, 0, W, 0);
   topGrad.addColorStop(0, "#A8883A");
   topGrad.addColorStop(0.35, "#D4B87A");
-  topGrad.addColorStop(0.65, "#C5A059");
+  topGrad.addColorStop(0.65, "#d4900a");
   topGrad.addColorStop(1, "#A8883A");
   ctx.fillStyle = topGrad;
   ctx.fillRect(0, 0, W, 90);   // 90px — prominent at render size
@@ -169,7 +169,7 @@ function createCoverTexture(product) {
   ctx.fillRect(0, H - 90, W, 90);
 
   // Thin inner rule (separation line below top band)
-  ctx.fillStyle = "rgba(197,160,89,0.35)";
+  ctx.fillStyle = "rgba(212,144,10,0.35)";
   ctx.fillRect(0, 205, W, 2);
 
   // System label
@@ -178,7 +178,7 @@ function createCoverTexture(product) {
   ctx.fillText(`PACKET ${product.packetNum}  \u00B7  ${product.domainLabel}`, 80, 150);
 
   // Large faint LP watermark — very subtle
-  ctx.fillStyle = "rgba(197,160,89,0.025)";
+  ctx.fillStyle = "rgba(212,144,10,0.025)";
   ctx.font = 'bold 500px Georgia, "Times New Roman", serif';
   ctx.fillText("LP", 1350, 1250);
 
@@ -198,12 +198,12 @@ function createCoverTexture(product) {
   ctx.fillText(product.outcomeLine, 80, 1010);
 
   // Decorative gold rule
-  ctx.strokeStyle = "rgba(197,160,89,0.25)";
+  ctx.strokeStyle = "rgba(212,144,10,0.25)";
   ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(80, 1100); ctx.lineTo(1968, 1100); ctx.stroke();
 
   // Brand line
-  ctx.fillStyle = "rgba(197,160,89,0.55)";
+  ctx.fillStyle = "rgba(212,144,10,0.55)";
   ctx.font = 'bold 34px "Courier New", Courier, monospace';
   ctx.fillText("LAUNCHPATHEDU.COM", 80, 1260);
 
@@ -243,7 +243,7 @@ function createSpineTexture(spineLabel) {
   ctx.save();
   ctx.translate(W / 2, H - 60);
   ctx.rotate(-Math.PI / 2);
-  ctx.fillStyle = "rgba(197,160,89,0.55)";
+  ctx.fillStyle = "rgba(212,144,10,0.55)";
   ctx.font = '20px "Courier New", Courier, monospace';
   ctx.textAlign = "center";
   ctx.fillText("LaunchPath", 0, 0);
@@ -297,12 +297,12 @@ function createBackCoverTexture() {
   ctx.fillRect(0, 0, W, 14);
   ctx.fillRect(0, H - 14, W, 14);
 
-  ctx.fillStyle = "rgba(197,160,89,0.08)";
+  ctx.fillStyle = "rgba(212,144,10,0.08)";
   ctx.font = 'bold 320px Georgia, "Times New Roman", serif';
   ctx.textAlign = "center";
   ctx.fillText("LP", W / 2, H / 2 + 90);
 
-  ctx.fillStyle = "rgba(197,160,89,0.65)";
+  ctx.fillStyle = "rgba(212,144,10,0.65)";
   ctx.font = 'bold 44px "Courier New", Courier, monospace';
   ctx.textAlign = "center";
   ctx.fillText("LAUNCHPATH TRANSPORTATION EDU", W / 2, H - 90);
@@ -421,11 +421,11 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     for (let i = 0; i < 18000; i++) {
       const x = Math.random() * 512, y = Math.random() * 512;
       const a = Math.random() * 0.06;
-      gctx.fillStyle = `rgba(197,160,89,${a})`;
+      gctx.fillStyle = `rgba(212,144,10,${a})`;
       gctx.fillRect(x, y, 1, 1);
     }
     // Subtle LP watermark on floor
-    gctx.fillStyle = "rgba(197,160,89,0.04)";
+    gctx.fillStyle = "rgba(212,144,10,0.04)";
     gctx.font = 'bold 140px Georgia, serif';
     gctx.textAlign = "center";
     gctx.fillText("LP", 256, 300);
@@ -625,7 +625,7 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
             style={{
               fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
               fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-              background: "#C5A059", color: "#002244", border: "none",
+              background: "#d4900a", color: "#0b1628", border: "none",
               padding: "0.75rem 1.5rem", cursor: "pointer", borderRadius: "3px",
             }}
           >
@@ -636,8 +636,8 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
             style={{
               fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
               fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-              background: "transparent", color: "#C5A059",
-              border: "1px solid rgba(197,160,89,0.5)",
+              background: "transparent", color: "#d4900a",
+              border: "1px solid rgba(212,144,10,0.5)",
               padding: "0.75rem 1.5rem", cursor: "pointer", borderRadius: "3px",
             }}
           >
@@ -652,11 +652,11 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
 // ── Right Panel HTML overlay ───────────────────────────────────────────────
 export function BookInfoPanel({ productId }) {
   const product = BOOK_PRODUCTS.find(p => p.id === productId) || BOOK_PRODUCTS[0];
-  const gold = "#C5A059";
+  const gold = "#d4900a";
   return (
     <div style={{
       background: "#001428",
-      border: "1px solid rgba(197,160,89,0.2)",
+      border: "1px solid rgba(212,144,10,0.2)",
       borderTop: `3px solid ${gold}`,
       padding: "1.75rem",
       fontFamily: "'Inter', sans-serif",

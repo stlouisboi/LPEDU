@@ -110,7 +110,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
       style={{
         width: "100%",
         height: "100%",
-        background: "#000D1A",
+        background: "#080f1e",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -119,7 +119,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
         padding: "2rem",
       }}
     >
-      <PlayCircle size={56} color="rgba(197,160,89,0.22)" weight="thin" />
+      <PlayCircle size={56} color="rgba(212,144,10,0.22)" weight="thin" />
       <div style={{ textAlign: "center" }}>
         <p
           style={{
@@ -127,7 +127,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
             fontSize: "0.504rem",
             fontWeight: 700,
             letterSpacing: "0.22em",
-            color: "rgba(197,160,89,0.5)",
+            color: "rgba(212,144,10,0.5)",
             textTransform: "uppercase",
             marginBottom: "0.625rem",
           }}
@@ -180,7 +180,7 @@ export function VideoLessonWorkbench({ moduleData }) {
           fontWeight: 700,
           letterSpacing: "0.16em",
           textTransform: "uppercase",
-          color: "#C5A059",
+          color: "#d4900a",
           marginBottom: "1.25rem",
         }}
       >
@@ -247,7 +247,7 @@ export function VideoLessonWorkbench({ moduleData }) {
               position: "relative",
               width: "100%",
               paddingTop: "56.25%",
-              background: "#000D1A",
+              background: "#080f1e",
               marginBottom: "1.75rem",
               border: "1px solid rgba(255,255,255,0.06)",
             }}
@@ -272,7 +272,7 @@ export function VideoLessonWorkbench({ moduleData }) {
           {/* Lesson Info */}
           <div
             style={{
-              borderLeft: "3px solid #C5A059",
+              borderLeft: "3px solid #d4900a",
               paddingLeft: "1.25rem",
               marginBottom: "1.75rem",
             }}
@@ -283,7 +283,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                 fontSize: "0.56rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
-                color: "rgba(197,160,89,0.72)",
+                color: "rgba(212,144,10,0.72)",
                 textTransform: "uppercase",
                 marginBottom: "0.4rem",
               }}
@@ -360,19 +360,19 @@ export function VideoLessonWorkbench({ moduleData }) {
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.896rem",
-                      color: "#C5A059",
+                      color: "#d4900a",
                       textDecoration: "none",
                       padding: "0.75rem 1rem",
-                      background: "rgba(197,160,89,0.05)",
-                      border: "1px solid rgba(197,160,89,0.16)",
+                      background: "rgba(212,144,10,0.05)",
+                      border: "1px solid rgba(212,144,10,0.16)",
                       transition: "background 0.15s",
                       maxWidth: 460,
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.background = "rgba(197,160,89,0.11)")
+                      (e.currentTarget.style.background = "rgba(212,144,10,0.11)")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.background = "rgba(197,160,89,0.05)")
+                      (e.currentTarget.style.background = "rgba(212,144,10,0.05)")
                     }
                   >
                     <FileText size={14} weight="bold" style={{ flexShrink: 0 }} />
@@ -421,10 +421,10 @@ export function VideoLessonWorkbench({ moduleData }) {
                 onClick={() => setActiveIdx(idx)}
                 style={{
                   width: "100%",
-                  background: isActive ? "rgba(197,160,89,0.07)" : "none",
+                  background: isActive ? "rgba(212,144,10,0.07)" : "none",
                   border: "none",
                   borderLeft: isActive
-                    ? "2px solid #C5A059"
+                    ? "2px solid #d4900a"
                     : "2px solid rgba(255,255,255,0.05)",
                   cursor: "pointer",
                   padding: "0.75rem 0.875rem",
@@ -454,7 +454,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                       fontFamily: mono,
                       fontSize: "0.504rem",
                       fontWeight: 700,
-                      color: isActive ? "#C5A059" : "rgba(255,255,255,0.28)",
+                      color: isActive ? "#d4900a" : "rgba(255,255,255,0.28)",
                       letterSpacing: "0.1em",
                     }}
                   >
