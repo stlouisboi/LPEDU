@@ -16,6 +16,7 @@ import RecoveryPathBlock from "../components/RecoveryPathBlock";
 import ComplianceMapTeaser from "../components/ComplianceMapTeaser";
 import VinceCTASection from "../components/VinceCTASection";
 import WhatGetsInstalledSection from "../components/WhatGetsInstalledSection";
+import FinalCTASection from "../components/FinalCTASection";
 import FooterSection from "../components/FooterSection";
 import { DoctrineStack } from "../components/DoctrineStack";
 
@@ -82,6 +83,7 @@ export default function HomePage() {
         <RecoveryPathBlock />
         <ComplianceMapTeaser />
         <VinceCTASection />
+        <FinalCTASection />
       </main>
       <FooterSection />
     </div>
