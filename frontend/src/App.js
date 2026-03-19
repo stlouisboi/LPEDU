@@ -16,6 +16,7 @@ import DrugAlcoholBrief from "./pages/knowledge-center/DrugAlcoholBrief";
 import UCRRegistrationBrief from "./pages/knowledge-center/UCRRegistrationBrief";
 import AllChecklists from "./pages/knowledge-center/AllChecklists";
 import InsuranceSyncPost from "./pages/knowledge-center/InsuranceSyncPost";
+import FailedAuditPost from "./pages/knowledge-center/FailedAuditPost";
 import Ground0Page from "./pages/Ground0Page";
 import Ground0CompletePage from "./pages/Ground0CompletePage";
 import AdmissionPage from "./pages/AdmissionPage";
@@ -120,6 +121,7 @@ function AppRouter() {
       <Route path="/knowledge-center/drug-alcohol-program-brief" element={<DrugAlcoholBrief />} />
       <Route path="/knowledge-center/authority-registrations-brief" element={<UCRRegistrationBrief />} />
       <Route path="/knowledge-center/new-carrier-insurance-authority-sync" element={<InsuranceSyncPost />} />
+      <Route path="/knowledge-center/what-happens-failed-fmcsa-new-entrant-audit" element={<FailedAuditPost />} />
       <Route path="/mockups" element={<BookMockupPage />} />
       <Route path="/ground-0-briefing" element={<Ground0Page />} />
       <Route path="/ground-0-complete" element={<Ground0CompletePage />} />

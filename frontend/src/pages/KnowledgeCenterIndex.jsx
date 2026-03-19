@@ -3,6 +3,15 @@ import FooterSection from "../components/FooterSection";
 
 const POSTS = [
   {
+    slug: "/knowledge-center/what-happens-failed-fmcsa-new-entrant-audit",
+    code: "LP-BRF-POST-01",
+    category: "New Entrant Program",
+    title: "What Actually Happens When You Fail an FMCSA New Entrant Audit",
+    teaser: "The FMCSA New Entrant Audit doesn't result in a pass or fail — it results in a rating. A Conditional rating triggers an insurance cascade, broker relationship damage, and a 45-day correction window most carriers aren't ready for. Here's what actually happens, and how carriers recover.",
+    readTime: "~9 min",
+    cfr: "49 CFR Part 385",
+  },
+  {
     slug: "/knowledge-center/new-carrier-insurance-authority-sync",
     code: "LP-BRF-POST-06",
     category: "Insurance Continuity",
