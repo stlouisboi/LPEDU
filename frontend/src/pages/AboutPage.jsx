@@ -174,7 +174,10 @@ export default function AboutPage() {
 
         </div>
 
-        <style>{`@media (max-width: 900px) { .about-hero-grid { grid-template-columns: 1fr !important; } }`}</style>
+        <style>{`
+          @media (max-width: 900px) { .about-hero-grid { grid-template-columns: 1fr !important; } }
+          @media (max-width: 640px) { .doctrine-grid { grid-template-columns: 1fr !important; } }
+        `}</style>
       </section>
 
       {/* Vince's Statement */}
@@ -263,10 +266,10 @@ export default function AboutPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: "1px",
             background: "var(--border)",
-          }}>
+          }} className="doctrine-grid">
             {DOCTRINE.map((d, i) => (
               <FadeIn key={d.ref} delay={i * 80}>
                 <div style={{
