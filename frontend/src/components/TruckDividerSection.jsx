@@ -1,4 +1,4 @@
-const TRUCK_URL = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/qfvjxi1h_hero-boots-asphalt.png";
+const TRUCK_URL = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/5anp3im9_hero-owner-wheel.png";
 
 export default function TruckDividerSection() {
   return (

@@ -71,7 +71,11 @@ export default function AboutPage() {
       </div>
 
       {/* Hero */}
-      <section style={{ padding: "7rem 1.5rem 5rem", borderBottom: "1px solid var(--border)" }}>
+      <section style={{
+        padding: "7rem 1.5rem 5rem",
+        borderBottom: "1px solid var(--border)",
+        background: `linear-gradient(to right, rgba(8,15,28,0.96) 55%, rgba(8,15,28,0.70) 100%), url("https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/5anp3im9_hero-owner-wheel.png") center 30%/cover no-repeat`,
+      }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 380px", gap: "6rem", alignItems: "center" }} className="about-hero-grid">
 
           <div>
