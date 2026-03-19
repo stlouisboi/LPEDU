@@ -1,3 +1,5 @@
+import { useState, useMemo } from "react";
+
 const FOR_YOU = [
   "You received your MC number in the last 90 days and haven't built your compliance files",
   "You are pre-authority and want the system installed before Day 1",
@@ -13,6 +15,20 @@ const NOT_FOR_YOU = [
 ];
 
 export default function OperatorQualifierSection() {
+  const [authorityDate, setAuthorityDate] = useState("");
+
+  const windowData = useMemo(() => {
+    if (!authorityDate) return null;
+    const issued = new Date(authorityDate);
+    const today = new Date();
+    const days = Math.max(0, Math.floor((today - issued) / (1000 * 60 * 60 * 24)));
+    const pct = Math.min(100, Math.round((days / 90) * 100));
+    if (days <= 30) return { days, pct, label: "EARLY WINDOW", color: "#d4900a", msg: "System installation is recommended within the first 30 days." };
+    if (days <= 60) return { days, pct, label: "ACTIVE WINDOW", color: "#d4900a", msg: "You are in the critical compliance installation phase." };
+    if (days <= 89) return { days, pct, label: "CLOSING WINDOW", color: "#c45c00", msg: `${90 - days} days remaining before the 90-day threshold.` };
+    return { days, pct, label: "THRESHOLD REACHED", color: "#8b2f2f", msg: "Month 3 exposure is active. Immediate action recommended." };
+  }, [authorityDate]);
+
   return (
     <>
       <style>{`
@@ -36,6 +52,7 @@ export default function OperatorQualifierSection() {
         }}
       >
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+
           {/* System code label */}
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -52,7 +69,7 @@ export default function OperatorQualifierSection() {
           {/* Two-column card grid */}
           <div className="qualifier-grid">
 
-            {/* Left card — FOR YOU */}
+            {/* ── Left card — FOR YOU ── */}
             <div style={{
               background: "#0c1420",
               borderLeft: "4px solid #d4900a",
@@ -69,6 +86,8 @@ export default function OperatorQualifierSection() {
               }}>
                 THIS IS FOR YOU IF:
               </p>
+
+              {/* Checklist items */}
               <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                 {FOR_YOU.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
@@ -90,9 +109,133 @@ export default function OperatorQualifierSection() {
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* Right card — NOT FOR YOU */}
+              {/* ── Authority Window Clock ── */}
+              <div style={{
+                marginTop: "1.75rem",
+                paddingTop: "1.5rem",
+                borderTop: "1px solid rgba(212,144,10,0.18)",
+              }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.60rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "rgba(212,144,10,0.45)",
+                  marginBottom: "0.875rem",
+                }}>
+                  LP-WIN-001 — AUTHORITY WINDOW STATUS
+                </p>
+
+                {/* Date input */}
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
+                  <label style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.80rem",
+                    color: "rgba(255,255,255,0.50)",
+                    whiteSpace: "nowrap",
+                  }}>
+                    MC issue date:
+                  </label>
+                  <input
+                    data-testid="authority-date-input"
+                    type="date"
+                    value={authorityDate}
+                    onChange={(e) => setAuthorityDate(e.target.value)}
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(212,144,10,0.22)",
+                      color: "rgba(255,255,255,0.75)",
+                      padding: "0.375rem 0.625rem",
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.80rem",
+                      outline: "none",
+                      cursor: "pointer",
+                      colorScheme: "dark",
+                    }}
+                  />
+                </div>
+
+                {windowData ? (
+                  <div data-testid="window-status-display">
+                    {/* Day counter + status badge */}
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem", marginBottom: "0.625rem", flexWrap: "wrap" }}>
+                      <span style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: "1.75rem",
+                        fontWeight: 700,
+                        color: windowData.color,
+                        lineHeight: 1,
+                      }}>
+                        Day {windowData.days}
+                      </span>
+                      <span style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: "0.80rem",
+                        color: "rgba(255,255,255,0.35)",
+                      }}>
+                        of 90
+                      </span>
+                      <span style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: "0.60rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        color: windowData.color,
+                        border: `1px solid ${windowData.color}`,
+                        padding: "0.15rem 0.5rem",
+                        marginLeft: "0.25rem",
+                      }}>
+                        {windowData.label}
+                      </span>
+                    </div>
+
+                    {/* Progress bar */}
+                    <div style={{
+                      height: 3,
+                      background: "rgba(255,255,255,0.07)",
+                      marginBottom: "0.625rem",
+                      position: "relative",
+                    }}>
+                      <div style={{
+                        position: "absolute",
+                        left: 0, top: 0, bottom: 0,
+                        width: `${windowData.pct}%`,
+                        background: windowData.color,
+                        transition: "width 0.4s ease",
+                      }} />
+                    </div>
+
+                    <p style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.80rem",
+                      color: "rgba(255,255,255,0.52)",
+                      lineHeight: 1.55,
+                      margin: 0,
+                    }}>
+                      {windowData.msg}
+                    </p>
+                  </div>
+                ) : (
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.80rem",
+                    color: "rgba(255,255,255,0.28)",
+                    fontStyle: "italic",
+                    margin: 0,
+                  }}>
+                    Enter your MC issue date to see your window status.
+                  </p>
+                )}
+              </div>
+              {/* ── end Authority Window Clock ── */}
+
+            </div>
+            {/* ── end Left card ── */}
+
+            {/* ── Right card — NOT FOR YOU ── */}
             <div style={{
               background: "#0c1420",
               borderLeft: "4px solid #8b2f2f",
@@ -131,8 +274,10 @@ export default function OperatorQualifierSection() {
                 ))}
               </div>
             </div>
+            {/* ── end Right card ── */}
 
           </div>
+          {/* ── end qualifier-grid ── */}
 
           {/* Below cards — diagnostic link */}
           <p style={{
@@ -160,6 +305,7 @@ export default function OperatorQualifierSection() {
               the REACH Diagnostic will tell you in 4 minutes.
             </a>
           </p>
+
         </div>
       </section>
     </>
