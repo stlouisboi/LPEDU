@@ -147,11 +147,16 @@ export default function HeroSection() {
           </p>
 
           {/* Clarifier box */}
-          <div style={{ borderLeft: "2px solid rgba(212,144,10,0.35)", paddingLeft: 18, marginBottom: 28 }}>
+          <div style={{ borderLeft: "2px solid rgba(212,144,10,0.35)", paddingLeft: 18, marginBottom: 22 }}>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", lineHeight: 1.75, fontStyle: "italic", margin: 0 }}>
               This is not a compliance service. We do not file your paperwork or manage your operation. LaunchPath installs the system you operate on — including the files, programs, and controls required to remain compliant.
             </p>
           </div>
+
+          {/* Buyer identification */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.62)", lineHeight: 1.65, maxWidth: 520, marginBottom: 28 }}>
+            Built for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
+          </p>
 
           {/* CTAs */}
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
