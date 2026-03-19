@@ -224,6 +224,17 @@ export default function ComplianceLibraryPage() {
       {/* ══ 5. $2,500 GUIDED STANDARD ═════════════════════════════ */}
       <div style={{ background: BG2, borderTop: `1px solid rgba(212,144,10,0.20)`, borderBottom: `1px solid rgba(212,144,10,0.20)`, padding: "5rem 1.5rem" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+
+          {/* Price-anchoring quote */}
+          <div style={{ borderLeft: `3px solid rgba(212,144,10,0.40)`, paddingLeft: "1.5rem", marginBottom: "3rem", maxWidth: 560 }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "rgba(255,255,255,0.80)", fontStyle: "italic", lineHeight: 1.6, marginBottom: "0.5rem" }}>
+              "If this feels expensive, you are likely not ready. If it feels reasonable, you are already thinking like an operator."
+            </p>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", color: "rgba(212,144,10,0.60)", letterSpacing: "0.08em", margin: 0 }}>
+              — Vince Lawrence, Station Custodian
+            </p>
+          </div>
+
           <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.5rem" }}>
             LP-STD-001 | TIER 3 — THE GUIDED IMPLEMENTATION
           </p>

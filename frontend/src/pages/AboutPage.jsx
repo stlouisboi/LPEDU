@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
-import { ArrowRight } from "@phosphor-icons/react";
 
 const DOCTRINE = [
   {
@@ -158,6 +157,19 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+
+            {/* Credential context line */}
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.72rem",
+              fontStyle: "italic",
+              color: "rgba(255,255,255,0.38)",
+              lineHeight: 1.65,
+              marginTop: "0.875rem",
+              paddingLeft: "2px",
+            }}>
+              "OSHA and FMCSA operate from the same foundation — industries that won't self-regulate require documented systems and audit consequence. That is the credential."
+            </p>
           </div>
 
         </div>
@@ -226,51 +238,6 @@ export default function AboutPage() {
             </blockquote>
           </FadeIn>
         </div>
-      </section>
-
-      {/* Outcome stat block */}
-      <section style={{ padding: "0 1.5rem", borderBottom: "1px solid var(--border)" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <div style={{
-            display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-            background: "rgba(0,10,22,0.70)",
-            border: "0.5px solid rgba(212,144,10,0.20)",
-            overflow: "hidden",
-          }} className="about-stat-grid">
-            {[
-              { val: "90 Days", label: "Installation Window Before Audit Exposure" },
-              { val: "Months 9–18", label: "New Entrant Audit Window" },
-              { val: "30 Days", label: "Window to Cure a Conditional Rating" },
-            ].map((stat, i) => (
-              <div key={i} style={{
-                padding: "2rem 1.75rem",
-                borderRight: i < 2 ? "0.5px solid rgba(212,144,10,0.14)" : "none",
-                position: "relative",
-              }}>
-                <div style={{
-                  position: "absolute", top: 0, left: 0, right: 0, height: 2,
-                  background: i === 0
-                    ? "linear-gradient(90deg, #d4900a, rgba(212,144,10,0.2))"
-                    : i === 1
-                    ? "linear-gradient(90deg, rgba(212,144,10,0.4), rgba(212,144,10,0.1))"
-                    : "linear-gradient(90deg, rgba(212,144,10,0.2), transparent)",
-                }} />
-                <p style={{
-                  fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
-                  fontSize: "1.75rem", color: "#d4900a", margin: "0 0 0.4rem",
-                  lineHeight: 1, letterSpacing: "-0.02em",
-                  textShadow: "0 0 20px rgba(212,144,10,0.25)",
-                }}>{stat.val}</p>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "0.76rem",
-                  fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.65)", lineHeight: 1.4, margin: 0,
-                }}>{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <style>{`@media (max-width: 640px) { .about-stat-grid { grid-template-columns: 1fr !important; } .about-stat-grid > div { border-right: none !important; border-bottom: 0.5px solid rgba(212,144,10,0.14) !important; } .about-stat-grid > div:last-child { border-bottom: none !important; } }`}</style>
       </section>
 
       {/* Operational Doctrine */}
@@ -386,7 +353,7 @@ export default function AboutPage() {
                 color: "var(--text)", lineHeight: 1.65, fontStyle: "italic",
                 marginBottom: "1rem",
               }}>
-                "I didn't know what I didn't know. The system showed me exactly what was missing before the audit window opened."
+                "I had been running 60 days before I realized I had no written D&A policy and my driver files were missing three required documents. Ground 0 caught it before the audit did."
               </p>
               <footer style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.08em" }}>
                 — New Entrant Carrier · Owner-Operator · Southeast Region
@@ -396,61 +363,50 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Closing quote + CTA */}
+      {/* Closing CTA */}
       <section style={{ padding: "7rem 1.5rem" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
-            <blockquote style={{ marginBottom: "3rem" }}>
-              <p style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 600,
-                fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
-                color: "var(--text)",
-                lineHeight: 1.6,
-                fontStyle: "italic",
-                marginBottom: "1rem",
-              }}>
-                "If this feels expensive, you are likely not ready.<br />
-                If it feels reasonable, you are already thinking like an operator."
-              </p>
-              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", color: "var(--text-subtle)" }}>
-                — Vince Lawrence
-              </footer>
-            </blockquote>
-
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-subtle)", lineHeight: 1.7, marginBottom: "2.5rem" }}>
-              Not all applicants are accepted. Some are advised to wait. Others are advised not to proceed at all.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.82, marginBottom: "2.75rem", maxWidth: 560, margin: "0 auto 2.75rem" }}>
+              Not all applicants are accepted. Admission is based on operational readiness — not urgency, not ability to pay. If you are in your first 90 days and you are serious about building the system before FMCSA arrives, this is where it starts.
             </p>
 
             <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
-              <a href="https://www.launchpathedu.com/reach-diagnostic" target="_blank" rel="noopener noreferrer"
-                data-testid="about-admission-cta"
+              <Link
+                to="/ground-0-briefing"
+                data-testid="about-ground0-cta"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: "0.6rem",
-                  background: "var(--orange)", color: "#fff",
+                  display: "inline-flex", alignItems: "center",
+                  background: "#d4900a", color: "#060d19",
                   fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                  fontSize: "0.98rem", letterSpacing: "0.06em", textTransform: "uppercase",
-                  padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s",
+                  fontSize: "0.9rem", letterSpacing: "0.09em", textTransform: "uppercase",
+                  padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s",
+                  whiteSpace: "nowrap",
                 }}
-                onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
-                onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
+                onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+                onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
               >
-                Begin the REACH Diagnostic — Free <ArrowRight size={15} weight="bold" />
-              </a>
-              <Link to="/contact"
-                data-testid="about-contact-link"
+                INITIATE GROUND 0 →
+              </Link>
+              <a
+                href="https://www.launchpathedu.com/reach-diagnostic"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="about-reach-cta"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                  border: "1px solid var(--border)", color: "var(--text-muted)",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 600,
-                  fontSize: "0.98rem", letterSpacing: "0.05em", textTransform: "uppercase",
-                  padding: "1rem 2rem", textDecoration: "none", transition: "all 0.2s",
+                  display: "inline-flex", alignItems: "center",
+                  background: "transparent", color: "var(--text-muted)",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                  fontSize: "0.9rem", letterSpacing: "0.09em", textTransform: "uppercase",
+                  padding: "1rem 2.25rem", textDecoration: "none",
+                  border: "1px solid var(--border)", transition: "all 0.2s",
+                  whiteSpace: "nowrap",
                 }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)"; e.currentTarget.style.color = "var(--text)"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-muted)"; }}
               >
-                Contact Us
-              </Link>
+                RUN THE REACH DIAGNOSTIC →
+              </a>
             </div>
           </FadeIn>
         </div>
