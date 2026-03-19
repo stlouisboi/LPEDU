@@ -343,7 +343,6 @@ function BookRenderer({ product }) {
 
       // Book geometry
       const bookW = 1.0, bookH = 1.40;
-      const geo = new THREE.BoxGeometry(bookW, bookH, product.depth);
 
       // Build canvas textures
       const frontCanvas = drawFrontCover(product, logoImg);
@@ -366,11 +365,46 @@ function BookRenderer({ product }) {
         new THREE.MeshStandardMaterial({ map: toTex(backCanvas), roughness: 0.85 }),  // -z back
       ];
 
-      const book = new THREE.Mesh(geo, mats);
-      book.rotation.y = -0.38;
-      book.rotation.x = 0.04;
-      book.castShadow = true;
-      scene.add(book);
+      // Mesh creation — bundle gets a fanned stack of 4 thin packets
+      const allGeos = [];
+      if (product.isBundle) {
+        const packetDepth = 0.07;
+        // Simple dark material for the 3 back packets
+        const backMat = [
+          new THREE.MeshStandardMaterial({ color: 0x001020, roughness: 0.92 }),
+          new THREE.MeshStandardMaterial({ color: 0x001020, roughness: 0.92 }),
+          new THREE.MeshStandardMaterial({ color: 0xd8d2c8, roughness: 0.95 }),
+          new THREE.MeshStandardMaterial({ color: 0xd8d2c8, roughness: 0.95 }),
+          new THREE.MeshStandardMaterial({ color: 0x001428, roughness: 0.88 }),
+          new THREE.MeshStandardMaterial({ color: 0x000d22, roughness: 0.88 }),
+        ];
+        // Fan from back-right to front — 4 packets
+        const fanConfig = [
+          { rotY:  0.54, posX:  0.22, posY: -0.08, posZ: -0.18 },
+          { rotY:  0.22, posX:  0.10, posY: -0.03, posZ: -0.08 },
+          { rotY: -0.08, posX: -0.02, posY:  0.01, posZ:  0.02 },
+          { rotY: -0.38, posX: -0.14, posY:  0.05, posZ:  0.12 }, // front — cover texture
+        ];
+        fanConfig.forEach((cfg, i) => {
+          const pGeo = new THREE.BoxGeometry(bookW, bookH, packetDepth);
+          allGeos.push(pGeo);
+          const isFront = i === fanConfig.length - 1;
+          const mesh = new THREE.Mesh(pGeo, isFront ? mats : backMat);
+          mesh.rotation.y = cfg.rotY;
+          mesh.rotation.x = 0.04;
+          mesh.position.set(cfg.posX, cfg.posY, cfg.posZ);
+          mesh.castShadow = true;
+          scene.add(mesh);
+        });
+      } else {
+        const geo = new THREE.BoxGeometry(bookW, bookH, product.depth);
+        allGeos.push(geo);
+        const book = new THREE.Mesh(geo, mats);
+        book.rotation.y = -0.38;
+        book.rotation.x = 0.04;
+        book.castShadow = true;
+        scene.add(book);
+      }
 
       // Shadow floor
       const floor = new THREE.Mesh(
@@ -406,7 +440,7 @@ function BookRenderer({ product }) {
       return () => {
         cancelAnimationFrame(rafId);
         controls.dispose();
-        geo.dispose();
+        allGeos.forEach((g) => g.dispose());
         mats.forEach((m) => { if (m.map) m.map.dispose(); m.dispose(); });
         renderer.dispose();
         if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);

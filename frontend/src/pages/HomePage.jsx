@@ -20,12 +20,15 @@ import FinalCTASection from "../components/FinalCTASection";
 import FooterSection from "../components/FooterSection";
 import { DoctrineStack } from "../components/DoctrineStack";
 
+import OperatorQualifierSection from "../components/OperatorQualifierSection";
+
 export default function HomePage() {
   return (
     <div style={{ background: "var(--bg-onyx)", minHeight: "100vh" }}>
       <Navbar />
       <main>
         <HeroSection />
+        <OperatorQualifierSection />
         <WhatGetsInstalledSection />
 
         {/* Transition line */}
