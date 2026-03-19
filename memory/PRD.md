@@ -323,4 +323,4 @@ All 8 articles published at `/knowledge-center/*` with full 1,200–1,500 word c
 - [ ] Scaffold Portal Modules 2–9
 - [ ] Refactor server.py monolith into APIRouter modules
 - [ ] Build Admin Module Editor for the coach
-- [ ] Fix GitHub Actions deployment workflow (blocked on user adding VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID secrets)
+- [x] Fix GitHub Actions deployment workflow — working-directory set to frontend/, environment block removed so repo-level secrets work, secrets passed per-step via env: block (Mar 2026)
