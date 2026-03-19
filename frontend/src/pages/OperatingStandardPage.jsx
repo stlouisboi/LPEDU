@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
+import AuthorityClockSection from "../components/AuthorityClockSection";
 
 const PILLARS = [
   {
@@ -279,6 +280,9 @@ export default function OperatingStandardPage() {
           </div>
         </div>
       </div>
+
+      {/* ── 90-DAY AUTHORITY CLOCK ────────────────────── */}
+      <AuthorityClockSection />
 
       {/* ── SECTION 5: 90-DAY INSTALLATION SEQUENCE ──── */}
       <div style={{ ...sectionWrap, ...divider }}>
