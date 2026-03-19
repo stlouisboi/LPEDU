@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import ArticlePortalBanner from "../../components/ArticlePortalBanner";
+import BriefBundleCTA from "../../components/BriefBundleCTA";
+import useSEO from "../../hooks/useSEO";
 
 const CHECKLIST_STEPS = [
   {
@@ -202,6 +204,10 @@ function Callout({ label, children }) {
 }
 
 export default function MaintenanceRecordsBrief() {
+  useSEO({
+    title: "Vehicle Maintenance Records Brief | LaunchPath Operational Library",
+    description: "Vehicle maintenance recordkeeping under 49 CFR Part 396. Pre-trip inspection documentation, repair records, and the audit trail FMCSA investigators review during New Entrant audits.",
+  });
   const handlePrint = () => window.print();
 
   return (
@@ -742,6 +748,7 @@ export default function MaintenanceRecordsBrief() {
         </div>
       </div>
 
+      <BriefBundleCTA />
       <FooterSection />
 
       <style>{`

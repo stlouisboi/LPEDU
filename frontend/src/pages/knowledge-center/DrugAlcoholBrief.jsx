@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import ArticlePortalBanner from "../../components/ArticlePortalBanner";
+import BriefBundleCTA from "../../components/BriefBundleCTA";
+import useSEO from "../../hooks/useSEO";
 
 const FAILURE_PATTERNS = [
   {
@@ -180,6 +182,10 @@ const DEFINITIONS = [
 ];
 
 export default function DrugAlcoholBrief() {
+  useSEO({
+    title: "Drug & Alcohol Program Brief | LaunchPath Operational Library",
+    description: "FMCSA drug and alcohol program requirements for motor carriers under 49 CFR Part 382. Clearinghouse registration, pre-employment query requirements, and TPA enrollment explained.",
+  });
   const handlePrint = () => window.print();
 
   return (
@@ -525,6 +531,7 @@ export default function DrugAlcoholBrief() {
         </div>
       </div>
 
+      <BriefBundleCTA />
       <FooterSection />
 
       <style>{`

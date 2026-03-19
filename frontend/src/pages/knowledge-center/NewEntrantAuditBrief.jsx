@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import ArticlePortalBanner from "../../components/ArticlePortalBanner";
+import BriefBundleCTA from "../../components/BriefBundleCTA";
+import useSEO from "../../hooks/useSEO";
 
 const AUTO_FAIL_TABLE = [
   {
@@ -255,6 +257,10 @@ function CheckList({ items }) {
 }
 
 export default function NewEntrantAuditBrief() {
+  useSEO({
+    title: "New Entrant Safety Audit Brief | LaunchPath Operational Library",
+    description: "What FMCSA investigators look for in a New Entrant Safety Audit. Covers all six audit categories, documentation requirements, and what new carriers must have in place before the review window.",
+  });
   const handlePrint = () => window.print();
 
   return (
@@ -1060,6 +1066,7 @@ export default function NewEntrantAuditBrief() {
         </div>
       </div>
 
+      <BriefBundleCTA />
       <FooterSection />
 
       <style>{`

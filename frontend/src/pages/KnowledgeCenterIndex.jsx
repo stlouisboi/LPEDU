@@ -1,6 +1,18 @@
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
+const POSTS = [
+  {
+    slug: "/knowledge-center/new-carrier-insurance-authority-sync",
+    code: "LP-BRF-POST-06",
+    category: "Insurance Continuity",
+    title: "The Insurance Sync Problem: Why New Carriers Lose Authority Before They Ever Run a Load",
+    teaser: "Insurance isn't a one-time purchase — it's a continuous filing that can lapse at any point, and when it lapses, authority suspension follows automatically. This article explains the BMC-91 filing mechanics, the lapse trigger, and the operational decisions that put coverage at risk.",
+    readTime: "~8 min",
+    cfr: "49 CFR Part 387",
+  },
+];
+
 const BRIEFS = [
   {
     slug: "/knowledge-center/new-entrant-safety-audit-brief",
@@ -191,6 +203,44 @@ export default function KnowledgeCenterIndex() {
           }}>
             Found this useful? Forward it to your compliance contact.
           </p>
+        </div>
+      </section>
+
+      {/* ── PUBLISHED ARTICLES ── */}
+      <section style={{ padding: "0 1.5rem 4rem" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700,
+            letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
+            marginBottom: "1.5rem", paddingBottom: "1rem",
+            borderBottom: "1px solid rgba(212,144,10,0.15)",
+          }}>Published Articles</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+            {POSTS.map((post, i) => (
+              <a key={i} href={post.slug} style={{ display: "block", textDecoration: "none",
+                background: "#080f1e", padding: "1.5rem 2rem",
+                borderLeft: "3px solid #d4900a", transition: "background 0.2s",
+              }}
+                onMouseEnter={e => e.currentTarget.style.background = "#0d1a2f"}
+                onMouseLeave={e => e.currentTarget.style.background = "#080f1e"}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
+                      <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>{post.code}</span>
+                      <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{post.category}</span>
+                    </div>
+                    <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.15rem", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.65 }}>{post.teaser}</p>
+                  </div>
+                  <div style={{ flexShrink: 0, textAlign: "right" }}>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: "0.3rem" }}>{post.readTime}</p>
+                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)" }}>{post.cfr}</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

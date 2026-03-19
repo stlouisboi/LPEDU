@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import ArticlePortalBanner from "../../components/ArticlePortalBanner";
+import BriefBundleCTA from "../../components/BriefBundleCTA";
+import useSEO from "../../hooks/useSEO";
 
 const RISK_PATTERNS = [
   {
@@ -192,6 +194,10 @@ function BulletList({ items }) {
 }
 
 export default function InsuranceContinuityBrief() {
+  useSEO({
+    title: "Insurance Continuity Brief | LaunchPath Operational Library",
+    description: "BMC-91 filing requirements, FMCSA coverage minimums, and the insurance lapse trigger that automatically suspends operating authority. What every new motor carrier must maintain continuously.",
+  });
   const handlePrint = () => window.print();
 
   return (
@@ -567,6 +573,7 @@ export default function InsuranceContinuityBrief() {
         </div>
       </div>
 
+      <BriefBundleCTA />
       <FooterSection />
 
       <style>{`

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import ArticlePortalBanner from "../../components/ArticlePortalBanner";
+import BriefBundleCTA from "../../components/BriefBundleCTA";
+import useSEO from "../../hooks/useSEO";
 
 const FAILURE_PATTERNS = [
   {
@@ -148,6 +150,10 @@ function BulletList({ items }) {
 }
 
 export default function UCRRegistrationBrief() {
+  useSEO({
+    title: "UCR Registration Brief | LaunchPath Operational Library",
+    description: "Unified Carrier Registration requirements for new motor carriers. Who must register, fee structure by fleet size, annual renewal cycle, and consequences of a UCR lapse.",
+  });
   const handlePrint = () => window.print();
 
   return (
@@ -465,6 +471,7 @@ export default function UCRRegistrationBrief() {
         </div>
       </div>
 
+      <BriefBundleCTA />
       <FooterSection />
 
       <style>{`

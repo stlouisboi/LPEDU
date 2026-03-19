@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import ArticlePortalBanner from "../../components/ArticlePortalBanner";
+import BriefBundleCTA from "../../components/BriefBundleCTA";
+import useSEO from "../../hooks/useSEO";
 
 const LOG_RISK_PATTERNS = [
   {
@@ -223,6 +225,10 @@ function Callout({ label, children }) {
 }
 
 export default function HOSComplianceBrief() {
+  useSEO({
+    title: "Hours of Service Compliance Brief | LaunchPath Operational Library",
+    description: "Hours of service requirements for new motor carriers under 49 CFR Part 395. ELD applicability, exemptions, short-haul rules, and the recordkeeping discipline that prevents violations.",
+  });
   const handlePrint = () => window.print();
 
   return (
@@ -994,6 +1000,7 @@ export default function HOSComplianceBrief() {
         </div>
       </div>
 
+      <BriefBundleCTA />
       <FooterSection />
 
       <style>{`
