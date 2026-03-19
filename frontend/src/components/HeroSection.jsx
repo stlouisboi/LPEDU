@@ -11,9 +11,10 @@ const DOMAINS = [
 ];
 
 const PROOF = [
-  { target: 90, suffix: "", label: "Days", sublabel: "Guided implementation" },
-  { target: 6,  suffix: "", label: "Domains", sublabel: "Operational coverage" },
-  { target: 5,  suffix: "", label: "Checkpoints", sublabel: "Structured submission reviews" },
+  { target: 90, prefix: "",  suffix: "",  label: "Days to Install It" },
+  { target: 30, prefix: "",  suffix: "+", label: "Forms & Templates" },
+  { target: 0,  prefix: "$", suffix: "",  label: "Revenue Day 1 of Revocation" },
+  { target: 16, prefix: "",  suffix: "",  label: "Documented Failure Patterns" },
 ];
 
 function useCountUp(target, duration, triggered) {
@@ -39,7 +40,7 @@ function ProofCard({ item, triggered, delay }) {
   return (
     <div style={{
       flex: 1,
-      padding: "20px 20px 18px",
+      padding: "20px 16px 18px",
       borderRight: "0.5px solid rgba(212,144,10,0.14)",
       position: "relative",
       overflow: "hidden",
@@ -47,37 +48,31 @@ function ProofCard({ item, triggered, delay }) {
       transform: triggered ? "translateY(0)" : "translateY(8px)",
       transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
     }}>
-      {/* Top accent line */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 2,
         background: "linear-gradient(90deg, #d4900a, rgba(212,144,10,0.2))",
       }} />
       <p style={{
         fontFamily: "'Barlow Condensed', sans-serif",
-        fontSize: 34,
+        fontSize: 32,
         fontWeight: 700,
         color: "#d4900a",
-        margin: "0 0 2px",
+        margin: "0 0 4px",
         lineHeight: 1,
         letterSpacing: "-0.02em",
         textShadow: "0 0 20px rgba(212,144,10,0.35)",
-      }}>{count}{item.suffix}</p>
+        whiteSpace: "nowrap",
+      }}>{item.prefix}{count}{item.suffix}</p>
       <p style={{
         fontFamily: "'Inter', sans-serif",
-        fontSize: 11,
+        fontSize: 10,
         fontWeight: 600,
-        letterSpacing: "0.1em",
+        letterSpacing: "0.08em",
         textTransform: "uppercase",
-        color: "rgba(255,255,255,0.90)",
-        margin: "0 0 2px",
-      }}>{item.label}</p>
-      <p style={{
-        fontFamily: "'Inter', sans-serif",
-        fontSize: 11,
-        color: "rgba(255,255,255,0.45)",
+        color: "rgba(255,255,255,0.75)",
         margin: 0,
         lineHeight: 1.3,
-      }}>{item.sublabel}</p>
+      }}>{item.label}</p>
     </div>
   );
 }
@@ -142,51 +137,36 @@ export default function HeroSection() {
             </span>
           </h1>
 
-          <div style={{ width: 40, height: 2, background: "#d4900a", margin: "26px 0 20px" }} />
+          <div style={{ width: 40, height: 2, background: "#d4900a", margin: "26px 0 22px" }} />
 
-          {/* Primary supporting paragraph */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 620, marginBottom: 16 }}>
-            You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
+          {/* Single subheadline */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 22 }}>
+            LaunchPath installs the compliance infrastructure FMCSA expects into your operation — before gaps become audit exposure.
           </p>
 
-          {/* Secondary body */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)", color: "rgba(255,255,255,0.62)", lineHeight: 1.8, maxWidth: 600, marginBottom: 16 }}>
-            You build the files, programs, monitoring systems, and operating structure required to keep your authority active under real-world conditions.
-          </p>
-
-          {/* System identity line */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)", color: "rgba(212,144,10,0.80)", lineHeight: 1.65, maxWidth: 560, marginBottom: 20, letterSpacing: "0.01em" }}>
-            This is not a resource platform. This is a system that becomes part of your business.
-          </p>
-
-          {/* Buyer identification */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", lineHeight: 1.65, maxWidth: 560, marginBottom: 28 }}>
-            Designed for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
-          </p>
+          {/* Clarifier box */}
+          <div style={{ borderLeft: "2px solid rgba(212,144,10,0.35)", paddingLeft: 18, marginBottom: 28 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", lineHeight: 1.75, fontStyle: "italic", margin: 0 }}>
+              This is not a compliance service. We do not file your paperwork or manage your operation. LaunchPath installs the system you operate on — including the files, programs, and controls required to remain compliant.
+            </p>
+          </div>
 
           {/* CTAs */}
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
               <Link to="/ground-0-briefing" data-testid="hero-primary-cta" className="hero-cta-primary"
-                style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: "0.02em", color: "#0b1628", background: "#d4900a", padding: "16px 36px", height: 52, borderRadius: 4, textDecoration: "none", boxShadow: "0 0 0 3px rgba(212,144,10,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center" }}
+                style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.08em", color: "#0b1628", background: "#d4900a", padding: "16px 32px", height: 52, textDecoration: "none", boxShadow: "0 0 0 3px rgba(212,144,10,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }}
                 onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
                 onMouseLeave={e => (e.currentTarget.style.background = "#d4900a")}
-              >INITIATE GROUND 0</Link>
+              >INITIATE GROUND 0 →</Link>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.38)", margin: "6px 0 0", letterSpacing: "0.07em", textTransform: "uppercase" }}>Free Readiness Module</p>
             </div>
             <Link to="/standards" data-testid="hero-secondary-cta" className="hero-cta-secondary"
-              style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, letterSpacing: "0.01em", color: "rgba(255,255,255,0.65)", background: "transparent", border: "0.5px solid rgba(255,255,255,0.25)", padding: "0 20px", height: 52, borderRadius: 4, textDecoration: "none", transition: "border-color 0.2s, color 0.2s", display: "inline-flex", alignItems: "center" }}
+              style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "rgba(255,255,255,0.65)", background: "transparent", border: "0.5px solid rgba(255,255,255,0.25)", padding: "0 20px", height: 52, textDecoration: "none", transition: "border-color 0.2s, color 0.2s", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "rgba(255,255,255,0.9)"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
-            >VIEW THE SYSTEM INSTALLATION →</Link>
+            >SEE WHAT GETS INSTALLED</Link>
           </div>
-
-          {/* Fix 2 — self-installation clarifier — removed, replaced by system identity line above */}
-
-          {/* Clarifier — who does the work */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.50)", letterSpacing: "0.02em", lineHeight: 1.5, marginBottom: 20, maxWidth: 460 }}>
-            This is not done-for-you compliance. You do the work. The system shows you what, when, and how.
-          </p>
 
           {/* Proof strip — hidden on mobile (shown as compact row instead) */}
           <div className="proof-strip" style={{
@@ -215,15 +195,15 @@ export default function HeroSection() {
             {PROOF.map((item, i) => (
               <div key={i} style={{
                 flex: 1,
-                padding: "14px 12px",
+                padding: "14px 10px",
                 borderRight: i < PROOF.length - 1 ? "0.5px solid rgba(212,144,10,0.14)" : "none",
                 position: "relative",
               }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #d4900a, rgba(212,144,10,0.2))" }} />
-                <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 28, fontWeight: 700, color: "#d4900a", margin: "0 0 2px", lineHeight: 1, textShadow: "0 0 16px rgba(212,144,10,0.3)" }}>
-                  {item.target}
+                <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 24, fontWeight: 700, color: "#d4900a", margin: "0 0 2px", lineHeight: 1, whiteSpace: "nowrap" }}>
+                  {item.prefix}{item.target}{item.suffix}
                 </p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", margin: 0 }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.3 }}>
                   {item.label}
                 </p>
               </div>
@@ -233,19 +213,23 @@ export default function HeroSection() {
         </div>
 
         {/* ── RIGHT COLUMN ── */}
-        <div className="hero-right" style={{ borderLeft: "0.5px solid rgba(212,144,10,0.10)", padding: "100px 28px 80px", display: "flex", flexDirection: "column" }}>
+        <div className="hero-right" style={{ borderLeft: "0.5px solid rgba(212,144,10,0.14)", padding: "100px 28px 80px", display: "flex", flexDirection: "column" }}>
 
-          {/* Section label 1 */}
-          <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(212,144,10,0.85)", letterSpacing: "0.16em", textTransform: "uppercase", margin: "0 0 12px" }}>
-            THE COST OF BEING UNDERBUILT
-          </p>
+          {/* Document header */}
+          <div style={{ marginBottom: 16 }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", margin: "0 0 4px" }}>
+              LPOS — RISK ANALYSIS
+            </p>
+            <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: 0 }}>
+              THE COST OF BEING UNDERBUILT
+            </p>
+          </div>
 
-          {/* Risk card — ultra premium */}
+          {/* Risk card */}
           <div className="hero-risk-card" style={{
-            background: "linear-gradient(145deg, rgba(30,4,0,0.70) 0%, rgba(0,8,20,0.80) 100%)",
-            border: "0.5px solid rgba(232,89,48,0.25)",
+            background: "rgba(20,4,0,0.60)",
+            border: "0.5px solid rgba(232,89,48,0.30)",
             borderTop: "2px solid #E8590F",
-            borderRadius: 2,
             padding: "18px 18px 16px",
             marginBottom: 8,
             position: "relative",
@@ -254,20 +238,14 @@ export default function HeroSection() {
             transform: inView ? "translateY(0)" : "translateY(12px)",
             transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
           }}>
-            {/* Corner glow */}
-            <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(232,89,48,0.18) 0%, transparent 70%)", pointerEvents: "none" }} />
-
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, color: "rgba(255,255,255,0.38)", lineHeight: 1.5, margin: "0 0 10px", fontStyle: "italic" }}>
-              This is what happens when systems are missing.
-            </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,89,48,0.70)", margin: "0 0 8px" }}>EXPOSURE RISK</p>
-            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.92)", margin: "0 0 6px" }}>
+            <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(232,89,48,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,89,48,0.80)", margin: "0 0 8px" }}>EXPOSURE RISK</p>
+            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.96)", margin: "0 0 6px", letterSpacing: "0.01em" }}>
               Audit failure + remediation
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.6, margin: "0 0 12px" }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: "0 0 12px" }}>
               Deficiency findings, corrective action exposure, service disruption, and preventable authority risk.
             </p>
-            {/* Animated price — supported by ConsequenceNumberBlock lower on page */}
             <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 20, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
               ${costLow.toLocaleString()},000 – ${costHigh.toLocaleString()},000+
             </p>
@@ -275,17 +253,16 @@ export default function HeroSection() {
 
           {/* Versus divider */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 0 10px" }}>
-            <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.08)" }} />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, color: "rgba(255,255,255,0.28)", letterSpacing: "0.12em", textTransform: "uppercase", margin: 0 }}>versus</p>
-            <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.08)" }} />
+            <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.10)" }} />
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", margin: 0 }}>versus</p>
+            <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.10)" }} />
           </div>
 
-          {/* Solution card — ultra premium */}
+          {/* Solution card */}
           <div style={{
-            background: "linear-gradient(145deg, rgba(212,144,10,0.10) 0%, rgba(0,12,28,0.75) 100%)",
-            border: "0.5px solid rgba(212,144,10,0.28)",
+            background: "rgba(212,144,10,0.07)",
+            border: "0.5px solid rgba(212,144,10,0.32)",
             borderTop: "2px solid #d4900a",
-            borderRadius: 2,
             padding: "18px 18px 16px",
             marginBottom: 24,
             position: "relative",
@@ -294,27 +271,26 @@ export default function HeroSection() {
             transform: inView ? "translateY(0)" : "translateY(12px)",
             transition: "opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s",
           }}>
-            <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(212,144,10,0.15) 0%, transparent 70%)", pointerEvents: "none" }} />
-
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", margin: "0 0 8px" }}>THE STANDARD</p>
-            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: "#d4900a", margin: "0 0 6px" }}>
+            <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(212,144,10,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", margin: "0 0 8px" }}>THE STANDARD</p>
+            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700, color: "#d4900a", margin: "0 0 6px", letterSpacing: "0.01em" }}>
               LaunchPath Standard
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.65)", lineHeight: 1.6, margin: "0 0 12px" }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.80)", lineHeight: 1.65, margin: "0 0 12px" }}>
               90-day guided installation of the compliance systems new carriers need to operate with structure, proof, and audit readiness.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 600, color: "#d4900a", margin: 0, letterSpacing: "0.02em" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 700, color: "#d4900a", margin: 0, letterSpacing: "0.02em" }}>
               Costs less than one audit failure
             </p>
           </div>
 
-          {/* Label 2 */}
-          <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(212,144,10,0.85)", letterSpacing: "0.16em", textTransform: "uppercase", margin: "0 0 14px" }}>
+          {/* Domain label */}
+          <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: "0 0 14px" }}>
             WHAT THE STANDARD INSTALLS
           </p>
 
           {/* Domain list */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
             {DOMAINS.map((d, i) => (
               <div key={d.num} style={{
                 display: "flex", gap: 12, alignItems: "center",
@@ -322,8 +298,8 @@ export default function HeroSection() {
                 transform: inView ? "translateX(0)" : "translateX(-6px)",
                 transition: `opacity 0.4s ease ${0.5 + i * 0.07}s, transform 0.4s ease ${0.5 + i * 0.07}s`,
               }}>
-                <span style={{ fontFamily: "'Courier New', monospace", fontSize: 10, color: "rgba(212,144,10,0.55)", width: 20, flexShrink: 0 }}>{d.num}</span>
-                <span className="hero-domain-name" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.85)", letterSpacing: "0.01em" }}>{d.name}</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "rgba(212,144,10,0.65)", width: 20, flexShrink: 0 }}>{d.num}</span>
+                <span className="hero-domain-name" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.92)", letterSpacing: "0.01em" }}>{d.name}</span>
               </div>
             ))}
           </div>

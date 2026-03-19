@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
@@ -145,7 +146,11 @@ const BRIEFS = [
   },
 ];
 
+const CATEGORIES = ["All", "New Entrant Program", "Authority Registration", "Insurance Continuity", "Drug & Alcohol Program", "Vehicle & Operations", "Hours of Service"];
+
 export default function KnowledgeCenterIndex() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const filteredPosts = activeCategory === "All" ? POSTS : POSTS.filter(p => p.category === activeCategory);
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
@@ -272,14 +277,69 @@ export default function KnowledgeCenterIndex() {
       {/* ── PUBLISHED ARTICLES ── */}
       <section style={{ padding: "0 1.5rem 4rem" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700,
-            letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
-            marginBottom: "1.5rem", paddingBottom: "1rem",
-            borderBottom: "1px solid rgba(212,144,10,0.15)",
-          }}>Published Articles</p>
+          {/* Section header + filter bar */}
+          <div style={{ paddingTop: "3rem", marginBottom: "1.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)", paddingBottom: "1.25rem" }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700,
+              letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
+              marginBottom: "1.25rem",
+            }}>Published Articles</p>
+
+            {/* Category filter */}
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              {CATEGORIES.map(cat => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    data-testid={`filter-${cat.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                    onClick={() => setActiveCategory(cat)}
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.58rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      padding: "0.45rem 0.85rem",
+                      background: isActive ? "#d4900a" : "transparent",
+                      color: isActive ? "#0b1628" : "rgba(255,255,255,0.45)",
+                      border: isActive ? "1px solid #d4900a" : "1px solid rgba(255,255,255,0.14)",
+                      cursor: "pointer",
+                      transition: "all 0.15s",
+                      lineHeight: 1,
+                    }}
+                    onMouseEnter={e => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = "rgba(212,144,10,0.85)";
+                        e.currentTarget.style.borderColor = "rgba(212,144,10,0.40)";
+                      }
+                    }}
+                    onMouseLeave={e => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = "rgba(255,255,255,0.45)";
+                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                      }
+                    }}
+                  >
+                    {cat}
+                    {cat !== "All" && (
+                      <span style={{ marginLeft: "0.4rem", opacity: 0.60 }}>
+                        {POSTS.filter(p => p.category === cat).length}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Result count */}
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.56rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.25)", marginTop: "0.75rem", textTransform: "uppercase" }}>
+              {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"}{activeCategory !== "All" ? ` — ${activeCategory}` : ""}
+            </p>
+          </div>
+
           <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-            {POSTS.map((post, i) => (
+            {filteredPosts.map((post, i) => (
               <a key={i} href={post.slug} style={{ display: "block", textDecoration: "none",
                 background: "#080f1e", padding: "1.5rem 2rem",
                 borderLeft: "3px solid #d4900a", transition: "background 0.2s",
