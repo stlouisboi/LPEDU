@@ -323,4 +323,6 @@ All 8 articles published at `/knowledge-center/*` with full 1,200–1,500 word c
 - [ ] Scaffold Portal Modules 2–9
 - [ ] Refactor server.py monolith into APIRouter modules
 - [ ] Build Admin Module Editor for the coach
-- [x] Fix GitHub Actions deployment workflow — working-directory set to frontend/, environment block removed so repo-level secrets work, secrets passed per-step via env: block (Mar 2026)
+- [x] 90-Day Clock deep-dive links — all 5 TIMELINE phases now link to LP-BRF-07–11 with hover underline + "→ Read Brief" hint (Mar 2026)
+- [x] 5 placeholder brief pages created (LP-BRF-07 through LP-BRF-11) — on-brand, "Brief in Preparation" status badge, back link to Operational Library
+- [x] FailureAnalysisSection (LP-CASE-001) — added to homepage before REACH Diagnostic; two-column layout: case narrative left, AUTO failure vector + What Standard Installs right (Mar 2026)

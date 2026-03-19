@@ -23,6 +23,11 @@ import BOC3FilingPost from "./pages/knowledge-center/BOC3FilingPost";
 import NewEntrantProgramPost from "./pages/knowledge-center/NewEntrantProgramPost";
 import UCRRegistrationPost from "./pages/knowledge-center/UCRRegistrationPost";
 import ELDExemptionPost from "./pages/knowledge-center/ELDExemptionPost";
+import LpBrf07Page from "./pages/knowledge-center/LpBrf07Page";
+import LpBrf08Page from "./pages/knowledge-center/LpBrf08Page";
+import LpBrf09Page from "./pages/knowledge-center/LpBrf09Page";
+import LpBrf10Page from "./pages/knowledge-center/LpBrf10Page";
+import LpBrf11Page from "./pages/knowledge-center/LpBrf11Page";
 import Ground0Page from "./pages/Ground0Page";
 import Ground0CompletePage from "./pages/Ground0CompletePage";
 import AdmissionPage from "./pages/AdmissionPage";
@@ -135,6 +140,12 @@ function AppRouter() {
       <Route path="/knowledge-center/fmcsa-new-entrant-program-guide" element={<NewEntrantProgramPost />} />
       <Route path="/knowledge-center/ucr-registration-new-carrier" element={<UCRRegistrationPost />} />
       <Route path="/knowledge-center/eld-exemption-box-truck" element={<ELDExemptionPost />} />
+      {/* 90-Day Clock deep-dive briefs (LP-BRF-07 through LP-BRF-11) */}
+      <Route path="/knowledge-center/lp-brf-07" element={<LpBrf07Page />} />
+      <Route path="/knowledge-center/lp-brf-08" element={<LpBrf08Page />} />
+      <Route path="/knowledge-center/lp-brf-09" element={<LpBrf09Page />} />
+      <Route path="/knowledge-center/lp-brf-10" element={<LpBrf10Page />} />
+      <Route path="/knowledge-center/lp-brf-11" element={<LpBrf11Page />} />
       <Route path="/mockups" element={<BookMockupPage />} />
       <Route path="/ground-0-briefing" element={<Ground0Page />} />
       <Route path="/ground-0-complete" element={<Ground0CompletePage />} />

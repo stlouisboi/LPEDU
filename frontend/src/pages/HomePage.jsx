@@ -20,6 +20,7 @@ import FinalCTASection from "../components/FinalCTASection";
 import FooterSection from "../components/FooterSection";
 import { DoctrineStack } from "../components/DoctrineStack";
 
+import FailureAnalysisSection from "../components/FailureAnalysisSection";
 import OperatorQualifierSection from "../components/OperatorQualifierSection";
 
 export default function HomePage() {
@@ -114,6 +115,7 @@ export default function HomePage() {
         <MidPageStatement />        <FourPillarsSection />
         <TruckDividerSection />
         <EngagementSection />
+        <FailureAnalysisSection />
         <AuthorityReadinessTestSection />
         <RecoveryPathBlock />
         <ComplianceMapTeaser />

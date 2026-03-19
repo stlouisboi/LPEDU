@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const TIMELINE = [
   {
@@ -7,18 +8,21 @@ const TIMELINE = [
     sublabel: "Systems Must Already Be Running",
     body: "Insurance filings, driver files, safety controls, and compliance records should already be operational. There is no grace period.",
     accent: true,
+    link: "/knowledge-center/lp-brf-07",
   },
   {
     code: "30",
     label: "Days 1–30 — Installation Window",
     sublabel: "Documentary Structure Takes Shape",
     body: "The carrier's documentary structure, dispatch rhythm, and monitoring habits begin forming. Missed steps here become invisible vulnerabilities.",
+    link: "/knowledge-center/lp-brf-08",
   },
   {
     code: "60",
     label: "Days 30–60 — Pattern Formation",
     sublabel: "Operational Records Begin Accumulating",
     body: "Logs, maintenance activity, dispatch behavior, and file upkeep begin establishing the operating pattern later reviewed under scrutiny.",
+    link: "/knowledge-center/lp-brf-09",
   },
   {
     code: "90",
@@ -26,6 +30,7 @@ const TIMELINE = [
     sublabel: "Preparation or Reconstruction",
     body: "If core systems are not installed by this stage, audit preparation becomes reconstruction. Reconstruction under scrutiny is a different problem entirely.",
     warning: true,
+    link: "/knowledge-center/lp-brf-10",
   },
   {
     code: "9M",
@@ -33,6 +38,7 @@ const TIMELINE = [
     sublabel: "Scrutiny Makes Early Gaps Visible",
     body: "The operational patterns created in the first months of authority become visible later under scrutiny. Each gap compounds. Each missing record becomes harder to defend.",
     consequence: true,
+    link: "/knowledge-center/lp-brf-11",
   },
 ];
 
@@ -225,8 +231,13 @@ export default function AuthorityClockSection() {
                     padding: `1.75rem 0 ${isLast ? "0.75rem" : "2.25rem"} 1.75rem`,
                   }}
                 >
-                  {/* Left: bordered time badge + Manrope stage title */}
-                  <div>
+                  {/* Left: time badge + stage title — linked to deep-dive brief */}
+                  <Link
+                    to={item.link}
+                    data-testid={`clock-phase-link-${idx}`}
+                    className="clock-phase-link"
+                    style={{ textDecoration: "none", display: "block" }}
+                  >
                     <div style={{
                       display: "inline-block",
                       border: `1px solid ${cfg.badgeBorder}`,
@@ -241,7 +252,7 @@ export default function AuthorityClockSection() {
                     }}>
                       {item.code}
                     </div>
-                    <p style={{
+                    <p className="clock-phase-label" style={{
                       fontFamily: "'Barlow Condensed', sans-serif",
                       fontWeight: 700,
                       fontSize: cfg.titleSize,
@@ -262,11 +273,23 @@ export default function AuthorityClockSection() {
                         color: cfg.badgeColor,
                         opacity: 0.75,
                         lineHeight: 1.3,
+                        marginBottom: "0.5rem",
                       }}>
                         {item.sublabel}
                       </p>
                     )}
-                  </div>
+                    <span className="clock-brief-hint" style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.58rem",
+                      color: "rgba(212,144,10,0.40)",
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      display: "block",
+                      transition: "color 0.15s",
+                    }}>
+                      → Read Brief
+                    </span>
+                  </Link>
 
                   {/* Right: body copy */}
                   <p style={{
@@ -342,6 +365,14 @@ export default function AuthorityClockSection() {
             overflow: hidden;
           }
           .clock-content-row { padding-left: 0 !important; }
+        }
+        .clock-phase-link:hover .clock-phase-label {
+          text-decoration: underline;
+          text-decoration-color: rgba(212,144,10,0.55);
+          text-underline-offset: 3px;
+        }
+        .clock-phase-link:hover .clock-brief-hint {
+          color: rgba(212,144,10,0.75) !important;
         }
       `}</style>
     </section>
