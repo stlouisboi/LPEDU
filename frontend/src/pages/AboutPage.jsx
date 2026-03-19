@@ -89,7 +89,7 @@ export default function AboutPage() {
               animation: "heroEnter 0.65s ease both",
               animationDelay: "0.1s",
             }}>
-              The Standard<br />Custodian.
+              Station<br />Custodian.
             </h1>
             <p style={{
               fontFamily: "'Inter', sans-serif",
@@ -137,15 +137,16 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Credential band */}
+            {/* Credential band — 2×2 grid */}
             <div style={{
-              display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+              display: "grid", gridTemplateColumns: "repeat(2, 1fr)",
               gap: "1px", background: "var(--border)", marginTop: "1px",
             }}>
               {[
                 ["U.S. Navy", "Veteran"],
-                ["OSHA", "Certified"],
+                ["OSHA 30-Hour", "Certified"],
                 ["20+ Yrs", "Manufacturing & Safety Systems"],
+                ["Safety Systems", "Manufacturing Operations at Scale"],
               ].map(([val, label]) => (
                 <div key={val} style={{ background: "var(--bg-2)", padding: "0.875rem 1rem" }}>
                   <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.008rem", color: "var(--text)", marginBottom: "0.2rem" }}>{val}</div>
@@ -221,6 +222,51 @@ export default function AboutPage() {
             </blockquote>
           </FadeIn>
         </div>
+      </section>
+
+      {/* Outcome stat block */}
+      <section style={{ padding: "0 1.5rem", borderBottom: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+            background: "rgba(0,10,22,0.70)",
+            border: "0.5px solid rgba(212,144,10,0.20)",
+            overflow: "hidden",
+          }} className="about-stat-grid">
+            {[
+              { val: "90 Days", label: "Installation Window Before Audit Exposure" },
+              { val: "Months 9–18", label: "New Entrant Audit Window" },
+              { val: "30 Days", label: "Window to Cure a Conditional Rating" },
+            ].map((stat, i) => (
+              <div key={i} style={{
+                padding: "2rem 1.75rem",
+                borderRight: i < 2 ? "0.5px solid rgba(212,144,10,0.14)" : "none",
+                position: "relative",
+              }}>
+                <div style={{
+                  position: "absolute", top: 0, left: 0, right: 0, height: 2,
+                  background: i === 0
+                    ? "linear-gradient(90deg, #d4900a, rgba(212,144,10,0.2))"
+                    : i === 1
+                    ? "linear-gradient(90deg, rgba(212,144,10,0.4), rgba(212,144,10,0.1))"
+                    : "linear-gradient(90deg, rgba(212,144,10,0.2), transparent)",
+                }} />
+                <p style={{
+                  fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+                  fontSize: "1.75rem", color: "#d4900a", margin: "0 0 0.4rem",
+                  lineHeight: 1, letterSpacing: "-0.02em",
+                  textShadow: "0 0 20px rgba(212,144,10,0.25)",
+                }}>{stat.val}</p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.76rem",
+                  fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.65)", lineHeight: 1.4, margin: 0,
+                }}>{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`@media (max-width: 640px) { .about-stat-grid { grid-template-columns: 1fr !important; } .about-stat-grid > div { border-right: none !important; border-bottom: 0.5px solid rgba(212,144,10,0.14) !important; } .about-stat-grid > div:last-child { border-bottom: none !important; } }`}</style>
       </section>
 
       {/* Operational Doctrine */}
@@ -316,6 +362,36 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Operator proof block */}
+      <section style={{ padding: "5rem 1.5rem", borderBottom: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <FadeIn>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.628rem", fontWeight: 700,
+              letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)",
+              marginBottom: "1.75rem",
+            }}>Operator Account</p>
+            <blockquote style={{
+              borderLeft: "2px solid var(--orange)",
+              paddingLeft: "1.75rem",
+              margin: 0,
+            }}>
+              <p style={{
+                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600,
+                fontSize: "clamp(1.15rem, 2vw, 1.35rem)",
+                color: "var(--text)", lineHeight: 1.65, fontStyle: "italic",
+                marginBottom: "1rem",
+              }}>
+                "I didn't know what I didn't know. The system showed me exactly what was missing before the audit window opened."
+              </p>
+              <footer style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.08em" }}>
+                — New Entrant Carrier · Owner-Operator · Southeast Region
+              </footer>
+            </blockquote>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Closing quote + CTA */}
       <section style={{ padding: "7rem 1.5rem" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
@@ -355,7 +431,7 @@ export default function AboutPage() {
                 onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
                 onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
               >
-                Request LaunchPath Admission <ArrowRight size={15} weight="bold" />
+                Begin the REACH Diagnostic — Free <ArrowRight size={15} weight="bold" />
               </a>
               <Link to="/contact"
                 data-testid="about-contact-link"
