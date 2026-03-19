@@ -409,6 +409,29 @@ export default function OperatingStandardPage() {
         </div>
       </div>
 
+      {/* ── NEXT IN THE FRAMEWORK ─────────────────────────── */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2.5rem 1.5rem" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+          <div>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+              NEXT IN THE FRAMEWORK
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+              Ground 0: See Where Your Operation Stands
+            </p>
+          </div>
+          <Link
+            to="/ground-0-briefing"
+            data-testid="standard-next-framework-link"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: "#d4900a", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
+            onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
+            onMouseLeave={e => (e.currentTarget.style.background = "#d4900a")}
+          >
+            INITIATE GROUND 0 →
+          </Link>
+        </div>
+      </div>
+
       <FooterSection />
 
       <style>{`

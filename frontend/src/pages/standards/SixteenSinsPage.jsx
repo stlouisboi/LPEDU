@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
@@ -180,11 +180,158 @@ const SINS = [
 
 export default function SixteenSinsPage() {
   const [copied, setCopied] = useState(false);
+  const [email, setEmail] = useState("");
+  const [gateState, setGateState] = useState("idle"); // idle | submitting | done
+  const API = process.env.REACT_APP_BACKEND_URL;
 
   function handleCopyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  async function handleGateSubmit(e) {
+    e.preventDefault();
+    if (!email) return;
+    setGateState("submitting");
+    try {
+      await fetch(`${API}/api/sins-checklist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+    } catch (_) {}
+    setGateState("done");
+    generatePDF();
+  }
+
+  function generatePDF() {
+    import("jspdf").then(({ jsPDF }) => {
+      const doc = new jsPDF({ unit: "mm", format: "letter" });
+      const W = 215.9;
+      const gold = [212, 144, 10];
+      const dark = [11, 22, 40];
+      const white = [255, 255, 255];
+      const red = [192, 57, 43];
+
+      // Background
+      doc.setFillColor(...dark);
+      doc.rect(0, 0, W, 279.4, "F");
+
+      // Header bar
+      doc.setFillColor(...gold);
+      doc.rect(0, 0, W, 3, "F");
+
+      // Title
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(22);
+      doc.setTextColor(...white);
+      doc.text("THE 16 DEADLY SINS", 20, 24);
+      doc.setFontSize(11);
+      doc.setTextColor(...gold);
+      doc.text("OF THE NEW AUTHORITY — SELF-AUDIT CHECKLIST", 20, 32);
+
+      doc.setFontSize(8);
+      doc.setTextColor(160, 180, 200);
+      doc.text("LaunchPath Transportation EDU  |  LP-DOCTRINE-001  |  launchpathedu.com", 20, 40);
+
+      // Divider
+      doc.setDrawColor(...gold);
+      doc.setLineWidth(0.5);
+      doc.line(20, 44, W - 20, 44);
+
+      let y = 52;
+      const colW = (W - 40) / 2;
+      let col = 0;
+
+      const HIGH_RISK = ["02", "05", "12", "16"];
+
+      SINS.forEach((sin, i) => {
+        const isHR = HIGH_RISK.includes(sin.num);
+        const x = 20 + col * (colW + 8);
+
+        // Card bg
+        doc.setFillColor(15, 30, 50);
+        doc.rect(x, y, colW - 4, 38, "F");
+
+        if (isHR) {
+          doc.setDrawColor(...red);
+          doc.setLineWidth(0.8);
+          doc.line(x, y, x, y + 38);
+        } else {
+          doc.setDrawColor(216, 90, 48);
+          doc.setLineWidth(0.4);
+          doc.line(x, y, x, y + 38);
+        }
+
+        // Sin number + badge
+        doc.setFontSize(7);
+        doc.setFont("courier", "bold");
+        doc.setTextColor(isHR ? 192 : 216, isHR ? 57 : 90, isHR ? 43 : 48);
+        doc.text(`[SIN ${sin.num}]`, x + 4, y + 7);
+
+        if (isHR) {
+          doc.setFillColor(192, 57, 43);
+          doc.rect(x + colW - 28, y + 2, 24, 6, "F");
+          doc.setFontSize(5);
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(255, 255, 255);
+          doc.text("HIGH RISK", x + colW - 27, y + 6.5);
+        }
+
+        // Name
+        doc.setFontSize(8.5);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(isHR ? 230 : 216, isHR ? 100 : 90, isHR ? 80 : 48);
+        doc.text(sin.name, x + 4, y + 14, { maxWidth: colW - 12 });
+
+        // Desc (truncated to 1 line)
+        doc.setFontSize(6.5);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(200, 215, 230);
+        const descLines = doc.splitTextToSize(sin.desc, colW - 12);
+        doc.text(descLines.slice(0, 2), x + 4, y + 21);
+
+        // CFR
+        doc.setFontSize(6);
+        doc.setFont("courier", "normal");
+        doc.setTextColor(120, 140, 160);
+        doc.text(`FMCSA: ${sin.mapping}`, x + 4, y + 34);
+
+        // Checkbox
+        doc.setDrawColor(100, 130, 160);
+        doc.setLineWidth(0.3);
+        doc.rect(x + colW - 8, y + 26, 4, 4);
+
+        col++;
+        if (col === 2) {
+          col = 0;
+          y += 42;
+          if (y > 240 && i < SINS.length - 1) {
+            doc.addPage();
+            doc.setFillColor(...dark);
+            doc.rect(0, 0, W, 279.4, "F");
+            doc.setFillColor(...gold);
+            doc.rect(0, 0, W, 2, "F");
+            y = 16;
+          }
+        }
+      });
+
+      // Footer
+      const finalY = y > 240 ? 270 : Math.max(y + 48, 260);
+      doc.setDrawColor(...gold);
+      doc.setLineWidth(0.3);
+      doc.line(20, finalY, W - 20, finalY);
+      doc.setFontSize(7);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(120, 140, 160);
+      doc.text("Verify regulatory requirements at ecfr.gov. LaunchPath Transportation EDU is an educational program.", 20, finalY + 6);
+      doc.setTextColor(...gold);
+      doc.text("launchpathedu.com/16-deadly-sins", W - 20, finalY + 6, { align: "right" });
+
+      doc.save("16-deadly-sins-self-audit.pdf");
     });
   }
 
@@ -354,6 +501,96 @@ export default function SixteenSinsPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </FadeIn>
+
+        {/* ── Email Gate — Checklist Download ── */}
+        <FadeIn delay={50}>
+          <div style={{
+            background: "#0A1525",
+            border: `1px solid rgba(212,144,10,0.25)`,
+            borderLeft: `3px solid ${gold}`,
+            padding: "2.75rem 3rem",
+            marginBottom: "5rem",
+          }}>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)",
+              marginBottom: "0.75rem",
+            }}>LP-TOOL-SIN | FREE SELF-AUDIT</p>
+            <h2 style={{
+              fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
+              letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "0.75rem",
+            }}>Download the 16 Deadly Sins Checklist</h2>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+              color: "rgba(255,255,255,0.60)", lineHeight: 1.75, maxWidth: 520, marginBottom: "1.75rem",
+            }}>
+              A self-audit tool for new motor carriers. Check your operation against the 16 behaviors that most commonly end authority — with CFR citations and consequence notes for each.
+            </p>
+
+            {gateState === "done" ? (
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+                <div style={{
+                  background: "rgba(76,175,80,0.12)", border: "1px solid rgba(76,175,80,0.30)",
+                  padding: "0.875rem 1.5rem",
+                }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700, color: "#4caf50", letterSpacing: "0.10em", textTransform: "uppercase", margin: 0 }}>
+                    Downloading — check your downloads folder
+                  </p>
+                </div>
+                <button
+                  onClick={generatePDF}
+                  style={{
+                    fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.82rem",
+                    letterSpacing: "0.08em", textTransform: "uppercase", color: gold,
+                    background: "transparent", border: `1px solid rgba(212,144,10,0.35)`,
+                    padding: "0.875rem 1.25rem", cursor: "pointer", transition: "border-color 0.2s",
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = gold; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.35)"; }}
+                >
+                  Download Again
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleGateSubmit} style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "stretch" }}>
+                <input
+                  type="email"
+                  required
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  data-testid="sins-checklist-email"
+                  style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+                    color: "#FFFFFF", background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.15)", padding: "0.875rem 1.25rem",
+                    outline: "none", width: 280, minWidth: 200,
+                    transition: "border-color 0.2s",
+                  }}
+                  onFocus={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.50)"; }}
+                  onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; }}
+                />
+                <button
+                  type="submit"
+                  disabled={gateState === "submitting"}
+                  data-testid="sins-checklist-download-btn"
+                  style={{
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+                    letterSpacing: "0.10em", textTransform: "uppercase",
+                    color: "#0b1628", background: gateState === "submitting" ? "rgba(212,144,10,0.60)" : gold,
+                    border: "none", padding: "0.875rem 2rem", cursor: gateState === "submitting" ? "default" : "pointer",
+                    transition: "background 0.2s", whiteSpace: "nowrap",
+                  }}
+                  onMouseEnter={e => { if (gateState !== "submitting") e.currentTarget.style.background = "#e8a520"; }}
+                  onMouseLeave={e => { if (gateState !== "submitting") e.currentTarget.style.background = gold; }}
+                >
+                  {gateState === "submitting" ? "Preparing..." : "Download →"}
+                </button>
+              </form>
+            )}
           </div>
         </FadeIn>
 
@@ -534,6 +771,29 @@ export default function SixteenSinsPage() {
         </div>
 
       </main>
+
+      {/* ── Next in the Framework ── */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2.5rem 1.5rem" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+          <div>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+              NEXT IN THE FRAMEWORK
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+              The AUTO Method: Why These Failures Happen
+            </p>
+          </div>
+          <Link
+            to="/auto-method"
+            data-testid="sins-next-framework-link"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: gold, padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
+            onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
+            onMouseLeave={e => (e.currentTarget.style.background = gold)}
+          >
+            VIEW THE AUTO METHOD →
+          </Link>
+        </div>
+      </div>
 
       <FooterSection />
 

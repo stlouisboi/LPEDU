@@ -552,6 +552,23 @@ class CPMSaveRequest(BaseModel):
     total_cpm: float
     inputs: dict
 
+class SinsChecklistCapture(BaseModel):
+    email: EmailStr
+
+@api_router.post("/sins-checklist")
+async def sins_checklist_capture(data: SinsChecklistCapture):
+    """16 Deadly Sins checklist download email gate — tags subscriber in MailerLite."""
+    payload = {"email": data.email, "status": "active", "fields": {"lead_source": "sins_checklist"}}
+    headers = {"Authorization": f"Bearer {MAILERLITE_API_TOKEN}", "Content-Type": "application/json", "Accept": "application/json"}
+    try:
+        async with httpx.AsyncClient(timeout=10) as http:
+            resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+        if resp.status_code not in (200, 201):
+            logger.error(f"MailerLite sins checklist error {resp.status_code}: {resp.text}")
+    except Exception as exc:
+        logger.error(f"MailerLite sins checklist request failed: {exc}")
+    return {"ok": True}
+
 @api_router.post("/cpm/email-capture")
 async def cpm_email_capture(data: CPMEmailCapture):
     """Public CPM calculator email gate — tags subscriber in MailerLite."""
