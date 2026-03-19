@@ -381,7 +381,9 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     const backMat  = new THREE.MeshStandardMaterial({ map: backTex, roughness: 0.4 });
 
     // ── Book dimensions ───────────────────────────────────────────────────────
-    const bW = 2.4, bH = 1.65, bD = 0.28;
+    const bW = 2.4, bH = 1.65;
+    const isBundle = product.id === "bundle";
+    const bD = isBundle ? 0.15 : 0.28;
     // Face order: [+x right=pages, -x left=spine, +y top, -y bottom, +z front=cover, -z back]
     const bookMats = [pageMat, spineMat, topMat, topMat, coverMat, backMat];
 
@@ -391,22 +393,40 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
     group.rotation.x = -0.04;
     groupRef.current = group;
 
-    // Main (top) book
-    const book1 = new THREE.Mesh(new THREE.BoxGeometry(bW, bH, bD), bookMats);
-    book1.position.set(0, bH / 2 + bH + 0.015, 0);
-    book1.castShadow = true;
-    group.add(book1);
+    if (isBundle) {
+      // 4 packets in a diagonal spread — offset back and right to show depth
+      const offsets = [
+        { x: 0,     z: 0,     ry: 0      },   // front packet
+        { x: 0.20,  z: -0.38, ry: 0.018  },   // 2nd
+        { x: 0.40,  z: -0.76, ry: 0.034  },   // 3rd
+        { x: 0.60,  z: -1.14, ry: 0.048  },   // 4th
+      ];
+      offsets.forEach(({ x, z, ry }) => {
+        const book = new THREE.Mesh(new THREE.BoxGeometry(bW, bH, bD), bookMats);
+        book.position.set(x, bH / 2, z);
+        book.rotation.y = ry;
+        book.castShadow = true;
+        group.add(book);
+      });
+      // Pull camera back slightly to frame the wider spread
+      camera.position.set(-0.3, 0.9, 5.2);
+      camera.lookAt(-0.1, 0.3, 0);
+      group.position.set(-0.6, -0.9, 0);
+    } else {
+      // Standard single-product: two books stacked vertically
+      const book1 = new THREE.Mesh(new THREE.BoxGeometry(bW, bH, bD), bookMats);
+      book1.position.set(0, bH / 2 + bH + 0.015, 0);
+      book1.castShadow = true;
+      group.add(book1);
 
-    // Bottom book (same product, slight offset for depth)
-    const book2 = new THREE.Mesh(new THREE.BoxGeometry(bW, bH, bD), bookMats);
-    book2.position.set(0.05, bH / 2, -0.06);
-    book2.castShadow = true;
-    group.add(book2);
+      const book2 = new THREE.Mesh(new THREE.BoxGeometry(bW, bH, bD), bookMats);
+      book2.position.set(0.05, bH / 2, -0.06);
+      book2.castShadow = true;
+      group.add(book2);
 
-    // No separate 3D band geometry — canvas texture owns the gold bands at full bleed.
-    // The clearcoat on coverMat gives the metallic sheen without alignment issues.
+      group.position.set(-0.15, -0.9, 0);
+    }
 
-    group.position.set(-0.15, -0.9, 0);
     scene.add(group);
 
     // ── Floor — dark matte base ───────────────────────────────────────────────
