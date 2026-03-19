@@ -6,13 +6,13 @@ table { border-collapse: collapse; }
 
 /* ─── Fluid Type Scale ───────────────────────────────────────────────────── */
 :root {
-  --text-3xl:  clamp(2.5rem,  5vw + 1rem,   5rem);    /* 40px → 80px  — hero headlines          */
-  --text-2xl:  clamp(2rem,    3vw + 0.5rem,  3.5rem);  /* 32px → 56px  — section / CTA titles    */
-  --text-xl:   clamp(1.5rem,  2vw + 0.25rem, 2.25rem); /* 24px → 36px  — pillars, phases, quotes */
-  --text-lg:   clamp(1.125rem,1.5vw,         1.5rem);  /* 18px → 24px  — subheadlines            */
-  --text-base: clamp(1rem,    1vw + 0.125rem,1.125rem);/* 16px → 18px  — body copy               */
-  --text-sm:   clamp(0.875rem,0.5vw + 0.125rem,1rem);  /* 14px → 16px  — nav, buttons            */
-  --text-xs:   clamp(0.75rem, 0.25vw + 0.125rem,0.875rem); /* 12px → 14px — eyebrows, badges    */
+  --text-3xl:  clamp(3rem,    6vw + 0.5rem,  6rem);    /* 48px → 96px  — hero headlines          */
+  --text-2xl:  clamp(2.25rem, 3.5vw + 0.5rem,4rem);    /* 36px → 64px  — section / CTA titles    */
+  --text-xl:   clamp(1.75rem, 2.5vw + 0.25rem,2.75rem);/* 28px → 44px  — pillars, phases, quotes */
+  --text-lg:   clamp(1.25rem, 1.75vw,        1.75rem); /* 20px → 28px  — subheadlines            */
+  --text-base: clamp(1rem,    1.25vw + 0.1rem,1.25rem);/* 16px → 20px  — body copy               */
+  --text-sm:   clamp(0.9375rem,0.5vw + 0.125rem,1.0625rem); /* 15px → 17px — nav, buttons       */
+  --text-xs:   clamp(0.8125rem,0.25vw + 0.125rem,0.9375rem); /* 13px → 15px — eyebrows, badges  */
 }
 
 

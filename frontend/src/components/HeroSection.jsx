@@ -56,7 +56,7 @@ function ProofCard({ item, triggered, delay }) {
       }} />
       <p style={{
         fontFamily: "'Barlow Condensed', sans-serif",
-        fontSize: 32,
+        fontSize: 38,
         fontWeight: 700,
         color: "#d4900a",
         margin: "0 0 4px",
@@ -67,7 +67,7 @@ function ProofCard({ item, triggered, delay }) {
       }}>{item.prefix}{count}{item.suffix}</p>
       <p style={{
         fontFamily: "'Inter', sans-serif",
-        fontSize: 10,
+        fontSize: 11,
         fontWeight: 600,
         letterSpacing: "0.08em",
         textTransform: "uppercase",
@@ -124,17 +124,17 @@ export default function HeroSection() {
           {/* Eyebrow */}
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32 }}>
             <div style={{ width: 28, height: 1, background: "#d4900a", flexShrink: 0 }} />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a", margin: 0 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a", margin: 0 }}>
               NEW MOTOR CARRIER AUTHORITY
             </p>
           </div>
 
           {/* Headline */}
           <h1 style={{ margin: "0 0 0 0" }}>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 500, lineHeight: 1.07, color: "#FFFFFF", marginBottom: 6 }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 700, lineHeight: 1.05, color: "#FFFFFF", marginBottom: 6 }}>
               Your authority is active.
             </span>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 500, lineHeight: 1.07, color: "#d4900a" }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 700, lineHeight: 1.05, color: "#d4900a" }}>
               The first 90 days<br />determine what survives.
             </span>
           </h1>
@@ -224,10 +224,10 @@ export default function HeroSection() {
 
           {/* Document header */}
           <div style={{ marginBottom: 16 }}>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", margin: "0 0 4px" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", margin: "0 0 4px" }}>
               LPOS — RISK ANALYSIS
             </p>
-            <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: 0 }}>
+            <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: 0 }}>
               THE COST OF BEING UNDERBUILT
             </p>
           </div>
@@ -246,14 +246,14 @@ export default function HeroSection() {
             transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
           }}>
             <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(232,89,48,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,89,48,0.80)", margin: "0 0 8px" }}>EXPOSURE RISK</p>
-            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.96)", margin: "0 0 6px", letterSpacing: "0.01em" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,89,48,0.80)", margin: "0 0 8px" }}>EXPOSURE RISK</p>
+            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 700, color: "rgba(255,255,255,0.96)", margin: "0 0 6px", letterSpacing: "0.01em" }}>
               Audit failure + remediation
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: "0 0 12px" }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: "0 0 12px" }}>
               Deficiency findings, corrective action exposure, service disruption, and preventable authority risk.
             </p>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 20, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
+            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 24, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
               ${costLow.toLocaleString()},000 – ${costHigh.toLocaleString()},000+
             </p>
           </div>
@@ -279,20 +279,20 @@ export default function HeroSection() {
             transition: "opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s",
           }}>
             <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(212,144,10,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", margin: "0 0 8px" }}>THE STANDARD</p>
-            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700, color: "#d4900a", margin: "0 0 6px", letterSpacing: "0.01em" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", margin: "0 0 8px" }}>THE STANDARD</p>
+            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 700, color: "#d4900a", margin: "0 0 6px", letterSpacing: "0.01em" }}>
               LaunchPath Standard
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.80)", lineHeight: 1.65, margin: "0 0 12px" }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.80)", lineHeight: 1.65, margin: "0 0 12px" }}>
               90-day guided installation of the compliance systems new carriers need to operate with structure, proof, and audit readiness.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 700, color: "#d4900a", margin: 0, letterSpacing: "0.02em" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: "#d4900a", margin: 0, letterSpacing: "0.02em" }}>
               Costs less than one audit failure
             </p>
           </div>
 
           {/* Domain label */}
-          <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: "0 0 14px" }}>
+          <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: "0 0 14px" }}>
             WHAT THE STANDARD INSTALLS
           </p>
 
@@ -305,8 +305,8 @@ export default function HeroSection() {
                 transform: inView ? "translateX(0)" : "translateX(-6px)",
                 transition: `opacity 0.4s ease ${0.5 + i * 0.07}s, transform 0.4s ease ${0.5 + i * 0.07}s`,
               }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "rgba(212,144,10,0.65)", width: 20, flexShrink: 0 }}>{d.num}</span>
-                <span className="hero-domain-name" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.92)", letterSpacing: "0.01em" }}>{d.name}</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(212,144,10,0.65)", width: 20, flexShrink: 0 }}>{d.num}</span>
+                <span className="hero-domain-name" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.92)", letterSpacing: "0.01em" }}>{d.name}</span>
               </div>
             ))}
           </div>
@@ -318,7 +318,7 @@ export default function HeroSection() {
         @media (max-width: 680px) {
           .hero-grid { grid-template-columns: 1fr !important; }
           .hero-left { padding: 64px 28px 48px !important; }
-          .hero-headline-line { font-size: 36px !important; line-height: 1.1 !important; }
+          .hero-headline-line { font-size: 44px !important; line-height: 1.05 !important; }
           .proof-strip { display: none !important; }
           .proof-mobile { display: flex !important; }
           .hero-cta-primary, .hero-cta-secondary { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
@@ -328,20 +328,20 @@ export default function HeroSection() {
           .hero-grid { grid-template-columns: 1fr 220px !important; }
           .hero-left { padding: 80px 28px 64px 36px !important; }
           .hero-right { padding: 80px 16px 64px !important; }
-          .hero-headline-line { font-size: 38px !important; line-height: 1.1 !important; }
-          .hero-rp-label { font-size: 11px !important; color: rgba(212,144,10,0.90) !important; }
-          .hero-rp-sub { font-size: 12px !important; color: rgba(255,255,255,0.76) !important; }
-          .hero-rp-title { font-size: 13px !important; }
-          .hero-domain-name { font-size: 12px !important; color: rgba(255,255,255,0.90) !important; }
+          .hero-headline-line { font-size: 48px !important; line-height: 1.05 !important; }
+          .hero-rp-label { font-size: 12px !important; color: rgba(212,144,10,0.90) !important; }
+          .hero-rp-sub { font-size: 13px !important; color: rgba(255,255,255,0.76) !important; }
+          .hero-rp-title { font-size: 14px !important; }
+          .hero-domain-name { font-size: 13px !important; color: rgba(255,255,255,0.90) !important; }
         }
         @media (min-width: 981px) and (max-width: 1100px) {
           .hero-grid { grid-template-columns: 1fr 296px !important; }
           .hero-left { padding: 90px 36px 72px 44px !important; }
           .hero-right { padding: 90px 24px 72px !important; }
-          .hero-headline-line { font-size: 46px !important; }
-          .hero-rp-label { font-size: 11px !important; letter-spacing: 0.10em !important; color: rgba(212,144,10,0.92) !important; }
-          .hero-rp-sub { font-size: 13px !important; color: rgba(255,255,255,0.80) !important; }
-          .hero-rp-title { font-size: 15px !important; }
+          .hero-headline-line { font-size: 56px !important; }
+          .hero-rp-label { font-size: 12px !important; letter-spacing: 0.10em !important; color: rgba(212,144,10,0.92) !important; }
+          .hero-rp-sub { font-size: 14px !important; color: rgba(255,255,255,0.80) !important; }
+          .hero-rp-title { font-size: 16px !important; }
           .hero-domain-name { font-size: 14px !important; color: rgba(255,255,255,0.92) !important; }
         }
         @keyframes riskPulse {
