@@ -278,7 +278,12 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Internal links to /readiness updated across NextStepSection, AutoDiagnosticPage, AboutPage
 
 
-### Hero Section Redesign + Operational Library Filter (Feb 2026)
+### Image Placements (Feb 2026)
+- [x] `hero-letter-dashboard.png` → HeroSection hero background with directional gradient overlay (dark left, reveals image right)
+- [x] `hero-boots-asphalt.png` → TruckDividerSection (replaced prior truck image)
+- [x] `hero-empty-dock.png` → New dock divider section (HomePage between DoctrineStack and MidPageStatement), overlay text: "Every form. Every policy. Every log. Built to survive a roadside inspection on Day 1."
+- [x] `16deadly-sins-panel.png` → MidPageStatement section background (87% dark overlay)
+- [x] `lp-std-002-emergency.png` → RecoveryPathBlock section background (93% dark overlay)
 - [x] Hero left column tightened: single subheadline sentence, clarifier box (border-left, italic)
 - [x] Primary CTA: "INITIATE GROUND 0 →" (amber, all caps, arrow)
 - [x] Secondary CTA: "SEE WHAT GETS INSTALLED" (ghost/outline)

@@ -6,7 +6,7 @@ export default function RecoveryPathBlock() {
     <section
       data-testid="recovery-path-block"
       style={{
-        background: "#000810",
+        background: `linear-gradient(rgba(0,4,8,0.93), rgba(0,4,8,0.93)), url("https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/4923lix7_lp-std-002-emergency.png") center 30%/cover no-repeat`,
         borderTop: "3px solid rgba(248,113,113,0.5)",
         padding: "80px 24px",
       }}

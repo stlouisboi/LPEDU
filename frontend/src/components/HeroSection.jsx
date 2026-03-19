@@ -17,6 +17,8 @@ const PROOF = [
   { target: 16, prefix: "",  suffix: "",  label: "Documented Failure Patterns" },
 ];
 
+const HERO_LETTER_URL = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/gt9pdg9a_hero-letter-dashboard.png";
+
 function useCountUp(target, duration, triggered) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -98,7 +100,7 @@ export default function HeroSection() {
       data-testid="hero-section"
       style={{
         position: "relative",
-        background: "#0b1628",
+        background: `linear-gradient(to right, rgba(11,22,40,0.92) 50%, rgba(11,22,40,0.48) 100%), url("${HERO_LETTER_URL}") center/cover no-repeat`,
         minHeight: 620,
         overflow: "hidden",
       }}

@@ -29,7 +29,7 @@ export default function MidPageStatement() {
     <section
       data-testid="mid-page-statement"
       style={{
-        background: "#000508",
+        background: `linear-gradient(rgba(0,5,8,0.87), rgba(0,5,8,0.87)), url("https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/rdc6bq8q_16deadly-sins-panel.png") center/cover no-repeat`,
         borderTop: "1px solid rgba(212,144,10,0.2)",
         borderBottom: "1px solid rgba(212,144,10,0.2)",
         padding: "104px 24px",
