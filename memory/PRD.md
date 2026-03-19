@@ -1,14 +1,15 @@
-# LaunchPath Transportation EDU — Site Rebuild
+# LaunchPath Transportation EDU — LPOS v1.0
 
 ## Original Problem Statement
-Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/conversion asset. Inner pages = resource hub. Operator Portal = future gated section.
+Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/conversion asset. Inner pages = resource hub (Operational Library). Operator Portal = future gated section. Primary product: LaunchPath Operating System (LPOS) v1.0 — a premium compliance OS sold to new motor carriers.
 
 ## Architecture
 - **Frontend**: React.js (SPA, react-router-dom) → Deploy to **Vercel**
-- **Backend**: FastAPI (secure proxy to MailerLite) → Deploy to **Railway**
-- **Database**: MongoDB → **MongoDB Atlas** (free tier, cloud-hosted)
-- **Styling**: Tailwind CSS + custom CSS variables
-- **Fonts**: Manrope (headings), Inter (body), JetBrains Mono (data/code)
+- **Backend**: FastAPI (secure proxy) → Deploy to **Railway**
+- **Database**: MongoDB → **MongoDB Atlas**
+- **Styling**: CSS Variables, inline styles, fluid typography scale
+- **Fonts**: Barlow Condensed (headings), Inter (body), JetBrains Mono (data/labels)
+- **Color palette**: Deep navy `#0b1628` + Amber gold `#d4900a`
 
 ## Deployment Files (Created Feb 2026)
 - `frontend/vercel.json` — Vercel build config + SPA rewrites
@@ -275,3 +276,36 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Mobile headline font size updated in media queries (40px → 36px at <680px)
 
 - [x] Internal links to /readiness updated across NextStepSection, AutoDiagnosticPage, AboutPage
+
+
+### Content & SEO Action Plan (Feb 2026)
+**Phase 1 — SEO Wiring (DONE):**
+- [x] `useSEO.js` hook created — sets document title + meta description dynamically
+- [x] All 6 existing Operational Library briefs wired with SEO metadata
+- [x] `BriefBundleCTA` component added to all 6 briefs
+
+**Phase 2 — New Long-Form Articles (DONE):**
+All 8 articles published at `/knowledge-center/*` with full 1,200–1,500 word content, SEO metadata, internal links, Ground 0 CTA, and Related Resources sections:
+- [x] Post #1: `FailedAuditPost.jsx` → `/knowledge-center/failed-fmcsa-new-entrant-audit`
+- [x] Post #2: `BOC3FilingPost.jsx` → `/knowledge-center/boc-3-filing-explained`
+- [x] Post #3: `BoxTruckFMCSAPost.jsx` → `/knowledge-center/box-truck-fmcsa-requirements`
+- [x] Post #4: `ClearinghouseSetupPost.jsx` → `/knowledge-center/fmcsa-clearinghouse-setup-guide`
+- [x] Post #5: `UCRRegistrationPost.jsx` → `/knowledge-center/ucr-registration-new-carrier`
+- [x] Post #6: `InsuranceSyncPost.jsx` → `/knowledge-center/new-carrier-insurance-authority-sync`
+- [x] Post #7: `ELDExemptionPost.jsx` → `/knowledge-center/eld-exemption-box-truck`
+- [x] Post #8: `NewEntrantProgramPost.jsx` → `/knowledge-center/fmcsa-new-entrant-program-guide`
+- [x] `KnowledgeCenterIndex.jsx` updated — 8 published articles listed with cards
+- [x] Stats row updated: "8 Published articles"
+- [x] All routes registered in `App.js`
+
+### Pending Items (P1)
+- [ ] Gumroad product URLs for `/compliance-library` page (5 products + 1 bundle)
+- [ ] YouTube URL for homepage "Watch the Overview" CTA
+- [ ] Private cohort Gumroad link for portal payment button
+
+### Future / Backlog
+- [ ] Build LP-TOOL-002 Load Profitability Analyzer
+- [ ] Scaffold Portal Modules 2–9
+- [ ] Refactor server.py monolith into APIRouter modules
+- [ ] Build Admin Module Editor for the coach
+- [ ] Fix GitHub Actions deployment workflow (blocked on user adding VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID secrets)
