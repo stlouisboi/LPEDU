@@ -190,7 +190,22 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Copy Link button on /standards/16-deadly-sins (data-testid=copy-link-btn) — copies page URL, institutional style, no platform branding
 - [x] Copy Link button on /standards Audit Domains section (data-testid=copy-audit-link-btn) — copies /standards#audit-domains URL
 
-### 16 Deadly Sins Enhancements (March 2026)
+### AUTO Method Page Overhaul (March 2026)
+- [x] AUTO Origin Story added — OSHA machine-guarding framework, 25 years, adapted for trucking
+- [x] A/U/T/O strip expanded with full direction names: AROUND, UNDER, THROUGH, OVER
+- [x] All 4 vectors updated with 1-2 CFR citations each
+- [x] OVER vector expanded with financial cascade explanation
+- [x] 4 Guards (LP-GRD-01 to LP-GRD-04) each with 2-3 sentence descriptions + consequence lines + CFR anchors
+- [x] LP-GRD-04 Shop Guard blocks "ALL VECTORS"
+- [x] Wisdom doctrine moved from floating bottom → connected to close/CTA
+- [x] Primary CTA changed to "VIEW THE OPERATING STANDARD" (secondary: INITIATE GROUND 0)
+- [x] "Next in Framework" sequential nav added: /16-deadly-sins → AUTO Method, /auto-method → Operating Standard, /operating-standard → Ground 0
+
+### 16 Deadly Sins Email Gate Lead Magnet (March 2026)
+- [x] POST /api/sins-checklist backend endpoint — captures email, tags MailerLite with lead_source: sins_checklist
+- [x] Email gate section on /16-deadly-sins between At-a-Glance and Violation Records
+- [x] jsPDF client-side PDF generation — 16 sins with HIGH RISK badges, FMCSA citations, checkboxes
+- [x] Confirmation state after submit
 - [x] WHAT HAPPENS consequence line added to all 16 sins
 - [x] 4 HIGH RISK sins tagged with AUTHORITY ENDING badge: SIN 02, 05, 12, 16 — red border, dark bg, badge in corner
 - [x] Closing CTA rewritten with urgency copy: "If you recognized two or more of these..."
