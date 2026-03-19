@@ -189,6 +189,24 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Populate 5 individual packet pages with final copy (New Entrant, Drug & Alcohol, HOS, Maintenance, Insurance — all complete)
 - [x] Copy Link button on /standards/16-deadly-sins (data-testid=copy-link-btn) — copies page URL, institutional style, no platform branding
 - [x] Copy Link button on /standards Audit Domains section (data-testid=copy-audit-link-btn) — copies /standards#audit-domains URL
+
+### 16 Deadly Sins Enhancements (March 2026)
+- [x] WHAT HAPPENS consequence line added to all 16 sins
+- [x] 4 HIGH RISK sins tagged with AUTHORITY ENDING badge: SIN 02, 05, 12, 16 — red border, dark bg, badge in corner
+- [x] Closing CTA rewritten with urgency copy: "If you recognized two or more of these..."
+- [x] Dual CTA: INITIATE GROUND 0 (primary, gold) + VIEW THE DOCUMENT SYSTEM — $497 (secondary, outline)
+- [x] COPY LINK button moved from hero to bottom of page
+- [x] Standalone /16-deadly-sins route added (in addition to /standards/16-deadly-sins)
+- [x] Internal links added: /standard → "See the 16 behaviors these guards block →", /auto-method → "View the 16 Deadly Sins →"
+- [x] CFR mappings corrected (SIN 01: 390.19, SIN 04: 391.45, SIN 12: 387.7/387.9, SIN 16: 385.308)
+
+### Compliance Library Gumroad URLs Wired (March 2026)
+- [x] LP-PKT-001: launchpathedu.gumroad.com/l/NewEntrantCompliancePacket
+- [x] LP-PKT-002: launchpathedu.gumroad.com/l/DrugAlcoholCompliancePacket
+- [x] LP-PKT-003: launchpathedu.gumroad.com/l/HOSDispatchCompliancePacket
+- [x] LP-PKT-004: launchpathedu.gumroad.com/l/Maintenance_UnitFilePacket
+- [x] LP-PKT-005: launchpathedu.gumroad.com/l/Insurance_Authority
+- [x] Bundle LP-SPEC-001: launchpathedu.gumroad.com/l/NewCarrierDocumentSystem
 - [x] Production backend outage resolved (Mar 16 2026) — MONGO_URL credentials fixed, Railway networking port set to 8080 to match uvicorn startup port, Dockerfile reverted to ${PORT:-8001} for dynamic port binding
 - [x] 3D Book Mockup System built (Mar 17 2026) — Three.js 0.183.2, BookMockup3D component with RoomEnvironment reflections, ACES filmic tone mapping, MeshPhysicalMaterial clearcoat, gold metallic bands, canvas textures at 2048px; /product-preview export tool (all 7 products, drag-to-rotate, cover 1280×720 + thumbnail 600×600 export); embedded in all 5 packet pages + bundle page hero
 - [x] Knowledge Center → Packet cross-links added ("LP-PKT-00X — Install this system →" on each brief card)
@@ -314,9 +332,9 @@ All 8 articles published at `/knowledge-center/*` with full 1,200–1,500 word c
 - [x] OperatorQualifierSection — `LP-QFY-001 | OPERATOR QUALIFICATION FILTER`: two-column card block (FOR YOU amber border + 4 arrow items, NOT FOR YOU rust border + 4 ✗ items), reach-diagnostic link, placed immediately after HeroSection on homepage (100% test pass)
 
 ### Pending Items (P1)
-- [ ] Gumroad product URLs for `/compliance-library` page (5 products + 1 bundle)
-- [ ] YouTube URL for homepage "Watch the Overview" CTA
+- [ ] YouTube URL for homepage "Watch the Overview" CTA (if still needed in current homepage structure)
 - [ ] Private cohort Gumroad link for portal payment button
+- [ ] LP-BRF-07 through LP-BRF-11 brief content (user to provide)
 
 ### Future / Backlog
 - [ ] Build LP-TOOL-002 Load Profitability Analyzer
