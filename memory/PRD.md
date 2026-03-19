@@ -323,7 +323,7 @@ All 8 articles published at `/knowledge-center/*` with full 1,200–1,500 word c
 - [ ] Scaffold Portal Modules 2–9
 - [ ] Refactor server.py monolith into APIRouter modules
 - [ ] Build Admin Module Editor for the coach
-- [x] Homepage restructured to 7-section architecture: Hero → Qualifier → CostOfInaction → WhatGetsInstalled → HowItWorks → CredibilityStrip → FinalCTA (Mar 2026)
+- [x] /standard page built (StandardPage.jsx) — 7 sections: Hero, Why It Exists, Four Pillars, AUTO + Guards table, 90-Day Sequence (with AuthorityClockSection + 4 phase cards), For/Not For, Closing CTA (Mar 2026)
 - [x] Copy corrections: "You install..." subheadline, stats strip (removed $0 Revenue, added 6 Domains), Phase 2 "You build", Vince "I don't do your compliance", disclaimer in FinalCTA
 - [x] 4 new lean homepage sections: CostOfInactionSection, WhatGetsInstalledSimple, HowItWorksSimple, CredibilityStrip
 - [x] AuthorityClockSection (with clickable phase links) relocated to /operating-standard page

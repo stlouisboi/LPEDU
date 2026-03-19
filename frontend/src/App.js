@@ -38,6 +38,7 @@ import AuthCallback from "./components/AuthCallback";
 import CoachRegistryPage from "./pages/CoachRegistryPage";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
+import StandardPage from "./pages/StandardPage";
 import PartnersPage from "./pages/PartnersPage";
 import ProductPreviewPage from "./pages/ProductPreviewPage";
 
@@ -156,7 +157,7 @@ function AppRouter() {
       <Route path="/reach-assessment" element={<Navigate to="/reach-diagnostic" replace />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
-      <Route path="/standard" element={<Navigate to="/operating-standard" replace />} />
+      <Route path="/standard" element={<StandardPage />} />
       <Route path="/partners" element={<PartnersPage />} />
 
       <Route path="/compliance-library" element={<ComplianceLibraryPage />} />
