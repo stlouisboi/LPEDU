@@ -62,9 +62,21 @@ const PRODUCTS = [
   },
 ];
 
-// ── Canvas texture builders ─────────────────────────────────────────────────
+const LOGO_URL = "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2";
 
-function drawFrontCover(product) {
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+
+
+function drawFrontCover(product, logoImg) {
   const canvas = document.createElement("canvas");
   canvas.width = 1024;
   canvas.height = 1440;
@@ -162,13 +174,22 @@ function drawFrontCover(product) {
     ctx.fillRect(mX, H - 186, W - mX * 2, 1);
   }
 
-  // LaunchPath wordmark
-  ctx.fillStyle = "rgba(212,144,10,0.88)";
-  ctx.font = "bold 25px Arial, sans-serif";
-  ctx.fillText("LAUNCHPATH", mX, H - 148);
-  ctx.fillStyle = "rgba(255,255,255,0.38)";
-  ctx.font = "400 17px Arial, sans-serif";
-  ctx.fillText("TRANSPORTATION EDUCATION", mX, H - 118);
+  // LaunchPath logo image (bottom left)
+  if (logoImg) {
+    const logoW = 220;
+    const logoH = (logoImg.height / logoImg.width) * logoW;
+    ctx.globalAlpha = 0.88;
+    ctx.drawImage(logoImg, mX, H - 148 - logoH + 8, logoW, logoH);
+    ctx.globalAlpha = 1;
+  } else {
+    // Fallback text if logo fails to load
+    ctx.fillStyle = "rgba(212,144,10,0.88)";
+    ctx.font = "bold 25px Arial, sans-serif";
+    ctx.fillText("LAUNCHPATH", mX, H - 148);
+    ctx.fillStyle = "rgba(255,255,255,0.38)";
+    ctx.font = "400 17px Arial, sans-serif";
+    ctx.fillText("TRANSPORTATION EDUCATION", mX, H - 118);
+  }
 
   // Price (bottom right)
   ctx.fillStyle = "rgba(212,144,10,0.72)";
@@ -281,8 +302,8 @@ function BookRenderer({ product }) {
 
     const DW = 360, DH = 504;
 
-    // Wait for fonts before drawing textures
-    document.fonts.ready.then(() => {
+    // Wait for fonts + logo before drawing textures
+    Promise.all([document.fonts.ready, loadImage(LOGO_URL).catch(() => null)]).then(([, logoImg]) => {
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x000c1a);
 
@@ -326,7 +347,7 @@ function BookRenderer({ product }) {
       const geo = new THREE.BoxGeometry(bookW, bookH, product.depth);
 
       // Build canvas textures
-      const frontCanvas = drawFrontCover(product);
+      const frontCanvas = drawFrontCover(product, logoImg);
       const spineCanvas = drawSpine(product);
       const backCanvas = drawBack(product);
       const edgeCanvas = drawEdge();
