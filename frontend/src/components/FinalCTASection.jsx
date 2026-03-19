@@ -4,9 +4,9 @@ import FadeIn from "./FadeIn";
 export default function FinalCTASection() {
   return (
     <section data-testid="final-cta-section" style={{
-      background: "#0b1628",
+      background: "#060d19",
       padding: "8rem 1.5rem",
-      borderTop: "1px solid rgba(212,144,10,0.15)",
+      borderTop: "2px solid rgba(212,144,10,0.35)",
       borderBottom: "1px solid rgba(212,144,10,0.15)",
     }}>
       <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
