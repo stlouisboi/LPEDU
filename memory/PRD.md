@@ -278,7 +278,13 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Internal links to /readiness updated across NextStepSection, AutoDiagnosticPage, AboutPage
 
 
-### Content & SEO Action Plan (Feb 2026)
+### Hero Section Redesign + Operational Library Filter (Feb 2026)
+- [x] Hero left column tightened: single subheadline sentence, clarifier box (border-left, italic)
+- [x] Primary CTA: "INITIATE GROUND 0 →" (amber, all caps, arrow)
+- [x] Secondary CTA: "SEE WHAT GETS INSTALLED" (ghost/outline)
+- [x] Stats row: 90/Days to Install It, 30+/Forms & Templates, $0/Revenue Day 1 of Revocation, 16/Documented Failure Patterns
+- [x] Right column: increased text contrast, LPOS-RISK-ANALYSIS document label
+- [x] Operational Library: category filter bar (7 buttons with article counts, live filtering, active state, result count label)
 **Phase 1 — SEO Wiring (DONE):**
 - [x] `useSEO.js` hook created — sets document title + meta description dynamically
 - [x] All 6 existing Operational Library briefs wired with SEO metadata
