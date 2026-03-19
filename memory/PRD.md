@@ -309,6 +309,10 @@ All 8 articles published at `/knowledge-center/*` with full 1,200–1,500 word c
 - [x] Stats row updated: "8 Published articles"
 - [x] All routes registered in `App.js`
 
+### Completed (Mar 2026 — Session continuation)
+- [x] Bundle mockup fix — `/mockups` page: `isBundle` products now render as fanned stack of 4 thin Three.js packets (depth 0.07 each, rotated + offset at 4 different Y-rotation angles); single books unchanged
+- [x] OperatorQualifierSection — `LP-QFY-001 | OPERATOR QUALIFICATION FILTER`: two-column card block (FOR YOU amber border + 4 arrow items, NOT FOR YOU rust border + 4 ✗ items), reach-diagnostic link, placed immediately after HeroSection on homepage (100% test pass)
+
 ### Pending Items (P1)
 - [ ] Gumroad product URLs for `/compliance-library` page (5 products + 1 bundle)
 - [ ] YouTube URL for homepage "Watch the Overview" CTA
