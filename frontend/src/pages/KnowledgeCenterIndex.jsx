@@ -3,13 +3,49 @@ import FooterSection from "../components/FooterSection";
 
 const POSTS = [
   {
-    slug: "/knowledge-center/what-happens-failed-fmcsa-new-entrant-audit",
+    slug: "/knowledge-center/failed-fmcsa-new-entrant-audit",
     code: "LP-BRF-POST-01",
     category: "New Entrant Program",
     title: "What Actually Happens When You Fail an FMCSA New Entrant Audit",
-    teaser: "The FMCSA New Entrant Audit doesn't result in a pass or fail — it results in a rating. A Conditional rating triggers an insurance cascade, broker relationship damage, and a 45-day correction window most carriers aren't ready for. Here's what actually happens, and how carriers recover.",
+    teaser: "The FMCSA New Entrant Audit doesn't result in a pass or fail — it results in a rating. A Conditional rating triggers an insurance cascade, broker relationship damage, and a 45-day correction window most carriers aren't ready for.",
     readTime: "~9 min",
     cfr: "49 CFR Part 385",
+  },
+  {
+    slug: "/knowledge-center/boc-3-filing-explained",
+    code: "LP-BRF-POST-02",
+    category: "Authority Registration",
+    title: "The BOC-3 Filing: What It Is, What Happens If It Lapses, and How to Verify Yours",
+    teaser: "The BOC-3 is one of three foundational filings required before FMCSA grants operating authority. A lapsed filing can suspend your authority without notification to the carrier. Here's what it is and how to verify yours in under five minutes.",
+    readTime: "~7 min",
+    cfr: "49 CFR Part 366",
+  },
+  {
+    slug: "/knowledge-center/box-truck-fmcsa-requirements",
+    code: "LP-BRF-POST-03",
+    category: "Vehicle & Operations",
+    title: "Box Truck FMCSA Requirements: The 26,001 lb Line and What It Changes",
+    teaser: "The 26,001 lb GVWR threshold changes your CDL requirements, ELD applicability, medical certification obligations, and driver qualification file structure. Understanding where you fall determines your full regulatory profile before the first dispatch.",
+    readTime: "~9 min",
+    cfr: "49 CFR Part 390",
+  },
+  {
+    slug: "/knowledge-center/fmcsa-clearinghouse-setup-guide",
+    code: "LP-BRF-POST-04",
+    category: "Drug & Alcohol Program",
+    title: "How to Register in the FMCSA Drug and Alcohol Clearinghouse: A Step-by-Step Guide for New Carriers",
+    teaser: "Clearinghouse registration, pre-employment query requirements, and annual query obligations under 49 CFR Part 382. Every step a new carrier must complete before a CDL driver turns a key — including what happens when the query is skipped.",
+    readTime: "~10 min",
+    cfr: "49 CFR Part 382",
+  },
+  {
+    slug: "/knowledge-center/ucr-registration-new-carrier",
+    code: "LP-BRF-POST-05",
+    category: "Authority Registration",
+    title: "UCR Registration for New Motor Carriers: Who Owes It, When It's Due, and What Happens If You Skip It",
+    teaser: "The Unified Carrier Registration is a separate annual filing from your MC authority — not part of the FMCSA application process. Operating without it creates roadside enforcement exposure that far exceeds the cost of the registration itself.",
+    readTime: "~7 min",
+    cfr: "49 USC 14504a",
   },
   {
     slug: "/knowledge-center/new-carrier-insurance-authority-sync",
@@ -19,6 +55,24 @@ const POSTS = [
     teaser: "Insurance isn't a one-time purchase — it's a continuous filing that can lapse at any point, and when it lapses, authority suspension follows automatically. This article explains the BMC-91 filing mechanics, the lapse trigger, and the operational decisions that put coverage at risk.",
     readTime: "~8 min",
     cfr: "49 CFR Part 387",
+  },
+  {
+    slug: "/knowledge-center/eld-exemption-box-truck",
+    code: "LP-BRF-POST-07",
+    category: "Hours of Service",
+    title: "ELD Exemptions for Box Truck Operators: What's Covered and What Isn't",
+    teaser: "The short-haul exemption eliminates the ELD requirement for qualifying box truck operators — but it doesn't eliminate HOS rules or recordkeeping obligations. Here's exactly what the exemption covers and when a single shift can eliminate it.",
+    readTime: "~8 min",
+    cfr: "49 CFR Part 395",
+  },
+  {
+    slug: "/knowledge-center/fmcsa-new-entrant-program-guide",
+    code: "LP-BRF-POST-08",
+    category: "New Entrant Program",
+    title: "The FMCSA New Entrant Program: A Plain-Language Guide to Your First 12 Months",
+    teaser: "Every new motor carrier enters the New Entrant Program the day authority activates. This guide covers the SMS monitoring period, the mandatory audit timeline, all three possible outcomes, and what the Four Pillars look like inside the 12-month window.",
+    readTime: "~11 min",
+    cfr: "49 CFR Part 385",
   },
 ];
 
@@ -139,7 +193,7 @@ export default function KnowledgeCenterIndex() {
           <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
             {[
               ["6", "Briefs in this series"],
-              ["8–12 min", "Average read time"],
+              ["8", "Published articles"],
               ["49 CFR", "Primary regulation source"],
             ].map(([val, label]) => (
               <div key={val}>

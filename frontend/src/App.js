@@ -17,6 +17,12 @@ import UCRRegistrationBrief from "./pages/knowledge-center/UCRRegistrationBrief"
 import AllChecklists from "./pages/knowledge-center/AllChecklists";
 import InsuranceSyncPost from "./pages/knowledge-center/InsuranceSyncPost";
 import FailedAuditPost from "./pages/knowledge-center/FailedAuditPost";
+import ClearinghouseSetupPost from "./pages/knowledge-center/ClearinghouseSetupPost";
+import BoxTruckFMCSAPost from "./pages/knowledge-center/BoxTruckFMCSAPost";
+import BOC3FilingPost from "./pages/knowledge-center/BOC3FilingPost";
+import NewEntrantProgramPost from "./pages/knowledge-center/NewEntrantProgramPost";
+import UCRRegistrationPost from "./pages/knowledge-center/UCRRegistrationPost";
+import ELDExemptionPost from "./pages/knowledge-center/ELDExemptionPost";
 import Ground0Page from "./pages/Ground0Page";
 import Ground0CompletePage from "./pages/Ground0CompletePage";
 import AdmissionPage from "./pages/AdmissionPage";
@@ -122,6 +128,13 @@ function AppRouter() {
       <Route path="/knowledge-center/authority-registrations-brief" element={<UCRRegistrationBrief />} />
       <Route path="/knowledge-center/new-carrier-insurance-authority-sync" element={<InsuranceSyncPost />} />
       <Route path="/knowledge-center/what-happens-failed-fmcsa-new-entrant-audit" element={<FailedAuditPost />} />
+      <Route path="/knowledge-center/failed-fmcsa-new-entrant-audit" element={<FailedAuditPost />} />
+      <Route path="/knowledge-center/fmcsa-clearinghouse-setup-guide" element={<ClearinghouseSetupPost />} />
+      <Route path="/knowledge-center/box-truck-fmcsa-requirements" element={<BoxTruckFMCSAPost />} />
+      <Route path="/knowledge-center/boc-3-filing-explained" element={<BOC3FilingPost />} />
+      <Route path="/knowledge-center/fmcsa-new-entrant-program-guide" element={<NewEntrantProgramPost />} />
+      <Route path="/knowledge-center/ucr-registration-new-carrier" element={<UCRRegistrationPost />} />
+      <Route path="/knowledge-center/eld-exemption-box-truck" element={<ELDExemptionPost />} />
       <Route path="/mockups" element={<BookMockupPage />} />
       <Route path="/ground-0-briefing" element={<Ground0Page />} />
       <Route path="/ground-0-complete" element={<Ground0CompletePage />} />
