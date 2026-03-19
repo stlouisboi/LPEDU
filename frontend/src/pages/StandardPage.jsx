@@ -265,12 +265,20 @@ export default function StandardPage() {
             </div>
           </div>
 
-          <Link to="/auto-method" style={linkStyle}
-            onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
-            onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.82)"; }}
-          >
-            View full AUTO Method breakdown →
-          </Link>
+          <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", alignItems: "center" }}>
+            <Link to="/auto-method" style={linkStyle}
+              onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.82)"; }}
+            >
+              View full AUTO Method breakdown →
+            </Link>
+            <Link to="/16-deadly-sins" style={linkStyle}
+              onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.82)"; }}
+            >
+              See the 16 behaviors these guards block →
+            </Link>
+          </div>
         </div>
       </div>
 

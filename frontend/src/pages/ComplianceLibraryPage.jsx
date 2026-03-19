@@ -21,7 +21,7 @@ const PACKETS = [
     price: "$97",
     domain: "Authority & New Entrant",
     desc: "The foundational compliance packet for new motor carrier authority. Covers FMCSA filing verification, New Entrant Safety Audit preparation, and authority maintenance protocols.",
-    gumroadUrl: "#",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/NewEntrantCompliancePacket",
   },
   {
     sku: "LP-PKT-002",
@@ -29,7 +29,7 @@ const PACKETS = [
     price: "$97",
     domain: "D&A Program",
     desc: "Complete Drug & Alcohol program structure for owner-operators and small fleets. Includes Clearinghouse enrollment protocol, pre-employment testing requirements, and program documentation.",
-    gumroadUrl: "#",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/DrugAlcoholCompliancePacket",
   },
   {
     sku: "LP-PKT-003",
@@ -37,7 +37,7 @@ const PACKETS = [
     price: "$127",
     domain: "Hours of Service",
     desc: "Hours-of-service documentation system covering ELD compliance, log reconciliation, and dispatch record requirements under 49 CFR Part 395.",
-    gumroadUrl: "#",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/HOSDispatchCompliancePacket",
   },
   {
     sku: "LP-PKT-004",
@@ -45,7 +45,7 @@ const PACKETS = [
     price: "$127",
     domain: "Vehicle Maintenance",
     desc: "Vehicle maintenance documentation system including DVIR requirements, periodic inspection scheduling, and unit file structure under 49 CFR Part 396.",
-    gumroadUrl: "#",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/Maintenance_UnitFilePacket",
   },
   {
     sku: "LP-PKT-005",
@@ -53,7 +53,7 @@ const PACKETS = [
     price: "$127",
     domain: "Insurance Continuity",
     desc: "BMC-91 filing integrity, coverage verification schedule, and policy gap prevention protocol. Addresses the most common cause of authority revocation.",
-    gumroadUrl: "#",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/Insurance_Authority",
   },
 ];
 
@@ -185,7 +185,7 @@ export default function ComplianceLibraryPage() {
             </div>
             <div style={{ textAlign: "right", flexShrink: 0 }}>
               <a
-                href="#"
+                href="https://launchpathedu.gumroad.com/l/NewCarrierDocumentSystem"
                 data-testid="bundle-buy-btn"
                 target="_blank"
                 rel="noopener noreferrer"

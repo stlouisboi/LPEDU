@@ -242,6 +242,18 @@ export default function AutoMethodPage() {
               </div>
             ))}
           </div>
+
+          <div style={{ marginTop: "2rem" }}>
+            <Link
+              to="/16-deadly-sins"
+              data-testid="auto-method-sins-link"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.82)", textDecoration: "none", transition: "color 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#d4900a"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.82)"; }}
+            >
+              View the 16 Deadly Sins →
+            </Link>
+          </div>
         </div>
       </div>
 

@@ -171,6 +171,7 @@ function AppRouter() {
       <Route path="/standards/insurance-packet" element={<InsurancePacketPage />} />
       <Route path="/standards/new-carrier-document-system" element={<BundlePage />} />
       <Route path="/standards/16-deadly-sins" element={<SixteenSinsPage />} />
+      <Route path="/16-deadly-sins" element={<SixteenSinsPage />} />
 
       {/* Product preview/export tool */}
       <Route path="/product-preview" element={<ProductPreviewPage />} />

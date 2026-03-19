@@ -13,7 +13,7 @@ const DOMAINS = [
 const PROOF = [
   { target: 90, prefix: "",  suffix: "",  label: "Days — Guided Installation" },
   { target: 30, prefix: "",  suffix: "+", label: "Forms & Templates" },
-  { target: 16, prefix: "",  suffix: "",  label: "Failure Patterns Exposed" },
+  { target: 16, prefix: "",  suffix: "",  label: "Failure Patterns Exposed", link: "/16-deadly-sins" },
   { target: 6,  prefix: "",  suffix: "",  label: "Compliance Domains" },
 ];
 
@@ -39,17 +39,20 @@ function useCountUp(target, duration, triggered) {
 
 function ProofCard({ item, triggered, delay }) {
   const count = useCountUp(item.target, 1400, triggered);
-  return (
-    <div style={{
-      flex: 1,
-      padding: "20px 16px 18px",
-      borderRight: "0.5px solid rgba(212,144,10,0.14)",
-      position: "relative",
-      overflow: "hidden",
-      opacity: triggered ? 1 : 0,
-      transform: triggered ? "translateY(0)" : "translateY(8px)",
-      transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
-    }}>
+  const cardStyle = {
+    flex: 1,
+    padding: "20px 16px 18px",
+    borderRight: "0.5px solid rgba(212,144,10,0.14)",
+    position: "relative",
+    overflow: "hidden",
+    opacity: triggered ? 1 : 0,
+    transform: triggered ? "translateY(0)" : "translateY(8px)",
+    transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
+    textDecoration: "none",
+    display: "block",
+  };
+  const inner = (
+    <>
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 2,
         background: "linear-gradient(90deg, #d4900a, rgba(212,144,10,0.2))",
@@ -75,8 +78,12 @@ function ProofCard({ item, triggered, delay }) {
         margin: 0,
         lineHeight: 1.3,
       }}>{item.label}</p>
-    </div>
+    </>
   );
+  if (item.link) {
+    return <Link to={item.link} style={{ ...cardStyle, cursor: "pointer" }}>{inner}</Link>;
+  }
+  return <div style={cardStyle}>{inner}</div>;
 }
 
 export default function HeroSection() {
