@@ -531,28 +531,56 @@ export default function SixteenSinsPage() {
             </p>
 
             {gateState === "done" ? (
-              <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+              <div>
                 <div style={{
                   background: "rgba(76,175,80,0.12)", border: "1px solid rgba(76,175,80,0.30)",
-                  padding: "0.875rem 1.5rem",
+                  padding: "0.875rem 1.5rem", marginBottom: "1.75rem", display: "inline-block",
                 }}>
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700, color: "#4caf50", letterSpacing: "0.10em", textTransform: "uppercase", margin: 0 }}>
                     Downloading — check your downloads folder
                   </p>
                 </div>
-                <button
-                  onClick={generatePDF}
-                  style={{
-                    fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.82rem",
-                    letterSpacing: "0.08em", textTransform: "uppercase", color: gold,
-                    background: "transparent", border: `1px solid rgba(212,144,10,0.35)`,
-                    padding: "0.875rem 1.25rem", cursor: "pointer", transition: "border-color 0.2s",
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = gold; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.35)"; }}
-                >
-                  Download Again
-                </button>
+
+                {/* Post-download nudge */}
+                <div style={{
+                  background: "rgba(212,144,10,0.06)",
+                  border: "1px solid rgba(212,144,10,0.20)",
+                  padding: "1.5rem 1.75rem",
+                  maxWidth: 520,
+                }}>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
+                    color: "rgba(255,255,255,0.75)", lineHeight: 1.75, marginBottom: "1.25rem",
+                  }}>
+                    Your checklist is downloading. Ready to see which of these are active in your operation right now?
+                  </p>
+                  <a
+                    href="/ground-0-briefing"
+                    data-testid="sins-download-ground0-nudge"
+                    style={{
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem",
+                      letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628",
+                      background: gold, padding: "0.75rem 1.75rem", textDecoration: "none",
+                      display: "inline-block", transition: "background 0.2s",
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = gold; }}
+                  >
+                    Initiate Ground 0 — Free →
+                  </a>
+                  <button
+                    onClick={generatePDF}
+                    style={{
+                      fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.78rem",
+                      letterSpacing: "0.06em", color: "rgba(255,255,255,0.35)",
+                      background: "transparent", border: "none",
+                      padding: "0.75rem 1rem", cursor: "pointer", display: "block",
+                      marginTop: "0.75rem",
+                    }}
+                  >
+                    Download again
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleGateSubmit} style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "stretch" }}>

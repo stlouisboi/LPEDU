@@ -19,7 +19,7 @@ export default function CredibilityStrip() {
       <section
         data-testid="credibility-strip"
         style={{
-          background: "var(--bg-paper, #0b1222)",
+          background: "#0b1628",
           borderTop: "3px solid rgba(212,144,10,0.35)",
           padding: "5rem 1.5rem",
         }}

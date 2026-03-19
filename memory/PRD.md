@@ -190,6 +190,10 @@ Full-site rebuild for LaunchPath Transportation EDU. Homepage = primary sales/co
 - [x] Copy Link button on /standards/16-deadly-sins (data-testid=copy-link-btn) — copies page URL, institutional style, no platform branding
 - [x] Copy Link button on /standards Audit Domains section (data-testid=copy-audit-link-btn) — copies /standards#audit-domains URL
 
+### UI Fixes (March 2026)
+- [x] CredibilityStrip.jsx founder section: fixed `var(--bg-paper)` resolving to #F5F6F7 (white), making white text invisible — hardcoded to `#0b1628`
+- [x] Post-download Ground 0 nudge added on /16-deadly-sins after PDF download confirmation
+
 ### AUTO Method Page Overhaul (March 2026)
 - [x] AUTO Origin Story added — OSHA machine-guarding framework, 25 years, adapted for trucking
 - [x] A/U/T/O strip expanded with full direction names: AROUND, UNDER, THROUGH, OVER
