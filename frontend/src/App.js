@@ -156,6 +156,7 @@ function AppRouter() {
       <Route path="/reach-assessment" element={<Navigate to="/reach-diagnostic" replace />} />
       <Route path="/auto-method" element={<AutoMethodPage />} />
       <Route path="/operating-standard" element={<OperatingStandardPage />} />
+      <Route path="/standard" element={<Navigate to="/operating-standard" replace />} />
       <Route path="/partners" element={<PartnersPage />} />
 
       <Route path="/compliance-library" element={<ComplianceLibraryPage />} />

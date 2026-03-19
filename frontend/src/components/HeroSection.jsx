@@ -11,10 +11,10 @@ const DOMAINS = [
 ];
 
 const PROOF = [
-  { target: 90, prefix: "",  suffix: "",  label: "Days to Install It" },
+  { target: 90, prefix: "",  suffix: "",  label: "Days — Guided Installation" },
   { target: 30, prefix: "",  suffix: "+", label: "Forms & Templates" },
-  { target: 0,  prefix: "$", suffix: "",  label: "Revenue Day 1 of Revocation" },
-  { target: 16, prefix: "",  suffix: "",  label: "Documented Failure Patterns" },
+  { target: 16, prefix: "",  suffix: "",  label: "Failure Patterns Exposed" },
+  { target: 6,  prefix: "",  suffix: "",  label: "Compliance Domains" },
 ];
 
 const HERO_LETTER_URL = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/gt9pdg9a_hero-letter-dashboard.png";
@@ -143,7 +143,7 @@ export default function HeroSection() {
 
           {/* Single subheadline */}
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 22 }}>
-            LaunchPath installs the compliance infrastructure FMCSA expects into your operation — before gaps become audit exposure.
+            You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
           </p>
 
           {/* Clarifier box */}
