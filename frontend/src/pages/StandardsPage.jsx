@@ -83,6 +83,7 @@ export default function StandardsPage() {
         </FadeIn>
 
         {/* FMCSA Audit Domain Mapping Table */}
+        <div id="audit-domains" style={{ scrollMarginTop: "80px" }} />
         <FadeIn delay={40}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
