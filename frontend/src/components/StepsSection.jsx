@@ -2,7 +2,7 @@ const STEPS = [
   { num: "01", badge: "Free", badgeGold: false, name: "Ground 0 Briefing", desc: "Six structured lessons. Approximately 90 minutes. Establishes whether your operation is structured to survive before a single dollar is committed." },
   { num: "02", badge: "Free", badgeGold: false, name: "AUTO Diagnostic", desc: "A four-pillar readiness assessment and total cost-of-authority calculation. Survival is a math problem, not a commitment level." },
   { num: "03", badge: "Gated", badgeGold: false, name: "Admission Decision", desc: "Admission is granted only when the operational structure supports survival. Readiness determines entry." },
-  { num: "04", badge: "$5,000", badgeGold: true, name: "90-Day Operating System", desc: "Structured implementation: compliance infrastructure, insurance stability, audit readiness, and financial controls — verified by the Station Custodian." },
+  { num: "04", badge: "$2,500", badgeGold: true, name: "90-Day Operating System", desc: "Structured implementation: compliance infrastructure, insurance stability, audit readiness, and financial controls — verified by the Station Custodian." },
 ];
 
 export default function StepsSection() {

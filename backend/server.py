@@ -910,7 +910,7 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
             "price_data": {
                 "currency": "usd",
                 "product_data": {"name": "LaunchPath LPOS Cohort Access"},
-                "unit_amount": 500000,
+                "unit_amount": 250000,
             },
             "quantity": 1,
         }],
@@ -922,7 +922,7 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
     await db.payment_transactions.insert_one({
         "session_id": session.id,
         "user_id": user_id,
-        "amount": 5000.00,
+        "amount": 2500.00,
         "currency": "usd",
         "payment_status": "pending",
         "status": "initiated",

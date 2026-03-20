@@ -23,7 +23,7 @@ const PATHS = [
     id: "stop",
     label: "STOP",
     description: "LaunchPath Standard",
-    cost: "$5,000",
+    cost: "$2,500",
     costNote: "",
     result: "Built infrastructure you own and operate — verified by the Station Custodian before your audit window closes",
     isLP: true,

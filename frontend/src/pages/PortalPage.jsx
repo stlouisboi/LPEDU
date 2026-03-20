@@ -1167,7 +1167,7 @@ export default function PortalPage() {
                         color: "#d4900a",
                       }}
                     >
-                      $5,000
+                      $2,500
                     </span>
                   </div>
 
