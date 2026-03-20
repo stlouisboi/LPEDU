@@ -10,6 +10,22 @@ const gold = "#d4900a";
 const pageBg = "#060d19";
 const cardBg = "#0B1927";
 
+const FEATURED_NUM = ["02", "05", "08", "12", "16"];
+
+const REMAINING_SINS = [
+  { num: "01", name: "Authority Blindness" },
+  { num: "03", name: "DQ Negligence" },
+  { num: "04", name: "Medical Lapse" },
+  { num: "06", name: "Logbook Fiction" },
+  { num: "07", name: "ELD Ignorance" },
+  { num: "09", name: "Maintenance Amnesia" },
+  { num: "10", name: "The Annual Skip" },
+  { num: "11", name: "Policy Absence" },
+  { num: "13", name: "Accident Erasure" },
+  { num: "14", name: "Consortium Dropout" },
+  { num: "15", name: "The 150 Delay" },
+];
+
 const DOMAIN_GROUPS = [
   {
     domain: "Authority & Administrative Failures",
@@ -504,6 +520,49 @@ export default function SixteenSinsPage() {
           </div>
         </FadeIn>
 
+        {/* ── Transition to featured sins ── */}
+        <FadeIn delay={45}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+            color: "rgba(255,255,255,0.55)", lineHeight: 1.75,
+            maxWidth: 640, marginBottom: "4rem", fontStyle: "italic",
+          }}>
+            Below are the 5 most common authority-ending behaviors.
+            The full list — with prevention protocols — is in the checklist.
+          </p>
+        </FadeIn>
+
+        {/* ── Featured Sins (5 with full detail) ── */}
+        <FadeIn delay={50}>
+          <div style={{ marginBottom: "1.5rem" }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase",
+              color: "rgba(212,144,10,0.7)", marginBottom: "0.5rem",
+            }}>FEATURED VIOLATIONS</p>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
+              color: "rgba(255,255,255,0.38)", letterSpacing: "0.02em",
+            }}>The 5 most common authority-ending behaviors — documented below in full</p>
+            <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginTop: "1.5rem" }} />
+          </div>
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "1.25rem", marginBottom: "2.5rem",
+          }} className="sins-grid">
+            {SINS.filter(s => FEATURED_NUM.includes(s.num)).map((sin, i) => (
+              <SinCard key={i} sin={sin} />
+            ))}
+          </div>
+          <p style={{
+            fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+            color: "rgba(255,255,255,0.45)", lineHeight: 1.75,
+            maxWidth: 640, marginBottom: "4rem", fontStyle: "italic",
+          }}>
+            These are 5 of the 16. The remaining 11 — including prevention protocols for all 16 — are in the full checklist.
+          </p>
+        </FadeIn>
+
         {/* ── Email Gate — Checklist Download ── */}
         <FadeIn delay={50}>
           <div style={{
@@ -517,7 +576,7 @@ export default function SixteenSinsPage() {
               fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)",
               marginBottom: "0.75rem",
-            }}>LP-TOOL-SIN | FREE SELF-AUDIT</p>
+            }}>LP-LEAD-001 | CHECKLIST DOWNLOAD</p>
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 700,
               fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
@@ -525,10 +584,25 @@ export default function SixteenSinsPage() {
             }}>Download the 16 Deadly Sins Checklist</h2>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-              color: "rgba(255,255,255,0.60)", lineHeight: 1.75, maxWidth: 520, marginBottom: "1.75rem",
+              color: "rgba(255,255,255,0.60)", lineHeight: 1.75, maxWidth: 520, marginBottom: "1.25rem",
             }}>
-              A self-audit tool for new motor carriers. Check your operation against the 16 behaviors that most commonly end authority — with CFR citations and consequence notes for each.
+              A self-audit tool for new motor carriers. Review your operation against all 16 behaviors
+              that most commonly end authority — with CFR citations, consequence details, and prevention protocols.
             </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.75rem" }}>
+              {[
+                "All 16 sins with full descriptions",
+                "\"What Happens\" consequence line for each",
+                "Self-audit checkboxes",
+                "Prevention protocol summary",
+                "Next-step recommendations based on your results",
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                  <span style={{ color: gold, fontSize: "0.857rem", marginTop: "0.15rem", flexShrink: 0 }}>→</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}>{item}</span>
+                </div>
+              ))}
+            </div>
 
             {gateState === "done" ? (
               <div>
@@ -583,6 +657,7 @@ export default function SixteenSinsPage() {
                 </div>
               </div>
             ) : (
+              <>
               <form onSubmit={handleGateSubmit} style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "stretch" }}>
                 <input
                   type="email"
@@ -615,50 +690,58 @@ export default function SixteenSinsPage() {
                   onMouseEnter={e => { if (gateState !== "submitting") e.currentTarget.style.background = "#e8a520"; }}
                   onMouseLeave={e => { if (gateState !== "submitting") e.currentTarget.style.background = gold; }}
                 >
-                  {gateState === "submitting" ? "Preparing..." : "Download →"}
+                  {gateState === "submitting" ? "Preparing..." : "Download the Checklist →"}
                 </button>
               </form>
+              <p style={{
+                fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
+                color: "rgba(255,255,255,0.28)", marginTop: "0.875rem", letterSpacing: "0.02em",
+              }}>
+                No spam. Just the checklist and relevant compliance resources.
+              </p>
+              </>
             )}
           </div>
         </FadeIn>
 
-        {/* ── Violation Records section label ── */}
-        <FadeIn delay={60}>
-          <div style={{ marginBottom: "2.5rem" }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.714rem",
-              fontWeight: 700,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "rgba(212,144,10,0.7)",
-              marginBottom: "0.5rem",
-            }}>VIOLATION RECORDS</p>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.88rem",
-              color: "rgba(255,255,255,0.38)",
-              letterSpacing: "0.02em",
-            }}>Operational Behaviors Documented in New Authority Failures</p>
-            <div style={{
-              height: 1,
-              background: "rgba(255,255,255,0.07)",
-              marginTop: "1.5rem",
-            }} />
-          </div>
-        </FadeIn>
-
-        {/* ── Sin card grid ── */}
-        <FadeIn delay={70}>
+        {/* ── Remaining 11 sins — names only (gated) ── */}
+        <FadeIn delay={65}>
           <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "1.25rem",
-            marginBottom: "6rem",
-          }} className="sins-grid">
-            {SINS.map((sin, i) => (
-              <SinCard key={i} sin={sin} />
-            ))}
+            background: "#0A1525",
+            border: "1px solid rgba(255,255,255,0.07)",
+            padding: "2.5rem 3rem",
+            marginBottom: "5rem",
+          }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: "rgba(216,90,48,0.60)", marginBottom: "0.75rem",
+            }}>THE REMAINING 11</p>
+            <h3 style={{
+              fontFamily: "'Playfair Display', serif", fontWeight: 700,
+              fontSize: "clamp(1.1rem, 2vw, 1.4rem)", color: "#FFFFFF",
+              lineHeight: 1.2, marginBottom: "0.75rem", letterSpacing: "-0.01em",
+            }}>The full checklist includes these additional failure patterns:</h3>
+            <p style={{
+              fontFamily: "'Inter', sans-serif", fontSize: "0.857rem",
+              color: "rgba(255,255,255,0.40)", lineHeight: 1.7, marginBottom: "1.75rem",
+            }}>
+              Each includes the full description, CFR citation, consequence details, and prevention protocol.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+              {REMAINING_SINS.map(sin => (
+                <div key={sin.num} style={{ display: "flex", gap: "0.875rem", alignItems: "baseline" }}>
+                  <span style={{
+                    fontFamily: "'Courier New', Courier, monospace", fontSize: "0.714rem",
+                    color: "rgba(216,90,48,0.40)", letterSpacing: "0.06em", flexShrink: 0,
+                  }}>→</span>
+                  <span style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+                    fontWeight: 500, color: "rgba(255,255,255,0.55)", lineHeight: 1.5,
+                  }}>SIN {sin.num} — {sin.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </FadeIn>
 

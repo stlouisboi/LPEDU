@@ -807,7 +807,7 @@ class SinsChecklistCapture(BaseModel):
 @api_router.post("/sins-checklist")
 async def sins_checklist_capture(data: SinsChecklistCapture):
     """16 Deadly Sins checklist download email gate — tags subscriber in MailerLite."""
-    payload = {"email": data.email, "status": "active", "fields": {"lead_source": "sins_checklist"}}
+    payload = {"email": data.email, "status": "active", "fields": {"lead_source": "sins_checklist_download", "lead_group": "16 Deadly Sins Downloads"}}
     headers = {"Authorization": f"Bearer {MAILERLITE_API_TOKEN}", "Content-Type": "application/json", "Accept": "application/json"}
     try:
         async with httpx.AsyncClient(timeout=10) as http:
