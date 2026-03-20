@@ -14,7 +14,7 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **Auth**: JWT-based custom auth
 - **CI/CD**: GitHub Actions → Vercel (frontend) / Railway (backend)
 
-## Typography Standard (Updated — Session 5)
+## Typography Standard (Updated — Session 6)
 - **Heading**: Playfair Display 700 — all page headlines, section titles, module headers
 - **Body / UI / Nav / Buttons / Labels / Forms**: Inter 400/500/600/700
 - **System codes only**: IBM Plex Mono 500 — retained for `.mono` CSS class only
@@ -28,8 +28,13 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
   - `--text-sm`: 0.857rem = 18px Secondary text
   - `--text-xs`: 0.762rem = 16px Small labels/overlines
 - **Body line-height**: 1.65
-- **Content pages**: **always warm sepia** — `#f4f0e8` background, warm near-black `#1a0f00` text. No dark mode on KC/brief pages. Dark branded Navbar + Footer frame the sepia body.
+
+## Knowledge Center Theme (Updated — Session 6)
+- **Content pages** (`.content-page`): warm ivory `#F6F3EE` background, deep navy `#0D1B30` text. Professional library reading environment.
+- **Hero/header bands**: dark navy `#0D1B30` — applied via CSS rule targeting `[data-testid="article-hero"]` and `[data-testid="kc-hero"]` within `.content-page`
+- **CTA/footer bands**: already dark — `BriefBundleCTA` (#0b1628), `ArticlePortalBanner` (#000A14), `FooterSection` (#0d1c30)
 - **Marketing pages**: dark navy, white text
+- **Distinction**: dark = authority/doctrine/enrollment, light = reading/reference/library
 
 ## Key Routes
 - `/` → HomePage
@@ -111,14 +116,22 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **Sub-0.71rem sizes fixed**: All `0.55rem`, `0.62rem`, `0.672rem` etc. bumped to `0.762rem` (16px minimum)
 - **Admin login endpoint added**: `POST /api/auth/login` — hardcoded coach credentials, sets session cookie, used by admin dashboard
 
----
+### Session 7 (KC Light Theme + 5 New Briefs) — Mar 2026
+- **Knowledge Center theme redesigned**: warm ivory (#F6F3EE) + deep navy (#0D1B30) — professional library reading environment replacing sepia theme
+- **Dark hero bands**: CSS rule targeting `[data-testid="article-hero"]` and `[data-testid="kc-hero"]` within `.content-page` gives all brief hero sections a dark navy band — no component edits needed
+- **8 article posts updated**: sepia `rgba(26,18,8,...)` colors replaced with navy `rgba(13,27,48,...)` equivalents
+- **KnowledgeCenterIndex updated**: hardcoded sepia card colors → CSS variables/navy; stats "11 Briefs published"; added 90-Day Clock series section with 5 new brief cards
+- **LP-BRF-07**: Day1AuthorityBrief.jsx — complete content on Day 1 authority, 3 federal filings, operational infrastructure
+- **LP-BRF-08**: InstallationWindowBrief.jsx — 30-day installation window documentation architecture
+- **LP-BRF-09**: OperatingPatternsBrief.jsx — Days 30–60 pattern formation and 4 evidence streams
+- **LP-BRF-10**: PreparationReconstructionBrief.jsx — preparation vs. reconstruction, 4 reconstruction tells, 90-day audit hardening
+- **LP-BRF-11**: NewEntrantReviewBrief.jsx — FMCSA New Entrant Safety Assurance Program, 6 audit categories, 4 audit triggers
 
-## P0/P1/P2 Backlog
+---
 
 ### P1 (High Value, Near Term)
 - Populate Gumroad product URLs in ComplianceLibraryPage.jsx (5 products + 1 bundle)
 - Add YouTube URL for homepage "Watch the Overview" CTA
-- Populate Knowledge Center briefs LP-BRF-07 through LP-BRF-11
 - Verify Railway deployment works after requirements.txt fix (user must push to GitHub)
 
 ### P2 (Admin & Operational Tools)
