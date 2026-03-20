@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Lock, CheckCircle, ArrowRight, GoogleLogo, SignOut } from "@phosphor-icons/react";
+import { Lock, CheckCircle, ArrowRight, SignOut } from "@phosphor-icons/react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
@@ -7,6 +7,7 @@ import SignalMonitor from "../components/SignalMonitor";
 import TaskItem from "../components/TaskItem";
 import { VideoLessonWorkbench, MODULE_1_DATA } from "../components/VideoLessonWorkbench";
 import { CPMCalculator } from "../components/CPMCalculator";
+import Ground0LessonPlayer from "../components/Ground0LessonPlayer";
 
 const CURRICULUM = [
   { id: "ground-0", code: "GROUND 0", label: "The Mindset Module",           locked: false, type: "foundation", lessonCount: 6  },
@@ -64,14 +65,7 @@ const MODULE_OVERVIEWS = {
   },
 };
 
-const GROUND0_MODULES = [
-  { number: "G0-1", title: "The Reality of Motor Carrier Authority", duration: "~12 min" },
-  { number: "G0-2", title: "The 90-Day Survival Window", duration: "~15 min" },
-  { number: "G0-3", title: "The AUTO Risk Model", duration: "~18 min" },
-  { number: "G0-4", title: "The Four Pillars of Survival", duration: "~14 min" },
-  { number: "G0-5", title: "The 16 Deadly Sins", duration: "~20 min" },
-  { number: "G0-6", title: "The GO / WAIT / NO-GO Decision", duration: "~16 min" },
-];
+const GROUND0_MODULES = [];
 
 export default function PortalPage() {
   const location = useLocation();
@@ -228,12 +222,6 @@ export default function PortalPage() {
     setSubmittingTaskId(null);
   };
 
-  // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
-  const handleGoogleLogin = () => {
-    const redirectUrl = window.location.origin + "/portal";
-    window.location.href = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(redirectUrl)}`;
-  };
-
   const selected = CURRICULUM.find((m) => m.id === selectedId);
   // A module is locked if hasCohortAccess is false (or null) AND it's not ground-0
   const isModuleLocked = (mod) => mod && mod.id !== "ground-0" && !hasCohortAccess;
@@ -252,48 +240,19 @@ export default function PortalPage() {
     );
   }
 
-  // ── Auth: Login Screen ──────────────────────────────────
+  // ── Auth: Login Screen (replaced by Ground 0 lesson player) ───────────────
   if (!authChecked) {
     return (
       <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
         <Navbar />
-        <div style={{ maxWidth: 520, margin: "0 auto", padding: "120px 2rem 80px", textAlign: "center" }}>
-          <p style={{
-            fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "#d4900a", marginBottom: "1.5rem",
-          }}>
-            OPERATOR PORTAL
-          </p>
-          <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 700,
-            fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em",
-            color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem",
-          }}>
-            LaunchPath Cohort Access
-          </h1>
-          <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.8, marginBottom: "3rem" }}>
-            Sign in to access your cohort curriculum, compliance tools, and the 90-Day Operating Standard.
-          </p>
-          <button
-            data-testid="google-login-btn"
-            onClick={handleGoogleLogin}
-            style={{
-              display: "inline-flex", alignItems: "center", justifyContent: "center",
-              gap: "0.75rem", minHeight: 52, background: "#FFFFFF", color: "#1A1A1A",
-              border: "none", fontFamily: "'Inter', sans-serif", fontWeight: 600,
-              fontSize: "1rem", cursor: "pointer", padding: "1rem 2.5rem",
-              transition: "background 0.2s", width: "100%",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#F0F0F0")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#FFFFFF")}
-          >
-            <GoogleLogo size={20} weight="bold" />
-            Continue with Google
-          </button>
-          <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", marginTop: "1.5rem" }}>
-            Your Google account is used to verify identity only. No data is shared.
-          </p>
-        </div>
+        <Ground0LessonPlayer
+          user={null}
+          API={API}
+          onAuthSuccess={(userData) => {
+            setUser(userData);
+            setAuthChecked(true);
+          }}
+        />
         <FooterSection />
       </div>
     );
@@ -818,32 +777,6 @@ export default function PortalPage() {
                     LP-MOD-G0 | GROUND 0 — FREE ACCESS
                   </p>
 
-                  <h1
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontWeight: 700,
-                      fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                      color: "#FFFFFF",
-                      marginBottom: "0.75rem",
-                      letterSpacing: "-0.02em",
-                    }}
-                  >
-                    Ground 0 Orientation
-                  </h1>
-
-                  <p
-                    style={{
-                      fontSize: "1rem",
-                      color: "rgba(255,255,255,0.82)",
-                      lineHeight: 1.8,
-                      maxWidth: 560,
-                      marginBottom: "2.5rem",
-                    }}
-                  >
-                    Six implementation modules. Approximately 95 minutes. No charge. This is the entry point for the LaunchPath Operating Standard.
-                  </p>
-
-
                   {/* ── Administrative Health Monitor ── */}
                   <SignalMonitor carrierId={user?.user_id} refreshKey={signalRefreshKey} />
 
@@ -905,152 +838,17 @@ export default function PortalPage() {
                     )}
                   </div>
 
-                  {/* Implementation modules */}
-                  <div
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      marginBottom: "2rem",
-                    }}
-                  >
-                    {GROUND0_MODULES.map((m, idx) => (
-                      <div
-                        key={idx}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          padding: "1rem 1.5rem",
-                          borderBottom:
-                            idx < GROUND0_MODULES.length - 1
-                              ? "1px solid rgba(255,255,255,0.06)"
-                              : "none",
-                        }}
-                      >
-                        <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
-                          <span
-                            style={{
-                              fontFamily: "'Inter', sans-serif",
-                              fontWeight: 700,
-                              fontSize: "0.857rem",
-                              color: "#d4900a",
-                              minWidth: 28,
-                            }}
-                          >
-                            {m.number}
-                          </span>
-                          <span
-                            style={{
-                              fontFamily: "'Inter', sans-serif",
-                              fontSize: "1rem",
-                              color: "rgba(255,255,255,0.93)",
-                            }}
-                          >
-                            {m.title}
-                          </span>
-                        </div>
-                        <span
-                          style={{
-                            fontFamily: "'Inter', sans-serif",
-                            fontSize: "0.857rem",
-                            color: "rgba(255,255,255,0.78)",
-                          }}
-                        >
-                          {m.duration}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <a
-                    href="/ground-0-briefing"
-                    data-testid="go-to-ground0-btn"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      background: "rgba(212,144,10,0.1)",
-                      border: "1px solid rgba(212,144,10,0.4)",
-                      color: "#d4900a",
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 600,
-                      fontSize: "0.857rem",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      padding: "0.875rem 1.5rem",
-                      textDecoration: "none",
-                      transition: "background 0.2s",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.background = "rgba(212,144,10,0.18)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.background = "rgba(212,144,10,0.1)")
-                    }
-                  >
-                    Go to Ground 0 Briefing <ArrowRight size={14} />
-                  </a>
-
-                  {/* ── Ground 0 Complete — Next Steps banner ── */}
-                  <div
-                    data-testid="g0-next-steps-banner"
-                    style={{
-                      marginTop: "2.5rem",
-                      borderTop: "1px solid rgba(255,255,255,0.08)",
-                      paddingTop: "2rem",
-                    }}
-                  >
-                    <div style={{
-                      background: "rgba(34,197,94,0.06)",
-                      border: "1px solid rgba(34,197,94,0.18)",
-                      padding: "1.5rem",
-                      maxWidth: 520,
-                    }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.875rem" }}>
-                        <CheckCircle size={16} color="#22c55e" weight="bold" />
-                        <p style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "0.714rem",
-                          fontWeight: 700,
-                          letterSpacing: "0.16em",
-                          textTransform: "uppercase",
-                          color: "rgba(34,197,94,0.85)",
-                          margin: 0,
-                        }}>
-                          Ground 0 Complete — Your Next Step
-                        </p>
-                      </div>
-                      <p style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: "var(--text-sm)",
-                        color: "rgba(255,255,255,0.78)",
-                        lineHeight: 1.7,
-                        marginBottom: "1.25rem",
-                      }}>
-                        You have completed the orientation phase. Three paths forward are available based on your operational situation.
-                      </p>
-                      <a
-                        href="/ground-0-complete"
-                        data-testid="g0-view-options-btn"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "0.4rem",
-                          fontFamily: "'Inter', sans-serif",
-                          fontWeight: 600,
-                          fontSize: "0.857rem",
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase",
-                          color: "#d4900a",
-                          textDecoration: "none",
-                          transition: "opacity 0.15s",
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
-                        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                      >
-                        View Your Options <ArrowRight size={12} />
-                      </a>
-                    </div>
+                  {/* Interactive lesson player */}
+                  <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "2rem" }}>
+                    <Ground0LessonPlayer
+                      user={user}
+                      API={API}
+                      isEmbedded={true}
+                      onAuthSuccess={(userData) => {
+                        setUser(userData);
+                        setAuthChecked(true);
+                      }}
+                    />
                   </div>
                 </div>
               )}

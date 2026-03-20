@@ -14,6 +14,9 @@ import asyncio
 import json
 from datetime import datetime, timezone, timedelta, date
 import stripe as stripe_lib
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 ROOT_DIR = Path(__file__).parent
@@ -1223,26 +1226,8 @@ class LoginRequest(BaseModel):
 
 COACH_PASSWORD = os.environ.get("COACH_PASSWORD", "safestart2024!")
 
-@api_router.post("/auth/login")
-async def coach_login(body: LoginRequest, response: Response):
-    """Simple hardcoded coach login — for admin dashboard access only."""
-    if body.email != COACH_EMAIL or body.password != COACH_PASSWORD:
-        raise HTTPException(status_code=401, detail="Invalid credentials")
-
-    # Upsert coach user
-    existing = await db.users.find_one({"email": COACH_EMAIL}, {"_id": 0})
-    if existing:
-        user_id = existing["user_id"]
-    else:
-        user_id = f"user_{uuid.uuid4().hex[:12]}"
-        await db.users.insert_one({
-            "user_id": user_id,
-            "email": COACH_EMAIL,
-            "name": "Vince Lawrence",
-            "picture": "",
-            "created_at": datetime.now(timezone.utc),
-        })
-
+async def _create_user_session(user_id: str, response: Response) -> str:
+    """Create a session for a user and set httpOnly cookie. Returns session_token."""
     session_token = uuid.uuid4().hex
     expires_at = datetime.now(timezone.utc) + timedelta(days=7)
     await db.user_sessions.update_one(
@@ -1254,7 +1239,6 @@ async def coach_login(body: LoginRequest, response: Response):
         }},
         upsert=True,
     )
-
     response.set_cookie(
         "session_token",
         session_token,
@@ -1264,7 +1248,127 @@ async def coach_login(body: LoginRequest, response: Response):
         path="/",
         max_age=604800,
     )
-    return {"ok": True, "user": {"email": COACH_EMAIL, "name": "Vince Lawrence"}}
+    return session_token
+
+
+@api_router.post("/auth/login")
+async def login(body: LoginRequest, response: Response):
+    """Login for coach (hardcoded) and regular operators (email/password)."""
+    # Coach shortcut
+    if body.email == COACH_EMAIL and body.password == COACH_PASSWORD:
+        existing = await db.users.find_one({"email": COACH_EMAIL}, {"_id": 0})
+        if existing:
+            user_id = existing["user_id"]
+        else:
+            user_id = f"user_{uuid.uuid4().hex[:12]}"
+            await db.users.insert_one({
+                "user_id": user_id,
+                "email": COACH_EMAIL,
+                "name": "Vince Lawrence",
+                "picture": "",
+                "created_at": datetime.now(timezone.utc),
+            })
+        await _create_user_session(user_id, response)
+        return {"ok": True, "user": {"user_id": user_id, "email": COACH_EMAIL, "name": "Vince Lawrence", "picture": ""}}
+
+    # Regular operator login
+    user = await db.users.find_one({"email": body.email}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    password_hash = user.get("password_hash")
+    if not password_hash:
+        raise HTTPException(status_code=401, detail="This account uses Google sign-in. Please use 'Continue with Google'.")
+    if not pwd_context.verify(body.password, password_hash):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    await _create_user_session(user["user_id"], response)
+    user_out = await db.users.find_one({"user_id": user["user_id"]}, {"_id": 0, "password_hash": 0})
+    return {"ok": True, "user": UserOut(**user_out).model_dump()}
+
+
+class RegisterRequest(BaseModel):
+    email: EmailStr
+    password: str
+    name: Optional[str] = None
+
+
+@api_router.post("/auth/register")
+async def register_user(body: RegisterRequest, response: Response):
+    """Register a new operator account with email and password."""
+    existing = await db.users.find_one({"email": body.email}, {"_id": 0})
+    if existing:
+        raise HTTPException(status_code=409, detail="An account with this email already exists. Please sign in.")
+
+    hashed = pwd_context.hash(body.password)
+    user_id = f"user_{uuid.uuid4().hex[:12]}"
+    now = datetime.now(timezone.utc)
+    display_name = (body.name or "").strip() or body.email.split("@")[0]
+
+    await db.users.insert_one({
+        "user_id": user_id,
+        "email": body.email,
+        "name": display_name,
+        "picture": "",
+        "password_hash": hashed,
+        "created_at": now,
+    })
+
+    await _create_user_session(user_id, response)
+
+    # Seed implementation tasks for new carrier
+    existing_tasks = await db.tasks.count_documents({"carrierId": user_id})
+    if existing_tasks == 0:
+        await seed_standard_tasks_for_carrier(user_id)
+        await db.carrierProfiles.update_one(
+            {"carrierId": user_id},
+            {"$set": {
+                "carrierId": user_id,
+                "lastActiveAt": now.isoformat(),
+                "createdAt": now.isoformat(),
+            }},
+            upsert=True,
+        )
+
+    user_out = {"user_id": user_id, "email": body.email, "name": display_name, "picture": ""}
+    return {"ok": True, "user": UserOut(**user_out).model_dump()}
+
+
+# ── Ground 0 Progress ─────────────────────────────────────────────────────────
+
+class Ground0ProgressRequest(BaseModel):
+    completed_lessons: List[int]
+    decision: Optional[str] = None
+
+
+@api_router.post("/ground0/progress")
+async def save_ground0_progress(data: Ground0ProgressRequest, request: Request):
+    """Save Ground 0 lesson completion progress for the authenticated user."""
+    user = await get_user_from_request(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    await db.ground0_progress.update_one(
+        {"user_id": user["user_id"]},
+        {"$set": {
+            "user_id": user["user_id"],
+            "completed_lessons": data.completed_lessons,
+            "decision": data.decision,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        }},
+        upsert=True,
+    )
+    return {"ok": True}
+
+
+@api_router.get("/ground0/progress")
+async def get_ground0_progress(request: Request):
+    """Get Ground 0 progress for the authenticated user."""
+    user = await get_user_from_request(request)
+    if not user:
+        return {"completed_lessons": [], "decision": None}
+    progress = await db.ground0_progress.find_one({"user_id": user["user_id"]}, {"_id": 0, "user_id": 0})
+    if not progress:
+        return {"completed_lessons": [], "decision": None}
+    return progress
 
 
 # ── Administrative Signal ─────────────────────────────────
