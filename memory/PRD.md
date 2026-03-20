@@ -11,42 +11,32 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **Backend**: FastAPI + MongoDB (Motor async driver)
 - **Email**: MailerLite (subscriber management) + MailerSend (transactional/notifications)
 - **Payments**: Stripe (via emergentintegrations) — $2,500 cohort enrollment
-- **Auth**: JWT-based custom auth
+- **Auth**: Custom session-based auth (email/password + Google OAuth via Emergent)
 - **CI/CD**: GitHub Actions → Vercel (frontend) / Railway (backend)
 
-## Typography Standard (Updated — Session 6)
+## Typography Standard
 - **Heading**: Playfair Display 700 — all page headlines, section titles, module headers
 - **Body / UI / Nav / Buttons / Labels / Forms**: Inter 400/500/600/700
 - **System codes only**: IBM Plex Mono 500 — retained for `.mono` CSS class only
 - **Base**: `html { font-size: 21px }` (1rem = 21px desktop)
-- **Type Scale**:
-  - `--text-hero / --text-3xl`: clamp(3.6rem, 7vw, 4.2rem) = 76–88px Hero H1
-  - `--text-section / --text-2xl`: clamp(2.1rem, 4vw, 2.67rem) = 44–56px Section H2
-  - `--text-xl`: clamp(1.57rem, 2.5vw, 1.9rem) = 33–40px Sub-section H3
-  - `--text-lg`: 1.286rem = 27px Lead/subtitle
-  - `--text-base`: 1rem = 21px Body
-  - `--text-sm`: 0.857rem = 18px Secondary text
-  - `--text-xs`: 0.762rem = 16px Small labels/overlines
-- **Body line-height**: 1.65
+- **Type Scale**: `--text-hero` through `--text-xs` with clamp for responsive H1/H2
 
-## Knowledge Center Theme (Updated — Session 6)
-- **Content pages** (`.content-page`): warm ivory `#F6F3EE` background, deep navy `#0D1B30` text. Professional library reading environment.
-- **Hero/header bands**: dark navy `#0D1B30` — applied via CSS rule targeting `[data-testid="article-hero"]` and `[data-testid="kc-hero"]` within `.content-page`
-- **CTA/footer bands**: already dark — `BriefBundleCTA` (#0b1628), `ArticlePortalBanner` (#000A14), `FooterSection` (#0d1c30)
+## Knowledge Center Theme
+- **Content pages** (`.content-page`): warm ivory `#F6F3EE` background, deep navy `#0D1B30` text
+- **Hero/header bands**: dark navy `#0D1B30` via CSS rule
 - **Marketing pages**: dark navy, white text
-- **Distinction**: dark = authority/doctrine/enrollment, light = reading/reference/library
 
 ## Key Routes
 - `/` → HomePage
+- `/portal` → PortalPage (unauthenticated = Ground 0 lesson player; authenticated = full portal)
 - `/reach-diagnostic` → REACHAssessmentPage (REACH Test — primary funnel entry)
-- `/auto-diagnostic` → Redirects to `/reach-diagnostic`
-- `/ground-0-briefing` → Ground0BriefingPage
-- `/ground-0-complete` → Ground0CompletePage
+- `/ground-0-briefing` → Ground0BriefingPage (static briefing, legacy)
+- `/ground-0-complete` → Ground0CompletePage (legacy static completion page)
 - `/launchpath-standard` → LaunchPathStandardPage (cohort decision page)
 - `/admission` → AdmissionPage (cohort admission form — 6-field + Stripe payment)
 - `/admission/confirmed` → AdmissionConfirmedPage (post-payment enrollment confirmation)
 - `/admin/admissions` → AdminAdmissionsPage (login-gated, coach-only)
-- `/operating-standard` → OperatingStandardPage (framework explainer — educational)
+- `/operating-standard` → OperatingStandardPage (framework explainer)
 - `/auto-method` → AutoMethodPage
 - `/16-deadly-sins` → SixteenSinsPage
 - `/compliance-library` → ComplianceLibraryPage
@@ -54,21 +44,30 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - `/knowledge-center` → KnowledgeCenterPage + articles
 
 ## Cohort Enrollment Flow (Funnel)
-1. Cold traffic → `/auto-diagnostic` (redirects to REACH test)
-2. REACH test completion → GO result → `/launchpath-standard` (decision page)
-3. Operator reviews Standard → clicks "Request Admission →" → `/admission`
-4. Fills 6-field form → submits → receives `admission_id` → "Proceed to Payment" shown
-5. Pays $2,500 via Stripe checkout → `/admission/confirmed?session_id=...`
-6. Backend polls/webhook → updates `admission_requests.status = "approved"`
-7. Vince notified via MailerSend on submission + payment
+1. Cold traffic → `/portal` → Ground 0 lesson player (free, 6 lessons, ~95 min)
+2. Lesson gate at G0-4 → account creation (email/password or Google)
+3. Complete G0-6 → self-declare GO/WAIT/NO-GO
+4. GO path → "Request Admission →" `/admission`
+5. Operator fills 6-field form → submits → "Proceed to Payment" shown
+6. Pays $2,500 via Stripe checkout → `/admission/confirmed?session_id=...`
+7. Backend polls/webhook → updates `admission_requests.status = "approved"`
+8. Vince notified via MailerSend on submission + payment
 
 ## DB Schema
+
+### users
+- user_id, email, name, picture, password_hash (optional — Google OAuth users won't have this), created_at
+
+### user_sessions
+- user_id, session_token, expires_at, updated_at
+
+### ground0_progress
+- user_id, completed_lessons (array of indices 0–5), decision (GO/WAIT/NO-GO or null), updated_at
 
 ### admission_requests
 - carrier_name, email, dot_mc_number, authority_activation_date, compliance_status
 - lane: "box_truck" | "semi"
 - message, source, submission_date, status ("pending_review" | "approved" | "rejected")
-- approved_at (optional)
 
 ### payment_transactions
 - session_id, admission_id, email, carrier_name, amount, currency
@@ -78,75 +77,60 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 
 ## Completed Work
 
-### Session 1 (Foundation)
-- Full backend API, JWT auth, operator portal, Ground 0 pages, REACH Assessment
-
-### Session 2 (Content Pages)
-- HomePage, AutoMethodPage, SixteenSinsPage, AboutPage, ComplianceLibraryPage rewrites
-
-### Session 3 (Cohort Funnel Build) — Mar 2026
-- `/launchpath-standard` decision page (7 sections)
-- `/admission` updated with 6-field model
-- `/api/admission-request` endpoint with MongoDB + MailerLite + MailerSend to Vince
-- `/auto-diagnostic` redirects to `/reach-diagnostic`
-- All 14 knowledge center CTAs updated to "RUN THE REACH ASSESSMENT"
-- REACH "GO" result CTAs point to `/launchpath-standard`
-- Navbar + Footer "LaunchPath Standard" → `/launchpath-standard`
-
-### Session 4 (Typography + Stripe + Admin) — Mar 2026
-- **Typography Standard** applied globally: Playfair Display, Atkinson Hyperlegible, IBM Plex Mono
-- **Light backgrounds**: Knowledge Center briefs + article posts → cream/navy theme
-- **Stripe payment**: POST `/api/create-admission-checkout`, GET `/api/admission-payment-status/{id}`, POST `/api/webhook/stripe` → auto-approval on paid
-- **AdmissionPage**: "Proceed to Payment — $2,500 →" button shown after form submit
-- **AdmissionConfirmedPage**: payment confirmation with status polling
-- **AdminAdmissionsPage** at `/admin/admissions`: stats, filter tabs, approval/decline buttons
+### Session 1–5 (Foundation + Content + Funnel + Typography + Stripe)
+- Full backend API, operator portal, Ground 0 pages, REACH Assessment
+- HomePage, AutoMethodPage, SixteenSinsPage, AboutPage, ComplianceLibraryPage
+- Cohort funnel: LaunchPath Standard page, Admission form, Stripe $2,500 checkout
+- Admin dashboard at `/admin/admissions`
+- Typography system: Inter + Playfair Display, `html { font-size: 21px }`
 
 ### Session 6 (Homepage 12-Section Build) — Mar 2026
-- **All 12 sections implemented** per Homepage Implementation Verification Checklist (passed 12/12)
-- **New components added**: Ground0ExplainerSection, AfterInstallationSection, FAQSection, SocialProofPlaceholder
-- **Updated components**: WhatGetsInstalledSimple (6 domain cards with descriptions), HowItWorksSimple (3 phases → 4-step sequence), FinalCTASection (new headline: "If your authority is active, the window is already open.")
-- **Hero**: Added 18-month continuity line
-- **Pricing expectation line**: Positioned correctly as standalone Section 11 above Final CTA
-- **Section order** per checklist: Hero → Qualifier → Ground 0 → Consequence → WhatGetsInstalled → PlatformSurface → HowItWorks → AfterInstallation → Credibility → FAQ → SocialProof → PricingLine → FinalCTA
-- **P0 fix**: Added `--extra-index-url` and `emergentintegrations` to `backend/requirements.txt` → Railway crash fixed
-- **Typography system rebuilt**: Replaced Atkinson Hyperlegible + IBM Plex Mono with **Inter** across all 90+ JSX files (762 Atkinson + 399 IBM Plex instances replaced via global sed)
-- **Base scaling**: `html { font-size: 21px }` (was 19px) — scales all rem values site-wide
-- **Type scale CSS variables** defined: `--text-hero` through `--text-xs` with clamp for responsive H1/H2
-- **Tiny pixel sizes fixed**: Bumped hardcoded 9/10/11/12/13/14px values up to 15/16/17/18px
-- **Sub-0.71rem sizes fixed**: All `0.55rem`, `0.62rem`, `0.672rem` etc. bumped to `0.762rem` (16px minimum)
-- **Admin login endpoint added**: `POST /api/auth/login` — hardcoded coach credentials, sets session cookie, used by admin dashboard
+- All 12 homepage sections per verification checklist (passed 12/12)
+- Ground0ExplainerSection, AfterInstallationSection, FAQSection, SocialProofPlaceholder added
+- FAQ accordion with smooth CSS transitions
 
 ### Session 7 (KC Light Theme + 5 New Briefs) — Mar 2026
-- **Knowledge Center theme redesigned**: warm ivory (#F6F3EE) + deep navy (#0D1B30) — professional library reading environment replacing sepia theme
-- **Dark hero bands**: CSS rule targeting `[data-testid="article-hero"]` and `[data-testid="kc-hero"]` within `.content-page` gives all brief hero sections a dark navy band — no component edits needed
-- **8 article posts updated**: sepia `rgba(26,18,8,...)` colors replaced with navy `rgba(13,27,48,...)` equivalents
-- **KnowledgeCenterIndex updated**: hardcoded sepia card colors → CSS variables/navy; stats "11 Briefs published"; added 90-Day Clock series section with 5 new brief cards
-- **LP-BRF-07**: Day1AuthorityBrief.jsx — complete content on Day 1 authority, 3 federal filings, operational infrastructure
-- **LP-BRF-08**: InstallationWindowBrief.jsx — 30-day installation window documentation architecture
-- **LP-BRF-09**: OperatingPatternsBrief.jsx — Days 30–60 pattern formation and 4 evidence streams
-- **LP-BRF-10**: PreparationReconstructionBrief.jsx — preparation vs. reconstruction, 4 reconstruction tells, 90-day audit hardening
-- **LP-BRF-11**: NewEntrantReviewBrief.jsx — FMCSA New Entrant Safety Assurance Program, 6 audit categories, 4 audit triggers
+- Knowledge Center theme: warm ivory (#F6F3EE) + deep navy (#0D1B30)
+- 5 new briefs: LP-BRF-07 (Day1AuthorityBrief), LP-BRF-08 (InstallationWindowBrief),
+  LP-BRF-09 (OperatingPatternsBrief), LP-BRF-10 (PreparationReconstructionBrief),
+  LP-BRF-11 (NewEntrantReviewBrief)
+- 90-Day Clock progress tracker section in KnowledgeCenterIndex
+- Cohort price fixed to $2,500 across 7 files
+
+### Session 8 — Ground 0: The Wisdom Module — Mar 2026
+- **Backend**: `POST /api/auth/register` — email/password operator registration with bcrypt hashing
+- **Backend**: Updated `POST /api/auth/login` — supports both coach (hardcoded) and regular operator (bcrypt verify)
+- **Backend**: `POST /api/ground0/progress` and `GET /api/ground0/progress` — persist lesson progress per user
+- **Frontend**: `Ground0LessonPlayer.jsx` — interactive 6-lesson qualification module:
+  - G0-1/G0-2/G0-3 accessible without login (localStorage-based progress)
+  - Auth gate before G0-4: registration form + "Continue with Google" option
+  - Each lesson: video placeholder, key points list, PDF download placeholder, self-assessment (radio)
+  - After G0-6: GO/WAIT/NO-GO self-declaration screen
+  - Three completion screens: GO → "Request Admission" / WAIT → "Run REACH Diagnostic" / NO-GO → "Contact LaunchPath"
+  - After auth success: auto-advances to G0-4 (not stuck on G0-3)
+- **Frontend**: `PortalPage.jsx` updated:
+  - Unauthenticated `/portal` → shows Ground0LessonPlayer full-page (replaces old Google login screen)
+  - Authenticated `ground-0` section → embeds Ground0LessonPlayer within portal layout
+  - Removed GROUND0_MODULES static list and "Go to Ground 0 Briefing" button
 
 ---
 
-### P1 (High Value, Near Term)
-- Populate Gumroad product URLs in ComplianceLibraryPage.jsx (5 products + 1 bundle)
-- Add YouTube URL for homepage "Watch the Overview" CTA
-- Verify Railway deployment works after requirements.txt fix (user must push to GitHub)
+## P0 (Next Immediate)
+- Populate placeholder URLs:
+  - 6 Vimeo video embed URLs (one per G0 lesson)
+  - 6 PDF download URLs via Gumroad (one per G0 lesson)
+  - YouTube URL for homepage "Watch the Overview" CTA
+  - 5 Gumroad product URLs for ComplianceLibraryPage
 
-### P2 (Admin & Operational Tools)
-- Standardize IBM Plex Mono label sizes across the app (~11.7px is too small in some places)
-- Twilio SMS notifications to Vince on new admission (credentials needed)
-- Stripe webhook secret (STRIPE_WEBHOOK_SECRET) for production signature verification
-- Set production environment variables on Railway (MONGO_URL, STRIPE_API_KEY, MAILERSEND_API_KEY, etc.)
-
-### Future / Backlog
-- LP-TOOL-002: Load Profitability Analyzer
+## P1 (High Value, Near Term)
+- Build LP-TOOL-002 Load Profitability Analyzer
 - Scaffold Portal Modules 2–9
-- `/case-studies` and `/conditional-rating` pages
+- Twilio SMS notifications to Vince on new admission (credentials needed)
+- Stripe webhook secret for production signature verification
+
+## P2 (Future / Backlog)
+- `/case-studies` page
+- `/conditional-rating` page
 - Downloadable PDF for 16 Deadly Sins page
 - Refactor monolithic server.py into APIRouter modules
-
-### Session 7 (FAQ Animation) — Mar 2026
-- FAQ accordion upgraded with smooth `max-height` + `opacity + translateY` CSS transitions
-- `+` icon rotates to `×` on open, question text turns gold — all via CSS transitions
+- Admin Module Editor for content management

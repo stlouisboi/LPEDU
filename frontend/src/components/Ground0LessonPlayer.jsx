@@ -283,20 +283,34 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
   };
 
   const handleAuthSuccessLocal = (userData) => {
+    // Mark current lesson (G0-3) complete and advance to the auth-required lesson (G0-4)
+    const newCompleted = [...new Set([...completedLessons, lessonIndex])];
+    const nextIndex = lessonIndex + 1;
+
+    // Persist to localStorage BEFORE calling onAuthSuccess, so the re-mounted
+    // (embedded) player picks up the correct position when PortalPage re-renders.
+    saveLocal({ completedLessons: newCompleted, lessonIndex: nextIndex, view: "lesson" });
+
+    // Sync progress to server with the new session
+    fetch(`${API}/api/ground0/progress`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ completed_lessons: newCompleted, decision: finalDecision || null }),
+    }).catch(() => {});
+
+    // Update local state
+    setCompletedLessons(newCompleted);
+    setLessonIndex(nextIndex);
+    setSelectedOption(null);
     setLocalUser(userData);
     setShowAuthModal(false);
     setAuthError("");
     setAuthForm({ name: "", email: "", password: "" });
+
+    // Notify parent — this causes PortalPage to switch to the authenticated portal layout.
+    // The embedded Ground0LessonPlayer will mount fresh and read the position from localStorage.
     if (onAuthSuccess) onAuthSuccess(userData);
-    // Sync local progress to server
-    if (completedLessons.length > 0) {
-      fetch(`${API}/api/ground0/progress`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ completed_lessons: completedLessons, decision: finalDecision || null }),
-      }).catch(() => {});
-    }
   };
 
   const handleRegister = async (e) => {
