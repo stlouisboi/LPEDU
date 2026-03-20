@@ -27,11 +27,7 @@ function FAQItem({ faq, index }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      style={{
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
-      }}
-    >
+    <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
       <button
         data-testid={`faq-item-${index + 1}`}
         onClick={() => setOpen(o => !o)}
@@ -54,26 +50,38 @@ function FAQItem({ faq, index }) {
           fontWeight: 500,
           color: open ? "#d4900a" : "rgba(255,255,255,0.88)",
           lineHeight: 1.5,
-          transition: "color 0.15s",
+          transition: "color 0.2s ease",
         }}>
           {faq.q}
         </span>
         <span style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "1.1rem",
+          fontSize: "1.25rem",
           color: "rgba(212,144,10,0.70)",
           flexShrink: 0,
-          transition: "transform 0.2s",
-          transform: open ? "rotate(45deg)" : "none",
+          display: "inline-block",
+          transition: "transform 0.3s cubic-bezier(0.4,0,0.2,1), color 0.2s ease",
+          transform: open ? "rotate(45deg)" : "rotate(0deg)",
           lineHeight: 1,
-          marginTop: "0.2rem",
+          marginTop: "0.15rem",
         }}>
           +
         </span>
       </button>
 
-      {open && (
-        <div style={{ paddingBottom: "1.75rem", paddingRight: "3rem" }}>
+      {/* Smooth slide-down answer panel */}
+      <div style={{
+        maxHeight: open ? "480px" : "0",
+        overflow: "hidden",
+        transition: "max-height 0.38s cubic-bezier(0.4,0,0.2,1)",
+      }}>
+        <div style={{
+          paddingBottom: "1.75rem",
+          paddingRight: "3rem",
+          opacity: open ? 1 : 0,
+          transform: open ? "translateY(0)" : "translateY(-6px)",
+          transition: "opacity 0.28s ease 0.06s, transform 0.28s ease 0.06s",
+        }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "1rem",
@@ -84,7 +92,7 @@ function FAQItem({ faq, index }) {
             {faq.a}
           </p>
         </div>
-      )}
+      </div>
     </div>
   );
 }

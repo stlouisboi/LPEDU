@@ -133,3 +133,7 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - `/case-studies` and `/conditional-rating` pages
 - Downloadable PDF for 16 Deadly Sins page
 - Refactor monolithic server.py into APIRouter modules
+
+### Session 7 (FAQ Animation) — Mar 2026
+- FAQ accordion upgraded with smooth `max-height` + `opacity + translateY` CSS transitions
+- `+` icon rotates to `×` on open, question text turns gold — all via CSS transitions
