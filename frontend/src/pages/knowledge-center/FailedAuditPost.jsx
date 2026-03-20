@@ -165,11 +165,11 @@ export default function FailedAuditPost() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             It covers what the audit looks for — including the Four Pillars that keep a carrier operating — before you're in the audit window.
           </p>
-          <Link to="/ground-0-briefing" data-testid="article-ground0-cta"
+          <Link to="/auto-diagnostic" data-testid="article-reach-cta"
             style={{ display: "inline-block", background: gold, color: "#060d19", fontFamily: mono, fontWeight: 700, fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s" }}
             onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
             onMouseLeave={e => e.currentTarget.style.background = gold}
-          >BEGIN GROUND 0 →</Link>
+          >RUN THE REACH ASSESSMENT →</Link>
         </div>
 
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.28)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>

@@ -513,6 +513,90 @@ async def submit_admission(data: AdmissionSubmit):
     return {"ok": True}
 
 
+# ── Cohort Admission Request (v2 — full funnel) ────────────
+class AdmissionRequestNew(BaseModel):
+    carrier_name: str
+    email: EmailStr
+    dot_mc_number: Optional[str] = None
+    authority_activation_date: Optional[str] = None
+    compliance_status: str
+    lane: str  # "box_truck" | "semi"
+    message: Optional[str] = None
+
+@api_router.post("/admission-request")
+async def submit_admission_request(data: AdmissionRequestNew):
+    now = datetime.now(timezone.utc)
+    record = {
+        "carrier_name": data.carrier_name,
+        "email": data.email,
+        "dot_mc_number": data.dot_mc_number or "",
+        "authority_activation_date": data.authority_activation_date or "",
+        "compliance_status": data.compliance_status,
+        "lane": data.lane,
+        "message": data.message or "",
+        "source": "admission_form",
+        "submission_date": now.isoformat(),
+        "status": "pending_review",
+    }
+    await db.admission_requests.insert_one(record)
+
+    # Tag in MailerLite
+    lane_label = "Box Truck" if data.lane == "box_truck" else "Semi / Tractor-Trailer"
+    ml_payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "name": data.carrier_name,
+            "lead_source": "admission_request",
+            "admission_status": "pending_review",
+            "admission_lane": lane_label,
+            "admission_compliance_status": data.compliance_status,
+        },
+    }
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    try:
+        async with httpx.AsyncClient(timeout=10) as http:
+            ml_resp = await http.post(MAILERLITE_URL, json=ml_payload, headers=headers)
+        if ml_resp.status_code not in (200, 201):
+            logger.error(f"MailerLite admission-request error {ml_resp.status_code}: {ml_resp.text}")
+    except Exception as exc:
+        logger.error(f"MailerLite admission-request failed: {exc}")
+
+    # Notify Vince via MailerSend
+    act_date = data.authority_activation_date or "Not provided"
+    notify_html = f"""
+    <div style="font-family:'Inter',sans-serif;max-width:600px;margin:0 auto;background:#002244;color:#f4f7fb;padding:48px 40px;border-top:4px solid #C5A059;">
+      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;margin:0 0 24px;">LaunchPath Operating Standard &nbsp;|&nbsp; New Admission Request</p>
+      <h1 style="font-family:'Manrope',sans-serif;font-size:26px;font-weight:700;color:#ffffff;margin:0 0 6px;">New Admission Request</h1>
+      <p style="font-size:15px;color:rgba(255,255,255,0.65);margin:0 0 28px;">A qualified operator has submitted an admission request. Review and respond within 24–48 hours.</p>
+      <div style="background:#0F1E35;border-left:3px solid #C5A059;padding:20px 24px;margin:0 0 28px;">
+        <p style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#C5A059;margin:0 0 14px;">Submission Details</p>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr><td style="padding:6px 0;font-size:13px;color:rgba(255,255,255,0.55);width:180px;">Carrier Name</td><td style="padding:6px 0;font-size:13px;color:#ffffff;font-weight:600;">{data.carrier_name}</td></tr>
+          <tr><td style="padding:6px 0;font-size:13px;color:rgba(255,255,255,0.55);">Email</td><td style="padding:6px 0;font-size:13px;color:#C5A059;">{data.email}</td></tr>
+          <tr><td style="padding:6px 0;font-size:13px;color:rgba(255,255,255,0.55);">DOT / MC Number</td><td style="padding:6px 0;font-size:13px;color:#ffffff;">{data.dot_mc_number or "Not provided"}</td></tr>
+          <tr><td style="padding:6px 0;font-size:13px;color:rgba(255,255,255,0.55);">Authority Active Since</td><td style="padding:6px 0;font-size:13px;color:#ffffff;">{act_date}</td></tr>
+          <tr><td style="padding:6px 0;font-size:13px;color:rgba(255,255,255,0.55);">Compliance Status</td><td style="padding:6px 0;font-size:13px;color:#ffffff;">{data.compliance_status}</td></tr>
+          <tr><td style="padding:6px 0;font-size:13px;color:rgba(255,255,255,0.55);">Lane / Equipment</td><td style="padding:6px 0;font-size:13px;color:#ffffff;">{lane_label}</td></tr>
+        </table>
+      </div>
+      {f'<div style="background:#0a1a2e;border-left:3px solid rgba(197,160,89,0.4);padding:16px 20px;margin:0 0 28px;"><p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(197,160,89,0.7);margin:0 0 8px;">Operator Note</p><p style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.65;margin:0;">{data.message}</p></div>' if data.message else ""}
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);margin:28px 0 0;line-height:1.6;">Submitted {now.strftime("%B %d, %Y at %H:%M UTC")}<br>Source: LaunchPath Operating Standard — Admission Form</p>
+    </div>"""
+    asyncio.create_task(send_mailersend_email(
+        COACH_EMAIL, "Vince Lawrence",
+        f"New Admission Request — {data.carrier_name}",
+        notify_html,
+        reply_to=data.email,
+    ))
+
+    return {"ok": True}
+
+
 # ── Ground 0 ─────────────────────────────────────────────
 class Ground0Submit(BaseModel):
     email: EmailStr

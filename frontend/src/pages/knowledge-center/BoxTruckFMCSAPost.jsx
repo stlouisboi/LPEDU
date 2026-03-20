@@ -202,8 +202,8 @@ export default function BoxTruckFMCSAPost() {
             Ground 0 includes the Lane Selection Matrix — a capital and cash-flow comparison for box truck vs. semi operations that helps you choose the lane you can sustain, not just the one you can start.
           </p>
           <Link
-            to="/ground-0-briefing"
-            data-testid="article-ground0-cta"
+            to="/auto-diagnostic"
+            data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",
               fontFamily: mono, fontWeight: 700, fontSize: "0.65rem",
@@ -213,7 +213,7 @@ export default function BoxTruckFMCSAPost() {
             onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
             onMouseLeave={e => e.currentTarget.style.background = gold}
           >
-            BEGIN GROUND 0 →
+            RUN THE REACH ASSESSMENT →
           </Link>
         </div>
 

@@ -200,8 +200,8 @@ export default function ELDExemptionPost() {
             Ground 0 covers the Lane Selection framework for box truck operators — including the operational and regulatory differences between sub-CDL and CDL lanes — before you commit to equipment.
           </p>
           <Link
-            to="/ground-0-briefing"
-            data-testid="article-ground0-cta"
+            to="/auto-diagnostic"
+            data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",
               fontFamily: mono, fontWeight: 700, fontSize: "0.65rem",
@@ -211,7 +211,7 @@ export default function ELDExemptionPost() {
             onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
             onMouseLeave={e => e.currentTarget.style.background = gold}
           >
-            BEGIN GROUND 0 →
+            RUN THE REACH ASSESSMENT →
           </Link>
         </div>
 

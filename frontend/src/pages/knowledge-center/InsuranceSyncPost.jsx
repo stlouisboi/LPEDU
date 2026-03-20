@@ -207,8 +207,8 @@ export default function InsuranceSyncPost() {
             It covers what the audit looks for — including the Four Pillars that keep a carrier operating — and ends with a structured GO/WAIT/NO-GO decision framework.
           </p>
           <Link
-            to="/ground-0-briefing"
-            data-testid="article-ground0-cta"
+            to="/auto-diagnostic"
+            data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",
               fontFamily: mono, fontWeight: 700, fontSize: "0.65rem",
@@ -218,7 +218,7 @@ export default function InsuranceSyncPost() {
             onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
             onMouseLeave={e => e.currentTarget.style.background = gold}
           >
-            BEGIN GROUND 0 →
+            RUN THE REACH ASSESSMENT →
           </Link>
         </div>
 

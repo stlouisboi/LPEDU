@@ -519,7 +519,7 @@ export default function InsuranceContinuityBrief() {
               style={{ display: "inline-block", background: "var(--orange)", color: "#fff", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.98rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s" }}
               onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
               onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
-            >Run the Ground 0 Readiness Test</a>
+            >Run the REACH Assessment</a>
             <button onClick={handlePrint} data-testid="download-checklist-cta" style={{
               background: "none", border: "1px solid var(--border)", color: "var(--text-muted)",
               fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", fontWeight: 600,

@@ -3,29 +3,43 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
-const COHORT_OPTIONS = [
-  "Next available cohort",
-  "30 days",
-  "60 days",
-  "90 days",
-  "I am already operating",
+const COMPLIANCE_STATUS_OPTIONS = [
+  "Authority Active — No known issues",
+  "Authority Active — Conditional rating received",
+  "Authority Active — Under FMCSA monitoring",
+  "Authority Recently Activated (less than 30 days)",
+  "Pre-Authority (authority not yet issued)",
+  "Other",
+];
+
+const LANE_OPTIONS = [
+  { value: "box_truck", label: "Box Truck / Straight Truck" },
+  { value: "semi", label: "Semi / Tractor-Trailer" },
 ];
 
 export default function AdmissionPage() {
   const [form, setForm] = useState({
-    name: "", email: "", usdot_number: "", cohort_preference: "", message: "",
+    carrier_name: "",
+    email: "",
+    dot_mc_number: "",
+    authority_activation_date: "",
+    compliance_status: "",
+    lane: "",
+    message: "",
   });
   const [state, setState] = useState("idle"); // idle | loading | success | error
   const API = process.env.REACT_APP_BACKEND_URL;
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
+  const isValid = form.carrier_name && form.email && form.compliance_status && form.lane;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.cohort_preference) return;
+    if (!isValid) return;
     setState("loading");
     try {
-      const resp = await fetch(`${API}/api/admission`, {
+      const resp = await fetch(`${API}/api/admission-request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -61,6 +75,24 @@ export default function AdmissionPage() {
     marginBottom: "0.5rem",
   };
 
+  const hintStyle = {
+    fontFamily: "'Inter', sans-serif",
+    fontSize: "0.784rem",
+    color: "rgba(255,255,255,0.40)",
+    marginTop: "0.4rem",
+    fontStyle: "italic",
+  };
+
+  const selectStyle = {
+    ...inputStyle,
+    appearance: "none",
+    cursor: "pointer",
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23C5A059' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "calc(100% - 1rem) center",
+    paddingRight: "2.5rem",
+  };
+
   return (
     <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
       <Navbar />
@@ -69,7 +101,7 @@ export default function AdmissionPage() {
 
         {/* Back link */}
         <Link
-          to="/ground-0-complete"
+          to="/launchpath-standard"
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: "0.616rem",
@@ -86,7 +118,7 @@ export default function AdmissionPage() {
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.65")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >
-          ← Back to Options
+          ← Back to the Standard
         </Link>
 
         {/* Header */}
@@ -102,7 +134,7 @@ export default function AdmissionPage() {
             marginBottom: "1.5rem",
           }}
         >
-          LP-STD-001 | COHORT ADMISSION — LIMITED AVAILABILITY
+          LP-STD-001 | COHORT ADMISSION REQUEST
         </p>
 
         <h1
@@ -116,7 +148,7 @@ export default function AdmissionPage() {
             marginBottom: "1.25rem",
           }}
         >
-          Apply for Admission to the LaunchPath Standard
+          Request Admission to the LaunchPath Standard
         </h1>
 
         <p
@@ -127,7 +159,7 @@ export default function AdmissionPage() {
             marginBottom: "0.875rem",
           }}
         >
-          The LaunchPath Standard accepts a limited cohort of motor carriers each quarter. This is not an open enrollment. Every application is reviewed individually — admission is based on your operational readiness, authority status, and REACH Assessment result.
+          The LaunchPath Standard accepts a limited cohort each quarter. This is not open enrollment. Every request is reviewed individually — admission is based on your operational readiness, authority status, and REACH Assessment result.
         </p>
 
         <p
@@ -140,10 +172,9 @@ export default function AdmissionPage() {
             marginBottom: "3rem",
           }}
         >
-          Not every applicant is admitted. You will receive a decision within 24–48 hours. If your situation requires urgent attention due to a conditional rating or pending authority action, note that in your message.
+          Not every applicant is admitted. You will receive a decision within 24–48 hours. If your situation involves a conditional rating or pending authority action, note that in your message below.
         </p>
 
-        {/* Divider */}
         <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: "2.5rem" }} />
 
         {/* Success state */}
@@ -188,8 +219,7 @@ export default function AdmissionPage() {
               marginBottom: "2rem",
               maxWidth: 480,
             }}>
-              The Station Custodian will review your submission and respond within 24–48 hours.
-              Check your inbox at {form.email} for confirmation and next steps.
+              The Station Custodian will review your submission and respond within 24–48 hours. Check your inbox at {form.email} for confirmation and next steps.
             </p>
 
             <div style={{ height: 2, background: "#d4900a", maxWidth: 120, marginBottom: "2rem" }} />
@@ -205,43 +235,24 @@ export default function AdmissionPage() {
             }}>
               "The first ninety days do not test ambition. They test operational structure."
             </p>
-
-            <Link
-              to="/portal"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.4rem",
-                marginTop: "2rem",
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 600,
-                fontSize: "0.875rem",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#d4900a",
-                textDecoration: "none",
-              }}
-            >
-              Return to Portal →
-            </Link>
           </div>
         ) : (
           /* Form */
           <form onSubmit={handleSubmit} data-testid="admission-form" noValidate>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
 
-              {/* Name */}
+              {/* Carrier Name */}
               <div>
-                <label style={labelStyle} htmlFor="admission-name">Full Name *</label>
+                <label style={labelStyle} htmlFor="admission-carrier-name">Carrier / Business Name *</label>
                 <input
-                  id="admission-name"
-                  data-testid="admission-name-input"
-                  name="name"
+                  id="admission-carrier-name"
+                  data-testid="admission-carrier-name-input"
+                  name="carrier_name"
                   type="text"
                   required
-                  value={form.name}
+                  value={form.carrier_name}
                   onChange={handleChange}
-                  placeholder="Your full legal name"
+                  placeholder="Your legal operating name or DBA"
                   style={inputStyle}
                   onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
                   onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
@@ -266,55 +277,82 @@ export default function AdmissionPage() {
                 />
               </div>
 
-              {/* USDOT */}
+              {/* DOT / MC Number */}
               <div>
-                <label style={labelStyle} htmlFor="admission-usdot">USDOT Authority Number</label>
+                <label style={labelStyle} htmlFor="admission-dot">USDOT / MC Number</label>
                 <input
-                  id="admission-usdot"
-                  data-testid="admission-usdot-input"
-                  name="usdot_number"
+                  id="admission-dot"
+                  data-testid="admission-dot-input"
+                  name="dot_mc_number"
                   type="text"
-                  value={form.usdot_number}
+                  value={form.dot_mc_number}
                   onChange={handleChange}
-                  placeholder="USDOT# (leave blank if not yet issued)"
+                  placeholder="USDOT# or MC# (leave blank if not yet issued)"
                   style={inputStyle}
                   onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
                   onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
                 />
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.784rem",
-                  color: "rgba(255,255,255,0.40)",
-                  marginTop: "0.4rem",
-                  fontStyle: "italic",
-                }}>
-                  Optional. Include if authority has been issued.
-                </p>
+                <p style={hintStyle}>Optional. Include if authority has been issued.</p>
               </div>
 
-              {/* Cohort preference */}
+              {/* Authority Activation Date */}
               <div>
-                <label style={labelStyle} htmlFor="admission-cohort">Timeline to Launch *</label>
-                <select
-                  id="admission-cohort"
-                  data-testid="admission-cohort-select"
-                  name="cohort_preference"
-                  required
-                  value={form.cohort_preference}
+                <label style={labelStyle} htmlFor="admission-activation-date">Authority Activation Date</label>
+                <input
+                  id="admission-activation-date"
+                  data-testid="admission-activation-date-input"
+                  name="authority_activation_date"
+                  type="date"
+                  value={form.authority_activation_date}
                   onChange={handleChange}
                   style={{
                     ...inputStyle,
-                    appearance: "none",
-                    cursor: "pointer",
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23C5A059' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "calc(100% - 1rem) center",
-                    paddingRight: "2.5rem",
+                    colorScheme: "dark",
                   }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
+                />
+                <p style={hintStyle}>Optional. The date your operating authority was first granted.</p>
+              </div>
+
+              {/* Compliance Status */}
+              <div>
+                <label style={labelStyle} htmlFor="admission-compliance-status">Current Compliance Status *</label>
+                <select
+                  id="admission-compliance-status"
+                  data-testid="admission-compliance-status-select"
+                  name="compliance_status"
+                  required
+                  value={form.compliance_status}
+                  onChange={handleChange}
+                  style={selectStyle}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
                 >
-                  <option value="" disabled style={{ background: "#0D1929" }}>Select your timeline</option>
-                  {COHORT_OPTIONS.map((opt) => (
+                  <option value="" disabled style={{ background: "#0D1929" }}>Select current status</option>
+                  {COMPLIANCE_STATUS_OPTIONS.map((opt) => (
                     <option key={opt} value={opt} style={{ background: "#0D1929" }}>{opt}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Lane / Equipment */}
+              <div>
+                <label style={labelStyle} htmlFor="admission-lane">Primary Equipment Type *</label>
+                <select
+                  id="admission-lane"
+                  data-testid="admission-lane-select"
+                  name="lane"
+                  required
+                  value={form.lane}
+                  onChange={handleChange}
+                  style={selectStyle}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
+                >
+                  <option value="" disabled style={{ background: "#0D1929" }}>Select equipment type</option>
+                  {LANE_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value} style={{ background: "#0D1929" }}>{opt.label}</option>
                   ))}
                 </select>
               </div>
@@ -352,7 +390,7 @@ export default function AdmissionPage() {
               <button
                 type="submit"
                 data-testid="admission-submit-btn"
-                disabled={state === "loading" || !form.name || !form.email || !form.cohort_preference}
+                disabled={state === "loading" || !isValid}
                 style={{
                   minHeight: 52,
                   background: "#d4900a",
@@ -364,7 +402,7 @@ export default function AdmissionPage() {
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   cursor: state === "loading" ? "wait" : "pointer",
-                  opacity: (state === "loading" || !form.name || !form.email || !form.cohort_preference) ? 0.7 : 1,
+                  opacity: (state === "loading" || !isValid) ? 0.7 : 1,
                   transition: "background 0.2s, opacity 0.2s",
                   alignSelf: "flex-start",
                   padding: "0 2.5rem",
@@ -382,7 +420,7 @@ export default function AdmissionPage() {
                 fontStyle: "italic",
                 marginTop: "-0.75rem",
               }}>
-                No payment is required at this step. Admission request is reviewed before cohort placement.
+                No payment is required at this step. Admission requests are reviewed before cohort placement.
               </p>
             </div>
           </form>

@@ -36,6 +36,7 @@ import REACHAssessmentPage from "./pages/REACHAssessmentPage";
 import AutoMethodPage from "./pages/AutoMethodPage";
 import AuthCallback from "./components/AuthCallback";
 import CoachRegistryPage from "./pages/CoachRegistryPage";
+import LaunchPathStandardPage from "./pages/LaunchPathStandardPage";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
 import StandardPage from "./pages/StandardPage";
@@ -123,7 +124,8 @@ function AppRouter() {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/reach-diagnostic" element={<REACHAssessmentPage />} />
-      <Route path="/auto-diagnostic" element={<AutoDiagnosticPage />} />
+      <Route path="/auto-diagnostic" element={<Navigate to="/reach-diagnostic" replace />} />
+      <Route path="/launchpath-standard" element={<LaunchPathStandardPage />} />
       <Route path="/knowledge-center" element={<KnowledgeCenterIndex />} />
       <Route path="/knowledge-center/all-checklists" element={<AllChecklists />} />
       <Route path="/knowledge-center/new-entrant-safety-audit-brief" element={<NewEntrantAuditBrief />} />

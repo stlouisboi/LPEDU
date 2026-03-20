@@ -63,8 +63,8 @@ export default function BriefBundleCTA() {
             DOWNLOAD ALL 5 PACKETS — $497 →
           </a>
           <Link
-            to="/ground-0-briefing"
-            data-testid="brief-bundle-ground0-link"
+            to="/auto-diagnostic"
+            data-testid="brief-bundle-reach-link"
             style={{
               textAlign: "center", fontFamily: mono, fontSize: "0.55rem",
               fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
@@ -74,7 +74,7 @@ export default function BriefBundleCTA() {
             onMouseEnter={e => e.currentTarget.style.color = gold}
             onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.65)"}
           >
-            Begin Ground 0 First →
+            Run the REACH Assessment →
           </Link>
         </div>
       </div>

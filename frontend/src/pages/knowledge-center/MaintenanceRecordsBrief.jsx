@@ -689,7 +689,7 @@ export default function MaintenanceRecordsBrief() {
               onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
               onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
             >
-              Run the Ground 0 Readiness Test
+              Run the REACH Assessment
             </a>
             <button onClick={handlePrint} data-testid="download-checklist-cta" style={{
               background: "none", border: "1px solid var(--border)", color: "var(--text-muted)",
