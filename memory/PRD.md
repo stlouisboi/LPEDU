@@ -115,7 +115,11 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 
 ---
 
-## P0 (Next Immediate)
+### Session 9 — Ground 0 Results Enhancement (WAIT/NO-GO Email Capture) — Mar 2026
+- **Backend**: `POST /api/ground0/waitlist` — captures WAIT/NO-GO completions, saves to `ground0_waitlist` MongoDB collection, subscribes to MailerLite with `lead_source` tags (`ground0_wait` / `ground0_nogo`); group IDs configurable via env vars `MAILERLITE_COHORT_WAITLIST_GROUP_ID` / `MAILERLITE_FUTURE_ELIGIBILITY_GROUP_ID`
+- **Frontend (WAIT screen)**: Added "YOU ARE NOT READY — YET" section with institutional copy, "RESERVE ADMISSION PRIORITY →" email form, success state "✓ ADMISSION PRIORITY RESERVED", "BEGIN CLOSING GAPS NOW" secondary section with Document System CTA → `/compliance-library`
+- **Frontend (NO-GO screen)**: Added "THIS STANDARD DOES NOT APPLY TO YOUR CURRENT POSITION" section with eligibility copy, "REGISTER FOR FUTURE ELIGIBILITY →" form, success state "✓ ELIGIBILITY REGISTRATION CONFIRMED"
+- **GO screen unchanged** per spec. No marketing language, no "waitlist" or "newsletter" references. Tone is institutional/compliance-first throughout.
 - Populate placeholder URLs:
   - 6 Vimeo video embed URLs (one per G0 lesson)
   - 6 PDF download URLs via Gumroad (one per G0 lesson)
