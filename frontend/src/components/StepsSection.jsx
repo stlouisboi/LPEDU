@@ -42,7 +42,7 @@ export default function StepsSection() {
                   padding: "0.2rem 0.5rem",
                 }}>{s.badge}</span>
               </div>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.176rem", color: "var(--text)" }}>{s.name}</h3>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.2rem", color: "var(--text)" }}>{s.name}</h3>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.7, flex: 1 }}>{s.desc}</p>
             </div>
           ))}

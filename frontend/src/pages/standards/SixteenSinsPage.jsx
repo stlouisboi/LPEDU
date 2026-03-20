@@ -487,7 +487,7 @@ export default function SixteenSinsPage() {
                         {sin.highRisk && (
                           <span style={{
                             fontFamily: "'Inter', sans-serif",
-                            fontSize: "0.52rem",
+                            fontSize: "0.762rem",
                             fontWeight: 700,
                             letterSpacing: "0.08em",
                             color: "#C0392B",
@@ -882,7 +882,7 @@ function SinCard({ sin }) {
           top: "1rem",
           right: "1.25rem",
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.55rem",
+          fontSize: "0.762rem",
           fontWeight: 700,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
@@ -950,7 +950,7 @@ function SinCard({ sin }) {
       }}>
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.58rem",
+          fontSize: "0.762rem",
           fontWeight: 700,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -959,7 +959,7 @@ function SinCard({ sin }) {
         }}>WHAT HAPPENS</p>
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.84rem",
+          fontSize: "0.857rem",
           color: isHighRisk ? "rgba(255,255,255,0.80)" : "rgba(255,255,255,0.62)",
           lineHeight: 1.7,
           margin: 0,

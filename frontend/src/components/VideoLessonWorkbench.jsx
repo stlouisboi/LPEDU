@@ -150,7 +150,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
         <p
           style={{
             fontFamily: mono,
-            fontSize: "0.448rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.26em",
             color: "rgba(255,255,255,0.16)",
@@ -176,7 +176,7 @@ export function VideoLessonWorkbench({ moduleData }) {
       <p
         style={{
           fontFamily: mono,
-          fontSize: "0.672rem",
+          fontSize: "0.762rem",
           fontWeight: 700,
           letterSpacing: "0.16em",
           textTransform: "uppercase",
@@ -359,7 +359,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                       gap: "0.625rem",
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
-                      fontSize: "0.896rem",
+                      fontSize: "var(--text-sm)",
                       color: "#d4900a",
                       textDecoration: "none",
                       padding: "0.75rem 1rem",
@@ -399,7 +399,7 @@ export function VideoLessonWorkbench({ moduleData }) {
           <p
             style={{
               fontFamily: mono,
-              fontSize: "0.448rem",
+              fontSize: "0.762rem",
               fontWeight: 700,
               letterSpacing: "0.22em",
               color: "rgba(255,255,255,0.22)",

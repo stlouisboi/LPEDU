@@ -33,7 +33,7 @@ const TABLE_HEADER = {
 
 const CELL = {
   fontFamily: "'Inter', sans-serif",
-  fontSize: "0.896rem",
+  fontSize: "var(--text-sm)",
   color: "rgba(255,255,255,0.80)",
   padding: "0.875rem 1.25rem",
   borderBottom: "1px solid rgba(255,255,255,0.05)",
@@ -66,7 +66,7 @@ export default function SystemArchitectureSection() {
           <div>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem", fontWeight: 700,
+              fontSize: "0.762rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: "#d4900a", marginBottom: "0.75rem",
             }}>
@@ -111,7 +111,7 @@ export default function SystemArchitectureSection() {
         <div style={{ marginBottom: "3rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem", fontWeight: 700,
+            fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
           }}>
@@ -144,7 +144,7 @@ export default function SystemArchitectureSection() {
         <div style={{ marginBottom: "3rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem", fontWeight: 700,
+            fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
           }}>
@@ -177,7 +177,7 @@ export default function SystemArchitectureSection() {
         <div>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem", fontWeight: 700,
+            fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
           }}>

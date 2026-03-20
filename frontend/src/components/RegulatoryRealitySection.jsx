@@ -64,7 +64,7 @@ export default function RegulatoryRealitySection() {
         <div style={{ borderLeft: "2px solid rgba(212,144,10,0.7)", paddingLeft: "1.5rem", marginBottom: "3.5rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem", fontWeight: 700,
+            fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: "#d4900a", marginBottom: "0.6rem",
           }}>
@@ -72,7 +72,7 @@ export default function RegulatoryRealitySection() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.896rem", color: "rgba(255,255,255,0.78)",
+            fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.78)",
             letterSpacing: "0.04em",
           }}>
             Common audit findings in new motor carriers.
@@ -100,7 +100,7 @@ export default function RegulatoryRealitySection() {
             </p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem", fontWeight: 700,
+              fontSize: "0.762rem", fontWeight: 700,
               letterSpacing: "0.14em", textTransform: "uppercase",
               color: "#d4900a", marginBottom: "1rem",
             }}>
@@ -149,7 +149,7 @@ export default function RegulatoryRealitySection() {
             </div>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.84rem", color: "rgba(255,255,255,0.72)",
+              fontSize: "0.857rem", color: "rgba(255,255,255,0.72)",
               lineHeight: 1.75, marginTop: "1.5rem",
             }}>
               Most of these violations are not caused by reckless behavior. They are caused by missing operational infrastructure.
@@ -182,7 +182,7 @@ export default function RegulatoryRealitySection() {
               </p>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.84rem",
+                fontSize: "0.857rem",
                 color: "rgba(255,255,255,0.75)",
                 lineHeight: 1.6,
               }}>
@@ -195,7 +195,7 @@ export default function RegulatoryRealitySection() {
         {/* Reinforcement line */}
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.84rem",
+          fontSize: "0.857rem",
           color: "rgba(255,255,255,0.58)",
           textAlign: "center",
           marginTop: "1.5rem",

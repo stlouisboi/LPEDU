@@ -83,7 +83,7 @@ export default function Ground0Page() {
             data-testid="ground0-section-label"
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -170,7 +170,7 @@ export default function Ground0Page() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -219,7 +219,7 @@ export default function Ground0Page() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -396,7 +396,7 @@ export default function Ground0Page() {
                     <span
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.896rem",
+                        fontSize: "var(--text-sm)",
                         fontWeight: 700,
                         color: "#d4900a",
                         letterSpacing: "0.04em",
@@ -450,7 +450,7 @@ export default function Ground0Page() {
                     <p
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.84rem",
+                        fontSize: "0.857rem",
                         color: "rgba(212,144,10,0.90)",
                         marginBottom: "1.5rem",
                         letterSpacing: "0.02em",
@@ -468,7 +468,7 @@ export default function Ground0Page() {
                       <p
                         style={{
                           fontFamily: "'Inter', sans-serif",
-                          fontSize: "0.672rem",
+                          fontSize: "0.762rem",
                           fontWeight: 700,
                           letterSpacing: "0.16em",
                           textTransform: "uppercase",
@@ -563,7 +563,7 @@ export default function Ground0Page() {
           {/* ── Readiness Tier Table ── */}
           <div style={{ marginBottom: "3rem" }}>            <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
               textTransform: "uppercase",

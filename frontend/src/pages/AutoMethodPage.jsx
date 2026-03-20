@@ -218,7 +218,7 @@ export default function AutoMethodPage() {
             <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.88, marginBottom: "1.25rem" }}>
               I adapted the model for motor carrier compliance after watching the same failure patterns end new authorities year after year. The hazards were different. The vectors were identical.
             </p>
-            <p style={{ fontFamily: COND, fontSize: "1.35rem", fontWeight: 700, color: gold, lineHeight: 1.3 }}>
+            <p style={{ fontFamily: COND, fontSize: "1.4rem", fontWeight: 700, color: gold, lineHeight: 1.3 }}>
               OSHA taught me to guard machines. AUTO guards authority.
             </p>
           </div>

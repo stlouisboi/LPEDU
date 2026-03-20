@@ -61,8 +61,8 @@ export default function AboutPage() {
               ["CFR_SYNC", "2026_V4.2"],
             ].map(([key, val]) => (
               <div key={key} style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexShrink: 0 }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>{key}:</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>{val}</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>{key}:</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--orange)", letterSpacing: "0.1em" }}>{val}</span>
               </div>
             ))}
           </div>
@@ -96,7 +96,7 @@ export default function AboutPage() {
             </h1>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.176rem",
+              fontSize: "1.2rem",
               color: "var(--text-muted)",
               lineHeight: 1.85,
               maxWidth: 520,
@@ -134,7 +134,7 @@ export default function AboutPage() {
                 background: "linear-gradient(transparent, rgba(2,4,8,0.9))",
                 padding: "2.5rem 1.25rem 1.25rem",
               }}>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--orange)", letterSpacing: "0.1em" }}>
                   STATION CUSTODIAN — LP-SYS-V4.2
                 </p>
               </div>
@@ -235,7 +235,7 @@ export default function AboutPage() {
               }}>
                 "My responsibility is not to motivate carriers — it is to prevent preventable failure."
               </p>
-              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>
+              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "var(--text-subtle)", marginTop: "0.75rem" }}>
                 — Vince Lawrence, Station Custodian
               </footer>
             </blockquote>
@@ -341,7 +341,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.628rem", fontWeight: 700,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
               letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)",
               marginBottom: "1.75rem",
             }}>Operator Account</p>
@@ -358,7 +358,7 @@ export default function AboutPage() {
               }}>
                 "I had been running 60 days before I realized I had no written D&A policy and my driver files were missing three required documents. Ground 0 caught it before the audit did."
               </p>
-              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.08em" }}>
+              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.08em" }}>
                 — New Entrant Carrier · Owner-Operator · Southeast Region
               </footer>
             </blockquote>

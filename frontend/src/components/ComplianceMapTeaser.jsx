@@ -40,7 +40,7 @@ export default function ComplianceMapTeaser() {
           data-testid="compliance-map-link"
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.84rem",
+            fontSize: "0.857rem",
             fontWeight: 600,
             letterSpacing: "0.06em",
             color: "rgba(212,144,10,0.75)",

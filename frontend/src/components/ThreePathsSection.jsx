@@ -103,14 +103,14 @@ export default function ThreePathsSection() {
                   <span style={{
                     fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
-                    fontSize: "1.232rem",
+                    fontSize: "1.2rem",
                     letterSpacing: "0.1em",
                     color: path.isLP ? "var(--gold-primary)" : "var(--text-subtle)",
                   }}>{path.label}</span>
                 </div>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "1.232rem",
+                  fontSize: "1.2rem",
                   color: "var(--text-muted)",
                   lineHeight: 1.6,
                   margin: 0,
@@ -118,7 +118,7 @@ export default function ThreePathsSection() {
                 <div>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "1.176rem",
+                    fontSize: "1.2rem",
                     fontWeight: 700,
                     color: path.isLP ? "var(--gold-primary)" : "var(--red)",
                     margin: 0,
@@ -152,7 +152,7 @@ export default function ThreePathsSection() {
             fontFamily: "'Playfair Display', serif",
             fontWeight: 500,
             fontStyle: "italic",
-            fontSize: "1.176rem",
+            fontSize: "1.2rem",
             color: "var(--text)",
             textAlign: "center",
             lineHeight: 1.7,

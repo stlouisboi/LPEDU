@@ -555,7 +555,7 @@ export default function BookMockupPage() {
               <div style={{ marginBottom: "1.25rem" }}>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.608rem",
+                  fontSize: "0.762rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
                   color: "rgba(212,144,10,0.65)",

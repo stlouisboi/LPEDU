@@ -118,7 +118,7 @@ export default function PlatformSurface() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.58rem",
+            fontSize: "0.762rem",
             color: "rgba(255,255,255,0.22)",
             letterSpacing: "0.10em",
             margin: 0,

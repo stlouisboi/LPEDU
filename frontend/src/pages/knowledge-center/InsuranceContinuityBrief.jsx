@@ -208,7 +208,7 @@ export default function InsuranceContinuityBrief() {
       <section data-testid="article-hero" style={{ background: "var(--bg)", padding: "6rem 1.5rem 4rem", borderBottom: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <Link to="/knowledge-center" style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.84rem", color: "var(--text-subtle)",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-subtle)",
             textDecoration: "none", letterSpacing: "0.04em", display: "inline-flex",
             alignItems: "center", gap: "0.4rem", marginBottom: "2.5rem",
           }}>← Operational Library</Link>
@@ -221,15 +221,15 @@ export default function InsuranceContinuityBrief() {
             Insurance Continuity Brief:<br />What Your Policy and Filings Actually Have to Prove
           </h1>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.176rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "2rem", maxWidth: 620 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.2rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "2rem", maxWidth: 620 }}>
             How FMCSA, insurers, and attorneys read your insurance file — and how to keep your authority active and insurable when rates move or a claim hits.
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem" }}>
             <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.806rem", color: "var(--text-subtle)", letterSpacing: "0.06em" }}>14–16 minute brief</span>
-            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)" }}>Updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}</span>
-            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
+            <span style={{ color: "var(--border)", fontSize: "var(--text-sm)" }}>|</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "var(--text-subtle)" }}>Updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}</span>
+            <span style={{ color: "var(--border)", fontSize: "var(--text-sm)" }}>|</span>
             <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.806rem", fontWeight: 600, color: "var(--orange)", background: "var(--orange-muted)", padding: "0.25rem 0.75rem", letterSpacing: "0.02em" }}>
               Required before first interstate dispatch
             </span>
@@ -259,7 +259,7 @@ export default function InsuranceContinuityBrief() {
           <div style={{ textAlign: "center", flexShrink: 0 }} className="download-col">
             <button onClick={handlePrint} data-testid="download-checklist-top" style={{
               background: "none", border: "1px solid var(--border)", color: "var(--text-muted)",
-              fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 600,
+              fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600,
               padding: "0.875rem 1.5rem", cursor: "pointer", letterSpacing: "0.02em",
               transition: "border-color 0.2s, color 0.2s", whiteSpace: "nowrap", display: "block", marginBottom: "0.5rem",
             }}
@@ -376,7 +376,7 @@ export default function InsuranceContinuityBrief() {
                   {pattern.items.map((item, i) => (
                     <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                       <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", marginTop: "0.25rem", flexShrink: 0 }}>—</span>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -440,7 +440,7 @@ export default function InsuranceContinuityBrief() {
                   <tr key={row.step} style={{ borderBottom: "1px solid var(--border)" }}>
                     <td style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.05em", padding: "1rem 1.25rem 1rem 0", verticalAlign: "top", whiteSpace: "nowrap" }}>{row.step}</td>
                     <td style={{ padding: "1rem 1.25rem 1rem 0", color: "var(--text-muted)", lineHeight: 1.65, verticalAlign: "top", maxWidth: 340 }}>{row.action}</td>
-                    <td style={{ padding: "1rem 0", color: "var(--text-subtle)", lineHeight: 1.65, verticalAlign: "top", fontSize: "0.952rem" }}>{row.why}</td>
+                    <td style={{ padding: "1rem 0", color: "var(--text-subtle)", lineHeight: 1.65, verticalAlign: "top", fontSize: "1rem" }}>{row.why}</td>
                   </tr>
                 ))}
               </tbody>
@@ -481,7 +481,7 @@ export default function InsuranceContinuityBrief() {
 
           <button onClick={handlePrint} data-testid="download-binder-btn" style={{
             background: "none", border: "1px solid var(--border)", color: "var(--text-muted)",
-            fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 600,
+            fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600,
             padding: "0.875rem 1.5rem", cursor: "pointer", letterSpacing: "0.02em",
             transition: "border-color 0.2s, color 0.2s",
           }}
@@ -548,7 +548,7 @@ export default function InsuranceContinuityBrief() {
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", flexWrap: "wrap" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.84rem",
+            fontSize: "0.857rem",
             color: "rgba(255,255,255,0.5)",
             lineHeight: 1.6,
           }}>

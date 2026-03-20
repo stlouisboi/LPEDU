@@ -183,7 +183,7 @@ export default function KnowledgeCenterIndex() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.176rem",
+            fontSize: "1.2rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
             maxWidth: 620,
@@ -213,7 +213,7 @@ export default function KnowledgeCenterIndex() {
                 }}>{val}</div>
                 <div style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.84rem",
+                  fontSize: "0.857rem",
                   color: "var(--text-subtle)",
                 }}>{label}</div>
               </div>
@@ -234,7 +234,7 @@ export default function KnowledgeCenterIndex() {
         }} className="bundle-grid">
           <div>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.706rem", letterSpacing: "0.14em",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.14em",
               textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.625rem",
             }}>The Complete Audit Binder Series</p>
             <h2 style={{
@@ -252,7 +252,7 @@ export default function KnowledgeCenterIndex() {
             data-testid="kc-download-all-btn"
             style={{
               display: "inline-block", background: "var(--orange)", color: "#fff",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.896rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
               letterSpacing: "0.06em", textTransform: "uppercase",
               padding: "1rem 1.75rem", textDecoration: "none", whiteSpace: "nowrap",
               flexShrink: 0, transition: "background 0.2s",
@@ -264,7 +264,7 @@ export default function KnowledgeCenterIndex() {
           </a>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.84rem",
+            fontSize: "0.857rem",
             color: "var(--text-subtle)",
             marginTop: "0.75rem",
             textAlign: "right",
@@ -296,7 +296,7 @@ export default function KnowledgeCenterIndex() {
                     onClick={() => setActiveCategory(cat)}
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.58rem",
+                      fontSize: "0.762rem",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -350,15 +350,15 @@ export default function KnowledgeCenterIndex() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>{post.code}</span>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{post.category}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>{post.code}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{post.category}</span>
                     </div>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
                     <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.65 }}>{post.teaser}</p>
                   </div>
                   <div style={{ flexShrink: 0, textAlign: "right" }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: "0.3rem" }}>{post.readTime}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)" }}>{post.cfr}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: "0.3rem" }}>{post.readTime}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)" }}>{post.cfr}</p>
                   </div>
                 </div>
               </a>
@@ -411,7 +411,7 @@ export default function KnowledgeCenterIndex() {
             <h2 style={{
               fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
-              fontSize: "1.35rem",
+              fontSize: "1.4rem",
               letterSpacing: "-0.015em",
               color: "var(--text)",
               marginBottom: "0.75rem",
@@ -436,7 +436,7 @@ export default function KnowledgeCenterIndex() {
               color: "#fff",
               fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
-              fontSize: "0.896rem",
+              fontSize: "var(--text-sm)",
               letterSpacing: "0.06em",
               textTransform: "uppercase",
               padding: "1rem 1.75rem",
@@ -486,7 +486,7 @@ function BriefCard({ brief, index }) {
         {/* Phase tag */}
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.706rem",
+          fontSize: "0.762rem",
           letterSpacing: "0.1em",
           textTransform: "uppercase",
           color: "var(--text-subtle)",
@@ -497,7 +497,7 @@ function BriefCard({ brief, index }) {
         <h3 style={{
           fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
-          fontSize: "1.232rem",
+          fontSize: "1.2rem",
           letterSpacing: "-0.01em",
           color: "var(--text)",
           lineHeight: 1.3,
@@ -507,7 +507,7 @@ function BriefCard({ brief, index }) {
         {/* Teaser */}
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.952rem",
+          fontSize: "1rem",
           color: "var(--text-muted)",
           lineHeight: 1.7,
           marginBottom: "0.875rem",

@@ -148,7 +148,7 @@ export default function AutoMethodTeaserSection() {
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             color: "rgba(212,144,10,0.85)",
             letterSpacing: "0.16em",
             textTransform: "uppercase",

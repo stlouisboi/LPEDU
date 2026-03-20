@@ -351,7 +351,7 @@ function ResultCTAs({ result }) {
         <Link
           to="/contact"
           data-testid="cta-contact"
-          style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.84rem" }}
+          style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.857rem" }}
         >
           Contact →
         </Link>
@@ -373,7 +373,7 @@ function ResultCTAs({ result }) {
       <Link
         to="/contact"
         data-testid="cta-contact"
-        style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.84rem" }}
+        style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.857rem" }}
       >
         Contact →
       </Link>
@@ -734,7 +734,7 @@ export default function REACHAssessmentPage() {
                 LPOS v1.0 | LP-MOD-REACH | DIAGNOSTIC_ENGINE_v1
               </p>
               <p style={{
-                fontSize: "0.896rem",
+                fontSize: "var(--text-sm)",
                 color: "#FFFFFF",
                 fontWeight: 700,
                 letterSpacing: "0.08em",
@@ -746,7 +746,7 @@ export default function REACHAssessmentPage() {
 
             {/* Status line with blink */}
             <p className="scan-blink" style={{
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               color: "#22c55e",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
@@ -807,7 +807,7 @@ export default function REACHAssessmentPage() {
 
             {/* Footer note */}
             <p style={{
-              fontSize: "0.448rem",
+              fontSize: "0.762rem",
               color: "rgba(255,255,255,0.15)",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -895,7 +895,7 @@ export default function REACHAssessmentPage() {
                     <span style={{
                       fontFamily: "'Inter', sans-serif",
                       color: cfg.color,
-                      fontSize: "0.672rem",
+                      fontSize: "0.762rem",
                       marginTop: "0.25rem",
                       flexShrink: 0,
                       fontWeight: 700,

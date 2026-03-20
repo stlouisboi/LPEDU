@@ -136,12 +136,12 @@ export default function AutoDiagnosticPage() {
             {/* OSHA callout in the 6th cell */}
             <FadeIn delay={350}>
               <div style={{ background: "var(--bg-2)", padding: "2.5rem", height: "100%", border: "none" }}>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
                   OSHA STANDARD APPLIED
                 </p>
                 <p style={{
                   fontFamily: "'Playfair Display', serif", fontWeight: 700,
-                  fontSize: "1.232rem", color: "var(--text)", lineHeight: 1.4,
+                  fontSize: "1.2rem", color: "var(--text)", lineHeight: 1.4,
                   marginBottom: "1rem",
                 }}>
                   "Can an auditor reach the defect?"
@@ -161,14 +161,14 @@ export default function AutoDiagnosticPage() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ border: "1px solid var(--border)", padding: "2.5rem" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
                 DIAGNOSTIC COMPLETION
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
                 Completion of the AUTO Diagnostic marks the end of the{" "}
                 <strong style={{ color: "var(--text)" }}>Orientation</strong> phase. Corrective action and systematic implementation are restricted to the admission phase.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)", lineHeight: 1.7, fontStyle: "italic" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-subtle)", lineHeight: 1.7, fontStyle: "italic" }}>
                 This assessment is based on self-reported data. It is not a substitute for a legal audit. It is a structured first step in identifying structural vulnerabilities before they become record.
               </p>
             </div>

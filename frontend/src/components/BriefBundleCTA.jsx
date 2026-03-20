@@ -66,7 +66,7 @@ export default function BriefBundleCTA() {
             to="/auto-diagnostic"
             data-testid="brief-bundle-reach-link"
             style={{
-              textAlign: "center", fontFamily: mono, fontSize: "0.55rem",
+              textAlign: "center", fontFamily: mono, fontSize: "0.762rem",
               fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
               color: "rgba(212,144,10,0.65)", textDecoration: "none",
               transition: "color 0.2s",

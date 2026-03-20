@@ -71,7 +71,7 @@ export default function VinceCTASection() {
         <div>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.14em",
             textTransform: "uppercase",

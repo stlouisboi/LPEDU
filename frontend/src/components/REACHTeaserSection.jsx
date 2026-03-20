@@ -157,7 +157,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
 
                   {/* Description */}
                   <p style={{
-                    fontFamily: sans, fontSize: "0.672rem",
+                    fontFamily: sans, fontSize: "0.762rem",
                     color: "rgba(255,255,255,0.45)",
                     lineHeight: 1.55, flexGrow: 1,
                   }}>

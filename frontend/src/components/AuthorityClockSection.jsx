@@ -243,7 +243,7 @@ export default function AuthorityClockSection() {
                       border: `1px solid ${cfg.badgeBorder}`,
                       padding: "3px 10px 4px",
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.608rem",
+                      fontSize: "0.762rem",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
                       color: cfg.badgeColor,
@@ -280,7 +280,7 @@ export default function AuthorityClockSection() {
                     )}
                     <span className="clock-brief-hint" style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.58rem",
+                      fontSize: "0.762rem",
                       color: "rgba(212,144,10,0.40)",
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -316,7 +316,7 @@ export default function AuthorityClockSection() {
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.608rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
             color: "rgba(212,144,10,0.55)",

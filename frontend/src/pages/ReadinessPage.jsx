@@ -215,7 +215,7 @@ export default function ReadinessPage() {
         </p>
         <div style={{ borderLeft: "2px solid var(--orange)", paddingLeft: "1.25rem", marginBottom: "2.5rem" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.25rem" }}>Accuracy over ambition.</p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)" }}>Your result — GO, WAIT, or STOP — is only useful if it reflects reality.</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-subtle)" }}>Your result — GO, WAIT, or STOP — is only useful if it reflects reality.</p>
         </div>
         <button
           data-testid="begin-diagnostic-btn"
@@ -232,22 +232,22 @@ export default function ReadinessPage() {
         >
           Begin Ground 0 Briefing <ArrowRight size={15} weight="bold" />
         </button>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.84rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>Free. No commitment required.</p>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>Free. No commitment required.</p>
       </div>
 
       {/* Section panel */}
       <div style={{ border: "1px solid var(--border)", background: "var(--bg-2)", padding: "1.5rem" }}>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border)" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border)" }}>
           REACH ASSESSMENT // 7 SECTIONS
         </p>
         {QUESTIONS.map((q, i) => (
           <div key={i} style={{ display: "flex", gap: "0.75rem", padding: "0.6rem 0", borderBottom: i < 6 ? "1px solid var(--border)" : "none" }}>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.08em" }}>0{i + 1}</span>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)" }}>{q.section.split(" — ")[1]}</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--orange)", letterSpacing: "0.08em" }}>0{i + 1}</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "var(--text-subtle)" }}>{q.section.split(" — ")[1]}</span>
           </div>
         ))}
         <div style={{ marginTop: "1.25rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border)" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>DECISION OUTCOMES</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>DECISION OUTCOMES</p>
           {[["GO", "var(--orange)", "Proceed to admission"], ["WAIT", "#d97706", "Remediate, then return"], ["STOP", "#ef4444", "Do not proceed"]].map(([label, color, desc]) => (
             <div key={label} style={{ display: "flex", gap: "0.75rem", alignItems: "baseline", padding: "0.4rem 0" }}>
               <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color, fontWeight: 700, minWidth: 36 }}>{label}</span>
@@ -348,7 +348,7 @@ export default function ReadinessPage() {
           style={{
             marginTop: "2rem", background: "none", border: "none",
             display: "flex", alignItems: "center", gap: "0.4rem",
-            fontFamily: "'Inter', sans-serif", fontSize: "0.896rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
             color: "var(--text-subtle)", cursor: "pointer", padding: 0,
             transition: "color 0.2s",
           }}
@@ -405,7 +405,7 @@ export default function ReadinessPage() {
             data-testid="diagnostic-consent"
             style={{ marginTop: "0.15rem", accentColor: "var(--orange)", flexShrink: 0 }}
           />
-          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)", lineHeight: 1.6 }}>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-subtle)", lineHeight: 1.6 }}>
             I understand this assessment is for educational guidance only and does not constitute a legal audit result.
           </span>
         </label>
@@ -459,7 +459,7 @@ export default function ReadinessPage() {
         {flagged.length > 0 && (
           <div style={{ border: "1px solid var(--border)", marginBottom: "2.5rem" }}>
             <div style={{ padding: "0.875rem 1.25rem", borderBottom: "1px solid var(--border)", background: "var(--bg-2)" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>FLAGGED EXPOSURE POINTS</p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>FLAGGED EXPOSURE POINTS</p>
             </div>
             {flagged.map((q, i) => {
               const qIdx = QUESTIONS.indexOf(q);
@@ -473,8 +473,8 @@ export default function ReadinessPage() {
                     padding: "0.15rem 0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", flexShrink: 0,
                   }}>{ans.risk}</span>
                   <div>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.2rem" }}>{q.section}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)" }}>Selected: {ans.text}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--text)", marginBottom: "0.2rem" }}>{q.section}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "var(--text-subtle)" }}>Selected: {ans.text}</p>
                   </div>
                 </div>
               );

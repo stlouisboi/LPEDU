@@ -146,7 +146,7 @@ export default function EngagementSection() {
                   </p>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.896rem",
+                    fontSize: "var(--text-sm)",
                     color: "rgba(255,255,255,0.48)",
                     lineHeight: 1.55,
                   }}>
@@ -220,7 +220,7 @@ export default function EngagementSection() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "0.896rem",
+                fontSize: "var(--text-sm)",
                 color: "rgba(255,255,255,0.9)",
                 letterSpacing: "0.04em",
                 textTransform: "uppercase",
@@ -249,7 +249,7 @@ export default function EngagementSection() {
                     color: "#000F1F",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
-                    fontSize: "0.896rem",
+                    fontSize: "var(--text-sm)",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     padding: "1rem 2rem",
@@ -274,7 +274,7 @@ export default function EngagementSection() {
                     color: "rgba(255,255,255,0.55)",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 600,
-                    fontSize: "0.84rem",
+                    fontSize: "0.857rem",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
                     padding: "0.5rem 0",

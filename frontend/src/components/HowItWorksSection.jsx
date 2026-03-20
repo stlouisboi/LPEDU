@@ -116,7 +116,7 @@ function PhaseCard({ item, idx }) {
         <div>
           <p style={{
             fontFamily: sans,
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
@@ -243,7 +243,7 @@ export default function HowItWorksSection() {
                 color: "#000F1F",
                 fontFamily: sans,
                 fontWeight: 700,
-                fontSize: "0.896rem",
+                fontSize: "var(--text-sm)",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 padding: "1rem 2.25rem",

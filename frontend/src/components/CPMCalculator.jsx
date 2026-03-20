@@ -107,7 +107,7 @@ function Field({ label, id, value, onChange, prefix, suffix, step = "any", min =
         />
         {suffix && <span style={{ position: "absolute", right: "0.875rem", fontFamily: sans, fontSize: "1rem", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,34,68,0.4)", pointerEvents: "none" }}>{suffix}</span>}
       </div>
-      {helpText && <p style={{ fontFamily: sans, fontSize: "0.672rem", color: dark ? "rgba(255,255,255,0.28)" : "rgba(0,34,68,0.38)", lineHeight: 1.4 }}>{helpText}</p>}
+      {helpText && <p style={{ fontFamily: sans, fontSize: "0.762rem", color: dark ? "rgba(255,255,255,0.28)" : "rgba(0,34,68,0.38)", lineHeight: 1.4 }}>{helpText}</p>}
     </div>
   );
 }
@@ -117,12 +117,12 @@ function NavButtons({ onBack, onNext, nextLabel = "Next →", nextDisabled, dark
   return (
     <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", justifyContent: "flex-end" }}>
       {onBack && (
-        <button onClick={onBack} data-testid="cpm-back-btn" style={{ padding: "0.75rem 1.5rem", fontFamily: sans, fontWeight: 600, fontSize: "0.896rem", letterSpacing: "0.06em", textTransform: "uppercase", background: "none", border: `1px solid ${dark ? "rgba(255,255,255,0.15)" : "rgba(0,34,68,0.18)"}`, color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.55)", cursor: "pointer", transition: "opacity 0.15s" }}>
+        <button onClick={onBack} data-testid="cpm-back-btn" style={{ padding: "0.75rem 1.5rem", fontFamily: sans, fontWeight: 600, fontSize: "var(--text-sm)", letterSpacing: "0.06em", textTransform: "uppercase", background: "none", border: `1px solid ${dark ? "rgba(255,255,255,0.15)" : "rgba(0,34,68,0.18)"}`, color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.55)", cursor: "pointer", transition: "opacity 0.15s" }}>
           ← Back
         </button>
       )}
       {onNext && (
-        <button onClick={onNext} data-testid="cpm-next-btn" disabled={nextDisabled} style={{ padding: "0.75rem 2rem", fontFamily: sans, fontWeight: 700, fontSize: "0.896rem", letterSpacing: "0.08em", textTransform: "uppercase", background: nextDisabled ? (dark ? "rgba(212,144,10,0.3)" : "rgba(0,34,68,0.2)") : "#d4900a", border: "none", color: nextDisabled ? (dark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)") : "#0b1628", cursor: nextDisabled ? "not-allowed" : "pointer", transition: "opacity 0.15s" }}>
+        <button onClick={onNext} data-testid="cpm-next-btn" disabled={nextDisabled} style={{ padding: "0.75rem 2rem", fontFamily: sans, fontWeight: 700, fontSize: "var(--text-sm)", letterSpacing: "0.08em", textTransform: "uppercase", background: nextDisabled ? (dark ? "rgba(212,144,10,0.3)" : "rgba(0,34,68,0.2)") : "#d4900a", border: "none", color: nextDisabled ? (dark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)") : "#0b1628", cursor: nextDisabled ? "not-allowed" : "pointer", transition: "opacity 0.15s" }}>
           {nextLabel}
         </button>
       )}
@@ -151,7 +151,7 @@ function ResultsCard({ fixedCPM, variableCPM, totalCPM }) {
         <p data-testid="cpm-total-display" style={{ fontFamily: display, fontWeight: 800, fontSize: "clamp(3rem, 8vw, 4.5rem)", color: "#d4900a", letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "0.5rem" }}>
           {fmtCPM(totalCPM)}
         </p>
-        <p style={{ fontFamily: sans, fontSize: "0.896rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.04em" }}>
+        <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)", letterSpacing: "0.04em" }}>
           per mile operated · minimum acceptable rate
         </p>
       </div>
@@ -163,7 +163,7 @@ function ResultsCard({ fixedCPM, variableCPM, totalCPM }) {
           { label: "Variable CPM", value: fmtCPM(variableCPM), testid: "cpm-variable-display" },
         ].map((item) => (
           <div key={item.label} style={{ background: "#F8F9FB", padding: "1.25rem 1.5rem" }}>
-            <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,34,68,0.45)", marginBottom: "0.4rem" }}>{item.label}</p>
+            <p style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,34,68,0.45)", marginBottom: "0.4rem" }}>{item.label}</p>
             <p data-testid={item.testid} style={{ fontFamily: display, fontWeight: 700, fontSize: "1.5rem", color: "#0b1628", letterSpacing: "-0.01em" }}>{item.value}</p>
           </div>
         ))}
@@ -182,7 +182,7 @@ function LoadOutput({ result }) {
       <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.75rem", padding: "1.25rem 1.5rem", background: `${badgeColor}10`, border: `1px solid ${badgeColor}40` }}>
         <div style={{ width: 10, height: 10, background: badgeColor, borderRadius: "50%", flexShrink: 0 }} />
         <span data-testid="cpm-decision-badge" style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", color: badgeColor, textTransform: "uppercase" }}>{result.badge}</span>
-        <span style={{ fontFamily: sans, fontSize: "0.84rem", color: "rgba(0,34,68,0.6)", marginLeft: 4 }}>
+        <span style={{ fontFamily: sans, fontSize: "0.857rem", color: "rgba(0,34,68,0.6)", marginLeft: 4 }}>
           {result.badge === "GO" ? "Acceptable margin — take the load." : result.badge === "NEGOTIATE" ? "Within 10% of break-even — push the rate up." : "Below break-even — this load loses money."}
         </span>
       </div>
@@ -226,7 +226,7 @@ function EmailGate({ onSubmit, loading, dark }) {
       <h3 style={{ fontFamily: display, fontWeight: 700, fontSize: "1.25rem", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em" }}>
         Enter your email to see your full cost breakdown.
       </h3>
-      <p style={{ fontFamily: sans, fontSize: "0.896rem", color: "rgba(255,255,255,0.55)", marginBottom: "1.5rem", lineHeight: 1.6 }}>
+      <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", marginBottom: "1.5rem", lineHeight: 1.6 }}>
         No sales sequence. No pressure. Your CPM breakdown arrives immediately.
       </p>
       <form onSubmit={(e) => { e.preventDefault(); if (email) onSubmit(email); }} style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -239,7 +239,7 @@ function EmailGate({ onSubmit, loading, dark }) {
           placeholder="Your operating email"
           style={{ flex: 1, minWidth: 200, padding: "0.875rem 1rem", fontFamily: sans, fontSize: "1rem", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.2)", color: "#FFFFFF", outline: "none", boxSizing: "border-box" }}
         />
-        <button data-testid="cpm-email-submit" type="submit" disabled={loading} style={{ padding: "0.875rem 1.75rem", fontFamily: sans, fontWeight: 700, fontSize: "0.896rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "#d4900a", border: "none", color: "#0b1628", cursor: loading ? "wait" : "pointer" }}>
+        <button data-testid="cpm-email-submit" type="submit" disabled={loading} style={{ padding: "0.875rem 1.75rem", fontFamily: sans, fontWeight: 700, fontSize: "var(--text-sm)", letterSpacing: "0.08em", textTransform: "uppercase", background: "#d4900a", border: "none", color: "#0b1628", cursor: loading ? "wait" : "pointer" }}>
           {loading ? "Sending…" : "REVEAL RESULTS"}
         </button>
       </form>
@@ -335,7 +335,7 @@ export function CPMCalculator({ variant = "public" }) {
           </p>
 
           <div style={card}>
-            <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>MONTHLY FIXED COSTS</p>
+            <p style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>MONTHLY FIXED COSTS</p>
             <div style={grid2}>
               <Field label="Truck Payment" id="truckPayment" value={inp.truckPayment} onChange={set("truckPayment")} prefix="$" step="0.01" dark={dark} helpText="Loan or lease payment" />
               <Field label="Insurance Premium" id="insurancePremium" value={inp.insurancePremium} onChange={set("insurancePremium")} prefix="$" step="0.01" dark={dark} helpText="Monthly installment" />
@@ -369,7 +369,7 @@ export function CPMCalculator({ variant = "public" }) {
           </p>
 
           <div style={card}>
-            <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>FUEL</p>
+            <p style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>FUEL</p>
             <div style={grid2}>
               <Field label="Diesel Price / Gallon" id="dieselPrice" value={inp.dieselPrice} onChange={set("dieselPrice")} prefix="$" step="0.001" dark={dark} placeholder="3.800" />
               <Field label="Vehicle MPG" id="mpg" value={inp.mpg} onChange={set("mpg")} step="0.1" dark={dark} helpText="Default: 7 MPG" />
@@ -377,12 +377,12 @@ export function CPMCalculator({ variant = "public" }) {
           </div>
 
           <div style={card}>
-            <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>MAINTENANCE</p>
+            <p style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>MAINTENANCE</p>
             <Field label="Maintenance Reserve Per Mile" id="maintenanceReserve" value={inp.maintenanceReserve} onChange={set("maintenanceReserve")} prefix="$" step="0.01" dark={dark} helpText="Default: $0.12 / mile" />
           </div>
 
           <div style={card}>
-            <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>TIRES</p>
+            <p style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.25)" : "rgba(0,34,68,0.35)", marginBottom: "1.25rem" }}>TIRES</p>
             <div style={grid2}>
               <Field label="Number of Tires" id="numTires" value={inp.numTires} onChange={set("numTires")} step="1" dark={dark} helpText="Total on vehicle (typically 18)" />
               <Field label="Cost Per Tire" id="costPerTire" value={inp.costPerTire} onChange={set("costPerTire")} prefix="$" step="1" dark={dark} />

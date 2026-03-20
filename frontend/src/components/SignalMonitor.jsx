@@ -137,7 +137,7 @@ function IndicatorBar({ label, code, value, color, animate }) {
       </div>
 
       {/* Weight label */}
-      <p style={{ fontFamily: mono, fontSize: "0.448rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", marginTop: "0.3rem", textTransform: "uppercase" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", marginTop: "0.3rem", textTransform: "uppercase" }}>
         WEIGHT: {code === "DOC_INTEGRITY" ? "40%" : "30%"} OF SIGNAL
       </p>
     </div>
@@ -280,7 +280,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
 
           {/* Footer note */}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "1rem", marginTop: "0.5rem" }}>
-            <p style={{ fontFamily: mono, fontSize: "0.448rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.25)", lineHeight: 1.8, textTransform: "uppercase" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.25)", lineHeight: 1.8, textTransform: "uppercase" }}>
               DOC_INTEGRITY (40%) + SYS_PULSE (30%) + REG_ALIGNMENT (30%) = ADMINISTRATIVE_SIGNAL
               {"\n"}SIGNAL DEGRADES AFTER 72H OPERATIONAL INACTIVITY
             </p>

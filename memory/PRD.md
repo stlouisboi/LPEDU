@@ -14,13 +14,22 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **Auth**: JWT-based custom auth
 - **CI/CD**: GitHub Actions → Vercel (frontend) / Railway (backend)
 
-## Typography Standard (Station Custodian Approved)
+## Typography Standard (Updated — Session 5)
 - **Heading**: Playfair Display 700 — all page headlines, section titles, module headers
-- **Body**: Atkinson Hyperlegible 400/500 — all paragraph text, `html { font-size: 19px }` base (1rem = 19px desktop), 1.65 line height
-- **Label/Code**: IBM Plex Mono 500 — all LP system codes (LP-BRF-01, LP-SYS-03), labels
-- **Sources**: @fontsource npm packages installed
-- Content pages (Knowledge Center articles + briefs): light cream background (#f7f4ee), navy text (#001A33)
-- Marketing pages: dark navy background, white text (unchanged)
+- **Body / UI / Nav / Buttons / Labels / Forms**: Inter 400/500/600/700
+- **System codes only**: IBM Plex Mono 500 — retained for `.mono` CSS class only
+- **Base**: `html { font-size: 21px }` (1rem = 21px desktop)
+- **Type Scale**:
+  - `--text-hero / --text-3xl`: clamp(3.6rem, 7vw, 4.2rem) = 76–88px Hero H1
+  - `--text-section / --text-2xl`: clamp(2.1rem, 4vw, 2.67rem) = 44–56px Section H2
+  - `--text-xl`: clamp(1.57rem, 2.5vw, 1.9rem) = 33–40px Sub-section H3
+  - `--text-lg`: 1.286rem = 27px Lead/subtitle
+  - `--text-base`: 1rem = 21px Body
+  - `--text-sm`: 0.857rem = 18px Secondary text
+  - `--text-xs`: 0.762rem = 16px Small labels/overlines
+- **Body line-height**: 1.65
+- **Content pages**: light cream (#f7f4ee), navy (#001A33), Inter body
+- **Marketing pages**: dark navy, white text
 
 ## Key Routes
 - `/` → HomePage
@@ -87,9 +96,14 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **AdmissionConfirmedPage**: payment confirmation with status polling
 - **AdminAdmissionsPage** at `/admin/admissions`: stats, filter tabs, approval/decline buttons
 
-### Session 5 (Production Deployment Fix) — Mar 2026
-- **P0 fix**: Added `--extra-index-url https://d33sy5i8bnduwe.cloudfront.net/simple/` and `emergentintegrations` to `backend/requirements.txt`
-- Root cause: Railway's pip install couldn't find `emergentintegrations` (private package registry) causing server crash on every startup
+### Session 5 (Production Fix + Typography Overhaul) — Mar 2026
+- **P0 fix**: Added `--extra-index-url` and `emergentintegrations` to `backend/requirements.txt` → Railway crash fixed
+- **Typography system rebuilt**: Replaced Atkinson Hyperlegible + IBM Plex Mono with **Inter** across all 90+ JSX files (762 Atkinson + 399 IBM Plex instances replaced via global sed)
+- **Base scaling**: `html { font-size: 21px }` (was 19px) — scales all rem values site-wide
+- **Type scale CSS variables** defined: `--text-hero` through `--text-xs` with clamp for responsive H1/H2
+- **Tiny pixel sizes fixed**: Bumped hardcoded 9/10/11/12/13/14px values up to 15/16/17/18px
+- **Sub-0.71rem sizes fixed**: All `0.55rem`, `0.62rem`, `0.672rem` etc. bumped to `0.762rem` (16px minimum)
+- **Admin login endpoint added**: `POST /api/auth/login` — hardcoded coach credentials, sets session cookie, used by admin dashboard
 
 ---
 

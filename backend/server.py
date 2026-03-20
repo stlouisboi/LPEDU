@@ -1217,6 +1217,56 @@ async def logout(request: Request, response: Response):
     return {"ok": True}
 
 
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+COACH_PASSWORD = os.environ.get("COACH_PASSWORD", "safestart2024!")
+
+@api_router.post("/auth/login")
+async def coach_login(body: LoginRequest, response: Response):
+    """Simple hardcoded coach login — for admin dashboard access only."""
+    if body.email != COACH_EMAIL or body.password != COACH_PASSWORD:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    # Upsert coach user
+    existing = await db.users.find_one({"email": COACH_EMAIL}, {"_id": 0})
+    if existing:
+        user_id = existing["user_id"]
+    else:
+        user_id = f"user_{uuid.uuid4().hex[:12]}"
+        await db.users.insert_one({
+            "user_id": user_id,
+            "email": COACH_EMAIL,
+            "name": "Vince Lawrence",
+            "picture": "",
+            "created_at": datetime.now(timezone.utc),
+        })
+
+    session_token = uuid.uuid4().hex
+    expires_at = datetime.now(timezone.utc) + timedelta(days=7)
+    await db.user_sessions.update_one(
+        {"user_id": user_id},
+        {"$set": {
+            "session_token": session_token,
+            "expires_at": expires_at,
+            "updated_at": datetime.now(timezone.utc),
+        }},
+        upsert=True,
+    )
+
+    response.set_cookie(
+        "session_token",
+        session_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        path="/",
+        max_age=604800,
+    )
+    return {"ok": True, "user": {"email": COACH_EMAIL, "name": "Vince Lawrence"}}
+
+
 # ── Administrative Signal ─────────────────────────────────
 
 class SignalResponse(BaseModel):

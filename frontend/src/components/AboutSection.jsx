@@ -70,7 +70,7 @@ export default function AboutSection() {
                 fontFamily: "'Playfair Display', serif",
                 fontWeight: 500,
                 fontStyle: "italic",
-                fontSize: "1.176rem",
+                fontSize: "1.2rem",
                 color: "var(--text-paper-heading)",
                 lineHeight: 1.7,
               }}>

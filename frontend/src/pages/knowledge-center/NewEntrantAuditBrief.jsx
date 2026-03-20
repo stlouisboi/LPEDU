@@ -276,7 +276,7 @@ export default function NewEntrantAuditBrief() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <Link to="/knowledge-center" style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.84rem",
+            fontSize: "0.857rem",
             color: "var(--text-subtle)",
             textDecoration: "none",
             letterSpacing: "0.04em",
@@ -313,7 +313,7 @@ export default function NewEntrantAuditBrief() {
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.176rem",
+            fontSize: "1.2rem",
             color: "var(--text-muted)",
             lineHeight: 1.7,
             marginBottom: "2rem",
@@ -335,13 +335,13 @@ export default function NewEntrantAuditBrief() {
               color: "var(--text-subtle)",
               letterSpacing: "0.06em",
             }}>12-minute brief</span>
-            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
+            <span style={{ color: "var(--border)", fontSize: "var(--text-sm)" }}>|</span>
             <span style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.896rem",
+              fontSize: "var(--text-sm)",
               color: "var(--text-subtle)",
             }}>Updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}</span>
-            <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
+            <span style={{ color: "var(--border)", fontSize: "var(--text-sm)" }}>|</span>
             <span style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.806rem",
@@ -415,7 +415,7 @@ export default function NewEntrantAuditBrief() {
                 border: "1px solid var(--border)",
                 color: "var(--text-muted)",
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.896rem",
+                fontSize: "var(--text-sm)",
                 fontWeight: 600,
                 padding: "0.875rem 1.5rem",
                 cursor: "pointer",
@@ -530,7 +530,7 @@ export default function NewEntrantAuditBrief() {
               <h3 style={{
                 fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
-                fontSize: "1.176rem",
+                fontSize: "1.2rem",
                 color: "var(--text)",
                 marginBottom: "1rem",
               }}>{bucket.title}</h3>
@@ -632,7 +632,7 @@ export default function NewEntrantAuditBrief() {
                         color: "var(--text-subtle)",
                         lineHeight: 1.65,
                         verticalAlign: "top",
-                        fontSize: "0.952rem",
+                        fontSize: "1rem",
                       }}>{row.proof}</td>
                     </tr>
                   ))
@@ -750,7 +750,7 @@ export default function NewEntrantAuditBrief() {
               border: "1px solid var(--border)",
               color: "var(--text-muted)",
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.896rem",
+              fontSize: "var(--text-sm)",
               fontWeight: 600,
               padding: "0.875rem 1.5rem",
               cursor: "pointer",
@@ -847,20 +847,20 @@ export default function NewEntrantAuditBrief() {
                   <h3 style={{
                     fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
-                    fontSize: "1.176rem",
+                    fontSize: "1.2rem",
                     color: "var(--text)",
                     marginBottom: "0.2rem",
                   }}>{sys.title}</h3>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.896rem",
+                    fontSize: "var(--text-sm)",
                     color: "var(--text-subtle)",
                   }}>{sys.subtitle}</p>
                 </div>
               </div>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.84rem",
+                fontSize: "0.857rem",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
@@ -917,7 +917,7 @@ export default function NewEntrantAuditBrief() {
                   }}>{title}</p>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.952rem",
+                    fontSize: "1rem",
                     color: "var(--text-subtle)",
                     lineHeight: 1.65,
                   }}>{note}</p>
@@ -1041,7 +1041,7 @@ export default function NewEntrantAuditBrief() {
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", flexWrap: "wrap" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.84rem",
+            fontSize: "0.857rem",
             color: "rgba(255,255,255,0.5)",
             lineHeight: 1.6,
           }}>

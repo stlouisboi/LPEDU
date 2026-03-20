@@ -274,7 +274,7 @@ export default function Ground0CompletePage() {
           {/* LP code */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -370,7 +370,7 @@ export default function Ground0CompletePage() {
           {/* Section label */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",

@@ -61,7 +61,7 @@ export default function PenaltyTableSection() {
           </h2>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.232rem",
+            fontSize: "1.2rem",
             color: "var(--text-muted)",
             lineHeight: 1.75,
             maxWidth: 600,
@@ -81,7 +81,7 @@ export default function PenaltyTableSection() {
               <div style={{ padding: "1rem 1.5rem", borderRight: "1px solid var(--divider-dark)" }}>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.952rem",
+                  fontSize: "1rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   color: "var(--gold-primary)",
@@ -91,7 +91,7 @@ export default function PenaltyTableSection() {
               <div style={{ padding: "1rem 1.5rem", background: "var(--incident-dark-1)" }}>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.952rem",
+                  fontSize: "1rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   color: "var(--text-muted-dark)",
@@ -155,7 +155,7 @@ export default function PenaltyTableSection() {
         <FadeIn delay={100}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.952rem",
+            fontSize: "1rem",
             color: "var(--text-subtle)",
             marginBottom: "1.5rem",
             letterSpacing: "0.02em",
@@ -165,7 +165,7 @@ export default function PenaltyTableSection() {
           <p style={{
             fontFamily: "'Playfair Display', serif",
             fontStyle: "italic",
-            fontSize: "1.232rem",
+            fontSize: "1.2rem",
             color: "var(--text-muted)",
             textAlign: "center",
             lineHeight: 1.7,

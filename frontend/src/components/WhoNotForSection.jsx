@@ -23,7 +23,7 @@ export default function WhoNotForSection() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "1.176rem",
+            fontSize: "1.2rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
             marginBottom: "3rem",

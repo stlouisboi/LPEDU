@@ -82,7 +82,7 @@ function PillarCard({ pillar, idx }) {
       {/* Code */}
       <p style={{
         fontFamily: "'Inter', sans-serif",
-        fontSize: "0.672rem",
+        fontSize: "0.762rem",
         color: "#d4900a",
         letterSpacing: "0.1em",
         marginBottom: "0.75rem",
@@ -109,7 +109,7 @@ function PillarCard({ pillar, idx }) {
       {/* Detail */}
       <p style={{
         fontFamily: "'Inter', sans-serif",
-        fontSize: "0.896rem",
+        fontSize: "var(--text-sm)",
         color: "rgba(255,255,255,0.82)",
         lineHeight: 1.65,
         marginBottom: "1.25rem",
@@ -181,7 +181,7 @@ export default function FourPillarsSection() {
         <FadeIn>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",

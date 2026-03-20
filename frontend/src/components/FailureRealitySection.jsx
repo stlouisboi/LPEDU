@@ -202,7 +202,7 @@ export default function FailureRealitySection() {
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.694rem",
+              fontSize: "0.762rem",
               color: "var(--gold-primary)",
               fontWeight: 700,
               letterSpacing: "0.1em",
@@ -225,7 +225,7 @@ export default function FailureRealitySection() {
           <p style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
-            fontSize: "1.232rem",
+            fontSize: "1.2rem",
             color: "var(--text)",
             marginBottom: "0.5rem",
             letterSpacing: "-0.01em",

@@ -149,7 +149,7 @@ export default function AdmissionPage() {
           data-testid="admission-page-label"
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",

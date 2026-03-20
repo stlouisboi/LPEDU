@@ -65,7 +65,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
 
         {/* Category badge */}
         <span style={{
-          fontFamily: mono, fontSize: "0.448rem", fontWeight: 700,
+          fontFamily: mono, fontSize: "0.762rem", fontWeight: 700,
           letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)",
           textTransform: "uppercase", flexShrink: 0,
         }}>
@@ -74,7 +74,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
 
         {/* Priority dot */}
         <span style={{
-          fontFamily: mono, fontSize: "0.448rem", fontWeight: 700,
+          fontFamily: mono, fontSize: "0.762rem", fontWeight: 700,
           letterSpacing: "0.1em", color: priority.color,
           textTransform: "uppercase", flexShrink: 0,
         }}>

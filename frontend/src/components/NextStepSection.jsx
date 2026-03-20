@@ -94,7 +94,7 @@ export default function NextStepSection() {
                   <h3 style={{
                     fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
-                    fontSize: "1.176rem",
+                    fontSize: "1.2rem",
                     color: "var(--text)",
                     marginBottom: "0.4rem",
                   }}>{s.name}</h3>

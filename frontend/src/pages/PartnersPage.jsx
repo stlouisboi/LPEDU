@@ -122,7 +122,7 @@ function PersonaCard({ p, idx }) {
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.672rem",
+            fontSize: "0.762rem",
             color: "rgba(212,144,10,0.95)",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
@@ -189,7 +189,7 @@ function ContactForm() {
       <div data-testid="partner-form-success" style={{ textAlign: "center", padding: "3rem 0" }}>
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "0.672rem",
+          fontSize: "0.762rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           color: "rgba(212,144,10,1)",
@@ -357,7 +357,7 @@ export default function PartnersPage() {
           <FadeIn>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: "rgba(212,144,10,1)",
@@ -433,7 +433,7 @@ export default function PartnersPage() {
           <FadeIn>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
               color: "rgba(212,144,10,1)",
@@ -485,7 +485,7 @@ export default function PartnersPage() {
           <FadeIn>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
               color: "rgba(212,144,10,1)",
@@ -616,7 +616,7 @@ export default function PartnersPage() {
           <FadeIn>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: "rgba(212,144,10,1)",

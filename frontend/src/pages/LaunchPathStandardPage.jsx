@@ -117,7 +117,7 @@ export default function LaunchPathStandardPage() {
             ].map((s) => (
               <div key={s.label} style={{ background: card, padding: "1.25rem 2rem", flex: "1 1 120px", textAlign: "center" }}>
                 <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.75rem", color: gold, marginBottom: "0.25rem", lineHeight: 1 }}>{s.num}</p>
-                <p style={{ fontFamily: mono, fontSize: "0.55rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>{s.label}</p>
+                <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>{s.label}</p>
               </div>
             ))}
           </div>

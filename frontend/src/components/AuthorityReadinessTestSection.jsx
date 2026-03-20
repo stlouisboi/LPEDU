@@ -176,7 +176,7 @@ export default function AuthorityReadinessTestSection() {
         {/* Footnote */}
         <p style={{
           fontFamily: mono,
-          fontSize: "0.448rem",
+          fontSize: "0.762rem",
           letterSpacing: "0.14em",
           color: "rgba(255,255,255,0.25)",
           textTransform: "uppercase",

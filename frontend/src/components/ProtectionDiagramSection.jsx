@@ -91,7 +91,7 @@ export default function ProtectionDiagramSection() {
           <div style={{ ...visible(1), textAlign: "center", marginBottom: "0.5rem" }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               color: "#fca5a5",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -134,7 +134,7 @@ export default function ProtectionDiagramSection() {
             }}>
               {["AROUND", "UNDER"].map((d) => (
                 <div key={d} style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "0.5rem" }}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
                   <span style={{ color: "#94a3b8", fontSize: "1rem" }}>→</span>
                 </div>
               ))}
@@ -178,7 +178,7 @@ export default function ProtectionDiagramSection() {
                     <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "#fbbf24", marginBottom: "0.25rem", letterSpacing: "0.06em" }}>
                       {g.code}
                     </p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#FFFFFF", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.2 }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "#FFFFFF", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.2 }}>
                       {g.name}
                     </p>
                   </div>
@@ -196,7 +196,7 @@ export default function ProtectionDiagramSection() {
                 </p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.25rem" }}>
                   {PILLARS.map((p) => (
-                    <p key={p} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#cbd5e1", lineHeight: 1.4 }}>— {p}</p>
+                    <p key={p} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "#cbd5e1", lineHeight: 1.4 }}>— {p}</p>
                   ))}
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function ProtectionDiagramSection() {
               {["THROUGH", "OVER"].map((d) => (
                 <div key={d} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ color: "#94a3b8", fontSize: "1rem" }}>←</span>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
                 </div>
               ))}
             </div>

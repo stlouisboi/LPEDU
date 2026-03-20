@@ -200,17 +200,17 @@ export default function StandardPage() {
               <div key={p.code} style={{ background: BG_CARD, borderTop: `2px solid rgba(212,144,10,0.35)`, padding: "2rem 1.75rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.5rem" }}>
                   <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.4rem", color: "#FFF", letterSpacing: "-0.01em" }}>{p.name}</p>
-                  <span style={{ fontFamily: MONO, fontSize: "0.58rem", color: "rgba(212,144,10,0.50)", letterSpacing: "0.12em" }}>{p.code}</span>
+                  <span style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(212,144,10,0.50)", letterSpacing: "0.12em" }}>{p.code}</span>
                 </div>
                 <p style={{ ...bodyText, fontSize: "var(--text-sm)", marginBottom: "1.25rem" }}>{p.what}</p>
 
                 <div style={{ borderLeft: `2px solid rgba(200,60,60,0.45)`, paddingLeft: "1rem", marginBottom: "1.25rem" }}>
-                  <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,60,60,0.65)", marginBottom: "0.4rem" }}>If absent</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,60,60,0.65)", marginBottom: "0.4rem" }}>If absent</p>
                   <p style={{ ...bodyText, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", margin: 0 }}>{p.ifAbsent}</p>
                 </div>
 
                 <div>
-                  <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.6rem" }}>What gets installed</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.6rem" }}>What gets installed</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                     {p.installs.map((item, i) => (
                       <div key={i} style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start" }}>
@@ -301,8 +301,8 @@ export default function StandardPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.25rem", marginBottom: "2.5rem" }} className="phases-grid-std">
             {INSTALL_PHASES.map((p) => (
               <div key={p.code} data-testid={`install-phase-${p.code}`} style={{ background: BG_CARD, borderTop: `2px solid rgba(212,144,10,0.30)`, padding: "1.75rem 1.5rem" }}>
-                <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.5rem" }}>PHASE {p.code}</p>
-                <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.35rem", color: GOLD, letterSpacing: "-0.01em", lineHeight: 1.15, marginBottom: "0.3rem" }}>{p.name}</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.5rem" }}>PHASE {p.code}</p>
+                <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.4rem", color: GOLD, letterSpacing: "-0.01em", lineHeight: 1.15, marginBottom: "0.3rem" }}>{p.name}</p>
                 <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: "1rem" }}>{p.weeks}</p>
                 <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", lineHeight: 1.72, margin: 0 }}>{p.desc}</p>
               </div>

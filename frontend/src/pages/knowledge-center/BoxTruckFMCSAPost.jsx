@@ -135,7 +135,7 @@ export default function BoxTruckFMCSAPost() {
               ["Reading Time", "~9 min"],
             ].map(([label, value]) => (
               <div key={label}>
-                <p style={{ fontFamily: mono, fontSize: "0.55rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
+                <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
               </div>
             ))}
@@ -220,7 +220,7 @@ export default function BoxTruckFMCSAPost() {
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(0,26,51,0.45)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>
           LaunchPath Transportation EDU is an educational program. This content does not constitute legal or compliance advice. Weight thresholds, CDL requirements, and exemption eligibility should be verified with FMCSA at fmcsa.dot.gov and with your state's motor carrier authority.
         </p>
-        <p style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(0,26,51,0.35)", marginTop: "0.5rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(0,26,51,0.35)", marginTop: "0.5rem" }}>
           LaunchPath Transportation EDU · Accuracy Over Hype. Systems Over Shortcuts.
         </p>
       </div>

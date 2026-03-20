@@ -275,7 +275,7 @@ export default function CoachRegistryPage() {
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
             {lastUpdated && (
-              <p style={{ fontFamily: mono, fontSize: "0.448rem", letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)", textTransform: "uppercase" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)", textTransform: "uppercase" }}>
                 LAST_SYNC: {lastUpdated.toLocaleTimeString()}
               </p>
             )}
@@ -345,7 +345,7 @@ export default function CoachRegistryPage() {
               COHORT_SIGNAL_OVERVIEW
             </p>
             <div style={{ flex: 1, height: 1, background: "rgba(212,144,10,0.15)" }} />
-            <span style={{ fontFamily: mono, fontSize: "0.448rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            <span style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
               {carriers.length} CARRIER{carriers.length !== 1 ? "S" : ""}
             </span>
           </div>
@@ -367,7 +367,7 @@ export default function CoachRegistryPage() {
                 gap: "1rem",
               }}>
                 {["CARRIER_ID", "NAME", "SIGNAL", "TASKS", "SUBMITTED", "INTEGRITY"].map((h) => (
-                  <span key={h} style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
+                  <span key={h} style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
                     {h}
                   </span>
                 ))}
@@ -460,7 +460,7 @@ export default function CoachRegistryPage() {
                 gap: "1rem",
               }}>
                 {["CARRIER_ID", "TASK_ID", "TASK_NAME", "SUBMITTED", "ACTIONS"].map((h) => (
-                  <span key={h} style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
+                  <span key={h} style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
                     {h}
                   </span>
                 ))}

@@ -56,7 +56,7 @@ export default function OperatorQualifierSection() {
           {/* System code label */}
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.64rem",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",

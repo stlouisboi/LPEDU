@@ -258,7 +258,7 @@ export default function ContactPage() {
                   {loading ? "Sending..." : <>Send Message <ArrowRight size={15} weight="bold" /></>}
                 </button>
 
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.84rem", color: "var(--text-subtle)", lineHeight: 1.6, textAlign: "center" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-subtle)", lineHeight: 1.6, textAlign: "center" }}>
                   Not all applicants are accepted. A response does not constitute an offer of admission.
                 </p>
 

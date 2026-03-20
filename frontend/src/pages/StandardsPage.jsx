@@ -174,7 +174,7 @@ export default function StandardsPage() {
                 <div style={{ flex: 1 }}>
                   {tier.badge && (
                     <p style={{
-                      fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", fontWeight: 700,
+                      fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
                       letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "0.5rem",
                     }}>{tier.badge}</p>
                   )}
@@ -288,7 +288,7 @@ export default function StandardsPage() {
             marginBottom: "1.5rem",
           }}>LP-SPEC-001 | Comparison Matrix</p>
           <h2 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.35rem",
+            fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem",
             color: "#FFFFFF", letterSpacing: "-0.01em", marginBottom: "2rem",
           }}>LaunchPath System Comparison</h2>
           {/* Mobile scroll hint */}
@@ -325,7 +325,7 @@ export default function StandardsPage() {
                     borderLeft: "1px solid rgba(212,144,10,0.15)",
                     borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>DIY System</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>DIY System</p>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$497</p>
                   </th>
                   <th style={{
@@ -334,7 +334,7 @@ export default function StandardsPage() {
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Guided Implementation</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Guided Implementation</p>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
                   </th>
                 </tr>

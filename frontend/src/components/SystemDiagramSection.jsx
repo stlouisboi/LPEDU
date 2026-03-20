@@ -12,7 +12,7 @@ export default function SystemDiagramSection() {
         <div style={{ marginBottom: "3.5rem" }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.706rem",
+            fontSize: "0.762rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "var(--text-subtle)",

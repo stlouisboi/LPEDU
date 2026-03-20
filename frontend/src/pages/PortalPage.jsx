@@ -244,7 +244,7 @@ export default function PortalPage() {
       <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
         <Navbar />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-          <p data-testid="portal-auth-loading" style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.5)" }}>
+          <p data-testid="portal-auth-loading" style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.5)" }}>
             Verifying access...
           </p>
         </div>
@@ -259,7 +259,7 @@ export default function PortalPage() {
         <Navbar />
         <div style={{ maxWidth: 520, margin: "0 auto", padding: "120px 2rem 80px", textAlign: "center" }}>
           <p style={{
-            fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.18em",
+            fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.18em",
             textTransform: "uppercase", color: "#d4900a", marginBottom: "1.5rem",
           }}>
             OPERATOR PORTAL
@@ -323,7 +323,7 @@ export default function PortalPage() {
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.672rem",
+              fontSize: "0.762rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -460,7 +460,7 @@ export default function PortalPage() {
                     {mod.label}
                   </p>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.672rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
                     color: locked ? "rgba(255,255,255,0.42)" : (mod.type === "recovery" ? "rgba(251,146,60,0.75)" : mod.type === "extension" ? "rgba(129,140,248,0.75)" : "rgba(212,144,10,0.9)"),
                     letterSpacing: "0.04em",
                   }}>
@@ -544,7 +544,7 @@ export default function PortalPage() {
             <div style={{ padding: "0.625rem 0.5rem", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.672rem",
+                fontSize: "0.762rem",
                 fontWeight: 600,
                 color: "rgba(255,255,255,0.55)",
                 letterSpacing: "0.06em",
@@ -612,7 +612,7 @@ export default function PortalPage() {
               <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", color: "#FFFFFF", letterSpacing: "0.03em" }}>
                 CPM Calculator
               </span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "rgba(212,144,10,0.75)" }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(212,144,10,0.75)" }}>
                 Cost per mile · load profitability
               </span>
             </button>
@@ -780,7 +780,7 @@ export default function PortalPage() {
                 and next steps within 24 hours.
               </p>
               <div style={{ height: 2, background: "#d4900a", margin: "2rem 0" }} />
-              <p style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.87)", fontStyle: "italic" }}>
+              <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.87)", fontStyle: "italic" }}>
                 Admission is subject to assessment result and cohort availability.
               </p>
             </div>
@@ -792,7 +792,7 @@ export default function PortalPage() {
               <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.87)", marginBottom: "1rem" }}>
                 Confirming your payment...
               </p>
-              <p style={{ fontSize: "0.84rem", color: "rgba(255,255,255,0.82)" }}>
+              <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.82)" }}>
                 This will only take a moment.
               </p>
             </div>
@@ -807,7 +807,7 @@ export default function PortalPage() {
                   <p
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.672rem",
+                      fontSize: "0.762rem",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
@@ -865,7 +865,7 @@ export default function PortalPage() {
                       {tasks.length > 0 && (
                         <span style={{
                           fontFamily: "'Inter', sans-serif",
-                          fontSize: "0.448rem", letterSpacing: "0.12em",
+                          fontSize: "0.762rem", letterSpacing: "0.12em",
                           color: "rgba(255,255,255,0.3)", textTransform: "uppercase",
                         }}>
                           {tasks.filter(t => t.status === "verified").length}/{tasks.length} VERIFIED
@@ -974,7 +974,7 @@ export default function PortalPage() {
                       color: "#d4900a",
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
-                      fontSize: "0.84rem",
+                      fontSize: "0.857rem",
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
                       padding: "0.875rem 1.5rem",
@@ -1075,14 +1075,14 @@ export default function PortalPage() {
               )}
               {selectedId === "tool-cpm" && !hasCohortAccess && (
                 <div data-testid="tool-locked-screen">
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
                     LP-TOOLS | CPM CALCULATOR
                   </p>
                   <h1 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
                   <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 480, marginBottom: "2rem" }}>
                     The full CPM Calculator — including Step 4 load profitability analysis — is part of the LaunchPath Standard cohort.
                   </p>
-                  <a href="/tools/cpm-calculator" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.896rem", color: "#d4900a", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(212,144,10,0.3)", transition: "background 0.15s" }}>
+                  <a href="/tools/cpm-calculator" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "var(--text-sm)", color: "#d4900a", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(212,144,10,0.3)", transition: "background 0.15s" }}>
                     Use the free public version →
                   </a>
                 </div>
@@ -1097,7 +1097,7 @@ export default function PortalPage() {
                   <p
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.672rem",
+                      fontSize: "0.762rem",
                       fontWeight: 700,
                       letterSpacing: "0.18em",
                       textTransform: "uppercase",
@@ -1152,7 +1152,7 @@ export default function PortalPage() {
                     <span
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.896rem",
+                        fontSize: "var(--text-sm)",
                         color: "rgba(255,255,255,0.87)",
                         letterSpacing: "0.04em",
                       }}
@@ -1175,7 +1175,7 @@ export default function PortalPage() {
                     <p
                       style={{
                         color: "#ff6b6b",
-                        fontSize: "0.896rem",
+                        fontSize: "var(--text-sm)",
                         marginBottom: "1rem",
                         fontFamily: "'Inter', sans-serif",
                       }}
@@ -1264,13 +1264,13 @@ function ModuleOverviewCard({ moduleInfo, type }) {
 
   return (
     <div data-testid="module-overview-card">
-      <p style={{ fontFamily: mono, fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
         LP-{moduleInfo.code} | {moduleInfo.title.toUpperCase()}
       </p>
 
       {(isRecovery || isExtension) && (
         <div style={{ display: "inline-block", background: accentBg, border: `1px solid ${accentBorder}`, padding: "0.25rem 0.875rem", marginBottom: "1.25rem" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.448rem", fontWeight: 700, letterSpacing: "0.2em", color: accentColor, textTransform: "uppercase", margin: 0 }}>
+          <p style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", color: accentColor, textTransform: "uppercase", margin: 0 }}>
             {isRecovery ? "RECOVERY MODULE — OPTIONAL" : "STANDARD EXTENSION — INCLUDED IN ENROLLMENT"}
           </p>
         </div>

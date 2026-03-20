@@ -271,7 +271,7 @@ export default function BundlePage() {
               <div style={{ borderRadius: "6px", overflow: "hidden" }}>
                 <BookMockup3D productId="bundle" mode="embed" />
                 <p style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "0.6rem",
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
                   color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em",
                   textAlign: "center", marginTop: "0.5rem",
                 }}>DRAG TO ROTATE</p>

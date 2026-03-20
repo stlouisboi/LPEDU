@@ -124,7 +124,7 @@ export default function ComplianceLibraryPage() {
               { tier: "TIER 3", label: "LaunchPath Standard", sub: "Guided 90-day implementation with verification", price: "$2,500" },
             ].map((t) => (
               <div key={t.tier} style={{ background: "rgba(10,20,40,0.80)", border: `1px solid rgba(212,144,10,0.25)`, padding: "1.25rem 1.25rem 1.5rem" }}>
-                <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.4rem" }}>{t.tier}</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.4rem" }}>{t.tier}</p>
                 <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.15rem", color: "#FFF", lineHeight: 1.2, marginBottom: "0.4rem" }}>{t.label}</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.55, marginBottom: "0.625rem" }}>{t.sub}</p>
                 <p style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, color: GOLD }}>{t.price}</p>
@@ -406,12 +406,12 @@ function PacketCard({ product }) {
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
         <div>
-          <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.3rem" }}>{product.sku}</p>
+          <p style={{ fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.3rem" }}>{product.sku}</p>
           <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", border: `1px solid rgba(255,255,255,0.12)`, padding: "0.15rem 0.5rem" }}>
             {product.domain}
           </span>
         </div>
-        <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.35rem", color: GOLD, flexShrink: 0 }}>{product.price}</span>
+        <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.4rem", color: GOLD, flexShrink: 0 }}>{product.price}</span>
       </div>
 
       <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.2rem", color: "#FFF", lineHeight: 1.25 }}>{product.title}</h3>
