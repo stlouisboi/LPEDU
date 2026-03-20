@@ -804,8 +804,8 @@ const REACH_PILLARS = [
     fullName: "Resources",
     passDesc: "Cash reserves and operational runway confirmed.",
     failDesc: "Cash reserves and operational runway not confirmed.",
-    failLink: "→ Review: Four Pillars — Cash-Flow Oxygen",
-    failHref: "/knowledge-center",
+    failLink: "→ LP-BRF-08: The Installation Window",
+    failHref: "/knowledge-center/lp-brf-08",
   },
   {
     key: "E",
@@ -822,8 +822,8 @@ const REACH_PILLARS = [
     fullName: "Authority Readiness",
     passDesc: "Authority status, filings, and compliance monitoring confirmed.",
     failDesc: "Authority awareness or filing currency not confirmed.",
-    failLink: "→ Review: The Reality of Motor Carrier Authority",
-    failHref: "/knowledge-center",
+    failLink: "→ LP-BRF-07: Before Your First Dispatch",
+    failHref: "/knowledge-center/lp-brf-07",
   },
   {
     key: "C",
@@ -831,8 +831,8 @@ const REACH_PILLARS = [
     fullName: "Commitment",
     passDesc: "Operational timeline and implementation capacity confirmed.",
     failDesc: "Timeline compression identified — available implementation window is insufficient.",
-    failLink: "→ Review: The 90-Day Survival Window",
-    failHref: "/knowledge-center",
+    failLink: "→ LP-BRF-08: The Installation Window",
+    failHref: "/knowledge-center/lp-brf-08",
   },
   {
     key: "H",
@@ -840,8 +840,8 @@ const REACH_PILLARS = [
     fullName: "Operational Discipline",
     passDesc: "Existing file structure or readiness to build confirmed.",
     failDesc: "No operational file structure identified — compliance backbone is absent.",
-    failLink: "→ Start with the Document System",
-    failHref: "/compliance-library",
+    failLink: "→ LP-BRF-09: How Patterns Become Evidence",
+    failHref: "/knowledge-center/lp-brf-09",
   },
 ];
 

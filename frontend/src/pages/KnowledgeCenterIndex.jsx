@@ -665,13 +665,20 @@ function BriefCard({ brief, index }) {
         }}>{brief.teaser}</p>
 
         {/* Read time + status */}
-        <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
-          <span style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.762rem",
-            color: "var(--text-subtle)",
-            letterSpacing: "0.05em",
-          }}>{brief.readTime}</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+          {isPublished && (
+            <span style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
+              fontWeight: 600,
+              letterSpacing: "0.06em",
+              color: "var(--orange)",
+              background: "rgba(212,144,10,0.08)",
+              border: "1px solid rgba(212,144,10,0.2)",
+              padding: "0.2rem 0.625rem",
+              whiteSpace: "nowrap",
+            }}>{brief.readTime}</span>
+          )}
           {!isPublished && (
             <span style={{
               fontFamily: "'Inter', sans-serif",
