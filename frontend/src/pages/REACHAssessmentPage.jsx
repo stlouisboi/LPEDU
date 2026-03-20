@@ -307,13 +307,22 @@ function ResultCTAs({ result }) {
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
         <Link
-          to="/ground-0-briefing"
-          data-testid="cta-begin-ground-0"
+          to="/compliance-library"
+          data-testid="cta-proceed-standard"
           style={{ ...btnBase, background: "#d4900a", color: "#000F1F" }}
           onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
           onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
         >
-          Begin Ground 0 →
+          Proceed to the 90-Day Standard →
+        </Link>
+        <Link
+          to="/ground-0-briefing"
+          data-testid="cta-begin-ground-0"
+          style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.65)", border: "1px solid rgba(255,255,255,0.20)" }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+        >
+          Review Ground 0 First
         </Link>
       </div>
     );
@@ -616,8 +625,8 @@ export default function REACHAssessmentPage() {
             })}
           </div>
 
-          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", marginTop: "2rem" }}>
-            Question {currentQ + 1} of 15
+          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.38)", marginTop: "2rem", fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.06em" }}>
+            {CATEGORIES[currentCatIdx].full}
           </p>
         </div>
       )}
@@ -696,8 +705,8 @@ export default function REACHAssessmentPage() {
           >
             Complete Assessment
           </button>
-          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", marginTop: "1rem" }}>
-            Question 15 of 15
+          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.38)", marginTop: "1rem", fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.06em" }}>
+            OPERATIONAL DISCIPLINE — FINAL QUESTION
           </p>
         </div>
       )}
@@ -911,33 +920,131 @@ export default function REACHAssessmentPage() {
               <CategoryBreakdown scores={scores} />
             </div>
 
-            {/* Risk Map */}
+            {/* ── Authority Risk Map ── */}
             <div style={{ marginBottom: "2.5rem" }}>
               <p style={{
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.616rem",
-                fontWeight: 700,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(212,144,10,0.65)",
-                marginBottom: "1.5rem",
+                fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em",
+                textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "1.5rem",
               }}>
                 AUTHORITY RISK MAP
               </p>
               <RiskMap scores={scores} animate={animateMap} />
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.56rem",
-                color: "rgba(255,255,255,0.28)",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                marginTop: "1rem",
+                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.56rem",
+                color: "rgba(255,255,255,0.28)", letterSpacing: "0.1em",
+                textTransform: "uppercase", marginTop: "1rem",
               }}>
                 {scores.total >= 33 ? "GO THRESHOLD MET — PROCEED TO GROUND 0"
                   : scores.total >= 22 ? "WAIT THRESHOLD — GAPS IDENTIFIED"
                   : "NO-GO THRESHOLD — CRITICAL GAPS DETECTED"}
               </p>
             </div>
+
+            {/* ── Issue 1: Result-specific bridge CTA — immediately below risk map ── */}
+            {result === "GO" && (
+              <div style={{
+                borderLeft: "3px solid #d4900a",
+                background: "rgba(212,144,10,0.05)",
+                border: "1px solid rgba(212,144,10,0.22)",
+                padding: "1.75rem 1.75rem",
+                marginBottom: "2.5rem",
+              }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.60rem", fontWeight: 700,
+                  letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)",
+                  marginBottom: "0.875rem",
+                }}>NEXT STEP — QUALIFIED OPERATOR</p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+                  color: "rgba(255,255,255,0.80)", lineHeight: 1.80, marginBottom: "1.5rem",
+                }}>
+                  {scores.a < 9
+                    ? `Your Authority Readiness score shows ${9 - scores.a} point${9 - scores.a > 1 ? "s" : ""} of exposure — the most commonly cited gaps in new entrant audits. The LaunchPath Standard closes this in Weeks 3–6.`
+                    : "Your assessment indicates strong readiness across all five categories. The LaunchPath Standard installs the compliance infrastructure that maintains this through the full audit window."}
+                </p>
+                <a
+                  href="/compliance-library"
+                  data-testid="cta-standard-direct"
+                  style={{
+                    display: "inline-block", background: "#d4900a", color: "#0b1628",
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+                    letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none",
+                    padding: "1rem 2rem", transition: "background 0.2s",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+                  onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
+                >
+                  PROCEED TO THE 90-DAY STANDARD →
+                </a>
+              </div>
+            )}
+
+            {result === "WAIT" && (() => {
+              const flagged = getFlaggedNames(scores);
+              return (
+                <div style={{
+                  borderLeft: "3px solid rgba(245,158,11,0.60)",
+                  background: "rgba(245,158,11,0.04)",
+                  border: "1px solid rgba(245,158,11,0.20)",
+                  padding: "1.75rem 1.75rem",
+                  marginBottom: "2.5rem",
+                }}>
+                  <p style={{
+                    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.60rem", fontWeight: 700,
+                    letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(245,158,11,0.65)",
+                    marginBottom: "0.875rem",
+                  }}>NEXT STEP — CLOSE THE GAPS FIRST</p>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+                    color: "rgba(255,255,255,0.75)", lineHeight: 1.80, marginBottom: "1.5rem",
+                  }}>
+                    {flagged.length > 0
+                      ? `Your ${flagged.join(", ")} score${flagged.length > 1 ? "s indicate" : " indicates"} gaps that should be addressed before the Standard begins. Ground 0 gives you the framework. The 16 Deadly Sins shows the specific behaviors to resolve.`
+                      : "Your assessment indicates areas that should be strengthened before implementation begins. Ground 0 provides the preparation framework."}
+                  </p>
+                  <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
+                    <a href="/16-deadly-sins" data-testid="cta-wait-sins"
+                      style={{ display: "inline-block", background: "#F59E0B", color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", transition: "background 0.2s" }}
+                      onMouseEnter={e => e.currentTarget.style.background = "#f7b731"}
+                      onMouseLeave={e => e.currentTarget.style.background = "#F59E0B"}
+                    >Review the 16 Deadly Sins →</a>
+                    <a href="/ground-0-briefing" data-testid="cta-wait-ground0"
+                      style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.20)", transition: "all 0.2s" }}
+                      onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
+                      onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                    >Begin Ground 0</a>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {result === "NO-GO" && (
+              <div style={{
+                borderLeft: "3px solid rgba(248,113,113,0.50)",
+                background: "rgba(248,113,113,0.04)",
+                border: "1px solid rgba(248,113,113,0.18)",
+                padding: "1.75rem 1.75rem",
+                marginBottom: "2.5rem",
+              }}>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.60rem", fontWeight: 700,
+                  letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(248,113,113,0.65)",
+                  marginBottom: "0.875rem",
+                }}>NEXT STEP — RESOLVE THE CONDITIONS FIRST</p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+                  color: "rgba(255,255,255,0.72)", lineHeight: 1.80, marginBottom: "1.5rem",
+                }}>
+                  This result protects you from a preventable financial loss. The conditions that caused it are resolvable. The Knowledge Center contains the resources to address each one. Return when your score changes.
+                </p>
+                <a href="/knowledge-center" data-testid="cta-nogo-knowledge"
+                  style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.70)", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.22)", transition: "all 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                >Explore the Knowledge Center →</a>
+              </div>
+            )}
 
             {/* Email capture */}
             {!submitted ? (
@@ -962,7 +1069,7 @@ export default function REACHAssessmentPage() {
                   lineHeight: 1.75,
                   marginBottom: "1.5rem",
                 }}>
-                  Enter your email to receive your REACH assessment summary and preparation recommendations.
+                  Your full REACH summary — score breakdown, category feedback, and preparation resources — will arrive in your inbox within minutes.
                 </p>
                 <form onSubmit={handleEmailSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   <input
