@@ -96,7 +96,13 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **AdmissionConfirmedPage**: payment confirmation with status polling
 - **AdminAdmissionsPage** at `/admin/admissions`: stats, filter tabs, approval/decline buttons
 
-### Session 5 (Production Fix + Typography Overhaul) — Mar 2026
+### Session 6 (Homepage 12-Section Build) — Mar 2026
+- **All 12 sections implemented** per Homepage Implementation Verification Checklist (passed 12/12)
+- **New components added**: Ground0ExplainerSection, AfterInstallationSection, FAQSection, SocialProofPlaceholder
+- **Updated components**: WhatGetsInstalledSimple (6 domain cards with descriptions), HowItWorksSimple (3 phases → 4-step sequence), FinalCTASection (new headline: "If your authority is active, the window is already open.")
+- **Hero**: Added 18-month continuity line
+- **Pricing expectation line**: Positioned correctly as standalone Section 11 above Final CTA
+- **Section order** per checklist: Hero → Qualifier → Ground 0 → Consequence → WhatGetsInstalled → PlatformSurface → HowItWorks → AfterInstallation → Credibility → FAQ → SocialProof → PricingLine → FinalCTA
 - **P0 fix**: Added `--extra-index-url` and `emergentintegrations` to `backend/requirements.txt` → Railway crash fixed
 - **Typography system rebuilt**: Replaced Atkinson Hyperlegible + IBM Plex Mono with **Inter** across all 90+ JSX files (762 Atkinson + 399 IBM Plex instances replaced via global sed)
 - **Base scaling**: `html { font-size: 21px }` (was 19px) — scales all rem values site-wide

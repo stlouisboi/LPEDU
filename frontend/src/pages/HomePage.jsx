@@ -56,6 +56,29 @@ export default function HomePage() {
         {/* 10. SOCIAL PROOF PLACEHOLDER */}
         <SocialProofPlaceholder />
 
+        {/* 11. PRICING EXPECTATION LINE */}
+        <div
+          data-testid="pricing-expectation-section"
+          style={{
+            background: "#060c16",
+            borderTop: "1px solid rgba(255,255,255,0.05)",
+            padding: "3rem 1.5rem",
+            textAlign: "center",
+          }}
+        >
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-sm)",
+            color: "rgba(255,255,255,0.42)",
+            lineHeight: 1.7,
+            margin: "0 auto",
+            maxWidth: 580,
+            letterSpacing: "0.01em",
+          }}>
+            Investment details are presented after fit and readiness are confirmed in Ground 0.
+          </p>
+        </div>
+
         {/* 12. FINAL CTA */}
         <FinalCTASection />
       </main>

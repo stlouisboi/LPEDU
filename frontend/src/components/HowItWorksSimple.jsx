@@ -80,9 +80,15 @@ export default function HowItWorksSimple() {
             ))}
           </div>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-xs)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em", marginBottom: "1.5rem" }}>
-            Investment details are presented after fit and readiness are confirmed in Ground 0.
-          </p>
+          <Link
+            to="/operating-standard"
+            data-testid="see-standard-link"
+            style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600, color: "rgba(212,144,10,0.80)", textDecoration: "none", borderBottom: "1px solid rgba(212,144,10,0.25)", paddingBottom: "2px", letterSpacing: "0.02em", transition: "color 0.15s" }}
+            onMouseEnter={e => { e.currentTarget.style.color = "#d4900a"; }}
+            onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.80)"; }}
+          >
+            See the full Standard →
+          </Link>
 
           <Link
             to="/operating-standard"
