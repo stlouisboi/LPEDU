@@ -89,8 +89,6 @@ function ProofCard({ item, triggered, delay }) {
 export default function HeroSection() {
   const [inView, setInView] = useState(false);
   const sectionRef = useRef(null);
-  const costLow = useCountUp(10, 1600, inView);
-  const costHigh = useCountUp(25, 1800, inView);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -149,8 +147,13 @@ export default function HeroSection() {
           <div style={{ width: 40, height: 2, background: "#d4900a", margin: "26px 0 22px" }} />
 
           {/* Single subheadline */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 22 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 16 }}>
             You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
+          </p>
+
+          {/* Change 1: Consequence line */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 400, color: "rgba(255,255,255,0.72)", lineHeight: 1.7, maxWidth: 600, marginBottom: 22 }}>
+            Carriers who enter the New Entrant window without compliance systems in place face $10,000–$25,000 in audit exposure — and most don't know it until the notice arrives.
           </p>
 
           {/* Clarifier box */}
@@ -166,7 +169,7 @@ export default function HeroSection() {
           </p>
 
           {/* CTAs */}
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 10 }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
               <Link to="/ground-0-briefing" data-testid="hero-primary-cta" className="hero-cta-primary"
                 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.08em", color: "#0b1628", background: "#d4900a", padding: "16px 32px", height: 52, textDecoration: "none", boxShadow: "0 0 0 3px rgba(212,144,10,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }}
@@ -181,6 +184,11 @@ export default function HeroSection() {
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
             >SEE WHAT GETS INSTALLED</Link>
           </div>
+
+          {/* Change 3: Credentialing line below CTAs */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.30)", lineHeight: 1.6, maxWidth: 480, marginBottom: 28, letterSpacing: "0.02em" }}>
+            Built on 25 years of federal safety and compliance systems infrastructure. Verified against 49 CFR.
+          </p>
 
           {/* Proof strip — hidden on mobile (shown as compact row instead) */}
           <div className="proof-strip" style={{
@@ -257,11 +265,8 @@ export default function HeroSection() {
             <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 700, color: "rgba(255,255,255,0.96)", margin: "0 0 6px", letterSpacing: "0.01em" }}>
               Audit failure + remediation
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: "0 0 12px" }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: 0 }}>
               Deficiency findings, corrective action exposure, service disruption, and preventable authority risk.
-            </p>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 24, fontWeight: 700, color: "#E8590F", margin: 0, letterSpacing: "-0.01em", textShadow: "0 0 16px rgba(232,89,48,0.40)", whiteSpace: "nowrap" }}>
-              ${costLow.toLocaleString()},000 – ${costHigh.toLocaleString()},000+
             </p>
           </div>
 
