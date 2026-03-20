@@ -1381,6 +1381,12 @@ class Ground0WaitlistRequest(BaseModel):
     email: EmailStr
     status: str
     completion_date: Optional[str] = None
+    reach_resources: Optional[str] = None
+    reach_experience: Optional[str] = None
+    reach_authority: Optional[str] = None
+    reach_commitment: Optional[str] = None
+    reach_discipline: Optional[str] = None
+    gaps_remaining: Optional[int] = None
 
 
 @api_router.post("/ground0/waitlist")
@@ -1398,6 +1404,12 @@ async def ground0_waitlist(data: Ground0WaitlistRequest):
             "email": data.email,
             "status": data.status,
             "completion_date": data.completion_date or now.isoformat()[:10],
+            "reach_resources": data.reach_resources,
+            "reach_experience": data.reach_experience,
+            "reach_authority": data.reach_authority,
+            "reach_commitment": data.reach_commitment,
+            "reach_discipline": data.reach_discipline,
+            "gaps_remaining": data.gaps_remaining,
             "created_at": now.isoformat(),
         }},
         upsert=True,
@@ -1411,14 +1423,28 @@ async def ground0_waitlist(data: Ground0WaitlistRequest):
         lead_source = "ground0_nogo"
         group_id = MAILERLITE_FUTURE_ELIGIBILITY_GROUP_ID
 
+    ml_fields: dict = {
+        "lead_source": lead_source,
+        "ground0_status": data.status,
+        "ground0_completion_date": data.completion_date or now.isoformat()[:10],
+    }
+    if data.reach_resources:
+        ml_fields["reach_resources"] = data.reach_resources
+    if data.reach_experience:
+        ml_fields["reach_experience"] = data.reach_experience
+    if data.reach_authority:
+        ml_fields["reach_authority"] = data.reach_authority
+    if data.reach_commitment:
+        ml_fields["reach_commitment"] = data.reach_commitment
+    if data.reach_discipline:
+        ml_fields["reach_discipline"] = data.reach_discipline
+    if data.gaps_remaining is not None:
+        ml_fields["gaps_remaining"] = str(data.gaps_remaining)
+
     ml_payload: dict = {
         "email": data.email,
         "status": "active",
-        "fields": {
-            "lead_source": lead_source,
-            "ground0_status": data.status,
-            "ground0_completion_date": data.completion_date or now.isoformat()[:10],
-        },
+        "fields": ml_fields,
     }
     if group_id:
         ml_payload["groups"] = [group_id]

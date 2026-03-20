@@ -177,6 +177,7 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
   const [lessonIndex, setLessonIndex] = useState(0);
   const [completedLessons, setCompletedLessons] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [assessmentAnswers, setAssessmentAnswers] = useState({});
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState("register");
   const [finalDecision, setFinalDecision] = useState(null);
@@ -199,6 +200,7 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
         if (p.view && p.view !== "overview") setView(p.view);
         if (typeof p.lessonIndex === "number") setLessonIndex(p.lessonIndex);
         if (p.finalDecision) setFinalDecision(p.finalDecision);
+        if (p.assessmentAnswers && typeof p.assessmentAnswers === "object") setAssessmentAnswers(p.assessmentAnswers);
       } catch {}
     }
     setProgressLoaded(true);
@@ -248,6 +250,15 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
     setView("lesson");
     setSelectedOption(null);
     saveLocal({ view: "lesson", lessonIndex: 0 });
+  };
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    setAssessmentAnswers(prev => {
+      const updated = { ...prev, [lessonIndex]: option };
+      saveLocal({ assessmentAnswers: updated });
+      return updated;
+    });
   };
 
   const handleContinue = () => {
@@ -391,7 +402,7 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
           totalLessons={LESSONS.length}
           completedLessons={completedLessons}
           selectedOption={selectedOption}
-          onSelectOption={setSelectedOption}
+          onSelectOption={handleOptionSelect}
           onContinue={handleContinue}
           onBack={() => {
             if (lessonIndex === 0) { setView("overview"); } else {
@@ -404,7 +415,7 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
         />
       )}
       {view === "decision" && <DecisionView onDecide={handleDecision} />}
-      {view === "complete" && finalDecision && <CompleteView decision={finalDecision} API={API} onRestart={() => { setView("overview"); setCompletedLessons([]); setFinalDecision(null); saveLocal({}); }} />}
+      {view === "complete" && finalDecision && <CompleteView decision={finalDecision} API={API} assessmentAnswers={assessmentAnswers} onRestart={() => { setView("overview"); setCompletedLessons([]); setFinalDecision(null); setAssessmentAnswers({}); saveLocal({}); }} />}
 
       {/* Auth Gate Modal */}
       {showAuthModal && (
@@ -782,8 +793,174 @@ function DecisionView({ onDecide }) {
   );
 }
 
+// ── REACH Pass/Fail Logic ─────────────────────────────────────────────────────
+// Maps G0-1 through G0-5 assessment answers to REACH pillar pass/fail.
+// lessonIndex 0=G0-1, 1=G0-2, 2=G0-3, 3=G0-4, 4=G0-5
+
+const REACH_PILLARS = [
+  {
+    key: "R",
+    label: "R — RESOURCES",
+    fullName: "Resources",
+    passDesc: "Cash reserves and operational runway confirmed.",
+    failDesc: "Cash reserves and operational runway not confirmed.",
+    failLink: "→ Review: Four Pillars — Cash-Flow Oxygen",
+    failHref: "/knowledge-center",
+  },
+  {
+    key: "E",
+    label: "E — EXPERIENCE",
+    fullName: "Experience",
+    passDesc: "Compliance background or structured learning commitment confirmed.",
+    failDesc: "Significant compliance gaps identified across documented failure patterns.",
+    failLink: "→ Review: The 16 Deadly Sins",
+    failHref: "/16-deadly-sins",
+  },
+  {
+    key: "A",
+    label: "A — AUTHORITY READINESS",
+    fullName: "Authority Readiness",
+    passDesc: "Authority status, filings, and compliance monitoring confirmed.",
+    failDesc: "Authority awareness or filing currency not confirmed.",
+    failLink: "→ Review: The Reality of Motor Carrier Authority",
+    failHref: "/knowledge-center",
+  },
+  {
+    key: "C",
+    label: "C — COMMITMENT",
+    fullName: "Commitment",
+    passDesc: "Operational timeline and implementation capacity confirmed.",
+    failDesc: "Timeline compression identified — available implementation window is insufficient.",
+    failLink: "→ Review: The 90-Day Survival Window",
+    failHref: "/knowledge-center",
+  },
+  {
+    key: "H",
+    label: "H — OPERATIONAL DISCIPLINE",
+    fullName: "Operational Discipline",
+    passDesc: "Existing file structure or readiness to build confirmed.",
+    failDesc: "No operational file structure identified — compliance backbone is absent.",
+    failLink: "→ Start with the Document System",
+    failHref: "/compliance-library",
+  },
+];
+
+function computeReachStatus(answers) {
+  const g01 = answers[0] || "";
+  const g03 = answers[2] || "";
+  const g04 = answers[3] || "";
+  const g05 = answers[4] || "";
+
+  return {
+    R: !(g03.includes("U — Under") || g04.includes("Pillar 4")),
+    E: !(g05.includes("4–8") || g05.includes("More than 8")),
+    A: !(g01.includes("No — I didn't know") || g03.includes("A — Around") || g04.includes("Pillar 1")),
+    C: !(g03.includes("O — Over")),
+    H: !(g03.includes("T — Through") || g04.includes("Pillar 3") || g05.includes("More than 8")),
+  };
+}
+
+// ── Gap Tracker Component ─────────────────────────────────────────────────────
+function GapTracker({ assessmentAnswers }) {
+  const status = computeReachStatus(assessmentAnswers);
+  const gaps = REACH_PILLARS.filter(p => !status[p.key]).length;
+  const hasAnyData = Object.keys(assessmentAnswers).length > 0;
+
+  return (
+    <div
+      data-testid="gap-tracker"
+      style={{
+        background: "rgba(255,255,255,0.02)",
+        border: "1px solid rgba(212,144,10,0.2)",
+        borderLeft: "3px solid rgba(212,144,10,0.5)",
+        padding: "1.5rem",
+        marginBottom: "1.75rem",
+      }}
+    >
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
+        WHAT NEEDS TO CLOSE BEFORE ENTRY
+      </p>
+
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {REACH_PILLARS.map((pillar, i) => {
+          const passed = status[pillar.key];
+          return (
+            <div
+              key={pillar.key}
+              data-testid={`gap-pillar-${pillar.key.toLowerCase()}`}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "1rem",
+                padding: "0.875rem 0",
+                borderBottom: i < REACH_PILLARS.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
+              }}
+            >
+              {/* Status icon */}
+              <div
+                aria-label={passed ? "Passed" : "Gap identified"}
+                style={{
+                  flexShrink: 0,
+                  width: 20,
+                  height: 20,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "0.1rem",
+                }}
+              >
+                {passed ? (
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="7" stroke="#d4900a" strokeWidth="1.5"/>
+                    <path d="M5 8l2 2 4-4" stroke="#d4900a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="7" stroke="#f87171" strokeWidth="1.5"/>
+                    <path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#f87171" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                )}
+              </div>
+
+              {/* Content */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", color: passed ? "rgba(255,255,255,0.75)" : "#FFFFFF", letterSpacing: "0.04em", marginBottom: "0.25rem" }}>
+                  {pillar.label}
+                </p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: passed ? "rgba(255,255,255,0.38)" : "rgba(255,255,255,0.62)", lineHeight: 1.55 }}>
+                  {passed ? pillar.passDesc : pillar.failDesc}
+                </p>
+                {!passed && hasAnyData && (
+                  <a
+                    href={pillar.failHref}
+                    style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: "0.8rem", color: "#d4900a", marginTop: "0.4rem", textDecoration: "none", transition: "opacity 0.15s" }}
+                    onMouseEnter={e => e.currentTarget.style.textDecoration = "underline"}
+                    onMouseLeave={e => e.currentTarget.style.textDecoration = "none"}
+                  >
+                    {pillar.failLink}
+                  </a>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.25rem", marginTop: "0.5rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.375rem" }}>
+          {gaps} OF 5 {gaps === 1 ? "GAP" : "GAPS"} REMAINING
+        </p>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
+          Close these gaps, then retake Ground 0 to confirm readiness for the next cohort.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // ── Complete View ─────────────────────────────────────────────────────────────
-function CompleteView({ decision, onRestart, API }) {
+function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
   const d = COMPLETION_DATA[decision];
   const [captureEmail, setCaptureEmail] = useState("");
   const [captureSubmitted, setCaptureSubmitted] = useState(false);
@@ -795,6 +972,8 @@ function CompleteView({ decision, onRestart, API }) {
     setCaptureLoading(true);
     setCaptureError("");
     try {
+      const reachStatus = computeReachStatus(assessmentAnswers);
+      const gaps = REACH_PILLARS.filter(p => !reachStatus[p.key]).length;
       const resp = await fetch(`${API}/api/ground0/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -802,6 +981,12 @@ function CompleteView({ decision, onRestart, API }) {
           email: captureEmail,
           status: decision,
           completion_date: new Date().toISOString().slice(0, 10),
+          reach_resources: reachStatus.R ? "PASS" : "FAIL",
+          reach_experience: reachStatus.E ? "PASS" : "FAIL",
+          reach_authority: reachStatus.A ? "PASS" : "FAIL",
+          reach_commitment: reachStatus.C ? "PASS" : "FAIL",
+          reach_discipline: reachStatus.H ? "PASS" : "FAIL",
+          gaps_remaining: gaps,
         }),
       });
       if (!resp.ok) {
@@ -872,6 +1057,9 @@ function CompleteView({ decision, onRestart, API }) {
         <div style={{ border: "1px solid rgba(255,255,255,0.07)", borderTop: "none", padding: "2rem" }}>
           <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "2rem" }} />
 
+          {/* Gap Tracker — shows which REACH pillars passed/failed */}
+          <GapTracker assessmentAnswers={assessmentAnswers} />
+
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,191,36,0.5)", marginBottom: "0.875rem" }}>
             LP-STATUS: WAIT | NEXT STEPS
           </p>
@@ -879,33 +1067,39 @@ function CompleteView({ decision, onRestart, API }) {
             YOU ARE NOT READY — YET
           </h3>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
-            The gaps identified in Ground 0 must be corrected before admission.
+            The gaps identified above must be closed before admission is possible.
           </p>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0" }}>
-            Your operation has gaps that would create exposure under active authority.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
+            Your operation has gaps that create exposure under active authority. That's a timing issue — not a permanent one.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
-            This is not a rejection. It is a timing issue.
-          </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
             LaunchPath does not adjust the standard to admit you early. Your readiness must rise to the system.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem", marginTop: "0.875rem" }}>
-            When these gaps are corrected, you may request admission again.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem" }}>
+            When these gaps are closed, you may request admission to the next cohort.
           </p>
 
           {captureSubmitted ? (
-            <div data-testid="g0-wait-success" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.18)", borderLeft: "3px solid #22c55e", padding: "1.5rem", marginBottom: "1.25rem" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#22c55e", marginBottom: "0.875rem" }}>
-                ✓ ADMISSION PRIORITY RESERVED
+            <div data-testid="g0-wait-success" style={{ background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.18)", borderLeft: "3px solid rgba(212,144,10,0.6)", padding: "1.5rem", marginBottom: "1.25rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.875rem" }}>
+                ✓ YOUR SPOT IS SAVED
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.625rem" }}>
-                You will be notified when the next admission window opens.
+                You'll be first to know when the next cohort opens.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78 }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
                 A new Ground 0 assessment will be required before entry.
               </p>
+              <a
+                href="/compliance-library"
+                data-testid="g0-doc-bundle-cta-success"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "transparent", color: "rgba(255,255,255,0.55)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.625rem 1.125rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", transition: "all 0.2s", minHeight: 40 }}
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "#FFFFFF"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}
+              >
+                View the Document System <ArrowRight size={11} />
+              </a>
             </div>
           ) : (
             <form onSubmit={handleCapture} data-testid="g0-wait-capture-form" style={{ marginBottom: "0" }}>
@@ -931,14 +1125,13 @@ function CompleteView({ decision, onRestart, API }) {
                 onMouseEnter={e => { if (!captureLoading) e.currentTarget.style.background = "#e8a520"; }}
                 onMouseLeave={e => { if (!captureLoading) e.currentTarget.style.background = captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a"; }}
               >
-                {captureLoading ? "Processing..." : "RESERVE ADMISSION PRIORITY →"}
+                {captureLoading ? "Processing..." : "SAVE MY SPOT →"}
               </button>
             </form>
           )}
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.32)", lineHeight: 1.7, marginTop: "0.875rem" }}>
-            You will be notified when the next admission window opens.<br />
-            A new Ground 0 assessment will be required at that time.
+            No spam. Notified when the next cohort opens. A new Ground 0 assessment will be required.
           </p>
 
           {/* Document System CTA */}
@@ -947,7 +1140,7 @@ function CompleteView({ decision, onRestart, API }) {
               BEGIN CLOSING GAPS NOW
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.78, marginBottom: "1.25rem" }}>
-              The Document System provides the required structures to begin closing these gaps independently.
+              The Document System gives you the forms and templates to start closing these gaps independently.
             </p>
             <a
               href="/compliance-library"
@@ -971,35 +1164,29 @@ function CompleteView({ decision, onRestart, API }) {
             LP-STATUS: NO-GO | ELIGIBILITY
           </p>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1rem, 2vw, 1.25rem)", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
-            THIS STANDARD DOES NOT APPLY TO YOUR CURRENT POSITION
+            THIS PROGRAM ISN'T THE RIGHT FIT — YET
           </h3>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
-            Your Ground 0 results indicate a misalignment with the requirements of this system.
+            Based on your Ground 0 results, there's a misalignment with the current requirements of this system.
           </p>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0" }}>
-            LaunchPath is designed for operators within a specific operational range.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
+            LaunchPath is built for operators within a specific operational range. Based on your current position, the program isn't applicable right now.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
-            Based on your current position, this system is not applicable at this time.
-          </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
-            That may change.
-          </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem", marginTop: "0.875rem" }}>
-            This system does not adjust to your readiness. Your readiness must rise to the system.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem" }}>
+            That may change. Get notified when your situation qualifies — or when a path opens that fits where you are.
           </p>
 
           {captureSubmitted ? (
             <div data-testid="g0-nogo-success" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.1)", borderLeft: "3px solid rgba(255,255,255,0.3)", padding: "1.5rem", marginBottom: "1.25rem" }}>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "0.875rem" }}>
-                ✓ ELIGIBILITY REGISTRATION CONFIRMED
+                ✓ YOU'RE ON THE LIST
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78, marginBottom: "0.625rem" }}>
-                You will be contacted if a relevant path becomes available.
+                We'll reach out when something relevant opens up.
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78 }}>
-                No additional communication will be sent unless conditions change.
+                No spam — just updates that matter.
               </p>
             </div>
           ) : (
@@ -1026,13 +1213,13 @@ function CompleteView({ decision, onRestart, API }) {
                 onMouseEnter={e => { if (!captureLoading) e.currentTarget.style.background = "#e8a520"; }}
                 onMouseLeave={e => { if (!captureLoading) e.currentTarget.style.background = captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a"; }}
               >
-                {captureLoading ? "Processing..." : "REGISTER FOR FUTURE ELIGIBILITY →"}
+                {captureLoading ? "Processing..." : "NOTIFY ME →"}
               </button>
             </form>
           )}
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.32)", lineHeight: 1.7, marginTop: "0.875rem" }}>
-            You will be contacted only if a relevant path becomes available.
+            We'll only reach out when something relevant opens up.
           </p>
         </div>
       )}

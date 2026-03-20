@@ -115,7 +115,11 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 
 ---
 
-### Session 9 — Ground 0 Results Enhancement (WAIT/NO-GO Email Capture) — Mar 2026
+### Session 10 — Gap Tracker + Hybrid Copy — Mar 2026
+- **Gap Tracker component** (`GapTracker` in `Ground0LessonPlayer.jsx`): maps G0-1–G0-5 assessment answers to 5 REACH pillar pass/fail states; shown on WAIT screen above email capture; action links for each failing pillar
+- **Assessment answer tracking**: `assessmentAnswers` state tracks per-lesson selections, persisted to localStorage, passed to completion screens for Gap Tracker computation
+- **Hybrid copy**: WAIT uses "YOU ARE NOT READY — YET" (selective) + "That's a timing issue — not a permanent one" (path forward) + "SAVE MY SPOT →" button + "✓ YOUR SPOT IS SAVED" success; NO-GO uses "THIS PROGRAM ISN'T THE RIGHT FIT — YET" + "NOTIFY ME →" + "✓ YOU'RE ON THE LIST" success
+- **MailerLite enrichment**: WAIT/NO-GO submissions now include all 5 REACH pillar results + gaps_remaining count as custom fields — enables gap-specific nurture sequences
 - **Backend**: `POST /api/ground0/waitlist` — captures WAIT/NO-GO completions, saves to `ground0_waitlist` MongoDB collection, subscribes to MailerLite with `lead_source` tags (`ground0_wait` / `ground0_nogo`); group IDs configurable via env vars `MAILERLITE_COHORT_WAITLIST_GROUP_ID` / `MAILERLITE_FUTURE_ELIGIBILITY_GROUP_ID`
 - **Frontend (WAIT screen)**: Added "YOU ARE NOT READY — YET" section with institutional copy, "RESERVE ADMISSION PRIORITY →" email form, success state "✓ ADMISSION PRIORITY RESERVED", "BEGIN CLOSING GAPS NOW" secondary section with Document System CTA → `/compliance-library`
 - **Frontend (NO-GO screen)**: Added "THIS STANDARD DOES NOT APPLY TO YOUR CURRENT POSITION" section with eligibility copy, "REGISTER FOR FUTURE ELIGIBILITY →" form, success state "✓ ELIGIBILITY REGISTRATION CONFIRMED"
