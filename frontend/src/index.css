@@ -93,15 +93,15 @@ img { max-width: 100%; }
 
 /* Global base font size — scales all rem values site-wide */
 html {
-  font-size: 18px;
+  font-size: 19px;
 }
 
 @media (max-width: 768px) {
-  html { font-size: 17px; }
+  html { font-size: 18px; }
 }
 
 @media (max-width: 480px) {
-  html { font-size: 16px; }
+  html { font-size: 17px; }
 }
 
 body {
@@ -109,8 +109,15 @@ body {
   background-color: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.65;
-  font-size: 17px;
+  font-size: 1rem;
+}
+
+/* Ensure all body text is minimum 1rem = 19px on desktop */
+p, li {
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 /* ── Global mobile responsive improvements ── */
@@ -157,13 +164,13 @@ h1, h2, h3, h4, h5, h6 {
   --border-gold: rgba(180,130,60,0.30);
 }
 
-/* Body text minimum 17px — enforce on content pages */
+/* Body text minimum on content pages — enforce Atkinson at 1rem */
 .content-page p,
 .content-page li,
 .content-page td {
   font-family: 'Atkinson Hyperlegible', sans-serif;
-  font-size: max(17px, 1rem);
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 /* Max line length for readability in content */

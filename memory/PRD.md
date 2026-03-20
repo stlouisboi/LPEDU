@@ -16,7 +16,7 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 
 ## Typography Standard (Station Custodian Approved)
 - **Heading**: Playfair Display 700 — all page headlines, section titles, module headers
-- **Body**: Atkinson Hyperlegible 400/500 — all paragraph text, 17px minimum, 1.65 line height
+- **Body**: Atkinson Hyperlegible 400/500 — all paragraph text, `html { font-size: 19px }` base (1rem = 19px desktop), 1.65 line height
 - **Label/Code**: IBM Plex Mono 500 — all LP system codes (LP-BRF-01, LP-SYS-03), labels
 - **Sources**: @fontsource npm packages installed
 - Content pages (Knowledge Center articles + briefs): light cream background (#f7f4ee), navy text (#001A33)

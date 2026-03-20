@@ -199,6 +199,14 @@ export default function AdminAdmissionsPage() {
     rejected: requests.filter((r) => r.status === "rejected").length,
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API}/api/auth/logout`, { method: "POST", credentials: "include" });
+    } catch {}
+    setAuthState("unauthed");
+    setRequests([]);
+  };
+
   const TABS = [
     { key: "all",            testid: "filter-all",      label: "All" },
     { key: "pending_review", testid: "filter-pending",  label: "Pending" },
@@ -227,16 +235,33 @@ export default function AdminAdmissionsPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "72px 24px 80px" }}>
 
           {/* Header */}
-          <div style={{ marginBottom: "2.5rem" }}>
-            <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
-              LP-ADM-001 | STATION CUSTODIAN
-            </p>
-            <h1 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "0.75rem" }}>
-              Admission Requests
-            </h1>
-            <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, maxWidth: 560 }}>
-              Operators who completed Ground 0 and requested admission. Payment of $2,500 triggers automatic enrollment.
-            </p>
+          <div style={{ marginBottom: "2.5rem", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+            <div>
+              <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
+                LP-ADM-001 | STATION CUSTODIAN
+              </p>
+              <h1 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "0.75rem" }}>
+                Admission Requests
+              </h1>
+              <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, maxWidth: 560 }}>
+                Operators who completed Ground 0 and requested admission. Payment of $2,500 triggers automatic enrollment.
+              </p>
+            </div>
+            <button
+              data-testid="admin-logout-btn"
+              onClick={handleLogout}
+              style={{
+                fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+                letterSpacing: "0.14em", textTransform: "uppercase",
+                padding: "0.625rem 1.25rem", background: "transparent",
+                color: "rgba(255,255,255,0.40)", border: "1px solid rgba(255,255,255,0.12)",
+                cursor: "pointer", flexShrink: 0, transition: "all 0.15s",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "#f87171"; e.currentTarget.style.borderColor = "rgba(248,113,113,0.3)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.40)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; }}
+            >
+              Sign Out
+            </button>
           </div>
 
           {/* Stats strip */}
