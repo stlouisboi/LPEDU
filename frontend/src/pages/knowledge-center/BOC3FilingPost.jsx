@@ -4,7 +4,7 @@ import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
 import useSEO from "../../hooks/useSEO";
 
-const navy = "#0b1628";
+const navy = "#1a1208";
 const gold = "#d4900a";
 const mono = "'Inter', sans-serif";
 
@@ -72,12 +72,12 @@ export default function BOC3FilingPost() {
   });
 
   return (
-    <div style={{ background: "#f7f4ee", minHeight: "100vh" }}>
+    <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Article Hero */}
       <div style={{
-        background: "#080f1e",
+        background: "var(--bg-2)",
         borderBottom: `3px solid ${gold}`,
         padding: "5rem 1.5rem 4rem",
       }}>
@@ -86,8 +86,8 @@ export default function BOC3FilingPost() {
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>
               ← Operational Library
             </Link>
-            <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.7rem" }}>/</span>
-            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Authority Registration</span>
+            <span style={{ color: "rgba(26,18,8,0.22)", fontSize: "0.7rem" }}>/</span>
+            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,18,8,0.32)" }}>Authority Registration</span>
           </div>
 
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
@@ -97,7 +97,7 @@ export default function BOC3FilingPost() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "var(--text-2xl)", letterSpacing: "-0.02em",
-            color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem",
+            color: "var(--text)", lineHeight: 1.1, marginBottom: "1.25rem",
           }}>
             The BOC-3 Filing: What It Is, What Happens If It Lapses, and How to Verify Yours
           </h1>
@@ -106,11 +106,11 @@ export default function BOC3FilingPost() {
             The BOC-3 is one of the smaller administrative requirements in the FMCSA registration process — and one of the more consequential ones if it lapses or was never properly filed. Carriers who assume their MC number covers all federal registration requirements frequently discover a BOC-3 problem at the worst possible time: during a compliance review, an insurance audit, or a broker check.
           </p>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginTop: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(26,18,8,0.60)", lineHeight: 1.8, marginTop: "1rem" }}>
             This article covers what the BOC-3 is, why it's required, what happens when it's missing or lapsed, and how to verify your current status.
           </p>
 
-          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.08)", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(26,18,8,0.08)", flexWrap: "wrap" }}>
             {[
               ["Primary Keyword", "BOC-3 filing motor carrier"],
               ["CFR References", "49 CFR Part 366"],
@@ -118,7 +118,7 @@ export default function BOC3FilingPost() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(26,18,8,0.65)" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -150,7 +150,7 @@ export default function BOC3FilingPost() {
 
         {/* Related Resources */}
         <div style={{
-          background: "#080f1e", border: `1px solid rgba(212,144,10,0.20)`,
+          background: "var(--bg-2)", border: `1px solid rgba(212,144,10,0.20)`,
           borderTop: `3px solid ${gold}`, padding: "2rem", marginBottom: "3rem",
         }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem" }}>
@@ -173,14 +173,14 @@ export default function BOC3FilingPost() {
         </div>
 
         {/* Ground 0 CTA */}
-        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "#060d19", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "var(--bg-2)", border: "1px solid rgba(26,18,8,0.06)" }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
             LPOS V1.0 — GROUND 0 ENTRY
           </p>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "var(--text)", lineHeight: 1.2, marginBottom: "0.75rem" }}>
             If you're a new carrier in your first 90 days, Ground 0 is free.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(26,18,8,0.60)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             Ground 0 covers the full registration stack — BOC-3, UCR, MCS-150, and insurance — and ends with a GO/WAIT/NO-GO decision framework before your first dispatch.
           </p>
           <Link

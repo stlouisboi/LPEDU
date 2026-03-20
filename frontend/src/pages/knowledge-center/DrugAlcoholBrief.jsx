@@ -499,7 +499,7 @@ export default function DrugAlcoholBrief() {
 
       {/* Operating Standard Library footer strip */}
       <div style={{
-        borderTop: "1px solid rgba(255,255,255,0.08)",
+        borderTop: "1px solid rgba(26,18,8,0.08)",
         background: "#000F1F",
         padding: "2rem 2.5rem",
       }}>
@@ -507,7 +507,7 @@ export default function DrugAlcoholBrief() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.857rem",
-            color: "rgba(255,255,255,0.5)",
+            color: "rgba(26,18,8,0.55)",
             lineHeight: 1.6,
           }}>
             This brief is part of the{" "}

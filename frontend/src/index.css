@@ -192,16 +192,35 @@ h3 { font-size: var(--text-xl); }
   font-weight: 500;
 }
 
-/* ── Content Page: Light theme for knowledge center articles + briefs ── */
+/* ── Content Page: Warm Sepia — always light for Knowledge Center + Briefs ── */
 .content-page {
-  --bg: #f7f4ee;
-  --bg-2: #ede8dc;
-  --bg-3: #e2dbd1;
-  --text: #001A33;
-  --text-muted: #1A2A3A;
-  --text-subtle: #546575;
-  --border: rgba(0,26,51,0.12);
-  --border-gold: rgba(180,130,60,0.30);
+  --bg:           #f4f0e8;   /* warm cream — page background          */
+  --bg-2:         #ede7d9;   /* warm sand — section / card fills      */
+  --bg-3:         #e4dccb;   /* deeper sand — hover / dividers        */
+  --text:         #1a0f00;   /* warm near-black — headlines + body    */
+  --text-muted:   #2d1f08;   /* warm dark brown — secondary body      */
+  --text-subtle:  #6b5030;   /* warm medium brown — captions, labels  */
+  --border:       rgba(90,60,20,0.14);   /* warm tan border            */
+  --border-gold:  rgba(180,130,60,0.35); /* gold accent border         */
+  --gold:         #c8860a;   /* slightly deeper gold for sepia        */
+  --orange:       #c8601a;   /* warm amber CTA                        */
+  --orange-hover: #b05518;   /* CTA hover                             */
+}
+
+/* Heading color override for sepia warmth */
+.content-page h1,
+.content-page h2,
+.content-page h3,
+.content-page h4 {
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* Strong horizontal rule sepia styling */
+.content-page hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
 }
 
 /* Body text minimum on content pages — enforce Inter at 1rem */

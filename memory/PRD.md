@@ -28,7 +28,7 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
   - `--text-sm`: 0.857rem = 18px Secondary text
   - `--text-xs`: 0.762rem = 16px Small labels/overlines
 - **Body line-height**: 1.65
-- **Content pages**: light cream (#f7f4ee), navy (#001A33), Inter body
+- **Content pages**: **always warm sepia** — `#f4f0e8` background, warm near-black `#1a0f00` text. No dark mode on KC/brief pages. Dark branded Navbar + Footer frame the sepia body.
 - **Marketing pages**: dark navy, white text
 
 ## Key Routes

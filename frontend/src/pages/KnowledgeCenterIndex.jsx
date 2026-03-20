@@ -152,7 +152,7 @@ export default function KnowledgeCenterIndex() {
   const [activeCategory, setActiveCategory] = useState("All");
   const filteredPosts = activeCategory === "All" ? POSTS : POSTS.filter(p => p.category === activeCategory);
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
 
       {/* ── HERO ── */}
@@ -302,22 +302,22 @@ export default function KnowledgeCenterIndex() {
                       textTransform: "uppercase",
                       padding: "0.45rem 0.85rem",
                       background: isActive ? "#d4900a" : "transparent",
-                      color: isActive ? "#0b1628" : "rgba(255,255,255,0.45)",
-                      border: isActive ? "1px solid #d4900a" : "1px solid rgba(255,255,255,0.14)",
+                      color: isActive ? "#fff" : "rgba(26,18,8,0.50)",
+                      border: isActive ? "1px solid #d4900a" : "1px solid rgba(26,18,8,0.18)",
                       cursor: "pointer",
                       transition: "all 0.15s",
                       lineHeight: 1,
                     }}
                     onMouseEnter={e => {
                       if (!isActive) {
-                        e.currentTarget.style.color = "rgba(212,144,10,0.85)";
-                        e.currentTarget.style.borderColor = "rgba(212,144,10,0.40)";
+                        e.currentTarget.style.color = "#d4900a";
+                        e.currentTarget.style.borderColor = "rgba(212,144,10,0.50)";
                       }
                     }}
                     onMouseLeave={e => {
                       if (!isActive) {
-                        e.currentTarget.style.color = "rgba(255,255,255,0.45)";
-                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                        e.currentTarget.style.color = "rgba(26,18,8,0.50)";
+                        e.currentTarget.style.borderColor = "rgba(26,18,8,0.18)";
                       }
                     }}
                   >
@@ -333,7 +333,7 @@ export default function KnowledgeCenterIndex() {
             </div>
 
             {/* Result count */}
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.25)", marginTop: "0.75rem", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.10em", color: "rgba(26,18,8,0.35)", marginTop: "0.75rem", textTransform: "uppercase" }}>
               {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"}{activeCategory !== "All" ? ` — ${activeCategory}` : ""}
             </p>
           </div>
@@ -341,24 +341,24 @@ export default function KnowledgeCenterIndex() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
             {filteredPosts.map((post, i) => (
               <a key={i} href={post.slug} style={{ display: "block", textDecoration: "none",
-                background: "#080f1e", padding: "1.5rem 2rem",
+                background: "#edeae2", padding: "1.5rem 2rem",
                 borderLeft: "3px solid #d4900a", transition: "background 0.2s",
               }}
-                onMouseEnter={e => e.currentTarget.style.background = "#0d1a2f"}
-                onMouseLeave={e => e.currentTarget.style.background = "#080f1e"}
+                onMouseEnter={e => e.currentTarget.style.background = "#e5e0d5"}
+                onMouseLeave={e => e.currentTarget.style.background = "#edeae2"}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>{post.code}</span>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{post.category}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#b87a20" }}>{post.code}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(26,18,8,0.40)" }}>{post.category}</span>
                     </div>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.65 }}>{post.teaser}</p>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "#1a1208", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(26,18,8,0.60)", lineHeight: 1.65 }}>{post.teaser}</p>
                   </div>
                   <div style={{ flexShrink: 0, textAlign: "right" }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: "0.3rem" }}>{post.readTime}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)" }}>{post.cfr}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(26,18,8,0.40)", marginBottom: "0.3rem" }}>{post.readTime}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#b87a20" }}>{post.cfr}</p>
                   </div>
                 </div>
               </a>

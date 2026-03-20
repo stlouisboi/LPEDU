@@ -459,9 +459,9 @@ export default function UCRRegistrationBrief() {
       />
 
       {/* Operating Standard Library footer strip */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", background: "#000F1F", padding: "2rem 2.5rem" }}>
+      <div style={{ borderTop: "1px solid rgba(26,18,8,0.08)", background: "#000F1F", padding: "2rem 2.5rem" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", flexWrap: "wrap" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(26,18,8,0.55)", lineHeight: 1.6 }}>
             This brief is part of the{" "}
             <a href="/operating-standard" style={{ color: "#d4900a", textDecoration: "none" }}>LaunchPath Operating Standard Library</a>.
           </p>

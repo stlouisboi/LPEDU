@@ -4,7 +4,7 @@ import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
 import useSEO from "../../hooks/useSEO";
 
-const navy = "#0b1628";
+const navy = "#1a1208";
 const gold = "#d4900a";
 const mono = "'Inter', sans-serif";
 
@@ -86,12 +86,12 @@ export default function ClearinghouseSetupPost() {
   });
 
   return (
-    <div style={{ background: "#f7f4ee", minHeight: "100vh" }}>
+    <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Article Hero */}
       <div style={{
-        background: "#080f1e",
+        background: "var(--bg-2)",
         borderBottom: `3px solid ${gold}`,
         padding: "5rem 1.5rem 4rem",
       }}>
@@ -100,8 +100,8 @@ export default function ClearinghouseSetupPost() {
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>
               ← Operational Library
             </Link>
-            <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.7rem" }}>/</span>
-            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Drug & Alcohol Program</span>
+            <span style={{ color: "rgba(26,18,8,0.22)", fontSize: "0.7rem" }}>/</span>
+            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,18,8,0.32)" }}>Drug & Alcohol Program</span>
           </div>
 
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
@@ -111,7 +111,7 @@ export default function ClearinghouseSetupPost() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "var(--text-2xl)", letterSpacing: "-0.02em",
-            color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem",
+            color: "var(--text)", lineHeight: 1.1, marginBottom: "1.25rem",
           }}>
             How to Register in the FMCSA Drug and Alcohol Clearinghouse: A Step-by-Step Guide for New Carriers
           </h1>
@@ -120,11 +120,11 @@ export default function ClearinghouseSetupPost() {
             The FMCSA Drug and Alcohol Clearinghouse became mandatory on January 6, 2020. For new motor carriers, registration and proper use is a regulatory requirement under 49 CFR Part 382 — not an optional best practice. Failure to register, failure to query before a driver's first dispatch, or failure to run annual queries on active drivers are all violations discoverable during a New Entrant Safety Audit.
           </p>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginTop: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(26,18,8,0.60)", lineHeight: 1.8, marginTop: "1rem" }}>
             This article walks through the registration process, the query requirements, and the specific steps new carriers must complete before a driver turns a key.
           </p>
 
-          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.08)", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(26,18,8,0.08)", flexWrap: "wrap" }}>
             {[
               ["Primary Keyword", "FMCSA Clearinghouse new carrier setup"],
               ["CFR References", "49 CFR Part 382 · 49 CFR Part 383"],
@@ -132,7 +132,7 @@ export default function ClearinghouseSetupPost() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(26,18,8,0.65)" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -164,7 +164,7 @@ export default function ClearinghouseSetupPost() {
 
         {/* Related Resources */}
         <div style={{
-          background: "#080f1e", border: `1px solid rgba(212,144,10,0.20)`,
+          background: "var(--bg-2)", border: `1px solid rgba(212,144,10,0.20)`,
           borderTop: `3px solid ${gold}`, padding: "2rem", marginBottom: "3rem",
         }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem" }}>
@@ -187,14 +187,14 @@ export default function ClearinghouseSetupPost() {
         </div>
 
         {/* Ground 0 CTA */}
-        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "#060d19", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "var(--bg-2)", border: "1px solid rgba(26,18,8,0.06)" }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
             LPOS V1.0 — GROUND 0 ENTRY
           </p>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "var(--text)", lineHeight: 1.2, marginBottom: "0.75rem" }}>
             If you're a new carrier in your first 90 days, Ground 0 is free.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(26,18,8,0.60)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             Ground 0 covers the Four Pillars that keep a carrier operating — including the compliance backbone your Clearinghouse program is part of — before your first dispatch.
           </p>
           <Link

@@ -4,7 +4,7 @@ import FooterSection from "./FooterSection";
 
 export default function BriefComingSoon({ code, title, category, phase, description }) {
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Hero */}
