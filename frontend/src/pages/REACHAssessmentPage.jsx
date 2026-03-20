@@ -307,7 +307,7 @@ function ResultCTAs({ result }) {
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
         <Link
-          to="/compliance-library"
+          to="/launchpath-standard"
           data-testid="cta-proceed-standard"
           style={{ ...btnBase, background: "#d4900a", color: "#000F1F" }}
           onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
@@ -964,7 +964,7 @@ export default function REACHAssessmentPage() {
                     : "Your assessment indicates strong readiness across all five categories. The LaunchPath Standard installs the compliance infrastructure that maintains this through the full audit window."}
                 </p>
                 <a
-                  href="/compliance-library"
+                  href="/launchpath-standard"
                   data-testid="cta-standard-direct"
                   style={{
                     display: "inline-block", background: "#d4900a", color: "#0b1628",

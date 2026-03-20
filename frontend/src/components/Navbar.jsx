@@ -15,7 +15,7 @@ const FRAMEWORK_LINKS = [
     ],
   },
   { label: "Compliance Library", href: "/compliance-library" },
-  { label: "LaunchPath Standard", href: "/operating-standard" },
+  { label: "LaunchPath Standard", href: "/launchpath-standard" },
 ];
 
 const GROUND0_SUB = [

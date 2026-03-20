@@ -1,6 +1,6 @@
 export default function FooterSection() {
   const PLATFORM = [
-    { label: "LaunchPath Standard", href: "/operating-standard" },
+    { label: "LaunchPath Standard", href: "/launchpath-standard" },
     { label: "Ground 0", href: "/ground-0-briefing" },
     { label: "REACH Diagnostic", href: "/reach-diagnostic" },
     { label: "Compliance Library", href: "/compliance-library" },
