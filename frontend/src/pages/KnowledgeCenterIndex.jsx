@@ -471,6 +471,61 @@ export default function KnowledgeCenterIndex() {
           }}>
             A sequential briefing series that follows the compliance window from Day 1 authority activation through the 18-month New Entrant review. Each brief maps to a specific phase of the operational build.
           </p>
+
+          {/* ── 90-Day Clock Progress Tracker ── */}
+          <div data-testid="series-progress-tracker" style={{ marginBottom: "3.5rem" }}>
+            {/* Desktop timeline */}
+            <div className="timeline-desktop" style={{ position: "relative", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+              {/* Connecting gold line */}
+              <div style={{
+                position: "absolute",
+                top: 24,
+                left: "10%",
+                right: "10%",
+                height: 1,
+                background: "linear-gradient(90deg, var(--orange) 0%, rgba(176,125,16,0.35) 50%, var(--orange) 100%)",
+                zIndex: 0,
+              }} />
+              {/* Nodes */}
+              {[
+                { phase: "Day 1", code: "LP-BRF-07", label: "Authority Activation", href: "/knowledge-center/lp-brf-07" },
+                { phase: "Days 1–30", code: "LP-BRF-08", label: "Installation Window", href: "/knowledge-center/lp-brf-08" },
+                { phase: "Days 30–60", code: "LP-BRF-09", label: "Pattern Formation", href: "/knowledge-center/lp-brf-09" },
+                { phase: "Days 60–90", code: "LP-BRF-10", label: "Audit Exposure", href: "/knowledge-center/lp-brf-10" },
+                { phase: "Months 9–18", code: "LP-BRF-11", label: "Review Period", href: "/knowledge-center/lp-brf-11" },
+              ].map((node, i) => (
+                <a key={i} href={node.href} style={{ display: "flex", flexDirection: "column", alignItems: "center", textDecoration: "none", zIndex: 1, flex: 1, minWidth: 0, padding: "0 0.25rem" }}
+                  data-testid={`timeline-node-${node.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                  onMouseEnter={e => {
+                    const circle = e.currentTarget.querySelector(".timeline-circle");
+                    if (circle) { circle.style.borderColor = "var(--orange)"; circle.style.transform = "scale(1.08)"; }
+                  }}
+                  onMouseLeave={e => {
+                    const circle = e.currentTarget.querySelector(".timeline-circle");
+                    if (circle) { circle.style.borderColor = "transparent"; circle.style.transform = "scale(1)"; }
+                  }}
+                >
+                  {/* Phase label above */}
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)", marginBottom: "0.625rem", textAlign: "center", lineHeight: 1.3, whiteSpace: "nowrap" }}>{node.phase}</p>
+                  {/* Circle */}
+                  <div className="timeline-circle" style={{
+                    width: 48, height: 48, borderRadius: "50%",
+                    background: "var(--text)", border: "2px solid transparent",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    flexShrink: 0, transition: "border-color 0.2s, transform 0.2s",
+                    boxShadow: "0 2px 8px rgba(13,27,48,0.18)",
+                  }}>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, color: "#EEF3F8", letterSpacing: "0.04em" }}>{node.code.slice(-2)}</span>
+                  </div>
+                  {/* Brief code */}
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-subtle)", marginTop: "0.625rem", marginBottom: "0.25rem", textAlign: "center" }}>{node.code}</p>
+                  {/* Category label */}
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-muted)", textAlign: "center", lineHeight: 1.4, maxWidth: 90 }}>{node.label}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+
           <div style={{ display: "flex", flexDirection: "column" }}>
             {BRIEFS_90DAY.map((brief, i) => (
               <BriefCard key={i} brief={brief} index={i + BRIEFS.length} />
@@ -545,6 +600,14 @@ export default function KnowledgeCenterIndex() {
 
       <style>{`
         @media (max-width: 640px) { .kc-bottom-grid { grid-template-columns: 1fr !important; } .bundle-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 700px) {
+          .timeline-desktop { flex-direction: column !important; align-items: flex-start !important; gap: 0 !important; }
+          .timeline-desktop > a { flex-direction: row !important; align-items: center !important; gap: 1rem !important; padding: 0.75rem 0 !important; width: 100% !important; flex: none !important; border-bottom: 1px solid var(--border) !important; }
+          .timeline-desktop > a p:first-child { margin-bottom: 0 !important; min-width: 72px; }
+          .timeline-desktop > a p:last-child { max-width: none !important; text-align: left !important; }
+          .timeline-desktop > a .timeline-circle { width: 40px !important; height: 40px !important; flex-shrink: 0; }
+          .timeline-desktop [style*="position: absolute"] { display: none !important; }
+        }
       `}</style>
     </div>
   );
