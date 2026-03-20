@@ -1371,6 +1371,73 @@ async def get_ground0_progress(request: Request):
     return progress
 
 
+# ── Ground 0 Eligibility Capture (WAIT / NO-GO) ───────────────────────────────
+
+MAILERLITE_COHORT_WAITLIST_GROUP_ID = os.environ.get("MAILERLITE_COHORT_WAITLIST_GROUP_ID", "")
+MAILERLITE_FUTURE_ELIGIBILITY_GROUP_ID = os.environ.get("MAILERLITE_FUTURE_ELIGIBILITY_GROUP_ID", "")
+
+
+class Ground0WaitlistRequest(BaseModel):
+    email: EmailStr
+    status: str
+    completion_date: Optional[str] = None
+
+
+@api_router.post("/ground0/waitlist")
+async def ground0_waitlist(data: Ground0WaitlistRequest):
+    """Capture WAIT/NO-GO completions: save to DB and subscribe to MailerLite."""
+    if data.status not in ("WAIT", "NO-GO"):
+        raise HTTPException(status_code=400, detail="Invalid status value.")
+
+    now = datetime.now(timezone.utc)
+
+    # Persist lead to MongoDB for tracking
+    await db.ground0_waitlist.update_one(
+        {"email": data.email},
+        {"$set": {
+            "email": data.email,
+            "status": data.status,
+            "completion_date": data.completion_date or now.isoformat()[:10],
+            "created_at": now.isoformat(),
+        }},
+        upsert=True,
+    )
+
+    # Resolve MailerLite group and lead source tag
+    if data.status == "WAIT":
+        lead_source = "ground0_wait"
+        group_id = MAILERLITE_COHORT_WAITLIST_GROUP_ID
+    else:
+        lead_source = "ground0_nogo"
+        group_id = MAILERLITE_FUTURE_ELIGIBILITY_GROUP_ID
+
+    ml_payload: dict = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "lead_source": lead_source,
+            "ground0_status": data.status,
+            "ground0_completion_date": data.completion_date or now.isoformat()[:10],
+        },
+    }
+    if group_id:
+        ml_payload["groups"] = [group_id]
+
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=ml_payload, headers=headers)
+        if resp.status_code not in (200, 201):
+            logger.error(f"MailerLite ground0_waitlist error {resp.status_code}: {resp.text}")
+            # MongoDB record already saved — don't fail the user-facing request
+
+    return {"ok": True}
+
+
 # ── Administrative Signal ─────────────────────────────────
 
 class SignalResponse(BaseModel):

@@ -404,7 +404,7 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
         />
       )}
       {view === "decision" && <DecisionView onDecide={handleDecision} />}
-      {view === "complete" && finalDecision && <CompleteView decision={finalDecision} onRestart={() => { setView("overview"); setCompletedLessons([]); setFinalDecision(null); saveLocal({}); }} />}
+      {view === "complete" && finalDecision && <CompleteView decision={finalDecision} API={API} onRestart={() => { setView("overview"); setCompletedLessons([]); setFinalDecision(null); saveLocal({}); }} />}
 
       {/* Auth Gate Modal */}
       {showAuthModal && (
@@ -783,12 +783,44 @@ function DecisionView({ onDecide }) {
 }
 
 // ── Complete View ─────────────────────────────────────────────────────────────
-function CompleteView({ decision, onRestart }) {
+function CompleteView({ decision, onRestart, API }) {
   const d = COMPLETION_DATA[decision];
+  const [captureEmail, setCaptureEmail] = useState("");
+  const [captureSubmitted, setCaptureSubmitted] = useState(false);
+  const [captureLoading, setCaptureLoading] = useState(false);
+  const [captureError, setCaptureError] = useState("");
+
+  const handleCapture = async (e) => {
+    e.preventDefault();
+    setCaptureLoading(true);
+    setCaptureError("");
+    try {
+      const resp = await fetch(`${API}/api/ground0/waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: captureEmail,
+          status: decision,
+          completion_date: new Date().toISOString().slice(0, 10),
+        }),
+      });
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.detail || "Submission failed. Please try again.");
+      }
+      setCaptureSubmitted(true);
+    } catch (err) {
+      setCaptureError(err.message);
+    } finally {
+      setCaptureLoading(false);
+    }
+  };
+
   if (!d) return null;
   return (
-    <div data-testid={`g0-complete-${decision.toLowerCase().replace("-", "")}`}>
-      <div style={{ background: d.bgColor, border: `1px solid ${d.borderColor}`, borderLeft: `4px solid ${d.color}`, padding: "2rem 2rem", marginBottom: "2rem", maxWidth: 560 }}>
+    <div data-testid={`g0-complete-${decision.toLowerCase().replace("-", "")}`} style={{ maxWidth: 560 }}>
+      {/* ── Existing status block (keep for all outcomes) ── */}
+      <div style={{ background: d.bgColor, border: `1px solid ${d.borderColor}`, borderLeft: `4px solid ${d.color}`, padding: "2rem 2rem", marginBottom: decision === "GO" ? "2rem" : "0" }}>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: d.color, marginBottom: "0.75rem" }}>
           {d.label}
         </p>
@@ -834,17 +866,188 @@ function CompleteView({ decision, onRestart }) {
           </a>
         </div>
       </div>
+
+      {/* ── WAIT capture section ── */}
+      {decision === "WAIT" && (
+        <div style={{ border: "1px solid rgba(255,255,255,0.07)", borderTop: "none", padding: "2rem" }}>
+          <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "2rem" }} />
+
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,191,36,0.5)", marginBottom: "0.875rem" }}>
+            LP-STATUS: WAIT | NEXT STEPS
+          </p>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.1rem, 2vw, 1.375rem)", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
+            YOU ARE NOT READY — YET
+          </h3>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
+            The gaps identified in Ground 0 must be corrected before admission.
+          </p>
+
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0" }}>
+            Your operation has gaps that would create exposure under active authority.
+          </p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
+            This is not a rejection. It is a timing issue.
+          </p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
+            LaunchPath does not adjust the standard to admit you early. Your readiness must rise to the system.
+          </p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem", marginTop: "0.875rem" }}>
+            When these gaps are corrected, you may request admission again.
+          </p>
+
+          {captureSubmitted ? (
+            <div data-testid="g0-wait-success" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.18)", borderLeft: "3px solid #22c55e", padding: "1.5rem", marginBottom: "1.25rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#22c55e", marginBottom: "0.875rem" }}>
+                ✓ ADMISSION PRIORITY RESERVED
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.625rem" }}>
+                You will be notified when the next admission window opens.
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78 }}>
+                A new Ground 0 assessment will be required before entry.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleCapture} data-testid="g0-wait-capture-form" style={{ marginBottom: "0" }}>
+              <input
+                type="email"
+                required
+                value={captureEmail}
+                onChange={e => setCaptureEmail(e.target.value)}
+                data-testid="g0-wait-email-input"
+                placeholder="Email address"
+                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
+              />
+              {captureError && (
+                <p data-testid="g0-wait-error" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#f87171", marginBottom: "0.625rem", lineHeight: 1.5 }}>
+                  {captureError}
+                </p>
+              )}
+              <button
+                type="submit"
+                data-testid="g0-wait-submit-btn"
+                disabled={captureLoading}
+                style={{ width: "100%", background: captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a", color: "#0b1628", border: "none", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.875rem 1.5rem", cursor: captureLoading ? "wait" : "pointer", minHeight: 48, transition: "background 0.2s" }}
+                onMouseEnter={e => { if (!captureLoading) e.currentTarget.style.background = "#e8a520"; }}
+                onMouseLeave={e => { if (!captureLoading) e.currentTarget.style.background = captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a"; }}
+              >
+                {captureLoading ? "Processing..." : "RESERVE ADMISSION PRIORITY →"}
+              </button>
+            </form>
+          )}
+
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.32)", lineHeight: 1.7, marginTop: "0.875rem" }}>
+            You will be notified when the next admission window opens.<br />
+            A new Ground 0 assessment will be required at that time.
+          </p>
+
+          {/* Document System CTA */}
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.75rem", marginTop: "1.75rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "0.75rem" }}>
+              BEGIN CLOSING GAPS NOW
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.78, marginBottom: "1.25rem" }}>
+              The Document System provides the required structures to begin closing these gaps independently.
+            </p>
+            <a
+              href="/compliance-library"
+              data-testid="g0-doc-bundle-cta"
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "transparent", color: "rgba(255,255,255,0.58)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.75rem 1.25rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", transition: "all 0.2s", minHeight: 42 }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.58)"; }}
+            >
+              VIEW THE DOCUMENT SYSTEM <ArrowRight size={12} />
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* ── NO-GO capture section ── */}
+      {decision === "NO-GO" && (
+        <div style={{ border: "1px solid rgba(255,255,255,0.07)", borderTop: "none", padding: "2rem" }}>
+          <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "2rem" }} />
+
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(248,113,113,0.5)", marginBottom: "0.875rem" }}>
+            LP-STATUS: NO-GO | ELIGIBILITY
+          </p>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1rem, 2vw, 1.25rem)", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
+            THIS STANDARD DOES NOT APPLY TO YOUR CURRENT POSITION
+          </h3>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
+            Your Ground 0 results indicate a misalignment with the requirements of this system.
+          </p>
+
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0" }}>
+            LaunchPath is designed for operators within a specific operational range.
+          </p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
+            Based on your current position, this system is not applicable at this time.
+          </p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0", marginTop: "0.875rem" }}>
+            That may change.
+          </p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem", marginTop: "0.875rem" }}>
+            This system does not adjust to your readiness. Your readiness must rise to the system.
+          </p>
+
+          {captureSubmitted ? (
+            <div data-testid="g0-nogo-success" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.1)", borderLeft: "3px solid rgba(255,255,255,0.3)", padding: "1.5rem", marginBottom: "1.25rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "0.875rem" }}>
+                ✓ ELIGIBILITY REGISTRATION CONFIRMED
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78, marginBottom: "0.625rem" }}>
+                You will be contacted if a relevant path becomes available.
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78 }}>
+                No additional communication will be sent unless conditions change.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleCapture} data-testid="g0-nogo-capture-form" style={{ marginBottom: "0" }}>
+              <input
+                type="email"
+                required
+                value={captureEmail}
+                onChange={e => setCaptureEmail(e.target.value)}
+                data-testid="g0-nogo-email-input"
+                placeholder="Email address"
+                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
+              />
+              {captureError && (
+                <p data-testid="g0-nogo-error" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#f87171", marginBottom: "0.625rem", lineHeight: 1.5 }}>
+                  {captureError}
+                </p>
+              )}
+              <button
+                type="submit"
+                data-testid="g0-nogo-submit-btn"
+                disabled={captureLoading}
+                style={{ width: "100%", background: captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a", color: "#0b1628", border: "none", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.875rem 1.5rem", cursor: captureLoading ? "wait" : "pointer", minHeight: 48, transition: "background 0.2s" }}
+                onMouseEnter={e => { if (!captureLoading) e.currentTarget.style.background = "#e8a520"; }}
+                onMouseLeave={e => { if (!captureLoading) e.currentTarget.style.background = captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a"; }}
+              >
+                {captureLoading ? "Processing..." : "REGISTER FOR FUTURE ELIGIBILITY →"}
+              </button>
+            </form>
+          )}
+
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.32)", lineHeight: 1.7, marginTop: "0.875rem" }}>
+            You will be contacted only if a relevant path becomes available.
+          </p>
+        </div>
+      )}
+
       <button
         onClick={onRestart}
         data-testid="g0-restart-btn"
         style={{
           background: "none", border: "none", fontFamily: "'Inter', sans-serif",
-          fontSize: "0.762rem", color: "rgba(255,255,255,0.32)", cursor: "pointer",
+          fontSize: "0.762rem", color: "rgba(255,255,255,0.28)", cursor: "pointer",
           letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.5rem 0",
-          transition: "color 0.15s",
+          marginTop: "1.5rem", display: "block", transition: "color 0.15s",
         }}
-        onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.6)"}
-        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.32)"}
+        onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.55)"}
+        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.28)"}
       >
         Review Ground 0 again →
       </button>
