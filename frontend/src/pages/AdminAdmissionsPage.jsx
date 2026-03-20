@@ -122,14 +122,14 @@ export default function AdminAdmissionsPage() {
         {/* Filter tabs */}
         <div style={{ display: "flex", gap: "2px", marginBottom: "1.5rem", flexWrap: "wrap" }}>
           {[
-            { key: "all", label: "All" },
-            { key: "pending_review", label: "Pending" },
-            { key: "approved", label: "Enrolled" },
-            { key: "rejected", label: "Declined" },
+            { key: "all",            testid: "filter-all",      label: "All" },
+            { key: "pending_review", testid: "filter-pending",  label: "Pending" },
+            { key: "approved",       testid: "filter-enrolled", label: "Enrolled" },
+            { key: "rejected",       testid: "filter-declined", label: "Declined" },
           ].map((tab) => (
             <button
               key={tab.key}
-              data-testid={`filter-${tab.key}`}
+              data-testid={tab.testid}
               onClick={() => setFilter(tab.key)}
               style={{
                 fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
@@ -226,7 +226,7 @@ export default function AdminAdmissionsPage() {
                 <div><LaneTag lane={req.lane} /></div>
 
                 {/* Status */}
-                <div><StatusBadge status={req.status} /></div>
+                <div data-testid={`status-badge-${req.id}`}><StatusBadge status={req.status} /></div>
 
                 {/* Actions */}
                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
