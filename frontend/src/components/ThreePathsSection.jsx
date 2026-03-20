@@ -78,7 +78,7 @@ export default function ThreePathsSection() {
             }}>
               {["PATH", "APPROACH", "COST", "OUTCOME"].map((h) => (
                 <p key={h} style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.918rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
@@ -109,7 +109,7 @@ export default function ThreePathsSection() {
                   }}>{path.label}</span>
                 </div>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.232rem",
                   color: "var(--text-muted)",
                   lineHeight: 1.6,
@@ -117,7 +117,7 @@ export default function ThreePathsSection() {
                 }}>{path.description}</p>
                 <div>
                   <p style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.176rem",
                     fontWeight: 700,
                     color: path.isLP ? "var(--gold-primary)" : "var(--red)",
@@ -126,7 +126,7 @@ export default function ThreePathsSection() {
                   }}>{path.cost}</p>
                   {path.costNote && (
                     <p style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.918rem",
                       color: "var(--text-subtle)",
                       marginTop: "0.25rem",
@@ -135,7 +135,7 @@ export default function ThreePathsSection() {
                   )}
                 </div>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: path.isLP ? "1.05rem" : "1rem",
                   fontStyle: path.isLP ? "italic" : "normal",
                   color: path.isLP ? "var(--text-muted)" : "var(--text-subtle)",

@@ -15,8 +15,8 @@ export default function ComplianceMapTeaser() {
         margin: "0 auto",
       }}>
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.78rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.857rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
@@ -26,7 +26,7 @@ export default function ComplianceMapTeaser() {
           SELF-DIRECTED OPTION
         </p>
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "0.975rem",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.8,
@@ -39,7 +39,7 @@ export default function ComplianceMapTeaser() {
           to="/standards"
           data-testid="compliance-map-link"
           style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.84rem",
             fontWeight: 600,
             letterSpacing: "0.06em",

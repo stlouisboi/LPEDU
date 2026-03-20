@@ -72,7 +72,7 @@ export default function ProductsPage() {
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+              fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
             }}>LP-SYS-LIBRARY | OPERATING STANDARDS</p>
             <h1 style={{
@@ -81,7 +81,7 @@ export default function ProductsPage() {
               lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1rem",
             }}>The LaunchPath Operating Standards Library</h1>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.1rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
               color: "#FFFFFF",
               lineHeight: 1.8, maxWidth: 580,
             }}>
@@ -96,12 +96,12 @@ export default function ProductsPage() {
         {/* Commercial Ladder */}
         <FadeIn>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1rem",
           }}>The Commercial Ladder</p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "1rem",
             color: "rgba(255,255,255,0.72)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: 620,
           }}>
             Every carrier starts in a different place. LaunchPath offers three paths: learn the system, install the documents yourself, or implement the full operating standard with oversight.
@@ -118,19 +118,19 @@ export default function ProductsPage() {
                 <div style={{ flex: 1 }}>
                   {tier.badge && (
                     <p style={{
-                      fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem", fontWeight: 700,
+                      fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", fontWeight: 700,
                       letterSpacing: "0.18em", textTransform: "uppercase",
                       color: gold, marginBottom: "0.5rem",
                     }}>{tier.badge}</p>
                   )}
                   <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "0.5rem" }}>
-                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.85rem", color: gold }}>{tier.tier}</span>
-                    <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF" }}>{tier.label}</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: gold }}>{tier.tier}</span>
+                    <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.1rem", color: "#FFFFFF" }}>{tier.label}</span>
                   </div>
-                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>{tier.desc}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>{tier.desc}</p>
                 </div>
                 <Link to={tier.href} style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                   letterSpacing: "0.1em", textTransform: "uppercase",
                   color: tier.gold ? "#0b1628" : gold,
                   background: tier.gold ? gold : "transparent",
@@ -152,14 +152,14 @@ export default function ProductsPage() {
             background: "#0b1628", border: `1px solid rgba(212,144,10,0.2)`,
             borderTop: `3px solid ${gold}`, padding: "2.5rem", marginBottom: "4rem",
           }}>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>THE COMPLETE DIY SYSTEM</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>THE COMPLETE DIY SYSTEM</p>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
               Install the full LaunchPath document architecture in one step. Includes all five packets, the 0–30–90 Day Implementation Guide, and the unified folder structure. $128 less than purchasing the five packets individually.
             </p>
             <Link to="/products/new-carrier-document-system" style={{
               display: "inline-block", background: gold, color: "#0b1628",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem",
               letterSpacing: "0.1em", textTransform: "uppercase",
               padding: "0.875rem 2rem", textDecoration: "none", transition: "opacity 0.2s",
             }}
@@ -172,12 +172,12 @@ export default function ProductsPage() {
         {/* SYSTEM MODULES */}
         <FadeIn delay={130}>
           <p id="packets" style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "0.6rem",
           }}>System Modules</p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.6)", lineHeight: 1.6, marginBottom: "1.5rem",
             fontStyle: "italic",
           }}>Each packet installs one domain of the LaunchPath operating standard.</p>
@@ -189,15 +189,15 @@ export default function ProductsPage() {
                 gap: "2rem", flexWrap: "wrap",
               }} className="ladder-row">
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
                   <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
-                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.68rem", color: "rgba(212,144,10,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
-                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>
-                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "1rem", color: "rgba(255,255,255,0.55)" }}>{p.price}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)" }}>{p.price}</span>
                   <Link to={p.href} style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                     letterSpacing: "0.1em", textTransform: "uppercase", color: gold,
                     border: `1px solid rgba(212,144,10,0.4)`, padding: "0.625rem 1.25rem",
                     textDecoration: "none", whiteSpace: "nowrap", transition: "all 0.2s",
@@ -214,7 +214,7 @@ export default function ProductsPage() {
         {/* Bundle CTA */}
         <FadeIn delay={160}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>LP-SPEC-001 | Comparison Matrix</p>
@@ -234,7 +234,7 @@ export default function ProductsPage() {
                 <tr>
                   <th style={{
                     textAlign: "left", padding: "0.875rem 1rem",
-                    fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
                     fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                     color: "rgba(255,255,255,0.35)", borderBottom: "1px solid rgba(255,255,255,0.08)",
                     background: "#060d19",
@@ -247,7 +247,7 @@ export default function ProductsPage() {
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
-                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>Individual Packet</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>Individual Packet</p>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$97–$127</p>
                   </th>
 
@@ -259,8 +259,8 @@ export default function ProductsPage() {
                     borderLeft: "1px solid rgba(212,144,10,0.15)",
                     borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
-                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.58rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Recommended DIY</p>
-                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>New Carrier System</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.58rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Recommended DIY</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>New Carrier System</p>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$497</p>
                   </th>
 
@@ -271,7 +271,7 @@ export default function ProductsPage() {
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
-                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>LaunchPath Standard</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>LaunchPath Standard</p>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
                   </th>
                 </tr>
@@ -282,7 +282,7 @@ export default function ProductsPage() {
                   <tr key={i} style={{ background: i % 2 === 0 ? "#060d19" : "rgba(0,21,48,0.45)" }}>
                     <td style={{
                       padding: "0.875rem 1rem",
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem",
+                      fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
                       color: "rgba(255,255,255,0.72)", lineHeight: 1.5,
                       borderBottom: "1px solid rgba(255,255,255,0.05)",
                     }}>{row.feature}</td>
@@ -328,7 +328,7 @@ export default function ProductsPage() {
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
                     <a href="#packets" style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.762rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       color: "rgba(255,255,255,0.6)", textDecoration: "none",
                       border: "1px solid rgba(255,255,255,0.2)", padding: "0.5rem 0.875rem",
@@ -346,7 +346,7 @@ export default function ProductsPage() {
                     borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
                     <Link to="/products/new-carrier-document-system" style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.762rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       color: "#0b1628", background: gold, textDecoration: "none",
                       padding: "0.5rem 0.875rem", display: "inline-block", transition: "opacity 0.2s",
@@ -362,7 +362,7 @@ export default function ProductsPage() {
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
                     <Link to="/ground-0-briefing" style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.762rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       color: gold, textDecoration: "none",
                       border: `1px solid rgba(212,144,10,0.35)`, padding: "0.5rem 0.875rem",
@@ -405,12 +405,12 @@ function MatrixCell({ value, col }) {
     );
   }
   if (value === null) {
-    return <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.9rem" }}>—</span>;
+    return <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "var(--text-sm)" }}>—</span>;
   }
   if (value && value.label) {
     return (
       <span style={{
-        fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem",
+        fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
         color: col === "bundle" ? "#d4900a" : "#FFFFFF",
         fontWeight: 600, letterSpacing: "0.04em",
       }}>{value.label}</span>

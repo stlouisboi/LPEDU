@@ -22,7 +22,7 @@ export default function WhoNotForSection() {
             Who This Is Not For
           </p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.176rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
@@ -37,7 +37,7 @@ export default function WhoNotForSection() {
           {DISQUALIFIERS.map((line, i) => (
             <FadeIn key={i} delay={i * 60}>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.092rem",
                 color: "var(--text-paper)",
                 lineHeight: 1.8,

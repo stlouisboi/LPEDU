@@ -94,13 +94,13 @@ const BG2       = "#091220";
 const BG_CARD   = "#0a1828";
 const GOLD      = "#d4900a";
 const BORDER    = "rgba(255,255,255,0.08)";
-const MONO      = "'IBM Plex Mono', monospace";
+const MONO      = "'Inter', sans-serif";
 const COND      = "'Playfair Display', serif";
-const SANS      = "'Atkinson Hyperlegible', sans-serif";
+const SANS      = "'Inter', sans-serif";
 
 const sectionLabel = {
   fontFamily: MONO,
-  fontSize: "0.68rem",
+  fontSize: "0.714rem",
   fontWeight: 700,
   letterSpacing: "0.18em",
   textTransform: "uppercase",
@@ -122,7 +122,7 @@ const bodyText = {
 
 const linkStyle = {
   fontFamily: SANS,
-  fontSize: "0.9rem",
+  fontSize: "var(--text-sm)",
   fontWeight: 600,
   color: "rgba(212,144,10,0.82)",
   textDecoration: "none",
@@ -173,7 +173,7 @@ export default function StandardPage() {
           <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "2rem" }}>
             {FAILURE_BULLETS.map((b, i) => (
               <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
-                <span style={{ fontFamily: MONO, fontSize: "0.80rem", color: GOLD, fontWeight: 700, flexShrink: 0, marginTop: "0.1rem" }}>→</span>
+                <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: GOLD, fontWeight: 700, flexShrink: 0, marginTop: "0.1rem" }}>→</span>
                 <p style={{ ...bodyText, margin: 0 }}>{b}</p>
               </div>
             ))}
@@ -202,11 +202,11 @@ export default function StandardPage() {
                   <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.4rem", color: "#FFF", letterSpacing: "-0.01em" }}>{p.name}</p>
                   <span style={{ fontFamily: MONO, fontSize: "0.58rem", color: "rgba(212,144,10,0.50)", letterSpacing: "0.12em" }}>{p.code}</span>
                 </div>
-                <p style={{ ...bodyText, fontSize: "0.9rem", marginBottom: "1.25rem" }}>{p.what}</p>
+                <p style={{ ...bodyText, fontSize: "var(--text-sm)", marginBottom: "1.25rem" }}>{p.what}</p>
 
                 <div style={{ borderLeft: `2px solid rgba(200,60,60,0.45)`, paddingLeft: "1rem", marginBottom: "1.25rem" }}>
                   <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,60,60,0.65)", marginBottom: "0.4rem" }}>If absent</p>
-                  <p style={{ ...bodyText, fontSize: "0.875rem", color: "rgba(255,255,255,0.58)", margin: 0 }}>{p.ifAbsent}</p>
+                  <p style={{ ...bodyText, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", margin: 0 }}>{p.ifAbsent}</p>
                 </div>
 
                 <div>
@@ -214,8 +214,8 @@ export default function StandardPage() {
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                     {p.installs.map((item, i) => (
                       <div key={i} style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start" }}>
-                        <span style={{ fontFamily: MONO, fontSize: "0.70rem", color: GOLD, flexShrink: 0, lineHeight: 1.6, fontWeight: 700 }}>→</span>
-                        <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.6, margin: 0 }}>{item}</p>
+                        <span style={{ fontFamily: MONO, fontSize: "0.714rem", color: GOLD, flexShrink: 0, lineHeight: 1.6, fontWeight: 700 }}>→</span>
+                        <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.72)", lineHeight: 1.6, margin: 0 }}>{item}</p>
                       </div>
                     ))}
                   </div>
@@ -242,25 +242,25 @@ export default function StandardPage() {
             {/* Header */}
             <div style={{ display: "grid", gridTemplateColumns: "100px 1fr 1fr 1fr", background: "rgba(212,144,10,0.08)", borderBottom: `1px solid ${BORDER}` }}>
               {["AUTO VECTOR", "GUARD", "CFR CITATION", "WHAT IT STOPS"].map((h) => (
-                <div key={h} style={{ padding: "0.75rem 1rem", fontFamily: MONO, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(212,144,10,0.65)" }}>{h}</div>
+                <div key={h} style={{ padding: "0.75rem 1rem", fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(212,144,10,0.65)" }}>{h}</div>
               ))}
             </div>
             {/* Rows */}
             {AUTO_ROWS.map((row, i) => (
               <div key={i} style={{ display: "grid", gridTemplateColumns: "100px 1fr 1fr 1fr", borderBottom: `1px solid ${BORDER}` }}>
-                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.70rem", fontWeight: 700, color: GOLD, letterSpacing: "0.10em" }}>{row.vector}</div>
-                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.82)", borderLeft: `1px solid ${BORDER}` }}>{row.guard}</div>
-                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.75rem", color: "rgba(255,255,255,0.50)", borderLeft: `1px solid ${BORDER}` }}>{row.cfr}</div>
-                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", borderLeft: `1px solid ${BORDER}` }}>{row.stops}</div>
+                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, color: GOLD, letterSpacing: "0.10em" }}>{row.vector}</div>
+                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.82)", borderLeft: `1px solid ${BORDER}` }}>{row.guard}</div>
+                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.762rem", color: "rgba(255,255,255,0.50)", borderLeft: `1px solid ${BORDER}` }}>{row.cfr}</div>
+                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", borderLeft: `1px solid ${BORDER}` }}>{row.stops}</div>
               </div>
             ))}
             {/* Shop Guard — spans all vectors */}
             <div style={{ background: "rgba(212,144,10,0.06)", borderTop: `1px solid rgba(212,144,10,0.20)` }}>
               <div style={{ display: "grid", gridTemplateColumns: "100px 1fr 1fr 1fr" }}>
-                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, color: "rgba(212,144,10,0.70)", letterSpacing: "0.10em" }}>ALL<br />VECTORS</div>
-                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.88)", fontWeight: 600, borderLeft: `1px solid rgba(212,144,10,0.15)` }}>Shop Guard</div>
-                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.75rem", color: "rgba(255,255,255,0.50)", borderLeft: `1px solid rgba(212,144,10,0.15)` }}>49 CFR 396</div>
-                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", borderLeft: `1px solid rgba(212,144,10,0.15)` }}>Maintenance failures, DVIR gaps — crosses all four vectors</div>
+                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, color: "rgba(212,144,10,0.70)", letterSpacing: "0.10em" }}>ALL<br />VECTORS</div>
+                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.88)", fontWeight: 600, borderLeft: `1px solid rgba(212,144,10,0.15)` }}>Shop Guard</div>
+                <div style={{ padding: "1rem", fontFamily: MONO, fontSize: "0.762rem", color: "rgba(255,255,255,0.50)", borderLeft: `1px solid rgba(212,144,10,0.15)` }}>49 CFR 396</div>
+                <div style={{ padding: "1rem", fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", borderLeft: `1px solid rgba(212,144,10,0.15)` }}>Maintenance failures, DVIR gaps — crosses all four vectors</div>
               </div>
             </div>
           </div>
@@ -303,8 +303,8 @@ export default function StandardPage() {
               <div key={p.code} data-testid={`install-phase-${p.code}`} style={{ background: BG_CARD, borderTop: `2px solid rgba(212,144,10,0.30)`, padding: "1.75rem 1.5rem" }}>
                 <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.5rem" }}>PHASE {p.code}</p>
                 <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.35rem", color: GOLD, letterSpacing: "-0.01em", lineHeight: 1.15, marginBottom: "0.3rem" }}>{p.name}</p>
-                <p style={{ fontFamily: MONO, fontSize: "0.62rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: "1rem" }}>{p.weeks}</p>
-                <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.72, margin: 0 }}>{p.desc}</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: "1rem" }}>{p.weeks}</p>
+                <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", lineHeight: 1.72, margin: 0 }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -330,13 +330,13 @@ export default function StandardPage() {
 
             {/* For */}
             <div style={{ borderLeft: `3px solid rgba(212,144,10,0.50)`, paddingLeft: "1.5rem" }}>
-              <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, marginBottom: "1.5rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, marginBottom: "1.5rem" }}>
                 THIS STANDARD IS FOR:
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {FOR_ITEMS.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: MONO, fontSize: "0.80rem", color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>→</span>
+                    <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>→</span>
                     <p style={{ ...bodyText, fontSize: "0.938rem", margin: 0 }}>{item}</p>
                   </div>
                 ))}
@@ -345,13 +345,13 @@ export default function StandardPage() {
 
             {/* Not For */}
             <div style={{ borderLeft: `3px solid rgba(139,47,47,0.60)`, paddingLeft: "1.5rem" }}>
-              <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#9b3535", marginBottom: "1.5rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#9b3535", marginBottom: "1.5rem" }}>
                 THIS STANDARD IS NOT FOR:
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {NOT_FOR_ITEMS.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: MONO, fontSize: "0.80rem", color: "#8b2f2f", fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>✗</span>
+                    <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: "#8b2f2f", fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>✗</span>
                     <p style={{ ...bodyText, fontSize: "0.938rem", color: "rgba(255,255,255,0.60)", margin: 0 }}>{item}</p>
                   </div>
                 ))}
@@ -379,7 +379,7 @@ export default function StandardPage() {
                 display: "inline-flex", alignItems: "center",
                 background: GOLD, color: "#060d19",
                 fontFamily: SANS, fontWeight: 700,
-                fontSize: "0.9rem", letterSpacing: "0.10em",
+                fontSize: "var(--text-sm)", letterSpacing: "0.10em",
                 textTransform: "uppercase", padding: "1.1rem 2.25rem",
                 textDecoration: "none", transition: "background 0.2s",
               }}
@@ -395,7 +395,7 @@ export default function StandardPage() {
                 display: "inline-flex", alignItems: "center",
                 background: "transparent", color: GOLD,
                 fontFamily: SANS, fontWeight: 700,
-                fontSize: "0.9rem", letterSpacing: "0.10em",
+                fontSize: "var(--text-sm)", letterSpacing: "0.10em",
                 textTransform: "uppercase", padding: "1.1rem 2.25rem",
                 textDecoration: "none",
                 border: "1px solid rgba(212,144,10,0.50)",
@@ -408,7 +408,7 @@ export default function StandardPage() {
             </Link>
           </div>
 
-          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7 }}>
+          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.38)", lineHeight: 1.7 }}>
             Ground 0 is free. It takes 4–6 minutes. No account required.<br />
             It tells you exactly where your operation stands — and what needs to be built first.
           </p>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 const heading = "'Playfair Display', serif";
 
 const PILLARS = [
@@ -29,7 +29,7 @@ export default function AuthorityReadinessTestSection() {
         {/* System label */}
         <p style={{
           fontFamily: mono,
-          fontSize: "0.504rem",
+          fontSize: "0.714rem",
           fontWeight: 700,
           letterSpacing: "0.22em",
           textTransform: "uppercase",
@@ -154,7 +154,7 @@ export default function AuthorityReadinessTestSection() {
             color: "#020617",
             fontFamily: mono,
             fontWeight: 700,
-            fontSize: "0.784rem",
+            fontSize: "0.857rem",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             padding: "1rem 2rem",

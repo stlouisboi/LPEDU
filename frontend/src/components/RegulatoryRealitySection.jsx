@@ -63,7 +63,7 @@ export default function RegulatoryRealitySection() {
         {/* Header */}
         <div style={{ borderLeft: "2px solid rgba(212,144,10,0.7)", paddingLeft: "1.5rem", marginBottom: "3.5rem" }}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: "#d4900a", marginBottom: "0.6rem",
@@ -71,7 +71,7 @@ export default function RegulatoryRealitySection() {
             FMCSA Oversight Record
           </p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.896rem", color: "rgba(255,255,255,0.78)",
             letterSpacing: "0.04em",
           }}>
@@ -85,21 +85,21 @@ export default function RegulatoryRealitySection() {
           {/* Left: body copy */}
           <div>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.008rem", color: "rgba(255,255,255,0.75)",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem", color: "rgba(255,255,255,0.75)",
               lineHeight: 1.85, marginBottom: "1.75rem",
             }}>
               Every year FMCSA compliance reviews identify the same operational failures in new motor carriers.
             </p>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.008rem", color: "rgba(255,255,255,0.82)",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem", color: "rgba(255,255,255,0.82)",
               lineHeight: 1.85, marginBottom: "2rem",
             }}>
               These are not rare events. They are the predictable result of operating without a structured compliance system.
             </p>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem", fontWeight: 700,
               letterSpacing: "0.14em", textTransform: "uppercase",
               color: "#d4900a", marginBottom: "1rem",
@@ -113,7 +113,7 @@ export default function RegulatoryRealitySection() {
                 borderBottom: i < FINDINGS.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
               }}>
                 <span style={{ color: "#d4900a", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.6 }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.6 }}>
                   {f}
                 </span>
               </div>
@@ -148,7 +148,7 @@ export default function RegulatoryRealitySection() {
               </p>
             </div>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.84rem", color: "rgba(255,255,255,0.72)",
               lineHeight: 1.75, marginTop: "1.5rem",
             }}>
@@ -181,7 +181,7 @@ export default function RegulatoryRealitySection() {
                 <CountUp target={s.value} />
               </p>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.84rem",
                 color: "rgba(255,255,255,0.75)",
                 lineHeight: 1.6,
@@ -194,7 +194,7 @@ export default function RegulatoryRealitySection() {
 
         {/* Reinforcement line */}
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "0.84rem",
           color: "rgba(255,255,255,0.58)",
           textAlign: "center",

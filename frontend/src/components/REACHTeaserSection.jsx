@@ -30,8 +30,8 @@ const METRICS = [
   { key: "THRESHOLD_CLASS", value: "LP-STD-001" },
 ];
 
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 const heading = "'Playfair Display', serif";
 
 export function REACHTeaserSection({ onBegin, pillarStatuses }) {
@@ -63,7 +63,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
         {/* ── Registry Header ──────────────────────────── */}
         <div style={{ marginBottom: "2.75rem" }}>
           <p style={{
-            fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
+            fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
             color: "rgba(212,144,10,0.75)", marginBottom: "0.625rem",
           }}>
@@ -182,7 +182,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                       flexShrink: 0,
                     }} />
                     <p style={{
-                      fontFamily: mono, fontSize: "0.504rem",
+                      fontFamily: mono, fontSize: "0.714rem",
                       fontWeight: 700, letterSpacing: "0.14em",
                       color: tl.color,
                       textTransform: "uppercase",
@@ -210,7 +210,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                 marginBottom: "0.75rem",
               }}>
                 <p style={{
-                  fontFamily: mono, fontSize: "0.728rem",
+                  fontFamily: mono, fontSize: "0.762rem",
                   fontWeight: 700, letterSpacing: "0.1em",
                   color: "rgba(232,93,4,0.85)",
                   textTransform: "uppercase",
@@ -219,7 +219,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   <span style={{ color: "rgba(255,255,255,0.5)" }}>INITIALIZING... 0%</span>
                 </p>
                 <p style={{
-                  fontFamily: mono, fontSize: "0.504rem",
+                  fontFamily: mono, fontSize: "0.714rem",
                   letterSpacing: "0.12em",
                   color: "rgba(255,255,255,0.35)",
                   textTransform: "uppercase",
@@ -294,7 +294,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           }}>
             {/* Sidebar header */}
             <p style={{
-              fontFamily: mono, fontSize: "0.56rem",
+              fontFamily: mono, fontSize: "0.714rem",
               fontWeight: 700, letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: "rgba(212,144,10,0.75)",
@@ -319,7 +319,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   }}
                 >
                   <p style={{
-                    fontFamily: mono, fontSize: "0.504rem",
+                    fontFamily: mono, fontSize: "0.714rem",
                     letterSpacing: "0.14em",
                     color: "rgba(255,255,255,0.38)",
                     textTransform: "uppercase",
@@ -329,7 +329,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   </p>
                   <p style={{
                     fontFamily: mono, fontWeight: 700,
-                    fontSize: "0.784rem",
+                    fontSize: "0.857rem",
                     letterSpacing: "0.06em",
                     color: m.value === "100%" ? "#22c55e"
                       : m.value === "REQUIRED" || m.value === "ABSOLUTE" ? "#E85D04"
@@ -349,7 +349,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
               borderTop: "1px solid rgba(255,255,255,0.07)",
             }}>
               <p style={{
-                fontFamily: mono, fontSize: "0.504rem",
+                fontFamily: mono, fontSize: "0.714rem",
                 letterSpacing: "0.12em",
                 color: "rgba(255,255,255,0.28)",
                 lineHeight: 1.7,

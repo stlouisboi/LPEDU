@@ -8,9 +8,9 @@ const NAVY  = "#0b1628";
 const BG    = "#0d1c30";
 const BG2   = "#091220";
 const CARD  = "#0c1828";
-const MONO  = "'IBM Plex Mono', monospace";
+const MONO  = "'Inter', sans-serif";
 const COND  = "'Playfair Display', serif";
-const SANS  = "'Atkinson Hyperlegible', sans-serif";
+const SANS  = "'Inter', sans-serif";
 const BORDER = "rgba(255,255,255,0.08)";
 
 /* ── Individual Packets ──────────────────────────────────────── */
@@ -106,7 +106,7 @@ export default function ComplianceLibraryPage() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,14,32,0.94) 45%, rgba(6,14,32,0.75) 100%)" }} />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "6rem 1.5rem 5rem" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "1.25rem" }}>
             LP-SYS-LIBRARY | STANDARDS LIBRARY
           </p>
           <h1 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFF", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "1.25rem", maxWidth: 620 }}>
@@ -126,13 +126,13 @@ export default function ComplianceLibraryPage() {
               <div key={t.tier} style={{ background: "rgba(10,20,40,0.80)", border: `1px solid rgba(212,144,10,0.25)`, padding: "1.25rem 1.25rem 1.5rem" }}>
                 <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.4rem" }}>{t.tier}</p>
                 <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.15rem", color: "#FFF", lineHeight: 1.2, marginBottom: "0.4rem" }}>{t.label}</p>
-                <p style={{ fontFamily: SANS, fontSize: "0.82rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.55, marginBottom: "0.625rem" }}>{t.sub}</p>
-                <p style={{ fontFamily: MONO, fontSize: "0.85rem", fontWeight: 700, color: GOLD }}>{t.price}</p>
+                <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.55, marginBottom: "0.625rem" }}>{t.sub}</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, color: GOLD }}>{t.price}</p>
               </div>
             ))}
           </div>
 
-          <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.45)", marginTop: "1.75rem", fontStyle: "italic" }}>
+          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)", marginTop: "1.75rem", fontStyle: "italic" }}>
             Choose based on where you are and how much structure you need.
           </p>
         </div>
@@ -141,13 +141,13 @@ export default function ComplianceLibraryPage() {
       {/* ══ 2. INDIVIDUAL PACKETS ══════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>
             TIER 1 | INDIVIDUAL PACKETS — $97–$127 EACH
           </p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>
             Install one domain at a time.
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: "0.95rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>
+          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>
             Each packet covers one compliance domain completely. Buy what you need, install it, then move to the next.
           </p>
 
@@ -162,23 +162,23 @@ export default function ComplianceLibraryPage() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }} className="bundle-grid">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>
                 LP-SPEC-001 | TIER 2 — THE COMPLETE DIY SYSTEM
               </p>
               <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFF", letterSpacing: "-0.01em", marginBottom: "0.4rem" }}>
                 New Carrier Document System
               </h2>
               <p style={{ fontFamily: SANS, fontSize: "1.15rem", color: GOLD, fontWeight: 700, marginBottom: "0.25rem" }}>
-                $497 <span style={{ fontFamily: MONO, fontSize: "0.70rem", fontWeight: 400, color: "rgba(212,144,10,0.55)" }}>($634 if purchased separately)</span>
+                $497 <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 400, color: "rgba(212,144,10,0.55)" }}>($634 if purchased separately)</span>
               </p>
-              <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", marginBottom: "1.75rem", lineHeight: 1.65, maxWidth: 480 }}>
+              <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", marginBottom: "1.75rem", lineHeight: 1.65, maxWidth: 480 }}>
                 Every compliance packet, plus the folder architecture and implementation calendar that turns five documents into one operating system. The complete DIY path.
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {BUNDLE_ITEMS.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: MONO, fontSize: "0.78rem", color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>→</span>
-                    <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.6, margin: 0 }}>{item}</p>
+                    <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>→</span>
+                    <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.72)", lineHeight: 1.6, margin: 0 }}>{item}</p>
                   </div>
                 ))}
               </div>
@@ -189,7 +189,7 @@ export default function ComplianceLibraryPage() {
                 data-testid="bundle-buy-btn"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
+                style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
                 onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
                 onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}
               >
@@ -203,7 +203,7 @@ export default function ComplianceLibraryPage() {
       {/* ══ 4. BRIDGE COPY — WHY GUIDED? ══════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.5rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.5rem" }}>
             LP-DOC-001 | THE DIFFERENCE
           </p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "2rem" }}>
@@ -230,12 +230,12 @@ export default function ComplianceLibraryPage() {
             <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "rgba(255,255,255,0.80)", fontStyle: "italic", lineHeight: 1.6, marginBottom: "0.5rem" }}>
               "If this feels expensive, you are likely not ready. If it feels reasonable, you are already thinking like an operator."
             </p>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", color: "rgba(212,144,10,0.60)", letterSpacing: "0.08em", margin: 0 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.60)", letterSpacing: "0.08em", margin: 0 }}>
               — Vince Lawrence, Station Custodian
             </p>
           </div>
 
-          <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.5rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.5rem" }}>
             LP-STD-001 | TIER 3 — THE GUIDED IMPLEMENTATION
           </p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.5rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.4rem" }}>
@@ -257,15 +257,15 @@ export default function ComplianceLibraryPage() {
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {GUIDED_ITEMS.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: MONO, fontSize: "0.78rem", color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>→</span>
-                    <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6, margin: 0 }}>{item}</p>
+                    <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>→</span>
+                    <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.75)", lineHeight: 1.6, margin: 0 }}>{item}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div style={{ background: CARD, border: `1px solid rgba(212,144,10,0.25)`, padding: "2rem", alignSelf: "start" }}>
-              <p style={{ fontFamily: MONO, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem" }}>
                 LPOS V1.0 | ENTRY POINT
               </p>
               <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.75rem", color: GOLD, lineHeight: 1.1, marginBottom: "1.25rem" }}>
@@ -280,7 +280,7 @@ export default function ComplianceLibraryPage() {
               >
                 INITIATE GROUND 0 →
               </Link>
-              <p style={{ fontFamily: SANS, fontSize: "0.78rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.65, textAlign: "center", margin: 0 }}>
+              <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.65, textAlign: "center", margin: 0 }}>
                 Ground 0 is free. It takes 4–6 minutes.<br />
                 Complete it to request admission to the next cohort.
               </p>
@@ -292,14 +292,14 @@ export default function ComplianceLibraryPage() {
       {/* ══ 6. COMPARISON MATRIX ══════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "2rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "2rem" }}>
             LP-DOC-002 | COMPARISON MATRIX
           </p>
 
           <div style={{ border: `1px solid ${BORDER}`, overflow: "hidden" }}>
             {/* Header row */}
             <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", borderBottom: `1px solid ${BORDER}`, background: "rgba(212,144,10,0.06)" }}>
-              <div style={{ padding: "1rem 1.25rem", fontFamily: MONO, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)" }}> </div>
+              <div style={{ padding: "1rem 1.25rem", fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)" }}> </div>
               {[
                 { label: "Individual Packets", price: "$97–$127 ea." },
                 { label: "Document System Bundle", price: "$497" },
@@ -307,7 +307,7 @@ export default function ComplianceLibraryPage() {
               ].map((col) => (
                 <div key={col.label} style={{ padding: "1rem 1.25rem", borderLeft: `1px solid ${BORDER}` }}>
                   <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1rem", color: "#FFF", lineHeight: 1.2, marginBottom: "0.2rem" }}>{col.label}</p>
-                  <p style={{ fontFamily: MONO, fontSize: "0.75rem", color: GOLD, fontWeight: 700 }}>{col.price}</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: GOLD, fontWeight: 700 }}>{col.price}</p>
                 </div>
               ))}
             </div>
@@ -315,13 +315,13 @@ export default function ComplianceLibraryPage() {
             {/* Data rows */}
             {MATRIX.map((row, i) => (
               <div key={i} style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", borderBottom: i < MATRIX.length - 1 ? `1px solid ${BORDER}` : "none", background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)" }}>
-                <div style={{ padding: "0.875rem 1.25rem", fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.55)" }}>{row.label}</div>
+                <div style={{ padding: "0.875rem 1.25rem", fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)" }}>{row.label}</div>
                 {[row.ind, row.bundle, row.guided].map((val, j) => {
                   const isCheck = val === "✓";
                   const isDash  = val === "—";
                   const isLast  = j === 2;
                   return (
-                    <div key={j} style={{ padding: "0.875rem 1.25rem", borderLeft: `1px solid ${BORDER}`, fontFamily: isDash ? MONO : SANS, fontSize: "0.875rem", color: isCheck ? "#4caf50" : isDash ? "rgba(255,255,255,0.20)" : isLast ? GOLD : "rgba(255,255,255,0.72)", fontWeight: isCheck ? 700 : 400 }}>
+                    <div key={j} style={{ padding: "0.875rem 1.25rem", borderLeft: `1px solid ${BORDER}`, fontFamily: isDash ? MONO : SANS, fontSize: "var(--text-sm)", color: isCheck ? "#4caf50" : isDash ? "rgba(255,255,255,0.20)" : isLast ? GOLD : "rgba(255,255,255,0.72)", fontWeight: isCheck ? 700 : 400 }}>
                       {val}
                     </div>
                   );
@@ -344,7 +344,7 @@ export default function ComplianceLibraryPage() {
       {/* ══ 8. FINAL CTA ══════════════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.25rem" }}>
             LPOS V1.0 | GROUND 0 ENTRY
           </p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", lineHeight: 1.1, marginBottom: "2rem" }}>
@@ -375,7 +375,7 @@ export default function ComplianceLibraryPage() {
 
       {/* ══ Disclaimer ════════════════════════════════════════════ */}
       <div style={{ borderTop: `1px solid ${BORDER}`, padding: "1.5rem", textAlign: "center" }}>
-        <p style={{ fontFamily: SANS, fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", lineHeight: 1.7, maxWidth: 680, margin: "0 auto", fontStyle: "italic" }}>
+        <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.25)", lineHeight: 1.7, maxWidth: 680, margin: "0 auto", fontStyle: "italic" }}>
           All documents current as of March 2026. Verify current regulatory requirements at ecfr.gov. LaunchPath Transportation EDU is an educational program and does not provide legal, compliance, or financial advice.
         </p>
       </div>
@@ -407,7 +407,7 @@ function PacketCard({ product }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
         <div>
           <p style={{ fontFamily: MONO, fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.3rem" }}>{product.sku}</p>
-          <span style={{ fontFamily: MONO, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", border: `1px solid rgba(255,255,255,0.12)`, padding: "0.15rem 0.5rem" }}>
+          <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", border: `1px solid rgba(255,255,255,0.12)`, padding: "0.15rem 0.5rem" }}>
             {product.domain}
           </span>
         </div>
@@ -415,14 +415,14 @@ function PacketCard({ product }) {
       </div>
 
       <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.2rem", color: "#FFF", lineHeight: 1.25 }}>{product.title}</h3>
-      <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.72, flex: 1 }}>{product.desc}</p>
+      <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.60)", lineHeight: 1.72, flex: 1 }}>{product.desc}</p>
 
       <a
         href={product.gumroadUrl}
         data-testid={`buy-btn-${product.sku.toLowerCase()}`}
         target={product.gumroadUrl !== "#" ? "_blank" : undefined}
         rel="noopener noreferrer"
-        style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.5rem", textDecoration: "none", transition: "background 0.2s" }}
+        style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.5rem", textDecoration: "none", transition: "background 0.2s" }}
         onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
         onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}
       >

@@ -6,13 +6,13 @@ import FooterSection from "../components/FooterSection";
 const gold = "#d4900a";
 const darkBg = "#0b1628";
 const midBg = "#0d1c30";
-const MONO = "'IBM Plex Mono', monospace";
+const MONO = "'Inter', sans-serif";
 const COND = "'Playfair Display', serif";
-const SANS = "'Atkinson Hyperlegible', sans-serif";
+const SANS = "'Inter', sans-serif";
 const BORDER = "rgba(255,255,255,0.07)";
 
 const sectionLabel = {
-  fontFamily: MONO, fontSize: "0.72rem", fontWeight: 700,
+  fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700,
   letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "0.75rem",
 };
 
@@ -180,11 +180,11 @@ export default function AutoMethodPage() {
                   marginBottom: "0.5rem", letterSpacing: "-0.02em",
                 }}>{item.v}</p>
                 <p style={{
-                  fontFamily: MONO, fontWeight: 700, fontSize: "0.78rem",
+                  fontFamily: MONO, fontWeight: 700, fontSize: "0.857rem",
                   color: "#FFFFFF", letterSpacing: "0.12em", marginBottom: "0.6rem",
                 }}>{item.dir}</p>
                 <p style={{
-                  fontFamily: SANS, fontSize: "0.82rem",
+                  fontFamily: SANS, fontSize: "0.857rem",
                   color: "rgba(255,255,255,0.50)", lineHeight: 1.5,
                   whiteSpace: "pre-line",
                 }}>{item.sub}</p>
@@ -209,13 +209,13 @@ export default function AutoMethodPage() {
             borderLeft: "3px solid rgba(212,144,10,0.35)",
             paddingLeft: "1.75rem",
           }}>
-            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.88, marginBottom: "1.25rem" }}>
+            <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.88, marginBottom: "1.25rem" }}>
               The AUTO Method didn't start in trucking. It started in manufacturing — from the OSHA machine-guarding framework I spent 25 years building safety systems around.
             </p>
-            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.88, marginBottom: "1.25rem" }}>
+            <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.88, marginBottom: "1.25rem" }}>
               The principle is the same: hazards don't arrive randomly. They move Around, Under, Through, or Over whatever guard you've built. If you don't map the vectors, you can't install the right protection.
             </p>
-            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.88, marginBottom: "1.25rem" }}>
+            <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.88, marginBottom: "1.25rem" }}>
               I adapted the model for motor carrier compliance after watching the same failure patterns end new authorities year after year. The hazards were different. The vectors were identical.
             </p>
             <p style={{ fontFamily: COND, fontSize: "1.35rem", fontWeight: 700, color: gold, lineHeight: 1.3 }}>
@@ -261,7 +261,7 @@ export default function AutoMethodPage() {
 
                 {/* Extra body for OVER */}
                 {d.expanded && (
-                  <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.58)", lineHeight: 1.85, marginBottom: "1.5rem", maxWidth: 580, fontStyle: "italic", borderLeft: "2px solid rgba(212,144,10,0.20)", paddingLeft: "1rem" }}>
+                  <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", lineHeight: 1.85, marginBottom: "1.5rem", maxWidth: 580, fontStyle: "italic", borderLeft: "2px solid rgba(212,144,10,0.20)", paddingLeft: "1rem" }}>
                     {d.extraBody.split("\n\n").map((p, i) => (
                       <span key={i}>{p}{i < 1 ? <><br /><br /></> : null}</span>
                     ))}
@@ -269,21 +269,21 @@ export default function AutoMethodPage() {
                 )}
 
                 {/* Failure points */}
-                <p style={{ fontFamily: MONO, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "0.75rem" }}>
+                <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "0.75rem" }}>
                   FAILURE POINTS
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.25rem" }}>
                   {d.failurePoints.map((s, i) => (
                     <li key={i} style={{ display: "flex", gap: "0.75rem", marginBottom: "0.4rem", alignItems: "flex-start" }}>
                       <span style={{ color: "rgba(212,144,10,0.80)", marginTop: "0.15rem", flexShrink: 0 }}>—</span>
-                      <span style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}>{s}</span>
+                      <span style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}>{s}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* CFR */}
                 <p style={{
-                  fontFamily: MONO, fontSize: "0.62rem", color: "rgba(255,255,255,0.28)",
+                  fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)",
                   letterSpacing: "0.06em", textTransform: "uppercase",
                 }}>
                   CFR ANCHOR: {d.cfr} — {d.cfrNote}
@@ -322,8 +322,8 @@ export default function AutoMethodPage() {
               >
                 <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", flexWrap: "wrap", marginBottom: "0.75rem" }}>
                   <div style={{ flexShrink: 0 }}>
-                    <p style={{ fontFamily: MONO, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.12em", color: "rgba(212,144,10,0.45)", textTransform: "uppercase", marginBottom: "0.3rem" }}>{g.code}</p>
-                    <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.05rem", color: gold, margin: 0 }}>{g.name}</p>
+                    <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", color: "rgba(212,144,10,0.45)", textTransform: "uppercase", marginBottom: "0.3rem" }}>{g.code}</p>
+                    <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.1rem", color: gold, margin: 0 }}>{g.name}</p>
                   </div>
                   <div style={{
                     background: g.allVectors ? "rgba(212,144,10,0.10)" : "rgba(212,144,10,0.05)",
@@ -331,34 +331,34 @@ export default function AutoMethodPage() {
                     padding: "0.3rem 0.75rem",
                     alignSelf: "center",
                   }}>
-                    <p style={{ fontFamily: MONO, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.10em", color: gold, textTransform: "uppercase", margin: 0 }}>
+                    <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.10em", color: gold, textTransform: "uppercase", margin: 0 }}>
                       BLOCKS: {g.blocks}
                     </p>
                   </div>
                 </div>
 
-                <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.82, marginBottom: "0.875rem", maxWidth: 620 }}>
+                <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.72)", lineHeight: 1.82, marginBottom: "0.875rem", maxWidth: 620 }}>
                   {g.desc}
                 </p>
 
-                <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "2px solid rgba(212,144,10,0.18)", paddingLeft: "0.875rem", marginBottom: "0.875rem", maxWidth: 580 }}>
+                <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "2px solid rgba(212,144,10,0.18)", paddingLeft: "0.875rem", marginBottom: "0.875rem", maxWidth: 580 }}>
                   {g.consequence}
                 </p>
 
-                <p style={{ fontFamily: MONO, fontSize: "0.60rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
                   CFR ANCHOR: {g.cfr} — {g.cfrNote}
                 </p>
               </div>
             ))}
           </div>
 
-          <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.75, marginTop: "2rem", marginBottom: "1rem" }}>
+          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.50)", lineHeight: 1.75, marginTop: "2rem", marginBottom: "1rem" }}>
             These guards are installed through the 90-day LaunchPath Standard.
           </p>
           <Link
             to="/operating-standard"
             data-testid="auto-view-standard-link"
-            style={{ fontFamily: MONO, fontSize: "0.70rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.82)", textDecoration: "none", transition: "color 0.2s" }}
+            style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.82)", textDecoration: "none", transition: "color 0.2s" }}
             onMouseEnter={e => { e.currentTarget.style.color = gold; }}
             onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.82)"; }}
           >
@@ -386,17 +386,17 @@ export default function AutoMethodPage() {
               { label: "16 DEADLY SINS", role: "What actually fails", items: ["Insurance gaps", "DQ file violations", "HOS failures", "Financial collapse"] },
             ].map((col) => (
               <div key={col.label} style={{ background: midBg, padding: "2rem 1.5rem" }}>
-                <p style={{ fontFamily: MONO, fontSize: "0.70rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: gold, marginBottom: "0.4rem" }}>{col.label}</p>
-                <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.40)", marginBottom: "1.25rem", fontStyle: "italic" }}>{col.role}</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: gold, marginBottom: "0.4rem" }}>{col.label}</p>
+                <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.40)", marginBottom: "1.25rem", fontStyle: "italic" }}>{col.role}</p>
                 {col.items.map((item, i) => (
-                  <p key={i} style={{ fontSize: "0.925rem", color: "rgba(255,255,255,0.65)", marginBottom: "0.4rem", lineHeight: 1.5 }}>{item}</p>
+                  <p key={i} style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", marginBottom: "0.4rem", lineHeight: 1.5 }}>{item}</p>
                 ))}
               </div>
             ))}
           </div>
           <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", flexWrap: "wrap" }}>
             <Link to="/16-deadly-sins" data-testid="auto-method-sins-link"
-              style={{ fontFamily: MONO, fontSize: "0.70rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.72)", textDecoration: "none", transition: "color 0.2s" }}
+              style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.72)", textDecoration: "none", transition: "color 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.color = gold; }}
               onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.72)"; }}
             >View the 16 Deadly Sins →</Link>
@@ -412,7 +412,7 @@ export default function AutoMethodPage() {
             {PILLARS.map((p) => (
               <div key={p.label} style={{ background: darkBg, padding: "2rem" }}>
                 <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.6rem" }}>{p.label}</p>
-                <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.72 }}>{p.desc}</p>
+                <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.72 }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -440,7 +440,7 @@ export default function AutoMethodPage() {
               paddingLeft: "1.25rem",
             }}>{line}</p>
           ))}
-          <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.40)", fontStyle: "italic" }}>
+          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.40)", fontStyle: "italic" }}>
             This is the sequence AUTO enforces.
           </p>
         </div>
@@ -471,7 +471,7 @@ export default function AutoMethodPage() {
               style={{
                 display: "inline-block", background: gold,
                 color: darkBg, fontFamily: SANS, fontWeight: 700,
-                fontSize: "0.875rem", letterSpacing: "0.09em", textTransform: "uppercase",
+                fontSize: "var(--text-sm)", letterSpacing: "0.09em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.25rem",
                 transition: "background 0.2s",
               }}
@@ -486,7 +486,7 @@ export default function AutoMethodPage() {
               style={{
                 display: "inline-block", background: "transparent",
                 color: gold, fontFamily: SANS, fontWeight: 700,
-                fontSize: "0.875rem", letterSpacing: "0.09em", textTransform: "uppercase",
+                fontSize: "var(--text-sm)", letterSpacing: "0.09em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.25rem",
                 border: "1px solid rgba(212,144,10,0.40)", transition: "all 0.2s",
               }}
@@ -503,17 +503,17 @@ export default function AutoMethodPage() {
       <div style={{ borderTop: `1px solid ${BORDER}`, padding: "2.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: MONO, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
-            <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+            <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", margin: 0 }}>
               The Operating Standard: What Gets Installed
             </p>
           </div>
           <Link
             to="/operating-standard"
             data-testid="auto-next-framework-link"
-            style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: darkBg, background: gold, padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
+            style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: darkBg, background: gold, padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
             onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
             onMouseLeave={e => (e.currentTarget.style.background = gold)}
           >

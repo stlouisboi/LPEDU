@@ -72,8 +72,8 @@ export function FMCSADomainTable({ showPricing = true }) {
       {/* Mobile scroll hint */}
       <p className="table-scroll-hint" style={{
         display: "none",
-        fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "0.62rem",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.714rem",
         color: "rgba(212,144,10,0.5)",
         letterSpacing: "0.1em",
         textTransform: "uppercase",
@@ -89,8 +89,8 @@ export function FMCSADomainTable({ showPricing = true }) {
                 <th key={i} style={{
                   background: navy,
                   color: gold,
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.72rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.762rem",
                   fontWeight: 700,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
@@ -108,22 +108,22 @@ export function FMCSADomainTable({ showPricing = true }) {
               <tr key={i} className="fmcsa-row" style={{ background: i % 2 === 0 ? "#060d19" : "rgba(0,21,48,0.5)" }}>
                 <td style={{ padding: "0.875rem 1rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                   <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.68rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.714rem",
                     color: "rgba(255,255,255,0.35)",
                     display: "block", marginBottom: "0.2rem",
                   }}>{row.num}</span>
                   <span style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                    fontSize: "0.9rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "var(--text-sm)",
                     fontWeight: 500,
                     color: "#FFFFFF",
                   }}>{row.domain}</span>
                 </td>
                 <td style={{
                   padding: "0.875rem 1rem",
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.82rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.857rem",
                   color: "rgba(255,255,255,0.72)",
                   lineHeight: 1.55,
                   borderBottom: "1px solid rgba(255,255,255,0.05)",
@@ -139,8 +139,8 @@ export function FMCSADomainTable({ showPricing = true }) {
                     display: "inline-block",
                     background: navy,
                     color: gold,
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.68rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.714rem",
                     fontWeight: 700,
                     letterSpacing: "0.04em",
                     padding: "3px 9px",
@@ -181,8 +181,8 @@ export function FMCSADomainTable({ showPricing = true }) {
             marginBottom: "0.35rem",
           }}>Every audit domain. One document system.</p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.9rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.68)",
             lineHeight: 1.6,
           }}>
@@ -194,8 +194,8 @@ export function FMCSADomainTable({ showPricing = true }) {
           data-testid="copy-audit-link-btn"
           onClick={handleCopyLink}
           style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.65rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.14em",
             textTransform: "uppercase",

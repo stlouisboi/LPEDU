@@ -223,8 +223,8 @@ export default function AllChecklists() {
           .print-cover, .print-brief-section, .print-marker { display: none; }
           .screen-fallback { text-align: center; padding: 4rem 2rem; }
           .screen-msg { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #f0f4f8; margin-bottom: 1.5rem; }
-          .screen-btn { background: #E8590F; color: #fff; border: none; font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2rem; cursor: pointer; margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto; }
-          .screen-back { font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 0.8rem; color: #8a99aa; text-decoration: none; display: block; }
+          .screen-btn { background: #E8590F; color: #fff; border: none; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2rem; cursor: pointer; margin-bottom: 1.5rem; display: block; margin-left: auto; margin-right: auto; }
+          .screen-back { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #8a99aa; text-decoration: none; display: block; }
         }
 
         /* ── PRINT: hide fallback, show document ── */

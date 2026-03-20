@@ -82,8 +82,8 @@ export default function NextStepSection() {
                   flexShrink: 0,
                 }}>
                   <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.728rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.762rem",
                     fontWeight: 700,
                     color: "var(--gold-primary)",
                     letterSpacing: "0.05em",
@@ -99,8 +99,8 @@ export default function NextStepSection() {
                     marginBottom: "0.4rem",
                   }}>{s.name}</h3>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                    fontSize: "1.008rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "1rem",
                     color: "var(--text-muted)",
                     lineHeight: 1.7,
                   }}>{s.desc}</p>
@@ -112,7 +112,7 @@ export default function NextStepSection() {
 
         <FadeIn delay={360}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.064rem",
             color: "var(--text-subtle)",
             lineHeight: 1.7,
@@ -130,9 +130,9 @@ export default function NextStepSection() {
               alignItems: "center",
               background: "var(--gold-primary)",
               color: "var(--bg-onyx)",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
-              fontSize: "0.98rem",
+              fontSize: "1rem",
               letterSpacing: "0.06em",
               textTransform: "uppercase",
               padding: "1rem 2rem",

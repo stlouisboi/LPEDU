@@ -202,7 +202,7 @@ export default function BundlePage() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 420px", gap: "3rem", alignItems: "center" }} className="packet-hero-grid">
               <div>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
                 }}>LP-BUNDLE-001 | NEW CARRIER DOCUMENT SYSTEM</p>
 
@@ -213,7 +213,7 @@ export default function BundlePage() {
                 }}>New Carrier Document System</h1>
 
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
+                  fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
                   color: "rgba(255,255,255,0.55)", marginBottom: "2.5rem", fontStyle: "italic",
                 }}>
                   Full new-authority operating standard in document form — all five compliance domains, unified folder structure, and 0–30–90 day implementation guide.
@@ -226,11 +226,11 @@ export default function BundlePage() {
                 }}>
                   <div>
                     <span style={{
-                      fontFamily: "'IBM Plex Mono', monospace", fontSize: "2.5rem",
+                      fontFamily: "'Inter', sans-serif", fontSize: "2.5rem",
                       fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em",
                     }}>$497</span>
                     <span style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem",
+                      fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
                       color: "rgba(255,255,255,0.45)", marginLeft: "0.75rem",
                     }}>vs. $605 purchased separately</span>
                   </div>
@@ -241,7 +241,7 @@ export default function BundlePage() {
                     data-testid="bundle-buy-btn"
                     style={{
                       display: "inline-block", background: gold, color: "#0b1628",
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.9rem",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
                       letterSpacing: "0.1em", textTransform: "uppercase",
                       padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s",
                     }}
@@ -259,7 +259,7 @@ export default function BundlePage() {
                   background: "rgba(212,144,10,0.06)",
                 }}>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
                     color: "rgba(255,255,255,0.75)", lineHeight: 1.7,
               }}>
                 The complete document system is included for carriers enrolled in the LaunchPath Standard. If you're weighing both, that's worth knowing.
@@ -271,7 +271,7 @@ export default function BundlePage() {
               <div style={{ borderRadius: "6px", overflow: "hidden" }}>
                 <BookMockup3D productId="bundle" mode="embed" />
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem",
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.6rem",
                   color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em",
                   textAlign: "center", marginTop: "0.5rem",
                 }}>DRAG TO ROTATE</p>
@@ -287,10 +287,10 @@ export default function BundlePage() {
         {/* Positioning */}
         <FadeIn>
           <SectionLabel>What This Is — And What It Is Not</SectionLabel>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
             This is not an audit folder bundle or a collection of generic compliance downloads. It is a complete new-authority operating standard in document form — five domain-specific systems unified into a single implementation sequence that a carrier can install without a consultant.
           </p>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "3rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "3rem" }}>
             The competitor landscape includes $150–$550 DIY audit kits and $1,800+ filing-only bundles. This is neither. It is a complete operating standard priced above commodity kits and below consulting — intentionally. The content depth justifies it.
           </p>
         </FadeIn>
@@ -309,13 +309,13 @@ export default function BundlePage() {
                 borderLeft: `2px solid ${gold}`,
               }} className="packet-row">
                 <div>
-                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>{p.code}</p>
-                  <Link to={p.href} style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF", textDecoration: "none" }}
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>{p.code}</p>
+                  <Link to={p.href} style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF", textDecoration: "none" }}
                     onMouseEnter={e => e.currentTarget.style.color = gold}
                     onMouseLeave={e => e.currentTarget.style.color = "#FFFFFF"}
                   >{p.title}</Link>
                 </div>
-                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.9rem", color: "rgba(255,255,255,0.45)" }}>{p.price}</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)" }}>{p.price}</span>
               </div>
             ))}
             <div style={{
@@ -325,10 +325,10 @@ export default function BundlePage() {
               borderLeft: `2px solid ${gold}`,
             }}>
               <div>
-                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>LP-GUIDE-001</p>
-                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF" }}>0–30–90 Day Implementation Guide</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", marginBottom: "0.2rem" }}>LP-GUIDE-001</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF" }}>0–30–90 Day Implementation Guide</p>
               </div>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.9rem", color: "rgba(212,144,10,0.65)" }}>Included</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(212,144,10,0.65)" }}>Included</span>
             </div>
             <div style={{
               display: "flex", justifyContent: "space-between", alignItems: "center",
@@ -336,8 +336,8 @@ export default function BundlePage() {
               background: "rgba(212,144,10,0.06)", border: `1px solid rgba(212,144,10,0.25)`,
               borderLeft: `2px solid ${gold}`,
             }}>
-              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF" }}>Unified Folder Structure — Company, DQ, Unit/Maintenance, Audit Grab Folder</p>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.9rem", color: "rgba(212,144,10,0.65)" }}>Included</span>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#FFFFFF" }}>Unified Folder Structure — Company, DQ, Unit/Maintenance, Audit Grab Folder</p>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(212,144,10,0.65)" }}>Included</span>
             </div>
           </div>
         </FadeIn>
@@ -347,15 +347,15 @@ export default function BundlePage() {
         {/* 0-30-90 Guide */}
         <FadeIn delay={120}>
           <SectionLabel>The 0–30–90 Day Implementation Guide</SectionLabel>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
             The guide that separates the $497 bundle from a folder of PDFs. It dictates the order of operations for installing all five packets in sequence — the DIY version of the LaunchPath Standard implementation sequence.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: "rgba(212,144,10,0.1)", marginBottom: "2rem" }} className="phases-grid">
             {PHASES.map((ph, i) => (
               <div key={i} style={{ background: "#0b1628", padding: "1.5rem", borderTop: `2px solid ${gold}` }}>
-                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.12em", marginBottom: "0.5rem" }}>{ph.phase}</p>
-                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#FFFFFF", marginBottom: "0.5rem" }}>Focus: {ph.label}</p>
-                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.5)" }}>{ph.steps.length} steps</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", color: gold, letterSpacing: "0.12em", marginBottom: "0.5rem" }}>{ph.phase}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600, color: "#FFFFFF", marginBottom: "0.5rem" }}>Focus: {ph.label}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.5)" }}>{ph.steps.length} steps</p>
               </div>
             ))}
           </div>
@@ -364,8 +364,8 @@ export default function BundlePage() {
             data-testid="download-guide-btn"
             style={{
               background: "transparent", border: `1px solid rgba(212,144,10,0.5)`,
-              color: gold, fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
-              fontSize: "0.85rem", letterSpacing: "0.1em", textTransform: "uppercase",
+              color: gold, fontFamily: "'Inter', sans-serif", fontWeight: 700,
+              fontSize: "0.857rem", letterSpacing: "0.1em", textTransform: "uppercase",
               padding: "0.875rem 1.75rem", cursor: "pointer", transition: "all 0.2s",
             }}
             onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,144,10,0.08)"; e.currentTarget.style.borderColor = gold; }}
@@ -383,15 +383,15 @@ export default function BundlePage() {
             background: "#0b1628", border: `1px solid rgba(212,144,10,0.15)`,
             borderLeft: `3px solid ${gold}`, padding: "2rem 2.5rem", marginBottom: "2rem",
           }}>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Next Step</p>
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Next Step</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "0.5rem" }}>
               The bundle is the complete DIY path. The LaunchPath Standard is the guided path — with a dedicated coach, a verified implementation sequence, and live compliance monitoring through the 90-day window.
             </p>
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "1.25rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "1.25rem" }}>
               Inside the Standard, the New Carrier Document System is not optional or discounted — it is automatically provided to every enrolled carrier as part of their cohort materials.
             </p>
             <Link to="/ground-0-briefing" style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem",
               letterSpacing: "0.1em", textTransform: "uppercase", color: gold, textDecoration: "none",
             }}>
               Begin Ground 0 — The Standard Entry Point →
@@ -401,7 +401,7 @@ export default function BundlePage() {
 
         <FadeIn delay={200}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.4)", lineHeight: 1.7,
             borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.5rem",
             fontStyle: "italic",
@@ -426,7 +426,7 @@ export default function BundlePage() {
 function SectionLabel({ children }) {
   return (
     <p style={{
-      fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+      fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
       letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
       marginBottom: "1.5rem",
     }}>{children}</p>

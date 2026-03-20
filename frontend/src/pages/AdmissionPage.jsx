@@ -79,8 +79,8 @@ export default function AdmissionPage() {
     background: "rgba(255,255,255,0.04)",
     border: "1px solid rgba(255,255,255,0.14)",
     color: "#FFFFFF",
-    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-    fontSize: "0.98rem",
+    fontFamily: "'Inter', sans-serif",
+    fontSize: "1rem",
     padding: "0.875rem 1.125rem",
     outline: "none",
     boxSizing: "border-box",
@@ -89,8 +89,8 @@ export default function AdmissionPage() {
 
   const labelStyle = {
     display: "block",
-    fontFamily: "'IBM Plex Mono', monospace",
-    fontSize: "0.616rem",
+    fontFamily: "'Inter', sans-serif",
+    fontSize: "0.714rem",
     fontWeight: 700,
     letterSpacing: "0.16em",
     textTransform: "uppercase",
@@ -99,8 +99,8 @@ export default function AdmissionPage() {
   };
 
   const hintStyle = {
-    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-    fontSize: "0.784rem",
+    fontFamily: "'Inter', sans-serif",
+    fontSize: "0.857rem",
     color: "rgba(255,255,255,0.40)",
     marginTop: "0.4rem",
     fontStyle: "italic",
@@ -117,7 +117,7 @@ export default function AdmissionPage() {
   };
 
   return (
-    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Atkinson Hyperlegible', sans-serif" }}>
+    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
       <Navbar />
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px" }}>
@@ -126,8 +126,8 @@ export default function AdmissionPage() {
         <Link
           to="/launchpath-standard"
           style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "rgba(212,144,10,0.65)",
@@ -148,7 +148,7 @@ export default function AdmissionPage() {
         <p
           data-testid="admission-page-label"
           style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -176,7 +176,7 @@ export default function AdmissionPage() {
 
         <p
           style={{
-            fontSize: "1.008rem",
+            fontSize: "1rem",
             color: "rgba(255,255,255,0.78)",
             lineHeight: 1.8,
             marginBottom: "0.875rem",
@@ -187,8 +187,8 @@ export default function AdmissionPage() {
 
         <p
           style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.95rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.55)",
             fontStyle: "italic",
             lineHeight: 1.7,
@@ -214,9 +214,9 @@ export default function AdmissionPage() {
             }}>
               <span style={{ color: "#22c55e" }}>✓</span>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
-                fontSize: "0.875rem",
+                fontSize: "var(--text-sm)",
                 color: "rgba(34,197,94,0.95)",
                 margin: 0,
               }}>
@@ -236,7 +236,7 @@ export default function AdmissionPage() {
             </h2>
 
             <p style={{
-              fontSize: "1.008rem",
+              fontSize: "1rem",
               color: "rgba(255,255,255,0.78)",
               lineHeight: 1.8,
               marginBottom: "2rem",
@@ -254,7 +254,7 @@ export default function AdmissionPage() {
                 background: "#d4900a",
                 color: "#0b1628",
                 border: "none",
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
                 fontSize: "0.975rem",
                 letterSpacing: "0.08em",
@@ -273,8 +273,8 @@ export default function AdmissionPage() {
             </button>
 
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.56rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.30)",
@@ -438,8 +438,8 @@ export default function AdmissionPage() {
               {/* Error */}
               {state === "error" && (
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.875rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "var(--text-sm)",
                   color: "#f87171",
                   fontStyle: "italic",
                 }}>
@@ -457,9 +457,9 @@ export default function AdmissionPage() {
                   background: "#d4900a",
                   color: "#0b1628",
                   border: "none",
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontWeight: 700,
-                  fontSize: "0.925rem",
+                  fontSize: "var(--text-sm)",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   cursor: state === "loading" ? "wait" : "pointer",
@@ -475,8 +475,8 @@ export default function AdmissionPage() {
               </button>
 
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                fontSize: "0.784rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.857rem",
                 color: "rgba(255,255,255,0.42)",
                 fontStyle: "italic",
                 marginTop: "-0.75rem",

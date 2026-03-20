@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
 const gold = "#C5A059";
-const mono = "'IBM Plex Mono', monospace";
+const mono = "'Inter', sans-serif";
 
 export default function AdmissionConfirmedPage() {
   const [params] = useSearchParams();
@@ -32,14 +32,14 @@ export default function AdmissionConfirmedPage() {
   }, [sessionId, API]);
 
   return (
-    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Atkinson Hyperlegible', sans-serif" }}>
+    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
       <Navbar />
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "112px 24px 80px", textAlign: "center" }}>
 
         {status === "checking" && (
           <>
             <div style={{ width: 40, height: 40, border: `3px solid rgba(197,160,89,0.2)`, borderTopColor: gold, borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto 2rem" }} />
-            <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)" }}>
               Verifying payment...
             </p>
             <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
@@ -54,7 +54,7 @@ export default function AdmissionConfirmedPage() {
               padding: "0.625rem 1.5rem", marginBottom: "2.5rem",
             }}>
               <span style={{ color: "#22c55e", fontSize: "1rem" }}>✓</span>
-              <span style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(34,197,94,0.9)" }}>
+              <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(34,197,94,0.9)" }}>
                 Enrollment Confirmed
               </span>
             </div>
@@ -89,7 +89,7 @@ export default function AdmissionConfirmedPage() {
 
         {(status === "pending" || status === "error") && (
           <>
-            <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1.5rem" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1.5rem" }}>
               Payment received — confirmation pending
             </p>
             <h1 style={{
@@ -99,13 +99,13 @@ export default function AdmissionConfirmedPage() {
             }}>
               Your payment is being processed.
             </h1>
-            <p style={{ fontSize: "1.008rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.8, marginBottom: "2.5rem", maxWidth: 480, margin: "0 auto 2.5rem" }}>
+            <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.8, marginBottom: "2.5rem", maxWidth: 480, margin: "0 auto 2.5rem" }}>
               This can take a few minutes. You will receive a confirmation email at your registered address. If you have questions, reply to the admission confirmation email.
             </p>
             <Link
               to="/launchpath-standard"
               style={{
-                fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
+                fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                 letterSpacing: "0.14em", textTransform: "uppercase",
                 color: gold, textDecoration: "none",
               }}

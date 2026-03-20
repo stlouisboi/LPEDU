@@ -81,7 +81,7 @@ function PillarCard({ pillar, idx }) {
 
       {/* Code */}
       <p style={{
-        fontFamily: "'IBM Plex Mono', monospace",
+        fontFamily: "'Inter', sans-serif",
         fontSize: "0.672rem",
         color: "#d4900a",
         letterSpacing: "0.1em",
@@ -108,7 +108,7 @@ function PillarCard({ pillar, idx }) {
 
       {/* Detail */}
       <p style={{
-        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+        fontFamily: "'Inter', sans-serif",
         fontSize: "0.896rem",
         color: "rgba(255,255,255,0.82)",
         lineHeight: 1.65,
@@ -128,8 +128,8 @@ function PillarCard({ pillar, idx }) {
         marginBottom: "1.25rem",
       }}>
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "0.784rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.857rem",
           fontWeight: 600,
           color: "rgba(248,113,113,0.92)",
           marginBottom: "0.375rem",
@@ -138,8 +138,8 @@ function PillarCard({ pillar, idx }) {
           If absent:
         </p>
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "0.784rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.857rem",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.6,
         }}>
@@ -155,8 +155,8 @@ function PillarCard({ pillar, idx }) {
         zIndex: 1,
       }}>
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "0.784rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.857rem",
           fontWeight: 600,
           letterSpacing: "0.04em",
           color: "rgba(212,144,10,0.92)",
@@ -180,7 +180,7 @@ export default function FourPillarsSection() {
 
         <FadeIn>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
@@ -202,8 +202,8 @@ export default function FourPillarsSection() {
             Four Pillars. Six Installed Domains. One Audit-Ready Authority.
           </h2>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "1.008rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "rgba(255,255,255,0.78)",
             lineHeight: 1.7,
             marginBottom: "2.75rem",

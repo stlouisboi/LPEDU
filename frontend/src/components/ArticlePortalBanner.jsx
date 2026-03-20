@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 
 /**
  * ArticlePortalBanner
@@ -42,7 +42,7 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
           }} />
           <p style={{
             fontFamily: mono,
-            fontSize: "0.504rem",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
@@ -102,7 +102,7 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
                 color: "#020617",
                 fontFamily: mono,
                 fontWeight: 700,
-                fontSize: "0.616rem",
+                fontSize: "0.714rem",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 padding: "0.875rem 1.5rem",
@@ -124,7 +124,7 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
                 color: "rgba(212,144,10,0.75)",
                 fontFamily: mono,
                 fontWeight: 700,
-                fontSize: "0.504rem",
+                fontSize: "0.714rem",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 padding: "0.75rem 1.5rem",

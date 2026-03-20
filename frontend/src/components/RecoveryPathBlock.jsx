@@ -15,8 +15,8 @@ export default function RecoveryPathBlock() {
 
         <FadeIn>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.72rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.762rem",
             color: "rgba(248,113,113,0.85)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
@@ -41,7 +41,7 @@ export default function RecoveryPathBlock() {
           </h2>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.15rem",
             color: "rgba(255,255,255,0.82)",
             lineHeight: 1.85,
@@ -52,7 +52,7 @@ export default function RecoveryPathBlock() {
           </p>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.15rem",
             color: "rgba(255,255,255,0.82)",
             lineHeight: 1.85,
@@ -83,8 +83,8 @@ export default function RecoveryPathBlock() {
               borderTop: "2px solid rgba(212,144,10,0.4)",
             }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.72rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.762rem",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -94,7 +94,7 @@ export default function RecoveryPathBlock() {
                 Pre-Audit / New Authority
               </p>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.82)",
                 lineHeight: 1.75,
@@ -110,7 +110,7 @@ export default function RecoveryPathBlock() {
                   display: "inline-block",
                   background: "var(--gold-primary)",
                   color: "var(--bg-onyx)",
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.8rem",
                   letterSpacing: "0.1em",
@@ -139,8 +139,8 @@ export default function RecoveryPathBlock() {
               borderTop: "2px solid rgba(248,113,113,0.6)",
             }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.72rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.762rem",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -150,7 +150,7 @@ export default function RecoveryPathBlock() {
                 Conditional Rating / Findings Received
               </p>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.82)",
                 lineHeight: 1.75,
@@ -166,7 +166,7 @@ export default function RecoveryPathBlock() {
                   display: "inline-block",
                   background: "transparent",
                   color: "#f87171",
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.8rem",
                   letterSpacing: "0.1em",
@@ -194,7 +194,7 @@ export default function RecoveryPathBlock() {
 
         <FadeIn delay={260}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
             fontSize: "1rem",
             color: "rgba(255,255,255,0.45)",

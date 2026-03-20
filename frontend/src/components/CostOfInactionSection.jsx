@@ -25,8 +25,8 @@ export default function CostOfInactionSection() {
 
           {/* Section label */}
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.60rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -54,8 +54,8 @@ export default function CostOfInactionSection() {
           {/* Body */}
           <div style={{ maxWidth: 680, marginBottom: "3.5rem" }}>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.05rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
               color: "rgba(255,255,255,0.68)",
               lineHeight: 1.85,
               marginBottom: "1.25rem",
@@ -63,8 +63,8 @@ export default function CostOfInactionSection() {
               When FMCSA revokes or suspends your operating authority, your MC number goes inactive in SAFER within hours. Brokers stop tendering loads. Drivers can't legally run under your authority. Shippers reassign your freight. Your insurance carrier is notified.
             </p>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.05rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
               color: "rgba(255,255,255,0.68)",
               lineHeight: 1.85,
               margin: 0,
@@ -92,8 +92,8 @@ export default function CostOfInactionSection() {
                   {s.value}{s.suffix || ""}
                 </p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.875rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "var(--text-sm)",
                   color: "rgba(255,255,255,0.45)",
                   lineHeight: 1.55,
                   margin: 0,
@@ -113,8 +113,8 @@ export default function CostOfInactionSection() {
             paddingBottom: "0.25rem",
           }}>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.05rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
               fontStyle: "italic",
               color: "rgba(255,255,255,0.62)",
               lineHeight: 1.8,
@@ -123,8 +123,8 @@ export default function CostOfInactionSection() {
               "I've seen operators survive ugly fines. I've seen operators survive conditional ratings with the right documentation in place. I have not seen many small carriers come back from a full revocation — because by the time it happens, the financial damage is already done."
             </p>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.62rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
               textTransform: "uppercase",

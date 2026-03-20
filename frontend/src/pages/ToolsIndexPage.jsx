@@ -33,8 +33,8 @@ const COMING = [
   },
 ];
 
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 const display = "'Playfair Display', serif";
 
 export default function ToolsIndexPage() {
@@ -51,7 +51,7 @@ export default function ToolsIndexPage() {
           <h1 style={{ fontFamily: display, fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3.25rem)", color: "#FFFFFF", letterSpacing: "-0.025em", marginBottom: "1rem" }}>
             Built for the Numbers.
           </h1>
-          <p style={{ fontFamily: sans, fontSize: "1.05rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.78, maxWidth: 520 }}>
+          <p style={{ fontFamily: sans, fontSize: "1.1rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.78, maxWidth: 520 }}>
             Free calculation tools for owner-operators and new motor carriers. Know your cost structure before you take the call.
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function ToolsIndexPage() {
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "4rem 1.5rem 6rem" }}>
 
         {/* Available tools */}
-        <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(0,34,68,0.4)", marginBottom: "1.5rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(0,34,68,0.4)", marginBottom: "1.5rem" }}>
           AVAILABLE NOW
         </p>
 
@@ -68,7 +68,7 @@ export default function ToolsIndexPage() {
           <div key={tool.id} style={{ background: "#FFFFFF", border: "1px solid rgba(0,34,68,0.1)", marginBottom: "1.5rem", display: "flex", flexDirection: "column" }}>
             <div style={{ padding: "2rem 2rem 0" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.875rem", flexWrap: "wrap" }}>
-                <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(0,34,68,0.35)" }}>
+                <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(0,34,68,0.35)" }}>
                   {tool.code}
                 </p>
                 <span style={{ fontFamily: mono, fontSize: "0.44rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#1D9E75", background: "rgba(29,158,117,0.1)", border: "1px solid rgba(29,158,117,0.25)", padding: "0.15rem 0.5rem" }}>
@@ -78,7 +78,7 @@ export default function ToolsIndexPage() {
               <h2 style={{ fontFamily: display, fontWeight: 700, fontSize: "1.5rem", color: "#0b1628", letterSpacing: "-0.015em", marginBottom: "0.625rem" }}>
                 {tool.title}
               </h2>
-              <p style={{ fontFamily: sans, fontSize: "0.98rem", color: "rgba(0,34,68,0.62)", lineHeight: 1.75, maxWidth: 560, marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: sans, fontSize: "1rem", color: "rgba(0,34,68,0.62)", lineHeight: 1.75, maxWidth: 560, marginBottom: "1.75rem" }}>
                 {tool.description}
               </p>
 
@@ -121,7 +121,7 @@ export default function ToolsIndexPage() {
         ))}
 
         {/* Coming soon */}
-        <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(0,34,68,0.4)", marginBottom: "1.5rem", marginTop: "3rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(0,34,68,0.4)", marginBottom: "1.5rem", marginTop: "3rem" }}>
           IN THE PIPELINE
         </p>
 

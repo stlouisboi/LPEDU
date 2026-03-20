@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 const LABEL_STYLE = {
-  fontFamily: "'IBM Plex Mono', monospace",
-  fontSize: "0.60rem",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.714rem",
   fontWeight: 700,
   letterSpacing: "0.16em",
   textTransform: "uppercase",
@@ -10,7 +10,7 @@ const LABEL_STYLE = {
 };
 
 const BODY_STYLE = {
-  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   fontSize: "0.938rem",
   color: "rgba(255,255,255,0.72)",
   lineHeight: 1.82,
@@ -66,8 +66,8 @@ export default function FailureAnalysisSection() {
 
               {/* Carrier meta bar */}
               <div style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.65rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 fontWeight: 700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
@@ -100,7 +100,7 @@ export default function FailureAnalysisSection() {
               <div style={{ marginBottom: "2rem" }}>
                 <p style={{ ...LABEL_STYLE, color: "rgba(200,60,60,0.70)" }}>The Result</p>
                 <p style={{ ...BODY_STYLE, marginBottom: 0 }}>
-                  Under <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.85em", color: "rgba(255,255,255,0.55)" }}>49 CFR § 385.321</span>, dispatching an unqualified driver is an automatic failure. The authority was revoked 15 days later.
+                  Under <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85em", color: "rgba(255,255,255,0.55)" }}>49 CFR § 385.321</span>, dispatching an unqualified driver is an automatic failure. The authority was revoked 15 days later.
                 </p>
               </div>
 
@@ -126,8 +126,8 @@ export default function FailureAnalysisSection() {
                   $19,246
                 </p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.875rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "var(--text-sm)",
                   color: "rgba(255,255,255,0.48)",
                   lineHeight: 1.7,
                   margin: 0,
@@ -160,8 +160,8 @@ export default function FailureAnalysisSection() {
                   borderBottom: "1px solid rgba(255,255,255,0.06)",
                 }}>
                   <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.75rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.762rem",
                     color: "#3d9970",
                     fontWeight: 700,
                     flexShrink: 0,
@@ -171,7 +171,7 @@ export default function FailureAnalysisSection() {
                     <p style={{ ...LABEL_STYLE, color: "#3d9970", marginBottom: "0.25rem" }}>
                       Around — Intact
                     </p>
-                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
                       Insurance was current. All external filings in order.
                     </p>
                   </div>
@@ -180,8 +180,8 @@ export default function FailureAnalysisSection() {
                 {/* Through — failure */}
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
                   <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.75rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.762rem",
                     color: "#c0392b",
                     fontWeight: 700,
                     flexShrink: 0,
@@ -191,7 +191,7 @@ export default function FailureAnalysisSection() {
                     <p style={{ ...LABEL_STYLE, color: "#c0392b", marginBottom: "0.25rem" }}>
                       Through — Failed
                     </p>
-                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
                       Compliance backbone not installed. Driver Qualification File incomplete.
                     </p>
                   </div>
@@ -201,8 +201,8 @@ export default function FailureAnalysisSection() {
                   marginTop: "1.25rem",
                   paddingTop: "1.25rem",
                   borderTop: "1px solid rgba(255,255,255,0.06)",
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.80rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.857rem",
                   color: "rgba(255,255,255,0.35)",
                   lineHeight: 1.6,
                   fontStyle: "italic",
@@ -221,7 +221,7 @@ export default function FailureAnalysisSection() {
                   What the Standard Installs
                 </p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.90rem",
                   color: "rgba(255,255,255,0.65)",
                   lineHeight: 1.78,
@@ -236,8 +236,8 @@ export default function FailureAnalysisSection() {
                 to="/standards/16-deadly-sins"
                 data-testid="failure-patterns-link"
                 style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.65rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.714rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",

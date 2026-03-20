@@ -20,8 +20,8 @@ const AUTO_MODEL = [
 ];
 
 const TABLE_HEADER = {
-  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-  fontSize: "0.616rem",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.714rem",
   fontWeight: 700,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
@@ -32,7 +32,7 @@ const TABLE_HEADER = {
 };
 
 const CELL = {
-  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   fontSize: "0.896rem",
   color: "rgba(255,255,255,0.80)",
   padding: "0.875rem 1.25rem",
@@ -43,8 +43,8 @@ const CELL = {
 
 const CODE_CELL = {
   ...CELL,
-  fontFamily: "'IBM Plex Mono', monospace",
-  fontSize: "0.728rem",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.762rem",
   color: "#d4900a",
   whiteSpace: "nowrap",
 };
@@ -65,7 +65,7 @@ export default function SystemArchitectureSection() {
         <div style={{ marginBottom: "3.5rem", display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: "1.5rem" }}>
           <div>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: "#d4900a", marginBottom: "0.75rem",
@@ -85,8 +85,8 @@ export default function SystemArchitectureSection() {
               The LaunchPath Operating Standard installs four operational systems and four industrial guards.
             </h2>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "0.98rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem",
               color: "rgba(255,255,255,0.82)",
               lineHeight: 1.8,
               maxWidth: 520,
@@ -95,8 +95,8 @@ export default function SystemArchitectureSection() {
             </p>
           </div>
           <div style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.728rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.762rem",
             color: "rgba(212,144,10,0.85)",
             border: "1px solid rgba(212,144,10,0.35)",
             padding: "0.6rem 1rem",
@@ -110,7 +110,7 @@ export default function SystemArchitectureSection() {
         {/* ── Table 1: Systems ───────────────────────────── */}
         <div style={{ marginBottom: "3rem" }}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
@@ -131,7 +131,7 @@ export default function SystemArchitectureSection() {
                   <tr key={i} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.015)" : "transparent" }}>
                     <td style={CODE_CELL}>{row.code}</td>
                     <td style={{ ...CELL, fontWeight: 600, color: "rgba(255,255,255,0.90)" }}>{row.system}</td>
-                    <td style={{ ...CELL, fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.784rem", color: "rgba(255,255,255,0.75)" }}>{row.reg}</td>
+                    <td style={{ ...CELL, fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.75)" }}>{row.reg}</td>
                     <td style={CELL}>{row.fn}</td>
                   </tr>
                 ))}
@@ -143,7 +143,7 @@ export default function SystemArchitectureSection() {
         {/* ── Table 2: Guards ────────────────────────────── */}
         <div style={{ marginBottom: "3rem" }}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",
@@ -165,7 +165,7 @@ export default function SystemArchitectureSection() {
                     <td style={CODE_CELL}>{row.code}</td>
                     <td style={{ ...CELL, fontWeight: 600, color: "rgba(255,255,255,0.90)" }}>{row.guard}</td>
                     <td style={CELL}>{row.protects}</td>
-                    <td style={{ ...CELL, fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.784rem", color: "rgba(255,255,255,0.75)" }}>{row.reg}</td>
+                    <td style={{ ...CELL, fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.75)" }}>{row.reg}</td>
                   </tr>
                 ))}
               </tbody>
@@ -176,7 +176,7 @@ export default function SystemArchitectureSection() {
         {/* ── Table 3: AUTO Protection Model ────────────── */}
         <div>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.65)", marginBottom: "0.75rem",

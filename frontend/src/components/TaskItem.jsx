@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 
 const STATUS_CONFIG = {
   pending:       { label: "PENDING",       color: "#64748B", bg: "rgba(100,116,139,0.08)", border: "rgba(100,116,139,0.2)",  dot: "#64748B",  glow: "rgba(100,116,139,0.4)" },
@@ -56,7 +56,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
 
         {/* Task ID */}
         <span style={{
-          fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+          fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
           letterSpacing: "0.14em", color: "rgba(212,144,10,0.85)",
           textTransform: "uppercase", flexShrink: 0,
         }}>
@@ -83,7 +83,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
 
         {/* Task name — grows */}
         <span style={{
-          fontFamily: sans, fontWeight: 600, fontSize: "0.875rem",
+          fontFamily: sans, fontWeight: 600, fontSize: "var(--text-sm)",
           color: task.status === "verified" ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.92)",
           flex: 1, minWidth: 120,
           textDecoration: task.status === "verified" ? "none" : "none",
@@ -95,7 +95,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
         <span
           data-testid={`task-status-${task.taskId.toLowerCase()}`}
           style={{
-            fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+            fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
             letterSpacing: "0.12em", color: status.color,
             textTransform: "uppercase", flexShrink: 0,
             padding: "0.2rem 0.5rem",
@@ -108,7 +108,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
 
         {/* Expand chevron */}
         <span style={{
-          fontFamily: mono, fontSize: "0.616rem",
+          fontFamily: mono, fontSize: "0.714rem",
           color: "rgba(255,255,255,0.25)", flexShrink: 0,
           transform: expanded ? "rotate(180deg)" : "none",
           transition: "transform 0.2s",
@@ -123,7 +123,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
         }}>
           {/* Description */}
           <p style={{
-            fontFamily: sans, fontSize: "0.784rem",
+            fontFamily: sans, fontSize: "0.857rem",
             color: "rgba(255,255,255,0.52)", lineHeight: 1.75,
             marginTop: "0.875rem", marginBottom: "0.875rem", maxWidth: 520,
           }}>
@@ -140,14 +140,14 @@ export default function TaskItem({ task, onSubmit, loading }) {
               maxWidth: 520,
             }}>
               <p style={{
-                fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+                fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                 letterSpacing: "0.12em", color: "#F87171",
                 textTransform: "uppercase", marginBottom: "0.35rem",
               }}>
                 COACH_NOTE / REMEDIATION_REQUIRED
               </p>
               <p style={{
-                fontFamily: sans, fontSize: "0.784rem",
+                fontFamily: sans, fontSize: "0.857rem",
                 color: "rgba(248,113,113,0.9)", lineHeight: 1.65,
               }}>
                 "{task.coachNote}"
@@ -158,7 +158,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
           {/* Verified state */}
           {task.status === "verified" && (
             <p style={{
-              fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.14em", color: "rgba(34,197,94,0.75)",
               textTransform: "uppercase",
             }}>
@@ -172,7 +172,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
           {/* Submitted state */}
           {task.status === "submitted" && (
             <p style={{
-              fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.14em", color: "rgba(125,211,252,0.7)",
               textTransform: "uppercase",
             }}>
@@ -191,7 +191,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
                 background: task.status === "needs_changes" ? "rgba(248,113,113,0.12)" : "rgba(125,211,252,0.1)",
                 border: `1px solid ${task.status === "needs_changes" ? "rgba(248,113,113,0.35)" : "rgba(125,211,252,0.3)"}`,
                 color: task.status === "needs_changes" ? "#F87171" : "#7DD3FC",
-                fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+                fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 padding: "0.5rem 1rem", cursor: isSubmitting ? "wait" : "pointer",
                 opacity: isSubmitting ? 0.6 : 1,

@@ -7,8 +7,8 @@ const goldDim = "rgba(197,160,89,0.75)";
 const navy = "#001A33";
 const dark = "#080f1e";
 const card = "#0D1929";
-const mono = "'IBM Plex Mono', monospace";
-const body = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const body = "'Inter', sans-serif";
 const condensed = "'Playfair Display', serif";
 
 const STATUS_CONFIG = {
@@ -20,7 +20,7 @@ const STATUS_CONFIG = {
 function StatusBadge({ status }) {
   const cfg = STATUS_CONFIG[status] || STATUS_CONFIG.pending_review;
   return (
-    <span style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: cfg.color, background: cfg.bg, padding: "0.25rem 0.6rem" }}>
+    <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: cfg.color, background: cfg.bg, padding: "0.25rem 0.6rem" }}>
       {cfg.label}
     </span>
   );
@@ -28,7 +28,7 @@ function StatusBadge({ status }) {
 
 function LaneTag({ lane }) {
   return (
-    <span style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(197,160,89,0.70)", background: "rgba(197,160,89,0.07)", padding: "0.2rem 0.5rem" }}>
+    <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(197,160,89,0.70)", background: "rgba(197,160,89,0.07)", padding: "0.2rem 0.5rem" }}>
       {lane === "box_truck" ? "Box Truck" : "Semi"}
     </span>
   );
@@ -71,7 +71,7 @@ function AdminLoginGate({ onSuccess }) {
 
   return (
     <div style={{ maxWidth: 420, margin: "0 auto", padding: "112px 24px 80px" }}>
-      <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "1.25rem" }}>
         LP-ADM-001 | STATION CUSTODIAN
       </p>
       <h1 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2rem" }}>
@@ -79,7 +79,7 @@ function AdminLoginGate({ onSuccess }) {
       </h1>
       <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
         <div>
-          <label style={{ display: "block", fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
+          <label style={{ display: "block", fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
             Email
           </label>
           <input
@@ -94,7 +94,7 @@ function AdminLoginGate({ onSuccess }) {
           />
         </div>
         <div>
-          <label style={{ display: "block", fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
+          <label style={{ display: "block", fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
             Password
           </label>
           <input
@@ -109,7 +109,7 @@ function AdminLoginGate({ onSuccess }) {
           />
         </div>
         {state === "error" && (
-          <p style={{ fontFamily: body, fontSize: "0.875rem", color: "#f87171", fontStyle: "italic" }}>
+          <p style={{ fontFamily: body, fontSize: "var(--text-sm)", color: "#f87171", fontStyle: "italic" }}>
             Invalid credentials or insufficient access.
           </p>
         )}
@@ -120,7 +120,7 @@ function AdminLoginGate({ onSuccess }) {
           style={{
             minHeight: 48, background: gold, color: navy,
             border: "none", fontFamily: body, fontWeight: 700,
-            fontSize: "0.925rem", letterSpacing: "0.08em", textTransform: "uppercase",
+            fontSize: "var(--text-sm)", letterSpacing: "0.08em", textTransform: "uppercase",
             cursor: state === "loading" ? "wait" : "pointer",
             opacity: state === "loading" ? 0.7 : 1, transition: "background 0.2s",
           }}
@@ -221,7 +221,7 @@ export default function AdminAdmissionsPage() {
       {/* Auth checking */}
       {authState === "checking" && (
         <div style={{ maxWidth: 420, margin: "0 auto", padding: "112px 24px", textAlign: "center" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>Verifying access...</p>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>Verifying access...</p>
         </div>
       )}
 
@@ -237,7 +237,7 @@ export default function AdminAdmissionsPage() {
           {/* Header */}
           <div style={{ marginBottom: "2.5rem", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
             <div>
-              <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
                 LP-ADM-001 | STATION CUSTODIAN
               </p>
               <h1 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "0.75rem" }}>
@@ -251,7 +251,7 @@ export default function AdminAdmissionsPage() {
               data-testid="admin-logout-btn"
               onClick={handleLogout}
               style={{
-                fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+                fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                 letterSpacing: "0.14em", textTransform: "uppercase",
                 padding: "0.625rem 1.25rem", background: "transparent",
                 color: "rgba(255,255,255,0.40)", border: "1px solid rgba(255,255,255,0.12)",
@@ -274,7 +274,7 @@ export default function AdminAdmissionsPage() {
             ].map((s) => (
               <div key={s.label} style={{ background: card, padding: "1.25rem 1.5rem" }}>
                 <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.75rem", color: s.color, marginBottom: "0.2rem", lineHeight: 1 }}>{s.value}</p>
-                <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.40)" }}>{s.label}</p>
+                <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.40)" }}>{s.label}</p>
               </div>
             ))}
           </div>
@@ -287,7 +287,7 @@ export default function AdminAdmissionsPage() {
                 data-testid={tab.testid}
                 onClick={() => setFilter(tab.key)}
                 style={{
-                  fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+                  fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                   letterSpacing: "0.12em", textTransform: "uppercase",
                   padding: "0.625rem 1.25rem",
                   background: filter === tab.key ? gold : card,
@@ -301,7 +301,7 @@ export default function AdminAdmissionsPage() {
             <button
               onClick={fetchRequests}
               style={{
-                fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.12em",
+                fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em",
                 textTransform: "uppercase", padding: "0.625rem 1.25rem", background: "transparent",
                 color: "rgba(197,160,89,0.55)", border: "1px solid rgba(197,160,89,0.25)",
                 cursor: "pointer", marginLeft: "auto",
@@ -314,18 +314,18 @@ export default function AdminAdmissionsPage() {
           {/* Table */}
           {loading ? (
             <div style={{ textAlign: "center", padding: "3rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>Loading...</p>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>Loading...</p>
             </div>
           ) : filtered.length === 0 ? (
             <div style={{ background: card, padding: "3rem", textAlign: "center" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>No records</p>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>No records</p>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               {/* Header */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 210px 140px 110px 130px 170px", background: "#0a1220", padding: "0.75rem 1.25rem", gap: "1rem" }}>
                 {["Carrier / Contact", "Compliance Status", "Submitted", "Lane", "Status", "Actions"].map((h) => (
-                  <p key={h} style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", margin: 0 }}>{h}</p>
+                  <p key={h} style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", margin: 0 }}>{h}</p>
                 ))}
               </div>
 
@@ -342,14 +342,14 @@ export default function AdminAdmissionsPage() {
                   }}
                 >
                   <div>
-                    <p style={{ fontFamily: body, fontWeight: 600, fontSize: "0.9rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{req.carrier_name}</p>
-                    <p style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(197,160,89,0.65)" }}>{req.email}</p>
-                    {req.dot_mc_number && <p style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(255,255,255,0.35)" }}>{req.dot_mc_number}</p>}
+                    <p style={{ fontFamily: body, fontWeight: 600, fontSize: "var(--text-sm)", color: "#FFFFFF", marginBottom: "0.2rem" }}>{req.carrier_name}</p>
+                    <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(197,160,89,0.65)" }}>{req.email}</p>
+                    {req.dot_mc_number && <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)" }}>{req.dot_mc_number}</p>}
                   </div>
 
-                  <p style={{ fontSize: "0.784rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.4 }}>{req.compliance_status}</p>
+                  <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.4 }}>{req.compliance_status}</p>
 
-                  <p style={{ fontFamily: mono, fontSize: "0.56rem", color: "rgba(255,255,255,0.40)" }}>
+                  <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.40)" }}>
                     {req.submission_date ? new Date(req.submission_date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—"}
                   </p>
 
@@ -363,7 +363,7 @@ export default function AdminAdmissionsPage() {
                         data-testid={`approve-btn-${req.id}`}
                         disabled={updating === req.id}
                         onClick={() => updateStatus(req.id, "approved")}
-                        style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.35rem 0.75rem", background: "rgba(74,222,128,0.10)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.25)", cursor: "pointer" }}
+                        style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.35rem 0.75rem", background: "rgba(74,222,128,0.10)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.25)", cursor: "pointer" }}
                       >
                         Approve
                       </button>
@@ -373,7 +373,7 @@ export default function AdminAdmissionsPage() {
                         data-testid={`reject-btn-${req.id}`}
                         disabled={updating === req.id}
                         onClick={() => updateStatus(req.id, "rejected")}
-                        style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.35rem 0.75rem", background: "rgba(248,113,113,0.08)", color: "#f87171", border: "1px solid rgba(248,113,113,0.20)", cursor: "pointer" }}
+                        style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.35rem 0.75rem", background: "rgba(248,113,113,0.08)", color: "#f87171", border: "1px solid rgba(248,113,113,0.20)", cursor: "pointer" }}
                       >
                         Decline
                       </button>

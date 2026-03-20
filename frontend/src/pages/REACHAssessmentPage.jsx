@@ -222,12 +222,12 @@ const STATUS_STYLE = {
 };
 
 function CategoryBreakdown({ scores }) {
-  const mono = "'IBM Plex Mono', monospace";
-  const sans = "'Atkinson Hyperlegible', sans-serif";
+  const mono = "'Inter', sans-serif";
+  const sans = "'Inter', sans-serif";
   return (
     <div data-testid="category-breakdown" style={{ marginBottom: "2.5rem" }}>
       <p style={{
-        fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
+        fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
         letterSpacing: "0.22em", textTransform: "uppercase",
         color: "rgba(212,144,10,0.65)", marginBottom: "1.25rem",
       }}>
@@ -251,18 +251,18 @@ function CategoryBreakdown({ scores }) {
               {/* Header row */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: status === "pass" ? "0.25rem" : "0.5rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-                  <span style={{ fontFamily: mono, fontSize: "0.9rem", color: "#d4900a", fontWeight: 700 }}>
+                  <span style={{ fontFamily: mono, fontSize: "var(--text-sm)", color: "#d4900a", fontWeight: 700 }}>
                     {cat.code}
                   </span>
-                  <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
                     — {cat.name}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span style={{ fontFamily: mono, fontSize: "0.784rem", color: s.color, fontWeight: 700 }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.857rem", color: s.color, fontWeight: 700 }}>
                     {score}/{cat.max}
                   </span>
-                  <span style={{ fontSize: "0.72rem", color: s.color, lineHeight: 1 }}>
+                  <span style={{ fontSize: "0.762rem", color: s.color, lineHeight: 1 }}>
                     {s.icon}
                   </span>
                 </div>
@@ -295,7 +295,7 @@ function getFlaggedNames(scores) {
 
 // Result-specific CTA rows
 function ResultCTAs({ result }) {
-  const sans = "'Atkinson Hyperlegible', sans-serif";
+  const sans = "'Inter', sans-serif";
   const btnBase = {
     display: "inline-flex", alignItems: "center", justifyContent: "center",
     minHeight: 48, fontFamily: sans, fontWeight: 700,
@@ -395,7 +395,7 @@ function RiskMap({ scores, animate }) {
   return (
     <div data-testid="risk-map" style={{ marginBottom: "2.5rem" }}>
       <p style={{
-        fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.78rem", fontWeight: 700,
+        fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 700,
         letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
         marginBottom: "1.25rem",
       }}>
@@ -407,10 +407,10 @@ function RiskMap({ scores, animate }) {
         return (
           <div key={row.label} style={{ marginBottom: "1rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.35rem" }}>
-              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", color: "var(--text-muted)" }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)" }}>
                 {row.label}
               </span>
-              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.924rem", fontWeight: 600, color: barColor }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", fontWeight: 600, color: barColor }}>
                 {row.val}/{row.max}
               </span>
             </div>
@@ -547,7 +547,7 @@ export default function REACHAssessmentPage() {
   };
 
   return (
-    <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
 
       {/* ── INTRO — full clinical diagnostic section ─── */}
@@ -570,13 +570,13 @@ export default function REACHAssessmentPage() {
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
             ))}
-            <span style={{ fontSize: "0.875rem", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>
+            <span style={{ fontSize: "var(--text-sm)", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>
               {currentCatIdx + 1} of 5
             </span>
           </div>
 
           <p style={{
-            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.857rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#d4900a", marginBottom: "2rem",
           }}>
             {CATEGORIES[currentCatIdx].full} — {CATEGORIES[currentCatIdx].key}
@@ -602,7 +602,7 @@ export default function REACHAssessmentPage() {
                     background: isSelected ? "rgba(212,144,10,0.15)" : "rgba(255,255,255,0.04)",
                     border: `1px solid ${isSelected ? "#d4900a" : "rgba(255,255,255,0.12)"}`,
                     color: isSelected ? "#d4900a" : "var(--text-muted)",
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
                     padding: "1.1rem 1.5rem", textAlign: "left", cursor: "pointer",
                     transition: "all 0.15s",
                   }}
@@ -625,7 +625,7 @@ export default function REACHAssessmentPage() {
             })}
           </div>
 
-          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.38)", marginTop: "2rem", fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.06em" }}>
+          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.38)", marginTop: "2rem", fontFamily: "'Inter', sans-serif", letterSpacing: "0.06em" }}>
             {CATEGORIES[currentCatIdx].full}
           </p>
         </div>
@@ -658,11 +658,11 @@ export default function REACHAssessmentPage() {
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
             ))}
-            <span style={{ fontSize: "0.875rem", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>5 of 5</span>
+            <span style={{ fontSize: "var(--text-sm)", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>5 of 5</span>
           </div>
 
           <p style={{
-            fontSize: "0.78rem", fontWeight: 700, letterSpacing: "0.16em",
+            fontSize: "0.857rem", fontWeight: 700, letterSpacing: "0.16em",
             textTransform: "uppercase", color: "#d4900a", marginBottom: "2rem",
           }}>
             OPERATIONAL DISCIPLINE — H
@@ -685,7 +685,7 @@ export default function REACHAssessmentPage() {
             style={{
               width: "100%", background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.15)", color: "#FFFFFF",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
               padding: "1rem 1.25rem", resize: "vertical", boxSizing: "border-box",
               marginBottom: "1.5rem", outline: "none",
             }}
@@ -696,7 +696,7 @@ export default function REACHAssessmentPage() {
             onClick={handleOpenSubmit}
             style={{
               minHeight: 52, background: "#d4900a", color: "#0b1628", border: "none",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "1.05rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.1rem",
               letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer",
               padding: "1rem 2.5rem", transition: "background 0.2s",
             }}
@@ -705,7 +705,7 @@ export default function REACHAssessmentPage() {
           >
             Complete Assessment
           </button>
-          <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.38)", marginTop: "1rem", fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.06em" }}>
+          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.38)", marginTop: "1rem", fontFamily: "'Inter', sans-serif", letterSpacing: "0.06em" }}>
             OPERATIONAL DISCIPLINE — FINAL QUESTION
           </p>
         </div>
@@ -718,14 +718,14 @@ export default function REACHAssessmentPage() {
           paddingBottom: "80px",
           background: "#000A14",
           minHeight: "calc(100vh - 64px)",
-          fontFamily: "'IBM Plex Mono', monospace",
+          fontFamily: "'Inter', sans-serif",
         }}>
           <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 1.5rem" }}>
 
             {/* System header */}
             <div style={{ marginBottom: "2.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)" }}>
               <p style={{
-                fontSize: "0.504rem",
+                fontSize: "0.714rem",
                 color: "rgba(212,144,10,0.6)",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
@@ -785,7 +785,7 @@ export default function REACHAssessmentPage() {
                     transition: "opacity 0.35s ease",
                   }}>
                     <span style={{
-                      fontSize: "0.784rem",
+                      fontSize: "0.857rem",
                       color: state === "done" ? "#22c55e" : state === "scanning" ? "#d4900a" : "rgba(255,255,255,0.25)",
                       fontWeight: 700,
                       minWidth: 14,
@@ -793,7 +793,7 @@ export default function REACHAssessmentPage() {
                       {state === "done" ? "✓" : state === "scanning" ? "◉" : "○"}
                     </span>
                     <span style={{
-                      fontSize: "0.616rem",
+                      fontSize: "0.714rem",
                       color: state === "done" ? "rgba(255,255,255,0.85)" : state === "scanning" ? "#d4900a" : "rgba(255,255,255,0.3)",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -838,8 +838,8 @@ export default function REACHAssessmentPage() {
           }}>
             <div style={{ maxWidth: 720, margin: "0 auto" }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.504rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 color: "rgba(212,144,10,0.55)",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
@@ -855,9 +855,9 @@ export default function REACHAssessmentPage() {
                   padding: "0.5rem 1.25rem",
                 }}>
                   <p style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
-                    fontSize: "0.784rem",
+                    fontSize: "0.857rem",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     color: cfg.color,
@@ -867,8 +867,8 @@ export default function REACHAssessmentPage() {
                   </p>
                 </div>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.616rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.714rem",
                   color: "rgba(255,255,255,0.35)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -893,7 +893,7 @@ export default function REACHAssessmentPage() {
                 {cfg.bullets.map((b, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                     <span style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontFamily: "'Inter', sans-serif",
                       color: cfg.color,
                       fontSize: "0.672rem",
                       marginTop: "0.25rem",
@@ -901,8 +901,8 @@ export default function REACHAssessmentPage() {
                       fontWeight: 700,
                     }}>—</span>
                     <span style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                      fontSize: "1.008rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "1rem",
                       color: "rgba(255,255,255,0.75)",
                       lineHeight: 1.7,
                     }}>{b}</span>
@@ -923,15 +923,15 @@ export default function REACHAssessmentPage() {
             {/* ── Authority Risk Map ── */}
             <div style={{ marginBottom: "2.5rem" }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em",
                 textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "1.5rem",
               }}>
                 AUTHORITY RISK MAP
               </p>
               <RiskMap scores={scores} animate={animateMap} />
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.56rem",
+                fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
                 color: "rgba(255,255,255,0.28)", letterSpacing: "0.1em",
                 textTransform: "uppercase", marginTop: "1rem",
               }}>
@@ -951,12 +951,12 @@ export default function REACHAssessmentPage() {
                 marginBottom: "2.5rem",
               }}>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.60rem", fontWeight: 700,
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
                   letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)",
                   marginBottom: "0.875rem",
                 }}>NEXT STEP — QUALIFIED OPERATOR</p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem",
+                  fontFamily: "'Inter', sans-serif", fontSize: "1rem",
                   color: "rgba(255,255,255,0.80)", lineHeight: 1.80, marginBottom: "1.5rem",
                 }}>
                   {scores.a < 9
@@ -968,7 +968,7 @@ export default function REACHAssessmentPage() {
                   data-testid="cta-standard-direct"
                   style={{
                     display: "inline-block", background: "#d4900a", color: "#0b1628",
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
                     letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none",
                     padding: "1rem 2rem", transition: "background 0.2s",
                   }}
@@ -991,12 +991,12 @@ export default function REACHAssessmentPage() {
                   marginBottom: "2.5rem",
                 }}>
                   <p style={{
-                    fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.60rem", fontWeight: 700,
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
                     letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(245,158,11,0.65)",
                     marginBottom: "0.875rem",
                   }}>NEXT STEP — CLOSE THE GAPS FIRST</p>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "1rem",
                     color: "rgba(255,255,255,0.75)", lineHeight: 1.80, marginBottom: "1.5rem",
                   }}>
                     {flagged.length > 0
@@ -1005,12 +1005,12 @@ export default function REACHAssessmentPage() {
                   </p>
                   <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
                     <a href="/16-deadly-sins" data-testid="cta-wait-sins"
-                      style={{ display: "inline-block", background: "#F59E0B", color: "#0b1628", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", transition: "background 0.2s" }}
+                      style={{ display: "inline-block", background: "#F59E0B", color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", transition: "background 0.2s" }}
                       onMouseEnter={e => e.currentTarget.style.background = "#f7b731"}
                       onMouseLeave={e => e.currentTarget.style.background = "#F59E0B"}
                     >Review the 16 Deadly Sins →</a>
                     <a href="/ground-0-briefing" data-testid="cta-wait-ground0"
-                      style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.65)", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.20)", transition: "all 0.2s" }}
+                      style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.20)", transition: "all 0.2s" }}
                       onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
                       onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                     >Begin Ground 0</a>
@@ -1028,18 +1028,18 @@ export default function REACHAssessmentPage() {
                 marginBottom: "2.5rem",
               }}>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.60rem", fontWeight: 700,
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
                   letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(248,113,113,0.65)",
                   marginBottom: "0.875rem",
                 }}>NEXT STEP — RESOLVE THE CONDITIONS FIRST</p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem",
+                  fontFamily: "'Inter', sans-serif", fontSize: "1rem",
                   color: "rgba(255,255,255,0.72)", lineHeight: 1.80, marginBottom: "1.5rem",
                 }}>
                   This result protects you from a preventable financial loss. The conditions that caused it are resolvable. The Knowledge Center contains the resources to address each one. Return when your score changes.
                 </p>
                 <a href="/knowledge-center" data-testid="cta-nogo-knowledge"
-                  style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.70)", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.22)", transition: "all 0.2s" }}
+                  style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.70)", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.22)", transition: "all 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
                   onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                 >Explore the Knowledge Center →</a>
@@ -1053,8 +1053,8 @@ export default function REACHAssessmentPage() {
                 paddingTop: "2rem",
               }}>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.56rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.714rem",
                   color: "rgba(212,144,10,0.65)",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -1063,8 +1063,8 @@ export default function REACHAssessmentPage() {
                   RECEIVE YOUR RESULTS BRIEF
                 </p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "1.008rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "1rem",
                   color: "rgba(255,255,255,0.65)",
                   lineHeight: 1.75,
                   marginBottom: "1.5rem",
@@ -1081,7 +1081,7 @@ export default function REACHAssessmentPage() {
                     placeholder="Your operating email address"
                     style={{
                       padding: "1rem 1.25rem",
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "1rem",
                       background: "rgba(255,255,255,0.05)",
                       border: "1px solid rgba(255,255,255,0.15)",
@@ -1099,9 +1099,9 @@ export default function REACHAssessmentPage() {
                       background: "#d4900a",
                       color: "#0b1628",
                       border: "none",
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 700,
-                      fontSize: "0.98rem",
+                      fontSize: "1rem",
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                       cursor: loading ? "wait" : "pointer",
@@ -1116,8 +1116,8 @@ export default function REACHAssessmentPage() {
                   </button>
                 </form>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.875rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "var(--text-sm)",
                   color: "rgba(255,255,255,0.4)",
                   marginTop: "0.875rem",
                   fontStyle: "italic",
@@ -1138,8 +1138,8 @@ export default function REACHAssessmentPage() {
                   return (
                     <div style={{ marginBottom: "2rem" }}>
                       <p style={{
-                        fontFamily: "'IBM Plex Mono', monospace",
-                        fontSize: "0.616rem",
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.714rem",
                         fontWeight: 700,
                         letterSpacing: "0.2em",
                         textTransform: "uppercase",
@@ -1150,8 +1150,8 @@ export default function REACHAssessmentPage() {
                       </p>
                       {flagged.length > 0 && (
                         <p style={{
-                          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                          fontSize: "1.008rem",
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "1rem",
                           color: "rgba(255,255,255,0.72)",
                           lineHeight: 1.75,
                           marginBottom: "1rem",
@@ -1164,8 +1164,8 @@ export default function REACHAssessmentPage() {
                         </p>
                       )}
                       <p style={{
-                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                        fontSize: "0.98rem",
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "1rem",
                         color: "rgba(255,255,255,0.52)",
                         lineHeight: 1.7,
                         marginBottom: 0,
@@ -1179,8 +1179,8 @@ export default function REACHAssessmentPage() {
                 {/* GO result simple message */}
                 {result === "GO" && (
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                    fontSize: "1.008rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "1rem",
                     color: "rgba(255,255,255,0.75)",
                     lineHeight: 1.75,
                     marginBottom: "2rem",

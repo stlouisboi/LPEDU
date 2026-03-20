@@ -39,8 +39,8 @@ export default function MidPageStatement() {
         <FadeIn y={24}>
 
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.72rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.762rem",
             fontWeight: 700,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
@@ -64,7 +64,7 @@ export default function MidPageStatement() {
           </h2>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "clamp(1rem, 2vw, 1.2rem)",
             color: "rgba(255,255,255,0.65)",
             lineHeight: 1.85,
@@ -96,7 +96,7 @@ export default function MidPageStatement() {
               }}>
                 <span style={{
                   fontFamily: "'Courier New', Courier, monospace",
-                  fontSize: "0.78rem",
+                  fontSize: "0.857rem",
                   color: "rgba(216,90,48,0.88)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -106,14 +106,14 @@ export default function MidPageStatement() {
                 }}>[SIN {sin.num}]</span>
                 <div>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                    fontSize: "0.95rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "var(--text-sm)",
                     fontWeight: 600,
                     color: "#D85A30",
                     marginBottom: "0.2rem",
                   }}>{sin.name}</p>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.88rem",
                     color: "rgba(255,255,255,0.76)",
                     lineHeight: 1.6,
@@ -134,8 +134,8 @@ export default function MidPageStatement() {
             gap: "1.5rem",
           }}>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "0.95rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "var(--text-sm)",
               color: "rgba(255,255,255,0.70)",
               lineHeight: 1.7,
               maxWidth: 420,
@@ -147,8 +147,8 @@ export default function MidPageStatement() {
               to="/standards/16-deadly-sins"
               data-testid="view-16-sins-link"
               style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.72rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.762rem",
                 fontWeight: 700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",

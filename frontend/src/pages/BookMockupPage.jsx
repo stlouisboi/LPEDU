@@ -479,8 +479,8 @@ function BookRenderer({ product }) {
         onClick={handleDownload}
         disabled={!ready}
         style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "0.784rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.857rem",
           fontWeight: 600,
           letterSpacing: "0.1em",
           textTransform: "uppercase",
@@ -512,8 +512,8 @@ export default function BookMockupPage() {
         {/* Header */}
         <div style={{ marginBottom: "4rem", borderBottom: "1px solid rgba(255,255,255,0.07)", paddingBottom: "3rem" }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             color: "rgba(212,144,10,0.75)",
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -533,8 +533,8 @@ export default function BookMockupPage() {
             3D Product Covers
           </h1>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.95rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.55)",
             lineHeight: 1.7,
             maxWidth: 480,
@@ -554,7 +554,7 @@ export default function BookMockupPage() {
               {/* Product label above book */}
               <div style={{ marginBottom: "1.25rem" }}>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.608rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
@@ -573,7 +573,7 @@ export default function BookMockupPage() {
                   {product.name.join(" ")}
                 </p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.8rem",
                   color: "rgba(255,255,255,0.40)",
                   marginTop: "0.2rem",
@@ -604,8 +604,8 @@ export default function BookMockupPage() {
         }}>
           <div style={{ width: 3, height: 48, background: "rgba(212,144,10,0.4)", flexShrink: 0, marginTop: 2 }} />
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.875rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.48)",
             lineHeight: 1.75,
           }}>

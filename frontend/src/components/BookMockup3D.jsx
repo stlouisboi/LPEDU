@@ -643,7 +643,7 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
           <button
             onClick={exportCover}
             style={{
-              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
               fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
               background: "#d4900a", color: "#0b1628", border: "none",
               padding: "0.75rem 1.5rem", cursor: "pointer", borderRadius: "3px",
@@ -654,7 +654,7 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
           <button
             onClick={exportThumb}
             style={{
-              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
               fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
               background: "transparent", color: "#d4900a",
               border: "1px solid rgba(212,144,10,0.5)",
@@ -679,13 +679,13 @@ export function BookInfoPanel({ productId }) {
       border: "1px solid rgba(212,144,10,0.2)",
       borderTop: `3px solid ${gold}`,
       padding: "1.75rem",
-      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+      fontFamily: "'Inter', sans-serif",
       color: "#FFFFFF",
       minWidth: 260,
       maxWidth: 320,
     }}>
       <p style={{
-        fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem",
+        fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
         letterSpacing: "0.15em", textTransform: "uppercase", color: gold,
         marginBottom: "0.5rem",
       }}>{product.code}</p>
@@ -698,16 +698,16 @@ export function BookInfoPanel({ productId }) {
       <PanelSection label="What's Inside" items={product.panel.whatsInside} gold={gold} />
 
       <div style={{ marginBottom: "1rem" }}>
-        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Regulatory Basis</p>
-        <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.regBasis}</p>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Regulatory Basis</p>
+        <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.regBasis}</p>
       </div>
       <div style={{ marginBottom: "1rem" }}>
-        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Domain</p>
-        <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.domain}</p>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Domain</p>
+        <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.domain}</p>
       </div>
       <div>
-        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Format</p>
-        <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.format}</p>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Format</p>
+        <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.format}</p>
       </div>
     </div>
   );
@@ -717,14 +717,14 @@ function PanelSection({ label, items, gold }) {
   return (
     <div style={{ marginBottom: "1.25rem" }}>
       <p style={{
-        fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem",
+        fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
         letterSpacing: "0.12em", textTransform: "uppercase", color: gold,
         marginBottom: "0.5rem",
       }}>{label}</p>
       <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.3rem" }}>
         {items.map((item, i) => (
           <li key={i} style={{
-            fontSize: "0.875rem", color: "rgba(255,255,255,0.8)",
+            fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.8)",
             paddingLeft: "1rem", position: "relative", lineHeight: 1.5,
           }}>
             <span style={{ position: "absolute", left: 0, color: gold, fontSize: "0.7rem" }}>›</span>

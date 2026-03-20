@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 const heading = "'Playfair Display', serif";
 
 const STATUS_COLORS = {
@@ -23,7 +23,7 @@ function SignalBadge({ signal, integrity, pulse }) {
       padding: "0.25rem 0.625rem",
     }}>
       <div style={{ width: 5, height: 5, borderRadius: "50%", background: color, boxShadow: `0 0 4px ${color}` }} />
-      <span style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.1em", color }}>
+      <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.1em", color }}>
         {signal}%
       </span>
     </div>
@@ -55,7 +55,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
       }}>
         {/* Carrier ID */}
         <span style={{
-          fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+          fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
           letterSpacing: "0.12em", color: "rgba(212,144,10,0.75)",
           textTransform: "uppercase", minWidth: 120,
         }}>
@@ -64,7 +64,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
 
         {/* Task ID */}
         <span style={{
-          fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+          fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
           letterSpacing: "0.12em", color: "rgba(125,211,252,0.85)",
           textTransform: "uppercase", minWidth: 80,
         }}>
@@ -73,7 +73,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
 
         {/* Task name */}
         <span style={{
-          fontFamily: sans, fontSize: "0.875rem", fontWeight: 600,
+          fontFamily: sans, fontSize: "var(--text-sm)", fontWeight: 600,
           color: "rgba(255,255,255,0.88)", flex: 1, minWidth: 160,
         }}>
           {task.name}
@@ -81,7 +81,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
 
         {/* Submitted at */}
         <span style={{
-          fontFamily: mono, fontSize: "0.504rem",
+          fontFamily: mono, fontSize: "0.714rem",
           letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)",
           textTransform: "uppercase", flexShrink: 0,
         }}>
@@ -95,7 +95,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
             onClick={() => onVerify(task.carrierId, task.taskId)}
             disabled={isLoading}
             style={{
-              fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.1em", textTransform: "uppercase",
               background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)",
               color: "#22C55E", padding: "0.35rem 0.75rem",
@@ -111,7 +111,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
             data-testid={`coach-remediate-${task.taskId.toLowerCase()}`}
             onClick={() => setShowNoteInput((x) => !x)}
             style={{
-              fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.1em", textTransform: "uppercase",
               background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.25)",
               color: "#F87171", padding: "0.35rem 0.75rem",
@@ -134,7 +134,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
             onChange={(e) => setNote(e.target.value)}
             placeholder="State the specific deficiency requiring correction..."
             style={{
-              width: "100%", fontFamily: sans, fontSize: "0.875rem",
+              width: "100%", fontFamily: sans, fontSize: "var(--text-sm)",
               background: "rgba(248,113,113,0.05)", border: "1px solid rgba(248,113,113,0.25)",
               color: "#FFFFFF", padding: "0.625rem 0.875rem",
               outline: "none", boxSizing: "border-box", marginBottom: "0.5rem",
@@ -144,7 +144,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
             onClick={() => { onRemediate(task.carrierId, task.taskId, note); setShowNoteInput(false); setNote(""); }}
             disabled={!note.trim()}
             style={{
-              fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.1em", textTransform: "uppercase",
               background: "rgba(248,113,113,0.12)", border: "1px solid rgba(248,113,113,0.35)",
               color: "#F87171", padding: "0.4rem 0.875rem",
@@ -237,7 +237,7 @@ export default function CoachRegistryPage() {
       <div style={{ fontFamily: sans, background: "#020617", minHeight: "100vh", color: "#FFF" }}>
         <Navbar />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.18em", color: "rgba(212,144,10,0.6)", textTransform: "uppercase" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.18em", color: "rgba(212,144,10,0.6)", textTransform: "uppercase" }}>
             INITIALIZING_REGISTRY...
           </p>
         </div>
@@ -260,7 +260,7 @@ export default function CoachRegistryPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
             <p style={{
-              fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.2em", textTransform: "uppercase",
               color: "rgba(212,144,10,0.65)", marginBottom: "0.25rem",
             }}>
@@ -283,7 +283,7 @@ export default function CoachRegistryPage() {
               data-testid="coach-refresh-btn"
               onClick={fetchData}
               style={{
-                fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+                fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 background: "rgba(212,144,10,0.08)", border: "1px solid rgba(212,144,10,0.25)",
                 color: "#d4900a", padding: "0.45rem 0.875rem", cursor: "pointer",
@@ -294,7 +294,7 @@ export default function CoachRegistryPage() {
             >
               [REFRESH_REGISTRY]
             </button>
-            <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>
               OPERATOR: {user?.name?.toUpperCase().slice(0, 20)}
             </p>
           </div>
@@ -307,7 +307,7 @@ export default function CoachRegistryPage() {
         <div style={{ display: "flex", gap: 0, marginBottom: "2.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)" }}>
           {[["registry", "REGISTRY"], ["deliverables", "DELIVERABLES"]].map(([id, label]) => (
             <button key={id} data-testid={`tab-${id}`} onClick={() => setActiveTab(id)} style={{
-              fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.18em",
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em",
               textTransform: "uppercase", padding: "0.75rem 1.5rem", background: "transparent",
               border: "none", borderBottom: activeTab === id ? "2px solid #d4900a" : "2px solid transparent",
               color: activeTab === id ? "#d4900a" : "rgba(255,255,255,0.38)",
@@ -328,7 +328,7 @@ export default function CoachRegistryPage() {
             display: "flex", alignItems: "center", gap: "0.75rem",
           }}>
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#7DD3FC", boxShadow: "0 0 6px rgba(125,211,252,0.6)", flexShrink: 0 }} />
-            <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", color: "#7DD3FC", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", color: "#7DD3FC", textTransform: "uppercase" }}>
               {submittedQueue.length} ARTIFACT{submittedQueue.length !== 1 ? "S" : ""} AWAITING VERIFICATION
             </p>
           </div>
@@ -338,7 +338,7 @@ export default function CoachRegistryPage() {
         <section style={{ marginBottom: "3rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1rem" }}>
             <p style={{
-              fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: "rgba(212,144,10,0.85)",
             }}>
@@ -352,7 +352,7 @@ export default function CoachRegistryPage() {
 
           {carriers.length === 0 ? (
             <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "2rem", textAlign: "center" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.616rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
                 NO_CARRIERS_REGISTERED
               </p>
             </div>
@@ -389,25 +389,25 @@ export default function CoachRegistryPage() {
                   onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
                   onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
                 >
-                  <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", color: "rgba(212,144,10,0.75)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", color: "rgba(212,144,10,0.75)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {c.carrierId}
                   </span>
-                  <span style={{ fontFamily: sans, fontSize: "0.875rem", fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>
+                  <span style={{ fontFamily: sans, fontSize: "var(--text-sm)", fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>
                     {c.name}
                   </span>
                   <span><SignalBadge signal={c.signal} integrity={c.integrity} pulse={c.pulse} /></span>
-                  <span style={{ fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.08em", color: "rgba(255,255,255,0.55)" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.08em", color: "rgba(255,255,255,0.55)" }}>
                     {c.verifiedTasks}/{c.totalTasks} VERIFIED
                   </span>
                   <span style={{
-                    fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+                    fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                     letterSpacing: "0.08em",
                     color: c.submittedTasks > 0 ? "#7DD3FC" : "rgba(255,255,255,0.28)",
                   }}>
                     {c.submittedTasks}
                   </span>
                   <span style={{
-                    fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+                    fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                     color: c.integrity >= 80 ? "#22C55E" : c.integrity >= 50 ? "#d4900a" : "#F87171",
                   }}>
                     {c.integrity}%
@@ -422,7 +422,7 @@ export default function CoachRegistryPage() {
         <section>
           <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1rem" }}>
             <p style={{
-              fontFamily: mono, fontSize: "0.616rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: submittedQueue.length > 0 ? "#7DD3FC" : "rgba(255,255,255,0.38)",
             }}>
@@ -430,7 +430,7 @@ export default function CoachRegistryPage() {
             </p>
             <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)" }} />
             <span style={{
-              fontFamily: mono, fontSize: "0.504rem", fontWeight: 700,
+              fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.12em", textTransform: "uppercase",
               color: submittedQueue.length > 0 ? "#7DD3FC" : "rgba(255,255,255,0.28)",
               padding: "0.2rem 0.5rem",
@@ -442,10 +442,10 @@ export default function CoachRegistryPage() {
 
           {submittedQueue.length === 0 ? (
             <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "2.5rem", textAlign: "center" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.616rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
                 QUEUE_EMPTY
               </p>
-              <p style={{ fontFamily: sans, fontSize: "0.875rem", color: "rgba(255,255,255,0.3)" }}>
+              <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.3)" }}>
                 No tasks pending verification.
               </p>
             </div>
@@ -549,14 +549,14 @@ function DeliverablesAdmin({ API, mono }) {
 
   const formatSize = (bytes) => bytes > 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
 
-  const labelStyle = { fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", display: "block", marginBottom: "0.4rem" };
-  const inputStyle = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", padding: "0.6rem 0.75rem", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", borderRadius: 2, boxSizing: "border-box" };
+  const labelStyle = { fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", display: "block", marginBottom: "0.4rem" };
+  const inputStyle = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", padding: "0.6rem 0.75rem", fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", borderRadius: 2, boxSizing: "border-box" };
 
   return (
     <div>
       {/* Upload form */}
       <div style={{ background: "#000A14", border: "1px solid rgba(212,144,10,0.15)", padding: "2rem", marginBottom: "2rem" }}>
-        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
           UPLOAD NEW DELIVERABLE
         </p>
         <form onSubmit={handleUpload}>
@@ -580,9 +580,9 @@ function DeliverablesAdmin({ API, mono }) {
             <label style={labelStyle}>PDF File *</label>
             <input data-testid="pdf-file-input" ref={fileRef} type="file" accept=".pdf" style={{ ...inputStyle, padding: "0.45rem 0.75rem", cursor: "pointer" }} />
           </div>
-          {uploadError && <p style={{ color: "#E8590F", fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadError}</p>}
-          {uploadSuccess && <p style={{ color: "#4CAF50", fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadSuccess}</p>}
-          <button data-testid="pdf-upload-btn" type="submit" disabled={uploading} style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", background: uploading ? "rgba(212,144,10,0.3)" : "#d4900a", color: "#0b1628", border: "none", padding: "0.75rem 1.75rem", cursor: uploading ? "not-allowed" : "pointer" }}>
+          {uploadError && <p style={{ color: "#E8590F", fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadError}</p>}
+          {uploadSuccess && <p style={{ color: "#4CAF50", fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", marginBottom: "1rem" }}>{uploadSuccess}</p>}
+          <button data-testid="pdf-upload-btn" type="submit" disabled={uploading} style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", background: uploading ? "rgba(212,144,10,0.3)" : "#d4900a", color: "#0b1628", border: "none", padding: "0.75rem 1.75rem", cursor: uploading ? "not-allowed" : "pointer" }}>
             {uploading ? "UPLOADING..." : "UPLOAD PDF →"}
           </button>
         </form>
@@ -590,27 +590,27 @@ function DeliverablesAdmin({ API, mono }) {
 
       {/* PDF library */}
       <div>
-        <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
           DELIVERABLE LIBRARY — {pdfs.length} FILE{pdfs.length !== 1 ? "S" : ""}
         </p>
         {pdfs.length === 0 ? (
           <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "2.5rem", textAlign: "center" }}>
-            <p style={{ fontFamily: mono, fontSize: "0.616rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>NO DELIVERABLES UPLOADED YET</p>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>NO DELIVERABLES UPLOADED YET</p>
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             {pdfs.map(pdf => (
               <div key={pdf.id} style={{ background: "#000A14", border: "1px solid rgba(255,255,255,0.07)", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 4px" }}>{pdf.display_name}</p>
-                  {pdf.description && <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 6px" }}>{pdf.description}</p>}
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600, color: "#fff", margin: "0 0 4px" }}>{pdf.display_name}</p>
+                  {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 6px" }}>{pdf.description}</p>}
                   <div style={{ display: "flex", gap: "1.25rem" }}>
-                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#d4900a" }}>{CATEGORIES.find(c => c.value === pdf.category)?.label || pdf.category}</span>
-                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{formatSize(pdf.size)}</span>
-                    <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{pdf.download_count} DOWNLOADS</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#d4900a" }}>{CATEGORIES.find(c => c.value === pdf.category)?.label || pdf.category}</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{formatSize(pdf.size)}</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{pdf.download_count} DOWNLOADS</span>
                   </div>
                 </div>
-                <button onClick={() => handleDelete(pdf.id)} style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", border: "1px solid rgba(232,89,48,0.3)", color: "rgba(232,89,48,0.7)", padding: "0.45rem 0.875rem", cursor: "pointer" }}>REMOVE</button>
+                <button onClick={() => handleDelete(pdf.id)} style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", border: "1px solid rgba(232,89,48,0.3)", color: "rgba(232,89,48,0.7)", padding: "0.45rem 0.875rem", cursor: "pointer" }}>REMOVE</button>
               </div>
             ))}
           </div>

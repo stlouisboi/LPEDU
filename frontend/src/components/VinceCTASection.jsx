@@ -23,8 +23,8 @@ export default function VinceCTASection() {
         <div style={{ position: "relative" }} className="vince-photo-wrapper">
           {/* Fix 6 — micro-quote above photo */}
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.82rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.857rem",
             fontStyle: "italic",
             color: "rgba(212,144,10,0.80)",
             lineHeight: 1.5,
@@ -55,8 +55,8 @@ export default function VinceCTASection() {
           </div>
           {/* Credential tag */}
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             color: "var(--gold-primary)",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
@@ -70,7 +70,7 @@ export default function VinceCTASection() {
         {/* Bio + CTA */}
         <div>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.14em",
@@ -91,8 +91,8 @@ export default function VinceCTASection() {
             Vince Lawrence
           </h2>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.784rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.857rem",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -103,8 +103,8 @@ export default function VinceCTASection() {
             Station Custodian
           </p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "1.008rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
             marginBottom: "0.625rem",
@@ -112,8 +112,8 @@ export default function VinceCTASection() {
             25 years in safety, compliance, and manufacturing operations. U.S. Navy veteran. OSHA certified.
           </p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "1.008rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
             marginBottom: "0.625rem",
@@ -121,8 +121,8 @@ export default function VinceCTASection() {
             The Station Custodian built this system after watching the same compliance failures repeat across new carriers for 25 years. He doesn't do your compliance — he built the structure so you can do it yourself.
           </p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "1.008rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
             marginBottom: "2rem",
@@ -134,9 +134,9 @@ export default function VinceCTASection() {
           <div style={{ borderTop: "1px solid rgba(0,34,68,0.15)", marginBottom: "2rem" }} />
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
-            fontSize: "1.008rem",
+            fontSize: "1rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,
             marginBottom: "1.75rem",
@@ -145,7 +145,7 @@ export default function VinceCTASection() {
           </p>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1rem",
             color: "var(--text-paper)",
             lineHeight: 1.8,

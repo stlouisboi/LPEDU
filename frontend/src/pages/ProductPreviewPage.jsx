@@ -16,7 +16,7 @@ export default function ProductPreviewPage() {
         {/* Header */}
         <div style={{ marginBottom: "2rem" }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.7rem",
             letterSpacing: "0.18em", textTransform: "uppercase", color: gold,
             marginBottom: "0.5rem",
           }}>LP-SYS-LIBRARY | PRODUCT PREVIEW TOOL</p>
@@ -26,7 +26,7 @@ export default function ProductPreviewPage() {
             letterSpacing: "-0.02em",
           }}>3D Book Mockup Export</h1>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.55)", marginTop: "0.5rem",
           }}>
             Select a product, drag to rotate, then export your Gumroad cover image and thumbnail.
@@ -43,8 +43,8 @@ export default function ProductPreviewPage() {
               key={p.id}
               onClick={() => setActiveId(p.id)}
               style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.68rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
@@ -83,8 +83,8 @@ export default function ProductPreviewPage() {
               <BookMockup3D key={activeId} productId={activeId} mode="export" />
             </div>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.65rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
               color: "rgba(255,255,255,0.3)",
               letterSpacing: "0.08em",
               marginTop: "0.75rem",
@@ -97,7 +97,7 @@ export default function ProductPreviewPage() {
           {/* Info panel */}
           <div>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
               letterSpacing: "0.12em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.3)", marginBottom: "0.75rem",
             }}>RIGHT PANEL CONTENT</p>
@@ -111,14 +111,14 @@ export default function ProductPreviewPage() {
               borderRadius: "4px",
             }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem",
+                fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 color: gold, marginBottom: "0.75rem",
               }}>Export Guide</p>
-              <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
+              <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
                 <strong style={{ color: "rgba(255,255,255,0.85)" }}>Cover (1280×720)</strong> — Gumroad product listing image. Shows full scene.
               </p>
-              <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
+              <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
                 <strong style={{ color: "rgba(255,255,255,0.85)" }}>Thumbnail (600×600)</strong> — Tighter crop, square format. Gumroad grid thumbnail.
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function ProductPreviewPage() {
           background: "rgba(212,144,10,0.04)",
         }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.7rem",
             letterSpacing: "0.12em", textTransform: "uppercase", color: gold,
             marginBottom: "0.25rem",
           }}>Currently previewing</p>
@@ -142,7 +142,7 @@ export default function ProductPreviewPage() {
             fontSize: "1.1rem", color: "#FFFFFF",
           }}>{product.name}</p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.5)", marginTop: "0.25rem",
           }}>{product.outcomeLine}</p>
         </div>

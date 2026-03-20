@@ -12,8 +12,8 @@ export default function EmergencyWindowSection() {
 
         {/* Code label */}
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.62rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.714rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
@@ -40,7 +40,7 @@ export default function EmergencyWindowSection() {
 
         {/* Body */}
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "var(--text-base)",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.8,
@@ -51,7 +51,7 @@ export default function EmergencyWindowSection() {
         </p>
 
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "var(--text-base)",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.8,
@@ -68,7 +68,7 @@ export default function EmergencyWindowSection() {
             data-testid="emergency-ground0-cta"
             style={{
               display: "inline-block",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
               fontSize: "var(--text-sm)",
               letterSpacing: "0.10em",
@@ -86,7 +86,7 @@ export default function EmergencyWindowSection() {
           </Link>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.35)",
             fontStyle: "italic",

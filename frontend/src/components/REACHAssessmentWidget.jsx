@@ -87,7 +87,7 @@ function RiskMap({ scores, animate }) {
   ];
   return (
     <div style={{ marginBottom: "2rem" }}>
-      <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
         AUTHORITY RISK MAP
       </p>
       {rows.map((row) => {
@@ -96,8 +96,8 @@ function RiskMap({ scores, animate }) {
         return (
           <div key={row.label} style={{ marginBottom: "0.875rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.3rem" }}>
-              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.75)" }}>{row.label}</span>
-              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.825rem", fontWeight: 600, color: barColor }}>{row.val}/{row.max}</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.75)" }}>{row.label}</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.825rem", fontWeight: 600, color: barColor }}>{row.val}/{row.max}</span>
             </div>
             <div style={{ background: "rgba(255,255,255,0.08)", height: 3 }}>
               <div style={{ background: barColor, height: "100%", width: animate ? `${pct}%` : "0%", transition: animate ? "width 1s ease" : "none" }} />
@@ -217,20 +217,20 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   // ── INTRO ─────────────────────────────────────────────
   if (phase === "intro") return (
     <div style={box}>
-      <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
         THE REACH ASSESSMENT — G0-6 INLINE
       </p>
-      <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, marginBottom: "0.875rem", maxWidth: 500 }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, marginBottom: "0.875rem", maxWidth: 500 }}>
         15 questions across five operational readiness categories. Approximately 4 minutes.
       </p>
-      <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.7, marginBottom: "2rem", maxWidth: 500 }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.60)", lineHeight: 1.7, marginBottom: "2rem", maxWidth: 500 }}>
         Your result — GO, WAIT, or NO-GO — will appear here when the assessment is complete.
       </p>
       <div style={{ display: "flex", gap: "2rem", marginBottom: "2rem", flexWrap: "wrap" }}>
         {CATEGORIES.map((c) => (
           <div key={c.key}>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 700, color: "#d4900a" }}>{c.key}</p>
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", color: "rgba(255,255,255,0.60)" }}>{c.label}</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 700, color: "#d4900a" }}>{c.key}</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.60)" }}>{c.label}</p>
           </div>
         ))}
       </div>
@@ -239,7 +239,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         onClick={() => setPhase("questions")}
         style={{
           background: "#d4900a", color: "#0b1628", border: "none",
-          fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+          fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
           letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer",
           padding: "0.875rem 2rem", minHeight: 48, transition: "background 0.2s",
         }}
@@ -262,10 +262,10 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
             {i < 4 && <div style={{ width: 18, height: 1, background: "rgba(255,255,255,0.1)" }} />}
           </div>
         ))}
-        <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", color: "rgba(255,255,255,0.55)", marginLeft: "0.4rem" }}>{currentCatIdx + 1} of 5</span>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", marginLeft: "0.4rem" }}>{currentCatIdx + 1} of 5</span>
       </div>
 
-      <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
         {CATEGORIES[currentCatIdx].full} — {CATEGORIES[currentCatIdx].key}
       </p>
 
@@ -285,7 +285,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
                 background: isSel ? "rgba(212,144,10,0.15)" : "rgba(255,255,255,0.04)",
                 border: `1px solid ${isSel ? "#d4900a" : "rgba(255,255,255,0.12)"}`,
                 color: isSel ? "#d4900a" : "rgba(255,255,255,0.80)",
-                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem",
+                fontFamily: "'Inter', sans-serif", fontSize: "1rem",
                 padding: "0.875rem 1.25rem", textAlign: "left", cursor: "pointer",
                 transition: "all 0.15s",
               }}
@@ -297,7 +297,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
           );
         })}
       </div>
-      <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", color: "rgba(255,255,255,0.45)" }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.45)" }}>
         Question {currentQ + 1} of 15
       </p>
     </div>
@@ -307,7 +307,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   if (phase === "insight" && insightIdx !== null) return (
     <div style={box}>
       <div style={{ borderLeft: "2px solid #d4900a", paddingLeft: "1.25rem", maxWidth: 460 }}>
-        <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, fontStyle: "italic" }}>
+        <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, fontStyle: "italic" }}>
           {CATEGORY_INSIGHTS[insightIdx]}
         </p>
       </div>
@@ -317,7 +317,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   // ── OPEN TEXT (Q15) ───────────────────────────────────
   if (phase === "open") return (
     <div style={box}>
-      <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
         OPERATIONAL DISCIPLINE — H
       </p>
       <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#FFFFFF", lineHeight: 1.55, marginBottom: "1.75rem", maxWidth: 520 }}>
@@ -332,7 +332,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         style={{
           width: "100%", background: "rgba(255,255,255,0.04)",
           border: "1px solid rgba(255,255,255,0.15)", color: "#FFFFFF",
-          fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem",
+          fontFamily: "'Inter', sans-serif", fontSize: "1rem",
           padding: "0.875rem 1.125rem", resize: "vertical", boxSizing: "border-box",
           marginBottom: "1.25rem", outline: "none",
         }}
@@ -342,7 +342,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         onClick={handleOpenSubmit}
         style={{
           background: "#d4900a", color: "#0b1628", border: "none",
-          fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+          fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
           letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer",
           padding: "0.875rem 2rem", minHeight: 48, transition: "background 0.2s",
         }}
@@ -351,7 +351,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       >
         Complete Assessment
       </button>
-      <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", color: "rgba(255,255,255,0.45)", marginTop: "0.75rem" }}>Question 15 of 15</p>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.45)", marginTop: "0.75rem" }}>Question 15 of 15</p>
     </div>
   );
 
@@ -365,7 +365,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         {CATEGORIES.map((c, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.75rem", opacity: analyzedCats > i ? 1 : 0.2, transition: "opacity 0.3s ease" }}>
             <div style={{ width: 5, height: 5, borderRadius: "50%", background: analyzedCats > i ? "#d4900a" : "rgba(255,255,255,0.2)" }} />
-            <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.80)" }}>{c.label}</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.80)" }}>{c.label}</span>
           </div>
         ))}
       </div>
@@ -377,7 +377,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
     <div style={box}>
       {/* Result badge */}
       <div style={{ display: "inline-block", border: `1px solid ${cfg.color}`, padding: "0.35rem 0.875rem", marginBottom: "1.5rem" }}>
-        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.784rem", letterSpacing: "0.16em", textTransform: "uppercase", color: cfg.color, margin: 0 }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.16em", textTransform: "uppercase", color: cfg.color, margin: 0 }}>
           {cfg.label}
         </p>
       </div>
@@ -390,7 +390,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
         {cfg.bullets.map((b, i) => (
           <li key={i} style={{ display: "flex", gap: "0.625rem", marginBottom: "0.625rem", alignItems: "flex-start" }}>
             <span style={{ color: cfg.color, flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-            <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.925rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.7 }}>{b}</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.80)", lineHeight: 1.7 }}>{b}</span>
           </li>
         ))}
       </ul>
@@ -398,7 +398,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       {/* Risk Map */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.75rem", marginBottom: "2rem" }}>
         <RiskMap scores={scores} animate={animateMap} />
-        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.616rem", color: "rgba(255,255,255,0.45)", marginTop: "0.5rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.45)", marginTop: "0.5rem" }}>
           TOTAL REACH SCORE: {scores.total}/42
         </p>
       </div>
@@ -406,7 +406,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       {/* Email capture */}
       {!submitted ? (
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.75rem" }}>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, marginBottom: "1.25rem", maxWidth: 460 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, marginBottom: "1.25rem", maxWidth: 460 }}>
             Enter your email to receive your REACH summary and preparation recommendations.
           </p>
           <form onSubmit={handleEmailSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.625rem", maxWidth: 420 }}>
@@ -416,7 +416,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your operating email address"
               style={{
-                padding: "0.875rem 1.125rem", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem",
+                padding: "0.875rem 1.125rem", fontFamily: "'Inter', sans-serif", fontSize: "1rem",
                 background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)",
                 color: "#FFFFFF", outline: "none", boxSizing: "border-box",
               }}
@@ -426,7 +426,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
               type="submit" disabled={loading}
               style={{
                 minHeight: 48, background: "#d4900a", color: "#0b1628", border: "none",
-                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+                fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
                 letterSpacing: "0.1em", textTransform: "uppercase",
                 cursor: loading ? "wait" : "pointer", opacity: loading ? 0.8 : 1,
               }}
@@ -434,14 +434,14 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
               {loading ? "Sending..." : "Send My Results"}
             </button>
           </form>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", color: "rgba(255,255,255,0.50)", marginTop: "0.75rem", fontStyle: "italic" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", marginTop: "0.75rem", fontStyle: "italic" }}>
             No sales sequence. Results and preparation resources only.
           </p>
         </div>
       ) : (
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.75rem" }}>
           <div style={{ height: 2, background: "#d4900a", marginBottom: "1.25rem", maxWidth: 420 }} />
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75, marginBottom: "1.5rem", maxWidth: 460 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75, marginBottom: "1.5rem", maxWidth: 460 }}>
             {cfg.sub}
           </p>
           <Link
@@ -449,7 +449,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
             data-testid="widget-result-cta"
             style={{
               display: "inline-block", minHeight: 48, background: "#d4900a", color: "#0b1628",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
               letterSpacing: "0.1em", textTransform: "uppercase",
               textDecoration: "none", padding: "0.875rem 2rem",
             }}

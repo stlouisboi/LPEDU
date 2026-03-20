@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 
 // Grade thresholds
 function getGrade(pct) {
@@ -80,7 +80,7 @@ function CircularGauge({ signal, grade, animate }) {
         x={cx + 26}
         y={cy - 18}
         textAnchor="middle"
-        style={{ fontFamily: mono, fontSize: 14, fill: "rgba(255,255,255,0.55)" }}
+        style={{ fontFamily: mono, fontSize: 18, fill: "rgba(255,255,255,0.55)" }}
       >
         %
       </text>
@@ -90,7 +90,7 @@ function CircularGauge({ signal, grade, animate }) {
         x={cx}
         y={cy + 24}
         textAnchor="middle"
-        style={{ fontFamily: mono, fontSize: 14, fontWeight: 700, fill: grade.color, letterSpacing: "0.12em" }}
+        style={{ fontFamily: mono, fontSize: 18, fontWeight: 700, fill: grade.color, letterSpacing: "0.12em" }}
       >
         GRADE {grade.letter}
       </text>
@@ -113,14 +113,14 @@ function IndicatorBar({ label, code, value, color, animate }) {
     <div style={{ marginBottom: "1.375rem" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "0.45rem" }}>
         <div>
-          <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.16em", color: "rgba(255,255,255,0.38)", textTransform: "uppercase", marginBottom: "0.2rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.16em", color: "rgba(255,255,255,0.38)", textTransform: "uppercase", marginBottom: "0.2rem" }}>
             {code}
           </p>
-          <p style={{ fontFamily: sans, fontSize: "0.784rem", fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>
+          <p style={{ fontFamily: sans, fontSize: "0.857rem", fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>
             {label}
           </p>
         </div>
-        <p style={{ fontFamily: mono, fontSize: "0.875rem", fontWeight: 700, color }}>
+        <p style={{ fontFamily: mono, fontSize: "var(--text-sm)", fontWeight: 700, color }}>
           {value}%
         </p>
       </div>
@@ -213,7 +213,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
               borderTopColor: "#d4900a",
               animation: "spin 0.8s linear infinite",
             }} />
-            <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.16em", color: "rgba(212,144,10,0.6)", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.16em", color: "rgba(212,144,10,0.6)", textTransform: "uppercase" }}>
               FETCHING_SIGNAL...
             </p>
           </div>
@@ -232,10 +232,10 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
         gap: "0.75rem",
       }}>
         <div>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "0.25rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "0.25rem" }}>
             ADMINISTRATIVE_HEALTH_MONITOR
           </p>
-          <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)" }}>
             LPOS v1.0 | LP-SYS-SIGNAL | REAL-TIME
           </p>
         </div>
@@ -250,7 +250,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
           gap: "0.5rem",
         }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", background: grade.color, boxShadow: `0 0 6px ${grade.color}` }} />
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.1em", color: grade.color }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.1em", color: grade.color }}>
             SIGNAL: {Math.round(signal)}% / {grade.label}
           </p>
         </div>
@@ -267,7 +267,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
         {/* Right: Indicator Grid */}
         <div style={{ paddingTop: "0.5rem" }}>
           <p style={{
-            fontFamily: mono, fontSize: "0.56rem", fontWeight: 700,
+            fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.38)", marginBottom: "1.5rem",
           }}>

@@ -33,7 +33,7 @@ export default function AboutSection() {
             </h2>
 
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.806rem",
               fontWeight: 700,
               letterSpacing: "0.1em",
@@ -52,7 +52,7 @@ export default function AboutSection() {
                 "LaunchPath is the system.",
               ].map((para, i) => (
                 <p key={i} style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.12rem",
                   color: "var(--text-paper)",
                   lineHeight: 1.85,
@@ -114,8 +114,8 @@ export default function AboutSection() {
               zIndex: 1,
             }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.65rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 color: "var(--gold-primary)",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
@@ -124,8 +124,8 @@ export default function AboutSection() {
                 STATION CUSTODIAN — LP-SYS-V4.2
               </p>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                fontSize: "0.75rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.762rem",
                 color: "rgba(255,255,255,0.5)",
                 letterSpacing: "0.06em",
               }}>

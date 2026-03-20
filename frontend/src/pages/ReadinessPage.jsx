@@ -207,23 +207,23 @@ export default function ReadinessPage() {
           Carrier<br />
           <span style={{ color: "var(--orange)" }}>Diagnostic</span>
         </h1>
-        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "0.75rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "0.75rem" }}>
           Before you file for authority, identify the exposure points that could end your operation in the first 90 days.
         </p>
-        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)", marginBottom: "2rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-subtle)", marginBottom: "2rem" }}>
           This assessment takes approximately 3 minutes.
         </p>
         <div style={{ borderLeft: "2px solid var(--orange)", paddingLeft: "1.25rem", marginBottom: "2.5rem" }}>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.008rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.25rem" }}>Accuracy over ambition.</p>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)" }}>Your result — GO, WAIT, or STOP — is only useful if it reflects reality.</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.25rem" }}>Accuracy over ambition.</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)" }}>Your result — GO, WAIT, or STOP — is only useful if it reflects reality.</p>
         </div>
         <button
           data-testid="begin-diagnostic-btn"
           onClick={() => { setPhase("questions"); setCurrentQ(0); }}
           style={{
             background: "var(--orange)", color: "#fff", border: "none",
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
-            fontSize: "0.98rem", letterSpacing: "0.08em", textTransform: "uppercase",
+            fontFamily: "'Inter', sans-serif", fontWeight: 700,
+            fontSize: "1rem", letterSpacing: "0.08em", textTransform: "uppercase",
             padding: "1rem 2rem", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.6rem",
             transition: "background 0.2s",
           }}
@@ -232,26 +232,26 @@ export default function ReadinessPage() {
         >
           Begin Ground 0 Briefing <ArrowRight size={15} weight="bold" />
         </button>
-        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.84rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>Free. No commitment required.</p>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.84rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>Free. No commitment required.</p>
       </div>
 
       {/* Section panel */}
       <div style={{ border: "1px solid var(--border)", background: "var(--bg-2)", padding: "1.5rem" }}>
-        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border)" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border)" }}>
           REACH ASSESSMENT // 7 SECTIONS
         </p>
         {QUESTIONS.map((q, i) => (
           <div key={i} style={{ display: "flex", gap: "0.75rem", padding: "0.6rem 0", borderBottom: i < 6 ? "1px solid var(--border)" : "none" }}>
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.08em" }}>0{i + 1}</span>
-            <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)" }}>{q.section.split(" — ")[1]}</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.08em" }}>0{i + 1}</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)" }}>{q.section.split(" — ")[1]}</span>
           </div>
         ))}
         <div style={{ marginTop: "1.25rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border)" }}>
-          <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>DECISION OUTCOMES</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>DECISION OUTCOMES</p>
           {[["GO", "var(--orange)", "Proceed to admission"], ["WAIT", "#d97706", "Remediate, then return"], ["STOP", "#ef4444", "Do not proceed"]].map(([label, color, desc]) => (
             <div key={label} style={{ display: "flex", gap: "0.75rem", alignItems: "baseline", padding: "0.4rem 0" }}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color, fontWeight: 700, minWidth: 36 }}>{label}</span>
-              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.874rem", color: "var(--text-subtle)" }}>{desc}</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color, fontWeight: 700, minWidth: 36 }}>{label}</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", color: "var(--text-subtle)" }}>{desc}</span>
             </div>
           ))}
         </div>
@@ -268,10 +268,10 @@ export default function ReadinessPage() {
         {/* Header */}
         <div style={{ marginBottom: "2.5rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.12em" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--orange)", letterSpacing: "0.12em" }}>
               QUESTION {currentQ + 1} OF 7
             </p>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)" }}>
               {Math.round(((currentQ + 1) / 7) * 100)}%
             </p>
           </div>
@@ -285,7 +285,7 @@ export default function ReadinessPage() {
               }} />
             ))}
           </div>
-          <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", color: "var(--text-subtle)", letterSpacing: "0.1em", marginTop: "0.5rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "var(--text-subtle)", letterSpacing: "0.1em", marginTop: "0.5rem" }}>
             {q.section.toUpperCase()}
           </p>
         </div>
@@ -323,17 +323,17 @@ export default function ReadinessPage() {
                 <span style={{
                   width: 28, height: 28, border: `1px solid ${isSelected ? "var(--orange)" : "var(--border)"}`,
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.784rem",
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.857rem",
                   color: isSelected ? "var(--orange)" : "var(--text-subtle)", flexShrink: 0,
                 }}>{opt.letter}</span>
-                <span style={{ flex: 1, fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.064rem", color: "var(--text)", lineHeight: 1.5 }}>{opt.text}</span>
+                <span style={{ flex: 1, fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text)", lineHeight: 1.5 }}>{opt.text}</span>
                 {opt.risk && (
                   <span style={{
                     background: opt.risk === "RED" ? "rgba(239,68,68,0.12)" : "rgba(217,119,6,0.12)",
                     color: opt.risk === "RED" ? "#ef4444" : "#d97706",
                     border: `1px solid ${opt.risk === "RED" ? "rgba(239,68,68,0.25)" : "rgba(217,119,6,0.25)"}`,
                     padding: "0.2rem 0.6rem",
-                    fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.1em",
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.1em",
                     flexShrink: 0,
                   }}>{opt.risk}</span>
                 )}
@@ -348,7 +348,7 @@ export default function ReadinessPage() {
           style={{
             marginTop: "2rem", background: "none", border: "none",
             display: "flex", alignItems: "center", gap: "0.4rem",
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.896rem",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.896rem",
             color: "var(--text-subtle)", cursor: "pointer", padding: 0,
             transition: "color 0.2s",
           }}
@@ -373,14 +373,14 @@ export default function ReadinessPage() {
       }}>
         Your Diagnostic<br />Is Ready.
       </h2>
-      <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
         Enter your email to release your structural classification result.
         Your result will be logged and reviewed by the Station Custodian.
       </p>
 
       <form onSubmit={submitEmail} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         <div>
-          <label style={{ display: "block", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.5rem" }}>
+          <label style={{ display: "block", fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.5rem" }}>
             Email Address
           </label>
           <input
@@ -391,7 +391,7 @@ export default function ReadinessPage() {
             style={{
               width: "100%", background: "var(--bg)", border: "1px solid var(--border)",
               color: "var(--text)", padding: "0.875rem 1rem",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.064rem", outline: "none",
+              fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", outline: "none",
               transition: "border-color 0.2s",
             }}
             onFocus={e => e.target.style.borderColor = "var(--orange)"}
@@ -405,7 +405,7 @@ export default function ReadinessPage() {
             data-testid="diagnostic-consent"
             style={{ marginTop: "0.15rem", accentColor: "var(--orange)", flexShrink: 0 }}
           />
-          <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)", lineHeight: 1.6 }}>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)", lineHeight: 1.6 }}>
             I understand this assessment is for educational guidance only and does not constitute a legal audit result.
           </span>
         </label>
@@ -417,8 +417,8 @@ export default function ReadinessPage() {
           style={{
             background: consented ? "var(--orange)" : "rgba(232,89,15,0.3)",
             color: "#fff", border: "none", padding: "1rem",
-            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
-            fontSize: "0.98rem", letterSpacing: "0.1em", textTransform: "uppercase",
+            fontFamily: "'Inter', sans-serif", fontWeight: 700,
+            fontSize: "1rem", letterSpacing: "0.1em", textTransform: "uppercase",
             cursor: consented ? "pointer" : "not-allowed",
             transition: "background 0.2s",
           }}
@@ -448,18 +448,18 @@ export default function ReadinessPage() {
           }}>{result}</span>
           <div>
             <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.25rem", color: "var(--text)", lineHeight: 1.2 }}>{r.headline}</p>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", marginTop: "0.35rem" }}>Score: {totalScore} of 28</p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", marginTop: "0.35rem" }}>Score: {totalScore} of 28</p>
           </div>
         </div>
 
-        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "2.5rem", maxWidth: 560 }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "2.5rem", maxWidth: 560 }}>
           {r.body}
         </p>
 
         {flagged.length > 0 && (
           <div style={{ border: "1px solid var(--border)", marginBottom: "2.5rem" }}>
             <div style={{ padding: "0.875rem 1.25rem", borderBottom: "1px solid var(--border)", background: "var(--bg-2)" }}>
-              <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>FLAGGED EXPOSURE POINTS</p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>FLAGGED EXPOSURE POINTS</p>
             </div>
             {flagged.map((q, i) => {
               const qIdx = QUESTIONS.indexOf(q);
@@ -470,11 +470,11 @@ export default function ReadinessPage() {
                     background: ans.risk === "RED" ? "rgba(239,68,68,0.12)" : "rgba(217,119,6,0.12)",
                     color: ans.risk === "RED" ? "#ef4444" : "#d97706",
                     border: `1px solid ${ans.risk === "RED" ? "rgba(239,68,68,0.25)" : "rgba(217,119,6,0.25)"}`,
-                    padding: "0.15rem 0.5rem", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", flexShrink: 0,
+                    padding: "0.15rem 0.5rem", fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", flexShrink: 0,
                   }}>{ans.risk}</span>
                   <div>
-                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.896rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.2rem" }}>{q.section}</p>
-                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)" }}>Selected: {ans.text}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.2rem" }}>{q.section}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)" }}>Selected: {ans.text}</p>
                   </div>
                 </div>
               );
@@ -487,8 +487,8 @@ export default function ReadinessPage() {
             style={{
               display: "inline-flex", alignItems: "center", gap: "0.5rem",
               background: "var(--orange)", color: "#fff",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
-              fontSize: "0.98rem", letterSpacing: "0.06em", textTransform: "uppercase",
+              fontFamily: "'Inter', sans-serif", fontWeight: 700,
+              fontSize: "1rem", letterSpacing: "0.06em", textTransform: "uppercase",
               padding: "1rem 1.75rem", textDecoration: "none", transition: "background 0.2s",
             }}
             onMouseEnter={e => e.currentTarget.style.background = "var(--orange-hover)"}
@@ -500,8 +500,8 @@ export default function ReadinessPage() {
             style={{
               display: "inline-flex", alignItems: "center", gap: "0.5rem",
               border: "1px solid var(--border)", color: "var(--text-muted)",
-              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 600,
-              fontSize: "0.98rem", letterSpacing: "0.05em", textTransform: "uppercase",
+              fontFamily: "'Inter', sans-serif", fontWeight: 600,
+              fontSize: "1rem", letterSpacing: "0.05em", textTransform: "uppercase",
               padding: "1rem 1.75rem", textDecoration: "none", transition: "all 0.2s",
             }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)"; e.currentTarget.style.color = "var(--text)"; }}
@@ -513,7 +513,7 @@ export default function ReadinessPage() {
 
         <button
           onClick={() => { setPhase("landing"); setCurrentQ(0); setAnswers(Array(7).fill(null)); setResult(null); setEmail(""); setConsented(false); }}
-          style={{ marginTop: "1.5rem", background: "none", border: "none", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.874rem", color: "var(--text-subtle)", cursor: "pointer", padding: 0, textDecoration: "underline" }}
+          style={{ marginTop: "1.5rem", background: "none", border: "none", fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", color: "var(--text-subtle)", cursor: "pointer", padding: 0, textDecoration: "underline" }}
         >
           Restart assessment
         </button>

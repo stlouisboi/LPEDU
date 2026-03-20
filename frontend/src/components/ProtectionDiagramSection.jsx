@@ -73,8 +73,8 @@ export default function ProtectionDiagramSection() {
 
         {/* Figure label */}
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.616rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.714rem",
           color: "rgba(148,163,184,0.85)",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -90,7 +90,7 @@ export default function ProtectionDiagramSection() {
           {/* Top: Regulatory Enforcement */}
           <div style={{ ...visible(1), textAlign: "center", marginBottom: "0.5rem" }}>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem",
               color: "#fca5a5",
               letterSpacing: "0.12em",
@@ -104,7 +104,7 @@ export default function ProtectionDiagramSection() {
           <div className="prot-threats" style={{ ...visible(1), display: "flex", gap: "3rem", marginBottom: "0.5rem" }}>
             {THREATS.map((t) => (
               <div key={t.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.35rem" }}>
-                <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", color: "#e2e8f0" }}>{t.label}</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#e2e8f0" }}>{t.label}</span>
                 <span style={{ fontSize: "1.2rem", color: "#fca5a5", lineHeight: 1 }}>↓</span>
               </div>
             ))}
@@ -134,7 +134,7 @@ export default function ProtectionDiagramSection() {
             }}>
               {["AROUND", "UNDER"].map((d) => (
                 <div key={d} style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "0.5rem" }}>
-                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
                   <span style={{ color: "#94a3b8", fontSize: "1rem" }}>→</span>
                 </div>
               ))}
@@ -150,9 +150,9 @@ export default function ProtectionDiagramSection() {
             }}>
               {/* System title */}
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "0.98rem",
+                fontSize: "1rem",
                 color: "#f1f5f9",
                 textAlign: "center",
                 marginBottom: "1.5rem",
@@ -175,10 +175,10 @@ export default function ProtectionDiagramSection() {
                     padding: "0.6rem 0.4rem",
                     textAlign: "center",
                   }}>
-                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.56rem", color: "#fbbf24", marginBottom: "0.25rem", letterSpacing: "0.06em" }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "#fbbf24", marginBottom: "0.25rem", letterSpacing: "0.06em" }}>
                       {g.code}
                     </p>
-                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.672rem", color: "#FFFFFF", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.2 }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#FFFFFF", fontWeight: 600, letterSpacing: "0.04em", lineHeight: 1.2 }}>
                       {g.name}
                     </p>
                   </div>
@@ -191,12 +191,12 @@ export default function ProtectionDiagramSection() {
                 border: "1px solid #1e293b",
                 padding: "0.875rem 1rem",
               }}>
-                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.616rem", color: "#e2e8f0", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "#e2e8f0", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
                   FOUR PILLARS
                 </p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.25rem" }}>
                   {PILLARS.map((p) => (
-                    <p key={p} style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.672rem", color: "#cbd5e1", lineHeight: 1.4 }}>— {p}</p>
+                    <p key={p} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#cbd5e1", lineHeight: 1.4 }}>— {p}</p>
                   ))}
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function ProtectionDiagramSection() {
               {["THROUGH", "OVER"].map((d) => (
                 <div key={d} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ color: "#94a3b8", fontSize: "1rem" }}>←</span>
-                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "#94a3b8", letterSpacing: "0.1em" }}>{d}</p>
                 </div>
               ))}
             </div>
@@ -229,15 +229,15 @@ export default function ProtectionDiagramSection() {
           <div style={{ ...outputVisible, display: "flex", flexDirection: "column", alignItems: "center", gap: "0.35rem", marginTop: "0.5rem" }}>
             <span style={{ color: "#22c55e", fontSize: "1.2rem", lineHeight: 1 }}>↓</span>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.784rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.857rem",
               color: "#22c55e",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
             }}>
               PROTECTED AUTHORITY
             </p>
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", color: "rgba(74,222,128,0.9)" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(74,222,128,0.9)" }}>
               Stable Operation · Growth
             </p>
           </div>

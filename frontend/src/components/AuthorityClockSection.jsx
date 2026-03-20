@@ -107,8 +107,8 @@ export default function AuthorityClockSection() {
 
         {/* LP code label */}
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.616rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.714rem",
           color: "rgba(212,144,10,0.80)",
           letterSpacing: "0.16em",
           textTransform: "uppercase",
@@ -124,8 +124,8 @@ export default function AuthorityClockSection() {
           borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.65rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
@@ -159,7 +159,7 @@ export default function AuthorityClockSection() {
             Day One.
           </h2>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1rem",
             color: "rgba(255,255,255,0.76)",
             lineHeight: 1.85,
@@ -242,7 +242,7 @@ export default function AuthorityClockSection() {
                       display: "inline-block",
                       border: `1px solid ${cfg.badgeBorder}`,
                       padding: "3px 10px 4px",
-                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.608rem",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
@@ -265,8 +265,8 @@ export default function AuthorityClockSection() {
                     </p>
                     {item.sublabel && (
                       <p style={{
-                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                        fontSize: "0.72rem",
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.762rem",
                         fontWeight: 600,
                         letterSpacing: "0.10em",
                         textTransform: "uppercase",
@@ -279,7 +279,7 @@ export default function AuthorityClockSection() {
                       </p>
                     )}
                     <span className="clock-brief-hint" style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.58rem",
                       color: "rgba(212,144,10,0.40)",
                       letterSpacing: "0.14em",
@@ -293,7 +293,7 @@ export default function AuthorityClockSection() {
 
                   {/* Right: body copy */}
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: item.warning ? "0.98rem" : "0.938rem",
                     color: cfg.bodyColor,
                     lineHeight: 1.82,
@@ -315,7 +315,7 @@ export default function AuthorityClockSection() {
           maxWidth: 680,
         }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.608rem",
             fontWeight: 700,
             letterSpacing: "0.16em",

@@ -104,7 +104,7 @@ export const MODULE_1_DATA = {
 
 // ── Video Placeholder ────────────────────────────────────────────────────────
 function VideoPlaceholder({ lesson, moduleCode }) {
-  const mono = "'IBM Plex Mono', 'Courier New', monospace";
+  const mono = "'Inter', sans-serif";
   return (
     <div
       style={{
@@ -124,7 +124,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
         <p
           style={{
             fontFamily: mono,
-            fontSize: "0.504rem",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.22em",
             color: "rgba(212,144,10,0.5)",
@@ -138,7 +138,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
           style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 600,
-            fontSize: "1.05rem",
+            fontSize: "1.1rem",
             color: "rgba(255,255,255,0.62)",
             maxWidth: 320,
             lineHeight: 1.4,
@@ -168,7 +168,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
 export function VideoLessonWorkbench({ moduleData }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const lesson = moduleData.lessons[activeIdx];
-  const mono = "'IBM Plex Mono', 'Courier New', monospace";
+  const mono = "'Inter', sans-serif";
 
   return (
     <div data-testid="video-lesson-workbench">
@@ -211,7 +211,7 @@ export function VideoLessonWorkbench({ moduleData }) {
         <span
           style={{
             fontFamily: mono,
-            fontSize: "0.504rem",
+            fontSize: "0.714rem",
             color: "rgba(255,255,255,0.35)",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
@@ -280,7 +280,7 @@ export function VideoLessonWorkbench({ moduleData }) {
             <p
               style={{
                 fontFamily: mono,
-                fontSize: "0.56rem",
+                fontSize: "0.714rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
                 color: "rgba(212,144,10,0.72)",
@@ -304,7 +304,7 @@ export function VideoLessonWorkbench({ moduleData }) {
             </h2>
             <p
               style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.924rem",
                 color: "rgba(255,255,255,0.52)",
                 marginBottom: "1rem",
@@ -316,8 +316,8 @@ export function VideoLessonWorkbench({ moduleData }) {
             </p>
             <p
               style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                fontSize: "0.98rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "1rem",
                 color: "rgba(255,255,255,0.78)",
                 lineHeight: 1.82,
               }}
@@ -337,7 +337,7 @@ export function VideoLessonWorkbench({ moduleData }) {
               <p
                 style={{
                   fontFamily: mono,
-                  fontSize: "0.504rem",
+                  fontSize: "0.714rem",
                   fontWeight: 700,
                   letterSpacing: "0.2em",
                   color: "rgba(255,255,255,0.25)",
@@ -357,7 +357,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "0.625rem",
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.896rem",
                       color: "#d4900a",
@@ -452,7 +452,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                   <span
                     style={{
                       fontFamily: mono,
-                      fontSize: "0.504rem",
+                      fontSize: "0.714rem",
                       fontWeight: 700,
                       color: isActive ? "#d4900a" : "rgba(255,255,255,0.28)",
                       letterSpacing: "0.1em",
@@ -462,8 +462,8 @@ export function VideoLessonWorkbench({ moduleData }) {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                      fontSize: "0.616rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.714rem",
                       color: "rgba(255,255,255,0.26)",
                     }}
                   >
@@ -472,8 +472,8 @@ export function VideoLessonWorkbench({ moduleData }) {
                 </div>
                 <span
                   style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                    fontSize: "0.784rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.857rem",
                     color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.56)",
                     lineHeight: 1.35,
                     fontWeight: isActive ? 600 : 400,

@@ -89,7 +89,7 @@ export default function DeadlySinsSection() {
           {BUCKETS.map((bucket) => (
             <div key={bucket.id} data-testid={`sin-bucket-${bucket.id}`}>
               <div style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.762rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
@@ -105,16 +105,16 @@ export default function DeadlySinsSection() {
                 {bucket.sins.map((sin, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: "0.784rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.857rem",
                       color: "var(--text-paper-muted)",
                       marginTop: "0.25rem",
                       flexShrink: 0,
                       lineHeight: 1.7,
                     }}>—</span>
                     <p style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                      fontSize: "1.008rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "1rem",
                       color: "var(--text-paper)",
                       lineHeight: 1.75,
                       margin: 0,
@@ -128,7 +128,7 @@ export default function DeadlySinsSection() {
 
         <div style={{ borderTop: "1px solid var(--divider-light)", paddingTop: "2rem" }}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.064rem",
             color: "var(--text-paper-muted)",
             lineHeight: 1.7,

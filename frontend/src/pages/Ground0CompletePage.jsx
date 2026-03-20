@@ -106,9 +106,9 @@ function PathCard({ path }) {
         display: "block",
         background: path.ctaBg,
         color: path.ctaColor,
-        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+        fontFamily: "'Inter', sans-serif",
         fontWeight: 600,
-        fontSize: "0.875rem",
+        fontSize: "var(--text-sm)",
         letterSpacing: "0.08em",
         textTransform: "uppercase",
         padding: "0.875rem 1.5rem",
@@ -131,9 +131,9 @@ function PathCard({ path }) {
         display: "block",
         background: path.ctaBg,
         color: path.ctaColor,
-        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+        fontFamily: "'Inter', sans-serif",
         fontWeight: 600,
-        fontSize: "0.875rem",
+        fontSize: "var(--text-sm)",
         letterSpacing: "0.08em",
         textTransform: "uppercase",
         padding: "0.875rem 1.5rem",
@@ -165,8 +165,8 @@ function PathCard({ path }) {
     >
       {/* Label */}
       <p style={{
-        fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "0.616rem",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.714rem",
         fontWeight: 700,
         letterSpacing: "0.16em",
         textTransform: "uppercase",
@@ -179,8 +179,8 @@ function PathCard({ path }) {
       {/* Code */}
       {path.code && (
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.56rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.714rem",
           color: "rgba(255,255,255,0.35)",
           letterSpacing: "0.1em",
           marginBottom: "1.25rem",
@@ -193,7 +193,7 @@ function PathCard({ path }) {
       <h3 style={{
         fontFamily: "'Playfair Display', serif",
         fontWeight: 700,
-        fontSize: "1.05rem",
+        fontSize: "1.1rem",
         color: "#FFFFFF",
         lineHeight: 1.3,
         marginBottom: "1.25rem",
@@ -212,8 +212,8 @@ function PathCard({ path }) {
           }}>
             <span style={{ color: path.borderTop, flexShrink: 0, marginTop: "0.2rem", fontSize: "0.7rem" }}>—</span>
             <span style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "0.875rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "var(--text-sm)",
               color: "rgba(255,255,255,0.78)",
               lineHeight: 1.55,
             }}>
@@ -228,7 +228,7 @@ function PathCard({ path }) {
 
       {/* Best for */}
       <p style={{
-        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+        fontFamily: "'Inter', sans-serif",
         fontStyle: "italic",
         fontSize: "0.825rem",
         color: "rgba(255,255,255,0.55)",
@@ -241,8 +241,8 @@ function PathCard({ path }) {
       {/* Price + CTA */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", marginBottom: "0.875rem" }}>
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.784rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.857rem",
           color: "rgba(255,255,255,0.55)",
         }}>
           {path.priceLabel}
@@ -273,7 +273,7 @@ export default function Ground0CompletePage() {
 
           {/* LP code */}
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -296,9 +296,9 @@ export default function Ground0CompletePage() {
               marginBottom: "2rem",
             }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
-                fontSize: "0.784rem",
+                fontSize: "0.857rem",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 color: resultCfg.color,
@@ -319,9 +319,9 @@ export default function Ground0CompletePage() {
             }}>
               <span style={{ color: "#22c55e", fontSize: "1.1rem", lineHeight: 1 }}>✓</span>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
-                fontSize: "0.875rem",
+                fontSize: "var(--text-sm)",
                 color: "rgba(34,197,94,0.95)",
                 letterSpacing: "0.04em",
                 margin: 0,
@@ -345,8 +345,8 @@ export default function Ground0CompletePage() {
           </h1>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "1.05rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1.1rem",
             color: "rgba(255,255,255,0.78)",
             lineHeight: 1.8,
             maxWidth: 620,
@@ -369,7 +369,7 @@ export default function Ground0CompletePage() {
 
           {/* Section label */}
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -401,8 +401,8 @@ export default function Ground0CompletePage() {
       }}>
         <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "rgba(212,144,10,0.55)",
@@ -422,8 +422,8 @@ export default function Ground0CompletePage() {
             "Most failures in the first 90 days are not failures of commitment. They are failures of structure."
           </p>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             letterSpacing: "0.12em",
             color: "rgba(212,144,10,0.65)",
             textTransform: "uppercase",

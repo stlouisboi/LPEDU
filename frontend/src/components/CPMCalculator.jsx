@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from "react";
 
 const API = process.env.REACT_APP_BACKEND_URL;
-const mono = "'IBM Plex Mono', 'Courier New', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 const display = "'Playfair Display', serif";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -67,7 +67,7 @@ function StepIndicator({ step, total, dark }) {
           }} />
         </React.Fragment>
       ))}
-      <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,34,68,0.4)", marginLeft: "0.5rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,34,68,0.4)", marginLeft: "0.5rem" }}>
         STEP {step} OF {total}
       </p>
     </div>
@@ -78,11 +78,11 @@ function StepIndicator({ step, total, dark }) {
 function Field({ label, id, value, onChange, prefix, suffix, step = "any", min = "0", placeholder = "0", helpText, dark, optional }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
-      <label htmlFor={id} style={{ fontFamily: sans, fontSize: "0.728rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.45)" : "rgba(0,34,68,0.5)" }}>
+      <label htmlFor={id} style={{ fontFamily: sans, fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.45)" : "rgba(0,34,68,0.5)" }}>
         {label}{optional && <span style={{ fontWeight: 400, textTransform: "none", marginLeft: 4, opacity: 0.6 }}>(optional)</span>}
       </label>
       <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-        {prefix && <span style={{ position: "absolute", left: "0.875rem", fontFamily: sans, fontSize: "0.98rem", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,34,68,0.4)", pointerEvents: "none", zIndex: 1 }}>{prefix}</span>}
+        {prefix && <span style={{ position: "absolute", left: "0.875rem", fontFamily: sans, fontSize: "1rem", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,34,68,0.4)", pointerEvents: "none", zIndex: 1 }}>{prefix}</span>}
         <input
           id={id}
           data-testid={`cpm-input-${id}`}
@@ -96,7 +96,7 @@ function Field({ label, id, value, onChange, prefix, suffix, step = "any", min =
             width: "100%",
             padding: `0.75rem ${suffix ? "2.25rem" : "0.875rem"} 0.75rem ${prefix ? "1.75rem" : "0.875rem"}`,
             fontFamily: sans,
-            fontSize: "0.98rem",
+            fontSize: "1rem",
             background: dark ? "rgba(255,255,255,0.04)" : "#FFFFFF",
             border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(0,34,68,0.14)"}`,
             color: dark ? "#FFFFFF" : "#0b1628",
@@ -105,7 +105,7 @@ function Field({ label, id, value, onChange, prefix, suffix, step = "any", min =
             MozAppearance: "textfield",
           }}
         />
-        {suffix && <span style={{ position: "absolute", right: "0.875rem", fontFamily: sans, fontSize: "0.98rem", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,34,68,0.4)", pointerEvents: "none" }}>{suffix}</span>}
+        {suffix && <span style={{ position: "absolute", right: "0.875rem", fontFamily: sans, fontSize: "1rem", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,34,68,0.4)", pointerEvents: "none" }}>{suffix}</span>}
       </div>
       {helpText && <p style={{ fontFamily: sans, fontSize: "0.672rem", color: dark ? "rgba(255,255,255,0.28)" : "rgba(0,34,68,0.38)", lineHeight: 1.4 }}>{helpText}</p>}
     </div>
@@ -133,7 +133,7 @@ function NavButtons({ onBack, onNext, nextLabel = "Next →", nextDisabled, dark
 // ── Section Header ────────────────────────────────────────────────────────────
 function SectionLabel({ text, dark }) {
   return (
-    <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(212,144,10,0.7)" : "#d4900a", marginBottom: "1.5rem" }}>
+    <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "rgba(212,144,10,0.7)" : "#d4900a", marginBottom: "1.5rem" }}>
       {text}
     </p>
   );
@@ -145,7 +145,7 @@ function ResultsCard({ fixedCPM, variableCPM, totalCPM }) {
     <div data-testid="cpm-results-card">
       {/* Hero CPM */}
       <div style={{ background: "#0b1628", padding: "2.5rem 2rem", marginBottom: "1.5rem", textAlign: "center", border: "1px solid rgba(212,144,10,0.25)" }}>
-        <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
           YOUR TOTAL COST PER MILE
         </p>
         <p data-testid="cpm-total-display" style={{ fontFamily: display, fontWeight: 800, fontSize: "clamp(3rem, 8vw, 4.5rem)", color: "#d4900a", letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "0.5rem" }}>
@@ -181,7 +181,7 @@ function LoadOutput({ result }) {
       {/* Decision badge */}
       <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.75rem", padding: "1.25rem 1.5rem", background: `${badgeColor}10`, border: `1px solid ${badgeColor}40` }}>
         <div style={{ width: 10, height: 10, background: badgeColor, borderRadius: "50%", flexShrink: 0 }} />
-        <span data-testid="cpm-decision-badge" style={{ fontFamily: mono, fontSize: "0.728rem", fontWeight: 700, letterSpacing: "0.2em", color: badgeColor, textTransform: "uppercase" }}>{result.badge}</span>
+        <span data-testid="cpm-decision-badge" style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", color: badgeColor, textTransform: "uppercase" }}>{result.badge}</span>
         <span style={{ fontFamily: sans, fontSize: "0.84rem", color: "rgba(0,34,68,0.6)", marginLeft: 4 }}>
           {result.badge === "GO" ? "Acceptable margin — take the load." : result.badge === "NEGOTIATE" ? "Within 10% of break-even — push the rate up." : "Below break-even — this load loses money."}
         </span>
@@ -206,7 +206,7 @@ function LoadOutput({ result }) {
 
       {/* Load Profit — emphasized */}
       <div style={{ marginTop: "1px", background: "#F8F9FB", border: "1px solid rgba(0,34,68,0.08)", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-        <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,34,68,0.45)" }}>LOAD PROFIT / LOSS</p>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,34,68,0.45)" }}>LOAD PROFIT / LOSS</p>
         <p data-testid="cpm-load-profit" style={{ fontFamily: display, fontWeight: 800, fontSize: "2rem", color: profitColor, letterSpacing: "-0.02em" }}>
           {result.loadProfit >= 0 ? "+" : ""}{fmtDollar(result.loadProfit)}
         </p>
@@ -220,7 +220,7 @@ function EmailGate({ onSubmit, loading, dark }) {
   const [email, setEmail] = useState("");
   return (
     <div style={{ background: dark ? "rgba(212,144,10,0.06)" : "#0b1628", border: "1px solid rgba(212,144,10,0.25)", padding: "2rem", marginBottom: "1.5rem" }}>
-      <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.625rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.625rem" }}>
         YOUR RESULTS ARE READY
       </p>
       <h3 style={{ fontFamily: display, fontWeight: 700, fontSize: "1.25rem", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em" }}>
@@ -237,7 +237,7 @@ function EmailGate({ onSubmit, loading, dark }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your operating email"
-          style={{ flex: 1, minWidth: 200, padding: "0.875rem 1rem", fontFamily: sans, fontSize: "0.98rem", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.2)", color: "#FFFFFF", outline: "none", boxSizing: "border-box" }}
+          style={{ flex: 1, minWidth: 200, padding: "0.875rem 1rem", fontFamily: sans, fontSize: "1rem", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.2)", color: "#FFFFFF", outline: "none", boxSizing: "border-box" }}
         />
         <button data-testid="cpm-email-submit" type="submit" disabled={loading} style={{ padding: "0.875rem 1.75rem", fontFamily: sans, fontWeight: 700, fontSize: "0.896rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "#d4900a", border: "none", color: "#0b1628", cursor: loading ? "wait" : "pointer" }}>
           {loading ? "Sending…" : "REVEAL RESULTS"}
@@ -330,7 +330,7 @@ export function CPMCalculator({ variant = "public" }) {
           <h2 style={{ fontFamily: display, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2rem)", color: headingColor, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
             Monthly Fixed Costs
           </h2>
-          <p style={{ fontFamily: sans, fontSize: "0.98rem", color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.6)", lineHeight: 1.7, marginBottom: "2rem" }}>
+          <p style={{ fontFamily: sans, fontSize: "1rem", color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.6)", lineHeight: 1.7, marginBottom: "2rem" }}>
             Enter all monthly costs that stay constant regardless of miles driven.
           </p>
 
@@ -364,7 +364,7 @@ export function CPMCalculator({ variant = "public" }) {
           <h2 style={{ fontFamily: display, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2rem)", color: headingColor, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
             Variable Cost Per Mile
           </h2>
-          <p style={{ fontFamily: sans, fontSize: "0.98rem", color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.6)", lineHeight: 1.7, marginBottom: "2rem" }}>
+          <p style={{ fontFamily: sans, fontSize: "1rem", color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.6)", lineHeight: 1.7, marginBottom: "2rem" }}>
             Costs that scale directly with miles driven. Defaults are pre-filled based on industry averages.
           </p>
 
@@ -431,7 +431,7 @@ export function CPMCalculator({ variant = "public" }) {
 
           {/* Portal: saved CPM banner */}
           {variant === "portal" && cpmSaved && (
-            <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#22c55e", marginTop: "1rem" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#22c55e", marginTop: "1rem" }}>
               ✓ CPM SAVED TO YOUR RECORD
             </p>
           )}
@@ -455,13 +455,13 @@ export function CPMCalculator({ variant = "public" }) {
 
           {savedCPM && totalCPM === 0 && (
             <div style={{ background: "rgba(212,144,10,0.07)", border: "1px solid rgba(212,144,10,0.2)", padding: "0.875rem 1.25rem", marginBottom: "1.5rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>
                 Using your saved CPM: {fmtCPM(savedCPM)}
               </p>
             </div>
           )}
 
-          <p style={{ fontFamily: sans, fontSize: "0.98rem", color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.6)", lineHeight: 1.7, marginBottom: "2rem" }}>
+          <p style={{ fontFamily: sans, fontSize: "1rem", color: dark ? "rgba(255,255,255,0.6)" : "rgba(0,34,68,0.6)", lineHeight: 1.7, marginBottom: "2rem" }}>
             Enter a load's details to instantly see if it's worth taking based on your real cost structure.
           </p>
 

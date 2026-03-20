@@ -33,8 +33,8 @@ export default function EngagementSection() {
 
         <FadeIn>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
@@ -57,7 +57,7 @@ export default function EngagementSection() {
           </h2>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.064rem",
             color: "rgba(255,255,255,0.72)",
             lineHeight: 1.75,
@@ -68,7 +68,7 @@ export default function EngagementSection() {
           </p>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.064rem",
             color: "rgba(255,255,255,0.52)",
             lineHeight: 1.75,
@@ -82,8 +82,8 @@ export default function EngagementSection() {
         {/* Timeline header */}
         <FadeIn delay={80}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
@@ -113,8 +113,8 @@ export default function EngagementSection() {
               >
                 <div>
                   <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.56rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.714rem",
                     color: "rgba(212,144,10,0.72)",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
@@ -124,7 +124,7 @@ export default function EngagementSection() {
                     {item.isLast ? "WEEK" : "WEEKS"}
                   </span>
                   <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.064rem",
                     color: "#d4900a",
                     fontWeight: 700,
@@ -137,7 +137,7 @@ export default function EngagementSection() {
                   <p style={{
                     fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
-                    fontSize: "1.008rem",
+                    fontSize: "1rem",
                     color: "#FFFFFF",
                     marginBottom: "0.25rem",
                     lineHeight: 1.3,
@@ -145,7 +145,7 @@ export default function EngagementSection() {
                     {item.name}
                   </p>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.896rem",
                     color: "rgba(255,255,255,0.48)",
                     lineHeight: 1.55,
@@ -173,8 +173,8 @@ export default function EngagementSection() {
             {/* What You Get */}
             <div>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.616rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 fontWeight: 700,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
@@ -187,15 +187,15 @@ export default function EngagementSection() {
                 {DELIVERABLES.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: "0.784rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.857rem",
                       color: "#d4900a",
                       marginTop: "0.2rem",
                       flexShrink: 0,
                     }}>→</span>
                     <span style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                      fontSize: "1.008rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "1rem",
                       color: "rgba(255,255,255,0.72)",
                       lineHeight: 1.65,
                     }}>{item}</span>
@@ -207,8 +207,8 @@ export default function EngagementSection() {
             {/* How to Start */}
             <div>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.616rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 fontWeight: 700,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
@@ -218,7 +218,7 @@ export default function EngagementSection() {
                 HOW TO START
               </p>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
                 fontSize: "0.896rem",
                 color: "rgba(255,255,255,0.9)",
@@ -229,7 +229,7 @@ export default function EngagementSection() {
                 Engagement is by application only.
               </p>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.70)",
                 lineHeight: 1.75,
@@ -247,7 +247,7 @@ export default function EngagementSection() {
                     gap: "0.5rem",
                     background: "#d4900a",
                     color: "#000F1F",
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
                     fontSize: "0.896rem",
                     letterSpacing: "0.08em",
@@ -272,7 +272,7 @@ export default function EngagementSection() {
                     alignItems: "center",
                     gap: "0.5rem",
                     color: "rgba(255,255,255,0.55)",
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontWeight: 600,
                     fontSize: "0.84rem",
                     letterSpacing: "0.06em",

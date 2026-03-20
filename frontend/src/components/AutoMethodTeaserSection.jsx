@@ -82,9 +82,9 @@ function AutoCard({ card, visible, delay }) {
         {card.letter}
       </p>
       <p style={{
-        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+        fontFamily: "'Inter', sans-serif",
         fontWeight: 700,
-        fontSize: "0.784rem",
+        fontSize: "0.857rem",
         color: "#FFFFFF",
         letterSpacing: "0.1em",
         textTransform: "uppercase",
@@ -93,8 +93,8 @@ function AutoCard({ card, visible, delay }) {
         {card.dir}
       </p>
       <p style={{
-        fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "0.616rem",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.714rem",
         color: "rgba(212,144,10,0.85)",
         letterSpacing: "0.08em",
         marginBottom: "0.75rem",
@@ -102,8 +102,8 @@ function AutoCard({ card, visible, delay }) {
         {card.code}
       </p>
       <p style={{
-        fontFamily: "'Atkinson Hyperlegible', sans-serif",
-        fontSize: "0.784rem",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.857rem",
         fontWeight: 600,
         color: "rgba(255,255,255,0.78)",
         lineHeight: 1.55,
@@ -112,8 +112,8 @@ function AutoCard({ card, visible, delay }) {
         {card.threat}
       </p>
       <p style={{
-        fontFamily: "'Atkinson Hyperlegible', sans-serif",
-        fontSize: "0.784rem",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.857rem",
         color: "rgba(255,255,255,0.72)",
         lineHeight: 1.65,
       }}>
@@ -147,7 +147,7 @@ export default function AutoMethodTeaserSection() {
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             color: "rgba(212,144,10,0.85)",
             letterSpacing: "0.16em",
@@ -168,8 +168,8 @@ export default function AutoMethodTeaserSection() {
             The AUTO Method
           </h2>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "1.008rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "rgba(255,255,255,0.75)",
             lineHeight: 1.7,
             maxWidth: 520,

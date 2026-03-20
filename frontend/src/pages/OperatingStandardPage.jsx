@@ -62,8 +62,8 @@ const NOT_FOR_LIST = [
 
 // ── Shared styles ────────────────────────────────────────
 const sectionLabel = {
-  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-  fontSize: "0.78rem",
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "0.857rem",
   fontWeight: 700,
   letterSpacing: "0.18em",
   textTransform: "uppercase",
@@ -83,7 +83,7 @@ const divider = {
 
 export default function OperatingStandardPage() {
   return (
-    <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
 
       {/* ── HERO ─────────────────────────────────────── */}
@@ -140,10 +140,10 @@ export default function OperatingStandardPage() {
             }}>
               Most new trucking companies do not fail because drivers lack skill.
             </h2>
-            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.90)", lineHeight: 1.85, marginBottom: "2rem" }}>
+            <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.90)", lineHeight: 1.85, marginBottom: "2rem" }}>
               They fail because the operational systems required to support a motor carrier were never installed.
             </p>
-            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.90)", lineHeight: 1.85 }}>
+            <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.90)", lineHeight: 1.85 }}>
               The LaunchPath Operating Standard was created to solve that problem. It defines the minimum operational systems a motor carrier must install in order to operate safely and remain compliant during the early stages of authority.
             </p>
           </div>
@@ -162,7 +162,7 @@ export default function OperatingStandardPage() {
                 alignItems: "flex-start",
               }}>
                 <span style={{ color: "#d4900a", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", fontStyle: "italic", lineHeight: 1.6 }}>{line}</span>
+                <span style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.82)", fontStyle: "italic", lineHeight: 1.6 }}>{line}</span>
               </div>
             ))}
           </div>
@@ -180,14 +180,14 @@ export default function OperatingStandardPage() {
           }}>
             What the standard protects.
           </h2>
-          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", marginBottom: "3rem", maxWidth: 560, lineHeight: 1.8 }}>
+          <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.85)", marginBottom: "3rem", maxWidth: 560, lineHeight: 1.8 }}>
             The LaunchPath Operating Standard is organized around four operational pillars. Each pillar represents a domain of the carrier operation that must be actively protected.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.08)" }} className="pillars-grid">
             {PILLARS.map((p, i) => (
               <div key={i} style={{ background: "#0b1628", padding: "2.5rem 2rem" }}>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.78rem", fontWeight: 700,
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 700,
                   letterSpacing: "0.12em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.75rem",
                 }}>
                   PILLAR {String(i + 1).padStart(2, "0")}
@@ -195,7 +195,7 @@ export default function OperatingStandardPage() {
                 <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "0.875rem" }}>
                   {p.label}
                 </p>
-                <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.75 }}>{p.desc}</p>
+                <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.75 }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -213,7 +213,7 @@ export default function OperatingStandardPage() {
           }}>
             Operational failures rarely occur because a single rule was broken.
           </h2>
-          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.85 }}>
+          <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.85 }}>
             They occur because risk reaches the operation around, under, through, or over the controls that were supposed to stop it. The LaunchPath standard installs operational guards designed to prevent risk from reaching the authority from any direction.
           </p>
         </div>
@@ -251,7 +251,7 @@ export default function OperatingStandardPage() {
           }}>
             Understanding the attack vectors is not enough. Guards must be installed.
           </h2>
-          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 580 }}>
+          <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 580 }}>
             Each guard is tied to specific FMCSA regulations and designed to intercept failure before it reaches the authority.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 0, border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -270,8 +270,8 @@ export default function OperatingStandardPage() {
                 }}
                 className="guard-row"
               >
-                <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#d4900a" }}>{g.name}</span>
-                <span style={{ fontSize: "0.875rem", color: "rgba(212,144,10,0.85)", fontFamily: "'IBM Plex Mono', monospace", whiteSpace: "nowrap" }}>
+                <span style={{ fontWeight: 700, fontSize: "1.1rem", color: "#d4900a" }}>{g.name}</span>
+                <span style={{ fontSize: "var(--text-sm)", color: "rgba(212,144,10,0.85)", fontFamily: "'Inter', sans-serif", whiteSpace: "nowrap" }}>
                   {g.reg}
                 </span>
                 <span style={{ fontSize: "1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.5 }}>{g.stops}</span>
@@ -300,17 +300,17 @@ export default function OperatingStandardPage() {
           {PHASES.map((p) => (
             <div key={p.num} style={{ background: "#0d1c30", padding: "2rem 1.5rem" }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.68rem", fontWeight: 700,
                 color: "rgba(212,144,10,0.35)",
                 marginBottom: "1rem", lineHeight: 1,
               }}>
                 {p.num}
               </p>
-              <p style={{ fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF", marginBottom: "0.75rem", lineHeight: 1.3 }}>
+              <p style={{ fontWeight: 700, fontSize: "1.1rem", color: "#FFFFFF", marginBottom: "0.75rem", lineHeight: 1.3 }}>
                 {p.label}
               </p>
-              <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>{p.desc}</p>
+              <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -333,7 +333,7 @@ export default function OperatingStandardPage() {
               {FOR_LIST.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", marginBottom: "1.25rem", alignItems: "flex-start" }}>
                   <span style={{ color: "#d4900a", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                  <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.7 }}>{item}</span>
+                  <span style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.7 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -351,7 +351,7 @@ export default function OperatingStandardPage() {
               {NOT_FOR_LIST.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", marginBottom: "1.25rem", alignItems: "flex-start" }}>
                   <span style={{ color: "rgba(255,255,255,0.85)", flexShrink: 0, marginTop: "0.1rem" }}>—</span>
-                  <span style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>{item}</span>
+                  <span style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -370,7 +370,7 @@ export default function OperatingStandardPage() {
           }}>
             Motor carriers implement the LaunchPath Operating Standard through the Ground 0 program.
           </h2>
-          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
+          <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 520 }}>
             Ground 0 installs the operational infrastructure required to meet the standard and prepares the carrier for long-term compliance stability. It is the foundation of the LaunchPath system — six implementation modules, no charge.
           </p>
 
@@ -380,8 +380,8 @@ export default function OperatingStandardPage() {
               to="/ground-0-briefing"
               style={{
                 display: "inline-block", minHeight: 52, background: "#d4900a",
-                color: "#0b1628", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
-                fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                fontSize: "1.1rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 transition: "background 0.2s",
               }}
@@ -395,8 +395,8 @@ export default function OperatingStandardPage() {
               to="/reach-diagnostic"
               style={{
                 display: "inline-block", minHeight: 52, background: "transparent",
-                color: "#d4900a", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
-                fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "#d4900a", fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                fontSize: "1.1rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 border: "1px solid rgba(212,144,10,0.4)", transition: "all 0.2s",
               }}
@@ -413,17 +413,17 @@ export default function OperatingStandardPage() {
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", margin: 0 }}>
               Ground 0: See Where Your Operation Stands
             </p>
           </div>
           <Link
             to="/ground-0-briefing"
             data-testid="standard-next-framework-link"
-            style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: "#d4900a", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: "#d4900a", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
             onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
             onMouseLeave={e => (e.currentTarget.style.background = "#d4900a")}
           >

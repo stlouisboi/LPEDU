@@ -7,9 +7,9 @@ const goldDim = "rgba(197,160,89,0.75)";
 const navy = "#002244";
 const dark = "#080f1e";
 const card = "#0D1929";
-const mono = "'IBM Plex Mono', monospace";
+const mono = "'Inter', sans-serif";
 const condensed = "'Playfair Display', serif";
-const body = "'Atkinson Hyperlegible', sans-serif";
+const body = "'Inter', sans-serif";
 
 // ── Module Data ──────────────────────────────────────────
 const MODULES = [
@@ -95,7 +95,7 @@ export default function LaunchPathStandardPage() {
       {/* ── SECTION 1: What the Standard Is ─────────────── */}
       <section style={{ background: dark, padding: "96px 24px 72px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "2rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "2rem" }}>
             LP-STD-001 | LAUNCHPATH OPERATING STANDARD
           </p>
           <h1 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(2.25rem, 5vw, 3.5rem)", color: "#FFFFFF", lineHeight: 1.05, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
@@ -133,7 +133,7 @@ export default function LaunchPathStandardPage() {
       {/* ── SECTION 2: What Gets Installed ──────────────── */}
       <section style={{ background: "#001030", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
             CURRICULUM
           </p>
           <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.5rem" }}>
@@ -157,21 +157,21 @@ export default function LaunchPathStandardPage() {
                 >
                   {/* Code */}
                   <div style={{ flexShrink: 0, width: 48 }}>
-                    <p style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.12em", color: goldDim, textTransform: "uppercase", marginBottom: "0.2rem" }}>{mod.label}</p>
-                    <p style={{ fontFamily: mono, fontSize: "0.784rem", fontWeight: 700, color: gold }}>{mod.code}</p>
+                    <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", color: goldDim, textTransform: "uppercase", marginBottom: "0.2rem" }}>{mod.label}</p>
+                    <p style={{ fontFamily: mono, fontSize: "0.857rem", fontWeight: 700, color: gold }}>{mod.code}</p>
                   </div>
 
                   {/* Content */}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.375rem" }}>
-                      <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF", margin: 0 }}>{mod.title}</p>
-                      <span style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: badge.color, background: badge.bg, padding: "0.2rem 0.6rem" }}>
+                      <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.1rem", color: "#FFFFFF", margin: 0 }}>{mod.title}</p>
+                      <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: badge.color, background: badge.bg, padding: "0.2rem 0.6rem" }}>
                         {badge.label}
                       </span>
                     </div>
-                    <p style={{ fontFamily: body, fontSize: "0.875rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.65, margin: 0 }}>{mod.note}</p>
+                    <p style={{ fontFamily: body, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.60)", lineHeight: 1.65, margin: 0 }}>{mod.note}</p>
                     {mod.badge && (
-                      <p style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.08)", display: "inline-block", padding: "0.2rem 0.6rem", marginTop: "0.5rem" }}>
+                      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.08)", display: "inline-block", padding: "0.2rem 0.6rem", marginTop: "0.5rem" }}>
                         ★ {mod.badge}
                       </p>
                     )}
@@ -186,7 +186,7 @@ export default function LaunchPathStandardPage() {
       {/* ── SECTION 3: What Vince Does ───────────────────── */}
       <section style={{ background: "#000c1e", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
             STATION CUSTODIAN — LP-VNL
           </p>
           <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1rem" }}>
@@ -205,17 +205,17 @@ export default function LaunchPathStandardPage() {
               >
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "1.5rem", flexWrap: "wrap" }}>
                   <div style={{ flexShrink: 0 }}>
-                    <p style={{ fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.2rem" }}>{m.week}</p>
+                    <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.2rem" }}>{m.week}</p>
                     <p style={{ fontFamily: mono, fontSize: "1.1rem", fontWeight: 700, color: gold, letterSpacing: "-0.02em" }}>{m.num}</p>
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.5rem" }}>
                       <h3 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.15rem", color: "#FFFFFF", margin: 0 }}>{m.title}</h3>
                       {m.badge && (
-                        <span style={{ fontFamily: mono, fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.1)", padding: "0.2rem 0.6rem" }}>{m.badge}</span>
+                        <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.1)", padding: "0.2rem 0.6rem" }}>{m.badge}</span>
                       )}
                     </div>
-                    <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, margin: 0 }}>{m.desc}</p>
+                    <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, margin: 0 }}>{m.desc}</p>
                   </div>
                 </div>
               </div>
@@ -227,7 +227,7 @@ export default function LaunchPathStandardPage() {
       {/* ── SECTION 4: Who It's For ──────────────────────── */}
       <section style={{ background: "#001A33", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 940, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
             LP-QFY-001 | OPERATOR QUALIFICATION FILTER
           </p>
           <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.5rem" }}>
@@ -237,7 +237,7 @@ export default function LaunchPathStandardPage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "rgba(255,255,255,0.05)" }} className="qualifier-grid">
             {/* FOR YOU */}
             <div style={{ background: card, borderTop: `3px solid ${gold}`, padding: "2rem 2rem 2.5rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.5rem" }}>FOR YOU</p>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.5rem" }}>FOR YOU</p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {[
                   "Your authority is active and the 90-day clock is running",
@@ -247,7 +247,7 @@ export default function LaunchPathStandardPage() {
                 ].map((item, i) => (
                   <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", marginBottom: "0.875rem" }}>
                     <span style={{ color: gold, flexShrink: 0, marginTop: "0.15rem", fontSize: "0.7rem" }}>→</span>
-                    <span style={{ fontSize: "0.925rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.65 }}>{item}</span>
+                    <span style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.80)", lineHeight: 1.65 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -255,7 +255,7 @@ export default function LaunchPathStandardPage() {
 
             {/* NOT FOR YOU */}
             <div style={{ background: "#0a0e18", borderTop: `3px solid rgba(248,113,113,0.4)`, padding: "2rem 2rem 2.5rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(248,113,113,0.7)", marginBottom: "1.5rem" }}>NOT FOR YOU</p>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(248,113,113,0.7)", marginBottom: "1.5rem" }}>NOT FOR YOU</p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {[
                   "You do not yet have operating authority and are not actively pursuing it",
@@ -265,7 +265,7 @@ export default function LaunchPathStandardPage() {
                 ].map((item, i) => (
                   <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", marginBottom: "0.875rem" }}>
                     <span style={{ color: "rgba(248,113,113,0.65)", flexShrink: 0, marginTop: "0.15rem", fontSize: "0.7rem" }}>✕</span>
-                    <span style={{ fontSize: "0.925rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{item}</span>
+                    <span style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -279,7 +279,7 @@ export default function LaunchPathStandardPage() {
       {/* ── SECTION 5: The Comparison ────────────────────── */}
       <section style={{ background: dark, padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
             OPTION COMPARISON
           </p>
           <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.5rem" }}>
@@ -291,11 +291,11 @@ export default function LaunchPathStandardPage() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 180px 180px", background: "#0a1220" }}>
               <div style={{ padding: "1rem 1.5rem" }} />
               <div style={{ padding: "1rem 1rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
-                <p style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "0.25rem" }}>DOCUMENT SYSTEM</p>
+                <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "0.25rem" }}>DOCUMENT SYSTEM</p>
                 <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.25rem", color: "rgba(255,255,255,0.75)" }}>$497</p>
               </div>
               <div style={{ padding: "1rem 1rem", textAlign: "center", borderLeft: `1px solid rgba(197,160,89,0.25)`, background: "rgba(197,160,89,0.05)" }}>
-                <p style={{ fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: goldDim, marginBottom: "0.25rem" }}>GUIDED STANDARD</p>
+                <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: goldDim, marginBottom: "0.25rem" }}>GUIDED STANDARD</p>
                 <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.25rem", color: gold }}>$2,500</p>
               </div>
             </div>
@@ -312,7 +312,7 @@ export default function LaunchPathStandardPage() {
                 }}
               >
                 <div style={{ padding: "0.875rem 1.5rem" }}>
-                  <p style={{ fontSize: "0.875rem", color: row.guided && !row.diy ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.60)", lineHeight: 1.4, margin: 0 }}>{row.feature}</p>
+                  <p style={{ fontSize: "var(--text-sm)", color: row.guided && !row.diy ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.60)", lineHeight: 1.4, margin: 0 }}>{row.feature}</p>
                 </div>
                 <div style={{ padding: "0.875rem 1rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.04)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Check yes={row.diy} />
@@ -329,7 +329,7 @@ export default function LaunchPathStandardPage() {
       {/* ── SECTION 6: Investment ────────────────────────── */}
       <section style={{ background: "#001030", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 640, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
             LP-STD-001 | INVESTMENT
           </p>
           <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2rem" }}>
@@ -338,7 +338,7 @@ export default function LaunchPathStandardPage() {
 
           <div style={{ background: card, borderTop: `3px solid ${gold}`, padding: "2.5rem 2.5rem 2rem" }}>
             <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: gold, lineHeight: 1, marginBottom: "0.5rem", letterSpacing: "-0.02em" }}>$2,500</p>
-            <p style={{ fontFamily: mono, fontSize: "0.616rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "2rem" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "2rem" }}>
               First cohort pricing — 10 carriers maximum
             </p>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.75rem" }}>
@@ -352,7 +352,7 @@ export default function LaunchPathStandardPage() {
                 ].map((item, i) => (
                   <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", marginBottom: "0.75rem" }}>
                     <span style={{ color: gold, flexShrink: 0, marginTop: "0.15rem" }}>—</span>
-                    <span style={{ fontSize: "0.925rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.65 }}>{item}</span>
+                    <span style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.75)", lineHeight: 1.65 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -364,7 +364,7 @@ export default function LaunchPathStandardPage() {
       {/* ── SECTION 7: The Next Step ─────────────────────── */}
       <section style={{ background: "#000810", padding: "96px 24px 104px" }}>
         <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "2rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "2rem" }}>
             LP-STD-001 | NEXT STEP
           </p>
           <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 3rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem", letterSpacing: "-0.01em" }}>
@@ -396,7 +396,7 @@ export default function LaunchPathStandardPage() {
             Request Admission →
           </Link>
 
-          <p style={{ fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginTop: "1.5rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginTop: "1.5rem" }}>
             No payment required at this step &nbsp;·&nbsp; Decision within 24–48 hours
           </p>
         </div>

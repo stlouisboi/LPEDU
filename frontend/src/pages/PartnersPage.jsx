@@ -75,8 +75,8 @@ function PersonaCard({ p, idx }) {
         flexDirection: "column",
       }}>
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.75rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.762rem",
           letterSpacing: "0.12em",
           color: "rgba(212,144,10,1)",
           textTransform: "uppercase",
@@ -107,8 +107,8 @@ function PersonaCard({ p, idx }) {
           {p.headline}
         </h3>
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "1.05rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "1.1rem",
           color: "rgba(255,255,255,0.90)",
           lineHeight: 1.7,
           marginBottom: "1.5rem",
@@ -121,7 +121,7 @@ function PersonaCard({ p, idx }) {
           paddingTop: "0.875rem",
         }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             color: "rgba(212,144,10,0.95)",
             letterSpacing: "0.1em",
@@ -167,16 +167,16 @@ function ContactForm() {
     background: "rgba(255,255,255,0.04)",
     border: "1px solid rgba(255,255,255,0.14)",
     color: "#FFFFFF",
-    fontFamily: "'Atkinson Hyperlegible', sans-serif",
-    fontSize: "1.05rem",
+    fontFamily: "'Inter', sans-serif",
+    fontSize: "1.1rem",
     outline: "none",
     boxSizing: "border-box",
     transition: "border-color 0.2s",
   };
 
   const labelStyle = {
-    fontFamily: "'IBM Plex Mono', monospace",
-    fontSize: "0.75rem",
+    fontFamily: "'Inter', sans-serif",
+    fontSize: "0.762rem",
     letterSpacing: "0.12em",
     textTransform: "uppercase",
     color: "rgba(212,144,10,0.95)",
@@ -188,7 +188,7 @@ function ContactForm() {
     return (
       <div data-testid="partner-form-success" style={{ textAlign: "center", padding: "3rem 0" }}>
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "0.672rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -208,7 +208,7 @@ function ContactForm() {
           Your inquiry has been received.
         </p>
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "1rem",
           color: "rgba(255,255,255,0.88)",
           lineHeight: 1.7,
@@ -304,8 +304,8 @@ function ContactForm() {
 
       {error && (
         <p data-testid="partner-form-error" style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "0.875rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "var(--text-sm)",
           color: "#f87171",
         }}>
           {error}
@@ -319,7 +319,7 @@ function ContactForm() {
         style={{
           background: status === "loading" ? "rgba(212,144,10,0.5)" : "#d4900a",
           color: "#0b1628",
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontWeight: 700,
           fontSize: "1rem",
           letterSpacing: "0.1em",
@@ -356,7 +356,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -378,7 +378,7 @@ export default function PartnersPage() {
               The operational layer behind your carrier relationships.
             </h1>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.125rem",
               color: "rgba(255,255,255,0.92)",
               lineHeight: 1.75,
@@ -388,7 +388,7 @@ export default function PartnersPage() {
               LaunchPath installs the compliance infrastructure that new motor carrier authorities require to survive federal oversight. For partners — insurers, fleets, and brokers — this is the onboarding layer that reduces exposure before it becomes a claim, a violation, or a failed load.
             </p>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.125rem",
               color: "rgba(255,255,255,0.92)",
               lineHeight: 1.75,
@@ -403,7 +403,7 @@ export default function PartnersPage() {
               style={{
                 background: "#d4900a",
                 color: "#0b1628",
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 700,
                 fontSize: "1rem",
                 letterSpacing: "0.1em",
@@ -432,7 +432,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -453,8 +453,8 @@ export default function PartnersPage() {
               Three industries. One operational problem.
             </h2>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.05rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
               color: "rgba(255,255,255,0.90)",
               lineHeight: 1.7,
               maxWidth: 560,
@@ -484,7 +484,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -539,7 +539,7 @@ export default function PartnersPage() {
                       {step.title}
                     </h3>
                     <p style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "1rem",
                       color: "rgba(255,255,255,0.88)",
                       lineHeight: 1.7,
@@ -588,8 +588,8 @@ export default function PartnersPage() {
                   {s.value}
                 </p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "1.05rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "1.1rem",
                   color: "rgba(255,255,255,0.85)",
                   lineHeight: 1.5,
                   letterSpacing: "0.02em",
@@ -615,7 +615,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -636,8 +636,8 @@ export default function PartnersPage() {
               Request a Partnership Conversation
             </h2>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.05rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.1rem",
               color: "rgba(255,255,255,0.88)",
               lineHeight: 1.7,
               marginBottom: "2.75rem",

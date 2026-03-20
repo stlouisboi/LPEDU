@@ -73,7 +73,7 @@ export default function Ground0Page() {
   };
 
   return (
-    <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", background: "#F5F6F7", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: "#F5F6F7", minHeight: "100vh" }}>
       <Navbar />
 
       {/* ── Header Block ── Light background */}
@@ -82,7 +82,7 @@ export default function Ground0Page() {
           <p
             data-testid="ground0-section-label"
             style={{
-              fontFamily: "'IBM Plex Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
@@ -110,7 +110,7 @@ export default function Ground0Page() {
 
           <p
             style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.12rem",
               color: "#444444",
               lineHeight: 1.7,
@@ -123,8 +123,8 @@ export default function Ground0Page() {
 
           <p
             style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "1.008rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem",
               color: "#555555",
               lineHeight: 1.9,
               maxWidth: 680,
@@ -145,7 +145,7 @@ export default function Ground0Page() {
             <p style={{
               fontFamily: "'Playfair Display', serif",
               fontStyle: "italic",
-              fontSize: "1.008rem",
+              fontSize: "1rem",
               color: "#333333",
               lineHeight: 1.75,
               marginBottom: "0.5rem",
@@ -153,8 +153,8 @@ export default function Ground0Page() {
               "Wisdom sees ahead and prepares for what's coming. Better to collect wisdom earnings today than to pay sin wages tomorrow."
             </p>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.616rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "#d4900a",
@@ -169,7 +169,7 @@ export default function Ground0Page() {
       <div style={{ background: "#0b1628", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "72px 24px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -191,8 +191,8 @@ export default function Ground0Page() {
             The REACH Assessment
           </h2>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "1.008rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "rgba(255,255,255,0.72)",
             lineHeight: 1.8,
             maxWidth: 580,
@@ -201,8 +201,8 @@ export default function Ground0Page() {
             15 questions across five operational categories. Approximately 4 minutes. Complete this before reviewing the Ground 0 module content below.
           </p>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.875rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.45)",
             lineHeight: 1.7,
             maxWidth: 580,
@@ -218,7 +218,7 @@ export default function Ground0Page() {
       <div style={{ background: "#080f1e", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "64px 24px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
@@ -240,8 +240,8 @@ export default function Ground0Page() {
             Sin Wages vs. Wisdom Earnings
           </h2>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.98rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "rgba(255,255,255,0.80)",
             lineHeight: 1.8,
             maxWidth: 620,
@@ -260,8 +260,8 @@ export default function Ground0Page() {
           }} className="sinwages-grid">
             <div style={{ background: "#0D1929", padding: "1.75rem" }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.616rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
@@ -276,8 +276,8 @@ export default function Ground0Page() {
                 "The cost of starting over",
               ].map((item, i) => (
                 <p key={i} style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.875rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "var(--text-sm)",
                   color: "rgba(255,255,255,0.80)",
                   lineHeight: 1.7,
                   paddingLeft: "0.75rem",
@@ -290,8 +290,8 @@ export default function Ground0Page() {
             </div>
             <div style={{ background: "#0D1A10", padding: "1.75rem" }}>
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.616rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
@@ -306,8 +306,8 @@ export default function Ground0Page() {
                 "Authority protected through the first 24 months",
               ].map((item, i) => (
                 <p key={i} style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.875rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "var(--text-sm)",
                   color: "rgba(255,255,255,0.80)",
                   lineHeight: 1.7,
                   paddingLeft: "0.75rem",
@@ -321,8 +321,8 @@ export default function Ground0Page() {
           </div>
 
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.98rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
             color: "rgba(255,255,255,0.70)",
             fontStyle: "italic",
             lineHeight: 1.7,
@@ -351,8 +351,8 @@ export default function Ground0Page() {
           >
             <p
               style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                fontSize: "0.784rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.857rem",
                 fontWeight: 400,
                 color: "rgba(212,144,10,0.78)",
                 letterSpacing: "0.02em",
@@ -395,7 +395,7 @@ export default function Ground0Page() {
                   <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
                     <span
                       style={{
-                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.896rem",
                         fontWeight: 700,
                         color: "#d4900a",
@@ -409,9 +409,9 @@ export default function Ground0Page() {
                     </span>
                     <span
                       style={{
-                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontWeight: 700,
-                        fontSize: "1.008rem",
+                        fontSize: "1rem",
                         color: isOpen ? "#FFFFFF" : "rgba(255,255,255,0.87)",
                         transition: "color 0.2s",
                       }}
@@ -437,8 +437,8 @@ export default function Ground0Page() {
                   <div style={{ padding: "0 1.75rem 2.25rem 2.75rem" }}>
                     <p
                       style={{
-                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                        fontSize: "0.98rem",
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "1rem",
                         color: "rgba(255,255,255,0.90)",
                         lineHeight: 1.9,
                         marginBottom: "1.25rem",
@@ -449,7 +449,7 @@ export default function Ground0Page() {
 
                     <p
                       style={{
-                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.84rem",
                         color: "rgba(212,144,10,0.90)",
                         marginBottom: "1.5rem",
@@ -467,7 +467,7 @@ export default function Ground0Page() {
                     >
                       <p
                         style={{
-                          fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "0.672rem",
                           fontWeight: 700,
                           letterSpacing: "0.16em",
@@ -480,8 +480,8 @@ export default function Ground0Page() {
                       </p>
                       <p
                         style={{
-                          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                          fontSize: "0.98rem",
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "1rem",
                           color: "#FFFFFF",
                           lineHeight: 1.8,
                         }}
@@ -498,8 +498,8 @@ export default function Ground0Page() {
                         paddingTop: "1.25rem",
                       }}>
                         <p style={{
-                          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                          fontSize: "0.875rem",
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "var(--text-sm)",
                           color: "rgba(212,144,10,0.75)",
                           lineHeight: 1.7,
                           fontStyle: "italic",
@@ -522,8 +522,8 @@ export default function Ground0Page() {
             marginTop: "1rem",
           }}>
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.616rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
               fontWeight: 700,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -533,8 +533,8 @@ export default function Ground0Page() {
               — Station Custodian / Operator Note
             </p>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "0.98rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem",
               color: "rgba(255,255,255,0.85)",
               lineHeight: 1.85,
               marginBottom: "0.875rem",
@@ -542,8 +542,8 @@ export default function Ground0Page() {
               I've seen too many veterans and entrepreneurs treat the first 90 days like a honeymoon period. They focus on the chrome and the load boards while the paperwork sits in a pile.
             </p>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "0.98rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem",
               color: "rgba(255,255,255,0.85)",
               lineHeight: 1.85,
               marginBottom: "0.875rem",
@@ -551,8 +551,8 @@ export default function Ground0Page() {
               By the time the audit notice hits the inbox, they're already underwater.
             </p>
             <p style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "0.98rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem",
               color: "rgba(255,255,255,0.85)",
               lineHeight: 1.85,
             }}>
@@ -562,7 +562,7 @@ export default function Ground0Page() {
 
           {/* ── Readiness Tier Table ── */}
           <div style={{ marginBottom: "3rem" }}>            <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.672rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
@@ -587,23 +587,23 @@ export default function Ground0Page() {
                   alignItems: "start",
                 }}>
                   <p style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
-                    fontSize: "0.875rem",
+                    fontSize: "var(--text-sm)",
                     letterSpacing: "0.08em",
                     color: row.color,
                     marginTop: "0.1rem",
                   }}>{row.tier}</p>
                   <div>
                     <p style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 600,
-                      fontSize: "0.875rem",
+                      fontSize: "var(--text-sm)",
                       color: "#FFFFFF",
                       marginBottom: "0.25rem",
                     }}>{row.status}</p>
                     <p style={{
-                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.825rem",
                       color: "rgba(255,255,255,0.65)",
                       lineHeight: 1.5,

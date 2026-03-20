@@ -24,8 +24,8 @@ export default function WhatGetsInstalledSimple() {
 
         {/* Section label */}
         <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "0.60rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.714rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
@@ -66,14 +66,14 @@ export default function WhatGetsInstalledSimple() {
               paddingRight: "2rem",
             }}>
               <span style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.75rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.762rem",
                 color: "#d4900a",
                 fontWeight: 700,
                 flexShrink: 0,
               }}>→</span>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.85)",
                 lineHeight: 1.4,
@@ -86,8 +86,8 @@ export default function WhatGetsInstalledSimple() {
 
         {/* Closing line */}
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "1.05rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "1.1rem",
           fontStyle: "italic",
           color: "rgba(255,255,255,0.50)",
           lineHeight: 1.7,
@@ -102,8 +102,8 @@ export default function WhatGetsInstalledSimple() {
           to="/operating-standard"
           data-testid="see-installation-link"
           style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: "0.9rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "var(--text-sm)",
             fontWeight: 600,
             color: "rgba(212,144,10,0.80)",
             textDecoration: "none",

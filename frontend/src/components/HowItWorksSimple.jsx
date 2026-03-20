@@ -49,8 +49,8 @@ export default function HowItWorksSimple() {
 
           {/* Section label */}
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.60rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -86,8 +86,8 @@ export default function HowItWorksSimple() {
                 }}
               >
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.60rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.714rem",
                   fontWeight: 700,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
@@ -110,8 +110,8 @@ export default function HowItWorksSimple() {
                 </p>
 
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.65rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.714rem",
                   color: "rgba(255,255,255,0.35)",
                   letterSpacing: "0.10em",
                   textTransform: "uppercase",
@@ -121,7 +121,7 @@ export default function HowItWorksSimple() {
                 </p>
 
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.938rem",
                   color: "rgba(255,255,255,0.68)",
                   lineHeight: 1.75,
@@ -138,8 +138,8 @@ export default function HowItWorksSimple() {
             to="/operating-standard"
             data-testid="see-standard-link"
             style={{
-              fontFamily: "'Atkinson Hyperlegible', sans-serif",
-              fontSize: "0.9rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "var(--text-sm)",
               fontWeight: 600,
               color: "rgba(212,144,10,0.80)",
               textDecoration: "none",

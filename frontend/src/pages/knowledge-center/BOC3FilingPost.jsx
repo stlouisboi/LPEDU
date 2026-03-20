@@ -6,7 +6,7 @@ import useSEO from "../../hooks/useSEO";
 
 const navy = "#0b1628";
 const gold = "#d4900a";
-const mono = "'IBM Plex Mono', monospace";
+const mono = "'Inter', sans-serif";
 
 const SECTIONS = [
   {
@@ -83,14 +83,14 @@ export default function BOC3FilingPost() {
       }}>
         <div style={{ maxWidth: 780, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
-            <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>
+            <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>
               ← Operational Library
             </Link>
             <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.7rem" }}>/</span>
-            <span style={{ fontFamily: mono, fontSize: "0.60rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Authority Registration</span>
+            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Authority Registration</span>
           </div>
 
-          <p style={{ fontFamily: mono, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
             LP-BRF-POST-02 · AUTHORITY REGISTRATION · AUTHORITY PROTECTION
           </p>
 
@@ -102,11 +102,11 @@ export default function BOC3FilingPost() {
             The BOC-3 Filing: What It Is, What Happens If It Lapses, and How to Verify Yours
           </h1>
 
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem", color: "rgba(0,26,51,0.82)", lineHeight: 1.8, borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.1rem", color: "rgba(0,26,51,0.82)", lineHeight: 1.8, borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem" }}>
             The BOC-3 is one of the smaller administrative requirements in the FMCSA registration process — and one of the more consequential ones if it lapses or was never properly filed. Carriers who assume their MC number covers all federal registration requirements frequently discover a BOC-3 problem at the worst possible time: during a compliance review, an insurance audit, or a broker check.
           </p>
 
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginTop: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginTop: "1rem" }}>
             This article covers what the BOC-3 is, why it's required, what happens when it's missing or lapsed, and how to verify your current status.
           </p>
 
@@ -118,7 +118,7 @@ export default function BOC3FilingPost() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p style={{ fontFamily: mono, fontSize: "0.55rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
-                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -139,7 +139,7 @@ export default function BOC3FilingPost() {
             </h2>
             {section.body.split("\n\n").map((para, j) => (
               <p key={j} style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "var(--text-base)",
+                fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)",
                 color: "rgba(0,26,51,0.82)", lineHeight: 1.85, marginBottom: "1.1rem",
               }}>
                 {para}
@@ -153,7 +153,7 @@ export default function BOC3FilingPost() {
           background: "#080f1e", border: `1px solid rgba(212,144,10,0.20)`,
           borderTop: `3px solid ${gold}`, padding: "2rem", marginBottom: "3rem",
         }}>
-          <p style={{ fontFamily: mono, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem" }}>
             Related Resources
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -164,8 +164,8 @@ export default function BOC3FilingPost() {
               <div key={item.label} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
                 <div style={{ width: 3, minHeight: 40, background: gold, flexShrink: 0, marginTop: 4 }} />
                 <div>
-                  <Link to={item.href} style={{ fontFamily: mono, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: gold, textDecoration: "none" }}>{item.label}</Link>
-                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.85rem", color: "rgba(0,26,51,0.60)", marginTop: "0.2rem", lineHeight: 1.6 }}>{item.desc}</p>
+                  <Link to={item.href} style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: gold, textDecoration: "none" }}>{item.label}</Link>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(0,26,51,0.60)", marginTop: "0.2rem", lineHeight: 1.6 }}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -174,13 +174,13 @@ export default function BOC3FilingPost() {
 
         {/* Ground 0 CTA */}
         <div style={{ textAlign: "center", padding: "3rem 2rem", background: "#060d19", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
             LPOS V1.0 — GROUND 0 ENTRY
           </p>
           <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.75rem" }}>
             If you're a new carrier in your first 90 days, Ground 0 is free.
           </p>
-          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             Ground 0 covers the full registration stack — BOC-3, UCR, MCS-150, and insurance — and ends with a GO/WAIT/NO-GO decision framework before your first dispatch.
           </p>
           <Link
@@ -188,7 +188,7 @@ export default function BOC3FilingPost() {
             data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",
-              fontFamily: mono, fontWeight: 700, fontSize: "0.65rem",
+              fontFamily: mono, fontWeight: 700, fontSize: "0.714rem",
               letterSpacing: "0.12em", textTransform: "uppercase",
               padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s",
             }}
@@ -199,7 +199,7 @@ export default function BOC3FilingPost() {
           </Link>
         </div>
 
-        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.75rem", color: "rgba(0,26,51,0.45)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(0,26,51,0.45)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>
           LaunchPath Transportation EDU is an educational program. This content does not constitute legal or compliance advice. Verify all filing requirements with FMCSA at fmcsa.dot.gov and review your SAFER profile at safer.fmcsa.dot.gov.
         </p>
         <p style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(0,26,51,0.35)", marginTop: "0.5rem" }}>

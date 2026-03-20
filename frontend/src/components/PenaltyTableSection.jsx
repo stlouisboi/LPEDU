@@ -60,7 +60,7 @@ export default function PenaltyTableSection() {
             Cost exposure during the first 90 days of authority
           </h2>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1.232rem",
             color: "var(--text-muted)",
             lineHeight: 1.75,
@@ -80,7 +80,7 @@ export default function PenaltyTableSection() {
             }}>
               <div style={{ padding: "1rem 1.5rem", borderRight: "1px solid var(--divider-dark)" }}>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.952rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
@@ -90,7 +90,7 @@ export default function PenaltyTableSection() {
               </div>
               <div style={{ padding: "1rem 1.5rem", background: "var(--incident-dark-1)" }}>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.952rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
@@ -109,7 +109,7 @@ export default function PenaltyTableSection() {
               }}>
                 <div style={{ padding: "1.25rem 1.5rem", borderRight: "1px solid var(--divider-dark)" }}>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.12rem",
                     fontWeight: 600,
                     color: "var(--text)",
@@ -119,7 +119,7 @@ export default function PenaltyTableSection() {
                 </div>
                 <div style={{ padding: "1.25rem 1.5rem" }}>
                   <p style={{
-                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.12rem",
                     fontStyle: "italic",
                     color: "var(--text-muted)",
@@ -139,7 +139,7 @@ export default function PenaltyTableSection() {
               padding: "1.25rem 1.5rem",
             }}>
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.12rem",
                 fontWeight: 600,
                 color: "var(--text)",
@@ -154,7 +154,7 @@ export default function PenaltyTableSection() {
 
         <FadeIn delay={100}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.952rem",
             color: "var(--text-subtle)",
             marginBottom: "1.5rem",

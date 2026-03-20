@@ -14,8 +14,8 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
         <FadeIn>
         <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.616rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "rgba(212,144,10,0.6)",
@@ -36,8 +36,8 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
           </p>
           {attribution && (
             <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.616rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
               letterSpacing: "0.12em",
               color: "rgba(212,144,10,0.7)",
               textTransform: "uppercase",
@@ -48,9 +48,9 @@ export default function PhilosophyQuoteBlock({ quote, attribution }) {
         </div>
         <div style={{ maxWidth: 680, margin: "1.75rem auto 0", textAlign: "center" }}>
           <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
-            fontSize: "0.98rem",
+            fontSize: "1rem",
             color: "rgba(255,255,255,0.68)",
             lineHeight: 1.7,
           }}>

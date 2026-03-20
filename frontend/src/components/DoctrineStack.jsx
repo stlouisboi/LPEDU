@@ -64,8 +64,8 @@ export function DoctrineStack() {
               {/* Left: label + name */}
               <div>
                 <p style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.62rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.714rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -73,8 +73,8 @@ export function DoctrineStack() {
                   marginBottom: "0.25rem",
                 }}>{layer.label}</p>
                 <p style={{
-                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                  fontSize: "0.95rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "var(--text-sm)",
                   fontWeight: 500,
                   color: "#FFFFFF",
                   letterSpacing: "0.01em",
@@ -83,8 +83,8 @@ export function DoctrineStack() {
 
               {/* Right: descriptor — hidden on very small screens */}
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                fontSize: "0.82rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.857rem",
                 color: "rgba(255,255,255,0.78)",
                 textAlign: "right",
                 letterSpacing: "0.02em",
@@ -112,14 +112,14 @@ export function DoctrineStack() {
       <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
         <p style={{
           fontFamily: "'Playfair Display', serif",
-          fontSize: "0.9rem",
+          fontSize: "var(--text-sm)",
           fontWeight: 700,
           color: "rgba(255,255,255,0.8)",
           marginBottom: "0.25rem",
         }}>LaunchPath Authority Survival Framework</p>
         <p style={{
-          fontFamily: "'Atkinson Hyperlegible', sans-serif",
-          fontSize: "0.82rem",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.857rem",
           color: "rgba(255,255,255,0.62)",
           letterSpacing: "0.03em",
         }}>The 90-Day Compliance Operating Standard for new motor carrier authorities</p>

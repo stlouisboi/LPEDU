@@ -67,7 +67,7 @@ export default function PlatformSurface() {
         .ps-item:last-child { border-right: none; }
         .ps-item:hover { background: rgba(212,144,10,0.05); }
         .ps-cta {
-          font-family: 'IBM Plex Mono', monospace;
+          font-family: 'Inter', sans-serif;
           font-size: 0.65rem;
           font-weight: 700;
           letter-spacing: 0.12em;
@@ -106,8 +106,8 @@ export default function PlatformSurface() {
           gap: "0.5rem",
         }}>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "0.62rem",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.20em",
             textTransform: "uppercase",
@@ -117,7 +117,7 @@ export default function PlatformSurface() {
             LPOS V1.0 — SYSTEM COMPONENTS
           </p>
           <p style={{
-            fontFamily: "'IBM Plex Mono', monospace",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "0.58rem",
             color: "rgba(255,255,255,0.22)",
             letterSpacing: "0.10em",
@@ -132,8 +132,8 @@ export default function PlatformSurface() {
           {ITEMS.map((item) => (
             <div key={item.label} className="ps-item">
               <p style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.56rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.714rem",
                 color: "rgba(212,144,10,0.38)",
                 letterSpacing: "0.10em",
                 textTransform: "uppercase",
@@ -151,8 +151,8 @@ export default function PlatformSurface() {
               }}>{item.label}</p>
 
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                fontSize: "0.72rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.762rem",
                 fontWeight: 500,
                 color: "rgba(212,144,10,0.70)",
                 letterSpacing: "0.04em",
@@ -161,8 +161,8 @@ export default function PlatformSurface() {
               }}>{item.role}</p>
 
               <p style={{
-                fontFamily: "'Atkinson Hyperlegible', sans-serif",
-                fontSize: "0.82rem",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.857rem",
                 color: "rgba(255,255,255,0.48)",
                 lineHeight: 1.72,
                 margin: 0,

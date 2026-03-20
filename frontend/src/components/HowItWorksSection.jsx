@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import FadeIn from "./FadeIn";
 
-const mono = "'IBM Plex Mono', monospace";
-const sans = "'Atkinson Hyperlegible', sans-serif";
+const mono = "'Inter', sans-serif";
+const sans = "'Inter', sans-serif";
 const heading = "'Playfair Display', serif";
 
 const PHASES = [
@@ -66,7 +66,7 @@ function PhaseCard({ item, idx }) {
         {/* Phase label */}
         <p style={{
           fontFamily: mono,
-          fontSize: "0.56rem",
+          fontSize: "0.714rem",
           fontWeight: 700,
           letterSpacing: "0.22em",
           textTransform: "uppercase",
@@ -92,7 +92,7 @@ function PhaseCard({ item, idx }) {
         {/* Week range */}
         <p style={{
           fontFamily: mono,
-          fontSize: "0.784rem",
+          fontSize: "0.857rem",
           color: "#d4900a",
           letterSpacing: "0.06em",
           marginBottom: "1.25rem",
@@ -103,7 +103,7 @@ function PhaseCard({ item, idx }) {
         {/* Description */}
         <p style={{
           fontFamily: sans,
-          fontSize: "0.98rem",
+          fontSize: "1rem",
           color: "rgba(255,255,255,0.65)",
           lineHeight: 1.7,
           marginBottom: "1.5rem",
@@ -130,7 +130,7 @@ function PhaseCard({ item, idx }) {
               <div key={i} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
                 <span style={{
                   fontFamily: mono,
-                  fontSize: "0.616rem",
+                  fontSize: "0.714rem",
                   color: "rgba(212,144,10,0.45)",
                   marginTop: "0.2rem",
                   flexShrink: 0,
@@ -167,7 +167,7 @@ export default function HowItWorksSection() {
         <FadeIn>
           <p style={{
             fontFamily: mono,
-            fontSize: "0.616rem",
+            fontSize: "0.714rem",
             fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
