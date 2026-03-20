@@ -31,7 +31,7 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - `/launchpath-standard` → LaunchPathStandardPage (cohort decision page)
 - `/admission` → AdmissionPage (cohort admission form — 6-field + Stripe payment)
 - `/admission/confirmed` → AdmissionConfirmedPage (post-payment enrollment confirmation)
-- `/admin/admissions` → AdminAdmissionsPage (Station Custodian admin view)
+- `/admin/admissions` → AdminAdmissionsPage (login-gated, coach-only)
 - `/operating-standard` → OperatingStandardPage (framework explainer — educational)
 - `/auto-method` → AutoMethodPage
 - `/16-deadly-sins` → SixteenSinsPage

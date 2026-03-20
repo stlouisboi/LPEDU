@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, UploadFile, File, Form
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, UploadFile, File, Form, Depends
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -99,7 +99,6 @@ async def send_mailersend_email(to_email: str, to_name: str, subject: str, html:
             )
     except Exception as e:
         logger.error(f"MailerSend send failed: {e}")
-COACH_EMAIL = "vince@launchpathedu.com"
 
 # ── Implementation Sequence Tasks Definition ─────────────────────────────
 STANDARD_10_TASKS = [
@@ -717,10 +716,29 @@ async def stripe_webhook(request: Request):
     return {"ok": True}
 
 
+COACH_EMAIL = "vince@launchpathedu.com"
+
+async def _require_coach(request: Request):
+    session_token = request.cookies.get("session_token")
+    if not session_token:
+        auth_header = request.headers.get("Authorization", "")
+        if auth_header.startswith("Bearer "):
+            session_token = auth_header[7:]
+    if not session_token:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    session = await db.user_sessions.find_one({"session_token": session_token}, {"_id": 0})
+    if not session:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    user = await db.users.find_one({"user_id": session["user_id"]}, {"_id": 0})
+    if not user or user.get("email") != COACH_EMAIL:
+        raise HTTPException(status_code=403, detail="Not authorised")
+    return session["user_id"]
+
+
 # ── Admin — Admission Requests ────────────────────────────────────────────────
 
 @api_router.get("/admin/admission-requests")
-async def list_admission_requests():
+async def list_admission_requests(coach_id: str = Depends(_require_coach)):
     cursor = db.admission_requests.find({}, {"_id": 1, "carrier_name": 1, "email": 1, "dot_mc_number": 1, "authority_activation_date": 1, "compliance_status": 1, "lane": 1, "submission_date": 1, "status": 1, "approved_at": 1})
     docs = []
     async for doc in cursor:
@@ -730,7 +748,7 @@ async def list_admission_requests():
 
 
 @api_router.patch("/admin/admission-requests/{admission_id}/status")
-async def update_admission_status(admission_id: str, status: str):
+async def update_admission_status(admission_id: str, status: str, coach_id: str = Depends(_require_coach)):
     valid_statuses = {"pending_review", "approved", "rejected"}
     if status not in valid_statuses:
         raise HTTPException(status_code=400, detail=f"Status must be one of {valid_statuses}")
@@ -1499,20 +1517,6 @@ async def get_coach_carriers(request: Request):
 
 
 # ── PDF / Deliverables Endpoints ──────────────────────────────────────────────
-
-COACH_EMAIL = "vince@launchpathedu.com"
-
-async def _require_coach(request: Request):
-    session_token = request.cookies.get("session_token")
-    if not session_token:
-        raise HTTPException(status_code=403, detail="Not authorised")
-    session = await db.user_sessions.find_one({"session_token": session_token}, {"_id": 0})
-    if not session:
-        raise HTTPException(status_code=403, detail="Not authorised")
-    user = await db.users.find_one({"user_id": session["user_id"]}, {"_id": 0})
-    if not user or user.get("email") != COACH_EMAIL:
-        raise HTTPException(status_code=403, detail="Not authorised")
-    return session["user_id"]
 
 async def _require_paid(request: Request):
     session_token = request.cookies.get("session_token")
