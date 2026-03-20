@@ -1,3 +1,5 @@
+--extra-index-url https://d33sy5i8bnduwe.cloudfront.net/simple/
+emergentintegrations
 fastapi==0.110.1
 uvicorn==0.25.0
 requests-oauthlib>=2.0.0

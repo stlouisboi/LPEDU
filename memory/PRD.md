@@ -12,7 +12,7 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **Email**: MailerLite (subscriber management) + MailerSend (transactional/notifications)
 - **Payments**: Stripe (via emergentintegrations) — $2,500 cohort enrollment
 - **Auth**: JWT-based custom auth
-- **CI/CD**: GitHub Actions → Vercel
+- **CI/CD**: GitHub Actions → Vercel (frontend) / Railway (backend)
 
 ## Typography Standard (Station Custodian Approved)
 - **Heading**: Playfair Display 700 — all page headlines, section titles, module headers
@@ -87,6 +87,10 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **AdmissionConfirmedPage**: payment confirmation with status polling
 - **AdminAdmissionsPage** at `/admin/admissions`: stats, filter tabs, approval/decline buttons
 
+### Session 5 (Production Deployment Fix) — Mar 2026
+- **P0 fix**: Added `--extra-index-url https://d33sy5i8bnduwe.cloudfront.net/simple/` and `emergentintegrations` to `backend/requirements.txt`
+- Root cause: Railway's pip install couldn't find `emergentintegrations` (private package registry) causing server crash on every startup
+
 ---
 
 ## P0/P1/P2 Backlog
@@ -95,12 +99,13 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - Populate Gumroad product URLs in ComplianceLibraryPage.jsx (5 products + 1 bundle)
 - Add YouTube URL for homepage "Watch the Overview" CTA
 - Populate Knowledge Center briefs LP-BRF-07 through LP-BRF-11
-- Verify GitHub Actions → Vercel deployment pipeline
+- Verify Railway deployment works after requirements.txt fix (user must push to GitHub)
 
 ### P2 (Admin & Operational Tools)
+- Standardize IBM Plex Mono label sizes across the app (~11.7px is too small in some places)
 - Twilio SMS notifications to Vince on new admission (credentials needed)
-- Protect `/admin/admissions` with Vince's COACH_EMAIL login
 - Stripe webhook secret (STRIPE_WEBHOOK_SECRET) for production signature verification
+- Set production environment variables on Railway (MONGO_URL, STRIPE_API_KEY, MAILERSEND_API_KEY, etc.)
 
 ### Future / Backlog
 - LP-TOOL-002: Load Profitability Analyzer
