@@ -13,6 +13,52 @@ const COND  = "'Playfair Display', serif";
 const SANS  = "'Inter', sans-serif";
 const BORDER = "rgba(255,255,255,0.08)";
 
+/* ── Entry-Level Resources ───────────────────────────────────── */
+const RESOURCES = [
+  {
+    sku: "LP-RES-001",
+    title: "16 Deadly Sins Pocket Guide",
+    price: "$17",
+    desc: "The LaunchPath proprietary threat model. All 16 operational behaviors that end new carrier authority — with CFR citations, consequence details, and prevention protocol summary.",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/16DeadlySinsPocketGuide",
+  },
+  {
+    sku: "LP-RES-002",
+    title: "DQ File Builder Kit",
+    price: "$37",
+    desc: "A complete Driver Qualification file assembly kit. Templates, checklists, and step-by-step build instructions under 49 CFR 391.51 — for one driver or an entire fleet.",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/DQFileBuilderKit",
+  },
+  {
+    sku: "LP-RES-003",
+    title: "New Carrier Compliance Starter Kit",
+    price: "$47",
+    desc: "The first-30-days foundation package. Covers the critical installation window — authority verification, D&A enrollment, Clearinghouse registration, and insurance filing checks.",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/NewCarrierComplianceStarterKit",
+  },
+  {
+    sku: "LP-RES-004",
+    title: "Safety Audit Prep Pack",
+    price: "$67",
+    desc: "Audit exposure window preparation. A self-audit tool covering all six FMCSA review domains — so your New Entrant Safety Audit is verification, not discovery.",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/SafetyAuditPrepPack",
+  },
+  {
+    sku: "LP-RES-005",
+    title: "Four Pillars Compliance Blueprint",
+    price: "$97",
+    desc: "The operational architecture of a compliant motor carrier — Authority, Documentation, Driver Management, and Financial Controls — mapped to the 90-day new entrant window.",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/FourPillarsComplianceBlueprint",
+  },
+  {
+    sku: "LP-RES-006",
+    title: "Complete Compliance Library",
+    price: "$197",
+    desc: "All five entry-level resources in one discounted bundle. The complete LaunchPath proprietary resource collection — threat model, DQ kit, starter kit, audit prep, and four pillars.",
+    gumroadUrl: "https://launchpathedu.gumroad.com/l/CompleteComplianceLibraryBundle",
+  },
+];
+
 /* ── Individual Packets ──────────────────────────────────────── */
 const PACKETS = [
   {
@@ -138,7 +184,26 @@ export default function ComplianceLibraryPage() {
         </div>
       </div>
 
-      {/* ══ 2. INDIVIDUAL PACKETS ══════════════════════════════════ */}
+      {/* ══ 2. ENTRY-LEVEL RESOURCES ══════════════════════════════ */}
+      <div style={{ background: "#F6F3EE", padding: "5rem 1.5rem", borderBottom: `1px solid rgba(13,27,48,0.10)` }}>
+        <div style={{ maxWidth: 1060, margin: "0 auto" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.75rem" }}>
+            LP-RESOURCES | ENTRY-LEVEL GUIDES &amp; TOOLS
+          </p>
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#0D1B30", marginBottom: "0.75rem" }}>
+            Standalone resources. No subscription required.
+          </h2>
+          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>
+            Self-directed tools, guides, and kits built from the LaunchPath compliance architecture. Start anywhere. Each resource is self-contained.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="resource-grid">
+            {RESOURCES.map((r) => <ResourceCard key={r.sku} product={r} />)}
+          </div>
+        </div>
+      </div>
+
+      {/* ══ 3. INDIVIDUAL PACKETS ══════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>
@@ -157,7 +222,7 @@ export default function ComplianceLibraryPage() {
         </div>
       </div>
 
-      {/* ══ 3. $497 BUNDLE ════════════════════════════════════════ */}
+      {/* ══ 4. $497 BUNDLE ════════════════════════════════════════ */}
       <div style={{ background: BG2, borderTop: `3px solid ${GOLD}`, borderBottom: `3px solid ${GOLD}`, padding: "4rem 1.5rem" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }} className="bundle-grid">
@@ -386,13 +451,43 @@ export default function ComplianceLibraryPage() {
         @media (max-width: 720px) {
           .path-cards { grid-template-columns: 1fr !important; }
           .product-grid { grid-template-columns: 1fr !important; }
+          .resource-grid { grid-template-columns: 1fr !important; }
           .bundle-grid { grid-template-columns: 1fr !important; }
           .guided-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 900px) {
           .path-cards { grid-template-columns: 1fr 1fr !important; }
+          .resource-grid { grid-template-columns: 1fr 1fr !important; }
         }
       `}</style>
+    </div>
+  );
+}
+
+/* ── Resource card (light mode) ─────────────────────────────── */
+function ResourceCard({ product }) {
+  return (
+    <div
+      data-testid={`resource-card-${product.sku.toLowerCase()}`}
+      style={{ background: "#FFFFFF", borderTop: `2px solid ${GOLD}`, padding: "1.75rem", display: "flex", flexDirection: "column", gap: "0.875rem", boxShadow: "0 1px 4px rgba(13,27,48,0.08)" }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
+        <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.7)", margin: 0 }}>{product.sku}</p>
+        <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.25rem", color: NAVY, flexShrink: 0 }}>{product.price}</span>
+      </div>
+      <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.1rem", color: NAVY, lineHeight: 1.25, margin: 0 }}>{product.title}</h3>
+      <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.62)", lineHeight: 1.72, flex: 1, margin: 0 }}>{product.desc}</p>
+      <a
+        href={product.gumroadUrl}
+        data-testid={`buy-resource-${product.sku.toLowerCase()}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.5rem", textDecoration: "none", transition: "background 0.2s" }}
+        onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
+        onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}
+      >
+        Get This — {product.price}
+      </a>
     </div>
   );
 }

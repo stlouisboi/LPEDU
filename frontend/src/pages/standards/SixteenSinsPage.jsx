@@ -566,25 +566,25 @@ export default function SixteenSinsPage() {
         {/* ── Email Gate — Checklist Download ── */}
         <FadeIn delay={50}>
           <div style={{
-            background: "#0A1525",
-            border: `1px solid rgba(212,144,10,0.25)`,
-            borderLeft: `3px solid ${gold}`,
+            background: "#F6F3EE",
+            border: `1px solid rgba(212,144,10,0.30)`,
+            borderLeft: `4px solid ${gold}`,
             padding: "2.75rem 3rem",
             marginBottom: "5rem",
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)",
+              letterSpacing: "0.18em", textTransform: "uppercase", color: "#d4900a",
               marginBottom: "0.75rem",
             }}>LP-LEAD-001 | CHECKLIST DOWNLOAD</p>
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 700,
-              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
+              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#0D1B30",
               letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "0.75rem",
             }}>Download the 16 Deadly Sins Checklist</h2>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-              color: "rgba(255,255,255,0.60)", lineHeight: 1.75, maxWidth: 520, marginBottom: "1.25rem",
+              color: "rgba(13,27,48,0.65)", lineHeight: 1.75, maxWidth: 520, marginBottom: "1.25rem",
             }}>
               A self-audit tool for new motor carriers. Review your operation against all 16 behaviors
               that most commonly end authority — with CFR citations, consequence details, and prevention protocols.
@@ -598,8 +598,8 @@ export default function SixteenSinsPage() {
                 "Next-step recommendations based on your results",
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <span style={{ color: gold, fontSize: "0.857rem", marginTop: "0.15rem", flexShrink: 0 }}>→</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}>{item}</span>
+                  <span style={{ color: "#d4900a", fontSize: "0.857rem", marginTop: "0.15rem", flexShrink: 0 }}>→</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(13,27,48,0.75)", lineHeight: 1.6 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -607,24 +607,24 @@ export default function SixteenSinsPage() {
             {gateState === "done" ? (
               <div>
                 <div style={{
-                  background: "rgba(76,175,80,0.12)", border: "1px solid rgba(76,175,80,0.30)",
+                  background: "rgba(76,175,80,0.10)", border: "1px solid rgba(76,175,80,0.35)",
                   padding: "0.875rem 1.5rem", marginBottom: "1.75rem", display: "inline-block",
                 }}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, color: "#4caf50", letterSpacing: "0.10em", textTransform: "uppercase", margin: 0 }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, color: "#2e7d32", letterSpacing: "0.10em", textTransform: "uppercase", margin: 0 }}>
                     Downloading — check your downloads folder
                   </p>
                 </div>
 
                 {/* Post-download nudge */}
                 <div style={{
-                  background: "rgba(212,144,10,0.06)",
-                  border: "1px solid rgba(212,144,10,0.20)",
+                  background: "rgba(13,27,48,0.04)",
+                  border: "1px solid rgba(212,144,10,0.30)",
                   padding: "1.5rem 1.75rem",
                   maxWidth: 520,
                 }}>
                   <p style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-                    color: "rgba(255,255,255,0.75)", lineHeight: 1.75, marginBottom: "1.25rem",
+                    color: "rgba(13,27,48,0.72)", lineHeight: 1.75, marginBottom: "1.25rem",
                   }}>
                     Your checklist is downloading. Ready to see which of these are active in your operation right now?
                   </p>
@@ -646,7 +646,7 @@ export default function SixteenSinsPage() {
                     onClick={generatePDF}
                     style={{
                       fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem",
-                      letterSpacing: "0.06em", color: "rgba(255,255,255,0.35)",
+                      letterSpacing: "0.06em", color: "rgba(13,27,48,0.40)",
                       background: "transparent", border: "none",
                       padding: "0.75rem 1rem", cursor: "pointer", display: "block",
                       marginTop: "0.75rem",
@@ -668,13 +668,13 @@ export default function SixteenSinsPage() {
                   data-testid="sins-checklist-email"
                   style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-                    color: "#FFFFFF", background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)", padding: "0.875rem 1.25rem",
+                    color: "#0D1B30", background: "#FFFFFF",
+                    border: "1px solid rgba(13,27,48,0.20)", padding: "0.875rem 1.25rem",
                     outline: "none", width: 280, minWidth: 200,
                     transition: "border-color 0.2s",
                   }}
-                  onFocus={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.50)"; }}
-                  onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; }}
+                  onFocus={e => { e.currentTarget.style.borderColor = "#d4900a"; }}
+                  onBlur={e => { e.currentTarget.style.borderColor = "rgba(13,27,48,0.20)"; }}
                 />
                 <button
                   type="submit"
@@ -695,7 +695,7 @@ export default function SixteenSinsPage() {
               </form>
               <p style={{
                 fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
-                color: "rgba(255,255,255,0.28)", marginTop: "0.875rem", letterSpacing: "0.02em",
+                color: "rgba(13,27,48,0.40)", marginTop: "0.875rem", letterSpacing: "0.02em",
               }}>
                 No spam. Just the checklist and relevant compliance resources.
               </p>
