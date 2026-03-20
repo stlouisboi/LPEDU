@@ -42,24 +42,24 @@ export default function ProductPageTemplate({
               {/* Left: text */}
               <div>
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+                  fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
                 }}>{label}</p>
 
                 <h1 style={{
-                  fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+                  fontFamily: "'Playfair Display', serif", fontWeight: 700,
                   fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFFFFF",
                   lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
                 }}>{title}</h1>
 
                 <p style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
                   color: "rgba(255,255,255,0.55)", marginBottom: "2rem", fontStyle: "italic",
                 }}>{subtitle}</p>
 
                 <div style={{ display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace", fontSize: "2rem",
+                    fontFamily: "'IBM Plex Mono', monospace", fontSize: "2rem",
                     fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em",
                   }}>{price}</span>
 
@@ -70,7 +70,7 @@ export default function ProductPageTemplate({
                     data-testid="buy-on-gumroad-btn"
                     style={{
                       display: "inline-block", background: gold, color: "#0b1628",
-                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.85rem",
                       letterSpacing: "0.1em", textTransform: "uppercase",
                       padding: "0.875rem 2rem", textDecoration: "none", transition: "background 0.2s",
                     }}
@@ -87,7 +87,7 @@ export default function ProductPageTemplate({
                 <div style={{ borderRadius: "6px", overflow: "hidden" }}>
                   <BookMockup3D productId={mockupId} mode="embed" />
                   <p style={{
-                    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem",
+                    fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem",
                     color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em",
                     textAlign: "center", marginTop: "0.5rem",
                   }}>DRAG TO ROTATE</p>
@@ -105,14 +105,14 @@ export default function ProductPageTemplate({
       }}>
         <p style={{
           maxWidth: 820, margin: "0 auto",
-          fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.1rem",
           color: "rgba(255,255,255,0.82)", lineHeight: 1.7, fontStyle: "italic",
         }}>{tagline}</p>
 
         {/* Operational system line */}
         <p style={{
           maxWidth: 820, margin: "0.75rem auto 0",
-          fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem",
+          fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.68rem",
           fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
           color: "rgba(212,144,10,0.60)",
         }}>
@@ -128,7 +128,7 @@ export default function ProductPageTemplate({
             <SectionLabel>What This Is — And What It Is Not</SectionLabel>
             {positioning.map((p, i) => (
               <p key={i} style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1.15rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.15rem",
                 color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.25rem",
               }}>{p}</p>
             ))}
@@ -145,14 +145,14 @@ export default function ProductPageTemplate({
               {whatsInside.map((item, i) => (
                 <li key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem",
+                    fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem",
                     color: gold, marginTop: "0.25rem", flexShrink: 0,
                     border: `1px solid ${goldFaint}`, padding: "0.15rem 0.4rem",
                   }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
                     color: "rgba(255,255,255,0.9)", lineHeight: 1.7,
                   }}>{item}</span>
                 </li>
@@ -170,7 +170,7 @@ export default function ProductPageTemplate({
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               {whoItsFor.map((item, i) => (
                 <li key={i} style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
                   color: "rgba(255,255,255,0.88)", lineHeight: 1.7,
                   paddingLeft: "1.25rem", position: "relative",
                 }}>
@@ -191,7 +191,7 @@ export default function ProductPageTemplate({
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               {whatItReplaces.map((item, i) => (
                 <li key={i} style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
                   color: "rgba(255,255,255,0.88)", lineHeight: 1.7,
                   paddingLeft: "1.25rem", position: "relative",
                 }}>
@@ -214,15 +214,15 @@ export default function ProductPageTemplate({
             borderLeft: `3px solid ${gold}`, padding: "2rem 2.5rem", marginBottom: "3rem",
           }}>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem",
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem",
               color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem",
             }}>Next Step</p>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.1rem",
               color: "rgba(255,255,255,0.9)", lineHeight: 1.8, marginBottom: "1.25rem",
             }}>{nextStepText}</p>
             <Link to={nextStepHref} style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.85rem",
               letterSpacing: "0.1em", textTransform: "uppercase", color: gold, textDecoration: "none",
             }}
               onMouseEnter={e => e.currentTarget.style.opacity = "0.75"}
@@ -235,7 +235,7 @@ export default function ProductPageTemplate({
         {standardInclusion && (
           <FadeIn delay={220}>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem",
               color: "rgba(255,255,255,0.4)", lineHeight: 1.7,
               borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.5rem",
               fontStyle: "italic",
@@ -259,7 +259,7 @@ export default function ProductPageTemplate({
 function SectionLabel({ children }) {
   return (
     <p style={{
-      fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+      fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
       letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
       marginBottom: "1.5rem",
     }}>{children}</p>

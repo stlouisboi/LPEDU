@@ -15,7 +15,7 @@ export default function StepsSection() {
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <p className="overline" style={{ marginBottom: "1.25rem" }}>The System</p>
         <h2 style={{
-          fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+          fontFamily: "'Playfair Display', serif", fontWeight: 700,
           fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
           letterSpacing: "-0.02em", marginBottom: "4rem",
         }}>
@@ -30,20 +30,20 @@ export default function StepsSection() {
             }}>
               <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
                 <span style={{
-                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem",
+                  fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem",
                   color: "var(--text-subtle)", border: "1px solid var(--border)",
                   padding: "0.2rem 0.5rem",
                 }}>{s.num}</span>
                 <span style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "0.784rem", fontWeight: 600,
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem", fontWeight: 600,
                   letterSpacing: "0.06em",
                   border: `1px solid ${s.badgeGold ? "var(--border-gold)" : "var(--border)"}`,
                   color: s.badgeGold ? "var(--gold)" : "var(--text-subtle)",
                   padding: "0.2rem 0.5rem",
                 }}>{s.badge}</span>
               </div>
-              <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.176rem", color: "var(--text)" }}>{s.name}</h3>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.7, flex: 1 }}>{s.desc}</p>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.176rem", color: "var(--text)" }}>{s.name}</h3>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.7, flex: 1 }}>{s.desc}</p>
             </div>
           ))}
         </div>

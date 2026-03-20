@@ -15,7 +15,7 @@ export default function ConsequenceNumberBlock() {
         <div style={{ maxWidth: 820, margin: "0 auto" }}>
 
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.72rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -27,7 +27,7 @@ export default function ConsequenceNumberBlock() {
           </p>
 
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.85rem, 3.8vw, 3rem)",
             letterSpacing: "-0.025em",
@@ -41,7 +41,7 @@ export default function ConsequenceNumberBlock() {
           </h2>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.15rem",
             color: "rgba(255,255,255,0.8)",
             lineHeight: 1.85,
@@ -52,7 +52,7 @@ export default function ConsequenceNumberBlock() {
           </p>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.15rem",
             color: "rgba(255,255,255,0.8)",
             lineHeight: 1.85,
@@ -80,7 +80,7 @@ export default function ConsequenceNumberBlock() {
                 borderTop: "2px solid rgba(248,113,113,0.35)",
               }}>
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
                   fontWeight: 700,
                   color: "#f87171",
@@ -88,7 +88,7 @@ export default function ConsequenceNumberBlock() {
                   letterSpacing: "-0.02em",
                 }}>{item.stat}</p>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.9rem",
                   color: "rgba(255,255,255,0.55)",
                   lineHeight: 1.5,
@@ -102,7 +102,7 @@ export default function ConsequenceNumberBlock() {
             paddingLeft: "1.75rem",
           }}>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.85)",
               lineHeight: 1.8,
@@ -111,7 +111,7 @@ export default function ConsequenceNumberBlock() {
               I've seen operators survive ugly fines. I've seen operators survive conditional ratings with the right documentation in place. I have not seen many small carriers come back from a full revocation — because by the time it happens, the financial damage is already done.
             </p>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.72rem",
               letterSpacing: "0.12em",
               textTransform: "uppercase",

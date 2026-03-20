@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import FadeIn from "./FadeIn";
 
-const mono = "'JetBrains Mono', monospace";
-const sans = "'Inter', sans-serif";
-const heading = "'Barlow Condensed', sans-serif";
+const mono = "'IBM Plex Mono', monospace";
+const sans = "'Atkinson Hyperlegible', sans-serif";
+const heading = "'Playfair Display', serif";
 
 const PHASES = [
   {

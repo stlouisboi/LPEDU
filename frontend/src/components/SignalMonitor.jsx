@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const mono = "'JetBrains Mono', 'Courier New', monospace";
-const sans = "'Inter', sans-serif";
+const mono = "'IBM Plex Mono', 'Courier New', monospace";
+const sans = "'Atkinson Hyperlegible', sans-serif";
 
 // Grade thresholds
 function getGrade(pct) {

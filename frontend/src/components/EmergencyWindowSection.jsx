@@ -12,7 +12,7 @@ export default function EmergencyWindowSection() {
 
         {/* Code label */}
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.62rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
@@ -25,7 +25,7 @@ export default function EmergencyWindowSection() {
 
         {/* Quote */}
         <blockquote style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
           fontSize: "var(--text-xl)",
           color: "#FFFFFF",
@@ -40,7 +40,7 @@ export default function EmergencyWindowSection() {
 
         {/* Body */}
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "var(--text-base)",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.8,
@@ -51,7 +51,7 @@ export default function EmergencyWindowSection() {
         </p>
 
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "var(--text-base)",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.8,
@@ -68,7 +68,7 @@ export default function EmergencyWindowSection() {
             data-testid="emergency-ground0-cta"
             style={{
               display: "inline-block",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontWeight: 700,
               fontSize: "var(--text-sm)",
               letterSpacing: "0.10em",
@@ -86,7 +86,7 @@ export default function EmergencyWindowSection() {
           </Link>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "var(--text-sm)",
             color: "rgba(255,255,255,0.35)",
             fontStyle: "italic",

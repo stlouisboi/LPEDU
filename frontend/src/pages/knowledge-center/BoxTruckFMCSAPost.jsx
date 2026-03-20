@@ -6,7 +6,7 @@ import useSEO from "../../hooks/useSEO";
 
 const navy = "#0b1628";
 const gold = "#d4900a";
-const mono = "'JetBrains Mono', monospace";
+const mono = "'IBM Plex Mono', monospace";
 
 const SECTIONS = [
   {
@@ -90,7 +90,7 @@ export default function BoxTruckFMCSAPost() {
   });
 
   return (
-    <div style={{ background: navy, minHeight: "100vh" }}>
+    <div style={{ background: "#f7f4ee", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Article Hero */}
@@ -113,18 +113,18 @@ export default function BoxTruckFMCSAPost() {
           </p>
 
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "var(--text-2xl)", letterSpacing: "-0.02em",
             color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem",
           }}>
             Box Truck FMCSA Requirements: The 26,001 lb Line and What It Changes
           </h1>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.8, borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem", color: "rgba(0,26,51,0.82)", lineHeight: 1.8, borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem" }}>
             Box truck operators encounter more regulatory complexity than most anticipate when they first apply for authority. The regulations that apply to their operation depend significantly on vehicle weight, cargo type, and whether they cross state lines — and the answers change at specific weight thresholds.
           </p>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginTop: "1rem" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginTop: "1rem" }}>
             The most important threshold is 26,001 pounds GVWR. What applies below it and what applies above it are meaningfully different. Understanding where you fall determines your CDL exposure, your ELD applicability, your medical certification requirements, and your FMCSA filing obligations.
           </p>
 
@@ -136,7 +136,7 @@ export default function BoxTruckFMCSAPost() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p style={{ fontFamily: mono, fontSize: "0.55rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -148,8 +148,8 @@ export default function BoxTruckFMCSAPost() {
         {SECTIONS.map((section, i) => (
           <div key={i} style={{ marginBottom: "3rem" }}>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
-              fontSize: "var(--text-xl)", color: "#FFFFFF",
+              fontFamily: "'Playfair Display', serif", fontWeight: 700,
+              fontSize: "var(--text-xl)", color: "#0b1628",
               letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "1.25rem",
               paddingBottom: "0.6rem", borderBottom: "1px solid rgba(212,144,10,0.15)",
             }}>
@@ -157,8 +157,8 @@ export default function BoxTruckFMCSAPost() {
             </h2>
             {section.body.split("\n\n").map((para, j) => (
               <p key={j} style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)",
-                color: "rgba(255,255,255,0.72)", lineHeight: 1.85, marginBottom: "1.1rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "var(--text-base)",
+                color: "rgba(0,26,51,0.82)", lineHeight: 1.85, marginBottom: "1.1rem",
               }}>
                 {para}
               </p>
@@ -183,7 +183,7 @@ export default function BoxTruckFMCSAPost() {
                 <div style={{ width: 3, minHeight: 40, background: gold, flexShrink: 0, marginTop: 4 }} />
                 <div>
                   <Link to={item.href} style={{ fontFamily: mono, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: gold, textDecoration: "none" }}>{item.label}</Link>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.50)", marginTop: "0.2rem", lineHeight: 1.6 }}>{item.desc}</p>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.85rem", color: "rgba(0,26,51,0.60)", marginTop: "0.2rem", lineHeight: 1.6 }}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -195,10 +195,10 @@ export default function BoxTruckFMCSAPost() {
           <p style={{ fontFamily: mono, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
             LPOS V1.0 — GROUND 0 ENTRY
           </p>
-          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.4rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.75rem" }}>
             If you're a new carrier in your first 90 days, Ground 0 is free.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             Ground 0 includes the Lane Selection Matrix — a capital and cash-flow comparison for box truck vs. semi operations that helps you choose the lane you can sustain, not just the one you can start.
           </p>
           <Link
@@ -217,10 +217,10 @@ export default function BoxTruckFMCSAPost() {
           </Link>
         </div>
 
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.28)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>
+        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.75rem", color: "rgba(0,26,51,0.45)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>
           LaunchPath Transportation EDU is an educational program. This content does not constitute legal or compliance advice. Weight thresholds, CDL requirements, and exemption eligibility should be verified with FMCSA at fmcsa.dot.gov and with your state's motor carrier authority.
         </p>
-        <p style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)", marginTop: "0.5rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(0,26,51,0.35)", marginTop: "0.5rem" }}>
           LaunchPath Transportation EDU · Accuracy Over Hype. Systems Over Shortcuts.
         </p>
       </div>

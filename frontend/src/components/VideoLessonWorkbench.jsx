@@ -104,7 +104,7 @@ export const MODULE_1_DATA = {
 
 // ── Video Placeholder ────────────────────────────────────────────────────────
 function VideoPlaceholder({ lesson, moduleCode }) {
-  const mono = "'JetBrains Mono', 'Courier New', monospace";
+  const mono = "'IBM Plex Mono', 'Courier New', monospace";
   return (
     <div
       style={{
@@ -136,7 +136,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
         </p>
         <p
           style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 600,
             fontSize: "1.05rem",
             color: "rgba(255,255,255,0.62)",
@@ -168,7 +168,7 @@ function VideoPlaceholder({ lesson, moduleCode }) {
 export function VideoLessonWorkbench({ moduleData }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const lesson = moduleData.lessons[activeIdx];
-  const mono = "'JetBrains Mono', 'Courier New', monospace";
+  const mono = "'IBM Plex Mono', 'Courier New', monospace";
 
   return (
     <div data-testid="video-lesson-workbench">
@@ -198,7 +198,7 @@ export function VideoLessonWorkbench({ moduleData }) {
       >
         <h1
           style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
             color: "#FFFFFF",
@@ -292,7 +292,7 @@ export function VideoLessonWorkbench({ moduleData }) {
             </p>
             <h2
               style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 fontSize: "1.4rem",
                 color: "#FFFFFF",
@@ -304,7 +304,7 @@ export function VideoLessonWorkbench({ moduleData }) {
             </h2>
             <p
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.924rem",
                 color: "rgba(255,255,255,0.52)",
                 marginBottom: "1rem",
@@ -316,7 +316,7 @@ export function VideoLessonWorkbench({ moduleData }) {
             </p>
             <p
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.98rem",
                 color: "rgba(255,255,255,0.78)",
                 lineHeight: 1.82,
@@ -357,7 +357,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "0.625rem",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.896rem",
                       color: "#d4900a",
@@ -462,7 +462,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.616rem",
                       color: "rgba(255,255,255,0.26)",
                     }}
@@ -472,7 +472,7 @@ export function VideoLessonWorkbench({ moduleData }) {
                 </div>
                 <span
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "0.784rem",
                     color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.56)",
                     lineHeight: 1.35,

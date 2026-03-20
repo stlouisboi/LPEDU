@@ -16,17 +16,17 @@ export default function ProductPreviewPage() {
         {/* Header */}
         <div style={{ marginBottom: "2rem" }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem",
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem",
             letterSpacing: "0.18em", textTransform: "uppercase", color: gold,
             marginBottom: "0.5rem",
           }}>LP-SYS-LIBRARY | PRODUCT PREVIEW TOOL</p>
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em",
           }}>3D Book Mockup Export</h1>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem",
             color: "rgba(255,255,255,0.55)", marginTop: "0.5rem",
           }}>
             Select a product, drag to rotate, then export your Gumroad cover image and thumbnail.
@@ -43,7 +43,7 @@ export default function ProductPreviewPage() {
               key={p.id}
               onClick={() => setActiveId(p.id)}
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.68rem",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
@@ -83,7 +83,7 @@ export default function ProductPreviewPage() {
               <BookMockup3D key={activeId} productId={activeId} mode="export" />
             </div>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.65rem",
               color: "rgba(255,255,255,0.3)",
               letterSpacing: "0.08em",
@@ -97,7 +97,7 @@ export default function ProductPreviewPage() {
           {/* Info panel */}
           <div>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem",
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem",
               letterSpacing: "0.12em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.3)", marginBottom: "0.75rem",
             }}>RIGHT PANEL CONTENT</p>
@@ -111,7 +111,7 @@ export default function ProductPreviewPage() {
               borderRadius: "4px",
             }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem",
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem",
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 color: gold, marginBottom: "0.75rem",
               }}>Export Guide</p>
@@ -133,16 +133,16 @@ export default function ProductPreviewPage() {
           background: "rgba(212,144,10,0.04)",
         }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem",
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem",
             letterSpacing: "0.12em", textTransform: "uppercase", color: gold,
             marginBottom: "0.25rem",
           }}>Currently previewing</p>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "1.1rem", color: "#FFFFFF",
           }}>{product.name}</p>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem",
             color: "rgba(255,255,255,0.5)", marginTop: "0.25rem",
           }}>{product.outcomeLine}</p>
         </div>

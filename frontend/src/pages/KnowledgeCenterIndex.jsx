@@ -163,7 +163,7 @@ export default function KnowledgeCenterIndex() {
       }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.728rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -172,7 +172,7 @@ export default function KnowledgeCenterIndex() {
           }}>LaunchPath / Operational Library</p>
 
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3rem)",
             letterSpacing: "-0.025em",
@@ -182,7 +182,7 @@ export default function KnowledgeCenterIndex() {
           }}>Operational Library</h1>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.176rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
@@ -203,7 +203,7 @@ export default function KnowledgeCenterIndex() {
             ].map(([val, label]) => (
               <div key={val}>
                 <div style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "1.5rem",
                   color: "var(--text)",
@@ -212,7 +212,7 @@ export default function KnowledgeCenterIndex() {
                   marginBottom: "0.3rem",
                 }}>{val}</div>
                 <div style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.84rem",
                   color: "var(--text-subtle)",
                 }}>{label}</div>
@@ -234,15 +234,15 @@ export default function KnowledgeCenterIndex() {
         }} className="bundle-grid">
           <div>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.706rem", letterSpacing: "0.14em",
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.706rem", letterSpacing: "0.14em",
               textTransform: "uppercase", color: "var(--text-subtle)", marginBottom: "0.625rem",
             }}>The Complete Audit Binder Series</p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.2rem",
+              fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.2rem",
               letterSpacing: "-0.015em", color: "var(--text)", marginBottom: "0.5rem",
             }}>All 6 compliance checklists in one printable PDF</h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)",
               lineHeight: 1.65,
             }}>New Entrant — HOS — Drug & Alcohol — Maintenance — Insurance — Authority Registrations</p>
           </div>
@@ -252,7 +252,7 @@ export default function KnowledgeCenterIndex() {
             data-testid="kc-download-all-btn"
             style={{
               display: "inline-block", background: "var(--orange)", color: "#fff",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.896rem",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.896rem",
               letterSpacing: "0.06em", textTransform: "uppercase",
               padding: "1rem 1.75rem", textDecoration: "none", whiteSpace: "nowrap",
               flexShrink: 0, transition: "background 0.2s",
@@ -263,7 +263,7 @@ export default function KnowledgeCenterIndex() {
             Download All Checklists
           </a>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.84rem",
             color: "var(--text-subtle)",
             marginTop: "0.75rem",
@@ -280,7 +280,7 @@ export default function KnowledgeCenterIndex() {
           {/* Section header + filter bar */}
           <div style={{ paddingTop: "3rem", marginBottom: "1.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)", paddingBottom: "1.25rem" }}>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.728rem", fontWeight: 700,
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.728rem", fontWeight: 700,
               letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
               marginBottom: "1.25rem",
             }}>Published Articles</p>
@@ -295,7 +295,7 @@ export default function KnowledgeCenterIndex() {
                     data-testid={`filter-${cat.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                     onClick={() => setActiveCategory(cat)}
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: "0.58rem",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -333,7 +333,7 @@ export default function KnowledgeCenterIndex() {
             </div>
 
             {/* Result count */}
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.56rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.25)", marginTop: "0.75rem", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.56rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.25)", marginTop: "0.75rem", textTransform: "uppercase" }}>
               {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"}{activeCategory !== "All" ? ` — ${activeCategory}` : ""}
             </p>
           </div>
@@ -350,15 +350,15 @@ export default function KnowledgeCenterIndex() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
-                      <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>{post.code}</span>
-                      <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{post.category}</span>
+                      <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a" }}>{post.code}</span>
+                      <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{post.category}</span>
                     </div>
-                    <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.15rem", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.65 }}>{post.teaser}</p>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
+                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.65 }}>{post.teaser}</p>
                   </div>
                   <div style={{ flexShrink: 0, textAlign: "right" }}>
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: "0.3rem" }}>{post.readTime}</p>
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)" }}>{post.cfr}</p>
+                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: "0.3rem" }}>{post.readTime}</p>
+                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)" }}>{post.cfr}</p>
                   </div>
                 </div>
               </a>
@@ -372,7 +372,7 @@ export default function KnowledgeCenterIndex() {
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
@@ -400,7 +400,7 @@ export default function KnowledgeCenterIndex() {
         <div style={{ maxWidth: 860, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr auto", gap: "2.5rem", alignItems: "center" }} className="kc-bottom-grid">
           <div>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.728rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
@@ -409,7 +409,7 @@ export default function KnowledgeCenterIndex() {
               marginBottom: "0.75rem",
             }}>Not sure where to start?</p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "1.35rem",
               letterSpacing: "-0.015em",
@@ -417,7 +417,7 @@ export default function KnowledgeCenterIndex() {
               marginBottom: "0.75rem",
             }}>Run the FREE readiness diagnostic first.</h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.008rem",
               color: "var(--text-muted)",
               lineHeight: 1.75,
@@ -434,7 +434,7 @@ export default function KnowledgeCenterIndex() {
               display: "inline-block",
               background: "var(--orange)",
               color: "#fff",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontWeight: 700,
               fontSize: "0.896rem",
               letterSpacing: "0.06em",
@@ -485,7 +485,7 @@ function BriefCard({ brief, index }) {
       <div style={{ minWidth: 0 }}>
         {/* Phase tag */}
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.706rem",
           letterSpacing: "0.1em",
           textTransform: "uppercase",
@@ -495,7 +495,7 @@ function BriefCard({ brief, index }) {
 
         {/* Title */}
         <h3 style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
           fontSize: "1.232rem",
           letterSpacing: "-0.01em",
@@ -506,7 +506,7 @@ function BriefCard({ brief, index }) {
 
         {/* Teaser */}
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.952rem",
           color: "var(--text-muted)",
           lineHeight: 1.7,
@@ -516,14 +516,14 @@ function BriefCard({ brief, index }) {
         {/* Read time + status */}
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
           <span style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.762rem",
             color: "var(--text-subtle)",
             letterSpacing: "0.05em",
           }}>{brief.readTime}</span>
           {!isPublished && (
             <span style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.762rem",
               fontWeight: 600,
               letterSpacing: "0.08em",
@@ -542,7 +542,7 @@ function BriefCard({ brief, index }) {
               href={brief.packetHref}
               onClick={e => e.stopPropagation()}
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.72rem",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
@@ -565,7 +565,7 @@ function BriefCard({ brief, index }) {
       {/* Arrow (published only) */}
       {isPublished && (
         <div style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "1.008rem",
           color: "var(--orange)",
           paddingTop: "0.25rem",

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-const mono = "'JetBrains Mono', 'Courier New', monospace";
-const sans = "'Inter', sans-serif";
+const mono = "'IBM Plex Mono', 'Courier New', monospace";
+const sans = "'Atkinson Hyperlegible', sans-serif";
 
 /**
  * ArticlePortalBanner
@@ -64,7 +64,7 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
           {/* Left: copy */}
           <div>
             <h3 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 800,
               fontSize: "clamp(1.125rem, 2vw, 1.375rem)",
               color: "#FFFFFF",

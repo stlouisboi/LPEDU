@@ -6,7 +6,7 @@ import useSEO from "../../hooks/useSEO";
 
 const navy = "#0b1628";
 const gold = "#d4900a";
-const mono = "'JetBrains Mono', monospace";
+const mono = "'IBM Plex Mono', monospace";
 
 const SECTIONS = [
   {
@@ -82,7 +82,7 @@ export default function FailedAuditPost() {
   });
 
   return (
-    <div style={{ background: navy, minHeight: "100vh" }}>
+    <div style={{ background: "#f7f4ee", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Article Hero */}
@@ -99,11 +99,11 @@ export default function FailedAuditPost() {
             LP-BRF-POST-01 · NEW ENTRANT PROGRAM · AUTHORITY PROTECTION
           </p>
 
-          <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "var(--text-2xl)", letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem" }}>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "var(--text-2xl)", letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem" }}>
             What Actually Happens When You Fail an FMCSA New Entrant Audit
           </h1>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.8, borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem", color: "rgba(0,26,51,0.82)", lineHeight: 1.8, borderLeft: `3px solid ${gold}`, paddingLeft: "1.25rem" }}>
             The FMCSA New Entrant Safety Audit does not result in a pass or fail. It results in a rating — and the rating you receive determines what happens to your insurance, your broker relationships, and your ability to keep running. Most carriers who receive a Conditional rating don't understand the cascade until they're already inside it.
           </p>
 
@@ -115,7 +115,7 @@ export default function FailedAuditPost() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p style={{ fontFamily: mono, fontSize: "0.55rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.60)" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -126,11 +126,11 @@ export default function FailedAuditPost() {
       <div style={{ maxWidth: 780, margin: "0 auto", padding: "4rem 1.5rem" }}>
         {SECTIONS.map((section, i) => (
           <div key={i} style={{ marginBottom: "3rem" }}>
-            <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "var(--text-xl)", color: "#FFFFFF", letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "1.25rem", paddingBottom: "0.6rem", borderBottom: "1px solid rgba(212,144,10,0.15)" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "var(--text-xl)", color: "#0b1628", letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "1.25rem", paddingBottom: "0.6rem", borderBottom: "1px solid rgba(212,144,10,0.15)" }}>
               {section.heading}
             </h2>
             {section.body.split("\n\n").map((para, j) => (
-              <p key={j} style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-base)", color: "rgba(255,255,255,0.72)", lineHeight: 1.85, marginBottom: "1.1rem" }}>
+              <p key={j} style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "var(--text-base)", color: "rgba(0,26,51,0.82)", lineHeight: 1.85, marginBottom: "1.1rem" }}>
                 {para}
               </p>
             ))}
@@ -149,7 +149,7 @@ export default function FailedAuditPost() {
                 <div style={{ width: 3, minHeight: 40, background: gold, flexShrink: 0, marginTop: 4 }} />
                 <div>
                   <Link to={item.href} style={{ fontFamily: mono, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: gold, textDecoration: "none" }}>{item.label}</Link>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.50)", marginTop: "0.2rem", lineHeight: 1.6 }}>{item.desc}</p>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.85rem", color: "rgba(0,26,51,0.60)", marginTop: "0.2rem", lineHeight: 1.6 }}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -159,10 +159,10 @@ export default function FailedAuditPost() {
         {/* Ground 0 CTA */}
         <div style={{ textAlign: "center", padding: "3rem 2rem", background: "#060d19", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p style={{ fontFamily: mono, fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>LPOS V1.0 — GROUND 0 ENTRY</p>
-          <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.4rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.75rem" }}>
             If you're a new carrier in your first 90 days, Ground 0 is free.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             It covers what the audit looks for — including the Four Pillars that keep a carrier operating — before you're in the audit window.
           </p>
           <Link to="/auto-diagnostic" data-testid="article-reach-cta"
@@ -172,10 +172,10 @@ export default function FailedAuditPost() {
           >RUN THE REACH ASSESSMENT →</Link>
         </div>
 
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.28)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>
+        <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.75rem", color: "rgba(0,26,51,0.45)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>
           LaunchPath Transportation EDU is an educational program. This content does not constitute legal or compliance advice. Verify all regulatory requirements with FMCSA at fmcsa.dot.gov.
         </p>
-        <p style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)", marginTop: "0.5rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(0,26,51,0.35)", marginTop: "0.5rem" }}>
           LaunchPath Transportation EDU · Accuracy Over Hype. Systems Over Shortcuts.
         </p>
       </div>

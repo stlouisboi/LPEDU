@@ -61,8 +61,8 @@ export default function AboutPage() {
               ["CFR_SYNC", "2026_V4.2"],
             ].map(([key, val]) => (
               <div key={key} style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexShrink: 0 }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>{key}:</span>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>{val}</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>{key}:</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>{val}</span>
               </div>
             ))}
           </div>
@@ -82,7 +82,7 @@ export default function AboutPage() {
               Station Custodian — LP-SYS-V4.2
             </p>
             <h1 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
               letterSpacing: "-0.03em",
@@ -95,7 +95,7 @@ export default function AboutPage() {
               Station<br />Custodian.
             </h1>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.176rem",
               color: "var(--text-muted)",
               lineHeight: 1.85,
@@ -108,7 +108,7 @@ export default function AboutPage() {
               not a course or coaching program.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.12rem",
               color: "var(--text-subtle)",
               lineHeight: 1.8,
@@ -134,7 +134,7 @@ export default function AboutPage() {
                 background: "linear-gradient(transparent, rgba(2,4,8,0.9))",
                 padding: "2.5rem 1.25rem 1.25rem",
               }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>
+                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--orange)", letterSpacing: "0.1em" }}>
                   STATION CUSTODIAN — LP-SYS-V4.2
                 </p>
               </div>
@@ -152,15 +152,15 @@ export default function AboutPage() {
                 ["Safety Systems", "Manufacturing Operations at Scale"],
               ].map(([val, label]) => (
                 <div key={val} style={{ background: "var(--bg-2)", padding: "0.875rem 1rem" }}>
-                  <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.008rem", color: "var(--text)", marginBottom: "0.2rem" }}>{val}</div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", lineHeight: 1.4 }}>{label}</div>
+                  <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.008rem", color: "var(--text)", marginBottom: "0.2rem" }}>{val}</div>
+                  <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", lineHeight: 1.4 }}>{label}</div>
                 </div>
               ))}
             </div>
 
             {/* Credential context line */}
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.72rem",
               fontStyle: "italic",
               color: "rgba(255,255,255,0.38)",
@@ -186,7 +186,7 @@ export default function AboutPage() {
           <FadeIn>
             <p className="overline" style={{ marginBottom: "1.5rem" }}>In Vince's Words</p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -198,18 +198,18 @@ export default function AboutPage() {
 
           <FadeIn delay={80}>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2.5rem" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
                 I did not come from trucking. I came from 20 years of building and leading operational systems
                 in manufacturing environments — where documented processes were the difference between a compliant
                 operation and a costly one, and where leadership meant being accountable for systems other people ran.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
                 When I looked at what new motor carriers were operating without in their first 90 days, I recognized
                 the same failure pattern I had watched surface on the plant floor. Not ignorance. Not laziness.
                 The absence of a system. LaunchPath is built from that pattern recognition. The names are different.
                 The failure modes are not.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
                 The Navy runs on documented procedure. Manufacturing operations at the leadership level run on system
                 accountability. OSHA certification is not a trucking credential — it is a regulatory philosophy credential.
                 FMCSA and OSHA operate from the same foundation: industries that will not self-regulate require documented
@@ -226,7 +226,7 @@ export default function AboutPage() {
               margin: "0 0 1rem",
             }}>
               <p style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 600,
                 fontSize: "1.288rem",
                 color: "var(--text)",
@@ -235,7 +235,7 @@ export default function AboutPage() {
               }}>
                 "My responsibility is not to motivate carriers — it is to prevent preventable failure."
               </p>
-              <footer style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>
+              <footer style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.896rem", color: "var(--text-subtle)", marginTop: "0.75rem" }}>
                 — Vince Lawrence, Station Custodian
               </footer>
             </blockquote>
@@ -248,17 +248,17 @@ export default function AboutPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ maxWidth: 600, marginBottom: "4.5rem" }}>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
+              <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
                 48 CFR Subpart — Operational Doctrine
               </p>
               <h2 style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
                 letterSpacing: "-0.02em",
                 marginBottom: "0.75rem",
               }}>Operational Doctrine</h2>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)" }}>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)" }}>
                 Version 4.2 · Authority: Station Custodian
               </p>
             </div>
@@ -281,9 +281,9 @@ export default function AboutPage() {
                   onMouseEnter={e => e.currentTarget.style.background = "var(--bg-2)"}
                   onMouseLeave={e => e.currentTarget.style.background = "var(--bg)"}
                 >
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.12em", marginBottom: "1rem" }}>{d.ref}</p>
-                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.092rem", color: "var(--text)", marginBottom: "0.875rem", lineHeight: 1.3 }}>{d.title}</h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{d.body}</p>
+                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.12em", marginBottom: "1rem" }}>{d.ref}</p>
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.092rem", color: "var(--text)", marginBottom: "0.875rem", lineHeight: 1.3 }}>{d.title}</h3>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{d.body}</p>
                 </div>
               </FadeIn>
             ))}
@@ -297,7 +297,7 @@ export default function AboutPage() {
           <FadeIn>
             <p className="overline" style={{ marginBottom: "1.25rem" }}>Institutional Boundaries</p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -305,7 +305,7 @@ export default function AboutPage() {
             }}>
               What LaunchPath Does Not Provide
             </h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
               Knowing what we don't do is as important as knowing what we do. LaunchPath is a compliance
               education and implementation system. We build infrastructure. We do not operate your business.
             </p>
@@ -323,13 +323,13 @@ export default function AboutPage() {
                   onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
                   onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                 >
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.784rem", color: "var(--text-subtle)", marginTop: "0.25rem", flexShrink: 0 }}>—</span>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</p>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.784rem", color: "var(--text-subtle)", marginTop: "0.25rem", flexShrink: 0 }}>—</span>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.008rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{item}</p>
                 </div>
               ))}
             </div>
 
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)", marginTop: "1.5rem", lineHeight: 1.7 }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)", marginTop: "1.5rem", lineHeight: 1.7 }}>
               These boundaries are not limitations — they are the reason the LaunchPath Standard maintains its integrity.
             </p>
           </FadeIn>
@@ -341,7 +341,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.628rem", fontWeight: 700,
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.628rem", fontWeight: 700,
               letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-subtle)",
               marginBottom: "1.75rem",
             }}>Operator Account</p>
@@ -351,14 +351,14 @@ export default function AboutPage() {
               margin: 0,
             }}>
               <p style={{
-                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600,
+                fontFamily: "'Playfair Display', serif", fontWeight: 600,
                 fontSize: "clamp(1.15rem, 2vw, 1.35rem)",
                 color: "var(--text)", lineHeight: 1.65, fontStyle: "italic",
                 marginBottom: "1rem",
               }}>
                 "I had been running 60 days before I realized I had no written D&A policy and my driver files were missing three required documents. Ground 0 caught it before the audit did."
               </p>
-              <footer style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.08em" }}>
+              <footer style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.08em" }}>
                 — New Entrant Carrier · Owner-Operator · Southeast Region
               </footer>
             </blockquote>
@@ -370,7 +370,7 @@ export default function AboutPage() {
       <section style={{ padding: "7rem 1.5rem" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.82, marginBottom: "2.75rem", maxWidth: 560, margin: "0 auto 2.75rem" }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.82, marginBottom: "2.75rem", maxWidth: 560, margin: "0 auto 2.75rem" }}>
               Not all applicants are accepted. Admission is based on operational readiness — not urgency, not ability to pay. If you are in your first 90 days and you are serious about building the system before FMCSA arrives, this is where it starts.
             </p>
 
@@ -381,7 +381,7 @@ export default function AboutPage() {
                 style={{
                   display: "inline-flex", alignItems: "center",
                   background: "#d4900a", color: "#060d19",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
                   fontSize: "0.9rem", letterSpacing: "0.09em", textTransform: "uppercase",
                   padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s",
                   whiteSpace: "nowrap",
@@ -399,7 +399,7 @@ export default function AboutPage() {
                 style={{
                   display: "inline-flex", alignItems: "center",
                   background: "transparent", color: "var(--text-muted)",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
                   fontSize: "0.9rem", letterSpacing: "0.09em", textTransform: "uppercase",
                   padding: "1rem 2.25rem", textDecoration: "none",
                   border: "1px solid var(--border)", transition: "all 0.2s",

@@ -75,7 +75,7 @@ function PersonaCard({ p, idx }) {
         flexDirection: "column",
       }}>
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.75rem",
           letterSpacing: "0.12em",
           color: "rgba(212,144,10,1)",
@@ -85,7 +85,7 @@ function PersonaCard({ p, idx }) {
           {p.code}
         </p>
         <p style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
           fontSize: "1rem",
           color: "rgba(255,255,255,0.85)",
@@ -96,7 +96,7 @@ function PersonaCard({ p, idx }) {
           {p.role}
         </p>
         <h3 style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
           fontSize: "1.12rem",
           color: "#FFFFFF",
@@ -107,7 +107,7 @@ function PersonaCard({ p, idx }) {
           {p.headline}
         </h3>
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "1.05rem",
           color: "rgba(255,255,255,0.90)",
           lineHeight: 1.7,
@@ -121,7 +121,7 @@ function PersonaCard({ p, idx }) {
           paddingTop: "0.875rem",
         }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.672rem",
             color: "rgba(212,144,10,0.95)",
             letterSpacing: "0.1em",
@@ -167,7 +167,7 @@ function ContactForm() {
     background: "rgba(255,255,255,0.04)",
     border: "1px solid rgba(255,255,255,0.14)",
     color: "#FFFFFF",
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Atkinson Hyperlegible', sans-serif",
     fontSize: "1.05rem",
     outline: "none",
     boxSizing: "border-box",
@@ -175,7 +175,7 @@ function ContactForm() {
   };
 
   const labelStyle = {
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "'IBM Plex Mono', monospace",
     fontSize: "0.75rem",
     letterSpacing: "0.12em",
     textTransform: "uppercase",
@@ -188,7 +188,7 @@ function ContactForm() {
     return (
       <div data-testid="partner-form-success" style={{ textAlign: "center", padding: "3rem 0" }}>
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.672rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -198,7 +198,7 @@ function ContactForm() {
           LP-PARTNER-001 — INQUIRY RECEIVED
         </p>
         <p style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
           fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
           color: "#FFFFFF",
@@ -208,7 +208,7 @@ function ContactForm() {
           Your inquiry has been received.
         </p>
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "1rem",
           color: "rgba(255,255,255,0.88)",
           lineHeight: 1.7,
@@ -304,7 +304,7 @@ function ContactForm() {
 
       {error && (
         <p data-testid="partner-form-error" style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.875rem",
           color: "#f87171",
         }}>
@@ -319,7 +319,7 @@ function ContactForm() {
         style={{
           background: status === "loading" ? "rgba(212,144,10,0.5)" : "#d4900a",
           color: "#0b1628",
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontWeight: 700,
           fontSize: "1rem",
           letterSpacing: "0.1em",
@@ -356,7 +356,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -366,7 +366,7 @@ export default function PartnersPage() {
               LP-PARTNER-001 | REFERRAL & PARTNERSHIP NETWORK
             </p>
             <h1 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
               letterSpacing: "-0.03em",
@@ -378,7 +378,7 @@ export default function PartnersPage() {
               The operational layer behind your carrier relationships.
             </h1>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.125rem",
               color: "rgba(255,255,255,0.92)",
               lineHeight: 1.75,
@@ -388,7 +388,7 @@ export default function PartnersPage() {
               LaunchPath installs the compliance infrastructure that new motor carrier authorities require to survive federal oversight. For partners — insurers, fleets, and brokers — this is the onboarding layer that reduces exposure before it becomes a claim, a violation, or a failed load.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.125rem",
               color: "rgba(255,255,255,0.92)",
               lineHeight: 1.75,
@@ -403,7 +403,7 @@ export default function PartnersPage() {
               style={{
                 background: "#d4900a",
                 color: "#0b1628",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontWeight: 700,
                 fontSize: "1rem",
                 letterSpacing: "0.1em",
@@ -432,7 +432,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -442,7 +442,7 @@ export default function PartnersPage() {
               WHO THIS SERVES
             </p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -453,7 +453,7 @@ export default function PartnersPage() {
               Three industries. One operational problem.
             </h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.90)",
               lineHeight: 1.7,
@@ -484,7 +484,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.672rem",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -494,7 +494,7 @@ export default function PartnersPage() {
               THE REFERRAL PROCESS
             </p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -517,7 +517,7 @@ export default function PartnersPage() {
                   alignItems: "flex-start",
                 }}>
                   <p style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "'Playfair Display', serif",
                     fontWeight: 800,
                     fontSize: "2.5rem",
                     color: "rgba(212,144,10,0.2)",
@@ -529,7 +529,7 @@ export default function PartnersPage() {
                   </p>
                   <div>
                     <h3 style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontFamily: "'Playfair Display', serif",
                       fontWeight: 700,
                       fontSize: "1.125rem",
                       color: "#FFFFFF",
@@ -539,7 +539,7 @@ export default function PartnersPage() {
                       {step.title}
                     </h3>
                     <p style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "1rem",
                       color: "rgba(255,255,255,0.88)",
                       lineHeight: 1.7,
@@ -577,7 +577,7 @@ export default function PartnersPage() {
                 textAlign: "center",
               }}>
                 <p style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 800,
                   fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
                   color: "#d4900a",
@@ -588,7 +588,7 @@ export default function PartnersPage() {
                   {s.value}
                 </p>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "1.05rem",
                   color: "rgba(255,255,255,0.85)",
                   lineHeight: 1.5,
@@ -615,7 +615,7 @@ export default function PartnersPage() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.672rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -625,7 +625,7 @@ export default function PartnersPage() {
               LP-PARTNER-INQUIRY
             </p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               letterSpacing: "-0.02em",
@@ -636,7 +636,7 @@ export default function PartnersPage() {
               Request a Partnership Conversation
             </h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.88)",
               lineHeight: 1.7,

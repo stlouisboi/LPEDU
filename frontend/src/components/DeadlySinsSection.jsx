@@ -56,7 +56,7 @@ export default function DeadlySinsSection() {
           <div style={{ maxWidth: 680, marginBottom: "5rem" }}>
             <p className="overline" style={{ marginBottom: "1.25rem", color: "var(--text-paper-heading)" }}>Failure Documentation</p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
               letterSpacing: "-0.02em",
@@ -66,7 +66,7 @@ export default function DeadlySinsSection() {
               How new authorities fail in the first 90 days.
             </h2>
             <p style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 600,
               fontSize: "1.12rem",
               color: "var(--text-paper)",
@@ -89,7 +89,7 @@ export default function DeadlySinsSection() {
           {BUCKETS.map((bucket) => (
             <div key={bucket.id} data-testid={`sin-bucket-${bucket.id}`}>
               <div style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.762rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
@@ -105,7 +105,7 @@ export default function DeadlySinsSection() {
                 {bucket.sins.map((sin, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: "0.784rem",
                       color: "var(--text-paper-muted)",
                       marginTop: "0.25rem",
@@ -113,7 +113,7 @@ export default function DeadlySinsSection() {
                       lineHeight: 1.7,
                     }}>—</span>
                     <p style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "1.008rem",
                       color: "var(--text-paper)",
                       lineHeight: 1.75,
@@ -128,7 +128,7 @@ export default function DeadlySinsSection() {
 
         <div style={{ borderTop: "1px solid var(--divider-light)", paddingTop: "2rem" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.064rem",
             color: "var(--text-paper-muted)",
             lineHeight: 1.7,

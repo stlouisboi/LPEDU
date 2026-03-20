@@ -14,7 +14,7 @@ export default function FinalCTASection() {
         <FadeIn>
           {/* Section code */}
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.60rem",
             fontWeight: 700,
             letterSpacing: "0.20em",
@@ -27,7 +27,7 @@ export default function FinalCTASection() {
 
           {/* Headline */}
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "var(--text-2xl)",
             letterSpacing: "-0.02em",
@@ -40,7 +40,7 @@ export default function FinalCTASection() {
 
           {/* Subtext */}
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "var(--text-base)",
             color: "rgba(255,255,255,0.68)",
             lineHeight: 1.8,
@@ -69,7 +69,7 @@ export default function FinalCTASection() {
                 alignItems: "center",
                 background: "#d4900a",
                 color: "#060d19",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontWeight: 700,
                 fontSize: "var(--text-sm)",
                 letterSpacing: "0.10em",
@@ -93,7 +93,7 @@ export default function FinalCTASection() {
                 alignItems: "center",
                 background: "transparent",
                 color: "#d4900a",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontWeight: 700,
                 fontSize: "var(--text-sm)",
                 letterSpacing: "0.10em",
@@ -119,7 +119,7 @@ export default function FinalCTASection() {
 
           {/* Disclaimer */}
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "var(--text-xs)",
             color: "rgba(255,255,255,0.32)",
             lineHeight: 1.7,

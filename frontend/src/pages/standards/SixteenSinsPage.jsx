@@ -344,7 +344,7 @@ export default function SixteenSinsPage() {
         {/* ── Header ── */}
         <FadeIn>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.72rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -354,7 +354,7 @@ export default function SixteenSinsPage() {
           }}>LP-DOCTRINE-001 | THREAT MODEL</p>
 
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3rem)",
             color: "#FFFFFF",
@@ -364,7 +364,7 @@ export default function SixteenSinsPage() {
           }}>The 16 Deadly Sins of the New Authority</h1>
 
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.78rem",
             color: "rgba(255,255,255,0.38)",
             letterSpacing: "0.08em",
@@ -376,7 +376,7 @@ export default function SixteenSinsPage() {
 
           <div style={{ maxWidth: 720, marginBottom: "5.5rem" }}>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.1rem",
               color: "rgba(255,255,255,0.88)",
               lineHeight: 1.85,
@@ -385,7 +385,7 @@ export default function SixteenSinsPage() {
               Every motor carrier failure leaves a paper trail.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.1rem",
               color: "rgba(255,255,255,0.65)",
               lineHeight: 1.85,
@@ -395,7 +395,7 @@ export default function SixteenSinsPage() {
               The investigator writes it down after the fact.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.1rem",
               color: "rgba(255,255,255,0.65)",
               lineHeight: 1.85,
@@ -405,7 +405,7 @@ export default function SixteenSinsPage() {
               The LaunchPath system identifies the behaviors before they happen.
             </p>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.78)",
               lineHeight: 1.9,
@@ -419,7 +419,7 @@ export default function SixteenSinsPage() {
         <FadeIn delay={40}>
           <div style={{ marginBottom: "6rem" }}>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.68rem",
               fontWeight: 700,
               letterSpacing: "0.2em",
@@ -429,7 +429,7 @@ export default function SixteenSinsPage() {
             }}>THE 16 DEADLY SINS — AT A GLANCE</p>
 
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.95rem",
               color: "rgba(255,255,255,0.6)",
               lineHeight: 1.75,
@@ -453,7 +453,7 @@ export default function SixteenSinsPage() {
                   padding: "1.375rem 1.375rem 1.25rem",
                 }}>
                   <p style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.65rem",
                     fontWeight: 700,
                     letterSpacing: "0.12em",
@@ -478,7 +478,7 @@ export default function SixteenSinsPage() {
                           textTransform: "uppercase",
                         }}>{sin.num}</span>
                         <span style={{
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'Atkinson Hyperlegible', sans-serif",
                           fontSize: "0.82rem",
                           color: sin.highRisk ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.72)",
                           lineHeight: 1.4,
@@ -486,7 +486,7 @@ export default function SixteenSinsPage() {
                         }}>{sin.name}</span>
                         {sin.highRisk && (
                           <span style={{
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'IBM Plex Mono', monospace",
                             fontSize: "0.52rem",
                             fontWeight: 700,
                             letterSpacing: "0.08em",
@@ -514,17 +514,17 @@ export default function SixteenSinsPage() {
             marginBottom: "5rem",
           }}>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", fontWeight: 700,
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)",
               marginBottom: "0.75rem",
             }}>LP-TOOL-SIN | FREE SELF-AUDIT</p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+              fontFamily: "'Playfair Display', serif", fontWeight: 700,
               fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
               letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "0.75rem",
             }}>Download the 16 Deadly Sins Checklist</h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem",
               color: "rgba(255,255,255,0.60)", lineHeight: 1.75, maxWidth: 520, marginBottom: "1.75rem",
             }}>
               A self-audit tool for new motor carriers. Check your operation against the 16 behaviors that most commonly end authority — with CFR citations and consequence notes for each.
@@ -536,7 +536,7 @@ export default function SixteenSinsPage() {
                   background: "rgba(76,175,80,0.12)", border: "1px solid rgba(76,175,80,0.30)",
                   padding: "0.875rem 1.5rem", marginBottom: "1.75rem", display: "inline-block",
                 }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700, color: "#4caf50", letterSpacing: "0.10em", textTransform: "uppercase", margin: 0 }}>
+                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700, color: "#4caf50", letterSpacing: "0.10em", textTransform: "uppercase", margin: 0 }}>
                     Downloading — check your downloads folder
                   </p>
                 </div>
@@ -549,7 +549,7 @@ export default function SixteenSinsPage() {
                   maxWidth: 520,
                 }}>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem",
                     color: "rgba(255,255,255,0.75)", lineHeight: 1.75, marginBottom: "1.25rem",
                   }}>
                     Your checklist is downloading. Ready to see which of these are active in your operation right now?
@@ -558,7 +558,7 @@ export default function SixteenSinsPage() {
                     href="/ground-0-briefing"
                     data-testid="sins-download-ground0-nudge"
                     style={{
-                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.82rem",
                       letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628",
                       background: gold, padding: "0.75rem 1.75rem", textDecoration: "none",
                       display: "inline-block", transition: "background 0.2s",
@@ -571,7 +571,7 @@ export default function SixteenSinsPage() {
                   <button
                     onClick={generatePDF}
                     style={{
-                      fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.78rem",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 600, fontSize: "0.78rem",
                       letterSpacing: "0.06em", color: "rgba(255,255,255,0.35)",
                       background: "transparent", border: "none",
                       padding: "0.75rem 1rem", cursor: "pointer", display: "block",
@@ -592,7 +592,7 @@ export default function SixteenSinsPage() {
                   onChange={e => setEmail(e.target.value)}
                   data-testid="sins-checklist-email"
                   style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem",
                     color: "#FFFFFF", background: "rgba(255,255,255,0.05)",
                     border: "1px solid rgba(255,255,255,0.15)", padding: "0.875rem 1.25rem",
                     outline: "none", width: 280, minWidth: 200,
@@ -606,7 +606,7 @@ export default function SixteenSinsPage() {
                   disabled={gateState === "submitting"}
                   data-testid="sins-checklist-download-btn"
                   style={{
-                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.85rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
                     color: "#0b1628", background: gateState === "submitting" ? "rgba(212,144,10,0.60)" : gold,
                     border: "none", padding: "0.875rem 2rem", cursor: gateState === "submitting" ? "default" : "pointer",
@@ -626,7 +626,7 @@ export default function SixteenSinsPage() {
         <FadeIn delay={60}>
           <div style={{ marginBottom: "2.5rem" }}>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.68rem",
               fontWeight: 700,
               letterSpacing: "0.22em",
@@ -635,7 +635,7 @@ export default function SixteenSinsPage() {
               marginBottom: "0.5rem",
             }}>VIOLATION RECORDS</p>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.88rem",
               color: "rgba(255,255,255,0.38)",
               letterSpacing: "0.02em",
@@ -671,7 +671,7 @@ export default function SixteenSinsPage() {
             marginBottom: "3rem",
           }}>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.65rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
@@ -681,7 +681,7 @@ export default function SixteenSinsPage() {
             }}>CONCLUSION</p>
 
             <p style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
               fontWeight: 700,
               color: "#FFFFFF",
@@ -692,7 +692,7 @@ export default function SixteenSinsPage() {
             </p>
 
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.72)",
               lineHeight: 1.75,
@@ -703,7 +703,7 @@ export default function SixteenSinsPage() {
             </p>
 
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.72)",
               lineHeight: 1.75,
@@ -719,7 +719,7 @@ export default function SixteenSinsPage() {
                 to="/ground-0-briefing"
                 data-testid="sins-ground0-cta"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.875rem",
                   letterSpacing: "0.10em",
@@ -740,7 +740,7 @@ export default function SixteenSinsPage() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.78rem",
                   color: "rgba(255,255,255,0.35)",
                   margin: 0,
@@ -750,7 +750,7 @@ export default function SixteenSinsPage() {
                   to="/compliance-library"
                   data-testid="sins-bundle-cta"
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontWeight: 700,
                     fontSize: "0.875rem",
                     letterSpacing: "0.10em",
@@ -780,7 +780,7 @@ export default function SixteenSinsPage() {
             data-testid="copy-link-btn"
             onClick={handleCopyLink}
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.62rem",
               fontWeight: 700,
               letterSpacing: "0.14em",
@@ -804,17 +804,17 @@ export default function SixteenSinsPage() {
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
               The AUTO Method: Why These Failures Happen
             </p>
           </div>
           <Link
             to="/auto-method"
             data-testid="sins-next-framework-link"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: gold, padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
+            style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: gold, padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
             onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
             onMouseLeave={e => (e.currentTarget.style.background = gold)}
           >
@@ -881,7 +881,7 @@ function SinCard({ sin }) {
           position: "absolute",
           top: "1rem",
           right: "1.25rem",
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.55rem",
           fontWeight: 700,
           letterSpacing: "0.12em",
@@ -908,7 +908,7 @@ function SinCard({ sin }) {
 
       {/* Name */}
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontSize: "1rem",
         fontWeight: 600,
         color: isHighRisk ? "#D85A4A" : coral,
@@ -919,7 +919,7 @@ function SinCard({ sin }) {
 
       {/* Description */}
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontSize: "0.88rem",
         color: "rgba(255,255,255,0.75)",
         lineHeight: 1.75,
@@ -949,7 +949,7 @@ function SinCard({ sin }) {
         padding: "0.75rem 0.875rem",
       }}>
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.58rem",
           fontWeight: 700,
           letterSpacing: "0.14em",
@@ -958,7 +958,7 @@ function SinCard({ sin }) {
           marginBottom: "0.4rem",
         }}>WHAT HAPPENS</p>
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.84rem",
           color: isHighRisk ? "rgba(255,255,255,0.80)" : "rgba(255,255,255,0.62)",
           lineHeight: 1.7,

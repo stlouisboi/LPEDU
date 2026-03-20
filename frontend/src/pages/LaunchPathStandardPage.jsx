@@ -7,9 +7,9 @@ const goldDim = "rgba(197,160,89,0.75)";
 const navy = "#002244";
 const dark = "#080f1e";
 const card = "#0D1929";
-const mono = "'JetBrains Mono', monospace";
-const condensed = "'Barlow Condensed', sans-serif";
-const body = "'Inter', sans-serif";
+const mono = "'IBM Plex Mono', monospace";
+const condensed = "'Playfair Display', serif";
+const body = "'Atkinson Hyperlegible', sans-serif";
 
 // ── Module Data ──────────────────────────────────────────
 const MODULES = [

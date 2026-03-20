@@ -94,9 +94,9 @@ const BG2       = "#091220";
 const BG_CARD   = "#0a1828";
 const GOLD      = "#d4900a";
 const BORDER    = "rgba(255,255,255,0.08)";
-const MONO      = "'JetBrains Mono', monospace";
-const COND      = "'Barlow Condensed', sans-serif";
-const SANS      = "'Inter', sans-serif";
+const MONO      = "'IBM Plex Mono', monospace";
+const COND      = "'Playfair Display', serif";
+const SANS      = "'Atkinson Hyperlegible', sans-serif";
 
 const sectionLabel = {
   fontFamily: MONO,

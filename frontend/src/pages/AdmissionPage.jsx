@@ -27,7 +27,9 @@ export default function AdmissionPage() {
     lane: "",
     message: "",
   });
-  const [state, setState] = useState("idle"); // idle | loading | success | error
+  const [admissionId, setAdmissionId] = useState(null);
+  const [state, setState] = useState("idle"); // idle | loading | success | checkout | error
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
   const API = process.env.REACT_APP_BACKEND_URL;
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -45,8 +47,29 @@ export default function AdmissionPage() {
         body: JSON.stringify(form),
       });
       if (!resp.ok) throw new Error("Failed");
+      const data = await resp.json();
+      setAdmissionId(data.admission_id || null);
       setState("success");
     } catch {
+      setState("error");
+    }
+  };
+
+  const handleProceedToPayment = async () => {
+    if (!admissionId) return;
+    setCheckoutLoading(true);
+    try {
+      const origin = window.location.origin;
+      const resp = await fetch(`${API}/api/create-admission-checkout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ admission_id: admissionId, origin_url: origin }),
+      });
+      if (!resp.ok) throw new Error("Checkout failed");
+      const data = await resp.json();
+      window.location.href = data.checkout_url;
+    } catch {
+      setCheckoutLoading(false);
       setState("error");
     }
   };
@@ -56,7 +79,7 @@ export default function AdmissionPage() {
     background: "rgba(255,255,255,0.04)",
     border: "1px solid rgba(255,255,255,0.14)",
     color: "#FFFFFF",
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Atkinson Hyperlegible', sans-serif",
     fontSize: "0.98rem",
     padding: "0.875rem 1.125rem",
     outline: "none",
@@ -66,7 +89,7 @@ export default function AdmissionPage() {
 
   const labelStyle = {
     display: "block",
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "'IBM Plex Mono', monospace",
     fontSize: "0.616rem",
     fontWeight: 700,
     letterSpacing: "0.16em",
@@ -76,7 +99,7 @@ export default function AdmissionPage() {
   };
 
   const hintStyle = {
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Atkinson Hyperlegible', sans-serif",
     fontSize: "0.784rem",
     color: "rgba(255,255,255,0.40)",
     marginTop: "0.4rem",
@@ -94,7 +117,7 @@ export default function AdmissionPage() {
   };
 
   return (
-    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Atkinson Hyperlegible', sans-serif" }}>
       <Navbar />
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px" }}>
@@ -103,7 +126,7 @@ export default function AdmissionPage() {
         <Link
           to="/launchpath-standard"
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.616rem",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
@@ -125,7 +148,7 @@ export default function AdmissionPage() {
         <p
           data-testid="admission-page-label"
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -139,7 +162,7 @@ export default function AdmissionPage() {
 
         <h1
           style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
             color: "#FFFFFF",
@@ -164,7 +187,7 @@ export default function AdmissionPage() {
 
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.95rem",
             color: "rgba(255,255,255,0.55)",
             fontStyle: "italic",
@@ -191,7 +214,7 @@ export default function AdmissionPage() {
             }}>
               <span style={{ color: "#22c55e" }}>✓</span>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontWeight: 600,
                 fontSize: "0.875rem",
                 color: "rgba(34,197,94,0.95)",
@@ -202,7 +225,7 @@ export default function AdmissionPage() {
             </div>
 
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
               color: "#FFFFFF",
@@ -219,16 +242,54 @@ export default function AdmissionPage() {
               marginBottom: "2rem",
               maxWidth: 480,
             }}>
-              The Station Custodian will review your submission and respond within 24–48 hours. Check your inbox at {form.email} for confirmation and next steps.
+              Complete your enrollment now by securing your cohort seat. Payment of <strong style={{ color: "#d4900a" }}>$2,500</strong> confirms your place in the LaunchPath Standard. No refunds are issued after cohort start.
             </p>
 
-            <div style={{ height: 2, background: "#d4900a", maxWidth: 120, marginBottom: "2rem" }} />
+            <button
+              data-testid="proceed-to-payment-btn"
+              onClick={handleProceedToPayment}
+              disabled={checkoutLoading}
+              style={{
+                minHeight: 54,
+                background: "#d4900a",
+                color: "#0b1628",
+                border: "none",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                fontWeight: 700,
+                fontSize: "0.975rem",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                cursor: checkoutLoading ? "wait" : "pointer",
+                opacity: checkoutLoading ? 0.75 : 1,
+                transition: "background 0.2s, opacity 0.2s",
+                padding: "0 2.5rem",
+                display: "inline-block",
+                marginBottom: "1.25rem",
+              }}
+              onMouseEnter={(e) => { if (!checkoutLoading) e.currentTarget.style.background = "#D4B87A"; }}
+              onMouseLeave={(e) => { if (!checkoutLoading) e.currentTarget.style.background = "#d4900a"; }}
+            >
+              {checkoutLoading ? "Redirecting to payment..." : "Proceed to Payment — $2,500 →"}
+            </button>
 
             <p style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "0.56rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.30)",
+              marginBottom: "2.5rem",
+            }}>
+              Powered by Stripe · Secure checkout
+            </p>
+
+            <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: "1.75rem" }} />
+
+            <p style={{
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 600,
-              fontSize: "1.05rem",
-              color: "rgba(255,255,255,0.85)",
+              fontSize: "1rem",
+              color: "rgba(255,255,255,0.75)",
               fontStyle: "italic",
               lineHeight: 1.75,
               maxWidth: 480,
@@ -377,7 +438,7 @@ export default function AdmissionPage() {
               {/* Error */}
               {state === "error" && (
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.875rem",
                   color: "#f87171",
                   fontStyle: "italic",
@@ -396,7 +457,7 @@ export default function AdmissionPage() {
                   background: "#d4900a",
                   color: "#0b1628",
                   border: "none",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.925rem",
                   letterSpacing: "0.1em",
@@ -414,7 +475,7 @@ export default function AdmissionPage() {
               </button>
 
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.784rem",
                 color: "rgba(255,255,255,0.42)",
                 fontStyle: "italic",

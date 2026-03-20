@@ -66,16 +66,16 @@ export default function StandardsPage() {
         {/* Page Header */}
         <FadeIn>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
           }}>LP-SYS-LIBRARY | OPERATING STANDARDS</p>
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFFFFF",
             lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1rem",
           }}>The LaunchPath Operating Standards Library</h1>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.1rem",
             color: "#FFFFFF", lineHeight: 1.8, maxWidth: 580, marginBottom: "4rem",
           }}>
             Five domain-specific operating standards and one complete document architecture bundle — the DIY path to installing a compliant new-authority operating system. Designed for carriers building their compliance structure before seeking guided implementation.
@@ -85,7 +85,7 @@ export default function StandardsPage() {
         {/* FMCSA Audit Domain Mapping Table */}
         <FadeIn delay={40}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>FMCSA Audit Domain Coverage</p>
@@ -100,11 +100,11 @@ export default function StandardsPage() {
           }} className="connector-grid">
             <div style={{ background: "#0b1628", padding: "2rem" }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
                 letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.75rem",
               }}>What compliance looks like when it works.</p>
               <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem",
                 color: "rgba(255,255,255,0.78)", lineHeight: 1.7,
               }}>
                 The FMCSA Audit Domain Mapping Table shows exactly what an investigator reviews — and which LaunchPath packet covers each domain.
@@ -112,11 +112,11 @@ export default function StandardsPage() {
             </div>
             <div style={{ background: "#0b1628", padding: "2rem" }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
                 letterSpacing: "0.12em", textTransform: "uppercase", color: coral, marginBottom: "0.75rem",
               }}>What failure looks like before it arrives.</p>
               <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem",
                 color: "rgba(255,255,255,0.78)", lineHeight: 1.7,
               }}>
                 The 16 Deadly Sins are the operational behaviors that make compliant-looking records useless. The doctrine that prevents them is built into every packet.
@@ -125,7 +125,7 @@ export default function StandardsPage() {
           </div>
           <div style={{ textAlign: "center", marginBottom: "4rem", marginTop: "-3rem" }}>
             <Link to="/standards/16-deadly-sins" style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.85rem",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 600, fontSize: "0.85rem",
               letterSpacing: "0.06em", textTransform: "uppercase",
               color: coral, textDecoration: "none",
               border: `1px solid rgba(216,90,48,0.35)`, padding: "0.625rem 1.5rem",
@@ -142,7 +142,7 @@ export default function StandardsPage() {
         {/* Doctrine Stack */}
         <FadeIn delay={85}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>Authority Survival Framework</p>
@@ -152,12 +152,12 @@ export default function StandardsPage() {
         {/* Three-Tier Ladder */}
         <FadeIn delay={100}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1rem",
           }}>The Commercial Ladder</p>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem",
             color: "rgba(255,255,255,0.72)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: 620,
           }}>
             Every carrier starts in a different place. LaunchPath offers three paths: install the documents yourself, or implement the full operating standard with oversight.
@@ -174,19 +174,19 @@ export default function StandardsPage() {
                 <div style={{ flex: 1 }}>
                   {tier.badge && (
                     <p style={{
-                      fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", fontWeight: 700,
+                      fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem", fontWeight: 700,
                       letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "0.5rem",
                     }}>{tier.badge}</p>
                   )}
                   <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "0.5rem" }}>
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: gold }}>{tier.tier}</span>
-                    <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF" }}>{tier.label}</span>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.85rem", color: gold }}>{tier.tier}</span>
+                    <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.05rem", color: "#FFFFFF" }}>{tier.label}</span>
                   </div>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>{tier.desc}</p>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>{tier.desc}</p>
                 </div>
                 {tier.href.startsWith("#") ? (
                   <a href={tier.href} style={{
-                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                     letterSpacing: "0.1em", textTransform: "uppercase",
                     color: gold,
                     background: "transparent",
@@ -199,7 +199,7 @@ export default function StandardsPage() {
                   >{tier.cta}</a>
                 ) : (
                 <Link to={tier.href} style={{
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                   letterSpacing: "0.1em", textTransform: "uppercase",
                   color: tier.gold ? "#0b1628" : gold,
                   background: tier.gold ? gold : "transparent",
@@ -222,14 +222,14 @@ export default function StandardsPage() {
             background: "#0b1628", border: `1px solid rgba(212,144,10,0.2)`,
             borderTop: `3px solid ${gold}`, padding: "2.5rem", marginBottom: "4rem",
           }}>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>THE COMPLETE DIY SYSTEM</p>
-            <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>THE COMPLETE DIY SYSTEM</p>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.75rem" }}>New Carrier Document System — $497</h2>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: 580 }}>
               Install the full LaunchPath document architecture in one step. Includes all five packets, the 0–30–90 Day Implementation Guide, and the unified folder structure. $128 less than purchasing the five packets individually.
             </p>
             <Link to="/standards/new-carrier-document-system" style={{
               display: "inline-block", background: gold, color: "#0b1628",
-              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.85rem",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.85rem",
               letterSpacing: "0.1em", textTransform: "uppercase",
               padding: "0.875rem 2rem", textDecoration: "none", transition: "opacity 0.2s",
             }}
@@ -242,12 +242,12 @@ export default function StandardsPage() {
         {/* SYSTEM MODULES */}
         <FadeIn delay={130}>
           <p id="packets" style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "0.6rem",
           }}>System Modules</p>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem",
             color: "rgba(255,255,255,0.6)", lineHeight: 1.6, marginBottom: "1.5rem", fontStyle: "italic",
           }}>Each packet installs one domain of the LaunchPath operating standard.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(212,144,10,0.1)", marginBottom: "4rem" }}>
@@ -258,15 +258,15 @@ export default function StandardsPage() {
                 gap: "2rem", flexWrap: "wrap",
               }} className="ladder-row">
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
-                  <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "rgba(212,144,10,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
+                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", color: "rgba(212,144,10,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
+                  <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
+                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.68rem", color: "rgba(212,144,10,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1rem", color: "rgba(255,255,255,0.55)" }}>{p.price}</span>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "1rem", color: "rgba(255,255,255,0.55)" }}>{p.price}</span>
                   <Link to={p.href} style={{
-                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                     letterSpacing: "0.1em", textTransform: "uppercase", color: gold,
                     border: `1px solid rgba(212,144,10,0.4)`, padding: "0.625rem 1.25rem",
                     textDecoration: "none", whiteSpace: "nowrap", transition: "all 0.2s",
@@ -283,17 +283,17 @@ export default function StandardsPage() {
         {/* Comparison Matrix — Bundle vs Standard */}
         <FadeIn delay={145}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>LP-SPEC-001 | Comparison Matrix</p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.35rem",
+            fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.35rem",
             color: "#FFFFFF", letterSpacing: "-0.01em", marginBottom: "2rem",
           }}>LaunchPath System Comparison</h2>
           {/* Mobile scroll hint */}
           <p className="matrix-scroll-hint" style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.62rem",
             color: "rgba(212,144,10,0.5)",
             letterSpacing: "0.1em",
@@ -313,7 +313,7 @@ export default function StandardsPage() {
                 <tr>
                   <th style={{
                     textAlign: "left", padding: "0.875rem 1rem",
-                    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem",
+                    fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem",
                     fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                     color: "rgba(255,255,255,0.35)", borderBottom: "1px solid rgba(255,255,255,0.08)",
                     background: "#060d19",
@@ -325,8 +325,8 @@ export default function StandardsPage() {
                     borderLeft: "1px solid rgba(212,144,10,0.15)",
                     borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>DIY System</p>
-                    <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$497</p>
+                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>DIY System</p>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$497</p>
                   </th>
                   <th style={{
                     textAlign: "center", padding: "1rem 0.875rem 0.875rem",
@@ -334,8 +334,8 @@ export default function StandardsPage() {
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Guided Implementation</p>
-                    <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
+                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Guided Implementation</p>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
                   </th>
                 </tr>
               </thead>
@@ -344,7 +344,7 @@ export default function StandardsPage() {
                   <tr key={i} style={{ background: i % 2 === 0 ? "#060d19" : "rgba(0,21,48,0.45)" }}>
                     <td style={{
                       padding: "0.875rem 1rem",
-                      fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem",
                       color: "rgba(255,255,255,0.82)", lineHeight: 1.5,
                       borderBottom: "1px solid rgba(255,255,255,0.05)",
                     }}>{row.feature}</td>
@@ -379,7 +379,7 @@ export default function StandardsPage() {
                     borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
                     <Link to="/standards/new-carrier-document-system" style={{
-                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.72rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       color: "#0b1628", background: gold, textDecoration: "none",
                       padding: "0.5rem 0.875rem", display: "inline-block", transition: "opacity 0.2s",
@@ -395,7 +395,7 @@ export default function StandardsPage() {
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
                     <Link to="/ground-0-briefing" style={{
-                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.72rem",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.72rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       color: gold, textDecoration: "none",
                       border: `1px solid rgba(212,144,10,0.35)`, padding: "0.5rem 0.875rem",
@@ -443,7 +443,7 @@ function MatrixCell({ value, col }) {
   if (value && value.label) {
     return (
       <span style={{
-        fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem",
+        fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem",
         color: col === "bundle" ? "#d4900a" : "#FFFFFF",
         fontWeight: 600, letterSpacing: "0.04em",
       }}>{value.label}</span>

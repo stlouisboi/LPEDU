@@ -33,9 +33,9 @@ const COMING = [
   },
 ];
 
-const mono = "'JetBrains Mono', 'Courier New', monospace";
-const sans = "'Inter', sans-serif";
-const display = "'Barlow Condensed', sans-serif";
+const mono = "'IBM Plex Mono', 'Courier New', monospace";
+const sans = "'Atkinson Hyperlegible', sans-serif";
+const display = "'Playfair Display', serif";
 
 export default function ToolsIndexPage() {
   return (

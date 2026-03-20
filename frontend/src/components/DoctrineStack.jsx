@@ -64,7 +64,7 @@ export function DoctrineStack() {
               {/* Left: label + name */}
               <div>
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.62rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
@@ -73,7 +73,7 @@ export function DoctrineStack() {
                   marginBottom: "0.25rem",
                 }}>{layer.label}</p>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.95rem",
                   fontWeight: 500,
                   color: "#FFFFFF",
@@ -83,7 +83,7 @@ export function DoctrineStack() {
 
               {/* Right: descriptor — hidden on very small screens */}
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.82rem",
                 color: "rgba(255,255,255,0.78)",
                 textAlign: "right",
@@ -111,14 +111,14 @@ export function DoctrineStack() {
       {/* Caption */}
       <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
         <p style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontSize: "0.9rem",
           fontWeight: 700,
           color: "rgba(255,255,255,0.8)",
           marginBottom: "0.25rem",
         }}>LaunchPath Authority Survival Framework</p>
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.82rem",
           color: "rgba(255,255,255,0.62)",
           letterSpacing: "0.03em",

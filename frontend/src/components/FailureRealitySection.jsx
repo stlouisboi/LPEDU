@@ -112,7 +112,7 @@ export default function FailureRealitySection() {
           </p>
 
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 500,
             fontStyle: "italic",
             fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
@@ -141,7 +141,7 @@ export default function FailureRealitySection() {
               "STATUS: ██████████ REDACTED — PATTERN ONLY",
             ].map((line, i) => (
               <p key={i} style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.784rem",
                 color: i === 3 ? "var(--gold-muted-brand)" : "var(--text-muted-dark)",
                 letterSpacing: "0.05em",
@@ -165,7 +165,7 @@ export default function FailureRealitySection() {
                 alignItems: "center",
               }}>
                 <span style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.806rem",
                   fontWeight: 700,
                   color: "var(--gold-primary)",
@@ -174,14 +174,14 @@ export default function FailureRealitySection() {
                 }}>{field.label}</span>
                 {field.redacted ? (
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.806rem",
                     color: "var(--gold-muted-brand)",
                     letterSpacing: "0.04em",
                   }}>██████████ REDACTED</span>
                 ) : (
                   <span style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "1.12rem",
                     color: "var(--text-subtle)",
                     lineHeight: 1.5,
@@ -201,7 +201,7 @@ export default function FailureRealitySection() {
             marginBottom: "4rem",
           }}>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.694rem",
               color: "var(--gold-primary)",
               fontWeight: 700,
@@ -209,7 +209,7 @@ export default function FailureRealitySection() {
               marginBottom: "0.6rem",
             }}>PATTERN NOTE</p>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.98rem",
               color: "var(--text-muted-dark)",
               lineHeight: 1.8,
@@ -223,7 +223,7 @@ export default function FailureRealitySection() {
         {/* Exposure Inventory */}
         <FadeIn>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "1.232rem",
             color: "var(--text)",
@@ -233,7 +233,7 @@ export default function FailureRealitySection() {
             Exposure Inventory — 16 Documented Audit Findings
           </p>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.98rem",
             color: "var(--text-subtle)",
             marginBottom: "2.5rem",
@@ -253,7 +253,7 @@ export default function FailureRealitySection() {
             <FadeIn key={cat.title} delay={ci * 60}>
               <div>
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.806rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
@@ -267,7 +267,7 @@ export default function FailureRealitySection() {
                   {cat.items.map((item, ii) => (
                     <div key={ii} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                       <span style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: "0.728rem",
                         color: "var(--text-subtle)",
                         flexShrink: 0,
@@ -275,7 +275,7 @@ export default function FailureRealitySection() {
                         lineHeight: 1.7,
                       }}>[ ]</span>
                       <p style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
                         fontSize: "1.12rem",
                         color: "var(--text-muted-dark)",
                         lineHeight: 1.7,
@@ -298,7 +298,7 @@ export default function FailureRealitySection() {
             marginBottom: "3.5rem",
           }}>
             <p style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 500,
               fontStyle: "italic",
               fontSize: "clamp(1.05rem, 2vw, 1.35rem)",
@@ -328,7 +328,7 @@ export default function FailureRealitySection() {
                 textAlign: "center",
               }}>
                 <div style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "clamp(2.5rem, 4vw, 3rem)",
                   color: "var(--gold-primary)",
@@ -337,7 +337,7 @@ export default function FailureRealitySection() {
                   marginBottom: "0.5rem",
                 }}><CountUp end={m.end} suffix={m.suffix} /></div>
                 <div style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.874rem",
                   color: "var(--text-subtle)",
                   lineHeight: 1.5,
@@ -351,7 +351,7 @@ export default function FailureRealitySection() {
 
         <FadeIn>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 600,
             fontStyle: "italic",
             fontSize: "clamp(1rem, 1.5vw, 1.15rem)",

@@ -643,7 +643,7 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
           <button
             onClick={exportCover}
             style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem",
               fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
               background: "#d4900a", color: "#0b1628", border: "none",
               padding: "0.75rem 1.5rem", cursor: "pointer", borderRadius: "3px",
@@ -654,7 +654,7 @@ export function BookMockup3D({ productId = "new-entrant", mode = "embed" }) {
           <button
             onClick={exportThumb}
             style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
+              fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem",
               fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
               background: "transparent", color: "#d4900a",
               border: "1px solid rgba(212,144,10,0.5)",
@@ -679,18 +679,18 @@ export function BookInfoPanel({ productId }) {
       border: "1px solid rgba(212,144,10,0.2)",
       borderTop: `3px solid ${gold}`,
       padding: "1.75rem",
-      fontFamily: "'Inter', sans-serif",
+      fontFamily: "'Atkinson Hyperlegible', sans-serif",
       color: "#FFFFFF",
       minWidth: 260,
       maxWidth: 320,
     }}>
       <p style={{
-        fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem",
+        fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem",
         letterSpacing: "0.15em", textTransform: "uppercase", color: gold,
         marginBottom: "0.5rem",
       }}>{product.code}</p>
       <h3 style={{
-        fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+        fontFamily: "'Playfair Display', serif", fontWeight: 700,
         fontSize: "1rem", lineHeight: 1.3, color: "#FFFFFF",
         marginBottom: "1.5rem",
       }}>{product.name}</h3>
@@ -698,15 +698,15 @@ export function BookInfoPanel({ productId }) {
       <PanelSection label="What's Inside" items={product.panel.whatsInside} gold={gold} />
 
       <div style={{ marginBottom: "1rem" }}>
-        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Regulatory Basis</p>
+        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Regulatory Basis</p>
         <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.regBasis}</p>
       </div>
       <div style={{ marginBottom: "1rem" }}>
-        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Domain</p>
+        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Domain</p>
         <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.domain}</p>
       </div>
       <div>
-        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Format</p>
+        <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", textTransform: "uppercase", color: gold, marginBottom: "0.35rem" }}>Format</p>
         <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5 }}>{product.panel.format}</p>
       </div>
     </div>
@@ -717,7 +717,7 @@ function PanelSection({ label, items, gold }) {
   return (
     <div style={{ marginBottom: "1.25rem" }}>
       <p style={{
-        fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem",
+        fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem",
         letterSpacing: "0.12em", textTransform: "uppercase", color: gold,
         marginBottom: "0.5rem",
       }}>{label}</p>

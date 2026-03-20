@@ -167,7 +167,7 @@ function SectionHeader({ overline, title, id }) {
     <div style={{ marginBottom: "2rem" }} id={id}>
       {overline && (
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.728rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
@@ -177,7 +177,7 @@ function SectionHeader({ overline, title, id }) {
         }}>{overline}</p>
       )}
       <h2 style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Playfair Display', serif",
         fontWeight: 700,
         fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
         letterSpacing: "-0.015em",
@@ -191,7 +191,7 @@ function SectionHeader({ overline, title, id }) {
 function Body({ children, style = {} }) {
   return (
     <p style={{
-      fontFamily: "'Inter', sans-serif",
+      fontFamily: "'Atkinson Hyperlegible', sans-serif",
       fontSize: "1.12rem",
       color: "var(--text-muted)",
       lineHeight: 1.85,
@@ -214,7 +214,7 @@ function Callout({ label, children }) {
     }}>
       {label && (
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.728rem",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -223,7 +223,7 @@ function Callout({ label, children }) {
         }}>{label}</p>
       )}
       <div style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontSize: "1.008rem",
         color: "var(--text-muted)",
         lineHeight: 1.8,
@@ -238,14 +238,14 @@ function CheckList({ items }) {
       {items.map((item, i) => (
         <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
           <span style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.784rem",
             color: "var(--orange)",
             marginTop: "0.3rem",
             flexShrink: 0,
           }}>—</span>
           <span style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.008rem",
             color: "var(--text-muted)",
             lineHeight: 1.75,
@@ -264,7 +264,7 @@ export default function NewEntrantAuditBrief() {
   const handlePrint = () => window.print();
 
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
 
       {/* ── HERO ── */}
@@ -275,7 +275,7 @@ export default function NewEntrantAuditBrief() {
       }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <Link to="/knowledge-center" style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.84rem",
             color: "var(--text-subtle)",
             textDecoration: "none",
@@ -289,7 +289,7 @@ export default function NewEntrantAuditBrief() {
           </Link>
 
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.728rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -300,7 +300,7 @@ export default function NewEntrantAuditBrief() {
           </p>
 
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.9rem, 4vw, 3rem)",
             letterSpacing: "-0.025em",
@@ -312,7 +312,7 @@ export default function NewEntrantAuditBrief() {
           </h1>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.176rem",
             color: "var(--text-muted)",
             lineHeight: 1.7,
@@ -330,20 +330,20 @@ export default function NewEntrantAuditBrief() {
             gap: "1rem",
           }}>
             <span style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.806rem",
               color: "var(--text-subtle)",
               letterSpacing: "0.06em",
             }}>12-minute brief</span>
             <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
             <span style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.896rem",
               color: "var(--text-subtle)",
             }}>Updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}</span>
             <span style={{ color: "var(--border)", fontSize: "0.896rem" }}>|</span>
             <span style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.806rem",
               fontWeight: 600,
               color: "var(--orange)",
@@ -373,7 +373,7 @@ export default function NewEntrantAuditBrief() {
         }} className="summary-grid">
           <div>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.728rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
@@ -389,14 +389,14 @@ export default function NewEntrantAuditBrief() {
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.728rem",
                     color: "var(--orange)",
                     marginTop: "0.28rem",
                     flexShrink: 0,
                   }}>→</span>
                   <span style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "1.008rem",
                     color: "var(--text-muted)",
                     lineHeight: 1.75,
@@ -414,7 +414,7 @@ export default function NewEntrantAuditBrief() {
                 background: "none",
                 border: "1px solid var(--border)",
                 color: "var(--text-muted)",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.896rem",
                 fontWeight: 600,
                 padding: "0.875rem 1.5rem",
@@ -431,7 +431,7 @@ export default function NewEntrantAuditBrief() {
               Download printable<br />audit checklist (PDF)
             </button>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.784rem",
               color: "var(--text-subtle)",
             }}>Print or save to PDF</p>
@@ -528,7 +528,7 @@ export default function NewEntrantAuditBrief() {
           ].map((bucket) => (
             <div key={bucket.title} style={{ marginBottom: "2rem" }}>
               <h3 style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 fontSize: "1.176rem",
                 color: "var(--text)",
@@ -550,7 +550,7 @@ export default function NewEntrantAuditBrief() {
       }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
@@ -559,7 +559,7 @@ export default function NewEntrantAuditBrief() {
             marginBottom: "0.75rem",
           }}>Section 3</p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
             letterSpacing: "-0.015em",
@@ -568,7 +568,7 @@ export default function NewEntrantAuditBrief() {
             marginBottom: "0.75rem",
           }}>The Automatic-Fail Triggers You Cannot Ignore</h2>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.12rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
@@ -582,14 +582,14 @@ export default function NewEntrantAuditBrief() {
             <table style={{
               width: "100%",
               borderCollapse: "collapse",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.98rem",
             }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid var(--border)" }}>
                   {["Area", "Automatic-Failure Condition", "What to Show the Auditor (Proof)"].map(h => (
                     <th key={h} style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.728rem",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
@@ -612,7 +612,7 @@ export default function NewEntrantAuditBrief() {
                           style={{
                             verticalAlign: "top",
                             padding: "1rem 1rem 1rem 0",
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'IBM Plex Mono', monospace",
                             fontSize: "0.784rem",
                             color: "var(--text-subtle)",
                             letterSpacing: "0.04em",
@@ -651,7 +651,7 @@ export default function NewEntrantAuditBrief() {
       }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
@@ -660,7 +660,7 @@ export default function NewEntrantAuditBrief() {
             marginBottom: "0.75rem",
           }}>Section 3 — Supplement</p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
             letterSpacing: "-0.015em",
@@ -668,7 +668,7 @@ export default function NewEntrantAuditBrief() {
             marginBottom: "0.75rem",
           }}>New Entrant Safety Audit Binder</h2>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.064rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
@@ -693,13 +693,13 @@ export default function NewEntrantAuditBrief() {
                   borderBottom: "1px solid var(--border)",
                 }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.728rem",
                     color: "var(--text-subtle)",
                     letterSpacing: "0.1em",
                   }}>TAB {tab.num}</span>
                   <h3 style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
                     fontSize: "1.12rem",
                     color: "var(--text)",
@@ -726,7 +726,7 @@ export default function NewEntrantAuditBrief() {
                         }}
                       />
                       <span style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
                         fontSize: "0.98rem",
                         color: "var(--text-muted)",
                         lineHeight: 1.7,
@@ -749,7 +749,7 @@ export default function NewEntrantAuditBrief() {
               background: "none",
               border: "1px solid var(--border)",
               color: "var(--text-muted)",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.896rem",
               fontWeight: 600,
               padding: "0.875rem 1.5rem",
@@ -837,7 +837,7 @@ export default function NewEntrantAuditBrief() {
                 marginBottom: "1rem",
               }}>
                 <span style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.728rem",
                   color: "var(--text-subtle)",
                   letterSpacing: "0.08em",
@@ -845,21 +845,21 @@ export default function NewEntrantAuditBrief() {
                 }}>{sys.system}</span>
                 <div>
                   <h3 style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
                     fontSize: "1.176rem",
                     color: "var(--text)",
                     marginBottom: "0.2rem",
                   }}>{sys.title}</h3>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "0.896rem",
                     color: "var(--text-subtle)",
                   }}>{sys.subtitle}</p>
                 </div>
               </div>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.84rem",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
@@ -901,7 +901,7 @@ export default function NewEntrantAuditBrief() {
                 borderTop: "1px solid var(--border)",
               }}>
                 <span style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.728rem",
                   color: "var(--text-subtle)",
                   paddingTop: "0.25rem",
@@ -909,14 +909,14 @@ export default function NewEntrantAuditBrief() {
                 }}>{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "1.064rem",
                     color: "var(--text)",
                     lineHeight: 1.65,
                     marginBottom: "0.35rem",
                   }}>{title}</p>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "0.952rem",
                     color: "var(--text-subtle)",
                     lineHeight: 1.65,
@@ -957,7 +957,7 @@ export default function NewEntrantAuditBrief() {
         }}>
           <p className="overline" style={{ marginBottom: "1rem" }}>What Happens Next</p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
             letterSpacing: "-0.02em",
@@ -967,7 +967,7 @@ export default function NewEntrantAuditBrief() {
             Run the Ground 0 New Entrant Readiness Test
           </h2>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.092rem",
             color: "var(--text-muted)",
             lineHeight: 1.8,
@@ -986,7 +986,7 @@ export default function NewEntrantAuditBrief() {
                 display: "inline-block",
                 background: "var(--orange)",
                 color: "#fff",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontWeight: 700,
                 fontSize: "0.98rem",
                 letterSpacing: "0.06em",
@@ -1007,7 +1007,7 @@ export default function NewEntrantAuditBrief() {
                 background: "none",
                 border: "1px solid var(--border)",
                 color: "var(--text-muted)",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.98rem",
                 fontWeight: 600,
                 padding: "1rem 2rem",
@@ -1040,7 +1040,7 @@ export default function NewEntrantAuditBrief() {
       }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem", flexWrap: "wrap" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.84rem",
             color: "rgba(255,255,255,0.5)",
             lineHeight: 1.6,
@@ -1052,7 +1052,7 @@ export default function NewEntrantAuditBrief() {
             .
           </p>
           <a href="/operating-standard" style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.728rem",
             fontWeight: 700,
             letterSpacing: "0.12em",

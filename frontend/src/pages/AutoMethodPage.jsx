@@ -6,9 +6,9 @@ import FooterSection from "../components/FooterSection";
 const gold = "#d4900a";
 const darkBg = "#0b1628";
 const midBg = "#0d1c30";
-const MONO = "'JetBrains Mono', monospace";
-const COND = "'Barlow Condensed', sans-serif";
-const SANS = "'Inter', sans-serif";
+const MONO = "'IBM Plex Mono', monospace";
+const COND = "'Playfair Display', serif";
+const SANS = "'Atkinson Hyperlegible', sans-serif";
 const BORDER = "rgba(255,255,255,0.07)";
 
 const sectionLabel = {

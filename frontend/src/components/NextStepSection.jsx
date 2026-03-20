@@ -38,7 +38,7 @@ export default function NextStepSection() {
             The Process
           </p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
             letterSpacing: "-0.02em",
@@ -82,7 +82,7 @@ export default function NextStepSection() {
                   flexShrink: 0,
                 }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.728rem",
                     fontWeight: 700,
                     color: "var(--gold-primary)",
@@ -92,14 +92,14 @@ export default function NextStepSection() {
 
                 <div style={{ paddingTop: "0.35rem" }}>
                   <h3 style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
                     fontSize: "1.176rem",
                     color: "var(--text)",
                     marginBottom: "0.4rem",
                   }}>{s.name}</h3>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "1.008rem",
                     color: "var(--text-muted)",
                     lineHeight: 1.7,
@@ -112,7 +112,7 @@ export default function NextStepSection() {
 
         <FadeIn delay={360}>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.064rem",
             color: "var(--text-subtle)",
             lineHeight: 1.7,
@@ -130,7 +130,7 @@ export default function NextStepSection() {
               alignItems: "center",
               background: "var(--gold-primary)",
               color: "var(--bg-onyx)",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontWeight: 700,
               fontSize: "0.98rem",
               letterSpacing: "0.06em",

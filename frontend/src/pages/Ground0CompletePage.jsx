@@ -106,7 +106,7 @@ function PathCard({ path }) {
         display: "block",
         background: path.ctaBg,
         color: path.ctaColor,
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontWeight: 600,
         fontSize: "0.875rem",
         letterSpacing: "0.08em",
@@ -131,7 +131,7 @@ function PathCard({ path }) {
         display: "block",
         background: path.ctaBg,
         color: path.ctaColor,
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontWeight: 600,
         fontSize: "0.875rem",
         letterSpacing: "0.08em",
@@ -165,7 +165,7 @@ function PathCard({ path }) {
     >
       {/* Label */}
       <p style={{
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'IBM Plex Mono', monospace",
         fontSize: "0.616rem",
         fontWeight: 700,
         letterSpacing: "0.16em",
@@ -179,7 +179,7 @@ function PathCard({ path }) {
       {/* Code */}
       {path.code && (
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.56rem",
           color: "rgba(255,255,255,0.35)",
           letterSpacing: "0.1em",
@@ -191,7 +191,7 @@ function PathCard({ path }) {
 
       {/* Title */}
       <h3 style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Playfair Display', serif",
         fontWeight: 700,
         fontSize: "1.05rem",
         color: "#FFFFFF",
@@ -212,7 +212,7 @@ function PathCard({ path }) {
           }}>
             <span style={{ color: path.borderTop, flexShrink: 0, marginTop: "0.2rem", fontSize: "0.7rem" }}>—</span>
             <span style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.875rem",
               color: "rgba(255,255,255,0.78)",
               lineHeight: 1.55,
@@ -228,7 +228,7 @@ function PathCard({ path }) {
 
       {/* Best for */}
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontStyle: "italic",
         fontSize: "0.825rem",
         color: "rgba(255,255,255,0.55)",
@@ -241,7 +241,7 @@ function PathCard({ path }) {
       {/* Price + CTA */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", marginBottom: "0.875rem" }}>
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.784rem",
           color: "rgba(255,255,255,0.55)",
         }}>
@@ -273,7 +273,7 @@ export default function Ground0CompletePage() {
 
           {/* LP code */}
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -296,7 +296,7 @@ export default function Ground0CompletePage() {
               marginBottom: "2rem",
             }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontWeight: 700,
                 fontSize: "0.784rem",
                 letterSpacing: "0.16em",
@@ -319,7 +319,7 @@ export default function Ground0CompletePage() {
             }}>
               <span style={{ color: "#22c55e", fontSize: "1.1rem", lineHeight: 1 }}>✓</span>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontWeight: 600,
                 fontSize: "0.875rem",
                 color: "rgba(34,197,94,0.95)",
@@ -333,7 +333,7 @@ export default function Ground0CompletePage() {
 
           {/* Dynamic headline */}
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
             color: "#FFFFFF",
@@ -345,7 +345,7 @@ export default function Ground0CompletePage() {
           </h1>
 
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.05rem",
             color: "rgba(255,255,255,0.78)",
             lineHeight: 1.8,
@@ -369,7 +369,7 @@ export default function Ground0CompletePage() {
 
           {/* Section label */}
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -401,7 +401,7 @@ export default function Ground0CompletePage() {
       }}>
         <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.616rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -411,7 +411,7 @@ export default function Ground0CompletePage() {
             LP-DOCTRINE
           </p>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 600,
             fontSize: "clamp(1.05rem, 2.2vw, 1.3rem)",
             color: "rgba(255,255,255,0.90)",
@@ -422,7 +422,7 @@ export default function Ground0CompletePage() {
             "Most failures in the first 90 days are not failures of commitment. They are failures of structure."
           </p>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.616rem",
             letterSpacing: "0.12em",
             color: "rgba(212,144,10,0.65)",

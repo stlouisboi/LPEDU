@@ -241,7 +241,7 @@ export default function PortalPage() {
   // ── Auth: Loading ──────────────────────────────────────
   if (authChecked === null) {
     return (
-      <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
+      <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
         <Navbar />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
           <p data-testid="portal-auth-loading" style={{ fontSize: "0.896rem", color: "rgba(255,255,255,0.5)" }}>
@@ -255,7 +255,7 @@ export default function PortalPage() {
   // ── Auth: Login Screen ──────────────────────────────────
   if (!authChecked) {
     return (
-      <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
+      <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
         <Navbar />
         <div style={{ maxWidth: 520, margin: "0 auto", padding: "120px 2rem 80px", textAlign: "center" }}>
           <p style={{
@@ -265,7 +265,7 @@ export default function PortalPage() {
             OPERATOR PORTAL
           </p>
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em",
             color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem",
           }}>
@@ -280,7 +280,7 @@ export default function PortalPage() {
             style={{
               display: "inline-flex", alignItems: "center", justifyContent: "center",
               gap: "0.75rem", minHeight: 52, background: "#FFFFFF", color: "#1A1A1A",
-              border: "none", fontFamily: "'Inter', sans-serif", fontWeight: 600,
+              border: "none", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 600,
               fontSize: "1rem", cursor: "pointer", padding: "1rem 2.5rem",
               transition: "background 0.2s", width: "100%",
             }}
@@ -303,7 +303,7 @@ export default function PortalPage() {
   return (
     <div
       style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         background: "#0d1c30",
         minHeight: "100vh",
         color: "#FFFFFF",
@@ -322,7 +322,7 @@ export default function PortalPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", gap: "1rem" }}>
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.672rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
@@ -335,7 +335,7 @@ export default function PortalPage() {
           <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.8rem" }}>—</span>
           <p
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.616rem",
               fontWeight: 700,
               color: "rgba(212,144,10,0.85)",
@@ -349,7 +349,7 @@ export default function PortalPage() {
           {user && (
             <div className="portal-header-userinfo" style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.56rem",
                 letterSpacing: "0.12em",
                 color: "rgba(255,255,255,0.45)",
@@ -363,7 +363,7 @@ export default function PortalPage() {
                 style={{
                   display: "flex", alignItems: "center", gap: "0.4rem",
                   background: "none", border: "1px solid rgba(255,255,255,0.15)",
-                  color: "rgba(255,255,255,0.60)", fontFamily: "'Inter', sans-serif",
+                  color: "rgba(255,255,255,0.60)", fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.728rem", cursor: "pointer", padding: "0.35rem 0.75rem",
                   transition: "all 0.2s",
                 }}
@@ -400,7 +400,7 @@ export default function PortalPage() {
         >
           <p
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.56rem",
               fontWeight: 700,
               letterSpacing: "0.18em",
@@ -446,21 +446,21 @@ export default function PortalPage() {
                       <CheckCircle size={12} weight="bold" color="#22c55e" style={{ flexShrink: 0 }} />
                     )}
                     <span style={{
-                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.784rem",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.784rem",
                       color: locked ? "rgba(255,255,255,0.75)" : "#FFFFFF", letterSpacing: "0.04em",
                     }}>
                       {mod.code}
                     </span>
                   </div>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.784rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.784rem",
                     color: locked ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.90)",
                     lineHeight: 1.4, marginBottom: "0.3rem",
                   }}>
                     {mod.label}
                   </p>
                   <p style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.672rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.672rem",
                     color: locked ? "rgba(255,255,255,0.42)" : (mod.type === "recovery" ? "rgba(251,146,60,0.75)" : mod.type === "extension" ? "rgba(129,140,248,0.75)" : "rgba(212,144,10,0.9)"),
                     letterSpacing: "0.04em",
                   }}>
@@ -487,7 +487,7 @@ export default function PortalPage() {
             }}
           >
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.616rem",
               fontWeight: 700,
               letterSpacing: "0.16em",
@@ -499,7 +499,7 @@ export default function PortalPage() {
               SYSTEM STATUS
             </p>
             <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: "0.56rem",
               letterSpacing: "0.1em",
               color: "rgba(255,255,255,0.35)",
@@ -511,7 +511,7 @@ export default function PortalPage() {
 
             <div style={{ padding: "0 0.5rem", marginBottom: "0.75rem" }}>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.784rem",
                 color: "rgba(255,255,255,0.80)",
                 marginBottom: "0.5rem",
@@ -524,7 +524,7 @@ export default function PortalPage() {
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.56rem",
                   letterSpacing: "0.1em",
                   color: "rgba(34,197,94,0.85)",
@@ -532,7 +532,7 @@ export default function PortalPage() {
                   Complete ✓
                 </p>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.616rem",
                   color: "rgba(255,255,255,0.4)",
                 }}>
@@ -543,7 +543,7 @@ export default function PortalPage() {
 
             <div style={{ padding: "0.625rem 0.5rem", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.672rem",
                 fontWeight: 600,
                 color: "rgba(255,255,255,0.55)",
@@ -554,7 +554,7 @@ export default function PortalPage() {
                 Status
               </p>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.784rem",
                 color: "rgba(255,255,255,0.80)",
                 marginBottom: "0.875rem",
@@ -568,7 +568,7 @@ export default function PortalPage() {
                   display: "flex",
                   alignItems: "center",
                   gap: "0.375rem",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.784rem",
                   fontWeight: 600,
                   color: "#d4900a",
@@ -587,7 +587,7 @@ export default function PortalPage() {
 
           {/* ── TOOLS section ── */}
           <div style={{ margin: "0.5rem 1rem 0", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.25rem" }}>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginBottom: "0.625rem", paddingLeft: "0.5rem" }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.504rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginBottom: "0.625rem", paddingLeft: "0.5rem" }}>
               TOOLS
             </p>
             <button
@@ -609,10 +609,10 @@ export default function PortalPage() {
               onMouseEnter={(e) => { if (selectedId !== "tool-cpm") e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
               onMouseLeave={(e) => { if (selectedId !== "tool-cpm") e.currentTarget.style.background = "none"; }}
             >
-              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.784rem", color: "#FFFFFF", letterSpacing: "0.03em" }}>
+              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.784rem", color: "#FFFFFF", letterSpacing: "0.03em" }}>
                 CPM Calculator
               </span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", color: "rgba(212,144,10,0.75)" }}>
+              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.672rem", color: "rgba(212,144,10,0.75)" }}>
                 Cost per mile · load profitability
               </span>
             </button>
@@ -664,7 +664,7 @@ export default function PortalPage() {
 
               {/* Code label */}
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.504rem",
                 fontWeight: 700,
                 letterSpacing: "0.22em",
@@ -677,7 +677,7 @@ export default function PortalPage() {
 
               {/* Heading */}
               <p style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 fontSize: "1.064rem",
                 color: "#FFFFFF",
@@ -689,7 +689,7 @@ export default function PortalPage() {
 
               {/* Body */}
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.924rem",
                 color: "rgba(255,255,255,0.65)",
                 lineHeight: 1.65,
@@ -710,7 +710,7 @@ export default function PortalPage() {
                     gap: "0.375rem",
                     background: "#d4900a",
                     color: "#000F1F",
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontWeight: 700,
                     fontSize: "0.784rem",
                     letterSpacing: "0.08em",
@@ -734,7 +734,7 @@ export default function PortalPage() {
                     gap: "0.375rem",
                     background: "transparent",
                     color: "rgba(255,255,255,0.75)",
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontWeight: 600,
                     fontSize: "0.784rem",
                     letterSpacing: "0.06em",
@@ -766,7 +766,7 @@ export default function PortalPage() {
               <CheckCircle size={48} color="#d4900a" weight="light" style={{ marginBottom: "1.5rem" }} />
               <h2
                 style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "clamp(1.5rem, 3vw, 2rem)",
                   color: "#FFFFFF",
@@ -806,7 +806,7 @@ export default function PortalPage() {
                 <div data-testid="ground0-module-content">
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.672rem",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
@@ -820,7 +820,7 @@ export default function PortalPage() {
 
                   <h1
                     style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontFamily: "'Playfair Display', serif",
                       fontWeight: 700,
                       fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                       color: "#FFFFFF",
@@ -855,7 +855,7 @@ export default function PortalPage() {
                       borderBottom: "1px solid rgba(212,144,10,0.12)",
                     }}>
                       <p style={{
-                        fontFamily: "'JetBrains Mono','Courier New',monospace",
+                        fontFamily: "'IBM Plex Mono','Courier New',monospace",
                         fontSize: "0.616rem", fontWeight: 700, letterSpacing: "0.18em",
                         color: "rgba(212,144,10,0.85)", textTransform: "uppercase", margin: 0,
                       }}>
@@ -864,7 +864,7 @@ export default function PortalPage() {
                       <div style={{ flex: 1, height: 1, background: "rgba(212,144,10,0.12)" }} />
                       {tasks.length > 0 && (
                         <span style={{
-                          fontFamily: "'JetBrains Mono','Courier New',monospace",
+                          fontFamily: "'IBM Plex Mono','Courier New',monospace",
                           fontSize: "0.448rem", letterSpacing: "0.12em",
                           color: "rgba(255,255,255,0.3)", textTransform: "uppercase",
                         }}>
@@ -876,7 +876,7 @@ export default function PortalPage() {
                     {tasksLoading ? (
                       <div style={{ padding: "1.5rem", textAlign: "center" }}>
                         <p style={{
-                          fontFamily: "'JetBrains Mono','Courier New',monospace",
+                          fontFamily: "'IBM Plex Mono','Courier New',monospace",
                           fontSize: "0.504rem", letterSpacing: "0.16em",
                           color: "rgba(212,144,10,0.5)", textTransform: "uppercase",
                         }}>
@@ -886,7 +886,7 @@ export default function PortalPage() {
                     ) : tasks.length === 0 ? (
                       <div style={{ padding: "1.5rem", textAlign: "center", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
                         <p style={{
-                          fontFamily: "'JetBrains Mono','Courier New',monospace",
+                          fontFamily: "'IBM Plex Mono','Courier New',monospace",
                           fontSize: "0.504rem", letterSpacing: "0.16em",
                           color: "rgba(255,255,255,0.28)", textTransform: "uppercase",
                         }}>
@@ -930,7 +930,7 @@ export default function PortalPage() {
                         <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
                           <span
                             style={{
-                              fontFamily: "'Inter', sans-serif",
+                              fontFamily: "'Atkinson Hyperlegible', sans-serif",
                               fontWeight: 700,
                               fontSize: "0.784rem",
                               color: "#d4900a",
@@ -941,7 +941,7 @@ export default function PortalPage() {
                           </span>
                           <span
                             style={{
-                              fontFamily: "'Inter', sans-serif",
+                              fontFamily: "'Atkinson Hyperlegible', sans-serif",
                               fontSize: "0.98rem",
                               color: "rgba(255,255,255,0.93)",
                             }}
@@ -951,7 +951,7 @@ export default function PortalPage() {
                         </div>
                         <span
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'Atkinson Hyperlegible', sans-serif",
                             fontSize: "0.784rem",
                             color: "rgba(255,255,255,0.78)",
                           }}
@@ -972,7 +972,7 @@ export default function PortalPage() {
                       background: "rgba(212,144,10,0.1)",
                       border: "1px solid rgba(212,144,10,0.4)",
                       color: "#d4900a",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.84rem",
                       letterSpacing: "0.06em",
@@ -1009,7 +1009,7 @@ export default function PortalPage() {
                       <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.875rem" }}>
                         <CheckCircle size={16} color="#22c55e" weight="bold" />
                         <p style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'IBM Plex Mono', monospace",
                           fontSize: "0.616rem",
                           fontWeight: 700,
                           letterSpacing: "0.16em",
@@ -1021,7 +1021,7 @@ export default function PortalPage() {
                         </p>
                       </div>
                       <p style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
                         fontSize: "0.875rem",
                         color: "rgba(255,255,255,0.78)",
                         lineHeight: 1.7,
@@ -1036,7 +1036,7 @@ export default function PortalPage() {
                           display: "inline-flex",
                           alignItems: "center",
                           gap: "0.4rem",
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'Atkinson Hyperlegible', sans-serif",
                           fontWeight: 600,
                           fontSize: "0.784rem",
                           letterSpacing: "0.08em",
@@ -1075,14 +1075,14 @@ export default function PortalPage() {
               )}
               {selectedId === "tool-cpm" && !hasCohortAccess && (
                 <div data-testid="tool-locked-screen">
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
+                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
                     LP-TOOLS | CPM CALCULATOR
                   </p>
-                  <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
+                  <h1 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
                   <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 480, marginBottom: "2rem" }}>
                     The full CPM Calculator — including Step 4 load profitability analysis — is part of the LaunchPath Standard cohort.
                   </p>
-                  <a href="/tools/cpm-calculator" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.896rem", color: "#d4900a", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(212,144,10,0.3)", transition: "background 0.15s" }}>
+                  <a href="/tools/cpm-calculator" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 600, fontSize: "0.896rem", color: "#d4900a", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(212,144,10,0.3)", transition: "background 0.15s" }}>
                     Use the free public version →
                   </a>
                 </div>
@@ -1096,7 +1096,7 @@ export default function PortalPage() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.672rem",
                       fontWeight: 700,
                       letterSpacing: "0.18em",
@@ -1110,7 +1110,7 @@ export default function PortalPage() {
 
                   <h2
                     style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontFamily: "'Playfair Display', serif",
                       fontWeight: 700,
                       fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
                       color: "#FFFFFF",
@@ -1123,7 +1123,7 @@ export default function PortalPage() {
 
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "1.008rem",
                       color: "rgba(255,255,255,0.87)",
                       lineHeight: 1.85,
@@ -1151,7 +1151,7 @@ export default function PortalPage() {
                   >
                     <span
                       style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
                         fontSize: "0.896rem",
                         color: "rgba(255,255,255,0.87)",
                         letterSpacing: "0.04em",
@@ -1161,7 +1161,7 @@ export default function PortalPage() {
                     </span>
                     <span
                       style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
                         fontWeight: 700,
                         fontSize: "1.344rem",
                         color: "#d4900a",
@@ -1177,7 +1177,7 @@ export default function PortalPage() {
                         color: "#ff6b6b",
                         fontSize: "0.896rem",
                         marginBottom: "1rem",
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       }}
                     >
                       Something went wrong. Please try again.
@@ -1194,7 +1194,7 @@ export default function PortalPage() {
                       background: "#d4900a",
                       color: "#0b1628",
                       border: "none",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontWeight: 700,
                       fontSize: "0.98rem",
                       letterSpacing: "0.08em",
@@ -1218,7 +1218,7 @@ export default function PortalPage() {
 
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.784rem",
                       color: "rgba(255,255,255,0.78)",
                       marginTop: "1rem",
@@ -1253,7 +1253,7 @@ export default function PortalPage() {
 
 // ── ModuleOverviewCard (modules 2-9 — cohort delivery sequence) ──────────────
 function ModuleOverviewCard({ moduleInfo, type }) {
-  const mono = "'JetBrains Mono', 'Courier New', monospace";
+  const mono = "'IBM Plex Mono', 'Courier New', monospace";
   if (!moduleInfo) return null;
 
   const isRecovery = type === "recovery";
@@ -1277,7 +1277,7 @@ function ModuleOverviewCard({ moduleInfo, type }) {
       )}
 
       <div style={{ display: "flex", alignItems: "baseline", gap: "1.25rem", marginBottom: "0.625rem", flexWrap: "wrap" }}>
-        <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
           {moduleInfo.title}
         </h1>
         <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
@@ -1299,7 +1299,7 @@ function ModuleOverviewCard({ moduleInfo, type }) {
               <span style={{ fontFamily: mono, fontSize: "0.504rem", color: "rgba(212,144,10,0.55)", flexShrink: 0, paddingTop: "0.18rem", letterSpacing: "0.1em" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.73)", lineHeight: 1.55 }}>
+              <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.73)", lineHeight: 1.55 }}>
                 {topic}
               </span>
             </div>
@@ -1330,7 +1330,7 @@ const CATEGORY_LABELS = {
 function DeliverablesPortal({ API }) {
   const [pdfs, setPdfs] = useState([]);
   const [downloading, setDownloading] = useState(null);
-  const mono = "'JetBrains Mono', 'Courier New', monospace";
+  const mono = "'IBM Plex Mono', 'Courier New', monospace";
 
   useEffect(() => {
     fetch(`${API}/api/portal/pdfs`, { credentials: "include" })
@@ -1369,8 +1369,8 @@ function DeliverablesPortal({ API }) {
             borderLeft: "3px solid #d4900a", padding: "1rem 1.25rem", gap: "1rem", flexWrap: "wrap",
           }}>
             <div>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 3px" }}>{pdf.display_name}</p>
-              {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 5px" }}>{pdf.description}</p>}
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 3px" }}>{pdf.display_name}</p>
+              {pdf.description && <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 5px" }}>{pdf.description}</p>}
               <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)" }}>
                 {CATEGORY_LABELS[pdf.category] || pdf.category}
               </span>

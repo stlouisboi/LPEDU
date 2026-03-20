@@ -24,7 +24,7 @@ export default function WhatGetsInstalledSimple() {
 
         {/* Section label */}
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.60rem",
           fontWeight: 700,
           letterSpacing: "0.18em",
@@ -37,7 +37,7 @@ export default function WhatGetsInstalledSimple() {
 
         {/* Headline */}
         <h2 style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
           fontSize: "clamp(2rem, 3.5vw, 3rem)",
           color: "#FFFFFF",
@@ -66,14 +66,14 @@ export default function WhatGetsInstalledSimple() {
               paddingRight: "2rem",
             }}>
               <span style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.75rem",
                 color: "#d4900a",
                 fontWeight: 700,
                 flexShrink: 0,
               }}>→</span>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.85)",
                 lineHeight: 1.4,
@@ -86,7 +86,7 @@ export default function WhatGetsInstalledSimple() {
 
         {/* Closing line */}
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "1.05rem",
           fontStyle: "italic",
           color: "rgba(255,255,255,0.50)",
@@ -102,7 +102,7 @@ export default function WhatGetsInstalledSimple() {
           to="/operating-standard"
           data-testid="see-installation-link"
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.9rem",
             fontWeight: 600,
             color: "rgba(212,144,10,0.80)",

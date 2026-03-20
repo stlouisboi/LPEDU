@@ -8,9 +8,9 @@ const NAVY  = "#0b1628";
 const BG    = "#0d1c30";
 const BG2   = "#091220";
 const CARD  = "#0c1828";
-const MONO  = "'JetBrains Mono', monospace";
-const COND  = "'Barlow Condensed', sans-serif";
-const SANS  = "'Inter', sans-serif";
+const MONO  = "'IBM Plex Mono', monospace";
+const COND  = "'Playfair Display', serif";
+const SANS  = "'Atkinson Hyperlegible', sans-serif";
 const BORDER = "rgba(255,255,255,0.08)";
 
 /* ── Individual Packets ──────────────────────────────────────── */
@@ -227,10 +227,10 @@ export default function ComplianceLibraryPage() {
 
           {/* Price-anchoring quote */}
           <div style={{ borderLeft: `3px solid rgba(212,144,10,0.40)`, paddingLeft: "1.5rem", marginBottom: "3rem", maxWidth: 560 }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "rgba(255,255,255,0.80)", fontStyle: "italic", lineHeight: 1.6, marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "rgba(255,255,255,0.80)", fontStyle: "italic", lineHeight: 1.6, marginBottom: "0.5rem" }}>
               "If this feels expensive, you are likely not ready. If it feels reasonable, you are already thinking like an operator."
             </p>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", color: "rgba(212,144,10,0.60)", letterSpacing: "0.08em", margin: 0 }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", color: "rgba(212,144,10,0.60)", letterSpacing: "0.08em", margin: 0 }}>
               — Vince Lawrence, Station Custodian
             </p>
           </div>

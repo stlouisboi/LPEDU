@@ -67,7 +67,7 @@ function PillarCard({ pillar, idx }) {
         position: "absolute",
         top: "-0.5rem",
         right: "1rem",
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Playfair Display', serif",
         fontWeight: 800,
         fontSize: "8rem",
         lineHeight: 1,
@@ -81,7 +81,7 @@ function PillarCard({ pillar, idx }) {
 
       {/* Code */}
       <p style={{
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'IBM Plex Mono', monospace",
         fontSize: "0.672rem",
         color: "#d4900a",
         letterSpacing: "0.1em",
@@ -94,7 +94,7 @@ function PillarCard({ pillar, idx }) {
 
       {/* Name */}
       <h3 style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Playfair Display', serif",
         fontWeight: 700,
         fontSize: "1.12rem",
         color: "#FFFFFF",
@@ -108,7 +108,7 @@ function PillarCard({ pillar, idx }) {
 
       {/* Detail */}
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontSize: "0.896rem",
         color: "rgba(255,255,255,0.82)",
         lineHeight: 1.65,
@@ -128,7 +128,7 @@ function PillarCard({ pillar, idx }) {
         marginBottom: "1.25rem",
       }}>
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.784rem",
           fontWeight: 600,
           color: "rgba(248,113,113,0.92)",
@@ -138,7 +138,7 @@ function PillarCard({ pillar, idx }) {
           If absent:
         </p>
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.784rem",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.6,
@@ -155,7 +155,7 @@ function PillarCard({ pillar, idx }) {
         zIndex: 1,
       }}>
         <p style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.784rem",
           fontWeight: 600,
           letterSpacing: "0.04em",
@@ -180,7 +180,7 @@ export default function FourPillarsSection() {
 
         <FadeIn>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.672rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
@@ -191,7 +191,7 @@ export default function FourPillarsSection() {
             LP-SYS-001 — THE FOUR PILLAR STANDARD
           </p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "var(--text-2xl)",
             letterSpacing: "-0.02em",
@@ -202,7 +202,7 @@ export default function FourPillarsSection() {
             Four Pillars. Six Installed Domains. One Audit-Ready Authority.
           </h2>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.008rem",
             color: "rgba(255,255,255,0.78)",
             lineHeight: 1.7,

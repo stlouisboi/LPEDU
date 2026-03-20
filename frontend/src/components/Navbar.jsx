@@ -57,7 +57,7 @@ export default function Navbar() {
   };
 
   const linkStyle = (href) => ({
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Atkinson Hyperlegible', sans-serif",
     fontSize: "0.98rem",
     fontWeight: 500,
     color: isActive(href) ? "var(--text)" : "var(--text-muted)",
@@ -80,7 +80,7 @@ export default function Navbar() {
 
   const dropdownItem = (href) => ({
     display: "block", padding: "0.6rem 1.1rem",
-    fontFamily: "'Inter', sans-serif", fontSize: "0.88rem", fontWeight: 400,
+    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.88rem", fontWeight: 400,
     color: isActive(href) ? "#FFFFFF" : "rgba(255,255,255,0.68)",
     textDecoration: "none",
     borderLeft: isActive(href) ? "2px solid #d4900a" : "2px solid transparent",
@@ -171,7 +171,7 @@ export default function Navbar() {
                 to="/ground-0-briefing"
                 data-testid="nav-ground0-btn"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.874rem", fontWeight: 700,
                   letterSpacing: "0.06em", textTransform: "uppercase",
                   color: ground0Active ? "#0b1628" : "#0b1628",
@@ -215,7 +215,7 @@ export default function Navbar() {
             <Link to="/reach-diagnostic"
               data-testid="nav-reach-btn"
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.874rem", fontWeight: 600,
                 letterSpacing: "0.04em",
                 color: isActive("/reach-diagnostic") ? "#d4900a" : "rgba(212,144,10,0.80)",
@@ -243,7 +243,7 @@ export default function Navbar() {
               data-testid="nav-portal-btn"
               style={{
                 display: "flex", alignItems: "center", gap: "0.4rem",
-                fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", fontWeight: 600,
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.874rem", fontWeight: 600,
                 letterSpacing: "0.08em", textTransform: "uppercase",
                 color: "var(--gold-primary)",
                 background: "transparent",
@@ -284,7 +284,7 @@ export default function Navbar() {
           padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0",
         }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.6)",
             marginBottom: "1rem",
           }}>FRAMEWORK</p>
@@ -293,7 +293,7 @@ export default function Navbar() {
             <div key={l.label}>
               <Link to={l.href} onClick={() => setOpen(false)}
                 style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "1.008rem",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.008rem",
                   color: isActive(l.href) ? "#FFFFFF" : "var(--text-muted)",
                   textDecoration: "none", padding: "0.75rem 0",
                   borderBottom: l.subItems ? "none" : "1px solid rgba(255,255,255,0.06)",
@@ -303,7 +303,7 @@ export default function Navbar() {
               {l.subItems && l.subItems.map(sub => (
                 <Link key={sub.href} to={sub.href} onClick={() => setOpen(false)}
                   style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.88rem",
                     color: isActive(sub.href) ? "#d4900a" : "rgba(255,255,255,0.5)",
                     textDecoration: "none", padding: "0.5rem 0 0.5rem 1.25rem",
                     borderBottom: "1px solid rgba(255,255,255,0.04)",
@@ -316,7 +316,7 @@ export default function Navbar() {
 
           <Link to="/ground-0-briefing" onClick={() => setOpen(false)}
             style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", fontWeight: 600,
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.008rem", fontWeight: 600,
               color: "#d4900a", textDecoration: "none", padding: "0.75rem 0",
               borderBottom: "none",
             }}
@@ -324,7 +324,7 @@ export default function Navbar() {
           {GROUND0_SUB.map(sub => (
             <Link key={sub.href} to={sub.href} onClick={() => setOpen(false)}
               style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.88rem",
                 color: isActive(sub.href) ? "#d4900a" : "rgba(255,255,255,0.5)",
                 textDecoration: "none", padding: "0.5rem 0 0.5rem 1.25rem",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
@@ -336,14 +336,14 @@ export default function Navbar() {
           <div style={{ height: 1, background: "rgba(255,255,255,0.1)", margin: "1.25rem 0 1rem" }} />
 
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.672rem", fontWeight: 700,
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.672rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.6)",
             marginBottom: "1rem",
           }}>ACCESS</p>
           <Link to="/reach-diagnostic" onClick={() => setOpen(false)}
             data-testid="mobile-nav-reach-btn"
             style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "1.008rem", fontWeight: 600,
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.008rem", fontWeight: 600,
               color: "#d4900a", textDecoration: "none", padding: "0.75rem 0",
               borderBottom: "1px solid rgba(255,255,255,0.06)", display: "block",
             }}
@@ -351,7 +351,7 @@ export default function Navbar() {
           {ACCESS_LINKS.map(l => (
             <Link key={l.label} to={l.href} onClick={() => setOpen(false)}
               style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1.008rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.008rem",
                 color: "var(--text-muted)", textDecoration: "none", padding: "0.75rem 0",
                 borderBottom: "1px solid rgba(255,255,255,0.06)",
               }}
@@ -360,7 +360,7 @@ export default function Navbar() {
           <Link to="/portal"
             style={{
               display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem",
-              fontFamily: "'Inter', sans-serif", fontSize: "0.874rem", fontWeight: 600,
+              fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.874rem", fontWeight: 600,
               letterSpacing: "0.08em", textTransform: "uppercase",
               color: "var(--gold-primary)", border: "1px solid var(--gold-primary)",
               padding: "0.875rem", textDecoration: "none", marginTop: "0.75rem",

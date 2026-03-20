@@ -49,7 +49,7 @@ export default function HowItWorksSimple() {
 
           {/* Section label */}
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.60rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -62,7 +62,7 @@ export default function HowItWorksSimple() {
 
           {/* Headline */}
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(2rem, 3.5vw, 3rem)",
             color: "#FFFFFF",
@@ -86,7 +86,7 @@ export default function HowItWorksSimple() {
                 }}
               >
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.60rem",
                   fontWeight: 700,
                   letterSpacing: "0.16em",
@@ -98,7 +98,7 @@ export default function HowItWorksSimple() {
                 </p>
 
                 <p style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "1.75rem",
                   color: "#d4900a",
@@ -110,7 +110,7 @@ export default function HowItWorksSimple() {
                 </p>
 
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.65rem",
                   color: "rgba(255,255,255,0.35)",
                   letterSpacing: "0.10em",
@@ -121,7 +121,7 @@ export default function HowItWorksSimple() {
                 </p>
 
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.938rem",
                   color: "rgba(255,255,255,0.68)",
                   lineHeight: 1.75,
@@ -138,7 +138,7 @@ export default function HowItWorksSimple() {
             to="/operating-standard"
             data-testid="see-standard-link"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.9rem",
               fontWeight: 600,
               color: "rgba(212,144,10,0.80)",

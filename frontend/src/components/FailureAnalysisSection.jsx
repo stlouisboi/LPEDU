@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const LABEL_STYLE = {
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "'IBM Plex Mono', monospace",
   fontSize: "0.60rem",
   fontWeight: 700,
   letterSpacing: "0.16em",
@@ -10,7 +10,7 @@ const LABEL_STYLE = {
 };
 
 const BODY_STYLE = {
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'Atkinson Hyperlegible', sans-serif",
   fontSize: "0.938rem",
   color: "rgba(255,255,255,0.72)",
   lineHeight: 1.82,
@@ -53,7 +53,7 @@ export default function FailureAnalysisSection() {
             {/* ── LEFT: Case narrative ── */}
             <div>
               <h2 style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
                 color: "#d4900a",
@@ -66,7 +66,7 @@ export default function FailureAnalysisSection() {
 
               {/* Carrier meta bar */}
               <div style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.65rem",
                 fontWeight: 700,
                 letterSpacing: "0.12em",
@@ -100,7 +100,7 @@ export default function FailureAnalysisSection() {
               <div style={{ marginBottom: "2rem" }}>
                 <p style={{ ...LABEL_STYLE, color: "rgba(200,60,60,0.70)" }}>The Result</p>
                 <p style={{ ...BODY_STYLE, marginBottom: 0 }}>
-                  Under <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85em", color: "rgba(255,255,255,0.55)" }}>49 CFR § 385.321</span>, dispatching an unqualified driver is an automatic failure. The authority was revoked 15 days later.
+                  Under <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.85em", color: "rgba(255,255,255,0.55)" }}>49 CFR § 385.321</span>, dispatching an unqualified driver is an automatic failure. The authority was revoked 15 days later.
                 </p>
               </div>
 
@@ -115,7 +115,7 @@ export default function FailureAnalysisSection() {
                   Total Exposure
                 </p>
                 <p style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "clamp(2rem, 4vw, 3rem)",
                   color: "#c0392b",
@@ -126,7 +126,7 @@ export default function FailureAnalysisSection() {
                   $19,246
                 </p>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.875rem",
                   color: "rgba(255,255,255,0.48)",
                   lineHeight: 1.7,
@@ -160,7 +160,7 @@ export default function FailureAnalysisSection() {
                   borderBottom: "1px solid rgba(255,255,255,0.06)",
                 }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.75rem",
                     color: "#3d9970",
                     fontWeight: 700,
@@ -171,7 +171,7 @@ export default function FailureAnalysisSection() {
                     <p style={{ ...LABEL_STYLE, color: "#3d9970", marginBottom: "0.25rem" }}>
                       Around — Intact
                     </p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
                       Insurance was current. All external filings in order.
                     </p>
                   </div>
@@ -180,7 +180,7 @@ export default function FailureAnalysisSection() {
                 {/* Through — failure */}
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.75rem",
                     color: "#c0392b",
                     fontWeight: 700,
@@ -191,7 +191,7 @@ export default function FailureAnalysisSection() {
                     <p style={{ ...LABEL_STYLE, color: "#c0392b", marginBottom: "0.25rem" }}>
                       Through — Failed
                     </p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>
                       Compliance backbone not installed. Driver Qualification File incomplete.
                     </p>
                   </div>
@@ -201,7 +201,7 @@ export default function FailureAnalysisSection() {
                   marginTop: "1.25rem",
                   paddingTop: "1.25rem",
                   borderTop: "1px solid rgba(255,255,255,0.06)",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.80rem",
                   color: "rgba(255,255,255,0.35)",
                   lineHeight: 1.6,
@@ -221,7 +221,7 @@ export default function FailureAnalysisSection() {
                   What the Standard Installs
                 </p>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.90rem",
                   color: "rgba(255,255,255,0.65)",
                   lineHeight: 1.78,
@@ -236,7 +236,7 @@ export default function FailureAnalysisSection() {
                 to="/standards/16-deadly-sins"
                 data-testid="failure-patterns-link"
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.65rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",

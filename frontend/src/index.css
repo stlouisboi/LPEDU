@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '@fontsource/manrope/400.css';
-@import '@fontsource/manrope/500.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/atkinson-hyperlegible/400.css';
+@import '@fontsource/atkinson-hyperlegible/400-italic.css';
+@import '@fontsource/ibm-plex-mono/500.css';
 @import '@fontsource/manrope/600.css';
 @import '@fontsource/manrope/700.css';
 @import '@fontsource/inter/400.css';
@@ -103,11 +105,12 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
   background-color: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
-  line-height: 1.75;
+  line-height: 1.65;
+  font-size: 17px;
 }
 
 /* ── Global mobile responsive improvements ── */
@@ -121,24 +124,52 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   color: var(--text);
   line-height: 1.15;
 }
 
 .overline {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
 .mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ── Content Page: Light theme for knowledge center articles + briefs ── */
+.content-page {
+  --bg: #f7f4ee;
+  --bg-2: #ede8dc;
+  --bg-3: #e2dbd1;
+  --text: #001A33;
+  --text-muted: #1A2A3A;
+  --text-subtle: #546575;
+  --border: rgba(0,26,51,0.12);
+  --border-gold: rgba(180,130,60,0.30);
+}
+
+/* Body text minimum 17px — enforce on content pages */
+.content-page p,
+.content-page li,
+.content-page td {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-size: max(17px, 1rem);
+  line-height: 1.65;
+}
+
+/* Max line length for readability in content */
+.content-page .prose,
+.content-page .article-body p {
+  max-width: 68ch;
 }
 
 /* Divider */

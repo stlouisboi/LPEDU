@@ -24,7 +24,7 @@ export default function PhilosophicalLineSection({ text }) {
       }}>"</div>
 
       <p style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Playfair Display', serif",
         fontWeight: 500,
         fontStyle: "italic",
         fontSize: "clamp(1.1rem, 2.2vw, 1.45rem)",

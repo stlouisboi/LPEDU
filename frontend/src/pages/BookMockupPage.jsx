@@ -479,7 +479,7 @@ function BookRenderer({ product }) {
         onClick={handleDownload}
         disabled={!ready}
         style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Atkinson Hyperlegible', sans-serif",
           fontSize: "0.784rem",
           fontWeight: 600,
           letterSpacing: "0.1em",
@@ -512,7 +512,7 @@ export default function BookMockupPage() {
         {/* Header */}
         <div style={{ marginBottom: "4rem", borderBottom: "1px solid rgba(255,255,255,0.07)", paddingBottom: "3rem" }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.616rem",
             color: "rgba(212,144,10,0.75)",
             letterSpacing: "0.16em",
@@ -522,7 +522,7 @@ export default function BookMockupPage() {
             LP-ART-001 | Product Mockup Library
           </p>
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
             color: "#FFFFFF",
@@ -533,7 +533,7 @@ export default function BookMockupPage() {
             3D Product Covers
           </h1>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.95rem",
             color: "rgba(255,255,255,0.55)",
             lineHeight: 1.7,
@@ -554,7 +554,7 @@ export default function BookMockupPage() {
               {/* Product label above book */}
               <div style={{ marginBottom: "1.25rem" }}>
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.608rem",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
@@ -565,7 +565,7 @@ export default function BookMockupPage() {
                   {product.code}
                 </p>
                 <p style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "0.94rem",
                   color: "rgba(255,255,255,0.85)",
@@ -573,7 +573,7 @@ export default function BookMockupPage() {
                   {product.name.join(" ")}
                 </p>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.8rem",
                   color: "rgba(255,255,255,0.40)",
                   marginTop: "0.2rem",
@@ -604,7 +604,7 @@ export default function BookMockupPage() {
         }}>
           <div style={{ width: 3, height: 48, background: "rgba(212,144,10,0.4)", flexShrink: 0, marginTop: 2 }} />
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.875rem",
             color: "rgba(255,255,255,0.48)",
             lineHeight: 1.75,

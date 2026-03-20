@@ -25,7 +25,7 @@ export default function WhatGetsInstalledSection() {
       }}>
         {/* Label */}
         <p style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'IBM Plex Mono', monospace",
           fontSize: "0.68rem",
           fontWeight: 700,
           letterSpacing: "0.20em",
@@ -60,7 +60,7 @@ export default function WhatGetsInstalledSection() {
                 flexShrink: 0,
               }} />
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.875rem",
                 color: "rgba(255,255,255,0.72)",
                 letterSpacing: "0.01em",

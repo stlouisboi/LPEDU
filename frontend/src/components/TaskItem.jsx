@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const mono = "'JetBrains Mono', 'Courier New', monospace";
-const sans = "'Inter', sans-serif";
+const mono = "'IBM Plex Mono', 'Courier New', monospace";
+const sans = "'Atkinson Hyperlegible', sans-serif";
 
 const STATUS_CONFIG = {
   pending:       { label: "PENDING",       color: "#64748B", bg: "rgba(100,116,139,0.08)", border: "rgba(100,116,139,0.2)",  dot: "#64748B",  glow: "rgba(100,116,139,0.4)" },

@@ -43,7 +43,7 @@ export default function CredibilityStrip() {
             {/* Text */}
             <div>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.60rem",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
@@ -55,7 +55,7 @@ export default function CredibilityStrip() {
               </p>
 
               <h2 style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                 color: "#FFFFFF",
@@ -67,7 +67,7 @@ export default function CredibilityStrip() {
               </h2>
 
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.60)",
                 lineHeight: 1.8,
@@ -78,7 +78,7 @@ export default function CredibilityStrip() {
               </p>
 
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "1.05rem",
                 fontStyle: "italic",
                 color: "rgba(212,144,10,0.85)",

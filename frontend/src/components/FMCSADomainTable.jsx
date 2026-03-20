@@ -72,7 +72,7 @@ export function FMCSADomainTable({ showPricing = true }) {
       {/* Mobile scroll hint */}
       <p className="table-scroll-hint" style={{
         display: "none",
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'IBM Plex Mono', monospace",
         fontSize: "0.62rem",
         color: "rgba(212,144,10,0.5)",
         letterSpacing: "0.1em",
@@ -89,7 +89,7 @@ export function FMCSADomainTable({ showPricing = true }) {
                 <th key={i} style={{
                   background: navy,
                   color: gold,
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.72rem",
                   fontWeight: 700,
                   letterSpacing: "0.06em",
@@ -108,13 +108,13 @@ export function FMCSADomainTable({ showPricing = true }) {
               <tr key={i} className="fmcsa-row" style={{ background: i % 2 === 0 ? "#060d19" : "rgba(0,21,48,0.5)" }}>
                 <td style={{ padding: "0.875rem 1rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                   <span style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.68rem",
                     color: "rgba(255,255,255,0.35)",
                     display: "block", marginBottom: "0.2rem",
                   }}>{row.num}</span>
                   <span style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "0.9rem",
                     fontWeight: 500,
                     color: "#FFFFFF",
@@ -122,7 +122,7 @@ export function FMCSADomainTable({ showPricing = true }) {
                 </td>
                 <td style={{
                   padding: "0.875rem 1rem",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "0.82rem",
                   color: "rgba(255,255,255,0.72)",
                   lineHeight: 1.55,
@@ -139,7 +139,7 @@ export function FMCSADomainTable({ showPricing = true }) {
                     display: "inline-block",
                     background: navy,
                     color: gold,
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "0.68rem",
                     fontWeight: 700,
                     letterSpacing: "0.04em",
@@ -174,14 +174,14 @@ export function FMCSADomainTable({ showPricing = true }) {
       }}>
         <div>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontSize: "1rem",
             fontWeight: 700,
             color: "#FFFFFF",
             marginBottom: "0.35rem",
           }}>Every audit domain. One document system.</p>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.9rem",
             color: "rgba(255,255,255,0.68)",
             lineHeight: 1.6,
@@ -194,7 +194,7 @@ export function FMCSADomainTable({ showPricing = true }) {
           data-testid="copy-audit-link-btn"
           onClick={handleCopyLink}
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.65rem",
             fontWeight: 700,
             letterSpacing: "0.14em",

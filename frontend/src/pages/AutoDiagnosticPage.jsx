@@ -42,7 +42,7 @@ export default function AutoDiagnosticPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p className="overline" style={{ marginBottom: "1.25rem", animation: "heroEnter 0.65s ease both" }}>Standard Diagnostic Protocol</p>
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(2.5rem, 6vw, 4.5rem)", letterSpacing: "-0.03em",
             lineHeight: 1.0, color: "var(--text)", marginBottom: "1rem",
             animation: "heroEnter 0.65s ease both", animationDelay: "0.1s",
@@ -50,7 +50,7 @@ export default function AutoDiagnosticPage() {
             The <span style={{ color: "var(--orange)" }}>AUTO</span> Diagnostic
           </h1>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600,
+            fontFamily: "'Playfair Display', serif", fontWeight: 600,
             fontSize: "clamp(0.875rem, 1.5vw, 1.05rem)",
             color: "var(--text-muted)", letterSpacing: "0.04em",
             textTransform: "uppercase", marginBottom: "1rem",
@@ -59,7 +59,7 @@ export default function AutoDiagnosticPage() {
             Authority Under Total Observation: A Guarding Standard for New Motor Carriers
           </p>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem",
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem",
             color: "var(--text-subtle)", letterSpacing: "0.1em",
             animation: "heroEnter 0.65s ease both", animationDelay: "0.2s",
           }}>
@@ -77,10 +77,10 @@ export default function AutoDiagnosticPage() {
           }} className="two-col-grid">
             <FadeIn>
               <div style={{ background: "var(--bg-2)", padding: "3rem" }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
+                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
                   From the Factory Floor
                 </p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.85 }}>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.85 }}>
                   In manufacturing, a machine without proper guarding can cause catastrophic injury. OSHA uses a simple tool — the <strong style={{ color: "var(--text)" }}>"gotcha stick"</strong> — to determine if a worker's body can{" "}
                   <em style={{ color: "var(--orange)" }}>reach</em> a machine's point of operation. If it can, the machine has failed its safety inspection.
                 </p>
@@ -88,10 +88,10 @@ export default function AutoDiagnosticPage() {
             </FadeIn>
             <FadeIn delay={80}>
               <div style={{ background: "var(--bg-2)", padding: "3rem" }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
+                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
                   To the Open Road
                 </p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.85 }}>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.85 }}>
                   The AUTO Diagnostic is that gotcha stick for new motor carriers. It identifies where your operation is exposed to the five most common points of authority failure — before an auditor, underwriter, or enforcement action finds them first.
                 </p>
               </div>
@@ -108,7 +108,7 @@ export default function AutoDiagnosticPage() {
             <div style={{ maxWidth: 600, marginBottom: "4.5rem" }}>
               <p className="overline" style={{ marginBottom: "1rem" }}>Five Points of Failure</p>
               <h2 style={{
-                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+                fontFamily: "'Playfair Display', serif", fontWeight: 700,
                 fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em",
               }}>
                 Hierarchical Exposure Vectors
@@ -127,26 +127,26 @@ export default function AutoDiagnosticPage() {
                   onMouseEnter={e => e.currentTarget.style.background = "var(--bg-2)"}
                   onMouseLeave={e => e.currentTarget.style.background = "var(--bg)"}
                 >
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.1em", marginBottom: "1rem" }}>{v.num}</p>
-                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem", textTransform: "uppercase", letterSpacing: "0.04em" }}>{v.name}</h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{v.body}</p>
+                  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.728rem", color: "var(--orange)", letterSpacing: "0.1em", marginBottom: "1rem" }}>{v.num}</p>
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.12rem", color: "var(--text)", marginBottom: "0.875rem", textTransform: "uppercase", letterSpacing: "0.04em" }}>{v.name}</h3>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{v.body}</p>
                 </div>
               </FadeIn>
             ))}
             {/* OSHA callout in the 6th cell */}
             <FadeIn delay={350}>
               <div style={{ background: "var(--bg-2)", padding: "2.5rem", height: "100%", border: "none" }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
+                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
                   OSHA STANDARD APPLIED
                 </p>
                 <p style={{
-                  fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+                  fontFamily: "'Playfair Display', serif", fontWeight: 700,
                   fontSize: "1.232rem", color: "var(--text)", lineHeight: 1.4,
                   marginBottom: "1rem",
                 }}>
                   "Can an auditor reach the defect?"
                 </p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)", lineHeight: 1.7 }}>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.98rem", color: "var(--text-subtle)", lineHeight: 1.7 }}>
                   If the vulnerability is accessible during review, corrective action will not be optional.
                 </p>
               </div>
@@ -161,14 +161,14 @@ export default function AutoDiagnosticPage() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <FadeIn>
             <div style={{ border: "1px solid var(--border)", padding: "2.5rem" }}>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
+              <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.672rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem" }}>
                 DIAGNOSTIC COMPLETION
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
                 Completion of the AUTO Diagnostic marks the end of the{" "}
                 <strong style={{ color: "var(--text)" }}>Orientation</strong> phase. Corrective action and systematic implementation are restricted to the admission phase.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)", lineHeight: 1.7, fontStyle: "italic" }}>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.952rem", color: "var(--text-subtle)", lineHeight: 1.7, fontStyle: "italic" }}>
                 This assessment is based on self-reported data. It is not a substitute for a legal audit. It is a structured first step in identifying structural vulnerabilities before they become record.
               </p>
             </div>
@@ -181,10 +181,10 @@ export default function AutoDiagnosticPage() {
         <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
             <p className="overline" style={{ marginBottom: "1.5rem" }}>Verified Stewardship Before Operational Movement</p>
-            <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em", marginBottom: "2rem" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", letterSpacing: "-0.02em", marginBottom: "2rem" }}>
               Run the AUTO Diagnostic
             </h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 480, margin: "0 auto 2.5rem" }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.092rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 480, margin: "0 auto 2.5rem" }}>
               7 questions. 3 minutes. A GO, WAIT, or STOP classification that reflects where you actually stand.
             </p>
             <Link to="/reach-diagnostic"
@@ -192,7 +192,7 @@ export default function AutoDiagnosticPage() {
               style={{
                 display: "inline-flex", alignItems: "center", gap: "0.6rem",
                 background: "var(--orange)", color: "#fff",
-                fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
                 fontSize: "0.98rem", letterSpacing: "0.06em", textTransform: "uppercase",
                 padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s",
               }}

@@ -44,7 +44,7 @@ export default function ThreePathsSection() {
             The Decision Framework
           </p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
             letterSpacing: "-0.02em",
@@ -54,7 +54,7 @@ export default function ThreePathsSection() {
             Three paths. One decision.
           </h2>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 500,
             fontSize: "1.12rem",
             color: "var(--text-muted)",
@@ -78,7 +78,7 @@ export default function ThreePathsSection() {
             }}>
               {["PATH", "APPROACH", "COST", "OUTCOME"].map((h) => (
                 <p key={h} style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.918rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
@@ -101,7 +101,7 @@ export default function ThreePathsSection() {
               }}>
                 <div>
                   <span style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "'Playfair Display', serif",
                     fontWeight: 700,
                     fontSize: "1.232rem",
                     letterSpacing: "0.1em",
@@ -109,7 +109,7 @@ export default function ThreePathsSection() {
                   }}>{path.label}</span>
                 </div>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "1.232rem",
                   color: "var(--text-muted)",
                   lineHeight: 1.6,
@@ -117,7 +117,7 @@ export default function ThreePathsSection() {
                 }}>{path.description}</p>
                 <div>
                   <p style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "1.176rem",
                     fontWeight: 700,
                     color: path.isLP ? "var(--gold-primary)" : "var(--red)",
@@ -126,7 +126,7 @@ export default function ThreePathsSection() {
                   }}>{path.cost}</p>
                   {path.costNote && (
                     <p style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.918rem",
                       color: "var(--text-subtle)",
                       marginTop: "0.25rem",
@@ -135,7 +135,7 @@ export default function ThreePathsSection() {
                   )}
                 </div>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: path.isLP ? "1.05rem" : "1rem",
                   fontStyle: path.isLP ? "italic" : "normal",
                   color: path.isLP ? "var(--text-muted)" : "var(--text-subtle)",
@@ -149,7 +149,7 @@ export default function ThreePathsSection() {
 
         <FadeIn delay={120}>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 500,
             fontStyle: "italic",
             fontSize: "1.176rem",

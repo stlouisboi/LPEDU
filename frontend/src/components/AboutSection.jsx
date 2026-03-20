@@ -22,7 +22,7 @@ export default function AboutSection() {
               Standard Custodian
             </p>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
               letterSpacing: "-0.02em",
@@ -33,7 +33,7 @@ export default function AboutSection() {
             </h2>
 
             <p style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
               fontSize: "0.806rem",
               fontWeight: 700,
               letterSpacing: "0.1em",
@@ -52,7 +52,7 @@ export default function AboutSection() {
                 "LaunchPath is the system.",
               ].map((para, i) => (
                 <p key={i} style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif",
                   fontSize: "1.12rem",
                   color: "var(--text-paper)",
                   lineHeight: 1.85,
@@ -67,7 +67,7 @@ export default function AboutSection() {
               marginBottom: "2.5rem",
             }}>
               <p style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Playfair Display', serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "1.176rem",
@@ -114,7 +114,7 @@ export default function AboutSection() {
               zIndex: 1,
             }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.65rem",
                 color: "var(--gold-primary)",
                 letterSpacing: "0.15em",
@@ -124,7 +124,7 @@ export default function AboutSection() {
                 STATION CUSTODIAN — LP-SYS-V4.2
               </p>
               <p style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif",
                 fontSize: "0.75rem",
                 color: "rgba(255,255,255,0.5)",
                 letterSpacing: "0.06em",

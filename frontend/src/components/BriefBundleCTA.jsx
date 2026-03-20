@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const mono = "'JetBrains Mono', monospace";
+const mono = "'IBM Plex Mono', monospace";
 const gold = "#d4900a";
 const navy = "#0b1628";
 
@@ -31,13 +31,13 @@ export default function BriefBundleCTA() {
             color: gold, marginBottom: "0.5rem",
           }}>LP-SPEC-001 — DOCUMENT SYSTEM BUNDLE</p>
           <p style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "1.3rem", color: "#FFFFFF", lineHeight: 1.2, marginBottom: "0.4rem",
           }}>
             New Carrier Document System — All 5 Compliance Packets
           </p>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem",
             color: "rgba(255,255,255,0.55)", lineHeight: 1.6,
           }}>
             Driver files, maintenance records, HOS systems, drug program, insurance controls. $497. Ships as a complete operational package.

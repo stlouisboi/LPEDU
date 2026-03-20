@@ -49,14 +49,14 @@ export default function DrugAlcoholPacketPage() {
         <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
             marginBottom: "1.5rem",
           }}>Who This Is Not For</p>
           <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
             {WHO_NOT_FOR.map((item, i) => (
               <li key={i} style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1.05rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1.05rem",
                 color: "rgba(255,255,255,0.88)", lineHeight: 1.7,
                 paddingLeft: "1.25rem", position: "relative",
               }}>
@@ -75,23 +75,23 @@ export default function DrugAlcoholPacketPage() {
           <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
             <div>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
                 letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)",
                 marginBottom: "0.5rem",
               }}>Format</p>
               <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "0.95rem",
+                fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem",
                 color: "rgba(255,255,255,0.75)", lineHeight: 1.65,
               }}>PDF — immediate download upon purchase.<br />Print-ready. Checkbox layout throughout.</p>
             </div>
             <div>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
                 letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)",
                 marginBottom: "0.5rem",
               }}>Regulatory Standard</p>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.82rem",
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.82rem",
                 color: "rgba(255,255,255,0.75)", lineHeight: 1.65, letterSpacing: "0.04em",
               }}>49 CFR Part 382, 49 CFR Part 40</p>
             </div>
@@ -106,11 +106,11 @@ export default function DrugAlcoholPacketPage() {
           borderLeft: `3px solid ${gold}`, padding: "1.5rem 1.75rem", marginBottom: "3.5rem",
         }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
+            fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem", fontWeight: 700,
             letterSpacing: "0.14em", textTransform: "uppercase", color: gold, marginBottom: "0.75rem",
           }}>Already operating and behind on compliance?</p>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "1rem",
             color: "rgba(255,255,255,0.88)", lineHeight: 1.75,
           }}>
             If your D&A records were flagged in an audit or you have never had a written policy in place, the window to correct it is narrow. Start with the automatic failure items on page 4.

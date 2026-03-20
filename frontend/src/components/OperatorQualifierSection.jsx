@@ -55,7 +55,7 @@ export default function OperatorQualifierSection() {
 
           {/* System code label */}
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.64rem",
             fontWeight: 700,
             letterSpacing: "0.18em",
@@ -76,7 +76,7 @@ export default function OperatorQualifierSection() {
               padding: "2.25rem 2rem 2.25rem 1.75rem",
             }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.70rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
@@ -92,7 +92,7 @@ export default function OperatorQualifierSection() {
                 {FOR_YOU.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: "0.85rem",
                       color: "#d4900a",
                       flexShrink: 0,
@@ -100,7 +100,7 @@ export default function OperatorQualifierSection() {
                       fontWeight: 700,
                     }}>→</span>
                     <p style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.938rem",
                       color: "rgba(255,255,255,0.82)",
                       lineHeight: 1.68,
@@ -117,7 +117,7 @@ export default function OperatorQualifierSection() {
                 borderTop: "1px solid rgba(212,144,10,0.18)",
               }}>
                 <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.60rem",
                   fontWeight: 700,
                   letterSpacing: "0.16em",
@@ -131,7 +131,7 @@ export default function OperatorQualifierSection() {
                 {/* Date input */}
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
                   <label style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "0.80rem",
                     color: "rgba(255,255,255,0.50)",
                     whiteSpace: "nowrap",
@@ -148,7 +148,7 @@ export default function OperatorQualifierSection() {
                       border: "1px solid rgba(212,144,10,0.22)",
                       color: "rgba(255,255,255,0.75)",
                       padding: "0.375rem 0.625rem",
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: "0.80rem",
                       outline: "none",
                       cursor: "pointer",
@@ -162,7 +162,7 @@ export default function OperatorQualifierSection() {
                     {/* Day counter + status badge */}
                     <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem", marginBottom: "0.625rem", flexWrap: "wrap" }}>
                       <span style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: "1.75rem",
                         fontWeight: 700,
                         color: windowData.color,
@@ -171,14 +171,14 @@ export default function OperatorQualifierSection() {
                         Day {windowData.days}
                       </span>
                       <span style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: "0.80rem",
                         color: "rgba(255,255,255,0.35)",
                       }}>
                         of 90
                       </span>
                       <span style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'IBM Plex Mono', monospace",
                         fontSize: "0.60rem",
                         fontWeight: 700,
                         letterSpacing: "0.14em",
@@ -209,7 +209,7 @@ export default function OperatorQualifierSection() {
                     </div>
 
                     <p style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.80rem",
                       color: "rgba(255,255,255,0.52)",
                       lineHeight: 1.55,
@@ -220,7 +220,7 @@ export default function OperatorQualifierSection() {
                   </div>
                 ) : (
                   <p style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
                     fontSize: "0.80rem",
                     color: "rgba(255,255,255,0.28)",
                     fontStyle: "italic",
@@ -242,7 +242,7 @@ export default function OperatorQualifierSection() {
               padding: "2.25rem 2rem 2.25rem 1.75rem",
             }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.70rem",
                 fontWeight: 700,
                 letterSpacing: "0.16em",
@@ -256,7 +256,7 @@ export default function OperatorQualifierSection() {
                 {NOT_FOR_YOU.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: "0.85rem",
                       color: "#8b2f2f",
                       flexShrink: 0,
@@ -264,7 +264,7 @@ export default function OperatorQualifierSection() {
                       fontWeight: 700,
                     }}>✗</span>
                     <p style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Atkinson Hyperlegible', sans-serif",
                       fontSize: "0.938rem",
                       color: "rgba(255,255,255,0.62)",
                       lineHeight: 1.68,
@@ -281,7 +281,7 @@ export default function OperatorQualifierSection() {
 
           {/* Below cards — diagnostic link */}
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "0.875rem",
             color: "rgba(255,255,255,0.35)",
             textAlign: "center",

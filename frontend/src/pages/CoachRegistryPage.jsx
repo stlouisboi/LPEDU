@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const mono = "'JetBrains Mono', 'Courier New', monospace";
-const sans = "'Inter', sans-serif";
-const heading = "'Barlow Condensed', sans-serif";
+const mono = "'IBM Plex Mono', 'Courier New', monospace";
+const sans = "'Atkinson Hyperlegible', sans-serif";
+const heading = "'Playfair Display', serif";
 
 const STATUS_COLORS = {
   pending:       { color: "#64748B", label: "PENDING"       },
@@ -550,7 +550,7 @@ function DeliverablesAdmin({ API, mono }) {
   const formatSize = (bytes) => bytes > 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
 
   const labelStyle = { fontFamily: mono, fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", display: "block", marginBottom: "0.4rem" };
-  const inputStyle = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", padding: "0.6rem 0.75rem", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", borderRadius: 2, boxSizing: "border-box" };
+  const inputStyle = { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", padding: "0.6rem 0.75rem", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.875rem", borderRadius: 2, boxSizing: "border-box" };
 
   return (
     <div>
@@ -602,8 +602,8 @@ function DeliverablesAdmin({ API, mono }) {
             {pdfs.map(pdf => (
               <div key={pdf.id} style={{ background: "#000A14", border: "1px solid rgba(255,255,255,0.07)", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 4px" }}>{pdf.display_name}</p>
-                  {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 6px" }}>{pdf.description}</p>}
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: "#fff", margin: "0 0 4px" }}>{pdf.display_name}</p>
+                  {pdf.description && <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 6px" }}>{pdf.description}</p>}
                   <div style={{ display: "flex", gap: "1.25rem" }}>
                     <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#d4900a" }}>{CATEGORIES.find(c => c.value === pdf.category)?.label || pdf.category}</span>
                     <span style={{ fontFamily: mono, fontSize: "0.504rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{formatSize(pdf.size)}</span>

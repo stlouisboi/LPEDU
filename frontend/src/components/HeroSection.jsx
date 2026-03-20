@@ -58,7 +58,7 @@ function ProofCard({ item, triggered, delay }) {
         background: "linear-gradient(90deg, #d4900a, rgba(212,144,10,0.2))",
       }} />
       <p style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Playfair Display', serif",
         fontSize: 38,
         fontWeight: 700,
         color: "#d4900a",
@@ -69,7 +69,7 @@ function ProofCard({ item, triggered, delay }) {
         whiteSpace: "nowrap",
       }}>{item.prefix}{count}{item.suffix}</p>
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontSize: 11,
         fontWeight: 600,
         letterSpacing: "0.08em",
@@ -129,17 +129,17 @@ export default function HeroSection() {
           {/* Eyebrow */}
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32 }}>
             <div style={{ width: 28, height: 1, background: "#d4900a", flexShrink: 0 }} />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a", margin: 0 }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a", margin: 0 }}>
               NEW MOTOR CARRIER AUTHORITY
             </p>
           </div>
 
           {/* Headline */}
           <h1 style={{ margin: "0 0 0 0" }}>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 700, lineHeight: 1.05, color: "#FFFFFF", marginBottom: 6 }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Playfair Display', serif", fontSize: "var(--text-3xl)", fontWeight: 700, lineHeight: 1.05, color: "#FFFFFF", marginBottom: 6 }}>
               Your authority is active.
             </span>
-            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "var(--text-3xl)", fontWeight: 700, lineHeight: 1.05, color: "#d4900a" }}>
+            <span className="hero-headline-line" style={{ display: "block", fontFamily: "'Playfair Display', serif", fontSize: "var(--text-3xl)", fontWeight: 700, lineHeight: 1.05, color: "#d4900a" }}>
               The first 90 days<br />determine what survives.
             </span>
           </h1>
@@ -147,24 +147,24 @@ export default function HeroSection() {
           <div style={{ width: 40, height: 2, background: "#d4900a", margin: "26px 0 22px" }} />
 
           {/* Single subheadline */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 16 }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 16 }}>
             You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
           </p>
 
           {/* Change 1: Consequence line */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 400, color: "rgba(255,255,255,0.72)", lineHeight: 1.7, maxWidth: 600, marginBottom: 22 }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "var(--text-lg)", fontWeight: 400, color: "rgba(255,255,255,0.72)", lineHeight: 1.7, maxWidth: 600, marginBottom: 22 }}>
             Carriers who enter the New Entrant window without compliance systems in place face $10,000–$25,000 in audit exposure — and most don't know it until the notice arrives.
           </p>
 
           {/* Clarifier box */}
           <div style={{ borderLeft: "2px solid rgba(212,144,10,0.35)", paddingLeft: 18, marginBottom: 22 }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", lineHeight: 1.75, fontStyle: "italic", margin: 0 }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.58)", lineHeight: 1.75, fontStyle: "italic", margin: 0 }}>
               This is not a compliance service. We do not file your paperwork or manage your operation. LaunchPath installs the system you operate on — including the files, programs, and controls required to remain compliant.
             </p>
           </div>
 
           {/* Buyer identification */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.62)", lineHeight: 1.65, maxWidth: 520, marginBottom: 28 }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.62)", lineHeight: 1.65, maxWidth: 520, marginBottom: 28 }}>
             Built for new motor carriers, box trucks, and 1–3 truck owner-operators in their first 90 days of active authority.
           </p>
 
@@ -172,21 +172,21 @@ export default function HeroSection() {
           <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 10 }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
               <Link to="/ground-0-briefing" data-testid="hero-primary-cta" className="hero-cta-primary"
-                style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.08em", color: "#0b1628", background: "#d4900a", padding: "16px 32px", height: 52, textDecoration: "none", boxShadow: "0 0 0 3px rgba(212,144,10,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }}
+                style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "0.08em", color: "#0b1628", background: "#d4900a", padding: "16px 32px", height: 52, textDecoration: "none", boxShadow: "0 0 0 3px rgba(212,144,10,0.22)", transition: "background 0.2s", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }}
                 onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
                 onMouseLeave={e => (e.currentTarget.style.background = "#d4900a")}
               >INITIATE GROUND 0 →</Link>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.38)", margin: "6px 0 0", letterSpacing: "0.07em", textTransform: "uppercase" }}>Free Readiness Module</p>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.38)", margin: "6px 0 0", letterSpacing: "0.07em", textTransform: "uppercase" }}>Free Readiness Module</p>
             </div>
             <Link to="/standards" data-testid="hero-secondary-cta" className="hero-cta-secondary"
-              style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "rgba(255,255,255,0.65)", background: "transparent", border: "0.5px solid rgba(255,255,255,0.25)", padding: "0 20px", height: 52, textDecoration: "none", transition: "border-color 0.2s, color 0.2s", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }}
+              style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "rgba(255,255,255,0.65)", background: "transparent", border: "0.5px solid rgba(255,255,255,0.25)", padding: "0 20px", height: 52, textDecoration: "none", transition: "border-color 0.2s, color 0.2s", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "rgba(255,255,255,0.9)"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
             >SEE WHAT GETS INSTALLED</Link>
           </div>
 
           {/* Change 3: Credentialing line below CTAs */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.30)", lineHeight: 1.6, maxWidth: 480, marginBottom: 28, letterSpacing: "0.02em" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.30)", lineHeight: 1.6, maxWidth: 480, marginBottom: 28, letterSpacing: "0.02em" }}>
             Built on 25 years of federal safety and compliance systems infrastructure. Verified against 49 CFR.
           </p>
 
@@ -222,10 +222,10 @@ export default function HeroSection() {
                 position: "relative",
               }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #d4900a, rgba(212,144,10,0.2))" }} />
-                <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 24, fontWeight: 700, color: "#d4900a", margin: "0 0 2px", lineHeight: 1, whiteSpace: "nowrap" }}>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: "#d4900a", margin: "0 0 2px", lineHeight: 1, whiteSpace: "nowrap" }}>
                   {item.prefix}{item.target}{item.suffix}
                 </p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.3 }}>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.3 }}>
                   {item.label}
                 </p>
               </div>
@@ -239,10 +239,10 @@ export default function HeroSection() {
 
           {/* Document header */}
           <div style={{ marginBottom: 16 }}>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", margin: "0 0 4px" }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", margin: "0 0 4px" }}>
               LPOS — RISK ANALYSIS
             </p>
-            <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: 0 }}>
+            <p className="hero-rp-label" style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 13, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: 0 }}>
               THE COST OF BEING UNDERBUILT
             </p>
           </div>
@@ -261,11 +261,11 @@ export default function HeroSection() {
             transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
           }}>
             <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(232,89,48,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,89,48,0.80)", margin: "0 0 8px" }}>EXPOSURE RISK</p>
-            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 700, color: "rgba(255,255,255,0.96)", margin: "0 0 6px", letterSpacing: "0.01em" }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,89,48,0.80)", margin: "0 0 8px" }}>EXPOSURE RISK</p>
+            <p className="hero-rp-title" style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 16, fontWeight: 700, color: "rgba(255,255,255,0.96)", margin: "0 0 6px", letterSpacing: "0.01em" }}>
               Audit failure + remediation
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: 0 }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, margin: 0 }}>
               Deficiency findings, corrective action exposure, service disruption, and preventable authority risk.
             </p>
           </div>
@@ -273,7 +273,7 @@ export default function HeroSection() {
           {/* Versus divider */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 0 10px" }}>
             <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.10)" }} />
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", margin: 0 }}>versus</p>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", margin: 0 }}>versus</p>
             <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.10)" }} />
           </div>
 
@@ -291,20 +291,20 @@ export default function HeroSection() {
             transition: "opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s",
           }}>
             <div style={{ position: "absolute", top: -20, right: -20, width: 80, height: 80, background: "radial-gradient(circle, rgba(212,144,10,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", margin: "0 0 8px" }}>THE STANDARD</p>
-            <p className="hero-rp-title" style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 700, color: "#d4900a", margin: "0 0 6px", letterSpacing: "0.01em" }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", margin: "0 0 8px" }}>THE STANDARD</p>
+            <p className="hero-rp-title" style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 16, fontWeight: 700, color: "#d4900a", margin: "0 0 6px", letterSpacing: "0.01em" }}>
               LaunchPath Standard
             </p>
-            <p className="hero-rp-sub" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.80)", lineHeight: 1.65, margin: "0 0 12px" }}>
+            <p className="hero-rp-sub" style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.80)", lineHeight: 1.65, margin: "0 0 12px" }}>
               90-day guided installation of the compliance systems new carriers need to operate with structure, proof, and audit readiness.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: "#d4900a", margin: 0, letterSpacing: "0.02em" }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 13, fontWeight: 700, color: "#d4900a", margin: 0, letterSpacing: "0.02em" }}>
               Costs less than one audit failure
             </p>
           </div>
 
           {/* Domain label */}
-          <p className="hero-rp-label" style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: "0 0 14px" }}>
+          <p className="hero-rp-label" style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 13, fontWeight: 700, color: "rgba(212,144,10,0.95)", letterSpacing: "0.14em", textTransform: "uppercase", margin: "0 0 14px" }}>
             WHAT THE STANDARD INSTALLS
           </p>
 
@@ -317,8 +317,8 @@ export default function HeroSection() {
                 transform: inView ? "translateX(0)" : "translateX(-6px)",
                 transition: `opacity 0.4s ease ${0.5 + i * 0.07}s, transform 0.4s ease ${0.5 + i * 0.07}s`,
               }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(212,144,10,0.65)", width: 20, flexShrink: 0 }}>{d.num}</span>
-                <span className="hero-domain-name" style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.92)", letterSpacing: "0.01em" }}>{d.name}</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: "rgba(212,144,10,0.65)", width: 20, flexShrink: 0 }}>{d.num}</span>
+                <span className="hero-domain-name" style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.92)", letterSpacing: "0.01em" }}>{d.name}</span>
               </div>
             ))}
           </div>

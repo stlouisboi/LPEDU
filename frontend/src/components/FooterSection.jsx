@@ -20,13 +20,13 @@ export default function FooterSection() {
   ];
 
   const colHead = {
-    fontFamily: "'JetBrains Mono', monospace", fontSize: "0.62rem", fontWeight: 700,
+    fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.62rem", fontWeight: 700,
     letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
     marginBottom: "1.1rem",
   };
 
   const linkStyle = {
-    fontFamily: "'Inter', sans-serif", fontSize: "0.92rem",
+    fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.92rem",
     color: "#BBBBBB", textDecoration: "none", transition: "color 0.2s", display: "block",
   };
 
@@ -70,7 +70,7 @@ export default function FooterSection() {
               alt="LaunchPath Transportation EDU"
               style={{ height: 26, marginBottom: "1.25rem", display: "block" }}
             />
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.92rem", color: "#BBBBBB", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.92rem", color: "#BBBBBB", lineHeight: 1.6 }}>
               Accuracy Over Hype.<br />Systems Over Shortcuts.
             </p>
           </div>
@@ -102,13 +102,13 @@ export default function FooterSection() {
           flexDirection: "column",
           gap: "0.6rem",
         }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.88rem", color: "#BBBBBB" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.88rem", color: "#BBBBBB" }}>
             &copy; {new Date().getFullYear()} LaunchPath Transportation EDU. All rights reserved.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.82rem", color: "#888", lineHeight: 1.7, maxWidth: 800 }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.82rem", color: "#888", lineHeight: 1.7, maxWidth: 800 }}>
             LaunchPath is an educational program. Content does not constitute legal, tax, financial, or compliance advice. Verify all information with appropriate professionals and regulatory agencies before making business decisions.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.80rem", color: "#666" }}>
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.80rem", color: "#666" }}>
             Current as of March 2026. Verified against ecfr.gov.
           </p>
         </div>

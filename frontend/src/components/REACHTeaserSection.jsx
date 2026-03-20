@@ -30,9 +30,9 @@ const METRICS = [
   { key: "THRESHOLD_CLASS", value: "LP-STD-001" },
 ];
 
-const mono = "'JetBrains Mono', 'Courier New', monospace";
-const sans = "'Inter', sans-serif";
-const heading = "'Barlow Condensed', sans-serif";
+const mono = "'IBM Plex Mono', 'Courier New', monospace";
+const sans = "'Atkinson Hyperlegible', sans-serif";
+const heading = "'Playfair Display', serif";
 
 export function REACHTeaserSection({ onBegin, pillarStatuses }) {
   // Merge any passed-in statuses over the defaults

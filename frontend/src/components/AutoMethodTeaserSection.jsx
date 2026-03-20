@@ -68,7 +68,7 @@ function AutoCard({ card, visible, delay }) {
       onMouseLeave={() => setHovered(false)}
     >
       <p style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Playfair Display', serif",
         fontWeight: 800,
         fontSize: "3.5rem",
         color: "#d4900a",
@@ -82,7 +82,7 @@ function AutoCard({ card, visible, delay }) {
         {card.letter}
       </p>
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontWeight: 700,
         fontSize: "0.784rem",
         color: "#FFFFFF",
@@ -93,7 +93,7 @@ function AutoCard({ card, visible, delay }) {
         {card.dir}
       </p>
       <p style={{
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'IBM Plex Mono', monospace",
         fontSize: "0.616rem",
         color: "rgba(212,144,10,0.85)",
         letterSpacing: "0.08em",
@@ -102,7 +102,7 @@ function AutoCard({ card, visible, delay }) {
         {card.code}
       </p>
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontSize: "0.784rem",
         fontWeight: 600,
         color: "rgba(255,255,255,0.78)",
@@ -112,7 +112,7 @@ function AutoCard({ card, visible, delay }) {
         {card.threat}
       </p>
       <p style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Atkinson Hyperlegible', sans-serif",
         fontSize: "0.784rem",
         color: "rgba(255,255,255,0.72)",
         lineHeight: 1.65,
@@ -147,7 +147,7 @@ export default function AutoMethodTeaserSection() {
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}>
           <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.672rem",
             color: "rgba(212,144,10,0.85)",
             letterSpacing: "0.16em",
@@ -157,7 +157,7 @@ export default function AutoMethodTeaserSection() {
             LP-MOD-AUTO | AUTHORITY PROTECTION MODEL
           </p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
             letterSpacing: "-0.02em",
@@ -168,7 +168,7 @@ export default function AutoMethodTeaserSection() {
             The AUTO Method
           </h2>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Atkinson Hyperlegible', sans-serif",
             fontSize: "1.008rem",
             color: "rgba(255,255,255,0.75)",
             lineHeight: 1.7,

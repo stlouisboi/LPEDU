@@ -2,6 +2,7 @@ from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Upload
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
+from bson import ObjectId
 import os
 import logging
 import httpx
@@ -539,6 +540,7 @@ async def submit_admission_request(data: AdmissionRequestNew):
         "status": "pending_review",
     }
     await db.admission_requests.insert_one(record)
+    admission_id = str(record["_id"])
 
     # Tag in MailerLite
     lane_label = "Box Truck" if data.lane == "box_truck" else "Semi / Tractor-Trailer"
@@ -594,6 +596,148 @@ async def submit_admission_request(data: AdmissionRequestNew):
         reply_to=data.email,
     ))
 
+    return {"ok": True, "admission_id": admission_id}
+
+
+from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
+
+STRIPE_API_KEY = os.environ.get("STRIPE_API_KEY", "")
+COHORT_PRICE_USD = 2500.00
+
+class AdmissionCheckoutRequest(BaseModel):
+    admission_id: str
+    origin_url: str
+
+@api_router.post("/create-admission-checkout")
+async def create_admission_checkout(data: AdmissionCheckoutRequest, request: Request):
+    if not STRIPE_API_KEY:
+        raise HTTPException(status_code=500, detail="Stripe not configured")
+    # Verify admission exists
+    admission = await db.admission_requests.find_one({"_id": ObjectId(data.admission_id)}, {"_id": 0, "email": 1, "carrier_name": 1})
+    if not admission:
+        raise HTTPException(status_code=404, detail="Admission request not found")
+    host_url = str(request.base_url)
+    stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
+    success_url = f"{data.origin_url}/admission/confirmed?session_id={{CHECKOUT_SESSION_ID}}"
+    cancel_url = f"{data.origin_url}/admission"
+    metadata = {
+        "admission_id": data.admission_id,
+        "carrier_name": admission["carrier_name"],
+        "email": admission["email"],
+        "product": "launchpath_standard_cohort",
+    }
+    session = await stripe.create_checkout_session(
+        CheckoutSessionRequest(
+            amount=COHORT_PRICE_USD,
+            currency="usd",
+            success_url=success_url,
+            cancel_url=cancel_url,
+            metadata=metadata,
+        )
+    )
+    now = datetime.now(timezone.utc)
+    await db.payment_transactions.insert_one({
+        "session_id": session.session_id,
+        "admission_id": data.admission_id,
+        "email": admission["email"],
+        "carrier_name": admission["carrier_name"],
+        "amount": COHORT_PRICE_USD,
+        "currency": "usd",
+        "payment_status": "initiated",
+        "status": "pending",
+        "created_at": now.isoformat(),
+    })
+    return {"checkout_url": session.url, "session_id": session.session_id}
+
+
+@api_router.get("/admission-payment-status/{session_id}")
+async def get_admission_payment_status(session_id: str):
+    if not STRIPE_API_KEY:
+        raise HTTPException(status_code=500, detail="Stripe not configured")
+    tx = await db.payment_transactions.find_one({"session_id": session_id}, {"_id": 0})
+    if not tx:
+        raise HTTPException(status_code=404, detail="Session not found")
+    stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url="")
+    checkout_status = await stripe.get_checkout_status(session_id)
+    # Prevent double-processing
+    if checkout_status.payment_status == "paid" and tx.get("payment_status") != "paid":
+        admission_id = tx.get("admission_id")
+        if admission_id:
+            await db.admission_requests.update_one(
+                {"_id": ObjectId(admission_id)},
+                {"$set": {"status": "approved", "approved_at": datetime.now(timezone.utc).isoformat()}},
+            )
+        await db.payment_transactions.update_one(
+            {"session_id": session_id},
+            {"$set": {"payment_status": "paid", "status": "completed", "completed_at": datetime.now(timezone.utc).isoformat()}},
+        )
+        # Notify Vince of payment
+        carrier = tx.get("carrier_name", "Unknown Carrier")
+        asyncio.create_task(send_mailersend_email(
+            COACH_EMAIL, "Vince Lawrence",
+            f"Payment Confirmed — {carrier} enrolled in the Standard",
+            f"""<div style="font-family:sans-serif;max-width:600px;background:#002244;color:#fff;padding:40px;border-top:4px solid #C5A059;">
+            <p style="color:#C5A059;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 20px;">LaunchPath Standard — Enrollment Confirmed</p>
+            <h2 style="color:#fff;font-size:22px;margin:0 0 16px;">{carrier} has paid and is now enrolled.</h2>
+            <p style="color:rgba(255,255,255,0.70);font-size:14px;">Email: {tx.get("email")}<br>Amount: $2,500.00 USD<br>Session: {session_id}</p>
+            </div>""",
+        ))
+    return {
+        "payment_status": checkout_status.payment_status,
+        "status": checkout_status.status,
+        "admission_status": "approved" if checkout_status.payment_status == "paid" else tx.get("status", "pending"),
+    }
+
+
+@api_router.post("/webhook/stripe")
+async def stripe_webhook(request: Request):
+    body = await request.body()
+    sig = request.headers.get("Stripe-Signature", "")
+    if not STRIPE_API_KEY:
+        return {"ok": True}
+    try:
+        stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url="")
+        event = await stripe.handle_webhook(body, sig)
+        if event.payment_status == "paid":
+            session_id = event.session_id
+            tx = await db.payment_transactions.find_one({"session_id": session_id}, {"_id": 0})
+            if tx and tx.get("payment_status") != "paid":
+                admission_id = tx.get("admission_id")
+                if admission_id:
+                    await db.admission_requests.update_one(
+                        {"_id": ObjectId(admission_id)},
+                        {"$set": {"status": "approved", "approved_at": datetime.now(timezone.utc).isoformat()}},
+                    )
+                await db.payment_transactions.update_one(
+                    {"session_id": session_id},
+                    {"$set": {"payment_status": "paid", "status": "completed", "completed_at": datetime.now(timezone.utc).isoformat()}},
+                )
+    except Exception as exc:
+        logger.error(f"Stripe webhook error: {exc}")
+    return {"ok": True}
+
+
+# ── Admin — Admission Requests ────────────────────────────────────────────────
+
+@api_router.get("/admin/admission-requests")
+async def list_admission_requests():
+    cursor = db.admission_requests.find({}, {"_id": 1, "carrier_name": 1, "email": 1, "dot_mc_number": 1, "authority_activation_date": 1, "compliance_status": 1, "lane": 1, "submission_date": 1, "status": 1, "approved_at": 1})
+    docs = []
+    async for doc in cursor:
+        doc["id"] = str(doc.pop("_id"))
+        docs.append(doc)
+    return docs
+
+
+@api_router.patch("/admin/admission-requests/{admission_id}/status")
+async def update_admission_status(admission_id: str, status: str):
+    valid_statuses = {"pending_review", "approved", "rejected"}
+    if status not in valid_statuses:
+        raise HTTPException(status_code=400, detail=f"Status must be one of {valid_statuses}")
+    await db.admission_requests.update_one(
+        {"_id": ObjectId(admission_id)},
+        {"$set": {"status": status}},
+    )
     return {"ok": True}
 
 

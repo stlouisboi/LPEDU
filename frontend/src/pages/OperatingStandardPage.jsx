@@ -62,7 +62,7 @@ const NOT_FOR_LIST = [
 
 // ── Shared styles ────────────────────────────────────────
 const sectionLabel = {
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'Atkinson Hyperlegible', sans-serif",
   fontSize: "0.78rem",
   fontWeight: 700,
   letterSpacing: "0.18em",
@@ -83,7 +83,7 @@ const divider = {
 
 export default function OperatingStandardPage() {
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
+    <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
 
       {/* ── HERO ─────────────────────────────────────── */}
@@ -93,7 +93,7 @@ export default function OperatingStandardPage() {
             LAUNCHPATH — OPERATING STANDARD
           </p>
           <h1 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             fontWeight: 700,
             fontSize: "clamp(2.25rem, 5vw, 4rem)",
             letterSpacing: "-0.025em",
@@ -114,10 +114,10 @@ export default function OperatingStandardPage() {
             A structured operational framework for new motor carriers designed to prevent authority loss, insurance failure, and compliance breakdown during the first 90 days of operation.
           </p>
           <div style={{ borderLeft: "2px solid rgba(212,144,10,0.4)", paddingLeft: "1.5rem" }}>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#d4900a", marginBottom: "0.4rem" }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.12rem", color: "#d4900a", marginBottom: "0.4rem" }}>
               Accuracy Over Hype.
             </p>
-            <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(212,144,10,0.90)" }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.12rem", color: "rgba(212,144,10,0.90)" }}>
               Systems Over Shortcuts.
             </p>
           </div>
@@ -130,7 +130,7 @@ export default function OperatingStandardPage() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }} className="standard-two-col">
           <div>
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Playfair Display', serif",
               fontWeight: 700,
               fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
               color: "#FFFFFF",
@@ -174,7 +174,7 @@ export default function OperatingStandardPage() {
         <div style={{ ...sectionWrap, padding: "80px 24px" }}>
           <p style={sectionLabel}>SECTION 02 — THE FOUR PILLARS</p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "0.75rem",
           }}>
@@ -187,12 +187,12 @@ export default function OperatingStandardPage() {
             {PILLARS.map((p, i) => (
               <div key={i} style={{ background: "#0b1628", padding: "2.5rem 2rem" }}>
                 <p style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: 700,
+                  fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.78rem", fontWeight: 700,
                   letterSpacing: "0.12em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.75rem",
                 }}>
                   PILLAR {String(i + 1).padStart(2, "0")}
                 </p>
-                <p style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "0.875rem" }}>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.12rem", color: "#FFFFFF", marginBottom: "0.875rem" }}>
                   {p.label}
                 </p>
                 <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.75 }}>{p.desc}</p>
@@ -207,7 +207,7 @@ export default function OperatingStandardPage() {
         <p style={sectionLabel}>SECTION 03 — THE AUTO GUARDING MODEL</p>
         <div style={{ maxWidth: 660, marginBottom: "3rem" }}>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "1.25rem",
           }}>
@@ -221,7 +221,7 @@ export default function OperatingStandardPage() {
           {AUTO_VECTORS.map((item) => (
             <div key={item.v} style={{ background: "#0d1c30", padding: "2rem 1.5rem" }}>
               <p style={{
-                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+                fontFamily: "'Playfair Display', serif", fontWeight: 700,
                 fontSize: "2.25rem", color: "#d4900a", marginBottom: "0.5rem", lineHeight: 1,
               }}>
                 {item.v}
@@ -245,7 +245,7 @@ export default function OperatingStandardPage() {
         <div style={{ ...sectionWrap, padding: "80px 24px" }}>
           <p style={sectionLabel}>SECTION 04 — THE 6 OPERATIONAL GUARDS</p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", marginBottom: "1rem",
           }}>
@@ -271,7 +271,7 @@ export default function OperatingStandardPage() {
                 className="guard-row"
               >
                 <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#d4900a" }}>{g.name}</span>
-                <span style={{ fontSize: "0.875rem", color: "rgba(212,144,10,0.85)", fontFamily: "'JetBrains Mono', monospace", whiteSpace: "nowrap" }}>
+                <span style={{ fontSize: "0.875rem", color: "rgba(212,144,10,0.85)", fontFamily: "'IBM Plex Mono', monospace", whiteSpace: "nowrap" }}>
                   {g.reg}
                 </span>
                 <span style={{ fontSize: "1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.5 }}>{g.stops}</span>
@@ -289,7 +289,7 @@ export default function OperatingStandardPage() {
         <p style={sectionLabel}>SECTION 05 — THE 90-DAY INSTALLATION SEQUENCE</p>
         <div style={{ maxWidth: 560, marginBottom: "3.5rem" }}>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "1.25rem",
           }}>
@@ -300,7 +300,7 @@ export default function OperatingStandardPage() {
           {PHASES.map((p) => (
             <div key={p.num} style={{ background: "#0d1c30", padding: "2rem 1.5rem" }}>
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "1.68rem", fontWeight: 700,
                 color: "rgba(212,144,10,0.35)",
                 marginBottom: "1rem", lineHeight: 1,
@@ -324,7 +324,7 @@ export default function OperatingStandardPage() {
             <div>
               <p style={sectionLabel}>SECTION 06 — WHO THIS STANDARD IS FOR</p>
               <h2 style={{
-                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+                fontFamily: "'Playfair Display', serif", fontWeight: 700,
                 fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
                 letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "2rem",
               }}>
@@ -342,7 +342,7 @@ export default function OperatingStandardPage() {
             <div style={{ borderLeft: "1px solid rgba(255,255,255,0.08)", paddingLeft: "3rem" }}>
               <p style={sectionLabel}>SECTION 07 — WHO THIS STANDARD IS NOT FOR</p>
               <h2 style={{
-                fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+                fontFamily: "'Playfair Display', serif", fontWeight: 700,
                 fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
                 letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "2rem",
               }}>
@@ -364,7 +364,7 @@ export default function OperatingStandardPage() {
         <div style={{ maxWidth: 640, margin: "0 auto" }}>
           <p style={sectionLabel}>SECTION 08 — ADOPTION</p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700,
+            fontFamily: "'Playfair Display', serif", fontWeight: 700,
             fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFFF",
             letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "1.5rem",
           }}>
@@ -380,7 +380,7 @@ export default function OperatingStandardPage() {
               to="/ground-0-briefing"
               style={{
                 display: "inline-block", minHeight: 52, background: "#d4900a",
-                color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                color: "#0b1628", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
                 fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 transition: "background 0.2s",
@@ -395,7 +395,7 @@ export default function OperatingStandardPage() {
               to="/reach-diagnostic"
               style={{
                 display: "inline-block", minHeight: 52, background: "transparent",
-                color: "#d4900a", fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                color: "#d4900a", fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700,
                 fontSize: "1.05rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 textDecoration: "none", padding: "1rem 2.5rem", lineHeight: "32px",
                 border: "1px solid rgba(212,144,10,0.4)", transition: "all 0.2s",
@@ -413,17 +413,17 @@ export default function OperatingStandardPage() {
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.60rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", margin: 0 }}>
               Ground 0: See Where Your Operation Stands
             </p>
           </div>
           <Link
             to="/ground-0-briefing"
             data-testid="standard-next-framework-link"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: "#d4900a", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
+            style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: "#d4900a", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
             onMouseEnter={e => (e.currentTarget.style.background = "#e8a520")}
             onMouseLeave={e => (e.currentTarget.style.background = "#d4900a")}
           >
