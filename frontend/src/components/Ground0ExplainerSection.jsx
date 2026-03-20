@@ -20,9 +20,21 @@ export default function Ground0ExplainerSection() {
           letterSpacing: "0.18em",
           textTransform: "uppercase",
           color: "rgba(212,144,10,0.55)",
-          marginBottom: "2rem",
+          marginBottom: "0.5rem",
         }}>
           LP-G0-001 — GROUND 0 ENTRY
+        </p>
+
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.714rem",
+          fontWeight: 600,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "rgba(212,144,10,0.40)",
+          marginBottom: "2rem",
+        }}>
+          THE WISDOM MODULE
         </p>
 
         <h2 style={{
@@ -34,7 +46,7 @@ export default function Ground0ExplainerSection() {
           lineHeight: 1.1,
           marginBottom: "1.75rem",
         }}>
-          What is Ground 0?
+          What is Ground <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800 }}>0</span>?
         </h2>
 
         <p style={{
@@ -45,7 +57,7 @@ export default function Ground0ExplainerSection() {
           marginBottom: "1.25rem",
           maxWidth: 640,
         }}>
-          Ground 0 is the readiness briefing and entry filter for carriers in the first 90 days of authority. It shows what the audit will expect, where your operation is exposed, and whether the Standard is the right fit.
+          Ground 0 is the readiness briefing and entry filter for carriers in the first 90 days of authority. Built on the Wisdom Framework — preparation beats reaction.
         </p>
 
         <p style={{
@@ -53,10 +65,34 @@ export default function Ground0ExplainerSection() {
           fontSize: "1.1rem",
           color: "rgba(255,255,255,0.72)",
           lineHeight: 1.8,
-          marginBottom: "3rem",
+          marginBottom: "1.25rem",
+          maxWidth: 640,
+        }}>
+          It shows what the audit will expect, where your operation is exposed, and whether the Standard is the right fit.
+        </p>
+
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "1.1rem",
+          color: "rgba(255,255,255,0.72)",
+          lineHeight: 1.8,
+          marginBottom: "1.25rem",
           maxWidth: 640,
         }}>
           Complete it in 4–6 minutes. No account required. No sales call.
+        </p>
+
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "1.1rem",
+          fontWeight: 600,
+          color: "rgba(255,255,255,0.85)",
+          lineHeight: 1.8,
+          marginBottom: "3rem",
+          maxWidth: 640,
+          fontStyle: "italic",
+        }}>
+          You'll leave with a clear picture of where you stand — and what needs to be built first.
         </p>
 
         <Link
