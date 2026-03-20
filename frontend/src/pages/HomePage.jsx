@@ -1,4 +1,6 @@
 import "../App.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import OperatorQualifierSection from "../components/OperatorQualifierSection";
@@ -14,6 +16,67 @@ import FAQSection from "../components/FAQSection";
 import SocialProofPlaceholder from "../components/SocialProofPlaceholder";
 import FinalCTASection from "../components/FinalCTASection";
 import FooterSection from "../components/FooterSection";
+
+function StickyMobileCTA() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const target = document.querySelector("[data-testid='hero-primary-cta']");
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShow(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <div
+        data-testid="sticky-mobile-cta"
+        className="sticky-mobile-cta"
+        style={{
+          position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 999,
+          background: "#0b1628",
+          borderTop: "2px solid #d4900a",
+          padding: "14px 20px",
+          display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+          boxShadow: "0 -4px 24px rgba(0,0,0,0.5)",
+          transform: show ? "translateY(0)" : "translateY(100%)",
+          transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      >
+        <div>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", margin: "0 0 2px" }}>
+            FREE · 4 MINUTES
+          </p>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 15, fontWeight: 700, color: "#FFFFFF", margin: 0, lineHeight: 1.2 }}>
+            Start Ground 0 Readiness Module
+          </p>
+        </div>
+        <Link
+          to="/ground-0-briefing"
+          data-testid="sticky-mobile-cta-btn"
+          style={{
+            display: "inline-flex", alignItems: "center",
+            fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 700,
+            letterSpacing: "0.07em", textTransform: "uppercase",
+            color: "#0b1628", background: "#d4900a",
+            padding: "12px 20px", textDecoration: "none",
+            flexShrink: 0, whiteSpace: "nowrap",
+          }}
+        >
+          BEGIN →
+        </Link>
+      </div>
+      <style>{`
+        .sticky-mobile-cta { display: none !important; }
+        @media (max-width: 680px) { .sticky-mobile-cta { display: flex !important; } }
+      `}</style>
+    </>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -83,6 +146,7 @@ export default function HomePage() {
         <FinalCTASection />
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 }
