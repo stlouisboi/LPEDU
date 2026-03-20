@@ -35,7 +35,7 @@ export default function FinalCTASection() {
             lineHeight: 1.1,
             marginBottom: "1.5rem",
           }}>
-            Ready to Build the System?
+            If your authority is active,<br />the window is already open.
           </h2>
 
           {/* Subtext */}

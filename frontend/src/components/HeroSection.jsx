@@ -147,8 +147,13 @@ export default function HeroSection() {
           <div style={{ width: 40, height: 2, background: "#d4900a", margin: "26px 0 22px" }} />
 
           {/* Single subheadline */}
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 16 }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-lg)", fontWeight: 500, color: "rgba(255,255,255,0.90)", lineHeight: 1.7, maxWidth: 600, marginBottom: 14 }}>
             You install the compliance infrastructure FMCSA expects — using a system built for the first 90 days of motor carrier authority.
+          </p>
+
+          {/* 18-month lifecycle line */}
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 400, color: "rgba(255,255,255,0.60)", lineHeight: 1.7, maxWidth: 580, marginBottom: 20 }}>
+            The first 90 days determine what gets installed. The Continuity Standard determines what stays stable after installation.
           </p>
 
           {/* Change 1: Consequence line */}

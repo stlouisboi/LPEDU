@@ -2,12 +2,16 @@ import "../App.css";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import OperatorQualifierSection from "../components/OperatorQualifierSection";
+import Ground0ExplainerSection from "../components/Ground0ExplainerSection";
 import CostOfInactionSection from "../components/CostOfInactionSection";
 import FailureAnalysisSection from "../components/FailureAnalysisSection";
 import WhatGetsInstalledSimple from "../components/WhatGetsInstalledSimple";
-import HowItWorksSimple from "../components/HowItWorksSimple";
 import PlatformSurface from "../components/PlatformSurface";
+import HowItWorksSimple from "../components/HowItWorksSimple";
+import AfterInstallationSection from "../components/AfterInstallationSection";
 import CredibilityStrip from "../components/CredibilityStrip";
+import FAQSection from "../components/FAQSection";
+import SocialProofPlaceholder from "../components/SocialProofPlaceholder";
 import FinalCTASection from "../components/FinalCTASection";
 import FooterSection from "../components/FooterSection";
 
@@ -19,28 +23,40 @@ export default function HomePage() {
         {/* 1. HERO */}
         <HeroSection />
 
-        {/* 2. QUALIFIER */}
+        {/* 2. QUALIFICATION FILTER */}
         <OperatorQualifierSection />
 
-        {/* 3. COST OF INACTION */}
+        {/* 3. GROUND 0 EXPLAINER */}
+        <Ground0ExplainerSection />
+
+        {/* 4. CONSEQUENCE — AUTHORITY REVOCATION */}
         <CostOfInactionSection />
 
-        {/* 4. FAILURE ANALYSIS — proof while stakes are fresh */}
+        {/* FAILURE PATTERN ANALYSIS */}
         <FailureAnalysisSection />
 
-        {/* 5. WHAT GETS INSTALLED */}
+        {/* 5. WHAT GETS INSTALLED — 6 domains expanded */}
         <WhatGetsInstalledSimple />
 
-        {/* 6. HOW IT WORKS */}
+        {/* SYSTEM COMPONENTS SURFACE */}
+        <PlatformSurface />
+
+        {/* 6. HOW IT WORKS — 4-step installation sequence */}
         <HowItWorksSimple />
 
-        {/* 7. PLATFORM SURFACE — system breadth */}
-        <PlatformSurface />
+        {/* 7. AFTER INSTALLATION — positive outcome */}
+        <AfterInstallationSection />
 
         {/* 8. CREDIBILITY STRIP */}
         <CredibilityStrip />
 
-        {/* 9. FINAL CTA */}
+        {/* 9. FAQ */}
+        <FAQSection />
+
+        {/* 10. SOCIAL PROOF PLACEHOLDER */}
+        <SocialProofPlaceholder />
+
+        {/* 12. FINAL CTA */}
         <FinalCTASection />
       </main>
       <FooterSection />
