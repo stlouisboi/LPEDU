@@ -4,7 +4,7 @@ import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
 import useSEO from "../../hooks/useSEO";
 
-const navy = "#1a1208";
+const navy = "#0D1B30";
 const gold = "#d4900a";
 const mono = "'Inter', sans-serif";
 
@@ -110,8 +110,8 @@ export default function NewEntrantProgramPost() {
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>
               ← Operational Library
             </Link>
-            <span style={{ color: "rgba(26,18,8,0.22)", fontSize: "0.7rem" }}>/</span>
-            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,18,8,0.32)" }}>New Entrant Program</span>
+            <span style={{ color: "rgba(13,27,48,0.20)", fontSize: "0.7rem" }}>/</span>
+            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(13,27,48,0.40)" }}>New Entrant Program</span>
           </div>
 
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
@@ -130,11 +130,11 @@ export default function NewEntrantProgramPost() {
             When a new motor carrier receives operating authority from FMCSA, they enter a structured monitoring period called the New Entrant Program. This program runs for a minimum of 12 months and includes a mandatory safety audit. How a carrier performs during this window determines whether their authority continues without condition or whether they face corrective requirements, conditional ratings, or revocation.
           </p>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(26,18,8,0.60)", lineHeight: 1.8, marginTop: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.65)", lineHeight: 1.8, marginTop: "1rem" }}>
             Most new carriers know the audit exists. Few understand how the monitoring period works, what FMCSA is watching throughout, and what the full consequences of each possible outcome are. This guide covers the complete picture.
           </p>
 
-          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(26,18,8,0.08)", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(13,27,48,0.08)", flexWrap: "wrap" }}>
             {[
               ["Primary Keyword", "FMCSA new entrant program"],
               ["CFR References", "49 CFR Part 385 Subpart D"],
@@ -142,7 +142,7 @@ export default function NewEntrantProgramPost() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(26,18,8,0.65)" }}>{value}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(13,27,48,0.70)" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -198,14 +198,14 @@ export default function NewEntrantProgramPost() {
         </div>
 
         {/* Ground 0 CTA */}
-        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "var(--bg-2)", border: "1px solid rgba(26,18,8,0.06)" }}>
+        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "var(--bg-2)", border: "1px solid rgba(13,27,48,0.07)" }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
             LPOS V1.0 — GROUND 0 ENTRY
           </p>
           <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "var(--text)", lineHeight: 1.2, marginBottom: "0.75rem" }}>
             If you're a new carrier in your first 90 days, Ground 0 is free.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(26,18,8,0.60)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.65)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             Ground 0 covers the Four Pillars framework and how they apply throughout the New Entrant period — before the audit notice arrives and while there's still time to build.
           </p>
           <Link

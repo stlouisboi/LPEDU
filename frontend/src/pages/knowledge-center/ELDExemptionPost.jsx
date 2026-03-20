@@ -4,7 +4,7 @@ import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
 import useSEO from "../../hooks/useSEO";
 
-const navy = "#1a1208";
+const navy = "#0D1B30";
 const gold = "#d4900a";
 const mono = "'Inter', sans-serif";
 
@@ -102,8 +102,8 @@ export default function ELDExemptionPost() {
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>
               ← Operational Library
             </Link>
-            <span style={{ color: "rgba(26,18,8,0.22)", fontSize: "0.7rem" }}>/</span>
-            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(26,18,8,0.32)" }}>Hours of Service</span>
+            <span style={{ color: "rgba(13,27,48,0.20)", fontSize: "0.7rem" }}>/</span>
+            <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(13,27,48,0.40)" }}>Hours of Service</span>
           </div>
 
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
@@ -122,11 +122,11 @@ export default function ELDExemptionPost() {
             Box truck operators frequently ask whether they're required to use an Electronic Logging Device. The answer depends on a specific set of conditions — not just vehicle weight — and many operators who believe they are exempt are either partially wrong or operating under conditions that have eliminated their exemption without them realizing it.
           </p>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(26,18,8,0.60)", lineHeight: 1.8, marginTop: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.65)", lineHeight: 1.8, marginTop: "1rem" }}>
             This article covers who must use an ELD, the conditions of the primary exemption available to box truck operators, and what happens when those conditions are not met.
           </p>
 
-          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(26,18,8,0.08)", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(13,27,48,0.08)", flexWrap: "wrap" }}>
             {[
               ["Primary Keyword", "ELD exemption box truck"],
               ["CFR References", "49 CFR Part 395 Subpart B · Part 395.1(e)"],
@@ -134,7 +134,7 @@ export default function ELDExemptionPost() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.2rem" }}>{label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(26,18,8,0.65)" }}>{value}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(13,27,48,0.70)" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -189,14 +189,14 @@ export default function ELDExemptionPost() {
         </div>
 
         {/* Ground 0 CTA */}
-        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "var(--bg-2)", border: "1px solid rgba(26,18,8,0.06)" }}>
+        <div style={{ textAlign: "center", padding: "3rem 2rem", background: "var(--bg-2)", border: "1px solid rgba(13,27,48,0.07)" }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
             LPOS V1.0 — GROUND 0 ENTRY
           </p>
           <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.4rem", color: "var(--text)", lineHeight: 1.2, marginBottom: "0.75rem" }}>
             If you're a new carrier in your first 90 days, Ground 0 is free.
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(26,18,8,0.60)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.65)", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: 460, margin: "0 auto 1.75rem" }}>
             Ground 0 covers the Lane Selection framework for box truck operators — including the operational and regulatory differences between sub-CDL and CDL lanes — before you commit to equipment.
           </p>
           <Link

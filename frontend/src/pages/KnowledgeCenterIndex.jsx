@@ -77,6 +77,54 @@ const POSTS = [
   },
 ];
 
+const BRIEFS_90DAY = [
+  {
+    slug: "/knowledge-center/lp-brf-07",
+    phase: "Day 1 — Authority Activation",
+    title: "LP-BRF-07: What Must Be Operational Before Your First Dispatch",
+    teaser: "An MC number is not a go signal. Before the first truck moves, three federal filings must be confirmed active, a D&A program must be in place, and driver qualification files must be complete. This brief walks through the Day 1 operating standard — and what it costs when it is skipped.",
+    outcome: "Complete your Day 1 compliance infrastructure before the first load.",
+    readTime: "11-minute brief",
+    status: "published",
+  },
+  {
+    slug: "/knowledge-center/lp-brf-08",
+    phase: "Days 1–30 — Installation Window",
+    title: "LP-BRF-08: The Documentation Architecture of the Installation Window",
+    teaser: "The first 30 days are not a warm-up period. They are the architectural window in which your compliance systems either get built or fail to exist. This brief shows what a complete 30-day file structure looks like — and how gaps here become invisible vulnerabilities by Month 9.",
+    outcome: "Build the documentation structure that makes compliance provable from Day 1.",
+    readTime: "11-minute brief",
+    status: "published",
+  },
+  {
+    slug: "/knowledge-center/lp-brf-09",
+    phase: "Days 30–60 — Pattern Formation",
+    title: "LP-BRF-09: How Operating Patterns Become Audit Evidence",
+    teaser: "By Day 60, your logs, DVIRs, dispatch records, and D&A testing activity have formed a pattern. Investigators don't read individual documents — they read patterns. This brief explains what your 60-day record needs to look like, and what common patterns signal to auditors.",
+    outcome: "Understand how operational patterns translate into audit evidence.",
+    readTime: "12-minute brief",
+    status: "published",
+  },
+  {
+    slug: "/knowledge-center/lp-brf-10",
+    phase: "Days 60–90 — Audit Exposure Window",
+    title: "LP-BRF-10: Preparation vs. Reconstruction: What Investigators See",
+    teaser: "There is a difference between a carrier that built its systems and one attempting to reconstruct them under scrutiny. Investigators can read that difference in the record — in date patterns, form consistency, and the presence or absence of contemporaneous documentation. This brief shows what each looks like.",
+    outcome: "Understand what audit-ready preparation looks like vs. reconstruction.",
+    readTime: "12-minute brief",
+    status: "published",
+  },
+  {
+    slug: "/knowledge-center/lp-brf-11",
+    phase: "Months 9–18 — New Entrant Review Period",
+    title: "LP-BRF-11: The New Entrant Review Period and What Triggers Scrutiny",
+    teaser: "The FMCSA New Entrant Safety Assurance Program examines every new carrier in the 12-month window after authority activates. Not every carrier gets a full audit — but every carrier is monitored. This brief explains what triggers an unannounced audit, what investigators examine, and how the first 90 days determine what they find.",
+    outcome: "Understand the review period and prepare your systems for what gets tested.",
+    readTime: "13-minute brief",
+    status: "published",
+  },
+];
+
 const BRIEFS = [
   {
     slug: "/knowledge-center/new-entrant-safety-audit-brief",
@@ -197,7 +245,7 @@ export default function KnowledgeCenterIndex() {
           {/* Stats row */}
           <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
             {[
-              ["6", "Briefs in this series"],
+              ["11", "Briefs published"],
               ["8", "Published articles"],
               ["49 CFR", "Primary regulation source"],
             ].map(([val, label]) => (
@@ -278,10 +326,10 @@ export default function KnowledgeCenterIndex() {
       <section style={{ padding: "0 1.5rem 4rem" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           {/* Section header + filter bar */}
-          <div style={{ paddingTop: "3rem", marginBottom: "1.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)", paddingBottom: "1.25rem" }}>
+          <div style={{ paddingTop: "3rem", marginBottom: "1.5rem", borderBottom: "1px solid rgba(13,27,48,0.10)", paddingBottom: "1.25rem" }}>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-              letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
+              letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--orange)",
               marginBottom: "1.25rem",
             }}>Published Articles</p>
 
@@ -301,23 +349,23 @@ export default function KnowledgeCenterIndex() {
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       padding: "0.45rem 0.85rem",
-                      background: isActive ? "#d4900a" : "transparent",
-                      color: isActive ? "#fff" : "rgba(26,18,8,0.50)",
-                      border: isActive ? "1px solid #d4900a" : "1px solid rgba(26,18,8,0.18)",
+                      background: isActive ? "var(--orange)" : "transparent",
+                      color: isActive ? "#fff" : "rgba(13,27,48,0.55)",
+                      border: isActive ? "1px solid var(--orange)" : "1px solid rgba(13,27,48,0.15)",
                       cursor: "pointer",
                       transition: "all 0.15s",
                       lineHeight: 1,
                     }}
                     onMouseEnter={e => {
                       if (!isActive) {
-                        e.currentTarget.style.color = "#d4900a";
-                        e.currentTarget.style.borderColor = "rgba(212,144,10,0.50)";
+                        e.currentTarget.style.color = "var(--orange)";
+                        e.currentTarget.style.borderColor = "rgba(176,125,16,0.60)";
                       }
                     }}
                     onMouseLeave={e => {
                       if (!isActive) {
-                        e.currentTarget.style.color = "rgba(26,18,8,0.50)";
-                        e.currentTarget.style.borderColor = "rgba(26,18,8,0.18)";
+                        e.currentTarget.style.color = "rgba(13,27,48,0.55)";
+                        e.currentTarget.style.borderColor = "rgba(13,27,48,0.15)";
                       }
                     }}
                   >
@@ -333,7 +381,7 @@ export default function KnowledgeCenterIndex() {
             </div>
 
             {/* Result count */}
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.10em", color: "rgba(26,18,8,0.35)", marginTop: "0.75rem", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.10em", color: "rgba(13,27,48,0.40)", marginTop: "0.75rem", textTransform: "uppercase" }}>
               {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"}{activeCategory !== "All" ? ` — ${activeCategory}` : ""}
             </p>
           </div>
@@ -341,24 +389,24 @@ export default function KnowledgeCenterIndex() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
             {filteredPosts.map((post, i) => (
               <a key={i} href={post.slug} style={{ display: "block", textDecoration: "none",
-                background: "#edeae2", padding: "1.5rem 2rem",
-                borderLeft: "3px solid #d4900a", transition: "background 0.2s",
+                background: "#F9F7F3", padding: "1.5rem 2rem",
+                borderLeft: "3px solid var(--orange)", transition: "background 0.2s",
               }}
-                onMouseEnter={e => e.currentTarget.style.background = "#e5e0d5"}
-                onMouseLeave={e => e.currentTarget.style.background = "#edeae2"}
+                onMouseEnter={e => e.currentTarget.style.background = "#EEE9E1"}
+                onMouseLeave={e => e.currentTarget.style.background = "#F9F7F3"}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#b87a20" }}>{post.code}</span>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(26,18,8,0.40)" }}>{post.category}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)" }}>{post.code}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.45)" }}>{post.category}</span>
                     </div>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "#1a1208", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(26,18,8,0.60)", lineHeight: 1.65 }}>{post.teaser}</p>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "var(--text)", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{post.teaser}</p>
                   </div>
                   <div style={{ flexShrink: 0, textAlign: "right" }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(26,18,8,0.40)", marginBottom: "0.3rem" }}>{post.readTime}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#b87a20" }}>{post.cfr}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.40)", marginBottom: "0.3rem" }}>{post.readTime}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "var(--orange)" }}>{post.cfr}</p>
                   </div>
                 </div>
               </a>
@@ -386,6 +434,46 @@ export default function KnowledgeCenterIndex() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             {BRIEFS.map((brief, i) => (
               <BriefCard key={i} brief={brief} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 90-DAY CLOCK SERIES ── */}
+      <section data-testid="kc-90day-series" style={{ padding: "5rem 1.5rem", background: "var(--bg-2)", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.762rem",
+            fontWeight: 700,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            color: "var(--text-subtle)",
+            marginBottom: "0.5rem",
+          }}>The 90-Day Clock Series</p>
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontWeight: 700,
+            fontSize: "1.35rem",
+            letterSpacing: "-0.015em",
+            color: "var(--text)",
+            marginBottom: "0.5rem",
+          }}>FMCSA Compliance Briefs — Day 1 Through Month 18</h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
+            color: "var(--text-muted)",
+            lineHeight: 1.75,
+            maxWidth: 560,
+            marginBottom: "2.5rem",
+            paddingBottom: "1.25rem",
+            borderBottom: "1px solid var(--border)",
+          }}>
+            A sequential briefing series that follows the compliance window from Day 1 authority activation through the 18-month New Entrant review. Each brief maps to a specific phase of the operational build.
+          </p>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {BRIEFS_90DAY.map((brief, i) => (
+              <BriefCard key={i} brief={brief} index={i + BRIEFS.length} />
             ))}
           </div>
         </div>
@@ -547,7 +635,7 @@ function BriefCard({ brief, index }) {
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: "#d4900a",
+                color: "var(--orange)",
                 textDecoration: "none",
                 borderBottom: "1px solid rgba(212,144,10,0.3)",
                 paddingBottom: "1px",

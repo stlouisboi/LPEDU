@@ -194,20 +194,37 @@ h3 { font-size: var(--text-xl); }
 
 /* ── Content Page: Warm Sepia — always light for Knowledge Center + Briefs ── */
 .content-page {
-  --bg:           #f4f0e8;   /* warm cream — page background          */
-  --bg-2:         #ede7d9;   /* warm sand — section / card fills      */
-  --bg-3:         #e4dccb;   /* deeper sand — hover / dividers        */
-  --text:         #1a0f00;   /* warm near-black — headlines + body    */
-  --text-muted:   #2d1f08;   /* warm dark brown — secondary body      */
-  --text-subtle:  #6b5030;   /* warm medium brown — captions, labels  */
-  --border:       rgba(90,60,20,0.14);   /* warm tan border            */
-  --border-gold:  rgba(180,130,60,0.35); /* gold accent border         */
-  --gold:         #c8860a;   /* slightly deeper gold for sepia        */
-  --orange:       #c8601a;   /* warm amber CTA                        */
-  --orange-hover: #b05518;   /* CTA hover                             */
+  --bg:           #F6F3EE;   /* warm ivory — main reading background  */
+  --bg-2:         #EDEAE3;   /* warm linen — banded section fills     */
+  --bg-3:         #E3DED4;   /* deeper warm — hover / dividers        */
+  --text:         #0D1B30;   /* deep navy — headlines                 */
+  --text-muted:   #1E3355;   /* rich navy — body copy                 */
+  --text-subtle:  #4A6070;   /* muted steel — labels, captions        */
+  --border:       rgba(13,27,48,0.10);   /* navy-tinted border         */
+  --border-gold:  rgba(180,130,60,0.30); /* gold accent border         */
+  --gold:         #B07D10;   /* LaunchPath gold                       */
+  --orange:       #B07D10;   /* gold as primary CTA accent            */
+  --orange-hover: #9A6C0C;   /* gold hover                            */
+  --orange-muted: rgba(176,125,16,0.10); /* muted gold tint            */
 }
 
-/* Heading color override for sepia warmth */
+/* Dark navy hero bands — briefs and KC index hero sections */
+.content-page [data-testid="article-hero"],
+.content-page [data-testid="kc-hero"] {
+  background: #0D1B30 !important;
+  --bg: #0D1B30;
+  --bg-2: #152038;
+  --bg-3: #1D2E52;
+  --text: #EEF3F8;
+  --text-muted: #C0CEDF;
+  --text-subtle: #7A98B8;
+  --border: rgba(255,255,255,0.10);
+  --orange: #C8860A;
+  --orange-hover: #E09A10;
+  --orange-muted: rgba(200,134,10,0.15);
+}
+
+/* Heading color override for library readability */
 .content-page h1,
 .content-page h2,
 .content-page h3,
