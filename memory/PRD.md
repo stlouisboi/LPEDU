@@ -115,6 +115,12 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 
 ---
 
+### Session 11 — KC Brief Series Rebuild + Bug Fixes — Mar 2026
+- **LP-BRF-07–11 rewritten** with user's exact three-voice spec (System/Operator/Wisdom) for each of the 5 90-Day Clock timeline phases
+- **Series navigation bar** linking all 5 briefs with active-state indicator; prev/next cross-links between briefs
+- **CTAs updated**: BRF-07 + BRF-10 → "INITIATE GROUND 0"; BRF-08 + BRF-09 + BRF-11 → "VIEW THE STANDARD"
+- **Bug fix**: Standards dropdown "Audit Domains" anchor (`#audit-domains`) was missing from `StandardsPage.jsx` — added `id="audit-domains"` div so the nav item scrolls to FMCSA Audit Domain Coverage table instead of top of page
+
 ### Session 10 — Gap Tracker + Hybrid Copy — Mar 2026
 - **Gap Tracker component** (`GapTracker` in `Ground0LessonPlayer.jsx`): maps G0-1–G0-5 assessment answers to 5 REACH pillar pass/fail states; shown on WAIT screen above email capture; action links for each failing pillar
 - **Assessment answer tracking**: `assessmentAnswers` state tracks per-lesson selections, persisted to localStorage, passed to completion screens for Gap Tracker computation
