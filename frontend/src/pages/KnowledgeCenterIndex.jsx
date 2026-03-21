@@ -127,6 +127,28 @@ const BRIEFS_90DAY = [
 
 const BRIEFS = [
   {
+    slug: "/case-studies",
+    phase: "Pattern Library — LP-DOC-005",
+    title: "Case Studies: How New Authorities End",
+    teaser: "Five anonymized FMCSA enforcement outcomes. Each case shows the carrier type, day of authority, what happened, what was missing, and the final outcome — Conditional, Revocation, or fine. Each maps to a specific compliance domain.",
+    outcome: "Recognize the operational patterns that produce audit failures before they appear in your operation.",
+    readTime: "5-minute reference",
+    status: "published",
+    packetHref: null,
+    packetCode: null,
+  },
+  {
+    slug: "/conditional-rating",
+    phase: "Compliance Response — LP-DOC-006",
+    title: "Conditional Safety Rating: What It Means and How to Upgrade",
+    teaser: "A Conditional rating is not a death sentence — it is a 45-day compliance clock. This guide covers what Conditional means in the FMCSA framework, how it differs from Satisfactory and Unsatisfactory, the five-step corrective action sequence, and when to handle it yourself versus when to bring in outside help.",
+    outcome: "Navigate the Conditional rating response process with a clear sequence and deadline awareness.",
+    readTime: "9-minute guide",
+    status: "published",
+    packetHref: null,
+    packetCode: null,
+  },
+  {
     slug: "/knowledge-center/new-entrant-safety-audit-brief",
     phase: "Ground 0 — New Entrant Program (18-month period)",
     title: "New Entrant Safety Audit: Ground 0 Brief",
@@ -592,6 +614,31 @@ export default function KnowledgeCenterIndex() {
             onMouseLeave={e => e.currentTarget.style.background = "var(--orange)"}
           >
             Run Diagnostic
+          </a>
+          <a
+            href="/compliance-gap-quiz"
+            data-testid="kc-gap-quiz-cta"
+            style={{
+              display: "inline-block",
+              background: "rgba(197,160,89,0.12)",
+              color: "var(--gold, #d4900a)",
+              border: "1px solid rgba(197,160,89,0.35)",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700,
+              fontSize: "var(--text-sm)",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              padding: "1rem 1.75rem",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              transition: "background 0.2s",
+              flexShrink: 0,
+              marginLeft: "0.75rem",
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = "rgba(197,160,89,0.22)"}
+            onMouseLeave={e => e.currentTarget.style.background = "rgba(197,160,89,0.12)"}
+          >
+            5-Question Gap Audit →
           </a>
         </div>
       </section>

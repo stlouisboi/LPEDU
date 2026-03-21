@@ -12,6 +12,8 @@ const FRAMEWORK_LINKS = [
       { label: "Audit Domains", href: "/standards#audit-domains" },
       { label: "16 Deadly Sins", href: "/standards/16-deadly-sins" },
       { label: "Compliance System", href: "/standards" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Conditional Rating", href: "/conditional-rating" },
     ],
   },
   { label: "Compliance Library", href: "/compliance-library" },
@@ -21,6 +23,7 @@ const FRAMEWORK_LINKS = [
     subItems: [
       { label: "TCO Calculator", href: "/tools/tco-calculator" },
       { label: "Load Analyzer", href: "/tools/load-analyzer" },
+      { label: "Gap Audit", href: "/compliance-gap-quiz" },
     ],
   },
   { label: "LaunchPath Standard", href: "/launchpath-standard" },

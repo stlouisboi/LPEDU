@@ -547,7 +547,20 @@ export default function REACHAssessmentPage() {
   };
 
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF", position: "relative" }}>
+      {/* Dot-grid background */}
+      <div style={{
+        position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
+        backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.10) 1px, transparent 1px)",
+        backgroundSize: "36px 36px", opacity: 0.30,
+      }} />
+      <style>{`
+        @keyframes lp-sweep { 0%{transform:translateX(-100%);opacity:.4} 100%{transform:translateX(300%);opacity:0} }
+        .lp-scan-btn { position:relative; overflow:hidden; }
+        .lp-scan-btn::after { content:""; position:absolute; top:0; left:0; width:35%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent); transform:translateX(-100%); }
+        .lp-scan-btn:hover::after { animation:lp-sweep .55s ease-out forwards; }
+        @keyframes blink-cur { 0%,100%{opacity:1} 50%{opacity:0} }
+      `}</style>
       <Navbar />
 
       {/* ── INTRO — full clinical diagnostic section ─── */}
@@ -557,7 +570,21 @@ export default function REACHAssessmentPage() {
 
       {/* ── QUESTIONS ─────────────────────────────────── */}
       {phase === "questions" && currentQ < 14 && (
-        <div style={{ ...wrap, paddingTop: "100px", paddingBottom: "80px" }}>
+        <div style={{ ...wrap, paddingTop: "100px", paddingBottom: "80px", position: "relative", zIndex: 1 }}>
+          {/* Diagnostic terminal header */}
+          <div style={{
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            marginBottom: "2rem", paddingBottom: "0.75rem",
+            borderBottom: "1px solid rgba(212,144,10,0.12)",
+            flexWrap: "wrap", gap: "0.5rem",
+          }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)" }}>
+              REACH_DIAGNOSTIC · LP-MOD-REACH · Q{currentQ + 1}/14
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.22)" }}>
+              {new Date().toISOString().replace("T"," ").substring(0,19)} UTC
+            </p>
+          </div>
           {/* Category progress */}
           <div style={{ display: "flex", gap: "0.5rem", marginBottom: "3rem", alignItems: "center" }}>
             {CATEGORIES.map((c, i) => (
@@ -694,6 +721,7 @@ export default function REACHAssessmentPage() {
           <button
             data-testid="reach-open-submit"
             onClick={handleOpenSubmit}
+            className="lp-scan-btn"
             style={{
               minHeight: 52, background: "#d4900a", color: "#0b1628", border: "none",
               fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.1rem",
@@ -1004,12 +1032,12 @@ export default function REACHAssessmentPage() {
                       : "Your assessment indicates areas that should be strengthened before implementation begins. Ground 0 provides the preparation framework."}
                   </p>
                   <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
-                    <a href="/16-deadly-sins" data-testid="cta-wait-sins"
+                    <a href="/16-deadly-sins" data-testid="cta-wait-sins" className="lp-scan-btn"
                       style={{ display: "inline-block", background: "#F59E0B", color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", transition: "background 0.2s" }}
                       onMouseEnter={e => e.currentTarget.style.background = "#f7b731"}
                       onMouseLeave={e => e.currentTarget.style.background = "#F59E0B"}
                     >Review the 16 Deadly Sins →</a>
-                    <a href="/ground-0-briefing" data-testid="cta-wait-ground0"
+                    <a href="/ground-0-briefing" data-testid="cta-wait-ground0" className="lp-scan-btn"
                       style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.20)", transition: "all 0.2s" }}
                       onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
                       onMouseLeave={e => e.currentTarget.style.background = "transparent"}
@@ -1094,20 +1122,13 @@ export default function REACHAssessmentPage() {
                     data-testid="reach-email-submit"
                     type="submit"
                     disabled={loading}
+                    className="lp-scan-btn"
                     style={{
-                      minHeight: 52,
-                      background: "#d4900a",
-                      color: "#0b1628",
-                      border: "none",
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "1rem",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      cursor: loading ? "wait" : "pointer",
-                      padding: "1rem",
-                      opacity: loading ? 0.8 : 1,
-                      transition: "background 0.2s",
+                      minHeight: 52, background: "#d4900a", color: "#0b1628", border: "none",
+                      fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1rem",
+                      letterSpacing: "0.08em", textTransform: "uppercase",
+                      cursor: loading ? "wait" : "pointer", padding: "1rem",
+                      opacity: loading ? 0.8 : 1, transition: "background 0.2s",
                     }}
                     onMouseEnter={(e) => { if (!loading) e.currentTarget.style.background = "#D4B87A"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.background = "#d4900a"; }}

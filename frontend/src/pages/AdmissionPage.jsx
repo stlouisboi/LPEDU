@@ -117,10 +117,23 @@ export default function AdmissionPage() {
   };
 
   return (
-    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", position: "relative" }}>
+      {/* dot-grid background */}
+      <div style={{
+        position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
+        backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.10) 1px, transparent 1px)",
+        backgroundSize: "36px 36px", opacity: 0.35,
+      }} />
+      <style>{`
+        @keyframes lp-sweep { 0%{transform:translateX(-100%);opacity:.5} 100%{transform:translateX(300%);opacity:0} }
+        .lp-scan-btn { position:relative; overflow:hidden; }
+        .lp-scan-btn::after { content:""; position:absolute; top:0; left:0; width:35%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent); transform:translateX(-100%); }
+        .lp-scan-btn:hover::after { animation:lp-sweep .55s ease-out forwards; }
+        .adm-input:focus { border-color: rgba(212,144,10,0.55) !important; }
+      `}</style>
       <Navbar />
 
-      <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px" }}>
+      <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px", position: "relative", zIndex: 1 }}>
 
         {/* Back link */}
         <Link
@@ -200,6 +213,34 @@ export default function AdmissionPage() {
 
         <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: "2.5rem" }} />
 
+        {/* What happens next trust strip */}
+        <div style={{
+          background: "rgba(197,160,89,0.04)",
+          border: "1px solid rgba(197,160,89,0.12)",
+          padding: "1.25rem 1.5rem",
+          marginBottom: "2.5rem",
+          display: "flex", flexWrap: "wrap", gap: "0", position: "relative", overflow: "hidden",
+        }}>
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "rgba(197,160,89,0.25)" }} />
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", width: "100%", marginBottom: "0.875rem" }}>WHAT HAPPENS NEXT</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem", width: "100%" }}>
+            {[
+              { n: "01", t: "Request reviewed", d: "Within 24–48 hours" },
+              { n: "02", t: "Admission decision sent", d: "Via email" },
+              { n: "03", t: "Cohort seat secured", d: "Payment confirms placement" },
+              { n: "04", t: "Orientation begins", d: "Ground 0 + Module 1 unlock" },
+            ].map(s => (
+              <div key={s.n} style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start", flex: "1 1 160px" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", fontWeight: 700, color: "rgba(212,144,10,0.45)", letterSpacing: "0.1em", flexShrink: 0, marginTop: "0.1rem" }}>{s.n}</span>
+                <div>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.810rem", fontWeight: 600, color: "rgba(255,255,255,0.70)", marginBottom: "0.1rem" }}>{s.t}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.32)" }}>{s.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Success state */}
         {state === "success" ? (
           <div data-testid="admission-success">
@@ -249,6 +290,7 @@ export default function AdmissionPage() {
               data-testid="proceed-to-payment-btn"
               onClick={handleProceedToPayment}
               disabled={checkoutLoading}
+              className="lp-scan-btn"
               style={{
                 minHeight: 54,
                 background: "#d4900a",
@@ -452,6 +494,7 @@ export default function AdmissionPage() {
                 type="submit"
                 data-testid="admission-submit-btn"
                 disabled={state === "loading" || !isValid}
+                className="lp-scan-btn"
                 style={{
                   minHeight: 52,
                   background: "#d4900a",

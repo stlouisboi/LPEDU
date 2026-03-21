@@ -143,7 +143,11 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)
 
-### Session 17 — Institutional OS Visual Layer — Feb 2026
+### Session 18 — Navigation + REACH + Admission Enhancements — Feb 2026
+- **Navbar**: Standards dropdown now includes Case Studies + Conditional Rating; Tools dropdown now includes Gap Audit — all three previously orphaned pages now discoverable
+- **Knowledge Center index**: Case Studies and Conditional Rating added as BRIEFS cards; "5-Question Gap Audit →" secondary CTA added next to the diagnostic CTA
+- **REACH Assessment**: dot-grid background, `REACH_DIAGNOSTIC · LP-MOD-REACH · Q{n}/14` terminal header with live UTC clock, scan-line on all CTAs (open-text submit, email submit, WAIT result CTAs)
+- **Admission Page**: dot-grid background, scan-line on both submit buttons (form submit + proceed-to-payment), "WHAT HAPPENS NEXT" trust strip (01 Review → 02 Decision → 03 Seat secured → 04 Orientation) above the form
 - **Hero blueprint grid**: Faint gold dot-grid overlay (`radial-gradient`, 36px spacing, 7% opacity) on the homepage hero — adds depth without changing layout
 - **Hero sweep**: Single-pass horizontal scan line on page load (CSS keyframe, 2.2s, one-shot)
 - **HUD stats strip** (`LaunchPathStandardPage`): Numbers count up from 0 on scroll-enter via `useCountUp` hook (IntersectionObserver + rAF ease-out cubic)
