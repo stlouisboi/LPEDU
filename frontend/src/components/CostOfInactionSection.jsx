@@ -15,7 +15,8 @@ export default function CostOfInactionSection() {
       <section
         data-testid="cost-of-inaction-section"
         style={{
-          background: "#080d14",
+          position: "relative",
+          background: `linear-gradient(to right, rgba(8,13,20,0.95) 40%, rgba(8,13,20,0.78) 100%), url("https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/ft9osegn_hero-empty-dock.png") center 60%/cover no-repeat`,
           borderTop: "1px solid rgba(255,255,255,0.06)",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
           padding: "6rem 1.5rem",

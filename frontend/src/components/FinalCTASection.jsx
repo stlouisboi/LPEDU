@@ -4,7 +4,8 @@ import FadeIn from "./FadeIn";
 export default function FinalCTASection() {
   return (
     <section data-testid="final-cta-section" style={{
-      background: "#060d19",
+      position: "relative",
+      background: `linear-gradient(to bottom, rgba(6,13,25,0.88) 0%, rgba(6,13,25,0.72) 50%, rgba(6,13,25,0.92) 100%), url("https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/qfvjxi1h_hero-boots-asphalt.png") center 40%/cover no-repeat`,
       padding: "8rem 1.5rem",
       borderTop: "2px solid rgba(212,144,10,0.35)",
       borderBottom: "1px solid rgba(212,144,10,0.15)",
