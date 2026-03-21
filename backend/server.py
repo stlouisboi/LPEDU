@@ -691,18 +691,6 @@ async def get_admission_payment_status(session_id: str):
     }
 
 
-@api_router.post("/webhook/stripe")
-@api_router.post("/stripe-webhook")
-async def stripe_webhook(request: Request):
-    if not STRIPE_API_KEY:
-        raise HTTPException(status_code=503, detail="Payment service not configured.")
-    body = await request.body()
-    signature = request.headers.get("Stripe-Signature", "")
-    try:
-        if not STRIPE_WEBHOOK_SECRET:
-            raise HTTPException(status_code=503, detail="Webhook secret not configured.")
-        event = stripe_lib.Webhook.construct_event(body, signature, STRIPE_WEBHOOK_SECRET)
-
 async def _require_coach(request: Request):
     session_token = request.cookies.get("session_token")
     if not session_token:
@@ -1064,6 +1052,7 @@ async def get_portal_checkout_status(session_id: str, request: Request):
     return {"status": session.status, "payment_status": session.payment_status}
 
 @api_router.post("/webhook/stripe")
+@api_router.post("/stripe-webhook")
 async def stripe_webhook(request: Request):
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=503, detail="Payment service not configured.")
@@ -1318,6 +1307,7 @@ class LoginRequest(BaseModel):
     email: str
     password: str
 
+COACH_EMAIL = os.environ.get("COACH_EMAIL", "vince@launchpathedu.com")
 COACH_PASSWORD = os.environ.get("COACH_PASSWORD", "safestart2024!")
 
 async def _create_user_session(user_id: str, response: Response) -> str:
