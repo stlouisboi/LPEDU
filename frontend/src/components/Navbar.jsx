@@ -15,6 +15,14 @@ const FRAMEWORK_LINKS = [
     ],
   },
   { label: "Compliance Library", href: "/compliance-library" },
+  {
+    label: "Tools",
+    href: "/tools",
+    subItems: [
+      { label: "TCO Calculator", href: "/tools/tco-calculator" },
+      { label: "Load Analyzer", href: "/tools/load-analyzer" },
+    ],
+  },
   { label: "LaunchPath Standard", href: "/launchpath-standard" },
 ];
 
