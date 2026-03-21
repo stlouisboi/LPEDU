@@ -692,34 +692,16 @@ async def get_admission_payment_status(session_id: str):
 
 
 @api_router.post("/webhook/stripe")
+@api_router.post("/stripe-webhook")
 async def stripe_webhook(request: Request):
-    body = await request.body()
-    sig = request.headers.get("Stripe-Signature", "")
     if not STRIPE_API_KEY:
-        return {"ok": True}
+        raise HTTPException(status_code=503, detail="Payment service not configured.")
+    body = await request.body()
+    signature = request.headers.get("Stripe-Signature", "")
     try:
-        stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url="")
-        event = await stripe.handle_webhook(body, sig)
-        if event.payment_status == "paid":
-            session_id = event.session_id
-            tx = await db.payment_transactions.find_one({"session_id": session_id}, {"_id": 0})
-            if tx and tx.get("payment_status") != "paid":
-                admission_id = tx.get("admission_id")
-                if admission_id:
-                    await db.admission_requests.update_one(
-                        {"_id": ObjectId(admission_id)},
-                        {"$set": {"status": "approved", "approved_at": datetime.now(timezone.utc).isoformat()}},
-                    )
-                await db.payment_transactions.update_one(
-                    {"session_id": session_id},
-                    {"$set": {"payment_status": "paid", "status": "completed", "completed_at": datetime.now(timezone.utc).isoformat()}},
-                )
-    except Exception as exc:
-        logger.error(f"Stripe webhook error: {exc}")
-    return {"ok": True}
-
-
-COACH_EMAIL = "vince@launchpathedu.com"
+        if not STRIPE_WEBHOOK_SECRET:
+            raise HTTPException(status_code=503, detail="Webhook secret not configured.")
+        event = stripe_lib.Webhook.construct_event(body, signature, STRIPE_WEBHOOK_SECRET)
 
 async def _require_coach(request: Request):
     session_token = request.cookies.get("session_token")
@@ -1088,10 +1070,9 @@ async def stripe_webhook(request: Request):
     body = await request.body()
     signature = request.headers.get("Stripe-Signature", "")
     try:
-        if STRIPE_WEBHOOK_SECRET:
-            event = stripe_lib.Webhook.construct_event(body, signature, STRIPE_WEBHOOK_SECRET)
-        else:
-            event = stripe_lib.Event.construct_from(json.loads(body), stripe_lib.api_key)
+        if not STRIPE_WEBHOOK_SECRET:
+            raise HTTPException(status_code=503, detail="Webhook secret not configured.")
+        event = stripe_lib.Webhook.construct_event(body, signature, STRIPE_WEBHOOK_SECRET)
 
         if event.type == "checkout.session.completed":
             checkout_session = event.data.object
