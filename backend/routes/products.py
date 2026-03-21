@@ -1,14 +1,15 @@
-"""Product catalog, checkout, download, and admin file management."""
+"""Product catalog, checkout, delivery, download, and admin file management."""
 import asyncio
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Optional
 
 import stripe as stripe_lib
 import httpx
-from fastapi import APIRouter, HTTPException, Request, UploadFile, File, Form, Depends
+from fastapi import APIRouter, HTTPException, Request, UploadFile, File
 from fastapi.responses import Response as FastAPIResponse
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
+from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest as StripeCheckoutRequest
 
 from core import (
     db, logger, STRIPE_API_KEY, FRONTEND_URL,
@@ -37,22 +38,22 @@ PRODUCTS = {
 
 # ── Upsell chain ─────────────────────────────────────────────────────────────
 UPSELL = {
-    "LP-RES-001": {"sku": "LP-RES-006", "label": "Complete Compliance Library",          "price": "$197", "pitch": "All five resources in one bundle — $80 off individual pricing."},
-    "LP-RES-002": {"sku": "LP-RES-006", "label": "Complete Compliance Library",          "price": "$197", "pitch": "All five resources in one bundle — $80 off individual pricing."},
-    "LP-RES-003": {"sku": "LP-RES-006", "label": "Complete Compliance Library",          "price": "$197", "pitch": "All five resources in one bundle — $80 off individual pricing."},
-    "LP-RES-004": {"sku": "LP-RES-006", "label": "Complete Compliance Library",          "price": "$197", "pitch": "All five resources in one bundle — $80 off individual pricing."},
-    "LP-RES-005": {"sku": "LP-RES-006", "label": "Complete Compliance Library",          "price": "$197", "pitch": "All five resources in one bundle — $80 off individual pricing."},
-    "LP-RES-006": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Add the five domain packets, implementation calendar, and folder architecture."},
-    "LP-PKT-001": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Get all five domain packets plus the implementation structure — one bundle."},
-    "LP-PKT-002": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Get all five domain packets plus the implementation structure — one bundle."},
-    "LP-PKT-003": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Get all five domain packets plus the implementation structure — one bundle."},
-    "LP-PKT-004": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Get all five domain packets plus the implementation structure — one bundle."},
-    "LP-PKT-005": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Get all five domain packets plus the implementation structure — one bundle."},
-    "LP-BDL-001": {"sku": "cohort",     "label": "LaunchPath Standard Cohort",           "price": "$2,500", "pitch": "90-day guided implementation with coach verification. Your next step."},
+    "LP-RES-001": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Your self-audit identified exposure. The Document System Bundle installs the infrastructure to close it."},
+    "LP-RES-002": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "DQ files are one of five audit domains. Cover the rest."},
+    "LP-RES-003": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You have the first 30 days covered. Now build the full system."},
+    "LP-RES-004": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You know what the investigator will ask for. Now make sure you have it."},
+    "LP-RES-005": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You have the architecture. Now install the documents."},
+    "LP-RES-006": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You have all five standalone resources. The Bundle adds the unified system and 0-30-90 installation guide."},
+    "LP-PKT-001": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "This packet covers one domain. You have 1 of 5 covered. Complete the system."},
+    "LP-PKT-002": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "This packet covers one domain. You have 1 of 5 covered. Complete the system."},
+    "LP-PKT-003": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "This packet covers one domain. You have 1 of 5 covered. Complete the system."},
+    "LP-PKT-004": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "This packet covers one domain. You have 1 of 5 covered. Complete the system."},
+    "LP-PKT-005": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "This packet covers one domain. You have 1 of 5 covered. Complete the system."},
+    "LP-BDL-001": {"sku": "cohort",     "label": "LaunchPath Standard Cohort",           "price": "$2,500", "pitch": "Your document system is installed. The LaunchPath Standard adds guided implementation and Station Custodian verification."},
 }
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# ── Email helpers ──────────────────────────────────────────────────────────────
 async def _record_buyer_in_mailerlite(email: str, name: str, sku: str, product_name: str):
     if not MAILERLITE_API_TOKEN:
         return
@@ -75,14 +76,11 @@ async def _record_buyer_in_mailerlite(email: str, name: str, sku: str, product_n
 
 def _build_download_email(name: str, product_name: str, sku: str, session_id: str) -> tuple:
     first = name.strip().split()[0] if name.strip() else "Operator"
-    download_url = f"{FRONTEND_URL}/products/confirmed?session_id={session_id}&sku={sku}"
+    confirmed_url = f"{FRONTEND_URL}/products/confirmed?session_id={session_id}"
     upsell = UPSELL.get(sku)
     upsell_block = ""
     if upsell:
-        if upsell["sku"] == "cohort":
-            upsell_href = f"{FRONTEND_URL}/admission"
-        else:
-            upsell_href = f"{FRONTEND_URL}/compliance-library"
+        upsell_href = f"{FRONTEND_URL}/admission" if upsell["sku"] == "cohort" else f"{FRONTEND_URL}/compliance-library"
         upsell_block = f"""
         <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:32px;padding-top:28px;">
           <p style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(197,160,89,0.60);margin:0 0 8px;">NEXT STEP</p>
@@ -90,99 +88,116 @@ def _build_download_email(name: str, product_name: str, sku: str, session_id: st
           <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 20px;">{upsell['pitch']}</p>
           <a href="{upsell_href}" style="display:inline-block;background:transparent;color:#d4900a;border:1px solid rgba(212,144,10,0.45);font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:12px 24px;text-decoration:none;">View {upsell['label']} →</a>
         </div>"""
-    subject = f"Your download: {product_name}"
+    subject = f"Your LaunchPath {product_name} — Download Ready"
     html = f"""
     <div style="font-family:'Inter',sans-serif;max-width:560px;margin:0 auto;background:#0D1B30;color:#f4f7fb;padding:40px 36px;border-top:3px solid #d4900a;">
-      <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#d4900a;margin:0 0 20px;">LaunchPath — Purchase Confirmed</p>
+      <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#d4900a;margin:0 0 20px;">LaunchPath Transportation EDU</p>
       <h2 style="font-size:22px;font-weight:700;color:#fff;margin:0 0 6px;">{product_name}</h2>
-      <p style="font-size:13px;color:rgba(255,255,255,0.45);margin:0 0 28px;">{sku}</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);margin:0 0 28px;">{sku} — Purchase Confirmed</p>
       <p style="font-size:15px;color:rgba(255,255,255,0.70);line-height:1.75;margin:0 0 24px;">
-        {first}, your purchase is confirmed. Use the link below to access your download. This link is permanent — bookmark it or return to it any time.
+        {first}, your purchase is confirmed. Click below to access your download page. The link is permanent — bookmark it or return any time.
       </p>
-      <a href="{download_url}" style="display:inline-block;background:#d4900a;color:#0b1628;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:14px 28px;text-decoration:none;border-radius:2px;">Download {product_name} →</a>
+      <a href="{confirmed_url}" style="display:inline-block;background:#d4900a;color:#0b1628;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:14px 28px;text-decoration:none;border-radius:2px;">Access Your Download →</a>
       {upsell_block}
-      <p style="font-size:11px;color:rgba(255,255,255,0.22);margin:32px 0 0;line-height:1.6;">LaunchPath Transportation EDU · Accuracy Over Hype. Systems Over Shortcuts.</p>
+      <p style="font-size:11px;color:rgba(255,255,255,0.22);margin:32px 0 0;line-height:1.6;">Questions? Contact support@launchpathedu.com<br>LaunchPath Transportation EDU · Accuracy Over Hype. Systems Over Shortcuts.</p>
     </div>"""
     return subject, html
 
 
-# ── Routes ────────────────────────────────────────────────────────────────────
+# ── Checkout ──────────────────────────────────────────────────────────────────
 class ProductCheckoutRequest(BaseModel):
-    sku: str
-    origin_url: str
-    buyer_name: Optional[str] = None
-    buyer_email: Optional[EmailStr] = None
+    product_sku: str
+    origin_url: Optional[str] = None
 
 
 @router.post("/products/checkout")
-async def create_product_checkout(data: ProductCheckoutRequest):
+async def create_product_checkout(data: ProductCheckoutRequest, request: Request):
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=503, detail="Payment service not configured.")
-    product = PRODUCTS.get(data.sku)
+    product = PRODUCTS.get(data.product_sku)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found.")
-    success_url = f"{data.origin_url}/products/confirmed?session_id={{CHECKOUT_SESSION_ID}}&sku={data.sku}"
-    cancel_url = f"{data.origin_url}/compliance-library"
-    session = await asyncio.to_thread(
-        stripe_lib.checkout.Session.create,
-        payment_method_types=["card"],
-        line_items=[{
-            "price_data": {
-                "currency": "usd",
-                "product_data": {"name": product["name"], "description": f"LaunchPath {data.sku}"},
-                "unit_amount": product["price_cents"],
-            },
-            "quantity": 1,
-        }],
-        mode="payment",
+    origin = (data.origin_url or FRONTEND_URL).rstrip("/")
+    success_url = f"{origin}/products/confirmed?session_id={{CHECKOUT_SESSION_ID}}"
+    cancel_url = f"{origin}/compliance-library"
+    host_url = str(request.base_url)
+    stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
+    req = StripeCheckoutRequest(
+        amount=product["price_cents"] / 100.0,
+        currency="usd",
         success_url=success_url,
         cancel_url=cancel_url,
-        metadata={"product_type": "resource", "sku": data.sku, "product_name": product["name"]},
-        customer_creation="always",
+        metadata={"product_type": "resource", "sku": data.product_sku, "product_name": product["name"]},
     )
+    session = await stripe.create_checkout_session(req)
     await db.product_purchases.insert_one({
-        "session_id": session.id, "sku": data.sku,
+        "session_id": session.session_id, "sku": data.product_sku,
         "product_name": product["name"], "amount_cents": product["price_cents"],
-        "payment_status": "pending", "created_at": datetime.now(timezone.utc).isoformat(),
+        "payment_status": "pending", "download_count": 0,
+        "created_at": datetime.now(timezone.utc).isoformat(),
     })
-    return {"url": session.url, "session_id": session.id}
+    return {"url": session.url, "session_id": session.session_id}
 
 
+# ── Verify (3-state) ──────────────────────────────────────────────────────────
 @router.get("/products/verify")
-async def verify_product_purchase(session_id: str, sku: str):
-    """Check payment status — called by the confirmation page."""
+async def verify_product_purchase(session_id: str):
+    """3-state verify: confirmed | pending | failed"""
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=503, detail="Payment service not configured.")
-    purchase = await db.product_purchases.find_one({"session_id": session_id, "sku": sku}, {"_id": 0})
-    if not purchase:
-        raise HTTPException(status_code=404, detail="Purchase not found.")
-    if purchase.get("payment_status") == "paid":
-        product = PRODUCTS.get(sku, {})
-        upsell = UPSELL.get(sku)
-        return {"paid": True, "product_name": purchase["product_name"], "sku": sku, "upsell": upsell, "product": product}
-    # Re-check Stripe live status
-    session = await asyncio.to_thread(stripe_lib.checkout.Session.retrieve, session_id)
-    if session.payment_status == "paid":
-        buyer_email = session.customer_details.email if session.customer_details else None
-        buyer_name = session.customer_details.name if session.customer_details else "Operator"
-        await db.product_purchases.update_one(
-            {"session_id": session_id, "sku": sku},
-            {"$set": {"payment_status": "paid", "buyer_email": buyer_email, "buyer_name": buyer_name, "paid_at": datetime.now(timezone.utc).isoformat()}},
-        )
-        product = PRODUCTS.get(sku, {})
-        upsell = UPSELL.get(sku)
-        return {"paid": True, "product_name": purchase["product_name"], "sku": sku, "upsell": upsell, "product": product}
-    return {"paid": False, "product_name": purchase["product_name"], "sku": sku}
 
-
-@router.get("/products/{sku}/download")
-async def download_product(sku: str, session_id: str):
-    """Verify purchase and stream the PDF file."""
+    # State 1 — CONFIRMED: purchase record exists and is paid
     purchase = await db.product_purchases.find_one(
-        {"session_id": session_id, "sku": sku, "payment_status": "paid"}, {"_id": 0}
+        {"session_id": session_id, "payment_status": "paid"}, {"_id": 0}
     )
-    if not purchase:
-        raise HTTPException(status_code=403, detail="Purchase not verified.")
+    if purchase:
+        sku = purchase["sku"]
+        # Generate time-limited download token (60 min expiry)
+        token = str(uuid.uuid4())
+        expires_at = datetime.now(timezone.utc) + timedelta(hours=1)
+        await db.product_download_tokens.insert_one({
+            "token": token, "session_id": session_id, "sku": sku,
+            "expires_at": expires_at.isoformat(),
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        })
+        await db.product_purchases.update_one(
+            {"session_id": session_id}, {"$inc": {"download_count": 1}}
+        )
+        upsell = UPSELL.get(sku)
+        return {
+            "status": "confirmed",
+            "product_sku": sku,
+            "product_name": purchase["product_name"],
+            "download_token": token,
+            "upsell": upsell,
+        }
+
+    # State 2 — PENDING: Stripe says paid but webhook hasn't written the record yet
+    try:
+        stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url="")
+        checkout_status = await stripe.get_checkout_status(session_id)
+        if checkout_status.payment_status == "paid":
+            return {"status": "pending"}
+    except Exception as exc:
+        logger.warning(f"Stripe session lookup failed for {session_id}: {exc}")
+
+    # State 3 — FAILED
+    return {"status": "failed"}
+
+
+# ── Token-gated download ──────────────────────────────────────────────────────
+@router.get("/products/download")
+async def download_by_token(token: str):
+    """Time-limited, token-gated file download."""
+    token_rec = await db.product_download_tokens.find_one({"token": token}, {"_id": 0})
+    if not token_rec:
+        raise HTTPException(status_code=403, detail="Invalid or expired download link.")
+    expires_at = datetime.fromisoformat(token_rec["expires_at"])
+    if expires_at.tzinfo is None:
+        expires_at = expires_at.replace(tzinfo=timezone.utc)
+    if expires_at < datetime.now(timezone.utc):
+        raise HTTPException(status_code=403, detail="Download link expired. Return to your confirmation page for a fresh link.")
+    sku = token_rec["sku"]
     file_rec = await db.product_files.find_one({"sku": sku}, {"_id": 0})
     if not file_rec:
         raise HTTPException(status_code=404, detail="File not yet available. Contact support@launchpathedu.com.")
@@ -191,12 +206,8 @@ async def download_product(sku: str, session_id: str):
             None, lambda: storage_get(file_rec["storage_path"])
         )
     except Exception as e:
-        logger.error(f"Product download storage error: {e}")
-        raise HTTPException(status_code=502, detail="Could not retrieve file.")
-    await db.product_purchases.update_one(
-        {"session_id": session_id, "sku": sku},
-        {"$inc": {"download_count": 1}, "$set": {"last_downloaded_at": datetime.now(timezone.utc).isoformat()}},
-    )
+        logger.error(f"Download storage error for {sku}: {e}")
+        raise HTTPException(status_code=502, detail="Could not retrieve file. Please try again or contact support.")
     safe_name = file_rec.get("filename", f"{sku}.pdf").replace('"', '')
     return FastAPIResponse(
         content=data, media_type="application/pdf",
@@ -204,8 +215,21 @@ async def download_product(sku: str, session_id: str):
     )
 
 
-# ── Admin: upload product file ────────────────────────────────────────────────
-@router.post("/admin/products/{sku}/file")
+# ── Admin: list files ─────────────────────────────────────────────────────────
+@router.get("/admin/products/files")
+async def list_product_files(request: Request):
+    await _require_coach(request)
+    files = await db.product_files.find({}, {"_id": 0}).to_list(50)
+    uploaded_skus = {f["sku"] for f in files}
+    return {
+        "uploaded": files,
+        "missing": [sku for sku in PRODUCTS if sku not in uploaded_skus],
+        "products": PRODUCTS,
+    }
+
+
+# ── Admin: upload file ────────────────────────────────────────────────────────
+@router.post("/admin/products/{sku}/upload")
 async def upload_product_file(sku: str, request: Request, file: UploadFile = File(...)):
     await _require_coach(request)
     if sku not in PRODUCTS:
@@ -221,7 +245,7 @@ async def upload_product_file(sku: str, request: Request, file: UploadFile = Fil
             None, lambda: storage_put(path, data, "application/pdf")
         )
     except Exception as e:
-        logger.error(f"Product file upload failed: {e}")
+        logger.error(f"Product file upload failed for {sku}: {e}")
         raise HTTPException(status_code=502, detail="Storage upload failed.")
     rec = {
         "sku": sku,
@@ -231,44 +255,54 @@ async def upload_product_file(sku: str, request: Request, file: UploadFile = Fil
         "updated_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.product_files.replace_one({"sku": sku}, rec, upsert=True)
-    return {"ok": True, "sku": sku, "filename": file.filename}
+    return {"ok": True, "sku": sku, "filename": file.filename, "size": len(data), "updated_at": rec["updated_at"]}
 
 
-@router.get("/admin/products/files")
-async def list_product_files(coach_id: str = Depends(_require_coach)):
-    files = await db.product_files.find({}, {"_id": 0}).to_list(50)
-    uploaded_skus = {f["sku"] for f in files}
-    return {
-        "uploaded": files,
-        "missing": [sku for sku in PRODUCTS if sku not in uploaded_skus],
-        "products": PRODUCTS,
-    }
+# ── Admin: test download ──────────────────────────────────────────────────────
+@router.get("/admin/products/{sku}/test-download")
+async def admin_test_download(sku: str, request: Request):
+    """Admin-only: generate a test download token for any SKU (bypasses purchase check)."""
+    await _require_coach(request)
+    if sku not in PRODUCTS:
+        raise HTTPException(status_code=404, detail="Unknown product SKU.")
+    file_rec = await db.product_files.find_one({"sku": sku}, {"_id": 0})
+    if not file_rec:
+        raise HTTPException(status_code=404, detail="No file uploaded for this SKU yet.")
+    token = str(uuid.uuid4())
+    expires_at = datetime.now(timezone.utc) + timedelta(hours=1)
+    await db.product_download_tokens.insert_one({
+        "token": token, "session_id": "admin_test", "sku": sku,
+        "expires_at": expires_at.isoformat(),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "is_admin_test": True,
+    })
+    return {"ok": True, "token": token, "sku": sku}
 
 
 # ── Webhook helper (called from payments.py webhook handler) ──────────────────
 async def handle_product_purchase_webhook(checkout_session):
-    """Called from the main Stripe webhook when product_type == 'resource'."""
+    """Called from the Stripe webhook when product_type == 'resource'."""
     sku = checkout_session.metadata.get("sku")
     product_name = checkout_session.metadata.get("product_name", "")
     buyer_email = checkout_session.customer_details.email if checkout_session.customer_details else None
     buyer_name = checkout_session.customer_details.name if checkout_session.customer_details else "Operator"
     if not buyer_email or not sku:
+        logger.warning(f"Product webhook: missing data — sku={sku}, email={buyer_email}")
         return
     await db.product_purchases.update_one(
         {"session_id": checkout_session.id},
         {"$set": {
-            "payment_status": "paid", "buyer_email": buyer_email, "buyer_name": buyer_name,
+            "payment_status": "paid", "status": "active",
+            "buyer_email": buyer_email, "buyer_name": buyer_name,
             "sku": sku, "product_name": product_name,
+            "download_count": 0,
             "paid_at": datetime.now(timezone.utc).isoformat(),
         }},
         upsert=True,
     )
-    # MailerLite
     asyncio.create_task(_record_buyer_in_mailerlite(buyer_email, buyer_name, sku, product_name))
-    # Download email
     subject, html = _build_download_email(buyer_name, product_name, sku, checkout_session.id)
     asyncio.create_task(send_mailersend_email(buyer_email, buyer_name, subject, html, reply_to=PAYMENT_EMAIL))
-    # Coach notification
     amount = getattr(checkout_session, "amount_total", None)
     amount_str = f"${amount/100:,.0f}" if amount else PRODUCTS.get(sku, {}).get("price", "")
     notify_html = f"""<div style="font-family:'Inter',sans-serif;max-width:560px;background:#0D1B30;color:#f4f7fb;padding:40px 36px;border-top:3px solid #d4900a;">
@@ -281,3 +315,4 @@ async def handle_product_purchase_webhook(checkout_session):
       </table>
     </div>"""
     asyncio.create_task(send_mailersend_email(COACH_EMAIL, "Vince Lawrence", f"Sale: {product_name} ({amount_str})", notify_html))
+    logger.info(f"Product purchase processed: {sku} — {buyer_email}")

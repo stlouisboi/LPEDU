@@ -40,6 +40,8 @@ import LaunchPathStandardPage from "./pages/LaunchPathStandardPage";
 import AdmissionConfirmedPage from "./pages/AdmissionConfirmedPage";
 import AdminAdmissionsPage from "./pages/AdminAdmissionsPage";
 import AdminModulesPage from "./pages/AdminModulesPage";
+import AdminProductFilesPage from "./pages/AdminProductFilesPage";
+import ProductConfirmedPage from "./pages/ProductConfirmedPage";
 
 import OperatingStandardPage from "./pages/OperatingStandardPage";
 import StandardPage from "./pages/StandardPage";
@@ -137,6 +139,8 @@ function AppRouter() {
       <Route path="/admission/confirmed" element={<AdmissionConfirmedPage />} />
       <Route path="/admin/admissions" element={<AdminAdmissionsPage />} />
       <Route path="/admin/modules" element={<AdminModulesPage />} />
+      <Route path="/admin/products" element={<AdminProductFilesPage />} />
+      <Route path="/products/confirmed" element={<ProductConfirmedPage />} />
       <Route path="/knowledge-center" element={<KnowledgeCenterIndex />} />
       <Route path="/knowledge-center/all-checklists" element={<AllChecklists />} />
       <Route path="/knowledge-center/new-entrant-safety-audit-brief" element={<NewEntrantAuditBrief />} />
