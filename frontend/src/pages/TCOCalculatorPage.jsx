@@ -108,35 +108,6 @@ function Toggle({ value, onChange, options }) {
   );
 }
 
-// ── Access Gate ─────────────────────────────────────────────────────────────
-function AccessGate({ children }) {
-  const [status, setStatus] = useState("loading");
-  useEffect(() => {
-    fetch(`${API}/api/tools/access`, { credentials: "include" })
-      .then(r => r.json())
-      .then(d => setStatus(d.has_access ? "ok" : d.logged_in ? "no_access" : "not_logged_in"))
-      .catch(() => setStatus("not_logged_in"));
-  }, []);
-  if (status === "loading") return <div style={{ padding: "6rem 1.5rem", textAlign: "center", fontFamily: "'Inter', sans-serif", color: "rgba(11,22,40,0.45)" }}>Checking access…</div>;
-  if (status === "not_logged_in") return (
-    <div style={{ maxWidth: 520, margin: "6rem auto", background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", padding: "2.5rem" }}>
-      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 12px" }}>LP-TOOL-001 | ACCESS REQUIRED</p>
-      <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 24, color: NAVY, margin: "0 0 12px" }}>Login to Access the TCO Calculator</h2>
-      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(11,22,40,0.60)", lineHeight: 1.7, margin: "0 0 24px" }}>This tool is available to LaunchPath enrolled members. Login to access your account.</p>
-      <Link to="/login" style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "12px 24px", textDecoration: "none" }}>Login to Access →</Link>
-    </div>
-  );
-  if (status === "no_access") return (
-    <div style={{ maxWidth: 520, margin: "6rem auto", background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", borderTop: `3px solid ${GOLD}`, padding: "2.5rem" }}>
-      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 12px" }}>LP-TOOL-001 | ENROLLED MEMBERS ONLY</p>
-      <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 24, color: NAVY, margin: "0 0 12px" }}>This tool is available to enrolled members.</h2>
-      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(11,22,40,0.60)", lineHeight: 1.7, margin: "0 0 24px" }}>The TCO Calculator and Load Profitability Analyzer are included with the Document System Bundle ($497) and the LaunchPath Standard ($2,500).</p>
-      <Link to="/compliance-library" style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "12px 24px", textDecoration: "none" }}>See Enrollment Options →</Link>
-    </div>
-  );
-  return children;
-}
-
 // ── Results Bar Chart ────────────────────────────────────────────────────────
 function CPMBar({ fixedCPM, variableCPM, operatorCPM, totalCPM }) {
   if (totalCPM === 0) return null;
@@ -165,10 +136,11 @@ export default function TCOCalculatorPage() {
   const [inp, setInp] = useState(DEFAULTS);
   const [open, setOpen] = useState({ fixed: true, variable: true, operator: true });
   const [saveState, setSaveState] = useState("idle");
+  const [saveNote, setSaveNote] = useState(false);
   const set = useCallback((key) => (val) => setInp(prev => ({ ...prev, [key]: val })), []);
   const result = useMemo(() => calc(inp), [inp]);
 
-  // Load saved on mount
+  // Load saved on mount (silently fails for guests)
   useEffect(() => {
     fetch(`${API}/api/cpm/saved`, { credentials: "include" })
       .then(r => r.json())
@@ -178,12 +150,14 @@ export default function TCOCalculatorPage() {
 
   const handleSave = async () => {
     setSaveState("saving");
+    setSaveNote(false);
     try {
-      await fetch(`${API}/api/cpm/save`, {
+      const resp = await fetch(`${API}/api/cpm/save`, {
         method: "POST", credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fixed_cpm: result.fixedCPM, variable_cpm: result.variableCPM, total_cpm: result.totalCPM, inputs: inp }),
       });
+      if (resp.status === 401) { setSaveState("idle"); setSaveNote(true); return; }
       setSaveState("saved");
       setTimeout(() => setSaveState("idle"), 2500);
     } catch { setSaveState("idle"); }
@@ -203,7 +177,6 @@ export default function TCOCalculatorPage() {
       </div>
 
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "2.5rem 1.5rem 6rem" }}>
-        <AccessGate>
 
           {/* Block 1: Fixed Costs */}
           <Block title="Fixed Monthly Costs" code="BLOCK 1 — FIXED" open={open.fixed} onToggle={() => setOpen(s => ({ ...s, fixed: !s.fixed }))}>
@@ -310,7 +283,7 @@ export default function TCOCalculatorPage() {
           </div>
 
           {/* Save + Link to LP-TOOL-002 */}
-          <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 24, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: saveNote ? 8 : 24, flexWrap: "wrap" }}>
             <button data-testid="tco-save-btn" onClick={handleSave} disabled={saveState === "saving"}
               style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: saveState === "saved" ? "#1B5E20" : NAVY, background: saveState === "saved" ? "#E8F5E9" : GOLD, border: "none", padding: "12px 24px", cursor: "pointer", transition: "background 0.2s" }}>
               {saveState === "saved" ? "✓ Saved" : saveState === "saving" ? "Saving…" : "Save Calculation"}
@@ -322,13 +295,17 @@ export default function TCOCalculatorPage() {
               Analyze a Load with this CPM →
             </Link>
           </div>
+          {saveNote && (
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(11,22,40,0.55)", marginBottom: 20 }}>
+              <Link to="/portal" style={{ color: GOLD, fontWeight: 600, textDecoration: "none" }}>Login</Link> to save your calculation and use it in the Load Analyzer.
+            </p>
+          )}
 
           {/* Disclaimer */}
           <div style={{ background: "rgba(11,22,40,0.04)", border: "1px solid rgba(11,22,40,0.08)", padding: "16px 20px" }}>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(11,22,40,0.40)", margin: "0 0 8px" }}>EDUCATIONAL USE ONLY</p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(11,22,40,0.45)", lineHeight: 1.7, margin: 0 }}>This calculator is for educational and planning purposes only. Results are based on the values you entered and do not constitute financial, tax, or business advice. Verify all figures with your accountant or financial advisor before making business decisions.</p>
           </div>
-        </AccessGate>
       </div>
       <FooterSection />
     </div>

@@ -100,6 +100,112 @@ function NumberInput({ label, value, onChange, step = 1, suffix = "" }) {
   );
 }
 
+// ── Teaser Preview (static example for the gate overlay) ────────────────────
+function TeaserPreview() {
+  const exCPM = 0.85;
+  const exRPM = 0.933;
+  const exMiles = 2250;
+  const exRevenue = 2100;
+  const exProfit = (exRPM - exCPM) * exMiles;
+  const exMargin = ((exRPM - exCPM) / exCPM) * 100;
+  return (
+    <div>
+      {/* CPM Source */}
+      <div style={{ background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", borderLeft: `3px solid ${GOLD}`, padding: "18px 24px", marginBottom: 12 }}>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(11,22,40,0.40)", margin: "0 0 8px" }}>YOUR COST BASELINE</p>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div>
+            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, color: "rgba(11,22,40,0.50)" }}>Break-Even CPM: </span>
+            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 800, color: NAVY }}>{fmtCPM(exCPM)}</span>
+          </div>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(11,22,40,0.35)" }}>From TCO Calculator</span>
+        </div>
+      </div>
+      {/* Load Details */}
+      <div style={{ background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", padding: "20px 24px", marginBottom: 12 }}>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", margin: "0 0 3px" }}>BLOCK 1 — LOAD DETAILS</p>
+        <p style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 18, color: NAVY, margin: "0 0 16px" }}>Load Rate & Miles</p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          {[["Load Rate", "$2,100.00"], ["Loaded Miles", "2,100 mi"], ["Deadhead Miles", "150 mi"], ["Fuel Surcharge", "$0.00"]].map(([l, v]) => (
+            <div key={l}>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(11,22,40,0.55)", margin: "0 0 4px" }}>{l}</p>
+              <div style={{ background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.15)", padding: "10px 12px", fontFamily: "'Inter',sans-serif", fontSize: 15, fontWeight: 500, color: NAVY }}>{v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Results */}
+      <div style={{ background: NAVY, padding: "28px", marginBottom: 12 }}>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", margin: "0 0 16px" }}>LOAD ANALYSIS</p>
+        {[["Total Revenue", fmt$(exRevenue), "rgba(255,255,255,0.60)"], ["Total Miles", "2,250 mi", "rgba(255,255,255,0.60)"], ["Load RPM", fmtCPM(exRPM), "#7BA7D4"], ["Your Break-Even CPM", fmtCPM(exCPM), GOLD]].map(([l, v, c]) => (
+          <div key={l} style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: "rgba(255,255,255,0.60)" }}>{l}</span>
+            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 15, fontWeight: 600, color: c }}>{v}</span>
+          </div>
+        ))}
+        <div style={{ height: 1, background: "rgba(255,255,255,0.15)", margin: "8px 0" }} />
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: "rgba(255,255,255,0.80)" }}>Margin %</span>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 800, color: "#7BC4A4" }}>+{fmtPct(exMargin)}</span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, fontWeight: 700, color: "#FFFFFF" }}>Profit / Load</span>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#7BC4A4" }}>+{fmt$(exProfit)}</span>
+        </div>
+      </div>
+      {/* Verdict */}
+      <div style={{ background: "#fffbeb", border: `2px solid ${GOLD}`, padding: "24px 28px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12 }}>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "0.14em", color: "#FFFFFF", background: GOLD, padding: "6px 14px" }}>NEGOTIATE</span>
+          <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 20, color: "#92400e" }}>COUNTER THIS LOAD</span>
+        </div>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 15, color: "rgba(11,22,40,0.70)", lineHeight: 1.75, margin: 0 }}>
+          This load covers operating costs but falls short of your 30% margin target by $385.88. Counter at $1.105/mi ($2,485.88 gross) to reach your minimum margin.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ── Teaser Gate (blurred preview + centered gate card) ───────────────────────
+function TeaserGate({ status }) {
+  return (
+    <div style={{ position: "relative" }}>
+      {/* Blurred teaser */}
+      <div style={{ filter: "blur(4px)", opacity: 0.45, pointerEvents: "none", userSelect: "none" }}>
+        <TeaserPreview />
+      </div>
+      {/* Top & bottom gradient fades */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 72, background: "linear-gradient(to bottom, #F5F5F5, transparent)", zIndex: 2 }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 120, background: "linear-gradient(to top, #F5F5F5, transparent)", zIndex: 2 }} />
+      {/* Centered gate card */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, padding: "1.5rem" }}>
+        <div style={{ width: "100%", maxWidth: 460, background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.12)", borderTop: `3px solid ${GOLD}`, padding: "2rem 2.25rem", boxShadow: "0 20px 60px rgba(0,0,0,0.14)" }}>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 10px" }}>LP-TOOL-002 | PORTAL ONLY</p>
+          <h2 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 22, color: NAVY, margin: "0 0 12px", letterSpacing: "-0.01em" }}>
+            {status === "not_logged_in" ? "Unlock the Load Profitability Analyzer" : "Enrollment Required"}
+          </h2>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: "rgba(11,22,40,0.62)", lineHeight: 1.75, margin: "0 0 20px" }}>
+            {status === "not_logged_in"
+              ? "Enter a load offer and get an instant GO / NEGOTIATE / DECLINE decision based on your real cost structure. Available to enrolled members."
+              : "The Load Profitability Analyzer is included with the Document System Bundle ($497) and the LaunchPath Standard ($2,500)."}
+          </p>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {status === "not_logged_in" ? (
+              <>
+                <Link to="/portal" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "11px 22px", textDecoration: "none" }}>Login →</Link>
+                <Link to="/compliance-library" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(11,22,40,0.55)", background: "transparent", border: "1px solid rgba(11,22,40,0.18)", padding: "11px 18px", textDecoration: "none" }}>See Plans</Link>
+              </>
+            ) : (
+              <Link to="/compliance-library" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "11px 22px", textDecoration: "none" }}>See Enrollment Options →</Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Access Gate ──────────────────────────────────────────────────────────────
 function AccessGate({ children }) {
   const [status, setStatus] = useState("loading");
@@ -113,29 +219,7 @@ function AccessGate({ children }) {
   if (status === "loading")
     return <div style={{ padding: "6rem 1.5rem", textAlign: "center", fontFamily: "'Inter', sans-serif", color: "rgba(11,22,40,0.45)" }}>Checking access…</div>;
 
-  if (status === "not_logged_in")
-    return (
-      <div style={{ maxWidth: 520, margin: "6rem auto", background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", padding: "2.5rem" }}>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 12px" }}>LP-TOOL-002 | ACCESS REQUIRED</p>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 24, color: NAVY, margin: "0 0 12px" }}>Login to Access the Load Analyzer</h2>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(11,22,40,0.60)", lineHeight: 1.7, margin: "0 0 24px" }}>This tool is available to LaunchPath enrolled members. Login to access your account.</p>
-        <Link to="/portal" style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "12px 24px", textDecoration: "none" }}>
-          Login to Access →
-        </Link>
-      </div>
-    );
-
-  if (status === "no_access")
-    return (
-      <div style={{ maxWidth: 520, margin: "6rem auto", background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", borderTop: `3px solid ${GOLD}`, padding: "2.5rem" }}>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 12px" }}>LP-TOOL-002 | ENROLLED MEMBERS ONLY</p>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 24, color: NAVY, margin: "0 0 12px" }}>This tool is available to enrolled members.</h2>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(11,22,40,0.60)", lineHeight: 1.7, margin: "0 0 24px" }}>The TCO Calculator and Load Profitability Analyzer are included with the Document System Bundle ($497) and the LaunchPath Standard ($2,500).</p>
-        <Link to="/compliance-library" style={{ display: "inline-block", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "12px 24px", textDecoration: "none" }}>
-          See Enrollment Options →
-        </Link>
-      </div>
-    );
+  if (status !== "ok") return <TeaserGate status={status} />;
 
   return children;
 }

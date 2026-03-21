@@ -67,19 +67,7 @@ export default function ToolsIndexPage() {
 
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "4rem 1.5rem 6rem" }}>
 
-        {/* Access notice for non-members */}
-        {access === "guest" && (
-          <div style={{ background: "#FFFFFF", border: "1px solid rgba(212,144,10,0.25)", borderLeft: `3px solid ${GOLD}`, padding: "1.25rem 1.75rem", marginBottom: "2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
-            <div>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 4px" }}>ENROLLED MEMBERS ONLY</p>
-              <p style={{ fontFamily: sans, fontSize: "0.924rem", color: "rgba(0,34,68,0.65)", margin: 0 }}>These tools are included with the Document System Bundle ($497) and the LaunchPath Standard ($2,500).</p>
-            </div>
-            <Link to="/compliance-library" style={{ fontFamily: sans, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.75rem 1.5rem", textDecoration: "none", whiteSpace: "nowrap" }}>
-              See Enrollment Options →
-            </Link>
-          </div>
-        )}
-
+        {/* Access notice — only for load analyzer gating */}
         {access === "locked" && (
           <div style={{ background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", borderLeft: `3px solid ${GOLD}`, padding: "1.25rem 1.75rem", marginBottom: "2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
             <div>
@@ -113,6 +101,10 @@ export default function ToolsIndexPage() {
                   <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#15803d", background: "rgba(21,128,61,0.08)", border: "1px solid rgba(21,128,61,0.25)", padding: "0.2rem 0.6rem" }}>
                     ACCESS GRANTED
                   </span>
+                ) : tool.id === "tco-calculator" ? (
+                  <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#15803d", background: "rgba(21,128,61,0.08)", border: "1px solid rgba(21,128,61,0.25)", padding: "0.2rem 0.6rem" }}>
+                    FREE
+                  </span>
                 ) : (
                   <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: "rgba(212,144,10,0.08)", border: "1px solid rgba(212,144,10,0.25)", padding: "0.2rem 0.6rem" }}>
                     PORTAL
@@ -145,7 +137,9 @@ export default function ToolsIndexPage() {
             </div>
             <div style={{ borderTop: "1px solid rgba(0,34,68,0.08)", padding: "1.25rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", background: "rgba(0,34,68,0.02)" }}>
               <p style={{ fontFamily: sans, fontSize: "0.857rem", color: "rgba(0,34,68,0.45)", margin: 0 }}>
-                {access === "granted" ? "Available in your portal" : "Included with Document System Bundle · $497"}
+                {tool.id === "tco-calculator"
+                  ? "Free to use · no account required"
+                  : access === "granted" ? "Available in your portal" : "Included with Document System Bundle · $497"}
               </p>
               <Link
                 to={tool.href}
