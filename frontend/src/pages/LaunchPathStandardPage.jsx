@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
+import { useCountUp } from "../hooks/useCountUp";
 
 const gold = "#C5A059";
 const goldDim = "rgba(197,160,89,0.75)";
@@ -82,6 +84,91 @@ const COMPARE_ROWS = [
   { feature: "Direct access to Station Custodian", diy: false, guided: true },
 ];
 
+// ── Animated Stat ─────────────────────────────────────────
+function HudStat({ num, label, suffix = "" }) {
+  // parse numeric part
+  const numeric = parseInt(String(num).replace(/\D/g, ""), 10) || 0;
+  const [count, ref] = useCountUp(numeric, 1000);
+  const display = String(num).includes(" ") ? `${count} ${String(num).split(" ")[1]}` : `${count}${suffix}`;
+  return (
+    <div ref={ref} style={{ background: card, padding: "1.25rem 2rem", flex: "1 1 120px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+      {/* scan line */}
+      <div style={{ position: "absolute", top: 0, left: "-100%", width: "60%", height: "100%", background: "linear-gradient(90deg, transparent, rgba(197,160,89,0.06), transparent)", animation: "hud-scan 3s ease-in-out infinite", animationDelay: `${Math.random() * 2}s` }} />
+      <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.75rem", color: gold, marginBottom: "0.25rem", lineHeight: 1 }}>{display}</p>
+      <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>{label}</p>
+    </div>
+  );
+}
+
+const STATS = [
+  { num: "10",   label: "Modules" },
+  { num: "72",   label: "Lessons" },
+  { num: "17 hrs", label: "Total runtime" },
+  { num: "4",    label: "Pillars installed" },
+  { num: "5",    label: "Coach verifications" },
+];
+
+const GLOBAL_STYLES = `
+  @keyframes hud-scan {
+    0%   { left: -60%; }
+    50%  { left: 110%; }
+    100% { left: 110%; }
+  }
+  @keyframes wire-draw {
+    from { stroke-dashoffset: 1000; }
+    to   { stroke-dashoffset: 0; }
+  }
+  @keyframes lp-sweep {
+    0%   { transform: translateX(-100%); opacity: 0.5; }
+    60%  { opacity: 0.5; }
+    100% { transform: translateX(300%); opacity: 0; }
+  }
+  .lp-scan-btn { position: relative; overflow: hidden; }
+  .lp-scan-btn::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 35%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%);
+    transition: none;
+  }
+  .lp-scan-btn:hover::after {
+    animation: lp-sweep 0.55s ease-out forwards;
+  }
+  .module-row { transition: border-left-color 0.25s, background 0.2s; }
+  .module-row:hover { background: rgba(197,160,89,0.04) !important; border-left: 2px solid rgba(197,160,89,0.35) !important; }
+  .milestone-row { transition: background 0.2s; }
+  .milestone-row:hover { background: rgba(197,160,89,0.03) !important; }
+`;
+
+// ── Blueprint Wire (vertical connector alongside modules list) ────────────────
+function BlueprintWire({ height = 600 }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.05 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <svg ref={ref} width="32" height={height} viewBox={`0 0 32 ${height}`} style={{ position: "absolute", left: -20, top: 0, opacity: 0.45, pointerEvents: "none", flexShrink: 0 }}>
+      <line x1="16" y1="0" x2="16" y2={height} stroke="rgba(197,160,89,0.25)" strokeWidth="1" strokeDasharray="4 6" />
+      {Array.from({ length: Math.floor(height / 60) }).map((_, i) => (
+        <circle key={i} cx="16" cy={i * 60 + 30} r="3"
+          fill="none" stroke={visible ? "rgba(197,160,89,0.55)" : "transparent"}
+          strokeWidth="1"
+          style={{ transition: `stroke 0.4s ease ${i * 0.07}s`, fill: visible ? "rgba(197,160,89,0.12)" : "transparent" }}
+        />
+      ))}
+    </svg>
+  );
+}
+
+
+
 function Check({ yes }) {
   if (yes) return <span style={{ color: gold, fontWeight: 700, fontSize: "1rem" }}>✓</span>;
   return <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "1rem" }}>—</span>;
@@ -90,6 +177,7 @@ function Check({ yes }) {
 export default function LaunchPathStandardPage() {
   return (
     <div style={{ background: dark, minHeight: "100vh", color: "#FFFFFF", fontFamily: body }}>
+      <style>{GLOBAL_STYLES}</style>
       <Navbar />
 
       {/* ── SECTION 1: What the Standard Is ─────────────── */}
@@ -106,20 +194,9 @@ export default function LaunchPathStandardPage() {
             The LaunchPath Standard is a guided 90-day implementation program for new motor carriers. It installs the full compliance architecture — documentation systems, operational policies, and verified checkpoints — using the AUTO Method.
           </p>
 
-          {/* Stats strip */}
+          {/* HUD Stats strip */}
           <div style={{ display: "flex", gap: "2px", background: "rgba(255,255,255,0.06)", flexWrap: "wrap", marginBottom: "2.5rem" }}>
-            {[
-              { num: "10", label: "Modules" },
-              { num: "72", label: "Lessons" },
-              { num: "17 hrs", label: "Total runtime" },
-              { num: "4", label: "Pillars installed" },
-              { num: "5", label: "Coach verifications" },
-            ].map((s) => (
-              <div key={s.label} style={{ background: card, padding: "1.25rem 2rem", flex: "1 1 120px", textAlign: "center" }}>
-                <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.75rem", color: gold, marginBottom: "0.25rem", lineHeight: 1 }}>{s.num}</p>
-                <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>{s.label}</p>
-              </div>
-            ))}
+            {STATS.map((s) => <HudStat key={s.label} num={s.num} label={s.label} />)}
           </div>
 
           <div style={{ borderLeft: `3px solid rgba(197,160,89,0.35)`, paddingLeft: "1.25rem" }}>
@@ -140,21 +217,25 @@ export default function LaunchPathStandardPage() {
             What Gets Installed
           </h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-            {MODULES.map((mod) => {
-              const badge = TYPE_BADGES[mod.type];
-              return (
-                <div
-                  key={mod.code}
-                  data-testid={`module-row-${mod.code.toLowerCase()}`}
-                  style={{
-                    background: card,
-                    padding: "1.25rem 1.75rem",
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "1.5rem",
-                  }}
-                >
+          <div style={{ position: "relative", paddingLeft: 16 }}>
+            <BlueprintWire height={MODULES.length * 72} />
+            <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+              {MODULES.map((mod) => {
+                const badge = TYPE_BADGES[mod.type];
+                return (
+                  <div
+                    key={mod.code}
+                    className="module-row"
+                    data-testid={`module-row-${mod.code.toLowerCase()}`}
+                    style={{
+                      background: card,
+                      padding: "1.25rem 1.75rem",
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "1.5rem",
+                      borderLeft: "2px solid transparent",
+                    }}
+                  >
                   {/* Code */}
                   <div style={{ flexShrink: 0, width: 48 }}>
                     <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", color: goldDim, textTransform: "uppercase", marginBottom: "0.2rem" }}>{mod.label}</p>
@@ -179,6 +260,7 @@ export default function LaunchPathStandardPage() {
                 </div>
               );
             })}
+            </div>
           </div>
         </div>
       </section>
@@ -200,13 +282,26 @@ export default function LaunchPathStandardPage() {
             {MILESTONES.map((m, i) => (
               <div
                 key={m.num}
+                className="milestone-row"
                 data-testid={`milestone-${m.num}`}
                 style={{ background: card, padding: "1.75rem 2rem", borderLeft: `3px solid ${i < 4 ? "rgba(197,160,89,0.35)" : gold}` }}
               >
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "1.5rem", flexWrap: "wrap" }}>
                   <div style={{ flexShrink: 0 }}>
                     <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.2rem" }}>{m.week}</p>
-                    <p style={{ fontFamily: mono, fontSize: "1.1rem", fontWeight: 700, color: gold, letterSpacing: "-0.02em" }}>{m.num}</p>
+                    {/* HUD ring */}
+                    <div style={{ position: "relative", width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="36" height="36" style={{ position: "absolute", top: 0, left: 0, opacity: 0.6 }}>
+                        <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(197,160,89,0.15)" strokeWidth="1.5" />
+                        <circle cx="18" cy="18" r="14" fill="none" stroke={i === 4 ? gold : "rgba(197,160,89,0.45)"} strokeWidth="1.5"
+                          strokeDasharray={`${(i + 1) / MILESTONES.length * 88} 88`}
+                          strokeLinecap="round"
+                          transform="rotate(-90 18 18)"
+                          style={{ transition: "stroke-dasharray 1s ease 0.3s" }}
+                        />
+                      </svg>
+                      <p style={{ fontFamily: mono, fontSize: "0.857rem", fontWeight: 700, color: gold, letterSpacing: "-0.02em", margin: 0, position: "relative", zIndex: 1 }}>{m.num}</p>
+                    </div>
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.5rem" }}>
@@ -377,6 +472,7 @@ export default function LaunchPathStandardPage() {
           <Link
             to="/admission"
             data-testid="request-admission-cta"
+            className="lp-scan-btn"
             style={{
               display: "inline-block",
               background: gold,

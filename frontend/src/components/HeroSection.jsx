@@ -56,6 +56,42 @@ export default function HeroSection() {
         backgroundSize: "200px",
       }} />
 
+      {/* Blueprint dot-grid overlay */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 0, opacity: 0.07,
+        backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.6) 1px, transparent 1px)",
+        backgroundSize: "36px 36px",
+      }} />
+
+      {/* One-time horizontal sweep on load */}
+      <style>{`
+        @keyframes hero-sweep {
+          0%   { transform: translateX(-100%); opacity: 0; }
+          10%  { opacity: 0.6; }
+          90%  { opacity: 0.6; }
+          100% { transform: translateX(200%); opacity: 0; }
+        }
+        .hero-sweep-line {
+          position: absolute; top: 0; left: 0; width: 30%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(197,160,89,0.04), transparent);
+          animation: hero-sweep 2.2s ease-in-out 0.4s forwards;
+          z-index: 1; pointer-events: none;
+        }
+        .lp-scan-btn { position: relative; overflow: hidden; }
+        .lp-scan-btn::after {
+          content: ""; position: absolute; top: 0; left: 0;
+          width: 35%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+          transform: translateX(-100%);
+        }
+        .lp-scan-btn:hover::after { animation: lp-sweep 0.55s ease-out forwards; }
+        @keyframes lp-sweep {
+          0%   { transform: translateX(-100%); opacity: 0.5; }
+          100% { transform: translateX(300%); opacity: 0; }
+        }
+      `}</style>
+      <div className="hero-sweep-line" />
+
       {/* Main grid */}
       <div
         className="hero-grid"
@@ -163,7 +199,7 @@ export default function HeroSection() {
               <Link
                 to="/ground-0-briefing"
                 data-testid="hero-primary-cta"
-                className="hero-cta-primary"
+                className="hero-cta-primary lp-scan-btn"
                 style={{
                   display: "inline-flex", alignItems: "center",
                   fontFamily: "'Inter', sans-serif", fontSize: 17, fontWeight: 700,

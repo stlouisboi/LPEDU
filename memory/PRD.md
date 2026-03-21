@@ -143,7 +143,13 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)
 
-### Session 16 — server.py Refactor — Feb 2026
+### Session 17 — Institutional OS Visual Layer — Feb 2026
+- **Hero blueprint grid**: Faint gold dot-grid overlay (`radial-gradient`, 36px spacing, 7% opacity) on the homepage hero — adds depth without changing layout
+- **Hero sweep**: Single-pass horizontal scan line on page load (CSS keyframe, 2.2s, one-shot)
+- **HUD stats strip** (`LaunchPathStandardPage`): Numbers count up from 0 on scroll-enter via `useCountUp` hook (IntersectionObserver + rAF ease-out cubic)
+- **HUD milestone rings**: SVG arc indicators on all 5 milestone checkpoints — progress fills proportionally by milestone order
+- **Blueprint wire** (modules list): Vertical dashed SVG line with dot nodes that illuminate as user scrolls into view
+- **Scan-line CTA micro-interaction**: Gold-tinted light sweep on hover for all primary CTAs (homepage "INITIATE GROUND 0" + Standard page "Request Admission") — CSS `::after` pseudo-element, 0.55s ease-out
 - Broke 2,222-line `server.py` monolith into clean modules: `core.py` (db/config/helpers), `workers.py` (email workers), `routes/public.py`, `routes/auth.py`, `routes/tools.py`, `routes/portal.py`, `routes/admin.py`, `routes/payments.py`
 - New `server.py` is 43 lines — just app setup, middleware, and router includes
 - All routes preserved exactly; 4 key endpoints smoke-tested (health, webhook ×2, coach login)
