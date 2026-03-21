@@ -16,7 +16,7 @@ const BORDER = "rgba(255,255,255,0.08)";
 
 /* ── Entry-Level Resources ──────────────────────────────────── */
 const RESOURCES = [
-  { sku: "LP-RES-001", title: "16 Deadly Sins Pocket Guide",           price: "$17",  desc: "The LaunchPath proprietary threat model. All 16 operational behaviors that end new carrier authority — with CFR citations, consequence details, and prevention protocol summary." },
+  { sku: "LP-RES-001", title: "16 Deadly Sins Pocket Guide",           price: "$27",  desc: "The LaunchPath proprietary threat model. All 16 operational behaviors that end new carrier authority — with CFR citations, consequence details, and prevention protocol summary." },
   { sku: "LP-RES-002", title: "DQ File Builder Kit",                   price: "$37",  desc: "A complete Driver Qualification file assembly kit. Templates, checklists, and step-by-step build instructions under 49 CFR 391.51 — for one driver or an entire fleet." },
   { sku: "LP-RES-003", title: "New Carrier Compliance Starter Kit",    price: "$47",  desc: "The first-30-days foundation package. Covers the critical installation window — authority verification, D&A enrollment, Clearinghouse registration, and insurance filing checks." },
   { sku: "LP-RES-004", title: "Safety Audit Prep Pack",                price: "$67",  desc: "Audit exposure window preparation. A self-audit tool covering all six FMCSA review domains — so your New Entrant Safety Audit is verification, not discovery." },
@@ -227,7 +227,7 @@ function SinAuditPreview({ onBuy, loadingState, buyError }) {
             disabled={isLoading}
             style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.75rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1 }}
           >
-            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $17"}
+            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $27"}
           </button>
           {buyError && <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "#ef4444", marginTop: "0.625rem" }}>{buyError}</p>}
         </div>
@@ -248,7 +248,7 @@ function SinAuditPreview({ onBuy, loadingState, buyError }) {
             disabled={isLoading}
             style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.75rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1 }}
           >
-            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $17"}
+            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $27"}
           </button>
           {buyError && <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "#ef4444", marginTop: "0.625rem" }}>{buyError}</p>}
         </div>
@@ -388,7 +388,7 @@ export default function ComplianceLibraryPage() {
       <div style={{ background: BG2, padding: "5rem 1.5rem", borderBottom: `1px solid rgba(212,144,10,0.20)` }}>
         <div style={{ maxWidth: 880, margin: "0 auto" }}>
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>
-            LP-RES-001 | THE 16 DEADLY SINS POCKET GUIDE — $17
+            LP-RES-001 | THE 16 DEADLY SINS POCKET GUIDE — $27
           </p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>
             Know what ends authority before you learn the hard way.
