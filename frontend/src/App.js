@@ -180,14 +180,14 @@ function AppRouter() {
       <Route path="/compliance-library" element={<ComplianceLibraryPage />} />
 
       {/* /standards routes */}
-      <Route path="/standards" element={<StandardsPage />} />
-      <Route path="/standards/new-entrant-packet" element={<NewEntrantPacketPage />} />
-      <Route path="/standards/drug-alcohol-packet" element={<DrugAlcoholPacketPage />} />
-      <Route path="/standards/hos-packet" element={<HOSPacketPage />} />
-      <Route path="/standards/maintenance-packet" element={<MaintenancePacketPage />} />
-      <Route path="/standards/insurance-packet" element={<InsurancePacketPage />} />
-      <Route path="/standards/new-carrier-document-system" element={<BundlePage />} />
-      <Route path="/standards/16-deadly-sins" element={<SixteenSinsPage />} />
+      <Route path="/standards" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/standards/new-entrant-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/standards/drug-alcohol-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/standards/hos-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/standards/maintenance-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/standards/insurance-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/standards/new-carrier-document-system" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/standards/16-deadly-sins" element={<Navigate to="/compliance-library" replace />} />
       <Route path="/16-deadly-sins" element={<SixteenSinsPage />} />
       <Route path="/case-studies" element={<CaseStudiesPage />} />
       <Route path="/conditional-rating" element={<ConditionalRatingPage />} />
@@ -201,13 +201,13 @@ function AppRouter() {
       <Route path="/tools/load-analyzer" element={<LoadAnalyzerPage />} />
 
       {/* 301 redirects: /products → /standards */}
-      <Route path="/products" element={<Navigate to="/standards" replace />} />
-      <Route path="/products/new-entrant-packet" element={<Navigate to="/standards/new-entrant-packet" replace />} />
-      <Route path="/products/drug-alcohol-packet" element={<Navigate to="/standards/drug-alcohol-packet" replace />} />
-      <Route path="/products/hos-packet" element={<Navigate to="/standards/hos-packet" replace />} />
-      <Route path="/products/maintenance-packet" element={<Navigate to="/standards/maintenance-packet" replace />} />
-      <Route path="/products/insurance-packet" element={<Navigate to="/standards/insurance-packet" replace />} />
-      <Route path="/products/new-carrier-document-system" element={<Navigate to="/standards/new-carrier-document-system" replace />} />
+      <Route path="/products" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/products/new-entrant-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/products/drug-alcohol-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/products/hos-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/products/maintenance-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/products/insurance-packet" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/products/new-carrier-document-system" element={<Navigate to="/compliance-library" replace />} />
     </Routes>
   );
 }
