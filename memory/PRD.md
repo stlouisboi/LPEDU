@@ -138,7 +138,7 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 
 ### Session 12 — LP-TOOL-001 + LP-TOOL-002 Financial Tools — Mar 2026
 - **LP-TOOL-001 TCO Calculator** (`/tools/tco-calculator`): Routed in App.js; paid-member gate (AccessGate component); 3 cost blocks (Fixed/Variable/Operator); owner-operator vs. employed driver toggle; real-time CPM + margin calculation; save/load via `/api/cpm/save` + `/api/cpm/saved`
-- **LP-TOOL-002 Load Profitability Analyzer** (`/tools/load-analyzer`): New page + backend endpoints; auto-pulls saved CPM from TCO Calculator; GO / NEGOTIATE / DECLINE verdict with color-coded cards; NEGOTIATE shows counter-offer rate; save/load via `/api/tools/load-save` + `/api/tools/load-saved`
+- **LP-TOOL-002 Load Profitability Analyzer** (`/tools/load-analyzer`): New page + backend endpoints; auto-pulls saved CPM from TCO Calculator; GO / NEGOTIATE / DECLINE verdict with color-coded cards; NEGOTIATE shows counter-offer rate; save/load via `/api/tools/load-save` + `/api/tools/load-saved`; **Analysis History** (last 10 runs, newest first, click-to-restore) via `/api/tools/load-history` + `db.load_analysis_history`
 - **Coach access fix**: `_require_paid` and `/api/tools/access` now grant automatic access to `vince@launchpathedu.com`
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)

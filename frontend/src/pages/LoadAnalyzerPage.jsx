@@ -199,17 +199,67 @@ function VerdictCard({ verdict, result, cpm }) {
   );
 }
 
+// ── History Helpers ──────────────────────────────────────────────────────────
+const VERDICT_COLORS = {
+  GO: { bg: "#16a34a", label: "#fff" },
+  NEGOTIATE: { bg: "#d4900a", label: "#fff" },
+  DECLINE: { bg: "#b91c1c", label: "#fff" },
+};
+
+function fmtDate(iso) {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function HistoryRow({ item, onRestore }) {
+  const totalMiles = (item.loaded_miles || 0) + (item.deadhead_miles || 0);
+  const profitPerMile = (item.load_rpm || 0) - (item.saved_cpm || 0);
+  const profitTotal = profitPerMile * totalMiles;
+  const vc = VERDICT_COLORS[item.verdict] || { bg: "#555", label: "#fff" };
+
+  return (
+    <div
+      data-testid="history-row"
+      style={{ display: "grid", gridTemplateColumns: "100px 88px 90px 80px 90px 90px auto", alignItems: "center", gap: 12, padding: "11px 16px", borderBottom: "1px solid rgba(11,22,40,0.07)", background: "#fff" }}
+    >
+      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(11,22,40,0.45)" }}>{fmtDate(item.saved_at)}</span>
+      <span style={{ display: "inline-block", fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: vc.label, background: vc.bg, padding: "3px 8px", textAlign: "center" }}>{item.verdict}</span>
+      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: NAVY }}>{fmt$(item.load_rate)}</span>
+      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, color: "rgba(11,22,40,0.55)" }}>{totalMiles.toLocaleString()} mi</span>
+      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: NAVY }}>{fmtCPM(item.load_rpm)}</span>
+      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: profitTotal >= 0 ? "#15803d" : "#b91c1c" }}>
+        {profitTotal >= 0 ? "+" : "-"}{fmt$(Math.abs(profitTotal))}
+      </span>
+      <button
+        onClick={() => onRestore(item)}
+        style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: GOLD, background: "transparent", border: `1px solid ${GOLD}`, padding: "4px 10px", cursor: "pointer", whiteSpace: "nowrap" }}
+      >
+        Restore
+      </button>
+    </div>
+  );
+}
+
 // ── Main Component ───────────────────────────────────────────────────────────
 export default function LoadAnalyzerPage() {
   const [inp, setInp] = useState(DEFAULTS);
   const [savedCPM, setSavedCPM] = useState(null);
   const [cpmLoaded, setCpmLoaded] = useState(false);
   const [saveState, setSaveState] = useState("idle");
+  const [history, setHistory] = useState([]);
 
   const set = useCallback((key) => (val) => setInp((prev) => ({ ...prev, [key]: val })), []);
   const result = useMemo(() => calcLoad(inp, savedCPM || 0), [inp, savedCPM]);
 
-  // Load saved CPM + last analysis on mount
+  const fetchHistory = useCallback(() => {
+    fetch(`${API}/api/tools/load-history`, { credentials: "include" })
+      .then((r) => r.json())
+      .then((d) => setHistory(d.history || []))
+      .catch(() => {});
+  }, []);
+
+  // Load saved CPM + last analysis + history on mount
   useEffect(() => {
     fetch(`${API}/api/cpm/saved`, { credentials: "include" })
       .then((r) => r.json())
@@ -228,7 +278,9 @@ export default function LoadAnalyzerPage() {
         }
       })
       .catch(() => {});
-  }, []);
+
+    fetchHistory();
+  }, [fetchHistory]);
 
   const handleSave = async () => {
     if (!result.verdict) return;
@@ -251,10 +303,23 @@ export default function LoadAnalyzerPage() {
         }),
       });
       setSaveState("saved");
+      fetchHistory();
       setTimeout(() => setSaveState("idle"), 2500);
     } catch {
       setSaveState("idle");
     }
+  };
+
+  const handleRestore = (item) => {
+    setInp({
+      loadRate: item.load_rate,
+      loadedMiles: item.loaded_miles,
+      deadheadMiles: item.deadhead_miles,
+      fuelSurcharge: item.fuel_surcharge,
+      detention: item.detention,
+      otherAccessorials: item.other_accessorials,
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const grid2 = { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 };
@@ -397,13 +462,42 @@ export default function LoadAnalyzerPage() {
           </div>
 
           {/* Disclaimer */}
-          <div style={{ background: "rgba(11,22,40,0.04)", border: "1px solid rgba(11,22,40,0.08)", padding: "16px 20px" }}>
+          <div style={{ background: "rgba(11,22,40,0.04)", border: "1px solid rgba(11,22,40,0.08)", padding: "16px 20px", marginBottom: 32 }}>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(11,22,40,0.40)", margin: "0 0 8px" }}>
               EDUCATIONAL USE ONLY
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(11,22,40,0.45)", lineHeight: 1.7, margin: 0 }}>
               This analysis is for educational purposes only. It reflects the cost data you provided and does not account for all factors that may affect profitability. You are responsible for your own load acceptance decisions.
             </p>
+          </div>
+
+          {/* Analysis History */}
+          <div style={{ marginTop: 8 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(11,22,40,0.40)", margin: "0 0 12px" }}>
+              ANALYSIS HISTORY
+            </p>
+            {history.length === 0 ? (
+              <div style={{ background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.08)", padding: "28px", textAlign: "center" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(11,22,40,0.40)", margin: 0 }}>No history yet. Run your first analysis and save it.</p>
+              </div>
+            ) : (
+              <div style={{ border: "1px solid rgba(11,22,40,0.10)", overflow: "hidden" }}>
+                {/* Header row */}
+                <div style={{ display: "grid", gridTemplateColumns: "100px 88px 90px 80px 90px 90px auto", gap: 12, padding: "9px 16px", background: "rgba(11,22,40,0.04)", borderBottom: "1px solid rgba(11,22,40,0.10)" }}>
+                  {["DATE", "VERDICT", "RATE", "MILES", "RPM", "PROFIT", ""].map((h) => (
+                    <span key={h} style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(11,22,40,0.35)" }}>{h}</span>
+                  ))}
+                </div>
+                {history.map((item, i) => (
+                  <HistoryRow key={i} item={item} onRestore={handleRestore} />
+                ))}
+              </div>
+            )}
+            {history.length > 0 && (
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(11,22,40,0.35)", margin: "8px 0 0", textAlign: "right" }}>
+                Showing last {history.length} of 10 saved analyses · Click "Restore" to reload any run
+              </p>
+            )}
           </div>
 
         </AccessGate>

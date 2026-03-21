@@ -885,12 +885,12 @@ class LoadAnalysisSave(BaseModel):
 
 @api_router.post("/tools/load-save")
 async def save_load_analysis(data: LoadAnalysisSave, request: Request):
-    """Portal: save user's load profitability analysis."""
+    """Portal: save user's load profitability analysis and push to history (last 10)."""
     user = await get_user_from_request(request)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
+    now = datetime.now(timezone.utc).isoformat()
     record = {
-        "user_id": user["user_id"],
         "load_rate": data.load_rate,
         "loaded_miles": data.loaded_miles,
         "deadhead_miles": data.deadhead_miles,
@@ -900,9 +900,20 @@ async def save_load_analysis(data: LoadAnalysisSave, request: Request):
         "load_rpm": data.load_rpm,
         "verdict": data.verdict,
         "saved_cpm": data.saved_cpm,
-        "saved_at": datetime.now(timezone.utc).isoformat(),
+        "saved_at": now,
     }
-    await db.load_analyses.replace_one({"user_id": user["user_id"]}, record, upsert=True)
+    # Most-recent snapshot (for load-on-mount)
+    await db.load_analyses.replace_one(
+        {"user_id": user["user_id"]},
+        {"user_id": user["user_id"], **record},
+        upsert=True,
+    )
+    # History: prepend and cap at 10 entries (newest first)
+    await db.load_analysis_history.update_one(
+        {"user_id": user["user_id"]},
+        {"$push": {"history": {"$each": [record], "$position": 0, "$slice": 10}}},
+        upsert=True,
+    )
     return {"ok": True}
 
 @api_router.get("/tools/load-saved")
@@ -913,6 +924,17 @@ async def get_saved_load_analysis(request: Request):
         return {"saved": None}
     result = await db.load_analyses.find_one({"user_id": user["user_id"]}, {"_id": 0})
     return {"saved": result}
+
+@api_router.get("/tools/load-history")
+async def get_load_history(request: Request):
+    """Portal: retrieve user's last 10 saved load analyses (newest first)."""
+    user = await get_user_from_request(request)
+    if not user:
+        return {"history": []}
+    doc = await db.load_analysis_history.find_one(
+        {"user_id": user["user_id"]}, {"_id": 0, "user_id": 0}
+    )
+    return {"history": doc.get("history", []) if doc else []}
 
 
 class PortalCheckoutRequest(BaseModel):
