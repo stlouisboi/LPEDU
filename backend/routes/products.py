@@ -24,7 +24,6 @@ router = APIRouter()
 PRODUCTS = {
     "LP-RES-001": {"name": "16 Deadly Sins Pocket Guide",            "price_cents": 3700,  "price": "$37"},
     "LP-RES-002": {"name": "DQ File Builder Kit",                    "price_cents": 4700,  "price": "$47"},
-    "LP-RES-003": {"name": "New Carrier Compliance Starter Kit",     "price_cents": 4700,  "price": "$47"},
     "LP-RES-004": {"name": "Safety Audit Prep Pack",                 "price_cents": 6700,  "price": "$67"},
     "LP-RES-005": {"name": "Four Pillars Compliance Blueprint",      "price_cents": 9700,  "price": "$97"},
     "LP-RES-006": {"name": "Complete Compliance Library",            "price_cents": 19700, "price": "$197"},
@@ -40,7 +39,6 @@ PRODUCTS = {
 UPSELL = {
     "LP-RES-001": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "Your self-audit identified exposure. The Document System Bundle installs the infrastructure to close it."},
     "LP-RES-002": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "DQ files are one of five audit domains. Cover the rest."},
-    "LP-RES-003": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You have the first 30 days covered. Now build the full system."},
     "LP-RES-004": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You know what the investigator will ask for. Now make sure you have it."},
     "LP-RES-005": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You have the architecture. Now install the documents."},
     "LP-RES-006": {"sku": "LP-BDL-001", "label": "Complete New Carrier Document System", "price": "$497", "pitch": "You have all five standalone resources. The Bundle adds the unified system and 0-30-90 installation guide."},
