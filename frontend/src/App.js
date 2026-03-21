@@ -56,6 +56,8 @@ import MaintenancePacketPage from "./pages/products/MaintenancePacketPage";
 import InsurancePacketPage from "./pages/products/InsurancePacketPage";
 import BundlePage from "./pages/products/BundlePage";
 import SixteenSinsPage from "./pages/standards/SixteenSinsPage";
+import CaseStudiesPage from "./pages/CaseStudiesPage";
+import ConditionalRatingPage from "./pages/ConditionalRatingPage";
 import CPMPublicPage from "./pages/CPMPublicPage";
 import ToolsIndexPage from "./pages/ToolsIndexPage";
 import TCOCalculatorPage from "./pages/TCOCalculatorPage";
@@ -182,6 +184,8 @@ function AppRouter() {
       <Route path="/standards/new-carrier-document-system" element={<BundlePage />} />
       <Route path="/standards/16-deadly-sins" element={<SixteenSinsPage />} />
       <Route path="/16-deadly-sins" element={<SixteenSinsPage />} />
+      <Route path="/case-studies" element={<CaseStudiesPage />} />
+      <Route path="/conditional-rating" element={<ConditionalRatingPage />} />
 
       {/* Product preview/export tool */}
       <Route path="/product-preview" element={<ProductPreviewPage />} />
