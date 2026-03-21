@@ -832,6 +832,16 @@ async def cpm_email_capture(data: CPMEmailCapture):
         logger.error(f"MailerLite CPM request failed: {exc}")
     return {"ok": True}
 
+@api_router.get("/tools/access")
+async def check_tool_access(request: Request):
+    """Soft access check — returns login/paid status for tool gating (no 403)."""
+    user = await get_user_from_request(request)
+    if not user:
+        return {"logged_in": False, "has_access": False}
+    access = await db.user_access.find_one({"user_id": user["user_id"]}, {"_id": 0})
+    has_access = bool(access and access.get("has_access"))
+    return {"logged_in": True, "has_access": has_access}
+
 @api_router.post("/cpm/save")
 async def save_cpm_result(data: CPMSaveRequest, request: Request):
     """Portal: save user's calculated CPM to their record."""
