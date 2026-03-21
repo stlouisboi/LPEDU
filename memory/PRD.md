@@ -143,7 +143,10 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)
 
-### Session 14 — Stripe Webhook Fix — Feb 2026
+### Session 14 — Stripe Webhook Fix + Admin Payment Notifications — Feb 2026
+- **Admin notification email**: On every successful payment, Vince (COACH_EMAIL) now instantly receives a MailerSend email with operator name, email, amount, Stripe session ID, and a direct link to `/admin/admissions`
+
+### Session 14a — Stripe Webhook Fix — Feb 2026
 - **Root cause fixed**: Removed incomplete/truncated webhook handler at line 694 that caused a Python `SyntaxError`, taking the entire backend down
 - **Webhook routes**: Both `POST /api/webhook/stripe` AND `POST /api/stripe-webhook` now handled by a single complete handler with full business logic (updates `payment_transactions`, `user_access`, MailerLite, and sends confirmation email)
 - **`COACH_EMAIL` variable**: Added missing module-level `COACH_EMAIL` variable to `server.py` — it was referenced ~10 times but never defined, causing 500 errors on coach login

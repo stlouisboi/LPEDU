@@ -1136,6 +1136,30 @@ async def stripe_webhook(request: Request):
                             conf_html,
                             reply_to=PAYMENT_EMAIL,
                         ))
+                    # Email 2 — Coach notification
+                    buyer_name = user_record.get("name", "Unknown") if user_record else "Unknown"
+                    buyer_email = user_record.get("email", "unknown") if user_record else checkout_session.customer_details.email if hasattr(checkout_session, "customer_details") else "unknown"
+                    amount_total = getattr(checkout_session, "amount_total", None)
+                    amount_str = f"${amount_total / 100:,.0f}" if amount_total else "$2,500"
+                    paid_at = datetime.now(timezone.utc).strftime("%b %d, %Y at %H:%M UTC")
+                    notify_html = f"""
+                    <div style="font-family:'Inter',sans-serif;max-width:560px;margin:0 auto;background:#0D1B30;color:#f4f7fb;padding:40px 36px;border-top:3px solid #C5A059;">
+                      <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;margin:0 0 20px;">LaunchPath — Admin Alert</p>
+                      <h2 style="font-size:22px;font-weight:700;color:#fff;margin:0 0 6px;">New Cohort Enrollment</h2>
+                      <p style="font-size:13px;color:rgba(255,255,255,0.5);margin:0 0 28px;">{paid_at}</p>
+                      <table style="width:100%;border-collapse:collapse;margin:0 0 28px;">
+                        <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:12px;color:#C5A059;text-transform:uppercase;letter-spacing:0.1em;width:38%;">Operator</td><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;color:#fff;">{buyer_name}</td></tr>
+                        <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:12px;color:#C5A059;text-transform:uppercase;letter-spacing:0.1em;">Email</td><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;color:#fff;">{buyer_email}</td></tr>
+                        <tr><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:12px;color:#C5A059;text-transform:uppercase;letter-spacing:0.1em;">Amount</td><td style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;color:#fff;">{amount_str}</td></tr>
+                        <tr><td style="padding:10px 0;font-size:12px;color:#C5A059;text-transform:uppercase;letter-spacing:0.1em;">Session ID</td><td style="padding:10px 0;font-size:12px;color:rgba(255,255,255,0.45);word-break:break-all;">{checkout_session.id}</td></tr>
+                      </table>
+                      <a href="{FRONTEND_URL}/admin/admissions" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;border-radius:3px;">View Admin Dashboard →</a>
+                    </div>"""
+                    asyncio.create_task(send_mailersend_email(
+                        COACH_EMAIL, "Vince Lawrence",
+                        f"New enrollment: {buyer_name} ({amount_str})",
+                        notify_html,
+                    ))
     except Exception as e:
         logger.error(f"Stripe webhook error: {e}")
         raise HTTPException(status_code=400, detail="Webhook processing failed.")
