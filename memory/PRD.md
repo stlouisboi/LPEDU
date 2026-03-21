@@ -143,7 +143,10 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)
 
-### Session 15 — Case Studies + Conditional Rating + Gap Quiz — Feb 2026
+### Session 16 — server.py Refactor — Feb 2026
+- Broke 2,222-line `server.py` monolith into clean modules: `core.py` (db/config/helpers), `workers.py` (email workers), `routes/public.py`, `routes/auth.py`, `routes/tools.py`, `routes/portal.py`, `routes/admin.py`, `routes/payments.py`
+- New `server.py` is 43 lines — just app setup, middleware, and router includes
+- All routes preserved exactly; 4 key endpoints smoke-tested (health, webhook ×2, coach login)
 - **`/case-studies`** (LP-DOC-005): 5 anonymized audit-outcome cases (ELD/HOS, D&A, Insurance lapse, Maintenance, BOC-3) with quiz entry banner
 - **`/conditional-rating`** (LP-DOC-006): 3-rating comparison, 45-day clock, 5-step upgrade path, DIY vs. outside-help matrix
 - **`/compliance-gap-quiz`** (LP-TOOL-003): 5-question yes/no self-audit; gaps produce red cards with gap summary, next action, and direct link to matching case study; clean domains shown as green badges; "INITIATE GROUND 0" CTA in results
