@@ -68,7 +68,7 @@ export default function ToolsIndexPage() {
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "4rem 1.5rem 6rem" }}>
 
         {/* Access notice — only for load analyzer gating */}
-        {access === "locked" && (
+        {false && (
           <div style={{ background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", borderLeft: `3px solid ${GOLD}`, padding: "1.25rem 1.75rem", marginBottom: "2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
             <div>
               <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 4px" }}>UPGRADE REQUIRED</p>
@@ -107,7 +107,7 @@ export default function ToolsIndexPage() {
                   </span>
                 ) : (
                   <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: "rgba(212,144,10,0.08)", border: "1px solid rgba(212,144,10,0.25)", padding: "0.2rem 0.6rem" }}>
-                    PORTAL
+                    FREE ACCOUNT
                   </span>
                 )}
               </div>
@@ -139,7 +139,7 @@ export default function ToolsIndexPage() {
               <p style={{ fontFamily: sans, fontSize: "0.857rem", color: "rgba(0,34,68,0.45)", margin: 0 }}>
                 {tool.id === "tco-calculator"
                   ? "Free to use · no account required"
-                  : access === "granted" ? "Available in your portal" : "Included with Document System Bundle · $497"}
+                  : "Free account required · no payment needed"}
               </p>
               <Link
                 to={tool.href}

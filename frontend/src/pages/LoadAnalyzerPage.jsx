@@ -168,7 +168,7 @@ function TeaserPreview() {
 }
 
 // ── Teaser Gate (blurred preview + centered gate card) ───────────────────────
-function TeaserGate({ status }) {
+function TeaserGate() {
   return (
     <div style={{ position: "relative" }}>
       {/* Blurred teaser */}
@@ -181,24 +181,20 @@ function TeaserGate({ status }) {
       {/* Centered gate card */}
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, padding: "1.5rem" }}>
         <div style={{ width: "100%", maxWidth: 460, background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.12)", borderTop: `3px solid ${GOLD}`, padding: "2rem 2.25rem", boxShadow: "0 20px 60px rgba(0,0,0,0.14)" }}>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 10px" }}>LP-TOOL-002 | PORTAL ONLY</p>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, margin: "0 0 10px" }}>LP-TOOL-002 | FREE ACCOUNT</p>
           <h2 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 22, color: NAVY, margin: "0 0 12px", letterSpacing: "-0.01em" }}>
-            {status === "not_logged_in" ? "Unlock the Load Profitability Analyzer" : "Enrollment Required"}
+            Create a Free Account to Access
           </h2>
           <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: "rgba(11,22,40,0.62)", lineHeight: 1.75, margin: "0 0 20px" }}>
-            {status === "not_logged_in"
-              ? "Enter a load offer and get an instant GO / NEGOTIATE / DECLINE decision based on your real cost structure. Available to enrolled members."
-              : "The Load Profitability Analyzer is included with the Document System Bundle ($497) and the LaunchPath Standard ($2,500)."}
+            Track your loads, save your cost-per-mile, and get an instant GO / NEGOTIATE / DECLINE decision on every offer. Free to create — no payment required.
           </p>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            {status === "not_logged_in" ? (
-              <>
-                <Link to="/portal" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "11px 22px", textDecoration: "none" }}>Login →</Link>
-                <Link to="/compliance-library" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(11,22,40,0.55)", background: "transparent", border: "1px solid rgba(11,22,40,0.18)", padding: "11px 18px", textDecoration: "none" }}>See Plans</Link>
-              </>
-            ) : (
-              <Link to="/compliance-library" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "11px 22px", textDecoration: "none" }}>See Enrollment Options →</Link>
-            )}
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+            <Link to="/portal" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "11px 22px", textDecoration: "none" }}>
+              Create Free Account →
+            </Link>
+            <Link to="/portal" style={{ fontFamily: "'Inter',sans-serif", fontWeight: 500, fontSize: 13, color: "rgba(11,22,40,0.50)", textDecoration: "none" }}>
+              Already have an account? Login
+            </Link>
           </div>
         </div>
       </div>
@@ -212,14 +208,14 @@ function AccessGate({ children }) {
   useEffect(() => {
     fetch(`${API}/api/tools/access`, { credentials: "include" })
       .then((r) => r.json())
-      .then((d) => setStatus(d.has_access ? "ok" : d.logged_in ? "no_access" : "not_logged_in"))
+      .then((d) => setStatus(d.logged_in ? "ok" : "not_logged_in"))
       .catch(() => setStatus("not_logged_in"));
   }, []);
 
   if (status === "loading")
     return <div style={{ padding: "6rem 1.5rem", textAlign: "center", fontFamily: "'Inter', sans-serif", color: "rgba(11,22,40,0.45)" }}>Checking access…</div>;
 
-  if (status !== "ok") return <TeaserGate status={status} />;
+  if (status !== "ok") return <TeaserGate />;
 
   return children;
 }
