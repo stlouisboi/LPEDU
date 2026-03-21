@@ -143,6 +143,12 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)
 
+### Session 14 — Stripe Webhook Fix — Feb 2026
+- **Root cause fixed**: Removed incomplete/truncated webhook handler at line 694 that caused a Python `SyntaxError`, taking the entire backend down
+- **Webhook routes**: Both `POST /api/webhook/stripe` AND `POST /api/stripe-webhook` now handled by a single complete handler with full business logic (updates `payment_transactions`, `user_access`, MailerLite, and sends confirmation email)
+- **`COACH_EMAIL` variable**: Added missing module-level `COACH_EMAIL` variable to `server.py` — it was referenced ~10 times but never defined, causing 500 errors on coach login
+- **Tested**: 6/6 backend tests passed including valid Stripe HMAC signature end-to-end test
+
 ### Session 13 — Admin Module Editor — Mar 2026
 - **`/admin/modules`**: Full admin editor for all 10 modules (Ground 0 + Modules 1-9); login-gated (coach only); sidebar module selector; per-lesson Vimeo URL + PDF URL fields; description editor; save/load via MongoDB `module_content` collection
 - **Backend**: `GET/PUT /api/admin/module-content/{id}` (admin); `GET /api/portal/module-urls/{id}` (public)
