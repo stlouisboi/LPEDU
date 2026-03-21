@@ -14,23 +14,180 @@ const COND   = "'Playfair Display', serif";
 const SANS   = "'Inter', sans-serif";
 const BORDER = "rgba(255,255,255,0.08)";
 
-/* ── Entry-Level Resources ──────────────────────────────────── */
+const THUMBS = {
+  "LP-RES-001": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/843ba9f50627568ea8a314e52df0898299c83abb09d7468f3d86233527e5381c.png",
+  "LP-RES-002": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/a1311e9c2284cab2e8b46e40d6e97f7e262b18a103408a1ce0108692fcea707e.png",
+  "LP-RES-004": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/0f086db9d0b79a9781132340e3cb8851e0ad0062ebf8b8551458a21995c16173.png",
+  "LP-RES-006": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/766a7baa3f58994baa14a0f77b9f8e5e7c6e87df594e164fed46c13ccca587ab.png",
+  "LP-PKT-001": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/750a63c8fe4579187dab8c3fe84f84f1bc01eff5ec2046acd3eb02621e20b789.png",
+  "LP-PKT-002": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/e7b64f4e9b93050eea2aafcd8002e0f49b2d712cd41e5a6a0429a5aed3d7800f.png",
+  "LP-PKT-003": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/5243aec3da3a790d03bed29d9ee0fd0977ac235e887cd51140ac1564514a3df2.png",
+  "LP-PKT-004": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/ef1ec4017733ec5408cbd98994a9baf6d3af80ed7019061e9ef3378dbc6baa60.png",
+  "LP-PKT-005": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/4148f0c2618d09baa142952150c1e1861948fb03c611abe1e8713fefef465544.png",
+};
+
+/* ── Product data ────────────────────────────────────────────── */
 const RESOURCES = [
-  { sku: "LP-RES-001", title: "16 Deadly Sins Pocket Guide",           price: "$27",  desc: "The LaunchPath proprietary threat model. All 16 operational behaviors that end new carrier authority — with CFR citations, consequence details, and prevention protocol summary." },
-  { sku: "LP-RES-002", title: "DQ File Builder Kit",                   price: "$37",  desc: "A complete Driver Qualification file assembly kit. Templates, checklists, and step-by-step build instructions under 49 CFR 391.51 — for one driver or an entire fleet." },
-  { sku: "LP-RES-003", title: "New Carrier Compliance Starter Kit",    price: "$47",  desc: "The first-30-days foundation package. Covers the critical installation window — authority verification, D&A enrollment, Clearinghouse registration, and insurance filing checks." },
-  { sku: "LP-RES-004", title: "Safety Audit Prep Pack",                price: "$67",  desc: "Audit exposure window preparation. A self-audit tool covering all six FMCSA review domains — so your New Entrant Safety Audit is verification, not discovery." },
-  { sku: "LP-RES-005", title: "Four Pillars Compliance Blueprint",     price: "$97",  desc: "The operational architecture of a compliant motor carrier — Authority, Documentation, Driver Management, and Financial Controls — mapped to the 90-day new entrant window." },
-  { sku: "LP-RES-006", title: "Complete Compliance Library",           price: "$197", desc: "All five entry-level resources in one discounted bundle. The complete LaunchPath proprietary resource collection — threat model, DQ kit, starter kit, audit prep, and four pillars." },
+  {
+    sku: "LP-RES-001",
+    title: "16 Deadly Sins Pocket Guide",
+    price: "$37",
+    ctaLabel: "GET THIS — $37",
+    format: "PDF · 24 Pages · Instant Download",
+    desc: "Identifies the 16 compliance failures most likely to end a new carrier's authority — and gives you a 7-day plan to close them.",
+    bullets: [
+      "16-sin self-audit with CFR citations and HIGH-RISK flags",
+      "GREEN / YELLOW / RED risk band scoring",
+      "7-Day Stabilization Plan (triage, systems, audit check)",
+      "System Skeletons for DQ, D&A, maintenance, accident register",
+      "CFR Quick Reference mapped to all 16 sins",
+      "Monthly Verification Checklist",
+    ],
+    forWho: "For new carriers in their first 90 days.",
+    notFor: "This is a diagnostic. The Bundle installs the infrastructure.",
+  },
+  {
+    sku: "LP-RES-002",
+    title: "DQ File Builder Kit",
+    price: "$47",
+    ctaLabel: "GET THIS — $47",
+    format: "PDF · 32 Pages · Instant Download",
+    desc: "Every template required to build a compliant Driver Qualification File — or audit one that already exists.",
+    bullets: [
+      "Master DQ File Checklist (11 items, CFR citations)",
+      "Driver Application Template (49 CFR 391.21 compliant)",
+      "Annual Review of Driving Record Form",
+      "Previous Employer Inquiry Letter (includes full D&A history section per 49 CFR 40.25)",
+      "Multi-driver Audit Worksheet (GO / WAIT status per file)",
+      "Expiration Tracking Calendar with 60-day alerts",
+    ],
+    forWho: "For carriers building DQ files for the first time.",
+    notFor: "Not skeletons — completed, fillable, print-ready.",
+  },
+  {
+    sku: "LP-RES-004",
+    title: "Safety Audit Prep Pack",
+    price: "$67",
+    ctaLabel: "GET THIS — $67",
+    format: "PDF · 28 Pages · Instant Download",
+    desc: "The document pull list, mock audit walkthrough, and 48-hour response sequence for carriers facing a New Entrant Safety Audit.",
+    bullets: [
+      "Document pull list mapped to FMCSA's standard audit request",
+      "Mock audit self-review protocol",
+      "48-hour response sequence for when the notice arrives",
+      "Satisfactory / Conditional / Unsatisfactory rating guide",
+      "Audit-Ready Grab Folder setup checklist",
+      "Common audit findings by domain with correction priority",
+    ],
+    forWho: "For carriers in the audit window or who have received a notice.",
+    notFor: null,
+  },
+  {
+    sku: "LP-RES-006",
+    title: "Complete Compliance Library",
+    price: "$197",
+    ctaLabel: "GET THE COLLECTION — $197",
+    format: "PDF · 3 Documents · Instant Download",
+    desc: "All three LaunchPath standalone resources in one package.",
+    bullets: [
+      "16 Deadly Sins Pocket Guide ($37 value)",
+      "DQ File Builder Kit ($47 value)",
+      "Safety Audit Prep Pack ($67 value)",
+    ],
+    forWho: null,
+    notFor: null,
+    savingsNote: "$151 retail value. $197 for the complete collection.",
+  },
 ];
 
-/* ── Individual Packets ─────────────────────────────────────── */
 const PACKETS = [
-  { sku: "LP-PKT-001", title: "New Entrant Compliance Packet",        price: "$97",  domain: "Authority & New Entrant",  desc: "The foundational compliance packet for new motor carrier authority. Covers FMCSA filing verification, New Entrant Safety Audit preparation, and authority maintenance protocols." },
-  { sku: "LP-PKT-002", title: "Drug & Alcohol Compliance Packet",     price: "$97",  domain: "D&A Program",              desc: "Complete Drug & Alcohol program structure for owner-operators and small fleets. Includes Clearinghouse enrollment protocol, pre-employment testing requirements, and program documentation." },
-  { sku: "LP-PKT-003", title: "HOS & Dispatch Compliance Packet",     price: "$127", domain: "Hours of Service",         desc: "Hours-of-service documentation system covering ELD compliance, log reconciliation, and dispatch record requirements under 49 CFR Part 395." },
-  { sku: "LP-PKT-004", title: "Maintenance & Unit File Packet",       price: "$127", domain: "Vehicle Maintenance",      desc: "Vehicle maintenance documentation system including DVIR requirements, periodic inspection scheduling, and unit file structure under 49 CFR Part 396." },
-  { sku: "LP-PKT-005", title: "Insurance & Authority Packet",         price: "$127", domain: "Insurance Continuity",     desc: "BMC-91 filing integrity, coverage verification schedule, and policy gap prevention protocol. Addresses the most common cause of authority revocation." },
+  {
+    sku: "LP-PKT-001",
+    title: "New Entrant Compliance Packet",
+    price: "$97",
+    ctaLabel: "GET THIS PACKET — $97",
+    format: "PDF · 40 Pages · Instant Download",
+    domain: "Domain 1 · Authority & New Entrant",
+    desc: "The document system for carriers in the 18-month New Entrant monitoring period.",
+    bullets: [
+      "New Entrant Safety Audit Brief (49 CFR Parts 385, 390–396)",
+      "Pre-Launch Compliance Checklist (all domains, before first load)",
+      "Audit Prep Checklist and Documentation Index",
+      "Unified 8-Folder Structure Map",
+      "One-weekend installation guide with time estimates",
+      "Automatic failure items by domain",
+    ],
+    note: "This packet covers one domain. The Bundle covers all five.",
+  },
+  {
+    sku: "LP-PKT-002",
+    title: "Drug & Alcohol Compliance Packet",
+    price: "$97",
+    ctaLabel: "GET THIS PACKET — $97",
+    format: "PDF · 36 Pages · Instant Download",
+    domain: "Domain 2 · D&A Program",
+    desc: "The document system for installing a compliant 49 CFR Part 382 program.",
+    bullets: [
+      "Part 382 Regulatory Brief (all six testing types)",
+      "Program Setup Checklist (CTPA, pre-employment, Clearinghouse)",
+      "10-section Written Policy Outline (382.601 compliant)",
+      "Driver Handout Template",
+      "Recordkeeping Checklist with retention periods",
+      "Testing Trigger Log (audit-ready format)",
+    ],
+    note: "Documents your program. Does not administer it.",
+  },
+  {
+    sku: "LP-PKT-003",
+    title: "HOS & Dispatch Compliance Packet",
+    price: "$127",
+    ctaLabel: "GET THIS PACKET — $127",
+    format: "PDF · 36 Pages · Instant Download",
+    domain: "Domain 3 · Hours of Service",
+    desc: "The document system for HOS compliance and dispatch standards under 49 CFR Part 395.",
+    bullets: [
+      "HOS Rules Brief (all core limits, short-haul exemptions)",
+      "Dispatch Standards Checklist including what the carrier cannot ask a driver to do",
+      "ELD Usage Checklist (registration, data fields, edits, malfunction)",
+      "Daily compliance checklist (5–10 minutes per shift)",
+      "Weekly review checklist (30 minutes, catches drift before audit)",
+    ],
+    note: "HOS drift is caught weekly or it is caught by an investigator.",
+  },
+  {
+    sku: "LP-PKT-004",
+    title: "Maintenance & Unit File Packet",
+    price: "$127",
+    ctaLabel: "GET THIS PACKET — $127",
+    format: "PDF · 36 Pages · Instant Download",
+    domain: "Domain 4 · Vehicle Maintenance",
+    desc: "The document system for vehicle maintenance compliance under 49 CFR Part 396.",
+    bullets: [
+      "Part 396 Maintenance and Inspection Brief",
+      "Unit File Template (required contents per VIN with retention periods)",
+      "PM Schedule Outline (11 maintenance items, fill-in intervals)",
+      "Defect and Repair Tracking Sheet with FMCSA certification language",
+      "Pre-Trip Inspection Checklist mapped to Appendix G",
+    ],
+    note: "A maintained truck with no records is the same as an unmaintained truck to FMCSA.",
+  },
+  {
+    sku: "LP-PKT-005",
+    title: "Insurance & Authority Packet",
+    price: "$127",
+    ctaLabel: "GET THIS PACKET — $127",
+    format: "PDF · 36 Pages · Instant Download",
+    domain: "Domain 5 · Insurance Continuity",
+    desc: "The document system for insurance continuity and authority maintenance under 49 CFR Part 387.",
+    bullets: [
+      "Coverage Types Brief (6 types including Non-Trucking Liability and OccAcc)",
+      "Broker and Shipper Contract Risk Checklist (18 flagging criteria)",
+      "90/60/30-Day Insurance Renewal Prep Checklist",
+      "Authority Status and Filings Checklist",
+      "Insurance Continuity Monthly Quick Check",
+    ],
+    note: "Insurance is not a purchase. It is a filing.",
+  },
 ];
 
 const BUNDLE_ITEMS = [
@@ -63,7 +220,7 @@ const MATRIX = [
   { label: "Price",                              ind: "$97–$127 each",           bundle: "$497",   guided: "$2,500" },
 ];
 
-/* ── Count-up hook (fires on page load, not scroll) ─────────── */
+/* ── Count-up (fires on load) ────────────────────────────────── */
 function useCountUpOnLoad(end, duration = 1500) {
   const [value, setValue] = useState(0);
   const started = useRef(false);
@@ -73,8 +230,7 @@ function useCountUpOnLoad(end, duration = 1500) {
     const t0 = performance.now();
     const tick = (now) => {
       const p = Math.min((now - t0) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setValue(Math.round(eased * end));
+      setValue(Math.round((1 - Math.pow(1 - p, 3)) * end));
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
@@ -82,11 +238,10 @@ function useCountUpOnLoad(end, duration = 1500) {
   return value;
 }
 
-/* ── Checkout helper shared by multiple components ────────────── */
+/* ── Checkout hook ───────────────────────────────────────────── */
 function useBuyProduct() {
-  const [states, setStates] = useState({}); // { [sku]: "idle"|"loading"|"error" }
+  const [states, setStates] = useState({});
   const [errors, setErrors] = useState({});
-
   const buy = async (sku) => {
     setStates(s => ({ ...s, [sku]: "loading" }));
     setErrors(e => ({ ...e, [sku]: null }));
@@ -96,19 +251,15 @@ function useBuyProduct() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ product_sku: sku, origin_url: window.location.origin }),
       });
-      if (!res.ok) throw new Error("Server error");
+      if (!res.ok) throw new Error();
       const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error("No checkout URL returned");
-      }
+      if (data.url) { window.location.href = data.url; }
+      else throw new Error();
     } catch {
       setStates(s => ({ ...s, [sku]: "idle" }));
       setErrors(e => ({ ...e, [sku]: "Something went wrong. Please try again or contact support." }));
     }
   };
-
   return { states, errors, buy };
 }
 
@@ -123,7 +274,7 @@ function StatsBlock() {
     { value: c3, label: "Automatic failure items that end authority immediately" },
   ];
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "2rem" }} className="stats-grid">
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }} className="stats-grid">
       {stats.map((s, i) => (
         <div key={i} style={{ textAlign: "center", padding: "1.5rem", background: "rgba(212,144,10,0.04)", border: `1px solid rgba(212,144,10,0.18)` }}>
           <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "3.5rem", color: GOLD, lineHeight: 1, margin: "0 0 0.75rem", letterSpacing: "-0.02em" }}>{s.value}</p>
@@ -136,23 +287,10 @@ function StatsBlock() {
 
 /* ── Self-audit preview ──────────────────────────────────────── */
 const SIN_DATA = {
-  dq_file: {
-    sin: "SIN 01 — The Ghost Driver",
-    consequence: "Immediate Out-of-Service order. Automatic failure in any compliance review.",
-    cfr: "49 CFR Part 391.51",
-  },
-  insurance: {
-    sin: "SIN 12 — Insurance Mismatch",
-    consequence: "FMCSA may show No Insurance on SAFER. Authority can be revoked.",
-    cfr: "49 CFR Part 387",
-  },
-  clearinghouse: {
-    sin: "SIN 05 — Clearinghouse Silence",
-    consequence: "Driver may have disqualifying violations you do not know about. Carrier is liable.",
-    cfr: "49 CFR Part 382.701",
-  },
+  dq_file:      { sin: "SIN 01 — The Ghost Driver",       consequence: "Immediate Out-of-Service order. Automatic failure in any compliance review.", cfr: "49 CFR Part 391.51" },
+  insurance:    { sin: "SIN 12 — Insurance Mismatch",     consequence: "FMCSA may show No Insurance on SAFER. Authority can be revoked.",             cfr: "49 CFR Part 387" },
+  clearinghouse:{ sin: "SIN 05 — Clearinghouse Silence",  consequence: "Driver may have disqualifying violations you do not know about. Carrier is liable.", cfr: "49 CFR Part 382.701" },
 };
-
 const QUESTIONS = [
   { key: "dq_file",       text: "Do you have a complete DQ file for every active driver?" },
   { key: "insurance",     text: "Is your insurance filing verified as Active on SAFER right now?" },
@@ -170,47 +308,23 @@ function SinAuditPreview({ onBuy, loadingState, buyError }) {
 
   return (
     <div style={{ marginTop: "3rem" }}>
-      <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem" }}>
-        LP-TOOL-003A | QUICK SELF-AUDIT
-      </p>
-      <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "#fff", letterSpacing: "-0.01em", marginBottom: "0.75rem" }}>
-        Three questions. Real-time exposure check.
-      </h3>
-      <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, marginBottom: "2rem", maxWidth: 540 }}>
-        Answer honestly. These are the first three questions a compliance investigator asks.
-      </p>
-
-      {/* Question cards */}
+      <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem" }}>LP-TOOL-003A | QUICK SELF-AUDIT</p>
+      <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.25rem,2.5vw,1.75rem)", color: "#fff", letterSpacing: "-0.01em", marginBottom: "0.75rem" }}>Three questions. Real-time exposure check.</h3>
+      <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, marginBottom: "2rem", maxWidth: 540 }}>Answer honestly. These are the first three questions a compliance investigator asks.</p>
       <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "1.5rem" }}>
         {QUESTIONS.map(q => (
-          <div
-            key={q.key}
-            data-testid={`audit-q-${q.key}`}
-            style={{ background: CARD, border: `1px solid ${BORDER}`, padding: "1.25rem 1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}
-          >
+          <div key={q.key} data-testid={`audit-q-${q.key}`} style={{ background: CARD, border: `1px solid ${BORDER}`, padding: "1.25rem 1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
             <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.55, flex: 1, margin: 0 }}>{q.text}</p>
             <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
-              <button
-                data-testid={`audit-yes-${q.key}`}
-                onClick={() => setAnswer(q.key, true)}
-                style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 1.125rem", border: `1px solid ${answers[q.key] === true ? "#22c55e" : "rgba(255,255,255,0.15)"}`, background: answers[q.key] === true ? "rgba(34,197,94,0.14)" : "transparent", color: answers[q.key] === true ? "#22c55e" : "rgba(255,255,255,0.50)", cursor: "pointer", transition: "all 0.15s" }}
-              >Yes</button>
-              <button
-                data-testid={`audit-no-${q.key}`}
-                onClick={() => setAnswer(q.key, false)}
-                style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 1.125rem", border: `1px solid ${answers[q.key] === false ? "#ef4444" : "rgba(255,255,255,0.15)"}`, background: answers[q.key] === false ? "rgba(239,68,68,0.14)" : "transparent", color: answers[q.key] === false ? "#ef4444" : "rgba(255,255,255,0.50)", cursor: "pointer", transition: "all 0.15s" }}
-              >No</button>
+              <button data-testid={`audit-yes-${q.key}`} onClick={() => setAnswer(q.key, true)}  style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 1.125rem", border: `1px solid ${answers[q.key] === true  ? "#22c55e" : "rgba(255,255,255,0.15)"}`, background: answers[q.key] === true  ? "rgba(34,197,94,0.14)"  : "transparent", color: answers[q.key] === true  ? "#22c55e"  : "rgba(255,255,255,0.50)", cursor: "pointer" }}>Yes</button>
+              <button data-testid={`audit-no-${q.key}`}  onClick={() => setAnswer(q.key, false)} style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 1.125rem", border: `1px solid ${answers[q.key] === false ? "#ef4444" : "rgba(255,255,255,0.15)"}`, background: answers[q.key] === false ? "rgba(239,68,68,0.14)"  : "transparent", color: answers[q.key] === false ? "#ef4444"  : "rgba(255,255,255,0.50)", cursor: "pointer" }}>No</button>
             </div>
           </div>
         ))}
       </div>
-
-      {/* Result: any No */}
       {anyNo && (
         <div data-testid="audit-result-risk" style={{ background: "rgba(220,38,38,0.06)", border: "1px solid rgba(220,38,38,0.28)", padding: "1.75rem" }}>
-          <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ef4444", marginBottom: "1.25rem" }}>
-            You have at least one HIGH-RISK compliance exposure.
-          </p>
+          <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#ef4444", marginBottom: "1.25rem" }}>You have at least one HIGH-RISK compliance exposure.</p>
           {failedKeys.map(key => (
             <div key={key} style={{ marginBottom: "1.25rem", paddingLeft: "1rem", borderLeft: "2px solid rgba(239,68,68,0.35)" }}>
               <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.857rem", color: "#ef4444", marginBottom: "0.3rem" }}>{SIN_DATA[key].sin}</p>
@@ -218,37 +332,19 @@ function SinAuditPreview({ onBuy, loadingState, buyError }) {
               <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(255,255,255,0.30)" }}>{SIN_DATA[key].cfr}</p>
             </div>
           ))}
-          <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
-            The 16 Deadly Sins Pocket Guide covers all 16 exposure points and gives you a 7-day plan to close them.
-          </p>
-          <button
-            data-testid="audit-cta-lp-res-001"
-            onClick={() => onBuy("LP-RES-001")}
-            disabled={isLoading}
-            style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.75rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1 }}
-          >
-            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $27"}
+          <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: "1.5rem" }}>The 16 Deadly Sins Pocket Guide covers all 16 exposure points and gives you a 7-day plan to close them.</p>
+          <button data-testid="audit-cta-lp-res-001" onClick={() => onBuy("LP-RES-001")} disabled={isLoading} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.75rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1 }}>
+            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $37"}
           </button>
           {buyError && <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "#ef4444", marginTop: "0.625rem" }}>{buyError}</p>}
         </div>
       )}
-
-      {/* Result: all Yes */}
       {allYes && (
         <div data-testid="audit-result-ok" style={{ background: "rgba(22,163,74,0.06)", border: "1px solid rgba(22,163,74,0.28)", padding: "1.75rem" }}>
-          <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#22c55e", marginBottom: "1rem" }}>
-            Good start. There are 13 more exposure points in the full diagnostic.
-          </p>
-          <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
-            The complete self-audit takes 15 minutes and covers all 16 sins across 6 compliance domains.
-          </p>
-          <button
-            data-testid="audit-cta-all-yes"
-            onClick={() => onBuy("LP-RES-001")}
-            disabled={isLoading}
-            style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.75rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1 }}
-          >
-            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $27"}
+          <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#22c55e", marginBottom: "1rem" }}>Good start. There are 13 more exposure points in the full diagnostic.</p>
+          <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: "1.5rem" }}>The complete self-audit takes 15 minutes and covers all 16 sins across 6 compliance domains.</p>
+          <button data-testid="audit-cta-all-yes" onClick={() => onBuy("LP-RES-001")} disabled={isLoading} style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.75rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1 }}>
+            {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : "Get the Pocket Guide — $37"}
           </button>
           {buyError && <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "#ef4444", marginTop: "0.625rem" }}>{buyError}</p>}
         </div>
@@ -257,68 +353,119 @@ function SinAuditPreview({ onBuy, loadingState, buyError }) {
   );
 }
 
-/* ── Resource card with native checkout ─────────────────────── */
-function ResourceCard({ product, onBuy, loadingState, buyError }) {
-  const isLoading = loadingState === "loading";
+/* ── PDF icon ────────────────────────────────────────────────── */
+function PdfIcon({ color = GOLD }) {
   return (
-    <div
-      data-testid={`resource-card-${product.sku.toLowerCase()}`}
-      style={{ background: "#FFFFFF", borderTop: `2px solid ${GOLD}`, padding: "1.75rem", display: "flex", flexDirection: "column", gap: "0.875rem", boxShadow: "0 1px 4px rgba(13,27,48,0.08)" }}
-    >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
-        <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.7)", margin: 0 }}>{product.sku}</p>
-        <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.25rem", color: NAVY, flexShrink: 0 }}>{product.price}</span>
-      </div>
-      <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.1rem", color: NAVY, lineHeight: 1.25, margin: 0 }}>{product.title}</h3>
-      <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.62)", lineHeight: 1.72, flex: 1, margin: 0 }}>{product.desc}</p>
-      <div>
-        <button
-          data-testid={`buy-resource-${product.sku.toLowerCase()}`}
-          onClick={() => onBuy(product.sku)}
-          disabled={isLoading}
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M14 2v6h6M9 13h6M9 17h4" stroke={color} strokeWidth="1.8" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+/* ── Resource card (light background) ───────────────────────── */
+function ResourceCard({ p, onBuy, loadingState, buyError }) {
+  const isLoading = loadingState === "loading";
+  const thumb = THUMBS[p.sku];
+  return (
+    <div data-testid={`resource-card-${p.sku.toLowerCase()}`} style={{ background: "#FFFFFF", borderTop: `3px solid ${GOLD}`, display: "flex", flexDirection: "column", boxShadow: "0 2px 12px rgba(13,27,48,0.10)", overflow: "hidden" }}>
+      {/* Thumbnail */}
+      {thumb && (
+        <div style={{ overflow: "hidden", background: "#0d1c30", height: 220 }}>
+          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", transition: "transform 0.25s" }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.03)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }} />
+        </div>
+      )}
+      <div style={{ padding: "1.5rem 1.5rem 1.75rem", display: "flex", flexDirection: "column", gap: "0.75rem", flex: 1 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", margin: 0 }}>{p.sku}</p>
+        </div>
+        <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.2rem", color: NAVY, lineHeight: 1.2, margin: 0 }}>{p.title}</h3>
+        <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(13,27,48,0.65)", lineHeight: 1.6, margin: 0 }}>{p.desc}</p>
+        {/* Bullets */}
+        <ul style={{ margin: "0.25rem 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.4rem", flex: 1 }}>
+          {p.bullets.map((b, i) => (
+            <li key={i} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+              <span style={{ color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.55, fontSize: "0.857rem" }}>→</span>
+              <span style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(13,27,48,0.70)", lineHeight: 1.55 }}>{b}</span>
+            </li>
+          ))}
+        </ul>
+        {/* Savings note */}
+        {p.savingsNote && <p style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, color: NAVY, background: "rgba(212,144,10,0.10)", padding: "0.5rem 0.75rem", borderLeft: `2px solid ${GOLD}`, margin: 0 }}>{p.savingsNote}</p>}
+        {/* For / Not */}
+        <div style={{ borderTop: "1px solid rgba(13,27,48,0.08)", paddingTop: "0.75rem" }}>
+          {p.forWho && <p style={{ fontFamily: SANS, fontSize: "0.857rem", fontStyle: "italic", color: "rgba(13,27,48,0.55)", lineHeight: 1.6, margin: "0 0 0.2rem" }}>{p.forWho}</p>}
+          {p.notFor && <p style={{ fontFamily: SANS, fontSize: "0.857rem", fontStyle: "italic", color: "rgba(13,27,48,0.40)", lineHeight: 1.6, margin: 0 }}>{p.notFor}</p>}
+        </div>
+        {/* Price + format */}
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.25rem" }}>
+          <PdfIcon color={GOLD} />
+          <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.25rem", color: NAVY }}>{p.price}</span>
+          <span style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(13,27,48,0.40)", letterSpacing: "0.04em" }}>{p.format}</span>
+        </div>
+        {/* CTA */}
+        <button data-testid={`buy-resource-${p.sku.toLowerCase()}`} onClick={() => onBuy(p.sku)} disabled={isLoading}
           style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.5rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1, transition: "background 0.2s" }}
           onMouseEnter={e => { if (!isLoading) e.currentTarget.style.background = "#e8a520"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = isLoading ? GOLD : GOLD; }}
-        >
-          {isLoading ? <><span className="lp-spinner-dark" />&nbsp;Processing...</> : `Get This — ${product.price}`}
+          onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}>
+          {isLoading ? <><span className="lp-spinner-dark" />&nbsp;Processing...</> : p.ctaLabel}
         </button>
-        {buyError && <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#dc2626", marginTop: "0.5rem", textAlign: "center", lineHeight: 1.5 }}>{buyError}</p>}
+        {buyError && <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#dc2626", textAlign: "center", lineHeight: 1.5, margin: 0 }}>{buyError}</p>}
       </div>
     </div>
   );
 }
 
-/* ── Packet card with native checkout ───────────────────────── */
-function PacketCard({ product, onBuy, loadingState, buyError }) {
+/* ── Packet card (dark background) ──────────────────────────── */
+function PacketCard({ p, onBuy, loadingState, buyError }) {
   const isLoading = loadingState === "loading";
+  const thumb = THUMBS[p.sku];
   return (
-    <div
-      data-testid={`product-card-${product.sku.toLowerCase()}`}
-      style={{ background: CARD, borderTop: `2px solid rgba(212,144,10,0.35)`, padding: "1.75rem", display: "flex", flexDirection: "column", gap: "0.875rem" }}
-    >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
-        <div>
-          <p style={{ fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.3rem" }}>{product.sku}</p>
-          <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", border: `1px solid rgba(255,255,255,0.12)`, padding: "0.15rem 0.5rem" }}>
-            {product.domain}
-          </span>
+    <div data-testid={`product-card-${p.sku.toLowerCase()}`} style={{ background: CARD, borderTop: `3px solid rgba(212,144,10,0.50)`, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      {/* Thumbnail */}
+      {thumb && (
+        <div style={{ overflow: "hidden", background: BG2, height: 220 }}>
+          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", transition: "transform 0.25s" }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.03)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }} />
         </div>
-        <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.4rem", color: GOLD, flexShrink: 0 }}>{product.price}</span>
-      </div>
-      <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.2rem", color: "#FFF", lineHeight: 1.25 }}>{product.title}</h3>
-      <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.60)", lineHeight: 1.72, flex: 1 }}>{product.desc}</p>
-      <div>
-        <button
-          data-testid={`buy-btn-${product.sku.toLowerCase()}`}
-          onClick={() => onBuy(product.sku)}
-          disabled={isLoading}
+      )}
+      <div style={{ padding: "1.5rem 1.5rem 1.75rem", display: "flex", flexDirection: "column", gap: "0.75rem", flex: 1 }}>
+        <div>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", margin: "0 0 0.35rem" }}>{p.sku}</p>
+          <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", border: `1px solid rgba(255,255,255,0.12)`, padding: "0.15rem 0.5rem" }}>{p.domain}</span>
+        </div>
+        <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.2rem", color: "#FFF", lineHeight: 1.2, margin: 0 }}>{p.title}</h3>
+        <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.6, margin: 0 }}>{p.desc}</p>
+        {/* Bullets */}
+        <ul style={{ margin: "0.25rem 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.4rem", flex: 1 }}>
+          {p.bullets.map((b, i) => (
+            <li key={i} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+              <span style={{ color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.55, fontSize: "0.857rem" }}>→</span>
+              <span style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.55 }}>{b}</span>
+            </li>
+          ))}
+        </ul>
+        {/* Note */}
+        {p.note && (
+          <p style={{ fontFamily: SANS, fontSize: "0.857rem", fontStyle: "italic", color: "rgba(255,255,255,0.35)", borderTop: `1px solid ${BORDER}`, paddingTop: "0.75rem", lineHeight: 1.6, margin: 0 }}>{p.note}</p>
+        )}
+        {/* Price + format */}
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.25rem" }}>
+          <PdfIcon color={GOLD} />
+          <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.35rem", color: GOLD }}>{p.price}</span>
+          <span style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(255,255,255,0.30)", letterSpacing: "0.04em" }}>{p.format}</span>
+        </div>
+        {/* CTA */}
+        <button data-testid={`buy-btn-${p.sku.toLowerCase()}`} onClick={() => onBuy(p.sku)} disabled={isLoading}
           style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.5rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1, transition: "background 0.2s" }}
           onMouseEnter={e => { if (!isLoading) e.currentTarget.style.background = "#e8a520"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}
-        >
-          {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : `Get This Packet — ${product.price}`}
+          onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}>
+          {isLoading ? <><span className="lp-spinner" />&nbsp;Processing...</> : p.ctaLabel}
         </button>
-        {buyError && <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#ef4444", marginTop: "0.5rem", textAlign: "center", lineHeight: 1.5 }}>{buyError}</p>}
+        {buyError && <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#ef4444", textAlign: "center", lineHeight: 1.5, margin: 0 }}>{buyError}</p>}
       </div>
     </div>
   );
@@ -336,8 +483,8 @@ export default function ComplianceLibraryPage() {
         .lp-spinner-dark { display:inline-block;width:16px;height:16px;border:2px solid rgba(11,22,40,0.3);border-top-color:${NAVY};border-radius:50%;animation:lp-spin 0.75s linear infinite;vertical-align:middle; }
         @media (max-width: 720px) {
           .path-cards    { grid-template-columns: 1fr !important; }
-          .product-grid  { grid-template-columns: 1fr !important; }
           .resource-grid { grid-template-columns: 1fr !important; }
+          .packet-grid   { grid-template-columns: 1fr !important; }
           .bundle-grid   { grid-template-columns: 1fr !important; }
           .guided-grid   { grid-template-columns: 1fr !important; }
           .stats-grid    { grid-template-columns: 1fr !important; }
@@ -345,31 +492,24 @@ export default function ComplianceLibraryPage() {
         @media (max-width: 900px) {
           .path-cards    { grid-template-columns: 1fr 1fr !important; }
           .resource-grid { grid-template-columns: 1fr 1fr !important; }
-          .stats-grid    { grid-template-columns: 1fr !important; }
         }
       `}</style>
       <Navbar />
 
-      {/* ══ 1. HERO ═══════════════════════════════════════════════ */}
+      {/* ══ HERO ════════════════════════════════════════════════ */}
       <div style={{ position: "relative", borderBottom: `3px solid ${GOLD}`, overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "url(https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/vpafe5mz_compliance-docs.png)", backgroundSize: "cover", backgroundPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,14,32,0.94) 45%, rgba(6,14,32,0.75) 100%)" }} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "6rem 1.5rem 5rem" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "1.25rem" }}>
-            LP-SYS-LIBRARY | STANDARDS LIBRARY
-          </p>
-          <h1 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFF", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "1.25rem", maxWidth: 620 }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "1.25rem" }}>LP-SYS-LIBRARY | STANDARDS LIBRARY</p>
+          <h1 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(2rem,4vw,3rem)", color: "#FFF", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "1.25rem", maxWidth: 620 }}>
             The LaunchPath Operating Standards Library
           </h1>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.70)", marginBottom: "2rem" }}>
-            Three paths to audit-ready compliance infrastructure:
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem", maxWidth: 820 }} className="path-cards">
-            {[
-              { tier: "TIER 1", label: "Individual Packets",       sub: "Install one domain at a time",                           price: "$97–$127" },
-              { tier: "TIER 2", label: "Document System Bundle",   sub: "Install the full structure yourself",                    price: "$497" },
-              { tier: "TIER 3", label: "LaunchPath Standard",      sub: "Guided 90-day implementation with verification",         price: "$2,500" },
-            ].map((t) => (
+          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.70)", marginBottom: "2rem" }}>Three paths to audit-ready compliance infrastructure:</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1rem", maxWidth: 820 }} className="path-cards">
+            {[{ tier: "TIER 1", label: "Individual Resources & Packets", sub: "Install one domain at a time", price: "$37–$197" },
+              { tier: "TIER 2", label: "Document System Bundle",         sub: "Install the full structure yourself", price: "$497" },
+              { tier: "TIER 3", label: "LaunchPath Standard",            sub: "Guided 90-day implementation with verification", price: "$2,500" }].map(t => (
               <div key={t.tier} style={{ background: "rgba(10,20,40,0.80)", border: `1px solid rgba(212,144,10,0.25)`, padding: "1.25rem 1.25rem 1.5rem" }}>
                 <p style={{ fontFamily: MONO, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.4rem" }}>{t.tier}</p>
                 <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.15rem", color: "#FFF", lineHeight: 1.2, marginBottom: "0.4rem" }}>{t.label}</p>
@@ -378,106 +518,57 @@ export default function ComplianceLibraryPage() {
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)", marginTop: "1.75rem", fontStyle: "italic" }}>
-            Choose based on where you are and how much structure you need.
-          </p>
         </div>
       </div>
 
-      {/* ══ 2. LP-RES-001 FEATURED ZONE — Stats + Self-Audit ══════ */}
+      {/* ══ LP-RES-001 FEATURED ZONE ════════════════════════════ */}
       <div style={{ background: BG2, padding: "5rem 1.5rem", borderBottom: `1px solid rgba(212,144,10,0.20)` }}>
         <div style={{ maxWidth: 880, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>
-            LP-RES-001 | THE 16 DEADLY SINS POCKET GUIDE — $27
-          </p>
-          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>
-            Know what ends authority before you learn the hard way.
-          </h2>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 580, marginBottom: "3rem" }}>
-            Most new carriers don't fail audits because they broke the rules. They fail because they didn't know which specific behaviors trigger automatic failure.
-          </p>
-
-          {/* Stats counters */}
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>LP-RES-001 | 16 DEADLY SINS POCKET GUIDE — $37</p>
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>Know what ends authority before you learn the hard way.</h2>
+          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 580, marginBottom: "3rem" }}>Most new carriers don't fail audits because they broke the rules. They fail because they didn't know which specific behaviors trigger automatic failure.</p>
           <StatsBlock />
-
-          {/* Self-audit */}
-          <SinAuditPreview
-            onBuy={buy}
-            loadingState={states["LP-RES-001"]}
-            buyError={errors["LP-RES-001"]}
-          />
+          <SinAuditPreview onBuy={buy} loadingState={states["LP-RES-001"]} buyError={errors["LP-RES-001"]} />
         </div>
       </div>
 
-      {/* ══ 3. ENTRY-LEVEL RESOURCES ══════════════════════════════ */}
+      {/* ══ RESOURCES ═══════════════════════════════════════════ */}
       <div style={{ background: "#F6F3EE", padding: "5rem 1.5rem", borderBottom: `1px solid rgba(13,27,48,0.10)` }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.75rem" }}>
-            LP-RESOURCES | ENTRY-LEVEL GUIDES &amp; TOOLS
-          </p>
-          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#0D1B30", marginBottom: "0.75rem" }}>
-            Standalone resources. No subscription required.
-          </h2>
-          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>
-            Self-directed tools, guides, and kits built from the LaunchPath compliance architecture. Start anywhere. Each resource is self-contained.
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.25rem" }} className="resource-grid">
-            {RESOURCES.map((r) => (
-              <ResourceCard
-                key={r.sku}
-                product={r}
-                onBuy={buy}
-                loadingState={states[r.sku]}
-                buyError={errors[r.sku]}
-              />
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.75rem" }}>LP-RESOURCES | STANDALONE GUIDES &amp; KITS</p>
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#0D1B30", marginBottom: "0.75rem" }}>Standalone resources. No subscription required.</h2>
+          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>Self-contained tools and kits. See what's inside. Buy what you need.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }} className="resource-grid">
+            {RESOURCES.map(r => (
+              <ResourceCard key={r.sku} p={r} onBuy={buy} loadingState={states[r.sku]} buyError={errors[r.sku]} />
             ))}
           </div>
         </div>
       </div>
 
-      {/* ══ 4. INDIVIDUAL PACKETS ══════════════════════════════════ */}
+      {/* ══ PACKETS ═════════════════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 1060, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>
-            TIER 1 | INDIVIDUAL PACKETS — $97–$127 EACH
-          </p>
-          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>
-            Install one domain at a time.
-          </h2>
-          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>
-            Each packet covers one compliance domain completely. Buy what you need, install it, then move to the next.
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.25rem" }} className="product-grid">
-            {PACKETS.map((p) => (
-              <PacketCard
-                key={p.sku}
-                product={p}
-                onBuy={buy}
-                loadingState={states[p.sku]}
-                buyError={errors[p.sku]}
-              />
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>TIER 1 | COMPLIANCE PACKETS — $97–$127 EACH</p>
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>Install one domain at a time.</h2>
+          <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>Each packet covers one compliance domain completely. Buy what you need, install it, then move to the next.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }} className="packet-grid">
+            {PACKETS.map(p => (
+              <PacketCard key={p.sku} p={p} onBuy={buy} loadingState={states[p.sku]} buyError={errors[p.sku]} />
             ))}
           </div>
         </div>
       </div>
 
-      {/* ══ 5. $497 BUNDLE ════════════════════════════════════════ */}
+      {/* ══ $497 BUNDLE ═════════════════════════════════════════ */}
       <div style={{ background: BG2, borderTop: `3px solid ${GOLD}`, borderBottom: `3px solid ${GOLD}`, padding: "4rem 1.5rem" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }} className="bundle-grid">
             <div>
-              <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>
-                LP-SPEC-001 | TIER 2 — THE COMPLETE DIY SYSTEM
-              </p>
-              <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFF", letterSpacing: "-0.01em", marginBottom: "0.4rem" }}>
-                New Carrier Document System
-              </h2>
-              <p style={{ fontFamily: SANS, fontSize: "1.15rem", color: GOLD, fontWeight: 700, marginBottom: "0.25rem" }}>
-                $497 <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 400, color: "rgba(212,144,10,0.55)" }}>($634 if purchased separately)</span>
-              </p>
-              <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", marginBottom: "1.75rem", lineHeight: 1.65, maxWidth: 480 }}>
-                Every compliance packet, plus the folder architecture and implementation calendar that turns five documents into one operating system. The complete DIY path.
-              </p>
+              <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>LP-BDL-001 | TIER 2 — THE COMPLETE DIY SYSTEM</p>
+              <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", color: "#FFF", letterSpacing: "-0.01em", marginBottom: "0.4rem" }}>New Carrier Document System</h2>
+              <p style={{ fontFamily: SANS, fontSize: "1.15rem", color: GOLD, fontWeight: 700, marginBottom: "0.25rem" }}>$497 <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 400, color: "rgba(212,144,10,0.55)" }}>($634 if purchased separately)</span></p>
+              <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", marginBottom: "1.75rem", lineHeight: 1.65, maxWidth: 480 }}>Every compliance packet, plus the folder architecture and implementation calendar that turns five documents into one operating system.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {BUNDLE_ITEMS.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
@@ -489,71 +580,41 @@ export default function ComplianceLibraryPage() {
             </div>
             <div style={{ textAlign: "right", flexShrink: 0 }}>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.5rem" }}>
-                <button
-                  data-testid="bundle-buy-btn"
-                  onClick={() => buy("LP-BDL-001")}
-                  disabled={states["LP-BDL-001"] === "loading"}
+                <button data-testid="bundle-buy-btn" onClick={() => buy("LP-BDL-001")} disabled={states["LP-BDL-001"] === "loading"}
                   style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1rem 2rem", border: "none", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", opacity: states["LP-BDL-001"] === "loading" ? 0.75 : 1, transition: "background 0.2s", whiteSpace: "nowrap" }}
                   onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#e8a520"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}
-                >
+                  onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}>
                   {states["LP-BDL-001"] === "loading" ? <><span className="lp-spinner-dark" />&nbsp;Processing...</> : "Download Bundle — $497"}
                 </button>
-                {errors["LP-BDL-001"] && (
-                  <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#ef4444", maxWidth: 240, textAlign: "right", lineHeight: 1.5 }}>{errors["LP-BDL-001"]}</p>
-                )}
+                {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#ef4444", maxWidth: 240, textAlign: "right", lineHeight: 1.5 }}>{errors["LP-BDL-001"]}</p>}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ══ 6. BRIDGE COPY — WHY GUIDED? ══════════════════════════ */}
+      {/* ══ BRIDGE COPY ═════════════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.5rem" }}>
-            LP-DOC-001 | THE DIFFERENCE
-          </p>
-          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "2rem" }}>
-            Why Guided?
-          </h2>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
-            The $497 Document System gives you every form, template, and checklist you need. If you know what you're doing — or you're willing to figure it out — it's everything required to build an audit-ready operation.
-          </p>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
-            But most new carriers don't fail because they lacked the documents. They fail because the documents weren't installed in the right order, at the right time, with the right verification.
-          </p>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.85 }}>
-            The LaunchPath Standard exists for operators who want someone watching the installation — not doing it for them, but confirming it's done right before the audit window closes.
-          </p>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.5rem" }}>LP-DOC-001 | THE DIFFERENCE</p>
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "2rem" }}>Why Guided?</h2>
+          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.85, marginBottom: "1.25rem" }}>The $497 Document System gives you every form, template, and checklist you need. If you know what you're doing — or you're willing to figure it out — it's everything required to build an audit-ready operation.</p>
+          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.85 }}>Most new carriers don't fail because they lacked the documents. They fail because the documents weren't installed in the right order, at the right time, with the right verification.</p>
         </div>
       </div>
 
-      {/* ══ 7. $2,500 GUIDED STANDARD ═════════════════════════════ */}
+      {/* ══ $2,500 GUIDED STANDARD ══════════════════════════════ */}
       <div style={{ background: BG2, borderTop: `1px solid rgba(212,144,10,0.20)`, borderBottom: `1px solid rgba(212,144,10,0.20)`, padding: "5rem 1.5rem" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ borderLeft: `3px solid rgba(212,144,10,0.40)`, paddingLeft: "1.5rem", marginBottom: "3rem", maxWidth: 560 }}>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "rgba(255,255,255,0.80)", fontStyle: "italic", lineHeight: 1.6, marginBottom: "0.5rem" }}>
-              "If this feels expensive, you are likely not ready. If it feels reasonable, you are already thinking like an operator."
-            </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.60)", letterSpacing: "0.08em", margin: 0 }}>
-              — Vince Lawrence, Station Custodian
-            </p>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: "clamp(1rem,2vw,1.2rem)", color: "rgba(255,255,255,0.80)", fontStyle: "italic", lineHeight: 1.6, marginBottom: "0.5rem" }}>"If this feels expensive, you are likely not ready. If it feels reasonable, you are already thinking like an operator."</p>
+            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.60)", letterSpacing: "0.08em", margin: 0 }}>— Vince Lawrence, Station Custodian</p>
           </div>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.5rem" }}>
-            LP-STD-001 | TIER 3 — THE GUIDED IMPLEMENTATION
-          </p>
-          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.5rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.4rem" }}>
-            The LaunchPath Standard — $2,500
-          </h2>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.5rem" }}>LP-STD-001 | TIER 3 — THE GUIDED IMPLEMENTATION</p>
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.5rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.4rem" }}>The LaunchPath Standard — $2,500</h2>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "4rem", alignItems: "start", marginTop: "2rem" }} className="guided-grid">
             <div>
-              <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
-                The difference between the DIY system and the guided implementation isn't the documents — it's whether someone with 25 years in compliance is watching to make sure they're installed correctly before FMCSA arrives.
-              </p>
-              <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.85, marginBottom: "2rem" }}>
-                Entry is through Ground 0.
-              </p>
+              <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.85, marginBottom: "2rem" }}>The difference between the DIY system and the guided implementation isn't the documents — it's whether someone with 25 years in compliance is watching to make sure they're installed correctly before FMCSA arrives.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {GUIDED_ITEMS.map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
@@ -566,34 +627,26 @@ export default function ComplianceLibraryPage() {
             <div style={{ background: CARD, border: `1px solid rgba(212,144,10,0.25)`, padding: "2rem", alignSelf: "start" }}>
               <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem" }}>LPOS V1.0 | ENTRY POINT</p>
               <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.75rem", color: GOLD, lineHeight: 1.1, marginBottom: "1.25rem" }}>Access begins with Ground 0.</p>
-              <Link
-                to="/ground-0-briefing"
-                data-testid="guided-ground0-btn"
-                style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1.1rem 1.5rem", textDecoration: "none", marginBottom: "1rem", transition: "background 0.2s" }}
+              <Link to="/ground-0-briefing" data-testid="guided-ground0-btn"
+                style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1.1rem 1.5rem", textDecoration: "none", marginBottom: "1rem" }}
                 onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}
-              >
+                onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}>
                 INITIATE GROUND 0 →
               </Link>
-              <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.65, textAlign: "center", margin: 0 }}>
-                Ground 0 is free. It takes 4–6 minutes.<br />
-                Complete it to request admission to the next cohort.
-              </p>
+              <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.65, textAlign: "center", margin: 0 }}>Ground 0 is free. It takes 4–6 minutes.</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ══ 8. COMPARISON MATRIX ══════════════════════════════════ */}
+      {/* ══ COMPARISON MATRIX ═══════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "2rem" }}>
-            LP-DOC-002 | COMPARISON MATRIX
-          </p>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "2rem" }}>LP-DOC-002 | COMPARISON MATRIX</p>
           <div style={{ border: `1px solid ${BORDER}`, overflow: "hidden" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", borderBottom: `1px solid ${BORDER}`, background: "rgba(212,144,10,0.06)" }}>
               <div style={{ padding: "1rem 1.25rem" }} />
-              {[{ label: "Individual Packets", price: "$97–$127 ea." }, { label: "Document System Bundle", price: "$497" }, { label: "LaunchPath Standard", price: "$2,500" }].map((col) => (
+              {[{ label: "Individual Resources & Packets", price: "$37–$197 / $97–$127" }, { label: "Document System Bundle", price: "$497" }, { label: "LaunchPath Standard", price: "$2,500" }].map(col => (
                 <div key={col.label} style={{ padding: "1rem 1.25rem", borderLeft: `1px solid ${BORDER}` }}>
                   <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1rem", color: "#FFF", lineHeight: 1.2, marginBottom: "0.2rem" }}>{col.label}</p>
                   <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: GOLD, fontWeight: 700 }}>{col.price}</p>
@@ -604,9 +657,7 @@ export default function ComplianceLibraryPage() {
               <div key={i} style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", borderBottom: i < MATRIX.length - 1 ? `1px solid ${BORDER}` : "none", background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)" }}>
                 <div style={{ padding: "0.875rem 1.25rem", fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)" }}>{row.label}</div>
                 {[row.ind, row.bundle, row.guided].map((val, j) => (
-                  <div key={j} style={{ padding: "0.875rem 1.25rem", borderLeft: `1px solid ${BORDER}`, fontFamily: val === "—" ? MONO : SANS, fontSize: "var(--text-sm)", color: val === "✓" ? "#4caf50" : val === "—" ? "rgba(255,255,255,0.20)" : j === 2 ? GOLD : "rgba(255,255,255,0.72)", fontWeight: val === "✓" ? 700 : 400 }}>
-                    {val}
-                  </div>
+                  <div key={j} style={{ padding: "0.875rem 1.25rem", borderLeft: `1px solid ${BORDER}`, fontFamily: val === "—" ? MONO : SANS, fontSize: "var(--text-sm)", color: val === "✓" ? "#4caf50" : val === "—" ? "rgba(255,255,255,0.20)" : j === 2 ? GOLD : "rgba(255,255,255,0.72)", fontWeight: val === "✓" ? 700 : 400 }}>{val}</div>
                 ))}
               </div>
             ))}
@@ -614,42 +665,24 @@ export default function ComplianceLibraryPage() {
         </div>
       </div>
 
-      {/* ══ 9. OUTCOME / TRUST STATEMENT ══════════════════════════ */}
-      <div style={{ background: BG2, padding: "3.5rem 1.5rem", borderBottom: `1px solid ${BORDER}` }}>
-        <div style={{ maxWidth: 760, margin: "0 auto", borderLeft: `3px solid rgba(212,144,10,0.35)`, paddingLeft: "1.75rem" }}>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", fontStyle: "italic", color: "rgba(255,255,255,0.60)", lineHeight: 1.82, marginBottom: "0.75rem" }}>
-            Every packet in this library is built from the same documentation architecture used in the full LaunchPath Standard. The difference is whether you install it yourself — or with oversight.
-          </p>
-        </div>
-      </div>
-
-      {/* ══ 10. FINAL CTA ══════════════════════════════════════════ */}
+      {/* ══ FINAL CTA ═══════════════════════════════════════════ */}
       <div style={{ padding: "5rem 1.5rem", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.25rem" }}>
-            LPOS V1.0 | GROUND 0 ENTRY
-          </p>
-          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em", color: "#FFF", lineHeight: 1.1, marginBottom: "2rem" }}>
-            Not sure which path fits your situation?
-          </h2>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.25rem" }}>LPOS V1.0 | GROUND 0 ENTRY</p>
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#FFF", lineHeight: 1.1, marginBottom: "2rem" }}>Not sure which path fits your situation?</h2>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link to="/ground-0-briefing" data-testid="library-ground0-cta" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1.1rem 2.25rem", textDecoration: "none", transition: "background 0.2s" }} onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }} onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}>
-              INITIATE GROUND 0 →
-            </Link>
-            <Link to="/standard" data-testid="library-standard-link" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "0.10em", textTransform: "uppercase", color: GOLD, background: "transparent", padding: "1.1rem 2.25rem", textDecoration: "none", border: `1px solid rgba(212,144,10,0.45)`, transition: "border-color 0.2s" }} onMouseEnter={e => { e.currentTarget.style.borderColor = GOLD; }} onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.45)"; }}>
-              VIEW THE STANDARD →
-            </Link>
+            <Link to="/ground-0-briefing" data-testid="library-ground0-cta" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1.1rem 2.25rem", textDecoration: "none" }} onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }} onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}>INITIATE GROUND 0 →</Link>
+            <Link to="/standard" data-testid="library-standard-link" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.88rem", letterSpacing: "0.10em", textTransform: "uppercase", color: GOLD, background: "transparent", padding: "1.1rem 2.25rem", textDecoration: "none", border: `1px solid rgba(212,144,10,0.45)` }}>VIEW THE STANDARD →</Link>
           </div>
         </div>
       </div>
 
-      {/* ══ Disclaimer ════════════════════════════════════════════ */}
+      {/* Disclaimer */}
       <div style={{ borderTop: `1px solid ${BORDER}`, padding: "1.5rem", textAlign: "center" }}>
         <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.25)", lineHeight: 1.7, maxWidth: 680, margin: "0 auto", fontStyle: "italic" }}>
           All documents current as of March 2026. Verify current regulatory requirements at ecfr.gov. LaunchPath Transportation EDU is an educational program and does not provide legal, compliance, or financial advice.
         </p>
       </div>
-
       <FooterSection />
     </div>
   );
