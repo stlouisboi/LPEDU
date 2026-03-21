@@ -9,7 +9,6 @@ const FRAMEWORK_LINKS = [
     label: "Standards",
     href: "/standards",
     subItems: [
-      { label: "Audit Domains", href: "/standards#audit-domains" },
       { label: "16 Deadly Sins", href: "/standards/16-deadly-sins" },
       { label: "Compliance System", href: "/standards" },
       { label: "Case Studies", href: "/case-studies" },
