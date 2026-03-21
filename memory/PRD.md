@@ -143,10 +143,11 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)
 
-### Session 15 — Case Studies + Conditional Rating Pages — Feb 2026
-- **`/case-studies`** (LP-DOC-005): 5 anonymized audit-outcome cases (ELD/HOS, D&A, Insurance lapse, Maintenance, BOC-3) — format: Carrier Type | Day of Authority | What Happened | What Was Missing | Outcome | Sin mapping link
-- **`/conditional-rating`** (LP-DOC-006): Full compliance-response page — 3-rating comparison, 45-day clock explainer, 5-step Conditional→Satisfactory upgrade path, DIY vs. outside-help decision matrix; CTAs to Ground 0 and LaunchPath Standard
-- **16 Deadly Sins Pocket Guide** ($17 Gumroad CTA): Added "Get the Pocket Guide — $17 →" upsell block to the Remaining 11 sins section of SixteenSinsPage
+### Session 15 — Case Studies + Conditional Rating + Gap Quiz — Feb 2026
+- **`/case-studies`** (LP-DOC-005): 5 anonymized audit-outcome cases (ELD/HOS, D&A, Insurance lapse, Maintenance, BOC-3) with quiz entry banner
+- **`/conditional-rating`** (LP-DOC-006): 3-rating comparison, 45-day clock, 5-step upgrade path, DIY vs. outside-help matrix
+- **`/compliance-gap-quiz`** (LP-TOOL-003): 5-question yes/no self-audit; gaps produce red cards with gap summary, next action, and direct link to matching case study; clean domains shown as green badges; "INITIATE GROUND 0" CTA in results
+- **16 Deadly Sins Gumroad CTA**: "Get the Pocket Guide — $17 →" upsell in Remaining 11 sins section
 
 ### Session 14 — Stripe Webhook Fix + Admin Payment Notifications — Feb 2026
 - **Admin notification email**: On every successful payment, Vince (COACH_EMAIL) now instantly receives a MailerSend email with operator name, email, amount, Stripe session ID, and a direct link to `/admin/admissions`

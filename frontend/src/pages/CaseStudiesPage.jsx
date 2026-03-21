@@ -122,6 +122,32 @@ export default function CaseStudiesPage() {
 
       {/* ── Cases ── */}
       <div style={{ maxWidth: 780, margin: "0 auto", padding: "4rem 2rem 6rem" }}>
+
+        {/* Quiz entry banner */}
+        <FadeIn>
+          <div style={{
+            display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between",
+            gap: "1.25rem", background: darkCard, border: "1px solid rgba(212,144,10,0.18)",
+            padding: "1.5rem 2rem", marginBottom: "3rem",
+          }}>
+            <div>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", margin: "0 0 0.3rem" }}>LP-TOOL-003</p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.70)", margin: 0, lineHeight: 1.5 }}>
+                Not sure which case applies to your operation? Take the 5-question gap audit.
+              </p>
+            </div>
+            <Link
+              to="/compliance-gap-quiz"
+              data-testid="cs-quiz-cta"
+              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "#0b1628", background: gold, padding: "0.875rem 1.75rem", textDecoration: "none", display: "inline-block", whiteSpace: "nowrap", transition: "background 0.2s", flexShrink: 0 }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = gold; }}
+            >
+              TAKE THE AUDIT →
+            </Link>
+          </div>
+        </FadeIn>
+
         <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
           {CASES.map((c, i) => {
             const badge = RATING_BADGE[c.rating];

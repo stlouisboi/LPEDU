@@ -58,6 +58,7 @@ import BundlePage from "./pages/products/BundlePage";
 import SixteenSinsPage from "./pages/standards/SixteenSinsPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
 import ConditionalRatingPage from "./pages/ConditionalRatingPage";
+import ComplianceGapQuizPage from "./pages/ComplianceGapQuizPage";
 import CPMPublicPage from "./pages/CPMPublicPage";
 import ToolsIndexPage from "./pages/ToolsIndexPage";
 import TCOCalculatorPage from "./pages/TCOCalculatorPage";
@@ -186,6 +187,7 @@ function AppRouter() {
       <Route path="/16-deadly-sins" element={<SixteenSinsPage />} />
       <Route path="/case-studies" element={<CaseStudiesPage />} />
       <Route path="/conditional-rating" element={<ConditionalRatingPage />} />
+      <Route path="/compliance-gap-quiz" element={<ComplianceGapQuizPage />} />
 
       {/* Product preview/export tool */}
       <Route path="/product-preview" element={<ProductPreviewPage />} />
