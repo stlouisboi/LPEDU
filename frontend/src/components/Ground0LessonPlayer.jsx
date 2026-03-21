@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { CheckCircle, ArrowRight, X, GoogleLogo } from "@phosphor-icons/react";
 
+const API = process.env.REACT_APP_BACKEND_URL;
+
 // ── Lesson Data ──────────────────────────────────────────────────────────────
 const LESSONS = [
   {
@@ -186,6 +188,19 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
   const [progressLoaded, setProgressLoaded] = useState(false);
+  const [urlMap, setUrlMap] = useState({});
+
+  // Fetch admin-set Vimeo/PDF URLs for Ground 0 lessons
+  useEffect(() => {
+    fetch(`${API}/api/portal/module-urls/ground-0`)
+      .then(r => r.json())
+      .then(d => {
+        const map = {};
+        (d.lessons || []).forEach(l => { map[l.lesson_id] = { vimeo_url: l.vimeo_url, pdf_url: l.pdf_url }; });
+        setUrlMap(map);
+      })
+      .catch(() => {});
+  }, [API]);
 
   // Sync localUser when prop changes
   useEffect(() => { setLocalUser(user); }, [user]);
@@ -565,7 +580,18 @@ function LessonView({ lesson, lessonIndex, totalLessons, completedLessons, selec
         {lesson.title}
       </h2>
 
-      {/* Video placeholder */}
+      {/* Video — Vimeo embed if URL set, else placeholder */}
+      {urlMap[lesson.number]?.vimeo_url ? (
+        <div style={{ width: "100%", aspectRatio: "16/9", maxHeight: 360, marginBottom: "2rem", background: "#000" }}>
+          <iframe
+            src={`${urlMap[lesson.number].vimeo_url}${urlMap[lesson.number].vimeo_url.includes('?') ? '&' : '?'}autoplay=0&byline=0&portrait=0&title=0`}
+            style={{ width: "100%", height: "100%", border: "none" }}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title={lesson.title}
+          />
+        </div>
+      ) : (
       <div
         data-testid={`video-placeholder-${lesson.number}`}
         style={{
@@ -592,6 +618,7 @@ function LessonView({ lesson, lessonIndex, totalLessons, completedLessons, selec
           URL coming soon
         </p>
       </div>
+      )}
 
       {/* Key Points */}
       <div style={{ marginBottom: "2rem" }}>
@@ -617,23 +644,30 @@ function LessonView({ lesson, lessonIndex, totalLessons, completedLessons, selec
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "0.75rem" }}>
           REFERENCE DOCUMENT
         </p>
+        {urlMap[lesson.number]?.pdf_url ? (
+          <a
+            href={urlMap[lesson.number].pdf_url}
+            target="_blank" rel="noreferrer"
+            data-testid={`pdf-download-${lesson.number}`}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(212,144,10,0.35)", color: "#d4900a", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", textDecoration: "none" }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1v8M4 6l3 3 3-3M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Download {lesson.pdfLabel}
+          </a>
+        ) : (
         <button
           data-testid={`pdf-download-${lesson.number}`}
           disabled
-          style={{
-            display: "inline-flex", alignItems: "center", gap: "0.6rem",
-            background: "transparent", border: "1px solid rgba(255,255,255,0.15)",
-            color: "rgba(255,255,255,0.45)", fontFamily: "'Inter', sans-serif",
-            fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em",
-            textTransform: "uppercase", padding: "0.75rem 1.25rem",
-            cursor: "not-allowed",
-          }}
+          style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.45)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", cursor: "not-allowed" }}
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M7 1v8M4 6l3 3 3-3M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
           {lesson.pdfLabel} — Coming Soon
         </button>
+        )}
       </div>
 
       {/* Self Assessment */}

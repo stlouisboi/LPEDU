@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { PlayCircle, FileText, ArrowRight } from "@phosphor-icons/react";
+
+const API = process.env.REACT_APP_BACKEND_URL;
 
 // ── Module 1 Lesson Data ─────────────────────────────────────────────────────
 export const MODULE_1_DATA = {
@@ -167,8 +169,21 @@ function VideoPlaceholder({ lesson, moduleCode }) {
 // ── VideoLessonWorkbench ─────────────────────────────────────────────────────
 export function VideoLessonWorkbench({ moduleData }) {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [urlMap, setUrlMap] = useState({});
   const lesson = moduleData.lessons[activeIdx];
   const mono = "'Inter', sans-serif";
+
+  // Fetch admin-set Vimeo/PDF URLs for this module
+  useEffect(() => {
+    fetch(`${API}/api/portal/module-urls/${moduleData.id}`)
+      .then(r => r.json())
+      .then(d => {
+        const map = {};
+        (d.lessons || []).forEach(l => { map[l.lesson_id] = { vimeo_url: l.vimeo_url, pdf_url: l.pdf_url }; });
+        setUrlMap(map);
+      })
+      .catch(() => {});
+  }, [moduleData.id]);
 
   return (
     <div data-testid="video-lesson-workbench">
@@ -253,9 +268,9 @@ export function VideoLessonWorkbench({ moduleData }) {
             }}
           >
             <div style={{ position: "absolute", inset: 0 }}>
-              {lesson.videoUrl ? (
+              {(urlMap[lesson.id]?.vimeo_url || lesson.videoUrl) ? (
                 <ReactPlayer
-                  url={lesson.videoUrl}
+                  url={urlMap[lesson.id]?.vimeo_url || lesson.videoUrl}
                   width="100%"
                   height="100%"
                   controls

@@ -143,7 +143,11 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
 - **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
 - **Tested**: 14/14 scenarios passed (backend + frontend)
 
-## P1 (High Value, Near Term)
+### Session 13 — Admin Module Editor — Mar 2026
+- **`/admin/modules`**: Full admin editor for all 10 modules (Ground 0 + Modules 1-9); login-gated (coach only); sidebar module selector; per-lesson Vimeo URL + PDF URL fields; description editor; save/load via MongoDB `module_content` collection
+- **Backend**: `GET/PUT /api/admin/module-content/{id}` (admin); `GET /api/portal/module-urls/{id}` (public)
+- **Ground0LessonPlayer**: Now auto-fetches URL overrides on mount — Vimeo URLs render as iframes, PDF URLs become active download links
+- **VideoLessonWorkbench**: Same URL fetch pattern; admin-set Vimeo URL takes priority over static `videoUrl: null`
 - Scaffold Portal Modules 2–9 (stub remaining modules with lesson structure, locked state)
 - Twilio SMS notifications to Vince on new admission (credentials needed)
 - Stripe webhook secret for production signature verification

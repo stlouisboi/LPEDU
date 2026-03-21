@@ -738,6 +738,42 @@ async def _require_coach(request: Request):
     return session["user_id"]
 
 
+class LessonUrlUpdate(BaseModel):
+    lesson_id: str
+    vimeo_url: str = ""
+    pdf_url: str = ""
+
+class ModuleContentSave(BaseModel):
+    description: Optional[str] = None
+    lessons: List[LessonUrlUpdate] = []
+
+@api_router.get("/admin/module-content/{module_id}")
+async def get_module_content(module_id: str, coach_id: str = Depends(_require_coach)):
+    """Admin: get saved content overrides for a module."""
+    doc = await db.module_content.find_one({"module_id": module_id}, {"_id": 0})
+    return {"content": doc or {"module_id": module_id, "description": "", "lessons": []}}
+
+@api_router.put("/admin/module-content/{module_id}")
+async def save_module_content(module_id: str, data: ModuleContentSave, coach_id: str = Depends(_require_coach)):
+    """Admin: save Vimeo URLs, PDF URLs, and description overrides for a module."""
+    record = {
+        "module_id": module_id,
+        "description": data.description or "",
+        "lessons": [{"lesson_id": l.lesson_id, "vimeo_url": l.vimeo_url, "pdf_url": l.pdf_url} for l in data.lessons],
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.module_content.replace_one({"module_id": module_id}, record, upsert=True)
+    return {"ok": True}
+
+@api_router.get("/portal/module-urls/{module_id}")
+async def get_module_urls(module_id: str):
+    """Portal: get lesson Vimeo/PDF URLs for a module (public endpoint for lesson players)."""
+    doc = await db.module_content.find_one({"module_id": module_id}, {"_id": 0})
+    if not doc:
+        return {"lessons": []}
+    return {"lessons": doc.get("lessons", [])}
+
+
 # ── Admin — Admission Requests ────────────────────────────────────────────────
 
 @api_router.get("/admin/admission-requests")
