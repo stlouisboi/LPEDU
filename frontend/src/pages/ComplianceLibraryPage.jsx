@@ -481,17 +481,16 @@ export default function ComplianceLibraryPage() {
         @keyframes lp-spin { to { transform: rotate(360deg); } }
         .lp-spinner      { display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.25);border-top-color:#fff;border-radius:50%;animation:lp-spin 0.75s linear infinite;vertical-align:middle; }
         .lp-spinner-dark { display:inline-block;width:16px;height:16px;border:2px solid rgba(11,22,40,0.3);border-top-color:${NAVY};border-radius:50%;animation:lp-spin 0.75s linear infinite;vertical-align:middle; }
-        @media (max-width: 720px) {
-          .path-cards    { grid-template-columns: 1fr !important; }
+        @media (max-width: 960px) {
           .resource-grid { grid-template-columns: 1fr !important; }
           .packet-grid   { grid-template-columns: 1fr !important; }
           .bundle-grid   { grid-template-columns: 1fr !important; }
           .guided-grid   { grid-template-columns: 1fr !important; }
-          .stats-grid    { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 900px) {
           .path-cards    { grid-template-columns: 1fr 1fr !important; }
-          .resource-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 600px) {
+          .path-cards    { grid-template-columns: 1fr !important; }
+          .stats-grid    { grid-template-columns: 1fr !important; }
         }
       `}</style>
       <Navbar />
