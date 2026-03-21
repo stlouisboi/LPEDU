@@ -838,6 +838,8 @@ async def check_tool_access(request: Request):
     user = await get_user_from_request(request)
     if not user:
         return {"logged_in": False, "has_access": False}
+    if user.get("email") == COACH_EMAIL:
+        return {"logged_in": True, "has_access": True}
     access = await db.user_access.find_one({"user_id": user["user_id"]}, {"_id": 0})
     has_access = bool(access and access.get("has_access"))
     return {"logged_in": True, "has_access": has_access}
@@ -868,6 +870,49 @@ async def get_saved_cpm(request: Request):
     result = await db.cpm_results.find_one({"user_id": user["user_id"]}, {"_id": 0})
     return {"saved": result}
 
+
+# ── Load Profitability Analyzer ───────────────────
+class LoadAnalysisSave(BaseModel):
+    load_rate: float
+    loaded_miles: float
+    deadhead_miles: float
+    fuel_surcharge: float
+    detention: float
+    other_accessorials: float
+    load_rpm: float
+    verdict: str
+    saved_cpm: float
+
+@api_router.post("/tools/load-save")
+async def save_load_analysis(data: LoadAnalysisSave, request: Request):
+    """Portal: save user's load profitability analysis."""
+    user = await get_user_from_request(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    record = {
+        "user_id": user["user_id"],
+        "load_rate": data.load_rate,
+        "loaded_miles": data.loaded_miles,
+        "deadhead_miles": data.deadhead_miles,
+        "fuel_surcharge": data.fuel_surcharge,
+        "detention": data.detention,
+        "other_accessorials": data.other_accessorials,
+        "load_rpm": data.load_rpm,
+        "verdict": data.verdict,
+        "saved_cpm": data.saved_cpm,
+        "saved_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.load_analyses.replace_one({"user_id": user["user_id"]}, record, upsert=True)
+    return {"ok": True}
+
+@api_router.get("/tools/load-saved")
+async def get_saved_load_analysis(request: Request):
+    """Portal: retrieve user's most recent load analysis."""
+    user = await get_user_from_request(request)
+    if not user:
+        return {"saved": None}
+    result = await db.load_analyses.find_one({"user_id": user["user_id"]}, {"_id": 0})
+    return {"saved": result}
 
 
 class PortalCheckoutRequest(BaseModel):
@@ -1782,6 +1827,9 @@ async def _require_paid(request: Request):
     session = await db.user_sessions.find_one({"session_token": session_token}, {"_id": 0})
     if not session:
         raise HTTPException(status_code=403, detail="Not authorised")
+    user = await db.users.find_one({"user_id": session["user_id"]}, {"_id": 0, "email": 1})
+    if user and user.get("email") == COACH_EMAIL:
+        return session["user_id"]
     access = await db.user_access.find_one({"user_id": session["user_id"]}, {"_id": 0})
     if not access or not access.get("has_access"):
         raise HTTPException(status_code=403, detail="Access not granted")

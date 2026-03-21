@@ -57,6 +57,8 @@ import BundlePage from "./pages/products/BundlePage";
 import SixteenSinsPage from "./pages/standards/SixteenSinsPage";
 import CPMPublicPage from "./pages/CPMPublicPage";
 import ToolsIndexPage from "./pages/ToolsIndexPage";
+import TCOCalculatorPage from "./pages/TCOCalculatorPage";
+import LoadAnalyzerPage from "./pages/LoadAnalyzerPage";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 function ScrollToTop() {
@@ -183,6 +185,8 @@ function AppRouter() {
       <Route path="/product-preview" element={<ProductPreviewPage />} />
       <Route path="/tools" element={<ToolsIndexPage />} />
       <Route path="/tools/cpm-calculator" element={<CPMPublicPage />} />
+      <Route path="/tools/tco-calculator" element={<TCOCalculatorPage />} />
+      <Route path="/tools/load-analyzer" element={<LoadAnalyzerPage />} />
 
       {/* 301 redirects: /products → /standards */}
       <Route path="/products" element={<Navigate to="/standards" replace />} />
