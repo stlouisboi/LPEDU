@@ -481,16 +481,14 @@ export default function ComplianceLibraryPage() {
         @keyframes lp-spin { to { transform: rotate(360deg); } }
         .lp-spinner      { display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.25);border-top-color:#fff;border-radius:50%;animation:lp-spin 0.75s linear infinite;vertical-align:middle; }
         .lp-spinner-dark { display:inline-block;width:16px;height:16px;border:2px solid rgba(11,22,40,0.3);border-top-color:${NAVY};border-radius:50%;animation:lp-spin 0.75s linear infinite;vertical-align:middle; }
-        @media (max-width: 960px) {
-          .resource-grid { grid-template-columns: 1fr !important; }
-          .packet-grid   { grid-template-columns: 1fr !important; }
-          .bundle-grid   { grid-template-columns: 1fr !important; }
-          .guided-grid   { grid-template-columns: 1fr !important; }
-          .path-cards    { grid-template-columns: 1fr 1fr !important; }
+        @media (max-width: 780px) {
+          .bundle-grid { display: flex !important; flex-direction: column !important; gap: 2rem !important; }
+          .guided-grid { display: flex !important; flex-direction: column !important; gap: 2rem !important; }
+          .path-cards  { grid-template-columns: 1fr 1fr !important; }
+          .stats-grid  { grid-template-columns: 1fr !important; }
         }
-        @media (max-width: 600px) {
-          .path-cards    { grid-template-columns: 1fr !important; }
-          .stats-grid    { grid-template-columns: 1fr !important; }
+        @media (max-width: 480px) {
+          .path-cards  { grid-template-columns: 1fr !important; }
         }
       `}</style>
       <Navbar />
@@ -537,7 +535,7 @@ export default function ComplianceLibraryPage() {
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.75rem" }}>LP-RESOURCES | STANDALONE GUIDES &amp; KITS</p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#0D1B30", marginBottom: "0.75rem" }}>Standalone resources. No subscription required.</h2>
           <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>Self-contained tools and kits. See what's inside. Buy what you need.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }} className="resource-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))", gap: "1.5rem" }} className="resource-grid">
             {RESOURCES.map(r => (
               <ResourceCard key={r.sku} p={r} onBuy={buy} loadingState={states[r.sku]} buyError={errors[r.sku]} />
             ))}
@@ -551,7 +549,7 @@ export default function ComplianceLibraryPage() {
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>TIER 1 | COMPLIANCE PACKETS — $97–$127 EACH</p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>Install one domain at a time.</h2>
           <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>Each packet covers one compliance domain completely. Buy what you need, install it, then move to the next.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }} className="packet-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))", gap: "1.5rem" }} className="packet-grid">
             {PACKETS.map(p => (
               <PacketCard key={p.sku} p={p} onBuy={buy} loadingState={states[p.sku]} buyError={errors[p.sku]} />
             ))}
@@ -577,8 +575,8 @@ export default function ComplianceLibraryPage() {
                 ))}
               </div>
             </div>
-            <div style={{ textAlign: "right", flexShrink: 0 }}>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.5rem" }}>
+            <div style={{ flexShrink: 0 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <button data-testid="bundle-buy-btn" onClick={() => buy("LP-BDL-001")} disabled={states["LP-BDL-001"] === "loading"}
                   style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1rem 2rem", border: "none", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", opacity: states["LP-BDL-001"] === "loading" ? 0.75 : 1, transition: "background 0.2s", whiteSpace: "nowrap" }}
                   onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#e8a520"; }}
