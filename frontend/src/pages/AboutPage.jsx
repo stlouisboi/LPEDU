@@ -22,7 +22,7 @@ const DOCTRINE = [
   {
     ref: "§ 2.1",
     title: "Governance Before Growth",
-    body: "Operational scale without established governance creates terminal liability. Governance must be installed before capacity is expanded.",
+    body: "Growing too fast without the right systems in place creates liability that can end the operation. Governance must be installed before capacity is expanded.",
   },
 ];
 
@@ -92,7 +92,8 @@ export default function AboutPage() {
               animation: "heroEnter 0.65s ease both",
               animationDelay: "0.1s",
             }}>
-              Station<br />Custodian.
+              Vince Lawrence<br />
+              <span style={{ fontSize: "0.55em", fontWeight: 600, letterSpacing: "-0.01em", color: "rgba(255,255,255,0.65)" }}>Station Custodian</span>
             </h1>
             <p style={{
               fontFamily: "'Inter', sans-serif",
@@ -117,8 +118,8 @@ export default function AboutPage() {
               animationDelay: "0.3s",
             }}>
               The Standard exists to prevent terminal failure from authority revocation,
-              insurance lapse, and cash-flow asphyxiation. It requires compliance
-              infrastructure before operational dispatch.
+              insurance lapse, and running out of money while fixed costs keep running.
+              It requires the right paperwork and programs in place before you put a truck on the road.
             </p>
           </div>
 
@@ -249,7 +250,7 @@ export default function AboutPage() {
           <FadeIn>
             <div style={{ maxWidth: 600, marginBottom: "4.5rem" }}>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
-                48 CFR Subpart — Operational Doctrine
+                49 CFR — Operational Doctrine
               </p>
               <h2 style={{
                 fontFamily: "'Playfair Display', serif",

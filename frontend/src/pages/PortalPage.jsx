@@ -357,6 +357,37 @@ export default function PortalPage() {
           }}
           className="portal-sidebar"
         >
+          {/* Operator Tools quick-access */}
+          <div style={{ padding: "0 1.5rem 1.75rem", marginBottom: "1.75rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)", marginBottom: "0.875rem" }}>
+              OPERATOR TOOLS
+            </p>
+            {[
+              { code: "LP-TOOL-001", label: "TCO Calculator", href: "/tools/tco-calculator", free: true },
+              { code: "LP-TOOL-002", label: "Load Profitability Analyzer", href: "/tools/load-analyzer", free: false },
+            ].map((tool) => (
+              <a
+                key={tool.code}
+                href={tool.href}
+                data-testid={`portal-tool-${tool.code.toLowerCase()}`}
+                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem", padding: "0.625rem 0.75rem", marginBottom: "0.375rem", background: "rgba(212,144,10,0.06)", border: "1px solid rgba(212,144,10,0.14)", textDecoration: "none", transition: "background 0.15s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(212,144,10,0.12)")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(212,144,10,0.06)")}
+              >
+                <div>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#d4900a", margin: "0 0 2px" }}>{tool.code}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 500, color: "rgba(255,255,255,0.85)", margin: 0, lineHeight: 1.3 }}>{tool.label}</p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", flexShrink: 0 }}>
+                  {tool.free && (
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#22c55e", background: "rgba(34,197,94,0.10)", border: "1px solid rgba(34,197,94,0.25)", padding: "0.15rem 0.45rem" }}>FREE</span>
+                  )}
+                  <span style={{ color: "#d4900a", fontSize: "0.8rem" }}>→</span>
+                </div>
+              </a>
+            ))}
+          </div>
+
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
