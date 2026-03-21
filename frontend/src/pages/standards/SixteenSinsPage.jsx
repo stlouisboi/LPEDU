@@ -728,7 +728,7 @@ export default function SixteenSinsPage() {
             }}>
               Each includes the full description, CFR citation, consequence details, and prevention protocol.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "2rem" }}>
               {REMAINING_SINS.map(sin => (
                 <div key={sin.num} style={{ display: "flex", gap: "0.875rem", alignItems: "baseline" }}>
                   <span style={{
@@ -741,6 +741,54 @@ export default function SixteenSinsPage() {
                   }}>SIN {sin.num} — {sin.name}</span>
                 </div>
               ))}
+            </div>
+
+            {/* Pocket Guide upsell */}
+            <div style={{
+              borderTop: "1px solid rgba(255,255,255,0.08)",
+              paddingTop: "1.75rem",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "1.5rem",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}>
+              <div>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
+                  letterSpacing: "0.18em", textTransform: "uppercase",
+                  color: "rgba(212,144,10,0.70)", margin: "0 0 0.4rem",
+                }}>LP-RES-001 | POCKET GUIDE</p>
+                <p style={{
+                  fontFamily: "'Playfair Display', serif", fontWeight: 700,
+                  fontSize: "1.1rem", color: "#FFFFFF", margin: "0 0 0.4rem",
+                }}>Get all 16 — with full prevention protocols</p>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.857rem",
+                  color: "rgba(255,255,255,0.45)", lineHeight: 1.6, maxWidth: 400, margin: 0,
+                }}>
+                  CFR citations, consequence details, and prevention systems for every sin. A permanent reference for your operation.
+                </p>
+              </div>
+              <a
+                href="https://launchpathedu.gumroad.com/l/16DeadlySinsPocketGuide"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="sins-pocket-guide-buy-btn"
+                style={{
+                  fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem",
+                  letterSpacing: "0.10em", textTransform: "uppercase",
+                  color: "#0b1628", background: "#C5A059",
+                  padding: "1rem 2rem", textDecoration: "none",
+                  display: "inline-block", whiteSpace: "nowrap",
+                  transition: "background 0.2s",
+                  flexShrink: 0,
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#C5A059"; }}
+              >
+                Get the Pocket Guide — $17 →
+              </a>
             </div>
           </div>
         </FadeIn>
