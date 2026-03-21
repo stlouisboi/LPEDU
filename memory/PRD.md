@@ -136,9 +136,15 @@ Authoritative compliance operating system for new motor carriers. Brand voice: c
   - YouTube URL for homepage "Watch the Overview" CTA
   - 5 Gumroad product URLs for ComplianceLibraryPage
 
+### Session 12 — LP-TOOL-001 + LP-TOOL-002 Financial Tools — Mar 2026
+- **LP-TOOL-001 TCO Calculator** (`/tools/tco-calculator`): Routed in App.js; paid-member gate (AccessGate component); 3 cost blocks (Fixed/Variable/Operator); owner-operator vs. employed driver toggle; real-time CPM + margin calculation; save/load via `/api/cpm/save` + `/api/cpm/saved`
+- **LP-TOOL-002 Load Profitability Analyzer** (`/tools/load-analyzer`): New page + backend endpoints; auto-pulls saved CPM from TCO Calculator; GO / NEGOTIATE / DECLINE verdict with color-coded cards; NEGOTIATE shows counter-offer rate; save/load via `/api/tools/load-save` + `/api/tools/load-saved`
+- **Coach access fix**: `_require_paid` and `/api/tools/access` now grant automatic access to `vince@launchpathedu.com`
+- **ToolsIndexPage updated**: Dynamic access check (`/api/tools/access`), shows ACCESS GRANTED / PORTAL / ENROLLED MEMBERS ONLY based on login state; FREE CPM tool kept as secondary section
+- **Tested**: 14/14 scenarios passed (backend + frontend)
+
 ## P1 (High Value, Near Term)
-- Build LP-TOOL-002 Load Profitability Analyzer
-- Scaffold Portal Modules 2–9
+- Scaffold Portal Modules 2–9 (stub remaining modules with lesson structure, locked state)
 - Twilio SMS notifications to Vince on new admission (credentials needed)
 - Stripe webhook secret for production signature verification
 
