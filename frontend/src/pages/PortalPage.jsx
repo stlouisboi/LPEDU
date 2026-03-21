@@ -6,7 +6,6 @@ import FooterSection from "../components/FooterSection";
 import SignalMonitor from "../components/SignalMonitor";
 import TaskItem from "../components/TaskItem";
 import { VideoLessonWorkbench, MODULE_1_DATA } from "../components/VideoLessonWorkbench";
-import { CPMCalculator } from "../components/CPMCalculator";
 import Ground0LessonPlayer from "../components/Ground0LessonPlayer";
 
 const CURRICULUM = [
@@ -575,38 +574,7 @@ export default function PortalPage() {
             </div>
           </div>
 
-          {/* ── TOOLS section ── */}
-          <div style={{ margin: "0.5rem 1rem 0", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.25rem" }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginBottom: "0.625rem", paddingLeft: "0.5rem" }}>
-              TOOLS
-            </p>
-            <button
-              data-testid="sidebar-tool-cpm"
-              onClick={() => setSelectedId("tool-cpm")}
-              style={{
-                width: "100%",
-                background: selectedId === "tool-cpm" ? "rgba(212,144,10,0.08)" : "none",
-                border: "none",
-                borderLeft: selectedId === "tool-cpm" ? "3px solid #d4900a" : "3px solid transparent",
-                cursor: "pointer",
-                padding: "0.875rem 1.5rem",
-                textAlign: "left",
-                transition: "background 0.15s, border-color 0.15s",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.2rem",
-              }}
-              onMouseEnter={(e) => { if (selectedId !== "tool-cpm") e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
-              onMouseLeave={(e) => { if (selectedId !== "tool-cpm") e.currentTarget.style.background = "none"; }}
-            >
-              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", color: "#FFFFFF", letterSpacing: "0.03em" }}>
-                CPM Calculator
-              </span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(212,144,10,0.75)" }}>
-                Cost per mile · load profitability
-              </span>
-            </button>
-          </div>
+          {/* System Status block ends sidebar */}
         </aside>
 
         {/* ── Main Content ── */}
@@ -896,25 +864,6 @@ export default function PortalPage() {
                     />
                   )}
                 </>
-              )}
-
-              {/* Tool: CPM Calculator */}
-              {selectedId === "tool-cpm" && hasCohortAccess && (
-                <CPMCalculator variant="portal" />
-              )}
-              {selectedId === "tool-cpm" && !hasCohortAccess && (
-                <div data-testid="tool-locked-screen">
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
-                    LP-TOOLS | CPM CALCULATOR
-                  </p>
-                  <h1 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", marginBottom: "0.75rem" }}>Cost Per Mile Control System</h1>
-                  <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 480, marginBottom: "2rem" }}>
-                    The full CPM Calculator — including Step 4 load profitability analysis — is part of the LaunchPath Standard cohort.
-                  </p>
-                  <a href="/tools/cpm-calculator" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "var(--text-sm)", color: "#d4900a", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(212,144,10,0.3)", transition: "background 0.15s" }}>
-                    Use the free public version →
-                  </a>
-                </div>
               )}
 
               {/* Locked module selected — show module preview with lesson structure */}
