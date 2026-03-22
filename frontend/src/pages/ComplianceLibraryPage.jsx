@@ -535,7 +535,7 @@ export default function ComplianceLibraryPage() {
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.75rem" }}>LP-RESOURCES | STANDALONE GUIDES &amp; KITS</p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#0D1B30", marginBottom: "0.75rem" }}>Standalone resources. No subscription required.</h2>
           <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(13,27,48,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>Self-contained tools and kits. See what's inside. Buy what you need.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))", gap: "1.5rem" }} className="resource-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(540px, 1fr))", gap: "1.5rem" }} className="resource-grid">
             {RESOURCES.map(r => (
               <ResourceCard key={r.sku} p={r} onBuy={buy} loadingState={states[r.sku]} buyError={errors[r.sku]} />
             ))}
@@ -549,7 +549,7 @@ export default function ComplianceLibraryPage() {
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>TIER 1 | COMPLIANCE PACKETS — $97–$127 EACH</p>
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", letterSpacing: "-0.02em", color: "#FFF", marginBottom: "0.75rem" }}>Install one domain at a time.</h2>
           <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 600, marginBottom: "3rem" }}>Each packet covers one compliance domain completely. Buy what you need, install it, then move to the next.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))", gap: "1.5rem" }} className="packet-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(540px, 1fr))", gap: "1.5rem" }} className="packet-grid">
             {PACKETS.map(p => (
               <PacketCard key={p.sku} p={p} onBuy={buy} loadingState={states[p.sku]} buyError={errors[p.sku]} />
             ))}
