@@ -22,17 +22,66 @@ router = APIRouter()
 
 # ── Product catalog ──────────────────────────────────────────────────────────
 PRODUCTS = {
-    "LP-RES-001": {"name": "16 Deadly Sins Pocket Guide",            "price_cents": 3700,  "price": "$37"},
-    "LP-RES-002": {"name": "DQ File Builder Kit",                    "price_cents": 6700,  "price": "$67"},
-    "LP-RES-004": {"name": "Safety Audit Prep Pack",                 "price_cents": 9700,  "price": "$97"},
-    "LP-RES-005": {"name": "Four Pillars Compliance Blueprint",      "price_cents": 9700,  "price": "$97"},
-    "LP-RES-006": {"name": "Complete Compliance Library",            "price_cents": 19700, "price": "$197"},
-    "LP-PKT-001": {"name": "New Entrant Compliance Packet",          "price_cents": 9700,  "price": "$97"},
-    "LP-PKT-002": {"name": "Drug & Alcohol Compliance Packet",       "price_cents": 9700,  "price": "$97"},
-    "LP-PKT-003": {"name": "HOS & Dispatch Compliance Packet",       "price_cents": 12700, "price": "$127"},
-    "LP-PKT-004": {"name": "Maintenance & Unit File Packet",         "price_cents": 12700, "price": "$127"},
-    "LP-PKT-005": {"name": "Insurance & Authority Packet",           "price_cents": 12700, "price": "$127"},
-    "LP-BDL-001": {"name": "Complete New Carrier Document System",   "price_cents": 49700, "price": "$497"},
+    "LP-RES-001": {
+        "name": "16 Deadly Sins Pocket Guide",
+        "price_cents": 3700, "price": "$37",
+        "description": "PDF · 24 pages · Instant download. 16-sin self-audit with CFR citations, GREEN/YELLOW/RED risk scoring, 7-Day Stabilization Plan, System Skeletons, and Monthly Verification Checklist.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/843ba9f50627568ea8a314e52df0898299c83abb09d7468f3d86233527e5381c.png",
+    },
+    "LP-RES-002": {
+        "name": "DQ File Builder Kit",
+        "price_cents": 6700, "price": "$67",
+        "description": "PDF · 32 pages · Instant download. Master DQ checklist, driver application template, annual review form, previous employer inquiry letter, multi-driver audit worksheet, and expiration tracking calendar.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/a1311e9c2284cab2e8b46e40d6e97f7e262b18a103408a1ce0108692fcea707e.png",
+    },
+    "LP-RES-004": {
+        "name": "Safety Audit Prep Pack",
+        "price_cents": 9700, "price": "$97",
+        "description": "PDF · 28 pages · Instant download. Document pull list, mock audit self-review, 48-hour response sequence, rating guide, Audit-Ready Grab Folder checklist, and common findings by domain.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/0f086db9d0b79a9781132340e3cb8851e0ad0062ebf8b8551458a21995c16173.png",
+    },
+    "LP-RES-006": {
+        "name": "Complete Compliance Library",
+        "price_cents": 19700, "price": "$197",
+        "description": "3 PDFs · Instant download. Includes: 16 Deadly Sins Pocket Guide ($37), DQ File Builder Kit ($67), and Safety Audit Prep Pack ($97). $201 retail value.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/766a7baa3f58994baa14a0f77b9f8e5e7c6e87df594e164fed46c13ccca587ab.png",
+    },
+    "LP-PKT-001": {
+        "name": "New Entrant Compliance Packet",
+        "price_cents": 9700, "price": "$97",
+        "description": "PDF · 40 pages · Instant download. Domain 1: Authority & New Entrant. New Entrant Safety Audit brief, pre-launch checklist, audit prep index, 8-folder structure map, and implementation guide.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/750a63c8fe4579187dab8c3fe84f84f1bc01eff5ec2046acd3eb02621e20b789.png",
+    },
+    "LP-PKT-002": {
+        "name": "Drug & Alcohol Compliance Packet",
+        "price_cents": 9700, "price": "$97",
+        "description": "PDF · 36 pages · Instant download. Domain 2: D&A Program. Part 382 brief, program setup checklist, 10-section written policy outline, driver handout, recordkeeping checklist, and testing trigger log.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/e7b64f4e9b93050eea2aafcd8002e0f49b2d712cd41e5a6a0429a5aed3d7800f.png",
+    },
+    "LP-PKT-003": {
+        "name": "HOS & Dispatch Compliance Packet",
+        "price_cents": 12700, "price": "$127",
+        "description": "PDF · 36 pages · Instant download. Domain 3: Hours of Service. HOS rules brief, dispatch standards checklist, ELD usage checklist, daily compliance checklist, and weekly review checklist.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/5243aec3da3a790d03bed29d9ee0fd0977ac235e887cd51140ac1564514a3df2.png",
+    },
+    "LP-PKT-004": {
+        "name": "Maintenance & Unit File Packet",
+        "price_cents": 12700, "price": "$127",
+        "description": "PDF · 36 pages · Instant download. Domain 4: Vehicle Maintenance. Part 396 brief, unit file template, PM schedule outline, defect and repair tracking sheet, and pre-trip inspection checklist.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/ef1ec4017733ec5408cbd98994a9baf6d3af80ed7019061e9ef3378dbc6baa60.png",
+    },
+    "LP-PKT-005": {
+        "name": "Insurance & Authority Packet",
+        "price_cents": 12700, "price": "$127",
+        "description": "PDF · 36 pages · Instant download. Domain 5: Insurance Continuity. Coverage types brief, broker/shipper contract risk checklist, 90/60/30-day renewal checklist, authority filings checklist.",
+        "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/4148f0c2618d09baa142952150c1e1861948fb03c611abe1e8713fefef465544.png",
+    },
+    "LP-BDL-001": {
+        "name": "New Carrier Document System Bundle",
+        "price_cents": 49700, "price": "$497",
+        "description": "5 domain compliance packets + unified folder architecture + 0–30–60–90 day implementation calendar + master compliance checklist + audit prep packet. $634 if purchased separately.",
+        "image": None,
+    },
 }
 
 # ── Upsell chain ─────────────────────────────────────────────────────────────
@@ -119,22 +168,47 @@ async def create_product_checkout(data: ProductCheckoutRequest, request: Request
     success_url = f"{origin}/products/confirmed?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{origin}/compliance-library"
     host_url = str(request.base_url)
-    stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
-    req = StripeCheckoutRequest(
-        amount=product["price_cents"] / 100.0,
-        currency="usd",
-        success_url=success_url,
-        cancel_url=cancel_url,
-        metadata={"product_type": "resource", "sku": data.product_sku, "product_name": product["name"]},
-    )
-    session = await stripe.create_checkout_session(req)
+
+    # Init emergentintegrations to configure the proxy (sets stripe.api_key + api_base)
+    StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
+
+    product_data = {"name": product["name"]}
+    if product.get("description"):
+        product_data["description"] = product["description"]
+    if product.get("image"):
+        product_data["images"] = [product["image"]]
+
+    try:
+        session = await asyncio.get_event_loop().run_in_executor(
+            None,
+            lambda: stripe_lib.checkout.Session.create(
+                payment_method_types=["card"],
+                line_items=[{
+                    "price_data": {
+                        "currency": "usd",
+                        "unit_amount": product["price_cents"],
+                        "product_data": product_data,
+                    },
+                    "quantity": 1,
+                }],
+                mode="payment",
+                success_url=success_url,
+                cancel_url=cancel_url,
+                metadata={"product_type": "resource", "sku": data.product_sku, "product_name": product["name"],
+                          "webhook_url": f"{host_url}api/webhook/stripe"},
+            )
+        )
+    except Exception as e:
+        logger.error(f"Stripe checkout error for {data.product_sku}: {e}")
+        raise HTTPException(status_code=502, detail="Could not create checkout session.")
+
     await db.product_purchases.insert_one({
-        "session_id": session.session_id, "sku": data.product_sku,
+        "session_id": session.id, "sku": data.product_sku,
         "product_name": product["name"], "amount_cents": product["price_cents"],
         "payment_status": "pending", "download_count": 0,
         "created_at": datetime.now(timezone.utc).isoformat(),
     })
-    return {"url": session.url, "session_id": session.session_id}
+    return {"url": session.url, "session_id": session.id}
 
 
 # ── Verify (3-state) ──────────────────────────────────────────────────────────
