@@ -369,15 +369,17 @@ function ResourceCard({ p, onBuy, loadingState, buyError }) {
   const thumb = THUMBS[p.sku];
   return (
     <div data-testid={`resource-card-${p.sku.toLowerCase()}`} style={{ background: "#FFFFFF", borderTop: `3px solid ${GOLD}`, display: "flex", flexDirection: "column", boxShadow: "0 2px 12px rgba(13,27,48,0.10)", overflow: "hidden" }}>
-      {/* Thumbnail */}
       {thumb && (
-        <div style={{ overflow: "hidden", background: "#0d1c30", height: 220 }}>
-          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", transition: "transform 0.25s" }}
+        <div style={{ overflow: "hidden", background: "#0d1c30", height: 220, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center" }} />
+        </div>
+      )}
+      <div style={{ padding: "1.5rem 1.5rem 1.75rem", display: "flex", flexDirection: "column", gap: "0.75rem", flex: 1 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", margin: 0 }}>{p.sku}</p>
         </div>
         <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.2rem", color: NAVY, lineHeight: 1.2, margin: 0 }}>{p.title}</h3>
         <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(13,27,48,0.65)", lineHeight: 1.6, margin: 0 }}>{p.desc}</p>
-        {/* Bullets */}
         <ul style={{ margin: "0.25rem 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.4rem", flex: 1 }}>
           {p.bullets.map((b, i) => (
             <li key={i} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
@@ -386,20 +388,16 @@ function ResourceCard({ p, onBuy, loadingState, buyError }) {
             </li>
           ))}
         </ul>
-        {/* Savings note */}
         {p.savingsNote && <p style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, color: NAVY, background: "rgba(212,144,10,0.10)", padding: "0.5rem 0.75rem", borderLeft: `2px solid ${GOLD}`, margin: 0 }}>{p.savingsNote}</p>}
-        {/* For / Not */}
         <div style={{ borderTop: "1px solid rgba(13,27,48,0.08)", paddingTop: "0.75rem" }}>
           {p.forWho && <p style={{ fontFamily: SANS, fontSize: "0.857rem", fontStyle: "italic", color: "rgba(13,27,48,0.55)", lineHeight: 1.6, margin: "0 0 0.2rem" }}>{p.forWho}</p>}
           {p.notFor && <p style={{ fontFamily: SANS, fontSize: "0.857rem", fontStyle: "italic", color: "rgba(13,27,48,0.40)", lineHeight: 1.6, margin: 0 }}>{p.notFor}</p>}
         </div>
-        {/* Price + format */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.25rem" }}>
           <PdfIcon color={GOLD} />
           <span style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.25rem", color: NAVY }}>{p.price}</span>
           <span style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(13,27,48,0.40)", letterSpacing: "0.04em" }}>{p.format}</span>
         </div>
-        {/* CTA */}
         <button data-testid={`buy-resource-${p.sku.toLowerCase()}`} onClick={() => onBuy(p.sku)} disabled={isLoading}
           style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.5rem", border: "none", cursor: isLoading ? "not-allowed" : "pointer", opacity: isLoading ? 0.75 : 1, transition: "background 0.2s" }}
           onMouseEnter={e => { if (!isLoading) e.currentTarget.style.background = "#e8a520"; }}
