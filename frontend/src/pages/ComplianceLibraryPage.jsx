@@ -370,7 +370,7 @@ function ResourceCard({ p, onBuy, loadingState, buyError }) {
   return (
     <div data-testid={`resource-card-${p.sku.toLowerCase()}`} style={{ background: "#FFFFFF", borderTop: `3px solid ${GOLD}`, display: "flex", flexDirection: "column", boxShadow: "0 2px 12px rgba(13,27,48,0.10)", overflow: "hidden" }}>
       {thumb && (
-        <div style={{ overflow: "hidden", background: "#0d1c30", height: 220, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ overflow: "hidden", background: "#0d1c30", height: 320, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center" }} />
         </div>
       )}
@@ -418,7 +418,7 @@ function PacketCard({ p, onBuy, loadingState, buyError }) {
     <div data-testid={`product-card-${p.sku.toLowerCase()}`} style={{ background: CARD, borderTop: `3px solid rgba(212,144,10,0.50)`, display: "flex", flexDirection: "column", overflow: "hidden" }}>
       {/* Thumbnail */}
       {thumb && (
-        <div style={{ overflow: "hidden", background: BG2, height: 220 }}>
+        <div style={{ overflow: "hidden", background: BG2, height: 320 }}>
           <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", transition: "transform 0.25s" }}
             onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.03)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }} />
