@@ -119,7 +119,7 @@ export default function Navbar() {
           <img
             src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
             alt="LaunchPath"
-            style={{ height: 28 }}
+            style={{ height: 38 }}
           />
         </Link>
 

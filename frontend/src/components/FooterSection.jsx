@@ -68,7 +68,7 @@ export default function FooterSection() {
             <img
               src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
               alt="LaunchPath Transportation EDU"
-              style={{ height: 26, marginBottom: "1.25rem", display: "block" }}
+              style={{ height: 36, marginBottom: "1.25rem", display: "block" }}
             />
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "#BBBBBB", lineHeight: 1.6 }}>
               Accuracy Over Hype.<br />Systems Over Shortcuts.
