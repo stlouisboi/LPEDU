@@ -372,13 +372,7 @@ function ResourceCard({ p, onBuy, loadingState, buyError }) {
       {/* Thumbnail */}
       {thumb && (
         <div style={{ overflow: "hidden", background: "#0d1c30", height: 220 }}>
-          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", transition: "transform 0.25s" }}
-            onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.03)"; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }} />
-        </div>
-      )}
-      <div style={{ padding: "1.5rem 1.5rem 1.75rem", display: "flex", flexDirection: "column", gap: "0.75rem", flex: 1 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", transition: "transform 0.25s" }}
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", margin: 0 }}>{p.sku}</p>
         </div>
         <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.2rem", color: NAVY, lineHeight: 1.2, margin: 0 }}>{p.title}</h3>
@@ -427,7 +421,7 @@ function PacketCard({ p, onBuy, loadingState, buyError }) {
       {/* Thumbnail */}
       {thumb && (
         <div style={{ overflow: "hidden", background: BG2, height: 220 }}>
-          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", transition: "transform 0.25s" }}
+          <img src={thumb} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", transition: "transform 0.25s" }}
             onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.03)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }} />
         </div>
