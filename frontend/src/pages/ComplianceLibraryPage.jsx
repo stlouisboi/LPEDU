@@ -67,8 +67,8 @@ const RESOURCES = [
   {
     sku: "LP-RES-004",
     title: "Safety Audit Prep Pack",
-    price: "$67",
-    ctaLabel: "GET THIS — $67",
+    price: "$97",
+    ctaLabel: "GET THIS — $97",
     format: "PDF · 28 Pages · Instant Download",
     desc: "The document pull list, mock audit walkthrough, and 48-hour response sequence for carriers facing a New Entrant Safety Audit.",
     bullets: [
