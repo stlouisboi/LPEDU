@@ -550,32 +550,109 @@ export default function ComplianceLibraryPage() {
       </div>
 
       {/* ══ $497 BUNDLE ═════════════════════════════════════════ */}
-      <div style={{ background: BG2, borderTop: `3px solid ${GOLD}`, borderBottom: `3px solid ${GOLD}`, padding: "4rem 1.5rem" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }} className="bundle-grid">
+      <div style={{ position: "relative", background: "#050d18", borderTop: `4px solid ${GOLD}`, overflow: "hidden", padding: "5rem 1.5rem" }}>
+        {/* Gold grain texture overlay */}
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(ellipse at 70% 50%, rgba(212,144,10,0.07) 0%, transparent 65%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)`, opacity: 0.4 }} />
+
+        <div style={{ maxWidth: 1000, margin: "0 auto", position: "relative" }}>
+
+          {/* Badge */}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(212,144,10,0.12)", border: `1px solid rgba(212,144,10,0.35)`, padding: "0.35rem 0.875rem", marginBottom: "2.5rem" }}>
+            <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", background: GOLD }} />
+            <span style={{ fontFamily: MONO, fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD }}>LP-BDL-001 · TIER 2 · BEST VALUE</span>
+          </div>
+
+          {/* Main headline */}
+          <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(2rem,4.5vw,3.25rem)", color: "#FFF", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "1rem", maxWidth: 700 }}>
+            The documents aren't the problem.<br />
+            <span style={{ color: GOLD }}>The missing architecture is.</span>
+          </h2>
+          <p style={{ fontFamily: SANS, fontSize: "1.05rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.8, maxWidth: 600, marginBottom: "3rem" }}>
+            Carriers don't lose their authority because they didn't have a form. They lose it because no one installed the forms in the right order, verified them, and built a system to maintain them. The Document System fixes that.
+          </p>
+
+          {/* Two-column layout */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: "4rem", alignItems: "start" }} className="bundle-grid">
+
+            {/* Left — What's inside */}
             <div>
-              <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: "0.5rem" }}>LP-BDL-001 | TIER 2 — THE COMPLETE DIY SYSTEM</p>
-              <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.25rem)", color: "#FFF", letterSpacing: "-0.01em", marginBottom: "0.4rem" }}>New Carrier Document System</h2>
-              <p style={{ fontFamily: SANS, fontSize: "1.15rem", color: GOLD, fontWeight: 700, marginBottom: "0.25rem" }}>$497 <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 400, color: "rgba(212,144,10,0.55)" }}>($634 if purchased separately)</span></p>
-              <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", marginBottom: "1.75rem", lineHeight: 1.65, maxWidth: 480 }}>Every compliance packet, plus the folder architecture and implementation calendar that turns five documents into one operating system.</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {BUNDLE_ITEMS.map((item, i) => (
-                  <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: GOLD, fontWeight: 700, flexShrink: 0, lineHeight: 1.6 }}>→</span>
-                    <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.72)", lineHeight: 1.6, margin: 0 }}>{item}</p>
+              <p style={{ fontFamily: MONO, fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1.25rem" }}>WHAT'S INSIDE</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "2.5rem" }}>
+                {[
+                  { label: "New Entrant Compliance Packet", note: "Authority, pre-launch, audit index" },
+                  { label: "Drug & Alcohol Compliance Packet", note: "Part 382 program, written policy, testing log" },
+                  { label: "HOS & Dispatch Compliance Packet", note: "ELD rules, dispatch standards, daily checklist" },
+                  { label: "Maintenance & Unit File Packet", note: "Part 396, PM schedule, defect tracking" },
+                  { label: "Insurance & Authority Packet", note: "Coverage types, renewal calendar, broker risk" },
+                  { label: "Unified Folder Architecture", note: "How the five domains connect into one system" },
+                  { label: "0–30–60–90 Day Implementation Calendar", note: "Sequenced install so nothing gets skipped" },
+                  { label: "Master Compliance Checklist", note: "Cross-domain verification at 90 days" },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", paddingBottom: "0.875rem", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                    <div style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(212,144,10,0.15)", border: `1px solid rgba(212,144,10,0.30)`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                      <span style={{ fontFamily: MONO, fontSize: "0.6rem", fontWeight: 700, color: GOLD }}>{i + 1}</span>
+                    </div>
+                    <div>
+                      <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.9rem", color: "rgba(255,255,255,0.88)", margin: "0 0 0.1rem" }}>{item.label}</p>
+                      <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.38)", margin: 0 }}>{item.note}</p>
+                    </div>
                   </div>
                 ))}
               </div>
+
+              {/* Risk frame */}
+              <div style={{ borderLeft: `3px solid rgba(212,144,10,0.50)`, paddingLeft: "1.25rem", background: "rgba(212,144,10,0.04)", padding: "1rem 1.25rem" }}>
+                <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, margin: 0 }}>
+                  A New Entrant Safety Audit can result in a <strong style={{ color: "rgba(255,255,255,0.88)" }}>Conditional or Unsatisfactory rating</strong> within your first 18 months. The average remediation cost is <strong style={{ color: GOLD }}>$10,000–$25,000</strong>. This system costs $497.
+                </p>
+              </div>
             </div>
-            <div style={{ flexShrink: 0 }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+
+            {/* Right — Price + CTA */}
+            <div style={{ position: "sticky", top: "6rem" }}>
+              <div style={{ background: "rgba(212,144,10,0.05)", border: `1px solid rgba(212,144,10,0.25)`, padding: "2rem" }}>
+                {/* Metrics */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1.75rem" }}>
+                  {[
+                    { val: "5", label: "Compliance Domains" },
+                    { val: "40+", label: "Templates & Checklists" },
+                    { val: "90", label: "Day Implementation" },
+                    { val: "1", label: "Unified System" },
+                  ].map((m, i) => (
+                    <div key={i} style={{ textAlign: "center", padding: "0.875rem 0.5rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                      <p style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.75rem", color: GOLD, margin: "0 0 0.1rem", lineHeight: 1 }}>{m.val}</p>
+                      <p style={{ fontFamily: MONO, fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.40)", margin: 0 }}>{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Price */}
+                <div style={{ marginBottom: "1.25rem" }}>
+                  <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "2.5rem", color: "#FFF", margin: "0 0 0.1rem", lineHeight: 1 }}>$497</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(212,144,10,0.55)", letterSpacing: "0.06em", margin: 0 }}>$634 if purchased separately · One-time · Instant access</p>
+                </div>
+
+                {/* CTA */}
                 <button data-testid="bundle-buy-btn" onClick={() => buy("LP-BDL-001")} disabled={states["LP-BDL-001"] === "loading"}
-                  style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1rem 2rem", border: "none", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", opacity: states["LP-BDL-001"] === "loading" ? 0.75 : 1, transition: "background 0.2s", whiteSpace: "nowrap" }}
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.10em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "1.1rem 1.5rem", border: "none", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", opacity: states["LP-BDL-001"] === "loading" ? 0.75 : 1, transition: "background 0.2s", marginBottom: "0.875rem" }}
                   onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#e8a520"; }}
                   onMouseLeave={e => { e.currentTarget.style.background = GOLD; }}>
-                  {states["LP-BDL-001"] === "loading" ? <><span className="lp-spinner-dark" />&nbsp;Processing...</> : "Download Bundle — $497"}
+                  {states["LP-BDL-001"] === "loading" ? <><span className="lp-spinner-dark" />&nbsp;Processing...</> : "Build The System — $497"}
                 </button>
-                {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#ef4444", maxWidth: 240, textAlign: "right", lineHeight: 1.5 }}>{errors["LP-BDL-001"]}</p>}
+
+                <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.30)", textAlign: "center", lineHeight: 1.65, margin: 0 }}>
+                  PDF delivery · Instant download · No subscription
+                </p>
+
+                {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "#ef4444", textAlign: "center", lineHeight: 1.5, marginTop: "0.75rem" }}>{errors["LP-BDL-001"]}</p>}
+              </div>
+
+              {/* Upgrade note */}
+              <div style={{ marginTop: "1rem", padding: "1rem", borderLeft: `2px solid rgba(212,144,10,0.25)` }}>
+                <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.65, margin: 0 }}>
+                  Need the system installed and verified — not just delivered? The <Link to="/launchpath-standard" style={{ color: "rgba(212,144,10,0.70)", textDecoration: "none" }}>LaunchPath Standard</Link> includes everything here plus 90 days of guided implementation.
+                </p>
               </div>
             </div>
           </div>
