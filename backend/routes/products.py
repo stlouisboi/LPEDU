@@ -23,7 +23,7 @@ router = APIRouter()
 # ── Product catalog ──────────────────────────────────────────────────────────
 PRODUCTS = {
     "LP-RES-001": {"name": "16 Deadly Sins Pocket Guide",            "price_cents": 3700,  "price": "$37"},
-    "LP-RES-002": {"name": "DQ File Builder Kit",                    "price_cents": 4700,  "price": "$47"},
+    "LP-RES-002": {"name": "DQ File Builder Kit",                    "price_cents": 6700,  "price": "$67"},
     "LP-RES-004": {"name": "Safety Audit Prep Pack",                 "price_cents": 9700,  "price": "$97"},
     "LP-RES-005": {"name": "Four Pillars Compliance Blueprint",      "price_cents": 9700,  "price": "$97"},
     "LP-RES-006": {"name": "Complete Compliance Library",            "price_cents": 19700, "price": "$197"},

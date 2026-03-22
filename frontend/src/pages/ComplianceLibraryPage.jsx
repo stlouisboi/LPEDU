@@ -49,8 +49,8 @@ const RESOURCES = [
   {
     sku: "LP-RES-002",
     title: "DQ File Builder Kit",
-    price: "$47",
-    ctaLabel: "GET THIS — $47",
+    price: "$67",
+    ctaLabel: "GET THIS — $67",
     format: "PDF · 32 Pages · Instant Download",
     desc: "Every template required to build a compliant Driver Qualification File — or audit one that already exists.",
     bullets: [
@@ -91,12 +91,12 @@ const RESOURCES = [
     desc: "All three LaunchPath standalone resources in one package.",
     bullets: [
       "16 Deadly Sins Pocket Guide ($37 value)",
-      "DQ File Builder Kit ($47 value)",
-      "Safety Audit Prep Pack ($67 value)",
+      "DQ File Builder Kit ($67 value)",
+      "Safety Audit Prep Pack ($97 value)",
     ],
     forWho: null,
     notFor: null,
-    savingsNote: "$151 retail value. $197 for the complete collection.",
+    savingsNote: "$201 retail value. $197 for the complete collection.",
   },
 ];
 
