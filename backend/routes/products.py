@@ -42,7 +42,7 @@ PRODUCTS = {
     },
     "LP-RES-006": {
         "name": "Complete Compliance Library",
-        "price_cents": 19700, "price": "$197",
+        "price_cents": 14700, "price": "$147",
         "description": "3 PDFs · Instant download. Includes: 16 Deadly Sins Pocket Guide ($37), DQ File Builder Kit ($67), and Safety Audit Prep Pack ($97). $201 retail value.",
         "image": "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/766a7baa3f58994baa14a0f77b9f8e5e7c6e87df594e164fed46c13ccca587ab.png",
     },

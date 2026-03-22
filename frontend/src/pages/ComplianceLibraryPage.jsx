@@ -85,8 +85,8 @@ const RESOURCES = [
   {
     sku: "LP-RES-006",
     title: "Complete Compliance Library",
-    price: "$197",
-    ctaLabel: "GET THE COLLECTION — $197",
+    price: "$147",
+    ctaLabel: "GET THE COLLECTION — $147",
     format: "PDF · 3 Documents · Instant Download",
     desc: "All three LaunchPath standalone resources in one package.",
     bullets: [
@@ -96,7 +96,7 @@ const RESOURCES = [
     ],
     forWho: null,
     notFor: null,
-    savingsNote: "$201 retail value. $197 for the complete collection.",
+    savingsNote: "$201 retail value. $147 for the complete collection.",
   },
 ];
 
