@@ -16,7 +16,7 @@ const DOMAINS = [
 export default function WhatGetsInstalledSimple() {
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
         @keyframes wgi-pulse {
@@ -143,7 +143,7 @@ export default function WhatGetsInstalledSimple() {
           letter-spacing: -0.02em;
           user-select: none;
         }
-      `}</style>
+      `}} />
 
       <section
         data-testid="what-gets-installed-simple"

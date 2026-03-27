@@ -112,7 +112,7 @@ export default function ProductPageTemplate({
                   </button>
                 </div>
                 {buyError && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#ef4444", marginTop: "0.75rem" }}>{buyError}</p>}
-                <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+                <style dangerouslySetInnerHTML={{__html: `@keyframes spin { to { transform: rotate(360deg); } }`}} />
               </div>
 
               {/* Right: cinematic image OR 3D mockup */}
@@ -288,11 +288,11 @@ export default function ProductPageTemplate({
       </div>
 
       <FooterSection />
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 760px) {
           .packet-hero-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

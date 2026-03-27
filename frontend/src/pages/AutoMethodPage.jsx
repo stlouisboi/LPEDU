@@ -668,7 +668,7 @@ export default function AutoMethodPage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) {
           .auto-strip { grid-template-columns: repeat(2, 1fr) !important; }
           .three-layer-grid { grid-template-columns: 1fr !important; }
@@ -678,7 +678,7 @@ export default function AutoMethodPage() {
         @media (max-width: 480px) {
           .auto-strip { grid-template-columns: 1fr 1fr !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

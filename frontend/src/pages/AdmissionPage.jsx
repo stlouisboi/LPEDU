@@ -124,13 +124,13 @@ export default function AdmissionPage() {
         backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.10) 1px, transparent 1px)",
         backgroundSize: "36px 36px", opacity: 0.35,
       }} />
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes lp-sweep { 0%{transform:translateX(-100%);opacity:.5} 100%{transform:translateX(300%);opacity:0} }
         .lp-scan-btn { position:relative; overflow:hidden; }
         .lp-scan-btn::after { content:""; position:absolute; top:0; left:0; width:35%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent); transform:translateX(-100%); }
         .lp-scan-btn:hover::after { animation:lp-sweep .55s ease-out forwards; }
         .adm-input:focus { border-color: rgba(212,144,10,0.55) !important; }
-      `}</style>
+      `}} />
       <Navbar />
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px", position: "relative", zIndex: 1 }}>

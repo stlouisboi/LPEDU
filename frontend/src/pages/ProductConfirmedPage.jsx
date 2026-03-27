@@ -53,12 +53,12 @@ export default function ProductConfirmedPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: BG, color: "#fff", fontFamily: SANS }}>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes lp-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.45;transform:scale(0.88)} }
         @keyframes lp-spin  { to{transform:rotate(360deg)} }
         .lp-pulse { animation: lp-pulse 1.8s ease-in-out infinite; }
         .lp-spinner { animation: lp-spin 0.75s linear infinite; border:2px solid rgba(212,144,10,0.25); border-top-color:${GOLD}; border-radius:50%; width:18px; height:18px; display:inline-block; }
-      `}</style>
+      `}} />
 
       {/* Top bar */}
       <div style={{ borderBottom: `1px solid ${BORDER}`, padding: "1.25rem 1.75rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>

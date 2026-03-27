@@ -229,14 +229,14 @@ export default function SystemDiagramSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 640px) {
           .diagram-caption-grid { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 420px) {
           .diagram-caption-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

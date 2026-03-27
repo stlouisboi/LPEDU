@@ -113,10 +113,10 @@ export default function FooterSection() {
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; } }
         @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
+      `}} />
     </footer>
   );
 }

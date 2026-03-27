@@ -434,7 +434,7 @@ export default function OperatingStandardPage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 900px) {
           .standard-two-col { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .standard-two-col > div:last-child { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; }
@@ -449,7 +449,7 @@ export default function OperatingStandardPage() {
           .auto-grid { grid-template-columns: 1fr !important; }
           .phases-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

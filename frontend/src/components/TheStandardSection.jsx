@@ -260,7 +260,7 @@ export default function TheStandardSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 640px) {
           .pillars-grid { grid-template-columns: 1fr !important; }
         }
@@ -277,7 +277,7 @@ export default function TheStandardSection() {
           0%   { left: -15%; }
           100% { left: 110%; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

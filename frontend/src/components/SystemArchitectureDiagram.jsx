@@ -441,7 +441,7 @@ export default function SystemArchitectureDiagram() {
       </div>
 
       {/* Responsive styles */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) {
           .arch-layout {
             flex-direction: column !important;
@@ -452,7 +452,7 @@ export default function SystemArchitectureDiagram() {
             flex-direction: row !important;
           }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

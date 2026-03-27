@@ -159,12 +159,12 @@ export default function VinceCTASection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 700px) {
           .vince-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
           .vince-photo-wrapper { max-width: 220px; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

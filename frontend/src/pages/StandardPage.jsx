@@ -454,7 +454,7 @@ export default function StandardPage() {
       <FooterSection />
 
       {/* ── Responsive Styles ────────────────────────────────────── */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes std-pulse {
           0%, 100% { opacity: 1; box-shadow: 0 0 6px #C5A059; }
           50%       { opacity: 0.45; box-shadow: 0 0 2px #C5A059; }
@@ -470,7 +470,7 @@ export default function StandardPage() {
         @media (max-width: 480px) {
           .std-module-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

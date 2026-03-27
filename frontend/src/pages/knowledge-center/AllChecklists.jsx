@@ -216,7 +216,7 @@ export default function AllChecklists() {
         <a href="/knowledge-center" className="screen-back">← Back to Knowledge Center</a>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         /* ── SCREEN: hide document, show fallback ── */
         @media screen {
           .print-document { background: #060d19; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
@@ -265,7 +265,7 @@ export default function AllChecklists() {
           .print-marker-text { font-size: 0.75rem; color: #555; margin-bottom: 0.25rem; }
           .print-marker-url { font-size: 0.75rem; color: #E8590F; font-weight: 600; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

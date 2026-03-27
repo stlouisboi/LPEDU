@@ -196,14 +196,14 @@ export default function AutoMethodTeaserSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 680px) {
           .auto-teaser-grid { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 420px) {
           .auto-teaser-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

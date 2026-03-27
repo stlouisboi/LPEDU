@@ -124,11 +124,11 @@ export default function ConsequenceNumberBlock() {
         </div>
       </FadeIn>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 680px) {
           .consequence-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

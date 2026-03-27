@@ -124,7 +124,7 @@ export function DoctrineStack() {
           letterSpacing: "0.03em",
         }}>The 90-Day Compliance Operating Standard for new motor carrier authorities</p>
       </div>
-      <style>{`@media (max-width: 480px) { .doctrine-desc { display: none !important; } }`}</style>
+      <style dangerouslySetInnerHTML={{__html: `@media (max-width: 480px) { .doctrine-desc { display: none !important; } }`}} />
     </div>
   );
 }

@@ -247,7 +247,7 @@ export default function ProtectionDiagramSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 640px) {
           .guards-inner { grid-template-columns: repeat(2, 1fr) !important; }
         }
@@ -255,7 +255,7 @@ export default function ProtectionDiagramSection() {
           .prot-side-arrow { display: none !important; }
           .prot-threats { gap: 1.5rem !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

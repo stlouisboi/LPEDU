@@ -25,7 +25,7 @@ const PANEL_BG = "https://customer-assets.emergentagent.com/job_your-numbers-cal
 export default function FailureAnalysisSection() {
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes fa-warn-blink {
           0%, 45% { opacity: 1; box-shadow: 0 0 8px 2px #c0392b; }
           50%, 95% { opacity: 0; box-shadow: none; }
@@ -77,7 +77,7 @@ export default function FailureAnalysisSection() {
         }
         .fa-rail::before { left: 0; }
         .fa-rail::after  { right: 0; }
-      `}</style>
+      `}} />
 
       <section
         id="sixteen-sins"

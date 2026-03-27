@@ -299,7 +299,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
         </div>
 
       </div>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes reach-scan-anim {
           0%   { left: -15%; }
           100% { left: 110%; }
@@ -335,7 +335,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             grid-template-columns: 1fr !important;
           }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

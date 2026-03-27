@@ -206,11 +206,11 @@ export default function RecoveryPathBlock() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 680px) {
           .recovery-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

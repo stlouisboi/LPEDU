@@ -1096,14 +1096,14 @@ export default function PortalPage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) {
           .portal-layout { flex-direction: column !important; }
           .portal-sidebar { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 0 !important; }
           .portal-main { padding: 2rem 1.25rem !important; }
           .portal-header-userinfo { display: none !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

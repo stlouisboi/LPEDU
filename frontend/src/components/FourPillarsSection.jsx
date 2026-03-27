@@ -251,9 +251,9 @@ export default function FourPillarsSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 600px) { .pillars-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
+      `}} />
     </section>
   );
 }

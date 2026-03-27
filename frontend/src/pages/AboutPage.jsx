@@ -175,10 +175,10 @@ export default function AboutPage() {
 
         </div>
 
-        <style>{`
+        <style dangerouslySetInnerHTML={{__html: `
           @media (max-width: 900px) { .about-hero-grid { grid-template-columns: 1fr !important; } }
           @media (max-width: 640px) { .doctrine-grid { grid-template-columns: 1fr !important; } }
-        `}</style>
+        `}} />
       </section>
 
       {/* Vince's Statement */}

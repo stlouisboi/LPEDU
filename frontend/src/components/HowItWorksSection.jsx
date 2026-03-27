@@ -261,7 +261,7 @@ export default function HowItWorksSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 700px) {
           .how-it-works-grid {
             grid-template-columns: 1fr !important;
@@ -270,7 +270,7 @@ export default function HowItWorksSection() {
             display: none;
           }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

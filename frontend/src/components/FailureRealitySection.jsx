@@ -365,13 +365,13 @@ export default function FailureRealitySection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) {
           .exposure-grid { grid-template-columns: 1fr !important; }
           .stats-strip { grid-template-columns: 1fr !important; }
           .stats-strip > div { border-right: none !important; border-bottom: 1px solid var(--divider-dark); }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

@@ -256,7 +256,7 @@ export default function ReadinessPage() {
           ))}
         </div>
       </div>
-      <style>{`@media (max-width: 760px) { .readiness-grid { grid-template-columns: 1fr !important; } .readiness-grid > div:last-child { display: none; } }`}</style>
+      <style dangerouslySetInnerHTML={{__html: `@media (max-width: 760px) { .readiness-grid { grid-template-columns: 1fr !important; } .readiness-grid > div:last-child { display: none; } }`}} />
     </div>
   );
 

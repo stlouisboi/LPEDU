@@ -382,14 +382,14 @@ export default function ProductsPage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 680px) {
           .ladder-row { flex-direction: column; align-items: flex-start !important; }
         }
         @media (max-width: 560px) {
           table[data-testid="comparison-matrix"] { font-size: 0.82rem; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

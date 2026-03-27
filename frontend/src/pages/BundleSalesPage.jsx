@@ -277,7 +277,7 @@ export default function BundleSalesPage() {
 
   return (
     <div style={{ background: DARK, minHeight: "100vh", color: "#FFF", fontFamily: MONO, overflowX: "hidden" }}>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
         .bsp-packet-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; }
@@ -293,7 +293,7 @@ export default function BundleSalesPage() {
           .bsp-compare     { font-size: .8rem; }
           .bsp-compare th, .bsp-compare td { padding: .625rem .75rem; }
         }
-      `}</style>
+      `}} />
       <Navbar />
 
       {/* ── S1: HERO ────────────────────────────────────────────────── */}
@@ -393,7 +393,7 @@ export default function BundleSalesPage() {
               </div>
             ))}
           </div>
-          <style>{`@media(max-width:680px){ .bsp-bonus-grid { grid-template-columns: 1fr !important; } }`}</style>
+          <style dangerouslySetInnerHTML={{__html: `@media(max-width:680px){ .bsp-bonus-grid { grid-template-columns: 1fr !important; } }`}} />
         </div>
       </section>
 
@@ -522,7 +522,7 @@ export default function BundleSalesPage() {
               </div>
             ))}
           </div>
-          <style>{`@media(max-width:680px){ .bsp-steps-grid { grid-template-columns: 1fr !important; } }`}</style>
+          <style dangerouslySetInnerHTML={{__html: `@media(max-width:680px){ .bsp-steps-grid { grid-template-columns: 1fr !important; } }`}} />
         </div>
       </section>
 

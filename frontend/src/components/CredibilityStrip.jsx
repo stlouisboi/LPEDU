@@ -8,7 +8,7 @@ const PHOTO   = "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebas
 export default function CredibilityStrip() {
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
 
         .cred-section {
@@ -91,7 +91,7 @@ export default function CredibilityStrip() {
           background: linear-gradient(90deg, ${GOLD}, transparent);
           margin: 1rem 0 1.5rem;
         }
-      `}</style>
+      `}} />
 
       <section
         data-testid="credibility-strip"

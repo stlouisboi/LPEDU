@@ -350,7 +350,7 @@ export default function AuthorityClockSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 680px) {
           .clock-content-row {
             grid-template-columns: 1fr !important;
@@ -374,7 +374,7 @@ export default function AuthorityClockSection() {
         .clock-phase-link:hover .clock-brief-hint {
           color: rgba(212,144,10,0.75) !important;
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

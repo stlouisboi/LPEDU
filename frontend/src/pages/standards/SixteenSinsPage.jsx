@@ -956,7 +956,7 @@ export default function SixteenSinsPage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .sin-card:hover { background: #0F2238 !important; }
         .sin-card-high-risk:hover { background: #150c0c !important; }
         @media (max-width: 700px) {
@@ -966,7 +966,7 @@ export default function SixteenSinsPage() {
         @media (min-width: 701px) and (max-width: 1000px) {
           .glance-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

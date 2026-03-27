@@ -7,10 +7,10 @@ const STATS = [
 export default function CostOfInactionSection() {
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .coi-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
         @media (max-width: 640px) { .coi-stats { grid-template-columns: 1fr; } }
-      `}</style>
+      `}} />
 
       <section
         data-testid="cost-of-inaction-section"

@@ -797,7 +797,7 @@ export default function ComplianceLibraryPage() {
       </section>
 
       {/* Responsive grid fix */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 900px) {
           .two-path-grid { grid-template-columns: 1fr !important; }
         }
@@ -817,7 +817,7 @@ export default function ComplianceLibraryPage() {
         @media (max-width: 768px) {
           .two-path-grid > div { width: 100% !important; max-width: 100% !important; }
         }
-      `}</style>
+      `}} />
 
       <FooterSection />
     </div>

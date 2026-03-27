@@ -652,7 +652,7 @@ export default function PartnersPage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 760px) {
           .persona-grid { grid-template-columns: 1fr !important; }
           .stats-grid { grid-template-columns: 1fr 1fr !important; }
@@ -661,7 +661,7 @@ export default function PartnersPage() {
           .form-grid { grid-template-columns: 1fr !important; }
           .stats-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

@@ -546,14 +546,14 @@ export default function REACHAssessmentPage() {
         backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.10) 1px, transparent 1px)",
         backgroundSize: "36px 36px", opacity: 0.30,
       }} />
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes lp-sweep { 0%{opacity:0} 100%{opacity:0} }
         .lp-scan-btn { position:relative; overflow:hidden; }
         .lp-scan-btn::after { content:""; display:none; }
         .lp-scan-btn:hover::after { animation: none; }
         .lp-scan-btn:active { box-shadow: inset 0 1px 3px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.3); transform: translateY(1px); }
         @keyframes blink-cur { 0%,100%{opacity:1} 50%{opacity:0} }
-      `}</style>
+      `}} />
       <Navbar />
 
       {/* ── INTRO — full clinical diagnostic section ─── */}
@@ -862,10 +862,10 @@ export default function REACHAssessmentPage() {
             </p>
           </div>
 
-          <style>{`
+          <style dangerouslySetInnerHTML={{__html: `
             @keyframes scan-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.15; } }
             .scan-blink { animation: scan-blink 1.1s steps(1) infinite; }
-          `}</style>
+          `}} />
         </div>
       )}
 

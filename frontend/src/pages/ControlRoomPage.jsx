@@ -173,10 +173,10 @@ function CalendarTool({ onExport }) {
 
   return (
     <div>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media print { .no-print { display: none !important; } .print-only { display: block !important; } body { background: white !important; color: black !important; } }
         .print-only { display: none; }
-      `}</style>
+      `}} />
       <div className="no-print" style={{ marginBottom: "2.5rem" }}>
         <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(200,147,63,0.70)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
           LP-TOOL-001 — COMPLIANCE CALENDAR GENERATOR
@@ -758,7 +758,7 @@ export default function ControlRoomPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: DEEP, paddingTop: 80 }}>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes led-breathe {
           0%, 100% { opacity: 0.5; box-shadow: 0 0 4px ${GOLD}; }
           50%       { opacity: 1.0; box-shadow: 0 0 12px ${GOLD}88; }
@@ -773,7 +773,7 @@ export default function ControlRoomPage() {
           body { background: white !important; color: black !important; font-family: 'Inter', sans-serif !important; }
         }
         .tool-tab:hover { border-color: rgba(200,147,63,0.45) !important; color: rgba(244,241,235,0.90) !important; }
-      `}</style>
+      `}} />
 
       {/* Hero header */}
       <div style={{ borderBottom: "1px solid rgba(200,147,63,0.20)", padding: "3rem 2rem 2.5rem" }}>

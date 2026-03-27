@@ -267,7 +267,7 @@ export default function ContactPage() {
           </FadeIn>
 
         </div>
-        <style>{`@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr !important; } }`}</style>
+        <style dangerouslySetInnerHTML={{__html: `@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr !important; } }`}} />
       </section>
 
       <FooterSection />

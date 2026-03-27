@@ -63,7 +63,7 @@ export default function HeroSection() {
       }} />
 
       {/* One-time load animations */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes hero-init-scan {
           0%   { top: -4px; opacity: 0; }
           5%   { opacity: 1; }
@@ -135,7 +135,7 @@ export default function HeroSection() {
           0%   { transform: translateX(-100%); opacity: 0.5; }
           100% { transform: translateX(300%); opacity: 0; }
         }
-      `}</style>
+      `}} />
       <div className="hero-sweep-line" />
       <div className="hero-vscan-line" />
 
@@ -492,9 +492,9 @@ export default function HeroSection() {
       </div>
 
       {/* ── RESPONSIVE STYLES ── */}
-      <style>{`
-      `}</style>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
+      `}} />
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 680px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
@@ -518,7 +518,7 @@ export default function HeroSection() {
           .hero-headline-two { font-size: 52px !important; }
           .hero-sub { font-size: 18px !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

@@ -154,7 +154,7 @@ export default function BundlePage() {
 
   return (
     <div style={{ background: DARK, minHeight: "100vh", color: "#FFFFFF", fontFamily: MONO }}>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.35} }
         .bundle-phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
@@ -165,7 +165,7 @@ export default function BundlePage() {
           .bundle-risk-grid { grid-template-columns: 1fr !important; }
           .bundle-compare-grid { grid-template-columns: 1fr 100px 100px !important; }
         }
-      `}</style>
+      `}} />
 
       <Navbar />
 
@@ -342,7 +342,7 @@ export default function BundlePage() {
             ))}
           </div>
 
-          <style>{`.packet-item { transition: background 0.15s; } .packet-item:hover { background: rgba(212,144,10,0.04) !important; } @media(max-width:680px){ .packet-item { grid-template-columns: 1fr !important; } }`}</style>
+          <style dangerouslySetInnerHTML={{__html: `.packet-item { transition: background 0.15s; } .packet-item:hover { background: rgba(212,144,10,0.04) !important; } @media(max-width:680px){ .packet-item { grid-template-columns: 1fr !important; } }`}} />
         </div>
       </section>
 
@@ -495,7 +495,7 @@ export default function BundlePage() {
               </ul>
             </div>
           </div>
-          <style>{`@media(max-width:680px){ .qualifier-grid { grid-template-columns: 1fr !important; } }`}</style>
+          <style dangerouslySetInnerHTML={{__html: `@media(max-width:680px){ .qualifier-grid { grid-template-columns: 1fr !important; } }`}} />
         </div>
       </section>
 

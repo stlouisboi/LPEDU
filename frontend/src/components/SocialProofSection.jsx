@@ -117,12 +117,12 @@ export default function SocialProofSection() {
             overflow: "hidden",
           }}
         >
-          <style>{`
+          <style dangerouslySetInnerHTML={{__html: `
             @keyframes lp-fade-in {
               from { opacity: 0; transform: translateY(12px); }
               to   { opacity: 1; transform: translateY(0); }
             }
-          `}</style>
+          `}} />
 
           <div style={{ display: "flex", gap: 40, flexWrap: "wrap", alignItems: "flex-start" }}>
 

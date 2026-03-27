@@ -436,11 +436,11 @@ export default function Ground0CompletePage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 760px) {
           .completion-paths { flex-direction: column !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

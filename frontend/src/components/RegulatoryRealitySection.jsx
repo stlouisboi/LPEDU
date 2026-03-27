@@ -206,12 +206,12 @@ export default function RegulatoryRealitySection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 800px) {
           .reg-reality-cols { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .reg-stats-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

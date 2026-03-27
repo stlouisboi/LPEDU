@@ -455,7 +455,7 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         /* ── Screen layout helpers ── */
         @media (max-width: 768px) {
           .brief-grid { grid-template-columns: 1fr !important; }
@@ -588,7 +588,7 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
           /* Binder print all */
           .binder-print-all { display: block !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

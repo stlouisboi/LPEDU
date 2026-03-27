@@ -149,11 +149,11 @@ export default function ProductPreviewPage() {
 
       </main>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 760px) {
           .preview-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

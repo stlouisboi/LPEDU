@@ -148,13 +148,13 @@ export default function ArticlePortalBanner({ taskId, taskName, message }) {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 640px) {
           .portal-banner-grid {
             grid-template-columns: 1fr !important;
           }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

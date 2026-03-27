@@ -300,7 +300,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
         overflow: "hidden",
       }}
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes blink-cur { 0%,100%{opacity:1} 50%{opacity:0} }
         @keyframes bar-shimmer { 0%{left:-30%} 100%{left:130%} }
@@ -312,7 +312,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
           0%,100% { box-shadow: 0 0 4px ${gold}; opacity:1; }
           50%     { box-shadow: 0 0 12px ${gold}, 0 0 20px ${gold}55; opacity:0.7; }
         }
-      `}</style>
+      `}} />
 
       {/* Dot-grid background */}
       <div style={{
@@ -413,12 +413,12 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
       {/* Status ticker */}
       <StatusTicker grade={grade} integrity={integrity} pulse={pulse} alignment={alignment} />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 640px) {
           .signal-grid { grid-template-columns: 1fr !important; }
           .signal-grid > div:first-child { max-width: 180px; margin: 0 auto; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

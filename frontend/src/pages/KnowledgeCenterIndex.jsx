@@ -673,7 +673,7 @@ export default function KnowledgeCenterIndex() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 640px) { .kc-bottom-grid { grid-template-columns: 1fr !important; } .bundle-grid { grid-template-columns: 1fr !important; } }
         @media (max-width: 700px) {
           .timeline-desktop { flex-direction: column !important; align-items: flex-start !important; gap: 0 !important; }
@@ -683,7 +683,7 @@ export default function KnowledgeCenterIndex() {
           .timeline-desktop > a .timeline-circle { width: 40px !important; height: 40px !important; flex-shrink: 0; }
           .timeline-desktop [style*="position: absolute"] { display: none !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

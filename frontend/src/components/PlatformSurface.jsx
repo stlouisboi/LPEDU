@@ -46,7 +46,7 @@ const ITEMS = [
 export default function PlatformSurface() {
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .ps-grid {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
@@ -85,7 +85,7 @@ export default function PlatformSurface() {
         @media (max-width: 680px) {
           .ps-item:nth-child(2n) { border-right: none; }
         }
-      `}</style>
+      `}} />
 
       <section
         data-testid="platform-surface"

@@ -187,12 +187,12 @@ export default function AuthorityReadinessTestSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateX(-8px); }
           to   { opacity: 1; transform: translateX(0); }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }

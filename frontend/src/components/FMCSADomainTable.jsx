@@ -214,12 +214,12 @@ export function FMCSADomainTable({ showPricing = true }) {
         </button>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .fmcsa-row:hover td { background: rgba(212,144,10,0.04) !important; }
         @media (max-width: 700px) {
           .table-scroll-hint { display: block !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

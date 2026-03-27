@@ -334,13 +334,13 @@ export default function Navbar() {
         </div>
       )}
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .mobile-btn { display: none !important; }
         @media (max-width: 1100px) {
           .desktop-nav { display: none !important; }
           .mobile-btn { display: flex !important; }
         }
-      `}</style>
+      `}} />
     </header>
   );
 }

@@ -416,14 +416,14 @@ export default function StandardsPage() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .ladder-row { transition: background 0.15s; }
         @media (max-width: 680px) {
           .ladder-row { flex-direction: column; align-items: flex-start !important; }
           .connector-grid { grid-template-columns: 1fr !important; }
           .matrix-scroll-hint { display: block !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

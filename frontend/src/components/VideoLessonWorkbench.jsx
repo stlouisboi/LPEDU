@@ -611,12 +611,12 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) {
           .lesson-workbench-layout { flex-direction: column !important; }
           .lesson-track { width: 100% !important; position: static !important; order: -1; margin-bottom: 1.5rem; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

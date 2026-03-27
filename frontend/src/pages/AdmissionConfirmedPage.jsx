@@ -43,7 +43,7 @@ export default function AdmissionConfirmedPage() {
             <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)" }}>
               Verifying payment...
             </p>
-            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            <style dangerouslySetInnerHTML={{__html: `@keyframes spin { to { transform: rotate(360deg); } }`}} />
           </>
         )}
 

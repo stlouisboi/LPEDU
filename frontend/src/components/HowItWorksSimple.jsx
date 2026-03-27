@@ -13,7 +13,7 @@ const STEPS = [
 export default function HowItWorksSimple() {
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .hiw-section {
           background: #040d1a;
           background-image:
@@ -116,7 +116,7 @@ export default function HowItWorksSimple() {
           user-select: none;
           pointer-events: none;
         }
-      `}</style>
+      `}} />
 
       <section
         data-testid="how-it-works-simple"

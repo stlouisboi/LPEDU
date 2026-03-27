@@ -634,12 +634,12 @@ export default function Ground0Page() {
 
       <FooterSection />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 600px) {
           .sinwages-grid { grid-template-columns: 1fr !important; }
           .tier-list > div { grid-template-columns: 60px 1fr !important; }
         }
-      `}</style>
+      `}} />
     </div>
   );
 }

@@ -139,9 +139,9 @@ export default function DeadlySinsSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) { .sins-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; } }
-      `}</style>
+      `}} />
     </section>
   );
 }

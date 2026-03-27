@@ -98,7 +98,7 @@ export default function AutoDiagnosticPage() {
             </FadeIn>
           </div>
         </div>
-        <style>{`@media (max-width: 768px) { .two-col-grid { grid-template-columns: 1fr !important; } }`}</style>
+        <style dangerouslySetInnerHTML={{__html: `@media (max-width: 768px) { .two-col-grid { grid-template-columns: 1fr !important; } }`}} />
       </section>
 
       {/* Five Vectors */}
@@ -152,7 +152,7 @@ export default function AutoDiagnosticPage() {
               </div>
             </FadeIn>
           </div>
-          <style>{`@media (max-width: 768px) { .vectors-grid { grid-template-columns: 1fr !important; } }`}</style>
+          <style dangerouslySetInnerHTML={{__html: `@media (max-width: 768px) { .vectors-grid { grid-template-columns: 1fr !important; } }`}} />
         </div>
       </section>
 

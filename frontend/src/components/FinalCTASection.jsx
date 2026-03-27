@@ -66,7 +66,7 @@ export default function FinalCTASection() {
         </p>
 
         {/* CTA */}
-        <style>{`
+        <style dangerouslySetInnerHTML={{__html: `
           @keyframes reach-btn-scan {
             0%   { left: -60%; opacity: 0; }
             10%  { opacity: 1; }
@@ -83,7 +83,7 @@ export default function FinalCTASection() {
           @media (max-width: 480px) {
             .final-cta-btn { padding: 1rem 1.5rem !important; font-size: 0.857rem !important; }
           }
-        `}</style>
+        `}} />
 
         <Link
           to="/reach-diagnostic"

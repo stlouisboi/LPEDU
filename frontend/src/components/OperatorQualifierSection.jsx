@@ -31,7 +31,7 @@ export default function OperatorQualifierSection() {
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .qualifier-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -40,7 +40,7 @@ export default function OperatorQualifierSection() {
         @media (max-width: 720px) {
           .qualifier-grid { grid-template-columns: 1fr; }
         }
-      `}</style>
+      `}} />
 
       <section
         data-testid="operator-qualifier-section"

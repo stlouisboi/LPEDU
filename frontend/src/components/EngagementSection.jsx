@@ -293,12 +293,12 @@ export default function EngagementSection() {
 
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 700px) {
           .engagement-bottom-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
           .timeline-row { grid-template-columns: 80px 1fr !important; gap: 1rem !important; }
         }
-      `}</style>
+      `}} />
     </section>
   );
 }
