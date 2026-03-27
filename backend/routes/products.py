@@ -154,23 +154,109 @@ UPSELL = {
 }
 
 
+# ── MailerLite tag architecture (LP-BLD-EML-001 rev2) ─────────────────────────
+ML_BASE = "https://connect.mailerlite.com/api"
+
+# Tags to add/remove per purchased SKU
+_BUYER_TAG_MAP: dict[str, dict] = {
+    "LP-PKT-SINS": {
+        "add": ["LP-Buyer-16S-59", "LP-DoNotPitch-16S"],
+        "remove": ["LP-Lead-Cold"],
+    },
+    "LP-RES-006": {
+        "add": ["LP-Buyer-Stack-219", "LP-DoNotPitch-Stack", "LP-DoNotPitch-16S"],
+        "remove": ["LP-Lead-Cold"],
+    },
+    "LP-BDL-001": {
+        "add": ["LP-Buyer-Bundle-499", "LP-DoNotPitch-Stack"],
+        "remove": ["LP-Lead-Cold"],
+    },
+    "LP-LIB-001": {
+        "add": ["LP-Buyer-Bundle-499", "LP-DoNotPitch-Stack"],
+        "remove": ["LP-Lead-Cold"],
+    },
+    # Individual domain packets — treated as bundle-tier buyers
+    "LP-PKT-001": {"add": ["LP-Buyer-Bundle-499"], "remove": ["LP-Lead-Cold"]},
+    "LP-PKT-002": {"add": ["LP-Buyer-Bundle-499"], "remove": ["LP-Lead-Cold"]},
+    "LP-PKT-003": {"add": ["LP-Buyer-Bundle-499"], "remove": ["LP-Lead-Cold"]},
+    "LP-PKT-004": {"add": ["LP-Buyer-Bundle-499"], "remove": ["LP-Lead-Cold"]},
+    "LP-PKT-005": {"add": ["LP-Buyer-Bundle-499"], "remove": ["LP-Lead-Cold"]},
+    "LP-PKT-DQ":  {"add": ["LP-Buyer-Stack-219", "LP-DoNotPitch-16S"], "remove": ["LP-Lead-Cold"]},
+    "LP-RES-004": {"add": ["LP-Buyer-Stack-219", "LP-DoNotPitch-16S"], "remove": ["LP-Lead-Cold"]},
+}
+
+
+async def _get_or_create_ml_tag(http: httpx.AsyncClient, headers: dict, name: str) -> str | None:
+    """Return MailerLite tag ID for `name`, creating the tag if it doesn't exist."""
+    try:
+        # Try to create — MailerLite returns existing tag if name is a duplicate (200/201)
+        r = await http.post(f"{ML_BASE}/tags", headers=headers, json={"name": name})
+        data = r.json().get("data", {})
+        if data.get("id"):
+            return str(data["id"])
+        # Fallback: search existing tags
+        r2 = await http.get(f"{ML_BASE}/tags", headers=headers, params={"filter[name]": name})
+        items = r2.json().get("data", [])
+        return str(items[0]["id"]) if items else None
+    except Exception as exc:
+        logger.error(f"MailerLite get/create tag '{name}' failed: {exc}")
+        return None
+
+
 # ── Email helpers ──────────────────────────────────────────────────────────────
 async def _record_buyer_in_mailerlite(email: str, name: str, sku: str, product_name: str):
     if not MAILERLITE_API_TOKEN:
         return
     parts = name.strip().split(" ", 1)
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    tag_rules = _BUYER_TAG_MAP.get(sku, {"add": [], "remove": ["LP-Lead-Cold"]})
+
     try:
-        async with httpx.AsyncClient(timeout=8) as http:
-            await http.post(
+        async with httpx.AsyncClient(timeout=10) as http:
+            # Step 1: Create/update subscriber
+            resp = await http.post(
                 MAILERLITE_URL,
-                headers={"Authorization": f"Bearer {MAILERLITE_API_TOKEN}", "Content-Type": "application/json", "Accept": "application/json"},
-                json={"email": email, "status": "active", "fields": {
-                    "name": parts[0], "last_name": parts[1] if len(parts) > 1 else "",
-                    "lead_source": f"product_purchase_{sku.lower().replace('-','_')}",
-                    "last_product_purchased": product_name,
-                    "last_purchase_sku": sku,
-                }},
+                headers=headers,
+                json={
+                    "email": email,
+                    "status": "active",
+                    "fields": {
+                        "name": parts[0],
+                        "last_name": parts[1] if len(parts) > 1 else "",
+                        "lead_source": f"product_purchase_{sku.lower().replace('-','_')}",
+                        "last_product_purchased": product_name,
+                        "last_purchase_sku": sku,
+                    },
+                },
             )
+            subscriber_id = resp.json().get("data", {}).get("id")
+            if not subscriber_id:
+                logger.error(f"MailerLite: no subscriber ID returned for {email}")
+                return
+
+            # Step 2: Resolve tag IDs and add tags
+            for tag_name in tag_rules.get("add", []):
+                tag_id = await _get_or_create_ml_tag(http, headers, tag_name)
+                if tag_id:
+                    await http.post(
+                        f"{ML_BASE}/subscribers/{subscriber_id}/tags",
+                        headers=headers,
+                        json={"tags": [tag_id]},
+                    )
+
+            # Step 3: Remove suppressed tags (e.g. LP-Lead-Cold)
+            for tag_name in tag_rules.get("remove", []):
+                tag_id = await _get_or_create_ml_tag(http, headers, tag_name)
+                if tag_id:
+                    await http.delete(
+                        f"{ML_BASE}/subscribers/{subscriber_id}/tags/{tag_id}",
+                        headers=headers,
+                    )
+
     except Exception as exc:
         logger.error(f"MailerLite buyer record failed: {exc}")
 

@@ -129,7 +129,22 @@ async def _process_cohort_payment(checkout_session):
         if user_record and user_record.get("email") and MAILERLITE_API_TOKEN:
             try:
                 async with httpx.AsyncClient(timeout=8) as http:
-                    await http.post(MAILERLITE_URL, headers={"Content-Type": "application/json", "Authorization": f"Bearer {MAILERLITE_API_TOKEN}"}, json={"email": user_record["email"], "status": "active", "fields": {"name": user_record.get("name", ""), "cohort_access": "true", "cohort_tier": "LPOS_v1_Standard", "payment_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "stripe_session_id": checkout_session.id}})
+                    ml_headers = {"Content-Type": "application/json", "Authorization": f"Bearer {MAILERLITE_API_TOKEN}", "Accept": "application/json"}
+                    # Create/update subscriber
+                    resp = await http.post(MAILERLITE_URL, headers=ml_headers, json={"email": user_record["email"], "status": "active", "fields": {"name": user_record.get("name", ""), "cohort_access": "true", "cohort_tier": "LPOS_v1_Standard", "payment_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "stripe_session_id": checkout_session.id}})
+                    subscriber_id = resp.json().get("data", {}).get("id")
+                    # Assign Standard buyer tags + remove LP-Lead-Cold (brief Section 3.2)
+                    if subscriber_id:
+                        for tag_name in ["LP-Buyer-Standard-2500", "LP-DoNotPitch-Standard"]:
+                            t = await http.post("https://connect.mailerlite.com/api/tags", headers=ml_headers, json={"name": tag_name})
+                            tid = t.json().get("data", {}).get("id")
+                            if tid:
+                                await http.post(f"https://connect.mailerlite.com/api/subscribers/{subscriber_id}/tags", headers=ml_headers, json={"tags": [tid]})
+                        # Remove LP-Lead-Cold
+                        cold_r = await http.post("https://connect.mailerlite.com/api/tags", headers=ml_headers, json={"name": "LP-Lead-Cold"})
+                        cold_id = cold_r.json().get("data", {}).get("id")
+                        if cold_id:
+                            await http.delete(f"https://connect.mailerlite.com/api/subscribers/{subscriber_id}/tags/{cold_id}", headers=ml_headers)
             except Exception as ml_err:
                 logger.error(f"MailerLite post-payment update failed: {ml_err}")
         if user_record and user_record.get("email"):
