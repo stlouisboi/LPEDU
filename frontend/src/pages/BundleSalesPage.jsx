@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
@@ -281,10 +281,123 @@ function BundleVideoEmbed() {
   );
 }
 
+// ── System Access Strip — appears after hero CTA scrolls out of view ─────────
+function SystemAccessStrip({ visible, state, buy }) {
+  return (
+    <div
+      data-testid="system-access-strip"
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        background: "#060d1a",
+        borderTop: "1px solid rgba(212,144,10,0.18)",
+        padding: "0 24px",
+        height: 56,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "1.5rem",
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? "auto" : "none",
+        transition: "opacity 0.4s ease",
+      }}
+    >
+      {/* Left: system identity */}
+      <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", overflow: "hidden" }}>
+        {/* Static indicator dot — no pulse, no glow */}
+        <span style={{
+          width: 6,
+          height: 6,
+          borderRadius: "50%",
+          background: "rgba(212,144,10,0.55)",
+          flexShrink: 0,
+        }} />
+        <div style={{ overflow: "hidden" }}>
+          <span style={{
+            fontFamily: MONO,
+            fontSize: ".714rem",
+            fontWeight: 700,
+            letterSpacing: ".18em",
+            textTransform: "uppercase",
+            color: "rgba(212,144,10,0.5)",
+            display: "block",
+            lineHeight: 1,
+            marginBottom: ".2rem",
+            whiteSpace: "nowrap",
+          }}>
+            SYSTEM AVAILABLE
+          </span>
+          <span style={{
+            fontFamily: MONO,
+            fontSize: ".714rem",
+            letterSpacing: ".1em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.3)",
+            whiteSpace: "nowrap",
+          }}>
+            LP-BDL-001 · Document System · Required for audit-ready documentation
+          </span>
+        </div>
+      </div>
+
+      {/* Right: action */}
+      <button
+        data-testid="sticky-install-btn"
+        onClick={buy}
+        disabled={state === "loading"}
+        style={{
+          fontFamily: MONO,
+          fontSize: ".714rem",
+          fontWeight: 700,
+          letterSpacing: ".12em",
+          textTransform: "uppercase",
+          color: state === "loading" ? "rgba(212,144,10,0.4)" : "rgba(212,144,10,0.85)",
+          background: "transparent",
+          border: "1px solid rgba(212,144,10,0.25)",
+          padding: ".5rem 1.25rem",
+          cursor: state === "loading" ? "not-allowed" : "pointer",
+          whiteSpace: "nowrap",
+          flexShrink: 0,
+          transition: "border-color 0.2s, color 0.2s",
+        }}
+        onMouseEnter={e => {
+          if (state !== "loading") {
+            e.currentTarget.style.borderColor = "rgba(212,144,10,0.6)";
+            e.currentTarget.style.color = "rgba(212,144,10,1)";
+          }
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.borderColor = "rgba(212,144,10,0.25)";
+          e.currentTarget.style.color = state === "loading" ? "rgba(212,144,10,0.4)" : "rgba(212,144,10,0.85)";
+        }}
+      >
+        {state === "loading" ? "Processing…" : "Install System — $499"}
+      </button>
+    </div>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function BundleSalesPage() {
   const { state, error, buy } = useBuy();
   const [openFaq, setOpenFaq] = useState(null);
+  const [stickyVisible, setStickyVisible] = useState(false);
+  const heroCTARef = useRef(null);
+
+  // Show sticky bar only after hero CTA scrolls out of view
+  useEffect(() => {
+    const el = heroCTARef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setStickyVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div style={{ background: DARK, minHeight: "100vh", color: "#FFF", fontFamily: MONO, overflowX: "hidden" }}>
@@ -327,7 +440,7 @@ export default function BundleSalesPage() {
             </p>
 
             {/* Price block */}
-            <div style={{ marginBottom: "2rem" }}>
+            <div ref={heroCTARef} style={{ marginBottom: "2rem" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: ".5rem", flexWrap: "wrap" }}>
                 <span style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(3rem,6vw,4.5rem)", color: "#FFF", lineHeight: 1, letterSpacing: "-.02em" }}>$499</span>
                 <span style={{ fontSize: ".9rem", color: "rgba(255,255,255,.4)" }}>One-time purchase. Lifetime access. Immediate download.</span>
@@ -665,6 +778,7 @@ export default function BundleSalesPage() {
       </section>
 
       <FooterSection />
+      <SystemAccessStrip visible={stickyVisible} state={state} buy={buy} />
     </div>
   );
 }
