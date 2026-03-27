@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const GOLD   = "#C8933F";
 const GOLD_DIM = "rgba(200,147,63,0.18)";
@@ -79,13 +78,11 @@ function PulseDot({ active, color = GOLD }) {
   return (
     <span style={{ position: "relative", display: "inline-flex", width: 8, height: 8, flexShrink: 0 }}>
       {active && (
-        <motion.span
+        <span
           style={{
             position: "absolute", inset: 0, borderRadius: "50%",
             background: color, opacity: 0.4,
           }}
-          animate={{ scale: [1, 1.8], opacity: [0.4, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity }}
         />
       )}
       <span style={{ position: "relative", width: 8, height: 8, borderRadius: "50%", background: active ? color : "rgba(200,147,63,0.25)", boxShadow: active ? `0 0 6px ${color}` : "none", transition: "all 0.3s" }} />
@@ -96,18 +93,13 @@ function PulseDot({ active, color = GOLD }) {
 /* ── Threat Vector ─────────────────────────────────────────────── */
 function ThreatVector({ threat, isActive, onHover, onLeave, visible }) {
   return (
-    <motion.div
+    <div
       data-testid={`threat-${threat.direction.toLowerCase()}`}
-      initial={{ opacity: 0, y: threat.pos === "top" ? -12 : threat.pos === "bottom" ? 12 : 0, x: threat.pos === "left" ? -12 : threat.pos === "right" ? 12 : 0 }}
-      animate={visible ? { opacity: 1, y: 0, x: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.6 }}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       style={{ cursor: "pointer" }}
     >
-      <motion.div
-        animate={isActive ? { scale: 1.03 } : { scale: 1 }}
-        transition={{ duration: 0.2 }}
+      <div
         style={{
           padding: "0.625rem 0.875rem",
           border: `1px dashed ${isActive ? GOLD : "rgba(200,147,63,0.30)"}`,
@@ -118,34 +110,29 @@ function ThreatVector({ threat, isActive, onHover, onLeave, visible }) {
         }}
       >
         {/* Animated inbound arrow */}
-        <motion.div
+        <div
           style={{ marginBottom: 4, transform: `rotate(${threat.angle}deg)`, display: "flex", justifyContent: "center" }}
-          animate={isActive ? { opacity: [0.5, 1, 0.5] } : { opacity: [0.3, 0.7, 0.3] }}
-          transition={{ duration: 1.4, repeat: Infinity }}
         >
           <svg width="14" height="16" viewBox="0 0 14 16" fill="none">
             <path d="M7 0v12M2 8l5 5 5-5" stroke={isActive ? GOLD : "rgba(200,147,63,0.55)"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-        </motion.div>
+        </div>
         <p style={{ fontFamily: MONO, fontSize: "0.5rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: isActive ? GOLD : "rgba(200,147,63,0.50)", margin: "0 0 2px" }}>
           {threat.direction}
         </p>
         <p style={{ fontFamily: SANS, fontSize: "0.7rem", fontWeight: 600, color: isActive ? "rgba(255,255,255,0.90)" : "rgba(255,255,255,0.55)", lineHeight: 1.3, margin: 0 }}>
           {threat.label}
         </p>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 /* ── Pillar Node ───────────────────────────────────────────────── */
 function PillarNode({ pillar, isTargeted, visible, delay }) {
   return (
-    <motion.div
+    <div
       data-testid={`pillar-${pillar.code.toLowerCase()}`}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={visible ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.4, delay }}
       style={{
         padding: "0.875rem 1rem",
         background: isTargeted ? "rgba(200,147,63,0.10)" : "rgba(8,14,28,0.95)",
@@ -164,18 +151,15 @@ function PillarNode({ pillar, isTargeted, visible, delay }) {
       <p style={{ fontFamily: SANS, fontSize: "0.6875rem", color: isTargeted ? "rgba(255,255,255,0.70)" : "rgba(255,255,255,0.38)", lineHeight: 1.5, margin: 0 }}>
         {pillar.sub}
       </p>
-    </motion.div>
+    </div>
   );
 }
 
 /* ── Guard Node ────────────────────────────────────────────────── */
 function GuardNode({ guard, visible, delay }) {
   return (
-    <motion.div
+    <div
       data-testid={`guard-${guard.code.toLowerCase()}`}
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={visible ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.35, delay }}
       style={{
         display: "flex", alignItems: "center", gap: "0.625rem",
         padding: "0.625rem 0.875rem",
@@ -195,7 +179,7 @@ function GuardNode({ guard, visible, delay }) {
         <p style={{ fontFamily: SANS, fontSize: "0.75rem", fontWeight: 600, color: "rgba(255,255,255,0.80)", margin: "0 0 2px", lineHeight: 1.2 }}>{guard.name}</p>
         <p style={{ fontFamily: SANS, fontSize: "0.625rem", color: "rgba(255,255,255,0.35)", margin: 0, lineHeight: 1.4 }}>{guard.sub}</p>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -203,13 +187,9 @@ function GuardNode({ guard, visible, delay }) {
 function ThreatDetail({ threat }) {
   if (!threat) return null;
   return (
-    <AnimatePresence>
-      <motion.div
+    
+      <div
         key={threat.direction}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -4 }}
-        transition={{ duration: 0.25 }}
         style={{
           marginTop: "1.25rem",
           padding: "1rem 1.375rem",
@@ -231,8 +211,8 @@ function ThreatDetail({ threat }) {
           <PulseDot active color="#22c55e" />
           <p style={{ fontFamily: MONO, fontSize: "0.5rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#22c55e", margin: 0 }}>DEFENDED</p>
         </div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    
   );
 }
 
@@ -268,30 +248,21 @@ export default function SystemArchitectureDiagram() {
 
         {/* ── Section header ── */}
         <div style={{ marginBottom: "3rem" }}>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={visible ? { opacity: 1 } : {}}
-            transition={{ duration: 0.4 }}
+          <p
             style={{ fontFamily: MONO, fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", marginBottom: "0.625rem" }}
           >
             LP-STD-001 | HOW LAUNCHPATH WORKS
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            animate={visible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.45, delay: 0.08 }}
+          </p>
+          <h2
             style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.625rem,3.5vw,2.375rem)", letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "0.875rem" }}
           >
             The Four-Pillar Operating Standard
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={visible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.4, delay: 0.15 }}
+          </h2>
+          <p
             style={{ fontFamily: SANS, fontSize: "clamp(0.9rem,1.6vw,1rem)", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 620 }}
           >
             This is the four-pillar operating standard we implement to protect your MC authority from shutdowns, coverage gaps, and cash-flow failure. Hover a threat vector to see how each pillar responds.
-          </motion.p>
+          </p>
         </div>
 
         {/* ── Diagram: 3-column layout ── */}
@@ -326,11 +297,8 @@ export default function SystemArchitectureDiagram() {
             </div>
 
             {/* Core protected authority */}
-            <motion.div
+            <div
               data-testid="mc-authority-core"
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={visible ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.35 }}
               style={{
                 padding: "1.625rem 1.5rem",
                 background: "rgba(8,16,32,0.98)",
@@ -354,10 +322,8 @@ export default function SystemArchitectureDiagram() {
                 }}/>
               ))}
               {/* Idle ambient glow */}
-              <motion.div
+              <div
                 style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(200,147,63,0.07) 0%, transparent 70%)", pointerEvents: "none" }}
-                animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ duration: 3, repeat: Infinity }}
               />
 
               <div style={{ position: "relative", zIndex: 1 }}>
@@ -374,7 +340,7 @@ export default function SystemArchitectureDiagram() {
                   Protected
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Bottom pillars row */}
             <div style={{ display: "flex", gap: "0.625rem" }}>
@@ -415,10 +381,7 @@ export default function SystemArchitectureDiagram() {
         <ThreatDetail threat={active} />
 
         {/* ── Bottom legend ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={visible ? { opacity: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.85 }}
+        <div
           style={{ marginTop: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", borderTop: "1px solid rgba(200,147,63,0.10)", paddingTop: "1.25rem" }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
@@ -436,7 +399,7 @@ export default function SystemArchitectureDiagram() {
           <p style={{ fontFamily: MONO, fontSize: "0.5rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)", margin: 0 }}>
             LaunchPath Operating Standard v1.0
           </p>
-        </motion.div>
+        </div>
 
       </div>
 

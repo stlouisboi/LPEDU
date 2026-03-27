@@ -21,7 +21,6 @@ export default function ProductPageTemplate({
   nextStepHref,
   nextStepLabel,
   standardInclusion = true,
-  mockupId = null,
   image = null,
   children,
 }) {
@@ -51,7 +50,7 @@ export default function ProductPageTemplate({
   };
 
   const isLoading = buyState === "loading";
-  const hasVisual = image || mockupId;
+  const hasVisual = !!image;
 
   return (
     <div style={{ background: "#060d19", minHeight: "100vh" }}>
@@ -123,15 +122,6 @@ export default function ProductPageTemplate({
                     alt={title}
                     style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
                   />
-                </div>
-              ) : mockupId ? (
-                <div style={{ borderRadius: "6px", overflow: "hidden" }}>
-                  <BookMockup3D productId={mockupId} mode="embed" />
-                  <p style={{
-                    fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
-                    color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em",
-                    textAlign: "center", marginTop: "0.5rem",
-                  }}>DRAG TO ROTATE</p>
                 </div>
               ) : null}
             </div>
