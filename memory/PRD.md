@@ -448,10 +448,16 @@ Compliance infrastructure, educational content, and paid digital resources for n
 - Refactored AdminProductFilesPage: removed hardcoded PRODUCTS/BUNDLE_CONTENTS; now fetches from /api/admin/products/files at runtime
 - All product/portal CTAs verified: 3 Stripe checkout endpoints confirmed live (/api/products/checkout, /api/create-program-checkout, /api/portal/checkout)
 
-### P0: Deployment Fix (Mar 2026)
+### P0: Deployment Fix (Mar 2026 — Updated Feb 2026 Fork)
 - Added `output: 'export'` to `next.config.js` — required for Emergent deployment platform static export
 - Build confirmed passing: 82 static pages, exit 0, with `output: 'export'`
-- `frontend/yarn.lock` tracked as untracked — add via "Save to Github" before next deploy
+- `frontend/yarn.lock` committed ✅
+- Fixed `useSearchParams` → `useRouter` (next/router) in `AdmissionConfirmedPage.jsx` and `Ground0CompletePage.jsx` (Pages Router compatibility, same fix previously done to ProductConfirmedPage)
+- Zero `getServerSideProps` in all source files ✅
+- Zero `useSearchParams` from `next/navigation` remaining ✅  
+- `frontend/.next/` and `frontend/out/` properly gitignored ✅
+- Auth redirect URL correctly uses env variable with `https://auth.emergentagent.com` fallback ✅
+- **PENDING: User must click "Save to Github" from Emergent platform to push clean workspace to GitHub — this is the root cause of the stale deployment pulling old getServerSideProps code**
 
 ### P0: Premium Product Images v2 (Mar 2026)
 - Generated 15 ultra-premium studio-photography-style product images (dark navy/gold brand palette)
