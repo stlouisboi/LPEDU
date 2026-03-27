@@ -449,7 +449,14 @@ export default function ComplianceLibraryPage() {
               {p.savings && <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.10em", color: "rgba(212,144,10,0.65)", margin: "0 0 0.875rem" }}>{p.savings}</p>}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
                 <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.25rem", color: "#fff", letterSpacing: "-0.02em" }}>{p.price}</span>
-                <button data-testid={`buy-btn-${p.sku.toLowerCase()}`} onClick={() => buy(p.sku)} style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", background: GOLD, color: NAVY, border: "none", padding: "0.5rem 1rem", cursor: "pointer" }}>{p.primaryCta}</button>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <a href="/standards/starter-stack" style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(212,144,10,0.65)", textDecoration: "none", letterSpacing: "0.06em" }}
+                    onMouseEnter={e => e.currentTarget.style.color = "rgba(212,144,10,1)"}
+                    onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.65)"}>
+                    What's Inside →
+                  </a>
+                  <button data-testid={`buy-btn-${p.sku.toLowerCase()}`} onClick={() => buy(p.sku)} style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", background: GOLD, color: NAVY, border: "none", padding: "0.5rem 1rem", cursor: "pointer" }}>{p.primaryCta}</button>
+                </div>
               </div>
             </div>
           ); })()}
