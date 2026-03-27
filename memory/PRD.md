@@ -448,6 +448,11 @@ Compliance infrastructure, educational content, and paid digital resources for n
 - Refactored AdminProductFilesPage: removed hardcoded PRODUCTS/BUNDLE_CONTENTS; now fetches from /api/admin/products/files at runtime
 - All product/portal CTAs verified: 3 Stripe checkout endpoints confirmed live (/api/products/checkout, /api/create-program-checkout, /api/portal/checkout)
 
+### Bundle Sales Page Images (Mar 2026)
+- Added LP-BDL-001 bundle image to BundleSalesPage hero (two-column layout: text left, product image right)
+- Added individual packet thumbnails (LP-PKT-001 through LP-PKT-005) to each packet card in "What's Included" section
+- All images match exactly what Stripe checkout shows (sourced from same backend PRODUCTS dict)
+
 ### P0: Deployment Fix (Mar 2026 — Updated Feb 2026 Fork)
 - Added `output: 'export'` to `next.config.js` — required for Emergent deployment platform static export
 - Build confirmed passing: 82 static pages, exit 0, with `output: 'export'`
