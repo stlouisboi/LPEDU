@@ -1,5 +1,5 @@
 import { Link } from '../compat/Link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
@@ -256,8 +256,8 @@ function PathCard({ path }) {
 }
 
 export default function Ground0CompletePage() {
-  const searchParams = useSearchParams();
-  const resultParam = searchParams.get("result"); // "GO", "WAIT", "NO-GO", or null
+  const router = useRouter();
+  const resultParam = router.isReady ? router.query.result : null; // "GO", "WAIT", "NO-GO", or null
   const resultCfg = resultParam ? RESULT_HEADER[resultParam] : null;
 
   return (

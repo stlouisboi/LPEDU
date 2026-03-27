@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from '../compat/Link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
@@ -8,8 +8,8 @@ const gold = "#C5A059";
 const mono = "'Inter', sans-serif";
 
 export default function AdmissionConfirmedPage() {
-  const params = useSearchParams();
-  const sessionId = params.get("session_id");
+  const router = useRouter();
+  const sessionId = router.isReady ? router.query.session_id : null;
   const [status, setStatus] = useState("checking"); // checking | paid | pending | error
   const API = process.env.REACT_APP_BACKEND_URL;
 
