@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="x-apple-disable-message-reformatting" />
+  <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no" />
+  <title>LaunchPath</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+  <style>
+    /* Lora serif — supported in Gmail, Apple Mail, iOS */
+    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+    body { margin: 0; padding: 0; background-color: #0a1520; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    a { color: rgba(197,160,89,0.85); }
+    @media only screen and (max-width: 620px) {
+      .card { width: 100% !important; }
+      .pad { padding-left: 24px !important; padding-right: 24px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#0a1520;word-spacing:normal;">
+
+  <!-- ─── PREHEADER (hidden preview text) ───────────────────────────────────
+       Keep under 90 characters. Appears in inbox preview beside the subject.
+       Replace {{PREHEADER}} for each email.                                  -->
+  <div style="display:none;max-height:0;max-width:0;overflow:hidden;opacity:0;
+    mso-hide:all;font-size:1px;color:#0a1520;line-height:1px;">
+    {{PREHEADER}} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+  </div>
+
+  <!-- ─── OUTER WRAPPER ─────────────────────────────────────────────────── -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+    style="background-color:#0a1520;">
+    <tr>
+      <td align="center" style="padding:40px 16px 56px;">
+
+        <!-- ─── EMAIL CARD ───────────────────────────────────────────────── -->
+        <table class="card" role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"
+          style="max-width:600px;width:100%;background-color:#0e1e2e;border-top:3px solid #C5A059;">
+
+
+          <!-- ── 1. WORDMARK HEADER ──────────────────────────────────────── -->
+          <tr>
+            <td class="pad" style="padding:30px 48px 0;">
+              <p style="margin:0;font-family:'Courier New',Courier,monospace;font-size:10px;
+                font-weight:700;letter-spacing:0.24em;text-transform:uppercase;
+                color:rgba(197,160,89,0.42);line-height:1;">
+                LAUNCHPATH &nbsp;&middot;&nbsp; OPERATING STANDARD
+              </p>
+            </td>
+          </tr>
+
+
+          <!-- ── 2. SUBJECT LINE (serif, near-white) ────────────────────── -->
+          <tr>
+            <td class="pad" style="padding:22px 48px 0;">
+              <p style="margin:0;font-family:'Lora',Georgia,'Times New Roman',serif;
+                font-size:26px;font-weight:600;line-height:1.3;
+                color:rgba(255,255,255,0.93);letter-spacing:-0.01em;">
+                {{SUBJECT_LINE}}
+              </p>
+            </td>
+          </tr>
+
+
+          <!-- ── 3. GOLD HAIRLINE RULE (40px wide, anchors the eye) ──────── -->
+          <tr>
+            <td class="pad" style="padding:18px 48px 0;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="40" height="1" bgcolor="#C5A059"
+                    style="font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+
+          <!-- ── 4. OPENING PARAGRAPH (slightly brighter) ──────────────── -->
+          <tr>
+            <td class="pad" style="padding:28px 48px 0;">
+              <p style="margin:0;font-family:'Lora',Georgia,'Times New Roman',serif;
+                font-size:16px;line-height:28px;color:rgba(255,255,255,0.86);">
+                {{PARAGRAPH_1}}
+              </p>
+            </td>
+          </tr>
+
+
+          <!-- ── 5. BODY PARAGRAPHS (duplicate this block as needed) ─────── -->
+          <tr>
+            <td class="pad" style="padding:18px 48px 0;">
+              <p style="margin:0;font-family:'Lora',Georgia,'Times New Roman',serif;
+                font-size:16px;line-height:28px;color:rgba(255,255,255,0.72);">
+                {{PARAGRAPH_2}}
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="pad" style="padding:18px 48px 0;">
+              <p style="margin:0;font-family:'Lora',Georgia,'Times New Roman',serif;
+                font-size:16px;line-height:28px;color:rgba(255,255,255,0.72);">
+                {{PARAGRAPH_3}}
+              </p>
+            </td>
+          </tr>
+
+
+          <!-- ── 6. BULLET LIST (uncomment and duplicate rows as needed) ───
+               Use em-dash style, not bullet points.
+          <tr>
+            <td class="pad" style="padding:18px 48px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="20" valign="top"
+                    style="font-family:'Courier New',Courier,monospace;font-size:13px;
+                      line-height:28px;color:rgba(197,160,89,0.45);padding-right:8px;">
+                    &mdash;
+                  </td>
+                  <td style="font-family:'Lora',Georgia,'Times New Roman',serif;
+                    font-size:16px;line-height:28px;color:rgba(255,255,255,0.72);">
+                    {{BULLET_ITEM}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          ────────────────────────────────────────────────────────────────── -->
+
+
+          <!-- ── 7. DOCTRINE BLOCK (gold left-border, for hammer lines) ────
+               Use for: "If it's not documented, it doesn't exist."
+               Or any single consequence-statement that needs to land hard.
+          <tr>
+            <td class="pad" style="padding:24px 48px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="3" bgcolor="#C5A059"
+                    style="font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+                  <td style="padding:14px 20px;background-color:#0b1a2b;">
+                    <p style="margin:0;font-family:'Lora',Georgia,'Times New Roman',serif;
+                      font-size:16px;font-style:italic;line-height:28px;
+                      color:rgba(255,255,255,0.64);">
+                      {{DOCTRINE_TEXT}}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          ────────────────────────────────────────────────────────────────── -->
+
+
+          <!-- ── 8. CTA BUTTON ─────────────────────────────────────────────
+               MSO VML fallback ensures Outlook renders a real button.
+               The href, label, and width must match in BOTH the VML and the
+               <a> tag below. Width is approximate — adjust to label length. -->
+          <tr>
+            <td class="pad" style="padding:32px 48px 0;">
+
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                xmlns:w="urn:schemas-microsoft-com:office:word"
+                href="{{CTA_URL}}"
+                style="height:44px;v-text-anchor:middle;width:280px;"
+                arcsize="0%"
+                stroke="t"
+                strokecolor="#C5A059"
+                strokeweight="1pt"
+                filled="f">
+                <w:anchorlock/>
+                <center style="font-family:'Courier New',Courier,monospace;font-size:11px;
+                  font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+                  color:#C5A059;">{{CTA_LABEL}} &rarr;</center>
+              </v:roundrect>
+              <![endif]-->
+
+              <!--[if !mso]><!-->
+              <a href="{{CTA_URL}}" target="_blank"
+                style="display:inline-block;font-family:'Courier New',Courier,monospace;
+                  font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+                  color:rgba(197,160,89,0.85);text-decoration:none;
+                  border:1px solid rgba(197,160,89,0.35);
+                  padding:13px 28px;background-color:transparent;
+                  mso-hide:all;">
+                {{CTA_LABEL}} &rarr;
+              </a>
+              <!--<![endif]-->
+
+            </td>
+          </tr>
+
+
+          <!-- ── 9. SIGNATURE (italic Lora) ─────────────────────────────── -->
+          <tr>
+            <td class="pad" style="padding:36px 48px 0;">
+              <p style="margin:0 0 5px;font-family:'Lora',Georgia,'Times New Roman',serif;
+                font-size:14px;font-style:italic;line-height:22px;
+                color:rgba(255,255,255,0.6);">
+                Vince Lawrence
+              </p>
+              <p style="margin:0;font-family:'Courier New',Courier,monospace;font-size:9px;
+                font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+                color:rgba(197,160,89,0.32);line-height:1;">
+                Station Custodian, LaunchPath
+              </p>
+            </td>
+          </tr>
+
+
+          <!-- ── 10. PS BLOCK (optional — delete if not used) ───────────────
+          <tr>
+            <td class="pad" style="padding:24px 48px 0;">
+              <p style="margin:0;font-family:'Lora',Georgia,'Times New Roman',serif;
+                font-size:14px;font-style:italic;line-height:25px;
+                color:rgba(255,255,255,0.36);">
+                P.S. {{PS_TEXT}}
+              </p>
+            </td>
+          </tr>
+          ────────────────────────────────────────────────────────────────── -->
+
+
+          <!-- ── 11. FOOTER RULE ────────────────────────────────────────── -->
+          <tr>
+            <td class="pad" style="padding:28px 48px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td height="1" bgcolor="#111e30"
+                    style="font-size:0;line-height:0;mso-line-height-rule:exactly;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+
+          <!-- ── 12. FOOTER (near-invisible monospace) ──────────────────── -->
+          <tr>
+            <td class="pad" style="padding:18px 48px 36px;">
+              <p style="margin:0;font-family:'Courier New',Courier,monospace;font-size:9px;
+                letter-spacing:0.08em;line-height:17px;color:rgba(255,255,255,0.14);">
+                LaunchPath Transportation EDU &nbsp;&middot;&nbsp; Accuracy Over Hype. Systems Over Shortcuts.<br />
+                You&rsquo;re receiving this because you opted in at launchpathedu.com.
+                &nbsp;&middot;&nbsp;
+                <a href="{unsubscribe}"
+                  style="color:rgba(255,255,255,0.14);text-decoration:underline;">
+                  Unsubscribe
+                </a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /email card -->
+
+      </td>
+    </tr>
+  </table>
+  <!-- /outer wrapper -->
+
+</body>
+</html>
+
+<!--
+═══════════════════════════════════════════════════════════════════════
+  LP-EML-BASE-001 — LAUNCHPATH EMAIL BASE TEMPLATE
+  Rev 1 · Matches brand system LP-BLD-EML-001-rev2
+═══════════════════════════════════════════════════════════════════════
+
+  PLACEHOLDERS TO REPLACE PER EMAIL
+  ───────────────────────────────────────────────────────────────────
+  {{PREHEADER}}      Inbox preview text. Keep under 90 chars.
+                     Should complement subject line, not repeat it.
+
+  {{SUBJECT_LINE}}   Displayed in the email body as the headline.
+                     Use the exact subject line from LP-EML-COPY-001.
+
+  {{PARAGRAPH_1}}    Opening paragraph — the hook. Slightly brighter
+                     text colour. This is the most-read line.
+
+  {{PARAGRAPH_2}}    Second paragraph — context, consequence, or setup.
+  {{PARAGRAPH_3}}    Third paragraph. Add/remove blocks as needed.
+
+  {{CTA_URL}}        Full URL. Must match in BOTH the VML and <a> tag.
+  {{CTA_LABEL}}      Button text. Monospace, uppercase. Keep short.
+                     Examples: "View the Starter Stack"
+                               "Access Ground 0"
+                               "Review the Document System"
+
+  {{PS_TEXT}}        Optional. Italic, dim. For soft follow-up notes.
+                     Delete the entire PS block if not used.
+
+  OPTIONAL BLOCKS (uncomment to activate)
+  ───────────────────────────────────────────────────────────────────
+  BULLET LIST        Em-dash style (—), not bullet points.
+                     Duplicate the <tr> row for each item.
+
+  DOCTRINE BLOCK     Gold left-border. Use sparingly — one per email
+                     max. For lines that need to land without drama:
+                     "If it's not documented, it doesn't exist."
+
+  PS BLOCK           Delete if the email doesn't need a postscript.
+
+  HOW TO USE IN MAILERLITE (35-email workflow)
+  ───────────────────────────────────────────────────────────────────
+  1. Create a new campaign or automation step in MailerLite.
+  2. Choose "Custom HTML" editor.
+  3. Paste this entire file.
+  4. Replace all {{PLACEHOLDERS}} for this email.
+  5. Uncomment optional blocks as needed.
+  6. Set the actual email subject line in MailerLite's Subject field
+     (separate from {{SUBJECT_LINE}} displayed in the body).
+  7. Save. Duplicate for the next email. Repeat.
+
+  MAILERLITE MERGE TAGS (already wired)
+  ───────────────────────────────────────────────────────────────────
+  {unsubscribe}         Required. Auto-inserted by MailerLite.
+  {$name}               Subscriber first name.
+                        Add to {{PARAGRAPH_1}} when appropriate:
+                        "If you just got your authority, {$name}..."
+  {$email}              Subscriber email address.
+  {$company}            Company name (if collected).
+
+  FONT FALLBACK CHAIN
+  ───────────────────────────────────────────────────────────────────
+  Serif:      Lora → Georgia → Times New Roman → serif
+  Monospace:  Courier New → Courier → monospace
+  Lora loads in: Gmail, Apple Mail, iOS Mail, Samsung Mail.
+  Outlook falls back to Georgia — still correct weight and feel.
+
+═══════════════════════════════════════════════════════════════════════
+-->

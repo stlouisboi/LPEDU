@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaunchPath — Email Template Preview</title>
+  <style>
+    body { margin: 0; padding: 0; background: #030912; font-family: 'Inter', Arial, sans-serif; }
+    * { box-sizing: border-box; }
+
+    /* Preview chrome */
+    .preview-bar {
+      background: #111827;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .preview-bar span { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+    .preview-bar strong { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(197,160,89,0.7); }
+
+    /* Email client simulation */
+    .client-wrap {
+      background: #e8e8e8;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    /* The actual email */
+    .email-outer {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #050d1a;
+      border-top: 3px solid #C5A059;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+
+    /* Header strip */
+    .email-header {
+      padding: 28px 48px 0;
+    }
+    .email-header-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(197,160,89,0.45);
+      margin: 0;
+    }
+    .email-header-rule {
+      height: 1px;
+      background: rgba(197,160,89,0.1);
+      margin: 18px 0 0;
+    }
+
+    /* Body */
+    .email-body {
+      padding: 36px 48px 0;
+    }
+    .email-greeting {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.85);
+      margin: 0 0 22px;
+    }
+    .email-body p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.72);
+      margin: 0 0 18px;
+    }
+    .email-body p strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
+    .email-body ul {
+      padding-left: 0;
+      margin: 0 0 18px;
+      list-style: none;
+    }
+    .email-body ul li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.72);
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .email-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(197,160,89,0.4);
+    }
+
+    /* Callout block */
+    .email-callout {
+      border-left: 2px solid rgba(197,160,89,0.3);
+      padding: 12px 16px;
+      margin: 24px 0;
+      background: rgba(197,160,89,0.04);
+    }
+    .email-callout p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* CTA */
+    .email-cta {
+      padding: 28px 48px 0;
+    }
+    .email-cta a {
+      display: inline-block;
+      background: transparent;
+      color: rgba(197,160,89,0.9);
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 13px 24px;
+      border: 1px solid rgba(197,160,89,0.3);
+    }
+
+    /* Signature */
+    .email-sig {
+      padding: 32px 48px 0;
+    }
+    .email-sig p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.72);
+    }
+    .email-sig-title {
+      font-size: 10px !important;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(197,160,89,0.4) !important;
+      margin-top: 3px !important;
+    }
+
+    /* Footer */
+    .email-footer-rule {
+      height: 1px;
+      background: rgba(255,255,255,0.05);
+      margin: 32px 48px 0;
+    }
+    .email-footer {
+      padding: 20px 48px 36px;
+    }
+    .email-footer p {
+      margin: 0;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.16);
+      line-height: 1.7;
+    }
+    .email-footer a {
+      color: rgba(255,255,255,0.16);
+      text-decoration: underline;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .email-header, .email-body, .email-cta, .email-sig, .email-footer { padding-left: 24px !important; padding-right: 24px !important; }
+      .email-footer-rule { margin-left: 24px !important; margin-right: 24px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preview label -->
+  <div class="preview-bar">
+    <strong>Email Template Preview</strong>
+    <span>— Flow 1, Email 1 · LaunchPath Operating Standard</span>
+  </div>
+
+  <!-- Simulated email client background -->
+  <div class="client-wrap">
+    <div class="email-outer">
+
+      <!-- Header -->
+      <div class="email-header">
+        <p class="email-header-label">LaunchPath Operating Standard</p>
+        <div class="email-header-rule"></div>
+      </div>
+
+      <!-- Body -->
+      <div class="email-body">
+
+        <p class="email-greeting">If you just got your authority, there's a window you need to understand before anything else.</p>
+
+        <p>FMCSA requires every new carrier to complete an 18-month new entrant period. During that window, a compliance investigator can show up — announced or unannounced — and audit your operation against seven safety categories.</p>
+
+        <p>What they will actually examine first:</p>
+
+        <ul>
+          <li>Driver qualification files — one missing item fails the category</li>
+          <li>Drug and alcohol program enrollment — not a policy, an active program</li>
+          <li>Hours of service records — the last 6 months, by driver</li>
+          <li>Vehicle maintenance records — organized, current, accessible</li>
+        </ul>
+
+        <p>That binder moment — when the investigator opens your file cabinet — determines your rating. <strong>Satisfactory. Conditional. Unsatisfactory.</strong> Conditional or below triggers an improvement plan. Unsatisfactory can revoke your authority.</p>
+
+        <p>This is not a compliance opinion. It is the written standard under 49 CFR Parts 385 and 390.</p>
+
+        <div class="email-callout">
+          <p>Most new carriers don't fail audits because they're running unsafe operations. They fail because their documentation doesn't match what they're actually doing. That's a fixable problem — but only before the investigator arrives.</p>
+        </div>
+
+        <p>Over the next two weeks, I'm going to walk you through the four failure patterns that account for the majority of new entrant revocations. Not theory. The actual patterns, and what closes them.</p>
+
+        <p>Next email: what the first failure pattern actually costs an operator, and why most miss it until it's too late.</p>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="email-cta">
+        <a href="#">View Ground 0 Orientation →</a>
+      </div>
+
+      <!-- Signature -->
+      <div class="email-sig">
+        <p>Vince Lawrence</p>
+        <p class="email-sig-title">Station Custodian, LaunchPath</p>
+      </div>
+
+      <!-- Footer -->
+      <div class="email-footer-rule"></div>
+      <div class="email-footer">
+        <p>LaunchPath Transportation EDU &nbsp;·&nbsp; Accuracy Over Hype. Systems Over Shortcuts.<br>
+        You're receiving this because you submitted a form at launchpathedu.com. &nbsp;<a href="#">Unsubscribe</a></p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
