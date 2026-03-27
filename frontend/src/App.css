@@ -1,0 +1,21 @@
+/* LaunchPath — The Onyx Standard */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+a { transition: color 0.2s; }
+table { border-collapse: collapse; }
+
+/* ─── Fluid Type Scale ───────────────────────────────────────────────────── */
+:root {
+  --text-3xl:  clamp(3rem,    6vw + 0.5rem,  6rem);    /* 48px → 96px  — hero headlines          */
+  --text-2xl:  clamp(2.25rem, 3.5vw + 0.5rem,4rem);    /* 36px → 64px  — section / CTA titles    */
+  --text-xl:   clamp(1.75rem, 2.5vw + 0.25rem,2.75rem);/* 28px → 44px  — pillars, phases, quotes */
+  --text-lg:   clamp(1.25rem, 1.75vw,        1.75rem); /* 20px → 28px  — subheadlines            */
+  --text-base: clamp(1rem,    1.25vw + 0.1rem,1.25rem);/* 16px → 20px  — body copy               */
+  --text-sm:   clamp(0.9375rem,0.5vw + 0.125rem,1.0625rem); /* 15px → 17px — nav, buttons       */
+  --text-xs:   clamp(0.8125rem,0.25vw + 0.125rem,0.9375rem); /* 13px → 15px — eyebrows, badges  */
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+input[type="number"] { -moz-appearance: textfield; }

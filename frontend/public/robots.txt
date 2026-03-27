@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Private / gated routes — no indexing needed
+Disallow: /admin/
+Disallow: /portal
+Disallow: /control-room
+Disallow: /product-preview
+Disallow: /admission/confirmed
+Disallow: /products/confirmed
+Disallow: /ground-0-complete
+Disallow: /mockups
+
+Sitemap: https://launchpathedu.com/sitemap.xml

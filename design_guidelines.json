@@ -1,0 +1,300 @@
+{
+  "project_name": "LaunchPath Homepage Header Redesign",
+  "design_persona": "E1 - The Anti-AI Designer",
+  "version": "1.0",
+  "general_principles": [
+    "Fusion over Imitation: Mix 'Tactical Command Center' with 'High-End Fintech'.",
+    "Emotion First: Convey Authority, Protection, and Immediate Compliance.",
+    "Content is King: The 90-day warning is the hero. Everything else supports it.",
+    "Contrast: use #d4900a (Gold) sparingly against #0b1628 (Navy) to guide the eye. Gold is for Victory/Standard, Red/Orange is for Risk.",
+    "Spacing: 2x standard spacing. Use breathing room to communicate luxury and confidence."
+  ],
+  "layout_strategy": {
+    "type": "CSS Grid (Inline)",
+    "container": {
+      "maxWidth": "1280px",
+      "margin": "0 auto",
+      "display": "grid",
+      "gridTemplateColumns": "1.4fr 1fr", 
+      "gap": "64px",
+      "alignItems": "center",
+      "padding": "80px 24px 100px",
+      "mobile": {
+        "gridTemplateColumns": "1fr",
+        "gap": "48px",
+        "padding": "60px 20px 80px"
+      }
+    }
+  },
+  "typography": {
+    "headline": {
+      "fontFamily": "'Playfair Display', serif",
+      "fontWeight": "700",
+      "fontSize": {
+        "desktop": "76px",
+        "mobile": "46px"
+      },
+      "lineHeight": "1.05",
+      "letterSpacing": "-0.02em",
+      "color": "#FFFFFF"
+    },
+    "subheadline": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontWeight": "400",
+      "fontSize": "18px",
+      "lineHeight": "1.6",
+      "color": "rgba(255, 255, 255, 0.8)",
+      "maxWidth": "580px"
+    },
+    "cta_text": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontWeight": "700",
+      "fontSize": "16px",
+      "letterSpacing": "0.05em",
+      "textTransform": "uppercase"
+    },
+    "label": {
+      "fontFamily": "'Inter', sans-serif",
+      "fontWeight": "600",
+      "fontSize": "12px",
+      "letterSpacing": "0.15em",
+      "textTransform": "uppercase"
+    }
+  },
+  "colors": {
+    "background": {
+      "main": "#0b1628",
+      "card_risk": "rgba(232, 89, 15, 0.08)",
+      "card_safe": "rgba(212, 144, 10, 0.08)",
+      "overlay": "linear-gradient(180deg, rgba(11,22,40,0.8) 0%, #0b1628 100%)"
+    },
+    "accent": {
+      "gold": "#d4900a",
+      "risk_red": "#E8590F"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "rgba(255, 255, 255, 0.7)",
+      "muted": "rgba(255, 255, 255, 0.5)"
+    },
+    "border": {
+      "subtle": "rgba(255, 255, 255, 0.1)",
+      "gold_subtle": "rgba(212, 144, 10, 0.3)",
+      "risk_subtle": "rgba(232, 89, 15, 0.3)"
+    }
+  },
+  "components": {
+    "HeroSection": {
+      "path": "/app/frontend/src/components/HeroSection.jsx",
+      "background_image": "url('https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/gt9pdg9a_hero-letter-dashboard.png')",
+      "style_instructions": "Use inline styles for everything. No Tailwind classes.",
+      "structure": [
+        "Overlay Gradient",
+        "Content Grid (Left: Text, Right: Comparison Card)",
+        "Icon Strip (Below Left Text or Full Width Bottom)"
+      ]
+    },
+    "LeftColumn": {
+      "elements": [
+        {
+          "name": "Audience Line",
+          "text": "NEW MOTOR CARRIER AUTHORITY",
+          "style": {
+            "color": "#d4900a",
+            "fontSize": "14px",
+            "fontWeight": "600",
+            "letterSpacing": "0.12em",
+            "marginBottom": "24px",
+            "display": "block",
+            "fontFamily": "'Inter', sans-serif"
+          }
+        },
+        {
+          "name": "Headline",
+          "text": "Your authority is active. The first 90 days determine what survives.",
+          "style": "See Typography > Headline. Break line after 'active.'."
+        },
+        {
+          "name": "Subheadline",
+          "text": "Carriers who enter the New Entrant window without compliance systems in place face $10,000–$25,000 in audit exposure.",
+          "style": "See Typography > Subheadline. Margin top 32px."
+        },
+        {
+          "name": "Clarifier",
+          "text": "This is not a compliance service. It is a system installation.",
+          "style": {
+            "fontStyle": "italic",
+            "color": "rgba(255,255,255,0.6)",
+            "borderLeft": "2px solid #d4900a",
+            "paddingLeft": "16px",
+            "marginTop": "24px",
+            "fontSize": "14px"
+          }
+        },
+        {
+          "name": "CTA_Container",
+          "style": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "16px",
+            "marginTop": "48px"
+          },
+          "children": [
+            {
+              "type": "Primary Button",
+              "text": "INITIATE GROUND 0",
+              "link": "/ground-0-briefing",
+              "style": {
+                "backgroundColor": "#d4900a",
+                "color": "#0b1628",
+                "padding": "20px 40px",
+                "fontSize": "16px",
+                "fontWeight": "700",
+                "border": "none",
+                "cursor": "pointer",
+                "textDecoration": "none",
+                "display": "inline-block",
+                "textAlign": "center"
+              }
+            },
+            {
+              "type": "Support Text",
+              "text": "FREE · 4 MINUTES · NO ACCOUNT REQUIRED",
+              "style": {
+                "color": "rgba(255,255,255,0.4)",
+                "fontSize": "12px",
+                "fontWeight": "600",
+                "letterSpacing": "0.05em",
+                "marginTop": "8px",
+                "textTransform": "uppercase"
+              }
+            },
+            {
+              "type": "Secondary Button",
+              "text": "SEE WHAT GETS INSTALLED →",
+              "link": "/standards",
+              "style": {
+                "color": "#FFFFFF",
+                "background": "transparent",
+                "fontSize": "15px",
+                "fontWeight": "600",
+                "marginTop": "12px",
+                "textDecoration": "none",
+                "display": "inline-flex",
+                "alignItems": "center",
+                "gap": "8px"
+              }
+            }
+          ]
+        },
+        {
+          "name": "IconStrip",
+          "location": "Below CTAs",
+          "style": {
+             "display": "flex",
+             "gap": "32px",
+             "marginTop": "64px",
+             "borderTop": "1px solid rgba(255,255,255,0.1)",
+             "paddingTop": "32px"
+          },
+          "items": [
+            {"label": "Authority Protection", "icon": "BadgeCheck"},
+            {"label": "Driver Qualification", "icon": "UserCheck"},
+            {"label": "Compliance Docs", "icon": "FileText"},
+            {"label": "Financial Controls", "icon": "BadgeDollarSign"}
+          ],
+          "itemStyle": {
+             "display": "flex",
+             "flexDirection": "column",
+             "gap": "12px",
+             "alignItems": "flex-start"
+          },
+          "textStyle": {
+             "fontSize": "13px",
+             "color": "rgba(255,255,255,0.6)",
+             "maxWidth": "100px",
+             "lineHeight": "1.3"
+          }
+        }
+      ]
+    },
+    "RightColumn": {
+      "component": "ComparisonCard",
+      "style": {
+        "backgroundColor": "rgba(11, 22, 40, 0.6)",
+        "backdropFilter": "blur(12px)",
+        "border": "1px solid rgba(255,255,255,0.1)",
+        "borderRadius": "4px", 
+        "overflow": "hidden",
+        "boxShadow": "0 24px 48px -12px rgba(0,0,0,0.5)"
+      },
+      "sections": [
+        {
+          "name": "Without Standard",
+          "style": {
+            "padding": "32px",
+            "borderBottom": "1px solid rgba(255,255,255,0.1)",
+            "background": "linear-gradient(180deg, rgba(232,89,15,0.05) 0%, transparent 100%)",
+            "position": "relative"
+          },
+          "content": {
+            "label": "WITHOUT THE STANDARD",
+            "labelColor": "#E8590F",
+            "headline": "Audit Exposure",
+            "description": "Unmanaged risk. $10k+ potential fines. Reactive scrambling.",
+            "icon": "AlertTriangle (Red)"
+          }
+        },
+        {
+          "name": "With Standard",
+          "style": {
+            "padding": "32px",
+            "background": "linear-gradient(180deg, rgba(212,144,10,0.05) 0%, transparent 100%)"
+          },
+          "content": {
+            "label": "WITH THE STANDARD",
+            "labelColor": "#d4900a",
+            "headline": "Audit Armor",
+            "description": "Systematic protection. 90-day guided installation. Sleep at night.",
+            "icon": "CheckCircle2 (Gold)"
+          }
+        }
+      ]
+    }
+  },
+  "assets": {
+    "icons": {
+      "library": "lucide-react",
+      "mapping": {
+        "Authority Protection": "BadgeCheck",
+        "Driver Qualification": "UserCheck",
+        "Compliance Documentation": "FileText",
+        "Financial Controls": "BadgeDollarSign",
+        "Risk": "AlertTriangle",
+        "Safe": "CheckCircle2",
+        "ArrowRight": "ArrowRight"
+      },
+      "props": {
+        "size": 24,
+        "strokeWidth": 1.5,
+        "color": "#d4900a"
+      }
+    }
+  },
+  "implementation_steps": [
+    "1. Clean up imports: Remove useState, useEffect if animations are removed (or keep simple fade-in). Import icons from lucide-react.",
+    "2. Remove old arrays: DOMAINS (6 items), PROOF.",
+    "3. Update Layout: Change grid columns to '1.4fr 1fr' for better text width.",
+    "4. Implement Left Column: New Headline size, Audience line, Clarifier, CTAs with new text, Icon Strip at bottom.",
+    "5. Implement Right Column: Build the Comparison Card (Without vs With) replacing the old Risk/Solution separate cards.",
+    "6. Styling: Apply inline styles strictly. Use rgba for transparencies. Ensure mobile stack logic in style tag."
+  ],
+  "universal_guidelines": [
+    "Do not use gradients on text unless specified.",
+    "Use data-testid attributes for all interactive elements.",
+    "Ensure contrast ratios are high (Gold on Navy is tricky, use white for body text).",
+    "Mobile: Stack everything. Text first, then Comparison Card.",
+    "No 'Proof' strip. No '18-month' line.",
+    "Do not make text font size too small"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "summary": "Comprehensive mobile (390px) + email auth audit. Backend auth APIs all pass (9/9). REACH Assessment full flow works on mobile. Portal login modal works. Critical bug fixed: urlMap not passed to LessonView causing crash. Compliance Library has mobile overflow due to minmax(540px, 1fr) grid. Bundle page has slight overflow (412px scrollWidth).",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "ComplianceLibraryPage.jsx lines 546, 560",
+        "issue": "Product grids use 'repeat(auto-fit, minmax(540px, 1fr))' — product cards are 489px wide on 390px viewport, causing horizontal overflow. Button 'GET THIS — $37' extends 489px wide beyond viewport. No responsive class to override in media queries.",
+        "selector": ".resource-grid, .packet-grid",
+        "priority": "HIGH"
+      },
+      {
+        "component": "BundleSalesPage",
+        "issue": "Slight horizontal overflow on mobile: scrollWidth=412px on 390px viewport",
+        "selector": "body",
+        "priority": "MEDIUM"
+      },
+      {
+        "component": "ArticlePortalBanner.jsx (from iteration_65 context)",
+        "issue": "Navigates to '/ground-0' (non-existent route) - carried over from iteration_65",
+        "selector": "[data-testid^='ground0-crosslink-']",
+        "priority": "HIGH"
+      },
+      {
+        "component": "HeroSection, FinalCTASection, Ground0ExplainerSection",
+        "issue": "Button text still shows 'INITIATE GROUND 0 →' - carried over from iteration_65",
+        "selector": "main CTA buttons",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Control Room /control-room",
+        "issues": ["Email input not visible on first load (may be gated behind scroll or requires interaction to reveal)"]
+      }
+    ]
+  },
+  "bugs_fixed": [
+    {
+      "component": "Ground0LessonPlayer.jsx",
+      "fix": "Added urlMap as prop to LessonView (was defined in parent state but not passed down). This caused ReferenceError crash when clicking BEGIN GROUND 0 in portal.",
+      "file": "/app/frontend/src/components/Ground0LessonPlayer.jsx",
+      "lines": "538 (function signature), 414-431 (LessonView call)"
+    }
+  ],
+  "test_report_links": [
+    "/app/backend/tests/test_auth_mobile.py",
+    "/app/test_reports/pytest/pytest_auth_mobile.xml"
+  ],
+  "action_items": [
+    "ComplianceLibraryPage.jsx lines 546, 560: Change minmax(540px, 1fr) to minmax(min(540px, 100%), 1fr) or add responsive media query to stack cards on mobile",
+    "BundleSalesPage: Find and fix element causing 412px scrollWidth on mobile",
+    "ArticlePortalBanner.jsx line 120: Change '/ground-0' to '/reach-diagnostic'",
+    "HeroSection.jsx (214), FinalCTASection.jsx (86), Ground0ExplainerSection.jsx (119): Update button text from 'INITIATE GROUND 0 →' to 'Take the REACH Diagnostic →'"
+  ],
+  "critical_code_review_comments": [
+    "Ground0LessonPlayer.jsx: urlMap state was defined in parent but never passed to LessonView child - caused ReferenceError crash on lesson load. FIXED.",
+    "ComplianceLibraryPage: minmax(540px, 1fr) in grid definitions breaks mobile layout - should use min(540px, 100%) or responsive override classes"
+  ],
+  "updated_files": [
+    "/app/frontend/src/components/Ground0LessonPlayer.jsx"
+  ],
+  "success_rate": {
+    "backend": "100% (9/9 auth tests passed)",
+    "frontend": "75% (mobile mostly works, 2 overflow issues, article portal banner broken route)"
+  },
+  "passing_checks": [
+    "Backend: POST /api/auth/login admin - 200 ✓",
+    "Backend: POST /api/auth/login wrong password - 401 ✓",
+    "Backend: POST /api/auth/login unknown email - 401 ✓",
+    "Backend: GET /api/auth/me without session - 401 ✓",
+    "Backend: GET /api/auth/me with valid session - 200 ✓",
+    "Backend: POST /api/auth/register new user - 200 ✓",
+    "Backend: POST /api/auth/register duplicate - 409 ✓",
+    "Backend: POST /api/auth/logout - 200 ✓",
+    "Mobile: Navbar hamburger opens/closes with 7 links visible ✓",
+    "Mobile: Homepage no overflow (scrollWidth=390) ✓",
+    "Mobile: REACH Assessment full 14-question flow + open text + results on 390px ✓",
+    "Mobile: REACH results page shows REACH RESULT and category breakdown ✓",
+    "Mobile: Knowledge Center no overflow, 7 filter buttons wrapping ✓",
+    "Mobile: Admission form all fields visible and submit button visible ✓",
+    "Mobile: Contact form 5 inputs visible ✓",
+    "Mobile: Portal login modal renders correctly on 390px, login succeeds ✓",
+    "Mobile: Bundle page hero renders (slight 22px overflow reported) ✓",
+    "Portal: Ground0 lesson player now works after urlMap bug fix ✓",
+    "Portal: Auth modal triggered correctly when accessing locked G0-4 ✓",
+    "Portal: Admin login via modal navigates to full authenticated portal ✓",
+    "Compliance Library: 'GET THIS — $37' checkout buttons exist and visible ✓"
+  ],
+  "seed_data_creation": "Registered test user test_reg_XXXX@test.com during backend test run",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "1) urlMap bug in Ground0LessonPlayer is FIXED. 2) Compliance Library mobile overflow still needs fixing (minmax(540px,1fr) grid). 3) BundleSalesPage 412px scrollWidth on mobile. 4) ArticlePortalBanner '/ground-0' broken route from iteration_65 still not fixed. 5) Button text 'INITIATE GROUND 0 →' in 3 components still not updated.",
+  "rca of the issue": "Ground0LessonPlayer: urlMap defined as useState in parent Ground0LessonPlayer component (line 191) but LessonView (a separate function component at line 538) references urlMap directly in JSX at lines 584/647 without receiving it as a prop. React function components have no access to sibling/parent state unless explicitly passed as props. Fix: add urlMap to LessonView destructured props and pass urlMap={urlMap} at the call site."
+}

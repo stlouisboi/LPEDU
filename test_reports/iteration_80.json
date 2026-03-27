@@ -1,0 +1,68 @@
+{
+  "summary": "Phase 2 gate logic testing: sequential module locking, DQF gate submission, PENDING badge, admin gate-reviews page, and approve workflow all verified.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "GET /admin/gate-reviews, POST /admin/gate-reviews/{id}/decide",
+        "issue": "Returns 403 (not 401) for unauthenticated requests. _require_coach raises 403 Forbidden instead of 401 Unauthorized for unauthenticated callers.",
+        "priority": "LOW"
+      },
+      {
+        "endpoint": "portal.py - mark_module_complete function",
+        "issue": "Dead code at lines 287-319 after `return {\"ok\": True}` in mark_module_complete. Appears to be a copy-paste artifact from ground0_waitlist function. No runtime impact but should be cleaned up.",
+        "priority": "LOW"
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "VideoLessonWorkbench - DQF Gate Section (Lesson 1.7)",
+        "issue": "DQF gate content description text overflows and overlaps with the submit button modal area. The text appears to render in a very large vertical column layout causing visual overlap with the attestation/submit button region.",
+        "selector": "DQF gate section around lesson 1.7",
+        "priority": "MEDIUM"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_phase2_gates.py",
+    "/app/test_reports/pytest/phase2_gates.xml"
+  ],
+  "action_items": [
+    "Clean up dead code in portal.py lines 287-319 (unreachable after return statement in mark_module_complete)",
+    "Fix DQF gate section text overflow/overlap issue in VideoLessonWorkbench lesson 1.7 view",
+    "Optional: change _require_coach to raise 401 instead of 403 for unauthenticated (no session) requests"
+  ],
+  "critical_code_review_comments": [
+    "portal.py: Unreachable code block lines 287-319 in mark_module_complete function - duplicate of ground0_waitlist code pasted after return statement. Dead code, no runtime impact."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_phase2_gates.py"
+  ],
+  "success_rate": {
+    "backend": "88% (15/17 tests passed; 2 failures are 403 vs 401 semantic difference)",
+    "frontend": "100%"
+  },
+  "test_results": {
+    "portal_loads_all_10_modules": "PASS - all GROUND 0 through MODULE 9 in sidebar",
+    "module2_locked_fresh_user": "PASS - MODULE 2 shows LOCKED badge, gate-locked-view shown when clicked",
+    "module1_videolesson_workbench_8_lessons": "PASS - 8 LESSONS shown in Module 1",
+    "lesson_1_7_dqf_gate_section_submit_button": "PASS - SUBMIT DQF FOR CUSTODIAN REVIEW button present",
+    "dqf_gate_submit_api": "PASS - POST /api/portal/gate/dqf_gate/submit returns 200 with review_id",
+    "portal_pending_badge_after_submission": "PASS - MODULE 1 shows PENDING badge after DQF submission",
+    "admin_gate_reviews_page_loads": "PASS - Gate Reviews heading visible",
+    "admin_filter_tabs_present": "PASS - all 5 filter tabs found (PENDING, APPROVED, DECLINED, CONDITIONAL, ALL)",
+    "admin_approve_review_api": "PASS - approve decision works, module-1 status becomes approved",
+    "modules_2_9_gate_locked_view": "PASS - clicking locked Module 2 shows gate-locked-view message",
+    "module_2_confirm_installed_button": "PASS - CONFIRM — MODULE INSTALLED button present for unlocked non-gate module",
+    "gate_status_unauthenticated": "PASS - returns {statuses: {}}",
+    "admin_decide_unauthenticated_401": "FAIL - returns 403 instead of 401 (semantic)"
+  },
+  "seed_data_creation": "Created 3 test users: test-user-1774411617090 (paid, has approved M1), fresh-user-1774411804388 (paid, no progress), mod1approved-1774411864962 (paid, M1 approved via DB)",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Phase 2 gate logic fully tested. Sequential locking works. DQF gate submit + PENDING badge works. Admin gate-reviews page with all filter tabs works. Approve flow works. One minor UI issue: DQF gate section text overflow in lesson 1.7. Dead code in portal.py lines 287-319 should be removed."
+}

@@ -1,0 +1,74 @@
+{
+  "summary": "Mobile UX audit at 390px for /ground-0-briefing and /portal (authenticated paid session). Ground0 page passes all checks. Authenticated portal has one critical horizontal overflow bug in the portal header strip.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "PortalPage — portal header strip (SYSTEM_STATUS_MONITOR bar)",
+        "issue": "Horizontal overflow on mobile 390px. The dark header bar (.#000F1F) contains a nowrap flex row with 'LAUNCHPATH COHORT PORTAL', dash, 'SYSTEM_STATUS_MONITOR | LPOS v1.0', OPERATOR name, and Sign out button — all in one flex row with no wrap and no mobile media query. At 390px: body.scrollWidth=480, windowInnerWidth=390. Users can horizontally scroll the page. OPERATOR name and Sign out button are clipped/cut off to the right.",
+        "selector": "div[style*='000F1F'] > div (maxWidth:1200 flex row)",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Ground0Page — accordion module number labels",
+        "issue": "G0-1, G0-4 module code labels wrap to 2 lines in accordion ('G0-\\n1') on 390px due to minWidth:28 constraint combined with 1.5rem gap and title text. Minor readability issue.",
+        "selector": "[data-testid='module-toggle-0'] span",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "/portal authenticated — header strip",
+        "issues": [
+          "SYSTEM_STATUS_MONITOR bar overflows horizontally at 390px. OPERATOR info is clipped. No mobile-specific hiding/wrapping of this strip is implemented. Causes body horizontal scroll."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix portal header strip overflow on mobile: Add media query (max-width: 768px) to hide the OPERATOR name and Sign out button from the SYSTEM_STATUS_MONITOR strip, OR add overflow:hidden to the strip container, OR add flex-wrap:wrap with proper stacking. The strip inner div (maxWidth:1200, display:flex, gap:1rem) needs a mobile breakpoint.",
+    "Optional: Fix Ground0 accordion module code labels wrapping (G0-1 etc) — increase minWidth from 28px or use white-space:nowrap on the code span"
+  ],
+  "critical_code_review_comments": [
+    "PortalPage.jsx line 324: portal header strip inner div (maxWidth:1200, display:flex, alignItems:center, gap:1rem) has no flexWrap and no mobile breakpoint. The @media (max-width: 768px) block in the style tag only handles .portal-layout and .portal-sidebar/.portal-main, not the header strip. Add a rule to hide or collapse the user-info section on mobile."
+  ],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "N/A",
+    "frontend": "80%"
+  },
+  "seed_data_creation": "",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Iteration 37 — mobile audit of /ground-0-briefing and /portal at 390px. Ground0 passes all checks: hamburger PASS, hero heading PASS, email form full-width 62px PASS, submit button full-width 60px PASS, accordion expand/collapse PASS, sin wages grid collapses to 1col PASS, no horizontal overflow PASS. Portal unauthenticated screen: hamburger PASS, Google login button 60px full-width PASS, no overflow PASS. Portal authenticated (sess_paid_1773353168): sidebar stacks vertically (column flex) PASS, SignalMonitor 350px width no overflow PASS, 10 task items rendered, sign out button 54px PASS — BUT portal header strip (SYSTEM_STATUS_MONITOR bar) causes body.scrollWidth=480 (90px overflow). Fix needed in PortalPage.jsx style tag media query.",
+  "mobile_test_results": {
+    "viewport": "390x844",
+    "pages_tested": ["/ground-0-briefing", "/portal (unauth)", "/portal (auth: sess_paid_1773353168)"],
+    "ground0_hamburger": "PASS",
+    "ground0_hero_heading": "PASS - fits 342px wide",
+    "ground0_email_form": "PASS - input 342px wide, 62px height; button 342px wide, 60px height",
+    "ground0_accordion": "PASS - expands and collapses correctly",
+    "ground0_sin_wages_grid": "PASS - collapses to single column (342px)",
+    "ground0_horizontal_overflow": "PASS - no overflow",
+    "ground0_cta_tap_targets": "PASS",
+    "portal_unauth_hamburger": "PASS",
+    "portal_unauth_google_btn": "PASS - 326px wide, 60px height",
+    "portal_unauth_overflow": "PASS - no overflow",
+    "portal_auth_sidebar_stacking": "PASS - flexDirection=column, sidebar 390px wide",
+    "portal_auth_signal_monitor": "PASS - 350px wide, circular gauge renders correctly",
+    "portal_auth_task_items": "10 tasks rendered",
+    "portal_auth_sign_out_btn": "PASS - 54px height",
+    "portal_auth_horizontal_overflow": "FAIL - body.scrollWidth=480, caused by SYSTEM_STATUS_MONITOR header strip"
+  },
+  "rca_of_issue": {
+    "issue": "Portal authenticated view horizontal overflow at 390px",
+    "root_cause": "PortalPage.jsx: The portal header bar (background #000F1F) contains an inner div with maxWidth:1200, display:flex, gap:1rem, alignItems:center — no flexWrap, no overflow:hidden. It holds 4 items: 'LAUNCHPATH COHORT PORTAL' label + dash separator + 'SYSTEM_STATUS_MONITOR | LPOS v1.0' (flex:1) + user info div (OPERATOR name + Sign out button). At 390px, the combined natural width is ~480px. The existing @media (max-width: 768px) block only covers .portal-layout and .portal-sidebar.",
+    "fix": "Add to PortalPage.jsx style tag: @media (max-width: 768px) { .portal-header-userinfo { display: none !important; } } — and add className='portal-header-userinfo' to the user info div. OR add overflow:hidden to the strip container.",
+    "severity": "HIGH - users can horizontally scroll the page, OPERATOR info visually clipped"
+  }
+}

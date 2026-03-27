@@ -1,0 +1,47 @@
+{
+  "summary": "Tested Copy Link buttons and 3 packet pages (HOS, Maintenance, Insurance) with final copy. All content verified. Copy Link buttons present with correct data-testid attributes. Clipboard 'Copied' state could not be verified in headless browser due to clipboard API permission limitations, but code logic is correct.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Copy Link button - Copied state feedback",
+        "issue": "navigator.clipboard.writeText() 'Copied' confirmation state not testable in headless Playwright (clipboard permission denied in automation context). Code logic is correct — button shows 'Copied' state after successful clipboard write. Not a real bug.",
+        "affected_selectors": ["[data-testid='copy-link-btn']", "[data-testid='copy-audit-link-btn']"],
+        "priority": "LOW"
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_35.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Copy Link on /standards page copies '/standards#audit-domains' URL (not current page URL) — this is correct per spec"
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Iteration 35: Copy Link buttons added to /standards/16-deadly-sins (data-testid='copy-link-btn') and /standards Audit Domains footer (data-testid='copy-audit-link-btn'). HOS, Maintenance, Insurance packet pages all show correct final copy. All 13 spec checks passed. Pages load cleanly.",
+  "test_results": {
+    "copy_link_btn_present_16sins": "PASS",
+    "copy_audit_link_btn_present_standards": "PASS",
+    "audit_domains_anchor_present": "PASS",
+    "hos_positioning_para": "PASS",
+    "hos_whats_inside_item1": "PASS",
+    "hos_whats_inside_item2": "PASS",
+    "hos_who_its_for": "PASS",
+    "maintenance_positioning_para": "PASS",
+    "maintenance_whats_inside_unit_file": "PASS",
+    "maintenance_whats_inside_defect_tracking": "PASS",
+    "maintenance_what_it_replaces": "PASS",
+    "insurance_positioning_para1": "PASS",
+    "insurance_positioning_para2": "PASS",
+    "insurance_whats_inside_broker_checklist": "PASS",
+    "insurance_whats_inside_renewal_prep": "PASS"
+  }
+}

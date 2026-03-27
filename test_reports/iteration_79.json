@@ -1,0 +1,51 @@
+{
+  "summary": "Phase 1 curriculum alignment testing — verified all LP-SYS-CUR-001 lesson titles, module names, GO completion screen with 9-module roadmap, and admin module editor. One minor discrepancy found in overview intro text.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Ground0LessonPlayer — OverviewView",
+        "issue": "Overview intro text says 'Approximately 95 minutes' but LP-SYS-CUR-001 spec requires 'Approximately 90 minutes'. File: /app/frontend/src/components/Ground0LessonPlayer.jsx line ~469",
+        "selector": "text containing '95 minutes'",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix overview intro text in Ground0LessonPlayer.jsx OverviewView: change 'Approximately 95 minutes' to 'Approximately 90 minutes' (line ~469)"
+  ],
+  "critical_code_review_comments": [
+    "Overview text mismatch: 'Approximately 95 minutes' vs required 'Approximately 90 minutes' in OverviewView component"
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "N/A", "frontend": "95%" },
+  "test_results": {
+    "g0_lesson_01_welcome_to_launchpath": "PASS",
+    "g0_lesson_02_four_pillars": "PASS",
+    "g0_lesson_03_lane_selection": "PASS",
+    "g0_lesson_04_personal_readiness_check": "PASS",
+    "g0_lesson_05_risk_tolerance_assessment": "PASS",
+    "g0_lesson_06_go_nogo_decision": "PASS",
+    "sidebar_module1_driver_qualification_file": "PASS",
+    "sidebar_module2_authority_insurance": "PASS",
+    "sidebar_module4_drug_alcohol_program": "PASS",
+    "sidebar_module5_hours_of_service_dispatch": "PASS",
+    "sidebar_module6_integrity_audit": "PASS",
+    "overview_intro_text_90min": "FAIL — shows '95 minutes' instead of '90 minutes'",
+    "lesson_01_opens_with_title": "PASS — 'Welcome to LaunchPath' with LP-GRD-0.1 code",
+    "go_completion_screen_module_roadmap_9_modules": "PASS — 'THE INSTALLATION SEQUENCE — 9 MODULES' shown",
+    "go_completion_cta": "PASS — 'Continue to Install the LaunchPath Operating System' CTA rendered (confirmed in code and via g0-completion-cta testid)",
+    "admin_modules_g0_lessons": "PASS — all 6 G0 lessons show updated titles",
+    "admin_modules_module_names": "PASS — Driver Qualification File, Authority & Insurance, Drug & Alcohol Program, Hours of Service & Dispatch, Integrity Audit all correct",
+    "old_module_names_removed": "PASS — Business & Authority Setup, Insurance Survival, New Entrant Audit Prep, Cash-Flow Oxygen, Operational Discipline all gone"
+  },
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "LP-SYS-CUR-001 Phase 1 alignment complete. All lesson titles and module names correct. One remaining fix: overview text '95 minutes' should be '90 minutes' in Ground0LessonPlayer.jsx OverviewView (~line 469). GO completion screen shows 9-module roadmap correctly. Admin /admin/modules page shows all updated names."
+}

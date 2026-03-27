@@ -1,0 +1,61 @@
+{
+  "summary": "Mobile UX audit at 390px viewport for LaunchPath pages: /standards/16-deadly-sins, /standards, /standards/hos-packet, /standards/maintenance-packet, /standards/insurance-packet, and homepage.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "FMCSADomainTable on /standards",
+        "issue": "Table content in 2nd+ columns is clipped with no visual scroll indicator on mobile. overflowX:auto is set correctly so scrolling works, but no scrollbar/swipe hint is visible to users — they may not know to scroll right.",
+        "selector": "table parent div with overflow:auto",
+        "priority": "MEDIUM"
+      },
+      {
+        "component": "SixteenSinsPage - sin cards section",
+        "issue": "Sin cards in expanded detail view appear very dark/low contrast in screenshot at ~2000px scroll depth. May be an overlay or dark background with dark text that is hard to read on mobile.",
+        "selector": ".sin-card",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "/standards - FMCSA Audit Domain table",
+        "issues": [
+          "Table is scrollable (overflowX:auto works) but users get no visual cue to swipe horizontally on mobile — second column 'WHAT THE INVESTIGATOR...' text is cut off with no hint it continues"
+        ]
+      }
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Consider adding a visual scroll hint (e.g., fading right edge gradient or '← scroll →' label) on the FMCSA Audit Domain table on /standards for mobile users",
+    "Verify sin card text contrast in the expanded detail area (cards at ~2000px scroll depth appear very dark)"
+  ],
+  "critical_code_review_comments": [
+    "Table on /standards correctly uses overflowX:auto but there is no UX affordance for horizontal scrolling on mobile — a common usability issue"
+  ],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "N/A",
+    "frontend": "93%"
+  },
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All pages tested at 390px. Key results: (1) Hamburger nav works and opens correctly. (2) No horizontal overflow on any page. (3) Sins grid and glance grid collapse to single column correctly. (4) Copy Link button is 44px height (meets tap target minimum). (5) All packet pages (HOS, maintenance, insurance) load correctly with proper stacking. (6) Homepage hero has no overflow. (7) Table on /standards is scrollable via overflowX:auto but has no visual scroll indicator for mobile.",
+  "mobile_test_results": {
+    "viewport": "390x844",
+    "pages_tested": ["/standards/16-deadly-sins", "/standards", "/standards/hos-packet", "/standards/maintenance-packet", "/standards/insurance-packet", "/"],
+    "hamburger_menu": "PASS - opens/closes correctly",
+    "horizontal_overflow": "PASS - no overflow on any page",
+    "sins_grid_single_column": "PASS - grid collapses to 1 column (342px)",
+    "glance_grid_single_column": "PASS - grid collapses to 1 column (342px)",
+    "copy_link_tap_target": "PASS - 44px height meets minimum",
+    "table_horizontal_scroll": "PASS (functional) - has overflowX:auto, content scrollable but no visual hint",
+    "packet_pages_load": "PASS - all 3 packet pages load cleanly, price and Gumroad button stack correctly",
+    "homepage_hero": "PASS - no overflow, hero renders correctly"
+  }
+}
