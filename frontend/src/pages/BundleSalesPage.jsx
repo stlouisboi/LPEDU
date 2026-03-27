@@ -12,6 +12,17 @@ const CARD  = "#0d1929";
 const MONO  = "'Inter', sans-serif";
 const SERIF = "'Newsreader', 'Playfair Display', serif";
 
+// ── Product images (same as Stripe checkout) ──────────────────────────────────
+const BASE = "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/";
+const IMG_BUNDLE = BASE + "64d8c85e1b2fcbdc822a1cfbd3e6d33b0474d2e2ebb60f845755c564dc6bb5d7.png";
+const IMG_PKT = {
+  "LP-PKT-001": BASE + "2a792816a78b73cdc5cdda45a303201ac524991f95981c97aae09cb1f52e738e.png",
+  "LP-PKT-002": BASE + "1bad3292205ed62246b466e0dcf3b09ada132cea612035cc9f8674f8802472c3.png",
+  "LP-PKT-003": BASE + "546de6eb252c5e998f89c6565bc7193a3c0c002bff62910ac9e730b31f8d82dc.png",
+  "LP-PKT-004": BASE + "1dc88494a074059a36d3b6b46b6b8a956c70a05a5a219c9f88e69300f3a6ec3e.png",
+  "LP-PKT-005": BASE + "1765edddd11eb37db174f165574154c8c2680e6ea93eec2b608a15b19ed2bfcd.png",
+};
+
 // ── Checkout ──────────────────────────────────────────────────────────────────
 function useBuy() {
   const [state, setState] = useState("idle");
@@ -299,31 +310,49 @@ export default function BundleSalesPage() {
       {/* ── S1: HERO ────────────────────────────────────────────────── */}
       <section style={{ background: NAVY, borderBottom: `3px solid ${GOLD}`, padding: "88px 24px 72px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, opacity: .04, backgroundImage: `linear-gradient(${GOLD} 1px,transparent 1px),linear-gradient(90deg,${GOLD} 1px,transparent 1px)`, backgroundSize: "40px 40px", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 760, margin: "0 auto", position: "relative" }}>
-          {/* Live indicator */}
-          <div style={{ display: "flex", alignItems: "center", gap: ".625rem", marginBottom: "1.75rem" }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 8px #4ade80", display: "inline-block", animation: "pulse 2s ease-in-out infinite" }} />
-            <span style={{ fontFamily: MONO, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: GOLD_DIM }}>LP-BDL-001 &nbsp;|&nbsp; THE COMPLETE DOCUMENTATION INFRASTRUCTURE</span>
+        <div style={{ maxWidth: 1040, margin: "0 auto", position: "relative", display: "flex", alignItems: "center", gap: "4rem", flexWrap: "wrap" }}>
+          {/* Left: headline + CTA */}
+          <div style={{ flex: "1 1 440px" }}>
+            {/* Live indicator */}
+            <div style={{ display: "flex", alignItems: "center", gap: ".625rem", marginBottom: "1.75rem" }}>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 8px #4ade80", display: "inline-block", animation: "pulse 2s ease-in-out infinite" }} />
+              <span style={{ fontFamily: MONO, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: GOLD_DIM }}>LP-BDL-001 &nbsp;|&nbsp; THE COMPLETE DOCUMENTATION INFRASTRUCTURE</span>
+            </div>
+
+            <h1 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(2.5rem,5vw,3.75rem)", color: "#FFF", lineHeight: 1.05, letterSpacing: "-.02em", marginBottom: "1.25rem" }}>
+              New Carrier Document System
+            </h1>
+            <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,.7)", lineHeight: 1.75, marginBottom: "2.5rem", maxWidth: 600 }}>
+              Five compliance packets. 92 pages. Every template, checklist, and regulatory brief a new motor carrier needs — in one installation kit.
+            </p>
+
+            {/* Price block */}
+            <div style={{ marginBottom: "2rem" }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: ".5rem", flexWrap: "wrap" }}>
+                <span style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(3rem,6vw,4.5rem)", color: "#FFF", lineHeight: 1, letterSpacing: "-.02em" }}>$499</span>
+                <span style={{ fontSize: ".9rem", color: "rgba(255,255,255,.4)" }}>One-time purchase. Lifetime access. Immediate download.</span>
+              </div>
+              <GoldCTA state={state} buy={buy} size="lg" />
+              {error && <p style={{ color: "#f87171", fontSize: ".875rem", marginTop: ".75rem" }}>{error}</p>}
+              <p style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,.65)", marginTop: ".875rem", lineHeight: 1.7 }}>
+                Includes all five domain packets plus the Unified Folder Structure Guide and Folder Setup Walkthrough.
+              </p>
+            </div>
           </div>
 
-          <h1 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(2.5rem,5vw,3.75rem)", color: "#FFF", lineHeight: 1.05, letterSpacing: "-.02em", marginBottom: "1.25rem" }}>
-            New Carrier Document System
-          </h1>
-          <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,.7)", lineHeight: 1.75, marginBottom: "2.5rem", maxWidth: 600 }}>
-            Five compliance packets. 92 pages. Every template, checklist, and regulatory brief a new motor carrier needs — in one installation kit.
-          </p>
-
-          {/* Price block */}
-          <div style={{ marginBottom: "2rem" }}>
-            <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: ".5rem", flexWrap: "wrap" }}>
-              <span style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(3rem,6vw,4.5rem)", color: "#FFF", lineHeight: 1, letterSpacing: "-.02em" }}>$499</span>
-              <span style={{ fontSize: ".9rem", color: "rgba(255,255,255,.4)" }}>One-time purchase. Lifetime access. Immediate download.</span>
+          {/* Right: product image */}
+          <div style={{ flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ position: "relative", width: 280 }}>
+              <div style={{ position: "absolute", inset: -8, background: `linear-gradient(135deg, rgba(212,144,10,0.15), transparent)`, borderRadius: 4 }} />
+              <img
+                src={IMG_BUNDLE}
+                alt="Document System Bundle — LP-BDL-001"
+                style={{ width: "100%", display: "block", position: "relative", boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,144,10,0.2)" }}
+              />
+              <div style={{ position: "absolute", bottom: -12, left: "50%", transform: "translateX(-50%)", background: GOLD, color: "#060e1b", fontFamily: MONO, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", padding: ".35rem 1rem", whiteSpace: "nowrap" }}>
+                LP-BDL-001
+              </div>
             </div>
-            <GoldCTA state={state} buy={buy} size="lg" />
-            {error && <p style={{ color: "#f87171", fontSize: ".875rem", marginTop: ".75rem" }}>{error}</p>}
-            <p style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,.65)", marginTop: ".875rem", lineHeight: 1.7 }}>
-              Includes all five domain packets plus the Unified Folder Structure Guide and Folder Setup Walkthrough.
-            </p>
           </div>
         </div>
       </section>
@@ -356,13 +385,22 @@ export default function BundleSalesPage() {
             {PACKETS.map((p, i) => (
               <div key={i} style={{ background: CARD, borderLeft: `3px solid ${GOLD}`, padding: "1.75rem 2rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: ".875rem", flexWrap: "wrap", gap: ".5rem" }}>
-                  <div>
+                  <div style={{ flex: 1 }}>
                     <span style={{ fontFamily: MONO, fontSize: ".714rem", color: GOLD_DIM, letterSpacing: ".12em", display: "block", marginBottom: ".2rem" }}>{p.domain} &nbsp;·&nbsp; {p.code}</span>
                     <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.15rem", color: "#FFF", margin: 0, lineHeight: 1.2 }}>{p.title}</h3>
                   </div>
-                  <div style={{ textAlign: "right", flexShrink: 0 }}>
-                    <span style={{ fontFamily: MONO, fontSize: ".714rem", color: "rgba(255,255,255,.3)", display: "block" }}>{p.pages} pages</span>
-                    <span style={{ fontFamily: MONO, fontSize: ".857rem", color: GOLD_DIM }}>{p.value} value</span>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", flexShrink: 0 }}>
+                    <div style={{ textAlign: "right" }}>
+                      <span style={{ fontFamily: MONO, fontSize: ".714rem", color: "rgba(255,255,255,.3)", display: "block" }}>{p.pages} pages</span>
+                      <span style={{ fontFamily: MONO, fontSize: ".857rem", color: GOLD_DIM }}>{p.value} value</span>
+                    </div>
+                    {IMG_PKT[p.code] && (
+                      <img
+                        src={IMG_PKT[p.code]}
+                        alt={p.title}
+                        style={{ width: 56, height: 72, objectFit: "cover", display: "block", boxShadow: "0 4px 16px rgba(0,0,0,0.5)", flexShrink: 0 }}
+                      />
+                    )}
                   </div>
                 </div>
                 <p style={{ fontSize: ".9rem", color: "rgba(255,255,255,.6)", lineHeight: 1.7, marginBottom: "1rem" }}>{p.desc}</p>
