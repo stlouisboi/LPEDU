@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>LaunchPath</title>
+  <!--[if mso]>
+  <style type="text/css">
+    body, table, td { font-family: Arial, sans-serif !important; }
+    .email-body p { mso-line-height-rule: exactly; line-height: 27px; }
+  </style>
+  <![endif]-->
+  <style>
+    body { margin: 0; padding: 0; background-color: #030912; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { border: 0; display: block; }
+    @media only screen and (max-width: 620px) {
+      .email-card { width: 100% !important; }
+      .email-padding { padding-left: 24px !important; padding-right: 24px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#030912;">
+
+  <!-- Outer wrapper -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#030912;">
+    <tr>
+      <td align="center" style="padding:40px 16px 48px;">
+
+        <!-- Email card — 600px max -->
+        <table class="email-card" width="600" cellpadding="0" cellspacing="0" border="0"
+          style="max-width:600px;width:100%;background-color:#050d1a;border-top:3px solid #C5A059;">
+
+          <!-- ─── HEADER ──────────────────────────────── -->
+          <tr>
+            <td class="email-padding" style="padding:28px 48px 0;">
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:10px;font-weight:700;
+                letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,89,0.45);
+                line-height:1;">LAUNCHPATH OPERATING STANDARD</p>
+            </td>
+          </tr>
+          <!-- Gold rule -->
+          <tr>
+            <td class="email-padding" style="padding:16px 48px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td height="1" style="background-color:rgba(197,160,89,0.12);font-size:0;line-height:0;">&nbsp;</td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ─── GREETING ─────────────────────────────── -->
+          <tr>
+            <td class="email-padding" style="padding:32px 48px 0;">
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:27px;
+                color:rgba(255,255,255,0.88);">
+                <!-- PASTE OPENING LINE HERE — the hook -->
+                {{OPENING_LINE}}
+              </p>
+            </td>
+          </tr>
+
+          <!-- ─── BODY PARAGRAPHS ───────────────────────
+               Replace each {{PARAGRAPH_X}} with your email copy.
+               Duplicate the <tr> block for each paragraph. -->
+          <tr>
+            <td class="email-padding" style="padding:18px 48px 0;">
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:27px;
+                color:rgba(255,255,255,0.72);">
+                {{PARAGRAPH_1}}
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="email-padding" style="padding:18px 48px 0;">
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:27px;
+                color:rgba(255,255,255,0.72);">
+                {{PARAGRAPH_2}}
+              </p>
+            </td>
+          </tr>
+
+          <!-- ─── BULLET LIST (optional — duplicate li rows as needed) ─── -->
+          <!--
+          <tr>
+            <td class="email-padding" style="padding:18px 48px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="20" valign="top" style="font-family:Arial,sans-serif;font-size:15px;
+                    line-height:27px;color:rgba(197,160,89,0.4);padding-right:8px;">&mdash;</td>
+                  <td style="font-family:Arial,sans-serif;font-size:15px;line-height:27px;
+                    color:rgba(255,255,255,0.72);">{{BULLET_ITEM}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          -->
+
+          <!-- ─── CALLOUT BLOCK (optional) ─────────────
+               Use for key insight or consequence statement -->
+          <!--
+          <tr>
+            <td class="email-padding" style="padding:24px 48px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                style="border-left:2px solid rgba(197,160,89,0.3);background-color:rgba(197,160,89,0.04);">
+                <tr>
+                  <td style="padding:14px 18px;">
+                    <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:25px;
+                      color:rgba(255,255,255,0.62);">{{CALLOUT_TEXT}}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          -->
+
+          <!-- ─── CTA BUTTON ────────────────────────────
+               Replace href and label. Remove if no CTA for this email. -->
+          <tr>
+            <td class="email-padding" style="padding:28px 48px 0;">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border:1px solid rgba(197,160,89,0.3);">
+                    <a href="{{CTA_URL}}"
+                      style="display:inline-block;font-family:Arial,sans-serif;font-size:11px;
+                        font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+                        color:rgba(197,160,89,0.9);text-decoration:none;
+                        padding:13px 24px;background-color:transparent;">
+                      {{CTA_LABEL}} &rarr;
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ─── SIGNATURE ─────────────────────────────── -->
+          <tr>
+            <td class="email-padding" style="padding:32px 48px 0;">
+              <p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:14px;
+                line-height:22px;color:rgba(255,255,255,0.8);">Vince Lawrence</p>
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:10px;font-weight:700;
+                letter-spacing:0.16em;text-transform:uppercase;
+                color:rgba(197,160,89,0.4);line-height:1;">Station Custodian, LaunchPath</p>
+            </td>
+          </tr>
+
+          <!-- ─── FOOTER RULE ────────────────────────────── -->
+          <tr>
+            <td class="email-padding" style="padding:28px 48px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td height="1" style="background-color:rgba(255,255,255,0.05);font-size:0;line-height:0;">&nbsp;</td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ─── FOOTER ────────────────────────────────── -->
+          <tr>
+            <td class="email-padding" style="padding:20px 48px 36px;">
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:10px;
+                letter-spacing:0.06em;line-height:18px;color:rgba(255,255,255,0.18);">
+                LaunchPath Transportation EDU &nbsp;&middot;&nbsp; Accuracy Over Hype. Systems Over Shortcuts.<br />
+                You're receiving this because you opted in at launchpathedu.com. &nbsp;
+                <a href="{unsubscribe}" style="color:rgba(255,255,255,0.18);text-decoration:underline;">Unsubscribe</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- / email card -->
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
+
+<!--
+════════════════════════════════════════════════════════
+  HOW TO USE THIS IN MAILERLITE
+════════════════════════════════════════════════════════
+
+STEP 1 — In MailerLite, create a new campaign or automation email.
+         Choose "Custom HTML" as the editor type (not drag-and-drop).
+
+STEP 2 — Paste this entire file into the HTML editor.
+
+STEP 3 — Replace these placeholders:
+  {{OPENING_LINE}}   → First sentence of the email (the hook)
+  {{PARAGRAPH_1}}    → Second paragraph
+  {{PARAGRAPH_2}}    → Third paragraph (add more <tr> blocks as needed)
+  {{CTA_URL}}        → Full URL (e.g., https://launchpathedu.com/standards/starter-stack)
+  {{CTA_LABEL}}      → Button text (e.g., "View the Starter Stack")
+
+STEP 4 — For bullet lists: uncomment the bullet block and duplicate rows.
+         For callout blocks: uncomment the callout block.
+         Remove either block if the email doesn't need them.
+
+STEP 5 — For emails with no CTA (pure content emails), delete the CTA row entirely.
+
+MAILERLITE MERGE TAGS (already wired):
+  {unsubscribe}        → Required. MailerLite auto-inserts the URL.
+  {$name}              → Subscriber first name (add to greeting if needed)
+                         e.g., "If you just got your authority, {$name}..."
+  {$email}             → Subscriber email
+
+════════════════════════════════════════════════════════
+-->
