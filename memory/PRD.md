@@ -455,14 +455,22 @@ Compliance infrastructure, educational content, and paid digital resources for n
 
 ### P0: Deployment Fix (Mar 2026 — Updated Feb 2026 Fork)
 - Added `output: 'export'` to `next.config.js` — required for Emergent deployment platform static export
-- Build confirmed passing: 82 static pages, exit 0, with `output: 'export'`
+- Build confirmed passing: 84 static pages, exit 0, with `output: 'export'`
 - `frontend/yarn.lock` committed ✅
 - Fixed `useSearchParams` → `useRouter` (next/router) in `AdmissionConfirmedPage.jsx` and `Ground0CompletePage.jsx` (Pages Router compatibility, same fix previously done to ProductConfirmedPage)
 - Zero `getServerSideProps` in all source files ✅
 - Zero `useSearchParams` from `next/navigation` remaining ✅  
 - `frontend/.next/` and `frontend/out/` properly gitignored ✅
 - Auth redirect URL correctly uses env variable with `https://auth.emergentagent.com` fallback ✅
+- Fixed `BookMockup3D.jsx` stub — added `export const BOOK_PRODUCTS = []` and `export const BookInfoPanel = () => null` to prevent static prerender crash on `/product-preview`
+- Fixed `ProductPreviewPage.jsx` — added guard for empty BOOK_PRODUCTS (three.js removed)
 - **PENDING: User must click "Save to Github" from Emergent platform to push clean workspace to GitHub — this is the root cause of the stale deployment pulling old getServerSideProps code**
+
+### System Architecture Diagram — CSS Entrance Animations (Mar 2026)
+- Replaced framer-motion with a pure CSS `fadeIn()` helper using `opacity` + `translateY` transitions
+- Staggered delays: header (0s) → threat vectors (0.1–0.18s) → top pillars (0.2–0.28s) → MC Authority core (0.35s) → bottom pillars (0.28–0.36s) → guards (0.42–0.6s) → legend (0.65s)
+- All elements start at `opacity:0, translateY(14px)` and transition to visible when `IntersectionObserver` fires at 15% scroll threshold
+- Zero new dependencies — pure CSS transitions
 
 ### P0: Premium Product Images v2 (Mar 2026)
 - Generated 15 ultra-premium studio-photography-style product images (dark navy/gold brand palette)

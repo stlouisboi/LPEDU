@@ -90,14 +90,23 @@ function PulseDot({ active, color = GOLD }) {
   );
 }
 
+/* ── Entrance animation helper ─────────────────────────────────── */
+function fadeIn(visible, delay = 0) {
+  return {
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : "translateY(14px)",
+    transition: `opacity 0.55s ease ${delay}s, transform 0.55s ease ${delay}s`,
+  };
+}
+
 /* ── Threat Vector ─────────────────────────────────────────────── */
-function ThreatVector({ threat, isActive, onHover, onLeave, visible }) {
+function ThreatVector({ threat, isActive, onHover, onLeave, visible, delay = 0 }) {
   return (
     <div
       data-testid={`threat-${threat.direction.toLowerCase()}`}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", ...fadeIn(visible, delay) }}
     >
       <div
         style={{
@@ -138,8 +147,9 @@ function PillarNode({ pillar, isTargeted, visible, delay }) {
         background: isTargeted ? "rgba(200,147,63,0.10)" : "rgba(8,14,28,0.95)",
         border: `1px solid ${isTargeted ? GOLD : "rgba(200,147,63,0.22)"}`,
         borderTop: `2px solid ${isTargeted ? GOLD : "rgba(200,147,63,0.45)"}`,
-        transition: "all 0.25s",
+        transition: `all 0.25s, opacity 0.55s ease ${delay}s, transform 0.55s ease ${delay}s`,
         flex: 1,
+        ...fadeIn(visible, delay),
       }}
     >
       <p style={{ fontFamily: MONO, fontSize: "0.5rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: isTargeted ? GOLD : "rgba(200,147,63,0.45)", margin: "0 0 4px" }}>
@@ -166,6 +176,7 @@ function GuardNode({ guard, visible, delay }) {
         background: "rgba(4,10,20,0.90)",
         border: "1px solid rgba(200,147,63,0.18)",
         flex: 1,
+        ...fadeIn(visible, delay),
       }}
     >
       <div style={{
@@ -247,7 +258,7 @@ export default function SystemArchitectureDiagram() {
       <div style={{ maxWidth: 1060, margin: "0 auto" }}>
 
         {/* ── Section header ── */}
-        <div style={{ marginBottom: "3rem" }}>
+        <div style={{ marginBottom: "3rem", ...fadeIn(visible, 0) }}>
           <p
             style={{ fontFamily: MONO, fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", marginBottom: "0.625rem" }}
           >
@@ -268,7 +279,7 @@ export default function SystemArchitectureDiagram() {
         {/* ── Diagram: 3-column layout ── */}
         <div style={{ display: "flex", gap: "1.25rem", alignItems: "stretch" }} className="arch-layout">
 
-          {/* Left: OVER + AROUND threats */}
+          {/* Left: OVER + UNDER threats */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", justifyContent: "space-between", flexShrink: 0, width: 148 }}>
             <ThreatVector
               threat={THREATS[0]}
@@ -276,6 +287,7 @@ export default function SystemArchitectureDiagram() {
               onHover={() => setActiveThreat("OVER")}
               onLeave={() => setActiveThreat(null)}
               visible={visible}
+              delay={0.1}
             />
             <ThreatVector
               threat={THREATS[3]}
@@ -283,6 +295,7 @@ export default function SystemArchitectureDiagram() {
               onHover={() => setActiveThreat("UNDER")}
               onLeave={() => setActiveThreat(null)}
               visible={visible}
+              delay={0.18}
             />
           </div>
 
@@ -306,6 +319,7 @@ export default function SystemArchitectureDiagram() {
                 textAlign: "center",
                 position: "relative",
                 overflow: "hidden",
+                ...fadeIn(visible, 0.35),
               }}
             >
               {/* Corner accents */}
@@ -366,6 +380,7 @@ export default function SystemArchitectureDiagram() {
               onHover={() => setActiveThreat("AROUND")}
               onLeave={() => setActiveThreat(null)}
               visible={visible}
+              delay={0.1}
             />
             <ThreatVector
               threat={THREATS[2]}
@@ -373,6 +388,7 @@ export default function SystemArchitectureDiagram() {
               onHover={() => setActiveThreat("THROUGH")}
               onLeave={() => setActiveThreat(null)}
               visible={visible}
+              delay={0.18}
             />
           </div>
         </div>
@@ -382,7 +398,7 @@ export default function SystemArchitectureDiagram() {
 
         {/* ── Bottom legend ── */}
         <div
-          style={{ marginTop: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", borderTop: "1px solid rgba(200,147,63,0.10)", paddingTop: "1.25rem" }}
+          style={{ marginTop: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", borderTop: "1px solid rgba(200,147,63,0.10)", paddingTop: "1.25rem", ...fadeIn(visible, 0.65) }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
             {[

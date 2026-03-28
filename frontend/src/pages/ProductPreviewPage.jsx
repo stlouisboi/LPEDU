@@ -8,6 +8,20 @@ export default function ProductPreviewPage() {
   const [activeId, setActiveId] = useState("new-entrant");
   const product = BOOK_PRODUCTS.find(p => p.id === activeId);
 
+  // Three.js removed — this page is retired
+  if (!product) {
+    return (
+      <div style={{ background: "#000814", minHeight: "100vh", color: "#FFFFFF" }}>
+        <Navbar />
+        <main style={{ maxWidth: 900, margin: "0 auto", padding: "6rem 1.5rem", textAlign: "center" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>LP-SYS-LIBRARY | PRODUCT PREVIEW</p>
+          <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "2rem", color: "#FFFFFF", marginBottom: "1rem" }}>Product Preview</h1>
+          <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', sans-serif" }}>View products in the <a href="/compliance-library" style={{ color: gold }}>Compliance Library</a>.</p>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div style={{ background: "#000814", minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />
