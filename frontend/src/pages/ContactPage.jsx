@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
-import { ArrowRight, CheckCircle } from "@phosphor-icons/react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 
 const AUTHORITY_AGE = [
   "Not yet issued",

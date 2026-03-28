@@ -2,7 +2,7 @@ import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
-import { ArrowRight } from "@phosphor-icons/react";
+import { ArrowRight } from "lucide-react";
 
 const VECTORS = [
   {

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Lock, CheckCircle, ArrowRight, SignOut, Clock, Warning, Circle, CircleDashed } from "@phosphor-icons/react";
+import { Lock, CheckCircle, ArrowRight, LogOut, Clock, AlertTriangle, Circle, CircleDashed } from "lucide-react";
+const SignOut = LogOut;
+const Warning = AlertTriangle;
 import { usePathname } from 'next/navigation';
 ;
 import Navbar from "../components/Navbar";

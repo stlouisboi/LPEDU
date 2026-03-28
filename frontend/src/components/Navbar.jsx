@@ -2,7 +2,9 @@ import { Link } from '../compat/Link';
 import { usePathname } from 'next/navigation';
 ;
 import { useState, useEffect, useRef } from "react";
-import { List, X, LockSimple } from "@phosphor-icons/react";
+import { Menu, X, Lock } from "lucide-react";
+const List = Menu;
+const LockSimple = Lock;
 
 /* One-time page-load initialization scan */
 function InitScan() {

@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
-import ReactPlayer from "react-player";
-import { PlayCircle, FileText, ArrowRight } from "@phosphor-icons/react";
+// react-player removed — using native Vimeo iframe (saves 174MB install)
+function VimeoPlayer({ url }) {
+  const id = url?.match(/vimeo\.com\/(\d+)/)?.[1] || url?.match(/player\.vimeo\.com\/video\/(\d+)/)?.[1];
+  if (!id) return null;
+  return (
+    <iframe
+      src={`https://player.vimeo.com/video/${id}?byline=0&portrait=0&title=0`}
+      style={{ width: "100%", height: "100%", border: 0 }}
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowFullScreen
+    />
+  );
+}
+import { PlayCircle, FileText, ArrowRight } from "lucide-react";
 import LessonQA from "./LessonQA";
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -304,15 +316,7 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
           >
             <div style={{ position: "absolute", inset: 0 }}>
               {(urlMap[lesson.id]?.vimeo_url || lesson.videoUrl) ? (
-                <ReactPlayer
-                  url={urlMap[lesson.id]?.vimeo_url || lesson.videoUrl}
-                  width="100%"
-                  height="100%"
-                  controls
-                  config={{
-                    vimeo: { playerOptions: { byline: false, portrait: false, title: false } },
-                  }}
-                />
+                <VimeoPlayer url={urlMap[lesson.id]?.vimeo_url || lesson.videoUrl} />
               ) : (
                 <VideoPlaceholder lesson={lesson} moduleCode={moduleData.code} />
               )}
