@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import useSEO from "../hooks/useSEO";
+import Navbar from "../components/Navbar";
 import { T, mono, serif, display } from "../components/sales/tokens";
 import { SectionLabel, SectionDivider, CTAButton } from "../components/sales/SharedComponents";
 
@@ -19,22 +20,20 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 // ── Nav (above fold, static) ─────────────────────────────────────────────────
 function Nav({ scrollToAdmission }) {
   return (
-    <nav style={{
-      position: "sticky", top: 0, zIndex: 100,
-      background: "rgba(11,18,32,0.95)", backdropFilter: "blur(10px)",
-      borderBottom: `1px solid ${T.navyBorder}`,
-    }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 5, height: 5, background: T.gold, transform: "rotate(45deg)" }} />
-          <span style={{ ...mono, fontSize: 11, color: T.white, letterSpacing: "0.12em" }}>LAUNCHPATH</span>
-          <span style={{ ...mono, fontSize: 10, color: T.fog, letterSpacing: "0.1em" }}>TRANSPORTATION EDU</span>
-        </div>
-        <CTAButton onClick={scrollToAdmission} primary style={{ padding: "12px 24px", fontSize: 11, minHeight: 44 }}>
+    <>
+      <Navbar />
+      <div style={{
+        background: "rgba(11,18,32,0.97)",
+        borderBottom: `1px solid ${T.navyBorder}`,
+        padding: "0.75rem 2.5rem",
+        display: "flex",
+        justifyContent: "flex-end",
+      }}>
+        <CTAButton onClick={scrollToAdmission} primary style={{ padding: "10px 24px", fontSize: 11, minHeight: 40 }}>
           REQUEST ADMISSION →
         </CTAButton>
       </div>
-    </nav>
+    </>
   );
 }
 

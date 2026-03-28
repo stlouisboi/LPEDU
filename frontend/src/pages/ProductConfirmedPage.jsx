@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from '../compat/Link';
 import { useRouter } from 'next/router';
+import Navbar from "../components/Navbar";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 const GOLD   = "#d4900a";
@@ -60,13 +61,7 @@ export default function ProductConfirmedPage() {
         .lp-spinner { animation: lp-spin 0.75s linear infinite; border:2px solid rgba(212,144,10,0.25); border-top-color:${GOLD}; border-radius:50%; width:18px; height:18px; display:inline-block; }
       `}} />
 
-      {/* Top bar */}
-      <div style={{ borderBottom: `1px solid ${BORDER}`, padding: "1.25rem 1.75rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: GOLD, margin: 0 }}>LAUNCHPATH</p>
-        </Link>
-        <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase", margin: 0 }}>Purchase Confirmation</p>
-      </div>
+      <Navbar />
 
       {/* Gold accent line */}
       <div style={{ height: "3px", background: `linear-gradient(to right, ${GOLD}, rgba(212,144,10,0.3), transparent)` }} />
