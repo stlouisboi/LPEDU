@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { CheckSquare, Square, ArrowRight, Clock } from "lucide-react";
+import { CheckSquare, Square, ArrowRight, Clock } from "@phosphor-icons/react";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 

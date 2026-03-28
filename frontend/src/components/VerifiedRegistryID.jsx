@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { CheckCircle, Download, Shield } from "lucide-react";
-const DownloadSimple = Download;
+import { CheckCircle, DownloadSimple, Shield } from "@phosphor-icons/react";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 

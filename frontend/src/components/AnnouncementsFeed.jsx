@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Megaphone, X } from "lucide-react";
+import { Megaphone, X } from "@phosphor-icons/react";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 

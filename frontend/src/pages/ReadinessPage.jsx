@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
-import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle } from "@phosphor-icons/react";
 
 const QUESTIONS = [
   {

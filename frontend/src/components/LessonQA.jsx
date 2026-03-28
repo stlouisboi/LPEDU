@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { MessageCircle, ArrowRight } from "lucide-react";
-const ChatCircle = MessageCircle;
+import { ChatCircle, ArrowRight } from "@phosphor-icons/react";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 

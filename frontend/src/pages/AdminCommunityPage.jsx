@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import AdminNavBar from "../components/AdminNavBar";
-import { CheckCircle, Trash2, ToggleLeft, ToggleRight, ArrowRight } from "lucide-react";
-const Trash = Trash2;
+import { CheckCircle, Trash, ToggleLeft, ToggleRight, ArrowRight } from "@phosphor-icons/react";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 

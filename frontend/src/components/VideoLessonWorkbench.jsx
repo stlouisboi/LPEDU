@@ -12,7 +12,7 @@ function VimeoPlayer({ url }) {
     />
   );
 }
-import { PlayCircle, FileText, ArrowRight } from "lucide-react";
+import { PlayCircle, FileText, ArrowRight } from "@phosphor-icons/react";
 import LessonQA from "./LessonQA";
 
 const API = process.env.REACT_APP_BACKEND_URL;
