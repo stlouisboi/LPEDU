@@ -1,9 +1,6 @@
 {
-  "buildCommand": "yarn build",
-  "outputDirectory": "build",
-  "installCommand": "yarn install --frozen-lockfile --ignore-engines",
-  "framework": null,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "framework": "nextjs",
+  "installCommand": "yarn install",
+  "buildCommand": "yarn build"
 }
+
