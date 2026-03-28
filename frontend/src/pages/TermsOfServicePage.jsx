@@ -14,7 +14,7 @@ const T = {
 };
 
 const mono  = { fontFamily: "'IBM Plex Mono', monospace" };
-const serif = { fontFamily: "'Source Serif 4', Georgia, serif" };
+const serif = { fontFamily: "'Newsreader', Georgia, serif" };
 const disp  = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 const Section = ({ title, children }) => (

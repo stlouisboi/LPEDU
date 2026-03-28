@@ -101,7 +101,6 @@ export default function ComplianceGapQuizPage() {
   return (
     <div style={{ background: navy, minHeight: "100vh", color: "#f4f7fb" }}>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
         .quiz-btn-yes { transition: background 0.18s, border-color 0.18s; }
         .quiz-btn-yes:hover { background: rgba(46,125,50,0.18) !important; border-color: rgba(46,125,50,0.60) !important; }
         .quiz-btn-no { transition: background 0.18s, border-color 0.18s; }

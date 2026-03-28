@@ -78,9 +78,6 @@ const DIY_NO = [
 export default function ConditionalRatingPage() {
   return (
     <div style={{ background: navy, minHeight: "100vh", color: "#f4f7fb" }}>
-      <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
-      `}} />
       <Navbar />
 
       {/* ── Hero ── */}

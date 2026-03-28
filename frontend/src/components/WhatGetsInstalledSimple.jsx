@@ -17,8 +17,6 @@ export default function WhatGetsInstalledSimple() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-
         @keyframes wgi-pulse {
           0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(197,160,89,0.6); }
           50%       { opacity: 0.40; box-shadow: 0 0 0 5px rgba(197,160,89,0); }

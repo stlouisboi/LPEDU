@@ -94,7 +94,6 @@ export default function CaseStudiesPage() {
   return (
     <div style={{ background: navy, minHeight: "100vh", color: "#f4f7fb" }}>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap');
         .cs-card { transition: border-color 0.2s; }
         .cs-card:hover { border-color: rgba(212,144,10,0.35) !important; }
       `}} />

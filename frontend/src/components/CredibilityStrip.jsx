@@ -9,8 +9,6 @@ export default function CredibilityStrip() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
-
         .cred-section {
           background: #041020;
           background-image:
