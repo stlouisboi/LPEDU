@@ -79,6 +79,7 @@ export const PRODUCTS = [
     label: "LP-PKT-SINS",
     name: "16 Deadly Sins Pocket Guide",
     outcome: "Run a self-audit against the 16 violations that end new carrier authority — before FMCSA runs it for you.",
+    blurb: "The #1 pocket guide for new motor carriers who need to find FMCSA exposure in 10–30 minutes — before an investigator or broker does. Built from the same driver, D&A, HOS/ELD, maintenance, insurance, and audit factors FMCSA pulls in your New Entrant Safety Audit.",
     inside: [
       "16-sin self-audit with GREEN / YELLOW / RED risk scoring",
       "CFR citation per violation",
@@ -323,7 +324,7 @@ export const PRODUCTS = [
 
 // ── Accordion group definitions ───────────────────────────────────────────────
 export const ACCORDION_GROUPS = [
-  { id: "diagnostics",  label: "DIAGNOSTIC TOOLS",                            subtitle: "Self-audit tools and audit prep resources.",                                                   assets: "2 assets",     priceRange: "$59–$169", skus: ["LP-PKT-SINS", "LP-RES-004"] },
+  { id: "diagnostics",  label: "DIAGNOSTIC TOOLS — 16 DEADLY SINS POCKET GUIDE & AUDIT PREP",                            subtitle: "Self-audit tools and audit prep resources.",                                                   assets: "2 assets",     priceRange: "$59–$169", skus: ["LP-PKT-SINS", "LP-RES-004"] },
   { id: "domain-2",     label: "DOMAIN 2 · DRIVER QUALIFICATION",             subtitle: "Complete DQ file construction for every driver in your fleet.",                              assets: "1 asset",      priceRange: "$129",     skus: ["LP-PKT-DQ"] },
   { id: "domain-1",     label: "DOMAIN 1 · AUTHORITY & NEW ENTRANT",          subtitle: "Your 18-month new entrant roadmap — authority activation through audit window.",              assets: "1 asset",      priceRange: "$139",     skus: ["LP-PKT-001"] },
   { id: "domain-3",     label: "DOMAIN 3 · DRUG & ALCOHOL",                   subtitle: "Federal Part 382 program — policy, testing, Clearinghouse integration.",                    assets: "1 asset",      priceRange: "$129",     skus: ["LP-PKT-002"] },

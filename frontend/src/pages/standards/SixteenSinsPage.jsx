@@ -377,16 +377,18 @@ export default function SixteenSinsPage() {
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
             marginBottom: "0.75rem",
-          }}>The 16 Deadly Sins of the New Authority</h1>
+          }}>The #1 Pocket Guide for Preventing the 16 Failures That Kill New Motor Carrier Authority.</h1>
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.857rem",
-            color: "rgba(255,255,255,0.38)",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
+            fontSize: "1.05rem",
+            color: "rgba(255,255,255,0.72)",
+            lineHeight: 1.75,
+            letterSpacing: "0",
+            textTransform: "none",
             marginBottom: "1.75rem",
-          }}>The LaunchPath Proprietary Threat Model</p>
+            maxWidth: 680,
+          }}>Built for new motor carriers and owner-operators who need a fast, field-ready way to spot FMCSA exposure — before an investigator or roadside officer does.</p>
 
           <div style={{ height: 2, background: coral, width: 64, marginBottom: "3rem" }} />
 
@@ -428,6 +430,31 @@ export default function SixteenSinsPage() {
             }}>
               Most new carrier authorities do not fail because the operator was careless. They fail because the operational behaviors that cause failure are invisible until an investigator documents them. These are the 16 behaviors the LaunchPath system is built to eliminate. Each one maps to a specific federal regulation. Each one has ended operating authority for carriers who did not know it was happening.
             </p>
+          </div>
+        </FadeIn>
+
+        {/* ── Why This Guide ── */}
+        <FadeIn delay={30}>
+          <div style={{ maxWidth: 720, marginBottom: "5.5rem", borderLeft: `3px solid ${coral}`, paddingLeft: "1.5rem" }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.714rem",
+              fontWeight: 700,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: coral,
+              marginBottom: "1.25rem",
+            }}>WHY THIS GUIDE</p>
+            {[
+              "Designed specifically for new entrants — aligned with FMCSA's New Entrant Safety Assurance Program, not generic safety programs.",
+              "Covers the same core domains investigators pull in audits: drivers, drug & alcohol, HOS/ELD, vehicles, insurance/authority, accident register, and audit response.",
+              "Compresses what's spread across multiple FMCSA PDFs and vendor checklists into a single 20-page pocket guide with a built-in 7-Day Stabilization Plan.",
+            ].map((bullet, i) => (
+              <div key={i} style={{ display: "flex", gap: "0.875rem", marginBottom: "1rem", alignItems: "flex-start" }}>
+                <span style={{ color: coral, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.857rem", flexShrink: 0, paddingTop: "0.15rem" }}>—</span>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.8, margin: 0 }}>{bullet}</p>
+              </div>
+            ))}
           </div>
         </FadeIn>
 

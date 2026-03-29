@@ -70,6 +70,9 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
             <span style={{ fontFamily: MONO, fontSize: "0.667rem", color: "rgba(212,144,10,0.50)", letterSpacing: "0.12em", flexShrink: 0 }}>{p.sku}</span>
           </div>
           <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.60)", margin: 0, lineHeight: 1.65 }}>{p.outcome}</p>
+          {p.blurb && (
+            <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.45)", margin: "0.5rem 0 0", lineHeight: 1.7 }}>{p.blurb}</p>
+          )}
           {p.savings && <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, color: "rgba(212,144,10,0.70)", marginTop: "0.375rem", margin: "0.375rem 0 0" }}>{p.savings}</p>}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0 }}>
@@ -201,6 +204,9 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
             </h3>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7 }}>
               The 16 most common FMCSA violations that end new carrier authority. Identify your exposure in 10 minutes.
+            </p>
+            <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(197,160,89,0.65)", lineHeight: 1.65, marginTop: "0.5rem" }}>
+              Based on the #1 pocket guide for preventing the 16 failures that kill new carrier authority.
             </p>
           </div>
 
