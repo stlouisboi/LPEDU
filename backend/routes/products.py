@@ -186,20 +186,19 @@ _BUYER_TAG_MAP: dict[str, dict] = {
 }
 
 
-async def _get_or_create_ml_tag(http: httpx.AsyncClient, headers: dict, name: str) -> str | None:
-    """Return MailerLite tag ID for `name`, creating the tag if it doesn't exist."""
+async def _get_or_create_ml_group(http: httpx.AsyncClient, headers: dict, name: str) -> str | None:
+    """Return MailerLite group ID for `name`, creating it if needed."""
     try:
-        # Try to create — MailerLite returns existing tag if name is a duplicate (200/201)
-        r = await http.post(f"{ML_BASE}/tags", headers=headers, json={"name": name})
+        r = await http.post(f"{ML_BASE}/groups", headers=headers, json={"name": name})
         data = r.json().get("data", {})
         if data.get("id"):
             return str(data["id"])
-        # Fallback: search existing tags
-        r2 = await http.get(f"{ML_BASE}/tags", headers=headers, params={"filter[name]": name})
+        # Fallback: search existing groups
+        r2 = await http.get(f"{ML_BASE}/groups", headers=headers, params={"filter[name]": name})
         items = r2.json().get("data", [])
         return str(items[0]["id"]) if items else None
     except Exception as exc:
-        logger.error(f"MailerLite get/create tag '{name}' failed: {exc}")
+        logger.error(f"MailerLite get/create group '{name}' failed: {exc}")
         return None
 
 
@@ -238,22 +237,38 @@ async def _record_buyer_in_mailerlite(email: str, name: str, sku: str, product_n
                 logger.error(f"MailerLite: no subscriber ID returned for {email}")
                 return
 
-            # Step 2: Resolve tag IDs and add tags
-            for tag_name in tag_rules.get("add", []):
-                tag_id = await _get_or_create_ml_tag(http, headers, tag_name)
-                if tag_id:
-                    await http.post(
-                        f"{ML_BASE}/subscribers/{subscriber_id}/tags",
-                        headers=headers,
-                        json={"tags": [tag_id]},
-                    )
+            # Step 2: Resolve group IDs and add subscriber to groups
+            add_group_ids = []
+            for group_name in tag_rules.get("add", []):
+                gid = await _get_or_create_ml_group(http, headers, group_name)
+                if gid:
+                    add_group_ids.append(gid)
 
-            # Step 3: Remove suppressed tags (e.g. LP-Lead-Cold)
-            for tag_name in tag_rules.get("remove", []):
-                tag_id = await _get_or_create_ml_tag(http, headers, tag_name)
-                if tag_id:
+            # Re-upsert subscriber with group membership (single API call)
+            if add_group_ids:
+                await http.post(
+                    MAILERLITE_URL,
+                    headers=headers,
+                    json={
+                        "email": email,
+                        "status": "active",
+                        "groups": add_group_ids,
+                        "fields": {
+                            "name": parts[0],
+                            "last_name": parts[1] if len(parts) > 1 else "",
+                            "lead_source": f"product_purchase_{sku.lower().replace('-','_')}",
+                            "last_product_purchased": product_name,
+                            "last_purchase_sku": sku,
+                        },
+                    },
+                )
+
+            # Step 3: Remove subscriber from suppressed groups (e.g. LP-Lead-Cold)
+            for group_name in tag_rules.get("remove", []):
+                gid = await _get_or_create_ml_group(http, headers, group_name)
+                if gid and subscriber_id:
                     await http.delete(
-                        f"{ML_BASE}/subscribers/{subscriber_id}/tags/{tag_id}",
+                        f"{ML_BASE}/groups/{gid}/subscribers/{subscriber_id}",
                         headers=headers,
                     )
 
@@ -418,7 +433,7 @@ async def create_product_checkout(data: ProductCheckoutRequest, request: Request
     if not product:
         raise HTTPException(status_code=404, detail="Product not found.")
     origin = (data.origin_url or FRONTEND_URL).rstrip("/")
-    success_url = f"{origin}/products/confirmed?session_id={{CHECKOUT_SESSION_ID}}"
+    success_url = f"{origin}/thank-you?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{origin}/compliance-library"
     host_url = str(request.base_url)
 

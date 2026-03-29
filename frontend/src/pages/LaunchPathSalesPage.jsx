@@ -119,6 +119,7 @@ export default function LaunchPathSalesPage() {
   useSEO({
     title: "Enroll in the LaunchPath Standard",
     description: "Install the federal compliance infrastructure FMCSA expects before your audit window opens. $2,500 — 12 carriers maximum per cohort.",
+    image: "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/a7d58b56f1c1b20bd23ca6a9ddf251589305c6fb88c9281f3e665a8da321b449.png",
   });
 
   useEffect(() => {
