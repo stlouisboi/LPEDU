@@ -40,6 +40,11 @@ const LESSONS = [
       "Pillar 3 — Compliance Backbone: Driver Qualification Files, Drug & Alcohol program, HOS records, and maintenance logs",
       "Pillar 4 — Cash-Flow Oxygen: Load selection discipline, factoring structure, cost-per-mile control, and tax reserves",
     ],
+    standardBridge: [
+      "In the LaunchPath Standard, we install the guards that prevent each of these cascade failures from reaching your operation. Not described. Not diagrammed. Installed. Driver Qualification Files built before dispatch. D&A program enrolled before the first driver moves a load. Maintenance logs active before the first roadside inspection.",
+      "The 16 Deadly Sins — which you will see a preview of in your downloads — are the 16 specific failure points that trigger these cascades. The Standard installs the guard for every one of them across the nine-module sequence.",
+      "Ground 0 shows you the exposure. The Standard closes it.",
+    ],
     assessmentQuestion: "Which pillar is weakest in your current operation right now?",
     assessmentOptions: [
       "Pillar 1 — Authority Protection (FMCSA filings, UCR, SMS monitoring)",
@@ -60,6 +65,13 @@ const LESSONS = [
       "Dry van, flatbed, reefer, intermodal, and specialized haul carry different FMCSA exposure levels",
       "Choosing the wrong lane for your current infrastructure creates compliance obligations you can't yet meet",
       "LaunchPath's Standard is optimized for general freight — deviations require additional compliance architecture",
+    ],
+    standardBridge: [
+      "One more thing about lane selection before we move on.",
+      "The lane you choose here is not just an equipment decision. It is a compliance decision.",
+      "Box truck and semi have different regulatory thresholds, different insurance structures, different HOS implications, and different DQ file requirements depending on GVWR and CDL class.",
+      "In the LaunchPath Standard, your lane choice from this lesson gets tied directly to the specific policies, checklists, and maintenance standards that apply to your operation. The system is built around your actual lane — not a generic carrier template.",
+      "If you switch lanes after enrollment, your Station Custodian recalibrates the sequence. The system adapts. The point is: the decision you make in this lesson is the foundation the Standard builds on.",
     ],
     assessmentQuestion: "Which best describes your current or planned operation type?",
     assessmentOptions: [
@@ -123,6 +135,19 @@ const LESSONS = [
       "GO means your foundational infrastructure is aligned enough to install the Standard systematically",
       "WAIT means critical gaps exist — the Standard cannot close structural problems, only build on top of them",
       "NO-GO means your current operational position requires intervention before a structured program can hold",
+    ],
+    goBridge: [
+      "And a GO decision is not 'go figure it out on your own.'",
+      "A GO decision means: go install a system that will not let the risks we covered in Ground 0 sneak up on you. That is what the Install Track is for.",
+      "Carriers who make a GO decision and then try to self-install compliance systems from FMCSA guidance documents and general trucking forums — they build incomplete systems. Not because they are not capable. Because the FMCSA guidance is not written as an installation guide. It is written as a regulatory reference. There is a difference.",
+      "The LaunchPath Standard converts that regulatory reference into a 90-day installation sequence. Module by module. Checkpoint by checkpoint. Verified by a Station Custodian before you proceed.",
+      "Your GO decision is the beginning of that installation. The Admission Request Form is the next step.",
+    ],
+    waitBridge: [
+      "When you complete the WAIT Improvement Plan and close the gaps — come back.",
+      "Retake the Personal Readiness Check in Lesson 0.4. Run the numbers again. If your score has moved into GO range, submit a fresh Admission Request.",
+      "We reserve Install Group seats for operators who complete the WAIT plan. A carrier who worked the plan and returned is more prepared than a carrier who jumped straight from an emotional GO to enrollment.",
+      "The seat will be there.",
     ],
     assessmentQuestion: null,
     assessmentOptions: null,
@@ -304,8 +329,9 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
     const newCompleted = [...new Set([...completedLessons, lessonIndex])];
     setCompletedLessons(newCompleted);
     setFinalDecision(decision);
-    setView("complete");
-    saveLocal({ completedLessons: newCompleted, finalDecision: decision, view: "complete" });
+    const nextView = decision === "GO" ? "lesson07" : "complete";
+    setView(nextView);
+    saveLocal({ completedLessons: newCompleted, finalDecision: decision, view: nextView });
     saveServer(newCompleted, decision);
   };
 
@@ -432,6 +458,9 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
         />
       )}
       {view === "decision" && <DecisionView onDecide={handleDecision} />}
+      {view === "lesson07" && (
+        <Lesson07View onViewCompletion={() => { setView("complete"); saveLocal({ view: "complete" }); }} />
+      )}
       {view === "complete" && finalDecision && <CompleteView decision={finalDecision} API={API} assessmentAnswers={assessmentAnswers} onRestart={() => { setView("overview"); setCompletedLessons([]); setFinalDecision(null); setAssessmentAnswers({}); saveLocal({}); }} />}
 
       {/* Auth Gate Modal */}
@@ -640,6 +669,50 @@ function LessonView({ lesson, lessonIndex, totalLessons, completedLessons, selec
           ))}
         </div>
       </div>
+
+      {/* Standard Bridge — Install Track Connection (Lessons 0.2, 0.3) */}
+      {lesson.standardBridge && (
+        <div style={{ background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.15)", borderLeft: "3px solid rgba(212,144,10,0.5)", padding: "1.5rem", marginBottom: "2rem" }}>
+          <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", marginBottom: "1.25rem" }}>
+            THE INSTALL TRACK CONNECTION
+          </p>
+          {lesson.standardBridge.map((para, i) => (
+            <p key={i} style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.75, marginBottom: i < lesson.standardBridge.length - 1 ? "0.875rem" : 0 }}>
+              {para}
+            </p>
+          ))}
+        </div>
+      )}
+
+      {/* GO / WAIT Decision Context — Lesson 0.6 */}
+      {(lesson.goBridge || lesson.waitBridge) && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginBottom: "2rem" }}>
+          {lesson.goBridge && (
+            <div style={{ background: "rgba(34,197,94,0.03)", border: "1px solid rgba(34,197,94,0.15)", borderLeft: "3px solid rgba(34,197,94,0.4)", padding: "1.5rem" }}>
+              <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(34,197,94,0.65)", marginBottom: "1.25rem" }}>
+                GO DOES NOT MEAN PERFECT
+              </p>
+              {lesson.goBridge.map((para, i) => (
+                <p key={i} style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.75, marginBottom: i < lesson.goBridge.length - 1 ? "0.875rem" : 0 }}>
+                  {para}
+                </p>
+              ))}
+            </div>
+          )}
+          {lesson.waitBridge && (
+            <div style={{ background: "rgba(251,191,36,0.03)", border: "1px solid rgba(251,191,36,0.15)", borderLeft: "3px solid rgba(251,191,36,0.4)", padding: "1.5rem" }}>
+              <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(251,191,36,0.55)", marginBottom: "1.25rem" }}>
+                DEFINING YOUR EXIT CONDITION IS NOT PESSIMISM
+              </p>
+              {lesson.waitBridge.map((para, i) => (
+                <p key={i} style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.75, marginBottom: i < lesson.waitBridge.length - 1 ? "0.875rem" : 0 }}>
+                  {para}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* PDF Download */}
       <div style={{ marginBottom: "2rem" }}>
@@ -1352,6 +1425,168 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
         onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.22)"}
       >
         REVIEW GROUND 0 AGAIN →
+      </button>
+    </div>
+  );
+}
+
+// ── Lesson 0.7 — GO Path Only ─────────────────────────────────────────────────
+const L07_MODULES = [
+  { num: "01", title: "Authority and Registration Infrastructure", desc: "Your USDOT number, MC authority, BOC-3, UCR. The paperwork that keeps your operating status active and your FMCSA record clean." },
+  { num: "02", title: "Driver Qualification File System", desc: "Every document required before a driver touches a wheel. Application. MVR. Medical certificate. Clearinghouse query. Road test. Pre-employment drug test. Built to 49 CFR Part 391 standard." },
+  { num: "03", title: "Drug and Alcohol Program", desc: "Enrollment with a C/TPA. Written policy. Driver acknowledgments. Random pool. Clearinghouse obligations. Every component required before first dispatch." },
+  { num: "04", title: "Hours of Service and ELD", desc: "Registered device. Compliant logs. Supporting documents by trip. The system that keeps HOS violations from becoming audit findings." },
+  { num: "05", title: "Preventive Maintenance and Vehicle Files", desc: "Unit file per VIN. Annual inspection documentation. DVIR process. Maintenance log. This is the proof that you are running safe equipment." },
+  { num: "06", title: "Insurance and Authority Continuity", desc: "BMC-91X verification on SAFER. Renewal protocols. The process that ensures a single missed payment does not end your operation." },
+  { num: "07", title: "Post-Failure Recovery", desc: "What to do if you receive a Conditional rating, a notice of audit, or an out-of-service order. The recovery protocol so a setback does not become a collapse." },
+  { num: "08", title: "Load Profitability and Financial Structure", desc: "True cost per mile. Break-even rate. Cash flow architecture. This is what keeps the truck on the road when a broker takes 60 days to pay." },
+  { num: "09", title: "Broker Relationships and Freight Network", desc: "Carrier packet. Broker qualification. Lane discipline. The operational layer that builds your freight network on terms that protect your margins." },
+];
+
+function Lesson07View({ onViewCompletion }) {
+  return (
+    <div data-testid="g0-lesson07-view" style={{ maxWidth: 680 }}>
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem", flexWrap: "wrap" }}>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4900a", margin: 0 }}>
+          LP-GRD-0.7
+        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.2)", padding: "0.2rem 0.625rem" }}>
+          <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
+          <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#22c55e" }}>GO PATH</span>
+        </div>
+        <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.12em" }}>5–7 MIN</span>
+      </div>
+
+      <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.4rem, 2.5vw, 2rem)", color: "#FFFFFF", marginBottom: "2rem", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+        What Happens After GO
+      </h2>
+
+      {/* Intro */}
+      <div style={{ marginBottom: "2.5rem" }}>
+        {[
+          { text: "You made a GO decision. Let me tell you what that actually means — and what comes next.", highlight: false },
+          { text: "Ground 0 did one thing: it helped you look at your situation clearly before committing to anything.", highlight: false },
+          { text: "You picked a lane. You scored your readiness. You defined where your floor is. You made a written decision.", highlight: false },
+          { text: "That is not a small thing. Most operators who fail audits never did any of it. They launched on excitement, not preparation. Ground 0 is what separates a carrier who is structurally ready from a carrier who just wants to be ready.", highlight: false },
+          { text: "You are structurally ready. Now comes the build.", highlight: true },
+        ].map((item, i) => (
+          <p key={i} style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: item.highlight ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.72)", lineHeight: 1.82, marginBottom: "0.875rem", fontWeight: item.highlight ? 600 : 400 }}>
+            {item.text}
+          </p>
+        ))}
+      </div>
+
+      {/* 9-Module Overview */}
+      <div style={{ marginBottom: "2.5rem" }}>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)", marginBottom: "1.25rem" }}>
+          WHAT THE LAUNCHPATH STANDARD INSTALLS — NINE MODULES
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          {L07_MODULES.map(mod => (
+            <div key={mod.num} style={{ display: "flex", alignItems: "flex-start", gap: "1rem", padding: "0.875rem 1rem", background: "rgba(255,255,255,0.015)", borderLeft: "2px solid rgba(212,144,10,0.25)" }}>
+              <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, color: "rgba(212,144,10,0.55)", flexShrink: 0, paddingTop: "0.15rem", letterSpacing: "0.12em", minWidth: 28 }}>
+                {mod.num}
+              </span>
+              <div>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: "rgba(255,255,255,0.85)", marginBottom: "0.2rem" }}>
+                  {mod.title}
+                </p>
+                <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.42)", lineHeight: 1.55, margin: 0 }}>
+                  {mod.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* "That is the system" summary */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "1.75rem 0", marginBottom: "2.5rem" }}>
+        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.8, marginBottom: "0.75rem" }}>
+          That is the system.
+        </p>
+        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.8, marginBottom: "1.25rem" }}>
+          Ground 0 helped you decide whether to build it. The Standard is how you build it.
+        </p>
+        <div style={{ background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.18)", borderLeft: "3px solid rgba(212,144,10,0.55)", padding: "1.25rem 1.5rem" }}>
+          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75, marginBottom: "0.625rem" }}>
+            <strong style={{ color: "#FFFFFF" }}>Ground 0</strong> helps you decide if you should build.
+          </p>
+          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75, marginBottom: "0.875rem" }}>
+            <strong style={{ color: "#FFFFFF" }}>The Install Track</strong> helps you actually build — the authority-protecting, audit-ready, FMCSA-compliant operation — in the next 90 days.
+          </p>
+          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.857rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.7, margin: 0 }}>
+            Not figure it out on your own. Not piece it together from forums and YouTube. Build it with a structured sequence, a Station Custodian who verifies your work at five checkpoints, and a 90-day window that maps directly to your New Entrant audit exposure period.
+          </p>
+        </div>
+      </div>
+
+      {/* Verification + Cohort */}
+      <div style={{ marginBottom: "2.5rem" }}>
+        <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "1.5rem", marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.625rem" }}>
+            Five verification checkpoints. A real person reviews your actual compliance files — not a checklist you submitted, your files — against the same criteria an FMCSA investigator uses.
+          </p>
+          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, margin: 0 }}>
+            That is what the $2,500 covers. Not videos. The verified installation of a compliance system that keeps your authority standing.
+          </p>
+        </div>
+        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.62)", lineHeight: 1.78 }}>
+          The next cohort opens on a rolling basis. Seats are limited to 12 carriers per Install Group. That is not a sales tactic. That is a function of how many operations one Station Custodian can verify properly in a 90-day window.
+        </p>
+      </div>
+
+      {/* Final pitch */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.75rem", marginBottom: "2.5rem" }}>
+        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
+          If you are GO and you are ready to move — apply now. The form takes about 4 minutes. No payment at this step. I review it and confirm your eligibility within 24 to 48 hours.
+        </p>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.08em", color: "rgba(255,255,255,0.48)", lineHeight: 1.6 }}>
+          Apply your GO decision. Join the next LaunchPath Install Group.
+        </p>
+      </div>
+
+      {/* Primary CTA */}
+      <div style={{ marginBottom: "2rem" }}>
+        <a
+          href="/admission"
+          data-testid="g0-lesson07-cta"
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            background: "#d4900a", color: "#000F1F",
+            fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.97rem",
+            letterSpacing: "0.06em", textTransform: "uppercase",
+            padding: "1.25rem 1.75rem", textDecoration: "none",
+            transition: "background 0.2s", width: "100%", boxSizing: "border-box",
+            minHeight: 56,
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+          onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
+        >
+          <span>JOIN THE NEXT INSTALL GROUP</span>
+          <ArrowRight size={18} />
+        </a>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginTop: "0.875rem", lineHeight: 1.6 }}>
+          NO PAYMENT AT THIS STEP · FORM TAKES ABOUT 4 MINUTES · REVIEWED WITHIN 24–48 HOURS
+        </p>
+      </div>
+
+      {/* Secondary: view completion summary */}
+      <button
+        data-testid="g0-lesson07-view-summary"
+        onClick={onViewCompletion}
+        style={{
+          background: "none", border: "none",
+          fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
+          fontSize: "0.524rem", color: "rgba(255,255,255,0.28)", cursor: "pointer",
+          letterSpacing: "0.16em", textTransform: "uppercase", padding: "0.5rem 0",
+          display: "block", transition: "color 0.15s",
+        }}
+        onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.55)"}
+        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.28)"}
+      >
+        VIEW COMPLETION SUMMARY →
       </button>
     </div>
   );
