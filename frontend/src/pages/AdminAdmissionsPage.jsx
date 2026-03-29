@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import FooterSection from "../components/FooterSection";
 import AdminNavBar from "../components/AdminNavBar";
+import PasswordInput from "../components/PasswordInput";
 
 const gold = "#C5A059";
 const goldDim = "rgba(197,160,89,0.75)";
@@ -97,15 +98,16 @@ function AdminLoginGate({ onSuccess }) {
           <label style={{ display: "block", fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.5rem" }}>
             Password
           </label>
-          <input
+          <PasswordInput
             data-testid="admin-password-input"
-            type="password" required autoComplete="current-password"
+            required autoComplete="current-password"
             value={form.password}
             onChange={(e) => setForm(f => ({ ...f, password: e.target.value }))}
             placeholder="••••••••"
-            style={inputStyle}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(197,160,89,0.5)")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
+            style={{...inputStyle,
+              onFocus: undefined,
+              onBlur: undefined,
+            }}
           />
         </div>
         {state === "error" && (

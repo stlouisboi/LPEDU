@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from '../compat/Link';
 import AdminNavBar from "../components/AdminNavBar";
+import PasswordInput from "../components/PasswordInput";
 
 const API   = process.env.REACT_APP_BACKEND_URL;
 const gold  = "#d4900a";
@@ -35,7 +36,7 @@ function AdminLoginGate({ onSuccess }) {
         <h2 style={{ fontFamily: disp, fontSize: "1.75rem", fontWeight: 700, color: "#fff", marginBottom: "2rem" }}>Product Files</h2>
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <input style={inp} type="email" placeholder="Email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} required />
-          <input style={inp} type="password" placeholder="Password" value={form.password} onChange={e => setForm(p => ({ ...p, password: e.target.value }))} required />
+          <PasswordInput style={inp} placeholder="Password" value={form.password} onChange={e => setForm(p => ({ ...p, password: e.target.value }))} required />
           {state === "error" && <p style={{ fontFamily: mono, fontSize: "0.857rem", color: "#f87171" }}>Invalid credentials.</p>}
           <button type="submit" disabled={state === "loading"} style={{ background: gold, color: navy, fontFamily: mono, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.875rem", border: "none", cursor: "pointer" }}>
             {state === "loading" ? "Logging in…" : "Login"}

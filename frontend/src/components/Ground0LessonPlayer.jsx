@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { CheckCircle, ArrowRight, X, GoogleLogo } from "@phosphor-icons/react";
+import PasswordInput from "./PasswordInput";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -1471,11 +1472,9 @@ function AuthGateModal({ authMode, authForm, authError, authLoading, onModeChang
             <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", display: "block", marginBottom: "0.375rem" }}>
               Password
             </label>
-            <input
+            <PasswordInput
               data-testid="auth-password-input"
-              type="password"
               required
-              minLength={6}
               value={authForm.password}
               onChange={e => onFormChange("password", e.target.value)}
               placeholder={authMode === "register" ? "Min. 6 characters" : "Your password"}
