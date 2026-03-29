@@ -198,61 +198,6 @@ export default function HeroSection() {
           {/* Gold separator */}
           <div style={{ width: 40, height: 2, background: "#C8933F", margin: "28px 0 24px" }} />
 
-          {/* Sub-headline — desktop */}
-          <p
-            className="hero-sub hero-sub-desktop"
-            style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.85)", lineHeight: 1.75, maxWidth: 600,
-              marginBottom: 24,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(10px)",
-              transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
-            }}
-          >
-            Between Month 9 and Month 18, FMCSA shows up. They are not checking your driving. They are checking your paperwork — your driver files, your drug and alcohol program, your maintenance records, your hours of service logs.
-            <br /><br />
-            Most new carriers don't have those built right. LaunchPath installs them correctly, in 90 days, before the auditor arrives.
-          </p>
-
-          {/* Sub-headline — mobile */}
-          <p
-            className="hero-sub hero-sub-mobile"
-            style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.85)", lineHeight: 1.75, maxWidth: 600,
-              marginBottom: 24, display: "none",
-              opacity: visible ? 1 : 0,
-              transition: "opacity 0.6s ease 0.15s",
-            }}
-          >
-            FMCSA audits paperwork, not driving. Most new carriers aren't built right when the auditor shows up. LaunchPath fixes that in 90 days.
-          </p>
-
-          {/* Em-dash checklist */}
-          <div
-            style={{
-              display: "flex", flexDirection: "column", gap: 12,
-              marginBottom: 36,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(10px)",
-              transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
-            }}
-          >
-            {[
-              "Driver files that don't fail the first document request",
-              "A Drug & Alcohol program that exists before the first dispatch — not after the first audit",
-              "Hours of Service records that hold up under scrutiny, not just under normal operations",
-              "Maintenance documentation that proves compliance — a maintained truck with no records is the same as an unmaintained truck to FMCSA",
-              "Insurance filings that are verified active — not assumed",
-            ].map((item, i) => (
-              <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                <span style={{ color: "#C8933F", fontFamily: "'Inter', sans-serif", fontSize: 16, flexShrink: 0, marginTop: 1 }}>—</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.78)", lineHeight: 1.6 }}>{item}</span>
-              </div>
-            ))}
-          </div>
-
           {/* ── CONSEQUENCE BAND — LP-EXP-001 ───────────────────── */}
           <div style={{
             background: "rgba(6,10,20,0.85)",
@@ -263,7 +208,7 @@ export default function HeroSection() {
             boxShadow: "inset 0 2px 8px rgba(0,0,0,0.50)",
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(8px)",
-            transition: "opacity 0.6s ease 0.25s, transform 0.6s ease 0.25s",
+            transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
           }}>
             <p style={{
               fontFamily: "'JetBrains Mono', monospace", fontSize: 13, fontWeight: 700,
@@ -292,6 +237,59 @@ export default function HeroSection() {
             }}>
               The audit does not announce itself until it is already scheduled.
             </p>
+          </div>
+
+          {/* Sub-headline — desktop */}
+          <p
+            className="hero-sub hero-sub-desktop"
+            style={{
+              fontFamily: "'Inter', sans-serif", fontWeight: 400,
+              color: "rgba(255,255,255,0.85)", lineHeight: 1.75, maxWidth: 600,
+              marginBottom: 24,
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
+            }}
+          >
+            Between Month 9 and Month 18, FMCSA shows up. They check your paperwork — not your driving. Most new carriers don't have it built right. LaunchPath installs the compliance infrastructure they expect to find — in 90 days, before they come looking.
+          </p>
+
+          {/* Sub-headline — mobile */}
+          <p
+            className="hero-sub hero-sub-mobile"
+            style={{
+              fontFamily: "'Inter', sans-serif", fontWeight: 400,
+              color: "rgba(255,255,255,0.85)", lineHeight: 1.75, maxWidth: 600,
+              marginBottom: 24, display: "none",
+              opacity: visible ? 1 : 0,
+              transition: "opacity 0.6s ease 0.2s",
+            }}
+          >
+            FMCSA audits paperwork, not driving. Most new carriers aren't built right when the auditor shows up. LaunchPath fixes that in 90 days.
+          </p>
+
+          {/* Em-dash checklist */}
+          <div
+            style={{
+              display: "flex", flexDirection: "column", gap: 12,
+              marginBottom: 36,
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 0.6s ease 0.25s, transform 0.6s ease 0.25s",
+            }}
+          >
+            {[
+              "Driver files that don't fail the first document request",
+              "A Drug & Alcohol program that exists before the first dispatch — not after the first audit",
+              "Hours of Service records that hold up under scrutiny, not just under normal operations",
+              "Maintenance documentation that proves compliance — a maintained truck with no records is the same as an unmaintained truck to FMCSA",
+              "Insurance filings that are verified active — not assumed",
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                <span style={{ color: "#C8933F", fontFamily: "'Inter', sans-serif", fontSize: 16, flexShrink: 0, marginTop: 1 }}>—</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.78)", lineHeight: 1.6 }}>{item}</span>
+              </div>
+            ))}
           </div>
 
           {/* Proof strip */}
