@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Eye, EyeOff } from "@phosphor-icons/react";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 
 const GOLD = "#C8933F";
 const NAVY = "#080E1C";
@@ -38,7 +38,7 @@ export default function PasswordInput({ style, placeholder = "Password", value, 
         }}
         aria-label={show ? "Hide password" : "Show password"}
       >
-        {show ? <EyeOff size={16} /> : <Eye size={16} />}
+        {show ? <EyeSlash size={16} /> : <Eye size={16} />}
       </button>
     </div>
   );
