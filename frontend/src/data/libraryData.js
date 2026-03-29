@@ -120,7 +120,12 @@ export const PRODUCTS = [
     tag: "PREP PDF · 14 PAGES · INSTANT DELIVERY",
     label: "LP-RES-004",
     name: "Safety Audit Prep Pack",
-    outcome: "A structured 18-month audit readiness protocol and 48-hour response sequence for when FMCSA sends notice.",
+    outcome: "The #1 audit-prep and response system for New Entrant Safety Audits.",
+    bullets: [
+      "18-month audit window timeline so you know when to be ready, not just what to have.",
+      "Monthly mock audit and 3-Minute Quick Pulse to stay audit-ready in under 10 minutes a month.",
+      "48-Hour Response Sequence, Audit-Ready Grab Folder, and 30-Day Conditional Recovery Sprint.",
+    ],
     inside: [
       "Document pull list mapped to FMCSA's standard audit request",
       "Hour-by-hour 48-hour response sequence",
@@ -324,7 +329,8 @@ export const PRODUCTS = [
 
 // ── Accordion group definitions ───────────────────────────────────────────────
 export const ACCORDION_GROUPS = [
-  { id: "diagnostics",  label: "DIAGNOSTIC TOOLS — 16 DEADLY SINS POCKET GUIDE & AUDIT PREP",                            subtitle: "Self-audit tools and audit prep resources.",                                                   assets: "2 assets",     priceRange: "$59–$169", skus: ["LP-PKT-SINS", "LP-RES-004"] },
+  { id: "diagnostics",  label: "DIAGNOSTIC TOOLS — 16 DEADLY SINS POCKET GUIDE & AUDIT PREP",                            subtitle: "Self-audit tools and audit prep resources.",                                                   assets: "1 asset",      priceRange: "$59",      skus: ["LP-PKT-SINS"] },
+  { id: "audit-prep",   label: "AUDIT PREPARATION & RESPONSE",                  subtitle: "18-month readiness protocol and 48-hour response system for New Entrant Safety Audits.",       assets: "1 asset",      priceRange: "$169",     skus: ["LP-RES-004"] },
   { id: "domain-2",     label: "DOMAIN 2 · DRIVER QUALIFICATION",             subtitle: "Complete DQ file construction for every driver in your fleet.",                              assets: "1 asset",      priceRange: "$129",     skus: ["LP-PKT-DQ"] },
   { id: "domain-1",     label: "DOMAIN 1 · AUTHORITY & NEW ENTRANT",          subtitle: "Your 18-month new entrant roadmap — authority activation through audit window.",              assets: "1 asset",      priceRange: "$139",     skus: ["LP-PKT-001"] },
   { id: "domain-3",     label: "DOMAIN 3 · DRUG & ALCOHOL",                   subtitle: "Federal Part 382 program — policy, testing, Clearinghouse integration.",                    assets: "1 asset",      priceRange: "$129",     skus: ["LP-PKT-002"] },

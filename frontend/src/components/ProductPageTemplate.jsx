@@ -22,6 +22,8 @@ export default function ProductPageTemplate({
   nextStepLabel,
   standardInclusion = true,
   image = null,
+  ctaLabel = null,
+  valuePoints = null,
   children,
 }) {
   const gold = "#d4900a";
@@ -84,6 +86,17 @@ export default function ProductPageTemplate({
                   color: "rgba(255,255,255,0.55)", marginBottom: "2rem", fontStyle: "italic",
                 }}>{subtitle}</p>
 
+                {valuePoints?.length > 0 && (
+                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                    {valuePoints.map((pt, i) => (
+                      <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                        <span style={{ color: gold, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.857rem", flexShrink: 0, paddingTop: "0.2rem" }}>—</span>
+                        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.981rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.7 }}>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
                 <div style={{ display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
                   <span style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "2rem",
@@ -107,7 +120,7 @@ export default function ProductPageTemplate({
                   >
                     {isLoading
                       ? <><span style={{ width: 12, height: 12, border: "2px solid rgba(0,0,0,0.3)", borderTopColor: "#000", borderRadius: "50%", display: "inline-block", animation: "spin 0.7s linear infinite" }} /> Processing…</>
-                      : <>Get Instant Access — {price} →</>}
+                      : <>{ctaLabel || `Get Instant Access — ${price} →`}</>}
                   </button>
                 </div>
                 {buyError && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#ef4444", marginTop: "0.75rem" }}>{buyError}</p>}

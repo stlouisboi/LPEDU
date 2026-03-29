@@ -73,6 +73,15 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
           {p.blurb && (
             <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.45)", margin: "0.5rem 0 0", lineHeight: 1.7 }}>{p.blurb}</p>
           )}
+          {p.bullets?.length > 0 && (
+            <ul style={{ listStyle: "none", padding: 0, margin: "0.625rem 0 0", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
+              {p.bullets.map((b, i) => (
+                <li key={i} style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", paddingLeft: "1rem", position: "relative", lineHeight: 1.65 }}>
+                  <span style={{ position: "absolute", left: 0, color: GOLD }}>—</span>{b}
+                </li>
+              ))}
+            </ul>
+          )}
           {p.savings && <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, color: "rgba(212,144,10,0.70)", marginTop: "0.375rem", margin: "0.375rem 0 0" }}>{p.savings}</p>}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0 }}>
