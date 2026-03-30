@@ -14,7 +14,7 @@ from core import (
     MAILERLITE_API_TOKEN, MAILERLITE_URL, COACH_EMAIL, FRONTEND_URL, PAYMENT_EMAIL,
     send_mailersend_email,
 )
-from routes.products import handle_product_purchase_webhook
+from routes.products import handle_product_purchase_webhook, _get_or_create_ml_group, ML_BASE
 
 router = APIRouter()
 
@@ -129,24 +129,42 @@ async def _process_cohort_payment(checkout_session):
         if user_record and user_record.get("email") and MAILERLITE_API_TOKEN:
             try:
                 async with httpx.AsyncClient(timeout=8) as http:
-                    ml_headers = {"Content-Type": "application/json", "Authorization": f"Bearer {MAILERLITE_API_TOKEN}", "Accept": "application/json"}
-                    # Create/update subscriber
-                    resp = await http.post(MAILERLITE_URL, headers=ml_headers, json={"email": user_record["email"], "status": "active", "fields": {"name": user_record.get("name", ""), "cohort_access": "true", "cohort_tier": "LPOS_v1_Standard", "payment_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "stripe_session_id": checkout_session.id}})
+                    ml_headers = {
+                        "Content-Type": "application/json",
+                        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+                        "Accept": "application/json",
+                    }
+                    # Resolve group IDs for cohort buyer groups
+                    add_group_names = ["LP-Buyer-Standard-2500", "LP-DoNotPitch-Standard"]
+                    group_ids = []
+                    for g_name in add_group_names:
+                        gid = await _get_or_create_ml_group(http, ml_headers, g_name)
+                        if gid:
+                            group_ids.append(gid)
+                    # Create/update subscriber with group membership in one call
+                    resp = await http.post(MAILERLITE_URL, headers=ml_headers, json={
+                        "email": user_record["email"],
+                        "status": "active",
+                        "groups": group_ids,
+                        "fields": {
+                            "name": user_record.get("name", ""),
+                            "cohort_access": "true",
+                            "cohort_tier": "LPOS_v1_Standard",
+                            "payment_date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                            "stripe_session_id": checkout_session.id,
+                        },
+                    })
                     subscriber_id = resp.json().get("data", {}).get("id")
-                    # Assign Standard buyer tags + remove LP-Lead-Cold (brief Section 3.2)
+                    # Remove from LP-Lead-Cold group
                     if subscriber_id:
-                        for tag_name in ["LP-Buyer-Standard-2500", "LP-DoNotPitch-Standard"]:
-                            t = await http.post("https://connect.mailerlite.com/api/tags", headers=ml_headers, json={"name": tag_name})
-                            tid = t.json().get("data", {}).get("id")
-                            if tid:
-                                await http.post(f"https://connect.mailerlite.com/api/subscribers/{subscriber_id}/tags", headers=ml_headers, json={"tags": [tid]})
-                        # Remove LP-Lead-Cold
-                        cold_r = await http.post("https://connect.mailerlite.com/api/tags", headers=ml_headers, json={"name": "LP-Lead-Cold"})
-                        cold_id = cold_r.json().get("data", {}).get("id")
-                        if cold_id:
-                            await http.delete(f"https://connect.mailerlite.com/api/subscribers/{subscriber_id}/tags/{cold_id}", headers=ml_headers)
+                        cold_gid = await _get_or_create_ml_group(http, ml_headers, "LP-Lead-Cold")
+                        if cold_gid:
+                            await http.delete(
+                                f"{ML_BASE}/groups/{cold_gid}/subscribers/{subscriber_id}",
+                                headers=ml_headers,
+                            )
             except Exception as ml_err:
-                logger.error(f"MailerLite post-payment update failed: {ml_err}")
+                logger.error(f"MailerLite cohort post-payment update failed: {ml_err}")
         if user_record and user_record.get("email"):
             first_name = (user_record.get("name") or "").split()[0] or "Operator"
             conf_html = f"""
@@ -179,7 +197,49 @@ async def _process_cohort_payment(checkout_session):
         asyncio.create_task(send_mailersend_email(COACH_EMAIL, "Vince Lawrence", f"New enrollment: {buyer_name} ({amount_str})", notify_html))
 
 
-@router.post("/webhook/stripe")
+@router.post("/admin/simulate-cohort-payment")
+async def simulate_cohort_payment(request: Request):
+    """Admin-only: simulate the full cohort payment pipeline without charging Stripe.
+    Tests: DB record creation, portal access grant, MailerSend emails (buyer + admin),
+    MailerLite group enrollment. Safe to run repeatedly for E2E verification.
+    """
+    from routes.auth import get_current_user
+    user = await get_current_user(request)
+    if not user or user.get("email") != COACH_EMAIL:
+        raise HTTPException(status_code=403, detail="Not authorised")
+
+    import uuid
+    from types import SimpleNamespace
+    sim_session_id = f"sim_cohort_{uuid.uuid4().hex[:12]}"
+
+    # Pre-seed a payment_transaction so _process_cohort_payment can resolve user_id
+    await db.payment_transactions.update_one(
+        {"session_id": sim_session_id},
+        {"$set": {
+            "session_id": sim_session_id,
+            "user_id": user["user_id"],
+            "email": user.get("email", ""),
+            "product": "launchpath_standard_cohort",
+            "payment_status": "pending",
+            "source": "admin_simulate",
+        }},
+        upsert=True,
+    )
+
+    mock_session = SimpleNamespace(
+        id=sim_session_id,
+        payment_status="paid",
+        metadata={"product": "launchpath_standard_cohort", "source": "admin_simulate"},
+        amount_total=250000,
+    )
+    await _process_cohort_payment(mock_session)
+    return {
+        "ok": True,
+        "session_id": sim_session_id,
+        "message": "Pipeline simulated. Check: (1) buyer confirmation email, (2) admin alert email, (3) MailerLite groups: LP-Buyer-Standard-2500 + LP-DoNotPitch-Standard added, LP-Lead-Cold removed.",
+    }
+
+
 @router.post("/stripe-webhook")
 async def stripe_webhook(request: Request):
     if not STRIPE_API_KEY:

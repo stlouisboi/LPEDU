@@ -2,7 +2,7 @@ import { Link } from '../compat/Link';
 import { useState, useEffect, useRef } from "react";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
 
-const HERO_LETTER_URL = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/gt9pdg9a_hero-letter-dashboard.png";
+const HERO_LETTER_URL = "https://images.unsplash.com/photo-1652081439602-b917d33f794b?w=1200&h=630&fit=crop&crop=center&q=80";
 
 
 const RISK_ITEMS = [

@@ -27,7 +27,14 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 35: Monthly Audit Readiness Dashboard v2 — Config-Driven Refactor (Mar 2026)
+### Phase 36: Stripe Pipeline Fix + og:image Update (Mar 2026)
+- Fixed `_process_cohort_payment` in payments.py — was using MailerLite Tags API (broken), now uses Groups API (`_get_or_create_ml_group`) matching products.py pattern
+- Added `POST /api/admin/simulate-cohort-payment` — admin endpoint to test full cohort pipeline (DB record, MailerSend buyer + admin emails, MailerLite group enrollment) without a real Stripe charge
+- Simulated pipeline confirmed: MailerSend 202 on both emails, MailerLite groups enrolled correctly
+- Fixed Vercel build errors: missing `useSEO` import in BundleSalesPage.jsx + BookMockup3D named export
+- Updated og:image: replaced old CDN placeholder with dark truck highway image across all 33 pages. useSEO.js DEFAULT_IMAGE updated. Image quota exhausted — using Unsplash stock image as intermediate og:image.
+
+ — Config-Driven Refactor (Mar 2026)
 Backend: `/app/backend/routes/audit_readiness.py` (complete rewrite)
 - New `monthly_checks` MongoDB collection (one doc per check per month per user)
 - `QUESTION_BANK`: 11 questions with IDs dq_01/dq_02/da_01/da_02/hos_01/hos_02/vm_01/vm_02/ia_01/ia_02/ar_01

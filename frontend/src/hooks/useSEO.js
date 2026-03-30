@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const DEFAULT_IMAGE = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/gt9pdg9a_hero-letter-dashboard.png";
+const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1652081439602-b917d33f794b?w=1200&h=630&fit=crop&crop=center&q=80";
 const SITE_NAME = "LaunchPath Transportation EDU";
 
 function setMeta(selector, attr, attrVal, content) {
