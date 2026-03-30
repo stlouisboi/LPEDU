@@ -27,61 +27,45 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 35: Monthly Audit Readiness Dashboard v2 — Config-Driven Refactor (Mar 2026)
+Backend: `/app/backend/routes/audit_readiness.py` (complete rewrite)
+- New `monthly_checks` MongoDB collection (one doc per check per month per user)
+- `QUESTION_BANK`: 11 questions with IDs dq_01/dq_02/da_01/da_02/hos_01/hos_02/vm_01/vm_02/ia_01/ia_02/ar_01
+- `DOMAIN_CONFIG`: greenMin/yellowMin/criticalFailureForcesRed per domain
+- `OVERALL_CONFIG`: 85% green, 60% yellow, criticalOverrideDomains=[insurance_authority, audit_response]
+- Critical override: ia_01 NO/NOT_SURE or ar_01 NO → overall RED with criticalOverride=true (fires before numeric scoring)
+- NOT_SURE handling: notSureVerifyLines computed per domain, stored in DB, returned in API
+- Weighted scoring: domain score = sum(weights) / max_weight * 100
+- Endpoints: GET/POST /api/audit-readiness, GET /api/audit-readiness/history, GET /api/audit-readiness/{check_id}
+- Admin: GET /api/admin/audit-readiness (aggregation), GET/PUT /api/admin/audit-readiness/check/{check_id}/domain/{domain}, POST send-email
+
+Frontend: 4-screen inline flow (no modals)
+- Screen 1 Dashboard: overall status, 6 domain cards (REPORTED/VERIFIED separated), critical override banner, stale flag
+- Screen 2 Run Check: multi-step form, domain helper text, radio-style YES/NO/NOT_SURE buttons, notes field on final step
+- Screen 3 Results: domain result cards with scorePercent/counts/notSureVerifyLines, summaryJson panel (copyable), back button
+- Screen 4 History: chronological list, domain mini-dots, link to results for each entry
+- Admin page updated for new schema (latestCheckId, domain keys, SC verify/note/override)
+- Shared `auditConfig.js` config file (QUESTION_BANK, DOMAIN_CONFIG, DOMAIN_LABELS, helper text)
+
+Testing: 100% (13/13 backend + all frontend flows) — iteration_90
+
+### Phase 34: Monthly Audit Readiness Dashboard v1 (Mar 2026) [SUPERSEDED by v2]
 ### Phase 33: Ground 0 Content Additions (Mar 2026)
-- Lesson 0.7 "What Happens After GO" — GO-path only view after decision
-- Copy patches for Lessons 0.2, 0.3, 0.6 (standardBridge, goBridge, waitBridge)
+- Lesson 0.7 "What Happens After GO" — GO-path only
+- Copy patches for Lessons 0.2, 0.3, 0.6
 - Testing: 100% (12/12) — iteration_88
 
-### Phase 34: Monthly Audit Readiness Dashboard + Email (Mar 2026)
-Backend: `/app/backend/routes/audit_readiness.py`
-- `GET /api/audit-readiness` — carrier's readiness record (auto-creates on first call)
-- `POST /api/audit-readiness/answers` — submit answers, compute colors server-side
-- `GET /api/admin/audit-readiness` — admin list of all carriers
-- `GET /api/admin/audit-readiness/{user_id}` — per-carrier detail
-- `PUT /api/admin/audit-readiness/{user_id}/domain/{domain}` — SC verify/note/override
-- `POST /api/admin/audit-readiness/{user_id}/send-email` — "Send Now" button trigger
-- Scoring logic for all 6 domains (DQ, DA, HOS, VM, IA, AR) with critical domain override rules
-- Dynamic email builder via MailerSend — subject, domain blocks, 7-day micro-plan, NOT SURE actions
-
-Frontend components:
-- `AuditReadinessDashboard.jsx` — portal section, enrolled vs teaser states
-- `AuditCheckInFlow.jsx` — 11-question modal wizard, one domain at a time, prior answers carried forward
-- `AuditDomainCard.jsx` — self-reported LEFT + SC-verified RIGHT, expandable detail
-- `AdminAuditReadinessPage.jsx` + `/admin/audit-readiness` route
-- `AdminNavBar.jsx` — "Audit Readiness" link added
-- `App.js` — admin route registered
-
-MongoDB collection: `audit_readiness`
-- `domainAnswers`, `domainColors`, `domainUpdated`, `overallStatus`, `lastCompleted`
-- `scVerified` per domain: verified/date/note/override
-- `emailHistory` array
-- Stale flag: domain not updated in 45+ days
-
-Testing: 100% (18/18) — iteration_89
-
 ### Phase 33b: Lighthouse Performance Fixes (Mar 2026)
-- LCP preload link in `_document.jsx` (fetchPriority="high")
-- Browserslist updated to last 2 versions of modern browsers (drops Array.at, flat etc. polyfills)
-- Cache-Control headers for `/_next/static/*` (1 year immutable) in `next.config.js`
-- Firebase logo and Vincent.png: explicit width/height attributes (Navbar, Footer, CredibilityStrip, About, VinceCTA)
-- Hamburger button: `aria-label` + `aria-expanded`
-- CORS_ORIGINS set to `*` in backend/.env
-- Auth redirect in Ground0LessonPlayer.jsx uses `process.env.REACT_APP_AUTH_URL`
+- LCP preload, browserslist update, cache headers, explicit image dimensions, hamburger aria-label
 
-### Phase 32: Ground 0 Content Additions (Mar 2026)
-(see Phase 33 above — same sprint)
-
-### Phase 31: Deployment Health Checks (Mar 2026)
-- Auth redirect now uses REACT_APP_AUTH_URL env var
-- CORS opened to *
+### Phase 32–31: Deployment Health Checks (Mar 2026)
+- Auth redirect uses REACT_APP_AUTH_URL env var, CORS opened to *
 
 ### Previous Phases (pre-March 2026)
-- MailerLite Groups integration (not Tags — user's tier limitation)
-- Custom /thank-you page with Stripe success_url routing
-- /compliance-library, /16-deadly-sins, /safety-audit-prep-pack pages with updated copy
+- MailerLite Groups integration
+- Custom /thank-you page, Stripe success_url routing
+- /compliance-library, /16-deadly-sins, /safety-audit-prep-pack pages
 - Homepage hero, stat blocks, Ground 0 CTA in Navbar
-- PasswordInput.jsx crash fix (EyeSlash for Phosphor Icons v2)
-- Product PDF upload + download pipeline
 - Ground0LessonPlayer 6-lesson diagnostic with GO/WAIT/NO-GO flow
 
 ---
@@ -93,31 +77,37 @@ Testing: 100% (18/18) — iteration_89
 ### P1 — High Priority
 - Live E2E Stripe purchase test ($1 real charge to verify full pipeline: Stripe → Railway → MailerSend → MailerLite)
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules
-- Automated monthly email cron job (spec: 30-day cadence for enrolled, 90-day post-cohort) — manual trigger built, cron deferred
 
 ### P2 — Medium Priority
 - Custom branded og:image for /bundle, /program, /compliance-library (blocked on AI image quota)
 - Email capture / interest form inline in Lesson 0.7 (GO-path lead capture)
+- Automated monthly email cron job (30-day cadence for enrolled, 90-day post-cohort) — manual trigger built, cron deferred
 
 ### P3 — Future / Refactor
 - Refactor PortalPage.jsx + Ground0LessonPlayer.jsx (>1500 lines) using next/dynamic modular approach
 - Scan-line and blueprint grid visual upgrades to homepage
 - REACHAssessmentPage.jsx modular refactor
-- Add audit readiness cron job to replace manual "Send Now" trigger
+- Score trend line chart in Audit Readiness History screen (overall scorePercent over time)
+- Add carrier-row data-testid to AdminAuditReadinessPage for better test coverage
 
 ---
 
 ## KEY DB SCHEMA
 - `product_files`: Maps SKUs to uploaded PDFs
 - `product_purchases`: Records checkouts (has_access, access_level: "cohort")
-- `audit_readiness`: Monthly self-assessment (domainAnswers, domainColors, scVerified, emailHistory)
+- `monthly_checks`: Monthly audit checks (QUESTION_BANK answers, domainResults, overallResult, summaryJson, notSureVerifyLines per domain)
+- `audit_readiness`: Old v1 collection (unused, preserved for reference)
 - `ground0_progress`: Ground 0 lesson completion (userId, completedLessons, finalDecision, view)
 
 ## KEY API ENDPOINTS
 - `POST /api/webhook/stripe` — Stripe webhook (MailerSend + MailerLite trigger)
-- `GET/POST /api/audit-readiness` — carrier readiness
-- `GET/PUT /api/admin/audit-readiness/*` — SC admin
-- `POST /api/admin/audit-readiness/{userId}/send-email` — manual email trigger
+- `GET /api/audit-readiness` — carrier's latest check + enrollment status
+- `POST /api/audit-readiness` — submit new monthly check (computes scoring)
+- `GET /api/audit-readiness/history` — all checks for user (sorted desc)
+- `GET /api/audit-readiness/{check_id}` — specific check
+- `GET /api/admin/audit-readiness` — admin list (aggregated by user, latest check)
+- `PUT /api/admin/audit-readiness/check/{check_id}/domain/{domain}` — SC verify/note/override
+- `POST /api/admin/audit-readiness/{user_id}/send-email` — manual email trigger
 
 ## DEPLOYMENT
 - Frontend: Vercel (auto-deploys from GitHub main)
