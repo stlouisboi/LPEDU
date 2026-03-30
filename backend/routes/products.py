@@ -450,7 +450,7 @@ async def create_product_checkout(data: ProductCheckoutRequest, request: Request
         session = await asyncio.get_event_loop().run_in_executor(
             None,
             lambda: stripe_lib.checkout.Session.create(
-                payment_methods=["card", "link"],
+                automatic_payment_methods={"enabled": True},
                 line_items=[{
                     "price_data": {
                         "currency": "usd",

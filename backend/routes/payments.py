@@ -40,21 +40,31 @@ async def create_program_checkout(data: ProgramCheckoutRequest, request: Request
     if not STRIPE_API_KEY:
         raise HTTPException(status_code=500, detail="Stripe not configured")
     host_url = str(request.base_url)
-    stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
     success_url = f"{data.origin_url}/admission/confirmed?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{data.origin_url}/program"
-    metadata = {"product": "launchpath_standard_cohort", "source": "program_page"}
-    session = await stripe.create_checkout_session(CheckoutSessionRequest(
-        amount=COHORT_PRICE_USD,
-        currency="usd",
-        success_url=success_url,
-        cancel_url=cancel_url,
-        metadata=metadata,
-        payment_methods=["card", "link"],
-    ))
+    metadata = {"product": "launchpath_standard_cohort", "source": "program_page",
+                "webhook_url": f"{host_url}api/webhook/stripe"}
+    stripe_lib.api_key = STRIPE_API_KEY
+    try:
+        session = await asyncio.get_event_loop().run_in_executor(
+            None,
+            lambda: stripe_lib.checkout.Session.create(
+                mode="payment",
+                line_items=[{"price_data": {"currency": "usd", "unit_amount": int(COHORT_PRICE_USD * 100),
+                              "product_data": {"name": "LaunchPath Standard — New Entrant Operating System"}},
+                              "quantity": 1}],
+                success_url=success_url,
+                cancel_url=cancel_url,
+                metadata=metadata,
+                automatic_payment_methods={"enabled": True},
+            )
+        )
+    except Exception as e:
+        logger.error(f"Stripe cohort checkout error: {e}")
+        raise HTTPException(status_code=502, detail="Could not create checkout session.")
     now = datetime.now(timezone.utc)
     await db.payment_transactions.insert_one({
-        "session_id": session.session_id,
+        "session_id": session.id,
         "amount": COHORT_PRICE_USD,
         "currency": "usd",
         "payment_status": "initiated",
@@ -62,7 +72,7 @@ async def create_program_checkout(data: ProgramCheckoutRequest, request: Request
         "source": "program_page",
         "created_at": now.isoformat(),
     })
-    return {"checkout_url": session.url, "session_id": session.session_id}
+    return {"checkout_url": session.url, "session_id": session.id}
 
 
 class AdmissionCheckoutRequest(BaseModel):
@@ -78,14 +88,32 @@ async def create_admission_checkout(data: AdmissionCheckoutRequest, request: Req
     if not admission:
         raise HTTPException(status_code=404, detail="Admission request not found")
     host_url = str(request.base_url)
-    stripe = StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
     success_url = f"{data.origin_url}/admission/confirmed?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{data.origin_url}/admission"
-    metadata = {"admission_id": data.admission_id, "carrier_name": admission["carrier_name"], "email": admission["email"], "product": "launchpath_standard_cohort"}
-    session = await stripe.create_checkout_session(CheckoutSessionRequest(amount=COHORT_PRICE_USD, currency="usd", success_url=success_url, cancel_url=cancel_url, metadata=metadata))
+    metadata = {"admission_id": data.admission_id, "carrier_name": admission["carrier_name"],
+                "email": admission["email"], "product": "launchpath_standard_cohort",
+                "webhook_url": f"{host_url}api/webhook/stripe"}
+    stripe_lib.api_key = STRIPE_API_KEY
+    try:
+        session = await asyncio.get_event_loop().run_in_executor(
+            None,
+            lambda: stripe_lib.checkout.Session.create(
+                mode="payment",
+                line_items=[{"price_data": {"currency": "usd", "unit_amount": int(COHORT_PRICE_USD * 100),
+                              "product_data": {"name": "LaunchPath Standard — New Entrant Operating System"}},
+                              "quantity": 1}],
+                success_url=success_url,
+                cancel_url=cancel_url,
+                metadata=metadata,
+                automatic_payment_methods={"enabled": True},
+            )
+        )
+    except Exception as e:
+        logger.error(f"Stripe admission checkout error: {e}")
+        raise HTTPException(status_code=502, detail="Could not create checkout session.")
     now = datetime.now(timezone.utc)
-    await db.payment_transactions.insert_one({"session_id": session.session_id, "admission_id": data.admission_id, "email": admission["email"], "carrier_name": admission["carrier_name"], "amount": COHORT_PRICE_USD, "currency": "usd", "payment_status": "initiated", "status": "pending", "created_at": now.isoformat()})
-    return {"checkout_url": session.url, "session_id": session.session_id}
+    await db.payment_transactions.insert_one({"session_id": session.id, "admission_id": data.admission_id, "email": admission["email"], "carrier_name": admission["carrier_name"], "amount": COHORT_PRICE_USD, "currency": "usd", "payment_status": "initiated", "status": "pending", "created_at": now.isoformat()})
+    return {"checkout_url": session.url, "session_id": session.id}
 
 
 @router.get("/admission-payment-status/{session_id}")
