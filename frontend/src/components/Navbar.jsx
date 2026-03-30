@@ -103,7 +103,9 @@ export default function Navbar() {
           <img
             src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
             alt="LaunchPath"
-            style={{ height: 38 }}
+            width={193}
+            height={38}
+            style={{ height: 38, width: "auto" }}
           />
         </Link>
 
@@ -260,6 +262,8 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button className="mobile-btn" data-testid="mobile-menu-btn"
           onClick={() => setOpen(!open)}
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
           style={{ background: "none", border: "none", color: "var(--text)", cursor: "pointer", padding: "0.25rem", flexShrink: 0 }}
         >
           {open ? <X size={22} /> : <List size={22} />}

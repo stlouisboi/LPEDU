@@ -121,7 +121,9 @@ export default function CredibilityStrip() {
               <img
                 src={PHOTO}
                 alt="Vince Lawrence"
-                style={{ width: "100%", display: "block", filter: "grayscale(15%) contrast(1.05)", transition: "transform 0.4s" }}
+                width={238}
+                height={326}
+                style={{ width: "100%", height: "auto", display: "block", filter: "grayscale(15%) contrast(1.05)", transition: "transform 0.4s" }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.02)"; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
               />

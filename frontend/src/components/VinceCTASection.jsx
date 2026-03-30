@@ -43,6 +43,8 @@ export default function VinceCTASection() {
             <img
               src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
               alt="Vince Lawrence"
+              width={864}
+              height={1184}
               style={{
                 width: "100%",
                 height: 280,
