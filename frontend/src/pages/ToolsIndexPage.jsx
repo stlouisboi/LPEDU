@@ -79,8 +79,11 @@ export default function ToolsIndexPage() {
           <h1 style={{ fontFamily: display, fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3.25rem)", color: "#FFFFFF", letterSpacing: "-0.025em", marginBottom: "1rem" }}>
             Operator Toolbox.
           </h1>
-          <p style={{ fontFamily: sans, fontSize: "1.1rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.78, maxWidth: 560 }}>
+          <p style={{ fontFamily: sans, fontSize: "1.1rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.78, maxWidth: 560, marginBottom: "0.75rem" }}>
             Four tools built for new motor carriers — financial analysis, compliance auditing, and health scoring. All free to use.
+          </p>
+          <p style={{ fontFamily: mono, fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", margin: 0 }}>
+            Best suited for new and small carriers operating 1–20 trucks.
           </p>
         </div>
       </div>
@@ -143,11 +146,19 @@ export default function ToolsIndexPage() {
               </div>
             </div>
             <div style={{ borderTop: "1px solid rgba(0,34,68,0.08)", padding: "1.25rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", background: "rgba(0,34,68,0.02)" }}>
-              <p style={{ fontFamily: sans, fontSize: "0.857rem", color: "rgba(0,34,68,0.45)", margin: 0 }}>
-                {tool.id === "load-analyzer"
-                  ? "Free account required · no payment needed"
-                  : "Free to use · no account required"}
-              </p>
+              <div>
+                <p style={{ fontFamily: sans, fontSize: "0.857rem", color: "rgba(0,34,68,0.45)", margin: 0 }}>
+                  {tool.id === "load-analyzer"
+                    ? "Free account required · no payment needed"
+                    : "Free to use · no account required"}
+                </p>
+                {(tool.id === "gap-audit" || tool.id === "control-room") && (
+                  <p style={{ fontFamily: sans, fontSize: "0.762rem", color: "rgba(0,34,68,0.38)", margin: "0.3rem 0 0", fontStyle: "italic" }}>
+                    For a deeper readiness check that includes cash, commitment, and discipline,{" "}
+                    <Link to="/reach-diagnostic" style={{ color: GOLD, textDecoration: "none", fontWeight: 600 }}>run the REACH Diagnostic next</Link>.
+                  </p>
+                )}
+              </div>
               <Link
                 to={tool.href}
                 data-testid={`tool-cta-${tool.id}`}
