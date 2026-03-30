@@ -50,6 +50,7 @@ async def create_program_checkout(data: ProgramCheckoutRequest, request: Request
         success_url=success_url,
         cancel_url=cancel_url,
         metadata=metadata,
+        payment_methods=["card", "link"],
     ))
     now = datetime.now(timezone.utc)
     await db.payment_transactions.insert_one({

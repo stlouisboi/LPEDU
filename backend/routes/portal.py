@@ -71,7 +71,7 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
     cancel_url = f"{data.origin_url}/portal"
     session = await asyncio.to_thread(
         stripe_lib.checkout.Session.create,
-        payment_method_types=["card"],
+        payment_methods=["card", "link"],
         line_items=[{"price_data": {"currency": "usd", "product_data": {"name": "LaunchPath LPOS Cohort Access"}, "unit_amount": 250000}, "quantity": 1}],
         mode="payment",
         success_url=success_url,
