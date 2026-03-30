@@ -90,6 +90,14 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           </p>
 
           <p style={{
+            fontFamily: "monospace", fontSize: "0.619rem",
+            letterSpacing: "0.16em", textTransform: "uppercase",
+            color: "rgba(255,255,255,0.3)", marginBottom: "1.25rem",
+          }}>
+            Built for new and small motor carriers (1–20 trucks) in their first 24 months of authority.
+          </p>
+
+          <p style={{
             fontFamily: sans, fontSize: "clamp(0.875rem, 1.4vw, 0.975rem)",
             color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 520,
             marginBottom: "0.75rem",
