@@ -44,7 +44,7 @@ async def create_program_checkout(data: ProgramCheckoutRequest, request: Request
     cancel_url = f"{data.origin_url}/program"
     metadata = {"product": "launchpath_standard_cohort", "source": "program_page",
                 "webhook_url": f"{host_url}api/webhook/stripe"}
-    stripe_lib.api_key = STRIPE_API_KEY
+    StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
     try:
         session = await asyncio.get_event_loop().run_in_executor(
             None,
@@ -56,7 +56,7 @@ async def create_program_checkout(data: ProgramCheckoutRequest, request: Request
                 success_url=success_url,
                 cancel_url=cancel_url,
                 metadata=metadata,
-                automatic_payment_methods={"enabled": True},
+                payment_method_types=["card"],
             )
         )
     except Exception as e:
@@ -93,7 +93,7 @@ async def create_admission_checkout(data: AdmissionCheckoutRequest, request: Req
     metadata = {"admission_id": data.admission_id, "carrier_name": admission["carrier_name"],
                 "email": admission["email"], "product": "launchpath_standard_cohort",
                 "webhook_url": f"{host_url}api/webhook/stripe"}
-    stripe_lib.api_key = STRIPE_API_KEY
+    StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
     try:
         session = await asyncio.get_event_loop().run_in_executor(
             None,
@@ -105,7 +105,7 @@ async def create_admission_checkout(data: AdmissionCheckoutRequest, request: Req
                 success_url=success_url,
                 cancel_url=cancel_url,
                 metadata=metadata,
-                automatic_payment_methods={"enabled": True},
+                payment_method_types=["card"],
             )
         )
     except Exception as e:

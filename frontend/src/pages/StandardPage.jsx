@@ -434,7 +434,7 @@ export default function StandardPage() {
             Ready to Install the System?
           </h2>
           <p style={{ fontFamily: BODY, fontSize: "1rem", color: S400, lineHeight: 1.75, marginBottom: "2.5rem" }}>
-            Admission is reviewed before enrollment is confirmed. The LaunchPath Standard is limited to 10 carriers per cohort.
+            Admission is reviewed before enrollment is confirmed. The LaunchPath Standard is limited to 12 carriers per cohort.
           </p>
           <div style={{ maxWidth: 400, margin: "0 auto" }}>
             <Link

@@ -8,6 +8,7 @@ import stripe as stripe_lib
 from bson import ObjectId
 from fastapi import APIRouter, HTTPException, Request, Response
 from pydantic import BaseModel, EmailStr
+from emergentintegrations.payments.stripe.checkout import StripeCheckout
 
 from core import (
     db, logger, STRIPE_API_KEY, FRONTEND_URL, MAILERLITE_API_TOKEN, MAILERLITE_URL,
@@ -69,9 +70,11 @@ async def create_portal_checkout(data: PortalCheckoutRequest, request: Request):
     user_id = user["user_id"] if user else None
     success_url = f"{data.origin_url}/portal?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{data.origin_url}/portal"
+    host_url = str(request.base_url)
+    StripeCheckout(api_key=STRIPE_API_KEY, webhook_url=f"{host_url}api/webhook/stripe")
     session = await asyncio.to_thread(
         stripe_lib.checkout.Session.create,
-        automatic_payment_methods={"enabled": True},
+        payment_method_types=["card"],
         line_items=[{"price_data": {"currency": "usd", "product_data": {"name": "LaunchPath LPOS Cohort Access"}, "unit_amount": 250000}, "quantity": 1}],
         mode="payment",
         success_url=success_url,

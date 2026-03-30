@@ -232,7 +232,7 @@ export default function AdmissionPage() {
             fontFamily: "'Newsreader', 'Playfair Display', serif",
             fontWeight: 700, fontSize: "1.375rem",
             color: "#C5A059", lineHeight: 1.2, marginBottom: "0.875rem",
-          }}>$2,500 &nbsp;·&nbsp; 10 carriers maximum &nbsp;·&nbsp; Reviewed individually</p>
+          }}>$2,500 &nbsp;·&nbsp; 12 carriers maximum &nbsp;·&nbsp; Reviewed individually</p>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.938rem",

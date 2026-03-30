@@ -512,7 +512,7 @@ export default function LaunchPathStandardPage() {
             LP-STD-001 | COHORT ENROLLMENT
           </p>
           <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(3rem,7vw,5rem)", color: gold, lineHeight: 1, marginBottom: ".25rem", letterSpacing: "-.02em" }}>$2,500</p>
-          <p style={{ fontFamily: mono, fontSize: ".714rem", letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", marginBottom: "2rem" }}>First cohort pricing · 10 carriers maximum</p>
+          <p style={{ fontFamily: mono, fontSize: ".714rem", letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", marginBottom: "2rem" }}>First cohort pricing · 12 carriers maximum</p>
 
           <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 3rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem", letterSpacing: "-0.01em" }}>
             Ready to request admission?

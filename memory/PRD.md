@@ -27,6 +27,11 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 37: Stripe Fix + Hero Restore + Cohort Count (Mar 2026)
+- Fixed Stripe 502 Bad Gateway on all 3 checkout endpoints (`products.py`, `payments.py`, `portal.py`): reverted `automatic_payment_methods` → `payment_method_types=["card"]`, added proper `StripeCheckout(...)` proxy initialization in `payments.py` and `portal.py`
+- Restored HeroSection.jsx: original background image (`gt9pdg9a_hero-letter-dashboard.png`), original layout order (body copy + checklist → stats box), full two-paragraph sub-headline
+- Updated cohort max from 10 → 12 carriers in `AdmissionPage.jsx`, `StandardPage.jsx`, `LaunchPathStandardPage.jsx` (backend `MAX_SEATS` was already 12)
+
 ### Phase 36: Stripe Pipeline Fix + og:image Update (Mar 2026)
 - Fixed `_process_cohort_payment` in payments.py — was using MailerLite Tags API (broken), now uses Groups API (`_get_or_create_ml_group`) matching products.py pattern
 - Added `POST /api/admin/simulate-cohort-payment` — admin endpoint to test full cohort pipeline (DB record, MailerSend buyer + admin emails, MailerLite group enrollment) without a real Stripe charge
@@ -79,9 +84,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ## PRIORITIZED BACKLOG
 
-### P0 — Blockers (none currently)
-
-### P1 — High Priority
+### P0 — Blockers (none currently)### P1 — High Priority
 - Live E2E Stripe purchase test ($1 real charge to verify full pipeline: Stripe → Railway → MailerSend → MailerLite)
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules
 
