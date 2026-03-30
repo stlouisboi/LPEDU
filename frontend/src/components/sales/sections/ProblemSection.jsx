@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { T, mono, serif, display } from "../tokens";
 import { GoldDivider, SectionLabel, section } from "../SharedComponents";
+import { Link } from "../../../compat/Link";
 
 export default function ProblemSection() {
-  const [showAll16, setShowAll16] = useState(false);
   const LEFT_PATTERNS = [
     "Driver dispatched before Medical Examiner's Certificate verified",
     "D&A program enrolled after first dispatch — not before",
@@ -24,8 +23,6 @@ export default function ProblemSection() {
     "Hazmat endorsement on CDL — no hazmat training documentation on file",
     "Pre-trip inspection process in place — no written DVIR procedure",
   ];
-  const visLeft  = showAll16 ? LEFT_PATTERNS  : LEFT_PATTERNS.slice(0, 2);
-  const visRight = showAll16 ? RIGHT_PATTERNS : RIGHT_PATTERNS.slice(0, 2);
 
   return (
     <>
@@ -95,7 +92,7 @@ export default function ProblemSection() {
             </p>
             <div className="two-col" style={{ display: "flex", gap: 24 }}>
               <div style={{ flex: 1 }}>
-                {visLeft.map((item, i) => (
+                {LEFT_PATTERNS.slice(0, 4).map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, marginBottom: 14, alignItems: "flex-start" }}>
                     <span style={{ color: "#7A3535", flexShrink: 0, marginTop: 4, fontSize: 13 }}>✕</span>
                     <span style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7 }}>{item}</span>
@@ -103,7 +100,7 @@ export default function ProblemSection() {
                 ))}
               </div>
               <div style={{ flex: 1 }}>
-                {visRight.map((item, i) => (
+                {RIGHT_PATTERNS.slice(0, 4).map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, marginBottom: 14, alignItems: "flex-start" }}>
                     <span style={{ color: "#7A3535", flexShrink: 0, marginTop: 4, fontSize: 13 }}>✕</span>
                     <span style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7 }}>{item}</span>
@@ -112,19 +109,18 @@ export default function ProblemSection() {
               </div>
             </div>
             <div style={{ marginTop: 20, borderTop: `1px solid ${T.navyBorder}`, paddingTop: 16 }}>
-              <button
-                data-testid="toggle-16-patterns"
-                onClick={() => setShowAll16(s => !s)}
+              <Link
+                href="/standards/16-deadly-sins"
+                data-testid="see-all-16-patterns-link"
                 style={{
-                  background: "none", border: "none", cursor: "pointer",
                   ...mono, fontSize: 11, color: T.goldText,
                   letterSpacing: "0.12em", textTransform: "uppercase",
-                  display: "flex", alignItems: "center", gap: 8,
-                  padding: "12px 0", minHeight: 44,
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  padding: "12px 0", textDecoration: "none",
                 }}
               >
-                <span>{showAll16 ? "COLLAPSE ↑" : "SEE ALL 16 PATTERNS →"}</span>
-              </button>
+                SEE ALL 16 PATTERNS →
+              </Link>
             </div>
             <GoldDivider />
             <p style={{ ...serif, fontSize: 17, color: T.fog, lineHeight: 1.7 }}>

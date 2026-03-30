@@ -57,6 +57,19 @@ export default function WhoIsItForSection({ handleReach }) {
         ))}
       </div>
 
+      {/* ── WHAT YOU WALK AWAY WITH — 90 DAYS ─────────────── */}
+      <div style={{ background: "rgba(0,0,0,0.2)", border: `1px solid ${T.navyBorder}`, borderLeft: `3px solid rgba(197,160,89,0.4)`, padding: "40px 40px 36px", marginBottom: 48 }}>
+        <p style={{ ...mono, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: T.goldText, marginBottom: 20 }}>
+          WHAT YOU WALK AWAY WITH — 90 DAYS
+        </p>
+        <p style={{ ...serif, fontSize: 18, fontWeight: 400, color: "rgba(245,242,236,0.88)", lineHeight: 1.9, maxWidth: 820, marginBottom: 16 }}>
+          In 90 days, you will have: <strong style={{ color: T.white, fontWeight: 600 }}>complete DQ files</strong> for every driver, an active <strong style={{ color: T.white, fontWeight: 600 }}>FMCSA-compliant Drug &amp; Alcohol program</strong>, a documented <strong style={{ color: T.white, fontWeight: 600 }}>Preventive Maintenance system</strong>, verified Hours of Service records, insurance filings confirmed on FMCSA's system, and a <strong style={{ color: T.goldText, fontWeight: 600 }}>Verified Registry ID</strong> proving the work was done.
+        </p>
+        <p style={{ ...serif, fontSize: 15, color: T.fog, fontStyle: "italic", lineHeight: 1.75, margin: 0 }}>
+          All six compliance domains. Five human verification checkpoints. One Station Custodian reviewing your actual documents — not your plan.
+        </p>
+      </div>
+
       <div style={{ background: T.navyCard, border: `1px solid ${T.navyBorder}`, padding: "32px 40px", textAlign: "center" }}>
         <p style={{ ...serif, fontSize: 17, color: T.mist, marginBottom: 20 }}>
           Not sure which category you're in?<br />

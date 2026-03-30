@@ -15,9 +15,21 @@ const DOMAIN_COLORS = {
 function ScoreTrendChart({ history }) {
   if (!history || history.length < 2) return null;
 
+  const [activeDomains, setActiveDomains] = React.useState(
+    () => new Set(["overall", ...DOMAIN_ORDER])
+  );
+
+  const toggle = (key) =>
+    setActiveDomains((prev) => {
+      if (prev.size === 1 && prev.has(key)) return prev; // prevent hiding all
+      const next = new Set(prev);
+      next.has(key) ? next.delete(key) : next.add(key);
+      return next;
+    });
+
   const data = [...history].reverse().map((check) => {
     const row = {
-      month: formatMonthLabel(check.checkMonth).replace(/^\w+ /, "").slice(0, 6), // "Jan '25"
+      month: formatMonthLabel(check.checkMonth).replace(/^\w+ /, "").slice(0, 6),
       overall: check.overallResult?.scorePercent ?? null,
     };
     (check.domainResults || []).forEach((dr) => {
@@ -52,24 +64,33 @@ function ScoreTrendChart({ history }) {
             cursor={{ stroke: "rgba(197,160,89,0.15)" }}
           />
           {/* Overall score — thick gold */}
-          <Line type="monotone" dataKey="overall" stroke="#C8933F" strokeWidth={2.5} dot={{ r: 3, fill: "#C8933F", strokeWidth: 0 }} activeDot={{ r: 5 }} name="overall" connectNulls />
-          {/* Domain scores — thin colored */}
-          {DOMAIN_ORDER.map((dk) => (
+          {activeDomains.has("overall") && (
+            <Line type="monotone" dataKey="overall" stroke="#C8933F" strokeWidth={2.5} dot={{ r: 3, fill: "#C8933F", strokeWidth: 0 }} activeDot={{ r: 5 }} name="overall" connectNulls />
+          )}
+          {/* Domain scores — thin colored, shown only if toggled on */}
+          {DOMAIN_ORDER.filter(dk => activeDomains.has(dk)).map((dk) => (
             <Line key={dk} type="monotone" dataKey={dk} stroke={DOMAIN_COLORS[dk]} strokeWidth={1} dot={false} name={dk} strokeOpacity={0.55} connectNulls />
           ))}
         </LineChart>
       </ResponsiveContainer>
-      {/* Legend */}
+      {/* Clickable legend */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1rem", padding: "0.625rem 0 0.25rem" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+        <button
+          onClick={() => toggle("overall")}
+          style={{ display: "flex", alignItems: "center", gap: "0.375rem", background: "none", border: "none", cursor: "pointer", padding: 0, opacity: activeDomains.has("overall") ? 1 : 0.3, transition: "opacity 0.15s" }}
+        >
           <div style={{ width: 18, height: 2.5, background: "#C8933F", borderRadius: 2 }} />
-          <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.45)" }}>Overall</span>
-        </div>
+          <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.55)" }}>Overall</span>
+        </button>
         {DOMAIN_ORDER.map((dk) => (
-          <div key={dk} style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
-            <div style={{ width: 14, height: 1.5, background: DOMAIN_COLORS[dk], opacity: 0.65, borderRadius: 1 }} />
-            <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.3)" }}>{DOMAIN_LABELS[dk]}</span>
-          </div>
+          <button
+            key={dk}
+            onClick={() => toggle(dk)}
+            style={{ display: "flex", alignItems: "center", gap: "0.375rem", background: "none", border: "none", cursor: "pointer", padding: 0, opacity: activeDomains.has(dk) ? 1 : 0.3, transition: "opacity 0.15s" }}
+          >
+            <div style={{ width: 14, height: 1.5, background: DOMAIN_COLORS[dk], borderRadius: 1 }} />
+            <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.4)" }}>{DOMAIN_LABELS[dk]}</span>
+          </button>
         ))}
       </div>
     </div>

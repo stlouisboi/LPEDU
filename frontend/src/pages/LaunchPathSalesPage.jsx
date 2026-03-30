@@ -157,21 +157,6 @@ export default function LaunchPathSalesPage() {
       <Hero scrollToAdmission={scrollToAdmission} seatsRemaining={seatsRemaining} />
       <SectionDivider line="The audit does not announce itself until it is already scheduled." />
 
-      {/* ── SUMMARY BENEFIT ─────────────────────────────────── */}
-      <section style={{ background: "#0D1828", borderBottom: `1px solid ${T.navyBorder}` }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "56px clamp(20px, 5vw, 48px)" }}>
-          <p style={{ ...mono, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: T.goldText, marginBottom: 20 }}>
-            WHAT YOU WALK AWAY WITH — 90 DAYS
-          </p>
-          <p style={{ ...serif, fontSize: 19, fontWeight: 400, color: "rgba(245,242,236,0.88)", lineHeight: 1.9, maxWidth: 820, marginBottom: 16 }}>
-            In 90 days, you will have: <strong style={{ color: T.white, fontWeight: 600 }}>complete DQ files</strong> for every driver, an active <strong style={{ color: T.white, fontWeight: 600 }}>FMCSA-compliant Drug &amp; Alcohol program</strong>, a documented <strong style={{ color: T.white, fontWeight: 600 }}>Preventive Maintenance system</strong>, verified Hours of Service records, insurance filings confirmed on FMCSA's system, and a <strong style={{ color: T.goldText, fontWeight: 600 }}>Verified Registry ID</strong> proving the work was done.
-          </p>
-          <p style={{ ...serif, fontSize: 15, color: T.fog, fontStyle: "italic", lineHeight: 1.75, margin: 0 }}>
-            All six compliance domains. Five human verification checkpoints. One Station Custodian reviewing your actual documents — not your plan.
-          </p>
-        </div>
-      </section>
-
       {/* ── IS THIS YOU? ────────────────────────────────────── */}
       <section style={{ background: T.navy, borderBottom: `1px solid ${T.navyBorder}` }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "56px clamp(20px, 5vw, 48px) 60px" }}>
@@ -181,7 +166,7 @@ export default function LaunchPathSalesPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 6 }}>
             {[
               "Your authority is active or will be within 30 days",
-              "You have 1–20 trucks and are running freight now",
+              "You have 1–5 trucks and you are the only person responsible for your own compliance record",
               "You are in your first 18 months of operating authority",
               "You are concerned about the FMCSA New Entrant Safety Audit",
               "You want systems installed — not just videos or templates to read",
