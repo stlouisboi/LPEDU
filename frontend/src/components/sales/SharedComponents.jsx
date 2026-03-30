@@ -3,7 +3,7 @@ import { T, mono, serif, display } from "./tokens";
 
 export const section = (children, bg = T.navy, extra = {}) => (
   <section style={{ background: bg, ...extra }}>
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px clamp(20px, 5vw, 40px)" }}>
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "96px clamp(20px, 5vw, 48px)" }}>
       {children}
     </div>
   </section>
@@ -11,8 +11,8 @@ export const section = (children, bg = T.navy, extra = {}) => (
 
 export const SectionLabel = ({ children }) => (
   <p style={{
-    ...mono, fontSize: 10, letterSpacing: "0.18em", color: T.goldText,
-    textTransform: "uppercase", marginBottom: 24,
+    ...mono, fontSize: 11, letterSpacing: "0.18em", color: T.goldText,
+    textTransform: "uppercase", marginBottom: 32,
   }}>{children}</p>
 );
 
@@ -41,23 +41,23 @@ export const SectionDivider = ({ line }) => (
 );
 
 export const CheckItem = ({ children, accent = T.gold }) => (
-  <div style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
-    <span style={{ color: accent, flexShrink: 0, marginTop: 3, fontSize: 12 }}>✓</span>
-    <span style={{ ...serif, fontSize: 15, color: T.mist, lineHeight: 1.6 }}>{children}</span>
+  <div style={{ display: "flex", gap: 10, marginBottom: 12, alignItems: "flex-start" }}>
+    <span style={{ color: accent, flexShrink: 0, marginTop: 3, fontSize: 13 }}>✓</span>
+    <span style={{ ...serif, fontSize: 16, color: T.mist, lineHeight: 1.7 }}>{children}</span>
   </div>
 );
 
 export const CrossItem = ({ children, accent = "#7A3535" }) => (
-  <div style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
+  <div style={{ display: "flex", gap: 10, marginBottom: 12, alignItems: "flex-start" }}>
     <span style={{ color: accent, flexShrink: 0, marginTop: 4, fontSize: 13 }}>✕</span>
-    <span style={{ ...serif, fontSize: 15, color: T.fog, lineHeight: 1.6 }}>{children}</span>
+    <span style={{ ...serif, fontSize: 16, color: T.fog, lineHeight: 1.7 }}>{children}</span>
   </div>
 );
 
 export const ArrowItem = ({ children, color = T.white }) => (
-  <div style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
-    <span style={{ color: T.gold, flexShrink: 0, marginTop: 3, fontSize: 12 }}>→</span>
-    <span style={{ ...serif, fontSize: 15, color, lineHeight: 1.6 }}>{children}</span>
+  <div style={{ display: "flex", gap: 10, marginBottom: 12, alignItems: "flex-start" }}>
+    <span style={{ color: T.gold, flexShrink: 0, marginTop: 3, fontSize: 13 }}>→</span>
+    <span style={{ ...serif, fontSize: 16, color, lineHeight: 1.7 }}>{children}</span>
   </div>
 );
 
@@ -92,19 +92,19 @@ export const FAQItem = ({ q, a, index }) => {
         style={{
           width: "100%", background: "none", border: "none", cursor: "pointer",
           display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-          padding: "20px 0", gap: 16, textAlign: "left", minHeight: 44,
+          padding: "24px 0", gap: 16, textAlign: "left", minHeight: 48,
         }}
       >
         <div style={{ display: "flex", gap: 16 }}>
-          <span style={{ ...mono, fontSize: 10, color: T.fog, flexShrink: 0, paddingTop: 3 }}>{String(index).padStart(2, "0")}</span>
-          <span style={{ ...serif, fontSize: 17, color: T.white, lineHeight: 1.5 }}>{q}</span>
+          <span style={{ ...mono, fontSize: 11, color: T.fog, flexShrink: 0, paddingTop: 4 }}>{String(index).padStart(2, "0")}</span>
+          <span style={{ ...serif, fontSize: 18, fontWeight: 500, color: T.white, lineHeight: 1.55 }}>{q}</span>
         </div>
-        <span style={{ ...mono, fontSize: 16, color: T.gold, flexShrink: 0 }}>{open ? "−" : "+"}</span>
+        <span style={{ ...mono, fontSize: 18, color: T.gold, flexShrink: 0 }}>{open ? "−" : "+"}</span>
       </button>
       {open && (
-        <div style={{ paddingBottom: 20, paddingLeft: 34 }}>
+        <div style={{ paddingBottom: 24, paddingLeft: 34 }}>
           {a.split("\n\n").map((para, i) => (
-            <p key={i} style={{ ...serif, fontSize: 16, color: T.mist, lineHeight: 1.75, marginBottom: 12 }}>{para}</p>
+            <p key={i} style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.85, marginBottom: 14 }}>{para}</p>
           ))}
         </div>
       )}

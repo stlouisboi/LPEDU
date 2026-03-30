@@ -27,6 +27,16 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 39: LaunchPath Standard Sales Page Readability Overhaul (Mar 2026)
+- Switched `display`+`serif` tokens from Playfair Display/Source Serif 4 → Inter 800-900/400-500 for all headings and body (more readable for 28-54 age range on laptops)
+- Increased body font size to 16-20px, line-height to 1.8-1.9, section padding from 80px → 96px across all section components
+- Added "WHAT YOU WALK AWAY WITH — 90 DAYS" summary benefit block after hero (bold callouts for DQ files, D&A program, PM system, Verified Registry ID)
+- Added "OPERATOR PROFILE — IS THIS YOU?" 5-item grid block (authority active, 1-20 trucks, first 18 months, NESA concern, systems not videos)
+- Improved `CheckItem`, `ArrowItem`, `CrossItem`, `FAQItem` shared components (larger font, more spacing)
+- Improved `WhatIsIncludedSection` card padding 28→32px, body text 17→17-18px, section sub-headline 17→18px
+- Hero H1 uses Inter 900 with `lineHeight: 1.1` — bold, scannable, clear for older screens
+- Also made same improvements to `LaunchPathStandardPage.jsx` (/standard route): font, spacing, sections, module note bullet parsing
+
 ### Phase 38: Seats Counter + E2E Test + Monthly Cron (Mar 2026)
 - Added live "X of 12 seats remaining" counter on AdmissionPage (fetches /api/cohort-seats, gold/red urgency indicator)
 - E2E pipeline verified: checkout URL → simulate-cohort-payment → DB record (taken=4) → MailerSend + MailerLite pipeline confirmed ✅

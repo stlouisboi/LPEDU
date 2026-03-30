@@ -10,7 +10,7 @@ const navy = "#002244";
 const dark = "#080f1e";
 const card = "#0D1929";
 const mono = "'Inter', sans-serif";
-const condensed = "'Newsreader', 'Playfair Display', serif";
+const condensed = "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 const body = "'Inter', sans-serif";
 
 // ── Module Data ──────────────────────────────────────────
@@ -183,7 +183,7 @@ export default function LaunchPathStandardPage() {
         @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.35} }
         .std-hero-grid { display: grid; grid-template-columns: 1fr 360px; gap: 4rem; align-items: center; }
         .std-faq-row { border-bottom: 1px solid rgba(255,255,255,.07); }
-        .std-faq-btn { width:100%; background:none; border:none; color:#fff; text-align:left; padding:1.25rem 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:1rem; font-family:'Inter',sans-serif; font-size:.975rem; font-weight:600; }
+        .std-faq-btn { width:100%; background:none; border:none; color:#fff; text-align:left; padding:1.5rem 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:1rem; font-family:'Inter',sans-serif; font-size:1rem; font-weight:600; line-height:1.5; }
         @media(max-width:760px){
           .std-hero-grid { grid-template-columns: 1fr !important; }
           .qualifier-grid { grid-template-columns: 1fr !important; }
@@ -225,7 +225,7 @@ export default function LaunchPathStandardPage() {
             <div style={{ background: "rgba(0,0,0,.3)", border: `1px solid rgba(197,160,89,.2)`, borderTop: `2px solid ${gold}`, padding: "1.75rem", boxShadow: "inset 0 2px 12px rgba(0,0,0,.4)" }}>
               <p style={{ fontFamily: mono, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: goldDim, marginBottom: "1.25rem" }}>INVESTMENT</p>
               <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "3.5rem", color: gold, lineHeight: 1, marginBottom: ".25rem", letterSpacing: "-.02em" }}>$2,500</p>
-              <p style={{ fontFamily: mono, fontSize: ".625rem", fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", marginBottom: ".25rem" }}>FIRST COHORT · 10 CARRIERS MAX</p>
+              <p style={{ fontFamily: mono, fontSize: ".625rem", fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", marginBottom: ".25rem" }}>FIRST COHORT · 12 CARRIERS MAX</p>
               <p style={{ fontFamily: body, fontSize: ".762rem", color: "rgba(255,255,255,.35)", fontStyle: "italic", marginBottom: "1.5rem" }}>Payment plans available — ask during admission review.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: ".5rem", marginBottom: "1.5rem" }}>
                 {["90-day guided implementation", "10 modules · 72 lessons · 17 hrs", "5 coach verification checkpoints", "Pre-audit simulation — Week 11", "Verified Registry ID (LP-VRF)", "All 5 document system packets", "Operator Portal access"].map((item, i) => (
@@ -245,6 +245,48 @@ export default function LaunchPathStandardPage() {
         </div>
       </section>
 
+      {/* ── SUMMARY BENEFIT ─────────────────────────────────── */}
+      <section style={{ background: "#001A38", borderBottom: `1px solid rgba(197,160,89,0.18)`, padding: "44px 24px 48px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "1rem" }}>
+            WHAT YOU WALK AWAY WITH — 90 DAYS
+          </p>
+          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.95, maxWidth: 780, marginBottom: "1.25rem" }}>
+            In 90 days, you will have: <strong style={{ color: "#FFFFFF" }}>complete DQ files</strong> for every driver,
+            an active <strong style={{ color: "#FFFFFF" }}>FMCSA-compliant Drug &amp; Alcohol program</strong>,
+            a documented <strong style={{ color: "#FFFFFF" }}>Preventive Maintenance system</strong>,
+            verified Hours of Service records, insurance filings confirmed on FMCSA's system,
+            and a <strong style={{ color: gold }}>Verified Registry ID</strong> proving the work was done.
+          </p>
+          <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.45)", fontStyle: "italic", lineHeight: 1.75, margin: 0 }}>
+            All six compliance domains. Five verification checkpoints. One Station Custodian reviewing your actual documents — not your plan.
+          </p>
+        </div>
+      </section>
+
+      {/* ── IS THIS YOU? ────────────────────────────────────── */}
+      <section style={{ background: dark, padding: "44px 24px 48px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "1.5rem" }}>
+            IS THIS YOU?
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "0.625rem" }}>
+            {[
+              "Your authority is active or will be within 30 days",
+              "You have 1–20 trucks and are running freight now",
+              "You are in your first 18 months of operating authority",
+              "You are concerned about the FMCSA New Entrant Safety Audit",
+              "You want systems installed — not just videos or templates to read",
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", background: "rgba(197,160,89,0.04)", border: "1px solid rgba(197,160,89,0.14)", padding: "1rem 1.125rem" }}>
+                <span style={{ color: gold, fontWeight: 700, fontSize: "0.875rem", flexShrink: 0, marginTop: "0.1rem", lineHeight: 1 }}>→</span>
+                <span style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.65 }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── HUD STATS ─────────────────────────────────────── */}
       <section style={{ background: dark, padding: "0", borderBottom: "1px solid rgba(255,255,255,.07)" }}>
         <div style={{ maxWidth: 1040, margin: "0 auto", padding: "0 24px" }}>
@@ -255,24 +297,24 @@ export default function LaunchPathStandardPage() {
       </section>
 
       {/* ── SECTION 1: What the Standard Is ─────────────── */}
-      <section style={{ background: dark, padding: "72px 24px 72px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+      <section style={{ background: dark, padding: "88px 24px 88px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "2rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: goldDim, marginBottom: "2.25rem" }}>
             POSITIONING — LP-STD-001
           </p>
-          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.5rem" }}>
+          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2rem", letterSpacing: "-0.01em" }}>
             What separates the Standard from everything else
           </h2>
-          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.85, maxWidth: 680, marginBottom: "1.5rem" }}>
+          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.95, maxWidth: 700, marginBottom: "1.75rem" }}>
             The LaunchPath Standard is a guided 90-day implementation program for new motor carriers. It installs the full compliance architecture — documentation systems, operational policies, and verified checkpoints — using the AUTO Method.
           </p>
-          <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.85, maxWidth: 680, marginBottom: "2rem" }}>
+          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.95, maxWidth: 700, marginBottom: "2.25rem" }}>
             The difference between a $499 document system and a $2,500 guided standard is not the documents. The documents are the same. The difference is five human verification checkpoints where a Station Custodian reviews your actual compliance files against FMCSA audit standards — and flags gaps before an investigator does.
             <br /><br />
             An investigator who finds the gap charges you $10,000–$25,000 to correct it under scrutiny. The Station Custodian finds it first.
           </p>
-          <div style={{ borderLeft: `3px solid rgba(197,160,89,0.35)`, paddingLeft: "1.25rem" }}>
-            <p style={{ fontSize: "0.975rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.75, fontStyle: "italic" }}>
+          <div style={{ borderLeft: `3px solid rgba(197,160,89,0.35)`, paddingLeft: "1.5rem" }}>
+            <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.85, fontStyle: "italic" }}>
               "The Standard installs the Four Pillars of the AUTO Method — Documentary, Operational, Insurance, and Financial — across six compliance domains, over 90 days, with the Station Custodian verifying each milestone."
             </p>
           </div>
@@ -280,20 +322,21 @@ export default function LaunchPathStandardPage() {
       </section>
 
       {/* ── SECTION 2: What Gets Installed ──────────────── */}
-      <section style={{ background: "#001030", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+      <section style={{ background: "#001030", padding: "88px 24px 96px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "1rem" }}>
             CURRICULUM
           </p>
-          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.5rem" }}>
+          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.75rem", letterSpacing: "-0.01em" }}>
             What Gets Installed
           </h2>
 
           <div style={{ position: "relative", paddingLeft: 16 }}>
-            <BlueprintWire height={MODULES.length * 72} />
-            <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            <BlueprintWire height={MODULES.length * 80} />
+            <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
               {MODULES.map((mod) => {
                 const badge = TYPE_BADGES[mod.type];
+                const noteItems = mod.note ? mod.note.split(/,\s*(?=[A-Z])/).filter(Boolean) : [];
                 return (
                   <div
                     key={mod.code}
@@ -301,30 +344,41 @@ export default function LaunchPathStandardPage() {
                     data-testid={`module-row-${mod.code.toLowerCase()}`}
                     style={{
                       background: card,
-                      padding: "1.25rem 1.75rem",
+                      padding: "1.5rem 2rem",
                       display: "flex",
                       alignItems: "flex-start",
-                      gap: "1.5rem",
+                      gap: "1.75rem",
                       borderLeft: "2px solid transparent",
                     }}
                   >
-                  <div style={{ flexShrink: 0, width: 48 }}>
-                    <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", color: goldDim, textTransform: "uppercase", marginBottom: "0.2rem" }}>{mod.label}</p>
-                    <p style={{ fontFamily: mono, fontSize: "0.857rem", fontWeight: 700, color: gold }}>{mod.code}</p>
+                  <div style={{ flexShrink: 0, width: 52 }}>
+                    <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", color: goldDim, textTransform: "uppercase", marginBottom: "0.25rem" }}>{mod.label}</p>
+                    <p style={{ fontFamily: mono, fontSize: "0.9375rem", fontWeight: 700, color: gold }}>{mod.code}</p>
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.375rem" }}>
-                      <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.1rem", color: "#FFFFFF", margin: 0 }}>{mod.title}</p>
-                      <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: badge.color, background: badge.bg, padding: "0.2rem 0.6rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", flexWrap: "wrap", marginBottom: "0.5rem" }}>
+                      <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.125rem", color: "#FFFFFF", margin: 0, letterSpacing: "-0.01em" }}>{mod.title}</p>
+                      <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: badge.color, background: badge.bg, padding: "0.225rem 0.625rem" }}>
                         {badge.label}
                       </span>
                     </div>
                     {mod.plain && (
-                      <p style={{ fontFamily: body, fontWeight: 600, fontSize: "0.875rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.6, margin: "0 0 0.3rem" }}>{mod.plain}</p>
+                      <p style={{ fontFamily: body, fontWeight: 600, fontSize: "0.9375rem", color: "rgba(255,255,255,0.88)", lineHeight: 1.65, margin: "0 0 0.5rem" }}>{mod.plain}</p>
                     )}
-                    <p style={{ fontFamily: body, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, fontStyle: "italic" }}>{mod.note}</p>
+                    {noteItems.length > 1 ? (
+                      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", gap: "0.3rem 1.25rem" }}>
+                        {noteItems.map((item, idx) => (
+                          <li key={idx} style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+                            <span style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(197,160,89,0.5)", flexShrink: 0, display: "inline-block" }} />
+                            <span style={{ fontFamily: body, fontSize: "0.8125rem", color: "rgba(255,255,255,0.48)", lineHeight: 1.6 }}>{item.trim()}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p style={{ fontFamily: body, fontSize: "0.8125rem", color: "rgba(255,255,255,0.48)", lineHeight: 1.65, margin: 0, fontStyle: "italic" }}>{mod.note}</p>
+                    )}
                     {mod.badge && (
-                      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.08)", display: "inline-block", padding: "0.2rem 0.6rem", marginTop: "0.5rem" }}>
+                      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.08)", display: "inline-block", padding: "0.225rem 0.625rem", marginTop: "0.625rem" }}>
                         ★ {mod.badge}
                       </p>
                     )}
@@ -338,29 +392,29 @@ export default function LaunchPathStandardPage() {
       </section>
 
       {/* ── SECTION 3: What Vince Does ───────────────────── */}
-      <section style={{ background: "#000c1e", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+      <section style={{ background: "#000c1e", padding: "88px 24px 96px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "1rem" }}>
             STATION CUSTODIAN — LP-VNL
           </p>
-          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1rem" }}>
+          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "1.25rem", letterSpacing: "-0.01em" }}>
             The Five Verification Checkpoints
           </h2>
-          <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 620, marginBottom: "3rem" }}>
+          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.9, maxWidth: 640, marginBottom: "3.25rem" }}>
             The difference between the $499 Document System and the $2,500 Guided Standard is these five structured reviews. Not coaching calls. Not check-ins. Documented compliance verification — your actual files reviewed against FMCSA audit criteria.
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
             {MILESTONES.map((m, i) => (
               <div
                 key={m.num}
                 className="milestone-row"
                 data-testid={`milestone-${m.num}`}
-                style={{ background: card, padding: "1.75rem 2rem", borderLeft: `3px solid ${i < 4 ? "rgba(197,160,89,0.35)" : gold}` }}
+                style={{ background: card, padding: "2rem 2.25rem", borderLeft: `3px solid ${i < 4 ? "rgba(197,160,89,0.35)" : gold}` }}
               >
-                <div style={{ display: "flex", alignItems: "flex-start", gap: "1.5rem", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "1.75rem", flexWrap: "wrap" }}>
                   <div style={{ flexShrink: 0 }}>
-                    <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.2rem" }}>{m.week}</p>
+                    <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.16em", textTransform: "uppercase", color: goldDim, marginBottom: "0.3rem" }}>{m.week}</p>
                     <div style={{ position: "relative", width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <svg width="36" height="36" style={{ position: "absolute", top: 0, left: 0, opacity: 0.6 }}>
                         <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(197,160,89,0.15)" strokeWidth="1.5" />
@@ -375,13 +429,13 @@ export default function LaunchPathStandardPage() {
                     </div>
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.5rem" }}>
-                      <h3 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.15rem", color: "#FFFFFF", margin: 0 }}>{m.title}</h3>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", flexWrap: "wrap", marginBottom: "0.625rem" }}>
+                      <h3 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.1875rem", color: "#FFFFFF", margin: 0, letterSpacing: "-0.01em" }}>{m.title}</h3>
                       {m.badge && (
-                        <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.1)", padding: "0.2rem 0.6rem" }}>{m.badge}</span>
+                        <span style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.1)", padding: "0.225rem 0.625rem" }}>{m.badge}</span>
                       )}
                     </div>
-                    <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, margin: 0 }}>{m.desc}</p>
+                    <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.8, margin: 0 }}>{m.desc}</p>
                   </div>
                 </div>
               </div>
@@ -391,18 +445,18 @@ export default function LaunchPathStandardPage() {
       </section>
 
       {/* ── SECTION 4: Who It's For ──────────────────────── */}
-      <section style={{ background: "#001A33", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+      <section style={{ background: "#001A33", padding: "88px 24px 96px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
         <div style={{ maxWidth: 940, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "1rem" }}>
             LP-QFY-001 | OPERATOR QUALIFICATION FILTER
           </p>
-          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.5rem" }}>
+          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.75rem", letterSpacing: "-0.01em" }}>
             Who This Is For
           </h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "rgba(255,255,255,0.05)" }} className="qualifier-grid">
-            <div style={{ background: card, borderTop: `3px solid ${gold}`, padding: "2rem 2rem 2.5rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.5rem" }}>FOR YOU</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", background: "rgba(255,255,255,0.05)" }} className="qualifier-grid">
+            <div style={{ background: card, borderTop: `3px solid ${gold}`, padding: "2.25rem 2.25rem 2.75rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: gold, marginBottom: "1.75rem" }}>FOR YOU</p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {[
                   "Your authority is active and the 90-day clock is running",
@@ -410,15 +464,15 @@ export default function LaunchPathStandardPage() {
                   "You are willing to submit documentation for coach verification",
                   "You treat compliance as operational infrastructure, not administrative overhead",
                 ].map((item, i) => (
-                  <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", marginBottom: "0.875rem" }}>
-                    <span style={{ color: gold, flexShrink: 0, marginTop: "0.15rem", fontSize: "0.7rem" }}>→</span>
-                    <span style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.80)", lineHeight: 1.65 }}>{item}</span>
+                  <li key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "1rem" }}>
+                    <span style={{ color: gold, flexShrink: 0, marginTop: "0.2rem", fontSize: "0.8rem" }}>→</span>
+                    <span style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.84)", lineHeight: 1.7 }}>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div style={{ background: "#0a0e18", borderTop: `3px solid rgba(248,113,113,0.4)`, padding: "2rem 2rem 2.5rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(248,113,113,0.7)", marginBottom: "1.5rem" }}>NOT FOR YOU</p>
+            <div style={{ background: "#0a0e18", borderTop: `3px solid rgba(248,113,113,0.4)`, padding: "2.25rem 2.25rem 2.75rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(248,113,113,0.7)", marginBottom: "1.75rem" }}>NOT FOR YOU</p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {[
                   "You do not yet have operating authority and are not actively pursuing it",
@@ -426,9 +480,9 @@ export default function LaunchPathStandardPage() {
                   "You are unwilling to submit compliance documentation for review",
                   "You are already under a satisfactory rating and have no gap in your systems",
                 ].map((item, i) => (
-                  <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", marginBottom: "0.875rem" }}>
-                    <span style={{ color: "rgba(248,113,113,0.65)", flexShrink: 0, marginTop: "0.15rem", fontSize: "0.7rem" }}>✕</span>
-                    <span style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{item}</span>
+                  <li key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: "1rem" }}>
+                    <span style={{ color: "rgba(248,113,113,0.65)", flexShrink: 0, marginTop: "0.2rem", fontSize: "0.8rem" }}>✕</span>
+                    <span style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.58)", lineHeight: 1.7 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -438,36 +492,37 @@ export default function LaunchPathStandardPage() {
       </section>
 
       {/* ── SECTION 5: The Comparison ────────────────────── */}
-      <section style={{ background: dark, padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "0.75rem" }}>
+      <section style={{ background: dark, padding: "88px 24px 96px", borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+        <div style={{ maxWidth: 880, margin: "0 auto" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: goldDim, marginBottom: "1rem" }}>
             OPTION COMPARISON
           </p>
-          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.5rem" }}>
+          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "2.75rem", letterSpacing: "-0.01em" }}>
             Bundle vs. Standard
           </h2>
 
-          <div style={{ border: "1px solid rgba(255,255,255,0.08)", overflow: "hidden" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 180px 180px", background: "#0a1220" }}>
-              <div style={{ padding: "1rem 1.5rem" }} />
-              <div style={{ padding: "1rem 1rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
-                <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "0.25rem" }}>DOCUMENT SYSTEM</p>
-                <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.25rem", color: "rgba(255,255,255,0.75)" }}>$499</p>
+          <div style={{ border: "1px solid rgba(255,255,255,0.1)", overflow: "hidden" }}>
+            {/* Column headers */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 200px 200px", background: "#0a1220" }}>
+              <div style={{ padding: "1.25rem 1.75rem" }} />
+              <div style={{ padding: "1.25rem 1.25rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.08)" }}>
+                <p style={{ fontFamily: mono, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "0.375rem" }}>DOCUMENT SYSTEM</p>
+                <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.375rem", color: "rgba(255,255,255,0.8)" }}>$499</p>
               </div>
-              <div style={{ padding: "1rem 1rem", textAlign: "center", borderLeft: `1px solid rgba(197,160,89,0.25)`, background: "rgba(197,160,89,0.05)" }}>
-                <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: goldDim, marginBottom: "0.25rem" }}>GUIDED STANDARD</p>
-                <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.25rem", color: gold }}>$2,500</p>
+              <div style={{ padding: "1.25rem 1.25rem", textAlign: "center", borderLeft: `1px solid rgba(197,160,89,0.3)`, background: "rgba(197,160,89,0.06)" }}>
+                <p style={{ fontFamily: mono, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: goldDim, marginBottom: "0.375rem" }}>GUIDED STANDARD</p>
+                <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.375rem", color: gold }}>$2,500</p>
               </div>
             </div>
             {COMPARE_ROWS.map((row, i) => (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 180px 180px", background: i % 2 === 0 ? card : "#0a1220", borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-                <div style={{ padding: "0.875rem 1.5rem" }}>
-                  <p style={{ fontSize: "var(--text-sm)", color: row.guided && !row.diy ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.60)", lineHeight: 1.4, margin: 0 }}>{row.feature}</p>
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 200px 200px", background: i % 2 === 0 ? card : "#0a1220", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div style={{ padding: "1.0625rem 1.75rem" }}>
+                  <p style={{ fontSize: "0.9375rem", color: row.guided && !row.diy ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.62)", lineHeight: 1.5, margin: 0 }}>{row.feature}</p>
                 </div>
-                <div style={{ padding: "0.875rem 1rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.04)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ padding: "1.0625rem 1.25rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Check yes={row.diy} />
                 </div>
-                <div style={{ padding: "0.875rem 1rem", textAlign: "center", borderLeft: `1px solid rgba(197,160,89,0.12)`, background: "rgba(197,160,89,0.03)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ padding: "1.0625rem 1.25rem", textAlign: "center", borderLeft: `1px solid rgba(197,160,89,0.14)`, background: "rgba(197,160,89,0.04)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Check yes={row.guided} />
                 </div>
               </div>
@@ -477,10 +532,10 @@ export default function LaunchPathStandardPage() {
       </section>
 
       {/* ── SECTION 6: FAQ ───────────────────────────────── */}
-      <section style={{ background: "#001030", padding: "72px 24px 80px", borderBottom: `1px solid rgba(255,255,255,.07)` }}>
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <p style={{ fontFamily: mono, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: goldDim, marginBottom: ".75rem" }}>QUESTIONS</p>
-          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem,3.5vw,2.5rem)", color: "#FFF", lineHeight: 1.1, marginBottom: "2.5rem" }}>Common Questions</h2>
+      <section style={{ background: "#001030", padding: "88px 24px 96px", borderBottom: `1px solid rgba(255,255,255,.07)` }}>
+        <div style={{ maxWidth: 740, margin: "0 auto" }}>
+          <p style={{ fontFamily: mono, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: goldDim, marginBottom: "1rem" }}>QUESTIONS</p>
+          <h2 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem,3.5vw,2.5rem)", color: "#FFF", lineHeight: 1.1, marginBottom: "2.75rem", letterSpacing: "-0.01em" }}>Common Questions</h2>
           <div>
             {[
               { q: "What is the difference between the $499 bundle and the $2,500 Standard?", a: "The bundle gives you the documents. The Standard installs the system. The documents are identical. What you're paying for in the Standard is five structured verification checkpoints where the Station Custodian reviews your actual compliance files — not your plan to build them." },
@@ -492,12 +547,12 @@ export default function LaunchPathStandardPage() {
             ].map((faq, i) => (
               <div key={i} className="std-faq-row">
                 <button className="std-faq-btn" data-testid={`std-faq-${i}`} onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  style={{ color: openFaq === i ? gold : "rgba(255,255,255,.85)" }}>
+                  style={{ color: openFaq === i ? gold : "rgba(255,255,255,.88)", fontSize: "1rem", fontWeight: 600 }}>
                   <span>{faq.q}</span>
-                  <span style={{ color: gold, fontSize: "1.25rem", flexShrink: 0, lineHeight: 1, transform: openFaq === i ? "rotate(45deg)" : "none", transition: "transform 0.2s" }}>+</span>
+                  <span style={{ color: gold, fontSize: "1.375rem", flexShrink: 0, lineHeight: 1, transform: openFaq === i ? "rotate(45deg)" : "none", transition: "transform 0.2s" }}>+</span>
                 </button>
                 {openFaq === i && (
-                  <p style={{ fontSize: ".9rem", color: "rgba(255,255,255,.6)", lineHeight: 1.8, paddingBottom: "1.25rem", margin: 0 }}>{faq.a}</p>
+                  <p style={{ fontSize: ".9375rem", color: "rgba(255,255,255,.65)", lineHeight: 1.9, paddingBottom: "1.5rem", margin: 0 }}>{faq.a}</p>
                 )}
               </div>
             ))}

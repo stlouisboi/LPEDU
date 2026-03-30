@@ -39,11 +39,11 @@ export default function WhatIsIncludedSection() {
   return section(
     <>
       <SectionLabel>LP-STD-001 · DELIVERABLES · FULL SYSTEM INVENTORY</SectionLabel>
-      <h2 className="section-headline" style={{ ...display, fontSize: 48, color: T.white, lineHeight: 1.15, maxWidth: 680, marginBottom: 16 }}>
+      <h2 className="section-headline" style={{ ...display, fontSize: 48, fontWeight: 800, color: T.white, lineHeight: 1.1, maxWidth: 680, marginBottom: 20 }}>
         Everything That Gets<br />
         <span style={{ color: T.goldText }}>Installed in 90 Days.</span>
       </h2>
-      <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7, maxWidth: 600, marginBottom: 56 }}>
+      <p style={{ ...serif, fontSize: 18, color: T.mist, lineHeight: 1.8, maxWidth: 620, marginBottom: 64 }}>
         This is not a list of videos to watch.
         This is the infrastructure that gets built, verified, and documented in your operation.
       </p>
@@ -54,11 +54,11 @@ export default function WhatIsIncludedSection() {
             flex: "1 1 calc(50% - 1px)", minWidth: 280,
             background: b.highlight ? `linear-gradient(135deg, ${T.navyCard}, #1A2540)` : T.navyCard,
             border: `1px solid ${b.highlight ? T.gold : T.navyBorder}`,
-            padding: "28px",
+            padding: "32px",
           }}>
-            <p style={{ ...mono, fontSize: 10, color: T.goldText, letterSpacing: "0.14em", marginBottom: 8 }}>{b.code}</p>
-            <p style={{ ...mono, fontSize: 11, color: T.white, letterSpacing: "0.08em", marginBottom: 14, fontWeight: 600 }}>{b.title}</p>
-            <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7, marginBottom: 16 }}>{b.body}</p>
+            <p style={{ ...mono, fontSize: 11, color: T.goldText, letterSpacing: "0.14em", marginBottom: 8 }}>{b.code}</p>
+            <p style={{ ...mono, fontSize: 12, color: T.white, letterSpacing: "0.08em", marginBottom: 16, fontWeight: 600 }}>{b.title}</p>
+            <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.8, marginBottom: 20 }}>{b.body}</p>
             {b.items.map((item, j) => (
               <CheckItem key={j} accent={b.highlight ? T.gold : T.goldDim}>{item}</CheckItem>
             ))}
@@ -66,20 +66,20 @@ export default function WhatIsIncludedSection() {
         ))}
       </div>
 
-      <div style={{ background: T.navyCard, border: `1px solid ${T.navyBorder}`, padding: "40px", marginTop: 2, textAlign: "center" }}>
-        <p style={{ ...mono, fontSize: 11, color: T.gold, letterSpacing: "0.14em", marginBottom: 20 }}>THE REAL COST COMPARISON</p>
-        <p style={{ ...serif, fontSize: 15, color: T.mist, lineHeight: 1.8, maxWidth: 640, margin: "0 auto 16px" }}>
+      <div style={{ background: T.navyCard, border: `1px solid ${T.navyBorder}`, padding: "48px", marginTop: 2, textAlign: "center" }}>
+        <p style={{ ...mono, fontSize: 11, color: T.gold, letterSpacing: "0.14em", marginBottom: 24 }}>THE REAL COST COMPARISON</p>
+        <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.85, maxWidth: 640, margin: "0 auto 18px" }}>
           Compliance consultant — $300–$500/hr. Five verification checkpoints at consultant rates — $1,500–$2,500 alone.
         </p>
-        <p style={{ ...serif, fontSize: 16, color: T.white, lineHeight: 1.8, maxWidth: 640, margin: "0 auto 16px" }}>
+        <p style={{ ...serif, fontSize: 18, color: T.white, lineHeight: 1.85, maxWidth: 640, margin: "0 auto 18px" }}>
           The LaunchPath Standard delivers the full curriculum, all five document packets,
           five human verification checkpoints, the pre-audit simulation, the Operator Portal,
           and the Verified Registry ID —
         </p>
-        <p style={{ ...display, fontSize: 24, color: T.goldText, fontWeight: 700, marginBottom: 8 }}>for $2,500.</p>
-        <p style={{ ...serif, fontSize: 15, color: T.fog }}>Or $3,000 phased over 45 days.</p>
+        <p style={{ ...display, fontSize: 26, color: T.goldText, fontWeight: 700, marginBottom: 10 }}>for $2,500.</p>
+        <p style={{ ...serif, fontSize: 16, color: T.fog }}>Or $3,000 phased over 45 days.</p>
         <GoldDivider />
-        <p style={{ ...display, fontSize: 20, color: T.white, fontWeight: 700 }}>One audit failure costs more than either.</p>
+        <p style={{ ...display, fontSize: 22, color: T.white, fontWeight: 700 }}>One audit failure costs more than either.</p>
       </div>
     </>,
     T.navy

@@ -50,11 +50,11 @@ function Hero({ scrollToAdmission, seatsRemaining }) {
         <div className="fade-up">
           <SectionLabel>LP-STD-001 · COHORT ENROLLMENT · 12 CARRIERS MAXIMUM</SectionLabel>
         </div>
-        <h1 className="hero-headline fade-up-2" style={{ ...display, fontSize: 64, fontWeight: 900, color: T.white, lineHeight: 1.1, maxWidth: 800, marginBottom: 28 }}>
+        <h1 className="hero-headline fade-up-2" style={{ ...display, fontSize: 64, fontWeight: 900, color: T.white, lineHeight: 1.1, maxWidth: 800, marginBottom: 32 }}>
           Your Authority Is Active.<br />
           <span style={{ color: T.goldText }}>The Audit Window<br />Is Already Open.</span>
         </h1>
-        <p className="fade-up-3" style={{ ...serif, fontSize: 19, color: T.mist, lineHeight: 1.7, maxWidth: 640, marginBottom: 40 }}>
+        <p className="fade-up-3" style={{ ...serif, fontSize: 20, fontWeight: 400, color: T.mist, lineHeight: 1.8, maxWidth: 640, marginBottom: 40 }}>
           Between Month 9 and Month 18, FMCSA shows up.
           They don't check your driving. They check your paperwork.
           The LaunchPath Standard installs the compliance infrastructure
@@ -156,6 +156,45 @@ export default function LaunchPathSalesPage() {
       <Nav scrollToAdmission={scrollToAdmission} />
       <Hero scrollToAdmission={scrollToAdmission} seatsRemaining={seatsRemaining} />
       <SectionDivider line="The audit does not announce itself until it is already scheduled." />
+
+      {/* ── SUMMARY BENEFIT ─────────────────────────────────── */}
+      <section style={{ background: "#0D1828", borderBottom: `1px solid ${T.navyBorder}` }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "56px clamp(20px, 5vw, 48px)" }}>
+          <p style={{ ...mono, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: T.goldText, marginBottom: 20 }}>
+            WHAT YOU WALK AWAY WITH — 90 DAYS
+          </p>
+          <p style={{ ...serif, fontSize: 19, fontWeight: 400, color: "rgba(245,242,236,0.88)", lineHeight: 1.9, maxWidth: 820, marginBottom: 16 }}>
+            In 90 days, you will have: <strong style={{ color: T.white, fontWeight: 600 }}>complete DQ files</strong> for every driver, an active <strong style={{ color: T.white, fontWeight: 600 }}>FMCSA-compliant Drug &amp; Alcohol program</strong>, a documented <strong style={{ color: T.white, fontWeight: 600 }}>Preventive Maintenance system</strong>, verified Hours of Service records, insurance filings confirmed on FMCSA's system, and a <strong style={{ color: T.goldText, fontWeight: 600 }}>Verified Registry ID</strong> proving the work was done.
+          </p>
+          <p style={{ ...serif, fontSize: 15, color: T.fog, fontStyle: "italic", lineHeight: 1.75, margin: 0 }}>
+            All six compliance domains. Five human verification checkpoints. One Station Custodian reviewing your actual documents — not your plan.
+          </p>
+        </div>
+      </section>
+
+      {/* ── IS THIS YOU? ────────────────────────────────────── */}
+      <section style={{ background: T.navy, borderBottom: `1px solid ${T.navyBorder}` }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "56px clamp(20px, 5vw, 48px) 60px" }}>
+          <p style={{ ...mono, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: T.goldText, marginBottom: 24 }}>
+            OPERATOR PROFILE — IS THIS YOU?
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 6 }}>
+            {[
+              "Your authority is active or will be within 30 days",
+              "You have 1–20 trucks and are running freight now",
+              "You are in your first 18 months of operating authority",
+              "You are concerned about the FMCSA New Entrant Safety Audit",
+              "You want systems installed — not just videos or templates to read",
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", background: T.navyCard, border: `1px solid ${T.navyBorder}`, padding: "16px 18px" }}>
+                <span style={{ color: T.gold, fontWeight: 700, fontSize: 13, flexShrink: 0, marginTop: 2 }}>→</span>
+                <span style={{ ...serif, fontSize: 16, color: "rgba(245,242,236,0.84)", lineHeight: 1.65 }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <ProblemSection />
       <SectionDivider line="Failure here is structural, not personal." />
       <HowItWorksSection handleAuthorize={handleAuthorize} checkoutLoading={checkoutLoading} />

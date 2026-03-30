@@ -13,6 +13,6 @@ export const T = {
   green:     "#2A5C3F",
 };
 
-export const mono    = { fontFamily: "'IBM Plex Mono', monospace" };
-export const serif   = { fontFamily: "'Source Serif 4', Georgia, serif" };
-export const display = { fontFamily: "'Playfair Display', Georgia, serif" };
+export const mono    = { fontFamily: "'IBM Plex Mono', 'JetBrains Mono', monospace" };
+export const serif   = { fontFamily: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" };
+export const display = { fontFamily: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" };
