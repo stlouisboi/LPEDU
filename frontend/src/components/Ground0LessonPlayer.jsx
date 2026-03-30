@@ -417,7 +417,7 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
   const handleGoogleLogin = () => {
     // Save progress before redirecting so we can restore it on return
     saveLocal({ view, lessonIndex, completedLessons, finalDecision });
-    window.location.href = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(window.location.origin + "/portal")}`;
+    window.location.href = `${process.env.REACT_APP_AUTH_URL}/?redirect=${encodeURIComponent(window.location.origin + "/portal")}`;
   };
 
   const pad = isEmbedded ? "0" : "80px 0 0";
