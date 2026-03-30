@@ -79,6 +79,88 @@ async def _send_followup_emails():
     logger.info(f"7-day followup worker: {sent_count} emails sent out of {len(candidates)} candidates.")
 
 
+async def _send_monthly_audit_reminders():
+    """Remind enrolled carriers to run their monthly audit check if they haven't in 30 days."""
+    now = datetime.now(timezone.utc)
+    thirty_days_ago = now - timedelta(days=30)
+
+    enrolled = await db.user_access.find(
+        {"has_access": True, "access_level": "cohort"},
+        {"_id": 0},
+    ).to_list(200)
+
+    sent_count = 0
+    for record in enrolled:
+        user_id = record.get("user_id")
+        if not user_id:
+            continue
+
+        # Skip if we sent a reminder in the last 30 days
+        last_sent = record.get("monthly_audit_reminder_sent_at")
+        if last_sent:
+            try:
+                last_dt = datetime.fromisoformat(last_sent)
+                if last_dt > thirty_days_ago:
+                    continue
+            except Exception:
+                pass
+
+        # Skip if they already submitted a check this month
+        latest_check = await db.monthly_checks.find_one(
+            {"userId": user_id, "submittedAt": {"$gte": thirty_days_ago.isoformat()}},
+            {"_id": 0, "submittedAt": 1},
+        )
+        if latest_check:
+            continue
+
+        user = await db.users.find_one({"user_id": user_id}, {"_id": 0})
+        if not user or not user.get("email"):
+            continue
+
+        first_name = (user.get("name") or "Operator").split()[0]
+        email = user["email"]
+        month_label = now.strftime("%B")
+
+        html = (
+            f'<!DOCTYPE html><html><body style="margin:0;padding:0;background:#000f1f;">'
+            f'<div style="max-width:600px;margin:0 auto;font-family:\'Inter\',sans-serif;background:#000f1f;color:#f4f7fb;">'
+            f'<div style="border-bottom:1px solid rgba(197,160,89,0.2);padding:28px 32px 20px;">'
+            f'<p style="font-family:monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(197,160,89,0.6);margin:0 0 4px;">LaunchPath Transportation EDU</p>'
+            f'<p style="font-family:monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:0;">{month_label} Audit Readiness — Monthly Reminder</p>'
+            f'</div>'
+            f'<div style="padding:32px;">'
+            f'<p style="font-size:16px;color:rgba(255,255,255,0.88);line-height:1.7;margin:0 0 6px;">{first_name},</p>'
+            f'<p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.75;margin:0 0 28px;">'
+            f'Your {month_label} Audit Readiness Check hasn\'t been submitted yet. '
+            f'Running your check takes under 5 minutes and keeps your compliance posture current before FMCSA does it for you.</p>'
+            f'<div style="border:1px solid rgba(197,160,89,0.18);border-left:3px solid rgba(197,160,89,0.55);padding:20px 24px;margin:0 0 28px;">'
+            f'<p style="font-family:monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(197,160,89,0.7);margin:0 0 12px;">WHY THIS MATTERS</p>'
+            f'<p style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.75;margin:0 0 8px;">— New Entrant audit window is active. Each month you skip is a month with blind spots.</p>'
+            f'<p style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.75;margin:0 0 8px;">— FMCSA does not warn you before scheduling. Your check is your early warning system.</p>'
+            f'<p style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.75;margin:0;">— 5 minutes now prevents 87+ days of remediation later.</p>'
+            f'</div>'
+            f'<a href="{FRONTEND_URL}/portal" style="display:inline-block;background:#C5A059;color:#002244;font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:16px 32px;text-decoration:none;">Run {month_label} Check →</a>'
+            f'<div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;margin-top:32px;">'
+            f'<p style="font-size:14px;color:rgba(255,255,255,0.75);margin:0 0 4px;">— Vince Lawrence</p>'
+            f'<p style="font-size:12px;color:rgba(255,255,255,0.35);margin:0;">Station Custodian, LP-VNL<br>LaunchPath Transportation EDU</p>'
+            f'</div></div>'
+            f'<div style="background:rgba(0,0,0,0.3);border-top:1px solid rgba(255,255,255,0.05);padding:16px 32px;">'
+            f'<p style="font-size:10px;color:rgba(255,255,255,0.2);font-family:monospace;letter-spacing:0.05em;margin:0;">'
+            f'LP-STD-001 · You are receiving this because you are enrolled in the LaunchPath Standard cohort.</p>'
+            f'</div></div></body></html>'
+        )
+
+        await send_mailersend_email(email, first_name, f"{month_label} Audit Readiness Check — Due This Month", html)
+        await db.user_access.update_one(
+            {"user_id": user_id},
+            {"$set": {"monthly_audit_reminder_sent_at": now.isoformat()}},
+        )
+        sent_count += 1
+        logger.info(f"Monthly audit reminder sent to {user_id}")
+
+    logger.info(f"Monthly audit reminder worker: {sent_count} reminders sent.")
+
+
 async def followup_email_worker():
     """Background worker — runs once daily."""
     await asyncio.sleep(3600)
@@ -86,6 +168,7 @@ async def followup_email_worker():
         try:
             await _send_onboarding_checkin_emails()
             await _send_followup_emails()
+            await _send_monthly_audit_reminders()
         except Exception as e:
             logger.error(f"Followup email worker error: {e}")
         await asyncio.sleep(86400)

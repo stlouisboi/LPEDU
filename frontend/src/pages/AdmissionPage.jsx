@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
@@ -30,7 +30,15 @@ export default function AdmissionPage() {
   const [admissionId, setAdmissionId] = useState(null);
   const [state, setState] = useState("idle"); // idle | loading | success | checkout | error
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [seats, setSeats] = useState(null); // { remaining, total, taken }
   const API = process.env.REACT_APP_BACKEND_URL;
+
+  useEffect(() => {
+    fetch(`${API}/api/cohort-seats`)
+      .then((r) => r.json())
+      .then(setSeats)
+      .catch(() => {});
+  }, [API]);
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -233,6 +241,33 @@ export default function AdmissionPage() {
             fontWeight: 700, fontSize: "1.375rem",
             color: "#C5A059", lineHeight: 1.2, marginBottom: "0.875rem",
           }}>$2,500 &nbsp;·&nbsp; 12 carriers maximum &nbsp;·&nbsp; Reviewed individually</p>
+
+          {/* Live seats counter */}
+          {seats && (
+            <div data-testid="seats-remaining-counter" style={{
+              display: "inline-flex", alignItems: "center", gap: "0.5rem",
+              background: seats.remaining <= 3 ? "rgba(239,68,68,0.10)" : "rgba(197,160,89,0.08)",
+              border: `1px solid ${seats.remaining <= 3 ? "rgba(239,68,68,0.35)" : "rgba(197,160,89,0.25)"}`,
+              padding: "0.375rem 0.75rem",
+              marginBottom: "0.875rem",
+            }}>
+              <span style={{
+                width: 7, height: 7, borderRadius: "50%",
+                background: seats.remaining <= 3 ? "#ef4444" : "#C5A059",
+                display: "inline-block", flexShrink: 0,
+                boxShadow: seats.remaining <= 3 ? "0 0 6px rgba(239,68,68,0.6)" : "0 0 6px rgba(197,160,89,0.5)",
+              }} />
+              <span style={{
+                fontFamily: "'JetBrains Mono', monospace", fontSize: "0.714rem",
+                fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+                color: seats.remaining <= 3 ? "#fca5a5" : "rgba(197,160,89,0.85)",
+              }}>
+                {seats.remaining === 0
+                  ? "Cohort full — join waitlist"
+                  : `${seats.remaining} of ${seats.total} seats remaining`}
+              </span>
+            </div>
+          )}
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.938rem",

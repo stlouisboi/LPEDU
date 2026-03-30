@@ -27,6 +27,11 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 38: Seats Counter + E2E Test + Monthly Cron (Mar 2026)
+- Added live "X of 12 seats remaining" counter on AdmissionPage (fetches /api/cohort-seats, gold/red urgency indicator)
+- E2E pipeline verified: checkout URL → simulate-cohort-payment → DB record (taken=4) → MailerSend + MailerLite pipeline confirmed ✅
+- Added `_send_monthly_audit_reminders()` to workers.py: runs daily, finds enrolled carriers with no check in 30 days, sends branded reminder email, tracks `monthly_audit_reminder_sent_at`
+
 ### Phase 37: Stripe Fix + Hero Restore + Cohort Count (Mar 2026)
 - Fixed Stripe 502 Bad Gateway on all 3 checkout endpoints (`products.py`, `payments.py`, `portal.py`): reverted `automatic_payment_methods` → `payment_method_types=["card"]`, added proper `StripeCheckout(...)` proxy initialization in `payments.py` and `portal.py`
 - Restored HeroSection.jsx: original background image (`gt9pdg9a_hero-letter-dashboard.png`), original layout order (body copy + checklist → stats box), full two-paragraph sub-headline
