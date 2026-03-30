@@ -2,6 +2,7 @@
 // Named exports retained for pages that import them
 export const BOOK_PRODUCTS = [];
 export const BookInfoPanel = () => null;
-export default function BookMockup3D() {
+export function BookMockup3D() {
   return null;
 }
+export default BookMockup3D;

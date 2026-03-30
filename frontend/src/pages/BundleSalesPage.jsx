@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
+import useSEO from "../hooks/useSEO";
 
 const API   = process.env.REACT_APP_BACKEND_URL;
 const GOLD  = "#d4900a";
