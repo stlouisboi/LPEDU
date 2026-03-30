@@ -101,7 +101,7 @@ export default function AboutPage() {
               color: "var(--text-muted)",
               lineHeight: 1.85,
               maxWidth: 520,
-              marginBottom: "1.5rem",
+              marginBottom: "1.25rem",
               animation: "heroEnter 0.65s ease both",
               animationDelay: "0.2s",
             }}>
@@ -110,16 +110,29 @@ export default function AboutPage() {
             </p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.12rem",
+              fontSize: "1.05rem",
+              color: "var(--text-subtle)",
+              lineHeight: 1.8,
+              maxWidth: 520,
+              marginBottom: "1.25rem",
+              animation: "heroEnter 0.65s ease both",
+              animationDelay: "0.25s",
+            }}>
+              That means a defined set of documents, checkpoints, and behaviors every accepted
+              carrier installs — not videos to watch when there's time.
+            </p>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.05rem",
               color: "var(--text-subtle)",
               lineHeight: 1.8,
               maxWidth: 520,
               animation: "heroEnter 0.65s ease both",
               animationDelay: "0.3s",
             }}>
-              The Standard exists to prevent terminal failure from authority revocation,
-              insurance lapse, and running out of money while fixed costs keep running.
-              It requires the right paperwork and programs in place before you put a truck on the road.
+              LaunchPath exists to get new motor carriers through the New Entrant period with
+              authority, insurance, and cash flow intact. It requires the right paperwork and
+              programs in place before you put a truck on the road.
             </p>
           </div>
 
@@ -209,6 +222,10 @@ export default function AboutPage() {
                 the same failure pattern I had watched surface on the plant floor. Not ignorance. Not laziness.
                 The absence of a system. LaunchPath is built from that pattern recognition. The names are different.
                 The failure modes are not.
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
+                In trucking, those same missing systems show up as failed New Entrant Safety Audits, revoked authority,
+                and small carriers running out of cash while fixed costs keep burning.
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.12rem", color: "var(--text-muted)", lineHeight: 1.9 }}>
                 The Navy runs on documented procedure. Manufacturing operations at the leadership level run on system
