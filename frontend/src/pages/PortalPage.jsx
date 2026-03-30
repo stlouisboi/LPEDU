@@ -12,6 +12,7 @@ import Ground0LessonPlayer from "../components/Ground0LessonPlayer";
 import AnnouncementsFeed from "../components/AnnouncementsFeed";
 import VerifiedRegistryID from "../components/VerifiedRegistryID";
 import ModuleChecklist from "../components/ModuleChecklist";
+import AuditReadinessDashboard from "../components/AuditReadinessDashboard";
 
 const CURRICULUM = [
   { id: "ground-0", code: "GROUND 0", label: "The Wisdom Module",            locked: false, type: "foundation", typeLabel: "FREE FOUNDATION",        lessonCount: 6  },
@@ -1091,6 +1092,13 @@ export default function PortalPage() {
           )}
           {/* Deliverables — visible to all paid portal users */}
           {hasCohortAccess && <DeliverablesPortal API={process.env.REACT_APP_BACKEND_URL} />}
+
+          {/* Monthly Audit Readiness Dashboard — all logged-in users */}
+          {user && (
+            <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 2rem" }}>
+              <AuditReadinessDashboard />
+            </div>
+          )}
         </main>
       </div>
 
