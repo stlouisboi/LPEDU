@@ -217,6 +217,9 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(197,160,89,0.65)", lineHeight: 1.65, marginTop: "0.5rem" }}>
               Based on the #1 pocket guide for preventing the 16 failures that kill new carrier authority.
             </p>
+            <p style={{ fontFamily: SANS, fontSize: "0.81rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7, marginTop: "0.625rem", fontStyle: "italic" }}>
+              The full pocket guide and Safety Audit Prep Pack live in this library if you decide you want the complete systems behind the checklist.
+            </p>
           </div>
 
           {/* Form */}
@@ -399,8 +402,11 @@ export default function ComplianceLibraryPage() {
               <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.40)", fontStyle: "italic", marginBottom: "1.25rem" }}>
                 The complete document system. You install it yourself.
               </p>
-              <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+              <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.8, marginBottom: "0.875rem" }}>
                 Five domain packets, a unified folder structure, a 0–30–60–90 day implementation calendar, and a master compliance checklist — everything required to build an audit-ready operation if you know what you are doing or are prepared to learn.
+              </p>
+              <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(212,144,10,0.85)", lineHeight: 1.75, marginBottom: "1.5rem", borderLeft: "2px solid rgba(212,144,10,0.35)", paddingLeft: "0.875rem" }}>
+                Most carriers should choose the Document System Bundle, not the $699 Library — it includes the folder architecture, 0–90 day calendar, and master checklist that tell you what to do and when.
               </p>
               <div style={{ marginBottom: "1.5rem" }}>
                 <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.625rem" }}>
@@ -692,6 +698,7 @@ export default function ComplianceLibraryPage() {
               },
               {
                 title: "COMPLETE DIY LIBRARY", price: "$699", recommended: false,
+                subtitle: "Best fit for experienced safety teams who already have their own implementation process and just need the documents.",
                 rows: [
                   ["Domain compliance packets", "All 8 documents"],
                   ["Folder architecture", "—"], ["Implementation calendar", "—"],
@@ -739,6 +746,9 @@ export default function ComplianceLibraryPage() {
                   <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.10em", color: card.recommended ? GOLD : "#fff", margin: 0, lineHeight: 1.3 }}>{card.title}</p>
                   <p style={{ fontFamily: MONO, fontSize: "0.875rem", fontWeight: 700, color: card.recommended ? GOLD : "rgba(255,255,255,0.70)", margin: 0, flexShrink: 0, marginLeft: 8 }}>{card.price}</p>
                 </div>
+                {card.subtitle && (
+                  <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.65, fontStyle: "italic", marginBottom: 12 }}>{card.subtitle}</p>
+                )}
                 {card.rows.map(([label, val]) => (
                   <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: `1px solid rgba(255,255,255,0.05)` }}>
                     <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.50)" }}>{label}</span>
