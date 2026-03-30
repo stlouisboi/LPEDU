@@ -8,6 +8,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      { source: "/reach", destination: "/reach-diagnostic", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
