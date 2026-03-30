@@ -1,18 +1,31 @@
 import React, { useState, useEffect, useCallback } from "react";
+import dynamic from "next/dynamic";
 import { Lock, CheckCircle, ArrowRight, SignOut, Clock, Warning, Circle, CircleDashed } from "@phosphor-icons/react";
 import { usePathname } from 'next/navigation';
 ;
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
-import SignalMonitor from "../components/SignalMonitor";
-import TaskItem from "../components/TaskItem";
-import { VideoLessonWorkbench, MODULE_1_DATA } from "../components/VideoLessonWorkbench";
-import { ALL_MODULE_DATA } from "../data/moduleData";
-import Ground0LessonPlayer from "../components/Ground0LessonPlayer";
-import AnnouncementsFeed from "../components/AnnouncementsFeed";
-import VerifiedRegistryID from "../components/VerifiedRegistryID";
-import ModuleChecklist from "../components/ModuleChecklist";
-import AuditReadinessDashboard from "../components/AuditReadinessDashboard";
+import { ALL_MODULE_DATA, MODULE_1_DATA } from "../data/moduleData";
+
+// ── Heavy components — code-split, load only when rendered ─────────────────
+const Ground0LessonPlayer   = dynamic(() => import("../components/Ground0LessonPlayer"),   { ssr: false, loading: () => <PortalLoading /> });
+const AuditReadinessDashboard = dynamic(() => import("../components/AuditReadinessDashboard"), { ssr: false, loading: () => <PortalLoading /> });
+const VideoLessonWorkbench  = dynamic(() => import("../components/VideoLessonWorkbench").then(m => ({ default: m.VideoLessonWorkbench })), { ssr: false, loading: () => <PortalLoading /> });
+const SignalMonitor         = dynamic(() => import("../components/SignalMonitor"),          { ssr: false, loading: () => null });
+const AnnouncementsFeed     = dynamic(() => import("../components/AnnouncementsFeed"),     { ssr: false, loading: () => null });
+const VerifiedRegistryID    = dynamic(() => import("../components/VerifiedRegistryID"),    { ssr: false, loading: () => null });
+const ModuleChecklist       = dynamic(() => import("../components/ModuleChecklist"),       { ssr: false, loading: () => null });
+const TaskItem              = dynamic(() => import("../components/TaskItem"),              { ssr: false, loading: () => null });
+
+function PortalLoading() {
+  return (
+    <div style={{ padding: "3rem 0", textAlign: "center" }}>
+      <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(197,160,89,0.5)" }}>
+        Loading...
+      </p>
+    </div>
+  );
+}
 
 const CURRICULUM = [
   { id: "ground-0", code: "GROUND 0", label: "The Wisdom Module",            locked: false, type: "foundation", typeLabel: "FREE FOUNDATION",        lessonCount: 6  },

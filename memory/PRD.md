@@ -27,6 +27,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 40: Score Chart + Dynamic Imports + og:image Attempt (Mar 2026)
+- Added `ScoreTrendChart` to `AuditHistoryScreen.jsx`: recharts LineChart showing overall score (gold, 2.5px) + 6 domain lines (colored, 0.55 opacity) over time; appears when history.length ≥ 2
+- Refactored `PortalPage.jsx` with `next/dynamic` for all 7 heavy components (Ground0LessonPlayer 1744 lines, VideoLessonWorkbench 626 lines, AuditReadinessDashboard, SignalMonitor, AnnouncementsFeed, VerifiedRegistryID, ModuleChecklist, TaskItem) — all with `ssr: false` and PortalLoading fallback
+- Moved MODULE_1_DATA from VideoLessonWorkbench.jsx into moduleData.js to enable true code splitting of VideoLessonWorkbench
+- og:image: quota still exhausted (imagen-4 daily limit) — remains blocked
+
 ### Phase 39: LaunchPath Standard Sales Page Readability Overhaul (Mar 2026)
 - Switched `display`+`serif` tokens from Playfair Display/Source Serif 4 → Inter 800-900/400-500 for all headings and body (more readable for 28-54 age range on laptops)
 - Increased body font size to 16-20px, line-height to 1.8-1.9, section padding from 80px → 96px across all section components

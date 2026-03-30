@@ -1,6 +1,80 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { DOMAIN_ORDER, DOMAIN_LABELS, COLOR_STYLES, formatDate, formatMonthLabel } from "./auditConfig";
+
+const DOMAIN_COLORS = {
+  driver_qualification: "#60a5fa",
+  drug_alcohol:         "#34d399",
+  hos_eld:             "#f59e0b",
+  vehicle_maintenance: "#a78bfa",
+  insurance:           "#f87171",
+  financial:           "#94a3b8",
+};
+
+function ScoreTrendChart({ history }) {
+  if (!history || history.length < 2) return null;
+
+  const data = [...history].reverse().map((check) => {
+    const row = {
+      month: formatMonthLabel(check.checkMonth).replace(/^\w+ /, "").slice(0, 6), // "Jan '25"
+      overall: check.overallResult?.scorePercent ?? null,
+    };
+    (check.domainResults || []).forEach((dr) => {
+      row[dr.domain] = dr.scorePercent ?? null;
+    });
+    return row;
+  });
+
+  return (
+    <div data-testid="score-trend-chart" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(197,160,89,0.12)", padding: "1.25rem 1.25rem 0.5rem", marginBottom: "1.75rem" }}>
+      <p style={{ fontFamily: "monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1rem" }}>
+        COMPLIANCE SCORE TREND
+      </p>
+      <ResponsiveContainer width="100%" height={160}>
+        <LineChart data={data} margin={{ top: 4, right: 8, left: -28, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+          <XAxis
+            dataKey="month"
+            tick={{ fontFamily: "monospace", fontSize: 9, fill: "rgba(255,255,255,0.3)" }}
+            tickLine={false} axisLine={false}
+          />
+          <YAxis
+            domain={[0, 100]} tickCount={5}
+            tick={{ fontFamily: "monospace", fontSize: 9, fill: "rgba(255,255,255,0.3)" }}
+            tickLine={false} axisLine={false}
+            tickFormatter={(v) => `${v}%`}
+          />
+          <Tooltip
+            contentStyle={{ background: "#0a1220", border: "1px solid rgba(197,160,89,0.2)", fontFamily: "monospace", fontSize: 10, padding: "6px 10px" }}
+            formatter={(val, key) => [`${val ?? "—"}%`, DOMAIN_LABELS[key] || "Overall"]}
+            labelStyle={{ color: "rgba(197,160,89,0.8)", marginBottom: 4 }}
+            cursor={{ stroke: "rgba(197,160,89,0.15)" }}
+          />
+          {/* Overall score — thick gold */}
+          <Line type="monotone" dataKey="overall" stroke="#C8933F" strokeWidth={2.5} dot={{ r: 3, fill: "#C8933F", strokeWidth: 0 }} activeDot={{ r: 5 }} name="overall" connectNulls />
+          {/* Domain scores — thin colored */}
+          {DOMAIN_ORDER.map((dk) => (
+            <Line key={dk} type="monotone" dataKey={dk} stroke={DOMAIN_COLORS[dk]} strokeWidth={1} dot={false} name={dk} strokeOpacity={0.55} connectNulls />
+          ))}
+        </LineChart>
+      </ResponsiveContainer>
+      {/* Legend */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1rem", padding: "0.625rem 0 0.25rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+          <div style={{ width: 18, height: 2.5, background: "#C8933F", borderRadius: 2 }} />
+          <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.45)" }}>Overall</span>
+        </div>
+        {DOMAIN_ORDER.map((dk) => (
+          <div key={dk} style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+            <div style={{ width: 14, height: 1.5, background: DOMAIN_COLORS[dk], opacity: 0.65, borderRadius: 1 }} />
+            <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.3)" }}>{DOMAIN_LABELS[dk]}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function MiniColorDot({ color }) {
   const s = COLOR_STYLES[color] || COLOR_STYLES[null];
@@ -64,6 +138,9 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
           <ArrowLeft size={11} /> Back to Dashboard
         </button>
       </div>
+
+      {/* Score trend chart */}
+      <ScoreTrendChart history={history} />
 
       {/* History list */}
       <div>

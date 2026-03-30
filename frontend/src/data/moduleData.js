@@ -1,4 +1,33 @@
-// LP-SYS-CUR-001 — Module Data for MOD-2 through MOD-9
+// LP-SYS-CUR-001 — Module Data for MOD-1 through MOD-9
+
+export const MODULE_1_DATA = {
+  id: "module-1",
+  code: "MOD-1",
+  title: "Driver Qualification File",
+  description:
+    "Build the complete, audit-ready Driver Qualification File for every operating driver — including the owner-operator. Eight implementation units covering business foundation, federal filings, and the DQF gate. Module 2 does not unlock until the Station Custodian verifies this module complete.",
+  totalDuration: "~120 min",
+  lessonCount: 8,
+  lessons: [
+    { id: "1-1", number: "1.1", title: "Your Business Foundation", subtitle: "Entity structure, liability architecture, and what you're building before the first truck moves", duration: "~8 min", description: "Before authority is filed, the legal and financial structure of your operation determines your personal liability exposure during the most dangerous compliance window in your career. This lesson establishes what the business foundation means for a motor carrier and why getting it right before Day 1 is the single most important decision you'll make.", videoUrl: null, resources: [{ label: "Business Foundation Brief — LP-PKT-001", href: "/standards/new-entrant-packet" }] },
+    { id: "1-2", number: "1.2", title: "Business Entity Selection", subtitle: "LLC vs. S-Corp vs. Sole Proprietor — the liability architecture decision for motor carriers", duration: "~12 min", description: "Entity selection is not primarily a tax conversation for motor carriers. It is a liability architecture decision that determines your personal exposure during the most dangerous compliance window of your operation. This lesson covers the practical implications of each structure for a carrier operating inside the first 90 days of authority.", videoUrl: null, resources: [] },
+    { id: "1-3", number: "1.3", title: "Filing for DOT/MC Authority", subtitle: "Two separate federal identifiers — filing sequence, activation timeline, and confirmation", duration: "~18 min", description: "The USDOT number and MC number are distinct federal identifiers with different purposes and different activation timelines. This lesson walks through the correct filing sequence on FMCSA's Unified Registration System, what happens between filing and activation, and how to confirm authority is live in SAFER.", videoUrl: null, resources: [{ label: "Authority Filing Guide — LP-PKT-001", href: "/standards/new-entrant-packet" }] },
+    { id: "1-4", number: "1.4", title: "BOC-3 and Process Agent", subtitle: "The required filing most new carriers overlook — and what happens when it's missing", duration: "~10 min", description: "BOC-3 Process Agent designation is a mandatory FMCSA filing that most new carriers miss. Without it, authority activation can stall and compliance penalties can accrue. This lesson covers what BOC-3 requires, how to file, and how to verify it's on record.", videoUrl: null, resources: [] },
+    { id: "1-5", number: "1.5", title: "UCR and State Registrations", subtitle: "Annual compliance requirements that carry enforcement exposure when missed", duration: "~12 min", description: "Unified Carrier Registration is an annual requirement with enforcement consequences that most new carriers discover only after they're in violation. This lesson covers UCR registration, state-level requirements, and how to build these renewal obligations into your compliance calendar.", videoUrl: null, resources: [{ label: "Authority Registrations Brief", href: "/knowledge-center/authority-registrations-brief" }] },
+    { id: "1-6", number: "1.6", title: "Insurance — First Look", subtitle: "BMC-91/91X filing, authority activation, and the coverage types FMCSA requires", duration: "~15 min", description: "Operating authority cannot activate until a licensed insurer files a Form BMC-91 or BMC-91X with FMCSA directly. This lesson covers what must be filed, by whom, how to track submission, and how to confirm activation.", videoUrl: null, resources: [{ label: "Insurance & Authority Packet — LP-PKT-005", href: "/standards/insurance-packet" }] },
+    { id: "1-7", number: "1.7", title: "Driver Qualification File (GATE)", subtitle: "Building the complete, audit-ready DQF — the hard gate before Module 2", duration: "~15 min", description: "The Driver Qualification File is the single most cited deficiency in new entrant audits. Every operating driver — including the owner-operator — must have a complete, current DQF on file before a mile is driven commercially. This lesson builds the complete DQF from scratch. Completing this lesson triggers the Station Custodian review. Module 2 unlocks only after the DQF is verified audit-ready.", videoUrl: null, resources: [{ label: "DQF Build Kit — LP-PKT-003", href: "/standards/dqf-packet" }, { label: "Driver Qualification Checklist", href: "/standards/dqf-checklist" }] },
+    { id: "1-8", number: "1.8", title: "Business Banking & Chart of Accounts", subtitle: "Financial infrastructure setup — separating personal and business finances from Day 1", duration: "~10 min", description: "Commingling personal and business funds is the most common financial mistake new carriers make. It creates audit exposure, tax liability, and personal liability risk. This lesson covers business banking setup, basic chart of accounts structure, and the financial discipline required to run a compliant commercial operation.", videoUrl: null, resources: [{ label: "Financial Infrastructure Brief", href: "/knowledge-center/financial-infrastructure" }] },
+  ],
+  completionChecklist: [
+    { id: "1-cl-1", text: "USDOT number verified on FMCSA SAFER as Active status" },
+    { id: "1-cl-2", text: "MC number (Operating Authority) verified on FMCSA SAFER as Active" },
+    { id: "1-cl-3", text: "BOC-3 Process Agent filing confirmed on record in FMCSA system" },
+    { id: "1-cl-4", text: "Insurance certificate obtained and BMC-91/91X filed with FMCSA" },
+    { id: "1-cl-5", text: "SAFER screenshot showing 'Active' authority status captured and saved" },
+    { id: "1-cl-6", text: "MCS-150 biennial update current (filed within 24 months)" },
+  ],
+};
+
 // Lesson titles verified against curriculum reference. Descriptions are implementation-framed.
 // NOTE: For MOD-4 through MOD-9, lesson titles are SCAFFOLDS pending final script verification.
 
