@@ -56,7 +56,6 @@ async def create_program_checkout(data: ProgramCheckoutRequest, request: Request
                 success_url=success_url,
                 cancel_url=cancel_url,
                 metadata=metadata,
-                payment_method_types=["card"],
             )
         )
     except Exception as e:
@@ -105,7 +104,6 @@ async def create_admission_checkout(data: AdmissionCheckoutRequest, request: Req
                 success_url=success_url,
                 cancel_url=cancel_url,
                 metadata=metadata,
-                payment_method_types=["card"],
             )
         )
     except Exception as e:
