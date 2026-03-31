@@ -5,6 +5,7 @@
  */
 
 import { useState, useCallback } from "react";
+import { useRouter } from "next/router";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
@@ -179,6 +180,7 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
 function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle"); // idle | loading | done | error
+  const router = useRouter();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -190,7 +192,11 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, first_name: "" }),
       });
-      setState(r.ok ? "done" : "error");
+      if (r.ok) {
+        router.push("/resources/first-90-days-risk-map/thank-you");
+      } else {
+        setState("error");
+      }
     } catch {
       setState("error");
     }
@@ -206,79 +212,67 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
           {/* Copy */}
           <div style={{ flex: "1 1 300px" }}>
             <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: "0.5rem" }}>
-              LP-LEAD-001 | FREE RISK GUIDE
+              LP-LEAD-001 | NEW AUTHORITY?
             </p>
             <h3 style={{ fontFamily: COND, fontWeight: 800, fontSize: "1.375rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
               Get the First 90 Days Risk Map™ — Free
             </h3>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7 }}>
-              The 3 compliance phases every new motor carrier faces — and the small gaps that compound into major problems. Delivered to your inbox.
+              The 3 compliance risk phases every new motor carrier faces — and the small gaps that compound into major problems before most carriers feel ready.
             </p>
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(197,160,89,0.65)", lineHeight: 1.65, marginTop: "0.5rem" }}>
-              Understand your risk window before FMCSA opens it for you.
+              Compliance-first guidance for new owner-operators in their first 90 days of authority.
             </p>
             <p style={{ fontFamily: SANS, fontSize: "0.81rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7, marginTop: "0.625rem", fontStyle: "italic" }}>
-              The LaunchPath Standard and full compliance systems live in this library when you're ready for structured implementation.
+              The full LaunchPath Standard and Document System Bundle live in this library if you decide you want the complete implementation behind the map.
             </p>
           </div>
 
           {/* Form */}
           <div style={{ flex: "1 1 280px" }}>
-            {state === "done" ? (
-              <div
-                data-testid="email-capture-success"
-                style={{ background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.30)", borderRadius: 6, padding: "1.25rem 1.5rem" }}
-              >
-                <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", marginBottom: 4 }}>CONFIRMED</p>
-                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.65 }}>
-                  Risk Map is on its way to your inbox. Check your spam folder if you don't see it within 5 minutes.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={submit}>
-                <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: 6 }}>
-                  YOUR EMAIL ADDRESS
-                </p>
-                <div style={{ display: "flex", gap: 0 }}>
-                  <input
-                    data-testid="library-email-input"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="carrier@company.com"
-                    style={{
-                      flex: 1, background: "#001020", border: "1px solid rgba(197,160,89,0.30)",
-                      borderRight: "none", borderRadius: 0, color: "#fff",
-                      fontFamily: SANS, fontSize: "0.875rem", padding: "0.75rem 1rem",
-                      outline: "none",
-                    }}
-                  />
-                  <button
-                    data-testid="library-email-submit"
-                    type="submit"
-                    disabled={state === "loading"}
-                    style={{
-                      background: GOLD, color: "#001830", border: "none",
-                      fontFamily: SANS, fontWeight: 700, fontSize: "0.75rem",
-                      letterSpacing: "0.08em", textTransform: "uppercase",
-                      padding: "0.75rem 1.125rem", cursor: "pointer", flexShrink: 0,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {state === "loading" ? "SENDING…" : "SEND ME THE RISK MAP →"}
-                  </button>
-                </div>
-                {state === "error" && (
-                  <p style={{ fontFamily: SANS, fontSize: "0.75rem", color: "#ef4444", marginTop: 6 }}>
-                    Something went wrong. Try again.
-                  </p>
-                )}
-                <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: "0.10em", color: "rgba(255,255,255,0.20)", marginTop: 8 }}>
-                  NO SPAM. ONE EMAIL. UNSUBSCRIBE ANYTIME.
-                </p>
-              </form>
+            {state === "error" && (
+              <p style={{ fontFamily: SANS, fontSize: "0.75rem", color: "#ef4444", marginBottom: 8 }}>
+                Something went wrong. Try again.
+              </p>
             )}
+            <form onSubmit={submit}>
+              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: 6 }}>
+                YOUR EMAIL ADDRESS
+              </p>
+              <div style={{ display: "flex", gap: 0 }}>
+                <input
+                  data-testid="library-email-input"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="carrier@company.com"
+                  style={{
+                    flex: 1, background: "#001020", border: "1px solid rgba(197,160,89,0.30)",
+                    borderRight: "none", borderRadius: 0, color: "#fff",
+                    fontFamily: SANS, fontSize: "0.875rem", padding: "0.75rem 1rem",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  data-testid="library-email-submit"
+                  type="submit"
+                  disabled={state === "loading"}
+                  style={{
+                    background: GOLD, color: "#001830", border: "none",
+                    fontFamily: SANS, fontWeight: 700, fontSize: "0.75rem",
+                    letterSpacing: "0.08em", textTransform: "uppercase",
+                    padding: "0.75rem 1.125rem", cursor: "pointer", flexShrink: 0,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {state === "loading" ? "SENDING…" : "SEND ME THE RISK MAP →"}
+                </button>
+              </div>
+              <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: "0.10em", color: "rgba(255,255,255,0.20)", marginTop: 8 }}>
+                NO SPAM. ONE EMAIL. UNSUBSCRIBE ANYTIME.
+              </p>
+            </form>
           </div>
         </div>
       </div>
