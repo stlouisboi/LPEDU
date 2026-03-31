@@ -104,6 +104,11 @@ class ControlRoomCapture(BaseModel):
     failing_domains: Optional[list] = None
 
 
+class RiskMapCapture(BaseModel):
+    first_name: str
+    email: EmailStr
+
+
 # ── 7-Day Health Plan Email Builder ───────────────────────────────────────────
 _DOMAIN_ACTIONS = {
     "D&A Program": [
@@ -801,3 +806,57 @@ async def og_health_check(score: int = 0):
 </body>
 </html>"""
     return HTMLResponse(content=html)
+
+
+@router.post("/risk-map/email-capture")
+async def risk_map_email_capture(data: RiskMapCapture):
+    """Capture lead for First 90 Days Risk Map — MailerLite group + MongoDB leads."""
+    ML_BASE = "https://connect.mailerlite.com/api"
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "name": data.first_name,
+            "lead_source": "first_90_days_risk_map",
+        },
+    }
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+        if resp.status_code not in (200, 201):
+            logger.error(f"MailerLite risk-map error: {resp.text}")
+            raise HTTPException(status_code=502, detail="Could not save email. Please try again.")
+        subscriber_id = resp.json().get("data", {}).get("id")
+
+        if subscriber_id:
+            try:
+                gr = await http.post(f"{ML_BASE}/groups", headers=headers, json={"name": "First-90-Days-Risk-Map"})
+                gid = gr.json().get("data", {}).get("id")
+                if not gid:
+                    gs = await http.get(f"{ML_BASE}/groups", headers=headers, params={"filter[name]": "First-90-Days-Risk-Map"})
+                    items = gs.json().get("data", [])
+                    gid = str(items[0]["id"]) if items else None
+                if gid:
+                    await http.post(MAILERLITE_URL, headers=headers, json={
+                        "email": data.email, "status": "active", "groups": [gid],
+                    })
+            except Exception as exc:
+                logger.warning(f"Risk-map group assignment failed for {data.email}: {exc}")
+
+    now = datetime.now(timezone.utc)
+    await db.leads.update_one(
+        {"email": data.email},
+        {"$set": {
+            "first_name": data.first_name,
+            "email": data.email,
+            "source": "first-90-days-risk-map",
+            "submitted_at": now.isoformat(),
+        }},
+        upsert=True,
+    )
+    logger.info(f"Risk Map lead captured: {data.email}")
+    return {"ok": True}
