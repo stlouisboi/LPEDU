@@ -27,7 +27,15 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 41: First 90 Days Risk Map Landing Page (Mar 2026)
+### Phase 42: Ground 0 WAIT + NO-GO Email Capture (Mar 2026)
+- Added First Name field to WAIT and NO-GO capture forms (previously email-only)
+- Updated all copy to match spec: WAIT "You're Not Ready Yet — But You Don't Have To Start Over", NO-GO "You're Not Cleared to Proceed Right Now"
+- Updated GO (Lesson 0.7) copy: "YOU'RE CLEARED TO MOVE FORWARD", button "CONTINUE →", added First Name field
+- Source tags: ground0_go_capture, ground0_wait_capture, ground0_nogo_capture — stored in MongoDB ground0_waitlist
+- Backend Ground0WaitlistRequest now accepts first_name + source_tag; go_email_capture lead_source updated to ground0_go_capture
+- Testing: 100% (12/12) — iteration_92
+
+
 - Built `/resources/first-90-days-risk-map` — 10-section lead-magnet landing page (paper/ink design, Playfair+Inter+JetBrains Mono)
 - Built `AuthorityClock.jsx` — horizontal segmented 3-zone SVG/CSS component (Foundation/Ops/Audit)
 - Built `/resources/first-90-days-risk-map/thank-you` — distraction-free page (no nav, no footer); "Download Now" PDF button + REACH CTA
