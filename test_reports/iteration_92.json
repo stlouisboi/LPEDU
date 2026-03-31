@@ -1,0 +1,51 @@
+{
+  "summary": "Tested Ground0 WAIT/NO-GO email capture feature. All 6 backend tests pass. All frontend data-testids and copy text verified via source code inspection.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Ground 0 route",
+        "issues": ["Test requirement specified /ground-0 but actual route is /ground-0-briefing (landing page) — lesson player is embedded in portal. Non-breaking, existing behavior."]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_ground0_waitlist_new.py"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "CompleteView shares captureFirstName/captureEmail/captureSubmitted state between WAIT and NO-GO — if user switches decision (unusual), state could bleed. Low risk since decision is final after selection.",
+    "ground0/waitlist endpoint rejects GO status (400) — correct behavior since GO uses /go-email-capture separately."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_ground0_waitlist_new.py"
+  ],
+  "success_rate": {
+    "backend": "100% (6/6 tests pass)",
+    "frontend": "100% (all data-testids and copy verified in source)"
+  },
+  "frontend_source_verification": {
+    "g0-wait-capture-form": "PRESENT (line 1279)",
+    "g0-wait-firstname-input": "PRESENT (line 1285)",
+    "g0-wait-email-input": "PRESENT (line 1294)",
+    "g0-wait-submit-btn": "PRESENT (line 1305), text: 'SAVE MY SPOT →'",
+    "g0-nogo-capture-form": "PRESENT (line 1370)",
+    "g0-nogo-firstname-input": "PRESENT (line 1376)",
+    "g0-nogo-email-input": "PRESENT (line 1385)",
+    "g0-nogo-submit-btn": "PRESENT (line 1396), text: 'NOTIFY ME →'",
+    "g0-go-firstname-input": "PRESENT (line 1588)",
+    "g0-email-capture-input": "PRESENT (line 1603)",
+    "g0-email-capture-submit": "PRESENT (line 1617), text: 'CONTINUE →'",
+    "WAIT headline": "PRESENT (line 1259): 'You're Not Ready Yet — But You Don't Have To Start Over'",
+    "NO-GO headline": "PRESENT (line 1350): 'You're Not Cleared to Proceed Right Now'",
+    "GO label": "PRESENT (line 1581): 'YOU'RE CLEARED TO MOVE FORWARD'"
+  },
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Ground0 WAIT/NO-GO capture forms fully implemented and verified. Backend endpoints /api/ground0/waitlist (WAIT, NO-GO) and /api/go-email-capture all return {ok: true}. All data-testids match spec. Actual lesson player route is /ground-0-briefing, not /ground-0."
+}

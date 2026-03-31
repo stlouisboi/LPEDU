@@ -550,7 +550,7 @@ async def go_email_capture(data: GOEmailCapture):
         "fields": {
             "name": name_parts[0] if name_parts[0] else "",
             "last_name": name_parts[1] if len(name_parts) > 1 else "",
-            "lead_source": "ground_0_go_result",
+            "lead_source": "ground0_go_capture",
             "ground_0_result": "GO",
         },
     }

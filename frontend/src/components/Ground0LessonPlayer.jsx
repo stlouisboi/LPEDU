@@ -1076,6 +1076,7 @@ function GapTracker({ assessmentAnswers }) {
 // ── Complete View ─────────────────────────────────────────────────────────────
 function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
   const d = COMPLETION_DATA[decision];
+  const [captureFirstName, setCaptureFirstName] = useState("");
   const [captureEmail, setCaptureEmail] = useState("");
   const [captureSubmitted, setCaptureSubmitted] = useState(false);
   const [captureLoading, setCaptureLoading] = useState(false);
@@ -1088,11 +1089,14 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
     try {
       const reachStatus = computeReachStatus(assessmentAnswers);
       const gaps = REACH_PILLARS.filter(p => !reachStatus[p.key]).length;
+      const sourceTag = decision === "WAIT" ? "ground0_wait_capture" : "ground0_nogo_capture";
       const resp = await fetch(`${API}/api/ground0/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: captureEmail,
+          first_name: captureFirstName,
+          source_tag: sourceTag,
           status: decision,
           completion_date: new Date().toISOString().slice(0, 10),
           reach_resources: reachStatus.R ? "PASS" : "FAIL",
@@ -1252,20 +1256,14 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
             LP-STATUS: WAIT | NEXT STEPS
           </p>
           <h3 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.1rem, 2vw, 1.375rem)", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
-            YOU ARE NOT READY — YET
+            You're Not Ready Yet — But You Don't Have To Start Over
           </h3>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
             The gaps identified above must be closed before admission is possible.
           </p>
 
-          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
-            Your operation has gaps that create exposure under active authority. That's a timing issue — not a permanent one.
-          </p>
-          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
-            LaunchPath does not adjust the standard to admit you early. Your readiness must rise to the system.
-          </p>
           <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem" }}>
-            When these gaps are closed, you may request admission to the next cohort.
+            Your results show that some issues need to be corrected before moving forward. Save your place below and stay connected while you work through the gaps. When you're ready to return, you'll come back with more clarity and a stronger foundation.
           </p>
 
           {captureSubmitted ? (
@@ -1273,24 +1271,21 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
               <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.875rem" }}>
                 ✓ YOUR SPOT IS SAVED
               </p>
-              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.625rem" }}>
-                You'll be first to know when the next cohort opens.
+              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78 }}>
+                Your spot has been saved. When you're ready to return, you won't be starting from zero.
               </p>
-              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
-                A new Ground 0 assessment will be required before entry.
-              </p>
-              <a
-                href="/compliance-library"
-                data-testid="g0-doc-bundle-cta-success"
-                style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "transparent", color: "rgba(255,255,255,0.55)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.625rem 1.125rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", transition: "all 0.2s", minHeight: 40 }}
-                onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.color = "#FFFFFF"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}
-              >
-                View the Document System <ArrowRight size={11} />
-              </a>
             </div>
           ) : (
             <form onSubmit={handleCapture} data-testid="g0-wait-capture-form" style={{ marginBottom: "0" }}>
+              <input
+                type="text"
+                required
+                value={captureFirstName}
+                onChange={e => setCaptureFirstName(e.target.value)}
+                data-testid="g0-wait-firstname-input"
+                placeholder="First name"
+                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
+              />
               <input
                 type="email"
                 required
@@ -1352,17 +1347,14 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
             LP-STATUS: NO-GO | ELIGIBILITY
           </p>
           <h3 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1rem, 2vw, 1.25rem)", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
-            THIS PROGRAM ISN'T THE RIGHT FIT — YET
+            You're Not Cleared to Proceed Right Now
           </h3>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
-            Based on your Ground 0 results, there's a misalignment with the current requirements of this system.
+            Based on your current results, there's a misalignment with the current requirements of this system.
           </p>
 
-          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "0.875rem" }}>
-            LaunchPath is built for operators within a specific operational range. Based on your current position, the program isn't applicable right now.
-          </p>
           <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem" }}>
-            That may change. Get notified when your situation qualifies — or when a path opens that fits where you are.
+            Based on your current results, moving forward now would not be the right step. If your situation changes and you want to revisit Ground 0 later, leave your information below and we'll notify you when it makes sense to return.
           </p>
 
           {captureSubmitted ? (
@@ -1370,15 +1362,21 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
               <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "0.875rem" }}>
                 ✓ YOU'RE ON THE LIST
               </p>
-              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78, marginBottom: "0.625rem" }}>
-                We'll reach out when something relevant opens up.
-              </p>
               <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78 }}>
-                No spam — just updates that matter.
+                You're on the list. If and when the time is right to revisit this, we'll let you know.
               </p>
             </div>
           ) : (
             <form onSubmit={handleCapture} data-testid="g0-nogo-capture-form" style={{ marginBottom: "0" }}>
+              <input
+                type="text"
+                required
+                value={captureFirstName}
+                onChange={e => setCaptureFirstName(e.target.value)}
+                data-testid="g0-nogo-firstname-input"
+                placeholder="First name"
+                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
+              />
               <input
                 type="email"
                 required
@@ -1444,6 +1442,7 @@ const L07_MODULES = [
 ];
 
 function Lesson07View({ onViewCompletion }) {
+  const [captureFirstName, setCaptureFirstName] = React.useState("");
   const [captureEmail, setCaptureEmail] = React.useState("");
   const [captureStatus, setCaptureStatus] = React.useState("idle"); // idle | loading | done | error
   const API = process.env.NEXT_PUBLIC_BACKEND_URL || process.env.REACT_APP_BACKEND_URL || "";
@@ -1456,7 +1455,7 @@ function Lesson07View({ onViewCompletion }) {
       const res = await fetch(`${API}/api/go-email-capture`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: captureEmail }),
+        body: JSON.stringify({ email: captureEmail, name: captureFirstName }),
       });
       setCaptureStatus(res.ok ? "done" : "error");
     } catch {
@@ -1573,48 +1572,67 @@ function Lesson07View({ onViewCompletion }) {
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", flexShrink: 0 }} />
             <p style={{ margin: 0, fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.667rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.55)" }}>
-              CONFIRMED — Program details on their way to <span style={{ color: "rgba(212,144,10,0.85)" }}>{captureEmail}</span>
+              CONFIRMED — Your next step has been saved. Check your inbox for what comes next.
             </p>
           </div>
         ) : (
           <>
             <p style={{ margin: "0 0 0.875rem", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)" }}>
-              NOT READY TO APPLY YET? GET PROGRAM DETAILS SENT TO YOU.
+              YOU'RE CLEARED TO MOVE FORWARD
             </p>
-            <form onSubmit={handleCapture} style={{ display: "flex", gap: "0.625rem", flexWrap: "wrap" }}>
+            <p style={{ margin: "0 0 0.875rem", fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.65 }}>
+              Your results show that you meet the current standard to continue. Leave your information below to secure your next step and continue into the LaunchPath admission path.
+            </p>
+            <form onSubmit={handleCapture} style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               <input
-                data-testid="g0-email-capture-input"
-                type="email"
+                data-testid="g0-go-firstname-input"
+                type="text"
                 required
-                placeholder="your@email.com"
-                value={captureEmail}
-                onChange={e => setCaptureEmail(e.target.value)}
+                placeholder="First name"
+                value={captureFirstName}
+                onChange={e => setCaptureFirstName(e.target.value)}
                 style={{
-                  flex: 1, minWidth: 200, padding: "0.75rem 1rem",
+                  padding: "0.75rem 1rem",
                   background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)",
                   color: "#fff", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
                   fontSize: "0.762rem", outline: "none", letterSpacing: "0.04em",
                 }}
               />
-              <button
-                data-testid="g0-email-capture-submit"
-                type="submit"
-                disabled={captureStatus === "loading"}
-                style={{
-                  padding: "0.75rem 1.25rem", background: "transparent",
-                  border: "1px solid rgba(212,144,10,0.45)", color: "rgba(212,144,10,0.85)",
-                  fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
-                  fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em",
-                  textTransform: "uppercase", cursor: captureStatus === "loading" ? "default" : "pointer",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {captureStatus === "loading" ? "SENDING…" : "SEND ME DETAILS"}
-              </button>
+              <div style={{ display: "flex", gap: "0.625rem", flexWrap: "wrap" }}>
+                <input
+                  data-testid="g0-email-capture-input"
+                  type="email"
+                  required
+                  placeholder="Email address"
+                  value={captureEmail}
+                  onChange={e => setCaptureEmail(e.target.value)}
+                  style={{
+                    flex: 1, minWidth: 180, padding: "0.75rem 1rem",
+                    background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)",
+                    color: "#fff", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                    fontSize: "0.762rem", outline: "none", letterSpacing: "0.04em",
+                  }}
+                />
+                <button
+                  data-testid="g0-email-capture-submit"
+                  type="submit"
+                  disabled={captureStatus === "loading"}
+                  style={{
+                    padding: "0.75rem 1.25rem", background: "transparent",
+                    border: "1px solid rgba(212,144,10,0.45)", color: "rgba(212,144,10,0.85)",
+                    fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                    fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em",
+                    textTransform: "uppercase", cursor: captureStatus === "loading" ? "default" : "pointer",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {captureStatus === "loading" ? "SENDING…" : "CONTINUE →"}
+                </button>
+              </div>
             </form>
             {captureStatus === "error" && (
               <p style={{ margin: "0.5rem 0 0", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", color: "rgba(239,68,68,0.7)", letterSpacing: "0.08em" }}>
-                Could not save email. Try again or email vince@launchpathedu.com directly.
+                Could not save. Try again or email vince@launchpathedu.com directly.
               </p>
             )}
           </>

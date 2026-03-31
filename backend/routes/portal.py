@@ -34,6 +34,8 @@ class Ground0ProgressRequest(BaseModel):
 class Ground0WaitlistRequest(BaseModel):
     email: EmailStr
     status: str
+    first_name: Optional[str] = ""
+    source_tag: Optional[str] = None
     completion_date: Optional[str] = None
     reach_resources: Optional[str] = None
     reach_experience: Optional[str] = None
@@ -174,7 +176,10 @@ async def ground0_waitlist(data: Ground0WaitlistRequest):
     await db.ground0_waitlist.update_one(
         {"email": data.email},
         {"$set": {
-            "email": data.email, "status": data.status,
+            "email": data.email,
+            "first_name": data.first_name or "",
+            "status": data.status,
+            "source_tag": data.source_tag or ("ground0_wait_capture" if data.status == "WAIT" else "ground0_nogo_capture"),
             "completion_date": data.completion_date or now.isoformat()[:10],
             "reach_resources": data.reach_resources, "reach_experience": data.reach_experience,
             "reach_authority": data.reach_authority, "reach_commitment": data.reach_commitment,
@@ -183,9 +188,14 @@ async def ground0_waitlist(data: Ground0WaitlistRequest):
         }},
         upsert=True,
     )
-    lead_source = "ground0_wait" if data.status == "WAIT" else "ground0_nogo"
+    lead_source = data.source_tag or ("ground0_wait_capture" if data.status == "WAIT" else "ground0_nogo_capture")
     group_id = MAILERLITE_COHORT_WAITLIST_GROUP_ID if data.status == "WAIT" else MAILERLITE_FUTURE_ELIGIBILITY_GROUP_ID
-    ml_fields: dict = {"lead_source": lead_source, "ground0_status": data.status, "ground0_completion_date": data.completion_date or now.isoformat()[:10]}
+    ml_fields: dict = {
+        "name": data.first_name or "",
+        "lead_source": lead_source,
+        "ground0_status": data.status,
+        "ground0_completion_date": data.completion_date or now.isoformat()[:10],
+    }
     if data.reach_resources: ml_fields["reach_resources"] = data.reach_resources
     if data.reach_experience: ml_fields["reach_experience"] = data.reach_experience
     if data.reach_authority: ml_fields["reach_authority"] = data.reach_authority
