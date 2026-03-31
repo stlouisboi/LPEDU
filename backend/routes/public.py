@@ -83,6 +83,11 @@ class Ground0Submit(BaseModel):
     email: EmailStr
 
 
+class GOEmailCapture(BaseModel):
+    email: EmailStr
+    name: Optional[str] = None
+
+
 class SinsChecklistCapture(BaseModel):
     email: EmailStr
 
@@ -522,6 +527,54 @@ async def submit_diagnostic(data: DiagnosticSubmit):
         logger.error(f"MailerLite diagnostic error: {resp.text}")
         raise HTTPException(status_code=502, detail="Could not log result.")
     return {"ok": True, "result": data.result}
+
+
+@router.post("/go-email-capture")
+async def go_email_capture(data: GOEmailCapture):
+    """Capture email from Lesson 0.7 GO-path — add to MailerLite 'GO Result' group."""
+    ML_BASE = "https://connect.mailerlite.com/api"
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    name_parts = (data.name or "").strip().split(" ", 1)
+    payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "name": name_parts[0] if name_parts[0] else "",
+            "last_name": name_parts[1] if len(name_parts) > 1 else "",
+            "lead_source": "ground_0_go_result",
+            "ground_0_result": "GO",
+        },
+    }
+    async with httpx.AsyncClient(timeout=10) as http:
+        # Upsert subscriber
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+        if resp.status_code not in (200, 201):
+            logger.error(f"MailerLite GO capture error: {resp.text}")
+            raise HTTPException(status_code=502, detail="Could not save email.")
+        subscriber_id = resp.json().get("data", {}).get("id")
+
+        # Create/find "GO Result" group and add subscriber
+        if subscriber_id:
+            try:
+                gr = await http.post(f"{ML_BASE}/groups", headers=headers, json={"name": "GO Result"})
+                gid = gr.json().get("data", {}).get("id")
+                if not gid:
+                    gs = await http.get(f"{ML_BASE}/groups", headers=headers, params={"filter[name]": "GO Result"})
+                    items = gs.json().get("data", [])
+                    gid = str(items[0]["id"]) if items else None
+                if gid:
+                    await http.post(MAILERLITE_URL, headers=headers, json={
+                        "email": data.email, "status": "active", "groups": [gid],
+                    })
+            except Exception as exc:
+                logger.warning(f"GO group assignment failed for {data.email}: {exc}")
+
+    logger.info(f"GO email captured: {data.email}")
+    return {"ok": True}
 
 
 @router.post("/reach")

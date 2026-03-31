@@ -1444,6 +1444,26 @@ const L07_MODULES = [
 ];
 
 function Lesson07View({ onViewCompletion }) {
+  const [captureEmail, setCaptureEmail] = React.useState("");
+  const [captureStatus, setCaptureStatus] = React.useState("idle"); // idle | loading | done | error
+  const API = process.env.NEXT_PUBLIC_BACKEND_URL || process.env.REACT_APP_BACKEND_URL || "";
+
+  const handleCapture = async (e) => {
+    e.preventDefault();
+    if (!captureEmail || captureStatus === "done") return;
+    setCaptureStatus("loading");
+    try {
+      const res = await fetch(`${API}/api/go-email-capture`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: captureEmail }),
+      });
+      setCaptureStatus(res.ok ? "done" : "error");
+    } catch {
+      setCaptureStatus("error");
+    }
+  };
+
   return (
     <div data-testid="g0-lesson07-view" style={{ maxWidth: 680 }}>
       {/* Header */}
@@ -1545,6 +1565,60 @@ function Lesson07View({ onViewCompletion }) {
         <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.08em", color: "rgba(255,255,255,0.48)", lineHeight: 1.6 }}>
           Apply your GO decision. Join the next LaunchPath Install Group.
         </p>
+      </div>
+
+      {/* Email capture */}
+      <div style={{ margin: "0 0 2rem", padding: "1.25rem 1.5rem", background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.15)" }}>
+        {captureStatus === "done" ? (
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", flexShrink: 0 }} />
+            <p style={{ margin: 0, fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.667rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.55)" }}>
+              CONFIRMED — Program details on their way to <span style={{ color: "rgba(212,144,10,0.85)" }}>{captureEmail}</span>
+            </p>
+          </div>
+        ) : (
+          <>
+            <p style={{ margin: "0 0 0.875rem", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)" }}>
+              NOT READY TO APPLY YET? GET PROGRAM DETAILS SENT TO YOU.
+            </p>
+            <form onSubmit={handleCapture} style={{ display: "flex", gap: "0.625rem", flexWrap: "wrap" }}>
+              <input
+                data-testid="g0-email-capture-input"
+                type="email"
+                required
+                placeholder="your@email.com"
+                value={captureEmail}
+                onChange={e => setCaptureEmail(e.target.value)}
+                style={{
+                  flex: 1, minWidth: 200, padding: "0.75rem 1rem",
+                  background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)",
+                  color: "#fff", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                  fontSize: "0.762rem", outline: "none", letterSpacing: "0.04em",
+                }}
+              />
+              <button
+                data-testid="g0-email-capture-submit"
+                type="submit"
+                disabled={captureStatus === "loading"}
+                style={{
+                  padding: "0.75rem 1.25rem", background: "transparent",
+                  border: "1px solid rgba(212,144,10,0.45)", color: "rgba(212,144,10,0.85)",
+                  fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                  fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em",
+                  textTransform: "uppercase", cursor: captureStatus === "loading" ? "default" : "pointer",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {captureStatus === "loading" ? "SENDING…" : "SEND ME DETAILS"}
+              </button>
+            </form>
+            {captureStatus === "error" && (
+              <p style={{ margin: "0.5rem 0 0", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", color: "rgba(239,68,68,0.7)", letterSpacing: "0.08em" }}>
+                Could not save email. Try again or email vince@launchpathedu.com directly.
+              </p>
+            )}
+          </>
+        )}
       </div>
 
       {/* Primary CTA */}
