@@ -185,10 +185,10 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
     if (!email) return;
     setState("loading");
     try {
-      const r = await fetch(`${API}/api/library/email-capture`, {
+      const r = await fetch(`${API}/api/risk-map/email-capture`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, first_name: "" }),
       });
       setState(r.ok ? "done" : "error");
     } catch {
@@ -206,19 +206,19 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
           {/* Copy */}
           <div style={{ flex: "1 1 300px" }}>
             <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: "0.5rem" }}>
-              LP-LEAD-001 | NOT READY TO BUY?
+              LP-LEAD-001 | FREE RISK GUIDE
             </p>
             <h3 style={{ fontFamily: COND, fontWeight: 800, fontSize: "1.375rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
-              Get the 16 Deadly Sins Checklist — Free
+              Get the First 90 Days Risk Map™ — Free
             </h3>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7 }}>
-              The 16 most common FMCSA violations that end new carrier authority. Identify your exposure in 10 minutes.
+              The 3 compliance phases every new motor carrier faces — and the small gaps that compound into major problems. Delivered to your inbox.
             </p>
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(197,160,89,0.65)", lineHeight: 1.65, marginTop: "0.5rem" }}>
-              Based on the #1 pocket guide for preventing the 16 failures that kill new carrier authority.
+              Understand your risk window before FMCSA opens it for you.
             </p>
             <p style={{ fontFamily: SANS, fontSize: "0.81rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7, marginTop: "0.625rem", fontStyle: "italic" }}>
-              The full pocket guide and Safety Audit Prep Pack live in this library if you decide you want the complete systems behind the checklist.
+              The LaunchPath Standard and full compliance systems live in this library when you're ready for structured implementation.
             </p>
           </div>
 
@@ -231,7 +231,7 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
               >
                 <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", marginBottom: 4 }}>CONFIRMED</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.65 }}>
-                  Checklist is on its way to your inbox. Check your spam folder if you don't see it within 5 minutes.
+                  Risk Map is on its way to your inbox. Check your spam folder if you don't see it within 5 minutes.
                 </p>
               </div>
             ) : (
@@ -266,7 +266,7 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    {state === "loading" ? "SENDING…" : "SEND ME THE CHECKLIST →"}
+                    {state === "loading" ? "SENDING…" : "SEND ME THE RISK MAP →"}
                   </button>
                 </div>
                 {state === "error" && (

@@ -105,7 +105,7 @@ class ControlRoomCapture(BaseModel):
 
 
 class RiskMapCapture(BaseModel):
-    first_name: str
+    first_name: Optional[str] = ""
     email: EmailStr
 
 
