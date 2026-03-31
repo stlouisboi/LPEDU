@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
-import useSEO from "../hooks/useSEO";
 
 const API   = process.env.REACT_APP_BACKEND_URL;
 const GOLD  = "#d4900a";
@@ -387,12 +386,6 @@ export default function BundleSalesPage() {
   const [openFaq, setOpenFaq] = useState(null);
   const [stickyVisible, setStickyVisible] = useState(false);
   const heroCTARef = useRef(null);
-
-  useSEO({
-    title: "The Document System Bundle — LaunchPath",
-    description: "Five compliance packets covering every domain FMCSA checks in a New Entrant Safety Audit. Driver files, D&A, HOS/ELD, maintenance, and insurance — in one complete system.",
-    image: "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/a7d58b56f1c1b20bd23ca6a9ddf251589305c6fb88c9281f3e665a8da321b449.png",
-  });
 
   // Show sticky bar only after hero CTA scrolls out of view
   useEffect(() => {

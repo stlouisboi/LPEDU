@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
-import useSEO from "../hooks/useSEO";
 
 /* ── Design Tokens ─────────────────────────────────────────────── */
 const NAVY    = "#1a3a5c";
@@ -118,10 +117,6 @@ function FaqAccordion({ items }) {
 
 /* ── Main Page ──────────────────────────────────────────────────── */
 export default function StandardPage() {
-  useSEO({
-    title: "The LaunchPath Standard",
-    description: "A 90-day guided compliance implementation program for new motor carriers. 10 modules, 5 human verification checkpoints, Verified Registry ID at completion.",
-  });
   return (
     <div style={{ background: S950, minHeight: "100vh", color: WHITE }}>
       <Navbar />

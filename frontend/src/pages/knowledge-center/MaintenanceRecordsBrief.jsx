@@ -1,5 +1,4 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
-import useSEO from "../../hooks/useSEO";
 
 const DATA = {
   code: "LP-BRF-04",
@@ -100,9 +99,5 @@ const DATA = {
 };
 
 export default function MaintenanceRecordsBrief() {
-  useSEO({
-    title: "LP-BRF-04: Maintenance Records Brief | LaunchPath",
-    description: "What your unit files actually have to prove. Maintenance records compliance brief for new motor carriers under 49 CFR Part 396.",
-  });
   return <KnowledgeCenterBriefTemplate data={DATA} />;
 }

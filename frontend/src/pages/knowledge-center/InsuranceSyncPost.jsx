@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -84,10 +83,6 @@ Carriers who present organized, verifiable compliance documentation at applicati
 ];
 
 export default function InsuranceSyncPost() {
-  useSEO({
-    title: "The Insurance Sync Problem: Why New Carriers Lose Authority Before They Ever Run a Load | LaunchPath",
-    description: "New motor carriers lose operating authority due to insurance lapses before their first load. Understand BMC-91 filing mechanics, the lapse trigger, and how to maintain continuous coverage.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

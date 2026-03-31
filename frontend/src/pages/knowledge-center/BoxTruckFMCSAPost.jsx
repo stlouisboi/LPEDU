@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -84,10 +83,6 @@ Misidentifying an interstate operation as intrastate is one of the most common f
 ];
 
 export default function BoxTruckFMCSAPost() {
-  useSEO({
-    title: "Box Truck FMCSA Requirements: The 26,001 lb Line and What It Changes | LaunchPath",
-    description: "The 26,001 lb GVWR threshold changes your CDL requirements, ELD applicability, and driver qualification obligations. Here's what applies below and above that line for new box truck operators.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

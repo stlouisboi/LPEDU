@@ -1,5 +1,4 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
-import useSEO from "../../hooks/useSEO";
 
 const DATA = {
   code: "LP-BRF-06",
@@ -120,9 +119,5 @@ const DATA = {
 };
 
 export default function UCRRegistrationBrief() {
-  useSEO({
-    title: "LP-BRF-06: Authority Reinstatement Brief | LaunchPath",
-    description: "What recovery actually requires after authority revocation. Reinstatement brief for motor carriers under 49 CFR Parts 365, 390, 392.",
-  });
   return <KnowledgeCenterBriefTemplate data={DATA} />;
 }

@@ -12,13 +12,8 @@ import SocialProofSection from "../components/SocialProofSection";
 import FAQSection from "../components/FAQSection";
 import FinalCTASection from "../components/FinalCTASection";
 import FooterSection from "../components/FooterSection";
-import useSEO from "../hooks/useSEO";
 
 export default function HomePage() {
-  useSEO({
-    title: "90-Day Compliance System for New Motor Carriers",
-    description: "LaunchPath installs the federal compliance infrastructure FMCSA expects to find — DQ files, D&A programs, HOS records, and more — before your audit window opens.",
-  });
   // Data-stream text reveal — triggers .revealed on [data-ds] elements
   useEffect(() => {
     const elements = document.querySelectorAll(".data-stream");

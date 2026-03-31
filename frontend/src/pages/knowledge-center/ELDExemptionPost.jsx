@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -82,10 +81,6 @@ The records are straightforward to maintain. A simple daily time log for each dr
 ];
 
 export default function ELDExemptionPost() {
-  useSEO({
-    title: "ELD Exemptions for Box Truck Operators: What's Covered and What Isn't | LaunchPath",
-    description: "The short-haul exemption eliminates the ELD requirement for qualifying box truck operators — but it doesn't eliminate HOS rules or recordkeeping. Here's exactly what the exemption covers and when it doesn't apply.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

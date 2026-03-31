@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -90,10 +89,6 @@ Run an internal audit before FMCSA does. Review your own records against the six
 ];
 
 export default function NewEntrantProgramPost() {
-  useSEO({
-    title: "The FMCSA New Entrant Program: A Plain-Language Guide to Your First 12 Months | LaunchPath",
-    description: "Every new motor carrier enters the FMCSA New Entrant Program the day authority activates. Here's what the monitoring period covers, what the mandatory audit reviews, and what each possible outcome means for your operation.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

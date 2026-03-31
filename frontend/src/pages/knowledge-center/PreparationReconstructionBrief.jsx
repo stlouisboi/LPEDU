@@ -1,7 +1,6 @@
 import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
-import useSEO from "../../hooks/useSEO";
 
 const gold = "#d4900a";
 const ivory = "#F6F3EE";
@@ -57,10 +56,6 @@ const BRIEF_NAV = [
 const CURRENT = 3;
 
 export default function PreparationReconstructionBrief() {
-  useSEO({
-    title: "LP-BRF-10: Preparation vs. Reconstruction — What Investigators See | LaunchPath",
-    description: "The audit exposure window begins around Day 60. There are two ways to experience a New Entrant Safety Audit. The difference is what you built in the first 60 days.",
-  });
 
   return (
     <div style={{ background: ivory, minHeight: "100vh" }}>

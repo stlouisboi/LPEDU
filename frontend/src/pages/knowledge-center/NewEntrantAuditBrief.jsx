@@ -1,5 +1,4 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
-import useSEO from "../../hooks/useSEO";
 
 const DATA = {
   code: "LP-BRF-01",
@@ -198,9 +197,5 @@ const DATA = {
 };
 
 export default function NewEntrantAuditBrief() {
-  useSEO({
-    title: "LP-BRF-01: New Entrant Safety Audit Brief | LaunchPath",
-    description: "What FMCSA will check in your first 18 months and how to pass on the first attempt. Mandatory compliance system audit brief for new motor carriers.",
-  });
   return <KnowledgeCenterBriefTemplate data={DATA} />;
 }

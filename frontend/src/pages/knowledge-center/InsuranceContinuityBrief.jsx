@@ -1,5 +1,4 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
-import useSEO from "../../hooks/useSEO";
 
 const DATA = {
   code: "LP-BRF-05",
@@ -99,9 +98,5 @@ const DATA = {
 };
 
 export default function InsuranceContinuityBrief() {
-  useSEO({
-    title: "LP-BRF-05: Insurance Continuity Brief | LaunchPath",
-    description: "What your FMCSA insurance filings actually have to prove. Insurance continuity brief for new motor carriers under 49 CFR Part 387.",
-  });
   return <KnowledgeCenterBriefTemplate data={DATA} />;
 }

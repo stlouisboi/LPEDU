@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -80,10 +79,6 @@ These records are requested during New Entrant Safety Audits. Organize them in y
 ];
 
 export default function ClearinghouseSetupPost() {
-  useSEO({
-    title: "How to Register in the FMCSA Drug and Alcohol Clearinghouse: A Step-by-Step Guide for New Carriers | LaunchPath",
-    description: "Clearinghouse registration, pre-employment query requirements, and annual query obligations under 49 CFR Part 382. What new motor carriers must complete before a driver turns a key.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -60,10 +59,6 @@ The enforcement consequence is disproportionate to the cost of the registration.
 ];
 
 export default function UCRRegistrationPost() {
-  useSEO({
-    title: "UCR Registration for New Motor Carriers: Who Owes It, When It's Due, and What Happens If You Skip It | LaunchPath",
-    description: "Unified Carrier Registration is a separate annual filing from your MC authority — and operating without it creates roadside enforcement exposure. Here's what UCR is, who must file, and how the fees work.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

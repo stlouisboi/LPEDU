@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -66,10 +65,6 @@ A lapsed BOC-3 discovered during any of these reviews creates a problem that cou
 ];
 
 export default function BOC3FilingPost() {
-  useSEO({
-    title: "The BOC-3 Filing: What It Is, What Happens If It Lapses, and How to Verify Yours | LaunchPath",
-    description: "The BOC-3 is one of three foundational filings required before FMCSA grants operating authority. A lapsed filing can suspend your authority without notice. Here's what it is and how to verify yours.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

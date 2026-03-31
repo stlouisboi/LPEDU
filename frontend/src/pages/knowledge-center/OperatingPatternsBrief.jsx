@@ -1,7 +1,6 @@
 import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
-import useSEO from "../../hooks/useSEO";
 
 const gold = "#d4900a";
 const ivory = "#F6F3EE";
@@ -57,10 +56,6 @@ const BRIEF_NAV = [
 const CURRENT = 2;
 
 export default function OperatingPatternsBrief() {
-  useSEO({
-    title: "LP-BRF-09: How Operating Patterns Become Audit Evidence | LaunchPath",
-    description: "Between Days 30 and 60, your operation transitions to pattern formation. The records you generate now become audit evidence. Learn what investigators read.",
-  });
 
   return (
     <div style={{ background: ivory, minHeight: "100vh" }}>

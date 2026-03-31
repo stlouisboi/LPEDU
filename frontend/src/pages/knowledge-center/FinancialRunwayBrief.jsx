@@ -1,5 +1,4 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
-import useSEO from "../../hooks/useSEO";
 
 const DATA = {
   code: "LP-BRF-12",
@@ -114,9 +113,5 @@ const DATA = {
 };
 
 export default function FinancialRunwayBrief() {
-  useSEO({
-    title: "LP-BRF-12 — Financial Runway | LaunchPath Knowledge Center",
-    description: "What financial resources a new motor carrier actually needs before starting operations. The REACH Resources pillar explained.",
-  });
   return <KnowledgeCenterBriefTemplate data={DATA} />;
 }

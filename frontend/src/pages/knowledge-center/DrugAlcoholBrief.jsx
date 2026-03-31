@@ -1,5 +1,4 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
-import useSEO from "../../hooks/useSEO";
 
 const DATA = {
   code: "LP-BRF-03",
@@ -104,9 +103,5 @@ const DATA = {
 };
 
 export default function DrugAlcoholBrief() {
-  useSEO({
-    title: "LP-BRF-03: Drug & Alcohol Program Brief | LaunchPath",
-    description: "What a real D&A compliance program actually proves. Program brief for new motor carriers under 49 CFR Parts 382 & 40.",
-  });
   return <KnowledgeCenterBriefTemplate data={DATA} />;
 }

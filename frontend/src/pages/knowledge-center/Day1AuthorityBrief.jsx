@@ -1,7 +1,6 @@
 import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
-import useSEO from "../../hooks/useSEO";
 
 const gold = "#d4900a";
 const ivory = "#F6F3EE";
@@ -57,10 +56,6 @@ const BRIEF_NAV = [
 const CURRENT = 0;
 
 export default function Day1AuthorityBrief() {
-  useSEO({
-    title: "LP-BRF-07: What Must Be Operational Before Your First Dispatch | LaunchPath",
-    description: "From Day 1 of authority activation, FMCSA considers you an operating motor carrier. Learn what must be in place before the first truck moves.",
-  });
 
   return (
     <div style={{ background: ivory, minHeight: "100vh" }}>

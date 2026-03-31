@@ -1,7 +1,6 @@
 import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
-import useSEO from "../../hooks/useSEO";
 
 const gold = "#d4900a";
 const ivory = "#F6F3EE";
@@ -57,10 +56,6 @@ const BRIEF_NAV = [
 const CURRENT = 4;
 
 export default function NewEntrantReviewBrief() {
-  useSEO({
-    title: "LP-BRF-11: The New Entrant Review Period and What Triggers Scrutiny | LaunchPath",
-    description: "The New Entrant review period extends through Month 18. Passing your audit doesn't mean FMCSA stops watching. Learn what triggers increased scrutiny.",
-  });
 
   return (
     <div style={{ background: ivory, minHeight: "100vh" }}>

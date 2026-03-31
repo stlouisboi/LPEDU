@@ -1,7 +1,6 @@
 import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
-import useSEO from "../../hooks/useSEO";
 
 const gold = "#d4900a";
 const ivory = "#F6F3EE";
@@ -57,10 +56,6 @@ const BRIEF_NAV = [
 const CURRENT = 1;
 
 export default function InstallationWindowBrief() {
-  useSEO({
-    title: "LP-BRF-08: The Documentation Architecture of the Installation Window | LaunchPath",
-    description: "The first 30 days of active authority are when your documentary structure and compliance habits take shape. Learn what must be installed.",
-  });
 
   return (
     <div style={{ background: ivory, minHeight: "100vh" }}>

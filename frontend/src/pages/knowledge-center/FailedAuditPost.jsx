@@ -2,7 +2,6 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
-import useSEO from "../../hooks/useSEO";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -76,10 +75,6 @@ If you are a new carrier in your first 90 days, you are in the installation wind
 ];
 
 export default function FailedAuditPost() {
-  useSEO({
-    title: "What Actually Happens When You Fail an FMCSA New Entrant Audit | LaunchPath",
-    description: "A Conditional rating from the FMCSA New Entrant Audit triggers insurance and cash-flow consequences most carriers don't see coming. Here's what actually happens — and how carriers recover.",
-  });
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>

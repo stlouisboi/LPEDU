@@ -1,5 +1,4 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
-import useSEO from "../../hooks/useSEO";
 
 const DATA = {
   code: "LP-BRF-02",
@@ -117,9 +116,5 @@ const DATA = {
 };
 
 export default function HOSComplianceBrief() {
-  useSEO({
-    title: "LP-BRF-02: Hours of Service Brief | LaunchPath",
-    description: "What your ELD logs actually have to prove. HOS compliance system brief for new motor carriers under 49 CFR Part 395.",
-  });
   return <KnowledgeCenterBriefTemplate data={DATA} />;
 }

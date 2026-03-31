@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
-import useSEO from "../hooks/useSEO";
 import MCAuditWindow from "../components/MCAuditWindow";
 import { THUMBS, BUNDLE_CONFIGS, CFR_REF, PRODUCTS, ACCORDION_GROUPS } from "../data/libraryData";
 
@@ -285,11 +284,6 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function ComplianceLibraryPage() {
-  useSEO({
-    title: "Operating Standards Library",
-    description: "Every document, system, and guided implementation LaunchPath produces — organized by compliance domain and deployment path.",
-    image: "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/4e9f44a8eb6d09e4d7ae991b549dce33c2bb4c78574260e07b5a3848ac48b05e.png",
-  });
 
   const { states, errors, buy } = useBuy();
   const [openGroup, setOpenGroup] = useState(null);
