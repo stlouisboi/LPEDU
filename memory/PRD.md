@@ -110,7 +110,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules
 
 ### P2 — Medium Priority
-- Custom branded og:image for /bundle, /program, /compliance-library (blocked on AI image quota)
+- ~~Custom branded og:image~~ DONE — gpt-image-1 generated og-launchpath.png, wired across all 32 pages and useSEO.js default
 - Email capture / interest form inline in Lesson 0.7 (GO-path lead capture)
 - Automated monthly email cron job (30-day cadence for enrolled, 90-day post-cohort) — manual trigger built, cron deferred
 
