@@ -27,6 +27,13 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 41: First 90 Days Risk Map Landing Page (Mar 2026)
+- Built `/resources/first-90-days-risk-map` — 10-section lead-magnet landing page (paper/ink design, Playfair+Inter+JetBrains Mono)
+- Built `AuthorityClock.jsx` — horizontal segmented 3-zone SVG/CSS component (Foundation/Ops/Audit)
+- Built `/resources/first-90-days-risk-map/thank-you` — distraction-free redirect page (no nav, no footer)
+- Added `POST /api/risk-map/email-capture` — MailerLite "First-90-Days-Risk-Map" group + MongoDB `leads` collection upsert
+- Testing: 100% (15/15 frontend+backend) — iteration_91
+
 ### Phase 40: Score Chart + Dynamic Imports + og:image Attempt (Mar 2026)
 - Added `ScoreTrendChart` to `AuditHistoryScreen.jsx`: recharts LineChart showing overall score (gold, 2.5px) + 6 domain lines (colored, 0.55 opacity) over time; appears when history.length ≥ 2
 - Refactored `PortalPage.jsx` with `next/dynamic` for all 7 heavy components (Ground0LessonPlayer 1744 lines, VideoLessonWorkbench 626 lines, AuditReadinessDashboard, SignalMonitor, AnnouncementsFeed, VerifiedRegistryID, ModuleChecklist, TaskItem) — all with `ssr: false` and PortalLoading fallback
@@ -133,6 +140,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - `monthly_checks`: Monthly audit checks (QUESTION_BANK answers, domainResults, overallResult, summaryJson, notSureVerifyLines per domain)
 - `audit_readiness`: Old v1 collection (unused, preserved for reference)
 - `ground0_progress`: Ground 0 lesson completion (userId, completedLessons, finalDecision, view)
+- `leads`: Risk Map opt-ins (email, first_name, source, submitted_at) — upserted by email
 
 ## KEY API ENDPOINTS
 - `POST /api/webhook/stripe` — Stripe webhook (MailerSend + MailerLite trigger)
