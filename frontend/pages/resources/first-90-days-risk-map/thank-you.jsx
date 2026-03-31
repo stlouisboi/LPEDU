@@ -1,5 +1,7 @@
 import Head from 'next/head';
 
+const PDF_URL = 'https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/c738vw2e_LaunchPath_First_90_Days_Risk_Overview_v2.pdf';
+
 const C = {
   bg: '#F7F5F0',
   navy: '#0D2240',
@@ -85,10 +87,47 @@ export default function RiskMapThankYou() {
               fontSize: '16px',
               color: C.textMuted,
               lineHeight: '1.75',
-              margin: '0 0 40px',
+              margin: '0 0 28px',
             }}
           >
             Check your inbox. The guide should arrive within a few minutes.
+          </p>
+
+          {/* Instant download */}
+          <a
+            data-testid="thank-you-download-btn"
+            href={PDF_URL}
+            download="LaunchPath_First_90_Days_Risk_Map.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              background: C.navy,
+              color: '#FFFFFF',
+              fontFamily: S.mono,
+              fontSize: '12px',
+              fontWeight: '700',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              padding: '14px 28px',
+              textDecoration: 'none',
+              marginBottom: '12px',
+              transition: 'background 0.2s',
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.background = '#1a3a60')}
+            onMouseOut={(e) => (e.currentTarget.style.background = C.navy)}
+          >
+            Download Now →
+          </a>
+          <p
+            style={{
+              fontFamily: S.inter,
+              fontSize: '12px',
+              color: C.textLight,
+              margin: '0 0 36px',
+            }}
+          >
+            PDF · 1.3 MB · No account required
           </p>
 
           {/* Divider */}

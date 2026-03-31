@@ -30,8 +30,9 @@ Core requirements:
 ### Phase 41: First 90 Days Risk Map Landing Page (Mar 2026)
 - Built `/resources/first-90-days-risk-map` — 10-section lead-magnet landing page (paper/ink design, Playfair+Inter+JetBrains Mono)
 - Built `AuthorityClock.jsx` — horizontal segmented 3-zone SVG/CSS component (Foundation/Ops/Audit)
-- Built `/resources/first-90-days-risk-map/thank-you` — distraction-free redirect page (no nav, no footer)
-- Added `POST /api/risk-map/email-capture` — MailerLite "First-90-Days-Risk-Map" group + MongoDB `leads` collection upsert
+- Built `/resources/first-90-days-risk-map/thank-you` — distraction-free page (no nav, no footer); "Download Now" PDF button + REACH CTA
+- Added `POST /api/risk-map/email-capture` — MailerLite "First-90-Days-Risk-Map" group + MongoDB `leads` upsert
+- PDF CDN: `customer-assets.emergentagent.com/...c738vw2e_LaunchPath_First_90_Days_Risk_Overview_v2.pdf`
 - Testing: 100% (15/15 frontend+backend) — iteration_91
 
 ### Phase 40: Score Chart + Dynamic Imports + og:image Attempt (Mar 2026)
