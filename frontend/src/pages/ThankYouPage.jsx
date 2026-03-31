@@ -15,29 +15,43 @@ const SERIF = "'Newsreader', 'Playfair Display', serif";
 const WELCOME_VIMEO_ID = "76979871"; // placeholder
 
 export default function ThankYouPage() {
-  const router   = useRouter();
+  const router    = useRouter();
   const sessionId = router.isReady ? (router.query.session_id || null) : undefined;
-  const [pageState, setPageState] = useState("pending"); // pending | confirmed | failed
-  const [data, setData]           = useState(null);
+  const [pageState, setPageState]   = useState("pending");
+  const [data, setData]             = useState(null);
+  const [pollGaveUp, setPollGaveUp] = useState(false);
   const retryCount = useRef(0);
 
-  const verify = async (sid) => {
-    if (!sid) { setPageState("confirmed"); return; } // no session = direct visit
+  const verify = async (sid, isBackground = false) => {
+    if (!sid) { setPageState("confirmed"); return; }
     try {
       const res  = await fetch(`${API}/api/products/verify?session_id=${encodeURIComponent(sid)}`);
       const json = await res.json();
       if (json.status === "confirmed") {
         setData(json);
         setPageState("confirmed");
+        setPollGaveUp(false);
       } else if (json.status === "pending") {
         retryCount.current += 1;
-        if (retryCount.current >= 20) setPageState("confirmed"); // show page anyway
-        else setTimeout(() => verify(sid), 1500);
+        const MAX = 40; // 60s total
+        if (retryCount.current >= 20 && !isBackground) {
+          // Show page, keep background polling
+          setPageState("confirmed");
+          setTimeout(() => verify(sid, true), 3000);
+        } else if (isBackground && retryCount.current < MAX) {
+          setTimeout(() => verify(sid, true), 3000);
+        } else if (!isBackground && retryCount.current < 20) {
+          setTimeout(() => verify(sid), 1500);
+        } else {
+          // Gave up — download link will be in email
+          setPollGaveUp(true);
+        }
       } else {
-        setPageState("confirmed"); // still show page
+        setPageState("confirmed");
+        setPollGaveUp(true);
       }
     } catch {
-      setPageState("confirmed");
+      if (!isBackground) setPageState("confirmed");
     }
   };
 
@@ -187,7 +201,7 @@ export default function ThankYouPage() {
         <div className="ty-fade ty-fade-5" style={{
           display: "flex", flexWrap: "wrap", gap: "0.875rem", marginBottom: "3rem",
         }}>
-          {downloadUrl && (
+          {downloadUrl ? (
             <a
               href={downloadUrl}
               target="_blank"
@@ -205,6 +219,36 @@ export default function ThankYouPage() {
             >
               DOWNLOAD YOUR FILE →
             </a>
+          ) : sessionId && !pollGaveUp ? (
+            <div
+              data-testid="thank-you-download-pending"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "0.75rem",
+                border: `1px solid rgba(212,144,10,0.25)`,
+                padding: "0.875rem 1.5rem",
+                fontFamily: MONO, fontSize: "0.8rem",
+                color: "rgba(212,144,10,0.55)", letterSpacing: "0.1em",
+              }}
+            >
+              <div style={{
+                width: 14, height: 14,
+                border: "2px solid rgba(212,144,10,0.2)",
+                borderTopColor: GOLD, borderRadius: "50%",
+                animation: "spin 0.8s linear infinite", flexShrink: 0,
+              }} />
+              PREPARING DOWNLOAD…
+            </div>
+          ) : sessionId && pollGaveUp && (
+            <div
+              data-testid="thank-you-download-email-fallback"
+              style={{
+                fontFamily: MONO, fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.45)", letterSpacing: "0.08em",
+                padding: "0.875rem 0",
+              }}
+            >
+              Your download link has been sent to your email.
+            </div>
           )}
           <Link
             to="/ground-0-briefing"

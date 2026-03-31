@@ -534,58 +534,29 @@ async def verify_product_purchase(session_id: str, request: Request):
             "upsell": upsell,
         }
 
-    # State 2 — PENDING: Stripe says paid but webhook hasn't written the record yet.
-    # Self-heal: retrieve full session from Stripe directly, process purchase, return confirmed.
-    try:
-        import asyncio as _asyncio
-        full_session = await _asyncio.get_event_loop().run_in_executor(
-            None, lambda: stripe_lib.checkout.Session.retrieve(
-                session_id, expand=["customer_details"]
-            )
-        )
-        if full_session.payment_status == "paid":
-            sku = (full_session.metadata or {}).get("sku")
-            if sku:
-                logger.info(f"Verify self-heal: processing purchase for {sku} / {session_id}")
-                await handle_product_purchase_webhook(full_session)
-                purchase = await db.product_purchases.find_one(
-                    {"session_id": session_id, "payment_status": "paid"}, {"_id": 0}
+    # State 2 — PENDING: webhook hasn't fired yet. Kick off self-heal in background
+    # and return pending immediately so the client retries quickly (usually confirmed on retry 2-3).
+    async def _self_heal():
+        try:
+            full_session = await asyncio.get_event_loop().run_in_executor(
+                None, lambda: stripe_lib.checkout.Session.retrieve(
+                    session_id, expand=["customer_details"]
                 )
-                if purchase:
-                    component_skus = BUNDLE_CONTENTS.get(sku, [sku])
-                    expires_at = datetime.now(timezone.utc) + timedelta(hours=1)
-                    download_tokens = []
-                    for comp_sku in component_skus:
-                        token = str(uuid.uuid4())
-                        await db.product_download_tokens.insert_one({
-                            "token": token, "session_id": session_id, "sku": comp_sku,
-                            "parent_sku": sku,
-                            "expires_at": expires_at.isoformat(),
-                            "created_at": datetime.now(timezone.utc).isoformat(),
-                        })
-                        download_tokens.append({
-                            "token": token, "sku": comp_sku,
-                            "name": PRODUCTS.get(comp_sku, {}).get("name", comp_sku),
-                        })
-                    upsell = UPSELL.get(sku)
-                    if upsell and upsell["sku"] != "cohort":
-                        up_product = PRODUCTS.get(upsell["sku"], {})
-                        upsell = {**upsell, "image": up_product.get("image", ""), "description": up_product.get("description", "")}
-                    return {
-                        "status": "confirmed",
-                        "product_sku": sku,
-                        "product_name": purchase["product_name"],
-                        "is_bundle": sku in BUNDLE_CONTENTS,
-                        "download_tokens": download_tokens,
-                        "download_token": download_tokens[0]["token"] if download_tokens else None,
-                        "upsell": upsell,
-                    }
-            return {"status": "pending"}
-    except Exception as exc:
-        logger.warning(f"Stripe session lookup failed for {session_id}: {exc}")
+            )
+            if full_session.payment_status == "paid":
+                sku = (full_session.metadata or {}).get("sku")
+                if sku:
+                    logger.info(f"Verify self-heal: processing {sku} / {session_id}")
+                    await handle_product_purchase_webhook(full_session)
+                else:
+                    logger.warning(f"Verify self-heal: no SKU in metadata for {session_id}")
+            else:
+                logger.info(f"Verify self-heal: session {session_id} not yet paid ({full_session.payment_status})")
+        except Exception as exc:
+            logger.warning(f"Verify self-heal failed for {session_id}: {exc}")
 
-    # State 3 — FAILED
-    return {"status": "failed"}
+    asyncio.create_task(_self_heal())
+    return {"status": "pending"}
 
 
 # ── Token-gated download ──────────────────────────────────────────────────────
