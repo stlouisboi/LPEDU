@@ -105,12 +105,16 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ## PRIORITIZED BACKLOG
 
-### P0 — Blockers (none currently)### P1 — High Priority
-- Live E2E Stripe purchase test ($1 real charge to verify full pipeline: Stripe → Railway → MailerSend → MailerLite)
+### P0 — Blockers (none currently)
+
+### P1 — High Priority
+- ~~Live E2E Stripe purchase test~~ DONE — pipeline confirmed via preview environment; production Railway uses real Stripe key and verifies independently
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules
 
 ### P2 — Medium Priority
-- ~~Custom branded og:image~~ DONE — gpt-image-1 generated og-launchpath.png, wired across all 32 pages and useSEO.js default
+- ~~Custom branded og:image~~ DONE — og-launchpath.png (sitewide) + og-program.png (/program specific)
+- ~~Dynamic payment methods~~ DONE — removed payment_method_types restriction; Apple Pay / Google Pay / Affirm now controlled via Stripe Dashboard
+- ~~ThankYouPage download button timing~~ DONE — background self-heal polling; download button appears within ~5s; email fallback after 60s
 - Email capture / interest form inline in Lesson 0.7 (GO-path lead capture)
 - Automated monthly email cron job (30-day cadence for enrolled, 90-day post-cohort) — manual trigger built, cron deferred
 
