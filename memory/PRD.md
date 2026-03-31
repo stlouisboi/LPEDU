@@ -27,7 +27,15 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 42: Ground 0 WAIT + NO-GO Email Capture (Mar 2026)
+### Phase 43: Ground 0 Post-Submission Email Sequences (Mar 2026)
+- Built 3 HTML email templates (GO, WAIT, NO-GO) matching Ground 0 tone: calm, structured, non-hype, consequence-aware
+- GO email: triggered by /api/go-email-capture → subject "Your Ground 0 result has been recorded as GO." → CTA "Continue Forward →" → /admission; internal tag ground0_go_email_01
+- WAIT email: triggered by /api/ground0/waitlist when status=WAIT → subject "Your Ground 0 result has been recorded as WAIT." → CTA "Return Later →"; internal tag ground0_wait_email_01
+- NO-GO email: triggered by /api/ground0/waitlist when status=NO-GO → subject "Your Ground 0 result has been recorded as NO-GO." → CTA "Stay Notified →"; internal tag ground0_nogo_email_01
+- All sent via existing MailerSend/send_mailersend_email() as asyncio background tasks with first_name personalization
+- All three queued and logged correctly in backend (verified)
+
+
 - Added First Name field to WAIT and NO-GO capture forms (previously email-only)
 - Updated all copy to match spec: WAIT "You're Not Ready Yet — But You Don't Have To Start Over", NO-GO "You're Not Cleared to Proceed Right Now"
 - Updated GO (Lesson 0.7) copy: "YOU'RE CLEARED TO MOVE FORWARD", button "CONTINUE →", added First Name field

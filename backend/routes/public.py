@@ -534,6 +534,50 @@ async def submit_diagnostic(data: DiagnosticSubmit):
     return {"ok": True, "result": data.result}
 
 
+def _ground0_go_email_html(first_name: str) -> str:
+    """Build the Ground 0 GO outcome follow-up email."""
+    GOLD = "#C5A059"
+    NAVY = "#001B36"
+    TEXT = "rgba(255,255,255,0.82)"
+    MUTED = "rgba(255,255,255,0.48)"
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0a0f1a;font-family:'Inter',Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0f1a;">
+  <tr><td align="center" style="padding:40px 16px;">
+    <table width="100%" style="max-width:600px;background:{NAVY};border-top:3px solid {GOLD};">
+      <tr><td style="padding:40px 40px 0;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(197,160,89,0.60);margin:0 0 28px;">LP-GRD-0 &nbsp;|&nbsp; GROUND 0 RESULT &nbsp;|&nbsp; GROUND0_GO_EMAIL_01</p>
+        <p style="font-size:16px;color:{TEXT};line-height:1.75;margin:0 0 20px;">{first_name},</p>
+        <h2 style="font-size:20px;font-weight:700;color:#ffffff;margin:0 0 24px;line-height:1.3;">Your Ground 0 result has been recorded as GO.</h2>
+        <p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">That means your current position meets the present standard to continue forward.</p>
+        <p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">This does not mean the work is finished. It means you are cleared to proceed in the correct order.</p>
+        <p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">From here, the next step is to continue into the LaunchPath admission path and review what is required to move from readiness into structure.</p>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(197,160,89,0.55);margin:0 0 12px;">WHAT HAPPENS NEXT</p>
+        <ul style="margin:0 0 24px;padding:0 0 0 18px;">
+          <li style="font-size:14px;color:{MUTED};line-height:1.75;margin:0 0 6px;">Your result has been saved</li>
+          <li style="font-size:14px;color:{MUTED};line-height:1.75;margin:0 0 6px;">Your place in the process has been recorded</li>
+          <li style="font-size:14px;color:{MUTED};line-height:1.75;margin:0 0 6px;">You will receive the next instruction for progression</li>
+        </ul>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
+        <p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">This system is built to help operators move with order, not speed alone. What is built correctly is easier to protect later.</p>
+        <p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 24px;">Watch your inbox for the next step.</p>
+        <table cellpadding="0" cellspacing="0" style="margin:0 0 28px;"><tr>
+          <td style="background:{GOLD};"><a href="https://www.launchpathedu.com/admission" style="display:inline-block;background:{GOLD};color:{NAVY};font-family:'Inter',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;padding:14px 28px;">Continue Forward &#8594;</a></td>
+        </tr></table>
+        <p style="font-size:15px;color:{TEXT};margin:0 0 4px;">— LaunchPath</p>
+      </td></tr>
+      <tr><td style="padding:24px 40px 32px;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(255,255,255,0.20);margin:0;text-transform:uppercase;">LP-GRD-0 &nbsp;·&nbsp; launchpathedu.com &nbsp;·&nbsp; Content does not constitute legal, compliance, or financial advice.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>"""
+
+
 @router.post("/go-email-capture")
 async def go_email_capture(data: GOEmailCapture):
     """Capture email from Lesson 0.7 GO-path — add to MailerLite 'GO Result' group."""
@@ -579,6 +623,14 @@ async def go_email_capture(data: GOEmailCapture):
                 logger.warning(f"GO group assignment failed for {data.email}: {exc}")
 
     logger.info(f"GO email captured: {data.email}")
+
+    # Send Ground 0 GO follow-up email
+    first_name = (data.name or "").strip().split()[0] if data.name else "Operator"
+    go_subject = "Your Ground 0 result has been recorded as GO."
+    go_html = _ground0_go_email_html(first_name)
+    asyncio.create_task(send_mailersend_email(data.email, first_name, go_subject, go_html))
+    logger.info(f"Ground 0 GO email queued: {data.email}")
+
     return {"ok": True}
 
 
