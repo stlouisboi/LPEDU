@@ -212,19 +212,22 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
           {/* Copy */}
           <div style={{ flex: "1 1 300px" }}>
             <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: "0.5rem" }}>
-              LP-LEAD-001 | NEW AUTHORITY?
+              LP-LEAD-001 | NEW AUTHORITY? START HERE
             </p>
             <h3 style={{ fontFamily: COND, fontWeight: 800, fontSize: "1.375rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
               Get the First 90 Days Risk Map™ — Free
             </h3>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7 }}>
-              The 3 compliance risk phases every new motor carrier faces — and the small gaps that compound into major problems before most carriers feel ready.
+              The compliance-first guide for new owner-operators. See where the first 90 days create the highest risk to your authority.
             </p>
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(197,160,89,0.65)", lineHeight: 1.65, marginTop: "0.5rem" }}>
-              Compliance-first guidance for new owner-operators in their first 90 days of authority.
+              Built around the 3 critical phases of your first 90 days — Foundation, Operations, and Audit Readiness.
             </p>
-            <p style={{ fontFamily: SANS, fontSize: "0.81rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7, marginTop: "0.625rem", fontStyle: "italic" }}>
-              The full LaunchPath Standard and Document System Bundle live in this library if you decide you want the complete implementation behind the map.
+            <p style={{ fontFamily: SANS, fontSize: "0.81rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7, marginTop: "0.5rem" }}>
+              Understand where small compliance misses turn into bigger problems before they threaten your authority.
+            </p>
+            <p style={{ fontFamily: SANS, fontSize: "0.81rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7, marginTop: "0.5rem", fontStyle: "italic" }}>
+              If you decide you need more than awareness, the REACH Diagnostic and LaunchPath Standard exist to help you move from risk visibility to structured implementation.
             </p>
           </div>
 
@@ -270,7 +273,7 @@ function LibraryEmailCapture({ API, GOLD, NAVY, SANS, MONO, COND }) {
                 </button>
               </div>
               <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: "0.10em", color: "rgba(255,255,255,0.20)", marginTop: 8 }}>
-                NO SPAM. ONE EMAIL. UNSUBSCRIBE ANYTIME.
+                No spam. One email. Unsubscribe anytime.
               </p>
             </form>
           </div>
