@@ -220,6 +220,109 @@ function ReachSubsection() {
   );
 }
 
+// ── System Architecture Diagram ──────────────────────────────────────────
+const ARCH_STEPS = [
+  { num: "01", name: "REACH",         role: "Qualification Gate",    sub: "GO / WAIT / NO-GO",        color: GOLD },
+  { num: "02", name: "GROUND 0",      role: "Orientation & Posture", sub: "Awareness before action",   color: GOLD },
+  { num: "03", name: "FOUR PILLARS",  role: "The Guard",             sub: "Authority · Insurance · Compliance · Cash", color: "#3d9970" },
+  { num: "04", name: "AUTO",          role: "The Breach Map",        sub: "Around · Under · Through · Over", color: "#C0392B" },
+  { num: "05", name: "16 SINS",       role: "The Threat Taxonomy",   sub: "Named exposure patterns",   color: "#C0392B" },
+  { num: "06", name: "MODULES",       role: "The Installation",      sub: "9 safeguards installed",    color: GOLD },
+];
+
+function SystemArchitectureDiagram() {
+  return (
+    <div
+      data-testid="system-architecture-diagram"
+      style={{
+        background: "#0B1525",
+        border: "1px solid rgba(200,147,63,0.20)",
+        borderTop: `3px solid ${GOLD}`,
+        padding: "2.5rem 2rem 2rem",
+        marginBottom: "4rem",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background grain */}
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E\")", pointerEvents: "none", zIndex: 0 }} />
+
+      <div style={{ position: "relative", zIndex: 1 }}>
+        {/* Header */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", margin: 0 }}>
+            SYSTEM ARCHITECTURE
+          </p>
+          <div style={{ flex: 1, height: 1, background: "rgba(200,147,63,0.15)" }} />
+          <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.16em", color: "rgba(200,147,63,0.30)", margin: 0 }}>
+            LP-SYS-001
+          </p>
+        </div>
+
+        {/* Step sequence */}
+        <div className="arch-sequence" style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
+          {ARCH_STEPS.map((step, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", flex: 1, minWidth: 0 }}>
+              {/* Step card */}
+              <div
+                data-testid={`arch-step-${step.num}`}
+                className="arch-step-card"
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  background: "rgba(244,241,235,0.025)",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  borderTop: `2px solid ${step.color}`,
+                  padding: "1.25rem 1rem",
+                  textAlign: "center",
+                  position: "relative",
+                }}
+              >
+                {/* Step number */}
+                <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}66`, margin: "0 0 0.5rem" }}>
+                  {step.num}
+                </p>
+                {/* Step name */}
+                <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: "clamp(0.62rem, 1.1vw, 0.82rem)", letterSpacing: "0.04em", textTransform: "uppercase", color: "#FFFFFF", margin: "0 0 0.35rem", lineHeight: 1.3 }}>
+                  {step.name}
+                </p>
+                {/* Role */}
+                <p style={{ fontFamily: SANS, fontSize: "clamp(0.58rem, 0.9vw, 0.72rem)", color: step.color, margin: "0 0 0.35rem", fontWeight: 600 }}>
+                  {step.role}
+                </p>
+                {/* Sub-descriptor */}
+                <p style={{ fontFamily: MONO, fontSize: "clamp(0.50rem, 0.75vw, 0.62rem)", color: "rgba(138,150,168,0.65)", margin: 0, lineHeight: 1.45, letterSpacing: "0.03em" }}>
+                  {step.sub}
+                </p>
+              </div>
+
+              {/* Arrow connector */}
+              {i < ARCH_STEPS.length - 1 && (
+                <div className="arch-arrow" style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", width: 22, color: "rgba(200,147,63,0.35)", fontSize: "0.75rem", userSelect: "none" }}>
+                  →
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Footer line */}
+        <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(138,150,168,0.40)", margin: "1.5rem 0 0", textAlign: "center" }}>
+          Each layer has a specific function. Each connects to the next. The order is not optional.
+        </p>
+      </div>
+
+      <style dangerouslySetInnerHTML={{__html: `
+        @media (max-width: 768px) {
+          .arch-sequence { flex-direction: column !important; gap: 0 !important; }
+          .arch-arrow { transform: rotate(90deg); width: 100% !important; height: 20px; }
+          .arch-step-card { text-align: left !important; padding: 1rem 1.25rem !important; }
+        }
+      `}} />
+    </div>
+  );
+}
+
 // ── Main Section ─────────────────────────────────────────────────────────
 export default function TheStandardSection() {
   return (
@@ -237,6 +340,9 @@ export default function TheStandardSection() {
       }}
     >
       <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+
+        {/* System Architecture Diagram */}
+        <SystemArchitectureDiagram />
 
         {/* Section label */}
         <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.60)", marginBottom: "1.25rem" }}>

@@ -41,6 +41,13 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 53: System Architecture Diagram on Homepage (April 2026)
+- Added `SystemArchitectureDiagram` component (`TheStandardSection.jsx`) — horizontal 6-step sequence block placed directly above "THE LAUNCHPATH PROTECTION SYSTEM" label
+- Shows: REACH (gold) → Ground 0 (gold) → Four Pillars (green) → AUTO (red) → 16 Sins (red) → Modules (gold)
+- Each step: numbered (01–06), name, role label, sub-descriptor; arrows connecting steps; footer motto "The order is not optional"
+- LP-SYS-001 classification code; dark #0B1525 background with gold top border; mobile-responsive (stacks vertically on ≤768px)
+- Testing: screenshot verified — all 6 steps visible with correct color coding
+
 ### Phase 52: /standards/auto-method Standalone Page (April 2026)
 - Built full `/standards/auto-method` page — doctrinal breach-path model for the AUTO Method
 - **Four breach path cards** (A/U/T/O): each has letter header + classification badge + 1-sentence definition + HOW IT MOVES body + IN THE FIELD field example + CFR reference + Pillar That Resists indicator
