@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
 
 const HERO_LETTER_URL = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/gt9pdg9a_hero-letter-dashboard.png";
+const GOLD = "#C8933F";
 
 
 const RISK_ITEMS = [

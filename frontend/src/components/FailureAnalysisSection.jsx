@@ -1,24 +1,10 @@
 import { Link } from '../compat/Link';
 
 const JBMONO = "'JetBrains Mono', monospace";
+const SANS   = "'Inter', sans-serif";
+const SERIF  = "'Newsreader', 'Playfair Display', serif";
 const GOLD   = "#C5A059";
-
-const LABEL_STYLE = {
-  fontFamily: "'Inter', sans-serif",
-  fontSize: "0.714rem",
-  fontWeight: 700,
-  letterSpacing: "0.16em",
-  textTransform: "uppercase",
-  marginBottom: "0.625rem",
-};
-
-const BODY_STYLE = {
-  fontFamily: "'Inter', sans-serif",
-  fontSize: "0.938rem",
-  color: "rgba(245,245,245,0.72)",
-  lineHeight: 1.82,
-  margin: "0 0 1.5rem",
-};
+const RED    = "#c0392b";
 
 const PANEL_BG = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/rdc6bq8q_16deadly-sins-panel.png";
 
@@ -27,181 +13,137 @@ export default function FailureAnalysisSection() {
     <>
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes fa-warn-blink {
-          0%, 45% { opacity: 1; box-shadow: 0 0 8px 2px #c0392b; }
-          50%, 95% { opacity: 0; box-shadow: none; }
-          100% { opacity: 1; box-shadow: 0 0 8px 2px #c0392b; }
+          0%, 45% { opacity: 1; }
+          50%, 95% { opacity: 0; }
+          100%     { opacity: 1; }
         }
         @keyframes fa-warn-ring {
-          0% { transform: scale(1); opacity: 0.8; }
-          100% { transform: scale(2.8); opacity: 0; }
+          0%   { transform: scale(1); opacity: 0.7; }
+          100% { transform: scale(2.6); opacity: 0; }
         }
         .fa-warn-dot-wrap {
-          position: relative;
-          width: 10px;
-          height: 10px;
-          flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          position: relative; width: 10px; height: 10px;
+          flex-shrink: 0; display: flex; align-items: center; justify-content: center;
         }
         .fa-warn-dot-wrap::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          background: #c0392b;
-          animation: fa-warn-ring 1.4s ease-out infinite;
+          content: ''; position: absolute; inset: 0; border-radius: 50%;
+          background: ${RED}; animation: fa-warn-ring 1.4s ease-out infinite;
         }
-        .fa-grid {
-          display: grid;
-          grid-template-columns: 1fr 360px;
-          gap: 4rem;
-          align-items: start;
-        }
-        @media (max-width: 880px) {
-          .fa-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-        }
-        .fa-rail {
-          position: relative;
-          height: 1px;
-          background: rgba(139,47,47,0.40);
-          margin: 2rem 0;
-        }
-        .fa-rail::before, .fa-rail::after {
-          content: '';
-          position: absolute;
-          top: 50%; transform: translateY(-50%);
-          width: 6px; height: 6px;
-          border: 1px solid rgba(192,57,43,0.55);
-          background: #070c14;
-        }
-        .fa-rail::before { left: 0; }
-        .fa-rail::after  { right: 0; }
       `}} />
 
       <section
         id="sixteen-sins"
         data-testid="failure-analysis-section"
         style={{
-          background: `linear-gradient(rgba(5,8,14,0.87) 0%, rgba(5,8,14,0.92) 100%), url("${PANEL_BG}") center/cover no-repeat`,
-          borderTop: "2px solid rgba(192,57,43,0.55)",
-          borderBottom: "2px solid rgba(192,57,43,0.55)",
-          padding: "6rem 1.5rem",
+          background: `linear-gradient(rgba(5,8,14,0.90) 0%, rgba(5,8,14,0.94) 100%), url("${PANEL_BG}") center/cover no-repeat`,
+          borderTop: "2px solid rgba(192,57,43,0.50)",
+          borderBottom: "2px solid rgba(192,57,43,0.50)",
+          padding: "4.5rem 1.5rem",
           position: "relative",
-          boxShadow: "inset 0 4px 30px rgba(139,0,0,0.25), inset 0 -4px 30px rgba(139,0,0,0.25)",
+          boxShadow: "inset 0 3px 20px rgba(139,0,0,0.18), inset 0 -3px 20px rgba(139,0,0,0.18)",
         }}
       >
         {/* Corner HUD brackets */}
         {[{top:0,left:0},{top:0,right:0},{bottom:0,left:0},{bottom:0,right:0}].map((pos,i) => (
           <div key={i} style={{
-            position: "absolute", width: 20, height: 20, pointerEvents: "none",
-            borderTop: i < 2 ? "2px solid rgba(192,57,43,0.55)" : "none",
-            borderBottom: i >= 2 ? "2px solid rgba(192,57,43,0.55)" : "none",
-            borderLeft: (i === 0 || i === 2) ? "2px solid rgba(192,57,43,0.55)" : "none",
-            borderRight: (i === 1 || i === 3) ? "2px solid rgba(192,57,43,0.55)" : "none",
-            ...pos, margin: 12,
+            position: "absolute", width: 16, height: 16, pointerEvents: "none",
+            borderTop:    i < 2  ? "2px solid rgba(192,57,43,0.45)" : "none",
+            borderBottom: i >= 2 ? "2px solid rgba(192,57,43,0.45)" : "none",
+            borderLeft:   (i === 0 || i === 2) ? "2px solid rgba(192,57,43,0.45)" : "none",
+            borderRight:  (i === 1 || i === 3) ? "2px solid rgba(192,57,43,0.45)" : "none",
+            ...pos, margin: 10,
           }} />
         ))}
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
-          {/* Critical Failure HUD ID plate */}
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.625rem", background: "linear-gradient(180deg,#200808,#120404)", border: "1px solid rgba(192,57,43,0.55)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04), 2px 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(192,57,43,0.15)", padding: "0.45rem 0.875rem", marginBottom: "2.5rem" }}>
-            <div className="fa-warn-dot-wrap"><div style={{ width: 8, height: 8, borderRadius: "50%", background: "#e83a2a", boxShadow: "0 0 6px rgba(232,58,42,0.8)", animation: "fa-warn-blink 1.0s step-end infinite", position: "relative", zIndex: 1 }} /></div>
-            <span style={{ fontFamily: JBMONO, fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,90,70,0.90)" }}>CRITICAL FAILURE</span>
-            <span style={{ fontFamily: JBMONO, fontSize: "0.667rem", color: "rgba(192,57,43,0.35)" }}>|</span>
-            <span style={{ fontFamily: JBMONO, fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(192,57,43,0.80)" }}>LP-CASE-001</span>
-            <span style={{ fontFamily: JBMONO, fontSize: "0.667rem", color: "rgba(192,57,43,0.35)" }}>|</span>
-            <span style={{ fontFamily: JBMONO, fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(192,57,43,0.80)" }}>16 EXPOSURE PATTERNS</span>
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+
+          {/* HUD badge */}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.55rem", background: "linear-gradient(180deg,#200808,#120404)", border: "1px solid rgba(192,57,43,0.50)", padding: "0.35rem 0.75rem", marginBottom: "2rem" }}>
+            <div className="fa-warn-dot-wrap">
+              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#e83a2a", animation: "fa-warn-blink 1.0s step-end infinite", position: "relative", zIndex: 1 }} />
+            </div>
+            <span style={{ fontFamily: JBMONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(232,90,70,0.88)" }}>CRITICAL FAILURE</span>
+            <span style={{ fontFamily: JBMONO, fontSize: "0.600rem", color: "rgba(192,57,43,0.30)" }}>|</span>
+            <span style={{ fontFamily: JBMONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(192,57,43,0.75)" }}>LP-CASE-001</span>
+            <span style={{ fontFamily: JBMONO, fontSize: "0.600rem", color: "rgba(192,57,43,0.30)" }}>|</span>
+            <span style={{ fontFamily: JBMONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(192,57,43,0.75)" }}>16 EXPOSURE PATTERNS</span>
           </div>
 
-          <div className="fa-grid">
+          {/* Headline */}
+          <h2 style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: RED, letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: "0.875rem" }}>
+            The $19,246 Oversight
+          </h2>
 
-            {/* ── LEFT: Case narrative ── */}
-            <div>
-              <h2 className="data-stream" style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 800, fontSize: "clamp(2rem, 3.5vw, 2.75rem)", color: "#c0392b", letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: "1.25rem" }}>
-                The $19,246 Oversight
-              </h2>
-
-              <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(245,245,245,0.38)", paddingBottom: "1.25rem", marginBottom: "1.75rem", borderBottom: "1px solid rgba(139,47,47,0.20)" }}>
-                2-Truck Independent (Dry Van)&nbsp;&nbsp;·&nbsp;&nbsp;7 Months Active&nbsp;&nbsp;·&nbsp;&nbsp;
-                <span style={{ color: "#8b2f2f" }}>Authority Revoked</span>
-              </div>
-
-              <div style={{ marginBottom: "1.5rem" }}>
-                <p style={{ ...LABEL_STYLE, color: "rgba(245,245,245,0.30)" }}>The Incident</p>
-                <p style={BODY_STYLE}>A clean roadside inspection triggered a New Entrant Safety Audit. Insurance filings were current. DOT numbers were in order. The carrier expected a routine review.</p>
-              </div>
-
-              <div style={{ marginBottom: "1.5rem" }}>
-                <p style={{ ...LABEL_STYLE, color: "rgba(200,60,60,0.70)" }}>The Failure</p>
-                <p style={BODY_STYLE}>During the audit, the investigator requested the Medical Examiner's Certificate for a driver hired in Month 2. The carrier had it. It was dated two days <em>after</em> the driver's first dispatch.</p>
-              </div>
-
-              <div style={{ marginBottom: "2rem" }}>
-                <p style={{ ...LABEL_STYLE, color: "rgba(200,60,60,0.70)" }}>The Result</p>
-                <p style={{ ...BODY_STYLE, marginBottom: 0 }}>Under <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85em", color: "rgba(245,245,245,0.55)" }}>49 CFR § 385.321</span>, dispatching an unqualified driver is an automatic failure. The authority was revoked 15 days later.</p>
-              </div>
-
-              {/* Warning HUD — Total Exposure */}
-              <div style={{ position: "relative", background: "rgba(139,47,47,0.10)", border: "1px solid rgba(139,47,47,0.40)", borderLeft: "3px solid #c0392b", padding: "1.25rem 1.5rem", boxShadow: "inset 0 2px 8px rgba(0,0,0,0.40), 0 0 20px rgba(192,57,43,0.08)" }}>
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, #c0392b, transparent)" }} />
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
-                  <div className="fa-warn-dot-wrap"><div style={{ width: 8, height: 8, borderRadius: "50%", background: "#c0392b", animation: "fa-warn-blink 1.4s step-end infinite", position: "relative", zIndex: 1 }} /></div>
-                  <p style={{ ...LABEL_STYLE, color: "rgba(200,60,60,0.65)", margin: 0 }}>TOTAL EXPOSURE — CRITICAL</p>
-                </div>
-                <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)", color: "#c0392b", letterSpacing: "-0.03em", lineHeight: 1, marginBottom: "0.625rem" }}>$19,246</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(245,245,245,0.48)", lineHeight: 1.7, margin: 0 }}>Loss of revenue, insurance policy cancellation, reapplication fees, and six weeks of downtime.</p>
-              </div>
-            </div>
-
-            {/* ── RIGHT: Analysis ── */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-
-              <div style={{ background: "linear-gradient(170deg,rgba(255,255,255,0.016) 0%,rgba(0,0,0,0.25) 100%)", border: "1px solid rgba(245,245,245,0.07)", boxShadow: "inset 0 2px 6px rgba(0,0,0,0.55)", padding: "1.75rem" }}>
-                <p style={{ ...LABEL_STYLE, color: "rgba(245,245,245,0.35)", marginBottom: "1.25rem" }}>AUTO Failure Vector</p>
-
-                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", paddingBottom: "1rem", marginBottom: "1rem", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "#3d9970", fontWeight: 700, flexShrink: 0, marginTop: "0.1rem" }}>→</span>
-                  <div>
-                    <p style={{ ...LABEL_STYLE, color: "#3d9970", marginBottom: "0.25rem" }}>Around — Intact</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(245,245,245,0.55)", lineHeight: 1.65, margin: 0 }}>Insurance was current. All external filings in order.</p>
-                  </div>
-                </div>
-
-                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "#c0392b", fontWeight: 700, flexShrink: 0, marginTop: "0.1rem" }}>✗</span>
-                  <div>
-                    <p style={{ ...LABEL_STYLE, color: "#c0392b", marginBottom: "0.25rem" }}>Through — Failed</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(245,245,245,0.55)", lineHeight: 1.65, margin: 0 }}>Compliance backbone not installed. Driver Qualification File incomplete.</p>
-                  </div>
-                </div>
-
-                <div style={{ marginTop: "1.25rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.06)", fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(245,245,245,0.35)", lineHeight: 1.6, fontStyle: "italic" }}>
-                  One missing document. One unqualified driver. Automatic failure.
-                </div>
-              </div>
-
-              <div style={{ background: "rgba(197,160,89,0.05)", border: "1px solid rgba(197,160,89,0.18)", borderLeft: "3px solid rgba(197,160,89,0.55)", padding: "1.75rem", boxShadow: "inset 0 2px 5px rgba(0,0,0,0.40)" }}>
-                <p style={{ ...LABEL_STYLE, color: GOLD, marginBottom: "1rem" }}>What the Standard Installs</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.90rem", color: "rgba(245,245,245,0.65)", lineHeight: 1.78, margin: 0 }}>
-                  The Driver Qualification File system in Module 3 requires Medical Examiner's Certificate verification <em>before</em> dispatch authorization. The DQ File Checklist blocks this failure at the source.
-                </p>
-              </div>
-
-              <Link
-                to="/standards/16-deadly-sins"
-                data-testid="failure-patterns-link"
-                style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", textDecoration: "none", transition: "color 0.15s", display: "inline-block" }}
-                onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "rgba(197,160,89,0.55)"; }}
+          {/* 3-stat strip */}
+          <div style={{ display: "flex", gap: 0, marginBottom: "2rem", flexWrap: "wrap", border: "1px solid rgba(192,57,43,0.18)" }}>
+            {[
+              { label: "CARRIER TYPE",    value: "2-Truck Independent (Dry Van)", serif: false },
+              { label: "TOTAL EXPOSURE",  value: "$19,246",                        serif: true  },
+              { label: "OUTCOME",         value: "Authority Revoked — Day 15",     serif: false },
+            ].map(({ label, value, serif }, i, arr) => (
+              <div
+                key={label}
+                style={{
+                  flex: "1 1 160px", padding: "1rem 1.5rem",
+                  borderRight: i < arr.length - 1 ? "1px solid rgba(192,57,43,0.18)" : "none",
+                }}
               >
-                View more failure patterns →
-              </Link>
-
-            </div>
+                <p style={{ fontFamily: JBMONO, fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(192,57,43,0.55)", margin: "0 0 0.35rem" }}>{label}</p>
+                <p style={{ fontFamily: serif ? SERIF : SANS, fontWeight: serif ? 800 : 600, fontSize: serif ? "clamp(1.5rem, 3vw, 2rem)" : "0.938rem", color: serif ? RED : "rgba(245,245,245,0.82)", letterSpacing: serif ? "-0.03em" : 0, margin: 0, lineHeight: 1.1 }}>{value}</p>
+              </div>
+            ))}
           </div>
 
-        </div>  {/* close maxWidth inner */}
+          {/* Border */}
+          <div style={{ height: 1, background: "rgba(192,57,43,0.18)", marginBottom: "1.75rem" }} />
+
+          {/* Compressed narrative */}
+          <p style={{ fontFamily: SANS, fontSize: "0.975rem", color: "rgba(245,245,245,0.72)", lineHeight: 1.82, marginBottom: "1.75rem", maxWidth: 720 }}>
+            Insurance was current. DOT filings were in order. A roadside inspection triggered a New Entrant Safety Audit. The investigator requested the Medical Examiner's Certificate for a driver hired in Month 2. The carrier had it — dated two days <em>after</em> the driver's first dispatch. Under{" "}
+            <span style={{ fontFamily: JBMONO, fontSize: "0.80em", color: "rgba(245,245,245,0.45)" }}>49 CFR § 385.321</span>,
+            {" "}dispatching an unqualified driver is an automatic failure. The authority was revoked 15 days later.
+          </p>
+
+          {/* AUTO vector — compact 2 rows */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.75rem", maxWidth: 580 }}>
+            <p style={{ fontFamily: JBMONO, fontSize: "0.575rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(245,245,245,0.28)", marginBottom: "0.5rem" }}>AUTO FAILURE VECTOR</p>
+            {[
+              { pass: true,  label: "Around — Intact", detail: "Insurance current. External filings correct." },
+              { pass: false, label: "Through — Failed", detail: "DQ file incomplete. Certification dated after dispatch." },
+            ].map(({ pass, label, detail }) => (
+              <div key={label} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", padding: "0.625rem 0.875rem", background: pass ? "rgba(61,153,112,0.06)" : "rgba(192,57,43,0.07)", borderLeft: `2px solid ${pass ? "#3d9970" : RED}` }}>
+                <span style={{ fontFamily: SANS, fontSize: "0.714rem", fontWeight: 700, color: pass ? "#3d9970" : RED, flexShrink: 0, marginTop: "0.1rem" }}>{pass ? "→" : "✗"}</span>
+                <div>
+                  <span style={{ fontFamily: JBMONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: pass ? "#3d9970" : RED }}>{label}</span>
+                  <span style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(245,245,245,0.50)", marginLeft: "0.625rem" }}>{detail}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Italic kicker */}
+          <p style={{ fontFamily: SANS, fontSize: "0.906rem", fontStyle: "italic", color: "rgba(245,245,245,0.38)", lineHeight: 1.65, marginBottom: "2rem" }}>
+            One missing document. One unqualified driver. Automatic failure.
+          </p>
+
+          {/* Doctrinal divider */}
+          <div style={{ height: 1, background: "linear-gradient(90deg, rgba(192,57,43,0.30), transparent)", marginBottom: "1.75rem" }} />
+
+          {/* Doctrinal statement + link */}
+          <p style={{ fontFamily: SANS, fontSize: "0.952rem", color: "rgba(200,147,63,0.75)", lineHeight: 1.75, marginBottom: "1.25rem", maxWidth: 600 }}>
+            This is one pattern. There are 16 of them. Each one reaches the authority a different way — around the guard, under it, through a missing control, or over a structure that was never strong enough to hold.
+          </p>
+          <Link
+            to="/standards/16-deadly-sins"
+            data-testid="failure-patterns-link"
+            style={{ fontFamily: JBMONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", textDecoration: "none", transition: "color 0.15s", display: "inline-block" }}
+            onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
+            onMouseLeave={e => { e.currentTarget.style.color = "rgba(197,160,89,0.55)"; }}
+          >
+            View the full 16 Deadly Sins breakdown →
+          </Link>
+
+        </div>
       </section>
     </>
   );
