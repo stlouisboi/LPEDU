@@ -107,6 +107,16 @@ export default function DoctrinePage() {
         <meta name="description" content="How the LaunchPath system operates: REACH qualifies readiness. Ground 0 establishes wisdom. AUTO guards the authority. The 16 Deadly Sins name the threats. The Standard installs the safeguards." />
         <meta property="og:title" content="The LaunchPath Doctrine" />
         <meta property="og:description" content="REACH decides. Ground 0 prepares. AUTO guards. The 16 Sins define the threats. The Standard installs the safeguards." />
+        <meta property="og:image" content="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/128ca4ffc4bb7be61ef46f4d5ec01914d799e23fa979d46939c5aeb495f1de08.png" />
+        <meta property="og:image:width" content="1536" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="The LaunchPath Doctrine — 5-layer system architecture: REACH, Ground 0, AUTO, 16 Deadly Sins, The Standard" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://launchpathedu.com/doctrine" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="The LaunchPath Doctrine" />
+        <meta name="twitter:description" content="REACH decides. Ground 0 prepares. AUTO guards. The 16 Sins define the threats. The Standard installs the safeguards." />
+        <meta name="twitter:image" content="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/128ca4ffc4bb7be61ef46f4d5ec01914d799e23fa979d46939c5aeb495f1de08.png" />
       </Head>
 
       <div style={{ background: C.bg, minHeight: '100vh', fontFamily: BODY }}>
