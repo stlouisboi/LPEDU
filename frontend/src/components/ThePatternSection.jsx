@@ -41,29 +41,25 @@ export default function ThePatternSection() {
 
         {/* Body copy */}
         <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 760 }}>
-          New carriers don't fail because they can't drive or can't find freight. They fail because the system was never installed.
+          A carrier gets authority. They start moving. The paperwork looks mostly done. The operation feels close enough. Then pressure shows up.
         </p>
 
         <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 760 }}>
-          No one showed them that an incomplete Driver Qualification file is an automatic audit failure. That a Drug &amp; Alcohol program that doesn't meet federal specs disqualifies every driver in it retroactively. That maintenance records aren't optional — they're the proof.
+          A file is incomplete. A required program was never fully installed. A maintenance record is missing. Insurance continuity gets shaky. Nothing looked urgent until it was expensive.
         </p>
 
         <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 760 }}>
-          These aren't edge cases. They're the same 16 failure patterns, repeating in month 6, month 9, month 14.
-        </p>
-
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 760 }}>
-          By then the insurance is cancelled. The authority is revoked. The restart costs $40,000.
+          Most early failures do not come from one dramatic event. They come from small unguarded gaps that were allowed to stay in place too long. Month 6. Month 9. Month 14. By then the insurance is cancelled. The authority is revoked. The restart costs $40,000.
         </p>
 
         <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "3rem", maxWidth: 760, fontStyle: "italic" }}>
-          Failure here is structural, not personal. The system either exists or it doesn't.
+          Failure here is structural, not personal. The guard either exists or it doesn't.
         </p>
 
-        {/* Ground 0 callout — first mention */}
+        {/* Doctrine callout */}
         <div style={{ borderLeft: `3px solid ${GOLD}`, paddingLeft: "1.5rem", marginBottom: "3rem", maxWidth: 680 }}>
           <p style={{ fontFamily: SANS, fontSize: "1.064rem", fontStyle: "italic", color: GOLD, lineHeight: 1.8, margin: 0 }}>
-            Ground 0 was built to stop that — before you file, before you spend, before the clock starts.
+            LaunchPath was built to stop that pattern — before the gaps become damage, before the records become evidence, before the pressure finds what is missing.
           </p>
         </div>
 

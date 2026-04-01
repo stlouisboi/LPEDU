@@ -203,16 +203,14 @@ export default function HeroSection() {
             className="hero-sub hero-sub-desktop"
             style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.85)", lineHeight: 1.75, maxWidth: 600,
-              marginBottom: 24,
+              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 580,
+              marginBottom: 28,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
             }}
           >
-            Between Month 9 and Month 18, FMCSA shows up. They are not checking your driving. They are checking your paperwork — your driver files, your drug and alcohol program, your maintenance records, your hours of service logs.
-            <br /><br />
-            Most new carriers don't have those built right. LaunchPath installs them correctly, in 90 days, before the auditor arrives.
+            Your authority can be active before it is protected. Most new carriers do not fail because they never started. They fail because required controls, records, and operating safeguards were not in place when pressure hit. LaunchPath was built to help you see how exposed you are, understand how failure reaches the authority, and install the protection your operation should have had from the start.
           </p>
 
           {/* Sub-headline — mobile */}
@@ -220,37 +218,61 @@ export default function HeroSection() {
             className="hero-sub hero-sub-mobile"
             style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.85)", lineHeight: 1.75, maxWidth: 600,
+              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 580,
               marginBottom: 24, display: "none",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.6s ease 0.15s",
             }}
           >
-            FMCSA audits paperwork, not driving. Most new carriers aren't built right when the auditor shows up. LaunchPath fixes that in 90 days.
+            Active does not mean protected. Missing controls, records, and safeguards do not stay quiet — they wait for pressure to surface them.
           </p>
 
-          {/* Em-dash checklist */}
+          {/* Primary CTAs */}
           <div
             style={{
-              display: "flex", flexDirection: "column", gap: 12,
-              marginBottom: 36,
+              display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center",
+              marginBottom: 28,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
             }}
           >
-            {[
-              "Driver files that don't fail the first document request",
-              "A Drug & Alcohol program that exists before the first dispatch — not after the first audit",
-              "Hours of Service records that hold up under scrutiny, not just under normal operations",
-              "Maintenance documentation that proves compliance — a maintained truck with no records is the same as an unmaintained truck to FMCSA",
-              "Insurance filings that are verified active — not assumed",
-            ].map((item, i) => (
-              <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                <span style={{ color: "#C8933F", fontFamily: "'Inter', sans-serif", fontSize: 16, flexShrink: 0, marginTop: 1 }}>—</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.78)", lineHeight: 1.6 }}>{item}</span>
-              </div>
-            ))}
+            <Link
+              to="/reach-diagnostic"
+              data-testid="hero-reach-cta"
+              className="lp-scan-btn"
+              style={{
+                display: "inline-flex", alignItems: "center",
+                fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase",
+                color: "#0b1628", background: GOLD,
+                padding: "1rem 2rem", textDecoration: "none",
+                transition: "background 0.2s",
+                minHeight: 48,
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "#e8a958"}
+              onMouseLeave={e => e.currentTarget.style.background = GOLD}
+            >
+              START THE REACH TEST →
+            </Link>
+            <Link
+              to="/ground-0-briefing"
+              data-testid="hero-ground0-cta"
+              style={{
+                display: "inline-flex", alignItems: "center",
+                fontFamily: "'Inter', sans-serif", fontWeight: 600,
+                fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "rgba(255,255,255,0.70)", background: "transparent",
+                border: "1px solid rgba(255,255,255,0.20)",
+                padding: "1rem 1.75rem", textDecoration: "none",
+                transition: "border-color 0.2s, color 0.2s",
+                minHeight: 48,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.50)"; e.currentTarget.style.color = "#FFFFFF"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.20)"; e.currentTarget.style.color = "rgba(255,255,255,0.70)"; }}
+            >
+              BEGIN GROUND 0 BRIEFING
+            </Link>
           </div>
 
           {/* ── CONSEQUENCE BAND — LP-EXP-001 ───────────────────── */}
