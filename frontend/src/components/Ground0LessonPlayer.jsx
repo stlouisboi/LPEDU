@@ -1271,9 +1271,16 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
               <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.875rem" }}>
                 ✓ YOUR SPOT IS SAVED
               </p>
-              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78 }}>
+              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1rem" }}>
                 Your spot has been saved. When you're ready to return, you won't be starting from zero.
               </p>
+              <a
+                href="/resources/ground0-wait"
+                data-testid="wait-status-page-link"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", textDecoration: "none", borderBottom: "1px solid rgba(197,160,89,0.25)", paddingBottom: "1px" }}
+              >
+                View your WAIT status and return path →
+              </a>
             </div>
           ) : (
             <form onSubmit={handleCapture} data-testid="g0-wait-capture-form" style={{ marginBottom: "0" }}>
@@ -1362,9 +1369,16 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
               <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "0.875rem" }}>
                 ✓ YOU'RE ON THE LIST
               </p>
-              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78 }}>
+              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78, marginBottom: "1rem" }}>
                 You're on the list. If and when the time is right to revisit this, we'll let you know.
               </p>
+              <a
+                href="/resources/ground0-nogo"
+                data-testid="nogo-status-page-link"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", textDecoration: "none", borderBottom: "1px solid rgba(255,255,255,0.12)", paddingBottom: "1px" }}
+              >
+                View your NO-GO status →
+              </a>
             </div>
           ) : (
             <form onSubmit={handleCapture} data-testid="g0-nogo-capture-form" style={{ marginBottom: "0" }}>

@@ -367,6 +367,26 @@ async def _schedule_ground0_email2(email: str, first_name: str, outcome: str, de
 </body></html>"""
 
 
+class Ground0TrackEvent(BaseModel):
+    event: str
+    outcome: Optional[str] = None
+    email: Optional[str] = None
+    metadata: Optional[dict] = None
+
+
+@router.post("/ground0/track")
+async def ground0_track(data: Ground0TrackEvent):
+    """Store a Ground 0 analytics event (page views, CTA clicks, re-entries)."""
+    await db.ground0_analytics.insert_one({
+        "event": data.event,
+        "outcome": data.outcome,
+        "email": data.email,
+        "metadata": data.metadata or {},
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    })
+    return {"ok": True}
+
+
 @router.post("/ground0/waitlist")
 async def ground0_waitlist(data: Ground0WaitlistRequest):
     if data.status not in ("WAIT", "NO-GO"):
