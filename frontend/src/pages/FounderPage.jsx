@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import { Link } from "../compat/Link";
@@ -105,6 +106,15 @@ function SectionLabel({ code, label, accent }) {
 }
 
 export default function FounderPage() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch { /* no-op */ }
+  };
   return (
     <div style={{ background: BG, minHeight: "100vh", color: "#F5F5F5", overflowX: "hidden" }}>
       <Navbar />
@@ -295,6 +305,39 @@ export default function FounderPage() {
             </div>
 
           </div>
+
+          {/* Share strip */}
+          <div style={{ marginTop: "1rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", padding: "0.75rem 0" }}>
+            <span style={{ fontFamily: JBMONO, fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.28)" }}>
+              LP-SHARE &nbsp;·&nbsp; launchpathedu.com/founder
+            </span>
+            <button
+              data-testid="copy-doctrine-link"
+              onClick={handleCopy}
+              style={{
+                fontFamily: JBMONO,
+                fontSize: "0.524rem",
+                fontWeight: 700,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: copied ? "rgba(61,153,112,0.85)" : "rgba(197,160,89,0.45)",
+                background: "transparent",
+                border: `1px solid ${copied ? "rgba(61,153,112,0.35)" : "rgba(197,160,89,0.18)"}`,
+                padding: "0.5rem 1rem",
+                cursor: "pointer",
+                transition: "color 0.15s, border-color 0.15s",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+              onMouseEnter={e => { if (!copied) { e.currentTarget.style.color = GOLD; e.currentTarget.style.borderColor = "rgba(197,160,89,0.45)"; } }}
+              onMouseLeave={e => { if (!copied) { e.currentTarget.style.color = "rgba(197,160,89,0.45)"; e.currentTarget.style.borderColor = "rgba(197,160,89,0.18)"; } }}
+            >
+              <span>{copied ? "LINK COPIED" : "COPY DOCTRINE LINK"}</span>
+              <span style={{ fontSize: "0.6rem" }}>{copied ? "✓" : "→"}</span>
+            </button>
+          </div>
+
         </section>
 
         {/* ══ SECTION 5: The Protection Standard ══ */}

@@ -41,6 +41,11 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 50: Share This Doctrine — Copy Button + OG Image (April 2026)
+- **Copy-link button** added below the Doctrine Sequence Map on `/founder`: shows "COPY DOCTRINE LINK →" → copies `window.location.href` to clipboard → flips to "LINK COPIED ✓" for 2.5s → reverts; styled institutionally in gold mono, no external library
+- **OG image** generated (1536×1024 dark navy dossier cover showing Vince Lawrence name, title, 6-step sequence, corner brackets) and wired to `/founder` page via `og:image`, `og:image:width/height`, `og:url`, `twitter:card: summary_large_image`, `twitter:image`
+- Testing: HTTP 200 confirmed, `copy-doctrine-link` testid, `COPY DOCTRINE LINK` text, and OG image URL all verified in SSR output
+
 ### Phase 49: Doctrine Sequence Map on /founder (April 2026)
 - Added visual `doctrine-sequence-map` section to `/founder` page between Pattern Observations and Protection Standard
 - **Diagram design**: dark CARD background + gold border → header bar (LP-DOCTRINE — OFFICIAL SEQUENCE MAP) → 6-node vertical spine with color-coded dots (gold for awareness/installation, #3d9970 green for guard, #b12a1e red for breach/threats) → connecting lines between nodes → compressed Master Logic Line footer
