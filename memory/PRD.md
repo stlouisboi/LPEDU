@@ -14,6 +14,20 @@ Core requirements:
 
 ---
 
+## DOCTRINAL ARCHITECTURE (LOCKED — April 2026)
+
+LaunchPath operates on four distinct, ordered layers:
+
+1. **REACH** — Qualification Engine. Owns GO / WAIT / NO-GO outcomes. The gate.
+2. **Ground 0** — Wisdom Module. Orientation, posture, consequence-awareness. First experiential sample. Follows REACH GO.
+3. **AUTO** — Authority-Protection Framework. Guards against the 16 Deadly Sins by showing how risk reaches the authority — Around, Under, Through, and Over.
+4. **16 Deadly Sins** — Threat Taxonomy. Recurring failures that destroy new motor carrier authorities. Travels through AUTO paths.
+5. **The Standard (Modules)** — Installation Track. 9 modules that install the safeguards in practice.
+
+**Doctrinal Voice:** Calm, serious, restrained, consequence-aware, plain-English, non-hype. Not a course funnel. Not a guru brand. A governed standard.
+
+---
+
 ## TECH STACK
 - Frontend: Next.js 14 (Pages Router), React 18.2.0
 - Backend: FastAPI, MongoDB (Railway plugin)
@@ -26,6 +40,15 @@ Core requirements:
 ---
 
 ## WHAT'S BEEN IMPLEMENTED
+
+### Phase 45: Doctrinal Architecture Correction (April 2026)
+- **REACH owns GO/WAIT/NO-GO**: Moved email capture forms for WAIT/NO-GO from Ground0LessonPlayer into REACHAssessmentPage. After WAIT submit: routes to /resources/reach-wait. After NO-GO submit: routes to /resources/reach-nogo.
+- **New REACH holding pages**: Created /resources/reach-wait.jsx (WAIT holding page, calm amber tone) and /resources/reach-nogo.jsx (NO-GO holding page, muted firm tone). REACH-branded with correct source tags (reach_wait_capture, reach_nogo_capture).
+- **Ground0Page corrected**: Removed embedded REACHAssessmentWidget. Removed "You passed the REACH check." tagline. Added REACH prerequisite banner at top. Dark section now shows LP-DOCTRINE — SYSTEM ORDER (5-layer architecture).
+- **Ground0LessonPlayer corrected**: Replaced DecisionView (user-selected GO/WAIT/NO-GO) with ReachRedirectView ("Ground 0 complete — your outcome is determined by REACH"). Removed WAIT/NO-GO email capture from CompleteView. Updated G0-6 title to "The REACH Qualification". Updated G0-5 AUTO to "authority-protection framework that guards against the 16 Deadly Sins".
+- **DeadlySinsSection updated**: Added explicit AUTO–Sins connection: "AUTO — the authority-protection framework — shows how each one reaches the authority: Around, Under, Through, and Over."
+- **REACHAssessmentPage updated**: Added firstName field. For WAIT/NO-GO, calls /api/ground0/waitlist with reach source tags after main /api/reach call. Redirects to reach-wait/reach-nogo after 1.4s.
+- **Backend unchanged**: /api/ground0/waitlist endpoint already accepted source_tag, reach_resources, reach_experience etc. from Phase 44.
 
 ### Phase 44: Ground 0 Email Sequences — Email 2 (Mar 2026)
 - Built 3 x Email 2 HTML templates for GO / WAIT / NO-GO in Ground 0 tone

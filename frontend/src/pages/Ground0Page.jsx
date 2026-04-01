@@ -50,12 +50,12 @@ const MODULES = [
   },
   {
     number: "G0-6",
-    title: "The GO / WAIT / NO-GO Decision",
+    title: "The REACH Qualification",
     description:
-      "The final module applies the knowledge from G0-1 through G0-5 to a structured readiness assessment. The result is a classification — GO, WAIT, or NO-GO — that determines whether the operator is ready to proceed with Standard admission or requires foundational work first. This is not a score. It is a decision.",
+      "The final module introduces REACH — the LaunchPath qualification engine. REACH determines your readiness outcome: GO, WAIT, or NO-GO. This module provides the framework to understand what each outcome means and what it requires. The decision belongs to REACH, not to self-assessment.",
     duration: "~16 minutes",
     outcome:
-      "Complete the REACH Assessment and receive a structured GO, WAIT, or NO-GO classification with a specific next step attached to each outcome.",
+      "Understand the REACH qualification framework — GO, WAIT, and NO-GO — and what each outcome requires as the operator's next step.",
   },
 ];
 
@@ -170,7 +170,7 @@ export default function Ground0Page() {
               marginBottom: "2rem",
             }}
           >
-            It covers the Four Pillars of Survival, the real differences between box truck and tractor-trailer operations, your personal and financial readiness, and your risk tolerance. By the end, you'll confirm your decision: GO, WAIT, or NO-GO.
+            It covers the Four Pillars of Survival, the real differences between box truck and tractor-trailer operations, your personal and financial readiness, and the exposure paths that put new authorities at risk. By the end, you will have the framework and the posture to proceed. REACH determines your outcome.
           </p>
 
           {/* Doctrine quote */}
