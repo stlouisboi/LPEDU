@@ -41,6 +41,13 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 45b: Doctrine Map Page (April 2026)
+- Created `/doctrine` — a shareable, standalone visual architecture page for the LaunchPath 5-layer system
+- Vertical flow diagram with numbered nodes (01–05), gold accent colors, connector badges between layers
+- Shows: REACH → Ground 0 → AUTO → 16 Deadly Sins → The Standard with full descriptions, outputs, and CTAs per layer
+- Locked doctrine statement block at the bottom with the combined doctrine in 5 sentences
+- Primary CTA: "Begin with REACH →" | Secondary CTA: "Enter Ground 0 →"
+
 ### Phase 45: Doctrinal Architecture Correction (April 2026)
 - **REACH owns GO/WAIT/NO-GO**: Moved email capture forms for WAIT/NO-GO from Ground0LessonPlayer into REACHAssessmentPage. After WAIT submit: routes to /resources/reach-wait. After NO-GO submit: routes to /resources/reach-nogo.
 - **New REACH holding pages**: Created /resources/reach-wait.jsx (WAIT holding page, calm amber tone) and /resources/reach-nogo.jsx (NO-GO holding page, muted firm tone). REACH-branded with correct source tags (reach_wait_capture, reach_nogo_capture).
