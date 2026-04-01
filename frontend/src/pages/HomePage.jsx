@@ -8,6 +8,7 @@ import NotForSection from "../components/NotForSection";
 import TheStandardSection from "../components/TheStandardSection";
 import FailureAnalysisSection from "../components/FailureAnalysisSection";
 import WhatGetsBuiltSection from "../components/WhatGetsBuiltSection";
+import SocialProofSection from "../components/SocialProofSection";
 import FAQSection from "../components/FAQSection";
 import FinalCTASection from "../components/FinalCTASection";
 import FooterSection from "../components/FooterSection";
@@ -54,7 +55,10 @@ export default function HomePage() {
       {/* 10. What Gets Built — 90-day installation outcomes */}
       <WhatGetsBuiltSection />
 
-      {/* 11. Common Questions */}
+      {/* 11. Field Outcomes — What the system produces */}
+      <SocialProofSection />
+
+      {/* 12. Common Questions */}
       <FAQSection />
 
       {/* 12. Final CTA — Run the REACH Diagnostic */}
