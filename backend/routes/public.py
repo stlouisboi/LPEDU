@@ -12,6 +12,7 @@ from core import (
     db, logger,
     MAILERLITE_API_TOKEN, MAILERLITE_URL,
     COACH_EMAIL, FRONTEND_URL,
+    SINS_CHECKLIST_URL,
     send_mailersend_email,
 )
 
@@ -774,7 +775,7 @@ async def sins_checklist_capture(data: SinsChecklistCapture):
         {"$set": {"email": data.email, "source": "16-deadly-sins-checklist", "captured_at": now.isoformat()}},
         upsert=True,
     )
-    return {"ok": True}
+    return {"ok": True, "download_url": SINS_CHECKLIST_URL}
 
 
 @router.post("/library/email-capture")

@@ -212,145 +212,35 @@ export default function SixteenSinsPage() {
     if (!email) return;
     setGateState("submitting");
     try {
-      await fetch(`${API}/api/sins-checklist`, {
+      const res = await fetch(`${API}/api/sins-checklist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-    } catch (_) {}
+      const data = await res.json();
+      const url = data.download_url;
+      if (url) triggerDownload(url);
+    } catch (_) {
+      triggerDownload(null);
+    }
     setGateState("done");
-    generatePDF();
   }
 
+  function triggerDownload(url) {
+    if (!url) return;
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "LP_16DeadlySins_Checklist_SelfAssessment.pdf";
+    a.target = "_blank";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // "Download again" — uses the same real PDF
   function generatePDF() {
-    import("jspdf").then(({ jsPDF }) => {
-      const doc = new jsPDF({ unit: "mm", format: "letter" });
-      const W = 215.9;
-      const gold = [212, 144, 10];
-      const dark = [11, 22, 40];
-      const white = [255, 255, 255];
-      const red = [192, 57, 43];
-
-      // Background
-      doc.setFillColor(...dark);
-      doc.rect(0, 0, W, 279.4, "F");
-
-      // Header bar
-      doc.setFillColor(...gold);
-      doc.rect(0, 0, W, 3, "F");
-
-      // Title
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(22);
-      doc.setTextColor(...white);
-      doc.text("THE 16 DEADLY SINS", 20, 24);
-      doc.setFontSize(11);
-      doc.setTextColor(...gold);
-      doc.text("OF THE NEW AUTHORITY — SELF-AUDIT CHECKLIST", 20, 32);
-
-      doc.setFontSize(8);
-      doc.setTextColor(160, 180, 200);
-      doc.text("LaunchPath Transportation EDU  |  LP-DOCTRINE-001  |  launchpathedu.com", 20, 40);
-
-      // Divider
-      doc.setDrawColor(...gold);
-      doc.setLineWidth(0.5);
-      doc.line(20, 44, W - 20, 44);
-
-      let y = 52;
-      const colW = (W - 40) / 2;
-      let col = 0;
-
-      const HIGH_RISK = ["02", "05", "12", "16"];
-
-      SINS.forEach((sin, i) => {
-        const isHR = HIGH_RISK.includes(sin.num);
-        const x = 20 + col * (colW + 8);
-
-        // Card bg
-        doc.setFillColor(15, 30, 50);
-        doc.rect(x, y, colW - 4, 38, "F");
-
-        if (isHR) {
-          doc.setDrawColor(...red);
-          doc.setLineWidth(0.8);
-          doc.line(x, y, x, y + 38);
-        } else {
-          doc.setDrawColor(216, 90, 48);
-          doc.setLineWidth(0.4);
-          doc.line(x, y, x, y + 38);
-        }
-
-        // Sin number + badge
-        doc.setFontSize(7);
-        doc.setFont("courier", "bold");
-        doc.setTextColor(isHR ? 192 : 216, isHR ? 57 : 90, isHR ? 43 : 48);
-        doc.text(`[SIN ${sin.num}]`, x + 4, y + 7);
-
-        if (isHR) {
-          doc.setFillColor(192, 57, 43);
-          doc.rect(x + colW - 28, y + 2, 24, 6, "F");
-          doc.setFontSize(5);
-          doc.setFont("helvetica", "bold");
-          doc.setTextColor(255, 255, 255);
-          doc.text("HIGH RISK", x + colW - 27, y + 6.5);
-        }
-
-        // Name
-        doc.setFontSize(8.5);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(isHR ? 230 : 216, isHR ? 100 : 90, isHR ? 80 : 48);
-        doc.text(sin.name, x + 4, y + 14, { maxWidth: colW - 12 });
-
-        // Desc (truncated to 1 line)
-        doc.setFontSize(6.5);
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(200, 215, 230);
-        const descLines = doc.splitTextToSize(sin.desc, colW - 12);
-        doc.text(descLines.slice(0, 2), x + 4, y + 21);
-
-        // CFR
-        doc.setFontSize(6);
-        doc.setFont("courier", "normal");
-        doc.setTextColor(120, 140, 160);
-        doc.text(`FMCSA: ${sin.mapping}`, x + 4, y + 34);
-
-        // Checkbox
-        doc.setDrawColor(100, 130, 160);
-        doc.setLineWidth(0.3);
-        doc.rect(x + colW - 8, y + 26, 4, 4);
-
-        col++;
-        if (col === 2) {
-          col = 0;
-          y += 42;
-          if (y > 240 && i < SINS.length - 1) {
-            doc.addPage();
-            doc.setFillColor(...dark);
-            doc.rect(0, 0, W, 279.4, "F");
-            doc.setFillColor(...gold);
-            doc.rect(0, 0, W, 2, "F");
-            y = 16;
-          }
-        }
-      });
-
-      // Footer
-      const finalY = y > 240 ? 270 : Math.max(y + 48, 260);
-      doc.setDrawColor(...gold);
-      doc.setLineWidth(0.3);
-      doc.line(20, finalY, W - 20, finalY);
-      doc.setFontSize(7);
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(120, 140, 160);
-      doc.text("Verify regulatory requirements at ecfr.gov. LaunchPath Transportation EDU is an educational program.", 20, finalY + 6);
-      doc.setTextColor(...gold);
-      doc.text("launchpathedu.com/16-deadly-sins", W - 20, finalY + 6, { align: "right" });
-
-      doc.save("16-deadly-sins-self-audit.pdf");
-    });
+    triggerDownload("https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/11djj9iv_LP_16DeadlySins_Checklist_SelfAssessment.pdf");
   }
-
   return (
     <div style={{ background: pageBg, minHeight: "100vh", color: "#FFFFFF" }}>
       <Navbar />

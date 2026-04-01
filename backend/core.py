@@ -43,6 +43,7 @@ EMERGENT_LLM_KEY = os.environ.get("EMERGENT_LLM_KEY", "")
 
 COACH_EMAIL = os.environ.get("COACH_EMAIL")
 COACH_PASSWORD = os.environ.get("COACH_PASSWORD")
+SINS_CHECKLIST_URL = os.environ.get("SINS_CHECKLIST_URL", "")
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")

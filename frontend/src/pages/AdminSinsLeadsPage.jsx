@@ -78,7 +78,7 @@ export default function AdminSinsLeadsPage() {
             { label: "Total Leads", value: total },
             { label: "Email Sequence", value: "16 Deadly Sins Downloads" },
             { label: "Lead Source", value: "sins_checklist_download" },
-            { label: "Document", value: "jsPDF — generated client-side" },
+            { label: "Document", value: "LP_16DeadlySins_Checklist_SelfAssessment.pdf" },
           ].map((s, i) => (
             <div key={i} style={{ flex: 1, background: "#0B1525", padding: "1rem 1.25rem" }}>
               <p style={{ fontFamily: MONO, fontSize: "0.555rem", fontWeight: 700, letterSpacing: "0.16em", color: "rgba(197,160,89,0.50)", textTransform: "uppercase", margin: "0 0 0.375rem" }}>{s.label}</p>
