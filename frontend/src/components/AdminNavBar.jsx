@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { to: "/admin/community",       label: "Community"       },
   { to: "/admin/audit-readiness", label: "Audit Readiness" },
   { to: "/admin/sins-leads",      label: "Sins Leads"      },
+  { to: "/admin/sequences",       label: "Sequences"       },
 ];
 
 export default function AdminNavBar() {

@@ -678,6 +678,11 @@ async def submit_reach(data: REACHSubmit):
         raise HTTPException(status_code=502, detail="Could not save assessment.")
     subject, html = _build_reach_email(data.result, data.total_score, data.category_scores, data.email)
     asyncio.create_task(send_mailersend_email(data.email, data.email.split("@")[0], subject, html))
+    # Enroll WAIT / NO-GO into correction sequence
+    if data.result in ("WAIT", "NO-GO"):
+        from routes.sequences import enroll_reach_correction_sequence
+        first_name = data.email.split("@")[0]
+        asyncio.create_task(enroll_reach_correction_sequence(data.email, first_name))
     return {"ok": True, "result": data.result}
 
 
@@ -775,6 +780,10 @@ async def sins_checklist_capture(data: SinsChecklistCapture):
         {"$set": {"email": data.email, "source": "16-deadly-sins-checklist", "captured_at": now.isoformat()}},
         upsert=True,
     )
+    # Enroll in 16 Deadly Sins nurture sequence
+    from routes.sequences import enroll_sins_nurture_sequence
+    first_name = data.email.split("@")[0]
+    asyncio.create_task(enroll_sins_nurture_sequence(data.email, first_name))
     return {"ok": True, "download_url": SINS_CHECKLIST_URL}
 
 

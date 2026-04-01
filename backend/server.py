@@ -17,6 +17,7 @@ from routes.admin import router as admin_router
 from routes.payments import router as payments_router
 from routes.products import router as products_router
 from routes.audit_readiness import router as audit_readiness_router
+from routes.sequences import router as sequences_router
 
 stripe_lib.api_key = STRIPE_API_KEY
 
@@ -31,7 +32,7 @@ app.add_middleware(
 )
 
 # All routers share the /api prefix
-for router in (public_router, auth_router, tools_router, portal_router, admin_router, payments_router, products_router, audit_readiness_router):
+for router in (public_router, auth_router, tools_router, portal_router, admin_router, payments_router, products_router, audit_readiness_router, sequences_router):
     app.include_router(router, prefix="/api")
 
 
