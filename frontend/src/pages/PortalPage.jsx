@@ -580,7 +580,7 @@ export default function PortalPage() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     {/* Code row + YOU ARE HERE */}
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem", marginBottom: "0.2rem" }}>
-                      <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.714rem", color: locked ? "rgba(255,255,255,0.5)" : "#FFFFFF", letterSpacing: "0.06em" }}>
+                      <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.714rem", color: "#FFFFFF", letterSpacing: "0.06em" }}>
                         {mod.code}
                       </span>
                       {isActive && (
@@ -590,7 +590,7 @@ export default function PortalPage() {
                       )}
                     </div>
                     {/* Module name */}
-                    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.8rem", color: locked ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.9)", lineHeight: 1.35, marginBottom: "0.3rem" }}>
+                    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.35, marginBottom: "0.3rem" }}>
                       {mod.label}
                     </p>
                     {/* Type label */}
@@ -1176,33 +1176,33 @@ function LockedModuleView({ moduleInfo, type, onCheckout, paymentState }) {
 
       {/* Title + meta */}
       <div style={{ display: "flex", alignItems: "baseline", gap: "1.25rem", marginBottom: "0.625rem", flexWrap: "wrap" }}>
-        <h1 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "rgba(255,255,255,0.35)", letterSpacing: "-0.02em", margin: 0 }}>
+        <h1 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
           {moduleInfo.title}
         </h1>
-        <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.20)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
+        <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
           {moduleInfo.lessonCount} LESSONS · {moduleInfo.duration}
         </span>
       </div>
 
-      <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.78, maxWidth: 580, marginBottom: "2.5rem" }}>
+      <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78, maxWidth: 580, marginBottom: "2.5rem" }}>
         {moduleInfo.description}
       </p>
 
-      {/* Lesson structure — locked preview */}
+      {/* Lesson structure — visible, content locked */}
       <div style={{ background: "rgba(255,255,255,0.015)", border: "1px solid rgba(255,255,255,0.07)", padding: "1.75rem", maxWidth: 560, marginBottom: "2.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1.25rem" }}>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.18)", textTransform: "uppercase", margin: 0 }}>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.45)", textTransform: "uppercase", margin: 0 }}>
             LESSON STRUCTURE — {moduleInfo.lessonCount} UNITS
           </p>
-          <Lock size={11} color="rgba(212,144,10,0.35)" />
+          <Lock size={11} color="rgba(212,144,10,0.55)" />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
           {moduleInfo.topics.map((topic, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem", opacity: 0.38 }}>
-              <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.6)", flexShrink: 0, paddingTop: "0.18rem", letterSpacing: "0.1em" }}>
+            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem" }}>
+              <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.75)", flexShrink: 0, paddingTop: "0.18rem", letterSpacing: "0.1em" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.55 }}>
+              <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.55 }}>
                 {topic}
               </span>
             </div>

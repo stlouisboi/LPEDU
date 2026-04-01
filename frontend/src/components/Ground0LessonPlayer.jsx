@@ -16,7 +16,7 @@ const LESSONS = [
     keyPoints: [
       "LaunchPath is a compliance operating system installation — not a course to study, a system to build and run",
       "You are entering a federally monitored environment the moment your authority activates — the clock starts on Day 1",
-      "Ground 0 is your free diagnostic layer: 6 lessons, ~90 minutes, required before enrollment",
+      "Ground 0 is your free orientation module: 6 lessons, ~90 minutes, no payment required",
       "Every lesson moves you one step closer to knowing whether the LaunchPath Standard is the right next step",
     ],
     assessmentQuestion: "What brings you to LaunchPath today?",
@@ -495,7 +495,7 @@ function OverviewView({ lessons, completedLessons, onBegin, isEmbedded }) {
         Ground 0: The Wisdom Module
       </h1>
       <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.8, maxWidth: 540, marginBottom: isEmbedded ? "1.5rem" : "2.5rem" }}>
-        Six lessons. Approximately 90 minutes. No charge. Required before enrollment — this is the diagnostic and preview layer for the LaunchPath Operating Standard.
+        Six lessons. Approximately 90 minutes. No charge. This is the free orientation module — the wisdom layer of the LaunchPath system.
       </p>
 
       {/* Module list */}
