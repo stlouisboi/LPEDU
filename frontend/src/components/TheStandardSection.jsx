@@ -136,7 +136,7 @@ function AutoMethodSubsection() {
         AUTO is not the guard. The Four Pillars are the guard. AUTO is the breach map — it shows where the guard needs to hold and where it most commonly fails.
       </p>
       <Link
-        to="/auto-method"
+        to="/standards/auto-method"
         data-testid="auto-method-link"
         style={{ fontFamily: MONO, fontSize: "0.806rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: GOLD, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem", transition: "color 0.15s" }}
         onMouseEnter={e => e.currentTarget.style.color = "#e8a958"}
