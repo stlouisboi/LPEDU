@@ -126,12 +126,21 @@ export default function DoctrinePage() {
         <meta property="og:image:width" content="1536" />
         <meta property="og:image:height" content="1024" />
         <meta property="og:image:alt" content="LaunchPath Doctrine Map: The Protection System — REACH, Ground 0, Four Pillars, AUTO, 16 Deadly Sins, Modules" />
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content="https://launchpathedu.com/doctrine" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="The LaunchPath Doctrine — Protection System Architecture" />
         <meta name="twitter:description" content="REACH reveals. Ground 0 forms. Four Pillars guard. AUTO maps. 16 Sins name. Modules install. Six layers, fixed sequence." />
         <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "The LaunchPath Doctrine — Protection System Architecture",
+          "description": "REACH reveals. Ground 0 forms. The Four Pillars guard. AUTO maps the breach paths. The 16 Deadly Sins name the threats. The modules install the protection. Six layers, fixed sequence.",
+          "url": "https://launchpathedu.com/doctrine",
+          "publisher": { "@type": "Organization", "name": "LaunchPath Transportation EDU", "url": "https://launchpathedu.com" },
+          "author": { "@type": "Person", "name": "Vince Lawrence", "url": "https://launchpathedu.com/founder" }
+        }) }} />
       </Head>
 
       <div style={{ background: C.bg, minHeight: '100vh', fontFamily: BODY }}>

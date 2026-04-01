@@ -1,7 +1,7 @@
 import SixteenSinsPage from '../src/pages/standards/SixteenSinsPage';
 import Head from 'next/head';
 
-const SINS_OG = "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/e491aa6163903b78a7a5f025b8d3f6ec5f5303641ad2bb94cb67a829ed554efe.png";
+const SINS_OG = "https://launchpathedu.com/og-launchpath.png";
 
 export default function Page() {
   return (

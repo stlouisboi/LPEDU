@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import AutoMethodPage from '../../src/pages/standards/AutoMethodPage';
 
-const AUTO_OG = "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/0a271d178b03794607375bbfa1428845f65deb6a51a0e1b2c09ab18087d26f9b.png";
+const AUTO_OG = "https://launchpathedu.com/og-launchpath.png";
 
 export default function Page() {
   return (

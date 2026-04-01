@@ -20,6 +20,15 @@ export default function Page() {
         <meta name="twitter:title" content="Vince Lawrence — Founder | LaunchPath Transportation EDU" />
         <meta name="twitter:description" content="25+ years in leadership, safety-based operations, and regulated environments. LaunchPath comes from real-world pattern recognition, not theory." />
         <meta name="twitter:image" content={OG_IMAGE} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Vince Lawrence",
+          "url": "https://launchpathedu.com/founder",
+          "jobTitle": "Founder",
+          "worksFor": { "@type": "Organization", "name": "LaunchPath Transportation EDU", "url": "https://launchpathedu.com" },
+          "description": "25+ years in leadership, safety-based operations, and regulated environments. LaunchPath comes from real-world pattern recognition, not theory."
+        }) }} />
       </Head>
       <FounderPage />
     </>
