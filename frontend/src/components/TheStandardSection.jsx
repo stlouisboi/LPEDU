@@ -222,12 +222,12 @@ function ReachSubsection() {
 
 // ── System Architecture Diagram ──────────────────────────────────────────
 const ARCH_STEPS = [
-  { num: "01", name: "REACH",         role: "Exposure-Awareness & Readiness",   sub: "Reveals exposure — GO / WAIT / NO-GO",             color: GOLD,      href: "/reach-diagnostic" },
-  { num: "02", name: "GROUND 0",      role: "Wisdom & Orientation Layer",        sub: "Posture before the build begins",                  color: GOLD,      href: "/ground-0-briefing" },
-  { num: "03", name: "FOUR PILLARS",  role: "The Guard Around the Authority",    sub: "Authority · Insurance · Compliance · Cash-Flow",   color: "#3d9970", href: "/doctrine" },
-  { num: "04", name: "AUTO",          role: "Breach-Path Model",                 sub: "Around · Under · Through · Over",                  color: "#C0392B", href: "/standards/auto-method" },
-  { num: "05", name: "16 SINS",       role: "Threat Taxonomy",                   sub: "Preventable failures that reach the authority",    color: "#C0392B", href: "/standards/16-deadly-sins" },
-  { num: "06", name: "MODULES",       role: "Installation Sequence",             sub: "Files, records, controls, discipline",             color: GOLD,      href: "/standard" },
+  { num: "01", code: "LP-01", name: "REACH",         role: "Exposure-Awareness & Readiness",   sub: "Reveals exposure — GO / WAIT / NO-GO",             color: GOLD,        href: "/reach-diagnostic" },
+  { num: "02", code: "LP-02", name: "GROUND 0",      role: "Wisdom & Orientation Layer",        sub: "Posture before the build begins",                  color: GOLD,        href: "/ground-0-briefing" },
+  { num: "03", code: "LP-03", name: "FOUR PILLARS",  role: "The Guard Around the Authority",    sub: "Authority · Insurance · Compliance · Cash-Flow",   color: "#3d9970",   href: "/doctrine" },
+  { num: "04", code: "LP-04", name: "AUTO",          role: "Breach-Path Model",                 sub: "Around · Under · Through · Over",                  color: "#C0392B",   href: "/standards/auto-method" },
+  { num: "05", code: "LP-05", name: "16 SINS",       role: "Threat Taxonomy",                   sub: "Preventable failures that reach the authority",    color: "#C0392B",   href: "/standards/16-deadly-sins" },
+  { num: "06", code: "LP-06", name: "MODULES",       role: "Installation Sequence",             sub: "Files, records, controls, discipline",             color: GOLD,        href: "/standard" },
 ];
 
 function SystemArchitectureDiagram() {
@@ -235,79 +235,105 @@ function SystemArchitectureDiagram() {
     <div
       data-testid="system-architecture-diagram"
       style={{
-        background: "#0B1525",
-        border: "1px solid rgba(200,147,63,0.20)",
+        background: "#050D1A",
+        border: "1px solid rgba(200,147,63,0.18)",
         borderTop: `3px solid ${GOLD}`,
-        padding: "2.5rem 2rem 2rem",
-        marginBottom: "4rem",
         position: "relative",
         overflow: "hidden",
+        marginBottom: "5rem",
       }}
     >
-      {/* Background grain */}
-      <div style={{ position: "absolute", inset: 0, backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E\")", pointerEvents: "none", zIndex: 0 }} />
+      {/* Dot-grid background */}
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(200,147,63,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
+
+      {/* Corner brackets */}
+      {[{ top: 0, left: 0 }, { top: 0, right: 0 }, { bottom: 0, left: 0 }, { bottom: 0, right: 0 }].map((pos, i) => (
+        <div key={i} style={{ position: "absolute", width: 18, height: 18, ...pos, pointerEvents: "none",
+          borderTop: i < 2 ? `2px solid rgba(200,147,63,0.45)` : "none",
+          borderBottom: i >= 2 ? `2px solid rgba(200,147,63,0.45)` : "none",
+          borderLeft: i % 2 === 0 ? `2px solid rgba(200,147,63,0.45)` : "none",
+          borderRight: i % 2 === 1 ? `2px solid rgba(200,147,63,0.45)` : "none",
+        }} />
+      ))}
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        {/* Header */}
-        <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", margin: 0 }}>
-            SYSTEM ARCHITECTURE
-          </p>
-          <div style={{ flex: 1, height: 1, background: "rgba(200,147,63,0.15)" }} />
-          <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.16em", color: "rgba(200,147,63,0.30)", margin: 0 }}>
-            LP-SYS-001
+        {/* Header bar */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.25rem 2rem", borderBottom: "1px solid rgba(200,147,63,0.10)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
+            <div style={{ width: 6, height: 6, background: GOLD, borderRadius: "50%", boxShadow: `0 0 6px ${GOLD}` }} />
+            <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(200,147,63,0.70)", margin: 0 }}>
+              SYSTEM ARCHITECTURE · OPERATIONAL DOCTRINE
+            </p>
+          </div>
+          <p style={{ fontFamily: MONO, fontSize: "0.580rem", fontWeight: 700, letterSpacing: "0.16em", color: "rgba(200,147,63,0.28)", margin: 0 }}>
+            LP-SYS-001 · REV 04.2026
           </p>
         </div>
 
-        {/* Step sequence */}
-        <div className="arch-sequence" style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
+        {/* Step cards */}
+        <div className="arch-sequence" style={{ display: "flex", alignItems: "stretch" }}>
           {ARCH_STEPS.map((step, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", flex: 1, minWidth: 0 }}>
-              {/* Step card — linked */}
+            <div key={i} style={{ display: "flex", alignItems: "stretch", flex: 1, minWidth: 0, position: "relative" }}>
+
               <Link
                 to={step.href}
                 data-testid={`arch-step-${step.num}`}
                 className="arch-step-card"
                 style={{
-                  flex: 1,
-                  minWidth: 0,
-                  background: "rgba(244,241,235,0.025)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  borderTop: `2px solid ${step.color}`,
-                  padding: "1.25rem 1rem",
-                  textAlign: "center",
-                  position: "relative",
+                  flex: 1, minWidth: 0,
+                  display: "flex", flexDirection: "column",
+                  padding: "2rem 1.5rem 1.5rem",
                   textDecoration: "none",
-                  display: "block",
-                  transition: "background 0.18s, border-color 0.18s",
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRight: i < ARCH_STEPS.length - 1 ? "1px solid rgba(255,255,255,0.045)" : "none",
+                  transition: "background 0.22s",
                   cursor: "pointer",
+                  minHeight: 220,
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = `${step.color}12`; e.currentTarget.style.borderColor = `${step.color}55`; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "rgba(244,241,235,0.025)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; }}
+                onMouseEnter={e => { e.currentTarget.style.background = `${step.color}09`; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
               >
-                {/* Step number */}
-                <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}66`, margin: "0 0 0.5rem" }}>
+                {/* Watermark number */}
+                <span style={{ position: "absolute", bottom: -10, right: 8, fontFamily: MONO, fontSize: "5rem", fontWeight: 900, color: `${step.color}07`, letterSpacing: "-0.04em", lineHeight: 1, pointerEvents: "none", userSelect: "none" }}>
                   {step.num}
+                </span>
+
+                {/* Top accent line */}
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: step.color, opacity: 0.55 }} />
+
+                {/* Code */}
+                <p style={{ fontFamily: MONO, fontSize: "0.540rem", fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}55`, margin: "0 0 0.875rem" }}>
+                  {step.code}
                 </p>
-                {/* Step name */}
-                <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: "clamp(0.62rem, 1.1vw, 0.82rem)", letterSpacing: "0.04em", textTransform: "uppercase", color: "#FFFFFF", margin: "0 0 0.35rem", lineHeight: 1.3 }}>
+
+                {/* Name */}
+                <p style={{ fontFamily: SANS, fontWeight: 900, fontSize: "clamp(0.72rem, 1.2vw, 0.92rem)", letterSpacing: "0.06em", textTransform: "uppercase", color: "#FFFFFF", margin: "0 0 0.5rem", lineHeight: 1.2 }}>
                   {step.name}
                 </p>
+
+                {/* Separator */}
+                <div style={{ width: "100%", height: 1, background: `${step.color}20`, marginBottom: "0.625rem" }} />
+
                 {/* Role */}
-                <p style={{ fontFamily: SANS, fontSize: "clamp(0.58rem, 0.9vw, 0.72rem)", color: step.color, margin: "0 0 0.35rem", fontWeight: 600 }}>
+                <p style={{ fontFamily: SANS, fontSize: "clamp(0.60rem, 0.95vw, 0.75rem)", color: step.color, margin: "0 0 0.5rem", fontWeight: 700, lineHeight: 1.35 }}>
                   {step.role}
                 </p>
-                {/* Sub-descriptor */}
-                <p style={{ fontFamily: MONO, fontSize: "clamp(0.50rem, 0.75vw, 0.62rem)", color: "rgba(138,150,168,0.65)", margin: 0, lineHeight: 1.45, letterSpacing: "0.03em" }}>
+
+                {/* Sub */}
+                <p style={{ fontFamily: MONO, fontSize: "clamp(0.48rem, 0.72vw, 0.60rem)", color: "rgba(148,163,184,0.55)", margin: 0, lineHeight: 1.55, letterSpacing: "0.04em", flex: 1 }}>
                   {step.sub}
                 </p>
-                {/* Link indicator */}
-                <p style={{ fontFamily: MONO, fontSize: "0.52rem", color: `${step.color}55`, margin: "0.6rem 0 0", letterSpacing: "0.10em" }}>→</p>
+
+                {/* View indicator */}
+                <p style={{ fontFamily: MONO, fontSize: "0.52rem", color: `${step.color}40`, margin: "1rem 0 0", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                  VIEW →
+                </p>
               </Link>
 
-              {/* Arrow connector */}
+              {/* Connector arrow between cards */}
               {i < ARCH_STEPS.length - 1 && (
-                <div className="arch-arrow" style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", width: 22, color: "rgba(200,147,63,0.35)", fontSize: "0.75rem", userSelect: "none" }}>
+                <div className="arch-arrow" style={{ position: "absolute", right: -11, top: "50%", transform: "translateY(-50%)", zIndex: 2, width: 22, height: 22, background: "#050D1A", border: `1px solid rgba(200,147,63,0.20)`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(200,147,63,0.45)", fontSize: "0.6rem", userSelect: "none", flexShrink: 0 }}>
                   →
                 </div>
               )}
@@ -315,19 +341,51 @@ function SystemArchitectureDiagram() {
           ))}
         </div>
 
-        {/* Footer line */}
-        <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(138,150,168,0.40)", margin: "1.5rem 0 0", textAlign: "center" }}>
-          Each layer has one function. None of those functions belong to another layer. The order is not optional.
-        </p>
+        {/* Footer seal */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 2rem", borderTop: "1px solid rgba(200,147,63,0.08)" }}>
+          <div style={{ flex: 1, height: 1, background: "rgba(200,147,63,0.08)" }} />
+          <p style={{ fontFamily: MONO, fontSize: "0.555rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(138,150,168,0.30)", margin: 0, textAlign: "center", flexShrink: 0 }}>
+            Each layer has one function · None of those functions belong to another layer · The order is not optional
+          </p>
+          <div style={{ flex: 1, height: 1, background: "rgba(200,147,63,0.08)" }} />
+        </div>
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) {
-          .arch-sequence { flex-direction: column !important; gap: 0 !important; }
-          .arch-arrow { transform: rotate(90deg); width: 100% !important; height: 20px; }
-          .arch-step-card { text-align: left !important; padding: 1rem 1.25rem !important; }
+          .arch-sequence { flex-direction: column !important; }
+          .arch-step-card { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.045) !important; min-height: 140px !important; }
+          .arch-arrow { display: none !important; }
         }
       `}} />
+    </div>
+  );
+}
+
+// ── Compliance Hierarchy Header ───────────────────────────────────────────
+function ComplianceHierarchyHeader() {
+  return (
+    <div data-testid="compliance-hierarchy-header" style={{ marginBottom: "3.5rem" }}>
+      {/* Label */}
+      <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(200,147,63,0.50)", marginBottom: "1.25rem" }}>
+        DOCTRINAL FRAMEWORK
+      </p>
+
+      {/* Title */}
+      <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "clamp(1.6rem, 3.2vw, 2.4rem)", color: "#FFFFFF", letterSpacing: "-0.01em", lineHeight: 1.2, maxWidth: 700, marginBottom: "1.75rem" }}>
+        The LaunchPath Compliance<br />Hierarchy of Protection
+      </h2>
+
+      {/* Rule */}
+      <div style={{ width: 48, height: 2, background: GOLD, marginBottom: "1.75rem", opacity: 0.7 }} />
+
+      {/* Body copy */}
+      <p style={{ fontFamily: SANS, fontSize: "1.05rem", color: "rgba(224,218,208,0.82)", lineHeight: 1.85, maxWidth: 680, marginBottom: "1rem" }}>
+        The LaunchPath Compliance Hierarchy of Protection is the guard we install around your MC authority. It is built from OSHA machine-guarding methodology — layered, directional, and tested from every angle risk can come at you.
+      </p>
+      <p style={{ fontFamily: SANS, fontSize: "1.05rem", color: "rgba(224,218,208,0.82)", lineHeight: 1.85, maxWidth: 680 }}>
+        A wise carrier doesn't wait on FMCSA to point out the gaps. You find them yourself, fix them, and then go to work.
+      </p>
     </div>
   );
 }
@@ -349,6 +407,9 @@ export default function TheStandardSection() {
       }}
     >
       <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+
+        {/* Compliance Hierarchy Header */}
+        <ComplianceHierarchyHeader />
 
         {/* System Architecture Diagram */}
         <SystemArchitectureDiagram />
