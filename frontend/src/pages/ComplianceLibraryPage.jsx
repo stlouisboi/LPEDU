@@ -4,7 +4,7 @@
  * Implements LP-SYS-LIBRARY-COPY v1.0 (all 8 sections)
  */
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
@@ -57,7 +57,9 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
   const isLoading = loading === "loading";
   const bc = BUNDLE_CONFIGS[p.sku];
   return (
-    <div style={{ ...(isBundle ? { border: `2px solid #A8B2BE`, borderRadius: 8, padding: "1.25rem 1.5rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)", background: NAVY2 } : { borderBottom: "1px solid rgba(255,255,255,0.06)", paddingBottom: "1rem", marginBottom: "1rem", background: "#080E18", borderRadius: 6, padding: "1rem 1.25rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)" }) }}>
+    <div
+      id={`product-${p.sku.toLowerCase()}`}
+      style={{ scrollMarginTop: "90px", ...(isBundle ? { border: `2px solid #A8B2BE`, borderRadius: 8, padding: "1.25rem 1.5rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)", background: NAVY2 } : { borderBottom: "1px solid rgba(255,255,255,0.06)", paddingBottom: "1rem", marginBottom: "1rem", background: "#080E18", borderRadius: 6, padding: "1rem 1.25rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)" }) }}>
       {isBundle && bc && (
         <div style={{ textAlign: "center", marginBottom: "0.875rem" }}>
           <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", padding: "3px 10px", borderRadius: 20, background: "#0D1B2A", color: "#A8B2BE", border: "1px solid #A8B2BE44", display: "inline-block", fontWeight: 700 }}>{bc.badge}</span>
@@ -288,6 +290,20 @@ export default function ComplianceLibraryPage() {
   const { states, errors, buy } = useBuy();
   const [openGroup, setOpenGroup] = useState(null);
   const toggleGroup = (id) => setOpenGroup(g => g === id ? null : id);
+
+  // Auto-open accordion + scroll to product when URL hash is present
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash.startsWith("product-")) return;
+    const sku = hash.replace("product-", "").toUpperCase();
+    const group = ACCORDION_GROUPS.find(g => g.skus.includes(sku));
+    if (group) {
+      setOpenGroup(group.id);
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 350);
+    }
+  }, []);
 
   return (
     <div style={{ background: NAVY, minHeight: "100vh", color: "#fff" }}>

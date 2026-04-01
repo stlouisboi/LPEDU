@@ -798,9 +798,7 @@ export default function SixteenSinsPage() {
                 </p>
               </div>
               <a
-                href="https://launchpathedu.gumroad.com/l/16DeadlySinsPocketGuide"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/compliance-library#product-lp-pkt-sins"
                 data-testid="sins-pocket-guide-buy-btn"
                 style={{
                   fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem",
@@ -814,7 +812,7 @@ export default function SixteenSinsPage() {
                 onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
                 onMouseLeave={e => { e.currentTarget.style.background = "#C5A059"; }}
               >
-                Get the Pocket Guide — $17 →
+                GET THE POCKET GUIDE — $59 →
               </a>
             </div>
           </div>
