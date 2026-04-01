@@ -534,6 +534,26 @@ async def submit_diagnostic(data: DiagnosticSubmit):
     return {"ok": True, "result": data.result}
 
 
+async def _schedule_ground0_email2(email: str, first_name: str, outcome: str, delay_hours: int):
+    """Store a scheduled Email 2 record in db.ground0_sequences."""
+    from datetime import timedelta
+    now = datetime.now(timezone.utc)
+    send_at = now + timedelta(hours=delay_hours)
+    await db.ground0_sequences.update_one(
+        {"email": email, "outcome": outcome},
+        {"$set": {
+            "email": email,
+            "first_name": first_name,
+            "outcome": outcome,
+            "email1_sent_at": now.isoformat(),
+            "email2_send_at": send_at.isoformat(),
+            "email2_sent": False,
+        }},
+        upsert=True,
+    )
+    logger.info(f"Ground 0 Email 2 scheduled: {email} ({outcome}) send_at={send_at.isoformat()}")
+
+
 def _ground0_go_email_html(first_name: str) -> str:
     """Build the Ground 0 GO outcome follow-up email."""
     GOLD = "#C5A059"
@@ -629,6 +649,7 @@ async def go_email_capture(data: GOEmailCapture):
     go_subject = "Your Ground 0 result has been recorded as GO."
     go_html = _ground0_go_email_html(first_name)
     asyncio.create_task(send_mailersend_email(data.email, first_name, go_subject, go_html))
+    asyncio.create_task(_schedule_ground0_email2(data.email, first_name, "GO", delay_hours=24))
     logger.info(f"Ground 0 GO email queued: {data.email}")
 
     return {"ok": True}

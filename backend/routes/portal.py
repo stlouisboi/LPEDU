@@ -227,6 +227,114 @@ def _ground0_email_html(first_name: str, outcome: str, subject: str) -> str:
         f'<p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">{p}</p>'
         for p in closing_paras
     )
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0a0f1a;font-family:'Inter',Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0f1a;">
+  <tr><td align="center" style="padding:40px 16px;">
+    <table width="100%" style="max-width:600px;background:{NAVY};border-top:3px solid {GOLD};">
+      <tr><td style="padding:40px 40px 0;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(197,160,89,0.60);margin:0 0 28px;">LP-GRD-0 &nbsp;|&nbsp; GROUND 0 RESULT &nbsp;|&nbsp; {internal_tag.upper()}</p>
+        <p style="font-size:16px;color:{TEXT};line-height:1.75;margin:0 0 20px;">{first_name},</p>
+        <h2 style="font-size:20px;font-weight:700;color:#ffffff;margin:0 0 24px;line-height:1.3;">{headline}</h2>
+        {body_html}
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(197,160,89,0.55);margin:0 0 12px;">STATUS SUMMARY</p>
+        <ul style="margin:0 0 24px;padding:0 0 0 18px;">{bullets_html}</ul>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
+        {closing_html}
+        <table cellpadding="0" cellspacing="0" style="margin:28px 0;"><tr>
+          <td style="background:{GOLD};"><a href="{cta_href}" style="display:inline-block;background:{GOLD};color:{NAVY};font-family:'Inter',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;padding:14px 28px;">{cta_label} &#8594;</a></td>
+        </tr></table>
+        <p style="font-size:15px;color:{TEXT};margin:0 0 4px;">— LaunchPath</p>
+      </td></tr>
+      <tr><td style="padding:24px 40px 32px;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(255,255,255,0.20);margin:0;text-transform:uppercase;">LP-GRD-0 &nbsp;·&nbsp; launchpathedu.com &nbsp;·&nbsp; Content does not constitute legal, compliance, or financial advice.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>"""
+
+
+async def _schedule_ground0_email2(email: str, first_name: str, outcome: str, delay_hours: int):
+    now = datetime.now(timezone.utc)
+    send_at = now + timedelta(hours=delay_hours)
+    await db.ground0_sequences.update_one(
+        {"email": email, "outcome": outcome},
+        {"$set": {
+            "email": email,
+            "first_name": first_name,
+            "outcome": outcome,
+            "email1_sent_at": now.isoformat(),
+            "email2_send_at": send_at.isoformat(),
+            "email2_sent": False,
+        }},
+        upsert=True,
+    )
+    logger.info(f"Ground 0 Email 2 scheduled: {email} ({outcome}) at {send_at.isoformat()}")
+
+
+
+    """Build a Ground 0 result notification email for WAIT or NO-GO outcomes."""
+    GOLD = "#C5A059"
+    NAVY = "#001B36"
+    TEXT = "rgba(255,255,255,0.82)"
+    MUTED = "rgba(255,255,255,0.48)"
+
+    if outcome == "WAIT":
+        headline = "Your Ground 0 result has been recorded as WAIT."
+        body_paragraphs = [
+            "That means some conditions need to be corrected before moving forward.",
+            "This is not a rejection. It is a warning to slow down and repair what is weak before weakness becomes operating reality.",
+            "Your place has been saved.",
+            "When you are ready to return, you will not be starting from zero. You will be returning with more clarity about what needs attention and why it matters.",
+        ]
+        bullets = [
+            "Your result has been recorded",
+            "Your place in the process has been saved",
+            "You will remain connected for future return",
+        ]
+        closing_paras = [
+            "A delayed step taken in the correct order is better than a rushed step taken on a weak foundation.",
+            "When the time is right, return and re-enter the process with stronger footing.",
+        ]
+        cta_label = "Return Later"
+        cta_href = "https://www.launchpathedu.com/ground-0-briefing"
+        internal_tag = "ground0_wait_email_01"
+    else:
+        headline = "Your Ground 0 result has been recorded as NO-GO."
+        body_paragraphs = [
+            "That means moving forward at this time would not be the correct step.",
+            "Not every next move is a wise move simply because it is available. Ground 0 exists to make that clear before preventable damage becomes harder to reverse.",
+            "Your information has been saved, and you have been added to the list for future follow-up if your situation changes.",
+        ]
+        bullets = [
+            "Your result has been recorded",
+            "You have not been cleared to proceed at this time",
+            "Your place for future re-entry has been preserved",
+        ]
+        closing_paras = [
+            "If conditions change later, you can return and revisit the process with a different starting point.",
+            "Order matters. Timing matters. Readiness matters.",
+        ]
+        cta_label = "Stay Notified"
+        cta_href = "https://www.launchpathedu.com/ground-0-briefing"
+        internal_tag = "ground0_nogo_email_01"
+
+    body_html = "".join(
+        f'<p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">{p}</p>'
+        for p in body_paragraphs
+    )
+    bullets_html = "".join(
+        f'<li style="font-size:14px;color:{MUTED};line-height:1.75;margin:0 0 6px;">{b}</li>'
+        for b in bullets
+    )
+    closing_html = "".join(
+        f'<p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">{p}</p>'
+        for p in closing_paras
+    )
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -308,11 +416,13 @@ async def ground0_waitlist(data: Ground0WaitlistRequest):
         subject = f"Your Ground 0 result has been recorded as WAIT."
         html = _ground0_email_html(first_name, "WAIT", subject)
         asyncio.create_task(send_mailersend_email(data.email, first_name, subject, html))
+        asyncio.create_task(_schedule_ground0_email2(data.email, first_name, "WAIT", delay_hours=72))
         logger.info(f"Ground 0 WAIT email queued: {data.email}")
     else:
         subject = f"Your Ground 0 result has been recorded as NO-GO."
         html = _ground0_email_html(first_name, "NO-GO", subject)
         asyncio.create_task(send_mailersend_email(data.email, first_name, subject, html))
+        asyncio.create_task(_schedule_ground0_email2(data.email, first_name, "NO-GO", delay_hours=120))
         logger.info(f"Ground 0 NO-GO email queued: {data.email}")
 
     return {"ok": True}

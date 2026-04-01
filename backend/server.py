@@ -6,7 +6,7 @@ import stripe as stripe_lib
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from core import client, STRIPE_API_KEY
+from core import client, STRIPE_API_KEY, db
 from workers import followup_email_worker
 
 from routes.public import router as public_router

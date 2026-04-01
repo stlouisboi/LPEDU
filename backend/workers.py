@@ -161,6 +161,152 @@ async def _send_monthly_audit_reminders():
     logger.info(f"Monthly audit reminder worker: {sent_count} reminders sent.")
 
 
+def _g0_email2_html(first_name: str, outcome: str) -> tuple[str, str]:
+    """Return (subject, html) for Ground 0 Email 2 by outcome."""
+    GOLD = "#C5A059"
+    NAVY = "#001B36"
+    TEXT = "rgba(255,255,255,0.82)"
+    MUTED = "rgba(255,255,255,0.48)"
+    FRONTEND_URL_BASE = "https://www.launchpathedu.com"
+
+    if outcome == "GO":
+        subject = "A GO result is not permission to relax. It is permission to proceed."
+        internal_tag = "GROUND0_GO_EMAIL_02"
+        headline = "A GO result is not permission to relax. It is permission to proceed."
+        paras = [
+            "Ground 0 does not exist to give encouragement without structure. It exists to identify whether forward movement is justified.",
+            "Your result shows that you are presently positioned to continue. The next responsibility is to move with discipline and build in the correct order.",
+        ]
+        bullets = [
+            "Protecting what is already in place",
+            "Correcting what is still incomplete",
+            "Refusing shortcuts that create preventable exposure later",
+        ]
+        closing = [
+            "Readiness is not the same as completion. It is the point where proper installation can begin.",
+            "Continue while the structure is still clean enough to build correctly.",
+        ]
+        cta_label = "Proceed to Next Step"
+        cta_href = f"{FRONTEND_URL_BASE}/admission"
+    elif outcome == "WAIT":
+        subject = "A WAIT result is not meant to discourage you. It is meant to protect you."
+        internal_tag = "GROUND0_WAIT_EMAIL_02"
+        headline = "A WAIT result is not meant to discourage you. It is meant to protect you."
+        paras = [
+            "Most preventable damage begins when someone keeps moving after the warning signs have already appeared.",
+            "Ground 0 is designed to interrupt that pattern.",
+            "A WAIT result means there are issues that need correction before moving forward. That pause may feel inconvenient, but inconvenience now is often cheaper than disorder later.",
+            "What matters next is not speed. What matters next is correction.",
+        ]
+        bullets = [
+            "Treat it as instruction, not insult",
+            "Repair weak areas before adding pressure",
+            "Return when the foundation is stronger than it was before",
+        ]
+        closing = [
+            "A carrier does not become safer by moving faster than its structure can support.",
+            "When you are ready, return with a cleaner position.",
+        ]
+        cta_label = "Revisit Ground 0"
+        cta_href = f"{FRONTEND_URL_BASE}/ground-0-briefing"
+    else:  # NO-GO
+        subject = "A NO-GO result exists for a reason."
+        internal_tag = "GROUND0_NOGO_EMAIL_02"
+        headline = "A NO-GO result exists for a reason."
+        paras = [
+            "It is there to stop momentum from overriding judgment.",
+            "There are times when the right decision is not to push harder, but to refuse the wrong timing. A system with no refusal mechanism is not protective. It is careless.",
+            "Ground 0 is designed to mark that line clearly.",
+            "A NO-GO result does not mean the future is closed. It means the present condition does not support the next step.",
+            "That distinction matters.",
+        ]
+        bullets = []
+        closing = [
+            "For now, the correct move is restraint. If your position changes later, you can return and reassess from a stronger place.",
+            "Until then, the result stands for your protection.",
+        ]
+        cta_label = "Remain on the List"
+        cta_href = f"{FRONTEND_URL_BASE}/ground-0-briefing"
+
+    body_html = "".join(
+        f'<p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">{p}</p>'
+        for p in paras
+    )
+    bullets_section = ""
+    if bullets:
+        bl = "".join(
+            f'<li style="font-size:14px;color:{MUTED};line-height:1.75;margin:0 0 6px;">{b}</li>'
+            for b in bullets
+        )
+        bullets_section = (
+            f'<div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>'
+            f'<ul style="margin:0 0 24px;padding:0 0 0 18px;">{bl}</ul>'
+            f'<div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>'
+        )
+    closing_html = "".join(
+        f'<p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">{p}</p>'
+        for p in closing
+    )
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0a0f1a;font-family:'Inter',Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0f1a;">
+  <tr><td align="center" style="padding:40px 16px;">
+    <table width="100%" style="max-width:600px;background:{NAVY};border-top:3px solid {GOLD};">
+      <tr><td style="padding:40px 40px 0;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(197,160,89,0.60);margin:0 0 28px;">LP-GRD-0 &nbsp;|&nbsp; GROUND 0 FOLLOW-UP &nbsp;|&nbsp; {internal_tag}</p>
+        <p style="font-size:16px;color:{TEXT};line-height:1.75;margin:0 0 20px;">{first_name},</p>
+        <h2 style="font-size:20px;font-weight:700;color:#ffffff;margin:0 0 24px;line-height:1.3;">{headline}</h2>
+        {body_html}
+        {bullets_section}
+        {closing_html}
+        <table cellpadding="0" cellspacing="0" style="margin:28px 0;"><tr>
+          <td style="background:{GOLD};"><a href="{cta_href}" style="display:inline-block;background:{GOLD};color:{NAVY};font-family:'Inter',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;padding:14px 28px;">{cta_label} &#8594;</a></td>
+        </tr></table>
+        <p style="font-size:15px;color:{TEXT};margin:0 0 4px;">— LaunchPath</p>
+      </td></tr>
+      <tr><td style="padding:24px 40px 32px;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(255,255,255,0.20);margin:0;text-transform:uppercase;">LP-GRD-0 &nbsp;·&nbsp; launchpathedu.com &nbsp;·&nbsp; Content does not constitute legal, compliance, or financial advice.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>"""
+    return subject, html
+
+
+async def _send_ground0_sequence_emails():
+    """Send scheduled Ground 0 Email 2 messages (GO 24h, WAIT 3d, NO-GO 5d)."""
+    now = datetime.now(timezone.utc)
+    due = await db.ground0_sequences.find(
+        {"email2_sent": False, "email2_send_at": {"$lte": now.isoformat()}},
+        {"_id": 0},
+    ).to_list(200)
+
+    sent = 0
+    for rec in due:
+        email = rec.get("email")
+        first_name = (rec.get("first_name") or "Operator").strip() or "Operator"
+        outcome = rec.get("outcome", "")
+        if not email or outcome not in ("GO", "WAIT", "NO-GO"):
+            continue
+        try:
+            subject, html = _g0_email2_html(first_name, outcome)
+            await send_mailersend_email(email, first_name, subject, html)
+            await db.ground0_sequences.update_one(
+                {"email": email, "outcome": outcome},
+                {"$set": {"email2_sent": True, "email2_sent_at": now.isoformat()}},
+            )
+            sent += 1
+            logger.info(f"Ground 0 Email 2 sent: {email} ({outcome})")
+        except Exception as exc:
+            logger.error(f"Ground 0 Email 2 failed for {email} ({outcome}): {exc}")
+
+    logger.info(f"Ground 0 sequence worker: {sent} Email 2s sent from {len(due)} due.")
+
+
 async def followup_email_worker():
     """Background worker — runs once daily."""
     await asyncio.sleep(3600)
@@ -169,6 +315,7 @@ async def followup_email_worker():
             await _send_onboarding_checkin_emails()
             await _send_followup_emails()
             await _send_monthly_audit_reminders()
+            await _send_ground0_sequence_emails()
         except Exception as e:
             logger.error(f"Followup email worker error: {e}")
         await asyncio.sleep(86400)

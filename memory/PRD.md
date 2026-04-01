@@ -27,7 +27,17 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 43: Ground 0 Post-Submission Email Sequences (Mar 2026)
+### Phase 44: Ground 0 Email Sequences — Email 2 (Mar 2026)
+- Built 3 x Email 2 HTML templates for GO / WAIT / NO-GO in Ground 0 tone
+  - GO Email 2: "A GO result is not permission to relax." → CTA "Proceed to Next Step →" → /admission; 24h delay; tag ground0_go_email_02
+  - WAIT Email 2: "A WAIT result is not meant to discourage you." → CTA "Revisit Ground 0 →"; 72h delay; tag ground0_wait_email_02
+  - NO-GO Email 2: "A NO-GO result exists for a reason." → CTA "Remain on the List →"; 120h delay; tag ground0_nogo_email_02
+- Added `_schedule_ground0_email2()` helper: upserts `db.ground0_sequences` record with `email2_send_at` timestamp
+- Added `_send_ground0_sequence_emails()` to `workers.py` daily worker: queries due records, sends via MailerSend, marks `email2_sent: true`
+- Email 1 (immediate) already in place from Phase 43; all 6 emails in sequence now complete
+- Verified: MongoDB schedules correct, all 3 endpoints return {ok:true}
+
+
 - Built 3 HTML email templates (GO, WAIT, NO-GO) matching Ground 0 tone: calm, structured, non-hype, consequence-aware
 - GO email: triggered by /api/go-email-capture → subject "Your Ground 0 result has been recorded as GO." → CTA "Continue Forward →" → /admission; internal tag ground0_go_email_01
 - WAIT email: triggered by /api/ground0/waitlist when status=WAIT → subject "Your Ground 0 result has been recorded as WAIT." → CTA "Return Later →"; internal tag ground0_wait_email_01
