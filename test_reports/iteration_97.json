@@ -1,0 +1,17 @@
+{
+  "summary": "Tested /standards/auto-method page — all 16 acceptance criteria passed. Page loads HTTP 200, renders correct content, all data-testid attributes present, OG meta tags correct.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_97.json"],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": { "backend": "N/A", "frontend": "100%" },
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "AutoMethodPage at /standards/auto-method fully verified. All 4 breach path cards (A/U/T/O) with correct labels and tags. THROUGH card contains LP-CASE-001 and $19,246. Protection Matrix heading and all 4 rows present. auto-cta, auto-reach-cta (/reach-diagnostic), auto-sins-link (/standards/16-deadly-sins), auto-doctrine-link (/doctrine) all correct. og:image contains 0a271d, twitter:card=summary_large_image. No console errors."
+}
