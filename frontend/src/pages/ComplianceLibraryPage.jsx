@@ -363,7 +363,7 @@ export default function ComplianceLibraryPage() {
                 <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.75rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>$2,500</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.35)" }}>One engagement. No subscription. No upsells.</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", marginTop: "0.375rem" }}>
-                  Ground 0 must be completed before enrollment. Ground 0 is a free module — no payment required.
+                  Ground 0 is a free module. Start there at no cost, or go directly to enrollment.
                 </p>
               </div>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
