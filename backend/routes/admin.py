@@ -443,3 +443,11 @@ async def delete_announcement(announcement_id: str, coach_id: str = Depends(_req
 async def list_registry_ids(coach_id: str = Depends(_require_coach)):
     docs = await db.registry_ids.find({}, {"_id": 0}).sort("issued_at", -1).to_list(200)
     return {"registry_ids": docs}
+
+
+# ── 16 Deadly Sins Checklist Leads ───────────────────────────────────────────
+@router.get("/admin/sins-leads")
+async def list_sins_leads(coach_id: str = Depends(_require_coach)):
+    docs = await db.sins_leads.find({}, {"_id": 0}).sort("captured_at", -1).to_list(500)
+    return {"leads": docs, "total": len(docs)}
+

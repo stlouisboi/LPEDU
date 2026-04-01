@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { to: "/admin/gate-reviews",    label: "Gate Reviews"    },
   { to: "/admin/community",       label: "Community"       },
   { to: "/admin/audit-readiness", label: "Audit Readiness" },
+  { to: "/admin/sins-leads",      label: "Sins Leads"      },
 ];
 
 export default function AdminNavBar() {

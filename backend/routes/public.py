@@ -767,6 +767,13 @@ async def sins_checklist_capture(data: SinsChecklistCapture):
             logger.error(f"MailerLite sins checklist error {resp.status_code}: {resp.text}")
     except Exception as exc:
         logger.error(f"MailerLite sins checklist request failed: {exc}")
+    # Save to MongoDB for admin panel
+    now = datetime.now(timezone.utc)
+    await db.sins_leads.update_one(
+        {"email": data.email},
+        {"$set": {"email": data.email, "source": "16-deadly-sins-checklist", "captured_at": now.isoformat()}},
+        upsert=True,
+    )
     return {"ok": True}
 
 
