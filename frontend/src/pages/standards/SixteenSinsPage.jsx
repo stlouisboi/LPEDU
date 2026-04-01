@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
@@ -797,15 +797,29 @@ export default function SixteenSinsPage() {
                   CFR citations, consequence details, and prevention systems for every sin. A permanent reference for your operation.
                 </p>
               </div>
-              <a
-                href="/compliance-library#product-lp-pkt-sins"
+              <button
                 data-testid="sins-pocket-guide-buy-btn"
+                onClick={async () => {
+                  const btn = document.querySelector('[data-testid="sins-pocket-guide-buy-btn"]');
+                  if (btn) btn.textContent = "REDIRECTING…";
+                  try {
+                    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/checkout`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ product_sku: "LP-PKT-SINS", origin_url: window.location.origin }),
+                    });
+                    const data = await res.json();
+                    if (data.url) window.location.href = data.url;
+                  } catch {
+                    if (btn) btn.textContent = "GET THE POCKET GUIDE — $59 →";
+                  }
+                }}
                 style={{
                   fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem",
                   letterSpacing: "0.10em", textTransform: "uppercase",
                   color: "#0b1628", background: "#C5A059",
-                  padding: "1rem 2rem", textDecoration: "none",
-                  display: "inline-block", whiteSpace: "nowrap",
+                  padding: "1rem 2rem", border: "none",
+                  cursor: "pointer", whiteSpace: "nowrap",
                   transition: "background 0.2s",
                   flexShrink: 0,
                 }}
@@ -813,7 +827,7 @@ export default function SixteenSinsPage() {
                 onMouseLeave={e => { e.currentTarget.style.background = "#C5A059"; }}
               >
                 GET THE POCKET GUIDE — $59 →
-              </a>
+              </button>
             </div>
           </div>
         </FadeIn>
