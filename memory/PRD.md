@@ -16,13 +16,14 @@ Core requirements:
 
 ## DOCTRINAL ARCHITECTURE (LOCKED — April 2026)
 
-LaunchPath operates on four distinct, ordered layers:
+**Master sequence:** `REACH → Ground 0 → Four Pillars → AUTO → 16 Deadly Sins → Modules`
 
-1. **REACH** — Qualification Engine. Owns GO / WAIT / NO-GO outcomes. The gate.
-2. **Ground 0** — Wisdom Module. Orientation, posture, consequence-awareness. First experiential sample. Follows REACH GO.
-3. **AUTO** — Authority-Protection Framework. Guards against the 16 Deadly Sins by showing how risk reaches the authority — Around, Under, Through, and Over.
-4. **16 Deadly Sins** — Threat Taxonomy. Recurring failures that destroy new motor carrier authorities. Travels through AUTO paths.
-5. **The Standard (Modules)** — Installation Track. 9 modules that install the safeguards in practice.
+1. **REACH** — Exposure-Awareness & Readiness Diagnostic. Reveals how exposed the operation is, whether danger can already reach the authority, and whether the operator should proceed, wait, or stop (GO / WAIT / NO-GO). Not just qualification — it is exposure-awareness.
+2. **Ground 0** — Wisdom & Orientation Layer. Forms posture before the build begins. First briefing on order, consequence, stewardship, and the real cost of building without structure. Free module — not a gate, not a test, not contingent on REACH GO.
+3. **Four Pillars** — The Guard Around the Authority. Protective structure: Authority Protection, Insurance Continuity, Compliance Backbone, Cash-Flow Oxygen. The Four Pillars are the guard. Not AUTO.
+4. **AUTO** — Breach-Path Model. Maps the four ways failure tries to get past the guard: Around, Under, Through, Over. The breach map — not the guard itself.
+5. **16 Deadly Sins** — Threat Taxonomy. Recurring, preventable failures that weaken, expose, or damage new carriers during the New Entrant period. The threats the guard is built to resist.
+6. **Modules** — Installation Sequence. Installs the protection in practice: files, records, controls, procedures, rhythms, operating discipline.
 
 **Doctrinal Voice:** Calm, serious, restrained, consequence-aware, plain-English, non-hype. Not a course funnel. Not a guru brand. A governed standard.
 

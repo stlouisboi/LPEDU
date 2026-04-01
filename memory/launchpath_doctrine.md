@@ -55,7 +55,7 @@ REACH reveals:
 ## 2. GROUND 0
 **Role:** Wisdom, posture, and consequence orientation.
 
-Ground 0 is NOT the REACH test. Ground 0 is the first briefing.
+Ground 0 is a free module. It is not the REACH test. It is not gated by a REACH GO result. It is available to any operator who wants to understand the system before building inside it. Ground 0 is the first briefing.
 
 Ground 0 teaches:
 - order before motion

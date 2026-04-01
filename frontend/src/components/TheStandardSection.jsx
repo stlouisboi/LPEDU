@@ -222,12 +222,12 @@ function ReachSubsection() {
 
 // ── System Architecture Diagram ──────────────────────────────────────────
 const ARCH_STEPS = [
-  { num: "01", name: "REACH",         role: "Qualification Gate",    sub: "GO / WAIT / NO-GO",        color: GOLD,      href: "/reach-diagnostic" },
-  { num: "02", name: "GROUND 0",      role: "Orientation & Posture", sub: "Awareness before action",   color: GOLD,      href: "/ground-0-briefing" },
-  { num: "03", name: "FOUR PILLARS",  role: "The Guard",             sub: "Authority · Insurance · Compliance · Cash", color: "#3d9970", href: "/doctrine" },
-  { num: "04", name: "AUTO",          role: "The Breach Map",        sub: "Around · Under · Through · Over", color: "#C0392B", href: "/standards/auto-method" },
-  { num: "05", name: "16 SINS",       role: "The Threat Taxonomy",   sub: "Named exposure patterns",   color: "#C0392B", href: "/standards/16-deadly-sins" },
-  { num: "06", name: "MODULES",       role: "The Installation",      sub: "9 safeguards installed",    color: GOLD,      href: "/standard" },
+  { num: "01", name: "REACH",         role: "Exposure-Awareness & Readiness",   sub: "Reveals exposure — GO / WAIT / NO-GO",             color: GOLD,      href: "/reach-diagnostic" },
+  { num: "02", name: "GROUND 0",      role: "Wisdom & Orientation Layer",        sub: "Posture before the build begins",                  color: GOLD,      href: "/ground-0-briefing" },
+  { num: "03", name: "FOUR PILLARS",  role: "The Guard Around the Authority",    sub: "Authority · Insurance · Compliance · Cash-Flow",   color: "#3d9970", href: "/doctrine" },
+  { num: "04", name: "AUTO",          role: "Breach-Path Model",                 sub: "Around · Under · Through · Over",                  color: "#C0392B", href: "/standards/auto-method" },
+  { num: "05", name: "16 SINS",       role: "Threat Taxonomy",                   sub: "Preventable failures that reach the authority",    color: "#C0392B", href: "/standards/16-deadly-sins" },
+  { num: "06", name: "MODULES",       role: "Installation Sequence",             sub: "Files, records, controls, discipline",             color: GOLD,      href: "/standard" },
 ];
 
 function SystemArchitectureDiagram() {
@@ -317,7 +317,7 @@ function SystemArchitectureDiagram() {
 
         {/* Footer line */}
         <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(138,150,168,0.40)", margin: "1.5rem 0 0", textAlign: "center" }}>
-          Each layer has a specific function. Each connects to the next. The order is not optional.
+          Each layer has one function. None of those functions belong to another layer. The order is not optional.
         </p>
       </div>
 
@@ -360,10 +360,10 @@ export default function TheStandardSection() {
 
         {/* Opening copy */}
         <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.85, maxWidth: 720, marginBottom: "1.25rem" }}>
-          REACH reveals the exposure. Ground 0 forms the posture. The Four Pillars create the guard. AUTO maps the breach paths. The 16 Deadly Sins name the threats. The modules install the protection.
+          REACH reveals the exposure. Ground 0 forms the posture. The Four Pillars are the guard. AUTO is the breach map. The 16 Deadly Sins are the threats. The modules install the protection.
         </p>
         <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.85, maxWidth: 720, marginBottom: "4.5rem" }}>
-          That is the system. That is the order. Each layer has a specific function and connects to the next.
+          That is the system. That is the order. Each layer has one specific function. None of those functions belong to another layer.
         </p>
 
         <div className="struct-rail" style={{ marginBottom: "4rem" }} />
