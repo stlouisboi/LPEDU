@@ -433,6 +433,7 @@ export default function REACHAssessmentPage() {
   const [scores, setScores] = useState(null);
   const [analyzedCats, setAnalyzedCats] = useState(0);
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [animateMap, setAnimateMap] = useState(false);
@@ -517,15 +518,43 @@ export default function REACHAssessmentPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
+          first_name: firstName,
           result,
           total_score: scores.total,
           category_scores: { r: scores.r, e: scores.e, a: scores.a, c: scores.c, h: scores.h },
           open_response: openAnswer,
         }),
       });
+      // For WAIT/NO-GO: also register in the REACH waitlist
+      if (result === "WAIT" || result === "NO-GO") {
+        const sourceTag = result === "WAIT" ? "reach_wait_capture" : "reach_nogo_capture";
+        await fetch(`${API}/api/ground0/waitlist`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            first_name: firstName,
+            status: result,
+            source_tag: sourceTag,
+            completion_date: new Date().toISOString().slice(0, 10),
+            reach_resources: scores.r >= 7 ? "PASS" : "FAIL",
+            reach_experience: scores.e >= 7 ? "PASS" : "FAIL",
+            reach_authority: scores.a >= 7 ? "PASS" : "FAIL",
+            reach_commitment: scores.c >= 7 ? "PASS" : "FAIL",
+            reach_discipline: scores.h >= 5 ? "PASS" : "FAIL",
+            gaps_remaining: [scores.r < 7, scores.e < 7, scores.a < 7, scores.c < 7, scores.h < 5].filter(Boolean).length,
+          }),
+        }).catch(() => {});
+      }
     } catch { /* still confirm */ }
     setLoading(false);
     setSubmitted(true);
+    // Redirect WAIT/NO-GO users to their REACH holding page
+    if (result === "WAIT") {
+      setTimeout(() => { window.location.href = "/resources/reach-wait"; }, 1400);
+    } else if (result === "NO-GO") {
+      setTimeout(() => { window.location.href = "/resources/reach-nogo"; }, 1400);
+    }
   };
 
   const currentCatIdx = phase === "questions" ? QUESTIONS[currentQ]?.cat ?? 0 : 0;
@@ -1110,6 +1139,24 @@ export default function REACHAssessmentPage() {
                   Your full REACH summary — score breakdown, category feedback, and preparation resources — will arrive in your inbox within minutes.
                 </p>
                 <form onSubmit={handleEmailSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                  <input
+                    data-testid="reach-firstname-input"
+                    type="text"
+                    required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="First name"
+                    style={{
+                      padding: "1rem 1.25rem",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "1rem",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      color: "#FFFFFF",
+                      outline: "none",
+                      boxSizing: "border-box",
+                    }}
+                  />
                   <input
                     data-testid="reach-email-input"
                     type="email"

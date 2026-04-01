@@ -112,7 +112,7 @@ const LESSONS = [
     keyPoints: [
       "The FMCSA Safety Measurement System is scoring your operation right now — whether you are checking it or not",
       "Risk in motor carrier operations is not random — it accumulates through predictable, documented patterns",
-      "The AUTO Risk Model maps four exposure vectors: Around (regulatory), Under (financial), Through (documentation), Over (timeline)",
+      "AUTO is the authority-protection framework that guards against the 16 Deadly Sins by showing how risk reaches the authority — Around, Under, Through, and Over",
       "Your risk tolerance determines whether you install the compliance system now or wait until the audit forces your hand",
     ],
     assessmentQuestion: "Which risk vector is most present in your current operation?",
@@ -126,15 +126,15 @@ const LESSONS = [
   {
     code: "LP-GRD-0.6",
     number: "0.6",
-    title: "The Go/No-Go Decision",
+    title: "The REACH Qualification",
     duration: "~14 min",
-    pdfLabel: "Go/No-Go Decision Framework",
+    pdfLabel: "REACH Qualification Framework",
     requiresAuth: true,
     keyPoints: [
-      "This is a self-assessment, not an external evaluation — the honest answer is the only useful one",
-      "GO means your foundational infrastructure is aligned enough to install the Standard systematically",
-      "WAIT means critical gaps exist — the Standard cannot close structural problems, only build on top of them",
-      "NO-GO means your current operational position requires intervention before a structured program can hold",
+      "REACH is the qualification engine that determines your readiness outcome — GO, WAIT, or NO-GO",
+      "GO means the conditions to survive are in place — proceed to the LaunchPath Standard",
+      "WAIT is a corrective pause, not a rejection — address the identified gaps and return to REACH",
+      "NO-GO is a boundary, not a sales objection — the current conditions do not support proceeding",
     ],
     goBridge: [
       "And a GO decision is not 'go figure it out on your own.'",
@@ -260,7 +260,7 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
             setFinalDecision(data.decision);
             setView("complete");
           } else if (data.completed_lessons.length >= LESSONS.length) {
-            setView("decision");
+            setView("complete");
           } else {
             const nextLesson = data.completed_lessons.length;
             setLessonIndex(Math.min(nextLesson, LESSONS.length - 1));
@@ -316,8 +316,8 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
     saveServer(newCompleted, finalDecision);
 
     if (nextIndex >= LESSONS.length) {
-      setView("decision");
-      saveLocal({ view: "decision" });
+      setView("complete");
+      saveLocal({ view: "complete" });
     } else {
       setLessonIndex(nextIndex);
       setSelectedOption(null);
@@ -457,11 +457,11 @@ export default function Ground0LessonPlayer({ user, API, onAuthSuccess, isEmbedd
           urlMap={urlMap}
         />
       )}
-      {view === "decision" && <DecisionView onDecide={handleDecision} />}
+      {view === "decision" && <ReachRedirectView />}
       {view === "lesson07" && (
         <Lesson07View onViewCompletion={() => { setView("complete"); saveLocal({ view: "complete" }); }} />
       )}
-      {view === "complete" && finalDecision && <CompleteView decision={finalDecision} API={API} assessmentAnswers={assessmentAnswers} onRestart={() => { setView("overview"); setCompletedLessons([]); setFinalDecision(null); setAssessmentAnswers({}); saveLocal({}); }} />}
+      {view === "complete" && <CompleteView API={API} assessmentAnswers={assessmentAnswers} onViewLesson07={() => { setView("lesson07"); saveLocal({ view: "lesson07" }); }} onRestart={() => { setView("overview"); setCompletedLessons([]); setFinalDecision(null); setAssessmentAnswers({}); saveLocal({}); }} />}
 
       {/* Auth Gate Modal */}
       {showAuthModal && (
@@ -832,72 +832,45 @@ function LessonView({ lesson, lessonIndex, totalLessons, completedLessons, selec
   );
 }
 
-// ── Decision View ─────────────────────────────────────────────────────────────
-function DecisionView({ onDecide }) {
+// ── REACH Redirect View — shown when all lessons complete (replaces old decision selection) ──
+function ReachRedirectView() {
   return (
-    <div data-testid="g0-decision-view">
+    <div data-testid="g0-reach-redirect-view" style={{ maxWidth: 580 }}>
       <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
-        LP-MOD-G0-6 | FINAL ASSESSMENT
+        LP-MOD-G0 | WISDOM MODULE COMPLETE
       </p>
       <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", color: "#FFFFFF", marginBottom: "0.875rem", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
-        Ground 0 Complete — Make Your Call.
+        Ground 0 is complete.
       </h2>
       <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.8, maxWidth: 520, marginBottom: "2.5rem" }}>
-        This is a self-assessment, not an external evaluation. Based on the six modules, declare your current operational position honestly. The call you make here determines your specific next step.
+        The wisdom module is established. Posture, stewardship, and consequence-awareness are framed.
       </p>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: 540 }}>
-        {[
-          {
-            key: "GO",
-            color: "#22c55e",
-            bg: "rgba(34,197,94,0.05)",
-            border: "rgba(34,197,94,0.22)",
-            headline: "GO",
-            sub: "My foundational infrastructure is aligned. I am ready to install the LaunchPath Standard and close remaining gaps systematically.",
-          },
-          {
-            key: "WAIT",
-            color: "#fbbf24",
-            bg: "rgba(251,191,36,0.05)",
-            border: "rgba(251,191,36,0.22)",
-            headline: "WAIT",
-            sub: "Critical foundations are missing. I need to address specific gaps before I can install a structured compliance program.",
-          },
-          {
-            key: "NO-GO",
-            color: "#f87171",
-            bg: "rgba(248,113,113,0.05)",
-            border: "rgba(248,113,113,0.22)",
-            headline: "NO-GO",
-            sub: "My current operational position requires intervention. I am not yet in a position where a structured program can hold.",
-          },
-        ].map(({ key, color, bg, border, headline, sub }) => (
-          <button
-            key={key}
-            data-testid={`decision-${key.toLowerCase().replace("-", "")}`}
-            onClick={() => onDecide(key)}
-            style={{
-              display: "flex", alignItems: "flex-start", gap: "1.25rem",
-              background: bg, border: `1px solid ${border}`,
-              borderLeft: `4px solid ${color}`,
-              padding: "1.25rem 1.5rem", cursor: "pointer", textAlign: "left",
-              width: "100%", transition: "background 0.15s",
-            }}
-            onMouseEnter={e => e.currentTarget.style.background = bg.replace("0.05", "0.10")}
-            onMouseLeave={e => e.currentTarget.style.background = bg}
-          >
-            <div style={{ flexShrink: 0, paddingTop: "0.1rem" }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900, fontSize: "1.125rem", color, letterSpacing: "0.04em" }}>
-                {headline}
-              </span>
-            </div>
-            <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.65, margin: 0 }}>
-              {sub}
-            </p>
-          </button>
-        ))}
+      <div style={{ background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.18)", borderLeft: "3px solid rgba(212,144,10,0.50)", padding: "1.5rem 1.75rem", marginBottom: "2rem" }}>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.75rem" }}>
+          YOUR NEXT STEP
+        </p>
+        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.75, marginBottom: "1.25rem" }}>
+          Readiness outcomes — GO, WAIT, and NO-GO — are determined by <strong style={{ color: "#FFFFFF" }}>REACH</strong>, the LaunchPath qualification engine. If you have not completed the REACH Assessment, complete it now to receive your outcome.
+        </p>
+        <a
+          href="/reach-diagnostic"
+          data-testid="g0-reach-cta"
+          style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#d4900a", color: "#000F1F", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", minHeight: 48 }}
+          onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+          onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
+        >
+          Complete the REACH Assessment &rarr;
+        </a>
       </div>
+      <a
+        href="/admission"
+        data-testid="g0-admission-secondary"
+        style={{ display: "inline-block", color: "rgba(255,255,255,0.45)", fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.15s" }}
+        onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.80)"}
+        onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.45)"}
+      >
+        Already cleared by REACH? Request admission &rarr;
+      </a>
     </div>
   );
 }
@@ -1074,52 +1047,8 @@ function GapTracker({ assessmentAnswers }) {
 }
 
 // ── Complete View ─────────────────────────────────────────────────────────────
-function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
-  const d = COMPLETION_DATA[decision];
-  const [captureFirstName, setCaptureFirstName] = useState("");
-  const [captureEmail, setCaptureEmail] = useState("");
-  const [captureSubmitted, setCaptureSubmitted] = useState(false);
-  const [captureLoading, setCaptureLoading] = useState(false);
-  const [captureError, setCaptureError] = useState("");
-
-  const handleCapture = async (e) => {
-    e.preventDefault();
-    setCaptureLoading(true);
-    setCaptureError("");
-    try {
-      const reachStatus = computeReachStatus(assessmentAnswers);
-      const gaps = REACH_PILLARS.filter(p => !reachStatus[p.key]).length;
-      const sourceTag = decision === "WAIT" ? "ground0_wait_capture" : "ground0_nogo_capture";
-      const resp = await fetch(`${API}/api/ground0/waitlist`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: captureEmail,
-          first_name: captureFirstName,
-          source_tag: sourceTag,
-          status: decision,
-          completion_date: new Date().toISOString().slice(0, 10),
-          reach_resources: reachStatus.R ? "PASS" : "FAIL",
-          reach_experience: reachStatus.E ? "PASS" : "FAIL",
-          reach_authority: reachStatus.A ? "PASS" : "FAIL",
-          reach_commitment: reachStatus.C ? "PASS" : "FAIL",
-          reach_discipline: reachStatus.H ? "PASS" : "FAIL",
-          gaps_remaining: gaps,
-        }),
-      });
-      if (!resp.ok) {
-        const err = await resp.json().catch(() => ({}));
-        throw new Error(err.detail || "Submission failed. Please try again.");
-      }
-      setCaptureSubmitted(true);
-    } catch (err) {
-      setCaptureError(err.message);
-    } finally {
-      setCaptureLoading(false);
-    }
-  };
-
-  if (!d) return null;
+function CompleteView({ onRestart, onViewLesson07, API, assessmentAnswers = {} }) {
+  const d = COMPLETION_DATA["GO"];
 
   // Module roadmap for the GO completion screen
   const MODULE_ROADMAP = [
@@ -1135,44 +1064,40 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
   ];
 
   return (
-    <div data-testid={`g0-complete-${decision.toLowerCase().replace("-", "")}`} style={{ maxWidth: 640, animation: "heroEnter 0.5s ease-out forwards" }}>
+    <div data-testid="g0-complete-view" style={{ maxWidth: 640, animation: "heroEnter 0.5s ease-out forwards" }}>
       {/* ── Ceremony Header ── */}
-      <div style={{ borderTop: `3px solid ${d.color}`, background: "rgba(0,0,0,0.35)", padding: "1.25rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+      <div style={{ borderTop: "3px solid #d4900a", background: "rgba(0,0,0,0.35)", padding: "1.25rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
         <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", margin: 0 }}>
-          LP-MOD-G0 · GROUND 0 · SEQUENCE COMPLETE
+          LP-MOD-G0 · GROUND 0 · WISDOM MODULE COMPLETE
         </p>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: d.bgColor, border: `1px solid ${d.borderColor}`, padding: "0.25rem 0.75rem" }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: d.color, boxShadow: `0 0 8px ${d.color}` }} />
-          <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: d.color }}>
-            {d.label}
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "rgba(212,144,10,0.08)", border: "1px solid rgba(212,144,10,0.22)", padding: "0.25rem 0.75rem" }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#d4900a", boxShadow: "0 0 8px #d4900a" }} />
+          <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#d4900a" }}>
+            GROUND 0 COMPLETE
           </span>
         </div>
       </div>
-      {/* ── Decision Block ── */}
-      <div style={{ background: d.bgColor, border: `1px solid ${d.borderColor}`, borderTop: "none", padding: "2.5rem 2rem" }}>
+      {/* ── Intro Block ── */}
+      <div style={{ background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.14)", borderTop: "none", padding: "2.5rem 2rem" }}>
         <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", marginBottom: "1.25rem", letterSpacing: "-0.03em", lineHeight: 1.1 }}>
-          {d.headline}
+          Wisdom module established.
         </h1>
-        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1.05rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.82, maxWidth: 520, marginBottom: decision !== "GO" ? "2rem" : "0" }}>
-          {d.body}
+        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1.05rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.82, maxWidth: 520, marginBottom: "1.5rem" }}>
+          Ground 0 is complete. The posture, stewardship, and consequence-awareness layer is in place. Your readiness outcome — GO, WAIT, or NO-GO — is determined by REACH, the qualification engine.
         </p>
-
-        {/* GO path: no CTA here — moved to roadmap section below */}
-        {decision !== "GO" && (
-          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "center" }}>
-            <a href={d.ctaHref} data-testid="g0-completion-cta" style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: d.ctaBg, color: d.ctaColor, fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", minHeight: 48 }} onMouseEnter={e => e.currentTarget.style.background = "#e8a520"} onMouseLeave={e => e.currentTarget.style.background = d.ctaBg}>
-              {d.cta} <ArrowRight size={14} />
-            </a>
-            <a href={d.secondaryHref} data-testid="g0-completion-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "transparent", color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.875rem 1.25rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.15)", transition: "all 0.2s", minHeight: 48 }} onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; }} onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; }}>
-              {d.secondary} <ArrowRight size={14} />
-            </a>
-          </div>
-        )}
+        <a
+          href="/reach-diagnostic"
+          data-testid="g0-completion-reach-cta"
+          style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "#d4900a", color: "#000F1F", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s", minHeight: 48 }}
+          onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+          onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
+        >
+          Complete the REACH Assessment <ArrowRight size={14} />
+        </a>
       </div>
 
-      {/* ── GO path: Module roadmap + continuation CTA ── */}
-      {decision === "GO" && (
-        <div style={{ border: "1px solid rgba(255,255,255,0.07)", borderTop: "none" }}>
+      {/* ── Module roadmap + continuation ── */}
+      <div style={{ border: "1px solid rgba(255,255,255,0.07)", borderTop: "none" }}>
           {/* What you just completed */}
           <div style={{ padding: "1.75rem 2rem", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
             <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(34,197,94,0.65)", marginBottom: "1.25rem" }}>
@@ -1180,11 +1105,11 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               {[
-                "Compliance framework and the Four Pillars of Survival — installed",
+                "Compliance framework and the Four Pillars of Survival — established",
                 "Operating lane and risk profile — assessed",
-                "Personal readiness across five REACH dimensions — evaluated",
-                "Risk exposure vectors (AUTO) — mapped",
-                "GO/WAIT/NO-GO decision — confirmed",
+                "Personal readiness across five REACH dimensions — reviewed",
+                "AUTO authority-protection framework and the 16 Deadly Sins — mapped",
+                "REACH qualification — recommended next step to determine your outcome",
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem" }}>
                   <div style={{ width: 16, height: 16, borderRadius: "50%", background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.32)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "0.1rem" }}>
@@ -1240,189 +1165,22 @@ function CompleteView({ decision, onRestart, API, assessmentAnswers = {} }) {
             <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginTop: "0.875rem", lineHeight: 1.6 }}>
               NO PAYMENT AT THIS STEP · ADMISSION REVIEWED WITHIN 24 HOURS
             </p>
+            {onViewLesson07 && (
+              <button
+                onClick={onViewLesson07}
+                data-testid="g0-view-lesson07-btn"
+                style={{ background: "none", border: "none", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(197,160,89,0.45)", cursor: "pointer", letterSpacing: "0.14em", textTransform: "uppercase", padding: "0.5rem 0", marginTop: "0.5rem", display: "block", transition: "color 0.15s" }}
+                onMouseEnter={e => e.currentTarget.style.color = "rgba(197,160,89,0.80)"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(197,160,89,0.45)"}
+              >
+                REACH GO? VIEW WHAT HAPPENS AFTER GO →
+              </button>
+            )}
           </div>
         </div>
-      )}
+      
 
-      {/* ── WAIT capture section ── */}
-      {decision === "WAIT" && (
-        <div style={{ border: "1px solid rgba(255,255,255,0.07)", borderTop: "none", padding: "2rem" }}>
-          <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "2rem" }} />
-
-          {/* Gap Tracker — shows which REACH pillars passed/failed */}
-          <GapTracker assessmentAnswers={assessmentAnswers} />
-
-          <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,191,36,0.5)", marginBottom: "0.875rem" }}>
-            LP-STATUS: WAIT | NEXT STEPS
-          </p>
-          <h3 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.1rem, 2vw, 1.375rem)", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
-            You're Not Ready Yet — But You Don't Have To Start Over
-          </h3>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
-            The gaps identified above must be closed before admission is possible.
-          </p>
-
-          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem" }}>
-            Your results show that some issues need to be corrected before moving forward. Save your place below and stay connected while you work through the gaps. When you're ready to return, you'll come back with more clarity and a stronger foundation.
-          </p>
-
-          {captureSubmitted ? (
-            <div data-testid="g0-wait-success" style={{ background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.18)", borderLeft: "3px solid rgba(212,144,10,0.6)", padding: "1.5rem", marginBottom: "1.25rem" }}>
-              <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#d4900a", marginBottom: "0.875rem" }}>
-                ✓ YOUR SPOT IS SAVED
-              </p>
-              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1rem" }}>
-                Your spot has been saved. When you're ready to return, you won't be starting from zero.
-              </p>
-              <a
-                href="/resources/ground0-wait"
-                data-testid="wait-status-page-link"
-                style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", textDecoration: "none", borderBottom: "1px solid rgba(197,160,89,0.25)", paddingBottom: "1px" }}
-              >
-                View your WAIT status and return path →
-              </a>
-            </div>
-          ) : (
-            <form onSubmit={handleCapture} data-testid="g0-wait-capture-form" style={{ marginBottom: "0" }}>
-              <input
-                type="text"
-                required
-                value={captureFirstName}
-                onChange={e => setCaptureFirstName(e.target.value)}
-                data-testid="g0-wait-firstname-input"
-                placeholder="First name"
-                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
-              />
-              <input
-                type="email"
-                required
-                value={captureEmail}
-                onChange={e => setCaptureEmail(e.target.value)}
-                data-testid="g0-wait-email-input"
-                placeholder="Email address"
-                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
-              />
-              {captureError && (
-                <p data-testid="g0-wait-error" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#f87171", marginBottom: "0.625rem", lineHeight: 1.5 }}>
-                  {captureError}
-                </p>
-              )}
-              <button
-                type="submit"
-                data-testid="g0-wait-submit-btn"
-                disabled={captureLoading}
-                style={{ width: "100%", background: captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a", color: "#0b1628", border: "none", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.875rem 1.5rem", cursor: captureLoading ? "wait" : "pointer", minHeight: 48, transition: "background 0.2s" }}
-                onMouseEnter={e => { if (!captureLoading) e.currentTarget.style.background = "#e8a520"; }}
-                onMouseLeave={e => { if (!captureLoading) e.currentTarget.style.background = captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a"; }}
-              >
-                {captureLoading ? "Processing..." : "SAVE MY SPOT →"}
-              </button>
-            </form>
-          )}
-
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.32)", lineHeight: 1.7, marginTop: "0.875rem" }}>
-            No spam. Notified when the next cohort opens. A new Ground 0 assessment will be required.
-          </p>
-
-          {/* Document System CTA */}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.75rem", marginTop: "1.75rem" }}>
-            <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "0.75rem" }}>
-              BEGIN CLOSING GAPS NOW
-            </p>
-            <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.78, marginBottom: "1.25rem" }}>
-              The Document System gives you the forms and templates to start closing these gaps independently.
-            </p>
-            <a
-              href="/compliance-library"
-              data-testid="g0-doc-bundle-cta"
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "transparent", color: "rgba(255,255,255,0.58)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.75rem 1.25rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", transition: "all 0.2s", minHeight: 42 }}
-              onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.58)"; }}
-            >
-              VIEW THE DOCUMENT SYSTEM <ArrowRight size={12} />
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* ── NO-GO capture section ── */}
-      {decision === "NO-GO" && (
-        <div style={{ border: "1px solid rgba(255,255,255,0.07)", borderTop: "none", padding: "2rem" }}>
-          <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "2rem" }} />
-
-          <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(248,113,113,0.5)", marginBottom: "0.875rem" }}>
-            LP-STATUS: NO-GO | ELIGIBILITY
-          </p>
-          <h3 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1rem, 2vw, 1.25rem)", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
-            You're Not Cleared to Proceed Right Now
-          </h3>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, marginBottom: "1.5rem" }}>
-            Based on your current results, there's a misalignment with the current requirements of this system.
-          </p>
-
-          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.78, marginBottom: "1.75rem" }}>
-            Based on your current results, moving forward now would not be the right step. If your situation changes and you want to revisit Ground 0 later, leave your information below and we'll notify you when it makes sense to return.
-          </p>
-
-          {captureSubmitted ? (
-            <div data-testid="g0-nogo-success" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.1)", borderLeft: "3px solid rgba(255,255,255,0.3)", padding: "1.5rem", marginBottom: "1.25rem" }}>
-              <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", marginBottom: "0.875rem" }}>
-                ✓ YOU'RE ON THE LIST
-              </p>
-              <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.78, marginBottom: "1rem" }}>
-                You're on the list. If and when the time is right to revisit this, we'll let you know.
-              </p>
-              <a
-                href="/resources/ground0-nogo"
-                data-testid="nogo-status-page-link"
-                style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", textDecoration: "none", borderBottom: "1px solid rgba(255,255,255,0.12)", paddingBottom: "1px" }}
-              >
-                View your NO-GO status →
-              </a>
-            </div>
-          ) : (
-            <form onSubmit={handleCapture} data-testid="g0-nogo-capture-form" style={{ marginBottom: "0" }}>
-              <input
-                type="text"
-                required
-                value={captureFirstName}
-                onChange={e => setCaptureFirstName(e.target.value)}
-                data-testid="g0-nogo-firstname-input"
-                placeholder="First name"
-                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
-              />
-              <input
-                type="email"
-                required
-                value={captureEmail}
-                onChange={e => setCaptureEmail(e.target.value)}
-                data-testid="g0-nogo-email-input"
-                placeholder="Email address"
-                style={{ width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)", color: "#FFFFFF", fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", padding: "0.875rem 1rem", outline: "none", marginBottom: "0.625rem", boxSizing: "border-box" }}
-              />
-              {captureError && (
-                <p data-testid="g0-nogo-error" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#f87171", marginBottom: "0.625rem", lineHeight: 1.5 }}>
-                  {captureError}
-                </p>
-              )}
-              <button
-                type="submit"
-                data-testid="g0-nogo-submit-btn"
-                disabled={captureLoading}
-                style={{ width: "100%", background: captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a", color: "#0b1628", border: "none", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.875rem 1.5rem", cursor: captureLoading ? "wait" : "pointer", minHeight: 48, transition: "background 0.2s" }}
-                onMouseEnter={e => { if (!captureLoading) e.currentTarget.style.background = "#e8a520"; }}
-                onMouseLeave={e => { if (!captureLoading) e.currentTarget.style.background = captureLoading ? "rgba(212,144,10,0.4)" : "#d4900a"; }}
-              >
-                {captureLoading ? "Processing..." : "NOTIFY ME →"}
-              </button>
-            </form>
-          )}
-
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.32)", lineHeight: 1.7, marginTop: "0.875rem" }}>
-            We'll only reach out when something relevant opens up.
-          </p>
-        </div>
-      )}
+      {/* ── WAIT/NO-GO: handled by REACH — see /reach-diagnostic ── */}
 
       <button
         onClick={onRestart}
@@ -1498,11 +1256,11 @@ function Lesson07View({ onViewCompletion }) {
       {/* Intro */}
       <div style={{ marginBottom: "2.5rem" }}>
         {[
-          { text: "You made a GO decision. Let me tell you what that actually means — and what comes next.", highlight: false },
-          { text: "Ground 0 did one thing: it helped you look at your situation clearly before committing to anything.", highlight: false },
-          { text: "You picked a lane. You scored your readiness. You defined where your floor is. You made a written decision.", highlight: false },
-          { text: "That is not a small thing. Most operators who fail audits never did any of it. They launched on excitement, not preparation. Ground 0 is what separates a carrier who is structurally ready from a carrier who just wants to be ready.", highlight: false },
-          { text: "You are structurally ready. Now comes the build.", highlight: true },
+          { text: "You received a REACH GO. Let me tell you what that actually means — and what comes next.", highlight: false },
+          { text: "Ground 0 did one thing: it helped you understand the weight, order, and discipline required to proceed correctly.", highlight: false },
+          { text: "You picked a lane. You scored your readiness. REACH confirmed that the conditions to survive are in place.", highlight: false },
+          { text: "That is not a small thing. Most operators who fail audits never did any of it. They launched on excitement, not preparation. REACH qualification is what separates a carrier who is structurally ready from one who just wants to be ready.", highlight: false },
+          { text: "You are qualified to proceed. Now comes the build.", highlight: true },
         ].map((item, i) => (
           <p key={i} style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem", color: item.highlight ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.72)", lineHeight: 1.82, marginBottom: "0.875rem", fontWeight: item.highlight ? 600 : 400 }}>
             {item.text}

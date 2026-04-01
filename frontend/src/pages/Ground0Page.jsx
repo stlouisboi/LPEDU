@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
-import REACHAssessmentWidget from "../components/REACHAssessmentWidget";
 
 const MODULES = [
   {
@@ -76,6 +75,29 @@ export default function Ground0Page() {
     <div style={{ fontFamily: "'Inter', sans-serif", background: "#F5F6F7", minHeight: "100vh" }}>
       <Navbar />
 
+      {/* ── REACH Prerequisite Banner ── */}
+      <div style={{ background: "#0b1628", borderBottom: "1px solid rgba(197,160,89,0.12)", padding: "14px 24px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+          <div>
+            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(197,160,89,0.70)", margin: "0 0 4px" }}>
+              LP-REACH — QUALIFICATION REQUIRED
+            </p>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.824rem", color: "rgba(255,255,255,0.48)", lineHeight: 1.5, margin: 0 }}>
+              REACH is the qualification engine for Ground 0. Complete the REACH Assessment before beginning this module.
+            </p>
+          </div>
+          <a
+            href="/reach-diagnostic"
+            data-testid="ground0-reach-prereq-cta"
+            style={{ display: "inline-block", background: "transparent", color: "rgba(197,160,89,0.80)", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", padding: "8px 16px", textDecoration: "none", border: "1px solid rgba(197,160,89,0.30)", whiteSpace: "nowrap", flexShrink: 0, transition: "all 0.2s" }}
+            onMouseOver={(e) => { e.currentTarget.style.borderColor = "rgba(197,160,89,0.60)"; e.currentTarget.style.color = "#C5A059"; }}
+            onMouseOut={(e) => { e.currentTarget.style.borderColor = "rgba(197,160,89,0.30)"; e.currentTarget.style.color = "rgba(197,160,89,0.80)"; }}
+          >
+            COMPLETE REACH &rarr;
+          </a>
+        </div>
+      </div>
+
       {/* ── Header Block ── Light background */}
       <div style={{ background: "#F5F6F7", padding: "100px 24px 72px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -108,8 +130,8 @@ export default function Ground0Page() {
             Ground 0: The Wisdom Module
           </h1>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "#d4900a", fontStyle: "italic", marginBottom: "1.5rem", fontWeight: 500 }}>
-            You passed the REACH check. The conditions to survive are there.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "#6b7280", fontStyle: "italic", marginBottom: "1.5rem", fontWeight: 400 }}>
+            The orientation layer. The posture before the standard begins.
           </p>
 
           <p
@@ -180,19 +202,19 @@ export default function Ground0Page() {
         </div>
       </div>
 
-      {/* ── REACH Assessment Section ── dark, before accordion content */}
+      {/* ── Doctrinal Architecture ── dark, before accordion content */}
       <div style={{ background: "#0b1628", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "72px 24px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.762rem",
+            fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+            fontSize: "0.619rem",
             fontWeight: 700,
-            letterSpacing: "0.18em",
+            letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "rgba(212,144,10,0.85)",
-            marginBottom: "1.25rem",
+            color: "rgba(197,160,89,0.65)",
+            marginBottom: "1.5rem",
           }}>
-            LP-MOD-G0-6 — Operational Readiness Diagnostic
+            LP-DOCTRINE — SYSTEM ORDER
           </p>
           <h2 style={{
             fontFamily: "'Newsreader', 'Playfair Display', serif",
@@ -201,31 +223,41 @@ export default function Ground0Page() {
             color: "#FFFFFF",
             lineHeight: 1.15,
             letterSpacing: "-0.02em",
-            marginBottom: "1.25rem",
+            marginBottom: "2rem",
           }}>
-            The REACH Assessment
+            Where Ground 0 fits in the system.
           </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1rem",
-            color: "rgba(255,255,255,0.72)",
-            lineHeight: 1.8,
-            maxWidth: 580,
-            marginBottom: "0.375rem",
-          }}>
-            14 questions about money, experience, paperwork, commitment, and how you make decisions. Approximately 5 minutes. Answer for where you are today, not where you hope to be.
-          </p>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "var(--text-sm)",
-            color: "rgba(255,255,255,0.45)",
-            lineHeight: 1.7,
-            maxWidth: 580,
-            fontStyle: "italic",
-          }}>
-            Your result — GO, WAIT, or NO-GO — will determine your recommended next step.
-          </p>
-          <REACHAssessmentWidget />
+
+          {[
+            { code: "01", label: "REACH — Qualification Engine", body: "REACH decides readiness. The 15-question diagnostic assigns a GO, WAIT, or NO-GO outcome. That outcome is the gate." },
+            { code: "02", label: "Ground 0 — Wisdom Module", body: "Ground 0 follows REACH GO. It is not the assessment — it is the orientation. Six lessons that establish posture, stewardship, and consequence-awareness before the Standard begins.", highlight: true },
+            { code: "03", label: "AUTO — Authority-Protection Framework", body: "AUTO guards against the 16 Deadly Sins by showing how risk reaches the authority — Around, Under, Through, and Over. It is a protection doctrine, not a diagram." },
+            { code: "04", label: "The 16 Deadly Sins — Threat Taxonomy", body: "The 16 recurring failures that destroy or destabilize new motor carrier authorities. AUTO shows the exposure paths. The LaunchPath Standard installs the guards that block them." },
+            { code: "05", label: "The Standard — Installation Track", body: "Nine modules. Verified implementation. A 90-day sequence that converts readiness into a functioning compliance operating system." },
+          ].map(({ code, label, body, highlight }) => (
+            <div key={code} style={{ display: "flex", gap: "1.5rem", marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+              <span style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", fontWeight: 700, color: "rgba(197,160,89,0.45)", flexShrink: 0, paddingTop: "0.2rem", letterSpacing: "0.1em", minWidth: 20 }}>{code}</span>
+              <div>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 700, color: highlight ? "#C5A059" : "rgba(255,255,255,0.75)", marginBottom: "0.4rem", letterSpacing: "0.02em" }}>{label}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.48)", lineHeight: 1.7, margin: 0 }}>{body}</p>
+              </div>
+            </div>
+          ))}
+
+          <div style={{ marginTop: "0.5rem" }}>
+            <a
+              href="/reach-diagnostic"
+              data-testid="ground0-reach-start-cta"
+              style={{ display: "inline-block", background: "#C5A059", color: "#000F1F", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s" }}
+              onMouseOver={(e) => e.currentTarget.style.background = "#d4b87a"}
+              onMouseOut={(e) => e.currentTarget.style.background = "#C5A059"}
+            >
+              Complete the REACH Assessment &rarr;
+            </a>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.28)", marginTop: "0.875rem", fontStyle: "italic" }}>
+              REACH qualification is required before beginning Ground 0. The assessment takes approximately 5 minutes.
+            </p>
+          </div>
         </div>
       </div>
 

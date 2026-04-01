@@ -76,6 +76,16 @@ export default function DeadlySinsSection() {
               Failure rarely begins with a single decision.<br />
               It begins with systems that were never installed.
             </p>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.9rem",
+              color: "var(--text-paper-muted)",
+              lineHeight: 1.75,
+              marginTop: "1rem",
+            }}>
+              The 16 Deadly Sins are the recurring failures that destroy or destabilize new motor carrier authorities.{" "}
+              <strong>AUTO</strong> — the authority-protection framework — shows how each one reaches the authority: Around, Under, Through, and Over. LaunchPath installs the systems that block them.
+            </p>
           </div>
         </FadeIn>
 
