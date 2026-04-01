@@ -41,6 +41,14 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 51: OG Images for /doctrine and /16-deadly-sins (April 2026)
+- Generated two new institutional OG images (1536×1024 each via Gemini Nano Banana):
+  - `/doctrine`: dark dossier with 6-step sequence flow (REACH → Modules) — replaced old generic doctrine image
+  - `/16-deadly-sins` and `/standards/16-deadly-sins`: dark red threat taxonomy document with 16-item list
+- Updated meta tags on all three routes: new OG image URLs, updated doctrinal descriptions, `og:image:width/height`, `og:url`, `og:type: article`, `twitter:card: summary_large_image`
+- Removed generic `/og-launchpath.png` placeholder from 16-sins pages
+- SSR verified via curl — all three routes confirmed with correct image URLs and tags
+
 ### Phase 50: Share This Doctrine — Copy Button + OG Image (April 2026)
 - **Copy-link button** added below the Doctrine Sequence Map on `/founder`: shows "COPY DOCTRINE LINK →" → copies `window.location.href` to clipboard → flips to "LINK COPIED ✓" for 2.5s → reverts; styled institutionally in gold mono, no external library
 - **OG image** generated (1536×1024 dark navy dossier cover showing Vince Lawrence name, title, 6-step sequence, corner brackets) and wired to `/founder` page via `og:image`, `og:image:width/height`, `og:url`, `twitter:card: summary_large_image`, `twitter:image`
