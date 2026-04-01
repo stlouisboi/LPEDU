@@ -363,15 +363,15 @@ export default function ComplianceLibraryPage() {
                 <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.75rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>$2,500</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.35)" }}>One engagement. No subscription. No upsells.</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", marginTop: "0.375rem" }}>
-                  Start with the REACH Diagnostic. Ground 0 follows a GO result. Both are free.
+                  Ground 0 must be completed before enrollment. Ground 0 is a free module — no payment required.
                 </p>
               </div>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                <Link to="/reach-diagnostic" data-testid="begin-reach-btn" style={{ display: "inline-block", background: GOLD, color: NAVY, fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s" }}
+                <Link to="/ground-0-briefing" data-testid="begin-reach-btn" style={{ display: "inline-block", background: GOLD, color: NAVY, fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
                   onMouseLeave={e => e.currentTarget.style.background = GOLD}
                 >
-                  RUN THE REACH TEST →
+                  BEGIN GROUND 0 →
                 </Link>
                 <Link to="/standard" style={{ display: "inline-block", background: "transparent", color: "rgba(212,144,10,0.80)", fontFamily: SANS, fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "1rem 1.5rem", textDecoration: "none", border: "1px solid rgba(212,144,10,0.30)", transition: "border-color 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.70)"}
