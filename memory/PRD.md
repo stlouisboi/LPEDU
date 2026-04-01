@@ -233,7 +233,9 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ### P1 — High Priority
 - ~~Live E2E Stripe purchase test~~ DONE — pipeline confirmed via preview environment; production Railway uses real Stripe key and verifies independently
+- ~~Google Search Console verification~~ DONE — HTML tag hardcoded in _document.jsx, GSC ownership auto-verified
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules
+- Build Verified Registry ID generation logic (auto-generate VRF ID at 90-day program completion)
 
 ### P2 — Medium Priority
 - ~~Custom branded og:image~~ DONE — og-launchpath.png (sitewide) + og-program.png (/program specific)
