@@ -179,7 +179,7 @@ export default function HeroSection() {
                 transition: "opacity 0.6s ease, transform 0.6s ease",
               }}
             >
-              Your Authority Is Active.
+              You Didn't Start This Authority
             </span>
             <span
               className="hero-headline hero-headline-two"
@@ -192,7 +192,7 @@ export default function HeroSection() {
                 transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
               }}
             >
-              Is It Protected?
+              to Lose It in Your First Audit.
             </span>
           </h1>
 
@@ -211,7 +211,7 @@ export default function HeroSection() {
               transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
             }}
           >
-            Most new carriers don't get shut down because they never started. They get hit when FMCSA asks for files and the guard was never built. LaunchPath shows you how exposed you are, how failure reaches the authority, and gives you the system to install the protection your operation should have had from Day 1.
+            Your MC number is active, but that doesn't mean it's protected. LaunchPath shows new carriers where FMCSA can already reach their operation, how much damage a failed audit can do, and helps install the guard your files and records should have had from Day 1.
           </p>
 
           {/* Sub-headline — mobile */}
@@ -225,7 +225,7 @@ export default function HeroSection() {
               transition: "opacity 0.6s ease 0.15s",
             }}
           >
-            Active does not mean protected. The guard was never built — FMCSA doesn't tell you until it's too late.
+            Active doesn't mean protected. $10K–$25K+ is a normal bill for a failed New Entrant audit — most gaps show up in the first 90 days.
           </p>
 
           {/* Primary CTAs */}
@@ -258,21 +258,21 @@ export default function HeroSection() {
                 Check My Exposure →
               </Link>
               <Link
-                to="/doctrine"
+                to="/ground-0-briefing"
                 data-testid="hero-ground0-cta"
                 style={{
                   display: "inline-flex", alignItems: "center",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 600,
-                  fontSize: "0.857rem", letterSpacing: "0.04em",
-                  color: "rgba(255,255,255,0.55)", background: "transparent",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 500,
+                  fontSize: "0.857rem", letterSpacing: "0.01em",
+                  color: "rgba(255,255,255,0.45)", background: "transparent",
                   border: "none", padding: "0", textDecoration: "none",
                   transition: "color 0.2s",
                   minHeight: 48,
                 }}
-                onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.90)"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}
+                onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.80)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.45)"; }}
               >
-                See How LaunchPath Works →
+                Or begin the Ground 0 briefing →
               </Link>
             </div>
             {/* Sub-CTA descriptor */}
