@@ -172,27 +172,27 @@ export default function HeroSection() {
               className="hero-headline"
               style={{
                 display: "block", fontFamily: "'Newsreader', 'Playfair Display', serif",
-                fontWeight: 900, lineHeight: 1.0, color: "#FFFFFF", marginBottom: 6,
+                fontWeight: 900, lineHeight: 1.05, color: "#FFFFFF", marginBottom: 6,
                 letterSpacing: "-0.03em",
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(16px)",
                 transition: "opacity 0.6s ease, transform 0.6s ease",
               }}
             >
-              YOU GOT YOUR MC NUMBER.
+              Your Authority Is Active.
             </span>
             <span
               className="hero-headline hero-headline-two"
               style={{
                 display: "block", fontFamily: "'Newsreader', 'Playfair Display', serif",
-                fontWeight: 900, lineHeight: 1.0, color: "#C8933F",
+                fontWeight: 900, lineHeight: 1.05, color: "#C8933F",
                 letterSpacing: "-0.03em",
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(16px)",
                 transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
               }}
             >
-              NOW COMES THE PART<br />NOBODY WARNED YOU ABOUT.
+              Is It Protected?
             </span>
           </h1>
 
@@ -211,7 +211,7 @@ export default function HeroSection() {
               transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
             }}
           >
-            Your authority can be active before it is protected. Most new carriers do not fail because they never started. They fail because required controls, records, and operating safeguards were not in place when pressure hit. LaunchPath was built to help you see how exposed you are, understand how failure reaches the authority, and install the protection your operation should have had from the start.
+            Most new carriers don't get shut down because they never started. They get hit when FMCSA asks for files and the guard was never built. LaunchPath shows you how exposed you are, how failure reaches the authority, and gives you the system to install the protection your operation should have had from Day 1.
           </p>
 
           {/* Sub-headline — mobile */}
@@ -225,55 +225,64 @@ export default function HeroSection() {
               transition: "opacity 0.6s ease 0.15s",
             }}
           >
-            Active does not mean protected. Missing controls, records, and safeguards do not stay quiet — they wait for pressure to surface them.
+            Active does not mean protected. The guard was never built — FMCSA doesn't tell you until it's too late.
           </p>
 
           {/* Primary CTAs */}
           <div
             style={{
-              display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center",
+              display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start",
               marginBottom: 28,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
             }}
           >
-            <Link
-              to="/reach-diagnostic"
-              data-testid="hero-reach-cta"
-              className="lp-scan-btn"
-              style={{
-                display: "inline-flex", alignItems: "center",
-                fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase",
-                color: "#0b1628", background: GOLD,
-                padding: "1rem 2rem", textDecoration: "none",
-                transition: "background 0.2s",
-                minHeight: 48,
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = "#e8a958"}
-              onMouseLeave={e => e.currentTarget.style.background = GOLD}
-            >
-              START THE REACH TEST →
-            </Link>
-            <Link
-              to="/ground-0-briefing"
-              data-testid="hero-ground0-cta"
-              style={{
-                display: "inline-flex", alignItems: "center",
-                fontFamily: "'Inter', sans-serif", fontWeight: 600,
-                fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase",
-                color: "rgba(255,255,255,0.70)", background: "transparent",
-                border: "1px solid rgba(255,255,255,0.20)",
-                padding: "1rem 1.75rem", textDecoration: "none",
-                transition: "border-color 0.2s, color 0.2s",
-                minHeight: 48,
-              }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.50)"; e.currentTarget.style.color = "#FFFFFF"; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.20)"; e.currentTarget.style.color = "rgba(255,255,255,0.70)"; }}
-            >
-              BEGIN GROUND 0 BRIEFING
-            </Link>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+              <Link
+                to="/reach-diagnostic"
+                data-testid="hero-reach-cta"
+                className="lp-scan-btn"
+                style={{
+                  display: "inline-flex", alignItems: "center",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                  fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase",
+                  color: "#0b1628", background: GOLD,
+                  padding: "1rem 2rem", textDecoration: "none",
+                  transition: "background 0.2s",
+                  minHeight: 48,
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = "#e8a958"}
+                onMouseLeave={e => e.currentTarget.style.background = GOLD}
+              >
+                Check My Exposure →
+              </Link>
+              <Link
+                to="/doctrine"
+                data-testid="hero-ground0-cta"
+                style={{
+                  display: "inline-flex", alignItems: "center",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 600,
+                  fontSize: "0.857rem", letterSpacing: "0.04em",
+                  color: "rgba(255,255,255,0.55)", background: "transparent",
+                  border: "none", padding: "0", textDecoration: "none",
+                  transition: "color 0.2s",
+                  minHeight: 48,
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.90)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.55)"; }}
+              >
+                See How LaunchPath Works →
+              </Link>
+            </div>
+            {/* Sub-CTA descriptor */}
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem",
+              fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase",
+              color: "rgba(200,147,63,0.50)", margin: 0,
+            }}>
+              3-minute REACH self-test
+            </p>
           </div>
 
           {/* ── CONSEQUENCE BAND — LP-EXP-001 ───────────────────── */}
