@@ -28,31 +28,43 @@ const OBSERVATIONS = [
 const SYSTEM = [
   {
     code: "01", label: "REACH",
+    dot: "#C8933F",
+    mapLine: "Reveals exposure. Determines proceed / wait / stop.",
     role: "Exposure-awareness and readiness diagnostic",
     def: "REACH reveals whether danger can already reach the authority, how exposed the operator is, and whether the operator should proceed, wait, or stop.",
   },
   {
     code: "02", label: "GROUND 0",
+    dot: "#C8933F",
+    mapLine: "Forms the operator's posture before the build begins.",
     role: "Wisdom, posture, and consequence orientation",
     def: "Ground 0 trains the operator to think correctly about order, consequence, stewardship, and the real cost of building without structure.",
   },
   {
     code: "03", label: "FOUR PILLARS",
+    dot: "#3d9970",
+    mapLine: "Installs the guard. Four protective structures around the authority.",
     role: "Protective guard structure around the authority",
     def: "The Four Pillars form the guard: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen — the defensive structure that protects the authority where new carriers break most often.",
   },
   {
     code: "04", label: "AUTO",
+    dot: "#b12a1e",
+    mapLine: "Maps the four breach paths: Around — Under — Through — Over.",
     role: "Threat breach-path model",
     def: "AUTO identifies the four ways failure attempts to bypass, penetrate, or overwhelm the guard around the authority: Around, Under, Through, or Over.",
   },
   {
     code: "05", label: "16 DEADLY SINS",
+    dot: "#b12a1e",
+    mapLine: "Names the 16 recurring threats the guard is built to resist.",
     role: "Threat taxonomy",
     def: "The 16 Deadly Sins are the recurring preventable failures that most often expose, weaken, or damage a new carrier during the New Entrant period.",
   },
   {
     code: "06", label: "MODULES",
+    dot: "#C8933F",
+    mapLine: "Installs the protection in working practice.",
     role: "Guard installation sequence",
     def: "The modules install the protection in practice — turning doctrine into files, records, controls, procedures, rhythms, and operating discipline.",
   },
@@ -228,7 +240,64 @@ export default function FounderPage() {
           </div>
         </section>
 
-        {/* ══ SECTION 4: The Protection Standard ══ */}
+        {/* ══ SECTION 4: Doctrine Sequence Map ══ */}
+        <section data-testid="doctrine-sequence-map" style={{ marginBottom: "6rem" }}>
+          <SectionLabel code="LP-DOCTRINE-MAP" label="SEQUENCE DIAGRAM" />
+
+          <h2 style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#F5F5F5", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "0.75rem", maxWidth: 560 }}>
+            The protection system, in order.
+          </h2>
+          <p style={{ fontFamily: SANS, fontSize: "0.938rem", color: "rgba(245,245,245,0.35)", lineHeight: 1.75, marginBottom: "2.5rem", maxWidth: 560 }}>
+            Six layers. Fixed sequence. No layer is optional. No layer is interchangeable.
+          </p>
+
+          {/* ── Visual diagram card ── */}
+          <div style={{ background: CARD, border: "1px solid rgba(197,160,89,0.16)", overflow: "hidden" }}>
+
+            {/* Diagram header */}
+            <div style={{ background: "rgba(197,160,89,0.05)", borderBottom: "1px solid rgba(197,160,89,0.12)", padding: "0.75rem 2rem", display: "flex", alignItems: "center", gap: "0.875rem" }}>
+              <div style={{ width: 5, height: 5, borderRadius: "50%", background: GOLD, boxShadow: `0 0 5px ${GOLD}`, flexShrink: 0 }} />
+              <span style={{ fontFamily: JBMONO, fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(197,160,89,0.50)" }}>LP-DOCTRINE — OFFICIAL SEQUENCE MAP</span>
+              <span style={{ fontFamily: JBMONO, fontSize: "0.524rem", color: "rgba(197,160,89,0.18)", marginLeft: "auto" }}>REV. 2026</span>
+            </div>
+
+            {/* Sequence nodes */}
+            <div style={{ padding: "2.25rem 2rem 1.75rem" }}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {SYSTEM.map((s, i) => (
+                  <div key={s.code} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+
+                    {/* Left spine: step num + dot + connecting line */}
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 48, flexShrink: 0 }}>
+                      <span style={{ fontFamily: JBMONO, fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.08em", color: "rgba(197,160,89,0.28)", marginBottom: "0.5rem", lineHeight: 1 }}>{s.code}</span>
+                      <div style={{ width: 10, height: 10, borderRadius: "50%", background: s.dot, boxShadow: `0 0 8px ${s.dot}60`, flexShrink: 0, border: "1px solid rgba(255,255,255,0.10)" }} />
+                      {i < SYSTEM.length - 1 && (
+                        <div style={{ flex: 1, width: 1, background: "rgba(197,160,89,0.14)", minHeight: "2rem", marginTop: "0.5rem", marginBottom: "0.5rem" }} />
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div style={{ paddingTop: "0.08rem", paddingBottom: i < SYSTEM.length - 1 ? "2rem" : 0, flex: 1 }}>
+                      <p style={{ fontFamily: JBMONO, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: s.dot, margin: "0 0 0.375rem", lineHeight: 1.1 }}>{s.label}</p>
+                      <p style={{ fontFamily: SANS, fontSize: "0.925rem", color: "rgba(245,245,245,0.48)", lineHeight: 1.65, margin: 0 }}>{s.mapLine}</p>
+                    </div>
+
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Diagram footer — Master Logic Line */}
+            <div style={{ borderTop: "1px solid rgba(197,160,89,0.10)", padding: "1rem 2rem", background: "rgba(197,160,89,0.025)" }}>
+              <p style={{ fontFamily: JBMONO, fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(197,160,89,0.32)", margin: 0, lineHeight: 1.7 }}>
+                REACH reveals · Ground 0 forms · Four Pillars guard · AUTO maps · 16 Sins name · Modules install
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ══ SECTION 5: The Protection Standard ══ */}
         <section data-testid="founder-system" style={{ marginBottom: "6rem" }}>
           <SectionLabel code="LP-RECORD-SYSTEM" label="WHAT WAS BUILT" />
 
@@ -273,7 +342,7 @@ export default function FounderPage() {
           </div>
         </section>
 
-        {/* ══ SECTION 5: Founder Signature ══ */}
+        {/* ══ SECTION 6: Founder Signature ══ */}
         <section
           data-testid="founder-signature"
           style={{ position: "relative", padding: "3rem", background: CARD, border: "1px solid rgba(197,160,89,0.12)", borderLeft: "2px solid rgba(197,160,89,0.50)", marginBottom: "6rem" }}
@@ -288,7 +357,7 @@ export default function FounderPage() {
           </p>
         </section>
 
-        {/* ══ SECTION 6: CTA ══ */}
+        {/* ══ SECTION 7: CTA ══ */}
         <section
           data-testid="founder-cta"
           style={{ position: "relative", border: "1px solid rgba(197,160,89,0.14)", padding: "3.5rem 2rem", textAlign: "center" }}

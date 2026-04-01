@@ -41,6 +41,13 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 49: Doctrine Sequence Map on /founder (April 2026)
+- Added visual `doctrine-sequence-map` section to `/founder` page between Pattern Observations and Protection Standard
+- **Diagram design**: dark CARD background + gold border → header bar (LP-DOCTRINE — OFFICIAL SEQUENCE MAP) → 6-node vertical spine with color-coded dots (gold for awareness/installation, #3d9970 green for guard, #b12a1e red for breach/threats) → connecting lines between nodes → compressed Master Logic Line footer
+- Each node shows: step code (01–06) · label · one-line mapLine descriptor — telegraphic, not the full definition
+- No external dependencies, pure CSS/JSX diagram
+- Testing: HTTP 200 confirmed, SSR content verified via curl
+
 ### Phase 48: /founder Page — Military Dossier Aesthetic (April 2026)
 - Built `/founder` page as a military-record / authority dossier — no photo, credential structure does the trust work
 - Sections: File classification band → Identity Dossier (name, title, 4-credential file-card) → Origin Statement (Long Version copy) → Observed Failure Behaviors (5 coded field observations) → Protection Standard (6-part REACH→Ground 0→Pillars→AUTO→16 Sins→Modules with locked definitions + Master Logic Line) → Founder Signature (italic gold) → REACH Diagnostic CTA
