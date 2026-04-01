@@ -15,6 +15,37 @@ export default function Page() {
         <meta name="twitter:title" content="The BOC-3 Filing: What It Is, What Happens If It Lapses | LaunchPath" />
         <meta name="twitter:description" content="The BOC-3 is one of three foundational filings required before FMCSA grants operating authority. A lapsed filing can suspend your authority without notice." />
         <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "The BOC-3 Filing: What It Is, What Happens If It Lapses",
+          "description": "The BOC-3 is one of three foundational filings required before FMCSA grants operating authority. A lapsed filing can suspend your authority without notice.",
+          "url": "https://launchpathedu.com/knowledge-center/boc-3-filing-explained",
+          "datePublished": "2025-03-01",
+          "dateModified": "2026-04-01",
+          "author": {
+                    "@type": "Person",
+                    "name": "Vince Lawrence",
+                    "url": "https://launchpathedu.com/founder"
+          },
+          "publisher": {
+                    "@type": "Organization",
+                    "name": "LaunchPath Transportation EDU",
+                    "url": "https://launchpathedu.com",
+                    "logo": {
+                              "@type": "ImageObject",
+                              "url": "https://launchpathedu.com/og-launchpath.png"
+                    }
+          },
+          "image": "https://launchpathedu.com/og-launchpath.png",
+          "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://launchpathedu.com/knowledge-center/boc-3-filing-explained"
+          }
+})}}
+        />
       </Head>
       <BOC3FilingPost />
     </>

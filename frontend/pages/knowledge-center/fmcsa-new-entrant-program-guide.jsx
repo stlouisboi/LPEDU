@@ -15,6 +15,37 @@ export default function Page() {
         <meta name="twitter:title" content="FMCSA New Entrant Program Guide: What the 18-Month Window Actually Requires | LaunchPath" />
         <meta name="twitter:description" content="The FMCSA New Entrant Safety Assurance Program explained — what the 18-month audit window covers, what investigators look for, and how new carriers build compliant operations." />
         <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "FMCSA New Entrant Program Guide: What the 18-Month Window Actually Requires",
+          "description": "The FMCSA New Entrant Safety Assurance Program explained \u2014 what the 18-month audit window covers, what investigators look for, and how new carriers build compliant operations.",
+          "url": "https://launchpathedu.com/knowledge-center/fmcsa-new-entrant-program-guide",
+          "datePublished": "2025-02-10",
+          "dateModified": "2026-04-01",
+          "author": {
+                    "@type": "Person",
+                    "name": "Vince Lawrence",
+                    "url": "https://launchpathedu.com/founder"
+          },
+          "publisher": {
+                    "@type": "Organization",
+                    "name": "LaunchPath Transportation EDU",
+                    "url": "https://launchpathedu.com",
+                    "logo": {
+                              "@type": "ImageObject",
+                              "url": "https://launchpathedu.com/og-launchpath.png"
+                    }
+          },
+          "image": "https://launchpathedu.com/og-launchpath.png",
+          "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://launchpathedu.com/knowledge-center/fmcsa-new-entrant-program-guide"
+          }
+})}}
+        />
       </Head>
       <NewEntrantProgramPost />
     </>

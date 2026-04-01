@@ -15,6 +15,37 @@ export default function Page() {
         <meta name="twitter:title" content="ELD Exemptions for Box Truck Operators: What's Covered and What Isn't | LaunchPath" />
         <meta name="twitter:description" content="The short-haul exemption eliminates the ELD requirement for qualifying box truck operators — but it doesn't eliminate HOS rules or recordkeeping. Here's exactly what applies." />
         <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "ELD Exemptions for Box Truck Operators: What's Covered and What Isn't",
+          "description": "The short-haul exemption eliminates the ELD requirement for qualifying box truck operators \u2014 but it doesn't eliminate HOS rules or recordkeeping. Here's exactly what applies.",
+          "url": "https://launchpathedu.com/knowledge-center/eld-exemption-box-truck",
+          "datePublished": "2025-03-01",
+          "dateModified": "2026-04-01",
+          "author": {
+                    "@type": "Person",
+                    "name": "Vince Lawrence",
+                    "url": "https://launchpathedu.com/founder"
+          },
+          "publisher": {
+                    "@type": "Organization",
+                    "name": "LaunchPath Transportation EDU",
+                    "url": "https://launchpathedu.com",
+                    "logo": {
+                              "@type": "ImageObject",
+                              "url": "https://launchpathedu.com/og-launchpath.png"
+                    }
+          },
+          "image": "https://launchpathedu.com/og-launchpath.png",
+          "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://launchpathedu.com/knowledge-center/eld-exemption-box-truck"
+          }
+})}}
+        />
       </Head>
       <ELDExemptionPost />
     </>

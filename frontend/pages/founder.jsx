@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import FounderPage from '../src/pages/FounderPage';
 
-const OG_IMAGE = "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/33079deaa865c9eec347c9be3012f024a0bdbbc7a1e4a1759dc8508d383be478.png";
+const OG_IMAGE = "https://launchpathedu.com/og-launchpath.png";
 
 export default function Page() {
   return (

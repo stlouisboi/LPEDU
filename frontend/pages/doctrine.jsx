@@ -122,7 +122,7 @@ export default function DoctrinePage() {
         <meta name="description" content="The official doctrine: REACH reveals exposure. Ground 0 forms posture. Four Pillars create the guard. AUTO maps breach paths. 16 Deadly Sins name the threats. Modules install the protection." />
         <meta property="og:title" content="The LaunchPath Doctrine — Protection System Architecture" />
         <meta property="og:description" content="Six layers. Fixed sequence. REACH → Ground 0 → Four Pillars → AUTO → 16 Deadly Sins → Modules. Each layer has a locked role. None are interchangeable." />
-        <meta property="og:image" content="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/770283a28f0943b658338a9780cdf7c4f8f9512eb2e23c85fa53df324bc12d56.png" />
+        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
         <meta property="og:image:width" content="1536" />
         <meta property="og:image:height" content="1024" />
         <meta property="og:image:alt" content="LaunchPath Doctrine Map: The Protection System — REACH, Ground 0, Four Pillars, AUTO, 16 Deadly Sins, Modules" />
@@ -131,7 +131,7 @@ export default function DoctrinePage() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="The LaunchPath Doctrine — Protection System Architecture" />
         <meta name="twitter:description" content="REACH reveals. Ground 0 forms. Four Pillars guard. AUTO maps. 16 Sins name. Modules install. Six layers, fixed sequence." />
-        <meta name="twitter:image" content="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/770283a28f0943b658338a9780cdf7c4f8f9512eb2e23c85fa53df324bc12d56.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
       </Head>
 
       <div style={{ background: C.bg, minHeight: '100vh', fontFamily: BODY }}>

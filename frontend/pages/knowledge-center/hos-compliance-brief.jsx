@@ -15,6 +15,37 @@ export default function Page() {
         <meta name="twitter:title" content="Hours of Service Compliance for New Motor Carriers | LaunchPath" />
         <meta name="twitter:description" content="What your HOS logs actually have to prove. The recordkeeping requirements, ELD obligations, and dispatch standards new carriers get wrong most often." />
         <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Hours of Service Compliance for New Motor Carriers",
+          "description": "What your HOS logs actually have to prove. The recordkeeping requirements, ELD obligations, and dispatch standards new carriers get wrong most often.",
+          "url": "https://launchpathedu.com/knowledge-center/hos-compliance-brief",
+          "datePublished": "2025-02-01",
+          "dateModified": "2026-04-01",
+          "author": {
+                    "@type": "Person",
+                    "name": "Vince Lawrence",
+                    "url": "https://launchpathedu.com/founder"
+          },
+          "publisher": {
+                    "@type": "Organization",
+                    "name": "LaunchPath Transportation EDU",
+                    "url": "https://launchpathedu.com",
+                    "logo": {
+                              "@type": "ImageObject",
+                              "url": "https://launchpathedu.com/og-launchpath.png"
+                    }
+          },
+          "image": "https://launchpathedu.com/og-launchpath.png",
+          "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://launchpathedu.com/knowledge-center/hos-compliance-brief"
+          }
+})}}
+        />
       </Head>
       <HOSComplianceBrief />
     </>
