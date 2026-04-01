@@ -41,6 +41,13 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 47: Founder + 90-Day Copy Blocks + 16-Sins Page (April 2026)
+- **CredibilityStrip.jsx** — New heading "BUILT BY SOMEONE WHO HAS WATCHED THIS BREAK IN THE REAL WORLD"; Mid Version founder copy (Navy veteran, OSHA, 25+ years); 4-item credential strip (Navy Veteran, OSHA-Certified, 25+ Yrs Leadership, Founder LaunchPath EDU); Proverbs scripture block removed
+- **WhatGetsBuiltSection.jsx** — Mid Version body copy; 7 new specific bullets (driver qual, D&A, HOS, maintenance, authority/insurance, responsibilities, gaps); Day 1 vs Day 90 mini-band; FMCSA bridge line about New Entrant safety audit
+- **SixteenSinsPage.jsx** — New H1 "The 16 Exposure Patterns That Reach the Authority"; intro body updated to doctrinal voice; WHY THIS GUIDE bullets updated; conclusion: "Ground 0" replaced with "REACH Diagnostic"
+- **Route fix**: `/standards/16-deadly-sins` was redirecting to `/compliance-library`; now renders SixteenSinsPage directly (matches homepage link from FailureAnalysisSection)
+- Testing: 100% (iteration_95) — all 14 content/route checks passed
+
 ### Phase 46: LaunchPath Homepage Rewrite — Complete (April 2026)
 - Fully rewrote and orchestrated the homepage with a strict 12-section doctrinal flow
 - **New section order**: Hero → ExposureBand → CredibilityStrip → ThePattern → NotFor → TheStandard (Four Pillars+AUTO+REACH) → FailureAnalysis (compressed proof block) → WhatGetsBuilt → FAQ → FinalCTA
