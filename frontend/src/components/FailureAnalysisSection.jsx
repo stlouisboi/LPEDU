@@ -136,9 +136,15 @@ export default function FailureAnalysisSection() {
           <Link
             to="/standards/16-deadly-sins"
             data-testid="failure-patterns-link"
-            style={{ fontFamily: JBMONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", textDecoration: "none", transition: "color 0.15s", display: "inline-block" }}
-            onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
-            onMouseLeave={e => { e.currentTarget.style.color = "rgba(197,160,89,0.55)"; }}
+            style={{
+              fontFamily: JBMONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em",
+              textTransform: "uppercase", color: GOLD, textDecoration: "none",
+              display: "inline-flex", alignItems: "center", gap: "0.5rem",
+              border: `1px solid ${GOLD}`, padding: "0.65rem 1.25rem",
+              transition: "background 0.18s, color 0.18s",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = "rgba(200,147,63,0.12)"; e.currentTarget.style.color = "#e8a958"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = GOLD; }}
           >
             View the full 16 Deadly Sins breakdown →
           </Link>

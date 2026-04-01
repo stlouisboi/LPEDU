@@ -222,12 +222,12 @@ function ReachSubsection() {
 
 // ── System Architecture Diagram ──────────────────────────────────────────
 const ARCH_STEPS = [
-  { num: "01", name: "REACH",         role: "Qualification Gate",    sub: "GO / WAIT / NO-GO",        color: GOLD },
-  { num: "02", name: "GROUND 0",      role: "Orientation & Posture", sub: "Awareness before action",   color: GOLD },
-  { num: "03", name: "FOUR PILLARS",  role: "The Guard",             sub: "Authority · Insurance · Compliance · Cash", color: "#3d9970" },
-  { num: "04", name: "AUTO",          role: "The Breach Map",        sub: "Around · Under · Through · Over", color: "#C0392B" },
-  { num: "05", name: "16 SINS",       role: "The Threat Taxonomy",   sub: "Named exposure patterns",   color: "#C0392B" },
-  { num: "06", name: "MODULES",       role: "The Installation",      sub: "9 safeguards installed",    color: GOLD },
+  { num: "01", name: "REACH",         role: "Qualification Gate",    sub: "GO / WAIT / NO-GO",        color: GOLD,      href: "/reach-diagnostic" },
+  { num: "02", name: "GROUND 0",      role: "Orientation & Posture", sub: "Awareness before action",   color: GOLD,      href: "/ground-0-briefing" },
+  { num: "03", name: "FOUR PILLARS",  role: "The Guard",             sub: "Authority · Insurance · Compliance · Cash", color: "#3d9970", href: "/doctrine" },
+  { num: "04", name: "AUTO",          role: "The Breach Map",        sub: "Around · Under · Through · Over", color: "#C0392B", href: "/standards/auto-method" },
+  { num: "05", name: "16 SINS",       role: "The Threat Taxonomy",   sub: "Named exposure patterns",   color: "#C0392B", href: "/standards/16-deadly-sins" },
+  { num: "06", name: "MODULES",       role: "The Installation",      sub: "9 safeguards installed",    color: GOLD,      href: "/standard" },
 ];
 
 function SystemArchitectureDiagram() {
@@ -263,8 +263,9 @@ function SystemArchitectureDiagram() {
         <div className="arch-sequence" style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
           {ARCH_STEPS.map((step, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", flex: 1, minWidth: 0 }}>
-              {/* Step card */}
-              <div
+              {/* Step card — linked */}
+              <Link
+                to={step.href}
                 data-testid={`arch-step-${step.num}`}
                 className="arch-step-card"
                 style={{
@@ -276,7 +277,13 @@ function SystemArchitectureDiagram() {
                   padding: "1.25rem 1rem",
                   textAlign: "center",
                   position: "relative",
+                  textDecoration: "none",
+                  display: "block",
+                  transition: "background 0.18s, border-color 0.18s",
+                  cursor: "pointer",
                 }}
+                onMouseEnter={e => { e.currentTarget.style.background = `${step.color}12`; e.currentTarget.style.borderColor = `${step.color}55`; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(244,241,235,0.025)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; }}
               >
                 {/* Step number */}
                 <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}66`, margin: "0 0 0.5rem" }}>
@@ -294,7 +301,9 @@ function SystemArchitectureDiagram() {
                 <p style={{ fontFamily: MONO, fontSize: "clamp(0.50rem, 0.75vw, 0.62rem)", color: "rgba(138,150,168,0.65)", margin: 0, lineHeight: 1.45, letterSpacing: "0.03em" }}>
                   {step.sub}
                 </p>
-              </div>
+                {/* Link indicator */}
+                <p style={{ fontFamily: MONO, fontSize: "0.52rem", color: `${step.color}55`, margin: "0.6rem 0 0", letterSpacing: "0.10em" }}>→</p>
+              </Link>
 
               {/* Arrow connector */}
               {i < ARCH_STEPS.length - 1 && (
