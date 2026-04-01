@@ -41,6 +41,15 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 52: /standards/auto-method Standalone Page (April 2026)
+- Built full `/standards/auto-method` page — doctrinal breach-path model for the AUTO Method
+- **Four breach path cards** (A/U/T/O): each has letter header + classification badge + 1-sentence definition + HOW IT MOVES body + IN THE FIELD field example + CFR reference + Pillar That Resists indicator
+- **T (THROUGH)** card references LP-CASE-001 ($19,246 MEC oversight) as the field example
+- **Protection Matrix**: clean 3-column table mapping each breach path (Around/Under/Through/Over) to the Pillar that resists it and the specific control
+- **REACH CTA** + cross-links to /standards/16-deadly-sins, /doctrine, /founder
+- **OG image** generated + wired (summary_large_image, 1536×1024)
+- Testing: 100% (iteration_97) — 16/16 checks passed
+
 ### Phase 51: OG Images for /doctrine and /16-deadly-sins (April 2026)
 - Generated two new institutional OG images (1536×1024 each via Gemini Nano Banana):
   - `/doctrine`: dark dossier with 6-step sequence flow (REACH → Modules) — replaced old generic doctrine image
