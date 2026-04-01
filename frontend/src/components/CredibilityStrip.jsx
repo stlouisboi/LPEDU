@@ -144,10 +144,15 @@ export default function CredibilityStrip() {
           {/* ── RIGHT: Authority content ── */}
           <div>
 
-            {/* Role label */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "linear-gradient(180deg,#0e1f38,#060f1e)", border: "1px solid rgba(197,160,89,0.22)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04), 2px 2px 6px rgba(0,0,0,0.5)", padding: "0.3rem 0.75rem", marginBottom: "1.5rem" }}>
-              <span style={{ fontFamily: JBMONO, fontSize: "0.57rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)" }}>COMPLIANCE SYSTEMS ARCHITECT</span>
-            </div>
+            {/* Section identifier */}
+            <p style={{ fontFamily: JBMONO, fontSize: "0.57rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(197,160,89,0.45)", margin: "0 0 1.25rem" }}>
+              LP-FOUNDER-001
+            </p>
+
+            {/* Section heading */}
+            <p style={{ fontFamily: SANS, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", margin: "0 0 1rem", maxWidth: 460, lineHeight: 1.6 }}>
+              BUILT BY SOMEONE WHO HAS WATCHED THIS BREAK IN THE REAL WORLD
+            </p>
 
             {/* Name */}
             <h2 style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(2rem, 3.5vw, 3rem)", color: "#F5F5F5", letterSpacing: "-0.03em", lineHeight: 1.05, margin: 0 }}>
@@ -157,49 +162,33 @@ export default function CredibilityStrip() {
             {/* Short gold divider */}
             <div className="cred-name-divider" />
 
-            {/* Credential strip */}
-            <p style={{ fontFamily: SANS, fontSize: "0.90rem", color: "rgba(245,245,245,0.72)", lineHeight: 1.7, margin: "0 0 0.2rem" }}>
-              25+ years of leadership in safety, compliance, and manufacturing operations.
+            {/* Mid Version founder copy */}
+            <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(245,245,245,0.72)", lineHeight: 1.85, margin: "0 0 2rem", maxWidth: 520 }}>
+              LaunchPath was built by Vince Lawrence, a U.S. Navy veteran and OSHA-certified safety professional with 25+ years in leadership, safety-based operations, and regulated environments. The system was built from real exposure to how operations break when structure comes late and controls stay weak.
             </p>
+
             {/* Credential grid — 2×2 */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.625rem 1.5rem", marginBottom: "2.25rem" }}>
               {[
-                { code: "LP-CRED-01", label: "Safety Coordinator" },
-                { code: "LP-CRED-02", label: "OSHA 30-Hour Certified" },
-                { code: "LP-CRED-03", label: "U.S. Navy Veteran" },
-                { code: "LP-CRED-04", label: "25+ Years Operations" },
+                { code: "LP-CRED-01", label: "U.S. Navy Veteran" },
+                { code: "LP-CRED-02", label: "OSHA-Certified Safety Professional" },
+                { code: "LP-CRED-03", label: "25+ Years in Leadership and Safety-Based Operations" },
+                { code: "LP-CRED-04", label: "Founder, LaunchPath Transportation EDU" },
               ].map(({ code, label }) => (
-                <div key={code} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <div style={{ width: 5, height: 5, borderRadius: "50%", background: GOLD, flexShrink: 0, boxShadow: `0 0 4px ${GOLD}` }} />
+                <div key={code} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
+                  <div style={{ width: 5, height: 5, borderRadius: "50%", background: GOLD, flexShrink: 0, boxShadow: `0 0 4px ${GOLD}`, marginTop: "0.35rem" }} />
                   <div>
-                    <p style={{ fontFamily: JBMONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(197,160,89,0.60)", textTransform: "uppercase", margin: 0 }}>{code}</p>
-                    <p style={{ fontFamily: SANS, fontSize: "0.857rem", fontWeight: 600, color: "rgba(245,245,245,0.82)", margin: 0 }}>{label}</p>
+                    <p style={{ fontFamily: JBMONO, fontSize: "0.525rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(197,160,89,0.50)", textTransform: "uppercase", margin: 0 }}>{code}</p>
+                    <p style={{ fontFamily: SANS, fontSize: "0.825rem", fontWeight: 600, color: "rgba(245,245,245,0.78)", margin: 0, lineHeight: 1.4 }}>{label}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Core authority statement */}
-            <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(245,245,245,0.68)", lineHeight: 1.85, margin: "0 0 0.75rem", maxWidth: 520 }}>
-              Motor carrier authority is not protected by intention — it's protected by systems.
-            </p>
-            <p style={{ fontFamily: SANS, fontSize: "0.938rem", color: "rgba(245,245,245,0.55)", lineHeight: 1.85, margin: "0 0 2.25rem", maxWidth: 520 }}>
-              LaunchPath was built to install the administrative structure the FMCSA expects to see during the New Entrant period — before they come looking for it.
-            </p>
-
-            {/* Signature line — DO NOT CHANGE */}
-            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "1.15rem", color: GOLD, lineHeight: 1.65, margin: "0 0 2.5rem", maxWidth: 480 }}>
+            {/* Signature line */}
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "1.15rem", color: GOLD, lineHeight: 1.65, margin: 0, maxWidth: 480 }}>
               I don't do your compliance. I built the system so you can do it yourself.
             </p>
-
-            {/* Wisdom anchor */}
-            <div style={{ borderLeft: "2px solid rgba(197,160,89,0.30)", paddingLeft: "1.25rem" }}>
-              <p style={{ fontFamily: JBMONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", margin: "0 0 0.625rem" }}>FOUNDATION</p>
-              <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "0.9375rem", color: "rgba(245,241,225,0.88)", lineHeight: 1.75, margin: 0, maxWidth: 420 }}>
-                "By wisdom a house is built, and through understanding it is established."<br />
-                <span style={{ fontFamily: JBMONO, fontSize: "0.75rem", fontStyle: "normal", letterSpacing: "0.08em", color: "rgba(197,160,89,0.65)", marginTop: "0.5rem", display: "inline-block" }}>— Proverbs 24:3</span>
-              </p>
-            </div>
 
           </div>
         </div>

@@ -377,7 +377,7 @@ export default function SixteenSinsPage() {
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
             marginBottom: "0.75rem",
-          }}>The #1 Pocket Guide for Preventing the 16 Failures That Kill New Motor Carrier Authority.</h1>
+          }}>The 16 Exposure Patterns That Reach the Authority.</h1>
 
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -388,7 +388,7 @@ export default function SixteenSinsPage() {
             textTransform: "none",
             marginBottom: "1.75rem",
             maxWidth: 680,
-          }}>Built for new motor carriers and owner-operators who need a fast, field-ready way to spot FMCSA exposure — before an investigator or roadside officer does.</p>
+          }}>Each one is documented. Each one maps to a specific federal regulation. Each one has ended operating authority for carriers who did not know it was happening.</p>
 
           <div style={{ height: 2, background: coral, width: 64, marginBottom: "3rem" }} />
 
@@ -420,7 +420,7 @@ export default function SixteenSinsPage() {
               marginBottom: "1.75rem",
               fontStyle: "italic",
             }}>
-              The LaunchPath system identifies the behaviors before they happen.
+              LaunchPath surfaces the patterns before pressure does.
             </p>
             <p style={{
               fontFamily: "'Inter', sans-serif",
@@ -428,7 +428,7 @@ export default function SixteenSinsPage() {
               color: "rgba(255,255,255,0.78)",
               lineHeight: 1.9,
             }}>
-              Most new carrier authorities do not fail because the operator was careless. They fail because the operational behaviors that cause failure are invisible until an investigator documents them. These are the 16 behaviors the LaunchPath system is built to eliminate. Each one maps to a specific federal regulation. Each one has ended operating authority for carriers who did not know it was happening.
+              Most new carrier authorities do not fail because the operator was reckless. They fail because the patterns that cause failure are invisible until an investigator documents them. These are the 16 patterns LaunchPath is built to close. Each one has a corresponding control. Each one reached the authority through a gap that was preventable.
             </p>
           </div>
         </FadeIn>
@@ -446,9 +446,9 @@ export default function SixteenSinsPage() {
               marginBottom: "1.25rem",
             }}>WHY THIS GUIDE</p>
             {[
-              "Designed specifically for new entrants — aligned with FMCSA's New Entrant Safety Assurance Program, not generic safety programs.",
-              "Covers the same core domains investigators pull in audits: drivers, drug & alcohol, HOS/ELD, vehicles, insurance/authority, accident register, and audit response.",
-              "Compresses what's spread across multiple FMCSA PDFs and vendor checklists into a single 20-page pocket guide with a built-in 7-Day Stabilization Plan.",
+              "Aligned with FMCSA's New Entrant Safety Assurance Program — the same audit framework investigators use during the first 18 months of authority.",
+              "Covers the same core domains investigators pull during audits: drivers, drug and alcohol, HOS and ELD, vehicles, insurance, accident register, and audit response.",
+              "Compresses what's spread across multiple CFR parts and FMCSA PDFs into a single field-ready reference — with consequence details and prevention protocols for every pattern.",
             ].map((bullet, i) => (
               <div key={i} style={{ display: "flex", gap: "0.875rem", marginBottom: "1rem", alignItems: "flex-start" }}>
                 <span style={{ color: coral, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.857rem", flexShrink: 0, paddingTop: "0.15rem" }}>—</span>
@@ -846,7 +846,7 @@ export default function SixteenSinsPage() {
               marginBottom: "1rem",
               lineHeight: 1.4,
             }}>
-              If you recognized two or more of these in your own operation, your audit window is open and your gaps are already accumulating.
+              If two or more of these patterns are active in your operation, the audit window is already open.
             </p>
 
             <p style={{
@@ -857,7 +857,7 @@ export default function SixteenSinsPage() {
               marginBottom: "1rem",
               maxWidth: 580,
             }}>
-              Every sin on this list has ended a motor carrier's authority. Every sin has a corresponding system that prevents it.
+              Every pattern on this list has ended a motor carrier's authority. Every pattern has a corresponding control that prevents it.
             </p>
 
             <p style={{
@@ -868,7 +868,7 @@ export default function SixteenSinsPage() {
               marginBottom: "2.5rem",
               maxWidth: 580,
             }}>
-              Ground 0 shows you exactly which sins are active in your operation right now — in 4 minutes, for free.
+              The REACH Diagnostic shows you which of these are active in your operation right now — before an investigator does it for you.
             </p>
 
             {/* Dual CTA */}

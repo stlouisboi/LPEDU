@@ -1,8 +1,22 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import SixteenSinsPage from '../../src/pages/standards/SixteenSinsPage';
+import Head from 'next/head';
 
 export default function Page() {
-  const router = useRouter();
-  useEffect(() => { router.replace('/compliance-library'); }, [router]);
-  return null;
+  return (
+    <>
+      <Head>
+        <title>The 16 Deadly Sins: Exposure Patterns That End Motor Carrier Authority | LaunchPath</title>
+        <meta name="description" content="The 16 most common exposure patterns that reach the authority — each one documented, mapped to CFR, and preventable. Know them before FMCSA finds them for you." />
+        <meta property="og:title" content="The 16 Deadly Sins: Exposure Patterns That End Motor Carrier Authority | LaunchPath" />
+        <meta property="og:description" content="The 16 most common exposure patterns that reach the authority — each one documented, mapped to CFR, and preventable." />
+        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="The 16 Deadly Sins: Exposure Patterns That End Motor Carrier Authority | LaunchPath" />
+        <meta name="twitter:description" content="The 16 most common exposure patterns that reach the authority — each one documented, mapped to CFR, and preventable." />
+        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+      </Head>
+      <SixteenSinsPage />
+    </>
+  );
 }
