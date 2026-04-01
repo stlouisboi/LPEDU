@@ -41,6 +41,13 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 48: /founder Page — Military Dossier Aesthetic (April 2026)
+- Built `/founder` page as a military-record / authority dossier — no photo, credential structure does the trust work
+- Sections: File classification band → Identity Dossier (name, title, 4-credential file-card) → Origin Statement (Long Version copy) → Observed Failure Behaviors (5 coded field observations) → Protection Standard (6-part REACH→Ground 0→Pillars→AUTO→16 Sins→Modules with locked definitions + Master Logic Line) → Founder Signature (italic gold) → REACH Diagnostic CTA
+- Added `credibility-founder-link` to `CredibilityStrip` on homepage → `/founder`
+- Saved `/app/memory/launchpath_doctrine.md` as the locked doctrinal source of truth for all future work
+- Testing: 100% (iteration_96) — 14/14 checks passed, no console errors, no portrait found
+
 ### Phase 47: Founder + 90-Day Copy Blocks + 16-Sins Page (April 2026)
 - **CredibilityStrip.jsx** — New heading "BUILT BY SOMEONE WHO HAS WATCHED THIS BREAK IN THE REAL WORLD"; Mid Version founder copy (Navy veteran, OSHA, 25+ years); 4-item credential strip (Navy Veteran, OSHA-Certified, 25+ Yrs Leadership, Founder LaunchPath EDU); Proverbs scripture block removed
 - **WhatGetsBuiltSection.jsx** — Mid Version body copy; 7 new specific bullets (driver qual, D&A, HOS, maintenance, authority/insurance, responsibilities, gaps); Day 1 vs Day 90 mini-band; FMCSA bridge line about New Entrant safety audit
