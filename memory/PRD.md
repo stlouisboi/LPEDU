@@ -41,6 +41,15 @@ LaunchPath operates on four distinct, ordered layers:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 46: LaunchPath Homepage Rewrite — Complete (April 2026)
+- Fully rewrote and orchestrated the homepage with a strict 12-section doctrinal flow
+- **New section order**: Hero → ExposureBand → CredibilityStrip → ThePattern → NotFor → TheStandard (Four Pillars+AUTO+REACH) → FailureAnalysis (compressed proof block) → WhatGetsBuilt → FAQ → FinalCTA
+- **3 new components added**: `ExposureBand.jsx`, `CostOfFailureSection.jsx`, `WhatGetsBuiltSection.jsx`
+- **Removed old sections**: SystemArchitectureDiagram, OperatorQualifierSection, SocialProofSection
+- **FailureAnalysisSection compressed**: Shortened from full 2-column deep-dive to a compact proof block ($19,246 stat strip + short narrative + AUTO vector + link to standalone 16-sins page). Moved to position 9 (after REACH diagnostic) so it lands as "here is what it costs when the guard is missing"
+- **Fixed HeroSection**: Added missing `const GOLD = "#C8933F"` constant that caused SSR ReferenceError
+- Testing: 100% (10/10 sections verified) — iteration_94
+
 ### Phase 45b: Doctrine Map Page (April 2026)
 - Created `/doctrine` — a shareable, standalone visual architecture page for the LaunchPath 5-layer system
 - Vertical flow diagram with numbered nodes (01–05), gold accent colors, connector badges between layers
