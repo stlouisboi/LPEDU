@@ -1,3 +1,5 @@
+import { Link } from '../compat/Link';
+
 const JBMONO  = "'JetBrains Mono', monospace";
 const SERIF   = "'Newsreader', 'Playfair Display', serif";
 const SANS    = "'Inter', sans-serif";
@@ -186,9 +188,20 @@ export default function CredibilityStrip() {
             </div>
 
             {/* Signature line */}
-            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "1.15rem", color: GOLD, lineHeight: 1.65, margin: 0, maxWidth: 480 }}>
+            <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "1.15rem", color: GOLD, lineHeight: 1.65, margin: "0 0 1.75rem", maxWidth: 480 }}>
               I don't do your compliance. I built the system so you can do it yourself.
             </p>
+
+            {/* Link to founder page */}
+            <Link
+              to="/founder"
+              data-testid="credibility-founder-link"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.45)", textDecoration: "none", transition: "color 0.15s", display: "inline-block" }}
+              onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(197,160,89,0.45)"; }}
+            >
+              Read the full story →
+            </Link>
 
           </div>
         </div>
