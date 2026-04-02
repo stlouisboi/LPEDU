@@ -440,7 +440,7 @@ export default function StandardPage() {
               REQUEST ADMISSION →
             </Link>
             <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: S500, marginTop: "0.625rem" }}>
-              NO PAYMENT AT THIS STEP · FIRST COHORT · 10 CARRIERS MAX
+              NO PAYMENT AT THIS STEP · FIRST COHORT · 12 CARRIERS MAX
             </p>
           </div>
         </div>
