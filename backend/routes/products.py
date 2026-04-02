@@ -447,6 +447,18 @@ async def create_product_checkout(data: ProductCheckoutRequest, request: Request
         product_data["images"] = [product["image"]]
 
     try:
+        # Custom checkout text — no-refund policy for all digital products
+        no_refund = (
+            "All sales are final. This is a digital download — access is granted "
+            "immediately upon payment. No refunds will be issued under any circumstances."
+        )
+        bundle_credit = (
+            " Bundle credit: If you enroll in LaunchPath Standard ($2,500) within 30 days "
+            "of this purchase, your $499 Document System Bundle will be credited toward "
+            "your enrollment. Contact us after enrollment to apply the credit."
+        )
+        submit_message = no_refund + (bundle_credit if data.product_sku == "LP-BDL-001" else "")
+
         session = await asyncio.get_event_loop().run_in_executor(
             None,
             lambda: stripe_lib.checkout.Session.create(
@@ -461,6 +473,7 @@ async def create_product_checkout(data: ProductCheckoutRequest, request: Request
                 mode="payment",
                 success_url=success_url,
                 cancel_url=cancel_url,
+                custom_text={"submit": {"message": submit_message}},
                 metadata={"product_type": "resource", "sku": data.product_sku, "product_name": product["name"],
                           "webhook_url": f"{host_url}api/webhook/stripe"},
             )
