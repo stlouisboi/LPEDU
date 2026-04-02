@@ -42,6 +42,16 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 56: Doctrinal Visual Standard — All Sales/Product Pages (April 2026)
+- **Design token split enforced**: Coral (#D85A30) for all document/content labels, LP-xxx codes, section header labels, and the 2px bar under H1. Gold (#d4900a) reserved exclusively for purchase CTAs, price text, and buy buttons.
+- **ProductPageTemplate.jsx** updated: coral pre-header label, coral 2px bar after H1, coral header section bottom-border, coral left-border on positioning section, coral SectionLabel component, coral list dashes, white (not gold) dividers between sections.
+- **ComplianceLibraryPage.jsx** (/compliance-library) updated: coral hero label, coral hero border, coral 2px bar after H1, coral accordion group header labels, coral LP-STD-001/LP-BDL-001 section labels.
+- **BundleSalesPage.jsx** (/bundle) updated: removed pulsing green LIVE dot → static coral square indicator, coral hero border and label.
+- **BundlePage.jsx** (/products/bundle) updated: same as BundleSalesPage.
+- **Child product pages** (DQFilePacketPage, DrugAlcoholPacketPage, StarterStackPage, NewEntrantPacketPage, SafetyAuditPrepPage): inline gold section labels updated to coral, callout card borders updated to coral.
+- **Missing Next.js page wrappers** created for: /products/dq-file-builder, /products/bundle, /products/safety-audit-prep, /standards/safety-audit-prep.
+- All 9 product/sales pages tested and passing at 100%.
+
 ### Phase 55: Pre-Op Checklist Email Gate + 3-Email Welcome Sequence (April 2026)
 - **Email gate** on pillar page (/knowledge-center/how-to-start-a-trucking-company) — first name + email, POST /api/checklist/email-capture, redirects to /resources/pre-op-checklist/thank-you
 - **MongoDB leads** captured with `source: pre_op_checklist_download` + `page: pillar_pre_operation_checklist`
