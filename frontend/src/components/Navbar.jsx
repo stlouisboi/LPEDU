@@ -14,6 +14,7 @@ function InitScan() {
 const FRAMEWORK_LINKS = [
   { label: "LaunchPath Standard", href: "/program" },
   { label: "Compliance Library", href: "/compliance-library" },
+  { label: "Knowledge Center", href: "/knowledge-center" },
   { label: "Tools", href: "/tools" },
 ];
 
