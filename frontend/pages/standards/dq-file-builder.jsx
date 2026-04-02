@@ -4,7 +4,7 @@ import DQFilePacketPage from '../../src/pages/products/DQFilePacketPage';
 const TITLE = "DQ File Builder Kit — Driver Qualification File System | LaunchPath";
 const DESC = "Build and maintain FMCSA-compliant driver qualification files. Includes master DQ checklist, driver application, annual review form, and expiration tracker. 49 CFR Part 391. $129.";
 const URL = "https://www.launchpathedu.com/standards/dq-file-builder";
-const OG_IMAGE = "https://launchpathedu.com/og-launchpath.png";
+const OG_IMAGE = "https://www.launchpathedu.com/og-dq-file-builder.png";
 
 export default function Page() {
   return (
