@@ -17,6 +17,7 @@ const nextConfig = {
       { source: "/knowledge-center/lp-brf-11", destination: "/knowledge-center/fmcsa-new-entrant-review", permanent: true },
       { source: "/knowledge-center/lp-brf-12", destination: "/knowledge-center/new-motor-carrier-financial-requirements", permanent: true },
       { source: "/knowledge-center/failed-fmcsa-new-entrant-audit", destination: "/knowledge-center/what-happens-failed-fmcsa-new-entrant-audit", permanent: true },
+      { source: "/knowledge-center/installation-window", destination: "/knowledge-center/new-carrier-90-day-build", permanent: true },
     ];
   },
   async headers() {
