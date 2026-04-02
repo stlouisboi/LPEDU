@@ -8,7 +8,7 @@ export default function HowItWorksSection({ handleAuthorize, checkoutLoading }) 
     { week: "WEEK 4", code: "CHECKPOINT 02 — IMPLEMENTATION SEQUENCE AUDIT", body: "All active tasks reviewed against Standard. Carrier approved to advance or assigned a correction window.", status: "ADVANCE OR CORRECT" },
     { week: "WEEKS 5–7", code: "CORE INSTALLATION — MODULES 4–5", body: "Hours of Service and ELD documented. Preventive Maintenance system and vehicle files built.", status: null },
     { week: "WEEK 7", code: "CHECKPOINT 03 — MID-POINT DOCUMENTATION REVIEW", body: "DQ, D&A, HOS, PM, and insurance verified simultaneously against operational reality — not just policy intent.", status: "SYSTEMS VERIFIED" },
-    { week: "WEEKS 8–10", code: "CORE INSTALLATION — MODULES 6–9", body: "Insurance continuity verified on FMCSA system. Load profitability, broker relationships, and carrier packet complete.", status: null },
+    { week: "WEEKS 8–13", code: "CORE INSTALLATION — MODULES 4–5", body: "Insurance continuity verified on FMCSA system. Cash-Flow Oxygen structure documented. Operation prepared for the Module 6 Integrity Audit.", status: null },
     { week: "WEEK 11", code: "CHECKPOINT 04 — PRE-AUDIT SIMULATION", body: "Installed systems walked against all 16 exposure patterns. Remaining gaps corrected before the audit window opens.", status: "AUDIT-READY OR CORRECTION ISSUED" },
     { week: "WEEK 13", code: "CHECKPOINT 05 — INTEGRITY AUDIT · LP-VRF ISSUED", body: "All six compliance domains reviewed against final Standard. All pass — the Verified Registry ID is issued.", status: "VERIFIED REGISTRY ID ISSUED ✓", final: true },
   ];
@@ -20,10 +20,44 @@ export default function HowItWorksSection({ handleAuthorize, checkoutLoading }) 
         This Is How the<br />
         <span style={{ color: T.goldText }}>System Gets Installed.</span>
       </h2>
-      <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7, maxWidth: 600, marginBottom: 56 }}>
+      <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7, maxWidth: 600, marginBottom: 48 }}>
         Not studied. Not read. Installed. 90 days. 10 modules. 5 human verification checkpoints.
         You do the work. The Station Custodian verifies it's correct.
       </p>
+
+      {/* 90 / 5 / 5 Counter + Explainer */}
+      <div data-testid="program-905-counter" style={{ marginBottom: 56 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", border: `1px solid ${T.gold}`, marginBottom: 32 }}>
+          {[
+            { stat: "90", unit: "DAYS" },
+            { stat: "5",  unit: "COMPLIANCE DOMAINS" },
+            { stat: "5",  unit: "CUSTODIAN CHECKPOINTS" },
+          ].map((c, i) => (
+            <div key={i} style={{ padding: "28px 20px", borderRight: i < 2 ? `1px solid ${T.navyBorder}` : "none", textAlign: "center" }}>
+              <p style={{ ...display, fontSize: 52, color: T.gold, letterSpacing: "-0.03em", lineHeight: 1, marginBottom: 4 }}>{c.stat}</p>
+              <p style={{ ...mono, fontSize: 10, color: T.goldDim, letterSpacing: "0.18em" }}>{c.unit}</p>
+            </div>
+          ))}
+        </div>
+        <p style={{ ...mono, fontSize: 12, color: T.white, letterSpacing: "0.06em", marginBottom: 20, fontWeight: 700 }}>
+          What "90 / 5 / 5" Means
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {[
+            { stat: "90", label: "DAYS", def: "the implementation window to install the Standard in a real carrier operation, not in theory." },
+            { stat: "5",  label: "COMPLIANCE DOMAINS", def: "Authority Protection, Insurance Continuity, Compliance Backbone, Cash-Flow Oxygen, and operational monitoring. Every domain addressed. No gaps left standing." },
+            { stat: "5",  label: "CUSTODIAN CHECKPOINTS", def: "five structured verification points where we confirm that what was built on paper now exists in your files, your systems, and your actual operational behavior." },
+          ].map((c, i) => (
+            <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+              <span style={{ ...display, fontSize: 20, color: T.gold, flexShrink: 0, lineHeight: 1.3, minWidth: 24 }}>{c.stat}</span>
+              <div>
+                <p style={{ ...mono, fontSize: 10, color: T.goldDim, letterSpacing: "0.14em", marginBottom: 4 }}>{c.label}</p>
+                <p style={{ ...serif, fontSize: 16, color: T.mist, lineHeight: 1.7, margin: 0 }}>{c.def}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div style={{ position: "relative" }}>
         <div className="hide-mobile" style={{ position: "absolute", left: 119, top: 0, bottom: 0, width: 1, background: T.navyBorder }} />

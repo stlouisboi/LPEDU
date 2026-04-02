@@ -30,6 +30,13 @@ export default function FinalCTASection({ handleAuthorize, checkoutLoading, hand
 
       <GoldLine />
 
+      <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7, maxWidth: 580, marginBottom: 12 }}>
+        If your authority is active, the audit window is already open.
+      </p>
+      <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7, maxWidth: 580, marginBottom: 32 }}>
+        This cohort is the 90-day build that closes those gaps before an investigator finds them.
+      </p>
+
       <p style={{ ...serif, fontSize: 15, color: T.fog, marginBottom: 8 }}>
         Not ready for the full Standard?{" "}
         <span data-testid="bundle-link-final-cta" onClick={handleBundle} style={{ color: T.goldText, textDecoration: "underline", cursor: "pointer" }}>

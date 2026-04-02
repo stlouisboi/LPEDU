@@ -42,7 +42,13 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 61: VRF ID Auto-Issuance on Core Module Completion (Feb 2026)
+### Phase 62: LP-WEB-001 v2.0 + LP-WEB-004 v1.0 (Feb 2026)
+- **LP-WEB-001 v2.0 complete**: Added missing `/knowledge-center/how-to-start-a-trucking-company` internal link to `DQFileRequirementsPost.jsx` opening section (all other CTAs, secondary CTAs, product placements, and disclaimers were already in place across all 7 KC pages)
+- **LP-WEB-004 Issue 1** — LP-DEL-01 module list replaced with LP-SYS-CUR-001 sequence (Ground 0 → Module 9), body updated, secondary note added below list
+- **LP-WEB-004 Issue 2** — Weeks 8–13 block corrected: label → `CORE INSTALLATION — MODULES 4–5`, body updated, week range extended
+- **LP-WEB-004 Issue 3** — All 5 packet names updated to confirmed product names (incl. "HOS & Dispatch Compliance Packet")
+- **LP-WEB-004 Issue 4** — Deliverable bullets rewritten for LP-DEL-02, 03, 05, 06 (physically tangible, CFR-cited, audit-specific)
+- **LP-WEB-004 Issue 5** — Closing consequence line added to FinalCTASection; 90/5/5 counter + explainer added to HowItWorksSection above timeline
 - **Decoupled VRF issuance from module-6 alone**: Created `_issue_vrf_id_if_eligible(user_id)` helper in `portal.py` — checks that all core modules (1–6) are complete; if module-6 was conditional, module-7 must also be complete
 - **Dual-trigger wiring**: helper is `await`-ed in both `mark_module_complete` (portal.py) and `decide_gate_review` (admin.py), so any completion event that tips the operator over the threshold issues the credential immediately
 - **Frontend updated**: `isAllCoreDone()` mirrors backend logic in `PortalPage.jsx`; sidebar `registryIssued` check uses it; module-7 conditional completion path now renders the `VerifiedRegistryID` ceremony; module-8/9 descriptions updated in both `PortalPage.jsx` and `moduleData.js` to remove "outside the Verified Registry ID framework" text

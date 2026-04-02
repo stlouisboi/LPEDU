@@ -62,7 +62,7 @@ export default function DQFileRequirementsPost() {
         <h2 style={s.h2}>What Is a Driver Qualification File</h2>
         <p style={s.p}>A Driver Qualification File — commonly called a DQ file — is the compliance record FMCSA requires you to maintain for every CDL driver you employ. The requirement is established under 49 CFR Part 391. It applies to every motor carrier with CDL drivers operating in interstate commerce, regardless of fleet size. One truck, one driver: you need a DQ file. Ten trucks, ten drivers: you need ten DQ files.</p>
         <p style={s.p}>The file is not a formality. In a new entrant safety audit, FMCSA auditors review DQ files directly. A missing document is a documented deficiency. A missing pre-employment drug test result is a severe deficiency — because it means your driver operated without meeting the federal qualification standard.</p>
-        <p style={s.p}>The file belongs to the carrier, not the driver. When a driver leaves your operation, you keep the file.</p>
+        <p style={s.p}>The file belongs to the carrier, not the driver. When a driver leaves your operation, you keep the file. For carriers still building their compliance infrastructure from the ground up, <Link to="/knowledge-center/how-to-start-a-trucking-company" style={s.link}>How to Start a Trucking Company</Link> covers the full startup sequence and where DQ file installation fits.</p>
 
         <h2 style={s.h2}>What 49 CFR Part 391 Requires in Every File</h2>
         <h3 style={s.h3}>Documents Required Before the Driver Operates</h3>
