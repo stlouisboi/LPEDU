@@ -33,6 +33,7 @@
   <!-- Standards packets -->
   <url><loc>https://launchpathedu.com/standards/new-entrant-packet</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://launchpathedu.com/standards/drug-alcohol-packet</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/standards/dq-file-builder</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://launchpathedu.com/standards/hos-packet</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://launchpathedu.com/standards/maintenance-packet</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://launchpathedu.com/standards/insurance-packet</loc><lastmod>2026-04-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
