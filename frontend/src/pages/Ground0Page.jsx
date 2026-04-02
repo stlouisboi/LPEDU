@@ -199,6 +199,67 @@ export default function Ground0Page() {
               — Operator Note / Vince Lawrence, Station Custodian
             </p>
           </div>
+
+          {/* ── REACH Prerequisite Notice ── */}
+          <div style={{
+            marginTop: "2.5rem",
+            background: "#0b1628",
+            border: "1px solid rgba(197,160,89,0.25)",
+            borderLeft: "4px solid #C5A059",
+            padding: "1.5rem 1.75rem",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            gap: "1.5rem",
+            flexWrap: "wrap",
+          }}>
+            <div>
+              <p style={{
+                fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                fontSize: "0.571rem",
+                fontWeight: 700,
+                letterSpacing: "0.20em",
+                textTransform: "uppercase",
+                color: "#C5A059",
+                marginBottom: "0.5rem",
+              }}>
+                Before You Begin This Module
+              </p>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.95rem",
+                color: "rgba(255,255,255,0.85)",
+                lineHeight: 1.65,
+                margin: 0,
+                maxWidth: 520,
+              }}>
+                The REACH Assessment must be completed before beginning Ground 0. REACH assigns your GO, WAIT, or NO-GO classification — that outcome is the gate to this module and to the Standard.
+              </p>
+            </div>
+            <a
+              href="/reach-diagnostic"
+              data-testid="ground0-body-reach-cta"
+              style={{
+                display: "inline-block",
+                background: "#C5A059",
+                color: "#000F1F",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 700,
+                fontSize: "0.762rem",
+                letterSpacing: "0.10em",
+                textTransform: "uppercase",
+                padding: "0.875rem 1.5rem",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+                transition: "background 0.2s",
+              }}
+              onMouseOver={(e) => e.currentTarget.style.background = "#d4b87a"}
+              onMouseOut={(e) => e.currentTarget.style.background = "#C5A059"}
+            >
+              Take REACH &rarr;
+            </a>
+          </div>
         </div>
       </div>
 
