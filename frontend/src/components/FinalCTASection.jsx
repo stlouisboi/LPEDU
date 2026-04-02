@@ -41,12 +41,33 @@ export default function FinalCTASection() {
           fontFamily: SERIF, fontWeight: 900,
           fontSize: "clamp(2.4rem, 6vw, 4rem)",
           letterSpacing: "-0.03em", lineHeight: 1.1,
-          color: "#FFFFFF", marginBottom: "2.25rem",
+          color: "#FFFFFF", marginBottom: "1.25rem",
         }}>
           If your authority is active,<br />
           the audit window is<br />
           already open.
         </h2>
+
+        {/* New consequence lines — LP-WEB-002 v2.0 Element 4 */}
+        <p style={{
+          fontFamily: SERIF, fontWeight: 900,
+          fontSize: "clamp(2.4rem, 6vw, 4rem)",
+          letterSpacing: "-0.03em", lineHeight: 1.1,
+          color: "#FFFFFF", marginBottom: "1.25rem",
+          maxWidth: 680, margin: "0 auto 1.25rem",
+        }}>
+          LaunchPath is the 90-day build that closes your exposure before an investigator finds it.
+        </p>
+
+        <p style={{
+          fontFamily: SERIF, fontWeight: 900,
+          fontSize: "clamp(2.4rem, 6vw, 4rem)",
+          letterSpacing: "-0.03em", lineHeight: 1.1,
+          color: "#FFFFFF", marginBottom: "2.25rem",
+          maxWidth: 680, margin: "0 auto 2.25rem",
+        }}>
+          When you finish the Standard, you are holding audit-ready files, documented programs, and a Verified Registry ID — not just notes from another course.
+        </p>
 
         {/* Body */}
         <p style={{

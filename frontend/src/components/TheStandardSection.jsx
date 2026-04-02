@@ -73,6 +73,48 @@ function FourPillarsSubsection() {
   );
 }
 
+// ── Protected Authority Definition Block (LP-WEB-002 v2.0 Element 3) ────────
+function ProtectedAuthorityBlock() {
+  return (
+    <div
+      data-testid="protected-authority-block"
+      style={{
+        background: "rgba(11,22,39,0.70)",
+        border: "1px solid rgba(200,147,63,0.22)",
+        borderLeft: `3px solid ${GOLD}`,
+        padding: "2rem 2.25rem",
+        marginTop: "2.5rem",
+      }}
+    >
+      <h3 style={{
+        fontFamily: SERIF, fontWeight: 700,
+        fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
+        color: "#FFFFFF", letterSpacing: "-0.01em",
+        lineHeight: 1.2, marginBottom: "0.75rem",
+      }}>
+        What "Protected Authority" Means
+      </h3>
+
+      <p style={{ fontFamily: SANS, fontSize: "0.980rem", color: BODY, lineHeight: 1.8, marginBottom: "1.25rem" }}>
+        Protected authority is not a slogan. It means:
+      </p>
+
+      <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+        {[
+          "FMCSA can open your files and see a functioning system — not a stack of ad-hoc paperwork assembled the night before an audit.",
+          "Your insurance, filings, and safety programs are stable enough that one bad week does not put your MC number at risk.",
+          "If an investigator shows up tomorrow, you are explaining your systems — not apologizing for missing documents.",
+        ].map((item, i) => (
+          <li key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+            <span style={{ color: GOLD, fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, flexShrink: 0, marginTop: "0.25rem" }}>—</span>
+            <p style={{ fontFamily: SANS, fontSize: "0.938rem", color: MUTED, lineHeight: 1.78, margin: 0 }}>{item}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 // ── Section 7: AUTO ──────────────────────────────────────────────────────
 const AUTO_VECTORS = [
   { letter: "A", direction: "Around", desc: "The threat bypasses what should have been protecting you. External filings lapse. Coverage slips. A gap you didn't know existed lets risk move past the perimeter." },
@@ -431,6 +473,9 @@ export default function TheStandardSection() {
 
         {/* Four Pillars */}
         <FourPillarsSubsection />
+
+        {/* Protected Authority definition (LP-WEB-002 v2.0 Element 3) */}
+        <ProtectedAuthorityBlock />
 
         <div className="struct-rail" style={{ margin: "4rem 0" }} />
 
