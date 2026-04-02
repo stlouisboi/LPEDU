@@ -341,7 +341,7 @@ export default function Navbar() {
       <style dangerouslySetInnerHTML={{__html: `
         .mobile-btn { display: none !important; }
         .nav-desktop-portal { display: flex !important; }
-        @media (max-width: 1440px) { .nav-desktop-portal { display: none !important; } }
+        @media (max-width: 1280px) { .nav-desktop-portal { display: none !important; } }
         @media (max-width: 1100px) {
           .desktop-nav { display: none !important; }
           .mobile-btn { display: flex !important; }
