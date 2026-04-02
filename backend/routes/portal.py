@@ -1,5 +1,7 @@
 """Portal routes: access, checkout, module-urls, PDFs, ground0 progress/waitlist, signal."""
 import asyncio
+import random
+import string
 import uuid
 from datetime import datetime, timezone, timedelta, date
 from typing import Optional, List
@@ -20,6 +22,46 @@ from core import (
 import httpx
 
 router = APIRouter()
+
+
+# ── VRF Auto-Issuance ─────────────────────────────────────────────────────────
+async def _issue_vrf_id_if_eligible(user_id: str):
+    """Auto-issue Verified Registry ID when all core modules (1–6, plus 7 if conditional) are complete."""
+    existing = await db.registry_ids.find_one({"user_id": user_id}, {"_id": 0})
+    if existing:
+        return  # Already issued
+
+    docs = await db.module_progress.find({"user_id": user_id}, {"_id": 0}).to_list(20)
+    statuses = {d["module_id"]: d.get("status") for d in docs}
+
+    DONE = {"approved", "complete", "conditional"}
+    core_modules = ["module-1", "module-2", "module-3", "module-4", "module-5", "module-6"]
+
+    if not all(statuses.get(mod) in DONE for mod in core_modules):
+        return  # Not all core modules done yet
+
+    # If module-6 was conditional, module-7 must also be complete
+    if statuses.get("module-6") == "conditional":
+        if statuses.get("module-7") not in DONE:
+            return
+
+    # All conditions met — issue VRF ID
+    user_info = await db.users.find_one({"user_id": user_id}, {"_id": 0}) or {}
+    registry_code = "LP-VRF-" + "".join(random.choices(string.ascii_uppercase + string.digits, k=8))
+    now = datetime.now(timezone.utc).isoformat()
+    await db.registry_ids.update_one(
+        {"user_id": user_id},
+        {"$set": {
+            "user_id": user_id,
+            "registry_id": registry_code,
+            "operator_name": user_info.get("name", "Operator"),
+            "operator_email": user_info.get("email", ""),
+            "issued_at": now,
+            "issued_trigger": "program_completion",
+        }},
+        upsert=True,
+    )
+    logger.info(f"VRF ID issued for user {user_id}: {registry_code}")
 
 
 class PortalCheckoutRequest(BaseModel):
@@ -531,6 +573,7 @@ async def mark_module_complete(module_id: str, request: Request):
         {"$set": {"user_id": user["user_id"], "module_id": module_id, "status": "complete", "completed_at": now, "updated_at": now}},
         upsert=True,
     )
+    await _issue_vrf_id_if_eligible(user["user_id"])
     return {"ok": True}
 
 

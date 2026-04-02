@@ -15,6 +15,7 @@ from core import (
     _require_coach, send_mailersend_email,
     STANDARD_10_TASKS, storage_put, APP_NAME,
 )
+from routes.portal import _issue_vrf_id_if_eligible
 
 router = APIRouter()
 
@@ -86,21 +87,8 @@ async def decide_gate_review(review_id: str, data: GateDecisionRequest, coach_id
         {"$set": {"status": new_status, "outcome": data.decision, "custodian_notes": data.custodian_notes, "approved_at": now if data.decision in ("approved", "conditional") else None, "updated_at": now}},
     )
     user_info = await db.users.find_one({"user_id": user_id}, {"_id": 0}) or {}
-    # Auto-generate Verified Registry ID when MOD-6 integrity audit is approved
-    if data.decision == "approved" and module_id == "module-6":
-        registry_code = "LP-VRF-" + "".join(random.choices(string.ascii_uppercase + string.digits, k=8))
-        await db.registry_ids.update_one(
-            {"user_id": user_id},
-            {"$set": {
-                "user_id": user_id,
-                "registry_id": registry_code,
-                "operator_name": user_info.get("name", "Operator"),
-                "operator_email": user_info.get("email", ""),
-                "issued_at": now,
-                "review_id": review_id,
-            }},
-            upsert=True,
-        )
+    # Auto-generate Verified Registry ID when all core modules (1–6, plus 7 if conditional) are complete
+    await _issue_vrf_id_if_eligible(user_id)
     if user_info.get("email"):
         if data.decision == "approved":
             subject = f"Approved: {module_id.upper()} — Next Module Unlocked"

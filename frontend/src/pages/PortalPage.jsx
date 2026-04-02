@@ -78,12 +78,12 @@ const MODULE_OVERVIEWS = {
   },
   "module-8": {
     code: "MOD-8", title: "ELD Compliance", lessonCount: 5, duration: "~70 min", type: "extension",
-    description: "Everything a regulated carrier needs to know about Electronic Logging Device compliance — applicability decisions, malfunction protocols, and carrier-driver responsibilities. Included in enrollment; outside the Verified Registry ID framework.",
+    description: "Everything a regulated carrier needs to know about Electronic Logging Device compliance — applicability decisions, malfunction protocols, and carrier-driver responsibilities. Included in enrollment for all operators.",
     topics: ["ELD Mandate Scope and Applicability — who is and isn't required", "Exemption Criteria — short-haul, driveaway-towaway, and pre-2000 vehicle rules", "Malfunction and Data Transfer Protocols — what to do when ELD fails at roadside", "Carrier-Driver Responsibilities — training, documentation, and proper use requirements", "ELD Compliance Verification — confirming your ELD setup is audit-ready"],
   },
   "module-9": {
     code: "MOD-9", title: "Hazmat Decisions", lessonCount: 5, duration: "~65 min", type: "extension",
-    description: "A structured decision framework for carriers operating near or within hazardous materials territory — threshold awareness, inadvertent exposure, and when to engage a specialist. Included in enrollment; outside the Verified Registry ID framework.",
+    description: "A structured decision framework for carriers operating near or within hazardous materials territory — threshold awareness, inadvertent exposure, and when to engage a specialist. Included in enrollment for all operators.",
     topics: ["Hazmat Threshold Awareness — when you are and aren't regulated under PHMSA", "Inadvertent Exposure — when you don't know you're carrying a regulated material", "Placard Requirements and Decision Framework — what triggers placarding obligations", "When to Engage a Compliance Specialist — recognizing the limits of self-compliance", "Hazmat Liability Exposure — what non-specialist carriers face for inadvertent violations"],
   },
 };
@@ -350,6 +350,17 @@ export default function PortalPage() {
   };
 
   const getModuleStatus = (modId) => gateStatuses[modId]?.status || "not_started";
+
+  // All core modules complete (VRF eligibility check — mirrors backend logic)
+  const isAllCoreDone = () => {
+    const DONE = ["approved", "complete", "conditional"];
+    const core = ["module-1", "module-2", "module-3", "module-4", "module-5", "module-6"];
+    if (!core.every((id) => DONE.includes(gateStatuses[id]?.status))) return false;
+    if (gateStatuses["module-6"]?.status === "conditional") {
+      return DONE.includes(gateStatuses["module-7"]?.status);
+    }
+    return true;
+  };
 
   // ── Auth: Loading ──────────────────────────────────────
   if (authChecked === null) {
@@ -624,7 +635,7 @@ export default function PortalPage() {
               const s = gateStatuses[m.id]?.status;
               return s === "approved" || s === "complete";
             }).length;
-            const registryIssued = gateStatuses["module-6"]?.status === "approved";
+            const registryIssued = isAllCoreDone();
             return (
               <div data-testid="journey-progress-summary" style={{ margin: "1.25rem 1rem 0", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.1rem", paddingBottom: "0.75rem", paddingLeft: "0.5rem" }}>
                 <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", marginBottom: "0.35rem" }}>
@@ -1041,8 +1052,13 @@ export default function PortalPage() {
                   </div>
                 );
 
-                // Module 6 approved — credential ceremony
+                // Module 6 approved (clean path) — credential ceremony
                 if (selected?.id === "module-6" && status === "approved") return (
+                  <VerifiedRegistryID user={user} />
+                );
+
+                // Module 7 complete + all core done (conditional path) — credential ceremony
+                if (selected?.id === "module-7" && status === "complete" && isAllCoreDone()) return (
                   <VerifiedRegistryID user={user} />
                 );
 

@@ -157,7 +157,7 @@ export default function VerifiedRegistryID({ user }) {
       <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(212,144,10,0.6)", marginBottom: "0.75rem" }}>LP-VRF · PENDING ISSUANCE</p>
       <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "1.5rem", fontWeight: 700, color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>Verified Registry ID — Pending</h2>
       <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7 }}>
-        Your Integrity Audit (Module 6) is under Station Custodian review. The Verified Registry ID will be issued upon a clean audit result.
+        The Verified Registry ID is issued automatically when all core modules (1–6) are complete. If Module 6 results in a conditional outcome, Module 7 must also be completed before the credential is issued.
       </p>
     </div>
   );
