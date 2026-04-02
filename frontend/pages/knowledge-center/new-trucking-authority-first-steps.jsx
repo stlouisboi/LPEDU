@@ -20,7 +20,7 @@ export default function Page() {
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESC} />
-        <link rel="canonical" href={URL} />
+        <link rel="canonical" key="canonical" href={URL} />
         <meta property="og:title" content={H1} />
         <meta property="og:description" content={DESC} />
         <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />

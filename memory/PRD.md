@@ -50,6 +50,7 @@ Core requirements:
 - **CTA button color fix**: Primary button corrected to navy background / gold text per LP-STD-VOICE-001
 - **Sitemap updated**: 7 new cluster URLs added at priority 0.8–0.9; pillar page at 0.9
 - All 7 pages confirmed HTTP 200 with correct SSR output
+- Canonical deduplication fixed: `key="canonical"` added to both `_app.jsx` and all 7 cluster page wrappers — verified 1 canonical per page
 
 ### Phase 53: System Architecture Diagram on Homepage (April 2026)
 - Added `SystemArchitectureDiagram` component (`TheStandardSection.jsx`) — horizontal 6-step sequence block placed directly above "THE LAUNCHPATH PROTECTION SYSTEM" label

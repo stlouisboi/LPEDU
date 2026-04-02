@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link rel="canonical" href={canonical} />
+        <link rel="canonical" key="canonical" href={canonical} />
       </Head>
       <Component {...pageProps} />
       <ScrollToTop />
