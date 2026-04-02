@@ -187,25 +187,6 @@ export default function Navbar() {
               )
             ))}
 
-            {/* REACH Check — gold CTA */}
-            <Link
-              to="/reach-diagnostic"
-              data-testid="nav-reach-check-btn"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.8rem", fontWeight: 700,
-                letterSpacing: "0.06em", textTransform: "uppercase",
-                color: "#0b1628",
-                background: "#d4900a",
-                border: "1px solid #d4900a",
-                padding: "0.35rem 0.625rem",
-                textDecoration: "none", transition: "opacity 0.2s", whiteSpace: "nowrap",
-              }}
-              onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
-              onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
-            >
-              REACH Check
-            </Link>
           </div>
 
           {/* Divider */}
