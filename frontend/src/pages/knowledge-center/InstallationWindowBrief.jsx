@@ -53,6 +53,7 @@ const BRIEF_NAV = [
   { code: "Audit Prep", href: "/knowledge-center/fmcsa-audit-preparation-records" },
   { code: "New Entrant Review", href: "/knowledge-center/fmcsa-new-entrant-review" },
 ];
+const CURRENT = 1;
 
 export default function InstallationWindowBrief() {
 
