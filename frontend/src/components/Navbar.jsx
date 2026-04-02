@@ -203,26 +203,8 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link to="/ground-0-briefing"
-              data-testid="nav-ground0-btn"
-              style={{
-                display: "flex", alignItems: "center", gap: "0.35rem",
-                fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
-                letterSpacing: "0.08em", textTransform: "uppercase",
-                color: "rgba(255,255,255,0.75)",
-                background: "transparent",
-                border: "1px solid rgba(255,255,255,0.22)",
-                padding: "0.35rem 0.625rem",
-                textDecoration: "none", transition: "border-color 0.2s, color 0.2s", whiteSpace: "nowrap",
-              }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.55)"; e.currentTarget.style.color = "#fff"; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)"; e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}
-            >
-              START FREE — GROUND 0
-            </Link>
             <Link to="/portal"
               data-testid="nav-portal-btn"
-              className="nav-desktop-portal"
               style={{
                 display: "flex", alignItems: "center", gap: "0.35rem",
                 fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
@@ -340,8 +322,6 @@ export default function Navbar() {
 
       <style dangerouslySetInnerHTML={{__html: `
         .mobile-btn { display: none !important; }
-        .nav-desktop-portal { display: flex !important; }
-        @media (max-width: 1280px) { .nav-desktop-portal { display: none !important; } }
         @media (max-width: 1100px) {
           .desktop-nav { display: none !important; }
           .mobile-btn { display: flex !important; }
