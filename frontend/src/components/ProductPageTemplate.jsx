@@ -5,6 +5,7 @@ import FooterSection from "./FooterSection";
 import FadeIn from "./FadeIn";
 
 const API = process.env.REACT_APP_BACKEND_URL;
+const coral = "#D85A30";
 
 export default function ProductPageTemplate({
   label,
@@ -59,7 +60,7 @@ export default function ProductPageTemplate({
       <Navbar />
 
       {/* Header */}
-      <section style={{ background: "#0b1628", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
+      <section style={{ background: "#0b1628", borderBottom: `3px solid ${coral}`, padding: "72px 24px 56px" }}>
         <div style={{ maxWidth: hasVisual ? 1100 : 820, margin: "0 auto" }}>
           <FadeIn>
             <div style={{
@@ -72,7 +73,7 @@ export default function ProductPageTemplate({
               <div>
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
+                  letterSpacing: "0.18em", textTransform: "uppercase", color: coral, marginBottom: "1.25rem",
                 }}>{label}</p>
 
                 <h1 style={{
@@ -83,8 +84,10 @@ export default function ProductPageTemplate({
 
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-                  color: "rgba(255,255,255,0.55)", marginBottom: "2rem", fontStyle: "italic",
+                  color: "rgba(255,255,255,0.55)", marginBottom: "1rem", fontStyle: "italic",
                 }}>{subtitle}</p>
+
+                <div style={{ height: 2, background: coral, width: 64, marginBottom: "1.75rem" }} />
 
                 {valuePoints?.length > 0 && (
                   <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
@@ -144,13 +147,14 @@ export default function ProductPageTemplate({
 
       {/* Tagline strip */}
       <div style={{
-        background: "#080f1e", borderBottom: "1px solid rgba(212,144,10,0.15)",
-        padding: "1.5rem 24px",
+        background: "#080f1e", borderBottom: `1px solid rgba(216,90,48,0.18)`,
+        borderTop: `1px solid rgba(216,90,48,0.10)`,
+        padding: "1.75rem 24px",
       }}>
         <p style={{
           maxWidth: 820, margin: "0 auto",
-          fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-          color: "rgba(255,255,255,0.82)", lineHeight: 1.7, fontStyle: "italic",
+          fontFamily: "'Newsreader', 'Playfair Display', serif", fontSize: "1.1rem",
+          color: "rgba(255,255,255,0.78)", lineHeight: 1.8, fontStyle: "italic",
         }}>{tagline}</p>
 
         {/* Operational system line */}
@@ -158,7 +162,7 @@ export default function ProductPageTemplate({
           maxWidth: 820, margin: "0.75rem auto 0",
           fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
           fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
-          color: "rgba(212,144,10,0.60)",
+          color: "rgba(216,90,48,0.55)",
         }}>
           This is not a standalone file. This document becomes part of your operational system.
         </p>
@@ -168,12 +172,12 @@ export default function ProductPageTemplate({
 
         {/* Positioning */}
         <FadeIn>
-          <section style={{ marginBottom: "3.5rem" }}>
+          <section style={{ marginBottom: "3.5rem", borderLeft: `3px solid ${coral}`, paddingLeft: "1.5rem" }}>
             <SectionLabel>What This Is — And What It Is Not</SectionLabel>
             {positioning.map((p, i) => (
               <p key={i} style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "1.15rem",
-                color: "rgba(255,255,255,0.9)", lineHeight: 1.85, marginBottom: "1.25rem",
+                fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+                color: "rgba(255,255,255,0.88)", lineHeight: 1.85, marginBottom: "1.25rem",
               }}>{p}</p>
             ))}
           </section>
@@ -218,7 +222,7 @@ export default function ProductPageTemplate({
                   color: "rgba(255,255,255,0.88)", lineHeight: 1.7,
                   paddingLeft: "1.25rem", position: "relative",
                 }}>
-                  <span style={{ position: "absolute", left: 0, color: gold }}>—</span>
+                  <span style={{ position: "absolute", left: 0, color: coral }}>—</span>
                   {item}
                 </li>
               ))}
@@ -303,13 +307,13 @@ export default function ProductPageTemplate({
 function SectionLabel({ children }) {
   return (
     <p style={{
-      fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-      letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
+      fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
+      letterSpacing: "0.20em", textTransform: "uppercase", color: "#D85A30",
       marginBottom: "1.5rem",
     }}>{children}</p>
   );
 }
 
 function Divider() {
-  return <div style={{ height: 1, background: "rgba(212,144,10,0.1)", marginBottom: "3.5rem" }} />;
+  return <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "3.5rem" }} />;
 }

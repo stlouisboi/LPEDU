@@ -6,6 +6,7 @@ import FooterSection from "../../components/FooterSection";
 const API  = process.env.REACT_APP_BACKEND_URL;
 const GOLD = "#d4900a";
 const GOLD_DIM = "rgba(212,144,10,0.65)";
+const CORAL = "#D85A30";
 const DARK = "#070e1c";
 const NAVY = "#0b1628";
 const CARD = "#0d1929";
@@ -172,13 +173,13 @@ export default function BundlePage() {
       {/* ── HERO ───────────────────────────────────────────────────────── */}
       <section style={{
         background: NAVY,
-        borderBottom: `3px solid ${GOLD}`,
+        borderBottom: `3px solid ${CORAL}`,
         padding: "80px 24px 64px",
         position: "relative", overflow: "hidden",
       }}>
         {/* Blueprint grid */}
         <div style={{
-          position: "absolute", inset: 0, opacity: 0.04,
+          position: "absolute", inset: 0, opacity: 0.03,
           backgroundImage: `linear-gradient(${GOLD} 1px, transparent 1px), linear-gradient(90deg, ${GOLD} 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
           pointerEvents: "none",
@@ -187,9 +188,11 @@ export default function BundlePage() {
         <div style={{ maxWidth: 1060, margin: "0 auto", position: "relative" }}>
           {/* System label */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem" }}>
-            <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 8px #4ade80", animation: "pulse-dot 2s ease-in-out infinite" }} />
-            <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: GOLD_DIM }}>
-              LP-BDL-001 &nbsp;|&nbsp; NEW CARRIER DOCUMENT SYSTEM &nbsp;|&nbsp; LIVE
+            <span style={{ display: "inline-block", width: 6, height: 6,
+              background: "rgba(216,90,48,0.70)", flexShrink: 0,
+            }} />
+            <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: CORAL }}>
+              LP-BDL-001 &nbsp;|&nbsp; NEW CARRIER DOCUMENT SYSTEM
             </span>
           </div>
 
@@ -199,10 +202,11 @@ export default function BundlePage() {
                 fontFamily: SERIF, fontWeight: 700,
                 fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)",
                 color: "#FFFFFF", lineHeight: 1.05, letterSpacing: "-0.02em",
-                marginBottom: "1.25rem",
+                marginBottom: "0.75rem",
               }}>
                 New Carrier Document System
               </h1>
+              <div style={{ height: 2, background: CORAL, width: 64, marginBottom: "1.5rem" }} />
               <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.8, marginBottom: "2rem", maxWidth: 560 }}>
                 Five compliance domain packets, a unified folder architecture, and a 0–30–90 day installation guide — every document a new carrier needs to pass a New Entrant Safety Audit, in a single system.
               </p>

@@ -62,27 +62,29 @@ const MATRIX_ROWS = [
 
 export default function ProductsPage() {
   const gold = "#d4900a";
+  const coral = "#D85A30";
 
   return (
     <div style={{ background: "#060d19", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Header */}
-      <section style={{ background: "#0b1628", borderBottom: `3px solid ${gold}`, padding: "72px 24px 56px" }}>
+      <section style={{ background: "#0b1628", borderBottom: `3px solid ${coral}`, padding: "72px 24px 56px" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <FadeIn>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1.25rem",
+              letterSpacing: "0.18em", textTransform: "uppercase", color: coral, marginBottom: "1.25rem",
             }}>LP-SYS-LIBRARY | OPERATING STANDARDS</p>
             <h1 style={{
               fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3rem)", color: "#FFFFFF",
-              lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1rem",
+              lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem",
             }}>The LaunchPath Operating Standards Library</h1>
+            <div style={{ height: 2, background: coral, width: 64, marginBottom: "1.5rem" }} />
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-              color: "#FFFFFF",
+              color: "rgba(255,255,255,0.72)",
               lineHeight: 1.8, maxWidth: 580,
             }}>
               Five domain-specific operating standards and one complete document architecture bundle — the DIY path to installing a compliant new-authority operating system. Designed for carriers building their compliance structure before seeking guided implementation.
@@ -97,7 +99,7 @@ export default function ProductsPage() {
         <FadeIn>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: coral,
             marginBottom: "1rem",
           }}>The Commercial Ladder</p>
           <p style={{
@@ -173,7 +175,7 @@ export default function ProductsPage() {
         <FadeIn delay={130}>
           <p id="packets" style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: coral,
             marginBottom: "0.6rem",
           }}>System Modules</p>
           <p style={{
@@ -189,9 +191,9 @@ export default function ProductsPage() {
                 gap: "2rem", flexWrap: "wrap",
               }} className="ladder-row">
                 <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.6)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(216,90,48,0.65)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{p.code}</p>
                   <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.2rem" }}>{p.title}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.7)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(216,90,48,0.55)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{p.subtitle}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>
@@ -215,7 +217,7 @@ export default function ProductsPage() {
         <FadeIn delay={160}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
+            letterSpacing: "0.18em", textTransform: "uppercase", color: coral,
             marginBottom: "1.5rem",
           }}>LP-SPEC-001 | Comparison Matrix</p>
           <h2 style={{

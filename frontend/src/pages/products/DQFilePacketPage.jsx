@@ -82,11 +82,11 @@ export default function DQFilePacketPage() {
 
       {/* Six-document breakdown */}
       <FadeIn delay={155}>
-        <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
+        <div style={{ height: 1, background: "rgba(255,255,255,0.07)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
+            letterSpacing: "0.20em", textTransform: "uppercase", color: "#D85A30",
             marginBottom: "2rem",
           }}>Document Contents — Full Breakdown</p>
 
@@ -122,11 +122,11 @@ export default function DQFilePacketPage() {
 
       {/* Who This Is Not For */}
       <FadeIn delay={170}>
-        <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
+        <div style={{ height: 1, background: "rgba(255,255,255,0.07)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
+            letterSpacing: "0.20em", textTransform: "uppercase", color: "#D85A30",
             marginBottom: "1.5rem",
           }}>Who This Is Not For</p>
           <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
@@ -146,11 +146,11 @@ export default function DQFilePacketPage() {
 
       {/* What This Does Not Replace */}
       <FadeIn delay={175}>
-        <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
+        <div style={{ height: 1, background: "rgba(255,255,255,0.07)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <p style={{
-            fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.75)",
+            fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
+            letterSpacing: "0.20em", textTransform: "uppercase", color: "#D85A30",
             marginBottom: "1.5rem",
           }}>What This Does Not Replace</p>
           <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
@@ -170,7 +170,7 @@ export default function DQFilePacketPage() {
 
       {/* Format & Regulatory Standard */}
       <FadeIn delay={180}>
-        <div style={{ height: 1, background: "rgba(212,144,10,0.1)", margin: "0 0 3.5rem" }} />
+        <div style={{ height: 1, background: "rgba(255,255,255,0.07)", margin: "0 0 3.5rem" }} />
         <section style={{ marginBottom: "3.5rem" }}>
           <div style={{ display: "flex", gap: "3rem", flexWrap: "wrap" }}>
             <div>
@@ -202,12 +202,12 @@ export default function DQFilePacketPage() {
       {/* Audit risk callout */}
       <FadeIn delay={185}>
         <div style={{
-          background: "rgba(212,144,10,0.06)", border: "1px solid rgba(212,144,10,0.2)",
-          borderLeft: `3px solid ${gold}`, padding: "1.5rem 1.75rem", marginBottom: "3.5rem",
+          background: "rgba(216,90,48,0.06)", border: "1px solid rgba(216,90,48,0.18)",
+          borderLeft: `3px solid #D85A30`, padding: "1.5rem 1.75rem", marginBottom: "3.5rem",
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
-            letterSpacing: "0.14em", textTransform: "uppercase", color: gold, marginBottom: "0.75rem",
+            letterSpacing: "0.14em", textTransform: "uppercase", color: "#D85A30", marginBottom: "0.75rem",
           }}>Already operating and behind on DQ files?</p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "1rem",

@@ -6,6 +6,7 @@ import FooterSection from "../components/FooterSection";
 const API   = process.env.REACT_APP_BACKEND_URL;
 const GOLD  = "#d4900a";
 const GOLD_DIM = "rgba(212,144,10,0.65)";
+const CORAL = "#D85A30";
 const DARK  = "#070e1c";
 const NAVY  = "#0b1628";
 const CARD  = "#0d1929";
@@ -421,20 +422,27 @@ export default function BundleSalesPage() {
       <Navbar />
 
       {/* ── S1: HERO ────────────────────────────────────────────────── */}
-      <section style={{ background: NAVY, borderBottom: `3px solid ${GOLD}`, padding: "88px 24px 72px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, opacity: .04, backgroundImage: `linear-gradient(${GOLD} 1px,transparent 1px),linear-gradient(90deg,${GOLD} 1px,transparent 1px)`, backgroundSize: "40px 40px", pointerEvents: "none" }} />
+      <section style={{ background: NAVY, borderBottom: `3px solid ${CORAL}`, padding: "88px 24px 72px", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, opacity: .03, backgroundImage: `linear-gradient(${GOLD} 1px,transparent 1px),linear-gradient(90deg,${GOLD} 1px,transparent 1px)`, backgroundSize: "40px 40px", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1040, margin: "0 auto", position: "relative", display: "flex", alignItems: "center", gap: "4rem", flexWrap: "wrap" }}>
           {/* Left: headline + CTA */}
           <div style={{ flex: "1 1 440px" }}>
-            {/* Live indicator */}
+            {/* System label */}
             <div style={{ display: "flex", alignItems: "center", gap: ".625rem", marginBottom: "1.75rem" }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 8px #4ade80", display: "inline-block", animation: "pulse 2s ease-in-out infinite" }} />
-              <span style={{ fontFamily: MONO, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: GOLD_DIM }}>LP-BDL-001 &nbsp;|&nbsp; THE COMPLETE DOCUMENTATION INFRASTRUCTURE</span>
+              <span style={{
+                width: 6,
+                height: 6,
+                background: "rgba(216,90,48,0.70)",
+                flexShrink: 0,
+                display: "inline-block",
+              }} />
+              <span style={{ fontFamily: MONO, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: CORAL }}>LP-BDL-001 &nbsp;|&nbsp; THE COMPLETE DOCUMENTATION INFRASTRUCTURE</span>
             </div>
 
-            <h1 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(2.5rem,5vw,3.75rem)", color: "#FFF", lineHeight: 1.05, letterSpacing: "-.02em", marginBottom: "1.25rem" }}>
+            <h1 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(2.5rem,5vw,3.75rem)", color: "#FFF", lineHeight: 1.05, letterSpacing: "-.02em", marginBottom: "0.75rem" }}>
               New Carrier Document System
             </h1>
+            <div style={{ height: 2, background: CORAL, width: 64, marginBottom: "1.5rem" }} />
             <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,.7)", lineHeight: 1.75, marginBottom: "2.5rem", maxWidth: 600 }}>
               Five compliance packets. 92 pages. Every template, checklist, and regulatory brief a new motor carrier needs — in one installation kit.
             </p>
