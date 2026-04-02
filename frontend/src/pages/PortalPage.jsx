@@ -104,6 +104,7 @@ export default function PortalPage() {
   const [signalRefreshKey, setSignalRefreshKey] = useState(0);
   const [gateStatuses, setGateStatuses] = useState({});
   const [unlockNotice, setUnlockNotice] = useState(null); // module_id of newly unlocked module
+  const [vrfCredential, setVrfCredential] = useState(null);
   const [bannerDismissed, setBannerDismissed] = useState(
     () => localStorage.getItem("g0_banner_dismissed") === "true"
   );
@@ -283,6 +284,14 @@ export default function PortalPage() {
       }
     } catch {}
   };
+
+  useEffect(() => {
+    if (!user || !hasCohortAccess) return;
+    fetch(`${API}/api/portal/registry-id`, { credentials: "include" })
+      .then((r) => r.json())
+      .then((d) => setVrfCredential(d))
+      .catch(() => {});
+  }, [API, user, hasCohortAccess]);
 
   // Per-lesson view tracking
   const [lessonProgress, setLessonProgress] = useState({}); // { "module-1": ["1-1", "1-2"], ... }
@@ -787,6 +796,70 @@ export default function PortalPage() {
           )}
           {/* Announcements Feed — visible to paid cohort users */}
           {hasCohortAccess && <AnnouncementsFeed />}
+
+          {/* ── Verified Registry ID — Persistent Credential Banner ── */}
+          {hasCohortAccess && vrfCredential?.issued && (
+            <div
+              data-testid="vrf-issued-banner"
+              style={{
+                background: "linear-gradient(90deg, rgba(34,197,94,0.05) 0%, rgba(212,144,10,0.03) 100%)",
+                border: "1px solid rgba(34,197,94,0.18)",
+                borderLeft: "3px solid #22c55e",
+                padding: "0.875rem 1.5rem",
+                marginBottom: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "1rem",
+                flexWrap: "wrap",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div style={{
+                  width: 8, height: 8, borderRadius: "50%",
+                  background: "#22c55e", boxShadow: "0 0 8px rgba(34,197,94,0.65)",
+                  flexShrink: 0,
+                }} />
+                <div>
+                  <p style={{
+                    fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                    fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.22em",
+                    textTransform: "uppercase", color: "rgba(34,197,94,0.65)",
+                    marginBottom: "0.2rem",
+                  }}>
+                    LP-VRF · VERIFIED REGISTRY · ACTIVE
+                  </p>
+                  <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.85)", margin: 0 }}>
+                    Registry credential issued —{" "}
+                    <span style={{
+                      fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                      fontWeight: 700, color: "#d4900a", letterSpacing: "0.08em",
+                    }}>
+                      {vrfCredential.registry_id}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <button
+                data-testid="vrf-banner-view-btn"
+                onClick={() => setSelectedId(
+                  gateStatuses["module-6"]?.status === "approved" ? "module-6" : "module-7"
+                )}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: "0.375rem",
+                  background: "transparent", border: "1px solid rgba(34,197,94,0.3)",
+                  color: "#22c55e", fontFamily: "'Inter',sans-serif",
+                  fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em",
+                  textTransform: "uppercase", padding: "0.5rem 1rem",
+                  cursor: "pointer", transition: "all 0.15s", whiteSpace: "nowrap",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(34,197,94,0.08)"; e.currentTarget.style.borderColor = "rgba(34,197,94,0.5)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(34,197,94,0.3)"; }}
+              >
+                View Credential →
+              </button>
+            </div>
+          )}
 
           {/* Payment success state */}
           {paymentState === "success" && (
