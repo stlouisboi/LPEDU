@@ -29,8 +29,8 @@ export function PrimaryCtaBlock({ dataTestId = "kc-reach-cta" }) {
         to="/auto-diagnostic"
         style={{
           display: "inline-block",
-          background: gold,
-          color: navy,
+          background: navy,
+          color: gold,
           fontFamily: mono,
           fontWeight: 700,
           fontSize: "0.762rem",
@@ -38,6 +38,7 @@ export function PrimaryCtaBlock({ dataTestId = "kc-reach-cta" }) {
           textTransform: "uppercase",
           padding: "0.875rem 2rem",
           textDecoration: "none",
+          border: `2px solid ${gold}`,
         }}
       >
         Run the REACH Test
