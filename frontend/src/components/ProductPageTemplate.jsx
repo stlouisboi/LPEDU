@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from '../compat/Link';
 import Navbar from "./Navbar";
 import FooterSection from "./FooterSection";
@@ -31,6 +31,7 @@ export default function ProductPageTemplate({
   const goldFaint = "rgba(212,144,10,0.15)";
   const [buyState, setBuyState] = useState("idle");
   const [buyError, setBuyError] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const handleBuy = async () => {
     if (!sku) return;
@@ -54,6 +55,14 @@ export default function ProductPageTemplate({
 
   const isLoading = buyState === "loading";
   const hasVisual = !!image;
+
+  // Close preview on Escape key
+  useEffect(() => {
+    if (!showPreview) return;
+    const onKey = (e) => { if (e.key === "Escape") setShowPreview(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [showPreview]);
 
   return (
     <div style={{ background: "#060d19", minHeight: "100vh" }}>
@@ -100,7 +109,7 @@ export default function ProductPageTemplate({
                   </ul>
                 )}
 
-                <div style={{ display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
                   <span style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "2rem",
                     fontWeight: 700, color: "#FFFFFF", letterSpacing: "-0.02em",
@@ -125,6 +134,32 @@ export default function ProductPageTemplate({
                       ? <><span style={{ width: 12, height: 12, border: "2px solid rgba(0,0,0,0.3)", borderTopColor: "#000", borderRadius: "50%", display: "inline-block", animation: "spin 0.7s linear infinite" }} /> Processing…</>
                       : <>{ctaLabel || `Get Instant Access — ${price} →`}</>}
                   </button>
+
+                  {whatsInside?.length > 0 && (
+                    <button
+                      data-testid="preview-toc-btn"
+                      onClick={() => setShowPreview(true)}
+                      style={{
+                        background: "none",
+                        border: "1px solid rgba(255,255,255,0.14)",
+                        color: "rgba(255,255,255,0.50)",
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.714rem", letterSpacing: "0.10em", textTransform: "uppercase",
+                        padding: "0.625rem 1.125rem", cursor: "pointer",
+                        transition: "border-color 0.2s, color 0.2s",
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)";
+                        e.currentTarget.style.color = "rgba(255,255,255,0.85)";
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                        e.currentTarget.style.color = "rgba(255,255,255,0.50)";
+                      }}
+                    >
+                      Preview Contents
+                    </button>
+                  )}
                 </div>
                 {buyError && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#ef4444", marginTop: "0.75rem" }}>{buyError}</p>}
                 <style dangerouslySetInnerHTML={{__html: `@keyframes spin { to { transform: rotate(360deg); } }`}} />
@@ -295,6 +330,114 @@ export default function ProductPageTemplate({
       </div>
 
       <FooterSection />
+
+      {/* ── Document Preview Modal ── */}
+      {showPreview && (
+        <div
+          data-testid="doc-preview-modal-overlay"
+          onClick={() => setShowPreview(false)}
+          style={{
+            position: "fixed", inset: 0,
+            background: "rgba(6,13,25,0.93)",
+            display: "flex", alignItems: "flex-start", justifyContent: "center",
+            padding: "6vh 1rem 2rem",
+            zIndex: 9000, overflowY: "auto",
+          }}
+        >
+          <div
+            data-testid="doc-preview-modal"
+            onClick={e => e.stopPropagation()}
+            style={{
+              background: "#0B1927",
+              borderTop: `3px solid ${coral}`,
+              width: "100%", maxWidth: 560,
+              flexShrink: 0,
+            }}
+          >
+            {/* Modal header */}
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+              padding: "1.75rem 2rem 1.25rem",
+              borderBottom: "1px solid rgba(255,255,255,0.07)",
+            }}>
+              <div>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif", fontSize: "0.625rem", fontWeight: 700,
+                  letterSpacing: "0.18em", textTransform: "uppercase", color: coral, marginBottom: "0.5rem",
+                }}>Table of Contents</p>
+                <p style={{
+                  fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700,
+                  fontSize: "1.05rem", color: "#fff", lineHeight: 1.3,
+                }}>{title}</p>
+              </div>
+              <button
+                data-testid="doc-preview-modal-close"
+                onClick={() => setShowPreview(false)}
+                aria-label="Close preview"
+                style={{
+                  background: "none", border: "none",
+                  color: "rgba(255,255,255,0.35)", fontSize: "1.5rem",
+                  cursor: "pointer", padding: "0 0.25rem", lineHeight: 1,
+                  marginLeft: "1.5rem", flexShrink: 0,
+                  transition: "color 0.15s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.80)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.35)"; }}
+              >×</button>
+            </div>
+
+            {/* Modal body — TOC list */}
+            <div style={{ padding: "1.5rem 2rem 0.5rem", maxHeight: "52vh", overflowY: "auto" }}>
+              <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {whatsInside?.map((item, i) => (
+                  <li key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
+                    <span style={{
+                      fontFamily: "'Inter', sans-serif", fontSize: "0.625rem",
+                      color: gold, marginTop: "0.2rem", flexShrink: 0,
+                      border: `1px solid rgba(212,144,10,0.20)`, padding: "0.15rem 0.35rem",
+                    }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span style={{
+                      fontFamily: "'Inter', sans-serif", fontSize: "0.952rem",
+                      color: "rgba(255,255,255,0.85)", lineHeight: 1.65,
+                    }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Modal footer — CTA */}
+            <div style={{
+              padding: "1.25rem 2rem 1.75rem",
+              borderTop: "1px solid rgba(255,255,255,0.07)",
+              marginTop: "1.25rem",
+              display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem",
+            }}>
+              <span style={{
+                fontFamily: "'Inter', sans-serif", fontSize: "1.5rem",
+                fontWeight: 700, color: "#fff", letterSpacing: "-0.02em",
+              }}>{price}</span>
+              <button
+                data-testid="doc-preview-modal-buy"
+                onClick={() => { setShowPreview(false); handleBuy(); }}
+                style={{
+                  background: gold, color: "#0b1628",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                  fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase",
+                  padding: "0.875rem 1.75rem", border: "none", cursor: "pointer",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = gold; }}
+              >
+                Get Instant Access →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 760px) {
           .packet-hero-grid { grid-template-columns: 1fr !important; }

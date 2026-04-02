@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import PreOpChecklistGate from "../../components/PreOpChecklistGate";
 
 // ── All 5 binder datasets ──────────────────────────────────────────────────
 
@@ -154,7 +155,13 @@ export default function AllChecklists() {
   }, []);
 
   return (
-    <div className="print-document">
+    <>
+      {/* Screen-only download block — hidden when printing */}
+      <div className="screen-fallback" style={{ background: "#f0ebe3", padding: "0" }}>
+        <PreOpChecklistGate />
+      </div>
+
+      <div className="print-document">
 
       {/* ── Cover ── */}
       <div className="print-cover">
@@ -267,5 +274,6 @@ export default function AllChecklists() {
         }
       `}} />
     </div>
+    </>
   );
 }
