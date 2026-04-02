@@ -19,6 +19,7 @@ const NAVY  = "#060d19";
 const NAVY2 = "#0b1628";
 const NAVY3 = "#00213F";
 const GOLD  = "#d4900a";
+const CORAL = "#D85A30";
 const BORDER = "rgba(255,255,255,0.08)";
 const SANS  = "'Inter', sans-serif";
 const MONO  = "'IBM Plex Mono', 'Courier New', monospace";
@@ -156,7 +157,7 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
         onMouseLeave={e => { if (!isOpen) e.currentTarget.style.borderColor = "rgba(212,160,23,0.2)"; }}
       >
         <div>
-          <p style={{ fontFamily: MONO, fontSize: "15px", letterSpacing: "0.10em", textTransform: "uppercase", color: GOLD, margin: 0, fontWeight: 700 }}>{group.label}</p>
+          <p style={{ fontFamily: MONO, fontSize: "15px", letterSpacing: "0.10em", textTransform: "uppercase", color: CORAL, margin: 0, fontWeight: 700 }}>{group.label}</p>
           <p style={{ fontFamily: SANS, fontSize: "15px", color: "rgba(255,255,255,0.70)", margin: "6px 0 0", lineHeight: 1.5 }}>{group.subtitle}</p>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0, marginLeft: "1.5rem" }}>
@@ -310,14 +311,15 @@ export default function ComplianceLibraryPage() {
       <Navbar />
 
       {/* ── SECTION 1: PAGE HERO ─────────────────────────────────────── */}
-      <section data-testid="library-hero" style={{ background: NAVY2, borderBottom: `3px solid ${GOLD}`, padding: "5rem 1.5rem 4rem" }}>
+      <section data-testid="library-hero" style={{ background: NAVY2, borderBottom: `3px solid ${CORAL}`, padding: "5rem 1.5rem 4rem" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "1.5rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: CORAL, marginBottom: "1.5rem" }}>
             LP-SYS-LIBRARY | OPERATING STANDARDS LIBRARY
           </p>
-          <h1 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(2.25rem, 5vw, 4rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.05, marginBottom: "1.25rem" }}>
+          <h1 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(2.25rem, 5vw, 4rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.05, marginBottom: "0.75rem" }}>
             The LaunchPath Operating Standards Library
           </h1>
+          <div style={{ height: 2, background: CORAL, width: 64, marginBottom: "1.5rem" }} />
           <p style={{ fontFamily: SANS, fontSize: "1.2rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.6, marginBottom: "1.5rem", maxWidth: 640 }}>
             Every document, system, and guided implementation LaunchPath produces — organized by compliance domain and deployment path.
           </p>
@@ -332,7 +334,7 @@ export default function ComplianceLibraryPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.875rem" }}>
+            <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: CORAL, marginBottom: "0.875rem" }}>
               TWO PATHS. ONE STANDARD.
             </p>
             <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.75, maxWidth: 600, margin: "0 auto" }}>
@@ -343,7 +345,7 @@ export default function ComplianceLibraryPage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 420px", gap: "1.5rem", alignItems: "start" }} className="two-path-grid">
             {/* PATH 1 — Flagship */}
             <div style={{ background: "#060d19", border: `2px solid ${GOLD}`, padding: "2.5rem" }}>
-              <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", marginBottom: "0.75rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: CORAL, marginBottom: "0.75rem" }}>
                 LP-STD-001 | GUIDED IMPLEMENTATION
               </p>
               <h2 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "0.5rem" }}>
@@ -400,7 +402,7 @@ export default function ComplianceLibraryPage() {
 
             {/* PATH 2 — Bundle */}
             <div id="bundle" style={{ background: NAVY2, border: `1px solid rgba(212,144,10,0.25)`, padding: "2rem", scrollMarginTop: "80px" }}>
-              <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.75rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: CORAL, marginBottom: "0.75rem" }}>
                 LP-BDL-001 | SELF-INSTALLATION
               </p>
               <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.75rem", color: "#fff", letterSpacing: "-0.01em", lineHeight: 1.1, marginBottom: "0.5rem" }}>

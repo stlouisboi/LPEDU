@@ -61,6 +61,9 @@ import DrugAlcoholPacketPage from "./pages/products/DrugAlcoholPacketPage";
 import HOSPacketPage from "./pages/products/HOSPacketPage";
 import MaintenancePacketPage from "./pages/products/MaintenancePacketPage";
 import InsurancePacketPage from "./pages/products/InsurancePacketPage";
+import DQFilePacketPage from "./pages/products/DQFilePacketPage";
+import StarterStackPage from "./pages/products/StarterStackPage";
+import SafetyAuditPrepPage from "./pages/products/SafetyAuditPrepPage";
 import BundlePage from "./pages/products/BundlePage";
 import BundleSalesPage from "./pages/BundleSalesPage";
 import SixteenSinsPage from "./pages/standards/SixteenSinsPage";
@@ -201,6 +204,9 @@ function AppRouter() {
       <Route path="/standards/hos-packet" element={<HOSPacketPage />} />
       <Route path="/standards/maintenance-packet" element={<MaintenancePacketPage />} />
       <Route path="/standards/insurance-packet" element={<InsurancePacketPage />} />
+      <Route path="/standards/dq-file-builder" element={<DQFilePacketPage />} />
+      <Route path="/standards/starter-stack" element={<StarterStackPage />} />
+      <Route path="/standards/safety-audit-prep" element={<SafetyAuditPrepPage />} />
       <Route path="/standards/new-carrier-document-system" element={<Navigate to="/new-carrier-document-system" replace />} />
       <Route path="/standards/16-deadly-sins" element={<Navigate to="/compliance-library" replace />} />
       <Route path="/16-deadly-sins" element={<SixteenSinsPage />} />
@@ -225,6 +231,10 @@ function AppRouter() {
       <Route path="/products/maintenance-packet" element={<MaintenancePacketPage />} />
       <Route path="/products/insurance-packet" element={<InsurancePacketPage />} />
       <Route path="/products/new-carrier-document-system" element={<Navigate to="/compliance-library" replace />} />
+      <Route path="/products/dq-file-builder" element={<DQFilePacketPage />} />
+      <Route path="/products/starter-stack" element={<StarterStackPage />} />
+      <Route path="/products/safety-audit-prep" element={<SafetyAuditPrepPage />} />
+      <Route path="/products/bundle" element={<BundlePage />} />
     </Routes>
   );
 }
