@@ -42,6 +42,11 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 58: AllChecklists Download Block + Product Preview Modal (April 2026)
+- Added AuditBinder download block (screen-only, hidden in print) to `/knowledge-center/all-checklists` — completes the "Complete Audit Binder Series" PDF availability across all relevant pages
+- Added lightweight "Preview Contents" modal to all product pages using `ProductPageTemplate`: ghost button next to buy CTA → fixed overlay modal showing numbered TOC from `whatsInside`, product title, price, and direct "Get Instant Access" CTA — Escape key and overlay click close the modal
+- Both features tested at 100%
+
 ### Phase 57: Audit Binder Download Block (April 2026)
 - Replaced the old email-gated Pre-Op Checklist (`PreOpChecklistGate.jsx`) with a new direct-download block for "The Complete Audit Binder Series"
 - PDF stored at `/public/downloads/LaunchPath_Complete_Audit_Binder_Series.pdf` (297KB, 6 compliance checklists)
