@@ -10,6 +10,12 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/reach", destination: "/reach-diagnostic", permanent: true },
+      { source: "/knowledge-center/lp-brf-07", destination: "/knowledge-center/first-dispatch-requirements", permanent: true },
+      { source: "/knowledge-center/lp-brf-08", destination: "/knowledge-center/new-carrier-90-day-build", permanent: true },
+      { source: "/knowledge-center/lp-brf-09", destination: "/knowledge-center/operating-patterns-compliance-risks", permanent: true },
+      { source: "/knowledge-center/lp-brf-10", destination: "/knowledge-center/fmcsa-audit-preparation-records", permanent: true },
+      { source: "/knowledge-center/lp-brf-11", destination: "/knowledge-center/fmcsa-new-entrant-review", permanent: true },
+      { source: "/knowledge-center/lp-brf-12", destination: "/knowledge-center/new-motor-carrier-financial-requirements", permanent: true },
     ];
   },
   async headers() {
