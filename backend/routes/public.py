@@ -105,6 +105,11 @@ class ControlRoomCapture(BaseModel):
     failing_domains: Optional[list] = None
 
 
+class PreOpChecklistCapture(BaseModel):
+    first_name: Optional[str] = ""
+    email: EmailStr
+
+
 class RiskMapCapture(BaseModel):
     first_name: Optional[str] = ""
     email: EmailStr
@@ -949,4 +954,59 @@ async def risk_map_email_capture(data: RiskMapCapture):
         upsert=True,
     )
     logger.info(f"Risk Map lead captured: {data.email}")
+    return {"ok": True}
+
+
+@router.post("/checklist/email-capture")
+async def pre_op_checklist_capture(data: PreOpChecklistCapture):
+    """Capture lead for Pre-Op Compliance Checklist — MailerLite Pre-Op-Checklist-Download group + MongoDB leads."""
+    ML_BASE = "https://connect.mailerlite.com/api"
+    headers = {
+        "Authorization": f"Bearer {MAILERLITE_API_TOKEN}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+    payload = {
+        "email": data.email,
+        "status": "active",
+        "fields": {
+            "name": data.first_name,
+            "lead_source": "pre_op_checklist_download",
+        },
+    }
+    async with httpx.AsyncClient(timeout=10) as http:
+        resp = await http.post(MAILERLITE_URL, json=payload, headers=headers)
+        if resp.status_code not in (200, 201):
+            logger.error(f"MailerLite pre-op checklist error: {resp.text}")
+            raise HTTPException(status_code=502, detail="Could not save email. Please try again.")
+        subscriber_id = resp.json().get("data", {}).get("id")
+
+        if subscriber_id:
+            try:
+                gr = await http.post(f"{ML_BASE}/groups", headers=headers, json={"name": "Pre-Op-Checklist-Download"})
+                gid = gr.json().get("data", {}).get("id")
+                if not gid:
+                    gs = await http.get(f"{ML_BASE}/groups", headers=headers, params={"filter[name]": "Pre-Op-Checklist-Download"})
+                    items = gs.json().get("data", [])
+                    gid = str(items[0]["id"]) if items else None
+                if gid:
+                    await http.post(MAILERLITE_URL, headers=headers, json={
+                        "email": data.email, "status": "active", "groups": [gid],
+                    })
+            except Exception as exc:
+                logger.warning(f"Pre-op checklist group assignment failed for {data.email}: {exc}")
+
+    now = datetime.now(timezone.utc)
+    await db.leads.update_one(
+        {"email": data.email},
+        {"$set": {
+            "first_name": data.first_name,
+            "email": data.email,
+            "source": "pre_op_checklist_download",
+            "page": "pillar_pre_operation_checklist",
+            "submitted_at": now.isoformat(),
+        }},
+        upsert=True,
+    )
+    logger.info(f"Pre-Op Checklist lead captured: {data.email}")
     return {"ok": True}

@@ -2,6 +2,7 @@ import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import { PrimaryCtaBlock, SecondaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
+import PreOpChecklistGate from "../../components/PreOpChecklistGate";
 
 const gold = "#d4900a";
 const mono = "'Inter', sans-serif";
@@ -138,6 +139,8 @@ export default function HowToStartTruckingPost() {
         ))}
 
         <p style={s.p}>The <Link to="/standards/starter-stack" style={s.link}>LaunchPath Starter Stack</Link> includes the core compliance documents, templates, and checklists for Phases 2 and 3 of this sequence — authority activation through pre-operation installation.</p>
+
+        <PreOpChecklistGate />
 
         <PrimaryCtaBlock dataTestId="kc-reach-cta-mid" />
 
