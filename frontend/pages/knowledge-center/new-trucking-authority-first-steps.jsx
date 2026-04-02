@@ -4,7 +4,7 @@ import NewTruckingAuthorityPost from '../../src/pages/knowledge-center/NewTrucki
 const TITLE = "New Trucking Authority: Your First 30 Days | LaunchPath";
 const H1 = "You Have Your MC Number. Here Is What Happens Next.";
 const DESC = "Getting your MC number is step one. Here is the compliance sequence every new motor carrier must complete before the first load moves.";
-const URL = "https://launchpathedu.com/knowledge-center/new-trucking-authority-first-steps";
+const URL = "https://www.launchpathedu.com/knowledge-center/new-trucking-authority-first-steps";
 
 const FAQ_ITEMS = [
   { q: "How long does it take for my MC number to become active?", a: "FMCSA typically processes new MC number applications within 20 to 25 business days. Active does not mean you can operate — it means the authority has been granted and the pre-operation compliance sequence can begin." },

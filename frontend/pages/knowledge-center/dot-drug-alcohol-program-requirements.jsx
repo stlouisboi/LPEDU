@@ -4,7 +4,7 @@ import DOTDrugAlcoholPost from '../../src/pages/knowledge-center/DOTDrugAlcoholP
 const TITLE = "DOT Drug and Alcohol Program Requirements for Motor Carriers | LaunchPath";
 const H1 = "What FMCSA Requires for Your DOT Drug and Alcohol Program";
 const DESC = "49 CFR Part 382 requires every motor carrier with CDL drivers to have a drug and alcohol testing program before the first driver operates. Here is what that requires.";
-const URL = "https://launchpathedu.com/knowledge-center/dot-drug-alcohol-program-requirements";
+const URL = "https://www.launchpathedu.com/knowledge-center/dot-drug-alcohol-program-requirements";
 
 const FAQ_ITEMS = [
   { q: "What is 49 CFR Part 382?", a: "49 CFR Part 382 is the federal regulation that establishes drug and alcohol testing requirements for commercial motor vehicle operators. It covers which carriers must have a program, the types of testing required, testing procedures, and consequences for violations. It applies to all motor carriers employing CDL drivers in safety-sensitive functions in interstate commerce." },

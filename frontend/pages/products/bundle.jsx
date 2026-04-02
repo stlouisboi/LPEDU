@@ -11,7 +11,7 @@ export default function Page() {
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESC} />
-        <link rel="canonical" href="https://launchpathedu.com/products/bundle" />
+        <link rel="canonical" href="https://www.launchpathedu.com/products/bundle" />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
         <meta property="og:image" content={OG_IMAGE} />

@@ -3,7 +3,7 @@ import LpBrf09Page from '../../src/pages/knowledge-center/LpBrf09Page';
 
 const TITLE = "Operating Patterns That Create Compliance Exposure | LaunchPath";
 const DESC = "Identify the operating patterns that create compliance risk and learn how to reduce exposure before it becomes a problem.";
-const URL = "https://launchpathedu.com/knowledge-center/operating-patterns-compliance-risks";
+const URL = "https://www.launchpathedu.com/knowledge-center/operating-patterns-compliance-risks";
 
 export default function Page() {
   return (

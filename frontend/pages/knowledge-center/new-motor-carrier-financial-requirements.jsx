@@ -3,7 +3,7 @@ import FinancialRunwayBrief from '../../src/pages/knowledge-center/FinancialRunw
 
 const TITLE = "Financial Requirements for a New Motor Carrier | LaunchPath";
 const DESC = "See the financial resources a new motor carrier should have in place before operating and growing.";
-const URL = "https://launchpathedu.com/knowledge-center/new-motor-carrier-financial-requirements";
+const URL = "https://www.launchpathedu.com/knowledge-center/new-motor-carrier-financial-requirements";
 
 export default function Page() {
   return (

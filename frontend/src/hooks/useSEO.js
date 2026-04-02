@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const DEFAULT_IMAGE = "https://launchpathedu.com/og-launchpath.png";
+const DEFAULT_IMAGE = "https://www.launchpathedu.com/og-launchpath.png";
 const SITE_NAME = "LaunchPath Transportation EDU";
 
 function setMeta(selector, attr, attrVal, content) {

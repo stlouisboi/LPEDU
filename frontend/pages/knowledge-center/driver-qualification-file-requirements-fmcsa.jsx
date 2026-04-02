@@ -4,7 +4,7 @@ import DQFileRequirementsPost from '../../src/pages/knowledge-center/DQFileRequi
 const TITLE = "Driver Qualification File Requirements FMCSA | LaunchPath";
 const H1 = "What FMCSA Requires in Every Driver Qualification File";
 const DESC = "FMCSA requires a Driver Qualification File for every CDL driver you employ. Here is what 49 CFR Part 391 requires in every file before your driver operates.";
-const URL = "https://launchpathedu.com/knowledge-center/driver-qualification-file-requirements-fmcsa";
+const URL = "https://www.launchpathedu.com/knowledge-center/driver-qualification-file-requirements-fmcsa";
 
 const FAQ_ITEMS = [
   { q: "What documents go in a driver qualification file?", a: "At minimum: employment application, motor vehicle records, previous employer inquiry, road test certificate or CDL equivalent, medical examiner's certificate, and a negative pre-employment drug test result. Annual MVR reviews are added every 12 months thereafter." },

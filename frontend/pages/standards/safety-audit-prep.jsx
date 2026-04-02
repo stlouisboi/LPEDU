@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <link rel="canonical" href="https://launchpathedu.com/standards/safety-audit-prep" />
+        <link rel="canonical" href="https://www.launchpathedu.com/standards/safety-audit-prep" />
       </Head>
       <SafetyAuditPrepPage />
     </>

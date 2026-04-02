@@ -3,7 +3,7 @@ import Day1AuthorityBrief from '../../src/pages/knowledge-center/Day1AuthorityBr
 
 const TITLE = "What Must Be Operational Before Your First Dispatch | LaunchPath";
 const DESC = "See what must be in place before your first truck moves, including core compliance steps, records, and operational readiness.";
-const URL = "https://launchpathedu.com/knowledge-center/first-dispatch-requirements";
+const URL = "https://www.launchpathedu.com/knowledge-center/first-dispatch-requirements";
 
 export default function Page() {
   return (

@@ -3,7 +3,7 @@ import LpBrf08Page from '../../src/pages/knowledge-center/LpBrf08Page';
 
 const TITLE = "The 90-Day Compliance Build Sequence | LaunchPath";
 const DESC = "Learn the 90-day compliance build sequence new carriers should follow to stay organized and reduce mistakes.";
-const URL = "https://launchpathedu.com/knowledge-center/new-carrier-90-day-build";
+const URL = "https://www.launchpathedu.com/knowledge-center/new-carrier-90-day-build";
 
 export default function Page() {
   return (

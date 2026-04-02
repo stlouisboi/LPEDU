@@ -4,7 +4,7 @@ import FMCSASafetyRatingPost from '../../src/pages/knowledge-center/FMCSASafetyR
 const TITLE = "FMCSA Safety Rating Explained for New Carriers | LaunchPath";
 const H1 = "What Your FMCSA Safety Rating Means and How It Gets Assigned";
 const DESC = "FMCSA assigns safety ratings based on inspections, violations, and audits. Here is how the three-rating system works and what each rating means for your operation.";
-const URL = "https://launchpathedu.com/knowledge-center/fmcsa-safety-rating-explained";
+const URL = "https://www.launchpathedu.com/knowledge-center/fmcsa-safety-rating-explained";
 
 const FAQ_ITEMS = [
   { q: "What is an FMCSA safety rating?", a: "An FMCSA safety rating is a formal assessment of a motor carrier's compliance with federal safety regulations. FMCSA assigns one of three ratings: Satisfactory, Conditional, or Unsatisfactory. The rating is based on the findings of a safety audit or compliance review — not on accident history alone." },

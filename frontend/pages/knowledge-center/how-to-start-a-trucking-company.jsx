@@ -4,7 +4,7 @@ import HowToStartTruckingPost from '../../src/pages/knowledge-center/HowToStartT
 const TITLE = "How to Start a Trucking Company: A Compliance-First Guide | LaunchPath";
 const H1 = "How to Start a Trucking Company Without Getting Shut Down in Year One";
 const DESC = "Most new trucking companies fail their first compliance audit. Here is the full startup sequence — from business formation to first load — built around what FMCSA actually requires.";
-const URL = "https://launchpathedu.com/knowledge-center/how-to-start-a-trucking-company";
+const URL = "https://www.launchpathedu.com/knowledge-center/how-to-start-a-trucking-company";
 
 const FAQ_ITEMS = [
   { q: "How long does it take to start a trucking company?", a: "Business formation can be completed in one to two weeks. FMCSA processes MC number applications in 20 to 25 business days. Pre-operation compliance — insurance filing, drug and alcohol program setup, driver qualification files — typically takes an additional two to four weeks. Most carriers can be fully compliant and ready for first dispatch in 45 to 60 days from the start of the process." },

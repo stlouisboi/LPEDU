@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { Toaster } from '../src/components/ui/sonner';
 import ScrollToTop from '../src/components/ScrollToTop';
 
-const BASE_URL = 'https://launchpathedu.com';
+const BASE_URL = 'https://www.launchpathedu.com';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();

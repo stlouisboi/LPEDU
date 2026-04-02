@@ -3,7 +3,7 @@ import LpBrf11Page from '../../src/pages/knowledge-center/LpBrf11Page';
 
 const TITLE = "FMCSA New Entrant Review | LaunchPath";
 const DESC = "Learn the main compliance areas FMCSA reviews during the New Entrant Review and what carriers need ready.";
-const URL = "https://launchpathedu.com/knowledge-center/fmcsa-new-entrant-review";
+const URL = "https://www.launchpathedu.com/knowledge-center/fmcsa-new-entrant-review";
 
 export default function Page() {
   return (

@@ -4,7 +4,7 @@ import CorrectiveActionPlanPost from '../../src/pages/knowledge-center/Correctiv
 const TITLE = "Corrective Action Plan FMCSA: What to Do After an Audit | LaunchPath";
 const H1 = "What a Corrective Action Plan Is and How to Build One After an FMCSA Audit";
 const DESC = "FMCSA requires a Corrective Action Plan when a new entrant audit finds deficiencies. Here is what a CAP must include and the timeline you have to respond.";
-const URL = "https://launchpathedu.com/knowledge-center/corrective-action-plan-fmcsa";
+const URL = "https://www.launchpathedu.com/knowledge-center/corrective-action-plan-fmcsa";
 
 const FAQ_ITEMS = [
   { q: "What is a Corrective Action Plan for FMCSA?", a: "A Corrective Action Plan is a formal written response submitted to FMCSA after a safety audit finds deficiencies. It documents each deficiency found, its root cause, the corrective action taken, and the controls implemented to prevent recurrence. FMCSA requires submission within 45 calendar days of the audit." },

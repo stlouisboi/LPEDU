@@ -3,7 +3,7 @@ import LpBrf10Page from '../../src/pages/knowledge-center/LpBrf10Page';
 
 const TITLE = "FMCSA Audit Preparation and Record Reconstruction | LaunchPath";
 const DESC = "Understand how to prepare for an FMCSA audit and how to rebuild missing or incomplete records under pressure.";
-const URL = "https://launchpathedu.com/knowledge-center/fmcsa-audit-preparation-records";
+const URL = "https://www.launchpathedu.com/knowledge-center/fmcsa-audit-preparation-records";
 
 export default function Page() {
   return (

@@ -4,7 +4,7 @@ import NewEntrantAuditChecklistPost from '../../src/pages/knowledge-center/NewEn
 const TITLE = "New Entrant Safety Audit Checklist for FMCSA | LaunchPath";
 const H1 = "What FMCSA Checks in a New Entrant Safety Audit";
 const DESC = "Every new interstate motor carrier receives a safety audit within 12 months of getting authority. Here is what FMCSA reviews and how to prepare before the auditor arrives.";
-const URL = "https://launchpathedu.com/knowledge-center/new-entrant-safety-audit-checklist";
+const URL = "https://www.launchpathedu.com/knowledge-center/new-entrant-safety-audit-checklist";
 
 const FAQ_ITEMS = [
   { q: "When does the FMCSA new entrant safety audit happen?", a: "FMCSA conducts the new entrant safety audit within 12 months of the carrier's authority grant date. FMCSA contacts the carrier to schedule the audit. The audit can be conducted on-site at the carrier's principal place of business or remotely, depending on FMCSA's current procedures and the carrier's geographic location." },
