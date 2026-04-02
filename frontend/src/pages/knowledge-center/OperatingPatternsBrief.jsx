@@ -47,12 +47,13 @@ function WisdomQuote({ children }) {
 }
 
 const BRIEF_NAV = [
-  { code: "LP-BRF-07", href: "/knowledge-center/lp-brf-07" },
-  { code: "LP-BRF-08", href: "/knowledge-center/lp-brf-08" },
-  { code: "LP-BRF-09", href: "/knowledge-center/lp-brf-09" },
-  { code: "LP-BRF-10", href: "/knowledge-center/lp-brf-10" },
-  { code: "LP-BRF-11", href: "/knowledge-center/lp-brf-11" },
+  { code: "First Dispatch", href: "/knowledge-center/first-dispatch-requirements" },
+  { code: "90-Day Build", href: "/knowledge-center/new-carrier-90-day-build" },
+  { code: "Operating Patterns", href: "/knowledge-center/operating-patterns-compliance-risks" },
+  { code: "Audit Prep", href: "/knowledge-center/fmcsa-audit-preparation-records" },
+  { code: "New Entrant Review", href: "/knowledge-center/fmcsa-new-entrant-review" },
 ];
+
 const CURRENT = 2;
 
 export default function OperatingPatternsBrief() {
@@ -68,13 +69,13 @@ export default function OperatingPatternsBrief() {
             ← Operational Library
           </Link>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
-            LP-BRF-09 — Days 30–60 | Pattern Formation
+            Operating Patterns & Compliance Risk
           </p>
           <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF", marginBottom: "1.25rem" }}>
-            How Operating Patterns<br />Become Audit Evidence
+            Operating Patterns That Create Compliance Exposure
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
-            FMCSA investigators don't just check if files exist. They check if the files show consistent operational discipline over time. Patterns matter more than perfection.
+            The way a carrier operates creates a record. FMCSA investigators read that record for patterns — not just individual documents. This page identifies the operating habits that create compliance exposure and explains how to reduce that risk before an audit notice arrives.
           </p>
         </div>
       </section>
@@ -104,11 +105,11 @@ export default function OperatingPatternsBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="System Voice — What the regulation requires" color={gold} />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            What Your Records Must Show by Day 60
+            Which Operating Habits Create Compliance Risk
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
-            Between Days 30 and 60, your operation transitions from installation to pattern formation. The systems you built in the first month now generate the records that become audit evidence. Patterns that form during this window:
+            Most compliance exposure doesn't come from a single decision. It comes from operating habits that build a problematic record over time. These patterns, once established, become visible when investigators pull your documentation:
           </p>
 
           <ArrowList items={[
@@ -137,7 +138,7 @@ export default function OperatingPatternsBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="Operator Voice — What this means for your operation" color="rgba(13,27,48,0.45)" />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            Your Files Show the Story of How You Operate
+            How Investigators Read Patterns in Your Records
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
@@ -170,7 +171,7 @@ export default function OperatingPatternsBrief() {
 
         {/* CTA — LP-BRF-09: QUALIFY → /reach-diagnostic */}
         <div style={{ background: "#00213F", borderTop: "3px solid #d4900a", padding: "3rem 2.5rem", marginBottom: "3rem" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>LP-BRF-09 — NEXT STEP</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>OPERATING PATTERNS — NEXT STEP</p>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "2rem", maxWidth: 560 }}>
             Your operating patterns are already creating an evidence record. Find out what that record shows.
           </p>
@@ -181,11 +182,11 @@ export default function OperatingPatternsBrief() {
 
         {/* Prev/Next */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link to="/knowledge-center/lp-brf-08" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
-            ← LP-BRF-08
+          <Link to="/knowledge-center/new-carrier-90-day-build" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
+            ← 90-Day Compliance Build
           </Link>
-          <Link to="/knowledge-center/lp-brf-10" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
-            Next: LP-BRF-10 — Audit Exposure →
+          <Link to="/knowledge-center/fmcsa-audit-preparation-records" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
+            Next: FMCSA Audit Preparation →
           </Link>
         </div>
       </main>

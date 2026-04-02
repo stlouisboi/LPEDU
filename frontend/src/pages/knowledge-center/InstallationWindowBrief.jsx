@@ -47,13 +47,12 @@ function WisdomQuote({ children }) {
 }
 
 const BRIEF_NAV = [
-  { code: "LP-BRF-07", href: "/knowledge-center/lp-brf-07" },
-  { code: "LP-BRF-08", href: "/knowledge-center/lp-brf-08" },
-  { code: "LP-BRF-09", href: "/knowledge-center/lp-brf-09" },
-  { code: "LP-BRF-10", href: "/knowledge-center/lp-brf-10" },
-  { code: "LP-BRF-11", href: "/knowledge-center/lp-brf-11" },
+  { code: "First Dispatch", href: "/knowledge-center/first-dispatch-requirements" },
+  { code: "90-Day Build", href: "/knowledge-center/new-carrier-90-day-build" },
+  { code: "Operating Patterns", href: "/knowledge-center/operating-patterns-compliance-risks" },
+  { code: "Audit Prep", href: "/knowledge-center/fmcsa-audit-preparation-records" },
+  { code: "New Entrant Review", href: "/knowledge-center/fmcsa-new-entrant-review" },
 ];
-const CURRENT = 1;
 
 export default function InstallationWindowBrief() {
 
@@ -68,13 +67,13 @@ export default function InstallationWindowBrief() {
             ← Operational Library
           </Link>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
-            LP-BRF-08 — Days 1–30 | Installation Window
+            The 90-Day Compliance Build
           </p>
           <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF", marginBottom: "1.25rem" }}>
-            The Documentation Architecture<br />of the Installation Window
+            The 90-Day Compliance Build Sequence
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
-            The first 30 days are when your documentary structure, dispatch rhythm, and monitoring habits begin taking shape. What you build here is what holds — or doesn't.
+            New motor carriers have a narrow window to build working compliance systems before FMCSA scrutiny intensifies. The 90-day compliance build sequence defines what gets built, in what order, and why the sequence matters.
           </p>
         </div>
       </section>
@@ -104,11 +103,11 @@ export default function InstallationWindowBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="System Voice — What the regulation requires" color={gold} />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            Systems That Must Be Installed and Generating Records
+            What New Carriers Must Build in the First 30 Days
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
-            During the installation window, the following systems should be installed and generating records:
+            The first 30 days of authority are when your compliance structure must take shape. These are not optional systems to build "when things slow down" — they are the foundation of your audit record. Build these before your dispatch volume grows:
           </p>
 
           <ArrowList items={[
@@ -139,7 +138,7 @@ export default function InstallationWindowBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="Operator Voice — What this means for your operation" color="rgba(13,27,48,0.45)" />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            Where Most Carriers Create the Gaps That Fail Them Later
+            Where New Carriers Create Compliance Gaps Early On
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
@@ -172,7 +171,7 @@ export default function InstallationWindowBrief() {
 
         {/* CTA — LP-BRF-08: ACQUIRE→ENROLL */}
         <div style={{ background: "#00213F", borderTop: "3px solid #d4900a", padding: "3rem 2.5rem", marginBottom: "3rem" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>LP-BRF-08 — NEXT STEP</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>90-DAY BUILD — NEXT STEP</p>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "2rem", maxWidth: 560 }}>
             The Document System Bundle gives you the full architecture in one installation.
           </p>
@@ -187,11 +186,11 @@ export default function InstallationWindowBrief() {
 
         {/* Prev/Next */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link to="/knowledge-center/lp-brf-07" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", letterSpacing: "0.04em" }}>
-            ← LP-BRF-07
+          <Link to="/knowledge-center/first-dispatch-requirements" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", letterSpacing: "0.04em" }}>
+            ← First Dispatch Requirements
           </Link>
-          <Link to="/knowledge-center/lp-brf-09" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", letterSpacing: "0.04em" }}>
-            Next: LP-BRF-09 — Pattern Formation →
+          <Link to="/knowledge-center/operating-patterns-compliance-risks" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", letterSpacing: "0.04em" }}>
+            Next: Operating Patterns That Create Compliance Exposure →
           </Link>
         </div>
       </main>

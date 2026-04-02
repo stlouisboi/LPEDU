@@ -1,10 +1,10 @@
 import KnowledgeCenterBriefTemplate from "../../components/KnowledgeCenterBriefTemplate";
 
 const DATA = {
-  code: "LP-BRF-12",
+  code: "Financial Requirements",
   cfr: "49 CFR Part 387 — Financial Responsibility",
-  title: "Financial Runway Brief",
-  subtitle: "What 'Resources' Actually Means Before You Start",
+  title: "Financial Requirements for a New Motor Carrier",
+  subtitle: "Capital, Compliance Costs, and Cash Flow Before You Dispatch",
   decisionHeadline: "Running out of money in month two doesn't mean the business failed — it means it was never funded for what compliance actually costs.",
   readTime: "10-minute brief",
   cta: {

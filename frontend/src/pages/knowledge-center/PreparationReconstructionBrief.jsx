@@ -47,11 +47,11 @@ function WisdomQuote({ children }) {
 }
 
 const BRIEF_NAV = [
-  { code: "LP-BRF-07", href: "/knowledge-center/lp-brf-07" },
-  { code: "LP-BRF-08", href: "/knowledge-center/lp-brf-08" },
-  { code: "LP-BRF-09", href: "/knowledge-center/lp-brf-09" },
-  { code: "LP-BRF-10", href: "/knowledge-center/lp-brf-10" },
-  { code: "LP-BRF-11", href: "/knowledge-center/lp-brf-11" },
+  { code: "First Dispatch", href: "/knowledge-center/first-dispatch-requirements" },
+  { code: "90-Day Build", href: "/knowledge-center/new-carrier-90-day-build" },
+  { code: "Operating Patterns", href: "/knowledge-center/operating-patterns-compliance-risks" },
+  { code: "Audit Prep", href: "/knowledge-center/fmcsa-audit-preparation-records" },
+  { code: "New Entrant Review", href: "/knowledge-center/fmcsa-new-entrant-review" },
 ];
 const CURRENT = 3;
 
@@ -68,13 +68,13 @@ export default function PreparationReconstructionBrief() {
             ← Operational Library
           </Link>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
-            LP-BRF-10 — Days 60–90 | Audit Exposure Window
+            FMCSA Audit Preparation
           </p>
           <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF", marginBottom: "1.25rem" }}>
-            Preparation vs. Reconstruction:<br />What Investigators See
+            FMCSA Audit Preparation<br />and Record Reconstruction
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
-            There are two ways to experience a New Entrant Safety Audit. The difference between them is not luck — it's what you built in the first 60 days.
+            There are two ways to experience an FMCSA New Entrant Safety Audit — with records already built, or scrambling to reconstruct them under scrutiny. This page explains what genuine audit preparation looks like and what happens when carriers have to rebuild records after the notice arrives.
           </p>
         </div>
       </section>
@@ -104,11 +104,11 @@ export default function PreparationReconstructionBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="System Voice — What the regulation requires" color={gold} />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            What the Audit Expects to See at Day 60+
+            What Documents FMCSA Needs at the Audit
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
-            The audit exposure window begins around Day 60. This is when FMCSA may schedule your New Entrant Safety Audit. By this point, investigators expect to see:
+            FMCSA can schedule a New Entrant Safety Audit as early as 90 days into operations. By the time that notice arrives, investigators expect to see documentation covering the full period since authority activation — not just the recent weeks. These are the records they will request:
           </p>
 
           <ArrowList items={[
@@ -170,7 +170,7 @@ export default function PreparationReconstructionBrief() {
 
         {/* CTA — LP-BRF-10: ENROLL → /reach-diagnostic (Ground 0 entry) */}
         <div style={{ background: "#00213F", borderTop: "3px solid #d4900a", padding: "3rem 2.5rem", marginBottom: "3rem" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>LP-BRF-10 — NEXT STEP</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>AUDIT PREPARATION — NEXT STEP</p>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "2rem", maxWidth: 560 }}>
             The LaunchPath Standard installs the preparation. Ground 0 is the first step — and it's free.
           </p>
@@ -181,11 +181,11 @@ export default function PreparationReconstructionBrief() {
 
         {/* Prev/Next */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link to="/knowledge-center/lp-brf-09" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
-            ← LP-BRF-09
+          <Link to="/knowledge-center/operating-patterns-compliance-risks" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
+            ← Operating Patterns
           </Link>
-          <Link to="/knowledge-center/lp-brf-11" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
-            Next: LP-BRF-11 — Review Period →
+          <Link to="/knowledge-center/fmcsa-new-entrant-review" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
+            Next: FMCSA New Entrant Review →
           </Link>
         </div>
       </main>

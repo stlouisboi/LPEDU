@@ -47,11 +47,11 @@ function WisdomQuote({ children }) {
 }
 
 const BRIEF_NAV = [
-  { code: "LP-BRF-07", label: "Before First Dispatch", href: "/knowledge-center/lp-brf-07" },
-  { code: "LP-BRF-08", label: "Installation Window", href: "/knowledge-center/lp-brf-08" },
-  { code: "LP-BRF-09", label: "Pattern Formation", href: "/knowledge-center/lp-brf-09" },
-  { code: "LP-BRF-10", label: "Audit Exposure", href: "/knowledge-center/lp-brf-10" },
-  { code: "LP-BRF-11", label: "Review Period", href: "/knowledge-center/lp-brf-11" },
+  { code: "First Dispatch", label: "First Dispatch", href: "/knowledge-center/first-dispatch-requirements" },
+  { code: "90-Day Build", label: "90-Day Build", href: "/knowledge-center/new-carrier-90-day-build" },
+  { code: "Operating Patterns", label: "Operating Patterns", href: "/knowledge-center/operating-patterns-compliance-risks" },
+  { code: "Audit Prep", label: "Audit Prep", href: "/knowledge-center/fmcsa-audit-preparation-records" },
+  { code: "New Entrant Review", label: "New Entrant Review", href: "/knowledge-center/fmcsa-new-entrant-review" },
 ];
 const CURRENT = 0;
 
@@ -68,13 +68,13 @@ export default function Day1AuthorityBrief() {
             ← Operational Library
           </Link>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
-            LP-BRF-07 — Day 1 | Authority Active
+            First Dispatch Requirements
           </p>
           <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF", marginBottom: "1.25rem" }}>
             What Must Be Operational<br />Before Your First Dispatch
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
-            The moment your MC number goes active in SAFER, FMCSA considers you an operating motor carrier — whether you've moved a single load or not.
+            Before your first dispatch, FMCSA requires specific filings, programs, and records to already be in place. The moment your MC number goes active in SAFER, you are considered an operating motor carrier — whether you've moved a single load or not.
           </p>
         </div>
       </section>
@@ -104,11 +104,11 @@ export default function Day1AuthorityBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="System Voice — What the regulation requires" color={gold} />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            The Regulatory Baseline at Authority Activation
+            What FMCSA Requires Before Your First Dispatch
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
-            From Day 1, the following must be operational:
+            Before your first dispatch, the following must be operational and on file. These are not audit checklist items — they are legal requirements that apply the moment authority goes active:
           </p>
 
           <ArrowList items={[
@@ -140,7 +140,7 @@ export default function Day1AuthorityBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="Operator Voice — What this means for your operation" color="rgba(13,27,48,0.45)" />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            Day 1 Is Not the Starting Line
+            Why the First Dispatch Is Already Being Evaluated
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
@@ -173,7 +173,7 @@ export default function Day1AuthorityBrief() {
 
         {/* CTA — LP-BRF-07: QUALIFY → /reach-diagnostic */}
         <div style={{ background: "#00213F", borderTop: "3px solid #d4900a", padding: "3rem 2.5rem", marginBottom: "3rem" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>LP-BRF-07 — NEXT STEP</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>FIRST DISPATCH REQUIREMENTS — NEXT STEP</p>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "2rem", maxWidth: 560 }}>
             Day 1 requirements don't wait. Find out what you're missing before your first load moves.
           </p>
@@ -184,8 +184,8 @@ export default function Day1AuthorityBrief() {
 
         {/* Prev/Next */}
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link to="/knowledge-center/lp-brf-08" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", letterSpacing: "0.04em" }}>
-            Next: LP-BRF-08 — Installation Window →
+          <Link to="/knowledge-center/new-carrier-90-day-build" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", letterSpacing: "0.04em" }}>
+            Next: The 90-Day Compliance Build Sequence →
           </Link>
         </div>
       </main>

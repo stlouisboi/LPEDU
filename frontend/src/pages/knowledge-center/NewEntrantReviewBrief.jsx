@@ -47,11 +47,11 @@ function WisdomQuote({ children }) {
 }
 
 const BRIEF_NAV = [
-  { code: "LP-BRF-07", href: "/knowledge-center/lp-brf-07" },
-  { code: "LP-BRF-08", href: "/knowledge-center/lp-brf-08" },
-  { code: "LP-BRF-09", href: "/knowledge-center/lp-brf-09" },
-  { code: "LP-BRF-10", href: "/knowledge-center/lp-brf-10" },
-  { code: "LP-BRF-11", href: "/knowledge-center/lp-brf-11" },
+  { code: "First Dispatch", href: "/knowledge-center/first-dispatch-requirements" },
+  { code: "90-Day Build", href: "/knowledge-center/new-carrier-90-day-build" },
+  { code: "Operating Patterns", href: "/knowledge-center/operating-patterns-compliance-risks" },
+  { code: "Audit Prep", href: "/knowledge-center/fmcsa-audit-preparation-records" },
+  { code: "New Entrant Review", href: "/knowledge-center/fmcsa-new-entrant-review" },
 ];
 const CURRENT = 4;
 
@@ -68,13 +68,13 @@ export default function NewEntrantReviewBrief() {
             ← Operational Library
           </Link>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>
-            LP-BRF-11 — Months 9–18 | What Was Built Gets Tested
+            FMCSA New Entrant Review
           </p>
           <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "#FFFFFF", marginBottom: "1.25rem" }}>
-            The New Entrant Review Period<br />and What Triggers Scrutiny
+            FMCSA New Entrant Review:<br />Compliance Areas and What Triggers Action
           </h1>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
-            Passing your New Entrant audit doesn't mean FMCSA stops watching. The monitoring period extends through Month 18 — and the operational patterns created in the first 90 days become visible under scrutiny.
+            The FMCSA New Entrant Review period extends from authority activation through Month 18. Passing your audit does not end FMCSA's oversight — it begins an 18-month monitoring window where compliance patterns and safety events continue to be evaluated.
           </p>
         </div>
       </section>
@@ -104,11 +104,11 @@ export default function NewEntrantReviewBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="System Voice — What the regulation requires" color={gold} />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            What Triggers Increased Scrutiny Through Month 18
+            What FMCSA Monitors During the New Entrant Review Period
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.5rem" }}>
-            The New Entrant review period extends from authority activation through Month 18. During this window, FMCSA monitors new carriers for compliance patterns, safety events, and audit outcomes. Triggers for increased scrutiny during this period:
+            The New Entrant review period runs from authority activation through Month 18. During this window, FMCSA tracks compliance patterns and safety events. Any of the following can trigger increased scrutiny or expedited action:
           </p>
 
           <ArrowList items={[
@@ -137,7 +137,7 @@ export default function NewEntrantReviewBrief() {
         <section style={{ marginBottom: "4rem" }}>
           <VoiceLabel voice="Operator Voice — What this means for your operation" color="rgba(13,27,48,0.45)" />
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)", color: navy, marginBottom: "1.5rem", letterSpacing: "-0.015em" }}>
-            The Audit Is Not the Finish Line
+            What Happens After You Pass the New Entrant Safety Audit
           </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(13,27,48,0.8)", lineHeight: 1.85, marginBottom: "1.25rem" }}>
@@ -170,7 +170,7 @@ export default function NewEntrantReviewBrief() {
 
         {/* CTA — LP-BRF-11: QUALIFY → /reach-diagnostic */}
         <div style={{ background: "#00213F", borderTop: "3px solid #d4900a", padding: "3rem 2.5rem", marginBottom: "3rem" }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>LP-BRF-11 — NEXT STEP</p>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1rem" }}>NEW ENTRANT REVIEW — NEXT STEP</p>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.85, marginBottom: "2rem", maxWidth: 560 }}>
             Know what triggers scrutiny before the system finds you first.
           </p>
@@ -181,8 +181,8 @@ export default function NewEntrantReviewBrief() {
 
         {/* Prev/Next */}
         <div style={{ display: "flex", justifyContent: "flex-start" }}>
-          <Link to="/knowledge-center/lp-brf-10" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
-            ← LP-BRF-10
+          <Link to="/knowledge-center/fmcsa-audit-preparation-records" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: gold, textDecoration: "none", letterSpacing: "0.04em" }}>
+            ← FMCSA Audit Preparation
           </Link>
         </div>
       </main>
