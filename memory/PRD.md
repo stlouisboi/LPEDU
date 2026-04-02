@@ -42,7 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 60: LP-WEB-002 v2.0 — Homepage Copy Addition (April 2026)
+### Phase 61: VRF ID Auto-Issuance on Core Module Completion (Feb 2026)
+- **Decoupled VRF issuance from module-6 alone**: Created `_issue_vrf_id_if_eligible(user_id)` helper in `portal.py` — checks that all core modules (1–6) are complete; if module-6 was conditional, module-7 must also be complete
+- **Dual-trigger wiring**: helper is `await`-ed in both `mark_module_complete` (portal.py) and `decide_gate_review` (admin.py), so any completion event that tips the operator over the threshold issues the credential immediately
+- **Frontend updated**: `isAllCoreDone()` mirrors backend logic in `PortalPage.jsx`; sidebar `registryIssued` check uses it; module-7 conditional completion path now renders the `VerifiedRegistryID` ceremony; module-8/9 descriptions updated in both `PortalPage.jsx` and `moduleData.js` to remove "outside the Verified Registry ID framework" text
+- **Pending message corrected** in `VerifiedRegistryID.jsx`: now accurately describes the core module completion requirement instead of referencing the old module-6-only trigger
+- Testing: 100% (17/17) — iteration_104
 - **Element 1 — "What You Build in 90 Days"**: WhatGetsBuiltSection.jsx rewritten to spec — headline, lead paragraph, 7 deliverables (exact spec copy including new items 06 cash-flow protection and 07 Verified Registry ID), gold rule, closing line "This is what 'protected authority' looks like in practice..."
 - **Element 2 — "90 / 5 / 5" Counter**: Added stat counter (90/5/5 with gold serif numerals) and explainer ("What '90 / 5 / 5' Means") with definitions for 90 days / 5 compliance domains / 5 custodian checkpoints — all spec copy exact
 - **Element 3 — Protected Authority Definition**: Added ProtectedAuthorityBlock after FourPillarsSubsection in TheStandardSection — gold-left-border callout with title, intro, and 3-item definition per spec
@@ -290,7 +295,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - ~~LP-WEB-001 7-Page SEO Cluster~~ DONE (April 2026) — all 7 pages live at /knowledge-center/ with Article + FAQPage schemas, canonical URLs, full internal linking, and CTA architecture per spec
 - Submit updated sitemap.xml to Google Search Console (next step after push to Vercel)
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules
-- Build Verified Registry ID generation logic (auto-generate VRF ID at 90-day program completion)
+- ~~Build Verified Registry ID generation logic (auto-generate VRF ID at 90-day program completion)~~ DONE (Feb 2026) — VRF auto-issues when core modules 1-6 complete; module-7 required if module-6 conditional
 
 ### P2 — Medium Priority
 - ~~Custom branded og:image~~ DONE — og-launchpath.png (sitewide) + og-program.png (/program specific)
