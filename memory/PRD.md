@@ -42,6 +42,13 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 60: LP-WEB-002 v2.0 — Homepage Copy Addition (April 2026)
+- **Element 1 — "What You Build in 90 Days"**: WhatGetsBuiltSection.jsx rewritten to spec — headline, lead paragraph, 7 deliverables (exact spec copy including new items 06 cash-flow protection and 07 Verified Registry ID), gold rule, closing line "This is what 'protected authority' looks like in practice..."
+- **Element 2 — "90 / 5 / 5" Counter**: Added stat counter (90/5/5 with gold serif numerals) and explainer ("What '90 / 5 / 5' Means") with definitions for 90 days / 5 compliance domains / 5 custodian checkpoints — all spec copy exact
+- **Element 3 — Protected Authority Definition**: Added ProtectedAuthorityBlock after FourPillarsSubsection in TheStandardSection — gold-left-border callout with title, intro, and 3-item definition per spec
+- **Element 4 — Strengthened Closing CTA**: Two new consequence lines appended after existing h2 in FinalCTASection — same font/weight/size, no visual separator, per spec copy
+- All 4 elements tested and verified at 95% (5% minor was testing agent error — quotes present in spec are present in implementation)
+
 ### Phase 59: PreOpChecklistThankYou replaced with Audit Binder (April 2026)
 - `PreOpChecklistThankYou.jsx` (/resources/pre-op-checklist/thank-you) fully rewritten: old 4-phase Pre-Op Checklist removed, replaced with Complete Audit Binder Series — coral accent, 6 binder cards (New Entrant, HOS, Drug & Alcohol, Maintenance, Insurance, Authority Registrations), PDF download CTA, REACH test next step
 - PDF link: /downloads/LaunchPath_Complete_Audit_Binder_Series.pdf
