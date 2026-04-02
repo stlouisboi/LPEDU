@@ -112,7 +112,7 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav style={{ display: "flex", alignItems: "center", gap: "0", flex: 1, justifyContent: "flex-end" }} className="desktop-nav">
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", marginRight: "1.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginRight: "0.875rem" }}>
 
             {/* Framework links */}
             {FRAMEWORK_LINKS.map(l => (
@@ -198,7 +198,7 @@ export default function Navbar() {
                 color: "#0b1628",
                 background: "#d4900a",
                 border: "1px solid #d4900a",
-                padding: "0.35rem 0.875rem",
+                padding: "0.35rem 0.625rem",
                 textDecoration: "none", transition: "opacity 0.2s", whiteSpace: "nowrap",
               }}
               onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
@@ -209,10 +209,10 @@ export default function Navbar() {
           </div>
 
           {/* Divider */}
-          <div style={{ width: 1, height: 20, background: "rgba(255,255,255,0.12)", marginRight: "1.5rem", flexShrink: 0 }} />
+          <div style={{ width: 1, height: 20, background: "rgba(255,255,255,0.12)", marginRight: "0.625rem", flexShrink: 0 }} />
 
           {/* Zone 2: Access links */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             {ACCESS_LINKS.map(l => (
               <Link key={l.label} to={l.href}
                 style={linkStyle(l.href)}
@@ -231,7 +231,7 @@ export default function Navbar() {
                 color: "rgba(255,255,255,0.75)",
                 background: "transparent",
                 border: "1px solid rgba(255,255,255,0.22)",
-                padding: "0.35rem 0.875rem",
+                padding: "0.35rem 0.625rem",
                 textDecoration: "none", transition: "border-color 0.2s, color 0.2s", whiteSpace: "nowrap",
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.55)"; e.currentTarget.style.color = "#fff"; }}
@@ -241,6 +241,7 @@ export default function Navbar() {
             </Link>
             <Link to="/portal"
               data-testid="nav-portal-btn"
+              className="nav-desktop-portal"
               style={{
                 display: "flex", alignItems: "center", gap: "0.35rem",
                 fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", fontWeight: 600,
@@ -248,14 +249,14 @@ export default function Navbar() {
                 color: "#d4900a",
                 background: "transparent",
                 border: "1px solid rgba(212,144,10,0.55)",
-                padding: "0.35rem 0.875rem",
+                padding: "0.35rem 0.625rem",
                 textDecoration: "none", transition: "background 0.2s, border-color 0.2s", whiteSpace: "nowrap",
               }}
               onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,144,10,0.10)"; e.currentTarget.style.borderColor = "#d4900a"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(212,144,10,0.55)"; }}
             >
               <LockSimple size={11} weight="bold" />
-              Operator Portal
+              Portal
             </Link>
           </div>
         </nav>
@@ -358,6 +359,8 @@ export default function Navbar() {
 
       <style dangerouslySetInnerHTML={{__html: `
         .mobile-btn { display: none !important; }
+        .nav-desktop-portal { display: flex !important; }
+        @media (max-width: 1440px) { .nav-desktop-portal { display: none !important; } }
         @media (max-width: 1100px) {
           .desktop-nav { display: none !important; }
           .mobile-btn { display: flex !important; }

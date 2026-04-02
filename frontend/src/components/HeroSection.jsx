@@ -265,9 +265,8 @@ export default function HeroSection() {
                   fontFamily: "'Inter', sans-serif", fontWeight: 500,
                   fontSize: "0.857rem", letterSpacing: "0.01em",
                   color: "rgba(255,255,255,0.45)", background: "transparent",
-                  border: "none", padding: "0", textDecoration: "none",
+                  border: "none", padding: "12px 0", textDecoration: "none",
                   transition: "color 0.2s",
-                  minHeight: 48,
                 }}
                 onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.80)"; }}
                 onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.45)"; }}
@@ -531,13 +530,15 @@ export default function HeroSection() {
           .hero-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
-            padding: 72px 24px 56px !important;
+            padding: 72px 20px 56px !important;
           }
+          .hero-left { margin: -32px -20px !important; }
           .hero-headline { font-size: 32px !important; }
           .hero-headline-two { font-size: 32px !important; }
           .hero-sub-desktop { display: none !important; }
           .hero-sub-mobile { display: block !important; font-size: 16px !important; }
           .hero-right { width: 100% !important; }
+          .hero-scan-init-label { max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
         }
         @media (min-width: 681px) and (max-width: 1024px) {
           .hero-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; padding: 80px 36px 64px !important; }
