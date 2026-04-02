@@ -354,6 +354,78 @@ FLOW5_STEPS = [
 ]
 
 
+# ── FLOW 6 — Pre-Op Checklist Welcome Sequence ────────────────────────────────
+
+def _f6_email1(first_name: str) -> tuple[str, str, str]:
+    subject = "Your startup checklist — one phase makes or breaks the rest"
+    preview = "Phase 3 does not close when the authority is active."
+    body = (
+        _para(f"Hi {first_name},")
+        + _para("The checklist you accessed covers four phases. Phases 1 and 2 are sequential and mostly administrative. Phase 3 is the compliance install — and it is the phase where most new carriers cut corners.")
+        + _para("Phase 3 does not close when the authority is active. It closes when every item on this list is documented:")
+        + _bullet([
+            "Insurance filed via BMC-91 — active and verified in SAFER",
+            "Drug and Alcohol program established — consortium enrolled, DER designated",
+            "Pre-employment drug test completed for every CDL driver — result on file",
+            "Complete DQ file in place for every CDL driver",
+            "ELD installed — confirmed on FMCSA approved device list",
+        ])
+        + _para("FMCSA does not review what you planned to complete. The audit reviews what was in place before the first dispatch.")
+        + _para("Tomorrow: the Phase 3 item that new carriers are most commonly found missing at audit.")
+        + _cta("Review the Full Startup Sequence", f"{FRONTEND}/knowledge-center/how-to-start-a-trucking-company")
+        + _sig(full=True)
+    )
+    return subject, preview, _wrap("LP-SEQ-06-01 | PRE-OP CHECKLIST SEQUENCE | EMAIL 1", body)
+
+
+def _f6_email2(first_name: str) -> tuple[str, str, str]:
+    subject = "The Phase 3 item FMCSA finds missing most often"
+    preview = "Most carriers understand a CDL driver needs a drug test. Most stop there."
+    body = (
+        _para(f"Hi {first_name},")
+        + _para("In a new entrant safety audit, one Phase 3 item shows up as missing more than any other.")
+        + _para("The Drug and Alcohol program.")
+        + _para("Not because carriers know it is required and skip it. Because most carriers understand that CDL drivers need a drug test before dispatch — and stop there.")
+        + _para("That is not a program.")
+        + _para("A program requires:")
+        + _bullet([
+            "Consortium enrollment — documented",
+            "A designated DER (Designated Employer Representative) — named and on record",
+            "Pre-employment drug test result — MRO-verified, in the DQ file, before first dispatch",
+            "Random testing pool — active and managed",
+            "Post-accident protocol — documented",
+        ])
+        + _para("When FMCSA audits and finds a driver who was dispatched without a documented negative pre-employment result, that is not a paperwork deficiency. It is evidence that the carrier dispatched without meeting a federal requirement.")
+        + _para("The DOT Drug and Alcohol Program Requirements page covers what the program actually requires — the six testing types, the DER designation, the Clearinghouse registration, and how to set up a consortium.")
+        + _cta("Read the D&A Program Requirements", f"{FRONTEND}/knowledge-center/dot-drug-alcohol-program-requirements")
+        + _sig()
+    )
+    return subject, preview, _wrap("LP-SEQ-06-02 | PRE-OP CHECKLIST SEQUENCE | EMAIL 2", body)
+
+
+def _f6_email3(first_name: str) -> tuple[str, str, str]:
+    subject = "The checklist tells you what to build. REACH tells you what is already exposed."
+    preview = "A free scored diagnostic. Less than ten minutes."
+    body = (
+        _para(f"Hi {first_name},")
+        + _para("The checklist covers what a carrier needs before first dispatch.")
+        + _para("REACH covers something different.")
+        + _para("It is a free scored diagnostic — less than ten minutes. It shows your current exposure across the Four Pillars of the LaunchPath Protection System: Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen.")
+        + _para("The checklist assumes you are building correctly from the start. REACH checks whether the operation already has gaps that danger can reach — regardless of where you are in the build.")
+        + _para("If you have not run it yet, it takes less time than reading this email twice.")
+        + _cta("Run the REACH Test", f"{FRONTEND}/auto-diagnostic")
+        + _sig(full=True)
+    )
+    return subject, preview, _wrap("LP-SEQ-06-03 | PRE-OP CHECKLIST SEQUENCE | EMAIL 3", body)
+
+
+FLOW6_STEPS = [
+    (24,  _f6_email1),   # Day 1
+    (72,  _f6_email2),   # Day 3
+    (168, _f6_email3),   # Day 7
+]
+
+
 # ── Enrollment ─────────────────────────────────────────────────────────────────
 
 async def _enroll(email: str, first_name: str, sequence_type: str, steps: list):
@@ -392,11 +464,16 @@ async def enroll_sins_nurture_sequence(email: str, first_name: str):
     await _enroll(email, first_name, "sins_nurture", FLOW5_STEPS)
 
 
+async def enroll_pre_op_checklist_sequence(email: str, first_name: str):
+    await _enroll(email, first_name, "pre_op_checklist", FLOW6_STEPS)
+
+
 # ── Processor ─────────────────────────────────────────────────────────────────
 
 BUILDERS = {
     "reach_correction": FLOW4_STEPS,
     "sins_nurture":     FLOW5_STEPS,
+    "pre_op_checklist": FLOW6_STEPS,
 }
 
 
@@ -463,12 +540,14 @@ async def list_sequences(coach_id: str = Depends(_require_coach)):
     total        = len(docs)
     active       = sum(1 for d in docs if not d.get("completed"))
     completed    = sum(1 for d in docs if d.get("completed"))
-    reach_count  = sum(1 for d in docs if d.get("sequence_type") == "reach_correction")
-    sins_count   = sum(1 for d in docs if d.get("sequence_type") == "sins_nurture")
+    reach_count      = sum(1 for d in docs if d.get("sequence_type") == "reach_correction")
+    sins_count       = sum(1 for d in docs if d.get("sequence_type") == "sins_nurture")
+    checklist_count  = sum(1 for d in docs if d.get("sequence_type") == "pre_op_checklist")
     return {
         "sequences": docs,
         "stats": {
             "total": total, "active": active, "completed": completed,
             "reach_correction": reach_count, "sins_nurture": sins_count,
+            "pre_op_checklist": checklist_count,
         },
     }

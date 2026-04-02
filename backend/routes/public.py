@@ -1009,4 +1009,9 @@ async def pre_op_checklist_capture(data: PreOpChecklistCapture):
         upsert=True,
     )
     logger.info(f"Pre-Op Checklist lead captured: {data.email}")
+    try:
+        from routes.sequences import enroll_pre_op_checklist_sequence
+        asyncio.create_task(enroll_pre_op_checklist_sequence(data.email, data.first_name or "there"))
+    except Exception as exc:
+        logger.warning(f"Pre-op checklist sequence enroll failed: {exc}")
     return {"ok": True}

@@ -42,6 +42,16 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 55: Pre-Op Checklist Email Gate + 3-Email Welcome Sequence (April 2026)
+- **Email gate** on pillar page (/knowledge-center/how-to-start-a-trucking-company) — first name + email, POST /api/checklist/email-capture, redirects to /resources/pre-op-checklist/thank-you
+- **MongoDB leads** captured with `source: pre_op_checklist_download` + `page: pillar_pre_operation_checklist`
+- **MailerLite** — enrolls in "Pre-Op-Checklist-Download" group
+- **Flow 6 (pre_op_checklist)** — 3-email sequence enrolled on capture:
+  - Step 1 (Day 1): "Your startup checklist — one phase makes or breaks the rest" → /knowledge-center/how-to-start-a-trucking-company
+  - Step 2 (Day 3): "The Phase 3 item FMCSA finds missing most often" → /knowledge-center/dot-drug-alcohol-program-requirements
+  - Step 3 (Day 7): "The checklist tells you what to build. REACH tells you what is already exposed." → /auto-diagnostic
+- Sequence verified in MongoDB with correct send_at timestamps (Day 1, 3, 7 from capture)
+
 ### Phase 54: LP-WEB-001 — 7-Page SEO Content Cluster Complete (April 2026)
 - **7 new knowledge center articles** live at /knowledge-center/ slugs per spec: driver-qualification-file-requirements-fmcsa, new-trucking-authority-first-steps, fmcsa-safety-rating-explained, how-to-start-a-trucking-company (pillar), corrective-action-plan-fmcsa, new-entrant-safety-audit-checklist, dot-drug-alcohol-program-requirements
 - **Each page**: Article + FAQPage JSON-LD schemas in @graph, self-referencing canonical tag, full OG tags (H1 as og:title), Newsreader/Inter font stack, gold bottom-border hero layout
