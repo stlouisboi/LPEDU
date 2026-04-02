@@ -3,45 +3,64 @@ import Link from 'next/link';
 
 const navy = '#000F1F';
 const gold = '#d4900a';
+const coral = '#D85A30';
 const mono = "'Inter', sans-serif";
 const serif = "'Newsreader', 'Playfair Display', serif";
+const PDF_URL = "/downloads/LaunchPath_Complete_Audit_Binder_Series.pdf";
 
-const PHASES = [
+const BINDERS = [
   {
-    label: 'Phase 1 — Formation',
+    code: "LP-BIND-01",
+    title: "New Entrant Compliance",
     items: [
-      'LLC or legal entity formed',
-      'EIN obtained from IRS',
-      'Dedicated business bank account opened',
-      'Commercial insurance quotes initiated',
+      "Authority registration sequence (DOT, MC, BOC-3, UCR)",
+      "Insurance filing checklist (BMC-91, MCS-90)",
+      "New entrant safety audit readiness items",
     ],
   },
   {
-    label: 'Phase 2 — Registration',
+    code: "LP-BIND-02",
+    title: "Hours of Service (HOS)",
     items: [
-      'DOT number obtained',
-      'MC number applied for (OP-1, $300)',
-      'BOC-3 process agent filed',
-      'UCR registration completed for current year',
+      "ELD compliance and device verification",
+      "Driver log audit checkpoints",
+      "Exemption documentation requirements",
     ],
   },
   {
-    label: 'Phase 3 — Pre-Operation (Complete Before Dispatch)',
+    code: "LP-BIND-03",
+    title: "Drug & Alcohol",
     items: [
-      'Insurance filed via BMC-91 — active and verified in SAFER',
-      'Drug and Alcohol program established — consortium enrolled, DER designated',
-      'Pre-employment drug test completed for every CDL driver — result on file',
-      'Complete DQ file in place for every CDL driver',
-      'ELD installed — confirmed on FMCSA approved device list',
-      'IFTA and IRP registration initiated with base state (within 30 days)',
+      "Pre-employment testing and consortium enrollment",
+      "Random testing program requirements",
+      "DER designation and supervisor training records",
     ],
   },
   {
-    label: 'Phase 4 — Operational Discipline (From Day One)',
+    code: "LP-BIND-04",
+    title: "Maintenance",
     items: [
-      'HOS records current from first dispatch',
-      'Maintenance records active — PM schedule documented, DVIR process in place',
-      'Accident register established and accessible',
+      "Preventive maintenance schedule documentation",
+      "DVIR process and driver reporting",
+      "Out-of-service repair and return-to-service verification",
+    ],
+  },
+  {
+    code: "LP-BIND-05",
+    title: "Insurance",
+    items: [
+      "Minimum coverage levels by cargo type",
+      "BMC-91 filing and FMCSA verification steps",
+      "Certificate of insurance and endorsement checklist",
+    ],
+  },
+  {
+    code: "LP-BIND-06",
+    title: "Authority Registrations",
+    items: [
+      "IFTA and IRP base-state registration",
+      "Unified Carrier Registration (UCR) annual requirement",
+      "Operating authority renewal and lapse prevention",
     ],
   },
 ];
@@ -50,25 +69,25 @@ export default function PreOpChecklistThankYou() {
   return (
     <>
       <Head>
-        <title>Pre-Operation Compliance Checklist | LaunchPath</title>
-        <meta name="description" content="Your 4-phase pre-operation compliance checklist for new motor carriers." />
+        <title>The Complete Audit Binder Series | LaunchPath</title>
+        <meta name="description" content="All 6 compliance checklists for new motor carriers in one printable PDF — New Entrant, HOS, Drug & Alcohol, Maintenance, Insurance, Authority Registrations." />
         <meta name="robots" content="noindex" />
       </Head>
 
       <div style={{ background: '#F4F1EB', minHeight: '100vh', padding: '5rem 1.5rem' }}>
-        <div style={{ maxWidth: 640, margin: '0 auto' }}>
+        <div style={{ maxWidth: 680, margin: '0 auto' }}>
 
           {/* Mark */}
           <p style={{
             fontFamily: mono, fontSize: '0.714rem', fontWeight: 700,
-            letterSpacing: '0.18em', textTransform: 'uppercase',
-            color: 'rgba(212,144,10,0.65)', marginBottom: '2rem',
+            letterSpacing: '0.20em', textTransform: 'uppercase',
+            color: coral, marginBottom: '1.5rem',
           }}>
-            LaunchPath Transportation EDU
+            The Complete Audit Binder Series
           </p>
 
-          {/* Gold rule */}
-          <div style={{ width: 40, height: 3, background: gold, marginBottom: '1.75rem' }} />
+          {/* Coral rule */}
+          <div style={{ width: 48, height: 2, background: coral, marginBottom: '1.75rem' }} />
 
           {/* Headline */}
           <h1 style={{
@@ -76,41 +95,67 @@ export default function PreOpChecklistThankYou() {
             fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
             color: navy, lineHeight: 1.15, marginBottom: '1rem',
           }}>
-            Pre-Operation Compliance Checklist
+            All 6 compliance checklists in one printable PDF
           </h1>
 
           <p style={{
             fontFamily: mono, fontSize: '0.95rem',
             color: 'rgba(0,15,31,0.6)', lineHeight: 1.75, marginBottom: '2.5rem',
           }}>
-            Work through these phases in sequence. Do not dispatch until every item in Phase 3 is complete.
+            New Entrant — HOS — Drug &amp; Alcohol — Maintenance — Insurance — Authority Registrations. Work through each domain before your first dispatch.
           </p>
 
-          {/* Checklist phases */}
-          {PHASES.map((phase, i) => (
+          {/* Download CTA */}
+          <a
+            href={PDF_URL}
+            download="LaunchPath_Complete_Audit_Binder_Series.pdf"
+            data-testid="thankyou-download-btn"
+            style={{
+              display: 'inline-block',
+              background: navy,
+              color: '#fff',
+              fontFamily: mono, fontWeight: 700,
+              fontSize: '0.857rem', letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              padding: '1rem 2.5rem',
+              textDecoration: 'none',
+              border: `2px solid ${navy}`,
+              marginBottom: '3rem',
+            }}
+          >
+            Download All Checklists (PDF)
+          </a>
+
+          {/* Binders */}
+          {BINDERS.map((binder, i) => (
             <div
               key={i}
-              data-testid={`checklist-phase-${i + 1}`}
+              data-testid={`binder-${i + 1}`}
               style={{
                 background: '#fff',
-                borderLeft: `4px solid ${i === 2 ? gold : 'rgba(0,15,31,0.12)'}`,
+                borderLeft: `3px solid ${coral}`,
                 padding: '1.5rem',
                 marginBottom: '1.25rem',
               }}
             >
               <p style={{
-                fontFamily: mono, fontWeight: 700, fontSize: '0.762rem',
-                letterSpacing: '0.14em', textTransform: 'uppercase',
-                color: i === 2 ? gold : 'rgba(0,15,31,0.45)',
-                marginBottom: '0.85rem',
+                fontFamily: mono, fontWeight: 700, fontSize: '0.625rem',
+                letterSpacing: '0.18em', textTransform: 'uppercase',
+                color: coral, marginBottom: '0.35rem',
               }}>
-                {phase.label}
+                {binder.code}
+              </p>
+              <p style={{
+                fontFamily: serif, fontWeight: 700, fontSize: '1rem',
+                color: navy, marginBottom: '0.75rem',
+              }}>
+                {binder.title}
               </p>
               <ul style={{ paddingLeft: '1.25rem', margin: 0 }}>
-                {phase.items.map((item, j) => (
+                {binder.items.map((item, j) => (
                   <li key={j} style={{
-                    fontFamily: mono, fontSize: '0.9rem',
-                    color: 'rgba(0,15,31,0.78)', lineHeight: 1.75, marginBottom: '0.45rem',
+                    fontFamily: mono, fontSize: '0.857rem',
+                    color: 'rgba(0,15,31,0.65)', lineHeight: 1.75, marginBottom: '0.35rem',
                   }}>
                     {item}
                   </li>
@@ -123,9 +168,9 @@ export default function PreOpChecklistThankYou() {
           <p style={{
             fontFamily: mono, fontSize: '0.762rem',
             color: 'rgba(0,15,31,0.4)', lineHeight: 1.6,
-            marginTop: '0.5rem', marginBottom: '3rem',
+            marginTop: '0.75rem', marginBottom: '3rem',
           }}>
-            Regulations: 49 CFR Parts 391 · 382 · 387 · 395 · 396 · 385
+            Covers: 49 CFR Parts 391 · 382 · 387 · 395 · 396 · 385 · 360 · 365
           </p>
 
           {/* Divider */}
@@ -135,7 +180,7 @@ export default function PreOpChecklistThankYou() {
           <p style={{
             fontFamily: mono, fontSize: '0.714rem', fontWeight: 700,
             letterSpacing: '0.16em', textTransform: 'uppercase',
-            color: 'rgba(212,144,10,0.65)', marginBottom: '0.75rem',
+            color: coral, marginBottom: '0.75rem',
           }}>
             Next Step
           </p>
@@ -152,7 +197,7 @@ export default function PreOpChecklistThankYou() {
             fontFamily: mono, fontSize: '0.95rem',
             color: 'rgba(0,15,31,0.65)', lineHeight: 1.75, marginBottom: '1.75rem',
           }}>
-            The checklist tells you what to build. REACH tells you what is already exposed. It is a free scored diagnostic — less than ten minutes — showing your current risk across the Four Pillars.
+            The checklist tells you what to build. REACH tells you what is already exposed. Free scored diagnostic — less than ten minutes — showing your current risk across the Four Pillars.
           </p>
 
           <Link
@@ -194,3 +239,4 @@ export default function PreOpChecklistThankYou() {
     </>
   );
 }
+
