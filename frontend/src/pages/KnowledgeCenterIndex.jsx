@@ -12,7 +12,7 @@ const POSTS = [
     title: "How to Start a Trucking Company Without Getting Shut Down in Year One",
     teaser: "Most new trucking companies that fail their first FMCSA compliance audit do not fail because they were reckless. They fail because they did not know what the system requires. This guide covers the full startup sequence — from business formation to first dispatch — organized around what FMCSA actually requires, not what the freight industry assumes.",
     readTime: "~12 min",
-    cfr: "49 CFR Parts 387, 391, 382, 385",
+    cfr: "49 CFR Parts 387·391·382·385",
     badge: "Pillar Guide",
   },
   {
@@ -58,7 +58,7 @@ const POSTS = [
     title: "What FMCSA Checks in a New Entrant Safety Audit",
     teaser: "Every new interstate motor carrier receives a mandatory safety audit within 12 months of receiving operating authority. FMCSA reviews six compliance areas. In each area, auditors look for specific documents — a missing document is a documented deficiency. This page covers exactly what FMCSA reviews and what you must have ready before the auditor arrives.",
     readTime: "~10 min",
-    cfr: "49 CFR Parts 391, 382, 395, 396, 387, 385",
+    cfr: "49 CFR Parts 391·382·395·396·387·385",
   },
   {
     slug: "/knowledge-center/dot-drug-alcohol-program-requirements",
@@ -586,7 +586,7 @@ export default function KnowledgeCenterIndex() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
-                          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)" }}>{post.code}</span>
+                          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)", whiteSpace: "nowrap" }}>{post.code}</span>
                           <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.45)" }}>{post.category}</span>
                           {post.badge && (
                             <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0b1628", background: "rgba(212,144,10,0.12)", border: "1px solid rgba(212,144,10,0.3)", padding: "0.15rem 0.5rem" }}>{post.badge}</span>
