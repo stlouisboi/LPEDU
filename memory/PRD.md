@@ -42,6 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 66: Modular Refactor of Large Frontend Files (Apr 2026)
+- **Ground0LessonPlayer.jsx**: 1609 → 288 lines. Extracted 7 sub-components into `src/components/ground0/` (OverviewView, LessonView, ReachRedirectView, GapTracker, CompleteView, Lesson07View, AuthGateModal) and data into `src/data/ground0Data.js` (LESSONS, COMPLETION_DATA, REACH_PILLARS, computeReachStatus, L07_MODULES)
+- **PortalPage.jsx**: 1482 → 946 lines. Extracted 5 portal UI components into `src/components/portal/` (PortalHeader, PortalSidebar, LockedModuleView+EnrollCTA, ModuleOverviewCard, DeliverablesPortal) and data into `src/data/portalData.js` (CURRICULUM, MODULE_OVERVIEWS)
+- **REACHAssessmentPage.jsx**: 1301 → 888 lines. Extracted 3 sub-components into `src/components/reach/` (CategoryBreakdown, ResultCTAs, RiskMap) and all data/config into `src/data/reachData.js` (CATEGORIES, QUESTIONS, RESULT_CONFIG, CATEGORY_GAP_CONFIG, getFlaggedNames, getGapStatus)
+- All 18 new files pass ESLint. Testing agent confirmed 100% pass rate — all pages render correctly, data wiring verified.
+
 ### Phase 65: Homepage Blueprint Grid + Scan-Line Upgrade + Task A Verified (Feb 2026)
 - **Blueprint line grid** (48–52px, gold 4–4.5% opacity) applied to TheStandardSection, ThePatternSection, FailureAnalysisSection, FinalCTASection — replaces old 24px dot grid on TheStandardSection
 - **CRT scan-line overlay** (4px repeat, black 6–7% opacity) added to ThePatternSection + FailureAnalysisSection; FailureAnalysisSection uses red-tinted grid lines matching threat aesthetic
