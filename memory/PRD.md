@@ -324,7 +324,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - ~~Dynamic payment methods~~ DONE — removed payment_method_types restriction; Apple Pay / Google Pay / Affirm now controlled via Stripe Dashboard
 - ~~ThankYouPage download button timing~~ DONE — background self-heal polling; download button appears within ~5s; email fallback after 60s
 - Email capture / interest form inline in Lesson 0.7 (GO-path lead capture)
-- Automated monthly email cron job (30-day cadence for enrolled, 90-day post-cohort) — manual trigger built, cron deferred
+- Automated monthly email cron job — ~~manual trigger built~~ **DONE (Feb 2026)** — `process_pending_sequences()` added to `followup_email_worker()` in `workers.py`. Flows 4 (reach_correction), 5 (sins_nurture), and 6 (pre_op_checklist) now flush automatically every 24h alongside onboarding check-ins and Ground 0 sequences. No more manual `POST /api/sequences/process` required.
 
 ### P3 — Future / Refactor
 - Refactor PortalPage.jsx + Ground0LessonPlayer.jsx (>1500 lines) using next/dynamic modular approach

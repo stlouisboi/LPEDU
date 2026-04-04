@@ -4,6 +4,7 @@ import logging
 from datetime import datetime, timezone, timedelta
 
 from core import db, FRONTEND_URL, COACH_EMAIL, send_mailersend_email
+from routes.sequences import process_pending_sequences
 
 logger = logging.getLogger(__name__)
 
@@ -316,6 +317,7 @@ async def followup_email_worker():
             await _send_followup_emails()
             await _send_monthly_audit_reminders()
             await _send_ground0_sequence_emails()
+            await process_pending_sequences()
         except Exception as e:
             logger.error(f"Followup email worker error: {e}")
         await asyncio.sleep(86400)
