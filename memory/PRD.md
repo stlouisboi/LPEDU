@@ -42,7 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 62: LP-WEB-001 v2.0 + LP-WEB-004 v1.0 (Feb 2026)
+### Phase 63: KC Index — LP-WEB-001 Cluster Published + Start Here Strip (Feb 2026)
+- All 7 LP-WEB-001 cluster pages added to KC index Articles tab (previously direct-URL-only): P1 DQ File Requirements, P2 New Trucking Authority, P3 FMCSA Safety Rating, P4 Pillar Guide (How to Start), P5 Corrective Action Plan, P6 New Entrant Audit Checklist, P7 DOT Drug & Alcohol
+- Article stats counter updated: 8 → 15 Published articles
+- Pillar page gets a "Pillar Guide" badge in the article list
+- Added institutional "If you are new to this library" dark navy strip between hero and bundle block — links to pillar page; mobile-responsive grid
+- All 15 article codes + start-here strip confirmed via SSR output
 - **LP-WEB-001 v2.0 complete**: Added missing `/knowledge-center/how-to-start-a-trucking-company` internal link to `DQFileRequirementsPost.jsx` opening section (all other CTAs, secondary CTAs, product placements, and disclaimers were already in place across all 7 KC pages)
 - **LP-WEB-004 Issue 1** — LP-DEL-01 module list replaced with LP-SYS-CUR-001 sequence (Ground 0 → Module 9), body updated, secondary note added below list
 - **LP-WEB-004 Issue 2** — Weeks 8–13 block corrected: label → `CORE INSTALLATION — MODULES 4–5`, body updated, week range extended
