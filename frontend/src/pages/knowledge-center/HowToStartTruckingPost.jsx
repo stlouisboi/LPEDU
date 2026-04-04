@@ -42,7 +42,7 @@ export default function HowToStartTruckingPost() {
 
       {/* Hero */}
       <div style={{ background: "var(--bg-2)", borderBottom: `3px solid ${gold}`, padding: "5rem 1.5rem 3.5rem" }}>
-        <div style={{ maxWidth: 780, margin: "0 auto" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>← Knowledge Center</Link>
             <span style={{ color: "rgba(13,27,48,0.2)", fontSize: "0.7rem" }}>/</span>
@@ -67,7 +67,7 @@ export default function HowToStartTruckingPost() {
       </div>
 
       {/* Body */}
-      <div style={{ maxWidth: 780, margin: "0 auto", padding: "4rem 1.5rem" }}>
+      <div style={{ maxWidth: 720, margin: "0 auto", padding: "4rem 1.5rem" }}>
 
         <h2 style={s.h2}>Why Year One Is the Most Dangerous Period</h2>
         <p style={s.p}>FMCSA designates every new motor carrier as a "new entrant" for the first 18 months after authority is granted. During this window, the carrier receives a mandatory safety audit. Most carriers that receive Conditional or Unsatisfactory safety ratings receive them during this period — not because they were operating recklessly, but because they never installed the compliance systems the regulations require.</p>

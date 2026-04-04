@@ -180,7 +180,7 @@ function AutoMethodSubsection() {
       <Link
         to="/standards/auto-method"
         data-testid="auto-method-link"
-        style={{ fontFamily: MONO, fontSize: "0.806rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: GOLD, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem", transition: "color 0.15s" }}
+        style={{ fontFamily: MONO, fontSize: "0.806rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: GOLD, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem", transition: "color 0.15s", minHeight: "44px" }}
         onMouseEnter={e => e.currentTarget.style.color = "#e8a958"}
         onMouseLeave={e => e.currentTarget.style.color = GOLD}
       >

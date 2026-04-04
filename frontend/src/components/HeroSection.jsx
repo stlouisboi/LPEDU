@@ -376,6 +376,7 @@ export default function HeroSection() {
                 color: "rgba(212,144,10,0.75)", textDecoration: "none",
                 letterSpacing: "0.04em",
                 transition: "color 0.2s",
+                display: "inline-flex", alignItems: "center", minHeight: "44px",
               }}
               onMouseEnter={e => { e.currentTarget.style.color = "#D4900A"; }}
               onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.75)"; }}

@@ -196,7 +196,7 @@ export default function CredibilityStrip() {
             <Link
               to="/founder"
               data-testid="credibility-founder-link"
-              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.45)", textDecoration: "none", transition: "color 0.15s", display: "inline-block" }}
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.45)", textDecoration: "none", transition: "color 0.15s", display: "inline-flex", alignItems: "center", minHeight: "44px" }}
               onMouseEnter={e => { e.currentTarget.style.color = GOLD; }}
               onMouseLeave={e => { e.currentTarget.style.color = "rgba(197,160,89,0.45)"; }}
             >

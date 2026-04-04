@@ -42,7 +42,17 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 63: KC Index — LP-WEB-001 Cluster Published + Start Here Strip (Feb 2026)
+### Phase 64: Full UX Audit + Fixes — All Pages All Devices (Feb 2026)
+- Nav links: tap height extended from 25px → 56px (`height: 56px`, `display: flex`, `align-items: center`)
+- Hamburger breakpoint: lowered from 1100px → 767px (tablet 768px now gets full desktop nav)
+- KC category filter chips: `minHeight: 44px` added (both Articles + Briefs tabs)
+- KC Start Here link: `minHeight: 44px` added
+- Inline homepage CTAs (Read the full story, Review LaunchPath Standard, See AUTO breach map): `minHeight: 44px` via `display: inline-flex`
+- Article cluster pages: prose max-width reduced 780px → 720px
+- ThePatternSection body copy: 760px → 720px
+- Article pages (LP-WEB-001 cluster): `className="content-page"` applied to all 7 root divs — fixes dark text invisible on dark navy background
+- Added `.section-prose-text { max-width: 720px }` CSS utility class to index.css
+- All SSR-verified. No horizontal overflow on any page at any breakpoint.
 - All 7 LP-WEB-001 cluster pages added to KC index Articles tab (previously direct-URL-only): P1 DQ File Requirements, P2 New Trucking Authority, P3 FMCSA Safety Rating, P4 Pillar Guide (How to Start), P5 Corrective Action Plan, P6 New Entrant Audit Checklist, P7 DOT Drug & Alcohol
 - Article stats counter updated: 8 → 15 Published articles
 - Pillar page gets a "Pillar Guide" badge in the article list

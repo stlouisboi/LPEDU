@@ -310,6 +310,11 @@ h3 { font-size: var(--text-xl); }
   max-width: 68ch;
 }
 
+/* Homepage + section prose guard — prevents line lengths > 720px at wide viewports */
+.section-prose-text {
+  max-width: 720px;
+}
+
 /* Divider */
 hr.section-divider {
   border: none;

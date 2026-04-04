@@ -36,7 +36,7 @@ export default function DOTDrugAlcoholPost() {
 
       {/* Hero */}
       <div style={{ background: "var(--bg-2)", borderBottom: `3px solid ${gold}`, padding: "5rem 1.5rem 3.5rem" }}>
-        <div style={{ maxWidth: 780, margin: "0 auto" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>← Knowledge Center</Link>
             <span style={{ color: "rgba(13,27,48,0.2)", fontSize: "0.7rem" }}>/</span>
@@ -61,7 +61,7 @@ export default function DOTDrugAlcoholPost() {
       </div>
 
       {/* Body */}
-      <div style={{ maxWidth: 780, margin: "0 auto", padding: "4rem 1.5rem" }}>
+      <div style={{ maxWidth: 720, margin: "0 auto", padding: "4rem 1.5rem" }}>
 
         <h2 style={s.h2}>Who Must Have a DOT Drug and Alcohol Program</h2>
         <p style={s.p}>Every motor carrier employing CDL drivers in safety-sensitive functions is subject to 49 CFR Part 382. Safety-sensitive functions include operating a commercial motor vehicle that requires a CDL — loading and unloading, maintenance, and inspection activities performed immediately before operating are also covered under the definition.</p>

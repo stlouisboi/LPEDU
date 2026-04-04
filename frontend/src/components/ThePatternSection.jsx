@@ -40,19 +40,19 @@ export default function ThePatternSection() {
         </h2>
 
         {/* Body copy */}
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 760 }}>
+        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 720 }}>
           A carrier gets authority. They start moving. The paperwork looks mostly done. The operation feels close enough. Then pressure shows up.
         </p>
 
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 760 }}>
+        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 720 }}>
           A file is incomplete. A required program was never fully installed. A maintenance record is missing. Insurance continuity gets shaky. Nothing looked urgent until it was expensive.
         </p>
 
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 760 }}>
+        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 720 }}>
           Most early failures do not come from one dramatic event. They come from small unguarded gaps that were allowed to stay in place too long. Month 6. Month 9. Month 14. By then the insurance is cancelled. The authority is revoked. The restart costs $40,000.
         </p>
 
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "3rem", maxWidth: 760, fontStyle: "italic" }}>
+        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "3rem", maxWidth: 720, fontStyle: "italic" }}>
           Failure here is structural, not personal. The guard either exists or it doesn't.
         </p>
 

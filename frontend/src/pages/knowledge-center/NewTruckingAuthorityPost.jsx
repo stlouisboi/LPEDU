@@ -45,7 +45,7 @@ export default function NewTruckingAuthorityPost() {
 
       {/* Hero */}
       <div style={{ background: "var(--bg-2)", borderBottom: `3px solid ${gold}`, padding: "5rem 1.5rem 3.5rem" }}>
-        <div style={{ maxWidth: 780, margin: "0 auto" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>← Knowledge Center</Link>
             <span style={{ color: "rgba(13,27,48,0.2)", fontSize: "0.7rem" }}>/</span>
@@ -70,7 +70,7 @@ export default function NewTruckingAuthorityPost() {
       </div>
 
       {/* Body */}
-      <div style={{ maxWidth: 780, margin: "0 auto", padding: "4rem 1.5rem" }}>
+      <div style={{ maxWidth: 720, margin: "0 auto", padding: "4rem 1.5rem" }}>
 
         <h2 style={s.h2}>What Your MC Number Activates — and What It Doesn't</h2>
         <p style={s.p}>Your MC number confirms FMCSA has approved your application for operating authority. That is what it activates. It does not file your insurance. It does not establish your drug and alcohol program. It does not create your driver files. It does not register you for UCR, IFTA, or IRP.</p>

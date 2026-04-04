@@ -60,8 +60,10 @@ export default function Navbar() {
     textDecoration: "none",
     transition: "color 0.2s",
     letterSpacing: "0.01em",
-    borderBottom: isActive(href) ? "1px solid #d4900a" : "1px solid transparent",
-    paddingBottom: "2px",
+    display: "flex",
+    alignItems: "center",
+    height: "56px",
+    borderBottom: isActive(href) ? "2px solid #d4900a" : "2px solid transparent",
     whiteSpace: "nowrap",
   });
 
@@ -322,7 +324,7 @@ export default function Navbar() {
 
       <style dangerouslySetInnerHTML={{__html: `
         .mobile-btn { display: none !important; }
-        @media (max-width: 1100px) {
+        @media (max-width: 767px) {
           .desktop-nav { display: none !important; }
           .mobile-btn { display: flex !important; }
         }

@@ -32,7 +32,7 @@ export default function DQFileRequirementsPost() {
 
       {/* Hero */}
       <div style={{ background: "var(--bg-2)", borderBottom: `3px solid ${gold}`, padding: "5rem 1.5rem 3.5rem" }}>
-        <div style={{ maxWidth: 780, margin: "0 auto" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
             <Link to="/knowledge-center" style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none" }}>← Knowledge Center</Link>
             <span style={{ color: "rgba(13,27,48,0.2)", fontSize: "0.7rem" }}>/</span>
@@ -57,7 +57,7 @@ export default function DQFileRequirementsPost() {
       </div>
 
       {/* Body */}
-      <div style={{ maxWidth: 780, margin: "0 auto", padding: "4rem 1.5rem" }}>
+      <div style={{ maxWidth: 720, margin: "0 auto", padding: "4rem 1.5rem" }}>
 
         <h2 style={s.h2}>What Is a Driver Qualification File</h2>
         <p style={s.p}>A Driver Qualification File — commonly called a DQ file — is the compliance record FMCSA requires you to maintain for every CDL driver you employ. The requirement is established under 49 CFR Part 391. It applies to every motor carrier with CDL drivers operating in interstate commerce, regardless of fleet size. One truck, one driver: you need a DQ file. Ten trucks, ten drivers: you need ten DQ files.</p>
