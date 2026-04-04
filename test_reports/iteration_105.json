@@ -1,0 +1,95 @@
+{
+  "summary": "Comprehensive UX audit across 375px / 768px / 1280px / 1920px viewports. Tested: homepage, /knowledge-center, /program, /compliance-library, article pages, /doctrine, /founder, /products/dq-file-builder. No horizontal overflow on any page. Content-page class (light background) confirmed on all article pages. Three known UX issues confirmed and measured precisely.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Navbar — desktop nav links",
+        "issue": "All nav text links (LaunchPath Standard, Compliance Library, Knowledge Center, Tools, About) have hit-area height of only 25px — well below 44px WCAG minimum. Links are rendered as <a> elements with fontSize=13px, paddingBottom=2px, no paddingTop. The navbar container is 56px tall but the clickable zone is ~25px. Only the Portal button meets 44px (45px). Fix: add paddingTop+paddingBottom to each link so the hit area is ≥44px (e.g., padding: 9.5px 0).",
+        "selector": ".desktop-nav a",
+        "priority": "HIGH",
+        "affected_viewports": ["1280px", "1920px"],
+        "measured_height": "25px (need ≥44px)"
+      },
+      {
+        "component": "Navbar — tablet breakpoint (768px)",
+        "issue": "Hamburger menu is shown at 768px (breakpoint is 1100px). Industry standard is full horizontal nav at ≥768px. Confirmed known pending issue — desktop nav hidden at 768px, user gets hamburger drawer instead of inline nav. Fix: lower breakpoint from 1100px to 768px (or 800px) in Navbar.jsx CSS block.",
+        "selector": "@media (max-width: 1100px)",
+        "priority": "MEDIUM",
+        "affected_viewports": ["768px"]
+      },
+      {
+        "component": "Knowledge Center — tab bar filters + Start Here strip",
+        "issue": "Tab bar category buttons ('All', 'New Entrant Program7' etc.) are 32–34px tall on mobile/tablet — below 44px. Start Here strip CTA link is 29–31px. Fix: increase min-height to 44px on tab buttons and the Start Here link.",
+        "selector": "KC tab buttons, Start Here link",
+        "priority": "MEDIUM",
+        "affected_viewports": ["375px", "768px"]
+      },
+      {
+        "component": "Homepage — inline text CTAs",
+        "issue": "Several inline anchor links on the homepage have very small hit areas: 'Review the full LaunchPath Standard' (16px h), 'Read the full story →' (20–22px h), 'See the AUTO breach map →' (25px h). These are plain text links with no padding. Fix: add display:inline-block with paddingTop/paddingBottom ≥10px, or wrap in a pill button.",
+        "selector": "Homepage inline <a> text links",
+        "priority": "MEDIUM",
+        "affected_viewports": ["375px", "768px", "1280px"]
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "CTAButton on /program hydration",
+        "issue": "React hydration prop mismatch warning in CTAButton (SharedComponents.jsx:301). Server-rendered style differs from client-rendered style due to property ordering. Non-fatal (no visible crash), but causes hydration warning in console on /program and /knowledge-center.",
+        "affected_selectors": ["CTAButton in LaunchPathSalesPage"]
+      }
+    ],
+    "design_issues": [
+      {
+        "screen": "All pages — wide (1920px)",
+        "issues": [
+          "Body copy paragraphs on homepage are wider than 750px (measured 760–860px). The CSS rule '.prose, .article-body, .content-body { max-width: 68ch }' exists but most homepage section paragraphs are not wrapped in these classes. Need to apply max-width to body paragraphs in HomePage.jsx sections."
+        ]
+      },
+      {
+        "screen": "Article pages — wide (1920px)",
+        "issues": [
+          "Article body paragraphs measure 780px wide — slightly above the ~750px guideline. The content-page .article-body p rule sets max-width: 68ch but the containing column appears to be slightly wider than 68ch at 21px base font. Consider reducing article container to max-width: 720px or ensuring the 68ch applies correctly."
+        ]
+      },
+      {
+        "screen": "Mobile KC index",
+        "issues": [
+          "KC index page shows 'Operational Library' heading with dark text on dark navy hero — the hero section does not have the .content-page override applied (hero shows as dark navy rgb(0,34,68)). The article pages themselves use content-page correctly. KC index hero may need the same data-testid='kc-hero' treatment."
+        ]
+      }
+    ]
+  },
+  "confirmed_passing": [
+    "No horizontal overflow on any page at 375px, 768px, 1280px, 1920px",
+    "Article pages (how-to-start, dq-file-requirements, corrective-action) all have content-page class → warm ivory background (#F6F3EE) with dark navy text — readability GOOD",
+    "Mobile hamburger menu displays correctly at ≤1100px; menu items have adequate touch targets (~44px row height in drawer)",
+    "Portal button in desktop nav meets 44px (45px measured)",
+    "Doctrine/Founder pages render dark navy background consistently — no overflow"
+  ],
+  "test_report_links": [],
+  "action_items": [
+    "HIGH: Fix desktop nav link tap targets — add paddingTop: ~9px to .desktop-nav a and .desktop-nav span so hit area reaches 44px (currently 25px)",
+    "MEDIUM: Lower Navbar.jsx hamburger breakpoint from 1100px to 768px so tablet gets full nav",
+    "MEDIUM: Add min-height: 44px to KC tab filter buttons and Start Here link",
+    "MEDIUM: Add paddingTop/paddingBottom to inline homepage text-links (Read the full story, Review LaunchPath Standard, See AUTO breach map) to reach 44px tap targets",
+    "MEDIUM: Wrap homepage section body paragraphs with max-width: 750px (or 68ch) container — currently 760–860px on wide screens",
+    "LOW: Fix React hydration warning in CTAButton (SharedComponents.jsx:301) — normalize style property ordering between server and client render",
+    "LOW: Check KC index hero section (currently dark navy) — ensure Start Here strip light-cream treatment is visible on mobile"
+  ],
+  "critical_code_review_comments": [
+    "Navbar.jsx line 98: navbar height is 56px but link padding is only paddingBottom:2px → actual clickable area = ~25px, not 56px. Links need explicit vertical padding to meet WCAG 2.5.5 (44px). Simple fix: add padding: '11px 0' to linkStyle() function.",
+    "Navbar.jsx line 323–329: breakpoint `max-width: 1100px` hides desktop nav — this is unusually high; standard tablet navigation at 768px+ should show full nav. Change to 767px.",
+    "index.css line 309: .content-page .article-body p { max-width: 68ch } — this only targets paragraphs inside .article-body. HomePage sections use custom inline styles. Need a global prose constraint for homepage body copy.",
+    "SharedComponents.jsx:301 CTAButton: inline style object property ordering differs between SSR/CSR — causes hydration mismatch. Move styles to a CSS class or use useMemo."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "85%"},
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "UX audit done for all major public pages at 375/768/1280/1920px. Main outstanding issues: (1) Nav links 25px tap height vs 44px required — fix in linkStyle() in Navbar.jsx. (2) Tablet hamburger shows at 768px due to 1100px breakpoint. (3) Homepage body copy >750px on 1920px. (4) KC tab bar + Start Here link < 44px. Article pages now correctly use light background (content-page class). No horizontal overflow anywhere. No critical crashes."
+}
