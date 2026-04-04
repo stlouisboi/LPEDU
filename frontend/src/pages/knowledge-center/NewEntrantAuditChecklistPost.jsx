@@ -34,7 +34,7 @@ export const FAQ = [
 
 export default function NewEntrantAuditChecklistPost() {
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Navbar />
 
       {/* Hero */}
