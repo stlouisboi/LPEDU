@@ -393,30 +393,28 @@ export default function KnowledgeCenterIndex() {
 
       {/* ── START HERE STRIP ── */}
       <section data-testid="kc-start-here" style={{
-        background: "var(--text)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        padding: "2rem 1.5rem",
+        background: "#F9F7F3",
+        borderTop: "1px solid rgba(13,27,48,0.08)",
+        borderBottom: "1px solid rgba(13,27,48,0.08)",
+        borderLeft: "4px solid var(--orange)",
+        padding: "1.75rem 1.5rem",
       }}>
         <div style={{
           maxWidth: 860, margin: "0 auto",
-          display: "grid", gridTemplateColumns: "auto 1fr auto", gap: "1.5rem 2rem", alignItems: "center",
+          display: "grid", gridTemplateColumns: "1fr auto", gap: "1.5rem 2.5rem", alignItems: "center",
         }} className="start-here-grid">
-          {/* Gold dot indicator */}
-          <div style={{
-            width: 10, height: 10, borderRadius: "50%", background: "var(--orange)", flexShrink: 0,
-          }} />
           {/* Text */}
           <div>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "rgba(212,144,10,0.75)", marginBottom: "0.35rem",
-            }}>If you are new to this library</p>
+              color: "var(--orange)", marginBottom: "0.35rem",
+            }}>New to this library?</p>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(238,243,248,0.80)",
+              fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(13,27,48,0.75)",
               lineHeight: 1.65, margin: 0,
             }}>
-              Start with the pillar guide. It covers the full startup sequence — from business formation to first dispatch — before you read anything else.
+              Start with the pillar guide — the full startup sequence from formation to first dispatch, before you read anything else.
             </p>
           </div>
           {/* CTA */}
@@ -428,10 +426,10 @@ export default function KnowledgeCenterIndex() {
               letterSpacing: "0.08em", textTransform: "uppercase",
               color: "var(--orange)", textDecoration: "none", whiteSpace: "nowrap",
               borderBottom: "1px solid rgba(212,144,10,0.35)", paddingBottom: "2px",
-              flexShrink: 0, transition: "border-color 0.15s, color 0.15s",
+              flexShrink: 0, transition: "border-color 0.15s",
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.9)"; e.currentTarget.style.color = "#f0b429"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.35)"; e.currentTarget.style.color = "var(--orange)"; }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.9)"}
+            onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.35)"}
           >
             Start Here &#8594;
           </a>
@@ -790,7 +788,7 @@ export default function KnowledgeCenterIndex() {
       <FooterSection />
 
       <style dangerouslySetInnerHTML={{__html: `
-        @media (max-width: 640px) { .kc-bottom-grid { grid-template-columns: 1fr !important; } .bundle-grid { grid-template-columns: 1fr !important; } .start-here-grid { grid-template-columns: auto 1fr !important; } .start-here-grid > a { grid-column: 1 / -1; margin-top: -0.5rem; } }
+        @media (max-width: 640px) { .kc-bottom-grid { grid-template-columns: 1fr !important; } .bundle-grid { grid-template-columns: 1fr !important; } .start-here-grid { grid-template-columns: 1fr !important; } }
         @media (max-width: 700px) {
           .timeline-desktop { flex-direction: column !important; align-items: flex-start !important; gap: 0 !important; }
           .timeline-desktop > a { flex-direction: row !important; align-items: center !important; gap: 1rem !important; padding: 0.75rem 0 !important; width: 100% !important; flex: none !important; border-bottom: 1px solid var(--border) !important; }
