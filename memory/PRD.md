@@ -304,6 +304,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - ~~Build Verified Registry ID generation logic (auto-generate VRF ID at 90-day program completion)~~ DONE (Feb 2026) — VRF auto-issues when core modules 1-6 complete; module-7 required if module-6 conditional
 
 ### P2 — Medium Priority
+- ~~LP-WEB-001 7-page cluster added to KC index~~ DONE — All 7 pages (P1–P7) now appear in the Articles tab of /knowledge-center. Stat counter updated to "15 Published articles". Pillar page badge applied.
 - ~~Custom branded og:image~~ DONE — og-launchpath.png (sitewide) + og-program.png (/program specific)
 - ~~Dynamic payment methods~~ DONE — removed payment_method_types restriction; Apple Pay / Google Pay / Affirm now controlled via Stripe Dashboard
 - ~~ThankYouPage download button timing~~ DONE — background self-heal polling; download button appears within ~5s; email fallback after 60s

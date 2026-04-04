@@ -4,6 +4,72 @@ import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 
 const POSTS = [
+  // ── LP-WEB-001 Cluster — 7-Page SEO Content Series ──
+  {
+    slug: "/knowledge-center/how-to-start-a-trucking-company",
+    code: "LP-WEB-001 P4",
+    category: "New Entrant Program",
+    title: "How to Start a Trucking Company Without Getting Shut Down in Year One",
+    teaser: "Most new trucking companies that fail their first FMCSA compliance audit do not fail because they were reckless. They fail because they did not know what the system requires. This guide covers the full startup sequence — from business formation to first dispatch — organized around what FMCSA actually requires, not what the freight industry assumes.",
+    readTime: "~12 min",
+    cfr: "49 CFR Parts 387, 391, 382, 385",
+    badge: "Pillar Guide",
+  },
+  {
+    slug: "/knowledge-center/driver-qualification-file-requirements-fmcsa",
+    code: "LP-WEB-001 P1",
+    category: "New Entrant Program",
+    title: "What FMCSA Requires in Every Driver Qualification File",
+    teaser: "A Driver Qualification File is the legally mandated documentation package required for every CDL driver you operate. 49 CFR Part 391 specifies what belongs in the file, when each document must be collected, and how long it must be retained. An incomplete file is treated the same as no file at an FMCSA new entrant audit.",
+    readTime: "~9 min",
+    cfr: "49 CFR Part 391",
+  },
+  {
+    slug: "/knowledge-center/new-trucking-authority-first-steps",
+    code: "LP-WEB-001 P2",
+    category: "Authority Registration",
+    title: "You Have Your MC Number. Here Is What Happens Next.",
+    teaser: "Your MC number is active — that means authority is granted, not that you can move a load. Before the first dispatch, federal law requires insurance to be filed and active in SAFER, a drug and alcohol testing program to be in place, and a complete Driver Qualification File for every driver. Here is the pre-operation compliance sequence most carriers skip.",
+    readTime: "~9 min",
+    cfr: "49 CFR Parts 387, 391, 382",
+  },
+  {
+    slug: "/knowledge-center/fmcsa-safety-rating-explained",
+    code: "LP-WEB-001 P3",
+    category: "New Entrant Program",
+    title: "What Your FMCSA Safety Rating Means and How It Gets Assigned",
+    teaser: "FMCSA assigns one of three safety ratings: Satisfactory, Conditional, or Unsatisfactory. Each reflects what auditors found — not your driving record or accident count. A Conditional rating is visible in SAFER immediately and can affect broker relationships, insurance premiums, and your ability to continue hauling freight within 45 days.",
+    readTime: "~8 min",
+    cfr: "49 CFR Part 385",
+  },
+  {
+    slug: "/knowledge-center/corrective-action-plan-fmcsa",
+    code: "LP-WEB-001 P5",
+    category: "New Entrant Program",
+    title: "What a Corrective Action Plan Is and How to Build One After an FMCSA Audit",
+    teaser: "When FMCSA finds deficiencies in a new entrant safety audit, the carrier has 45 calendar days to submit a Corrective Action Plan documenting what was missing, why, and what corrective action has been taken. Miss the window and the outcome escalates automatically to Unsatisfactory — initiating authority revocation proceedings within 60 days.",
+    readTime: "~9 min",
+    cfr: "49 CFR Part 385",
+  },
+  {
+    slug: "/knowledge-center/new-entrant-safety-audit-checklist",
+    code: "LP-WEB-001 P6",
+    category: "New Entrant Program",
+    title: "What FMCSA Checks in a New Entrant Safety Audit",
+    teaser: "Every new interstate motor carrier receives a mandatory safety audit within 12 months of receiving operating authority. FMCSA reviews six compliance areas. In each area, auditors look for specific documents — a missing document is a documented deficiency. This page covers exactly what FMCSA reviews and what you must have ready before the auditor arrives.",
+    readTime: "~10 min",
+    cfr: "49 CFR Parts 391, 382, 395, 396, 387, 385",
+  },
+  {
+    slug: "/knowledge-center/dot-drug-alcohol-program-requirements",
+    code: "LP-WEB-001 P7",
+    category: "Drug & Alcohol Program",
+    title: "What FMCSA Requires for Your DOT Drug and Alcohol Program",
+    teaser: "49 CFR Part 382 requires every motor carrier employing CDL drivers to have a drug and alcohol testing program in place before the first driver operates. Not within 30 days — before dispatch. This page covers the six types of required testing, consortium enrollment, FMCSA Clearinghouse registration, and the documentation that survives an audit.",
+    readTime: "~9 min",
+    cfr: "49 CFR Part 382",
+  },
+  // ── LP-BRF-POST Series — Published Articles ──
   {
     slug: "/knowledge-center/failed-fmcsa-new-entrant-audit",
     code: "LP-BRF-POST-01",
@@ -301,7 +367,7 @@ export default function KnowledgeCenterIndex() {
           <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
             {[
               ["11", "Briefs published"],
-              ["8", "Published articles"],
+              ["15", "Published articles"],
               ["49 CFR", "Primary regulation source"],
             ].map(([val, label]) => (
               <div key={val}>
@@ -473,6 +539,9 @@ export default function KnowledgeCenterIndex() {
                         <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
                           <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)" }}>{post.code}</span>
                           <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.45)" }}>{post.category}</span>
+                          {post.badge && (
+                            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0b1628", background: "rgba(212,144,10,0.12)", border: "1px solid rgba(212,144,10,0.3)", padding: "0.15rem 0.5rem" }}>{post.badge}</span>
+                          )}
                         </div>
                         <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "var(--text)", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
                         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{post.teaser}</p>
