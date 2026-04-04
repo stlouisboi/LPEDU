@@ -11,10 +11,12 @@ const SANS = "'Inter',sans-serif";
 const SEQ_LABELS = {
   reach_correction: "WAIT / NO-GO Correction",
   sins_nurture: "16 Sins Lead Nurture",
+  pre_op_checklist: "Pre-Op Checklist Welcome",
 };
 const SEQ_COLORS = {
   reach_correction: "#C0392B",
   sins_nurture: GOLD,
+  pre_op_checklist: "#4A90B8",
 };
 
 export default function AdminSequencesPage() {
@@ -67,7 +69,7 @@ export default function AdminSequencesPage() {
               Drip Sequences
             </h1>
             <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.40)", margin: 0 }}>
-              Flow 4: WAIT/NO-GO Correction &nbsp;·&nbsp; Flow 5: 16 Deadly Sins Nurture
+              Flow 4: WAIT/NO-GO Correction &nbsp;·&nbsp; Flow 5: 16 Deadly Sins Nurture &nbsp;·&nbsp; Flow 6: Pre-Op Checklist
             </p>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -99,6 +101,7 @@ export default function AdminSequencesPage() {
             { label: "Completed", value: stats.completed ?? "—" },
             { label: "Flow 4 (Correction)", value: stats.reach_correction ?? "—", color: "#C0392B" },
             { label: "Flow 5 (Nurture)", value: stats.sins_nurture ?? "—", color: GOLD },
+            { label: "Flow 6 (Pre-Op)", value: stats.pre_op_checklist ?? "—", color: "#4A90B8" },
           ].map((s, i) => (
             <div key={i} style={{ flex: 1, background: "#0B1525", padding: "1rem 1.25rem" }}>
               <p style={{ fontFamily: MONO, fontSize: "0.555rem", fontWeight: 700, letterSpacing: "0.16em", color: "rgba(197,160,89,0.50)", textTransform: "uppercase", margin: "0 0 0.375rem" }}>{s.label}</p>
@@ -108,10 +111,11 @@ export default function AdminSequencesPage() {
         </div>
 
         {/* Sequence legend */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "2rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "2rem" }}>
           {[
             { type: "reach_correction", flow: "Flow 4", trigger: "REACH WAIT or NO-GO result", steps: "5 emails — Day 0, 2, 5, 9, 14", cta: "Ground 0 → REACH re-entry" },
             { type: "sins_nurture",     flow: "Flow 5", trigger: "16 Deadly Sins checklist opt-in", steps: "5 emails — Day 0, 2, 4, 7, 11", cta: "Doctrine → Ground 0 → REACH" },
+            { type: "pre_op_checklist", flow: "Flow 6", trigger: "Pre-op checklist form submit", steps: "3 emails — Day 0, 3, 7", cta: "Compliance Library → Program" },
           ].map((s, i) => (
             <div key={i} style={{ background: "#0B1525", padding: "1.25rem 1.5rem", borderTop: `2px solid ${SEQ_COLORS[s.type]}` }}>
               <p style={{ fontFamily: MONO, fontSize: "0.555rem", fontWeight: 700, letterSpacing: "0.18em", color: `${SEQ_COLORS[s.type]}80`, textTransform: "uppercase", margin: "0 0 0.375rem" }}>{s.flow}</p>
