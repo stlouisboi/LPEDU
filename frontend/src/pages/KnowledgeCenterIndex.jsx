@@ -146,7 +146,7 @@ const POSTS = [
 
 const BRIEFS_90DAY = [
   {
-    slug: "/knowledge-center/lp-brf-07",
+    slug: "/knowledge-center/first-dispatch-requirements",
     phase: "Day 1 — Authority Activation",
     title: "LP-BRF-07: What Must Be Operational Before Your First Dispatch",
     teaser: "An MC number is not a go signal. Before the first truck moves, three federal filings must be confirmed active, a D&A program must be in place, and driver qualification files must be complete. This brief walks through the Day 1 operating standard — and what it costs when it is skipped.",
@@ -155,7 +155,7 @@ const BRIEFS_90DAY = [
     status: "published",
   },
   {
-    slug: "/knowledge-center/lp-brf-08",
+    slug: "/knowledge-center/new-carrier-90-day-build",
     phase: "Days 1–30 — Installation Window",
     title: "LP-BRF-08: The Documentation Architecture of the Installation Window",
     teaser: "The first 30 days are not a warm-up period. They are the architectural window in which your compliance systems either get built or fail to exist. This brief shows what a complete 30-day file structure looks like — and how gaps here become invisible vulnerabilities by Month 9.",
@@ -164,7 +164,7 @@ const BRIEFS_90DAY = [
     status: "published",
   },
   {
-    slug: "/knowledge-center/lp-brf-09",
+    slug: "/knowledge-center/operating-patterns-compliance-risks",
     phase: "Days 30–60 — Pattern Formation",
     title: "LP-BRF-09: How Operating Patterns Become Audit Evidence",
     teaser: "By Day 60, your logs, DVIRs, dispatch records, and D&A testing activity have formed a pattern. Investigators don't read individual documents — they read patterns. This brief explains what your 60-day record needs to look like, and what common patterns signal to auditors.",
@@ -173,7 +173,7 @@ const BRIEFS_90DAY = [
     status: "published",
   },
   {
-    slug: "/knowledge-center/lp-brf-10",
+    slug: "/knowledge-center/fmcsa-audit-preparation-records",
     phase: "Days 60–90 — Audit Exposure Window",
     title: "LP-BRF-10: Preparation vs. Reconstruction: What Investigators See",
     teaser: "There is a difference between a carrier that built its systems and one attempting to reconstruct them under scrutiny. Investigators can read that difference in the record — in date patterns, form consistency, and the presence or absence of contemporaneous documentation. This brief shows what each looks like.",
@@ -182,7 +182,7 @@ const BRIEFS_90DAY = [
     status: "published",
   },
   {
-    slug: "/knowledge-center/lp-brf-11",
+    slug: "/knowledge-center/fmcsa-new-entrant-review",
     phase: "Months 9–18 — New Entrant Review Period",
     title: "LP-BRF-11: The New Entrant Review Period and What Triggers Scrutiny",
     teaser: "The FMCSA New Entrant Safety Assurance Program examines every new carrier in the 12-month window after authority activates. Not every carrier gets a full audit — but every carrier is monitored. This brief explains what triggers an unannounced audit, what investigators examine, and how the first 90 days determine what they find.",
@@ -737,11 +737,11 @@ export default function KnowledgeCenterIndex() {
                 <div className="timeline-desktop" style={{ position: "relative", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                   <div style={{ position: "absolute", top: 24, left: "10%", right: "10%", height: 1, background: "linear-gradient(90deg, var(--orange) 0%, rgba(176,125,16,0.35) 50%, var(--orange) 100%)", zIndex: 0 }} />
                   {[
-                    { phase: "Day 1", code: "LP-BRF-07", label: "Authority Activation", href: "/knowledge-center/lp-brf-07" },
-                    { phase: "Days 1–30", code: "LP-BRF-08", label: "Installation Window", href: "/knowledge-center/lp-brf-08" },
-                    { phase: "Days 30–60", code: "LP-BRF-09", label: "Pattern Formation", href: "/knowledge-center/lp-brf-09" },
-                    { phase: "Days 60–90", code: "LP-BRF-10", label: "Audit Exposure", href: "/knowledge-center/lp-brf-10" },
-                    { phase: "Months 9–18", code: "LP-BRF-11", label: "Review Period", href: "/knowledge-center/lp-brf-11" },
+                    { phase: "Day 1", code: "LP-BRF-07", label: "Authority Activation", href: "/knowledge-center/first-dispatch-requirements" },
+                    { phase: "Days 1–30", code: "LP-BRF-08", label: "Installation Window", href: "/knowledge-center/new-carrier-90-day-build" },
+                    { phase: "Days 30–60", code: "LP-BRF-09", label: "Pattern Formation", href: "/knowledge-center/operating-patterns-compliance-risks" },
+                    { phase: "Days 60–90", code: "LP-BRF-10", label: "Audit Exposure", href: "/knowledge-center/fmcsa-audit-preparation-records" },
+                    { phase: "Months 9–18", code: "LP-BRF-11", label: "Review Period", href: "/knowledge-center/fmcsa-new-entrant-review" },
                   ].map((node, i) => (
                     <a key={i} href={node.href} style={{ display: "flex", flexDirection: "column", alignItems: "center", textDecoration: "none", zIndex: 1, flex: 1, minWidth: 0, padding: "0 0.25rem" }}
                       data-testid={`timeline-node-${node.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
