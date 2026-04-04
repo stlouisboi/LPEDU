@@ -69,11 +69,10 @@ export const CTAButton = ({ children, primary = true, onClick, style = {}, disab
     style={{
       ...mono,
       fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
-      padding: "16px 32px", border: "none", cursor: disabled ? "not-allowed" : "pointer",
+      padding: "16px 32px",
+      cursor: disabled ? "not-allowed" : "pointer",
       minHeight: 48,
-      background: primary
-        ? (disabled ? T.goldDim : T.gold)
-        : "transparent",
+      background: primary ? (disabled ? T.goldDim : T.gold) : "transparent",
       color: primary ? T.navy : T.goldText,
       border: primary ? "none" : `1px solid ${T.goldDim}`,
       opacity: disabled ? 0.7 : 1,
