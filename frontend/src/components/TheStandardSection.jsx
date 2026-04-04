@@ -448,7 +448,13 @@ export default function TheStandardSection() {
         position: "relative",
       }}
     >
-      <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      {/* Monitoring sweep line — simulates live system scan */}
+      <div
+        className="bp-sweep-line"
+        style={{ "--sweep-height": "700px" }}
+        aria-hidden="true"
+      />
+      <div style={{ maxWidth: 1000, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         {/* Compliance Hierarchy Header */}
         <ComplianceHierarchyHeader />

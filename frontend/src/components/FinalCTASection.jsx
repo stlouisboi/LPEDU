@@ -30,6 +30,8 @@ export default function FinalCTASection() {
         backgroundImage: "linear-gradient(rgba(197,160,89,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.045) 1px, transparent 1px)",
         backgroundSize: "52px 52px",
       }} />
+      {/* Monitoring sweep — staggered 2s offset */}
+      <div className="bp-sweep-line bp-sweep-line-delayed" style={{ "--sweep-height": "500px" }} aria-hidden="true" />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
 
