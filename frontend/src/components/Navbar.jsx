@@ -2,7 +2,7 @@ import { Link } from '../compat/Link';
 import { usePathname } from 'next/navigation';
 ;
 import { useState, useEffect, useRef } from "react";
-import { List, X, LockSimple } from "@phosphor-icons/react";
+import { List, X, LockSimple, CaretDown } from "@phosphor-icons/react";
 
 /* One-time page-load initialization scan */
 function InitScan() {
@@ -15,7 +15,16 @@ const FRAMEWORK_LINKS = [
   { label: "LaunchPath Standard", href: "/program" },
   { label: "Compliance Library", href: "/compliance-library" },
   { label: "Knowledge Center", href: "/knowledge-center" },
-  { label: "Tools", href: "/tools" },
+  {
+    label: "Tools",
+    href: "/tools",
+    subItems: [
+      { label: "TCO Calculator", sub: "True cost-per-mile & break-even rate", href: "/tools/tco-calculator", badge: "FREE" },
+      { label: "Load Profitability Analyzer", sub: "GO / NEGOTIATE / DECLINE on every load offer", href: "/tools/load-analyzer", badge: "FREE ACCOUNT" },
+      { label: "Compliance Gap Audit", sub: "16-category FMCSA exposure map", href: "/compliance-gap-quiz", badge: "FREE" },
+      { label: "Compliance Health Check", sub: "REACH score + 7-day action plan", href: "/control-room", badge: "FREE" },
+    ],
+  },
 ];
 
 const ACCESS_LINKS = [
@@ -76,6 +85,17 @@ export default function Navbar() {
     padding: "0.375rem 0",
   };
 
+  // Rich panel for tools dropdown (wider, card-style items)
+  const toolsDropdownPanel = {
+    position: "absolute", top: "calc(100% + 4px)", left: 0,
+    background: "#060e1a",
+    border: "1px solid rgba(212,144,10,0.20)",
+    borderTop: "2px solid #d4900a",
+    boxShadow: "0 12px 40px rgba(0,0,0,0.65)",
+    width: 320, zIndex: 300,
+    padding: "0.5rem 0",
+  };
+
   const dropdownItem = (href) => ({
     display: "block", padding: "0.6rem 1.1rem",
     fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 400,
@@ -131,22 +151,64 @@ export default function Navbar() {
                     color: (isActive(l.href) || openDropdown === l.label) ? "#FFFFFF" : "rgba(255,255,255,0.70)",
                   }}>
                     {l.label}
-                    <CaretDown size={10} style={{ opacity: 0.6 }} />
+                    <CaretDown size={10} style={{ opacity: 0.6, transition: "transform 0.15s", transform: openDropdown === l.label ? "rotate(180deg)" : "rotate(0deg)" }} />
                   </span>
                   {openDropdown === l.label && (
-                    <div style={dropdownPanel}
+                    <div
+                      style={l.label === "Tools" ? toolsDropdownPanel : dropdownPanel}
                       onMouseEnter={() => openMenu(l.label)}
                       onMouseLeave={closeMenu}
                     >
-                      {l.subItems.map(sub => (
-                        <Link key={sub.href} to={sub.href}
-                          style={dropdownItem(sub.href)}
-                          onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#d4900a"; }}
-                          onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#d4900a" : "transparent"; }}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
+                      {l.label === "Tools" ? (
+                        <>
+                          <div style={{ padding: "0.5rem 1rem 0.375rem", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", margin: 0 }}>
+                              OPERATOR TOOLS
+                            </p>
+                          </div>
+                          {l.subItems.map(sub => (
+                            <Link
+                              key={sub.href} to={sub.href}
+                              data-testid={`nav-tool-${sub.href.split("/").pop()}`}
+                              style={{ display: "block", padding: "0.75rem 1rem", textDecoration: "none", borderLeft: isActive(sub.href) ? "2px solid #d4900a" : "2px solid transparent", transition: "all 0.15s", background: isActive(sub.href) ? "rgba(212,144,10,0.06)" : "transparent" }}
+                              onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.borderLeftColor = "#d4900a"; }}
+                              onMouseLeave={e => { e.currentTarget.style.background = isActive(sub.href) ? "rgba(212,144,10,0.06)" : "transparent"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#d4900a" : "transparent"; }}
+                            >
+                              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.2rem" }}>
+                                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: "#FFFFFF", lineHeight: 1.3 }}>
+                                  {sub.label}
+                                </span>
+                                {sub.badge && (
+                                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#22c55e", background: "rgba(34,197,94,0.10)", border: "1px solid rgba(34,197,94,0.25)", padding: "0.1rem 0.4rem", flexShrink: 0 }}>
+                                    {sub.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", margin: 0, lineHeight: 1.4 }}>
+                                {sub.sub}
+                              </p>
+                            </Link>
+                          ))}
+                          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "0.5rem 1rem" }}>
+                            <Link to="/tools" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(212,144,10,0.65)", textDecoration: "none", letterSpacing: "0.08em" }}
+                              onMouseEnter={e => e.currentTarget.style.color = "#d4900a"}
+                              onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.65)"}
+                            >
+                              View all tools →
+                            </Link>
+                          </div>
+                        </>
+                      ) : (
+                        l.subItems.map(sub => (
+                          <Link key={sub.href} to={sub.href}
+                            style={dropdownItem(sub.href)}
+                            onMouseEnter={e => { e.currentTarget.style.color = "#FFFFFF"; e.currentTarget.style.borderLeftColor = "#d4900a"; }}
+                            onMouseLeave={e => { e.currentTarget.style.color = isActive(sub.href) ? "#FFFFFF" : "rgba(255,255,255,0.68)"; e.currentTarget.style.borderLeftColor = isActive(sub.href) ? "#d4900a" : "transparent"; }}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))
+                      )}
                     </div>
                   )}
                 </div>
@@ -275,9 +337,16 @@ export default function Navbar() {
                     color: isActive(sub.href) ? "#d4900a" : "rgba(255,255,255,0.5)",
                     textDecoration: "none", padding: "0.5rem 0 0.5rem 1.25rem",
                     borderBottom: "1px solid rgba(255,255,255,0.04)",
-                    display: "block",
+                    display: "flex", alignItems: "center", gap: "0.5rem",
                   }}
-                >— {sub.label}</Link>
+                >
+                  <span>— {sub.label}</span>
+                  {sub.badge && (
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#22c55e", background: "rgba(34,197,94,0.10)", border: "1px solid rgba(34,197,94,0.22)", padding: "0.1rem 0.35rem" }}>
+                      {sub.badge}
+                    </span>
+                  )}
+                </Link>
               ))}
             </div>
           ))}

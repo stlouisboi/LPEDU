@@ -42,7 +42,11 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 66: Modular Refactor of Large Frontend Files (Apr 2026)
+### Phase 67: Navbar Tools Dropdown (Apr 2026)
+- Added rich hover dropdown to the "Tools" navbar link showing all 4 operator tools with name, description, and FREE badge
+- Desktop: gold-accented dropdown panel (320px wide) with "OPERATOR TOOLS" header + "View all tools →" footer
+- Mobile: sub-items with badge chips
+- CaretDown icon added (rotates on open)
 - **Ground0LessonPlayer.jsx**: 1609 → 288 lines. Extracted 7 sub-components into `src/components/ground0/` (OverviewView, LessonView, ReachRedirectView, GapTracker, CompleteView, Lesson07View, AuthGateModal) and data into `src/data/ground0Data.js` (LESSONS, COMPLETION_DATA, REACH_PILLARS, computeReachStatus, L07_MODULES)
 - **PortalPage.jsx**: 1482 → 946 lines. Extracted 5 portal UI components into `src/components/portal/` (PortalHeader, PortalSidebar, LockedModuleView+EnrollCTA, ModuleOverviewCard, DeliverablesPortal) and data into `src/data/portalData.js` (CURRICULUM, MODULE_OVERVIEWS)
 - **REACHAssessmentPage.jsx**: 1301 → 888 lines. Extracted 3 sub-components into `src/components/reach/` (CategoryBreakdown, ResultCTAs, RiskMap) and all data/config into `src/data/reachData.js`
