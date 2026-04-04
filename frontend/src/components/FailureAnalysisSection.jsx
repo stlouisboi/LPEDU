@@ -43,6 +43,17 @@ export default function FailureAnalysisSection() {
           boxShadow: "inset 0 3px 20px rgba(139,0,0,0.18), inset 0 -3px 20px rgba(139,0,0,0.18)",
         }}
       >
+        {/* Blueprint grid + scan-line atmospheric overlay */}
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+          backgroundImage: "linear-gradient(rgba(192,57,43,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(192,57,43,0.04) 1px, transparent 1px)",
+          backgroundSize: "52px 52px",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 4px)",
+        }} />
+
         {/* Corner HUD brackets */}
         {[{top:0,left:0},{top:0,right:0},{bottom:0,left:0},{bottom:0,right:0}].map((pos,i) => (
           <div key={i} style={{

@@ -42,7 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 64: Full UX Audit + Fixes — All Pages All Devices (Feb 2026)
+### Phase 65: Homepage Blueprint Grid + Scan-Line Upgrade + Task A Verified (Feb 2026)
+- **Blueprint line grid** (48–52px, gold 4–4.5% opacity) applied to TheStandardSection, ThePatternSection, FailureAnalysisSection, FinalCTASection — replaces old 24px dot grid on TheStandardSection
+- **CRT scan-line overlay** (4px repeat, black 6–7% opacity) added to ThePatternSection + FailureAnalysisSection; FailureAnalysisSection uses red-tinted grid lines matching threat aesthetic
+- All 4 sections use `position:absolute` overlay divs at `zIndex:0` with inner content at `zIndex:1` — no layout breakage
+- SSR verified: 48px 48px, 52px 52px ×3, repeating-linear ×2 all confirmed
+- **Task A (Lesson 0.7 GO-path email capture)**: Already complete from prior session — `POST /api/go-email-capture` returns `{"ok":true}` confirmed live
 - Nav links: tap height extended from 25px → 56px (`height: 56px`, `display: flex`, `align-items: center`)
 - Hamburger breakpoint: lowered from 1100px → 767px (tablet 768px now gets full desktop nav)
 - KC category filter chips: `minHeight: 44px` added (both Articles + Briefs tabs)

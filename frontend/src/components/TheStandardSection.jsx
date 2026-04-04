@@ -443,8 +443,8 @@ export default function TheStandardSection() {
         borderTop: "1px solid rgba(200,147,63,0.15)",
         borderBottom: "1px solid rgba(200,147,63,0.15)",
         padding: "6rem 1.5rem",
-        backgroundImage: `radial-gradient(rgba(200,147,63,0.07) 1px, transparent 1px)`,
-        backgroundSize: "24px 24px",
+        backgroundImage: `linear-gradient(rgba(200,147,63,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(200,147,63,0.045) 1px, transparent 1px)`,
+        backgroundSize: "48px 48px",
         position: "relative",
       }}
     >

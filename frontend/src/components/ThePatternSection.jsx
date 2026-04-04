@@ -16,15 +16,28 @@ export default function ThePatternSection() {
       id="the-pattern"
       data-testid="the-pattern-section"
       style={{
+        position: "relative",
         background: `linear-gradient(rgba(8,13,24,0.85) 0%, rgba(8,13,24,0.90) 100%), url("${OWNER_WHEEL_BG}") center 30%/cover no-repeat`,
         borderTop: "1px solid rgba(200,147,63,0.15)",
         borderBottom: "1px solid rgba(200,147,63,0.15)",
         padding: "6rem 1.5rem",
+        overflow: "hidden",
         boxShadow: "inset 0 6px 24px rgba(0,0,0,0.70), inset 0 -6px 24px rgba(0,0,0,0.70)",
       }}
     >
+      {/* Blueprint line grid */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+        backgroundImage: "linear-gradient(rgba(197,160,89,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.04) 1px, transparent 1px)",
+        backgroundSize: "52px 52px",
+      }} />
+      {/* CRT scan-line overlay */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+        backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)",
+      }} />
       {/* Corner screws — recessed panel aesthetic */}
-      <div style={{ position: "relative", maxWidth: 860, margin: "0 auto" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 860, margin: "0 auto" }}>
         {[{top:0,left:0},{top:0,right:0}].map((pos,i) => (
           <div key={i} style={{ position: "absolute", width: 8, height: 8, borderRadius: "50%", background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.18), #3a3a3a 60%, #1a1a1a)", boxShadow: "inset 0 1px 2px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.06)", ...pos, marginTop: "-1.5rem" }} />
         ))}
