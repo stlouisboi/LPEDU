@@ -8,22 +8,51 @@ const DESC  = "Install the federal compliance infrastructure FMCSA expects to fi
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "LaunchPath Transportation EDU",
-  "url": SITE,
-  "description": DESC,
-  "publisher": {
-    "@type": "Organization",
-    "name": "LaunchPath Transportation EDU",
-    "url": SITE,
-    "logo": { "@type": "ImageObject", "url": OG },
-    "founder": { "@type": "Person", "name": "Vince Lawrence", "url": `${SITE}/founder` }
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": `${SITE}/knowledge-center?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      "name": "LaunchPath Transportation EDU",
+      "url": SITE,
+      "description": DESC,
+      "publisher": { "@id": `${SITE}/#organization` },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${SITE}/knowledge-center?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "EducationalOrganization",
+      "@id": `${SITE}/#organization`,
+      "name": "LaunchPath Transportation EDU",
+      "url": SITE,
+      "description": "LaunchPath installs the federal compliance infrastructure FMCSA expects to find in new motor carrier operations. 90-day structured build. 5 verified checkpoints. Verified Registry ID at completion.",
+      "logo": { "@type": "ImageObject", "url": OG },
+      "founder": {
+        "@type": "Person",
+        "name": "Vince Lawrence",
+        "url": `${SITE}/founder`,
+        "jobTitle": "Station Custodian",
+        "description": "U.S. Navy Veteran. OSHA Certified. 20+ years manufacturing operations management."
+      },
+      "educationalCredentialAwarded": "Verified Registry ID — LP-VRF",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "LaunchPath 90-Day Compliance System",
+        "itemListElement": [
+          {
+            "@type": "Course",
+            "name": "LaunchPath 90-Day Compliance System",
+            "description": "Structured 90-day installation of federal motor carrier compliance infrastructure: authority protection, insurance continuity, compliance backbone, and cash-flow controls.",
+            "provider": { "@id": `${SITE}/#organization` },
+            "url": `${SITE}/program`
+          }
+        ]
+      },
+      "sameAs": []
+    }
+  ]
 };
 
 export default function Page() {
