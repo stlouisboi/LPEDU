@@ -5,7 +5,7 @@ const SERIF   = "'Newsreader', 'Playfair Display', serif";
 const SANS    = "'Inter', sans-serif";
 const GOLD    = "#C5A059";
 const NAVY    = "#002244";
-const PHOTO   = "https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d";
+const PHOTO   = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png";
 
 export default function CredibilityStrip() {
   return (

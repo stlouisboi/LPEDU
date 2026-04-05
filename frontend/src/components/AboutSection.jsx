@@ -94,16 +94,16 @@ export default function AboutSection() {
               boxShadow: "0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,144,10,0.15)",
             }}>
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vincent.png?alt=media&token=bcffcecc-bbf8-41b2-98fe-29da3788a23d"
+                src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
                 alt="Vince Lawrence"
-                width={864}
-                height={1184}
+                width={1080}
+                height={1080}
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
                   objectPosition: "top center",
-                  filter: "contrast(1.07) brightness(0.93) saturate(0.88)",
+                  filter: "contrast(1.05) brightness(0.95) saturate(0.92)",
                   display: "block",
                 }}
               />
