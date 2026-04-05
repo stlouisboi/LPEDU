@@ -139,7 +139,7 @@ export default function AboutPage() {
           <div style={{ animation: "heroEnter 0.65s ease both", animationDelay: "0.15s" }}>
             <div style={{ position: "relative", overflow: "hidden" }}>
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Vince_founder.png?alt=media&token=b5ea75d9-5252-4ac3-af5c-282eec053e7d"
+                src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
                 alt="Vince Lawrence"
                 style={{ width: "100%", height: 480, objectFit: "cover", objectPosition: "top center", display: "block" }}
               />

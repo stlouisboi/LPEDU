@@ -124,7 +124,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" style={{ textDecoration: "none", flexShrink: 0 }}>
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/lpedu-d9bb2.firebasestorage.app/o/Downloads%2Flogo%2Fwhite_logo.png?alt=media&token=54e9f47f-ef40-46c4-942b-00b2d91c6dd2"
+            src="/white_logo.png"
             alt="LaunchPath"
             width={193}
             height={38}
