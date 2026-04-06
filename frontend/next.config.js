@@ -9,6 +9,13 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // www → non-www canonical redirect
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.launchpathedu.com" }],
+        destination: "https://launchpathedu.com/:path*",
+        permanent: true,
+      },
       { source: "/reach", destination: "/reach-diagnostic", permanent: true },
       { source: "/knowledge-center/lp-brf-07", destination: "/knowledge-center/first-dispatch-requirements", permanent: true },
       { source: "/knowledge-center/lp-brf-08", destination: "/knowledge-center/new-carrier-90-day-build", permanent: true },
