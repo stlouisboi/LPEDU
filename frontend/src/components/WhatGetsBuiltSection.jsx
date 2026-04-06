@@ -85,7 +85,7 @@ export default function WhatGetsBuiltSection() {
 
         {/* Headline — Element 1 title (Option A) */}
         <h2 className="data-stream" style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.75rem, 4vw, 2.75rem)", letterSpacing: "-0.03em", lineHeight: 1.05, color: "#FFFFFF", marginBottom: "1.5rem" }}>
-          What You Build in 90 Days
+          What You Build in 90 Days: An Audit-Ready Compliance System
         </h2>
 
         {/* Gold rule */}

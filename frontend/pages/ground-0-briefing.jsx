@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Ground 0 — The Foundation Module | LaunchPath Standard</title>
+        <title>Ground 0 | Free FMCSA Diagnostic | LaunchPath</title>
         <meta name="description" content="Ground 0 is the entry point for the LaunchPath Standard — covering the 90-Day Compliance Window, the AUTO Risk Model, the Four Pillars of Carrier Survival, and the 16 Deadly Sins. Complete REACH before entry." />
         <meta property="og:title" content="Ground 0 — The Foundation Module | LaunchPath Standard" />
         <meta property="og:description" content="Ground 0 is the entry point for the LaunchPath Standard — covering the 90-Day Compliance Window, the AUTO Risk Model, the Four Pillars of Carrier Survival, and the 16 Deadly Sins." />

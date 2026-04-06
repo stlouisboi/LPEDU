@@ -95,7 +95,7 @@ export default function AboutSection() {
             }}>
               <img
                 src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
-                alt="Vince Lawrence"
+                alt="Vince Lawrence — Station Custodian, LaunchPath Transportation EDU, FMCSA compliance specialist"
                 width={1080}
                 height={1080}
                 style={{

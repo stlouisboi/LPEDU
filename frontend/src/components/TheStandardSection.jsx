@@ -39,7 +39,10 @@ const PILLARS = [
 
 function FourPillarsSubsection() {
   return (
-    <div style={{ marginBottom: "5rem" }}>
+    <div
+      role="img"
+      aria-label="LaunchPath Four Pillars of Survival — Authority Protection, Insurance Continuity, Compliance Backbone, Cash-Flow Oxygen"
+      style={{ marginBottom: "5rem" }}>
       <SubLabel>THE GUARD — LP-PROTECT-001</SubLabel>
       <h3 style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.35rem, 2.5vw, 1.875rem)", letterSpacing: "-0.03em", color: "#FFFFFF", marginBottom: "0.875rem" }}>
         THE FOUR PILLARS ARE THE GUARD AROUND THE AUTHORITY.
@@ -92,7 +95,7 @@ function ProtectedAuthorityBlock() {
         color: "#FFFFFF", letterSpacing: "-0.01em",
         lineHeight: 1.2, marginBottom: "0.75rem",
       }}>
-        What "Protected Authority" Means
+        What "Protected Authority" Means for Your FMCSA Compliance
       </h3>
 
       <p style={{ fontFamily: SANS, fontSize: "0.980rem", color: BODY, lineHeight: 1.8, marginBottom: "1.25rem" }}>
@@ -125,7 +128,10 @@ const AUTO_VECTORS = [
 
 function AutoMethodSubsection() {
   return (
-    <div style={{ marginBottom: "5rem" }}>
+    <div
+      role="img"
+      aria-label="LaunchPath AUTO Authority Protection Method — Around, Under, Through, Over compliance vectors"
+      style={{ marginBottom: "5rem" }}>
       <SubLabel color="rgba(148,163,184,0.60)">THE BREACH MAP — LP-AUTO-001</SubLabel>
       <h3 style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.35rem, 2.5vw, 1.875rem)", letterSpacing: "-0.03em", color: "#FFFFFF", marginBottom: "0.5rem" }}>
         FAILURE DOES NOT JUST HAPPEN. IT FINDS A WAY IN.
@@ -211,7 +217,10 @@ const REACH_STATUS = [
 
 function ReachSubsection() {
   return (
-    <div>
+    <div
+      role="img"
+      aria-label="LaunchPath REACH Assessment — FMCSA compliance gap diagnostic across four compliance pillars"
+    >
       <SubLabel>EXPOSURE DIAGNOSTIC — LP-REACH-001</SubLabel>
       <h3 style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.35rem, 2.5vw, 1.875rem)", letterSpacing: "-0.03em", color: "#FFFFFF", marginBottom: "0.875rem" }}>
         BEFORE YOU BUILD, KNOW HOW EXPOSED YOU ARE.

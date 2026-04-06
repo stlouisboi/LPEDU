@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 const SITE = "https://launchpathedu.com";
 const OG   = `${SITE}/og-launchpath.png`;
-const TITLE = "LaunchPath | 90-Day Compliance System for New Motor Carriers";
+const TITLE = "LaunchPath | FMCSA Compliance for New Motor Carriers";
 const DESC  = "Install the federal compliance infrastructure FMCSA expects to find before your audit window opens. 90 days. 5 verified checkpoints. Verified Registry ID at completion.";
 
 const jsonLd = {

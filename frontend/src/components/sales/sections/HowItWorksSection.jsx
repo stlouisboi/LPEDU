@@ -17,7 +17,7 @@ export default function HowItWorksSection({ handleAuthorize, checkoutLoading }) 
     <>
       <SectionLabel>LP-STD-001 · THE IMPLEMENTATION SEQUENCE · 90 DAYS</SectionLabel>
       <h2 className="section-headline" style={{ ...display, fontSize: 48, color: T.white, lineHeight: 1.15, maxWidth: 680, marginBottom: 16 }}>
-        This Is How the<br />
+        This Is How the FMCSA Compliance<br />
         <span style={{ color: T.goldText }}>System Gets Installed.</span>
       </h2>
       <p style={{ ...serif, fontSize: 17, color: T.mist, lineHeight: 1.7, maxWidth: 600, marginBottom: 48 }}>

@@ -33,6 +33,8 @@ export default function FailureAnalysisSection() {
 
       <section
         id="sixteen-sins"
+        role="img"
+        aria-label="LaunchPath 16 Deadly Sins — FMCSA compliance failures that threaten new motor carrier authority"
         data-testid="failure-analysis-section"
         style={{
           background: `linear-gradient(rgba(5,8,14,0.90) 0%, rgba(5,8,14,0.94) 100%), url("${PANEL_BG}") center/cover no-repeat`,

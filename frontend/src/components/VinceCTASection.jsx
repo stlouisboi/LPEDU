@@ -42,7 +42,7 @@ export default function VinceCTASection() {
           <div style={{ overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
             <img
               src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
-              alt="Vince Lawrence"
+              alt="Vince Lawrence — Station Custodian, LaunchPath Transportation EDU, FMCSA compliance specialist"
               width={864}
               height={1184}
               style={{

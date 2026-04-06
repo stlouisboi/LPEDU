@@ -122,7 +122,7 @@ export default function CredibilityStrip() {
             <div style={{ overflow: "hidden", background: "#030c18" }}>
               <img
                 src={PHOTO}
-                alt="Vince Lawrence"
+                alt="Vince Lawrence — Station Custodian, LaunchPath Transportation EDU, FMCSA compliance specialist"
                 width={238}
                 height={326}
                 style={{ width: "100%", height: "auto", display: "block", filter: "grayscale(15%) contrast(1.05)", transition: "transform 0.4s" }}

@@ -140,7 +140,7 @@ export default function AboutPage() {
             <div style={{ position: "relative", overflow: "hidden" }}>
               <img
                 src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
-                alt="Vince Lawrence"
+                alt="Vince Lawrence — Station Custodian, LaunchPath Transportation EDU, FMCSA compliance specialist"
                 style={{ width: "100%", height: 480, objectFit: "cover", objectPosition: "top center", display: "block" }}
               />
               <div style={{

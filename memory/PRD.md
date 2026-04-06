@@ -42,7 +42,24 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 67: Navbar Tools Dropdown (Apr 2026)
+### Phase 68: LP-WEB-005 SEO On-Page Optimization (Apr 2026)
+- **Task 1 — Title Tags**: All 4 pages updated to Custodian-approved titles under 60 chars:
+  - `/` → "LaunchPath | FMCSA Compliance for New Motor Carriers" (52 chars)
+  - `/program` → "LaunchPath Standard | 90-Day FMCSA Installation" (47 chars)
+  - `/ground-0-briefing` → "Ground 0 | Free FMCSA Diagnostic | LaunchPath" (45 chars)
+  - `/reach-diagnostic` → "REACH Test | FMCSA Compliance Gap Check | LaunchPath" (52 chars)
+- **Task 2 — H2/H3 Text Updates**:
+  - `WhatGetsBuiltSection.jsx` H2: "What You Build in 90 Days: An Audit-Ready Compliance System"
+  - `TheStandardSection.jsx` H3: "What "Protected Authority" Means for Your FMCSA Compliance"
+  - `HowItWorksSection.jsx` H2 (on /program): "This Is How the FMCSA Compliance System Gets Installed."
+- **Task 3 — Alt Text + aria-labels**:
+  - Headshot alt updated across CredibilityStrip, VinceCTASection, AboutPage, AboutSection
+  - aria-label added to Four Pillars, AUTO Method, REACH, and 16 Sins DOM visual containers
+- **Task 4 — Schema**: EducationalOrganization JSON-LD added to homepage `@graph` (prior session)
+- **Task 5 — Internal Links**: HOLD — pending LP-WEB-001 sprint completion
+- **Logo Fix**: Firebase Storage token URLs replaced with local `/white_logo.png` in Navbar + FooterSection; AboutPage Vince photo moved to Emergent CDN URL
+
+
 - Added rich hover dropdown to the "Tools" navbar link showing all 4 operator tools with name, description, and FREE badge
 - Desktop: gold-accented dropdown panel (320px wide) with "OPERATOR TOOLS" header + "View all tools →" footer
 - Mobile: sub-items with badge chips
