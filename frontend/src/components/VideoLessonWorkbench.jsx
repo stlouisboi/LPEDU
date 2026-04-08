@@ -24,8 +24,8 @@ export const MODULE_1_DATA = {
   title: "Driver Qualification File",
   description:
     "Build the complete, audit-ready Driver Qualification File for every operating driver — including the owner-operator. Eight implementation units covering business foundation, federal filings, and the DQF gate. Module 2 does not unlock until the Station Custodian verifies this module complete.",
-  totalDuration: "~120 min",
-  lessonCount: 8,
+  totalDuration: "~132 min",
+  lessonCount: 9,
   lessons: [
     {
       id: "1-1",
@@ -126,6 +126,32 @@ export const MODULE_1_DATA = {
       videoUrl: null,
       resources: [
         { label: "Financial Infrastructure Brief", href: "/knowledge-center/financial-infrastructure" },
+      ],
+    },
+    {
+      id: "1-9",
+      number: "1.9",
+      title: "Motus: Securing Your Authority Through the FMCSA Registration Transition",
+      subtitle: "FMCSA's new registration infrastructure — what's changing, what to verify, and how to migrate without problems",
+      duration: "~12 min",
+      pillar: "Authority Protection",
+      description: "FMCSA is replacing the Unified Registration System with Motus — a new registration platform that will be the single dashboard for all carrier registration work. This is not a new permit or a new type of authority. It is a registration infrastructure change. Your existing USDOT number and MC authority carry forward. This lesson covers what Motus is, who it applies to, the three preparation requirements FMCSA has identified, the most common failure patterns, and a 10-step verification checklist you run monthly until Phase 2 opens to carriers.",
+      videoUrl: null,
+      studentActions: [
+        "Log into your FMCSA Portal (portal.fmcsa.dot.gov) and confirm the account is active.",
+        "Verify the Company Official is an owner or employee — not a consultant.",
+        "Confirm the Login.gov email matches the Company Official on file.",
+        "Enable multi-factor authentication on your Login.gov account.",
+        "File or update your MCS-150 Biennial Update if stale or outdated.",
+        "Confirm your physical address is correct and inspectable — no PO Boxes.",
+        "Audit your fleet count against actual equipment.",
+        "Verify your BOC-3 status at safer.fmcsa.dot.gov.",
+        "Designate a backup Company Official.",
+        "Subscribe to FMCSA email alerts for the Phase 2 carrier invitation.",
+        "Download and complete the Motus Transition Checklist.",
+      ],
+      resources: [
+        { label: "Motus Transition Checklist — LP-CUR-M1-L9", href: "/tools/motus-checklist" },
       ],
     },
   ],
@@ -388,6 +414,27 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
               {lesson.description}
             </p>
           </div>
+
+          {/* Supporting Resources */}
+          {lesson.studentActions?.length > 0 && (
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.5rem", marginBottom: "1.5rem" }}>
+              <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", marginBottom: "0.875rem" }}>
+                STUDENT ACTIONS
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                {lesson.studentActions.map((action, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", padding: "0.625rem 0" }}>
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", fontWeight: 700, color: "#d4900a", letterSpacing: "0.1em", flexShrink: 0, paddingTop: "0.2rem" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.95rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.65, margin: 0 }}>
+                      {action}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Supporting Resources */}
           {lesson.resources?.length > 0 && (

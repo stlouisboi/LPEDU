@@ -1,6 +1,6 @@
 export const CURRICULUM = [
   { id: "ground-0", code: "GROUND 0", label: "The Wisdom Module",            locked: false, type: "foundation", typeLabel: "FREE FOUNDATION",        lessonCount: 6  },
-  { id: "module-1", code: "MODULE 1", label: "Driver Qualification File",    locked: true,  type: "core",       typeLabel: "CORE IMPLEMENTATION",    lessonCount: 8, gate: "HARD GATE"       },
+  { id: "module-1", code: "MODULE 1", label: "Driver Qualification File",    locked: true,  type: "core",       typeLabel: "CORE IMPLEMENTATION",    lessonCount: 9, gate: "HARD GATE"       },
   { id: "module-2", code: "MODULE 2", label: "Authority & Insurance",        locked: true,  type: "core",       typeLabel: "CORE IMPLEMENTATION",    lessonCount: 7  },
   { id: "module-3", code: "MODULE 3", label: "The 16 Deadly Sins",           locked: true,  type: "core",       typeLabel: "CORE IMPLEMENTATION",    lessonCount: 8  },
   { id: "module-4", code: "MODULE 4", label: "Drug & Alcohol Program",       locked: true,  type: "core",       typeLabel: "CORE IMPLEMENTATION",    lessonCount: 7  },
@@ -13,9 +13,9 @@ export const CURRICULUM = [
 
 export const MODULE_OVERVIEWS = {
   "module-1": {
-    code: "MOD-1", title: "Driver Qualification File", lessonCount: 8, duration: "~120 min",
+    code: "MOD-1", title: "Driver Qualification File", lessonCount: 9, duration: "~132 min",
     description: "Build the complete, audit-ready Driver Qualification File for every operating driver — including the owner-operator. The DQF is the single most cited deficiency in new entrant audits. This module does not end when the video ends; it ends when the file is built, verified, and ready for examination.",
-    topics: ["Your Business Foundation — entity structure and compliance architecture", "Business Entity Selection — liability implications for new carriers", "Filing for DOT/MC Authority — USDOT, MC number, and activation sequence", "BOC-3 and Process Agent — required filing most carriers miss", "UCR and State Registrations — annual compliance requirements", "Insurance — First Look — BMC-91/91X filing and authority activation", "Driver Qualification File (GATE) — building the complete, audit-ready DQF", "Business Banking & Chart of Accounts — financial infrastructure setup"],
+    topics: ["Your Business Foundation — entity structure and compliance architecture", "Business Entity Selection — liability implications for new carriers", "Filing for DOT/MC Authority — USDOT, MC number, and activation sequence", "BOC-3 and Process Agent — required filing most carriers miss", "UCR and State Registrations — annual compliance requirements", "Insurance — First Look — BMC-91/91X filing and authority activation", "Driver Qualification File (GATE) — building the complete, audit-ready DQF", "Business Banking & Chart of Accounts — financial infrastructure setup", "Motus — FMCSA registration transition, three preparation requirements, and 10-step verification"],
   },
   "module-2": {
     code: "MOD-2", title: "Authority & Insurance", lessonCount: 7, duration: "~105 min",
