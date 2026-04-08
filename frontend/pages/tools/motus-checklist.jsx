@@ -41,8 +41,6 @@ export default function MotusChecklist() {
       <Head>
         <title>Motus Transition Checklist — LP-CUR-M1-L9 | LaunchPath</title>
         <meta name="robots" content="noindex" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
         <style>{`
           @media print {
             .no-print { display: none !important; }

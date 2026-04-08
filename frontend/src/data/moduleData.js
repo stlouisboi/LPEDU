@@ -43,6 +43,7 @@ export const MODULE_1_DATA = {
         { label: "Motus Transition Checklist — LP-CUR-M1-L9", href: "/tools/motus-checklist" },
       ],
     },
+  ],
   completionChecklist: [
     { id: "1-cl-1", text: "USDOT number verified on FMCSA SAFER as Active status" },
     { id: "1-cl-2", text: "MC number (Operating Authority) verified on FMCSA SAFER as Active" },
