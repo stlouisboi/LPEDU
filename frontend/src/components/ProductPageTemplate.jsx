@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 import { Link } from '../compat/Link';
 import Navbar from "./Navbar";
 import FooterSection from "./FooterSection";
@@ -167,11 +168,12 @@ export default function ProductPageTemplate({
 
               {/* Right: cinematic image OR 3D mockup */}
               {image ? (
-                <div style={{ overflow: "hidden", borderRadius: 4, aspectRatio: "4/3", background: "#040a14" }}>
-                  <img
+                <div style={{ overflow: "hidden", borderRadius: 4, aspectRatio: "4/3", background: "#040a14", position: "relative" }}>
+                  <Image
                     src={image}
                     alt={title}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                   />
                 </div>
               ) : null}

@@ -5,7 +5,10 @@ const nextConfig = {
     REACT_APP_BACKEND_URL: process.env.REACT_APP_BACKEND_URL,
   },
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      { protocol: "https", hostname: "customer-assets.emergentagent.com" },
+      { protocol: "https", hostname: "static.prod-images.emergentagent.com" },
+    ],
   },
   async redirects() {
     return [

@@ -1,4 +1,5 @@
 import { Link } from '../compat/Link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 ;
 import { useState, useEffect, useRef } from "react";
@@ -123,12 +124,13 @@ export default function Navbar() {
       }}>
         {/* Logo */}
         <Link to="/" style={{ textDecoration: "none", flexShrink: 0 }}>
-          <img
+          <Image
             src="/white_logo.png"
             alt="LaunchPath"
             width={193}
             height={38}
             style={{ height: 38, width: "auto" }}
+            priority
           />
         </Link>
 

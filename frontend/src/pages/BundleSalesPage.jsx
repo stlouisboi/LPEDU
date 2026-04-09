@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Image from 'next/image';
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
@@ -465,10 +466,12 @@ export default function BundleSalesPage() {
           <div style={{ flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div style={{ position: "relative", width: 280 }}>
               <div style={{ position: "absolute", inset: -8, background: `linear-gradient(135deg, rgba(212,144,10,0.15), transparent)`, borderRadius: 4 }} />
-              <img
+              <Image
                 src={IMG_BUNDLE}
                 alt="Document System Bundle — LP-BDL-001"
-                style={{ width: "100%", display: "block", position: "relative", boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,144,10,0.2)" }}
+                width={280}
+                height={380}
+                style={{ width: "100%", height: "auto", display: "block", position: "relative", boxShadow: "0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,144,10,0.2)" }}
               />
               <div style={{ position: "absolute", bottom: -12, left: "50%", transform: "translateX(-50%)", background: GOLD, color: "#060e1b", fontFamily: MONO, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", padding: ".35rem 1rem", whiteSpace: "nowrap" }}>
                 LP-BDL-001
@@ -516,9 +519,11 @@ export default function BundleSalesPage() {
                       <span style={{ fontFamily: MONO, fontSize: ".857rem", color: GOLD_DIM }}>{p.value} value</span>
                     </div>
                     {IMG_PKT[p.code] && (
-                      <img
+                      <Image
                         src={IMG_PKT[p.code]}
                         alt={p.title}
+                        width={56}
+                        height={72}
                         style={{ width: 56, height: 72, objectFit: "cover", display: "block", boxShadow: "0 4px 16px rgba(0,0,0,0.5)", flexShrink: 0 }}
                       />
                     )}

@@ -1,4 +1,5 @@
 import { Link } from '../compat/Link';
+import Image from 'next/image';
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
@@ -137,11 +138,13 @@ export default function AboutPage() {
           </div>
 
           <div style={{ animation: "heroEnter 0.65s ease both", animationDelay: "0.15s" }}>
-            <div style={{ position: "relative", overflow: "hidden" }}>
-              <img
+            <div style={{ position: "relative", overflow: "hidden", height: 480 }}>
+              <Image
                 src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
                 alt="Vince Lawrence — Station Custodian, LaunchPath Transportation EDU, FMCSA compliance specialist"
-                style={{ width: "100%", height: 480, objectFit: "cover", objectPosition: "top center", display: "block" }}
+                fill
+                style={{ objectFit: "cover", objectPosition: "top center" }}
+                priority
               />
               <div style={{
                 position: "absolute", bottom: 0, left: 0, right: 0,

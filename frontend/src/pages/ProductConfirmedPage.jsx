@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import Image from 'next/image';
 import { Link } from '../compat/Link';
-import { useRouter } from 'next/router';
 import Navbar from "../components/Navbar";
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -247,9 +247,11 @@ function UpsellCard({ upsell, purchasedSku }) {
       <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", marginBottom: "1.5rem" }}>
         {/* Product image */}
         {upsell.image && (
-          <img
+          <Image
             src={upsell.image}
             alt={upsell.label}
+            width={72}
+            height={96}
             style={{
               width: 72, height: 96, objectFit: "cover",
               flexShrink: 0, opacity: 0.92,

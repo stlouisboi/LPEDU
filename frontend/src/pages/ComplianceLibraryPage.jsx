@@ -4,6 +4,7 @@
  * Implements LP-SYS-LIBRARY-COPY v1.0 (all 8 sections)
  */
 
+import Image from 'next/image';
 import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Link } from '../compat/Link';
@@ -126,9 +127,11 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
             )}
           </div>
           {p.coverImg && (
-            <img
+            <Image
               src={p.coverImg}
               alt={p.name}
+              width={180}
+              height={180}
               style={{ width: 180, height: 180, objectFit: "cover", borderRadius: 4, border: "1px solid rgba(212,160,23,0.25)", flexShrink: 0, background: "#080E18" }}
             />
           )}

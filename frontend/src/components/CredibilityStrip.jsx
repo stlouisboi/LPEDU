@@ -1,5 +1,7 @@
 import { Link } from '../compat/Link';
 
+import Image from 'next/image';
+
 const JBMONO  = "'JetBrains Mono', monospace";
 const SERIF   = "'Newsreader', 'Playfair Display', serif";
 const SANS    = "'Inter', sans-serif";
@@ -120,7 +122,7 @@ export default function CredibilityStrip() {
 
             {/* Photo */}
             <div style={{ overflow: "hidden", background: "#030c18" }}>
-              <img
+              <Image
                 src={PHOTO}
                 alt="Vince Lawrence — Station Custodian, LaunchPath Transportation EDU, FMCSA compliance specialist"
                 width={238}
@@ -128,6 +130,7 @@ export default function CredibilityStrip() {
                 style={{ width: "100%", height: "auto", display: "block", filter: "grayscale(15%) contrast(1.05)", transition: "transform 0.4s" }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.02)"; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
+                priority
               />
             </div>
 

@@ -1,4 +1,5 @@
 // VinceCTASection
+import Image from 'next/image';
 
 export default function VinceCTASection() {
   return (
@@ -39,18 +40,14 @@ export default function VinceCTASection() {
           <div style={{ position: "absolute", bottom: 0, left: 0, width: 20, height: 20, borderBottom: "2px solid var(--gold-primary)", borderLeft: "2px solid var(--gold-primary)", zIndex: 2 }} />
           <div style={{ position: "absolute", bottom: 0, right: 0, width: 20, height: 20, borderBottom: "2px solid var(--gold-primary)", borderRight: "2px solid var(--gold-primary)", zIndex: 2 }} />
           {/* Photo */}
-          <div style={{ overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
-            <img
+          <div style={{ position: "relative", overflow: "hidden", height: 280, boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
+            <Image
               src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
               alt="Vince Lawrence — Station Custodian, LaunchPath Transportation EDU, FMCSA compliance specialist"
-              width={864}
-              height={1184}
+              fill
               style={{
-                width: "100%",
-                height: 280,
                 objectFit: "cover",
                 objectPosition: "50% 10%",
-                display: "block",
                 filter: "contrast(1.06) brightness(0.94) saturate(0.92)",
               }}
             />

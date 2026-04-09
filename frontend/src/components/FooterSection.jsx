@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function FooterSection() {
   const PLATFORM = [
     { label: "LaunchPath Standard", href: "/program" },
@@ -64,7 +66,7 @@ export default function FooterSection() {
 
           {/* Brand */}
           <div>
-            <img
+            <Image
               src="/white_logo.png"
               alt="LaunchPath Transportation EDU"
               width={183}
