@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Link } from '../compat/Link';
 import Navbar from "../components/Navbar";
 
