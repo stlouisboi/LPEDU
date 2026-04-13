@@ -42,6 +42,15 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 69: LP-WEB-006 Standards Page CRO Spec — 6 Tasks (Apr 2026)
+- **Task 1**: Standard card framing copy changed to "Available by admission only. Revealed after Ground 0 completion and an approved Admission Request." (removes old "free module" messaging)
+- **Task 2**: Consequence Callout box added above Bundle buy button — dark navy (#071422) bg, 3px gold (#C9A84C) left border, dollar amounts in gold-lite (#EDD99A), copy: "Typical cost of remediation after a failed New Entrant audit: $10,000–$25,000. Cost of installing the complete document system before the audit: $499."
+- **Task 3**: REACH micro-CTAs added at 3 locations (end of Standard section, end of Bundle section, end of Install by Domain section) — 8pt inline link, gold underline, "Not ready to purchase? Run the free REACH Diagnostic to see your compliance exposure first."
+- **Task 4**: Comparison table checkmarks (✓) changed from green (#4ade80) to gold (#C9A84C); dashes (—) from near-white to mid-gray (#7A8590) — on both desktop table and mobile cards
+- **Task 5**: "Install this if..." qualifying lines added to 5 domain packets (DQ, Drug & Alcohol, HOS, Maintenance, Insurance) via `installIf` field in libraryData.js — italic, 7.5pt, gray (#7A8590) in accordion rows
+- **Task 6**: Starter Stack repositioned directly below Document System Bundle with "New to LaunchPath? Start here." label in gold (#C9A84C); "ALSO AVAILABLE" section removed
+- Testing: 100% (8/8 checks) — iteration_107
+
 ### Phase 68: LP-WEB-005 SEO On-Page Optimization (Apr 2026)
 - **Task 1 — Title Tags**: All 4 pages updated to Custodian-approved titles under 60 chars:
   - `/` → "LaunchPath | FMCSA Compliance for New Motor Carriers" (52 chars)
