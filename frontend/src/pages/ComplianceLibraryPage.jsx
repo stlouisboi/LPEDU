@@ -87,6 +87,11 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
             </ul>
           )}
           {p.savings && <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, color: "rgba(212,144,10,0.70)", marginTop: "0.375rem", margin: "0.375rem 0 0" }}>{p.savings}</p>}
+          {p.installIf && (
+            <p style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "7.5pt", fontStyle: "italic", color: "#7A8590", marginTop: "8px", marginBottom: 0, lineHeight: 1.6 }}>
+              {p.installIf}
+            </p>
+          )}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0 }}>
           <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.35rem", color: "#fff", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>{p.price}</span>
@@ -178,6 +183,19 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
         </div>
       )}
     </div>
+  );
+}
+
+// ── REACH Micro-CTA ──────────────────────────────────────────────────────────
+function ReachMicroCta() {
+  return (
+    <p style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "8pt", color: "rgba(255,255,255,0.55)", margin: "1.25rem 0 0", lineHeight: 1.6 }}>
+      Not ready to purchase? Run the free{" "}
+      <a href="https://launchpathedu.com/reach-diagnostic" style={{ color: "#C9A84C", textDecoration: "underline", textDecorationColor: "#C9A84C" }}>
+        REACH Diagnostic
+      </a>{" "}
+      to see your compliance exposure first.
+    </p>
   );
 }
 
@@ -384,7 +402,7 @@ export default function ComplianceLibraryPage() {
                 <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.75rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>$2,500</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.35)" }}>One engagement. No subscription. No upsells.</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", marginTop: "0.375rem" }}>
-                  Ground 0 is a free module. Start there at no cost, or go directly to enrollment.
+                  Available by admission only. Revealed after Ground 0 completion and an approved Admission Request.
                 </p>
               </div>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -401,6 +419,7 @@ export default function ComplianceLibraryPage() {
                   VIEW FULL ENGAGEMENT DETAILS →
                 </Link>
               </div>
+              <ReachMicroCta />
             </div>
 
             {/* PATH 2 — Bundle */}
@@ -442,12 +461,17 @@ export default function ComplianceLibraryPage() {
                   ))}
                 </ul>
               </div>
-              <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: "1.25rem", marginBottom: "1.5rem" }}>
+              <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: "1.25rem", marginBottom: "1rem" }}>
                 <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.5rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>$499</p>
                 <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)" }}>Instant access. One-time. $176 below individual acquisition cost.</p>
-                <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.30)", marginTop: "0.75rem", lineHeight: 1.7, borderLeft: `2px solid rgba(212,144,10,0.30)`, paddingLeft: "0.75rem" }}>
-                  A New Entrant Safety Audit can result in a Conditional or Unsatisfactory rating within your first 18 months. Average remediation cost: $10,000–$25,000. This system costs $499.
-                </p>
+              </div>
+              {/* Task 2: Consequence Callout */}
+              <div style={{ background: "#071422", borderLeft: "3px solid #C9A84C", padding: "12px", marginBottom: "1.25rem", lineHeight: 1.65 }}>
+                <span style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "8.5pt", color: "#fff" }}>Typical cost of remediation after a failed New Entrant audit: </span>
+                <span style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "8.5pt", color: "#EDD99A" }}>$10,000–$25,000</span>
+                <span style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "8.5pt", color: "#fff" }}>. Cost of installing the complete document system before the audit: </span>
+                <span style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "8.5pt", color: "#EDD99A" }}>$499</span>
+                <span style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "8.5pt", color: "#fff" }}>.</span>
               </div>
               <button
                 data-testid="buy-bundle-btn"
@@ -460,20 +484,19 @@ export default function ComplianceLibraryPage() {
                 {states["LP-BDL-001"] === "loading" ? "Processing…" : "INSTALL THE BUNDLE — $499 →"}
               </button>
               {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "#ef4444", marginTop: "0.5rem" }}>{errors["LP-BDL-001"]}</p>}
+              <ReachMicroCta />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 2b: OTHER BUNDLE OPTIONS ────────────────────────── */}
+      {/* ── STARTER STACK — REPOSITIONED (Task 6) ──────────────────── */}
       <section style={{ background: NAVY, borderBottom: `1px solid ${BORDER}`, padding: "2rem 1.5rem" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
-            <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.40)", margin: 0 }}>
-              ALSO AVAILABLE
-            </p>
-            <div style={{ flex: 1, height: 1, background: BORDER }} />
-          </div>
+          {/* Task 6: New label */}
+          <p style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "7.5pt", fontWeight: 700, color: "#C9A84C", textAlign: "left", marginBottom: "0.75rem", letterSpacing: "0.02em" }}>
+            New to LaunchPath? Start here.
+          </p>
           {/* $219 Starter Stack */}
           {(() => { const p = PRODUCTS.find(x => x.sku === "LP-RES-006"); const bc = BUNDLE_CONFIGS["LP-RES-006"]; return (
             <div style={{ border: `${bc.borderWidth} solid ${bc.borderColor}`, borderRadius: 8, overflow: "hidden", padding: "1.25rem 1.5rem", maxWidth: 540 }}>
@@ -626,6 +649,7 @@ export default function ComplianceLibraryPage() {
               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             </div>
           </div>
+          <ReachMicroCta />
 
         </div>
       </section>
@@ -681,7 +705,7 @@ export default function ComplianceLibraryPage() {
                     {[col1, col2, col3, col4].map((val, ci) => (
                       <td key={ci} style={{
                         padding: "0.875rem 1rem", textAlign: "center", fontFamily: SANS, fontSize: "0.875rem",
-                        color: val === "✓" ? "#4ade80" : val === "—" ? "rgba(255,255,255,0.20)" : "#fff",
+                        color: val === "✓" ? "#C9A84C" : val === "—" ? "#7A8590" : "#fff",
                         fontWeight: val === "✓" ? 700 : 400,
                         background: ci === 2 ? "rgba(212,144,10,0.04)" : undefined,
                         borderLeft: ci === 2 ? `1px solid rgba(212,144,10,0.20)` : undefined,
@@ -764,7 +788,7 @@ export default function ComplianceLibraryPage() {
                 {card.rows.map(([label, val]) => (
                   <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: `1px solid rgba(255,255,255,0.05)` }}>
                     <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.50)" }}>{label}</span>
-                    <span style={{ fontFamily: SANS, fontSize: "0.762rem", fontWeight: val === "✓" || val.startsWith("✓") ? 700 : 400, color: val === "✓" || val.startsWith("✓") ? "#4ade80" : val === "—" ? "rgba(255,255,255,0.20)" : "#fff", marginLeft: 8, textAlign: "right" }}>{val}</span>
+                    <span style={{ fontFamily: SANS, fontSize: "0.762rem", fontWeight: val === "✓" || val.startsWith("✓") ? 700 : 400, color: val === "✓" || val.startsWith("✓") ? "#C9A84C" : val === "—" ? "#7A8590" : "#fff", marginLeft: 8, textAlign: "right" }}>{val}</span>
                   </div>
                 ))}
                 {card.cta && (
