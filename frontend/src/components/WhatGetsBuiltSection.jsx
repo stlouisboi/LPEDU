@@ -9,12 +9,12 @@ const DEEP  = "#111D33";
 const BUILT_ITEMS = [
   {
     code: "01",
-    item: "A complete Driver Qualification file for every active driver, built to 49 CFR Part 391 expectations — application, MVRs, prior employer inquiries, medical certificate, and annual review documentation.",
+    item: <>A complete <a href="/knowledge-center/driver-qualification-file-requirements-fmcsa" style={{ color: "#C8933F", textDecoration: "none" }}>Driver Qualification file</a> for every active driver, built to 49 CFR Part 391 expectations — application, MVRs, prior employer inquiries, medical certificate, and annual review documentation.</>,
     group: "core",
   },
   {
     code: "02",
-    item: "A functioning Drug and Alcohol testing program with a registered C/TPA, a designated DER in writing, and pre-employment and random testing documented.",
+    item: <>A functioning <a href="/knowledge-center/dot-drug-alcohol-program-requirements" style={{ color: "#C8933F", textDecoration: "none" }}>Drug and Alcohol</a> testing program with a registered C/TPA, a designated DER in writing, and pre-employment and random testing documented.</>,
     group: "core",
   },
   {

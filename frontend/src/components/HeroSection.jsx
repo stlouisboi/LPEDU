@@ -9,7 +9,7 @@ const GOLD = "#C8933F";
 const RISK_ITEMS = [
   "First document request exposes missing DQ files",
   "$10,000–$25,000+ in remediation, downtime, insurance increase",
-  "Conditional or Unsatisfactory rating — authority at risk",
+  <>Conditional or Unsatisfactory <a href="/knowledge-center/fmcsa-safety-rating-explained" style={{ color: "#C8933F", textDecoration: "none" }}>rating</a> — authority at risk</>,
   "87 days on average to the first compliance failure",
 ];
 
@@ -225,7 +225,7 @@ export default function HeroSection() {
               transition: "opacity 0.6s ease 0.15s",
             }}
           >
-            Active doesn't mean protected. $10K–$25K+ is a normal bill for a failed New Entrant audit — most gaps show up in the first 90 days.
+            Active doesn't mean protected. $10K–$25K+ is a normal bill for a failed <a href="/knowledge-center/new-entrant-safety-audit-checklist" style={{ color: "#C8933F", textDecoration: "none" }}>New Entrant audit</a> — most gaps show up in the first 90 days.
           </p>
 
           {/* Primary CTAs */}
@@ -437,8 +437,8 @@ export default function HeroSection() {
               What happens to an unstructured operation
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {RISK_ITEMS.map(item => (
-                <div key={item} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+              {RISK_ITEMS.map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#E8590F", fontSize: 14, marginTop: 1, flexShrink: 0 }}>✕</span>
                   <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.72)", lineHeight: 1.5 }}>{item}</span>
                 </div>
