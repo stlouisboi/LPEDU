@@ -42,6 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 70: Blueprint Grid + Score Chart Improvements (Apr 2026)
+- **Blueprint grid uniformity**: Applied matching 52px linear-gradient line grid + CRT scan-line overlay to all 8 homepage sections (HeroSection replaced dot-grid, ExposureBand/NotForSection added position:relative + overlays, TheStandardSection/WhatGetsBuiltSection converted to 52px uniform spacing, FinalCTASection added CRT scan-line, ThePatternSection/FailureAnalysisSection already complete — skipped)
+- **Score trend chart height**: Increased from 160px → 240px (ResponsiveContainer)
+- **Score delta badges**: Month-over-month +/-% badge rendered next to each check's score in audit history list; green for gain, red for loss, bordered pill style matching app aesthetic
+- Testing: 100% (9/9 checks) — iteration_108
+
 ### Phase 69: LP-WEB-006 Standards Page CRO Spec — 6 Tasks (Apr 2026)
 - **Task 1**: Standard card framing copy changed to "Available by admission only. Revealed after Ground 0 completion and an approved Admission Request." (removes old "free module" messaging)
 - **Task 2**: Consequence Callout box added above Bundle buy button — dark navy (#071422) bg, 3px gold (#C9A84C) left border, dollar amounts in gold-lite (#EDD99A), copy: "Typical cost of remediation after a failed New Entrant audit: $10,000–$25,000. Cost of installing the complete document system before the audit: $499."
