@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceDot } from "recharts";
 import { DOMAIN_ORDER, DOMAIN_LABELS, COLOR_STYLES, formatDate, formatMonthLabel } from "./auditConfig";
 
 const DOMAIN_COLORS = {
@@ -38,6 +38,23 @@ function ScoreTrendChart({ history }) {
     return row;
   });
 
+  // Identify streak peaks: end of each run of 2+ consecutive overall improvements
+  const streakPeaks = [];
+  let runLen = 0;
+  for (let i = 1; i < data.length; i++) {
+    const cur = data[i].overall, pre = data[i - 1].overall;
+    if (cur != null && pre != null && cur > pre) {
+      runLen++;
+    } else {
+      if (runLen >= 1) streakPeaks.push({ month: data[i - 1].month, y: data[i - 1].overall, count: runLen + 1 });
+      runLen = 0;
+    }
+  }
+  if (runLen >= 1) {
+    const last = data[data.length - 1];
+    streakPeaks.push({ month: last.month, y: last.overall, count: runLen + 1 });
+  }
+
   return (
     <div data-testid="score-trend-chart" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(197,160,89,0.12)", padding: "1.25rem 1.25rem 0.5rem", marginBottom: "1.75rem" }}>
       <p style={{ fontFamily: "monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1rem" }}>
@@ -70,6 +87,19 @@ function ScoreTrendChart({ history }) {
           {/* Domain scores — thin colored, shown only if toggled on */}
           {DOMAIN_ORDER.filter(dk => activeDomains.has(dk)).map((dk) => (
             <Line key={dk} type="monotone" dataKey={dk} stroke={DOMAIN_COLORS[dk]} strokeWidth={1} dot={false} name={dk} strokeOpacity={0.55} connectNulls />
+          ))}
+          {/* Streak peak annotations */}
+          {streakPeaks.map((peak, i) => (
+            <ReferenceDot
+              key={i}
+              x={peak.month}
+              y={peak.y}
+              r={5}
+              fill="#C8933F"
+              stroke="rgba(255,255,255,0.15)"
+              strokeWidth={1.5}
+              label={{ value: `↑${peak.count}`, position: "top", fill: "rgba(197,160,89,0.90)", fontSize: 8, fontFamily: "monospace", fontWeight: 700 }}
+            />
           ))}
         </LineChart>
       </ResponsiveContainer>
