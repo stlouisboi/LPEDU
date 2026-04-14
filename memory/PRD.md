@@ -46,6 +46,7 @@ Core requirements:
 - **Blueprint grid uniformity**: Applied matching 52px linear-gradient line grid + CRT scan-line overlay to all 8 homepage sections (HeroSection replaced dot-grid, ExposureBand/NotForSection added position:relative + overlays, TheStandardSection/WhatGetsBuiltSection converted to 52px uniform spacing, FinalCTASection added CRT scan-line, ThePatternSection/FailureAnalysisSection already complete — skipped)
 - **Score trend chart height**: Increased from 160px → 240px (ResponsiveContainer)
 - **Score delta badges**: Month-over-month +/-% badge rendered next to each check's score in audit history list; green for gain, red for loss, bordered pill style matching app aesthetic
+- **Streak indicator**: Gold "↑ N-CHECK STREAK" badge appears on any history entry that is the peak of 2+ consecutive score improvements; computed by walking backward through consecutive gains
 - Testing: 100% (9/9 checks) — iteration_108
 
 ### Phase 69: LP-WEB-006 Standards Page CRO Spec — 6 Tasks (Apr 2026)

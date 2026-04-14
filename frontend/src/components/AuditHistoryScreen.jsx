@@ -176,6 +176,17 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
           const delta = (overall.scorePercent != null && prev?.overallResult?.scorePercent != null)
             ? overall.scorePercent - prev.overallResult.scorePercent
             : null;
+          // Streak: count consecutive improvements going back from this check
+          let streakCount = 0;
+          if (overall.scorePercent != null) {
+            let cur = overall.scorePercent;
+            for (let s = idx + 1; s < history.length; s++) {
+              const prevScore = history[s]?.overallResult?.scorePercent;
+              if (prevScore == null) break;
+              if (cur > prevScore) { streakCount++; cur = prevScore; }
+              else break;
+            }
+          }
 
           return (
             <div
@@ -194,6 +205,11 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
                     )}
                     {overall.criticalOverride && (
                       <span style={{ fontFamily: "monospace", fontSize: "0.44rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(239,68,68,0.75)", background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.2)", padding: "1px 5px" }}>CRITICAL OVERRIDE</span>
+                    )}
+                    {streakCount >= 1 && (
+                      <span data-testid={`streak-badge-${check.checkId}`} style={{ fontFamily: "monospace", fontSize: "0.44rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(197,160,89,0.90)", background: "rgba(197,160,89,0.08)", border: "1px solid rgba(197,160,89,0.30)", padding: "1px 5px" }}>
+                        ↑ {streakCount + 1}-CHECK STREAK
+                      </span>
                     )}
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", flexWrap: "wrap" }}>
