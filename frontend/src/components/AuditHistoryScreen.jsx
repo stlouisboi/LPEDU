@@ -12,6 +12,36 @@ const DOMAIN_COLORS = {
   financial:           "#94a3b8",
 };
 
+function ScoreTooltip({ active, payload, label }) {
+  if (!active || !payload || !payload.length) return null;
+  const overall = payload.find(p => p.dataKey === "overall");
+  const domains = payload.filter(p => p.dataKey !== "overall" && p.value != null);
+  return (
+    <div style={{ background: "rgba(5,12,24,0.97)", border: "1px solid rgba(197,160,89,0.22)", padding: "10px 14px", minWidth: 170, boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}>
+      <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", margin: "0 0 8px", paddingBottom: "6px", borderBottom: "1px solid rgba(197,160,89,0.10)" }}>{label}</p>
+      {overall && (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: domains.length ? "8px" : 0 }}>
+          <span style={{ fontFamily: "monospace", fontSize: "0.44rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.40)" }}>Overall</span>
+          <span style={{ fontFamily: "monospace", fontSize: "0.952rem", fontWeight: 700, color: "#C8933F", letterSpacing: "-0.02em" }}>{overall.value ?? "—"}%</span>
+        </div>
+      )}
+      {domains.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "7px" }}>
+          {domains.map(d => (
+            <div key={d.dataKey} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "14px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                <div style={{ width: 8, height: 2, background: d.color, borderRadius: 1, flexShrink: 0 }} />
+                <span style={{ fontFamily: "monospace", fontSize: "0.40rem", color: "rgba(255,255,255,0.32)", letterSpacing: "0.06em" }}>{DOMAIN_LABELS[d.dataKey] || d.dataKey}</span>
+              </div>
+              <span style={{ fontFamily: "monospace", fontSize: "0.44rem", fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>{d.value}%</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ScoreTrendChart({ history }) {
   if (!history || history.length < 2) return null;
 
@@ -74,12 +104,7 @@ function ScoreTrendChart({ history }) {
             tickLine={false} axisLine={false}
             tickFormatter={(v) => `${v}%`}
           />
-          <Tooltip
-            contentStyle={{ background: "#0a1220", border: "1px solid rgba(197,160,89,0.2)", fontFamily: "monospace", fontSize: 10, padding: "6px 10px" }}
-            formatter={(val, key) => [`${val ?? "—"}%`, DOMAIN_LABELS[key] || "Overall"]}
-            labelStyle={{ color: "rgba(197,160,89,0.8)", marginBottom: 4 }}
-            cursor={{ stroke: "rgba(197,160,89,0.15)" }}
-          />
+          <Tooltip content={<ScoreTooltip />} cursor={{ stroke: "rgba(197,160,89,0.12)", strokeWidth: 1 }} />
           {/* Overall score — thick gold */}
           {activeDomains.has("overall") && (
             <Line type="monotone" dataKey="overall" stroke="#C8933F" strokeWidth={2.5} dot={{ r: 3, fill: "#C8933F", strokeWidth: 0 }} activeDot={{ r: 5 }} name="overall" connectNulls />

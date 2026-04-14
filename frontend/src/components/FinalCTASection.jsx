@@ -38,7 +38,7 @@ export default function FinalCTASection() {
       <div style={{ position: "relative", zIndex: 1, maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
 
         {/* System code */}
-        <p style={{
+        <p className="reveal-on-scroll" style={{
           fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700,
           letterSpacing: "0.20em", textTransform: "uppercase",
           color: "rgba(200,147,63,0.55)", marginBottom: "1.5rem",
@@ -47,7 +47,7 @@ export default function FinalCTASection() {
         </p>
 
         {/* Headline */}
-        <h2 style={{
+        <h2 className="reveal-on-scroll d-80" style={{
           fontFamily: SERIF, fontWeight: 900,
           fontSize: "clamp(2.4rem, 6vw, 4rem)",
           letterSpacing: "-0.03em", lineHeight: 1.1,
@@ -59,7 +59,7 @@ export default function FinalCTASection() {
         </h2>
 
         {/* New consequence lines — LP-WEB-002 v2.0 Element 4 */}
-        <p style={{
+        <p className="reveal-on-scroll d-160" style={{
           fontFamily: SERIF, fontWeight: 900,
           fontSize: "clamp(2.4rem, 6vw, 4rem)",
           letterSpacing: "-0.03em", lineHeight: 1.1,
@@ -69,7 +69,7 @@ export default function FinalCTASection() {
           LaunchPath is the 90-day build that closes your exposure before an investigator finds it.
         </p>
 
-        <p style={{
+        <p className="reveal-on-scroll d-160" style={{
           fontFamily: SERIF, fontWeight: 900,
           fontSize: "clamp(2.4rem, 6vw, 4rem)",
           letterSpacing: "-0.03em", lineHeight: 1.1,
@@ -80,7 +80,7 @@ export default function FinalCTASection() {
         </p>
 
         {/* Body */}
-        <p style={{
+        <p className="reveal-on-scroll d-240" style={{
           fontFamily: SANS, fontSize: "1rem",
           color: "rgba(244,241,235,0.75)", lineHeight: 1.85,
           marginBottom: "1.25rem", maxWidth: 520, margin: "0 auto 1.25rem",
@@ -88,7 +88,7 @@ export default function FinalCTASection() {
           The REACH Diagnostic is a 14-question readiness check. Complete it in 4–6 minutes. No account required. No sales call. No commitment.
         </p>
 
-        <p style={{
+        <p className="reveal-on-scroll d-240" style={{
           fontFamily: SANS, fontSize: "1rem",
           color: "rgba(244,241,235,0.65)", lineHeight: 1.85,
           marginBottom: "3rem", maxWidth: 520, margin: "0 auto 3rem",

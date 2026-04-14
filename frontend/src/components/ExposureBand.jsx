@@ -23,14 +23,14 @@ export default function ExposureBand() {
 
         {/* Left: heading */}
         <div style={{ flexShrink: 0, minWidth: 280 }}>
-          <p style={{
+          <p className="reveal-on-scroll" style={{
             fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700,
             letterSpacing: "0.22em", textTransform: "uppercase",
             color: "rgba(200,147,63,0.45)", margin: "0 0 0.625rem",
           }}>
             LP-EXP-STATUS
           </p>
-          <h2 style={{
+          <h2 className="reveal-on-scroll d-80" style={{
             fontFamily: "'Newsreader', 'Playfair Display', serif",
             fontWeight: 800, fontSize: "clamp(1.1rem, 2vw, 1.375rem)",
             color: GOLD, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0,
@@ -44,7 +44,7 @@ export default function ExposureBand() {
 
         {/* Right: body */}
         <div style={{ flex: 1, minWidth: 280 }}>
-          <p style={{
+          <p className="reveal-on-scroll d-160" style={{
             fontFamily: SANS, fontSize: "1rem",
             color: "rgba(244,241,235,0.72)", lineHeight: 1.82, margin: 0, maxWidth: 620,
           }}>

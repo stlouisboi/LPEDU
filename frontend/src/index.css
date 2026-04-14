@@ -509,6 +509,19 @@ code {
 }
 .data-stream.revealed { animation-play-state: running; }
 
+/* ── Scroll-triggered staggered entrance ──────────────────────────────────── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.70s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.70s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.d-80  { transition-delay: 80ms; }
+.reveal-on-scroll.d-160 { transition-delay: 160ms; }
+.reveal-on-scroll.d-240 { transition-delay: 240ms; }
+.reveal-on-scroll.d-320 { transition-delay: 320ms; }
+.reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
+
 /* Inset bevel — makes flat cards feel recessed into metal */
 .inset-card {
   box-shadow:

@@ -83,7 +83,7 @@ export default function WhatGetsBuiltSection() {
       <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         {/* Label */}
-        <p style={{ fontFamily: MONO, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", marginBottom: "1.25rem" }}>
+        <p className="reveal-on-scroll" style={{ fontFamily: MONO, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", marginBottom: "1.25rem" }}>
           LP-BUILD-TRACK — 90-DAY INSTALLATION WINDOW
         </p>
 
@@ -93,10 +93,10 @@ export default function WhatGetsBuiltSection() {
         </h2>
 
         {/* Gold rule */}
-        <div style={{ width: 48, height: 2, background: GOLD, marginBottom: "1.75rem", opacity: 0.75 }} />
+        <div className="reveal-on-scroll d-80" style={{ width: 48, height: 2, background: GOLD, marginBottom: "1.75rem", opacity: 0.75 }} />
 
         {/* Lead paragraph — spec copy */}
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.85, maxWidth: 680, marginBottom: "3rem" }}>
+        <p className="reveal-on-scroll d-160" style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.85, maxWidth: 680, marginBottom: "3rem" }}>
           At the end of the LaunchPath Standard, you will not just "know more about compliance." You will have specific systems and records installed in your operation:
         </p>
 

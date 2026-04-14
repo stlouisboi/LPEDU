@@ -16,11 +16,11 @@ import FooterSection from "../components/FooterSection";
 export default function HomePage() {
   // Data-stream text reveal — triggers .revealed on [data-ds] elements
   useEffect(() => {
-    const elements = document.querySelectorAll(".data-stream");
+    const elements = document.querySelectorAll(".data-stream, .reveal-on-scroll");
     if (!elements.length) return;
     const obs = new IntersectionObserver(
       (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("revealed"); obs.unobserve(e.target); } }),
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
     elements.forEach(el => obs.observe(el));
     return () => obs.disconnect();

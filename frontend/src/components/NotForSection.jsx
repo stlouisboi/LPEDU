@@ -42,7 +42,7 @@ export default function NotForSection() {
       <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         {/* Label */}
-        <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.60)", marginBottom: "1.75rem" }}>
+        <p className="reveal-on-scroll" style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.60)", marginBottom: "1.75rem" }}>
           ADMISSION CRITERIA
         </p>
 
@@ -52,7 +52,7 @@ export default function NotForSection() {
         </h2>
 
         {/* Opening */}
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.8, maxWidth: 680, marginBottom: "3rem" }}>
+        <p className="reveal-on-scroll d-160" style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.8, maxWidth: 680, marginBottom: "3rem" }}>
           LaunchPath is for carriers who want order, not shortcuts.
         </p>
 

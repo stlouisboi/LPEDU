@@ -42,6 +42,10 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 71: Entrance Animations + Premium Chart Tooltip (Apr 2026)
+- **Staggered scroll entrance**: `reveal-on-scroll` CSS class (opacity 0→1, translateY 16px→0, 0.70s cubic-bezier ease-out) added to `index.css` with `.d-80/.d-160/.d-240/.d-320` delay modifiers. `HomePage.jsx` IntersectionObserver now observes both `.data-stream` and `.reveal-on-scroll`. Applied to labels, body copy, gold rules, and headlines across ExposureBand, NotForSection, WhatGetsBuiltSection, FinalCTASection, ThePatternSection — 16 elements total
+- **Custom ScoreTooltip**: Replaced recharts default tooltip with a bespoke `ScoreTooltip` component — dark navy bg, gold border, large overall score in gold, domain rows with color swatch + label, box-shadow depth. Wired via `content={<ScoreTooltip />}` prop
+
 ### Phase 70: Blueprint Grid + Score Chart Improvements (Apr 2026)
 - **Blueprint grid uniformity**: Applied matching 52px linear-gradient line grid + CRT scan-line overlay to all 8 homepage sections (HeroSection replaced dot-grid, ExposureBand/NotForSection added position:relative + overlays, TheStandardSection/WhatGetsBuiltSection converted to 52px uniform spacing, FinalCTASection added CRT scan-line, ThePatternSection/FailureAnalysisSection already complete — skipped)
 - **Score trend chart height**: Increased from 160px → 240px (ResponsiveContainer)

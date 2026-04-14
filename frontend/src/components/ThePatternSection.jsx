@@ -43,7 +43,7 @@ export default function ThePatternSection() {
         ))}
 
         {/* Label */}
-        <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.60)", marginBottom: "1.75rem" }}>
+        <p className="reveal-on-scroll" style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.60)", marginBottom: "1.75rem" }}>
           THE PATTERN
         </p>
 
@@ -53,7 +53,7 @@ export default function ThePatternSection() {
         </h2>
 
         {/* Body copy */}
-        <p style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 720 }}>
+        <p className="reveal-on-scroll d-160" style={{ fontFamily: SANS, fontSize: "1.064rem", color: BODY, lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: 720 }}>
           A carrier gets authority. They start moving. The paperwork looks mostly done. The operation feels close enough. Then pressure shows up.
         </p>
 
