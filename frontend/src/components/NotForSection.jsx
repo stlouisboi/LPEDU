@@ -31,9 +31,15 @@ export default function NotForSection() {
         borderTop: "1px solid rgba(255,255,255,0.04)",
         borderBottom: "1px solid rgba(200,147,63,0.20)",
         padding: "6rem 1.5rem",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 860, margin: "0 auto" }}>
+      {/* Blueprint line grid */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "linear-gradient(rgba(197,160,89,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.04) 1px, transparent 1px)", backgroundSize: "52px 52px" }} />
+      {/* CRT scan-line overlay */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }} />
+      <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         {/* Label */}
         <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.60)", marginBottom: "1.75rem" }}>

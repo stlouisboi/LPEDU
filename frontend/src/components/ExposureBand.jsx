@@ -11,9 +11,15 @@ export default function ExposureBand() {
         borderTop: "2px solid rgba(200,147,63,0.50)",
         borderBottom: "1px solid rgba(200,147,63,0.15)",
         padding: "2.5rem 1.5rem",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", gap: "3rem", alignItems: "flex-start", flexWrap: "wrap" }}>
+      {/* Blueprint line grid */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "linear-gradient(rgba(197,160,89,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.04) 1px, transparent 1px)", backgroundSize: "52px 52px" }} />
+      {/* CRT scan-line overlay */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }} />
+      <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", gap: "3rem", alignItems: "flex-start", flexWrap: "wrap", position: "relative", zIndex: 1 }}>
 
         {/* Left: heading */}
         <div style={{ flexShrink: 0, minWidth: 280 }}>

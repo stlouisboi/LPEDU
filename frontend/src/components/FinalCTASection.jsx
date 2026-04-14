@@ -30,6 +30,8 @@ export default function FinalCTASection() {
         backgroundImage: "linear-gradient(rgba(197,160,89,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.045) 1px, transparent 1px)",
         backgroundSize: "52px 52px",
       }} />
+      {/* CRT scan-line overlay */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }} />
       {/* Monitoring sweep — staggered 2s offset */}
       <div className="bp-sweep-line bp-sweep-line-delayed" style={{ "--sweep-height": "500px" }} aria-hidden="true" />
 

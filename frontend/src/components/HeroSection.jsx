@@ -56,12 +56,14 @@ export default function HeroSection() {
         backgroundSize: "200px",
       }} />
 
-      {/* Blueprint dot-grid overlay */}
+      {/* Blueprint line grid */}
       <div style={{
-        position: "absolute", inset: 0, zIndex: 0, opacity: 0.07,
-        backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.6) 1px, transparent 1px)",
-        backgroundSize: "36px 36px",
+        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+        backgroundImage: "linear-gradient(rgba(197,160,89,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.04) 1px, transparent 1px)",
+        backgroundSize: "52px 52px",
       }} />
+      {/* CRT scan-line overlay */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }} />
 
       {/* One-time load animations */}
       <style dangerouslySetInnerHTML={{__html: `

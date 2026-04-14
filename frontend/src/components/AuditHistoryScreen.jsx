@@ -43,7 +43,7 @@ function ScoreTrendChart({ history }) {
       <p style={{ fontFamily: "monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1rem" }}>
         COMPLIANCE SCORE TREND
       </p>
-      <ResponsiveContainer width="100%" height={160}>
+      <ResponsiveContainer width="100%" height={240}>
         <LineChart data={data} margin={{ top: 4, right: 8, left: -28, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
           <XAxis
@@ -172,6 +172,10 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
           const submittedLabel = formatDate(check.submittedAt);
           const monthLabel = formatMonthLabel(check.checkMonth);
           const isFirst = idx === 0;
+          const prev = history[idx + 1];
+          const delta = (overall.scorePercent != null && prev?.overallResult?.scorePercent != null)
+            ? overall.scorePercent - prev.overallResult.scorePercent
+            : null;
 
           return (
             <div
@@ -197,6 +201,18 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
                     {overall.scorePercent != null && (
                       <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em" }}>
                         {overall.scorePercent}%
+                      </span>
+                    )}
+                    {delta !== null && (
+                      <span data-testid={`delta-badge-${check.checkId}`} style={{
+                        fontFamily: "monospace", fontSize: "0.44rem", fontWeight: 700,
+                        letterSpacing: "0.10em", textTransform: "uppercase",
+                        color: delta > 0 ? "rgba(34,197,94,0.85)" : delta < 0 ? "rgba(239,68,68,0.80)" : "rgba(255,255,255,0.3)",
+                        background: delta > 0 ? "rgba(34,197,94,0.06)" : delta < 0 ? "rgba(239,68,68,0.06)" : "rgba(255,255,255,0.04)",
+                        border: `1px solid ${delta > 0 ? "rgba(34,197,94,0.20)" : delta < 0 ? "rgba(239,68,68,0.20)" : "rgba(255,255,255,0.10)"}`,
+                        padding: "1px 5px",
+                      }}>
+                        {delta > 0 ? `+${delta}%` : `${delta}%`}
                       </span>
                     )}
                     <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.2)", letterSpacing: "0.08em" }}>

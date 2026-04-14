@@ -457,6 +457,8 @@ export default function TheStandardSection() {
         position: "relative",
       }}
     >
+      {/* CRT scan-line overlay */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }} />
       {/* Monitoring sweep line — simulates live system scan */}
       <div
         className="bp-sweep-line"

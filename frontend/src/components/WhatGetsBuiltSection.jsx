@@ -69,14 +69,18 @@ export default function WhatGetsBuiltSection() {
       data-testid="what-gets-built-section"
       style={{
         background: "#041020",
-        backgroundImage: "radial-gradient(rgba(200,147,63,0.04) 1px, transparent 1px)",
-        backgroundSize: "24px 24px",
+        backgroundImage: "linear-gradient(rgba(200,147,63,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,147,63,0.04) 1px, transparent 1px)",
+        backgroundSize: "52px 52px",
         borderTop: "1px solid rgba(200,147,63,0.15)",
         borderBottom: "1px solid rgba(200,147,63,0.15)",
         padding: "6rem 1.5rem",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 860, margin: "0 auto" }}>
+      {/* CRT scan-line overlay */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }} />
+      <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         {/* Label */}
         <p style={{ fontFamily: MONO, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", marginBottom: "1.25rem" }}>
