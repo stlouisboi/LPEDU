@@ -15,7 +15,7 @@ export default function Page() {
         <meta name="twitter:title" content="About LaunchPath | Governance Principles & Admission Standards" />
         <meta name="twitter:description" content="LaunchPath applies a stewardship-first standard to new motor carrier compliance. Learn about the governance principles and admission criteria that define the LaunchPath Standard." />
         <meta name="twitter:image" content="https://www.launchpathedu.com/og-launchpath.png" />
-        <link rel="canonical" href="https://www.launchpathedu.com/about" />
+        <link rel="canonical" href="https://launchpathedu.com/about" />
       </Head>
       <AboutPage />
     </>

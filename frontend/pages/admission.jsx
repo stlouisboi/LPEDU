@@ -15,7 +15,7 @@ export default function Page() {
         <meta name="twitter:title" content="Apply for the LaunchPath Standard | LaunchPath Transportation EDU" />
         <meta name="twitter:description" content="Submit your carrier information to apply for the LaunchPath Standard — the 90-day guided compliance program for new motor carriers." />
         <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
-        <link rel="canonical" href="https://www.launchpathedu.com/admission" />
+        <link rel="canonical" href="https://launchpathedu.com/admission" />
       </Head>
       <AdmissionPage />
     </>

@@ -15,7 +15,7 @@ export default function Page() {
         <meta name="twitter:title" content="The LaunchPath Operating Standard | LaunchPath Transportation EDU" />
         <meta name="twitter:description" content="The complete compliance operating system for new motor carriers — authority protection, insurance continuity, and the compliance backbone FMCSA expects." />
         <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
-        <link rel="canonical" href="https://www.launchpathedu.com/operating-standard" />
+        <link rel="canonical" href="https://launchpathedu.com/operating-standard" />
       </Head>
       <OperatingStandardPage />
     </>

@@ -15,7 +15,7 @@ export default function Page() {
         <meta name="twitter:title" content="Coach Registry & Carrier Portal | LaunchPath Standard" />
         <meta name="twitter:description" content="Carrier verification registry and coach portal for LaunchPath Standard administrators. Monitor operator progress, remediate tasks, and issue gate decisions." />
         <meta name="twitter:image" content="https://www.launchpathedu.com/og-launchpath.png" />
-        <link rel="canonical" href="https://www.launchpathedu.com/coach-registry" />
+        <link rel="canonical" href="https://launchpathedu.com/coach-registry" />
       </Head>
       <CoachRegistryPage />
     </>
