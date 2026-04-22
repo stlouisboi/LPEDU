@@ -14,6 +14,10 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <link rel="canonical" key="canonical" href={canonical} />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
       <ScrollToTop />
