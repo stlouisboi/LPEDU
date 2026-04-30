@@ -46,9 +46,10 @@ export default function NewEntrantPacketPage() {
         "A generic audit prep download that gives you folders without regulatory context.",
         "Guesswork in the weeks before an audit.",
       ]}
-      nextStepText="This packet is one of five domain-specific document systems in the Domain Systems Bundle ($499). The bundle includes all five packets, a unified folder structure, and a 0–30–90 day implementation guide."
-      nextStepHref="/compliance-library"
-      nextStepLabel="View the Domain Systems Bundle ($499) →"
+      nextStepText="Domain 1 is installed. Domain 2 is Driver Qualification — the complete DQ file architecture for every driver under your authority. If you are installing the system in sequence, this is the next packet."
+      nextStepHref="/standards/dq-file-builder"
+      nextStepLabel="Domain 2 · DQ File Builder — $129 →"
+      domainStep={1}
     >
       {/* What This Replaces — closing note */}
       <FadeIn delay={165}>

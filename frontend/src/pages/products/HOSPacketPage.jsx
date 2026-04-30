@@ -34,9 +34,10 @@ export default function HOSPacketPage() {
         "Having no written record of what your dispatch operation is and is not permitted to do",
         "Realizing your supporting documents do not match your ELD data after an investigator points it out",
       ]}
-      nextStepText="The HOS & ELD Packet covers one of five compliance domains. The Domain Systems Bundle includes all five packets — the complete DIY operating standard for new authorities."
-      nextStepHref="/compliance-library"
-      nextStepLabel="View the Domain Systems Bundle ($499) →"
+      nextStepText="Domain 4 is installed. Domain 5 is Vehicle Maintenance — the unit file structure, PM schedules, and defect tracking documentation that Part 396 requires."
+      nextStepHref="/standards/maintenance-packet"
+      nextStepLabel="Domain 5 · Vehicle Maintenance — $119 →"
+      domainStep={4}
     />
   );
 }

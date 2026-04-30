@@ -75,9 +75,10 @@ export default function DQFilePacketPage() {
         "Using informal file folders with no structure, no checklist, and no expiration tracking.",
         "Discovering that your driver files were built wrong — during the audit, not before it.",
       ]}
-      nextStepText="The DQ File Builder Kit covers driver qualification infrastructure. The LaunchPath Starter Stack adds the 16 Deadly Sins self-audit and the Safety Audit Prep Pack — three documents, 84 pages, $138 off individual pricing."
-      nextStepHref="/standards/starter-stack"
-      nextStepLabel="View the Starter Stack ($219) →"
+      nextStepText="Domain 2 is installed. Domain 3 is Drug & Alcohol — the Part 382 written policy, testing documentation, and Clearinghouse integration your program requires. Installing in sequence? This is next."
+      nextStepHref="/standards/drug-alcohol-packet"
+      nextStepLabel="Domain 3 · Drug & Alcohol — $129 →"
+      domainStep={2}
     >
 
       {/* Six-document breakdown */}

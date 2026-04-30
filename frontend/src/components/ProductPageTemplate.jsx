@@ -26,6 +26,7 @@ export default function ProductPageTemplate({
   image = null,
   ctaLabel = null,
   valuePoints = null,
+  domainStep = null,
   children,
 }) {
   const gold = "#d4900a";
@@ -291,6 +292,50 @@ export default function ProductPageTemplate({
         {children}
 
         <Divider />
+
+        {/* Domain Installation Sequence Strip — shown only on domain packet pages */}
+        {domainStep && (
+          <FadeIn delay={195}>
+            <div data-testid="domain-sequence-strip" style={{ background: "#070e1d", border: "1px solid rgba(212,144,10,0.12)", padding: "1.25rem 1.5rem", marginBottom: "2rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.875rem" }}>
+                INSTALLATION SEQUENCE — DOMAIN {domainStep} OF 6
+              </p>
+              <div style={{ display: "flex", gap: "0", flexWrap: "wrap", alignItems: "center" }}>
+                {[
+                  { n: 1, label: "Authority", href: "/standards/new-entrant-packet" },
+                  { n: 2, label: "DQ Files", href: "/standards/dq-file-builder" },
+                  { n: 3, label: "Drug & Alcohol", href: "/standards/drug-alcohol-packet" },
+                  { n: 4, label: "HOS", href: "/standards/hos-packet" },
+                  { n: 5, label: "Maintenance", href: "/standards/maintenance-packet" },
+                  { n: 6, label: "Insurance", href: "/standards/insurance-packet" },
+                ].map((d, i, arr) => (
+                  <div key={d.n} style={{ display: "flex", alignItems: "center" }}>
+                    <a href={d.href} style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.762rem",
+                      fontWeight: d.n === domainStep ? 700 : 400,
+                      color: d.n === domainStep ? gold : d.n < domainStep ? "rgba(212,144,10,0.55)" : "rgba(255,255,255,0.30)",
+                      textDecoration: "none",
+                      padding: "0.25rem 0.5rem",
+                      background: d.n === domainStep ? "rgba(212,144,10,0.08)" : "transparent",
+                      border: d.n === domainStep ? "1px solid rgba(212,144,10,0.25)" : "1px solid transparent",
+                      whiteSpace: "nowrap",
+                      transition: "color 0.15s",
+                    }}
+                      onMouseEnter={e => { if (d.n !== domainStep) e.currentTarget.style.color = "rgba(255,255,255,0.60)"; }}
+                      onMouseLeave={e => { if (d.n !== domainStep) e.currentTarget.style.color = d.n < domainStep ? "rgba(212,144,10,0.55)" : "rgba(255,255,255,0.30)"; }}
+                    >
+                      {d.n}. {d.label}
+                    </a>
+                    {i < arr.length - 1 && (
+                      <span style={{ color: "rgba(255,255,255,0.15)", fontSize: "0.714rem", padding: "0 0.2rem", userSelect: "none" }}>→</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        )}
 
         {/* Next Step */}
         <FadeIn delay={200}>

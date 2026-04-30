@@ -32,10 +32,10 @@ export default function InsurancePacketPage() {
         "Arriving at renewal without a loss run or organized safety records",
         "Operating for months with an insurance filing gap because the renewal was processed but the filing was not confirmed",
       ]}
-      nextStepText="The Insurance & Authority Packet covers one of five compliance domains. The New Carrier Document System bundles all five with a 0–30–90 day implementation guide — the complete DIY operating standard for new authorities."
-      nextStepText="This packet is one of five domain-specific document systems in the Domain Systems Bundle ($499). The bundle includes all five packets, a unified folder structure, and a 0–30–90 day implementation guide."
+      nextStepText="All six domains are in the library. The Document System Bundle ties them together — unified folder architecture, 0–30–60–90 day implementation calendar, and master compliance checklist included with all five domain packets at $176 below individual acquisition cost."
       nextStepHref="/compliance-library"
-      nextStepLabel="View the Domain Systems Bundle ($499) →"
+      nextStepLabel="View the Document System Bundle ($499) →"
+      domainStep={6}
       mockupId={null}
     />
   );

@@ -40,9 +40,10 @@ export default function DrugAlcoholPacketPage() {
         "Relying on your C/TPA to tell you what FMCSA actually reviews.",
         "Discovering your policy was never put in writing during an audit.",
       ]}
-      nextStepText="This packet is one of five domain-specific document systems in the Domain Systems Bundle ($499). The bundle includes all five packets, a unified folder structure, and a 0–30–90 day implementation guide."
-      nextStepHref="/compliance-library"
-      nextStepLabel="View the Domain Systems Bundle ($499) →"
+      nextStepText="Domain 3 is installed. Domain 4 is Hours of Service — the ELD compliance standards, dispatch discipline, and HOS recordkeeping framework required under Part 395."
+      nextStepHref="/standards/hos-packet"
+      nextStepLabel="Domain 4 · HOS & Dispatch — $119 →"
+      domainStep={3}
     >
       {/* Who This Is Not For */}
       <FadeIn delay={170}>

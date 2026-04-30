@@ -32,10 +32,10 @@ export default function MaintenancePacketPage() {
         "Discovering an open DVIR defect with no repair record when an investigator asks for your maintenance history",
         "Operating units without a current annual inspection on file",
       ]}
-      nextStepText="The Maintenance & Unit File Packet covers one of five compliance domains. The New Carrier Document System bundles all five with a 0–30–90 day implementation guide — the complete DIY operating standard for new authorities."
-      nextStepText="This packet is one of five domain-specific document systems in the Domain Systems Bundle ($499). The bundle includes all five packets, a unified folder structure, and a 0–30–90 day implementation guide."
-      nextStepHref="/compliance-library"
-      nextStepLabel="View the Domain Systems Bundle ($499) →"
+      nextStepText="Domain 5 is installed. Domain 6 is Insurance Continuity — the filing verification, contract risk review, and renewal framework that keeps your authority active and your filings current."
+      nextStepHref="/standards/insurance-packet"
+      nextStepLabel="Domain 6 · Insurance Continuity — $109 →"
+      domainStep={5}
       mockupId={null}
     />
   );

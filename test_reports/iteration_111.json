@@ -1,0 +1,30 @@
+{
+  "summary": "Tested sequential domain installation chain across all 6 domain pages. All domain-sequence-strips render correctly with DOMAIN X OF 6 text, all buy-packet-btns present, all Next Step links point to correct hrefs with exact expected labels, and non-domain page (/standards/starter-stack) correctly has no strip.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/tests/test_domain_sequence.py"],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": ["/app/tests/test_domain_sequence.py"],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All 6 domain pages (/standards/new-entrant-packet through /standards/insurance-packet) have domain-sequence-strip with DOMAIN X OF 6, buy-packet-btn, and correct next step links with exact labels. Non-domain pages have no strip. Feature fully working.",
+  "test_results_detail": {
+    "domain_1": {"strip": "PASS - DOMAIN 1 OF 6", "buy_btn": "PASS", "next_link": "PASS - /standards/dq-file-builder", "next_label": "PASS - 'Domain 2 · DQ File Builder — $129 →'"},
+    "domain_2": {"strip": "PASS - DOMAIN 2 OF 6", "buy_btn": "PASS", "next_link": "PASS - /standards/drug-alcohol-packet", "next_label": "PASS - 'Domain 3 · Drug & Alcohol — $129 →'"},
+    "domain_3": {"strip": "PASS - DOMAIN 3 OF 6", "buy_btn": "PASS", "next_link": "PASS - /standards/hos-packet", "next_label": "PASS - 'Domain 4 · HOS & Dispatch — $119 →'"},
+    "domain_4": {"strip": "PASS - DOMAIN 4 OF 6", "buy_btn": "PASS", "next_link": "PASS - /standards/maintenance-packet", "next_label": "PASS - 'Domain 5 · Vehicle Maintenance — $119 →'"},
+    "domain_5": {"strip": "PASS - DOMAIN 5 OF 6", "buy_btn": "PASS", "next_link": "PASS - /standards/insurance-packet", "next_label": "PASS - 'Domain 6 · Insurance Continuity — $109 →'"},
+    "domain_6": {"strip": "PASS - DOMAIN 6 OF 6", "buy_btn": "PASS", "next_link": "PASS - /compliance-library", "next_label": "PASS - 'View the Document System Bundle ($499) →'"},
+    "non_domain_page": "PASS - no strip on /standards/starter-stack"
+  }
+}
