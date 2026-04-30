@@ -149,36 +149,39 @@ export default function LessonView({ lesson, lessonIndex, totalLessons, complete
         </div>
       )}
 
-      {/* PDF Download */}
-      <div style={{ marginBottom: "2rem" }}>
-        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "0.75rem" }}>
-          REFERENCE DOCUMENT
-        </p>
-        {urlMap[lesson.number]?.pdf_url ? (
-          <a
-            href={urlMap[lesson.number].pdf_url}
-            target="_blank" rel="noreferrer"
-            data-testid={`pdf-download-${lesson.number}`}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(212,144,10,0.35)", color: "#d4900a", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", textDecoration: "none" }}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1v8M4 6l3 3 3-3M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Download {lesson.pdfLabel}
-          </a>
-        ) : (
-          <button
-            data-testid={`pdf-download-${lesson.number}`}
-            disabled
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.45)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", cursor: "not-allowed" }}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1v8M4 6l3 3 3-3M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            {lesson.pdfLabel} — Coming Soon
-          </button>
-        )}
-      </div>
+      {/* PDF Downloads */}
+      {(() => {
+        const primary = urlMap[lesson.number]?.pdf_url;
+        const extras  = urlMap[lesson.number]?.pdf_urls || [];
+        const hasPdfs = primary || extras.length > 0;
+        const dlIcon  = <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+        return (
+          <div style={{ marginBottom: "2rem" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "0.75rem" }}>
+              {hasPdfs && extras.length > 0 ? "REFERENCE DOCUMENTS" : "REFERENCE DOCUMENT"}
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.625rem" }}>
+              {primary ? (
+                <a href={primary} target="_blank" rel="noreferrer" data-testid={`pdf-download-${lesson.number}`}
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(212,144,10,0.35)", color: "#d4900a", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", textDecoration: "none" }}>
+                  {dlIcon} Download {lesson.pdfLabel}
+                </a>
+              ) : (
+                <button disabled data-testid={`pdf-download-${lesson.number}`}
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.45)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", cursor: "not-allowed" }}>
+                  {dlIcon} {lesson.pdfLabel} — Coming Soon
+                </button>
+              )}
+              {extras.map((ex, i) => (
+                <a key={i} href={ex.url} target="_blank" rel="noreferrer" data-testid={`pdf-extra-${lesson.number}-${i}`}
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(212,144,10,0.20)", color: "rgba(212,144,10,0.75)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", textDecoration: "none" }}>
+                  {dlIcon} {ex.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Self Assessment */}
       {lesson.assessmentQuestion && lesson.assessmentOptions && (
