@@ -801,7 +801,7 @@ export default function ComplianceLibraryPage() {
                 description: "Build a complete, CFR-compliant Driver Qualification file for every driver in your fleet.",
                 price: "$129",
                 sku: "LP-PKT-DQ",
-                href: "/compliance-library",
+                href: "/standards/dq-file-builder",
                 testid: "domain-card-lp-pkt-dq",
               },
               {

@@ -42,6 +42,11 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 74: DQ File Builder page — link wired + canonical fixed (Apr 2026)
+- Updated LP-PKT-DQ "VIEW DOMAIN →" link in ComplianceLibraryPage.jsx from `/compliance-library` → `/standards/dq-file-builder` (page + component were already fully built)
+- Fixed canonical URL in `dq-file-builder.jsx` from `www.launchpathedu.com` → `launchpathedu.com` (non-www, consistent with GSC canonical rules)
+- Page live at /standards/dq-file-builder with full SEO metadata, JSON-LD Product schema, and 6-document content breakdown
+
 ### Phase 73: LP-WEB-CLPAGE-001 Compliance Library Full CRO Spec (Apr 2026)
 - **P1 Copy corrections**: Hero subhead → "DIY document system or guided 90-day installation"; Secondary link → "Already know what you need? Skip to the DIY Bundle →"; Bundle badge → "RECOMMENDED FOR MOST CARRIERS"; Bundle card expanded to 4 checkmarks (all five packets / folder architecture / 0–30–60–90 calendar / master checklist); added bundle subline "The complete document system. You install it yourself."; Path Chooser Card 4 updated to "Want it built, verified, and confirmed audit-ready" / "LAUNCHPATH STANDARD — $2,500 →"; all card CTAs now have "→" arrows.
 - **P2 New sections**: ROI Snapshot embedded inside Bundle Hero Card (removed as standalone section); Audit Window Calculator moved to Section 5 (immediately after Path Chooser) with "HOW MUCH TIME DO YOU HAVE?" label + FMCSA 18-month audit window intro text; Social Proof Placeholder added at Section 6 (between Audit Window and Standard section).
