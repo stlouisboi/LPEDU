@@ -42,6 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 73: LP-WEB-CLPAGE-001 Compliance Library Full CRO Spec (Apr 2026)
+- **P1 Copy corrections**: Hero subhead → "DIY document system or guided 90-day installation"; Secondary link → "Already know what you need? Skip to the DIY Bundle →"; Bundle badge → "RECOMMENDED FOR MOST CARRIERS"; Bundle card expanded to 4 checkmarks (all five packets / folder architecture / 0–30–60–90 calendar / master checklist); added bundle subline "The complete document system. You install it yourself."; Path Chooser Card 4 updated to "Want it built, verified, and confirmed audit-ready" / "LAUNCHPATH STANDARD — $2,500 →"; all card CTAs now have "→" arrows.
+- **P2 New sections**: ROI Snapshot embedded inside Bundle Hero Card (removed as standalone section); Audit Window Calculator moved to Section 5 (immediately after Path Chooser) with "HOW MUCH TIME DO YOU HAVE?" label + FMCSA 18-month audit window intro text; Social Proof Placeholder added at Section 6 (between Audit Window and Standard section).
+- **P3 Rebuild**: Individual domain accordion replaced with 2×3 card grid (6 domain products: LP-PKT-001/002/003/004/005/DQ). Each card: domain label, name, one-line description, price, "ADD TO SYSTEM — $X" buy button, "VIEW DOMAIN →" link. Diagnostics/tools accordion retained for supplemental products. Full section reorder per spec (Hero → Bundle+ROI → Path Chooser → Audit Window → Social Proof → Standard → Domain Grid → Comparison → FAQ → Footer). micro-CTA updated: "Buying more than one domain? ...for $499 — $176 below individual acquisition cost."
+- Testing: 100% (all P1/P2/P3 items) — iteration_110
+
 ### Phase 72: LP-WEB-007 Standards Page CRO Spec (Apr 2026)
 - **Task 01 (P1)**: Hero section restructured — new subhead "Choose your path: DIY compliance system or guided installation for new motor carriers.", 3-bullet benefit list (Pass audit first attempt / Install in 90 days / Know what FMCSA looks for), primary CTA "TAKE THE REACH DIAGNOSTIC — FREE" (→ /reach-diagnostic), secondary link "Skip to Document System Bundle — $499" (→ #bundle). Old long-form copy removed.
 - **Task 02 (P1)**: Bundle Hero Card inserted directly after hero — "RECOMMENDED" badge, `Document System Bundle $499` heading, 3 feature checkmarks (architecture / calendar / master checklist), prominent `INSTALL THE SYSTEM — $499` button (LP-BDL-001 checkout), escape link below.
