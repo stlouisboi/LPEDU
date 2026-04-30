@@ -156,7 +156,7 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
   );
 }
 
-function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, errors }) {
+function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, errors, image }) {
   return (
     <div style={{ marginBottom: 8 }}>
       <div
@@ -165,23 +165,31 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
           background: "#0D1B2A",
           border: `1px solid rgba(212,160,23,${isOpen ? "0.5" : "0.2"})`,
           borderRadius: isOpen ? "6px 6px 0 0" : "6px",
-          padding: "20px 24px", cursor: "pointer",
-          display: "flex", justifyContent: "space-between", alignItems: "center",
+          padding: image ? "0" : "20px 24px", cursor: "pointer",
+          display: "flex", justifyContent: "space-between", alignItems: "stretch",
           transition: "border-color 0.2s",
-          minHeight: 64,
+          minHeight: 64, overflow: "hidden",
         }}
         onMouseEnter={e => { if (!isOpen) e.currentTarget.style.borderColor = "rgba(212,160,23,0.35)"; }}
         onMouseLeave={e => { if (!isOpen) e.currentTarget.style.borderColor = "rgba(212,160,23,0.2)"; }}
       >
-        <div>
-          <p style={{ fontFamily: MONO, fontSize: "15px", letterSpacing: "0.10em", textTransform: "uppercase", color: CORAL, margin: 0, fontWeight: 700 }}>{group.label}</p>
-          <p style={{ fontFamily: SANS, fontSize: "15px", color: "rgba(255,255,255,0.70)", margin: "6px 0 0", lineHeight: 1.5 }}>{group.subtitle}</p>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0, marginLeft: "1.5rem" }}>
-          <span style={{ fontFamily: MONO, fontSize: "13px", letterSpacing: "0.08em", color: "rgba(212,160,23,0.80)", whiteSpace: "nowrap" }}>
-            {group.assets} · {group.priceRange}
-          </span>
-          <span style={{ color: GOLD, fontSize: "0.85rem", display: "inline-block", transition: "transform 0.2s ease", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", userSelect: "none" }}>▼</span>
+        {image && (
+          <div className="mockup-zoom-wrap" style={{ width: 100, flexShrink: 0, overflow: "hidden", position: "relative" }}>
+            <img src={image} alt="" aria-hidden="true" className="mockup-zoom" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,27,42,0) 60%, rgba(13,27,42,0.7) 100%)" }} />
+          </div>
+        )}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flex: 1, padding: "20px 24px" }}>
+          <div>
+            <p style={{ fontFamily: MONO, fontSize: "15px", letterSpacing: "0.10em", textTransform: "uppercase", color: CORAL, margin: 0, fontWeight: 700 }}>{group.label}</p>
+            <p style={{ fontFamily: SANS, fontSize: "15px", color: "rgba(255,255,255,0.70)", margin: "6px 0 0", lineHeight: 1.5 }}>{group.subtitle}</p>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0, marginLeft: "1.5rem" }}>
+            <span style={{ fontFamily: MONO, fontSize: "13px", letterSpacing: "0.08em", color: "rgba(212,160,23,0.80)", whiteSpace: "nowrap" }}>
+              {group.assets} · {group.priceRange}
+            </span>
+            <span style={{ color: GOLD, fontSize: "0.85rem", display: "inline-block", transition: "transform 0.2s ease", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", userSelect: "none" }}>▼</span>
+          </div>
         </div>
       </div>
       {isOpen && (
@@ -901,6 +909,10 @@ export default function ComplianceLibraryPage() {
           </p>
           {ACCORDION_GROUPS.filter(g => ["diagnostics", "audit-prep"].includes(g.id)).map(group => {
             const groupProducts = PRODUCTS.filter(p => group.skus.includes(p.sku));
+            const SUPP_IMAGES = {
+              "diagnostics": "/images/products/tool-deadly-sins.webp",
+              "audit-prep":  "/images/products/tool-audit-prep.webp",
+            };
             return (
               <AccordionGroup
                 key={group.id}
@@ -911,6 +923,7 @@ export default function ComplianceLibraryPage() {
                 onBuy={buy}
                 states={states}
                 errors={errors}
+                image={SUPP_IMAGES[group.id]}
               />
             );
           })}
