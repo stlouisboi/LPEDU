@@ -169,11 +169,12 @@ export default function ProductPageTemplate({
 
               {/* Right: cinematic image OR 3D mockup */}
               {image ? (
-                <div style={{ overflow: "hidden", borderRadius: 4, aspectRatio: "4/3", background: "#040a14", position: "relative" }}>
+                <div className="mockup-zoom-wrap" style={{ overflow: "hidden", borderRadius: 4, aspectRatio: "4/3", background: "#040a14", position: "relative" }}>
                   <Image
                     src={image}
                     alt={title}
                     fill
+                    className="mockup-zoom"
                     style={{ objectFit: "cover", objectPosition: "center" }}
                   />
                 </div>

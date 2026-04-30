@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Product mockup image zoom-on-hover ──────────────────────────── */
+.mockup-zoom {
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.mockup-zoom-wrap:hover .mockup-zoom {
+  transform: scale(1.06);
+}
+
 /* ── LaunchPath Sales Page globals ─────────────────────────────── */
 @keyframes lp-fadeUp {
   from { opacity: 0; transform: translateY(24px); }

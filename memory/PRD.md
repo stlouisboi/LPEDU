@@ -42,12 +42,14 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 83: Mockup Image Overhaul — Garbled Text Removed (Apr 2026)
+### Phase 83: Mockup Image Overhaul + Zoom Animation (Apr 2026)
 - Regenerated all 8 product mockup images using OpenAI GPT-Image-1 (via emergentintegrations) with text-free prompts
 - Converted all images from PNG (~1.7MB each) to WebP (~9-58KB each) — 99% size reduction
 - Updated in-place: `domain1-6.webp`, `bundle-document-system.webp`, `complete-diy-library.webp`
 - All JSX refs already pointed to `.webp` filenames — zero code changes required
 - Removed all intermediate PNG files from `/public/images/products/` to prevent repo bloat
+- Added `mockup-zoom` / `mockup-zoom-wrap` CSS classes to `index.css` — `scale(1.06)` on hover, 0.45s cubic-bezier ease
+- Applied zoom to: bundle hero in `ComplianceLibraryPage.jsx`, domain grid cards in same file, and product page hero in `ProductPageTemplate.jsx`
 
 ### Phase 82: sitemap.xml Updated (Apr 2026)
 - Added `/products/library` (priority 0.8, lastmod 2026-04-16) and `/products/bundle` (priority 0.8)

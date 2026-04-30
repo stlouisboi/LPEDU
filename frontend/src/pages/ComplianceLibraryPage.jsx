@@ -397,11 +397,12 @@ export default function ComplianceLibraryPage() {
           {/* Card */}
           <div style={{ background: "#061224", border: `2px solid ${GOLD}`, boxShadow: "0 0 24px rgba(212,144,10,0.20), 0 0 48px rgba(212,144,10,0.08)", overflow: "hidden" }}>
             {/* Bundle hero image */}
-            <div style={{ width: "100%", height: 200, overflow: "hidden", position: "relative" }}>
+            <div className="mockup-zoom-wrap" style={{ width: "100%", height: 200, overflow: "hidden", position: "relative" }}>
               <img
                 src="/images/products/bundle-document-system.webp"
                 alt="Document System Bundle — LaunchPath"
                 loading="eager"
+                className="mockup-zoom"
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
               />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,18,36,0) 40%, rgba(6,18,36,1) 100%)" }} />
@@ -843,11 +844,12 @@ export default function ComplianceLibraryPage() {
               >
                 {/* Product image mockup */}
                 {DOMAIN_IMAGES[card.sku] && (
-                  <div style={{ width: "100%", height: 160, overflow: "hidden", position: "relative", flexShrink: 0 }}>
+                  <div className="mockup-zoom-wrap" style={{ width: "100%", height: 160, overflow: "hidden", position: "relative", flexShrink: 0 }}>
                     <img
                       src={DOMAIN_IMAGES[card.sku]}
                       alt={card.name}
                       loading="lazy"
+                      className="mockup-zoom"
                       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
                     />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,13,25,0) 50%, rgba(6,13,25,0.85) 100%)" }} />
