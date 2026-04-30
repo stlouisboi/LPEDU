@@ -42,6 +42,13 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 77: Product Image Mockups — Generated & Wired (Apr 2026)
+- Generated 8 branded product mockup images via OpenAI GPT Image 1: 6 domain packet folders + Document System Bundle + Complete DIY Library (dark navy folders, gold accents, domain text on cover)
+- Optimized PNG → WebP (640×640, quality 82) reducing from ~1.7MB each to 7–19KB each
+- Stored in /app/frontend/public/images/products/ (Next.js public directory, served as static assets)
+- Wired into /compliance-library page: bundle-document-system.webp in Bundle Hero Card header; 6 domain images at top of each domain card with gradient overlay fading to card background
+- Testing: 100% (10/10 checks) — iteration_113
+
 ### Phase 76: LP-WEB-CLPAGE-001 Section 4B — 6 Additional CRO Changes (Apr 2026)
 - **P1 Standard callout**: Replaced equal-weight Standard card (which showed $2,500 price) with a dimmed directional callout box — no price shown, text "Not ready to self-install? The LaunchPath Standard is a guided 90-day implementation — but it requires Ground 0 completion first." Outlined "BEGIN GROUND 0 →" button + "View full engagement details →" text link only. Section header changed: "TWO PATHS. ONE STANDARD." → "CHOOSE HOW YOU WANT TO BUILD".
 - **P1 Button hierarchy**: Bundle card is now the dominant filled-gold primary. BEGIN GROUND 0 in callout is outlined (secondary). "View full engagement details" is text link (tertiary). Applied consistently across two-path section.
