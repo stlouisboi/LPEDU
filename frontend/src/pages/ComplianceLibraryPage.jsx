@@ -342,7 +342,7 @@ export default function ComplianceLibraryPage() {
           </h1>
           <div style={{ height: 2, background: CORAL, width: 64, marginBottom: "1.5rem" }} />
           <p style={{ fontFamily: SANS, fontSize: "1.1rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.65, marginBottom: "1.5rem", maxWidth: 640 }}>
-            Choose your path: DIY compliance system or guided installation for new motor carriers.
+            Choose your path: DIY document system or guided 90-day installation for new motor carriers.
           </p>
           {/* Task 01: 3-bullet benefit statement */}
           <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2rem", display: "flex", flexDirection: "column", gap: "0.5rem", maxWidth: 560 }}>
@@ -370,36 +370,39 @@ export default function ComplianceLibraryPage() {
               data-testid="hero-bundle-skip"
               style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(212,144,10,0.80)", textDecoration: "underline", textDecorationColor: "rgba(212,144,10,0.40)", letterSpacing: "0.02em", whiteSpace: "nowrap" }}
             >
-              Skip to Document System Bundle — $499
+              Already know what you need? Skip to the DIY Bundle →
             </a>
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 2: BUNDLE HERO CARD (Task 02) ────────────────────── */}
-      <section data-testid="bundle-hero-card" style={{ background: "#040f1e", borderBottom: `1px solid rgba(212,144,10,0.20)`, padding: "4rem 1.5rem" }}>
+      {/* ── SECTION 2: BUNDLE HERO CARD + ROI SNAPSHOT (Tasks 02+03) ── */}
+      <section id="bundle" data-testid="bundle-hero-card" style={{ background: "#040f1e", borderBottom: `1px solid rgba(212,144,10,0.20)`, padding: "4rem 1.5rem" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           {/* RECOMMENDED label */}
           <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
-            <span style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: GOLD, background: "rgba(212,144,10,0.10)", border: `1px solid rgba(212,144,10,0.40)`, padding: "4px 14px", borderRadius: 2 }}>
-              RECOMMENDED
+            <span style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: GOLD, background: "rgba(212,144,10,0.10)", border: `1px solid rgba(212,144,10,0.40)`, padding: "4px 14px", borderRadius: 2 }}>
+              RECOMMENDED FOR MOST CARRIERS
             </span>
           </div>
           {/* Card */}
           <div style={{ background: "#061224", border: `2px solid ${GOLD}`, boxShadow: "0 0 24px rgba(212,144,10,0.20), 0 0 48px rgba(212,144,10,0.08)", padding: "2.5rem 2.5rem 2rem" }}>
             {/* Title + Price */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "1.75rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "0.375rem" }}>
               <h2 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>
-                Document System Bundle
+                Document System Bundle — $499
               </h2>
-              <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.75rem", color: GOLD, letterSpacing: "-0.03em", flexShrink: 0 }}>$499</span>
             </div>
-            {/* Feature checkmarks */}
+            <p style={{ fontFamily: SANS, fontSize: "0.952rem", color: "rgba(255,255,255,0.50)", marginBottom: "1.75rem" }}>
+              The complete document system. You install it yourself.
+            </p>
+            {/* 4 Feature checkmarks — per spec */}
             <div style={{ marginBottom: "2rem" }}>
               {[
-                "Complete compliance architecture across all five audit domains",
-                "Implementation calendar — 90-day installation sequence",
-                "Master checklist — audit-ready verification at every stage",
+                "All five domain compliance packets",
+                "Unified folder architecture",
+                "0–30–60–90 day implementation calendar",
+                "Master compliance checklist",
               ].map((feat, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", marginBottom: "0.75rem" }}>
                   <span style={{ color: GOLD, fontWeight: 700, fontSize: "1rem", lineHeight: 1.5, flexShrink: 0 }}>&#10003;</span>
@@ -419,42 +422,39 @@ export default function ComplianceLibraryPage() {
               {states["LP-BDL-001"] === "loading" ? "Processing…" : "INSTALL THE SYSTEM — $499"}
             </button>
             {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "#ef4444", marginBottom: "0.75rem" }}>{errors["LP-BDL-001"]}</p>}
+
+            {/* ROI Snapshot — embedded below the CTA per spec */}
+            <div data-testid="roi-strip" style={{ margin: "1.5rem 0", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.5rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", textAlign: "center", marginBottom: "1rem" }}>
+                THE COST DECISION
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }} className="roi-grid">
+                <div style={{ padding: "1.25rem 1.5rem", background: "rgba(255,255,255,0.02)", borderRight: "1px solid rgba(255,255,255,0.08)" }}>
+                  <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
+                    Typical cost of remediation after a failed New Entrant audit
+                  </p>
+                  <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.375rem, 2.5vw, 1.875rem)", color: "rgba(255,255,255,0.50)", letterSpacing: "-0.02em", margin: 0 }}>
+                    $10,000–$25,000
+                  </p>
+                </div>
+                <div style={{ padding: "1.25rem 1.5rem", background: "rgba(212,144,10,0.04)" }}>
+                  <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
+                    Cost of installing the complete document system before the audit
+                  </p>
+                  <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.375rem, 2.5vw, 1.875rem)", color: GOLD, letterSpacing: "-0.02em", margin: 0 }}>
+                    $499
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Escape link */}
             <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "rgba(255,255,255,0.35)", textAlign: "center", lineHeight: 1.6, margin: 0 }}>
               Not ready for the full system?{" "}
               <a href="#component-library" style={{ color: "rgba(212,144,10,0.65)", textDecoration: "underline", textDecorationColor: "rgba(212,144,10,0.35)" }}>
-                Explore individual domains below.
+                Explore individual domains below →
               </a>
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 3: ROI SNAPSHOT STRIP (Task 03) ──────────────────── */}
-      <section data-testid="roi-strip" style={{ background: "#020b16", borderBottom: `1px solid rgba(255,255,255,0.06)`, padding: "3rem 1.5rem" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", textAlign: "center", marginBottom: "1.75rem" }}>
-            THE COST DECISION
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: `1px solid rgba(255,255,255,0.08)`, overflow: "hidden" }} className="roi-grid">
-            {/* Left column */}
-            <div style={{ padding: "2rem 2rem", background: "rgba(255,255,255,0.02)", borderRight: "1px solid rgba(255,255,255,0.08)" }}>
-              <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, marginBottom: "1rem" }}>
-                Typical cost of remediation after a failed New Entrant audit
-              </p>
-              <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "rgba(255,255,255,0.60)", letterSpacing: "-0.02em", margin: 0 }}>
-                $10,000–$25,000
-              </p>
-            </div>
-            {/* Right column */}
-            <div style={{ padding: "2rem 2rem", background: "rgba(212,144,10,0.04)" }}>
-              <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, marginBottom: "1rem" }}>
-                Cost of installing the complete document system before the audit
-              </p>
-              <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: GOLD, letterSpacing: "-0.02em", margin: 0 }}>
-                $499
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -468,29 +468,29 @@ export default function ComplianceLibraryPage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }} className="path-chooser-grid">
             {[
               {
-                situation: "Just activated authority. Unsure of your exposure.",
-                cta: "TAKE THE REACH DIAGNOSTIC — FREE",
+                situation: "Just activated authority, unsure of your exposure",
+                cta: "TAKE THE REACH DIAGNOSTIC — FREE →",
                 action: "link",
                 href: "/reach-diagnostic",
                 testid: "path-card-reach",
               },
               {
-                situation: "Know your gaps. Confident in self-installation.",
-                cta: "DOCUMENT SYSTEM BUNDLE — $499",
+                situation: "Know your gaps, confident in self-installation",
+                cta: "DOCUMENT SYSTEM BUNDLE — $499 →",
                 action: "buy",
                 sku: "LP-BDL-001",
                 testid: "path-card-bundle",
               },
               {
-                situation: "Want every audit domain covered in one pass.",
-                cta: "COMPLETE DIY LIBRARY — $699",
+                situation: "Want every audit domain covered in one pass",
+                cta: "COMPLETE DIY LIBRARY — $699 →",
                 action: "buy",
                 sku: "LP-LIB-001",
                 testid: "path-card-library",
               },
               {
-                situation: "Want it built and verified alongside a Station Custodian.",
-                cta: "LAUNCHPATH STANDARD",
+                situation: "Want it built, verified, and confirmed audit-ready",
+                cta: "LAUNCHPATH STANDARD — $2,500 →",
                 action: "link",
                 href: "/ground-0-briefing",
                 testid: "path-card-standard",
@@ -528,7 +528,34 @@ export default function ComplianceLibraryPage() {
         </div>
       </section>
 
-      {/* ── SECTION 2: TWO-PATH DECISION BAND ───────────────────────── */}
+      {/* ── SECTION 5: AUDIT WINDOW CALCULATOR (P2 — moved up) ────────── */}
+      <section data-testid="audit-window-section" style={{ background: "#001428", padding: "4rem 1.5rem", borderTop: `1px solid rgba(197,160,89,0.12)`, borderBottom: `1px solid rgba(197,160,89,0.12)` }}>
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.875rem", textAlign: "center" }}>
+            HOW MUCH TIME DO YOU HAVE?
+          </p>
+          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.75, maxWidth: 600, margin: "0 auto 2rem", textAlign: "center" }}>
+            FMCSA targets new carriers for a safety audit within 18 months of authority grant. Enter your MC effective date to see your remaining window.
+          </p>
+          <MCAuditWindow />
+        </div>
+      </section>
+
+      {/* ── SECTION 6: SOCIAL PROOF PLACEHOLDER (P3 — populates after first cohort) */}
+      <section data-testid="social-proof-placeholder" style={{ background: "#030d1a", borderBottom: `1px solid ${BORDER}`, padding: "2.5rem 1.5rem" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <div style={{ border: `1px dashed rgba(212,144,10,0.20)`, padding: "2rem", textAlign: "center" }}>
+            <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.35)", marginBottom: "0.75rem" }}>
+              CARRIER OUTCOMES — POPULATING AFTER FIRST COHORT
+            </p>
+            <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.20)", lineHeight: 1.7, margin: 0 }}>
+              Verified audit pass results and carrier testimonials will appear here once the first cohort completes the program.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 7: TWO-PATH DECISION BAND ───────────────────────── */}
       <section data-testid="two-path-band" style={{ background: NAVY3, borderBottom: `1px solid ${BORDER}`, padding: "4rem 1.5rem" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {/* Header */}
@@ -726,19 +753,12 @@ export default function ComplianceLibraryPage() {
         </div>
       </section>
 
-      {/* SECTION 3: ROUTING BAND — replaced by Path Chooser Card Grid above */}
-
-      {/* ── SECTION 4a: MC AUDIT WINDOW CALCULATOR ───────────────────── */}
-      <section style={{ background: "#001428", padding: "4rem 1.5rem", borderTop: `1px solid rgba(197,160,89,0.12)` }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <MCAuditWindow />
-        </div>
-      </section>
+      {/* ── SECTION 4a: MC AUDIT WINDOW — moved to Section 5 above ── */}
 
       {/* ── SECTION 4b: EMAIL CAPTURE ────────────────────────────────────── */}
       <LibraryEmailCapture API={API} GOLD={GOLD} NAVY={NAVY} SANS={SANS} MONO={MONO} COND={COND} />
 
-      {/* ── SECTION 4: INDIVIDUAL ASSETS ACCORDION ──────────────────── */}
+      {/* ── SECTION 9: DOMAIN PRODUCT CARD GRID (P3) ────────────────── */}
       <section id="component-library" style={{ background: NAVY, padding: "4rem 1.5rem 5rem" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
@@ -746,30 +766,124 @@ export default function ComplianceLibraryPage() {
           <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.5rem", color: "#fff", letterSpacing: "-0.01em", marginBottom: "0.625rem" }}>
             INSTALL BY DOMAIN
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: "0.952rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 680, marginBottom: "0.25rem" }}>
-            Know exactly which domain needs attention?
-          </p>
-          <p style={{ fontFamily: SANS, fontSize: "0.952rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 680, marginBottom: "0.25rem" }}>
-            Each packet below covers one compliance area completely — authority, drivers, drug &amp; alcohol, HOS, maintenance, or insurance.
-          </p>
           <p style={{ fontFamily: SANS, fontSize: "0.952rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 680, marginBottom: "1.5rem" }}>
-            Select your domain. Install it. Move to the next.
+            Know exactly which domain needs attention? Each packet covers one compliance area completely. Select your domain. Install it. Move to the next.
           </p>
-          {/* Task 05: Micro-CTA above packet grid — exact spec copy */}
+
+          {/* Task 05: Micro-CTA above packet grid */}
           <div style={{ marginBottom: "2.5rem", padding: "1rem 1.25rem", background: "rgba(212,144,10,0.05)", border: "1px solid rgba(212,144,10,0.20)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.6, margin: 0 }}>
-              Buying more than one domain? The Document System Bundle includes all five for $499.
+              Buying more than one domain? The Document System Bundle includes all five for $499 — $176 below individual acquisition cost.
             </p>
             <a href="#bundle" data-testid="domain-bundle-crosssell" style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", color: GOLD, textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0 }}
               onMouseEnter={e => e.currentTarget.style.opacity = "0.75"}
               onMouseLeave={e => e.currentTarget.style.opacity = "1"}
             >
-              See the Bundle →
+              INSTALL THE BUNDLE →
             </a>
           </div>
 
-          {/* Accordion groups */}
-          {ACCORDION_GROUPS.map(group => {
+          {/* 2×3 Domain Product Card Grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem", marginBottom: "3rem" }} className="domain-card-grid">
+            {[
+              {
+                domain: "DOMAIN 1 · AUTHORITY & NEW ENTRANT",
+                name: "New Entrant Compliance Packet",
+                description: "Your full 18-month new entrant roadmap — authority activation through audit window.",
+                price: "$139",
+                sku: "LP-PKT-001",
+                href: "/standards/new-entrant-packet",
+                testid: "domain-card-lp-pkt-001",
+              },
+              {
+                domain: "DOMAIN 2 · DRIVER QUALIFICATION",
+                name: "DQ File Builder Kit",
+                description: "Build a complete, CFR-compliant Driver Qualification file for every driver in your fleet.",
+                price: "$129",
+                sku: "LP-PKT-DQ",
+                href: "/compliance-library",
+                testid: "domain-card-lp-pkt-dq",
+              },
+              {
+                domain: "DOMAIN 3 · DRUG & ALCOHOL",
+                name: "Drug & Alcohol Compliance Packet",
+                description: "A complete Part 382 program — policy, testing protocols, and Clearinghouse integration.",
+                price: "$129",
+                sku: "LP-PKT-002",
+                href: "/standards/drug-alcohol-packet",
+                testid: "domain-card-lp-pkt-002",
+              },
+              {
+                domain: "DOMAIN 4 · HOS & DISPATCH",
+                name: "HOS & Dispatch Compliance Packet",
+                description: "ELD compliance, dispatch standards, and HOS records that hold under inspection.",
+                price: "$119",
+                sku: "LP-PKT-003",
+                href: "/standards/hos-packet",
+                testid: "domain-card-lp-pkt-003",
+              },
+              {
+                domain: "DOMAIN 5 · VEHICLE MAINTENANCE",
+                name: "Maintenance & Unit File Packet",
+                description: "Unit files, PM schedules, and repair documentation per Part 396.",
+                price: "$119",
+                sku: "LP-PKT-004",
+                href: "/standards/maintenance-packet",
+                testid: "domain-card-lp-pkt-004",
+              },
+              {
+                domain: "DOMAIN 6 · INSURANCE CONTINUITY",
+                name: "Insurance & Authority Packet",
+                description: "Filings, renewal calendar, and monitoring that keep your authority active.",
+                price: "$109",
+                sku: "LP-PKT-005",
+                href: "/standards/insurance-packet",
+                testid: "domain-card-lp-pkt-005",
+              },
+            ].map((card) => (
+              <div key={card.sku} data-testid={card.testid} style={{ background: "#060d19", border: `1px solid rgba(212,144,10,0.20)`, padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.25rem", transition: "border-color 0.2s" }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.45)"}
+                onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.20)"}
+              >
+                <div>
+                  <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem", lineHeight: 1.4 }}>{card.domain}</p>
+                  <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1rem", color: "#fff", letterSpacing: "-0.01em", lineHeight: 1.3, marginBottom: "0.5rem" }}>{card.name}</h3>
+                  <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0 }}>{card.description}</p>
+                </div>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.875rem" }}>
+                    <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.25rem", color: GOLD, letterSpacing: "-0.02em" }}>{card.price}</span>
+                    <span style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em" }}>1 ASSET</span>
+                  </div>
+                  <div style={{ display: "flex", gap: "0.5rem", flexDirection: "column" }}>
+                    <button
+                      data-testid={`buy-btn-${card.sku.toLowerCase()}`}
+                      onClick={() => buy(card.sku)}
+                      disabled={states[card.sku] === "loading"}
+                      style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", textTransform: "uppercase", background: states[card.sku] === "loading" ? "rgba(212,144,10,0.45)" : GOLD, color: NAVY, border: "none", padding: "0.625rem 0.75rem", cursor: states[card.sku] === "loading" ? "not-allowed" : "pointer", transition: "background 0.15s" }}
+                      onMouseEnter={e => { if (states[card.sku] !== "loading") e.currentTarget.style.background = "#e8a520"; }}
+                      onMouseLeave={e => { if (states[card.sku] !== "loading") e.currentTarget.style.background = GOLD; }}
+                    >
+                      {states[card.sku] === "loading" ? "Processing…" : `ADD TO SYSTEM — ${card.price}`}
+                    </button>
+                    <Link to={card.href} style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: "0.714rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none", padding: "0.5rem 0.75rem", border: "1px solid rgba(212,144,10,0.20)", transition: "border-color 0.15s, color 0.15s" }}
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.50)"; e.currentTarget.style.color = GOLD; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.20)"; e.currentTarget.style.color = "rgba(212,144,10,0.65)"; }}
+                    >
+                      VIEW DOMAIN →
+                    </Link>
+                  </div>
+                  {errors[card.sku] && <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "#ef4444", marginTop: "0.375rem" }}>{errors[card.sku]}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Other products — diagnostics and tools */}
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "1rem" }}>
+            DIAGNOSTICS &amp; SUPPLEMENTAL TOOLS
+          </p>
+          {ACCORDION_GROUPS.filter(g => ["diagnostics", "audit-prep"].includes(g.id)).map(group => {
             const groupProducts = PRODUCTS.filter(p => group.skus.includes(p.sku));
             return (
               <AccordionGroup
@@ -787,9 +901,6 @@ export default function ComplianceLibraryPage() {
 
           {/* Bottom bundle reminder */}
           <div style={{ marginTop: "2.5rem", textAlign: "center", padding: "2rem 1.5rem", borderTop: `1px solid rgba(212,160,23,0.20)`, borderBottom: `1px solid rgba(212,160,23,0.20)` }}>
-            <div style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(212,160,23,0.30)", letterSpacing: "0.15em", marginBottom: "1.25rem" }}>
-              ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-            </div>
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>BUYING MULTIPLE DOMAINS?</p>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.75, maxWidth: 500, margin: "0 auto 1.25rem" }}>
               The Document System Bundle includes all five compliance packets plus the folder architecture, implementation calendar, and master checklist — at $176 below individual acquisition cost.
@@ -797,9 +908,6 @@ export default function ComplianceLibraryPage() {
             <a href="#bundle" style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: GOLD, textDecoration: "none" }}>
               BUILD THE FULL SYSTEM — $499 →
             </a>
-            <div style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(212,160,23,0.30)", letterSpacing: "0.15em", marginTop: "1.25rem" }}>
-              ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-            </div>
           </div>
           <ReachMicroCta />
 
@@ -1029,6 +1137,14 @@ export default function ComplianceLibraryPage() {
         /* Path chooser grid: 2-col on desktop, 1-col on mobile */
         @media (max-width: 640px) {
           .path-chooser-grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* Domain card grid: 3-col desktop, 2-col tablet, 1-col mobile */
+        @media (max-width: 900px) {
+          .domain-card-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 560px) {
+          .domain-card-grid { grid-template-columns: 1fr !important; }
         }
 
         /* ROI grid: 2-col on desktop, 1-col on mobile */
