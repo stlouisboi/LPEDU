@@ -42,6 +42,18 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 75: Sequential Domain Installation Chain (Apr 2026)
+- Added `domainStep` prop to `ProductPageTemplate.jsx` — renders a "INSTALLATION SEQUENCE — DOMAIN X OF 6" progress strip (data-testid='domain-sequence-strip') showing all 6 domains with current highlighted in gold and prev domains in muted gold
+- Updated all 6 domain packet pages with chained nextStep links:
+  - Domain 1 (New Entrant) → Domain 2 (DQ File Builder, $129)
+  - Domain 2 (DQ Files) → Domain 3 (Drug & Alcohol, $129)  
+  - Domain 3 (Drug & Alcohol) → Domain 4 (HOS & Dispatch, $119)
+  - Domain 4 (HOS) → Domain 5 (Vehicle Maintenance, $119)
+  - Domain 5 (Maintenance) → Domain 6 (Insurance Continuity, $109)
+  - Domain 6 (Insurance) → Document System Bundle ($499, /compliance-library)
+- Non-domain pages (e.g. Starter Stack) have no strip — zero regression
+- Testing: 100% (14/14 checks) — iteration_111
+
 ### Phase 74: DQ File Builder page — link wired + canonical fixed (Apr 2026)
 - Updated LP-PKT-DQ "VIEW DOMAIN →" link in ComplianceLibraryPage.jsx from `/compliance-library` → `/standards/dq-file-builder` (page + component were already fully built)
 - Fixed canonical URL in `dq-file-builder.jsx` from `www.launchpathedu.com` → `launchpathedu.com` (non-www, consistent with GSC canonical rules)
