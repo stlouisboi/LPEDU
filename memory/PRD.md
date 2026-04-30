@@ -42,6 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 82: sitemap.xml Updated (Apr 2026)
+- Added `/products/library` (priority 0.8, lastmod 2026-04-16) and `/products/bundle` (priority 0.8)
+- Updated lastmod to 2026-04-16 for `/compliance-library` + all 6 domain detail pages (reflecting CRO overhaul and image updates)
+- Domain packet priorities bumped from 0.6 → 0.7 (reflecting new content depth)
+- Total URLs: 68. Valid XML confirmed, returns 200.
+
 ### Phase 81: Comparison Table + Mobile Card — Library CTAs Wired (Apr 2026)
 - Mobile comparison card for "COMPLETE DIY LIBRARY": `cta: null` → `cta: { label: "VIEW THE LIBRARY →", href: "/products/library" }`
 - Desktop comparison table: added `<tfoot>` CTA row with 4 actions: "Browse domains →" (individual), "VIEW THE LIBRARY →" link (library), "INSTALL THE BUNDLE →" buy button (bundle, gold highlighted), "BEGIN GROUND 0 →" outlined link (standard)
