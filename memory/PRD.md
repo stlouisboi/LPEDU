@@ -42,6 +42,15 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 76: LP-WEB-CLPAGE-001 Section 4B — 6 Additional CRO Changes (Apr 2026)
+- **P1 Standard callout**: Replaced equal-weight Standard card (which showed $2,500 price) with a dimmed directional callout box — no price shown, text "Not ready to self-install? The LaunchPath Standard is a guided 90-day implementation — but it requires Ground 0 completion first." Outlined "BEGIN GROUND 0 →" button + "View full engagement details →" text link only. Section header changed: "TWO PATHS. ONE STANDARD." → "CHOOSE HOW YOU WANT TO BUILD".
+- **P1 Button hierarchy**: Bundle card is now the dominant filled-gold primary. BEGIN GROUND 0 in callout is outlined (secondary). "View full engagement details" is text link (tertiary). Applied consistently across two-path section.
+- **P2 Micro-copy under key buttons**: Added "Instant access. 30-day implementation roadmap included." under INSTALL THE SYSTEM and INSTALL THE BUNDLE; "Free. No purchase required. Takes 20 minutes." under BEGIN GROUND 0; "Instant access. One-time payment." under all 6 domain packet buy buttons.
+- **P2 Section labels → outcome language**: "INSTALL BY DOMAIN" → "Just Need One Area Fixed?"; "COMMON QUESTIONS" → "BEFORE YOU BUY — READ THIS".
+- **P2 Domain cards "Best For" line**: Italic "Best for..." qualifier added to each of the 6 domain cards (self-identification line between description and price).
+- **P3 Comparison table highlight**: Bundle column now has prominent "RECOMMENDED" gold badge above header, gold top border (3px), and all 4 column headers at fontWeight 800.
+- Testing: 100% (17/17 checks) — iteration_112
+
 ### Phase 75: Sequential Domain Installation Chain (Apr 2026)
 - Added `domainStep` prop to `ProductPageTemplate.jsx` — renders a "INSTALLATION SEQUENCE — DOMAIN X OF 6" progress strip (data-testid='domain-sequence-strip') showing all 6 domains with current highlighted in gold and prev domains in muted gold
 - Updated all 6 domain packet pages with chained nextStep links:
