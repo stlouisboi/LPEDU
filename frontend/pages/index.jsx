@@ -15,12 +15,7 @@ const jsonLd = {
       "name": "LaunchPath Transportation EDU",
       "url": SITE,
       "description": DESC,
-      "publisher": { "@id": `${SITE}/#organization` },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": `${SITE}/knowledge-center?q={search_term_string}`,
-        "query-input": "required name=search_term_string"
-      }
+      "publisher": { "@id": `${SITE}/#organization` }
     },
     {
       "@type": "EducationalOrganization",
