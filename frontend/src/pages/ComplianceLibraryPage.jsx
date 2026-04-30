@@ -506,9 +506,9 @@ export default function ComplianceLibraryPage() {
               },
               {
                 situation: "Want every audit domain covered in one pass",
-                cta: "COMPLETE DIY LIBRARY — $699 →",
-                action: "buy",
-                sku: "LP-LIB-001",
+                cta: "VIEW THE LIBRARY — $699 →",
+                action: "link",
+                href: "/products/library",
                 testid: "path-card-library",
               },
               {
