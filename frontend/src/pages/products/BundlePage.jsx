@@ -235,13 +235,23 @@ export default function BundlePage() {
             </div>
 
             {/* Right panel */}
-            <div style={{
-              background: "rgba(0,0,0,0.3)",
-              border: `1px solid rgba(212,144,10,0.2)`,
-              borderTop: `2px solid ${GOLD}`,
-              padding: "1.75rem",
-              boxShadow: "inset 0 2px 12px rgba(0,0,0,0.4)",
-            }}>
+            <div>
+              {/* Bundle product image */}
+              <div style={{ width: "100%", height: 200, overflow: "hidden", position: "relative", marginBottom: "1rem", border: `1px solid rgba(212,144,10,0.20)` }}>
+                <img
+                  src="/images/products/bundle-document-system.webp"
+                  alt="Document System Bundle — LaunchPath"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(7,14,28,0) 40%, rgba(7,14,28,0.80) 100%)" }} />
+              </div>
+              <div style={{
+                background: "rgba(0,0,0,0.3)",
+                border: `1px solid rgba(212,144,10,0.2)`,
+                borderTop: `2px solid ${GOLD}`,
+                padding: "1.75rem",
+                boxShadow: "inset 0 2px 12px rgba(0,0,0,0.4)",
+              }}>
               <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD_DIM, marginBottom: "1.25rem" }}>SYSTEM CONTENTS</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {PACKETS.map((p, i) => (
@@ -269,7 +279,8 @@ export default function BundlePage() {
                   <span style={{ fontSize: "1.1rem", fontWeight: 700, color: GOLD }}>$499</span>
                 </div>
               </div>
-            </div>
+              </div>{/* end SYSTEM CONTENTS panel */}
+            </div>{/* end right outer div */}
           </div>
         </div>
       </section>

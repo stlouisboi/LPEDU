@@ -42,6 +42,11 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 79: BundlePage Hero — Brand Mockup Image Added (Apr 2026)
+- Added bundle-document-system.webp image above "SYSTEM CONTENTS" panel in BundlePage.jsx hero right column — full visual consistency: same mockup on /compliance-library hero card, on /products/bundle hero panel
+- No LibraryPage ($699) exists as a standalone detail page — LP-LIB-001 checkout routes directly from compliance-library; complete-diy-library.webp is available for future use
+- Page returns 200, lint clean
+
 ### Phase 78: Domain Detail Pages — Branded Mockup Images in Hero (Apr 2026)
 - Replaced 6 external Emergent-hosted PNG images on domain detail pages with new locally-hosted LaunchPath-branded WebP mockups (/images/products/domain1–6.webp)
 - Consistent visual identity: same folder mockup image appears on the /compliance-library domain card AND on the individual product detail page hero — full-funnel brand consistency
