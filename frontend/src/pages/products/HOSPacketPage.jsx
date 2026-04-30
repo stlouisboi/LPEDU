@@ -10,7 +10,7 @@ export default function HOSPacketPage() {
       subtitle="FMCSA Part 395 Hours of Service Operating Standard (Document System)"
       price="$119"
       sku="LP-PKT-003"
-      image={IMG}
+      image="/images/products/domain4-hos-dispatch.webp"
       tagline="The document system for Hours of Service compliance and dispatch standards under 49 CFR Part 395."
       positioning={[
         "This is not an ELD provider or dispatch software. It is a document system built to install the operational standards, dispatch discipline, and recordkeeping framework that FMCSA expects when they review your Hours of Service compliance in a safety audit.",

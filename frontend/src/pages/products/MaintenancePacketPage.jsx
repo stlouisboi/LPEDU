@@ -8,7 +8,7 @@ export default function MaintenancePacketPage() {
       subtitle="FMCSA Part 396 Vehicle Maintenance Operating Standard (Document System)"
       price="$119"
       sku="LP-PKT-004"
-      image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/1dc88494a074059a36d3b6b46b6b8a956c70a05a5a219c9f88e69300f3a6ec3e.png"
+      image="/images/products/domain5-maintenance.webp"
       tagline="The document system for vehicle maintenance compliance and equipment records under 49 CFR Part 396."
       positioning={[
         "This is not a shop management platform. It is a document system built to install the unit file structure, PM schedule, defect tracking framework, and inspection documentation that FMCSA expects when they review your vehicle maintenance program in a safety audit.",

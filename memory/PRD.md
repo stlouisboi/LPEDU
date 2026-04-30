@@ -42,6 +42,11 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 78: Domain Detail Pages — Branded Mockup Images in Hero (Apr 2026)
+- Replaced 6 external Emergent-hosted PNG images on domain detail pages with new locally-hosted LaunchPath-branded WebP mockups (/images/products/domain1–6.webp)
+- Consistent visual identity: same folder mockup image appears on the /compliance-library domain card AND on the individual product detail page hero — full-funnel brand consistency
+- All 6 pages return 200, next/image handles local /public paths natively
+
 ### Phase 77: Product Image Mockups — Generated & Wired (Apr 2026)
 - Generated 8 branded product mockup images via OpenAI GPT Image 1: 6 domain packet folders + Document System Bundle + Complete DIY Library (dark navy folders, gold accents, domain text on cover)
 - Optimized PNG → WebP (640×640, quality 82) reducing from ~1.7MB each to 7–19KB each

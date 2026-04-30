@@ -50,7 +50,7 @@ export default function DQFilePacketPage() {
       subtitle="49 CFR Part 391 Compliance Document System — Driver Qualification"
       price="$129"
       sku="LP-PKT-DQ"
-      image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/67647f90968a7ec9171089ba2a7c65339acd6b6c9f8c3f269144cdbb1488b789.png"
+      image="/images/products/domain2-dq-files.webp"
       tagline="The document system for building and maintaining driver qualification files that survive a 49 CFR Part 391 review."
       positioning={[
         "Driver qualification files are one of the most frequently cited deficiency areas in New Entrant Safety Audits. Most carriers have a CDL on file and believe that is sufficient. It is not. Part 391 requires a specific set of documents for every driver, collected in a specific sequence, retained for a specific period. This kit installs that system.",

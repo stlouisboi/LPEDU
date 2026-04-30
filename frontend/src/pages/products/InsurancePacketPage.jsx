@@ -8,7 +8,7 @@ export default function InsurancePacketPage() {
       subtitle="FMCSA Authority & Insurance Filing Operating Standard (Document System)"
       price="$109"
       sku="LP-PKT-005"
-      image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/1765edddd11eb37db174f165574154c8c2680e6ea93eec2b608a15b19ed2bfcd.png"
+      image="/images/products/domain6-insurance.webp"
       tagline="The document system for insurance continuity and operating authority maintenance."
       positioning={[
         "This is not an insurance broker. It is a document system built to install the filing verification, contract review discipline, renewal preparation framework, and authority maintenance habits that keep a carrier operational and protected.",

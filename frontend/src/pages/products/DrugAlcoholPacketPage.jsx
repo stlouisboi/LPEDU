@@ -17,7 +17,7 @@ export default function DrugAlcoholPacketPage() {
       subtitle="Part 382 Compliance Operating Standard — Document System"
       price="$129"
       sku="LP-PKT-002"
-      image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/1bad3292205ed62246b466e0dcf3b09ada132cea612035cc9f8674f8802472c3.png"
+      image="/images/products/domain3-drug-alcohol.webp"
       tagline="The document system for installing a compliant 49 CFR Part 382 program."
       positioning={[
         "This is not a consortium enrollment service. It is a document system — built to install the written policy, recordkeeping framework, and testing documentation that FMCSA requires when they review your Drug and Alcohol program during a New Entrant Safety Audit.",

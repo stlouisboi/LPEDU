@@ -23,7 +23,7 @@ export default function NewEntrantPacketPage() {
       subtitle="FMCSA New-Authority Operating Standard — Document System"
       price="$139"
       sku="LP-PKT-001"
-      image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/2a792816a78b73cdc5cdda45a303201ac524991f95981c97aae09cb1f52e738e.png"
+      image="/images/products/domain1-new-entrant.webp"
       tagline="The document system for new FMCSA motor carrier authorities — from first filing through the New Entrant Safety Audit."
       positioning={[
         "This is not an audit prep kit. It is a document system — built to install a functional compliance infrastructure in a new carrier operation before the first audit notice arrives.",
