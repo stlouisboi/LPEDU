@@ -42,6 +42,14 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 72: LP-WEB-007 Standards Page CRO Spec (Apr 2026)
+- **Task 01 (P1)**: Hero section restructured — new subhead "Choose your path: DIY compliance system or guided installation for new motor carriers.", 3-bullet benefit list (Pass audit first attempt / Install in 90 days / Know what FMCSA looks for), primary CTA "TAKE THE REACH DIAGNOSTIC — FREE" (→ /reach-diagnostic), secondary link "Skip to Document System Bundle — $499" (→ #bundle). Old long-form copy removed.
+- **Task 02 (P1)**: Bundle Hero Card inserted directly after hero — "RECOMMENDED" badge, `Document System Bundle $499` heading, 3 feature checkmarks (architecture / calendar / master checklist), prominent `INSTALL THE SYSTEM — $499` button (LP-BDL-001 checkout), escape link below.
+- **Task 03 (P1)**: ROI Snapshot Strip added after Bundle Hero Card — `THE COST DECISION` label, two-column visual comparison: `$10,000–$25,000` (remediation) vs `$499` (system). Framed as cost decision, not a discount.
+- **Task 04 (P2)**: Path Chooser Card Grid — 2×2 card grid replaces old routing band table. Four cards: Reach Diagnostic (→ /reach-diagnostic), Bundle (→ LP-BDL-001 checkout), Complete Library (→ LP-LIB-001 checkout), Standard (→ /ground-0-briefing, admission-gated, no checkout). Old routing band section removed.
+- **Task 05 (P2)**: Micro-CTA above individual packet accordion updated to exact spec copy: "Buying more than one domain? The Document System Bundle includes all five for $499." with "See the Bundle →" link. data-testid="domain-bundle-crosssell".
+- Testing: 100% (28/28 checks) — iteration_109
+
 ### Phase 71: Entrance Animations + Premium Chart Tooltip (Apr 2026)
 - **Staggered scroll entrance**: `reveal-on-scroll` CSS class (opacity 0→1, translateY 16px→0, 0.70s cubic-bezier ease-out) added to `index.css` with `.d-80/.d-160/.d-240/.d-320` delay modifiers. `HomePage.jsx` IntersectionObserver now observes both `.data-stream` and `.reveal-on-scroll`. Applied to labels, body copy, gold rules, and headlines across ExposureBand, NotForSection, WhatGetsBuiltSection, FinalCTASection, ThePatternSection — 16 elements total
 - **Custom ScoreTooltip**: Replaced recharts default tooltip with a bespoke `ScoreTooltip` component — dark navy bg, gold border, large overall score in gold, domain rows with color swatch + label, box-shadow depth. Wired via `content={<ScoreTooltip />}` prop
