@@ -42,6 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 81: Comparison Table + Mobile Card — Library CTAs Wired (Apr 2026)
+- Mobile comparison card for "COMPLETE DIY LIBRARY": `cta: null` → `cta: { label: "VIEW THE LIBRARY →", href: "/products/library" }`
+- Desktop comparison table: added `<tfoot>` CTA row with 4 actions: "Browse domains →" (individual), "VIEW THE LIBRARY →" link (library), "INSTALL THE BUNDLE →" buy button (bundle, gold highlighted), "BEGIN GROUND 0 →" outlined link (standard)
+- All entry points for LP-LIB-001 now route through `/products/library` detail page before checkout — full funnel consistency
+- Page returns 200, lint clean
+
 ### Phase 80: /products/library — Complete DIY Library Detail Page (Apr 2026)
 - Created `/app/frontend/src/pages/products/LibraryPage.jsx` — uses ProductPageTemplate with complete-diy-library.webp hero (960×640 WebP, 28KB), 8-asset contents breakdown with retail ($972) vs library price ($699) savings callout, "SAVE $273" label, bundle cross-sell advisory box
 - Created `/app/frontend/pages/products/library.jsx` — Next.js route with full SEO (canonical non-www, og:image, JSON-LD Product schema with LP-LIB-001 SKU)

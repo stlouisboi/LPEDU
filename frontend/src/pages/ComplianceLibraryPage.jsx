@@ -992,6 +992,47 @@ export default function ComplianceLibraryPage() {
                   </tr>
                 ))}
               </tbody>
+              {/* Desktop CTA row */}
+              <tfoot>
+                <tr>
+                  <td style={{ padding: "1.25rem 1rem" }} />
+                  {/* Individual Assets — no direct CTA, link to domain grid */}
+                  <td style={{ padding: "1.25rem 1rem", textAlign: "center" }}>
+                    <a href="#component-library" style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", textDecoration: "underline", textDecorationColor: "rgba(255,255,255,0.15)" }}>Browse domains →</a>
+                  </td>
+                  {/* Complete Library */}
+                  <td style={{ padding: "1.25rem 1rem", textAlign: "center", background: "rgba(212,144,10,0.04)", borderLeft: `1px solid rgba(212,144,10,0.20)`, borderRight: `1px solid rgba(212,144,10,0.20)` }}>
+                    <Link to="/products/library" data-testid="compare-library-link" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(212,144,10,0.70)", textDecoration: "none", border: "1px solid rgba(212,144,10,0.30)", padding: "0.5rem 1rem", transition: "border-color 0.15s" }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.70)"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.30)"}
+                    >
+                      VIEW THE LIBRARY →
+                    </Link>
+                  </td>
+                  {/* Bundle */}
+                  <td style={{ padding: "1.25rem 1rem", textAlign: "center", background: "rgba(212,144,10,0.08)", borderLeft: `2px solid ${GOLD}`, borderRight: `2px solid ${GOLD}`, borderBottom: `2px solid ${GOLD}` }}>
+                    <button
+                      data-testid="compare-bundle-buy-btn"
+                      onClick={() => buy("LP-BDL-001")}
+                      disabled={states["LP-BDL-001"] === "loading"}
+                      style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, border: "none", padding: "0.625rem 1.25rem", cursor: "pointer", transition: "background 0.15s" }}
+                      onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+                      onMouseLeave={e => e.currentTarget.style.background = GOLD}
+                    >
+                      {states["LP-BDL-001"] === "loading" ? "Processing…" : "INSTALL THE BUNDLE →"}
+                    </button>
+                  </td>
+                  {/* Standard */}
+                  <td style={{ padding: "1.25rem 1rem", textAlign: "center" }}>
+                    <Link to="/ground-0-briefing" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.40)", textDecoration: "none", border: "1px solid rgba(255,255,255,0.15)", padding: "0.5rem 1rem", transition: "border-color 0.15s" }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.40)"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"}
+                    >
+                      BEGIN GROUND 0 →
+                    </Link>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
 
@@ -1019,7 +1060,7 @@ export default function ComplianceLibraryPage() {
                   ["Verification checkpoints", "—"], ["Q&A access", "—"],
                   ["Audit-readiness confirmation", "—"], ["Entry requirement", "None"],
                 ],
-                cta: null,
+                cta: { label: "VIEW THE LIBRARY →", href: "/products/library" },
               },
               {
                 title: "DOCUMENT SYSTEM BUNDLE", price: "$499", recommended: true,
