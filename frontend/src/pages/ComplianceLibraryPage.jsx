@@ -13,6 +13,15 @@ import FooterSection from "../components/FooterSection";
 import MCAuditWindow from "../components/MCAuditWindow";
 import { THUMBS, BUNDLE_CONFIGS, CFR_REF, PRODUCTS, ACCORDION_GROUPS } from "../data/libraryData";
 
+const DOMAIN_IMAGES = {
+  "LP-PKT-001": "/images/products/domain1-new-entrant.webp",
+  "LP-PKT-DQ":  "/images/products/domain2-dq-files.webp",
+  "LP-PKT-002": "/images/products/domain3-drug-alcohol.webp",
+  "LP-PKT-003": "/images/products/domain4-hos-dispatch.webp",
+  "LP-PKT-004": "/images/products/domain5-maintenance.webp",
+  "LP-PKT-005": "/images/products/domain6-insurance.webp",
+};
+
 const API = process.env.REACT_APP_BACKEND_URL;
 
 // ── Design tokens ──────────────────────────────────────────────────────────
@@ -386,7 +395,18 @@ export default function ComplianceLibraryPage() {
             </span>
           </div>
           {/* Card */}
-          <div style={{ background: "#061224", border: `2px solid ${GOLD}`, boxShadow: "0 0 24px rgba(212,144,10,0.20), 0 0 48px rgba(212,144,10,0.08)", padding: "2.5rem 2.5rem 2rem" }}>
+          <div style={{ background: "#061224", border: `2px solid ${GOLD}`, boxShadow: "0 0 24px rgba(212,144,10,0.20), 0 0 48px rgba(212,144,10,0.08)", overflow: "hidden" }}>
+            {/* Bundle hero image */}
+            <div style={{ width: "100%", height: 200, overflow: "hidden", position: "relative" }}>
+              <img
+                src="/images/products/bundle-document-system.webp"
+                alt="Document System Bundle — LaunchPath"
+                loading="eager"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,18,36,0) 40%, rgba(6,18,36,1) 100%)" }} />
+            </div>
+            <div style={{ padding: "2rem 2.5rem 2rem" }}>
             {/* Title + Price */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "0.375rem" }}>
               <h2 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>
@@ -450,6 +470,7 @@ export default function ComplianceLibraryPage() {
               </div>
             </div>
 
+            </div>
             {/* Escape link */}
             <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "rgba(255,255,255,0.35)", textAlign: "center", lineHeight: 1.6, margin: 0 }}>
               Not ready for the full system?{" "}
@@ -816,10 +837,23 @@ export default function ComplianceLibraryPage() {
                 testid: "domain-card-lp-pkt-005",
               },
             ].map((card) => (
-              <div key={card.sku} data-testid={card.testid} style={{ background: "#060d19", border: `1px solid rgba(212,144,10,0.20)`, padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.25rem", transition: "border-color 0.2s" }}
+              <div key={card.sku} data-testid={card.testid} style={{ background: "#060d19", border: `1px solid rgba(212,144,10,0.20)`, display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden", transition: "border-color 0.2s" }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.45)"}
                 onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.20)"}
               >
+                {/* Product image mockup */}
+                {DOMAIN_IMAGES[card.sku] && (
+                  <div style={{ width: "100%", height: 160, overflow: "hidden", position: "relative", flexShrink: 0 }}>
+                    <img
+                      src={DOMAIN_IMAGES[card.sku]}
+                      alt={card.name}
+                      loading="lazy"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                    />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,13,25,0) 50%, rgba(6,13,25,0.85) 100%)" }} />
+                  </div>
+                )}
+                <div style={{ padding: "1.25rem", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.25rem", flex: 1 }}>
                 <div>
                   <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem", lineHeight: 1.4 }}>{card.domain}</p>
                   <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1rem", color: "#fff", letterSpacing: "-0.01em", lineHeight: 1.3, marginBottom: "0.5rem" }}>{card.name}</h3>
@@ -853,6 +887,7 @@ export default function ComplianceLibraryPage() {
                     </Link>
                   </div>
                   {errors[card.sku] && <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "#ef4444", marginTop: "0.375rem" }}>{errors[card.sku]}</p>}
+                </div>
                 </div>
               </div>
             ))}
