@@ -2,6 +2,20 @@
 import asyncio
 import os
 import stripe as stripe_lib
+import sentry_sdk
+from sentry_sdk.integrations.fastapi import FastApiIntegration
+from sentry_sdk.integrations.starlette import StarletteIntegration
+
+sentry_sdk.init(
+    dsn=os.environ.get("SENTRY_DSN"),
+    environment=os.environ.get("ENVIRONMENT", "production"),
+    traces_sample_rate=0.1,
+    integrations=[
+        StarletteIntegration(transaction_style="endpoint"),
+        FastApiIntegration(transaction_style="endpoint"),
+    ],
+    send_default_pii=False,
+)
 
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
@@ -36,7 +50,7 @@ for router in (public_router, auth_router, tools_router, portal_router, admin_ro
     app.include_router(router, prefix="/api")
 
 
-@app.get("/health")
+@app.get("/api/health")
 async def health_check():
     return {"status": "ok"}
 
