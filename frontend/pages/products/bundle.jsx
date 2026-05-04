@@ -3,7 +3,7 @@ import BundlePage from '../../src/pages/products/BundlePage';
 
 const TITLE = "Document System Bundle — $499 | LaunchPath";
 const DESC = "Five compliance domain packets, a unified folder structure, and a 90-day implementation calendar. Every form FMCSA expects — for $499.";
-const OG_IMAGE = "https://launchpathedu.com/og-launchpath.png";
+const OG_IMAGE = "https://launchpathedu.com/images/products/bundle-document-system.webp";
 
 export default function Page() {
   return (

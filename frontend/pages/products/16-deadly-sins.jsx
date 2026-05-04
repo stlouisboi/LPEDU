@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import SixteenSinsPage from '../../src/pages/standards/SixteenSinsPage';
 
-const OG = "https://launchpathedu.com/og-launchpath.png";
+const OG = "https://launchpathedu.com/images/products/tool-deadly-sins.webp";
 
 export default function Page() {
   return (
