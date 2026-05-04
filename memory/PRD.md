@@ -451,6 +451,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - ~~Live E2E Stripe purchase test~~ DONE
 - ~~Google Search Console verification~~ DONE
 - ~~LP-WEB-001 7-Page SEO Cluster~~ DONE (April 2026) — all 7 pages live at /knowledge-center/ with Article + FAQPage schemas, canonical URLs, full internal linking, and CTA architecture per spec
+- ~~Generate all 16 Pinterest pins~~ DONE (May 2026) — 16 portrait pins at 1024×1536 saved as WebP in /public/images/pinterest/
 - Submit updated sitemap.xml to Google Search Console (next step after push to Vercel)
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules
 - ~~Build Verified Registry ID generation logic (auto-generate VRF ID at 90-day program completion)~~ DONE (Feb 2026) — VRF auto-issues when core modules 1-6 complete; module-7 required if module-6 conditional
