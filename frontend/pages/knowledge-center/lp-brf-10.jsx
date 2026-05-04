@@ -9,12 +9,12 @@ export default function Page() {
         <meta name="description" content="What preparation actually means for a new motor carrier — and how carriers reconstruct compliance records under audit pressure." />
         <meta property="og:title" content="LP-BRF-10: Preparation & Reconstruction Brief | LaunchPath" />
         <meta property="og:description" content="What preparation actually means for a new motor carrier — and how carriers reconstruct compliance records under audit pressure." />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="LP-BRF-10: Preparation & Reconstruction Brief | LaunchPath" />
         <meta name="twitter:description" content="What preparation actually means for a new motor carrier — and how carriers reconstruct compliance records under audit pressure." />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({

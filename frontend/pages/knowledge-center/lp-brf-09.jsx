@@ -9,12 +9,12 @@ export default function Page() {
         <meta name="description" content="The operating patterns that create compliance exposure for new motor carriers — identified from 200+ operations reviewed under the LaunchPath Standard." />
         <meta property="og:title" content="LP-BRF-09: Operating Patterns Brief | LaunchPath" />
         <meta property="og:description" content="The operating patterns that create compliance exposure for new motor carriers — identified from 200+ operations reviewed under the LaunchPath Standard." />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="LP-BRF-09: Operating Patterns Brief | LaunchPath" />
         <meta name="twitter:description" content="The operating patterns that create compliance exposure for new motor carriers — identified from 200+ operations reviewed under the LaunchPath Standard." />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({

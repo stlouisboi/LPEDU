@@ -9,12 +9,12 @@ export default function Page() {
         <meta name="description" content="The 90-day compliance installation window — what gets built, in what sequence, and why the order matters for new motor carriers." />
         <meta property="og:title" content="LP-BRF-08: Installation Window Brief | LaunchPath" />
         <meta property="og:description" content="The 90-day compliance installation window — what gets built, in what sequence, and why the order matters for new motor carriers." />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="LP-BRF-08: Installation Window Brief | LaunchPath" />
         <meta name="twitter:description" content="The 90-day compliance installation window — what gets built, in what sequence, and why the order matters for new motor carriers." />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({

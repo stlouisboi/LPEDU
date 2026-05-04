@@ -9,12 +9,12 @@ export default function Page() {
         <meta name="description" content="The short-haul exemption eliminates the ELD requirement for qualifying box truck operators — but it doesn't eliminate HOS rules or recordkeeping. Here's exactly what applies." />
         <meta property="og:title" content="ELD Exemptions for Box Truck Operators: What's Covered and What Isn't | LaunchPath" />
         <meta property="og:description" content="The short-haul exemption eliminates the ELD requirement for qualifying box truck operators — but it doesn't eliminate HOS rules or recordkeeping. Here's exactly what applies." />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-hos.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ELD Exemptions for Box Truck Operators: What's Covered and What Isn't | LaunchPath" />
         <meta name="twitter:description" content="The short-haul exemption eliminates the ELD requirement for qualifying box truck operators — but it doesn't eliminate HOS rules or recordkeeping. Here's exactly what applies." />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-hos.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({

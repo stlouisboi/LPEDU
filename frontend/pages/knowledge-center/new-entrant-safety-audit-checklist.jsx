@@ -23,13 +23,13 @@ export default function Page() {
         <link rel="canonical" key="canonical" href={URL} />
         <meta property="og:title" content={H1} />
         <meta property="og:description" content={DESC} />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-audit.webp" />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={H1} />
         <meta name="twitter:description" content={DESC} />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-audit.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({

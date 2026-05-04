@@ -9,12 +9,12 @@ export default function Page() {
         <meta name="description" content="The 26,001 lb GVWR threshold changes your CDL requirements, ELD applicability, and driver qualification obligations. Here's what applies below and above that line." />
         <meta property="og:title" content="Box Truck FMCSA Requirements: The 26,001 lb Line and What It Changes | LaunchPath" />
         <meta property="og:description" content="The 26,001 lb GVWR threshold changes your CDL requirements, ELD applicability, and driver qualification obligations. Here's what applies below and above that line." />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Box Truck FMCSA Requirements: The 26,001 lb Line and What It Changes | LaunchPath" />
         <meta name="twitter:description" content="The 26,001 lb GVWR threshold changes your CDL requirements, ELD applicability, and driver qualification obligations. Here's what applies below and above that line." />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-authority.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({

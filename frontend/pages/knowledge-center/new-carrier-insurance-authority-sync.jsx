@@ -9,12 +9,12 @@ export default function Page() {
         <meta name="description" content="Your insurer filed the certificate. FMCSA's system may not reflect it yet. Here's how to verify the sync and what happens when it's wrong." />
         <meta property="og:title" content="How to Verify Your Insurance Filing Is Active on FMCSA's System | LaunchPath" />
         <meta property="og:description" content="Your insurer filed the certificate. FMCSA's system may not reflect it yet. Here's how to verify the sync and what happens when it's wrong." />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-financial.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="How to Verify Your Insurance Filing Is Active on FMCSA's System | LaunchPath" />
         <meta name="twitter:description" content="Your insurer filed the certificate. FMCSA's system may not reflect it yet. Here's how to verify the sync and what happens when it's wrong." />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-financial.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({

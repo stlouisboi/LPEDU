@@ -9,12 +9,12 @@ export default function Page() {
         <meta name="description" content="Clearinghouse registration, pre-employment query requirements, and annual query obligations under 49 CFR Part 382. What new motor carriers must complete before a driver turns a key." />
         <meta property="og:title" content="How to Register in the FMCSA Drug and Alcohol Clearinghouse | LaunchPath" />
         <meta property="og:description" content="Clearinghouse registration, pre-employment query requirements, and annual query obligations under 49 CFR Part 382. What new motor carriers must complete before a driver turns a key." />
-        <meta property="og:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta property="og:image" content="https://launchpathedu.com/images/kc/kc-dq.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="How to Register in the FMCSA Drug and Alcohol Clearinghouse | LaunchPath" />
         <meta name="twitter:description" content="Clearinghouse registration, pre-employment query requirements, and annual query obligations under 49 CFR Part 382. What new motor carriers must complete before a driver turns a key." />
-        <meta name="twitter:image" content="https://launchpathedu.com/og-launchpath.png" />
+        <meta name="twitter:image" content="https://launchpathedu.com/images/kc/kc-dq.webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify({
