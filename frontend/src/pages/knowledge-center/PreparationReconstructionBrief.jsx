@@ -1,4 +1,5 @@
 import { Link } from '../../compat/Link';
+import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 
@@ -76,6 +77,9 @@ export default function PreparationReconstructionBrief() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
             There are two ways to experience an FMCSA New Entrant Safety Audit — with records already built, or scrambling to reconstruct them under scrutiny. This page explains what genuine audit preparation looks like and what happens when carriers have to rebuild records after the notice arrives.
           </p>
+        <div style={{ marginTop: "1.5rem" }}>
+            <ShareButton />
+          </div>
         </div>
       </section>
 

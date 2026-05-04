@@ -1,4 +1,5 @@
 import { Link } from '../../compat/Link';
+import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 
@@ -76,6 +77,9 @@ export default function Day1AuthorityBrief() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
             Before your first dispatch, FMCSA requires specific filings, programs, and records to already be in place. The moment your MC number goes active in SAFER, you are considered an operating motor carrier — whether you've moved a single load or not.
           </p>
+        <div style={{ marginTop: "1.5rem" }}>
+            <ShareButton />
+          </div>
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import { Link } from '../../compat/Link';
+import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 
@@ -76,6 +77,9 @@ export default function NewEntrantReviewBrief() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
             The FMCSA New Entrant Review period extends from authority activation through Month 18. Passing your audit does not end FMCSA's oversight — it begins an 18-month monitoring window where compliance patterns and safety events continue to be evaluated.
           </p>
+        <div style={{ marginTop: "1.5rem" }}>
+            <ShareButton />
+          </div>
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import { Link } from '../../compat/Link';
+import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 
@@ -77,6 +78,9 @@ export default function OperatingPatternsBrief() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
             The way a carrier operates creates a record. FMCSA investigators read that record for patterns — not just individual documents. This page identifies the operating habits that create compliance exposure and explains how to reduce that risk before an audit notice arrives.
           </p>
+        <div style={{ marginTop: "1.5rem" }}>
+            <ShareButton />
+          </div>
         </div>
       </section>
 

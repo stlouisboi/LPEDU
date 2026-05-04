@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from '../compat/Link';
 import Navbar from "./Navbar";
 import FooterSection from "./FooterSection";
+import ShareButton from "./ShareButton";
 
 // ── LP Brief Color Palette (per LP-BRF-01 v2 spec) ──────────────────────
 const C = {
@@ -142,7 +143,9 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
             <Link to="/knowledge-center" className="no-print" style={{ fontFamily: T.mono, fontSize: "0.714rem", color: C.textMuted, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.5rem", letterSpacing: "0.08em" }}>
               ← KNOWLEDGE CENTER
             </Link>
-            <button
+            <div className="no-print" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              <ShareButton title={data.title} />
+              <button
               onClick={handlePrint}
               data-testid="download-pdf-btn"
               className="no-print"
@@ -164,6 +167,7 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
               </svg>
               Download PDF
             </button>
+            </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>

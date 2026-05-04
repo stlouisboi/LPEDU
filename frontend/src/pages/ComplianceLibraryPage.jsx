@@ -156,7 +156,7 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
   );
 }
 
-function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, errors, image }) {
+function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, errors, image, detailHref }) {
   return (
     <div style={{ marginBottom: 8 }}>
       <div
@@ -188,6 +188,13 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
             <span style={{ fontFamily: MONO, fontSize: "13px", letterSpacing: "0.08em", color: "rgba(212,160,23,0.80)", whiteSpace: "nowrap" }}>
               {group.assets} · {group.priceRange}
             </span>
+            {detailHref && (
+              <a href={detailHref} onClick={e => e.stopPropagation()} style={{ fontFamily: MONO, fontSize: "11px", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.2s" }}
+                onMouseEnter={e => e.currentTarget.style.color = GOLD}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.60)"}>
+                View Page →
+              </a>
+            )}
             <span style={{ color: GOLD, fontSize: "0.85rem", display: "inline-block", transition: "transform 0.2s ease", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", userSelect: "none" }}>▼</span>
           </div>
         </div>
@@ -711,7 +718,7 @@ export default function ComplianceLibraryPage() {
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
                 <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.25rem", color: "#fff", letterSpacing: "-0.02em" }}>{p.price}</span>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  <a href="/standards/starter-stack" style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(212,144,10,0.65)", textDecoration: "none", letterSpacing: "0.06em" }}
+                  <a href="/products/starter-stack" style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(212,144,10,0.65)", textDecoration: "none", letterSpacing: "0.06em" }}
                     onMouseEnter={e => e.currentTarget.style.color = "rgba(212,144,10,1)"}
                     onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.65)"}>
                     What's Inside →
@@ -792,7 +799,7 @@ export default function ComplianceLibraryPage() {
                 bestFor: "Best for carriers in their first 18 months with authority.",
                 price: "$139",
                 sku: "LP-PKT-001",
-                href: "/standards/new-entrant-packet",
+                href: "/products/new-entrant-packet",
                 testid: "domain-card-lp-pkt-001",
               },
               {
@@ -802,7 +809,7 @@ export default function ComplianceLibraryPage() {
                 bestFor: "Best for fleets adding drivers or building DQ files from scratch.",
                 price: "$129",
                 sku: "LP-PKT-DQ",
-                href: "/standards/dq-file-builder",
+                href: "/products/dq-file-builder",
                 testid: "domain-card-lp-pkt-dq",
               },
               {
@@ -812,7 +819,7 @@ export default function ComplianceLibraryPage() {
                 bestFor: "Best for owner-operators setting up Part 382 compliance for the first time.",
                 price: "$129",
                 sku: "LP-PKT-002",
-                href: "/standards/drug-alcohol-packet",
+                href: "/products/drug-alcohol-packet",
                 testid: "domain-card-lp-pkt-002",
               },
               {
@@ -822,7 +829,7 @@ export default function ComplianceLibraryPage() {
                 bestFor: "Best for carriers using ELDs who need HOS records that hold under inspection.",
                 price: "$119",
                 sku: "LP-PKT-003",
-                href: "/standards/hos-packet",
+                href: "/products/hos-packet",
                 testid: "domain-card-lp-pkt-003",
               },
               {
@@ -832,7 +839,7 @@ export default function ComplianceLibraryPage() {
                 bestFor: "Best for owner-operators building unit files and PM schedules from zero.",
                 price: "$119",
                 sku: "LP-PKT-004",
-                href: "/standards/maintenance-packet",
+                href: "/products/maintenance-packet",
                 testid: "domain-card-lp-pkt-004",
               },
               {
@@ -842,7 +849,7 @@ export default function ComplianceLibraryPage() {
                 bestFor: "Best for carriers managing filings and renewal calendars independently.",
                 price: "$109",
                 sku: "LP-PKT-005",
-                href: "/standards/insurance-packet",
+                href: "/products/insurance-packet",
                 testid: "domain-card-lp-pkt-005",
               },
             ].map((card) => (
@@ -913,6 +920,10 @@ export default function ComplianceLibraryPage() {
               "diagnostics": "/images/products/tool-deadly-sins.webp",
               "audit-prep":  "/images/products/tool-audit-prep.webp",
             };
+            const SUPP_HREFS = {
+              "diagnostics": "/products/16-deadly-sins",
+              "audit-prep":  "/products/safety-audit-prep",
+            };
             return (
               <AccordionGroup
                 key={group.id}
@@ -924,6 +935,7 @@ export default function ComplianceLibraryPage() {
                 states={states}
                 errors={errors}
                 image={SUPP_IMAGES[group.id]}
+                detailHref={SUPP_HREFS[group.id]}
               />
             );
           })}

@@ -1,4 +1,5 @@
 import { Link } from '../../compat/Link';
+import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import { PrimaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
@@ -52,6 +53,9 @@ export default function DQFileRequirementsPost() {
             {[["CFR Reference", "49 CFR Part 391"], ["Reading Time", "~9 min"], ["Cluster", "LP-WEB-001 Page 1"]].map(([l, v]) => (
               <div key={l}><p style={s.cfr}>{l}</p><p style={{ fontFamily: mono, fontSize: "0.857rem", color: "rgba(13,27,48,0.7)" }}>{v}</p></div>
             ))}
+          <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(13,27,48,0.08)", display: "flex", alignItems: "center" }}>
+            <ShareButton />
+          </div>
           </div>
         </div>
       </div>

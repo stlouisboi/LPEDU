@@ -4,6 +4,7 @@ import { Link } from '../compat/Link';
 import Navbar from "./Navbar";
 import FooterSection from "./FooterSection";
 import FadeIn from "./FadeIn";
+import ShareButton from "./ShareButton";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 const coral = "#D85A30";
@@ -99,6 +100,10 @@ export default function ProductPageTemplate({
                 }}>{subtitle}</p>
 
                 <div style={{ height: 2, background: coral, width: 64, marginBottom: "1.75rem" }} />
+
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <ShareButton title={title} description={subtitle} />
+                </div>
 
                 {valuePoints?.length > 0 && (
                   <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>

@@ -1,4 +1,5 @@
 import { Link } from '../../compat/Link';
+import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import { PrimaryCtaBlock, SecondaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
@@ -62,6 +63,9 @@ export default function HowToStartTruckingPost() {
             {[["CFR Reference", "49 CFR Parts 387, 391, 382, 385"], ["Reading Time", "~12 min"], ["Cluster", "LP-WEB-001 Page 4 (Pillar)"]].map(([l, v]) => (
               <div key={l}><p style={s.cfr}>{l}</p><p style={{ fontFamily: mono, fontSize: "0.857rem", color: "rgba(13,27,48,0.7)" }}>{v}</p></div>
             ))}
+          <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(13,27,48,0.08)", display: "flex", alignItems: "center" }}>
+            <ShareButton />
+          </div>
           </div>
         </div>
       </div>

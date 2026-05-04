@@ -1,4 +1,5 @@
 import { Link } from '../../compat/Link';
+import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 
@@ -76,6 +77,9 @@ export default function InstallationWindowBrief() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 580 }}>
             New motor carriers have a narrow window to build working compliance systems before FMCSA scrutiny intensifies. The 90-day compliance build sequence defines what gets built, in what order, and why the sequence matters.
           </p>
+        <div style={{ marginTop: "1.5rem" }}>
+            <ShareButton />
+          </div>
         </div>
       </section>
 
