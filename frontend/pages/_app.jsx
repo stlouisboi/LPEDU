@@ -19,7 +19,6 @@ export default function App({ Component, pageProps }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="p:domain_verify" content="t313a8095300c864b8ea96d535c948d2" />
-        <meta name="p:domain_verify" content="4daeefacdcc9d22bedd070d1aa3a3e71ea5df69f" />
       </Head>
       <Component {...pageProps} />
       <ScrollToTop />
