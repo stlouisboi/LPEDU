@@ -346,7 +346,7 @@ function SystemArchitectureDiagram() {
                 onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
               >
                 {/* Watermark number */}
-                <span style={{ position: "absolute", bottom: -10, right: 8, fontFamily: MONO, fontSize: "5rem", fontWeight: 900, color: `${step.color}07`, letterSpacing: "-0.04em", lineHeight: 1, pointerEvents: "none", userSelect: "none" }}>
+                <span style={{ position: "absolute", bottom: -10, right: 8, fontFamily: MONO, fontSize: "5rem", fontWeight: 900, color: `${step.color}18`, letterSpacing: "-0.04em", lineHeight: 1, pointerEvents: "none", userSelect: "none" }}>
                   {step.num}
                 </span>
 
@@ -354,7 +354,7 @@ function SystemArchitectureDiagram() {
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: step.color, opacity: 0.55 }} />
 
                 {/* Code */}
-                <p style={{ fontFamily: MONO, fontSize: "0.540rem", fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}55`, margin: "0 0 0.875rem" }}>
+                <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}99`, margin: "0 0 0.875rem" }}>
                   {step.code}
                 </p>
 
@@ -377,7 +377,7 @@ function SystemArchitectureDiagram() {
                 </p>
 
                 {/* View indicator */}
-                <p style={{ fontFamily: MONO, fontSize: "0.52rem", color: `${step.color}40`, margin: "1rem 0 0", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, color: `${step.color}CC`, margin: "1rem 0 0", letterSpacing: "0.14em", textTransform: "uppercase" }}>
                   VIEW →
                 </p>
               </Link>
