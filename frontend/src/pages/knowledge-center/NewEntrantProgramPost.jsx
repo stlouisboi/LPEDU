@@ -208,7 +208,7 @@ export default function NewEntrantProgramPost() {
             Ground 0 covers the Four Pillars framework and how they apply throughout the New Entrant period — before the audit notice arrives and while there's still time to build.
           </p>
           <Link
-            to="/auto-diagnostic"
+            to="/reach-diagnostic"
             data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",

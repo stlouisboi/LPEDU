@@ -76,6 +76,15 @@ export default function WhoIsItForSection({ handleReach }) {
           The REACH Assessment tells you in 4 minutes. No account required. No sales call.
         </p>
         <CTAButton primary={false} onClick={handleReach} data-testid="reach-assessment-btn">RUN THE REACH ASSESSMENT →</CTAButton>
+        <a
+          href="/reach-diagnostic"
+          data-testid="reach-first-btn"
+          style={{ display: "block", marginTop: "1rem", fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", textDecoration: "none", transition: "color 0.2s" }}
+          onMouseEnter={e => e.currentTarget.style.color = "#C9A84C"}
+          onMouseLeave={e => e.currentTarget.style.color = "rgba(197,160,89,0.75)"}
+        >
+          Run REACH First →
+        </a>
       </div>
     </>,
     T.navyMid

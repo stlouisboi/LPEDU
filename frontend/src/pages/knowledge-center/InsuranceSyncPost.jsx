@@ -206,7 +206,7 @@ export default function InsuranceSyncPost() {
             It covers what the audit looks for — including the Four Pillars that keep a carrier operating — and ends with a structured GO/WAIT/NO-GO decision framework.
           </p>
           <Link
-            to="/auto-diagnostic"
+            to="/reach-diagnostic"
             data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",

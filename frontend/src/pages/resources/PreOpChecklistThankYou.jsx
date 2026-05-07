@@ -201,7 +201,7 @@ export default function PreOpChecklistThankYou() {
           </p>
 
           <Link
-            href="/auto-diagnostic"
+            href="/reach-diagnostic"
             data-testid="checklist-thankyou-reach-cta"
             style={{
               display: 'inline-block',

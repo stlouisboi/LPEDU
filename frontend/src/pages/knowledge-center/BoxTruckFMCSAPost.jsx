@@ -201,7 +201,7 @@ export default function BoxTruckFMCSAPost() {
             Ground 0 includes the Lane Selection Matrix — a capital and cash-flow comparison for box truck vs. semi operations that helps you choose the lane you can sustain, not just the one you can start.
           </p>
           <Link
-            to="/auto-diagnostic"
+            to="/reach-diagnostic"
             data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",

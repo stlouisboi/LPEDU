@@ -48,7 +48,7 @@ export default function NotForSection() {
 
         {/* Headline */}
         <h2 className="data-stream" style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.75rem, 4.5vw, 3rem)", letterSpacing: "-0.03em", lineHeight: 1.1, color: "#FFFFFF", marginBottom: "1.25rem" }}>
-          THIS IS NOT FOR EVERYONE.
+          THIS IS BUILT FOR ONE TYPE OF OPERATOR.
         </h2>
 
         {/* Opening */}
@@ -56,10 +56,10 @@ export default function NotForSection() {
           LaunchPath is for carriers who want order, not shortcuts.
         </p>
 
-        {/* Two-column qualifier layout */}
+        {/* Two-column qualifier layout — FOR YOU IF first (LP-WEB-C) */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2.5rem", marginBottom: "3rem" }}>
 
-          {/* FOR YOU IF */}
+          {/* FOR YOU IF — now first */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
               <div style={{ width: 3, height: 20, background: GOLD, flexShrink: 0 }} />
@@ -77,7 +77,7 @@ export default function NotForSection() {
             </div>
           </div>
 
-          {/* NOT FOR YOU IF */}
+          {/* NOT FOR YOU IF — now second */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
               <div style={{ width: 3, height: 20, background: "rgba(192,57,43,0.70)", flexShrink: 0 }} />

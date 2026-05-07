@@ -63,7 +63,7 @@ export default function BriefBundleCTA() {
             DOWNLOAD ALL 5 PACKETS — $499 →
           </a>
           <Link
-            to="/auto-diagnostic"
+            to="/reach-diagnostic"
             data-testid="brief-bundle-reach-link"
             style={{
               textAlign: "center", fontFamily: mono, fontSize: "0.762rem",

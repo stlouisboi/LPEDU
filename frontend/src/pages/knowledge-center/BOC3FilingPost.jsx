@@ -183,7 +183,7 @@ export default function BOC3FilingPost() {
             Ground 0 covers the full registration stack — BOC-3, UCR, MCS-150, and insurance — and ends with a GO/WAIT/NO-GO decision framework before your first dispatch.
           </p>
           <Link
-            to="/auto-diagnostic"
+            to="/reach-diagnostic"
             data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",

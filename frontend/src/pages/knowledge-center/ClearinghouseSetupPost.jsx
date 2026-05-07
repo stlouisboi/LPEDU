@@ -197,7 +197,7 @@ export default function ClearinghouseSetupPost() {
             Ground 0 covers the Four Pillars that keep a carrier operating — including the compliance backbone your Clearinghouse program is part of — before your first dispatch.
           </p>
           <Link
-            to="/auto-diagnostic"
+            to="/reach-diagnostic"
             data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",

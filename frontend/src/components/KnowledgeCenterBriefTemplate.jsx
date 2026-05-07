@@ -197,6 +197,24 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
         </div>
       </section>
 
+      {/* ── LP-WEB-A PART 2: TOP REACH BANNER ───────────────────────── */}
+      <section className="no-print" data-testid="kc-reach-banner" style={{ background: "#001A33", borderBottom: "1px solid rgba(197,160,89,0.18)", padding: "1.75rem 1.5rem" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "2rem", flexWrap: "wrap" }}>
+          <p style={{ fontFamily: T.sans, fontSize: "0.952rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.7, margin: 0, maxWidth: 680 }}>
+            Is your authority less than 18 months old? The REACH Diagnostic identifies where FMCSA can already reach your operation — before an investigator does. It takes under five minutes. No account required.
+          </p>
+          <Link
+            to="/reach-diagnostic"
+            data-testid="kc-reach-banner-btn"
+            style={{ fontFamily: T.sans, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.06em", color: C.bgMain, background: C.gold, padding: "0.75rem 1.5rem", textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0, transition: "background 0.15s" }}
+            onMouseEnter={e => e.currentTarget.style.background = C.goldLight}
+            onMouseLeave={e => e.currentTarget.style.background = C.gold}
+          >
+            Run the REACH Diagnostic →
+          </Link>
+        </div>
+      </section>
+
       {/* ── EXECUTIVE SUMMARY ────────────────────────────────────────── */}
       <section className="brief-section brief-exec" style={{ background: C.bgSection, borderBottom: `1px solid ${C.borderLight}`, padding: "3.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }} className="brief-grid">
@@ -254,6 +272,27 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── LP-WEB-A PART 3: MID-ARTICLE PROGRAM REFERENCE BLOCK ────── */}
+      <section className="no-print" data-testid="kc-program-ref-block" style={{ background: "#00213F", borderTop: "1px solid rgba(197,160,89,0.10)", borderBottom: "1px solid rgba(197,160,89,0.10)", padding: "2.5rem 1.5rem" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", gap: "2.5rem", alignItems: "flex-start", flexWrap: "wrap" }}>
+          <div style={{ borderLeft: `3px solid ${C.gold}`, paddingLeft: "1.5rem", flex: 1, minWidth: 280 }}>
+            <p style={{ fontFamily: T.mono, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.60)", marginBottom: "0.75rem" }}>LP-STD-001 — THE STANDARD</p>
+            <p style={{ fontFamily: T.sans, fontSize: "0.952rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.8, margin: 0 }}>
+              LaunchPath Standard is the 90-day compliance implementation system for new motor carriers who want this infrastructure installed before the audit window closes — not after. Built for 1-5 truck carriers in the first 18 months of authority. Admission is reviewed individually. No payment at this step.
+            </p>
+          </div>
+          <Link
+            to="/program"
+            data-testid="kc-program-ref-btn"
+            style={{ fontFamily: T.sans, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.06em", color: C.gold, background: "transparent", border: `1.5px solid rgba(197,160,89,0.45)`, padding: "0.75rem 1.5rem", textDecoration: "none", whiteSpace: "nowrap", alignSelf: "center", flexShrink: 0, transition: "border-color 0.15s, color 0.15s" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = C.gold; e.currentTarget.style.color = C.goldLight; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(197,160,89,0.45)"; e.currentTarget.style.color = C.gold; }}
+          >
+            See How the Standard Works →
+          </Link>
         </div>
       </section>
 
@@ -416,36 +455,34 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
         </div>
       </section>
 
-      {/* ── CONTEXTUAL CTA BAND ─────────────────────────────────────────── */}
-      <section data-testid="brief-cta-band" className="brief-cta-band no-print" style={{ background: C.bgSection, borderTop: `3px solid ${C.gold}`, borderBottom: `1px solid ${C.border}`, padding: "4rem 1.5rem" }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
-          <p style={{ fontFamily: T.mono, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.50)", marginBottom: "1rem" }}>
-            {data.code} — NEXT STEP
+      {/* ── LP-WEB-A PART 4: TWO-PATH CTA BAND ─────────────────────── */}
+      <section data-testid="brief-cta-band" className="brief-cta-band no-print" style={{ background: C.bgDark, borderTop: `3px solid ${C.gold}`, borderBottom: `1px solid ${C.border}`, padding: "4rem 1.5rem" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+          <p style={{ fontFamily: T.mono, fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: "1rem" }}>
+            TWO WAYS TO MOVE FORWARD
           </p>
-          <p style={{ fontFamily: T.sans, fontSize: "1.064rem", color: C.textBody, lineHeight: 1.85, marginBottom: "2.25rem", maxWidth: 580 }}>
-            {data.cta?.context}
+          <p style={{ fontFamily: T.sans, fontSize: "1.064rem", color: C.textBody, lineHeight: 1.85, marginBottom: "2.5rem", maxWidth: 580, margin: "0 auto 2.5rem" }}>
+            Not sure where your operation stands? The REACH Diagnostic shows exactly where your exposure is — in under five minutes. Already know you need the system installed? Review LaunchPath Standard and request admission.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <Link
-              to={data.cta?.primary?.to || "/reach-diagnostic"}
+              to="/reach-diagnostic"
               data-testid="brief-cta-primary"
               style={{ fontFamily: T.sans, fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.06em", color: C.bgMain, background: C.gold, padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s", display: "inline-block" }}
               onMouseEnter={e => e.currentTarget.style.background = C.goldLight}
               onMouseLeave={e => e.currentTarget.style.background = C.gold}
             >
-              {data.cta?.primary?.text || "Take the Compliance Gap Assessment →"}
+              Run REACH Diagnostic →
             </Link>
-            {data.cta?.secondary && (
-              <Link
-                to={data.cta.secondary.to}
-                data-testid="brief-cta-secondary"
-                style={{ fontFamily: T.sans, fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.04em", color: C.gold, textDecoration: "none", opacity: 0.75, transition: "opacity 0.2s", paddingLeft: "0.25rem" }}
-                onMouseEnter={e => e.currentTarget.style.opacity = "1"}
-                onMouseLeave={e => e.currentTarget.style.opacity = "0.75"}
-              >
-                {data.cta.secondary.text}
-              </Link>
-            )}
+            <Link
+              to="/program"
+              data-testid="brief-cta-secondary"
+              style={{ fontFamily: T.sans, fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.06em", color: C.gold, background: "transparent", border: `1.5px solid ${C.gold}`, padding: "1rem 2rem", textDecoration: "none", transition: "border-color 0.2s, color 0.2s", display: "inline-block" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(197,160,89,0.06)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+            >
+              Review LaunchPath Standard →
+            </Link>
           </div>
         </div>
       </section>
@@ -463,6 +500,12 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
         /* ── Screen layout helpers ── */
         @media (max-width: 768px) {
           .brief-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 600px) {
+          [data-testid="brief-cta-band"] div[style*="flex"] { flex-direction: column !important; }
+          [data-testid="brief-cta-band"] a { width: 100% !important; text-align: center !important; box-sizing: border-box !important; }
+          [data-testid="kc-reach-banner"] div[style*="flex"] { flex-direction: column !important; align-items: flex-start !important; }
+          [data-testid="kc-program-ref-block"] div[style*="flex"] { flex-direction: column !important; }
         }
         .print-only { display: none !important; }
 

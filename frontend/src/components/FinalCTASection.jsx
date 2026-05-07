@@ -143,6 +143,31 @@ export default function FinalCTASection() {
           RUN THE REACH DIAGNOSTIC →
         </Link>
 
+        <Link
+          to="/program"
+          data-testid="final-cta-admission-btn"
+          className="final-cta-btn"
+          style={{
+            display: "inline-flex", alignItems: "center",
+            fontFamily: MONO, fontWeight: 700,
+            fontSize: "0.857rem", letterSpacing: "0.15em", textTransform: "uppercase",
+            color: "rgba(200,147,63,0.70)", background: "transparent",
+            border: `1.5px solid rgba(200,147,63,0.35)`,
+            padding: "1.25rem 2.5rem", textDecoration: "none",
+            transition: "color 0.2s, border-color 0.2s",
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.borderColor = GOLD;
+            e.currentTarget.style.color = GOLD;
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.borderColor = "rgba(200,147,63,0.35)";
+            e.currentTarget.style.color = "rgba(200,147,63,0.70)";
+          }}
+        >
+          REQUEST ADMISSION →
+        </Link>
+
         {/* Disclaimer */}
         <p style={{
           fontFamily: SANS, fontSize: "0.762rem",

@@ -177,7 +177,7 @@ export default function UCRRegistrationPost() {
             Ground 0 Lesson 0.1 covers the complete foundational registration stack — including UCR — and ends with a verified GO/WAIT/NO-GO decision before your first dispatch.
           </p>
           <Link
-            to="/auto-diagnostic"
+            to="/reach-diagnostic"
             data-testid="article-reach-cta"
             style={{
               display: "inline-block", background: gold, color: "#060d19",
