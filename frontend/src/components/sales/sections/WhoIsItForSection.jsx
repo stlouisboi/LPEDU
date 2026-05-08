@@ -75,7 +75,7 @@ export default function WhoIsItForSection({ handleReach }) {
           Not sure which category you're in?<br />
           The REACH Diagnostic tells you in 4 minutes. No account required. No sales call.
         </p>
-        <CTAButton primary={false} onClick={handleReach} data-testid="reach-assessment-btn">RUN THE REACH ASSESSMENT →</CTAButton>
+        <CTAButton primary={false} onClick={handleReach} data-testid="reach-assessment-btn">RUN THE REACH DIAGNOSTIC →</CTAButton>
         <a
           href="/reach-diagnostic"
           data-testid="reach-first-btn"

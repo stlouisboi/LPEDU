@@ -42,7 +42,14 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
-### Phase 83: Mockup Image Overhaul + Zoom Animation (Apr 2026)
+### Phase 117: LP-WEB Spec Package v2 — Complete Implementation (May 2026)
+- **LP-WEB-[E] Bug Fix 2**: Globally standardized "REACH Assessment" / "REACH Test" → "REACH Diagnostic" across ALL 15+ public-facing files (78 instances now correctly say "REACH Diagnostic"). Scope: Ground0Page, AdmissionPage, KC posts, WhoIsItForSection, FAQSection, SocialProofSection, HowItWorksSection, BriefBundleCTA, ReachRedirectView, CompleteView, REACHTeaserSection, KCClusterCtaBlocks, PreOpChecklistThankYou, reach-diagnostic.jsx SEO title, and more.
+- **LP-WEB-[F] Program Page Gaps**: Added 3 conversion improvements to PricingSection.jsx: (1) Payment plan callout (`data-testid="payment-plan-callout"`) — "$1,500 at enrollment · $1,500 at Day 30"; (2) Cohort date block (`data-testid="cohort-date-block"`) — "LP-COH-001 — NEXT COHORT / Coming Soon — Date TBD"; (3) Post-admission path (`data-testid="post-admission-path"`) — "WHAT HAPPENS AFTER ADMISSION" with IF ADMITTED / IF FULL sections.
+- **LP-WEB-[G] Ground 0 Preview Section**: Added dark-navy preview section at the very top of `/ground-0-briefing` (before REACH gate) with H1 "What Ground 0 covers.", 4 outcome bullet points, and "Complete REACH to Begin Ground 0 →" CTA. Existing H1 → H2 for SEO hygiene.
+- **LP-WEB-[H] SEO Meta Updates**: Homepage meta → FMCSA-keyword-focused with "Free REACH Diagnostic". KC articles updated (DQ File, New Trucking Authority, New Entrant Safety Audit). Product pages updated (DQ Kit, Drug & Alcohol, Bundle). REACH Diagnostic page title fixed.
+- Testing: 91% pass (iteration_115.json); remaining REACH terminology issues fully resolved post-test.
+
+**PREVIOUS PHASES:**
 - Regenerated all 8 product mockup images using OpenAI GPT-Image-1 (via emergentintegrations) with text-free prompts
 - Converted all images from PNG (~1.7MB each) to WebP (~9-58KB each) — 99% size reduction
 - Updated in-place: `domain1-6.webp`, `bundle-document-system.webp`, `complete-diy-library.webp`

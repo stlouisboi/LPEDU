@@ -168,7 +168,7 @@ export default function FailedAuditPost() {
             style={{ display: "inline-block", background: gold, color: "#060d19", fontFamily: mono, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "1rem 2.25rem", textDecoration: "none", transition: "background 0.2s" }}
             onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
             onMouseLeave={e => e.currentTarget.style.background = gold}
-          >RUN THE REACH ASSESSMENT →</Link>
+          >RUN THE REACH DIAGNOSTIC →</Link>
         </div>
 
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(0,26,51,0.45)", lineHeight: 1.7, marginTop: "2.5rem", fontStyle: "italic" }}>

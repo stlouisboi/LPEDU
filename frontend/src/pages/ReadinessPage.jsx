@@ -238,7 +238,7 @@ export default function ReadinessPage() {
       {/* Section panel */}
       <div style={{ border: "1px solid var(--border)", background: "var(--bg-2)", padding: "1.5rem" }}>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.12em", marginBottom: "1.25rem", paddingBottom: "1rem", borderBottom: "1px solid var(--border)" }}>
-          REACH ASSESSMENT // 7 SECTIONS
+          REACH DIAGNOSTIC // 7 SECTIONS
         </p>
         {QUESTIONS.map((q, i) => (
           <div key={i} style={{ display: "flex", gap: "0.75rem", padding: "0.6rem 0", borderBottom: i < 6 ? "1px solid var(--border)" : "none" }}>

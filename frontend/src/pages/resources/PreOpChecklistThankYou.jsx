@@ -216,7 +216,7 @@ export default function PreOpChecklistThankYou() {
               marginBottom: '0.75rem',
             }}
           >
-            Run the REACH Test
+            Run the REACH Diagnostic
           </Link>
 
           <p style={{

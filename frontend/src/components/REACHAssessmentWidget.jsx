@@ -220,7 +220,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
   if (phase === "intro") return (
     <div style={box}>
       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.25rem" }}>
-        THE REACH ASSESSMENT — G0-6 INLINE
+        THE REACH DIAGNOSTIC — G0-6 INLINE
       </p>
       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, marginBottom: "0.875rem", maxWidth: 500 }}>
         15 questions across five operational readiness categories. Approximately 4 minutes.

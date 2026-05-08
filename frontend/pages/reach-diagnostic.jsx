@@ -2,7 +2,7 @@ import Head from 'next/head';
 import REACHAssessmentPage from '../src/pages/REACHAssessmentPage';
 
 const SITE  = "https://launchpathedu.com";
-const TITLE = "REACH Test | FMCSA Compliance Gap Check | LaunchPath";
+const TITLE = "REACH Diagnostic | FMCSA Compliance Gap Check | LaunchPath";
 const DESC  = "Find out how exposed your MC authority is before FMCSA does. The REACH diagnostic reveals whether danger can already reach your operation — GO, WAIT, or NO-GO.";
 const OG    = `${SITE}/og-launchpath.png`;
 

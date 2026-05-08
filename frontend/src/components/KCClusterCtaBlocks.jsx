@@ -23,7 +23,7 @@ export function PrimaryCtaBlock({ dataTestId = "kc-reach-cta" }) {
         fontFamily: mono, fontSize: "0.95rem",
         color: "rgba(255,255,255,0.75)", lineHeight: 1.75, marginBottom: "1.75rem",
       }}>
-        The REACH Test is a free scored diagnostic. It takes less than ten minutes and shows you your current exposure across the Four Pillars — Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen. No login. No payment. A score that tells you where you stand.
+        The REACH Diagnostic is a free 14-question readiness check. It takes less than ten minutes and shows you your current exposure across the Four Pillars — Authority Protection, Insurance Continuity, Compliance Backbone, and Cash-Flow Oxygen. No login. No payment. A score that tells you where you stand.
       </p>
       <Link
         to="/reach-diagnostic"
@@ -41,7 +41,7 @@ export function PrimaryCtaBlock({ dataTestId = "kc-reach-cta" }) {
           border: `2px solid ${gold}`,
         }}
       >
-        Run the REACH Test
+        Run the REACH Diagnostic
       </Link>
     </div>
   );

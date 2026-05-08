@@ -265,7 +265,7 @@ function ReachSubsection() {
         onMouseEnter={e => e.currentTarget.style.background = "#e8a958"}
         onMouseLeave={e => e.currentTarget.style.background = GOLD}
       >
-        RUN THE REACH TEST →
+        RUN THE REACH DIAGNOSTIC →
       </Link>
     </div>
   );

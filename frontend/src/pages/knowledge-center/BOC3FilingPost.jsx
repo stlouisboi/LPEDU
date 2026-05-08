@@ -194,7 +194,7 @@ export default function BOC3FilingPost() {
             onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
             onMouseLeave={e => e.currentTarget.style.background = gold}
           >
-            RUN THE REACH ASSESSMENT →
+            RUN THE REACH DIAGNOSTIC →
           </Link>
         </div>
 
