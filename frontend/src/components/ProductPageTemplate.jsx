@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useState, useEffect } from "react";
 import Image from 'next/image';
 import { Link } from '../compat/Link';
@@ -28,6 +29,8 @@ export default function ProductPageTemplate({
   ctaLabel = null,
   valuePoints = null,
   domainStep = null,
+  seoTitle = null,
+  seoDescription = null,
   children,
 }) {
   const gold = "#d4900a";
@@ -69,6 +72,14 @@ export default function ProductPageTemplate({
 
   return (
     <div style={{ background: "#060d19", minHeight: "100vh" }}>
+      {(seoTitle || seoDescription) && (
+        <Head>
+          {seoTitle && <title>{seoTitle}</title>}
+          {seoDescription && <meta name="description" content={seoDescription} />}
+          {seoTitle && <meta property="og:title" content={seoTitle} />}
+          {seoDescription && <meta property="og:description" content={seoDescription} />}
+        </Head>
+      )}
       <Navbar />
 
       {/* Header */}

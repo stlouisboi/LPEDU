@@ -19,6 +19,8 @@ export default function SafetyAuditPrepPage() {
       label="LP-RES-004 | SAFETY AUDIT PREP PACK"
       title="The #1 Audit-Prep and Response System for New Entrant Safety Audits."
       subtitle="Know exactly what to pull, what auditors ask for first, and what to do in the 48 hours after your notice — without reading 80 pages of FMCSA manuals."
+      seoTitle="FMCSA New Entrant Safety Audit Prep Guide for Motor Carriers | LaunchPath EDU"
+      seoDescription="Know exactly what FMCSA auditors check, what to pull first, and how to respond within 48 hours of receiving your audit notice. The complete audit prep system for new motor carriers. $169."
       price="$169"
       sku="LP-RES-004"
       image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/f1ddc39e48c368c4ef812892aa94c6788efe10c117dc9a062c4d9c57d9dd07b5.png"

@@ -48,6 +48,8 @@ export default function DQFilePacketPage() {
       label="LP-PKT-DQ | DRIVER QUALIFICATION FILE BUILDER KIT"
       title="DQ File Builder Kit"
       subtitle="49 CFR Part 391 Compliance Document System — Driver Qualification"
+      seoTitle="FMCSA Driver Qualification File Template | DQ File Builder — LaunchPath EDU"
+      seoDescription="Build a complete, audit-ready Driver Qualification file for every driver. Includes all 8 required components under 49 CFR Part 391 — MVR, medical cert, road test, Clearinghouse query, and more. One-time $129."
       price="$129"
       sku="LP-PKT-DQ"
       image="/images/products/domain2-dq-files.webp"

@@ -15,6 +15,8 @@ export default function DrugAlcoholPacketPage() {
       label="LP-PKT-002 | DRUG & ALCOHOL COMPLIANCE PACKET"
       title="Drug & Alcohol Compliance Packet"
       subtitle="Part 382 Compliance Operating Standard — Document System"
+      seoTitle="DOT Drug and Alcohol Policy Template for Motor Carriers | LaunchPath EDU"
+      seoDescription="Build a DOT-compliant Drug & Alcohol program for your motor carrier. Written policy, random testing consortium setup, pre-employment records, and supervisor training documentation. One-time $129."
       price="$129"
       sku="LP-PKT-002"
       image="/images/products/domain3-drug-alcohol.webp"

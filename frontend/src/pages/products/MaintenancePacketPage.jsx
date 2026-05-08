@@ -6,6 +6,8 @@ export default function MaintenancePacketPage() {
       label="LP-PKT-004 | MAINTENANCE & EQUIPMENT PACKET"
       title="Maintenance & Equipment Packet"
       subtitle="FMCSA Part 396 Vehicle Maintenance Operating Standard (Document System)"
+      seoTitle="FMCSA Vehicle Maintenance Program Template for Trucking Companies | LaunchPath EDU"
+      seoDescription="Create a written preventive maintenance schedule, DVIR system, and annual inspection records that satisfy FMCSA Part 396 requirements. Pre-built templates, no legal fees. One-time $119."
       price="$119"
       sku="LP-PKT-004"
       image="/images/products/domain5-maintenance.webp"

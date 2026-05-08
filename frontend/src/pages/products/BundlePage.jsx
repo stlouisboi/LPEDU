@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useState } from "react";
 import { Link } from '../../compat/Link';
 import Navbar from "../../components/Navbar";
@@ -155,6 +156,12 @@ export default function BundlePage() {
 
   return (
     <div style={{ background: DARK, minHeight: "100vh", color: "#FFFFFF", fontFamily: MONO }}>
+      <Head>
+        <title>FMCSA Compliance Document Bundle for New Motor Carriers | LaunchPath EDU</title>
+        <meta name="description" content="Get all 5 FMCSA compliance domain packets in one bundle — Driver Qualification, Drug & Alcohol, HOS, Vehicle Maintenance, and Insurance. Complete document system for new motor carriers. One-time $499." />
+        <meta property="og:title" content="FMCSA Compliance Document Bundle for New Motor Carriers | LaunchPath EDU" />
+        <meta property="og:description" content="All 5 FMCSA compliance domain packets. Complete document system for new motor carriers. One-time $499." />
+      </Head>
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.35} }

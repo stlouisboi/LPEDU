@@ -8,6 +8,8 @@ export default function HOSPacketPage() {
       label="LP-PKT-003 | HOS & ELD PACKET"
       title="HOS & ELD Packet"
       subtitle="FMCSA Part 395 Hours of Service Operating Standard (Document System)"
+      seoTitle="FMCSA Hours of Service Records Template for Motor Carriers | LaunchPath EDU"
+      seoDescription="Build audit-ready HOS records for your operation. ELD documentation, driver log architecture, dispatch records, and violation tracking — everything FMCSA checks under 49 CFR Part 395. One-time $119."
       price="$119"
       sku="LP-PKT-003"
       image="/images/products/domain4-hos-dispatch.webp"

@@ -6,6 +6,8 @@ export default function InsurancePacketPage() {
       label="LP-PKT-005 | INSURANCE & AUTHORITY PACKET"
       title="Insurance & Authority Packet"
       subtitle="FMCSA Authority & Insurance Filing Operating Standard (Document System)"
+      seoTitle="FMCSA Insurance Filing Requirements for Motor Carriers | LaunchPath EDU"
+      seoDescription="Prevent insurance lapses that revoke your operating authority. MCS-90, BMC-91, biennial MCS-150 filing system, and coverage continuity protocol for new motor carriers. One-time $119."
       price="$109"
       sku="LP-PKT-005"
       image="/images/products/domain6-insurance.webp"

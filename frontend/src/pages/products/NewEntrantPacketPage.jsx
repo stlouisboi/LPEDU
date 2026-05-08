@@ -21,6 +21,8 @@ export default function NewEntrantPacketPage() {
       label="LP-PKT-001 | NEW ENTRANT COMPLIANCE PACKET"
       title="New Entrant Compliance Packet"
       subtitle="FMCSA New-Authority Operating Standard — Document System"
+      seoTitle="FMCSA New Entrant Compliance Kit for New Motor Carriers | LaunchPath EDU"
+      seoDescription="Pass your FMCSA New Entrant Safety Audit. This packet covers the 6-domain document system every new motor carrier needs built before the 18-month audit window closes. One-time $109."
       price="$139"
       sku="LP-PKT-001"
       image="/images/products/domain1-new-entrant.webp"
