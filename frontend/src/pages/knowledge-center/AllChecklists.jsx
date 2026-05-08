@@ -211,7 +211,7 @@ export default function AllChecklists() {
         <p className="print-marker-text">
           This checklist series is part of the LaunchPath Operating Standard.
         </p>
-        <p className="print-marker-url">launchpathedu.com/ground-0</p>
+        <p className="print-marker-url">launchpathedu.com/ground-0-briefing</p>
       </div>
 
       {/* ── Screen-only fallback ── */}
