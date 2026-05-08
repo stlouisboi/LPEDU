@@ -49,6 +49,13 @@ Core requirements:
 - **LP-WEB-[H] SEO Meta Updates**: Homepage meta → FMCSA-keyword-focused with "Free REACH Diagnostic". KC articles updated (DQ File, New Trucking Authority, New Entrant Safety Audit). Product pages updated (DQ Kit, Drug & Alcohol, Bundle). REACH Diagnostic page title fixed.
 - Testing: 91% pass (iteration_115.json); remaining REACH terminology issues fully resolved post-test.
 
+### Phase 118: Hero Energy Fixes — Motion & Contrast Only (May 2026)
+- Overlay opacity: reduced left-side gradient from `rgba(11,22,40,0.97)` to `0.70`, right to `0.32` — truck cab/documents now visible at ~35%
+- H1 desktop scale: 60px/56px → 74px/70px; tablet: 44px → 52px/48px — more dramatic headline-to-subhead contrast ratio
+- Subhead split: one `<p>` → two distinct `<p>` blocks with 14px gap between sentences
+- SYSTEM INITIALIZATION typewriter: replaced `hero-init-flicker` with `hero-typewriter` steps animation (2.4s, steps(36)) + cursor blink (6 cycles) + cursor fade — deliberate terminal "system coming online" feel
+- REACH button entrance pulse: `hero-btn-pulse` keyframe — single glow beat at 1.4s delay, 1 iteration, not looping
+
 **PREVIOUS PHASES:**
 - Regenerated all 8 product mockup images using OpenAI GPT-Image-1 (via emergentintegrations) with text-free prompts
 - Converted all images from PNG (~1.7MB each) to WebP (~9-58KB each) — 99% size reduction

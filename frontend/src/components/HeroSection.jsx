@@ -37,7 +37,7 @@ export default function HeroSection() {
       data-testid="hero-section"
       style={{
         position: "relative",
-        background: `linear-gradient(to right, rgba(11,22,40,0.97) 55%, rgba(11,22,40,0.72) 100%), url("${HERO_LETTER_URL}") center/cover no-repeat`,
+        background: `linear-gradient(to right, rgba(11,22,40,0.70) 30%, rgba(11,22,40,0.55) 60%, rgba(11,22,40,0.32) 100%), url("${HERO_LETTER_URL}") center/cover no-repeat`,
         overflow: "hidden",
       }}
     >
@@ -72,20 +72,29 @@ export default function HeroSection() {
           95%  { opacity: 0.7; }
           100% { top: 100%; opacity: 0; }
         }
-        @keyframes hero-init-flicker {
-          0%, 100% { opacity: 1; }
-          48% { opacity: 1; }
-          50% { opacity: 0.3; }
-          52% { opacity: 1; }
-          78% { opacity: 1; }
-          80% { opacity: 0.15; }
-          82% { opacity: 1; }
+        /* Typewriter reveal for SYSTEM INITIALIZATION label */
+        @keyframes hero-typewriter {
+          from { max-width: 0; opacity: 1; }
+          to   { max-width: 380px; opacity: 1; }
+        }
+        @keyframes hero-cursor-blink {
+          0%, 100% { border-color: rgba(200,147,63,0.55); }
+          50%       { border-color: transparent; }
+        }
+        @keyframes hero-cursor-fade {
+          to { border-color: transparent; }
         }
         @keyframes hero-data-stream {
           0%   { transform: translateX(-100%); opacity: 0; }
           8%   { opacity: 0.6; }
           92%  { opacity: 0.6; }
           100% { transform: translateX(220%); opacity: 0; }
+        }
+        /* Single entrance glow pulse for REACH button — one beat, no loop */
+        @keyframes hero-btn-pulse {
+          0%   { box-shadow: 0 0 0 0 rgba(200,147,63,0); }
+          35%  { box-shadow: 0 0 22px 7px rgba(200,147,63,0.52), 0 0 42px 14px rgba(200,147,63,0.18); }
+          100% { box-shadow: 0 0 0 0 rgba(200,147,63,0); }
         }
         /* Original horizontal scan (top→bottom) */
         .hero-scan-vline {
@@ -116,7 +125,12 @@ export default function HeroSection() {
           font-family: 'JetBrains Mono', monospace;
           font-size: 0.625rem; font-weight: 700; letter-spacing: 0.20em;
           text-transform: uppercase; color: rgba(200,147,63,0.55);
-          animation: hero-init-flicker 2.4s ease-out 0.2s forwards;
+          white-space: nowrap; overflow: hidden; max-width: 0;
+          border-right: 1px solid rgba(200,147,63,0.55);
+          animation:
+            hero-typewriter 2.4s steps(36, end) 0.5s forwards,
+            hero-cursor-blink 0.55s step-end 0.5s 6,
+            hero-cursor-fade 0.3s ease 3.9s forwards;
           z-index: 6; pointer-events: none;
         }
         .hero-sweep-line {
@@ -136,6 +150,9 @@ export default function HeroSection() {
         @keyframes lp-sweep {
           0%   { transform: translateX(-100%); opacity: 0.5; }
           100% { transform: translateX(300%); opacity: 0; }
+        }
+        .hero-reach-btn-pulse {
+          animation: hero-btn-pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) 1.4s 1;
         }
       `}} />
       <div className="hero-sweep-line" />
@@ -199,20 +216,25 @@ export default function HeroSection() {
           {/* Gold separator */}
           <div style={{ width: 40, height: 2, background: "#C8933F", margin: "28px 0 24px" }} />
 
-          {/* Subhead — revised per LP-WEB-D */}
-          <p
+          {/* Subhead — two distinct lines with visual rhythm */}
+          <div
             className="hero-sub"
             style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 620,
+              color: "rgba(255,255,255,0.82)", lineHeight: 1.75, maxWidth: 620,
               marginBottom: 36,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
             }}
           >
-            Your MC number is active. That does not mean the operation behind it is protected. The REACH Diagnostic identifies where FMCSA can already reach your business — in under five minutes.
-          </p>
+            <p style={{ margin: "0 0 14px 0" }}>
+              Your MC number is active. That does not mean the operation behind it is protected.
+            </p>
+            <p style={{ margin: 0 }}>
+              The REACH Diagnostic identifies where FMCSA can already reach your business — in under five minutes.
+            </p>
+          </div>
 
           {/* CTAs — primary full weight, secondary ghost/text */}
           <div
@@ -226,7 +248,7 @@ export default function HeroSection() {
             <Link
               to="/reach-diagnostic"
               data-testid="hero-reach-cta"
-              className="lp-scan-btn"
+              className="lp-scan-btn hero-reach-btn-pulse"
               style={{
                 display: "inline-flex", alignItems: "center",
                 fontFamily: "'Inter', sans-serif", fontWeight: 700,
@@ -276,13 +298,13 @@ export default function HeroSection() {
         }
         @media (min-width: 681px) and (max-width: 1024px) {
           .hero-grid { padding: 88px 36px 72px !important; }
-          .hero-headline { font-size: 44px !important; }
-          .hero-headline-two { font-size: 44px !important; }
+          .hero-headline { font-size: 52px !important; }
+          .hero-headline-two { font-size: 48px !important; }
           .hero-sub { font-size: 17px !important; }
         }
         @media (min-width: 1025px) {
-          .hero-headline { font-size: 60px !important; }
-          .hero-headline-two { font-size: 56px !important; }
+          .hero-headline { font-size: 74px !important; }
+          .hero-headline-two { font-size: 70px !important; }
           .hero-sub { font-size: 18px !important; }
         }
       `}} />
