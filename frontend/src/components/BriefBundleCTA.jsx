@@ -74,7 +74,7 @@ export default function BriefBundleCTA() {
             onMouseEnter={e => e.currentTarget.style.color = gold}
             onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.65)"}
           >
-            Run the REACH Assessment →
+            Run the REACH Diagnostic →
           </Link>
         </div>
       </div>

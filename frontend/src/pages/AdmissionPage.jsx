@@ -203,7 +203,7 @@ export default function AdmissionPage() {
             marginBottom: "0.875rem",
           }}
         >
-          The LaunchPath Standard accepts a limited cohort each quarter. This is not open enrollment. Every request is reviewed individually — admission is based on your operational readiness, authority status, and REACH Assessment result.
+          The LaunchPath Standard accepts a limited cohort each quarter. This is not open enrollment. Every request is reviewed individually — admission is based on your operational readiness, authority status, and REACH Diagnostic result.
         </p>
 
         <p
@@ -273,7 +273,7 @@ export default function AdmissionPage() {
             fontSize: "0.938rem",
             color: "rgba(255,255,255,0.60)", lineHeight: 1.75, margin: 0,
           }}>
-            Not every applicant is admitted. Admission is based on operational readiness, authority status, and REACH Assessment result — not urgency, not ability to pay.
+            Not every applicant is admitted. Admission is based on operational readiness, authority status, and REACH Diagnostic result — not urgency, not ability to pay.
           </p>
         </div>
         <div style={{
@@ -533,7 +533,7 @@ export default function AdmissionPage() {
                   rows={3}
                   value={form.message}
                   onChange={handleChange}
-                  placeholder="REACH Assessment result, current operational status, questions for the Station Custodian..."
+                  placeholder="REACH Diagnostic result, current operational status, questions for the Station Custodian..."
                   style={{ ...inputStyle, resize: "vertical" }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.5)")}
                   onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}

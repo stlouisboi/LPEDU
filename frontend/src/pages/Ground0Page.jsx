@@ -75,6 +75,53 @@ export default function Ground0Page() {
     <div style={{ fontFamily: "'Inter', sans-serif", background: "#F5F6F7", minHeight: "100vh" }}>
       <Navbar />
 
+      {/* ── LP-WEB-G: Preview Section — renders before REACH gate ── */}
+      <div style={{ background: "#0b1628", borderBottom: "1px solid rgba(197,160,89,0.18)", padding: "72px 24px 64px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1.25rem" }}>
+            GROUND 0 — LP-BRF-001
+          </p>
+          <h1 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3.5vw,2.75rem)", color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
+            What Ground 0 covers.
+          </h1>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.85, maxWidth: 680, marginBottom: "2rem" }}>
+            Ground 0 is the decision layer of LaunchPath Standard. Before you commit to anything, it shows you what the New Entrant Safety Audit actually examines, which of the 16 compliance failure patterns apply to your operation, and whether your current authority window is working for you or against you. It takes approximately 20 minutes. No account required at this step.
+          </p>
+
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", marginBottom: "1rem" }}>
+            WHAT YOU WILL COME AWAY WITH
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "2.5rem" }}>
+            {[
+              "A clear picture of what FMCSA will look for during your New Entrant audit",
+              "Which of the 16 documented failure patterns are most likely to apply to your operation",
+              "An honest read on whether your authority window is being used or wasted",
+              "The decision: build the system now, or build it under pressure later",
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
+                <span style={{ color: "#C5A059", fontFamily: "'JetBrains Mono',monospace", fontSize: "0.857rem", marginTop: "0.15rem", flexShrink: 0 }}>→</span>
+                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.75, margin: 0 }}>{item}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ borderTop: "1px solid rgba(197,160,89,0.15)", paddingTop: "2rem" }}>
+            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.8, maxWidth: 620, marginBottom: "1.5rem" }}>
+              To begin Ground 0, complete the REACH Diagnostic first. Ground 0 is calibrated to your REACH result — the 14-question readiness check maps your current exposure so Ground 0 can address it directly.
+            </p>
+            <a
+              href="/reach-diagnostic"
+              data-testid="ground0-preview-reach-cta"
+              style={{ display: "inline-block", background: "#C5A059", color: "#000F1F", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s" }}
+              onMouseOver={(e) => e.currentTarget.style.background = "#d4b87a"}
+              onMouseOut={(e) => e.currentTarget.style.background = "#C5A059"}
+            >
+              Complete REACH to Begin Ground 0 →
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* ── REACH Prerequisite Banner ── */}
       <div style={{ background: "#0b1628", borderBottom: "1px solid rgba(197,160,89,0.12)", padding: "14px 24px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
@@ -83,7 +130,7 @@ export default function Ground0Page() {
               LP-REACH — QUALIFICATION REQUIRED
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.824rem", color: "rgba(255,255,255,0.48)", lineHeight: 1.5, margin: 0 }}>
-              REACH is the qualification engine for Ground 0. Complete the REACH Assessment before beginning this module.
+              REACH is the qualification engine for Ground 0. Complete the REACH Diagnostic before beginning this module.
             </p>
           </div>
           <a
@@ -116,7 +163,7 @@ export default function Ground0Page() {
             LP-MOD-G0 — Open Access Implementation Module
           </p>
 
-          <h1
+          <h2
             style={{
               fontFamily: "'Newsreader', 'Playfair Display', serif",
               fontWeight: 700,
@@ -128,7 +175,7 @@ export default function Ground0Page() {
             }}
           >
             Ground 0: The Wisdom Module
-          </h1>
+          </h2>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "#6b7280", fontStyle: "italic", marginBottom: "1.5rem", fontWeight: 400 }}>
             The orientation layer. The posture before the standard begins.
@@ -233,7 +280,7 @@ export default function Ground0Page() {
                 margin: 0,
                 maxWidth: 520,
               }}>
-                The REACH Assessment must be completed before beginning Ground 0. REACH assigns your GO, WAIT, or NO-GO classification — that outcome is the gate to this module and to the Standard.
+                The REACH Diagnostic must be completed before beginning Ground 0. REACH assigns your GO, WAIT, or NO-GO classification — that outcome is the gate to this module and to the Standard.
               </p>
             </div>
             <a
@@ -313,7 +360,7 @@ export default function Ground0Page() {
               onMouseOver={(e) => e.currentTarget.style.background = "#d4b87a"}
               onMouseOut={(e) => e.currentTarget.style.background = "#C5A059"}
             >
-              Complete the REACH Assessment &rarr;
+              Complete the REACH Diagnostic &rarr;
             </a>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.28)", marginTop: "0.875rem", fontStyle: "italic" }}>
               REACH qualification is required before beginning Ground 0. The assessment takes approximately 5 minutes.
@@ -612,7 +659,7 @@ export default function Ground0Page() {
                           lineHeight: 1.7,
                           fontStyle: "italic",
                         }}>
-                          Complete the REACH Assessment at the top of this page to receive your GO / WAIT / NO-GO classification.
+                          Complete the REACH Diagnostic at the top of this page to receive your GO / WAIT / NO-GO classification.
                         </p>
                       </div>
                     )}

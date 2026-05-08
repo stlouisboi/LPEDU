@@ -219,7 +219,7 @@ function ReachSubsection() {
   return (
     <div
       role="img"
-      aria-label="LaunchPath REACH Assessment — FMCSA compliance gap diagnostic across four compliance pillars"
+      aria-label="LaunchPath REACH Diagnostic — FMCSA compliance gap diagnostic across four compliance pillars"
     >
       <SubLabel>EXPOSURE DIAGNOSTIC — LP-REACH-001</SubLabel>
       <h3 style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(1.35rem, 2.5vw, 1.875rem)", letterSpacing: "-0.03em", color: "#FFFFFF", marginBottom: "0.875rem" }}>

@@ -44,7 +44,7 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
           onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
           onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
         >
-          Complete the REACH Assessment <ArrowRight size={14} />
+          Complete the REACH Diagnostic <ArrowRight size={14} />
         </a>
       </div>
 

@@ -7,8 +7,8 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>DQ File Builder Kit — Driver Qualification File System | LaunchPath</title>
-        <meta name="description" content="Structured driver qualification file system, CDL verification, medical certificate tracking, and MVR documentation for Part 391 compliance." />
+        <title>FMCSA Driver Qualification File Template & Builder Kit | LaunchPath</title>
+        <meta name="description" content="Build an FMCSA-compliant DQ file for every CDL driver. Includes master checklist, driver application, annual MVR review form, and expiration tracker. 49 CFR Part 391." />
         <meta property="og:title" content="DQ File Builder Kit — Driver Qualification File System | LaunchPath" />
         <meta property="og:description" content="Structured driver qualification file system for Part 391 compliance. CDL verification, medical certificates, MVR documentation." />
         <meta property="og:image" content={OG} />

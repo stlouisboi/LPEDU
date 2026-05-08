@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import NewTruckingAuthorityPost from '../../src/pages/knowledge-center/NewTruckingAuthorityPost';
 
-const TITLE = "New Trucking Authority: Your First 30 Days | LaunchPath";
+const TITLE = "New Trucking Authority: First 30 Days FMCSA Compliance";
 const H1 = "You Have Your MC Number. Here Is What Happens Next.";
-const DESC = "Getting your MC number is step one. Here is the compliance sequence every new motor carrier must complete before the first load moves.";
+const DESC = "Got your MC number? Here is what FMCSA expects in the first 30 days — and what new carriers miss before the New Entrant Safety Audit window opens.";
 const URL = "https://www.launchpathedu.com/knowledge-center/new-trucking-authority-first-steps";
 
 const FAQ_ITEMS = [

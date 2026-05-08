@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import BundlePage from '../../src/pages/products/BundlePage';
 
-const TITLE = "Document System Bundle — $499 | LaunchPath";
-const DESC = "Five compliance domain packets, a unified folder structure, and a 90-day implementation calendar. Every form FMCSA expects — for $499.";
+const TITLE = "FMCSA Compliance Document Bundle for New Motor Carriers | LaunchPath";
+const DESC = "Five compliance domain packets — DQ files, Drug & Alcohol, HOS, Insurance, and Maintenance — with a unified folder structure and 90-day implementation calendar. Every document FMCSA expects. $499.";
 const OG_IMAGE = "https://launchpathedu.com/images/products/bundle-document-system.webp";
 
 export default function Page() {

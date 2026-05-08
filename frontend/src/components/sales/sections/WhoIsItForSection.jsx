@@ -73,7 +73,7 @@ export default function WhoIsItForSection({ handleReach }) {
       <div style={{ background: T.navyCard, border: `1px solid ${T.navyBorder}`, padding: "32px 40px", textAlign: "center" }}>
         <p style={{ ...serif, fontSize: 17, color: T.mist, marginBottom: 20 }}>
           Not sure which category you're in?<br />
-          The REACH Assessment tells you in 4 minutes. No account required. No sales call.
+          The REACH Diagnostic tells you in 4 minutes. No account required. No sales call.
         </p>
         <CTAButton primary={false} onClick={handleReach} data-testid="reach-assessment-btn">RUN THE REACH ASSESSMENT →</CTAButton>
         <a

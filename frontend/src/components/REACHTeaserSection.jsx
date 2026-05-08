@@ -78,7 +78,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             letterSpacing: "-0.035em", textTransform: "uppercase",
             marginBottom: "0.5rem",
           }}>
-            REACH Assessment
+            REACH Diagnostic
           </h2>
 
           <p style={{

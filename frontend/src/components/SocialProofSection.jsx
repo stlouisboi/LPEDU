@@ -24,7 +24,7 @@ const CASES = [
     statLabel: "Gaps Closed",
     statSub: "Before the Month 9 window opened",
     quote:
-      "The REACH Assessment flagged three open exposures we didn't know about. Insurance filing wasn't verified active on FMCSA's system. D&A random pool wasn't activated. HOS policy existed — but wasn't signed by the driver. All three closed before the audit window.",
+      "The REACH Diagnostic flagged three open exposures we didn't know about. Insurance filing wasn't verified active on FMCSA's system. D&A random pool wasn't activated. HOS policy existed — but wasn't signed by the driver. All three closed before the audit window.",
     timeframe: "Enrolled Month 7 · No audit findings",
   },
   {

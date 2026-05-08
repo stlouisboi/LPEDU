@@ -81,7 +81,7 @@ const PATHS = [
     includes: [
       "Access the Operational Library briefs",
       "Review the 90-day authority timeline",
-      "Revisit your REACH Assessment result",
+      "Revisit your REACH Diagnostic result",
       "Ground 0 completion is saved permanently",
     ],
     best_for: "Operators not ready to proceed. Ground 0 does not expire.",

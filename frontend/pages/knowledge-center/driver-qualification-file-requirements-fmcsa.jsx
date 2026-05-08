@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import DQFileRequirementsPost from '../../src/pages/knowledge-center/DQFileRequirementsPost';
 
-const TITLE = "Driver Qualification File Requirements FMCSA | LaunchPath";
+const TITLE = "Driver Qualification File Requirements — FMCSA Checklist";
 const H1 = "What FMCSA Requires in Every Driver Qualification File";
-const DESC = "FMCSA requires a Driver Qualification File for every CDL driver you employ. Here is what 49 CFR Part 391 requires in every file before your driver operates.";
+const DESC = "What FMCSA requires in every Driver Qualification file. Incomplete DQ files are an automatic New Entrant Safety Audit failure. This guide covers every required document under 49 CFR Part 391.";
 const URL = "https://www.launchpathedu.com/knowledge-center/driver-qualification-file-requirements-fmcsa";
 
 const FAQ_ITEMS = [

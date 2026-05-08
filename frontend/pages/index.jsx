@@ -4,7 +4,7 @@ import Head from 'next/head';
 const SITE = "https://launchpathedu.com";
 const OG   = `${SITE}/og-launchpath.png`;
 const TITLE = "LaunchPath | FMCSA Compliance for New Motor Carriers";
-const DESC  = "Install the federal compliance infrastructure FMCSA expects to find before your audit window opens. 90 days. 5 verified checkpoints. Verified Registry ID at completion.";
+const DESC  = "FMCSA compliance system for new motor carriers. Installs your Driver Qualification files, Drug & Alcohol program, and compliance records in 90 days — before your New Entrant Safety Audit. Free REACH Diagnostic included.";
 
 const jsonLd = {
   "@context": "https://schema.org",

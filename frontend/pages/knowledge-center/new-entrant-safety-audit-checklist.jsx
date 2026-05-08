@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import NewEntrantAuditChecklistPost from '../../src/pages/knowledge-center/NewEntrantAuditChecklistPost';
 
-const TITLE = "New Entrant Safety Audit Checklist for FMCSA | LaunchPath";
+const TITLE = "FMCSA New Entrant Safety Audit: What Gets Checked";
 const H1 = "What FMCSA Checks in a New Entrant Safety Audit";
-const DESC = "Every new interstate motor carrier receives a safety audit within 12 months of getting authority. Here is what FMCSA reviews and how to prepare before the auditor arrives.";
+const DESC = "What FMCSA examines during the New Entrant Safety Audit, which records trigger failures, and how to build the documentation before the auditor arrives.";
 const URL = "https://www.launchpathedu.com/knowledge-center/new-entrant-safety-audit-checklist";
 
 const FAQ_ITEMS = [

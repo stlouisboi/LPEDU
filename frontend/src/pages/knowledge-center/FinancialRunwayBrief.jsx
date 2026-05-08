@@ -16,7 +16,7 @@ const DATA = {
     intent: "This is what an owner must understand about capital requirements before committing to operations.",
     cohortNote: "The LaunchPath Standard requires financial runway as a precondition for cohort admission. Carriers who enroll without adequate runway consistently struggle to complete the implementation window.",
     points: [
-      "The REACH Assessment's 'Resources' pillar measures financial readiness as a go/no-go condition. A carrier without 90-day operating capital is statistically likely to make compliance shortcuts under cash pressure — and those shortcuts are what auditors find.",
+      "The REACH Diagnostic's 'Resources' pillar measures financial readiness as a go/no-go condition. A carrier without 90-day operating capital is statistically likely to make compliance shortcuts under cash pressure — and those shortcuts are what auditors find.",
       "Compliance is not free. Insurance premiums, UCR fees, drug testing, maintenance reserves, and administrative overhead are all operating costs that begin before the first load moves. They do not pause while you build your book of business.",
       "Most new carriers underestimate startup costs by 40–60% because they calculate equipment and insurance but omit compliance infrastructure, administrative time, and cash float for receivables lag.",
     ],

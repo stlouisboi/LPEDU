@@ -198,7 +198,7 @@ export default function ReadinessPage() {
   if (phase === "landing") return wrap(
     <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: "4rem", alignItems: "start" }} className="readiness-grid">
       <div>
-        <p className="overline" style={{ marginBottom: "1.5rem" }}>REACH Assessment // Carrier Diagnostic</p>
+        <p className="overline" style={{ marginBottom: "1.5rem" }}>REACH Diagnostic // Carrier Diagnostic</p>
         <h1 style={{
           fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700,
           fontSize: "clamp(2.5rem, 6vw, 4rem)", letterSpacing: "-0.03em", lineHeight: 1.0,

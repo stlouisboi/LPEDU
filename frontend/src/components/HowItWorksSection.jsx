@@ -13,7 +13,7 @@ const PHASES = [
     weeks: "Weeks 0–2",
     desc: "Complete the Ground 0 diagnostic. Get a findings brief on where you stand and what's missing.",
     deliverables: [
-      "REACH Assessment",
+      "REACH Diagnostic",
       "Risk findings brief",
       "Implementation map",
     ],

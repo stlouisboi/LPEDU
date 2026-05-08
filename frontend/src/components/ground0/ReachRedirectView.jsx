@@ -17,7 +17,7 @@ export default function ReachRedirectView() {
           YOUR NEXT STEP
         </p>
         <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.75, marginBottom: "1.25rem" }}>
-          Readiness outcomes — GO, WAIT, and NO-GO — are determined by <strong style={{ color: "#FFFFFF" }}>REACH</strong>, the LaunchPath qualification engine. If you have not completed the REACH Assessment, complete it now to receive your outcome.
+          Readiness outcomes — GO, WAIT, and NO-GO — are determined by <strong style={{ color: "#FFFFFF" }}>REACH</strong>, the LaunchPath qualification engine. If you have not completed the REACH Diagnostic, complete it now to receive your outcome.
         </p>
         <a
           href="/reach-diagnostic"
@@ -26,7 +26,7 @@ export default function ReachRedirectView() {
           onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
           onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
         >
-          Complete the REACH Assessment &rarr;
+          Complete the REACH Diagnostic &rarr;
         </a>
       </div>
       <a

@@ -7,8 +7,8 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Drug & Alcohol Packet — Part 382 Compliance Operating Standard | LaunchPath</title>
-        <meta name="description" content="Enrollment documentation, clearinghouse logs, and supervisor training records for Part 382 compliance. The operating standard for drug and alcohol program management." />
+        <title>FMCSA Drug & Alcohol Program Templates for Motor Carriers | LaunchPath</title>
+        <meta name="description" content="Enrollment documentation, clearinghouse logs, and supervisor training records for Part 382 compliance. Complete operating templates for drug and alcohol program management." />
         <meta property="og:title" content="Drug & Alcohol Packet — Part 382 Compliance Operating Standard | LaunchPath" />
         <meta property="og:description" content="Enrollment documentation, clearinghouse logs, and supervisor training records for Part 382 compliance." />
         <meta property="og:image" content={OG} />
