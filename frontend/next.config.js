@@ -14,6 +14,9 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // /sitemap → /sitemap.xml canonical fix
+      { source: "/sitemap", destination: "/sitemap.xml", permanent: true },
+
       // www → non-www canonical redirect
       {
         source: "/:path*",
