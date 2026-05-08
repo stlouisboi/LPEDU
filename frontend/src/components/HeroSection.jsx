@@ -37,7 +37,7 @@ export default function HeroSection() {
       data-testid="hero-section"
       style={{
         position: "relative",
-        background: `linear-gradient(to right, rgba(11,22,40,0.70) 30%, rgba(11,22,40,0.55) 60%, rgba(11,22,40,0.32) 100%), url("${HERO_LETTER_URL}") center/cover no-repeat`,
+        background: `linear-gradient(to right, rgba(11,22,40,0.63) 30%, rgba(11,22,40,0.55) 60%, rgba(11,22,40,0.32) 100%), url("${HERO_LETTER_URL}") center/cover no-repeat`,
         overflow: "hidden",
       }}
     >
@@ -93,7 +93,7 @@ export default function HeroSection() {
         /* Single entrance glow pulse for REACH button — one beat, no loop */
         @keyframes hero-btn-pulse {
           0%   { box-shadow: 0 0 0 0 rgba(200,147,63,0); }
-          35%  { box-shadow: 0 0 22px 7px rgba(200,147,63,0.52), 0 0 42px 14px rgba(200,147,63,0.18); }
+          35%  { box-shadow: 0 0 28px 10px rgba(200,147,63,0.70), 0 0 52px 20px rgba(200,147,63,0.26); }
           100% { box-shadow: 0 0 0 0 rgba(200,147,63,0); }
         }
         /* Original horizontal scan (top→bottom) */
@@ -270,7 +270,7 @@ export default function HeroSection() {
                 display: "inline-flex", alignItems: "center",
                 fontFamily: "'Inter', sans-serif", fontWeight: 500,
                 fontSize: "0.857rem", letterSpacing: "0.02em",
-                color: "rgba(255,255,255,0.40)", background: "transparent",
+                color: "rgba(255,255,255,0.60)", background: "transparent",
                 border: "none", padding: "4px 0", textDecoration: "none",
                 transition: "color 0.2s",
               }}
