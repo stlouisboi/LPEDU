@@ -191,7 +191,7 @@ export default function ProductPageTemplate({
                     alt={title}
                     fill
                     className="mockup-zoom"
-                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    style={{ objectFit: "contain", objectPosition: "center" }}
                   />
                 </div>
               ) : null}

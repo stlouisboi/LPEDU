@@ -859,13 +859,13 @@ export default function ComplianceLibraryPage() {
               >
                 {/* Product image mockup */}
                 {DOMAIN_IMAGES[card.sku] && (
-                  <div className="mockup-zoom-wrap" style={{ width: "100%", height: 160, overflow: "hidden", position: "relative", flexShrink: 0 }}>
+                  <div className="mockup-zoom-wrap" style={{ width: "100%", height: 200, overflow: "hidden", position: "relative", flexShrink: 0, background: "#060d19" }}>
                     <img
                       src={DOMAIN_IMAGES[card.sku]}
                       alt={card.name}
                       loading="lazy"
                       className="mockup-zoom"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                      style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }}
                     />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,13,25,0) 50%, rgba(6,13,25,0.85) 100%)" }} />
                   </div>
