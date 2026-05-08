@@ -714,3 +714,12 @@ credentials.json
 .credentials
 frontend/.next/cache/webpack/server-production/1.pack
 frontend/.next/cache/webpack/server-production/1.pack
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
