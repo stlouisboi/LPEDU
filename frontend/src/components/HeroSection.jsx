@@ -1,6 +1,5 @@
 import { Link } from '../compat/Link';
 import { useState, useEffect, useRef } from "react";
-import { AlertTriangle, CheckCircle2 } from "lucide-react";
 
 const HERO_LETTER_URL = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/gt9pdg9a_hero-letter-dashboard.png";
 const GOLD = "#C8933F";
@@ -147,17 +146,16 @@ export default function HeroSection() {
         className="hero-grid"
         style={{
           position: "relative", zIndex: 1,
-          maxWidth: 1280, margin: "0 auto",
-          display: "grid", gridTemplateColumns: "1.4fr 1fr",
-          gap: 64, alignItems: "center",
-          padding: "100px 56px 80px",
+          maxWidth: 860, margin: "0 auto",
+          display: "grid", gridTemplateColumns: "1fr",
+          padding: "120px 56px 100px",
         }}
       >
 
-        {/* ── LEFT COLUMN ── */}
+        {/* ── HERO CONTENT — single column per LP-WEB-D ── */}
         <div className="hero-left" style={{ background: "rgba(5,12,24,0.55)", padding: "32px 36px", margin: "-32px -36px", backdropFilter: "brightness(0.92)" }}>
 
-          {/* Eyebrow */}
+          {/* Category label */}
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 28 }}>
             <div style={{ width: 28, height: 1, background: "#C8933F", flexShrink: 0 }} />
             <p style={{
@@ -168,7 +166,7 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* Headline */}
+          {/* H1 — retain as-is */}
           <h1 style={{ margin: 0 }}>
             <span
               className="hero-headline"
@@ -201,326 +199,64 @@ export default function HeroSection() {
           {/* Gold separator */}
           <div style={{ width: 40, height: 2, background: "#C8933F", margin: "28px 0 24px" }} />
 
-          {/* Sub-headline — desktop */}
+          {/* Subhead — revised per LP-WEB-D */}
           <p
-            className="hero-sub hero-sub-desktop"
+            className="hero-sub"
             style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 580,
-              marginBottom: 28,
+              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 620,
+              marginBottom: 36,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
             }}
           >
-            Your MC number is active, but that doesn't mean it's protected. LaunchPath shows new carriers where FMCSA can already reach their operation, how much damage a failed audit can do, and helps install the guard your files and records should have had from Day 1.
+            Your MC number is active. That does not mean the operation behind it is protected. The REACH Diagnostic identifies where FMCSA can already reach your business — in under five minutes.
           </p>
 
-          {/* Sub-headline — mobile */}
-          <p
-            className="hero-sub hero-sub-mobile"
-            style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 580,
-              marginBottom: 24, display: "none",
-              opacity: visible ? 1 : 0,
-              transition: "opacity 0.6s ease 0.15s",
-            }}
-          >
-            Active doesn't mean protected. $10K–$25K+ is a normal bill for a failed <a href="/knowledge-center/new-entrant-safety-audit-checklist" style={{ color: "#C8933F", textDecoration: "none" }}>New Entrant audit</a> — most gaps show up in the first 90 days.
-          </p>
-
-          {/* Primary CTAs */}
+          {/* CTAs — primary full weight, secondary ghost/text */}
           <div
             style={{
-              display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start",
-              marginBottom: 28,
+              display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start",
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
             }}
           >
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-              <Link
-                to="/reach-diagnostic"
-                data-testid="hero-reach-cta"
-                className="lp-scan-btn"
-                style={{
-                  display: "inline-flex", alignItems: "center",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                  fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase",
-                  color: "#0b1628", background: GOLD,
-                  padding: "1rem 2rem", textDecoration: "none",
-                  transition: "background 0.2s",
-                  minHeight: 48,
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = "#e8a958"}
-                onMouseLeave={e => e.currentTarget.style.background = GOLD}
-              >
-                Check My Exposure →
-              </Link>
-              <Link
-                to="/ground-0-briefing"
-                data-testid="hero-ground0-cta"
-                style={{
-                  display: "inline-flex", alignItems: "center",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 500,
-                  fontSize: "0.857rem", letterSpacing: "0.01em",
-                  color: "rgba(255,255,255,0.45)", background: "transparent",
-                  border: "none", padding: "12px 0", textDecoration: "none",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.80)"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.45)"; }}
-              >
-                Or begin the Ground 0 briefing →
-              </Link>
-            </div>
-            {/* Sub-CTA descriptor */}
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem",
-              fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase",
-              color: "rgba(200,147,63,0.50)", margin: 0,
-            }}>
-              3-minute REACH self-test
-            </p>
-          </div>
-
-          {/* ── CONSEQUENCE BAND — LP-EXP-001 ───────────────────── */}
-          <div style={{
-            background: "rgba(6,10,20,0.85)",
-            border: "0.5px solid rgba(200,147,63,0.18)",
-            borderLeft: "2px solid rgba(200,147,63,0.50)",
-            padding: "28px 24px 22px",
-            marginBottom: 28,
-            boxShadow: "inset 0 2px 8px rgba(0,0,0,0.50)",
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(8px)",
-            transition: "opacity 0.6s ease 0.25s, transform 0.6s ease 0.25s",
-          }}>
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: 13, fontWeight: 700,
-              letterSpacing: "0.20em", textTransform: "uppercase",
-              color: "rgba(200,147,63,0.70)", marginBottom: 18,
-            }}>LP-EXP-001 — EXPOSURE WINDOW</p>
-            <div style={{ display: "flex", gap: 0, flexWrap: "wrap" }}>
-              {[
-                { num: "$10K–$25K+", label: "Average cost of a failed New Entrant Safety Audit — remediation, downtime, insurance increase, reapplication." },
-                { num: "87 days", label: "Average time from authority activation to first compliance failure in an unstructured operation." },
-                { num: "18 months", label: "Your New Entrant audit window. It opens on Day 1. It does not wait for you to be ready." },
-              ].map(({ num, label }, i) => (
-                <div key={i} style={{
-                  flex: "1 1 150px", paddingRight: 20, paddingBottom: 12,
-                  borderRight: i < 2 ? "0.5px solid rgba(200,147,63,0.14)" : "none",
-                  paddingLeft: i > 0 ? 20 : 0,
-                }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: 26, color: "#C8933F", lineHeight: 1.1, marginBottom: 10 }}>{num}</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, margin: 0 }}>{label}</p>
-                </div>
-              ))}
-            </div>
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: 14, fontStyle: "italic",
-              color: "rgba(200,147,63,0.60)", margin: "14px 0 0", lineHeight: 1.5,
-            }}>
-              The audit does not announce itself until it is already scheduled.
-            </p>
-          </div>
-
-          {/* Proof strip */}
-          <div
-            style={{
-              display: "flex", gap: 40,
-              borderTop: "1px solid rgba(255,255,255,0.08)",
-              paddingTop: 28, flexWrap: "wrap",
-              opacity: visible ? 1 : 0,
-              transition: "opacity 0.6s ease 0.3s",
-            }}
-          >
-            {[
-              { num: "90", label: "Days to get\nfully built" },
-              { num: "5",  label: "Compliance\ndomains covered" },
-              { num: "5",  label: "Custodian checkpoints\nbefore you're done" },
-            ].map(({ num, label }, i) => (
-              <div
-                key={i}
-                style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6 }}
-              >
-                <span style={{
-                  fontFamily: "'Inter', sans-serif", fontWeight: 800,
-                  fontSize: 40, color: "#C8933F", lineHeight: 1, letterSpacing: "-0.03em",
-                }}>
-                  {num}
-                </span>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 500,
-                  color: "rgba(255,255,255,0.50)", lineHeight: 1.4, margin: 0,
-                  whiteSpace: "pre-line",
-                }}>
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Secondary program link */}
-          <div style={{
-            marginTop: 24, paddingTop: 20,
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.6s ease 0.4s",
-          }}>
             <Link
-              to="/program"
-              data-testid="hero-program-link"
+              to="/reach-diagnostic"
+              data-testid="hero-reach-cta"
+              className="lp-scan-btn"
               style={{
-                fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 600,
-                color: "rgba(212,144,10,0.75)", textDecoration: "none",
-                letterSpacing: "0.04em",
-                transition: "color 0.2s",
-                display: "inline-flex", alignItems: "center", minHeight: "44px",
+                display: "inline-flex", alignItems: "center",
+                fontFamily: "'Inter', sans-serif", fontWeight: 700,
+                fontSize: "0.9rem", letterSpacing: "0.10em", textTransform: "uppercase",
+                color: "#0b1628", background: GOLD,
+                padding: "1.1rem 2.5rem", textDecoration: "none",
+                transition: "background 0.2s",
+                minHeight: 52,
               }}
-              onMouseEnter={e => { e.currentTarget.style.color = "#D4900A"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = "rgba(212,144,10,0.75)"; }}
+              onMouseEnter={e => e.currentTarget.style.background = "#e8a958"}
+              onMouseLeave={e => e.currentTarget.style.background = GOLD}
             >
-              Review the full LaunchPath Standard →
+              Run REACH Diagnostic →
             </Link>
-          </div>
-        </div>
-
-        {/* ── RIGHT COLUMN — Comparison Card ── */}
-        <div
-          className="hero-right"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-          }}
-        >
-          {/* Card header */}
-          <div style={{
-            background: "#060f1e",
-            border: "0.5px solid rgba(255,255,255,0.10)",
-            padding: "14px 24px",
-            borderBottom: "none",
-          }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "rgba(212,144,10,0.85)", margin: 0,
-            }}>
-              LPOS — RISK ANALYSIS
-            </p>
-          </div>
-
-          {/* WITHOUT block */}
-          <div style={{
-            background: "rgba(232,89,15,0.05)",
-            border: "0.5px solid rgba(255,255,255,0.10)",
-            borderTop: "2px solid #E8590F",
-            padding: "28px 24px",
-            borderBottom: "none",
-            boxShadow: "inset 0 4px 12px rgba(0,0,0,0.70), inset 0 0 0 1px rgba(232,89,15,0.06), inset -3px 0 8px rgba(0,0,0,0.40), inset 3px 0 8px rgba(0,0,0,0.40)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <AlertTriangle size={16} strokeWidth={2} color="#E8590F" />
-              <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.16em", textTransform: "uppercase",
-                color: "#E8590F", margin: 0,
-              }}>
-                WITHOUT THE STANDARD
-              </p>
-            </div>
-            <p style={{
-              fontFamily: "'Newsreader', 'Playfair Display', serif", fontSize: 20, fontWeight: 700,
-              color: "rgba(255,255,255,0.92)", lineHeight: 1.2, marginBottom: 16,
-            }}>
-              What happens to an unstructured operation
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {RISK_ITEMS.map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                  <span style={{ color: "#E8590F", fontSize: 14, marginTop: 1, flexShrink: 0 }}>✕</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.72)", lineHeight: 1.5 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Versus divider */}
-          <div style={{
-            display: "flex", alignItems: "center", gap: 10,
-            background: "#060f1e",
-            border: "0.5px solid rgba(255,255,255,0.10)",
-            borderTop: "none", borderBottom: "none",
-            padding: "10px 24px",
-          }}>
-            <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.08)" }} />
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: 13,
-              color: "rgba(255,255,255,0.30)", letterSpacing: "0.14em",
-              textTransform: "uppercase", margin: 0,
-            }}>versus</p>
-            <div style={{ flex: 1, height: "0.5px", background: "rgba(255,255,255,0.08)" }} />
-          </div>
-
-          {/* WITH block */}
-          <div style={{
-            background: "rgba(212,144,10,0.06)",
-            border: "0.5px solid rgba(255,255,255,0.10)",
-            borderTop: "2px solid #d4900a",
-            padding: "28px 24px",
-            borderBottom: "none",
-            boxShadow: "inset 0 4px 12px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(212,144,10,0.05), inset -3px 0 8px rgba(0,0,0,0.35), inset 3px 0 8px rgba(0,0,0,0.35)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <CheckCircle2 size={16} strokeWidth={2} color="#d4900a" />
-              <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.16em", textTransform: "uppercase",
-                color: "#d4900a", margin: 0,
-              }}>
-                WITH THE STANDARD
-              </p>
-            </div>
-            <p style={{
-              fontFamily: "'Newsreader', 'Playfair Display', serif", fontSize: 20, fontWeight: 700,
-              color: "#d4900a", lineHeight: 1.2, marginBottom: 16,
-            }}>
-              LaunchPath Standard
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
-              {SAFE_ITEMS.map(item => (
-                <div key={item} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                  <span style={{ color: "#d4900a", fontSize: 14, marginTop: 1, flexShrink: 0 }}>✓</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: "rgba(255,255,255,0.82)", lineHeight: 1.5 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{ borderTop: "0.5px solid rgba(212,144,10,0.20)", paddingTop: 16 }}>
-              <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 700,
-                color: "#d4900a", margin: 0,
-              }}>
-                Costs less than one audit failure
-              </p>
-            </div>
-          </div>
-
-          {/* Card footer */}
-          <div style={{
-            background: "#060f1e",
-            border: "0.5px solid rgba(255,255,255,0.10)",
-            borderTop: "none",
-            padding: "12px 24px",
-          }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: 11,
-              color: "rgba(255,255,255,0.30)", margin: 0, letterSpacing: "0.04em",
-            }}>
-              Verified against 49 CFR · 25-year compliance infrastructure
-            </p>
+            <Link
+              to="/ground-0-briefing"
+              data-testid="hero-ground0-cta"
+              style={{
+                display: "inline-flex", alignItems: "center",
+                fontFamily: "'Inter', sans-serif", fontWeight: 500,
+                fontSize: "0.857rem", letterSpacing: "0.02em",
+                color: "rgba(255,255,255,0.40)", background: "transparent",
+                border: "none", padding: "4px 0", textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.40)"; }}
+            >
+              Begin Ground 0 →
+            </Link>
           </div>
         </div>
       </div>
@@ -531,27 +267,22 @@ export default function HeroSection() {
       <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 680px) {
           .hero-grid {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-            padding: 72px 20px 56px !important;
+            padding: 80px 20px 64px !important;
           }
           .hero-left { margin: -32px -20px !important; }
           .hero-headline { font-size: 32px !important; }
           .hero-headline-two { font-size: 32px !important; }
-          .hero-sub-desktop { display: none !important; }
-          .hero-sub-mobile { display: block !important; font-size: 16px !important; }
-          .hero-right { width: 100% !important; }
-          .hero-scan-init-label { max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
+          .hero-sub { font-size: 16px !important; }
         }
         @media (min-width: 681px) and (max-width: 1024px) {
-          .hero-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; padding: 80px 36px 64px !important; }
-          .hero-headline { font-size: 42px !important; }
-          .hero-headline-two { font-size: 42px !important; }
+          .hero-grid { padding: 88px 36px 72px !important; }
+          .hero-headline { font-size: 44px !important; }
+          .hero-headline-two { font-size: 44px !important; }
           .hero-sub { font-size: 17px !important; }
         }
         @media (min-width: 1025px) {
-          .hero-headline { font-size: 56px !important; }
-          .hero-headline-two { font-size: 52px !important; }
+          .hero-headline { font-size: 60px !important; }
+          .hero-headline-two { font-size: 56px !important; }
           .hero-sub { font-size: 18px !important; }
         }
       `}} />
