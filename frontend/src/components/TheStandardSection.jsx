@@ -324,7 +324,7 @@ function SystemArchitectureDiagram() {
         {/* Step cards */}
         <div className="arch-sequence" style={{ display: "flex", alignItems: "stretch" }}>
           {ARCH_STEPS.map((step, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "stretch", flex: 1, minWidth: 0, position: "relative" }}>
+            <div key={i} className="arch-step-outer" style={{ display: "flex", alignItems: "stretch", minWidth: 0, position: "relative" }}>
 
               <Link
                 to={step.href}
@@ -403,10 +403,21 @@ function SystemArchitectureDiagram() {
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
+        .arch-step-outer { flex: 1; }
         @media (max-width: 768px) {
-          .arch-sequence { flex-direction: column !important; }
-          .arch-step-card { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.045) !important; min-height: 140px !important; }
+          .arch-sequence { flex-wrap: wrap !important; }
+          .arch-step-outer { flex: 0 0 50% !important; min-width: 0 !important; box-sizing: border-box !important; }
+          .arch-step-card {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+            min-height: 0 !important;
+            padding: 1.5rem 1.25rem 1.25rem !important;
+          }
+          .arch-step-card p { font-size: 0.75rem !important; }
           .arch-arrow { display: none !important; }
+        }
+        @media (max-width: 380px) {
+          .arch-step-outer { flex: 0 0 100% !important; }
         }
       `}} />
     </div>
