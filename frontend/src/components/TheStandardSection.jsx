@@ -354,12 +354,12 @@ function SystemArchitectureDiagram() {
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: step.color, opacity: 0.55 }} />
 
                 {/* Code */}
-                <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}99`, margin: "0 0 0.875rem" }}>
+                <p className="arch-code-lbl" style={{ fontFamily: MONO, fontWeight: 700, letterSpacing: "0.18em", color: `${step.color}99`, margin: "0 0 0.875rem" }}>
                   {step.code}
                 </p>
 
                 {/* Name */}
-                <p style={{ fontFamily: SANS, fontWeight: 900, fontSize: "clamp(0.72rem, 1.2vw, 0.92rem)", letterSpacing: "0.06em", textTransform: "uppercase", color: "#FFFFFF", margin: "0 0 0.5rem", lineHeight: 1.2 }}>
+                <p className="arch-name-lbl" style={{ fontFamily: SANS, fontWeight: 900, letterSpacing: "0.06em", textTransform: "uppercase", color: "#FFFFFF", margin: "0 0 0.5rem", lineHeight: 1.2 }}>
                   {step.name}
                 </p>
 
@@ -367,17 +367,17 @@ function SystemArchitectureDiagram() {
                 <div style={{ width: "100%", height: 1, background: `${step.color}20`, marginBottom: "0.625rem" }} />
 
                 {/* Role */}
-                <p style={{ fontFamily: SANS, fontSize: "clamp(0.60rem, 0.95vw, 0.75rem)", color: step.color, margin: "0 0 0.5rem", fontWeight: 700, lineHeight: 1.35 }}>
+                <p className="arch-role-lbl" style={{ fontFamily: SANS, color: step.color, margin: "0 0 0.5rem", fontWeight: 700, lineHeight: 1.35 }}>
                   {step.role}
                 </p>
 
                 {/* Sub */}
-                <p style={{ fontFamily: MONO, fontSize: "clamp(0.48rem, 0.72vw, 0.60rem)", color: "rgba(148,163,184,0.55)", margin: 0, lineHeight: 1.55, letterSpacing: "0.04em", flex: 1 }}>
+                <p className="arch-sub-lbl" style={{ fontFamily: MONO, color: "rgba(148,163,184,0.55)", margin: 0, lineHeight: 1.55, letterSpacing: "0.04em", flex: 1 }}>
                   {step.sub}
                 </p>
 
                 {/* View indicator */}
-                <p style={{ fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700, color: `${step.color}CC`, margin: "1rem 0 0", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                <p className="arch-view-lbl" style={{ fontFamily: MONO, fontWeight: 700, color: `${step.color}CC`, margin: "1rem 0 0", letterSpacing: "0.14em", textTransform: "uppercase" }}>
                   VIEW →
                 </p>
               </Link>
@@ -404,6 +404,11 @@ function SystemArchitectureDiagram() {
 
       <style dangerouslySetInnerHTML={{__html: `
         .arch-step-outer { flex: 1; }
+        .arch-code-lbl { font-size: 0.600rem; }
+        .arch-name-lbl { font-size: 0.92rem; }
+        .arch-role-lbl { font-size: 0.75rem; }
+        .arch-sub-lbl  { font-size: 0.60rem; }
+        .arch-view-lbl { font-size: 0.600rem; }
         @media (max-width: 768px) {
           .arch-sequence { flex-wrap: wrap !important; }
           .arch-step-outer { flex: 0 0 50% !important; min-width: 0 !important; box-sizing: border-box !important; }
@@ -413,7 +418,11 @@ function SystemArchitectureDiagram() {
             min-height: 0 !important;
             padding: 1.5rem 1.25rem 1.25rem !important;
           }
-          .arch-step-card p { font-size: 0.75rem !important; }
+          .arch-code-lbl { font-size: 0.75rem; }
+          .arch-name-lbl { font-size: 1.05rem; }
+          .arch-role-lbl { font-size: 0.875rem; }
+          .arch-sub-lbl  { font-size: 0.75rem; }
+          .arch-view-lbl { font-size: 0.75rem; }
           .arch-arrow { display: none !important; }
         }
         @media (max-width: 380px) {
