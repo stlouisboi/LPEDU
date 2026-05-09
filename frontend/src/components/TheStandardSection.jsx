@@ -25,7 +25,7 @@ const PILLARS = [
   },
   {
     name: "Insurance Continuity",
-    desc: "Protects against coverage breakdowns, filing issues, and preventable lapses that can shut movement down fast. A lapse is not a paperwork inconvenience — it is a shutdown.",
+    desc: "Your insurance carrier is watching the same data the FMCSA is watching. A degrading safety profile doesn't just create a compliance problem — it creates a cost structure problem that compounds every quarter.",
   },
   {
     name: "Compliance Backbone",
@@ -36,6 +36,118 @@ const PILLARS = [
     desc: "Protects the carrier from the financial pressure that causes desperate decisions, skipped discipline, and preventable breakdown. Operations that cannot breathe financially cannot hold a standard.",
   },
 ];
+
+// ── LP-CPY-001 — Insurance Continuity Detail ────────────────────────────
+const FAILURE_CHAIN = [
+  "Violation logged at roadside",
+  "CSA score degrades",
+  "Insurance carrier flags the account",
+  "Renewal premium increases",
+  "Operating margin compresses",
+  "Cash position weakens",
+  "Authority becomes financially unsustainable",
+];
+
+function InsuranceContinuityDetail() {
+  return (
+    <div
+      data-testid="insurance-continuity-detail"
+      style={{
+        margin: "2.5rem 0 2rem",
+        borderLeft: `3px solid ${GOLD}`,
+        paddingLeft: "1.75rem",
+      }}
+    >
+      <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(200,147,63,0.55)", marginBottom: "1.5rem" }}>
+        LP-CPY-001 — INSURANCE CONTINUITY
+      </p>
+
+      {/* Body copy — paragraph 1 */}
+      <p style={{ fontFamily: SANS, fontSize: "1rem", color: BODY, lineHeight: 1.85, marginBottom: "1.25rem", maxWidth: 720 }}>
+        Your insurance carrier is watching the same data the FMCSA is watching.
+      </p>
+
+      {/* Body copy — paragraph 2 */}
+      <p style={{ fontFamily: SANS, fontSize: "1rem", color: BODY, lineHeight: 1.85, marginBottom: "1.5rem", maxWidth: 720 }}>
+        Every roadside inspection result, every out-of-service violation, every pattern in your SMS scores feeds directly into the underwriting model that sets your premiums at renewal. A new carrier with a degrading safety profile doesn't just face a compliance problem — they face a cost structure problem that compounds every quarter.
+      </p>
+
+      {/* Failure chain intro */}
+      <p style={{ fontFamily: SANS, fontSize: "1rem", color: BODY, lineHeight: 1.85, marginBottom: "1.25rem", maxWidth: 720 }}>
+        Here is what the sequence looks like when the foundation isn't set correctly:
+      </p>
+
+      {/* 7-step failure chain */}
+      <div
+        data-testid="failure-chain"
+        style={{ margin: "0 0 1.75rem", display: "inline-flex", flexDirection: "column", gap: 0 }}
+      >
+        {FAILURE_CHAIN.map((step, i) => {
+          const isFinal = i === FAILURE_CHAIN.length - 1;
+          return (
+            <div key={i} style={{ display: "flex", gap: 0, alignItems: "stretch" }}>
+              {/* Left: number + connector */}
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 36, flexShrink: 0 }}>
+                <div style={{
+                  width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
+                  background: isFinal ? "rgba(192,57,43,0.12)" : "rgba(200,147,63,0.08)",
+                  border: `1px solid ${isFinal ? "rgba(192,57,43,0.45)" : "rgba(200,147,63,0.28)"}`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <span style={{ fontFamily: MONO, fontSize: "0.5rem", fontWeight: 700, color: isFinal ? "#C0392B" : GOLD, letterSpacing: "0.06em" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                {!isFinal && (
+                  <div style={{ width: 1, flex: 1, minHeight: 12, background: "rgba(200,147,63,0.18)", margin: "3px 0" }} />
+                )}
+              </div>
+              {/* Right: text */}
+              <div style={{ paddingLeft: "0.875rem", paddingBottom: isFinal ? 0 : "0.625rem", paddingTop: "0.2rem" }}>
+                <p style={{
+                  fontFamily: SANS, fontSize: "0.906rem", lineHeight: 1.6, margin: 0,
+                  color: isFinal ? "rgba(220,80,70,0.90)" : "rgba(244,241,235,0.75)",
+                  fontWeight: isFinal ? 600 : 400,
+                }}>
+                  {step}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Body copy — paragraph 3 */}
+      <p style={{ fontFamily: SANS, fontSize: "1rem", color: BODY, lineHeight: 1.85, marginBottom: "1.25rem", maxWidth: 720 }}>
+        That chain doesn't begin at your 12-month audit. It begins the first time a driver gets inspected with a documentation gap or a vehicle deficiency that shouldn't have existed.
+      </p>
+
+      {/* Body copy — paragraph 4 */}
+      <p style={{ fontFamily: SANS, fontSize: "1rem", color: BODY, lineHeight: 1.85, marginBottom: "2rem", maxWidth: 720 }}>
+        Insurance Continuity in this system means building the conditions from Day 1 — that give your underwriter no reason to reclassify your account. That is a financial decision, not a paperwork decision.
+      </p>
+
+      {/* Short callout pull-quote */}
+      <div
+        data-testid="insurance-callout"
+        style={{
+          padding: "1.5rem 2rem",
+          background: "rgba(200,147,63,0.04)",
+          border: "1px solid rgba(200,147,63,0.20)",
+          borderLeft: `3px solid ${GOLD}`,
+          maxWidth: 680,
+        }}
+      >
+        <p style={{ fontFamily: MONO, fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,147,63,0.40)", margin: "0 0 0.875rem" }}>
+          LP-CPY-001 — CALLOUT
+        </p>
+        <p style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontStyle: "italic", fontSize: "clamp(1rem, 1.8vw, 1.175rem)", color: "#FFFFFF", lineHeight: 1.75, margin: 0 }}>
+          Your CSA score is also your insurance bill. Every violation logged between now and your audit is compounding. The carriers who survive year two built their inspection profile in year one.
+        </p>
+      </div>
+    </div>
+  );
+}
 
 function FourPillarsSubsection() {
   return (
@@ -69,6 +181,10 @@ function FourPillarsSubsection() {
           </div>
         ))}
       </div>
+
+      {/* LP-CPY-001 — Insurance Continuity full treatment */}
+      <InsuranceContinuityDetail />
+
       <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: MUTED, fontStyle: "italic", margin: 0 }}>
         These are not forms or checklists. They are the structural guard around the authority.
       </p>
