@@ -86,7 +86,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             color: "rgba(212,144,10,0.8)", lineHeight: 1.4, maxWidth: 520,
             fontStyle: "italic", marginBottom: "1rem",
           }}>
-            A survival check — not a quiz.
+            A compliance check built for new and small carriers — not a quiz.
           </p>
 
           <p style={{
@@ -100,22 +100,8 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           <p style={{
             fontFamily: sans, fontSize: "clamp(0.875rem, 1.4vw, 0.975rem)",
             color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 520,
-            marginBottom: "0.75rem",
           }}>
-            Before we install any compliance system, we run a simple REACH check. Fifteen questions about money, experience, paperwork, commitment, and how you make decisions.
-          </p>
-          <p style={{
-            fontFamily: sans, fontSize: "clamp(0.875rem, 1.4vw, 0.975rem)",
-            color: "rgba(255,255,255,0.55)", lineHeight: 1.8, maxWidth: 520,
-            marginBottom: "0.75rem",
-          }}>
-            It's not about judging you. It's about finding out if the conditions to survive are actually there right now.
-          </p>
-          <p style={{
-            fontFamily: sans, fontSize: "clamp(0.875rem, 1.4vw, 0.975rem)",
-            color: "rgba(255,255,255,0.55)", lineHeight: 1.8, maxWidth: 520,
-          }}>
-            This is not a test you pass to impress us. This is a reality check to keep you from walking into a bad deal with your own name on the door.
+            Before we install any compliance system, we run a REACH check — 15 questions across your finances, records, drivers, and operating history as a carrier. The purpose is not evaluation for its own sake. The purpose is to identify where FMCSA already has reach into your operation, before they exercise it.
           </p>
         </div>
 
@@ -249,9 +235,9 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }}>
                 {[
-                  { label: "GO", color: "#27ae60", desc: "Guard is installed. Your operation is structurally sound." },
-                  { label: "WAIT", color: "#C8933F", desc: "Guard has gaps. Specific domains need attention before you push harder." },
-                  { label: "NO-GO", color: "#e74c3c", desc: "Guard has failed. Running like this puts your authority at risk." },
+                  { label: "GO",    color: "#27ae60", desc: "Your foundation is structurally sound. We move directly into LP-OS installation." },
+                  { label: "WAIT",  color: "#C8933F", desc: "Gaps exist in specific domains. You see exactly where — resources, records, drivers, or maintenance — and what needs to close before you push harder." },
+                  { label: "NO-GO", color: "#e74c3c", desc: "The foundation has failed points that put your authority at risk. We show you precisely where FMCSA or your insurer will reach you first, and what closes each one." },
                 ].map(r => (
                   <div key={r.label} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{ fontFamily: mono, fontSize: "0.625rem", fontWeight: 700, color: r.color, letterSpacing: "0.10em", flexShrink: 0, minWidth: 50, marginTop: "0.1rem" }}>{r.label}</span>
@@ -260,47 +246,82 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                 ))}
               </div>
               <p style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.30)", lineHeight: 1.65, margin: 0, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "0.75rem", letterSpacing: "0.04em" }}>
-                Each rating includes a domain-by-domain breakdown showing exactly where your exposure is — and which LaunchPath resource addresses it. No sales call. No email required. Results are immediate.
+                Each result includes a domain-by-domain exposure map and the specific LaunchPath resources that address each gap.
               </p>
+
+              {/* Expectation copy — LP-WEB-012 */}
+              <div style={{ marginTop: "1.25rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", gap: "0.375rem" }}>
+                {[
+                  "No email required.",
+                  "No scheduler pop-up.",
+                  "Results are immediate, on-screen.",
+                  "If we recommend a call, it's because your exposure is real — not because we need to hit a quota.",
+                ].map((line, i) => (
+                  <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                    <span style={{ fontFamily: mono, fontSize: "0.567rem", color: "rgba(212,144,10,0.55)", flexShrink: 0, marginTop: 2 }}>—</span>
+                    <p style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.6, margin: 0 }}>{line}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* CTA — button when embedded (onBegin), Link when standalone */}
-            {onBegin ? (
-              <button
-                onClick={onBegin}
-                data-testid="reach-begin-diagnostic-btn"
-                style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  gap: "1.5rem", background: "#E85D04", padding: "1.375rem 1.75rem",
-                  border: "none", width: "100%", cursor: "pointer",
-                  transition: "background 0.2s, transform 0.15s", minHeight: 64,
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "#FF6B1A"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "#E85D04"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                <p style={{ fontFamily: sans, fontWeight: 800, fontSize: "clamp(0.825rem, 1.5vw, 0.95rem)", color: "#FFFFFF", letterSpacing: "0.08em", textTransform: "uppercase", lineHeight: 1.3, margin: 0 }}>
-                  BEGIN REACH CHECK
-                </p>
-                <span style={{ fontFamily: mono, fontSize: "1.25rem", color: "rgba(255,255,255,0.8)", flexShrink: 0 }}>→</span>
-              </button>
-            ) : (
-              <Link
-                to="/reach-diagnostic"
-                data-testid="reach-begin-diagnostic-btn"
-                style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  gap: "1.5rem", background: "#E85D04", padding: "1.375rem 1.75rem",
-                  textDecoration: "none", transition: "background 0.2s, transform 0.15s", minHeight: 64,
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "#FF6B1A"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "#E85D04"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                <p style={{ fontFamily: sans, fontWeight: 800, fontSize: "clamp(0.825rem, 1.5vw, 0.95rem)", color: "#FFFFFF", letterSpacing: "0.08em", textTransform: "uppercase", lineHeight: 1.3 }}>
-                  BEGIN REACH CHECK
-                </p>
-                <span style={{ fontFamily: mono, fontSize: "1.25rem", color: "rgba(255,255,255,0.8)", flexShrink: 0 }}>→</span>
-              </Link>
-            )}
+            {/* CTA block — LP-WEB-012 */}
+            <div style={{ padding: "1.25rem 1.5rem", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(212,144,10,0.12)" }}>
+              <p style={{ fontFamily: sans, fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: "0 0 1.25rem" }}>
+                Find your exposure first. Then decide how you want to close it.
+              </p>
+              {onBegin ? (
+                <button
+                  onClick={onBegin}
+                  data-testid="reach-begin-diagnostic-btn"
+                  style={{
+                    display: "inline-flex", alignItems: "stretch",
+                    border: "1px solid #C9A84C", borderRadius: 4,
+                    background: "transparent", cursor: "pointer", overflow: "hidden",
+                    transition: "opacity 0.2s", padding: 0,
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = "0.82"}
+                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                >
+                  <span style={{ background: "#C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1L10 6L1 11V1Z" fill="#0A0A0A" stroke="#0A0A0A" strokeWidth="0.5" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                  <span style={{ background: "transparent", padding: "13px 22px", display: "flex", alignItems: "center", fontFamily: "'Inter', Helvetica, sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "#C9A84C" }}>
+                    Run REACH Diagnostic
+                  </span>
+                  <span style={{ background: "transparent", borderLeft: "1px solid #C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", color: "#C9A84C", fontSize: 14 }}>
+                    →
+                  </span>
+                </button>
+              ) : (
+                <a
+                  href="/reach-diagnostic"
+                  data-testid="reach-begin-diagnostic-btn"
+                  style={{
+                    display: "inline-flex", alignItems: "stretch",
+                    border: "1px solid #C9A84C", borderRadius: 4,
+                    textDecoration: "none", overflow: "hidden",
+                    transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = "0.82"}
+                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                >
+                  <span style={{ background: "#C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1L10 6L1 11V1Z" fill="#0A0A0A" stroke="#0A0A0A" strokeWidth="0.5" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                  <span style={{ background: "transparent", padding: "13px 22px", display: "flex", alignItems: "center", fontFamily: "'Inter', Helvetica, sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "#C9A84C" }}>
+                    Run REACH Diagnostic
+                  </span>
+                  <span style={{ background: "transparent", borderLeft: "1px solid #C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", color: "#C9A84C", fontSize: 14 }}>
+                    →
+                  </span>
+                </a>
+              )}
+            </div>
 
           </div>
 

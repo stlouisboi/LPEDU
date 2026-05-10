@@ -216,58 +216,109 @@ export default function HeroSection() {
           {/* Gold separator */}
           <div style={{ width: 40, height: 2, background: "#C8933F", margin: "28px 0 24px" }} />
 
-          {/* Subhead — two distinct lines with visual rhythm */}
-          <div
+          {/* Subhead — LP-WEB-012 */}
+          <p
             className="hero-sub"
             style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.82)", lineHeight: 1.75, maxWidth: 620,
-              marginBottom: 36,
+              color: "rgba(255,255,255,0.82)", lineHeight: 1.8, maxWidth: 620,
+              marginBottom: 24,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
             }}
           >
-            <p style={{ margin: "0 0 14px 0" }}>
-              Your MC number is active. That does not mean the operation behind it is protected.
-            </p>
-            <p style={{ margin: 0 }}>
-              The REACH Diagnostic identifies where FMCSA can already reach your business — in under five minutes.
-            </p>
-          </div>
+            FMCSA has 16 automatic failure violations that can end your authority in a single audit — and that audit can arrive within 90 days of receiving your operating authority. LP-OS is a sequenced compliance implementation system for 1–20-truck carriers that closes those failure points from Day 1, before the inspector opens your file.
+          </p>
 
-          {/* CTAs — primary full weight, secondary ghost/text */}
+          {/* Problem bullets — LP-WEB-012 */}
           <div
             style={{
-              display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start",
+              display: "flex", flexDirection: "column", gap: 10,
+              maxWidth: 620, marginBottom: 24,
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 0.6s ease 0.18s, transform 0.6s ease 0.18s",
+            }}
+          >
+            {[
+              "16 automatic failure violations can end your authority with a single hit — drug and alcohol, driver qualification, insurance, or maintenance.",
+              "New-entrant audits are required within your first year; some carriers receive the audit call within 90 days of authority.",
+              "CSA scores and roadside violations don't stay on the safety side. They reach your insurance premiums and can make you uninsurable.",
+            ].map((line, i) => (
+              <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "#C8933F", flexShrink: 0, marginTop: 3, letterSpacing: "0.04em" }}>—</span>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.75, margin: 0 }}>{line}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Solution line — LP-WEB-012 */}
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif", fontWeight: 400,
+              color: "rgba(255,255,255,0.82)", fontSize: "0.938rem", lineHeight: 1.75,
+              maxWidth: 620, marginBottom: 32,
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 0.6s ease 0.21s, transform 0.6s ease 0.21s",
+            }}
+          >
+            LP-OS organizes your compliance position into one auditable structure — so you know exactly what FMCSA sees when they open your file, and what needs to close before they do.
+          </p>
+
+          {/* CTAs */}
+          <div
+            style={{
+              display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start",
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
             }}
           >
+            {/* Split-panel REACH button — LP-WEB-012 spec */}
             <Link
               to="/reach-diagnostic"
               data-testid="hero-reach-cta"
-              className="lp-scan-btn hero-reach-btn-pulse"
+              className="hero-reach-btn-pulse"
               style={{
-                display: "inline-flex", alignItems: "center",
-                fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                fontSize: "0.9rem", letterSpacing: "0.10em", textTransform: "uppercase",
-                color: "#0b1628", background: GOLD,
-                padding: "1.1rem 2.5rem", textDecoration: "none",
-                transition: "background 0.2s",
-                minHeight: 52,
+                display: "inline-flex", alignItems: "stretch",
+                border: `1px solid #C9A84C`, borderRadius: 4,
+                textDecoration: "none", overflow: "hidden",
+                transition: "opacity 0.2s",
               }}
-              onMouseEnter={e => e.currentTarget.style.background = "#e8a958"}
-              onMouseLeave={e => e.currentTarget.style.background = GOLD}
+              onMouseEnter={e => e.currentTarget.style.opacity = "0.88"}
+              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
             >
-              Run REACH Diagnostic →
+              <span style={{ background: "#C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L10 6L1 11V1Z" fill="#0A0A0A" stroke="#0A0A0A" strokeWidth="0.5" strokeLinejoin="round"/>
+                </svg>
+              </span>
+              <span style={{ background: "transparent", padding: "13px 22px", display: "flex", alignItems: "center", fontFamily: "'Inter', Helvetica, sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "#C9A84C" }}>
+                Run REACH Diagnostic
+              </span>
+              <span style={{ background: "transparent", borderLeft: "1px solid #C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", color: "#C9A84C", fontSize: 14 }}>
+                →
+              </span>
             </Link>
+
+            {/* Support text */}
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.38)", letterSpacing: "0.02em", margin: 0 }}>
+              Takes under 5 minutes. No email. No sales call. Instant exposure map.
+            </p>
+
+            {/* Trust line */}
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: "4px 0 0", maxWidth: 480 }}>
+              25+ years in safety and compliance implementation. U.S. Navy veteran. OSHA 30-Hour certified. Built for carriers who answer to the work, not the pitch.
+            </p>
+
+            {/* Secondary CTA */}
             <Link
               to="/ground-0-briefing"
               data-testid="hero-ground0-cta"
               style={{
-                display: "inline-flex", alignItems: "center",
+                display: "inline-flex", alignItems: "center", marginTop: 4,
                 fontFamily: "'Inter', sans-serif", fontWeight: 500,
                 fontSize: "0.857rem", letterSpacing: "0.02em",
                 color: "rgba(255,255,255,0.60)", background: "transparent",
@@ -275,7 +326,7 @@ export default function HeroSection() {
                 transition: "color 0.2s",
               }}
               onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.40)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.60)"; }}
             >
               Begin Ground 0 →
             </Link>
