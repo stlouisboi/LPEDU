@@ -536,3 +536,17 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 ### REACH Diagnostic (`REACHTeaserSection.jsx`)
 - Intro paragraph tightened: removed "Before we install..." opener; now starts with "15 questions. 5 compliance domains."
 - SCAN_SEQUENCE chip strip added: inline R·E·A·C·H domain chips + `READY` green badge
+
+
+### Reading Progress Bar (`HowToStartTruckingPost.jsx`) — May 2026
+- `ReadingProgressBar` component: fixed 3px gold gradient bar at viewport top (`z-index: 200`)
+- Fills 0–100% via passive scroll listener on `scrollY / (docHeight - viewportHeight)`
+- Gold glow shadow (`box-shadow: 0 0 10px rgba(212,144,10,0.55)`) on fill bar
+- Renders above Navbar, below window chrome
+
+### Admission Page V2 (`AdmissionPage.jsx`) — May 2026
+- Header redesigned: "COHORT STATUS: ACCEPTING REQUESTS" green chip + pulsing dot
+- H1 changed to "Selective Admission to the LaunchPath Standard."
+- Replaced 2 verbose paragraphs with 3 compact borderline bullets (not open enrollment / REACH-based / 24–48h)
+- Trust signal strip above form: SC REVIEWED · 24–48H DECISION · 12 SEATS/QUARTER · STRIPE SECURED
+- Form ref label: `ADMISSION REQUEST FORM · REF: LP-ADM-001`

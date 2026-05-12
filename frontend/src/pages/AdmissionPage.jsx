@@ -165,59 +165,34 @@ export default function AdmissionPage() {
           ← Back to the Standard
         </Link>
 
-        {/* Header */}
-        <p
-          data-testid="admission-page-label"
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.762rem",
-            fontWeight: 700,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "rgba(212,144,10,0.85)",
-            marginBottom: "1.5rem",
-          }}
-        >
-          LP-STD-001 | COHORT ADMISSION REQUEST
-        </p>
+        {/* Header — selective admission */}
+        <div style={{ marginBottom: "2.75rem" }}>
+          {/* Cohort status chip */}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(34,197,94,0.07)", border: "1px solid rgba(34,197,94,0.25)", padding: "0.35rem 0.875rem", marginBottom: "1.75rem" }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px rgba(34,197,94,0.6)", display: "inline-block", flexShrink: 0 }} />
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(34,197,94,0.85)" }}>COHORT STATUS: ACCEPTING REQUESTS</span>
+          </div>
 
-        <h1
-          style={{
-            fontFamily: "'Newsreader', 'Playfair Display', serif",
-            fontWeight: 700,
-            fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-            color: "#FFFFFF",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-            marginBottom: "1.25rem",
-          }}
-        >
-          Request Admission to the LaunchPath Standard
-        </h1>
+          <p
+            data-testid="admission-page-label"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: "1.25rem" }}
+          >LP-STD-001 · COHORT ADMISSION</p>
 
-        <p
-          style={{
-            fontSize: "1rem",
-            color: "rgba(255,255,255,0.78)",
-            lineHeight: 1.8,
-            marginBottom: "0.875rem",
-          }}
-        >
-          The LaunchPath Standard accepts a limited cohort each quarter. This is not open enrollment. Every request is reviewed individually — admission is based on your operational readiness, authority status, and REACH Diagnostic result.
-        </p>
+          <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.875rem, 4vw, 2.75rem)", color: "#FFFFFF", lineHeight: 1.1, letterSpacing: "-0.025em", marginBottom: "1.75rem" }}>
+            Selective Admission to the LaunchPath Standard.
+          </h1>
 
-        <p
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "var(--text-sm)",
-            color: "rgba(255,255,255,0.55)",
-            fontStyle: "italic",
-            lineHeight: 1.7,
-            marginBottom: "3rem",
-          }}
-        >
-          Not every applicant is admitted. You will receive a decision within 24–48 hours. If your situation involves a conditional rating or pending authority action, note that in your message below.
-        </p>
+          {/* Key facts — compact borderline bullets */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", borderLeft: "2px solid rgba(197,160,89,0.22)", paddingLeft: "1.25rem" }}>
+            {[
+              "Not open enrollment — every request is reviewed individually",
+              "Admission is based on REACH result, authority status, and operational fit",
+              "You will receive a decision within 24–48 hours — not every applicant is admitted",
+            ].map((line, i) => (
+              <p key={i} style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.65, margin: 0 }}>{line}</p>
+            ))}
+          </div>
+        </div>
 
         <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: "2.5rem" }} />
 
@@ -431,6 +406,27 @@ export default function AdmissionPage() {
         ) : (
           /* Form */
           <form onSubmit={handleSubmit} data-testid="admission-form" noValidate>
+
+            {/* ── Trust signal strip ── */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "2px", marginBottom: "2rem", borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "1.5rem" }}>
+              {[
+                { label: "SC REVIEWED", hint: "Not automated — read by hand" },
+                { label: "24–48H DECISION", hint: "Every request receives a reply" },
+                { label: "12 SEATS / QUARTER", hint: "Cohort is limited by design" },
+                { label: "STRIPE SECURED", hint: "Payment only on admission" },
+              ].map((t) => (
+                <div key={t.label} style={{ display: "flex", flexDirection: "column", gap: "0.15rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.09)", padding: "0.625rem 0.875rem", flex: "1 1 140px" }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)" }}>{t.label}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.02em" }}>{t.hint}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Form ref label */}
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.35)", marginBottom: "1.75rem" }}>
+              ADMISSION REQUEST FORM · REF: LP-ADM-001
+            </p>
+
             <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
 
               {/* Carrier Name */}
