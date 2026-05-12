@@ -550,3 +550,24 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - Replaced 2 verbose paragraphs with 3 compact borderline bullets (not open enrollment / REACH-based / 24–48h)
 - Trust signal strip above form: SC REVIEWED · 24–48H DECISION · 12 SEATS/QUARTER · STRIPE SECURED
 - Form ref label: `ADMISSION REQUEST FORM · REF: LP-ADM-001`
+
+
+### Hero Boot Sequence + Button Ring (`HeroSection.jsx`) — May 2026
+- 3 terminal boot-log lines appear at t=2.9s, 3.3s, 3.7s (fade + slide-in from right): `MODULE: 49 CFR COMPLIANCE · INDEXED`, `MODULE: FMCSA AUTHORITY PROTOCOLS · ACTIVE`, `STATUS: OPERATIONAL · MONITORING`
+- `hero-btn-ring` keyframe added: 2.6s repeating ring pulse starts at 4s after initial entrance flash
+
+### Mobile Nav Priority CTAs (`Navbar.jsx`) — May 2026
+- `Run REACH Diagnostic →` (gold fill) + `Operator Portal` (gold border) inserted at child index 0 of mobile drawer
+- Separated from framework links by a horizontal divider
+- `data-testid`: `mobile-nav-reach-primary-btn`, `mobile-nav-portal-primary-btn`
+
+### Shared ReadingProgressBar + Scroll Bar (`ReadingProgressBar.jsx`, `Navbar.jsx`) — May 2026
+- Created `/app/frontend/src/components/ReadingProgressBar.jsx` (shared reusable)
+- Applied to: `KnowledgeCenterBriefTemplate` (covers all LP-BRF-XX pages), `HowToStartTruckingPost`, `Day1AuthorityBrief`, `DOTDrugAlcoholPost`, `NewEntrantProgramPost`
+- Navbar scroll bar upgraded from 2px → 3px + gold glow
+
+### Admission Live Cohort Fill Bar (`AdmissionPage.jsx`) — May 2026
+- `seats.taken of seats.total seats filled this cohort` text + 3px animated fill bar
+- Bar turns red when `seats.remaining <= 3` (urgency signal)
+- Uses existing `seats` state (already fetched from `/api/cohort-seats`)
+- Live data confirmed: 4 of 12 filled, 8 remaining
