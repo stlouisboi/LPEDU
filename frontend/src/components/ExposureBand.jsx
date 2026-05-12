@@ -21,7 +21,7 @@ export default function ExposureBand() {
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }} />
       <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", gap: "3rem", alignItems: "flex-start", flexWrap: "wrap", position: "relative", zIndex: 1 }}>
 
-        {/* Left: heading */}
+        {/* Left: heading + status chips */}
         <div style={{ flexShrink: 0, minWidth: 280 }}>
           <p className="reveal-on-scroll" style={{
             fontFamily: MONO, fontSize: "0.600rem", fontWeight: 700,
@@ -33,10 +33,23 @@ export default function ExposureBand() {
           <h2 className="reveal-on-scroll d-80" style={{
             fontFamily: "'Newsreader', 'Playfair Display', serif",
             fontWeight: 800, fontSize: "clamp(1.1rem, 2vw, 1.375rem)",
-            color: GOLD, letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0,
+            color: GOLD, letterSpacing: "-0.02em", lineHeight: 1.1, margin: "0 0 1.25rem",
           }}>
             ACTIVE DOES NOT<br />MEAN PROTECTED.
           </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            {[
+              { code: "16", label: "AUTOMATIC FAILURE VIOLATIONS" },
+              { code: "90", label: "DAYS TO FIRST AUDIT CALL" },
+              { code: "12", label: "MONTH NEW-ENTRANT WINDOW" },
+            ].map((chip, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(200,147,63,0.45)", flexShrink: 0 }} />
+                <span style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, color: GOLD, letterSpacing: "0.06em", minWidth: 24 }}>{chip.code}</span>
+                <span style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.10em" }}>{chip.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Divider */}

@@ -234,8 +234,8 @@ export default function HeroSection() {
           {/* Problem bullets — LP-WEB-012 */}
           <div
             style={{
-              display: "flex", flexDirection: "column", gap: 10,
-              maxWidth: 620, marginBottom: 24,
+              display: "flex", flexDirection: "column", gap: 8,
+              maxWidth: 620, marginBottom: 20,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.18s, transform 0.6s ease 0.18s",
@@ -246,9 +246,9 @@ export default function HeroSection() {
               "New-entrant audits are required within your first year; some carriers receive the audit call within 90 days of authority.",
               "CSA scores and roadside violations don't stay on the safety side. They reach your insurance premiums and can make you uninsurable.",
             ].map((line, i) => (
-              <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "#C8933F", flexShrink: 0, marginTop: 3, letterSpacing: "0.04em" }}>—</span>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.75, margin: 0 }}>{line}</p>
+              <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "#C8933F", flexShrink: 0, marginTop: 4, letterSpacing: "0.04em" }}>—</span>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.825rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, margin: 0 }}>{line}</p>
               </div>
             ))}
           </div>
@@ -257,8 +257,8 @@ export default function HeroSection() {
           <p
             style={{
               fontFamily: "'Inter', sans-serif", fontWeight: 400,
-              color: "rgba(255,255,255,0.82)", fontSize: "0.938rem", lineHeight: 1.75,
-              maxWidth: 620, marginBottom: 32,
+              color: "rgba(255,255,255,0.80)", fontSize: "0.906rem", lineHeight: 1.7,
+              maxWidth: 620, marginBottom: 28,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.6s ease 0.21s, transform 0.6s ease 0.21s",
