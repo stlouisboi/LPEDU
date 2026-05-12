@@ -221,6 +221,32 @@ export default function AdmissionPage() {
 
         <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: "2.5rem" }} />
 
+        {/* ── Criteria Gate ────────────────────────────────── */}
+        <div style={{ marginBottom: "2.5rem" }}>
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", fontWeight: 700,
+            letterSpacing: "0.22em", textTransform: "uppercase",
+            color: "rgba(197,160,89,0.60)", marginBottom: "1rem",
+          }}>WHAT GETS REVIEWED</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "2px" }}>
+            {[
+              { code: "01", label: "REACH Diagnostic", req: "GO result required", note: "Primary readiness gate" },
+              { code: "02", label: "Authority Status", req: "Active — 30+ days", note: "Conditional ratings noted" },
+              { code: "03", label: "Operational Fit", req: "1–20 trucks", note: "First 24 months of authority" },
+            ].map((c) => (
+              <div key={c.code} style={{
+                background: "rgba(197,160,89,0.04)", border: "1px solid rgba(197,160,89,0.15)",
+                padding: "1.125rem 1.25rem",
+              }}>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.18em", color: "rgba(197,160,89,0.45)", marginBottom: "0.5rem" }}>{c.code}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.810rem", fontWeight: 700, color: "rgba(255,255,255,0.80)", marginBottom: "0.25rem" }}>{c.label}</p>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.10em", color: "#C5A059", marginBottom: "0.25rem" }}>{c.req}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.32)" }}>{c.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* ── Price Anchor — Block 10 ────────────────────────── */}
         <div style={{
           background: "rgba(197,160,89,0.05)",

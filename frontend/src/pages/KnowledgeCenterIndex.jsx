@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
@@ -295,6 +295,56 @@ const CATEGORIES = ["All", "New Entrant Program", "Authority Registration", "Ins
 
 const BRIEF_CATEGORIES = ["All", "New Entrant Program", "Authority Registration", "Insurance Continuity", "Drug & Alcohol Program", "Vehicle & Operations", "Hours of Service"];
 
+// ── Count-up animation hook ────────────────────────────
+function useCountUp(target, duration = 1800) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!target) return;
+    let raf;
+    let startTime = null;
+    const animate = (ts) => {
+      if (!startTime) startTime = ts;
+      const progress = Math.min((ts - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) { raf = requestAnimationFrame(animate); }
+      else setCount(target);
+    };
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration]);
+  return count;
+}
+
+function AnimatedStat({ num, label }) {
+  const count = useCountUp(num);
+  return (
+    <div>
+      <div style={{
+        fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
+        fontWeight: 700, fontSize: "1.75rem",
+        color: "var(--orange)", letterSpacing: "0.02em",
+        lineHeight: 1, marginBottom: "0.3rem",
+      }}>{count}</div>
+      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-subtle)" }}>{label}</div>
+    </div>
+  );
+}
+
+function StatText({ val, label }) {
+  return (
+    <div>
+      <div style={{
+        fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
+        fontWeight: 700, fontSize: "1.5rem",
+        color: "var(--text)", letterSpacing: "0.02em",
+        lineHeight: 1, marginBottom: "0.3rem",
+      }}>{val}</div>
+      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-subtle)" }}>{label}</div>
+    </div>
+  );
+}
+
 export default function KnowledgeCenterIndex() {
   const [activeTab, setActiveTab] = useState("articles");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -327,66 +377,61 @@ export default function KnowledgeCenterIndex() {
       {/* ── HERO ── */}
       <section data-testid="kc-hero" style={{
         background: "var(--bg)",
-        padding: "6rem 1.5rem 5rem",
+        padding: "5rem 1.5rem 4.5rem",
         borderBottom: "1px solid var(--border)",
+        overflow: "hidden",
       }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.762rem",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--text-subtle)",
-            marginBottom: "1.5rem",
-          }}>LaunchPath / Operational Library</p>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: "3.5rem", alignItems: "center" }} className="kc-hero-grid">
 
-          <h1 style={{
-            fontFamily: "'Newsreader', 'Playfair Display', serif",
-            fontWeight: 700,
-            fontSize: "clamp(2rem, 4vw, 3rem)",
-            letterSpacing: "-0.025em",
-            lineHeight: 1.1,
-            color: "var(--text)",
-            marginBottom: "1.5rem",
-          }}>Operational Library</h1>
+            {/* Left: text + stats */}
+            <div>
+              <p style={{
+                fontFamily: "'Inter', sans-serif", fontSize: "0.762rem",
+                letterSpacing: "0.18em", textTransform: "uppercase",
+                color: "var(--text-subtle)", marginBottom: "1.5rem",
+              }}>LaunchPath / Operational Library</p>
 
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "1.2rem",
-            color: "var(--text-muted)",
-            lineHeight: 1.8,
-            maxWidth: 620,
-            marginBottom: "3rem",
-          }}>
-            Documented briefings on FMCSA compliance, authority operations, and
-            the systems that keep new motor carriers alive through the New Entrant period.
-            Each brief is a working document — not a summary.
-          </p>
+              <h1 style={{
+                fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700,
+                fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.025em",
+                lineHeight: 1.1, color: "var(--text)", marginBottom: "1.5rem",
+              }}>Operational Library</h1>
 
-          {/* Stats row */}
-          <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
-            {[
-              ["11", "Briefs published"],
-              ["15", "Published articles"],
-              ["49 CFR", "Primary regulation source"],
-            ].map(([val, label]) => (
-              <div key={val}>
-                <div style={{
-                  fontFamily: "'Newsreader', 'Playfair Display', serif",
-                  fontWeight: 700,
-                  fontSize: "1.5rem",
-                  color: "var(--text)",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1,
-                  marginBottom: "0.3rem",
-                }}>{val}</div>
-                <div style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.857rem",
-                  color: "var(--text-subtle)",
-                }}>{label}</div>
+              <p style={{
+                fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
+                color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 560,
+                marginBottom: "2.75rem",
+              }}>
+                Documented briefings on FMCSA compliance, authority operations, and
+                the systems that keep new motor carriers alive through the New Entrant period.
+                Each brief is a working document — not a summary.
+              </p>
+
+              {/* Stats row — count-up animated */}
+              <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
+                <AnimatedStat num={11} label="Briefs published" />
+                <AnimatedStat num={15} label="Published articles" />
+                <StatText val="49 CFR" label="Primary regulation source" />
+                <StatText val="18-month" label="New entrant audit window" />
               </div>
-            ))}
+            </div>
+
+            {/* Right: editorial image */}
+            <div style={{ position: "relative", overflow: "hidden", height: 370, borderLeft: "2px solid var(--border)" }} className="kc-hero-img">
+              <img
+                src="https://images.unsplash.com/photo-1698077671410-139c80ac4fb8?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=640"
+                alt="Freight carriers on highway — LaunchPath Operational Library"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center bottom", display: "block" }}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(245,243,238,0.18) 0%, rgba(245,243,238,0.55) 100%)" }} />
+              <div style={{ position: "absolute", bottom: "1rem", left: "1.125rem" }}>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(11,22,40,0.50)", margin: 0 }}>
+                  FMCSA NEW ENTRANT PROGRAM · 18-MONTH WINDOW
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -578,30 +623,62 @@ export default function KnowledgeCenterIndex() {
                 </p>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-                {filteredPosts.map((post, i) => (
-                  <a key={i} href={post.slug} style={{ display: "block", textDecoration: "none", background: "#F9F7F3", padding: "1.5rem 2rem", borderLeft: "3px solid var(--orange)", transition: "background 0.2s" }}
-                    onMouseEnter={e => e.currentTarget.style.background = "#EEE9E1"}
-                    onMouseLeave={e => e.currentTarget.style.background = "#F9F7F3"}
-                  >
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
-                          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)", whiteSpace: "nowrap" }}>{post.code}</span>
-                          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.45)" }}>{post.category}</span>
-                          {post.badge && (
-                            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.668rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0b1628", background: "rgba(212,144,10,0.12)", border: "1px solid rgba(212,144,10,0.3)", padding: "0.15rem 0.5rem" }}>{post.badge}</span>
-                          )}
+                {filteredPosts.map((post, i) => {
+                  const isFeatured = post.badge === "Pillar Guide";
+                  if (isFeatured) {
+                    return (
+                      <a key={i} href={post.slug} style={{ display: "block", textDecoration: "none", background: "#0b1628", borderLeft: "3px solid var(--orange)", transition: "background 0.2s", overflow: "hidden", position: "relative" }}
+                        onMouseEnter={e => e.currentTarget.style.background = "#0f1e37"}
+                        onMouseLeave={e => e.currentTarget.style.background = "#0b1628"}
+                      >
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 180px", gap: 0, alignItems: "stretch" }} className="kc-featured-grid">
+                          <div style={{ padding: "1.75rem 2rem" }}>
+                            <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.625rem", flexWrap: "wrap" }}>
+                              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#C5A059", whiteSpace: "nowrap" }}>{post.code}</span>
+                              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>{post.category}</span>
+                              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#0b1628", background: "#C5A059", padding: "0.15rem 0.5rem" }}>{post.badge}</span>
+                            </div>
+                            <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1.2rem", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.625rem" }}>{post.title}</p>
+                            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: "1rem" }}>{post.teaser}</p>
+                            <div style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}>
+                              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{post.readTime}</span>
+                              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.714rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(197,160,89,0.70)" }}>{post.cfr}</span>
+                            </div>
+                          </div>
+                          <div style={{ position: "relative", overflow: "hidden", minHeight: 180 }} className="kc-featured-img">
+                            <img
+                              src="https://images.unsplash.com/photo-1775756789951-3f2ef4307258?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=400"
+                              alt="Freight truck silhouette at dusk"
+                              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+                            />
+                            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(270deg, rgba(11,22,40,0) 0%, rgba(11,22,40,0.55) 100%)" }} />
+                          </div>
                         </div>
-                        <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "var(--text)", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{post.teaser}</p>
+                      </a>
+                    );
+                  }
+                  return (
+                    <a key={i} href={post.slug} style={{ display: "block", textDecoration: "none", background: "#F9F7F3", padding: "1.5rem 2rem", borderLeft: "3px solid var(--orange)", transition: "background 0.2s" }}
+                      onMouseEnter={e => e.currentTarget.style.background = "#EEE9E1"}
+                      onMouseLeave={e => e.currentTarget.style.background = "#F9F7F3"}
+                    >
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap" }}>
+                            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--orange)", whiteSpace: "nowrap" }}>{post.code}</span>
+                            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.45)" }}>{post.category}</span>
+                          </div>
+                          <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: "var(--text)", lineHeight: 1.25, marginBottom: "0.5rem" }}>{post.title}</p>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{post.teaser}</p>
+                        </div>
+                        <div style={{ flexShrink: 0, textAlign: "right" }}>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.40)", marginBottom: "0.3rem" }}>{post.readTime}</p>
+                          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "var(--orange)" }}>{post.cfr}</p>
+                        </div>
                       </div>
-                      <div style={{ flexShrink: 0, textAlign: "right" }}>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(13,27,48,0.40)", marginBottom: "0.3rem" }}>{post.readTime}</p>
-                        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "var(--orange)" }}>{post.cfr}</p>
-                      </div>
-                    </div>
-                  </a>
-                ))}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -796,6 +873,12 @@ export default function KnowledgeCenterIndex() {
 
       <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 640px) { .kc-bottom-grid { grid-template-columns: 1fr !important; } .bundle-grid { grid-template-columns: 1fr !important; } .start-here-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 780px) {
+          .kc-hero-grid { grid-template-columns: 1fr !important; }
+          .kc-hero-img { display: none !important; }
+          .kc-featured-grid { grid-template-columns: 1fr !important; }
+          .kc-featured-img { display: none !important; }
+        }
         @media (max-width: 700px) {
           .timeline-desktop { flex-direction: column !important; align-items: flex-start !important; gap: 0 !important; }
           .timeline-desktop > a { flex-direction: row !important; align-items: center !important; gap: 1rem !important; padding: 0.75rem 0 !important; width: 100% !important; flex: none !important; border-bottom: 1px solid var(--border) !important; }

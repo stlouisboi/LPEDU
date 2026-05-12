@@ -78,36 +78,58 @@ export default function Ground0Page() {
       {/* ── LP-WEB-G: Preview Section — renders before REACH gate ── */}
       <div style={{ background: "#0b1628", borderBottom: "1px solid rgba(197,160,89,0.18)", padding: "72px 24px 64px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1.25rem" }}>
-            GROUND 0 — LP-BRF-001
-          </p>
-          <h1 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3.5vw,2.75rem)", color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
+
+          {/* Module status card */}
+          <div style={{
+            display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.5rem 1.25rem",
+            background: "rgba(0,0,0,0.30)", border: "1px solid rgba(197,160,89,0.22)",
+            borderLeft: "3px solid #C5A059", padding: "0.75rem 1.25rem",
+            marginBottom: "2rem",
+          }}>
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(197,160,89,0.80)" }}>LP-BRF-001</span>
+            <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.75rem" }}>·</span>
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)" }}>Est. ~20 min</span>
+            <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.75rem" }}>·</span>
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#22c55e", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px rgba(34,197,94,0.7)", display: "inline-block", flexShrink: 0 }} />
+              STATUS: OPEN
+            </span>
+            <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.75rem" }}>·</span>
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>NO ACCOUNT REQUIRED</span>
+          </div>
+
+          <h1 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3.5vw,2.75rem)", color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "1.25rem" }}>
             What Ground 0 covers.
           </h1>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.80)", lineHeight: 1.85, maxWidth: 680, marginBottom: "2rem" }}>
-            Ground 0 is the decision layer of LaunchPath Standard. Before you commit to anything, it shows you what the New Entrant Safety Audit actually examines, which of the 16 compliance failure patterns apply to your operation, and whether your current authority window is working for you or against you. It takes approximately 20 minutes. No account required at this step.
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.85, maxWidth: 660, marginBottom: "2.25rem" }}>
+            The decision layer of LaunchPath Standard — what the New Entrant Safety Audit examines, which failure patterns apply to your operation, and whether your authority window is working for or against you.
           </p>
 
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)", marginBottom: "1rem" }}>
+          <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", marginBottom: "1rem" }}>
             WHAT YOU WILL COME AWAY WITH
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "2.5rem" }}>
+
+          {/* Outcome tiles — auto-fit 2-col grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2px", marginBottom: "2.5rem" }}>
             {[
-              "A clear picture of what FMCSA will look for during your New Entrant audit",
-              "Which of the 16 documented failure patterns are most likely to apply to your operation",
-              "An honest read on whether your authority window is being used or wasted",
-              "The decision: build the system now, or build it under pressure later",
-            ].map((item, i) => (
-              <div key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
-                <span style={{ color: "#C5A059", fontFamily: "'JetBrains Mono',monospace", fontSize: "0.857rem", marginTop: "0.15rem", flexShrink: 0 }}>→</span>
-                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.75, margin: 0 }}>{item}</p>
+              { num: "01", text: "A clear picture of what FMCSA will look for during your New Entrant audit" },
+              { num: "02", text: "Which of the 16 documented failure patterns are most likely to apply to your operation" },
+              { num: "03", text: "An honest read on whether your authority window is being used or wasted" },
+              { num: "04", text: "The decision: build the system now, or build it under pressure later" },
+            ].map((item) => (
+              <div key={item.num} style={{
+                background: "rgba(255,255,255,0.04)", border: "1px solid rgba(197,160,89,0.13)",
+                padding: "1.25rem 1.375rem",
+              }}>
+                <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.18em", color: "rgba(197,160,89,0.55)", marginBottom: "0.625rem" }}>{item.num}</p>
+                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: 0 }}>{item.text}</p>
               </div>
             ))}
           </div>
 
           <div style={{ borderTop: "1px solid rgba(197,160,89,0.15)", paddingTop: "2rem" }}>
-            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.68)", lineHeight: 1.8, maxWidth: 620, marginBottom: "1.5rem" }}>
-              To begin Ground 0, complete the REACH Diagnostic first. Ground 0 is calibrated to your REACH result — the 14-question readiness check maps your current exposure so Ground 0 can address it directly.
+            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.8, maxWidth: 600, marginBottom: "1.5rem" }}>
+              Complete the REACH Diagnostic first. Ground 0 is calibrated to your REACH result — the readiness check maps your current exposure so Ground 0 can address it directly.
             </p>
             <a
               href="/reach-diagnostic"

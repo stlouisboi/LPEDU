@@ -100,9 +100,28 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           <p style={{
             fontFamily: sans, fontSize: "clamp(0.875rem, 1.4vw, 0.975rem)",
             color: "rgba(255,255,255,0.65)", lineHeight: 1.8, maxWidth: 520,
+            marginBottom: "1.25rem",
           }}>
-            Before we install any compliance system, we run a REACH check — 15 questions across your finances, records, drivers, and operating history as a carrier. The purpose is not evaluation for its own sake. The purpose is to identify where FMCSA already has reach into your operation, before they exercise it.
+            15 questions across your finances, records, drivers, and operating history. The purpose is not evaluation for its own sake — it is to identify where FMCSA already has reach into your operation, before they exercise it.
           </p>
+
+          {/* Scan-sequence indicator chips */}
+          <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.375rem", marginBottom: "0.25rem" }}>
+            <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.45)", marginRight: "0.25rem" }}>SCAN_SEQUENCE:</span>
+            {[
+              { letter: "R", name: "Resources" },
+              { letter: "E", name: "Experience" },
+              { letter: "A", name: "Authority" },
+              { letter: "C", name: "Commitment" },
+              { letter: "H", name: "Discipline" },
+            ].map((s, i) => (
+              <span key={s.letter} style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", background: "rgba(197,160,89,0.06)", border: "1px solid rgba(197,160,89,0.20)", padding: "0.2rem 0.5rem" }}>
+                <span style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, color: "#C5A059", letterSpacing: "0.08em" }}>{s.letter}</span>
+                <span style={{ fontFamily: mono, fontSize: "0.519rem", color: "rgba(255,255,255,0.30)", letterSpacing: "0.10em", textTransform: "uppercase" }}>{s.name}</span>
+              </span>
+            ))}
+            <span style={{ fontFamily: mono, fontSize: "0.519rem", color: "rgba(34,197,94,0.70)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginLeft: "0.25rem" }}>READY</span>
+          </div>
         </div>
 
         {/* ── Main Grid: Content + Sidebar ─────────────── */}
