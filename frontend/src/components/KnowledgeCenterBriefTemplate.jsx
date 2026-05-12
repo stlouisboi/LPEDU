@@ -3,6 +3,7 @@ import { Link } from '../compat/Link';
 import Navbar from "./Navbar";
 import FooterSection from "./FooterSection";
 import ShareButton from "./ShareButton";
+import ReadingProgressBar from "./ReadingProgressBar";
 
 // ── LP Brief Color Palette (per LP-BRF-01 v2 spec) ──────────────────────
 const C = {
@@ -133,6 +134,7 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
 
   return (
     <div className="brief-root" style={{ background: C.bgMain, minHeight: "100vh", color: C.white }}>
+      <ReadingProgressBar />
       <Navbar />
 
       {/* ── HERO BLOCK ───────────────────────────────────────────────── */}

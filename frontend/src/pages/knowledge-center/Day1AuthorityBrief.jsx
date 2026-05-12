@@ -2,6 +2,7 @@ import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
+import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const gold = "#d4900a";
 const ivory = "#F6F3EE";
@@ -60,6 +61,7 @@ export default function Day1AuthorityBrief() {
 
   return (
     <div style={{ background: ivory, minHeight: "100vh" }}>
+      <ReadingProgressBar />
       <Navbar />
 
       {/* ── HERO ── */}

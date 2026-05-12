@@ -3,6 +3,7 @@ import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import { PrimaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
+import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const gold = "#d4900a";
 const mono = "'Inter', sans-serif";
@@ -33,6 +34,7 @@ export const FAQ = [
 export default function DOTDrugAlcoholPost() {
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
+      <ReadingProgressBar />
       <Navbar />
 
       {/* Hero */}

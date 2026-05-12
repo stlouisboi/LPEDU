@@ -168,10 +168,33 @@ export default function AdmissionPage() {
         {/* Header — selective admission */}
         <div style={{ marginBottom: "2.75rem" }}>
           {/* Cohort status chip */}
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(34,197,94,0.07)", border: "1px solid rgba(34,197,94,0.25)", padding: "0.35rem 0.875rem", marginBottom: "1.75rem" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(34,197,94,0.07)", border: "1px solid rgba(34,197,94,0.25)", padding: "0.35rem 0.875rem", marginBottom: seats ? "0.75rem" : "1.75rem" }}>
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px rgba(34,197,94,0.6)", display: "inline-block", flexShrink: 0 }} />
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(34,197,94,0.85)" }}>COHORT STATUS: ACCEPTING REQUESTS</span>
           </div>
+
+          {/* Live cohort fill bar */}
+          {seats && (
+            <div style={{ marginBottom: "1.75rem" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.375rem" }}>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.50)" }}>
+                  {seats.taken} of {seats.total} seats filled this cohort
+                </span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: seats.remaining <= 3 ? "rgba(239,68,68,0.70)" : "rgba(197,160,89,0.45)" }}>
+                  {seats.remaining} remaining
+                </span>
+              </div>
+              <div style={{ height: 3, background: "rgba(255,255,255,0.06)", position: "relative", overflow: "hidden" }}>
+                <div style={{
+                  position: "absolute", top: 0, left: 0, height: "100%",
+                  width: `${Math.round((seats.taken / seats.total) * 100)}%`,
+                  background: seats.remaining <= 3 ? "#ef4444" : "#C5A059",
+                  transition: "width 0.8s ease",
+                  boxShadow: `0 0 8px ${seats.remaining <= 3 ? "rgba(239,68,68,0.45)" : "rgba(197,160,89,0.40)"}`,
+                }} />
+              </div>
+            </div>
+          )}
 
           <p
             data-testid="admission-page-label"

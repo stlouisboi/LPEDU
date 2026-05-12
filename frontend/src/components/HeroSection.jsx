@@ -47,6 +47,10 @@ export default function HeroSection() {
       {/* System initialization vertical scan line */}
       <div className="hero-scan-vline" />
       <div className="hero-scan-init-label">SYSTEM INITIALIZATION — LP-OS v3.2</div>
+      {/* Terminal boot-log lines — appear after typewriter */}
+      <div className="hero-boot-line hero-boot-line-1">MODULE: 49 CFR COMPLIANCE · INDEXED</div>
+      <div className="hero-boot-line hero-boot-line-2">MODULE: FMCSA AUTHORITY PROTOCOLS · ACTIVE</div>
+      <div className="hero-boot-line hero-boot-line-3">STATUS: OPERATIONAL · MONITORING</div>
 
       {/* Grain texture */}
       <div style={{
@@ -96,6 +100,28 @@ export default function HeroSection() {
           35%  { box-shadow: 0 0 28px 10px rgba(200,147,63,0.70), 0 0 52px 20px rgba(200,147,63,0.26); }
           100% { box-shadow: 0 0 0 0 rgba(200,147,63,0); }
         }
+        /* Repeating soft ring — starts after entrance flash */
+        @keyframes hero-btn-ring {
+          0%   { box-shadow: 0 0 0 0 rgba(200,147,63,0.42); }
+          70%  { box-shadow: 0 0 0 14px rgba(200,147,63,0); }
+          100% { box-shadow: 0 0 0 0 rgba(200,147,63,0); }
+        }
+        /* Boot-log lines appear after typewriter ends */
+        @keyframes hero-boot-fadein {
+          from { opacity: 0; transform: translateX(6px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        .hero-boot-line {
+          position: absolute; right: 24px;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.524rem; font-weight: 500;
+          letter-spacing: 0.16em; text-transform: uppercase;
+          color: rgba(200,147,63,0.30); opacity: 0;
+          text-align: right; pointer-events: none; z-index: 6;
+        }
+        .hero-boot-line-1 { top: 34px; animation: hero-boot-fadein 0.5s ease forwards 2.9s; }
+        .hero-boot-line-2 { top: 47px; animation: hero-boot-fadein 0.5s ease forwards 3.3s; }
+        .hero-boot-line-3 { top: 60px; animation: hero-boot-fadein 0.5s ease forwards 3.7s; color: rgba(34,197,94,0.38); }
         /* Original horizontal scan (top→bottom) */
         .hero-scan-vline {
           position: absolute;
@@ -152,7 +178,9 @@ export default function HeroSection() {
           100% { transform: translateX(300%); opacity: 0; }
         }
         .hero-reach-btn-pulse {
-          animation: hero-btn-pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) 1.4s 1;
+          animation:
+            hero-btn-pulse 1.3s cubic-bezier(0.4, 0, 0.6, 1) 1.4s 1,
+            hero-btn-ring 2.6s ease-out 4s infinite;
         }
       `}} />
       <div className="hero-sweep-line" />

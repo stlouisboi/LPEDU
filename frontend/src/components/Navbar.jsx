@@ -301,20 +301,62 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Scroll progress bar */}
+      {/* Scroll progress bar — 3px + glow */}
       <div style={{
         position: "absolute", bottom: 0, left: 0,
-        height: "2px", width: `${scrollPct}%`,
-        background: "linear-gradient(90deg, var(--gold-primary), var(--gold-light))",
+        height: "3px", width: `${scrollPct}%`,
+        background: "linear-gradient(90deg, #d4900a, #C5A059)",
         transition: "width 0.08s linear", zIndex: 2,
+        boxShadow: scrollPct > 2 ? "0 0 7px rgba(212,144,10,0.40)" : "none",
       }} />
 
       {/* Mobile menu */}
       {open && (
         <div style={{
           background: "#000F1F", borderTop: "1px solid var(--divider-dark)",
-          padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0",
+          padding: "1.25rem 1.5rem 1.5rem", display: "flex", flexDirection: "column", gap: "0",
         }}>
+          {/* ── Primary CTAs — always first on mobile ── */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.5rem" }}>
+            <Link
+              to="/reach-diagnostic"
+              data-testid="mobile-nav-reach-primary-btn"
+              onClick={() => setOpen(false)}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+                fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.875rem",
+                letterSpacing: "0.09em", textTransform: "uppercase",
+                color: "#000F1F", background: "#d4900a",
+                padding: "0.9rem 1rem", textDecoration: "none",
+                transition: "background 0.15s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "#C5A059"}
+              onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
+            >
+              Run REACH Diagnostic →
+            </Link>
+            <Link
+              to="/portal"
+              data-testid="mobile-nav-portal-primary-btn"
+              onClick={() => setOpen(false)}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem",
+                fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.875rem",
+                letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "#d4900a", border: "1px solid rgba(212,144,10,0.55)",
+                padding: "0.9rem 1rem", textDecoration: "none",
+                transition: "background 0.15s, border-color 0.15s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,144,10,0.08)"; e.currentTarget.style.borderColor = "#d4900a"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(212,144,10,0.55)"; }}
+            >
+              <LockSimple size={13} weight="bold" />
+              Operator Portal
+            </Link>
+          </div>
+
+          <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "1.25rem" }} />
+
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700,
             letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.6)",

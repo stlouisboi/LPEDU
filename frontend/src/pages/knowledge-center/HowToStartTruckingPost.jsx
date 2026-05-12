@@ -1,39 +1,14 @@
-import { useState, useEffect } from "react";
 import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import { PrimaryCtaBlock, SecondaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
 import PreOpChecklistGate from "../../components/PreOpChecklistGate";
+import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const gold = "#d4900a";
 const mono = "'Inter', sans-serif";
 const serif = "'Newsreader', 'Playfair Display', serif";
-
-function ReadingProgressBar() {
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const update = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    update();
-    return () => window.removeEventListener("scroll", update);
-  }, []);
-  return (
-    <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 3, zIndex: 200, background: "rgba(212,144,10,0.12)" }}>
-      <div style={{
-        height: "100%",
-        width: `${progress}%`,
-        background: "linear-gradient(90deg, #d4900a, #C5A059)",
-        transition: "width 0.06s linear",
-        boxShadow: "0 0 10px rgba(212,144,10,0.55)",
-      }} />
-    </div>
-  );
-}
 
 const s = {
   h2: { fontFamily: serif, fontWeight: 700, fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)", color: "#0b1628", letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "1.1rem", paddingBottom: "0.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)", marginTop: "2.75rem" },

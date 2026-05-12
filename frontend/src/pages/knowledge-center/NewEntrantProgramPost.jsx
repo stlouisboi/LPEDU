@@ -3,6 +3,7 @@ import ShareButton from "../../components/ShareButton";
 import Navbar from "../../components/Navbar";
 import FooterSection from "../../components/FooterSection";
 import BriefBundleCTA from "../../components/BriefBundleCTA";
+import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -93,6 +94,7 @@ export default function NewEntrantProgramPost() {
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
+      <ReadingProgressBar />
       <Navbar />
 
       {/* Article Hero */}
