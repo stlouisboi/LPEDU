@@ -510,3 +510,29 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - Backend: Railway (auto-deploys from GitHub main)
 - Push via "Save to Github" in Emergent platform
 - MailerLite: Groups API only (Tags API not available on user's plan)
+
+
+---
+
+## CHANGELOG — Session May 2026 (UI Enhancement Pass)
+
+### Knowledge Center (`KnowledgeCenterIndex.jsx`)
+- Hero redesigned to 2-column split: editorial aerial highway image (Unsplash) in right column, hidden on mobile < 780px
+- Stats row: count-up animation via `useCountUp` hook using rAF + ease-out cubic; `AnimatedStat` + `StatText` sub-components
+- 4 stat badges: 11 Briefs (animated), 15 Articles (animated), 49 CFR (text), 18-month (text, new)
+- All stat values use JetBrains Mono monospace; animated values render in gold `var(--orange)`
+- Pillar Guide article card: dark `#0b1628` featured card with truck image thumbnail, gold badge, white text
+
+### Ground 0 Preview Section (`Ground0Page.jsx`)
+- Module status card: `LP-BRF-001 · Est. ~20 min · STATUS: OPEN` (green pulse dot)
+- Outcome bullets replaced with `auto-fit minmax(260px, 1fr)` grid of 4 numbered tiles (01–04)
+- Section header label updated to `WHAT YOU WILL COME AWAY WITH`
+
+### Admission Page (`AdmissionPage.jsx`)
+- Criteria Gate block added before price anchor: `WHAT GETS REVIEWED` heading
+- 3 criteria cards: REACH Diagnostic/GO result required, Authority Status/Active 30+ days, Operational Fit/1–20 trucks
+- Grid uses `auto-fit minmax(160px, 1fr)` (responsive without media query)
+
+### REACH Diagnostic (`REACHTeaserSection.jsx`)
+- Intro paragraph tightened: removed "Before we install..." opener; now starts with "15 questions. 5 compliance domains."
+- SCAN_SEQUENCE chip strip added: inline R·E·A·C·H domain chips + `READY` green badge
