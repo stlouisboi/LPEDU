@@ -362,6 +362,40 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* ── STICKY MOBILE CTA BAR — primary REACH only, fixed bottom, <680px ── */}
+      <div
+        className="hero-sticky-bar"
+        style={{
+          display: "none",
+          position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 999,
+          background: "rgba(5,12,24,0.97)",
+          borderTop: "1px solid rgba(200,147,63,0.35)",
+          padding: "10px 20px",
+          alignItems: "center", justifyContent: "center",
+          backdropFilter: "blur(8px)",
+        }}
+      >
+        <a
+          href="/reach-diagnostic"
+          data-testid="mobile-sticky-reach-cta"
+          style={{
+            display: "inline-flex", alignItems: "stretch",
+            border: "1px solid #C9A84C", borderRadius: 4,
+            textDecoration: "none", overflow: "hidden", width: "100%", maxWidth: 360,
+          }}
+        >
+          <span style={{ background: "#C9A84C", padding: "12px 14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <svg width="10" height="11" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L10 6L1 11V1Z" fill="#0A0A0A" stroke="#0A0A0A" strokeWidth="0.5" strokeLinejoin="round"/>
+            </svg>
+          </span>
+          <span style={{ flex: 1, background: "transparent", padding: "12px 0", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: "0.06em", color: "#C9A84C", textTransform: "uppercase" }}>
+            Run REACH Diagnostic
+          </span>
+          <span style={{ background: "transparent", borderLeft: "1px solid #C9A84C", padding: "12px 14px", display: "flex", alignItems: "center", color: "#C9A84C", fontSize: 14 }}>→</span>
+        </a>
+      </div>
+
       {/* ── RESPONSIVE STYLES ── */}
       <style dangerouslySetInnerHTML={{__html: `
       `}} />
