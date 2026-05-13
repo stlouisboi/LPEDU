@@ -580,24 +580,24 @@ export default function ComplianceLibraryPage() {
         </div>
       </section>
 
-      {/* ── SECTION 6: OPERATIONAL STATS STRIP ─────────────────────────── */}
-      <section data-testid="social-proof-placeholder" style={{ background: "#030d1a", borderBottom: `1px solid ${BORDER}`, padding: "3rem 1.5rem" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "1.5rem", textAlign: "center" }}>
-            LP-LIB-001 · OPERATIONAL LIBRARY — DOCUMENTED COVERAGE
+      {/* ── SECTION 6: OPERATIONAL STATS STRIP — KC format ──────────────── */}
+      <section data-testid="social-proof-placeholder" style={{ background: "#030d1a", borderBottom: `1px solid ${BORDER}`, borderTop: `1px solid rgba(212,144,10,0.10)`, padding: "2.75rem 1.5rem" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.35)", marginBottom: "1.75rem" }}>
+            LP-LIB-001 · DOCUMENTED COVERAGE · LAST UPDATED: MAY 2026
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "1px", background: "rgba(212,144,10,0.10)" }}>
+          {/* Horizontal stat row — matches Knowledge Center format */}
+          <div style={{ display: "flex", gap: "2.75rem", flexWrap: "wrap", alignItems: "flex-start" }}>
             {[
-              { val: "11", label: "Operational Briefs", sub: "Published in this library" },
-              { val: "15", label: "Reference Articles", sub: "Compliance & authority topics" },
-              { val: "49 CFR", label: "Primary Regulation", sub: "Federal Motor Carrier Safety" },
-              { val: "18-month", label: "Audit Window", sub: "New Entrant period covered" },
-              { val: "16", label: "Failure Patterns", sub: "Documented across operations" },
+              { val: "49 CFR", label: "Primary regulation indexed" },
+              { val: "11", label: "Operational briefs" },
+              { val: "5", label: "Compliance domains" },
+              { val: "16", label: "Documented failure patterns" },
+              { val: "18-month", label: "New entrant audit window" },
             ].map((s) => (
-              <div key={s.val} style={{ background: "#030d1a", padding: "1.5rem 1.25rem", textAlign: "center" }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "1.375rem", color: "rgba(212,144,10,0.85)", letterSpacing: "0.02em", lineHeight: 1, marginBottom: "0.375rem" }}>{s.val}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, color: "rgba(255,255,255,0.65)", marginBottom: "0.2rem" }}>{s.label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.04em" }}>{s.sub}</p>
+              <div key={s.val}>
+                <div style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontWeight: 700, fontSize: "1.625rem", color: "rgba(212,144,10,0.85)", letterSpacing: "0.02em", lineHeight: 1, marginBottom: "0.3rem" }}>{s.val}</div>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.38)" }}>{s.label}</div>
               </div>
             ))}
           </div>
