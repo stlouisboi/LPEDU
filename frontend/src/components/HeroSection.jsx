@@ -374,6 +374,13 @@ export default function HeroSection() {
           .hero-headline { font-size: 32px !important; }
           .hero-headline-two { font-size: 32px !important; }
           .hero-sub { font-size: 16px !important; }
+          /* Hide decorative boot-log lines on mobile — too small to read */
+          .hero-boot-line, .hero-scan-init-label { display: none !important; }
+          /* Sticky mobile CTA bar */
+          .hero-sticky-bar { display: flex !important; }
+        }
+        @media (min-width: 681px) {
+          .hero-sticky-bar { display: none !important; }
         }
         @media (min-width: 681px) and (max-width: 1024px) {
           .hero-grid { padding: 88px 36px 72px !important; }
