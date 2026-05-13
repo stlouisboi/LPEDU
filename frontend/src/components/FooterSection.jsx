@@ -112,7 +112,7 @@ export default function FooterSection() {
             LaunchPath is an educational program. Content does not constitute legal, tax, financial, or compliance advice. Verify all information with appropriate professionals and regulatory agencies before making business decisions.
           </p>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "#666" }}>
-            Current as of March 2026. Verified against ecfr.gov.
+            Current as of May 2026. Verified against ecfr.gov.
           </p>
         </div>
       </div>

@@ -160,7 +160,7 @@ export default function PenaltyTableSection() {
             marginBottom: "1.5rem",
             letterSpacing: "0.02em",
           }}>
-            Current as of March 2026. Verified against ecfr.gov.
+            Current as of May 2026. Verified against ecfr.gov.
           </p>
           <p style={{
             fontFamily: "'Newsreader', 'Playfair Display', serif",

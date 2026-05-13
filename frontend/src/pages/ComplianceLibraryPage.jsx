@@ -1215,7 +1215,7 @@ export default function ComplianceLibraryPage() {
             </Link>
           </div>
           <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(255,255,255,0.18)", marginTop: "3rem", lineHeight: 1.7 }}>
-            All documents current as of March 2026. Verify current regulatory requirements at ecfr.gov. LaunchPath Transportation EDU is an educational program and does not provide legal, compliance, or financial advice.
+            All documents current as of May 2026. Verify current regulatory requirements at ecfr.gov. LaunchPath Transportation EDU is an educational program and does not provide legal, compliance, or financial advice.
           </p>
         </div>
       </section>

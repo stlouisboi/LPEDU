@@ -59,7 +59,7 @@ export default function AboutPage() {
               ["REGISTRY", "SYNCED"],
               ["INTEGRITY", "100%"],
               ["UPLINK", "STABLE"],
-              ["CFR_SYNC", "2026_V4.2"],
+              ["CFR_SYNC", "2026_V5.2"],
             ].map(([key, val]) => (
               <div key={key} style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexShrink: 0 }}>
                 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", color: "var(--text-subtle)", letterSpacing: "0.14em" }}>{key}:</span>
@@ -80,7 +80,7 @@ export default function AboutPage() {
 
           <div>
             <p className="overline" style={{ marginBottom: "1.5rem", animation: "heroEnter 0.65s ease both" }}>
-              Station Custodian — LP-SYS-V4.2
+              Station Custodian — LP-SYS-V5.2
             </p>
             <h1 style={{
               fontFamily: "'Newsreader', 'Playfair Display', serif",
@@ -152,7 +152,7 @@ export default function AboutPage() {
                 padding: "2.5rem 1.25rem 1.25rem",
               }}>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--orange)", letterSpacing: "0.1em" }}>
-                  STATION CUSTODIAN — LP-SYS-V4.2
+                  STATION CUSTODIAN — LP-SYS-V5.2
                 </p>
               </div>
             </div>

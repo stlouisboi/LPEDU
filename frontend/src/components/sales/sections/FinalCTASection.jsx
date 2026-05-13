@@ -47,7 +47,7 @@ export default function FinalCTASection({ handleAuthorize, checkoutLoading, hand
 
       <div style={{ marginTop: 48, paddingTop: 32, borderTop: `1px solid ${T.navyBorder}` }}>
         <p style={{ ...mono, fontSize: 11, color: T.fog, lineHeight: 2 }}>
-          Verified against 49 CFR · Current as of March 2026 ·{" "}
+          Verified against 49 CFR · Current as of May 2026 ·{" "}
           <a href="/privacy-policy" style={{ color: T.fog, textDecoration: "underline", textUnderlineOffset: 3 }}>Privacy Policy</a>
           {" "}·{" "}
           <a href="/terms-of-service" style={{ color: T.fog, textDecoration: "underline", textUnderlineOffset: 3 }}>Terms of Service</a>

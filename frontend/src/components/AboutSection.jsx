@@ -123,7 +123,7 @@ export default function AboutSection() {
                 textTransform: "uppercase",
                 marginBottom: "0.25rem",
               }}>
-                STATION CUSTODIAN — LP-SYS-V4.2
+                STATION CUSTODIAN — LP-SYS-V5.2
               </p>
               <p style={{
                 fontFamily: "'Inter', sans-serif",

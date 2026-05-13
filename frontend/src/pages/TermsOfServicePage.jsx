@@ -57,7 +57,7 @@ export default function TermsOfServicePage() {
             Terms of Service
           </h1>
           <p style={{ ...mono, fontSize: 11, color: T.fog, letterSpacing: "0.08em" }}>
-            Effective date: March 2026 · LaunchPath Transportation Education LLC
+            Effective date: May 2026 · LaunchPath Transportation Education LLC
           </p>
         </div>
 

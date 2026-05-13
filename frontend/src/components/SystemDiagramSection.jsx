@@ -17,7 +17,7 @@ export default function SystemDiagramSection() {
             textTransform: "uppercase",
             color: "var(--text-subtle)",
             marginBottom: "1rem",
-          }}>System Architecture — LP-AUTH-SYS-V4</p>
+          }}>System Architecture — LP-AUTH-SYS-V5.2</p>
           <h2 style={{
             fontFamily: "'Newsreader', 'Playfair Display', serif",
             fontWeight: 700,
@@ -67,7 +67,7 @@ export default function SystemDiagramSection() {
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "var(--text-subtle)",
-          }}>LP-SYS-V4 · AUTHORITY PROTECTION · STATUS: ACTIVE</div>
+          }}>LP-SYS-V5.2 · AUTHORITY PROTECTION · STATUS: ACTIVE</div>
 
           <svg
             viewBox="0 0 800 480"

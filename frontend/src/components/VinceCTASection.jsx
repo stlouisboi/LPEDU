@@ -62,7 +62,7 @@ export default function VinceCTASection() {
             marginTop: "0.75rem",
             paddingLeft: "2px",
           }}>
-            STATION CUSTODIAN — LP-SYS-V4.2
+            STATION CUSTODIAN — LP-SYS-V5.2
           </p>
         </div>
 
