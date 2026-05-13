@@ -574,6 +574,20 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - `lpFadeUp` keyframe added for hero entrance animation (previously undefined, now explicit)
 - Font stack on program page now: `Newsreader` headings / `JetBrains Mono` labels / `Inter` body — consistent with LP-OS aesthetic
 
+
+### About Page Doctrine Cards + Status Bar (`AboutPage.jsx`) — May 2026
+- System status bar: Changed from `Inter` → `JetBrains Mono` with `0.14em` letter-spacing + bold gold values
+- Doctrine cards: Added `DOC-001 · § 1.6` monospace header on left + green `ACTIVE` chip on right per card
+- Cards now have `borderLeft: 2px solid rgba(197,160,89,0.25)` accent that intensifies to `0.65` on hover
+- Transition added to `border-left-color` on hover
+- Visual language: system directives rather than legal clauses
+
+### Compliance Library Social Proof (`ComplianceLibraryPage.jsx`) — May 2026
+- Replaced dashed placeholder `CARRIER OUTCOMES — POPULATING AFTER FIRST COHORT` with live stats strip
+- 5 stats displayed in `auto-fit minmax(180px, 1fr)` grid: `11 Operational Briefs`, `15 Reference Articles`, `49 CFR Primary Regulation`, `18-month Audit Window`, `16 Failure Patterns`
+- Gold separator via 1px gap background `rgba(212,144,10,0.10)`
+- Section label: `LP-LIB-001 · OPERATIONAL LIBRARY — DOCUMENTED COVERAGE`
+
 ### Admission Live Cohort Fill Bar (`AdmissionPage.jsx`) — May 2026
 - `seats.taken of seats.total seats filled this cohort` text + 3px animated fill bar
 - Bar turns red when `seats.remaining <= 3` (urgency signal)

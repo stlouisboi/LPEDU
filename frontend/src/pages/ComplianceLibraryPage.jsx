@@ -580,16 +580,26 @@ export default function ComplianceLibraryPage() {
         </div>
       </section>
 
-      {/* ── SECTION 6: SOCIAL PROOF PLACEHOLDER (P3 — populates after first cohort) */}
-      <section data-testid="social-proof-placeholder" style={{ background: "#030d1a", borderBottom: `1px solid ${BORDER}`, padding: "2.5rem 1.5rem" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <div style={{ border: `1px dashed rgba(212,144,10,0.20)`, padding: "2rem", textAlign: "center" }}>
-            <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.35)", marginBottom: "0.75rem" }}>
-              CARRIER OUTCOMES — POPULATING AFTER FIRST COHORT
-            </p>
-            <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.20)", lineHeight: 1.7, margin: 0 }}>
-              Verified audit pass results and carrier testimonials will appear here once the first cohort completes the program.
-            </p>
+      {/* ── SECTION 6: OPERATIONAL STATS STRIP ─────────────────────────── */}
+      <section data-testid="social-proof-placeholder" style={{ background: "#030d1a", borderBottom: `1px solid ${BORDER}`, padding: "3rem 1.5rem" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "1.5rem", textAlign: "center" }}>
+            LP-LIB-001 · OPERATIONAL LIBRARY — DOCUMENTED COVERAGE
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "1px", background: "rgba(212,144,10,0.10)" }}>
+            {[
+              { val: "11", label: "Operational Briefs", sub: "Published in this library" },
+              { val: "15", label: "Reference Articles", sub: "Compliance & authority topics" },
+              { val: "49 CFR", label: "Primary Regulation", sub: "Federal Motor Carrier Safety" },
+              { val: "18-month", label: "Audit Window", sub: "New Entrant period covered" },
+              { val: "16", label: "Failure Patterns", sub: "Documented across operations" },
+            ].map((s) => (
+              <div key={s.val} style={{ background: "#030d1a", padding: "1.5rem 1.25rem", textAlign: "center" }}>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "1.375rem", color: "rgba(212,144,10,0.85)", letterSpacing: "0.02em", lineHeight: 1, marginBottom: "0.375rem" }}>{s.val}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, color: "rgba(255,255,255,0.65)", marginBottom: "0.2rem" }}>{s.label}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.04em" }}>{s.sub}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

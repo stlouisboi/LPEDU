@@ -62,8 +62,8 @@ export default function AboutPage() {
               ["CFR_SYNC", "2026_V4.2"],
             ].map(([key, val]) => (
               <div key={key} style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexShrink: 0 }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--text-subtle)", letterSpacing: "0.1em" }}>{key}:</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--orange)", letterSpacing: "0.1em" }}>{val}</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", color: "var(--text-subtle)", letterSpacing: "0.14em" }}>{key}:</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", color: "var(--orange)", letterSpacing: "0.14em", fontWeight: 700 }}>{val}</span>
               </div>
             ))}
           </div>
@@ -295,14 +295,24 @@ export default function AboutPage() {
               <FadeIn key={d.ref} delay={i * 80}>
                 <div style={{
                   background: "var(--bg)",
-                  padding: "2.25rem 2rem",
+                  borderLeft: "2px solid rgba(197,160,89,0.25)",
+                  padding: "2rem 2rem 2rem 1.625rem",
                   height: "100%",
-                  transition: "background 0.2s",
+                  transition: "background 0.2s, border-left-color 0.2s",
                 }}
-                  onMouseEnter={e => e.currentTarget.style.background = "var(--bg-2)"}
-                  onMouseLeave={e => e.currentTarget.style.background = "var(--bg)"}
+                  onMouseEnter={e => { e.currentTarget.style.background = "var(--bg-2)"; e.currentTarget.style.borderLeftColor = "rgba(197,160,89,0.65)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "var(--bg)"; e.currentTarget.style.borderLeftColor = "rgba(197,160,89,0.25)"; }}
                 >
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "var(--orange)", letterSpacing: "0.12em", marginBottom: "1rem" }}>{d.ref}</p>
+                  {/* Card header: doc index + active chip */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
+                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(197,160,89,0.60)" }}>
+                      DOC-{String(i + 1).padStart(3, "0")} · {d.ref}
+                    </span>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(34,197,94,0.70)", border: "1px solid rgba(34,197,94,0.22)", padding: "0.15rem 0.5rem" }}>
+                      <span style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(34,197,94,0.70)", display: "inline-block", flexShrink: 0 }} />
+                      ACTIVE
+                    </span>
+                  </div>
                   <h3 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1.092rem", color: "var(--text)", marginBottom: "0.875rem", lineHeight: 1.3 }}>{d.title}</h3>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.8 }}>{d.body}</p>
                 </div>
