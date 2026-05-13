@@ -566,6 +566,14 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - Applied to: `KnowledgeCenterBriefTemplate` (covers all LP-BRF-XX pages), `HowToStartTruckingPost`, `Day1AuthorityBrief`, `DOTDrugAlcoholPost`, `NewEntrantProgramPost`
 - Navbar scroll bar upgraded from 2px → 3px + gold glow
 
+
+### Program Page Typography Unification (`tokens.js`, `LaunchPathSalesPage.jsx`) — May 2026
+- `tokens.js`: `display` changed from `'Inter'` → `'Newsreader', 'Playfair Display', serif` — cascades to all 8 section components
+- `tokens.js`: `mono` updated from `'IBM Plex Mono'` → `'JetBrains Mono', 'IBM Plex Mono', monospace` — matches rest of site
+- `LaunchPathSalesPage.jsx`: Added `<style>` block overriding `.hero-headline` to `clamp(2.5rem, 5.5vw, 4rem)` and `.section-headline` to `clamp(1.875rem, 3.5vw, 2.875rem)` — replaces hardcoded 64px/48px
+- `lpFadeUp` keyframe added for hero entrance animation (previously undefined, now explicit)
+- Font stack on program page now: `Newsreader` headings / `JetBrains Mono` labels / `Inter` body — consistent with LP-OS aesthetic
+
 ### Admission Live Cohort Fill Bar (`AdmissionPage.jsx`) — May 2026
 - `seats.taken of seats.total seats filled this cohort` text + 3px animated fill bar
 - Bar turns red when `seats.remaining <= 3` (urgency signal)

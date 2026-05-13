@@ -183,6 +183,31 @@ export default function LaunchPathSalesPage() {
       <AuthorizationPathsSection admissionRef={admissionRef} handleAuthorize={handleAuthorize} handlePhased={handlePhased} checkoutLoading={checkoutLoading} />
       <FAQSection />
       <FinalCTASection handleAuthorize={handleAuthorize} checkoutLoading={checkoutLoading} handlePhased={handlePhased} handleBundle={handleBundle} />
+
+      {/* ── Typography + animation overrides ─────────────────────────────── */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .hero-headline {
+          font-size: clamp(2.5rem, 5.5vw, 4rem) !important;
+          letter-spacing: -0.03em !important;
+          font-weight: 700 !important;
+          line-height: 1.05 !important;
+        }
+        .section-headline {
+          font-size: clamp(1.875rem, 3.5vw, 2.875rem) !important;
+          letter-spacing: -0.025em !important;
+          font-weight: 700 !important;
+        }
+        .fade-up   { animation: lpFadeUp 0.65s ease both; animation-delay: 0.05s; }
+        .fade-up-2 { animation: lpFadeUp 0.65s ease both; animation-delay: 0.18s; }
+        .fade-up-3 { animation: lpFadeUp 0.65s ease both; animation-delay: 0.32s; }
+        @keyframes lpFadeUp {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 640px) {
+          .lp-hero-inner { padding-top: 60px !important; padding-bottom: 52px !important; }
+        }
+      `}} />
     </div>
   );
 }
