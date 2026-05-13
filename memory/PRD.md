@@ -514,6 +514,16 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+## CHANGELOG — Session May 2026 (Mobile UI Fix Pass)
+
+### Phase 119: Mobile UI Fix Verification (May 2026)
+- **hero_mobile_cta_depth FIXED**: Added missing `hero-sticky-bar` HTML element to `HeroSection.jsx` — fixed position at viewport bottom, shows only on mobile (<680px), contains "Run REACH Diagnostic →" CTA linking to /reach-diagnostic (`data-testid='mobile-sticky-reach-cta'`)
+- **hero_boot_lines_clutter FIXED**: Boot-log lines and SYSTEM INITIALIZATION label hidden via CSS `display:none` on mobile (<680px) — confirmed working
+- **admission_text_concat FIXED**: Cohort fill bar text now in two separate `<span>` elements in a flex `justify-content:space-between` container — not concatenated
+- Testing: 100% (3/3 re-tested issues pass) — iteration_119.json
+
+---
+
 ## CHANGELOG — Session May 2026 (UI Enhancement Pass)
 
 ### Knowledge Center (`KnowledgeCenterIndex.jsx`)
