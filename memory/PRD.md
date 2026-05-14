@@ -514,6 +514,20 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+## CHANGELOG — Session May 2026 (KC Draft Articles #2–4)
+
+### Phase 121: KC Drafts — Roadside, HOS, Conditional Rating (May 2026)
+- `RoadsideInspectionPost.jsx` + route `/knowledge-center/fmcsa-roadside-inspection-checklist` — 200 ✓
+  - 8 cab document blocks, 6 vehicle inspection categories, OOS criteria, CSA scoring, DataQs — CFR Parts 391/393/395/396
+- `HOSViolationsPost.jsx` + route `/knowledge-center/hours-of-service-violations-fmcsa-audit` — 200 ✓
+  - 8 violation types with severity weights (1–10), BASIC threshold, ELD recordkeeping — CFR Part 395
+- `ConditionalSafetyRatingPost.jsx` + route `/knowledge-center/conditional-safety-rating-fmcsa` — 200 ✓
+  - 3-rating system, 45-day window, CAP structure, insurance consequences, Conditional→Satisfactory upgrade — CFR Part 385
+- All 3: Article + FAQPage JSON-LD, DRAFT status — NOT yet in KC index/sitemap
+- AWAITING USER AUDIT before KC index wiring
+
+---
+
 ## CHANGELOG — Session May 2026 (KC Draft Article #1)
 
 ### Phase 120: KC Draft — Drug & Alcohol Program Setup (May 2026)
