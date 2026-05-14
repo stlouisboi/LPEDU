@@ -514,6 +514,19 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+## CHANGELOG — Session May 2026 (KC Draft Article #1)
+
+### Phase 120: KC Draft — Drug & Alcohol Program Setup (May 2026)
+- Created `DrugAlcoholSetupPost.jsx` — 10-step operational setup guide (DRAFT, not yet in KC index)
+- Created route `/knowledge-center/dot-drug-alcohol-program-setup` — returns 200, SSR verified
+- Schema: Article + FAQPage + HowTo JSON-LD (3 types — LLMO-optimized)
+- CFR citations: 49 CFR Part 382 (382.301, 382.303, 382.305, 382.401, 382.603, 382.701), 49 CFR Part 40, 49 CFR 391.51
+- Internal links: DQ File article, D&A requirements article, new entrant audit checklist, 16 Deadly Sins, Drug & Alcohol Compliance Packet, REACH Diagnostic, Ground 0
+- Distinct from existing `DOTDrugAlcoholPost.jsx` (requirements-focused) — this is operational setup sequence
+- AWAITING USER AUDIT before KC index wiring
+
+---
+
 ## CHANGELOG — Session May 2026 (Mobile UI Fix Pass)
 
 ### Phase 119: Mobile UI Fix Verification (May 2026)
