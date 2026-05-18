@@ -514,6 +514,14 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 122: KC Index + Sitemap Wiring — All 4 Articles Published (May 2026)
+- All 4 draft articles approved by user and wired into KC index (POSTS array, codes LP-BRF-POST-09 through -12)
+- KC hero stat updated: 15 → 19 Published articles (animated count-up confirmed in screenshot)
+- Sitemap updated: 4 new URLs added at priority 0.8, lastmod 2026-05-01
+- Categories: Drug & Alcohol Program (×2), Vehicle & Operations, Hours of Service, New Entrant Program
+
+---
+
 ## CHANGELOG — Session May 2026 (KC Draft Articles #2–4)
 
 ### Phase 121: KC Drafts — Roadside, HOS, Conditional Rating (May 2026)

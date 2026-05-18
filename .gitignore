@@ -797,3 +797,5 @@ credentials.json
 .credentials
 frontend/.next/cache/webpack/server-production/7.pack
 frontend/.next/cache/webpack/client-production/18.pack
+frontend/.next/cache/webpack/server-production/6.pack
+frontend/.next/cache/webpack/server-production/6.pack

@@ -142,6 +142,43 @@ const POSTS = [
     readTime: "~11 min",
     cfr: "49 CFR Part 385",
   },
+  // ── New Articles — May 2026 ──
+  {
+    slug: "/knowledge-center/dot-drug-alcohol-program-setup",
+    code: "LP-BRF-POST-09",
+    category: "Drug & Alcohol Program",
+    title: "How to Set Up Your DOT Drug and Alcohol Testing Program Before Day 1",
+    teaser: "The program must exist before the first driver operates — not within 30 days, not once dispatch begins. This step-by-step guide walks through consortium enrollment, FMCSA Clearinghouse registration, pre-employment testing, DER designation, supervisor training, and post-accident protocol in the order they must be completed.",
+    readTime: "~11 min",
+    cfr: "49 CFR Part 382 · Part 40",
+  },
+  {
+    slug: "/knowledge-center/fmcsa-roadside-inspection-checklist",
+    code: "LP-BRF-POST-10",
+    category: "Vehicle & Operations",
+    title: "FMCSA Roadside Inspection: What Inspectors Check and What to Have Ready",
+    teaser: "Roadside inspections are the enforcement mechanism that operates between formal audits. A single violation generates CSA severity points that accumulate in your BASIC scores — and high BASIC scores can trigger a compliance review faster than your scheduled new entrant audit. This page covers every document required in the cab and every vehicle system inspectors examine.",
+    readTime: "~10 min",
+    cfr: "49 CFR Parts 391 · 393 · 395 · 396",
+  },
+  {
+    slug: "/knowledge-center/hours-of-service-violations-fmcsa-audit",
+    code: "LP-BRF-POST-11",
+    category: "Hours of Service",
+    title: "Hours of Service Violations That Generate CSA Points and Trigger FMCSA Intervention",
+    teaser: "HOS violations are the most frequently cited violation type in FMCSA roadside inspections. This page covers the specific violation types, their CSA severity weights (1–10), how the HOS Compliance BASIC score triggers intervention, and the dispatch and documentation practices that prevent violations.",
+    readTime: "~9 min",
+    cfr: "49 CFR Part 395",
+  },
+  {
+    slug: "/knowledge-center/conditional-safety-rating-fmcsa",
+    code: "LP-BRF-POST-12",
+    category: "New Entrant Program",
+    title: "What a Conditional Safety Rating Means for Your Motor Carrier Authority",
+    teaser: "A Conditional safety rating is not a failed audit — it is FMCSA's determination that your safety management controls are inadequate in at least one area. The rating does not revoke your authority, but it is publicly visible, affects insurance, and starts a correction clock. This page covers the three-rating system, the 45-day window, CAP structure, insurance consequences, and the upgrade process.",
+    readTime: "~10 min",
+    cfr: "49 CFR Part 385",
+  },
 ];
 
 const BRIEFS_90DAY = [
@@ -411,7 +448,7 @@ export default function KnowledgeCenterIndex() {
               {/* Stats row — count-up animated */}
               <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
                 <AnimatedStat num={11} label="Briefs published" />
-                <AnimatedStat num={15} label="Published articles" />
+                <AnimatedStat num={19} label="Published articles" />
                 <StatText val="49 CFR" label="Primary regulation source" />
                 <StatText val="18-month" label="New entrant audit window" />
               </div>
