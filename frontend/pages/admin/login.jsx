@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
       });
       const d = await r.json();
       if (d.ok && d.user?.email === "vince@launchpathedu.com") {
-        router.push(redirect);
+        window.location.href = redirect;
       } else {
         setState("error");
       }
