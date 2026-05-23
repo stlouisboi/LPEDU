@@ -15,7 +15,7 @@ const nextConfig = {
   async rewrites() {
     // Proxy /api/* to the backend server-side so the browser sees same-origin
     // requests — eliminates CORS entirely on the production Vercel domain.
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://your-numbers-calc.preview.emergentagent.com";
     return [
       {
         source: "/api/:path*",
