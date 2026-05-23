@@ -12,6 +12,17 @@ const nextConfig = {
       { protocol: "https", hostname: "static.prod-images.emergentagent.com" },
     ],
   },
+  async rewrites() {
+    // Proxy /api/* to the backend server-side so the browser sees same-origin
+    // requests — eliminates CORS entirely on the production Vercel domain.
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${backendUrl}/api/:path*`,
+      },
+    ];
+  },
   async redirects() {
     return [
       // /sitemap → /sitemap.xml canonical fix
