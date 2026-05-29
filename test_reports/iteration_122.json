@@ -1,0 +1,89 @@
+{
+  "summary": "Frontend testing of /compliance-library redesign plus regression check on /standards/16-deadly-sins. Previous iteration 121 issues on /standards/16-deadly-sins are now fixed ($499 price removed, footer REQUEST ADMISSION link present). Main new issues found on /compliance-library: domain product card buy buttons are still BUTTON elements calling Stripe checkout, not Link elements to /ground-0-briefing as required. Button text also shows 'ADD TO SYSTEM —' instead of 'REQUEST ACCESS →'.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "ComplianceLibraryPage - Domain Card Grid",
+        "issue": "buy-btn-lp-pkt-001, buy-btn-lp-pkt-dq, buy-btn-lp-pkt-002, buy-btn-lp-pkt-003, buy-btn-lp-pkt-004, buy-btn-lp-pkt-005 are BUTTON elements calling Stripe checkout (onClick -> buy(sku)), NOT Link elements to /ground-0-briefing as required. The spec says these must be 'Link elements to /ground-0-briefing — NOT Stripe checkout buttons'.",
+        "selector": "[data-testid^='buy-btn-lp-pkt-']",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "ComplianceLibraryPage - Domain Card Grid",
+        "issue": "Domain card CTA button text shows 'ADD TO SYSTEM —' (empty price appended). Requirement says buttons should show 'REQUEST ACCESS →'. The code template is `ADD TO SYSTEM — ${card.price}` and card.price is '' so it renders as 'ADD TO SYSTEM —'.",
+        "selector": "[data-testid^='buy-btn-lp-pkt-']",
+        "priority": "HIGH"
+      },
+      {
+        "component": "ComplianceLibraryPage - bundle-hero-buy-btn",
+        "issue": "bundle-hero-buy-btn is a BUTTON calling Stripe checkout (buy('LP-BDL-001')), not a Link. Per the redesign, all primary CTAs should route to /ground-0-briefing, not Stripe.",
+        "selector": "[data-testid='bundle-hero-buy-btn']",
+        "priority": "HIGH"
+      },
+      {
+        "component": "ComplianceLibraryPage - path-card-bundle",
+        "issue": "path-card-bundle in path chooser section calls buy('LP-BDL-001') Stripe checkout instead of linking to /ground-0-briefing.",
+        "selector": "[data-testid='path-card-bundle']",
+        "priority": "HIGH"
+      },
+      {
+        "component": "ComplianceLibraryPage - buy-bundle-btn",
+        "issue": "buy-bundle-btn in 'two-path-band' section is a BUTTON calling Stripe checkout, not Link to /ground-0-briefing.",
+        "selector": "[data-testid='buy-bundle-btn']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "/compliance-library - SiteHeader",
+        "issues": ["LIBRARY nav item color is rgb(107, 114, 128) — appears gray/highlighted but same as other non-active links. May need an active/underline indicator to visually distinguish as highlighted."]
+      }
+    ]
+  },
+  "pages_passing": {
+    "/compliance-library": {
+      "page_loads": "PASS",
+      "h1_heading": "PASS - 'The LaunchPath Operating Standards Library'",
+      "announcement_bar": "PASS - visually present (cohort bar at top)",
+      "site_header": "PASS",
+      "library_nav_highlighted": "PARTIAL - LIBRARY text present but underline/active indicator color check unclear",
+      "no_price_amounts": "PASS - No $499/$699/$139/$129/$119/$59/$219/$2500 visible",
+      "domain_card_buy_btns_are_links": "FAIL - Still BUTTON elements calling Stripe, not Link to /ground-0-briefing",
+      "domain_card_cta_text": "FAIL - Shows 'ADD TO SYSTEM —' not 'REQUEST ACCESS →'",
+      "site_footer_request_admission": "PASS - Footer has REQUEST ADMISSION → link to /ground-0-briefing",
+      "path_chooser_no_prices": "PASS",
+      "border_radius_0_on_cards": "PASS - 0px"
+    },
+    "/standards/16-deadly-sins": {
+      "no_pricing": "PASS - $499 price removed (was FAIL in iteration 121)",
+      "site_footer_ground0_cta": "PASS - REQUEST ADMISSION → present in footer (was FAIL in iteration 121)",
+      "site_header_16sins_highlighted": "PASS",
+      "announcement_bar": "PASS"
+    }
+  },
+  "test_report_links": [],
+  "action_items": [
+    "CRITICAL: In ComplianceLibraryPage.jsx domain card grid (lines ~886-894), replace BUTTON onClick={buy(sku)} with Link to='/ground-0-briefing' and change text from 'ADD TO SYSTEM — ${card.price}' to 'REQUEST ACCESS →'",
+    "HIGH: bundle-hero-buy-btn (line ~443) — convert from BUTTON/Stripe to Link to /ground-0-briefing",
+    "HIGH: path-card-bundle in path chooser (line ~534) — convert from button/Stripe to Link to /ground-0-briefing",
+    "HIGH: buy-bundle-btn in two-path-band section (line ~652) — convert from BUTTON/Stripe to Link to /ground-0-briefing",
+    "Note: useBuy() hook and Stripe checkout code can be removed from ComplianceLibraryPage.jsx once all buy buttons are converted to Links"
+  ],
+  "critical_code_review_comments": [
+    "ComplianceLibraryPage.jsx: Domain product card grid buy buttons (data-testid='buy-btn-lp-pkt-001' etc.) still use onClick={() => buy(card.sku)} calling Stripe. Must be converted to <Link to='/ground-0-briefing'> per redesign spec",
+    "ComplianceLibraryPage.jsx: The useBuy() hook (Stripe checkout) is still present and called from multiple buttons. The redesign requires ALL CTAs to route to /ground-0-briefing",
+    "ComplianceLibraryPage.jsx: Button label template `ADD TO SYSTEM — ${card.price}` with empty price produces 'ADD TO SYSTEM —' which is wrong text — should be 'REQUEST ACCESS →'",
+    "Accordion product rows (AccordionProductRow) DO correctly use Link to /ground-0-briefing with 'REQUEST ACCESS →' text — only the domain card grid buttons are incorrect"
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "55%"},
+  "seed_data_creation": "",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Previous iteration 121 issues on /standards/16-deadly-sins are now resolved. New issues: /compliance-library domain product card buy buttons (buy-btn-lp-pkt-001 etc.) are still BUTTON/Stripe, not Link to /ground-0-briefing. Button text also wrong ('ADD TO SYSTEM —' vs 'REQUEST ACCESS →'). The AccordionProductRow components correctly use Link. Fix is in the domain card grid section (~lines 854-910) and bundle CTA buttons. /about, /reach-diagnostic, /ground-0-briefing were passing in iteration 121 and have not changed."
+}

@@ -8,8 +8,9 @@ import Image from 'next/image';
 import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
-import FooterSection from "../components/FooterSection";
+import AnnouncementBar from "../components/home/AnnouncementBar";
+import SiteHeader from "../components/home/SiteHeader";
+import SiteFooter from "../components/home/SiteFooter";
 import MCAuditWindow from "../components/MCAuditWindow";
 import { THUMBS, BUNDLE_CONFIGS, CFR_REF, PRODUCTS, ACCORDION_GROUPS } from "../data/libraryData";
 
@@ -25,14 +26,14 @@ const DOMAIN_IMAGES = {
 const API = process.env.REACT_APP_BACKEND_URL;
 
 // ── Design tokens ──────────────────────────────────────────────────────────
-const NAVY  = "#060d19";
-const NAVY2 = "#0b1628";
-const NAVY3 = "#00213F";
-const GOLD  = "#d4900a";
+const NAVY  = "#111B27";
+const NAVY2 = "#0F1E2D";
+const NAVY3 = "#1C2B3A";
+const GOLD  = "#8B7355";
 const CORAL = "#D85A30";
 const BORDER = "rgba(255,255,255,0.08)";
-const SANS  = "'Inter', sans-serif";
-const MONO  = "'IBM Plex Mono', 'Courier New', monospace";
+const SANS  = "'Instrument Sans', sans-serif";
+const MONO  = "'JetBrains Mono', 'IBM Plex Mono', monospace";
 const COND  = "'Barlow Condensed', 'Inter', sans-serif";
 
 
@@ -70,17 +71,17 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
   return (
     <div
       id={`product-${p.sku.toLowerCase()}`}
-      style={{ scrollMarginTop: "90px", ...(isBundle ? { border: `2px solid #A8B2BE`, borderRadius: 8, padding: "1.25rem 1.5rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)", background: NAVY2 } : { borderBottom: "1px solid rgba(255,255,255,0.06)", paddingBottom: "1rem", marginBottom: "1rem", background: "#080E18", borderRadius: 6, padding: "1rem 1.25rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)" }) }}>
+      style={{ scrollMarginTop: "90px", ...(isBundle ? { border: `2px solid #A8B2BE`, borderRadius: 0, padding: "1.25rem 1.5rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)", background: NAVY2 } : { borderBottom: "1px solid rgba(255,255,255,0.06)", paddingBottom: "1rem", marginBottom: "1rem", background: "#0A1018", borderRadius: 0, padding: "1rem 1.25rem", boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)" }) }}>
       {isBundle && bc && (
         <div style={{ textAlign: "center", marginBottom: "0.875rem" }}>
-          <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", padding: "3px 10px", borderRadius: 20, background: "#0D1B2A", color: "#A8B2BE", border: "1px solid #A8B2BE44", display: "inline-block", fontWeight: 700 }}>{bc.badge}</span>
+          <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", padding: "3px 10px", borderRadius: 0, background: "#1C2B3A", color: "#A8B2BE", border: "1px solid #A8B2BE44", display: "inline-block", fontWeight: 700 }}>{bc.badge}</span>
         </div>
       )}
       <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", justifyContent: "space-between" }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", flexWrap: "wrap", marginBottom: "0.25rem" }}>
             <h3 style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.1rem", color: "#fff", margin: 0, lineHeight: 1.3 }}>{p.name}</h3>
-            <span style={{ fontFamily: MONO, fontSize: "0.667rem", color: "rgba(212,144,10,0.50)", letterSpacing: "0.12em", flexShrink: 0 }}>{p.sku}</span>
+            <span style={{ fontFamily: MONO, fontSize: "0.667rem", color: "rgba(139,115,85,0.50)", letterSpacing: "0.12em", flexShrink: 0 }}>{p.sku}</span>
           </div>
           <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.60)", margin: 0, lineHeight: 1.65 }}>{p.outcome}</p>
           {p.blurb && (
@@ -95,7 +96,6 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
               ))}
             </ul>
           )}
-          {p.savings && <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, color: "rgba(212,144,10,0.70)", marginTop: "0.375rem", margin: "0.375rem 0 0" }}>{p.savings}</p>}
           {p.installIf && (
             <p style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "7.5pt", fontStyle: "italic", color: "#7A8590", marginTop: "8px", marginBottom: 0, lineHeight: 1.6 }}>
               {p.installIf}
@@ -103,24 +103,16 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
           )}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0 }}>
-          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.35rem", color: "#fff", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>{p.price}</span>
-          <button
+          <Link
+            to="/ground-0-briefing"
             data-testid={`buy-btn-${p.sku.toLowerCase()}`}
-            onClick={() => onBuy(p.sku)}
-            disabled={isLoading}
-            style={{
-              fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.06em",
-              background: isLoading ? "rgba(212,144,10,0.45)" : GOLD, color: NAVY,
-              border: "none", padding: "0.625rem 1.125rem",
-              cursor: isLoading ? "not-allowed" : "pointer", whiteSpace: "nowrap", transition: "background 0.15s",
-            }}
-            onMouseEnter={e => { if (!isLoading) e.currentTarget.style.background = "#e8a520"; }}
-            onMouseLeave={e => { if (!isLoading) e.currentTarget.style.background = GOLD; }}
-          >{isLoading ? "…" : "ADD TO SYSTEM →"}</button>
+            style={{ fontFamily: MONO, fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", color: GOLD, border: `1px solid ${GOLD}`, padding: "0.5rem 1rem", cursor: "pointer", whiteSpace: "nowrap", textDecoration: "none", display: "inline-block", borderRadius: 0 }}>
+            REQUEST ACCESS →
+          </Link>
         </div>
       </div>
       {p.inside?.length > 0 && (
-        <button onClick={() => setExpanded(v => !v)} style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", background: "transparent", border: "none", padding: "0.75rem 0 0", cursor: "pointer", display: "block" }}>
+        <button onClick={() => setExpanded(v => !v)} style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(139,115,85,0.65)", background: "transparent", border: "none", padding: "0.75rem 0 0", cursor: "pointer", display: "block" }}>
           {expanded ? "HIDE CONTENTS ▲" : "WHAT'S INSIDE ▼"}
         </button>
       )}
@@ -146,7 +138,7 @@ function AccordionProductRow({ p, onBuy, loading, error, isBundle }) {
               alt={p.name}
               width={180}
               height={180}
-              style={{ width: 180, height: 180, objectFit: "cover", borderRadius: 4, border: "1px solid rgba(212,160,23,0.25)", flexShrink: 0, background: "#080E18" }}
+              style={{ width: 180, height: 180, objectFit: "cover", borderRadius: 0, border: "1px solid rgba(139,115,85,0.25)", flexShrink: 0, background: "#0A1018" }}
             />
           )}
         </div>
@@ -162,16 +154,16 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
       <div
         onClick={onToggle}
         style={{
-          background: "#0D1B2A",
-          border: `1px solid rgba(212,160,23,${isOpen ? "0.5" : "0.2"})`,
+          background: "#1C2B3A",
+          border: `1px solid rgba(139,115,85,${isOpen ? "0.5" : "0.2"})`,
           borderRadius: isOpen ? "6px 6px 0 0" : "6px",
           padding: image ? "0" : "20px 24px", cursor: "pointer",
           display: "flex", justifyContent: "space-between", alignItems: "stretch",
           transition: "border-color 0.2s",
           minHeight: 64, overflow: "hidden",
         }}
-        onMouseEnter={e => { if (!isOpen) e.currentTarget.style.borderColor = "rgba(212,160,23,0.35)"; }}
-        onMouseLeave={e => { if (!isOpen) e.currentTarget.style.borderColor = "rgba(212,160,23,0.2)"; }}
+        onMouseEnter={e => { if (!isOpen) e.currentTarget.style.borderColor = "rgba(139,115,85,0.35)"; }}
+        onMouseLeave={e => { if (!isOpen) e.currentTarget.style.borderColor = "rgba(139,115,85,0.2)"; }}
       >
         {image && (
           <div className="mockup-zoom-wrap" style={{ width: 100, flexShrink: 0, overflow: "hidden", position: "relative" }}>
@@ -185,13 +177,13 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
             <p style={{ fontFamily: SANS, fontSize: "15px", color: "rgba(255,255,255,0.70)", margin: "6px 0 0", lineHeight: 1.5 }}>{group.subtitle}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0, marginLeft: "1.5rem" }}>
-            <span style={{ fontFamily: MONO, fontSize: "13px", letterSpacing: "0.08em", color: "rgba(212,160,23,0.80)", whiteSpace: "nowrap" }}>
-              {group.assets} · {group.priceRange}
+            <span style={{ fontFamily: MONO, fontSize: "13px", letterSpacing: "0.08em", color: "rgba(139,115,85,0.80)", whiteSpace: "nowrap" }}>
+              {group.assets}
             </span>
             {detailHref && (
-              <a href={detailHref} onClick={e => e.stopPropagation()} style={{ fontFamily: MONO, fontSize: "11px", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.2s" }}
+              <a href={detailHref} onClick={e => e.stopPropagation()} style={{ fontFamily: MONO, fontSize: "11px", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(139,115,85,0.60)", textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.2s" }}
                 onMouseEnter={e => e.currentTarget.style.color = GOLD}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.60)"}>
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(139,115,85,0.60)"}>
                 View Page →
               </a>
             )}
@@ -200,7 +192,7 @@ function AccordionGroup({ group, isOpen, onToggle, products, onBuy, states, erro
         </div>
       </div>
       {isOpen && (
-        <div style={{ border: "1px solid rgba(212,160,23,0.3)", borderTop: "none", borderRadius: "0 0 6px 6px", padding: "20px", background: "#0A1520" }}>
+        <div style={{ border: "1px solid rgba(139,115,85,0.3)", borderTop: "none", borderRadius: 0, padding: "20px", background: "#0A1520" }}>
           {products.map(p => (
             <AccordionProductRow key={p.sku} p={p} onBuy={onBuy} loading={states[p.sku]} error={errors[p.sku]} isBundle={group.isBundle} />
           ))}
@@ -352,8 +344,9 @@ export default function ComplianceLibraryPage() {
   }, []);
 
   return (
-    <div style={{ background: NAVY, minHeight: "100vh", color: "#fff" }}>
-      <Navbar />
+    <div className="lp-home" style={{ background: NAVY, minHeight: "100vh", color: "#fff" }}>
+      <AnnouncementBar />
+      <SiteHeader activePath="/compliance-library" />
 
       {/* ── SECTION 1: PAGE HERO ─────────────────────────────────────── */}
       <section data-testid="library-hero" style={{ background: NAVY2, borderBottom: `3px solid ${CORAL}`, padding: "5rem 1.5rem 4rem" }}>
@@ -385,14 +378,14 @@ export default function ComplianceLibraryPage() {
             <Link to="/reach-diagnostic"
               data-testid="hero-reach-cta"
               style={{ display: "inline-block", background: GOLD, color: NAVY, fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "background 0.2s", whiteSpace: "nowrap" }}
-              onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+              onMouseEnter={e => e.currentTarget.style.background = "#A08060"}
               onMouseLeave={e => e.currentTarget.style.background = GOLD}
             >
               TAKE THE REACH DIAGNOSTIC — FREE
             </Link>
             <a href="#bundle"
               data-testid="hero-bundle-skip"
-              style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(212,144,10,0.80)", textDecoration: "underline", textDecorationColor: "rgba(212,144,10,0.40)", letterSpacing: "0.02em", whiteSpace: "nowrap" }}
+              style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(139,115,85,0.80)", textDecoration: "underline", textDecorationColor: "rgba(139,115,85,0.40)", letterSpacing: "0.02em", whiteSpace: "nowrap" }}
             >
               Already know what you need? Skip to the DIY Bundle →
             </a>
@@ -401,16 +394,16 @@ export default function ComplianceLibraryPage() {
       </section>
 
       {/* ── SECTION 2: BUNDLE HERO CARD + ROI SNAPSHOT (Tasks 02+03) ── */}
-      <section id="bundle" data-testid="bundle-hero-card" style={{ background: "#040f1e", borderBottom: `1px solid rgba(212,144,10,0.20)`, padding: "4rem 1.5rem" }}>
+      <section id="bundle" data-testid="bundle-hero-card" style={{ background: "#040f1e", borderBottom: `1px solid rgba(139,115,85,0.20)`, padding: "4rem 1.5rem" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           {/* RECOMMENDED label */}
           <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
-            <span style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: GOLD, background: "rgba(212,144,10,0.10)", border: `1px solid rgba(212,144,10,0.40)`, padding: "4px 14px", borderRadius: 2 }}>
+            <span style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: GOLD, background: "rgba(139,115,85,0.10)", border: `1px solid rgba(139,115,85,0.40)`, padding: "4px 14px", borderRadius: 0 }}>
               RECOMMENDED FOR MOST CARRIERS
             </span>
           </div>
           {/* Card */}
-          <div style={{ background: "#061224", border: `2px solid ${GOLD}`, boxShadow: "0 0 24px rgba(212,144,10,0.20), 0 0 48px rgba(212,144,10,0.08)", overflow: "hidden" }}>
+          <div style={{ background: "#061224", border: `2px solid ${GOLD}`, boxShadow: "0 0 24px rgba(139,115,85,0.20), 0 0 48px rgba(139,115,85,0.08)", overflow: "hidden" }}>
             {/* Bundle hero image */}
             <div className="mockup-zoom-wrap" style={{ width: "100%", height: 200, overflow: "hidden", position: "relative" }}>
               <img
@@ -426,7 +419,7 @@ export default function ComplianceLibraryPage() {
             {/* Title + Price */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "0.375rem" }}>
               <h2 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, margin: 0 }}>
-                Document System Bundle — $499
+                Document System Bundle
               </h2>
             </div>
             <p style={{ fontFamily: SANS, fontSize: "0.952rem", color: "rgba(255,255,255,0.50)", marginBottom: "1.75rem" }}>
@@ -451,11 +444,11 @@ export default function ComplianceLibraryPage() {
               data-testid="bundle-hero-buy-btn"
               onClick={() => buy("LP-BDL-001")}
               disabled={states["LP-BDL-001"] === "loading"}
-              style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.952rem", letterSpacing: "0.10em", textTransform: "uppercase", background: states["LP-BDL-001"] === "loading" ? "rgba(212,144,10,0.45)" : GOLD, color: NAVY, border: "none", padding: "1.125rem", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", transition: "background 0.2s", marginBottom: "1.25rem" }}
-              onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#e8a520"; }}
+              style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.952rem", letterSpacing: "0.10em", textTransform: "uppercase", background: states["LP-BDL-001"] === "loading" ? "rgba(139,115,85,0.45)" : GOLD, color: NAVY, border: "none", padding: "1.125rem", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", transition: "background 0.2s", marginBottom: "1.25rem" }}
+              onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#A08060"; }}
               onMouseLeave={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = GOLD; }}
             >
-              {states["LP-BDL-001"] === "loading" ? "Processing…" : "INSTALL THE SYSTEM — $499"}
+              {states["LP-BDL-001"] === "loading" ? "Processing…" : "REQUEST ACCESS"}
             </button>
             {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "#ef4444", marginBottom: "0.75rem" }}>{errors["LP-BDL-001"]}</p>}
             {/* P2 micro-copy under bundle hero CTA */}
@@ -463,7 +456,7 @@ export default function ComplianceLibraryPage() {
 
             {/* ROI Snapshot — embedded below the CTA per spec */}
             <div data-testid="roi-strip" style={{ margin: "1.5rem 0", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.5rem" }}>
-              <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", textAlign: "center", marginBottom: "1rem" }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(139,115,85,0.50)", textAlign: "center", marginBottom: "1rem" }}>
                 THE COST DECISION
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)" }} className="roi-grid">
@@ -472,16 +465,14 @@ export default function ComplianceLibraryPage() {
                     Typical cost of remediation after a failed New Entrant audit
                   </p>
                   <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.375rem, 2.5vw, 1.875rem)", color: "rgba(255,255,255,0.50)", letterSpacing: "-0.02em", margin: 0 }}>
-                    $10,000–$25,000
+                    HIGH COST OF REMEDIATION
                   </p>
                 </div>
-                <div style={{ padding: "1.25rem 1.5rem", background: "rgba(212,144,10,0.04)" }}>
+                <div style={{ padding: "1.25rem 1.5rem", background: "rgba(139,115,85,0.04)" }}>
                   <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
                     Cost of installing the complete document system before the audit
                   </p>
-                  <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.375rem, 2.5vw, 1.875rem)", color: GOLD, letterSpacing: "-0.02em", margin: 0 }}>
-                    $499
-                  </p>
+                  
                 </div>
               </div>
             </div>
@@ -490,7 +481,7 @@ export default function ComplianceLibraryPage() {
             {/* Escape link */}
             <p style={{ fontFamily: SANS, fontSize: "0.814rem", color: "rgba(255,255,255,0.35)", textAlign: "center", lineHeight: 1.6, margin: 0 }}>
               Not ready for the full system?{" "}
-              <a href="#component-library" style={{ color: "rgba(212,144,10,0.65)", textDecoration: "underline", textDecorationColor: "rgba(212,144,10,0.35)" }}>
+              <a href="#component-library" style={{ color: "rgba(139,115,85,0.65)", textDecoration: "underline", textDecorationColor: "rgba(139,115,85,0.35)" }}>
                 Explore individual domains below →
               </a>
             </p>
@@ -501,7 +492,7 @@ export default function ComplianceLibraryPage() {
       {/* ── SECTION 4: PATH CHOOSER CARD GRID (Task 04) ──────────────── */}
       <section data-testid="path-chooser-grid" style={{ background: "#040a14", borderBottom: `1px solid ${BORDER}`, padding: "3.5rem 1.5rem" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "2rem", textAlign: "center" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", marginBottom: "2rem", textAlign: "center" }}>
             NOT SURE WHICH PATH FITS YOUR OPERATION?
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }} className="path-chooser-grid">
@@ -515,28 +506,28 @@ export default function ComplianceLibraryPage() {
               },
               {
                 situation: "Know your gaps, confident in self-installation",
-                cta: "DOCUMENT SYSTEM BUNDLE — $499 →",
+                cta: "REQUEST ACCESS →",
                 action: "buy",
                 sku: "LP-BDL-001",
                 testid: "path-card-bundle",
               },
               {
                 situation: "Want every audit domain covered in one pass",
-                cta: "VIEW THE LIBRARY — $699 →",
+                cta: "VIEW LIBRARY →",
                 action: "link",
                 href: "/products/library",
                 testid: "path-card-library",
               },
               {
                 situation: "Want it built, verified, and confirmed audit-ready",
-                cta: "LAUNCHPATH STANDARD — $2,500 →",
+                cta: "REQUEST STANDARD →",
                 action: "link",
                 href: "/ground-0-briefing",
                 testid: "path-card-standard",
                 note: "Admission-gated. Begins at Ground 0.",
               },
             ].map((card, i) => (
-              <div key={i} style={{ background: "#0A1520", border: `1px solid rgba(212,144,10,0.18)`, padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.25rem" }}>
+              <div key={i} style={{ background: "#0A1520", border: `1px solid rgba(139,115,85,0.18)`, padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.25rem" }}>
                 <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.65, margin: 0 }}>{card.situation}</p>
                 <div>
                   {card.action === "buy" ? (
@@ -545,15 +536,15 @@ export default function ComplianceLibraryPage() {
                       onClick={() => buy(card.sku)}
                       disabled={states[card.sku] === "loading"}
                       style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, border: "none", padding: "0.75rem 1rem", cursor: "pointer", transition: "background 0.15s" }}
-                      onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+                      onMouseEnter={e => e.currentTarget.style.background = "#A08060"}
                       onMouseLeave={e => e.currentTarget.style.background = GOLD}
                     >
                       {states[card.sku] === "loading" ? "Processing…" : card.cta}
                     </button>
                   ) : (
-                    <Link to={card.href} data-testid={card.testid} style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "transparent", color: "rgba(212,144,10,0.85)", border: `1px solid rgba(212,144,10,0.35)`, padding: "0.75rem 1rem", textDecoration: "none", textAlign: "center", transition: "border-color 0.15s" }}
-                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.70)"}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.35)"}
+                    <Link to={card.href} data-testid={card.testid} style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "transparent", color: "rgba(139,115,85,0.85)", border: `1px solid rgba(139,115,85,0.35)`, padding: "0.75rem 1rem", textDecoration: "none", textAlign: "center", transition: "border-color 0.15s" }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.70)"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.35)"}
                     >
                       {card.cta}
                     </Link>
@@ -570,7 +561,7 @@ export default function ComplianceLibraryPage() {
       {/* ── SECTION 5: AUDIT WINDOW CALCULATOR (P2 — moved up) ────────── */}
       <section data-testid="audit-window-section" style={{ background: "#001428", padding: "4rem 1.5rem", borderTop: `1px solid rgba(197,160,89,0.12)`, borderBottom: `1px solid rgba(197,160,89,0.12)` }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.875rem", textAlign: "center" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", marginBottom: "0.875rem", textAlign: "center" }}>
             HOW MUCH TIME DO YOU HAVE?
           </p>
           <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.75, maxWidth: 600, margin: "0 auto 2rem", textAlign: "center" }}>
@@ -581,9 +572,9 @@ export default function ComplianceLibraryPage() {
       </section>
 
       {/* ── SECTION 6: OPERATIONAL STATS STRIP — KC format ──────────────── */}
-      <section data-testid="social-proof-placeholder" style={{ background: "#030d1a", borderBottom: `1px solid ${BORDER}`, borderTop: `1px solid rgba(212,144,10,0.10)`, padding: "2.75rem 1.5rem" }}>
+      <section data-testid="social-proof-placeholder" style={{ background: "#030d1a", borderBottom: `1px solid ${BORDER}`, borderTop: `1px solid rgba(139,115,85,0.10)`, padding: "2.75rem 1.5rem" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.35)", marginBottom: "1.75rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(139,115,85,0.35)", marginBottom: "1.75rem" }}>
             LP-LIB-001 · DOCUMENTED COVERAGE · LAST UPDATED: MAY 2026
           </p>
           {/* Horizontal stat row — matches Knowledge Center format */}
@@ -596,7 +587,7 @@ export default function ComplianceLibraryPage() {
               { val: "18-month", label: "New entrant audit window" },
             ].map((s) => (
               <div key={s.val}>
-                <div style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontWeight: 700, fontSize: "1.625rem", color: "rgba(212,144,10,0.85)", letterSpacing: "0.02em", lineHeight: 1, marginBottom: "0.3rem" }}>{s.val}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontWeight: 700, fontSize: "1.625rem", color: "rgba(139,115,85,0.85)", letterSpacing: "0.02em", lineHeight: 1, marginBottom: "0.3rem" }}>{s.val}</div>
                 <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.38)" }}>{s.label}</div>
               </div>
             ))}
@@ -619,7 +610,7 @@ export default function ComplianceLibraryPage() {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: "1.5rem", alignItems: "start" }} className="two-path-grid">
             {/* PRIMARY PATH — Bundle (dominant) */}
-            <div style={{ background: "#060d19", border: `1px solid rgba(212,144,10,0.25)`, padding: "2rem" }}>
+            <div style={{ background: "#111B27", border: `1px solid rgba(139,115,85,0.25)`, padding: "2rem" }}>
               <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: CORAL, marginBottom: "0.75rem" }}>
                 LP-BDL-001 | SELF-INSTALLATION
               </p>
@@ -632,11 +623,11 @@ export default function ComplianceLibraryPage() {
               <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.8, marginBottom: "0.875rem" }}>
                 Five domain packets, a unified folder structure, a 0–30–60–90 day implementation calendar, and a master compliance checklist — everything required to build an audit-ready operation if you know what you are doing or are prepared to learn.
               </p>
-              <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(212,144,10,0.85)", lineHeight: 1.75, marginBottom: "1.5rem", borderLeft: "2px solid rgba(212,144,10,0.35)", paddingLeft: "0.875rem" }}>
-                Most carriers should choose the Document System Bundle, not the $699 Library — it includes the folder architecture, 0–90 day calendar, and master checklist that tell you what to do and when.
+              <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(139,115,85,0.85)", lineHeight: 1.75, marginBottom: "1.5rem", borderLeft: "2px solid rgba(139,115,85,0.35)", paddingLeft: "0.875rem" }}>
+                Most carriers should choose the Document System Bundle — it includes the folder architecture, 0–90 day calendar, and master checklist that tell you what to do and when.
               </p>
               <div style={{ marginBottom: "1.5rem" }}>
-                <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.625rem" }}>WHAT'S INCLUDED</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(139,115,85,0.45)", marginBottom: "0.625rem" }}>WHAT'S INCLUDED</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
                   {["New Entrant Compliance Packet","Drug & Alcohol Compliance Packet","HOS & Dispatch Compliance Packet","Maintenance & Unit File Packet","Insurance & Authority Packet","Unified Folder Architecture","0–30–60–90 Day Implementation Calendar","Master Compliance Checklist"].map((item, i) => (
                     <li key={i} style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.6, paddingLeft: "1rem", position: "relative" }}>
@@ -646,15 +637,15 @@ export default function ComplianceLibraryPage() {
                 </ul>
               </div>
               <div style={{ borderTop: `1px solid ${BORDER}`, paddingTop: "1.25rem", marginBottom: "1rem" }}>
-                <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.5rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>$499</p>
-                <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)" }}>Instant access. One-time. $176 below individual acquisition cost.</p>
+                
+                
               </div>
               {/* Consequence Callout */}
               <div style={{ background: "#071422", borderLeft: "3px solid #C9A84C", padding: "12px", marginBottom: "1.25rem", lineHeight: 1.65 }}>
                 <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#fff" }}>Typical cost of remediation after a failed New Entrant audit: </span>
-                <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#EDD99A", fontWeight: 700 }}>$10,000–$25,000</span>
+                <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#C5A87C", fontWeight: 700 }}>HIGH COST</span>
                 <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#fff" }}>. Cost of installing the complete document system before the audit: </span>
-                <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#EDD99A", fontWeight: 700 }}>$499</span>
+                <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#C5A87C", fontWeight: 700 }}>GROUND ZERO SYSTEM</span>
                 <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#fff" }}>.</span>
               </div>
               {/* Primary CTA — filled */}
@@ -662,11 +653,11 @@ export default function ComplianceLibraryPage() {
                 data-testid="buy-bundle-btn"
                 onClick={() => buy("LP-BDL-001")}
                 disabled={states["LP-BDL-001"] === "loading"}
-                style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", background: states["LP-BDL-001"] === "loading" ? "rgba(212,144,10,0.45)" : GOLD, color: NAVY, border: "none", padding: "1rem", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", transition: "background 0.2s" }}
-                onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#e8a520"; }}
+                style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", background: states["LP-BDL-001"] === "loading" ? "rgba(139,115,85,0.45)" : GOLD, color: NAVY, border: "none", padding: "1rem", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", transition: "background 0.2s" }}
+                onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#A08060"; }}
                 onMouseLeave={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = GOLD; }}
               >
-                {states["LP-BDL-001"] === "loading" ? "Processing…" : "INSTALL THE BUNDLE — $499 →"}
+                {states["LP-BDL-001"] === "loading" ? "Processing…" : "REQUEST ACCESS →"}
               </button>
               {/* P2 micro-copy */}
               <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(255,255,255,0.30)", textAlign: "center", marginTop: "0.5rem", lineHeight: 1.5 }}>Instant access. 30-day implementation roadmap included.</p>
@@ -691,9 +682,9 @@ export default function ComplianceLibraryPage() {
                 <Link
                   to="/ground-0-briefing"
                   data-testid="begin-reach-btn"
-                  style={{ display: "block", textAlign: "center", background: "transparent", color: GOLD, border: `1px solid rgba(212,144,10,0.55)`, fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "border-color 0.2s" }}
+                  style={{ display: "block", textAlign: "center", background: "transparent", color: GOLD, border: `1px solid rgba(139,115,85,0.55)`, fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", padding: "1rem 2rem", textDecoration: "none", transition: "border-color 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = GOLD}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.55)"}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.55)"}
                 >
                   BEGIN GROUND 0 →
                 </Link>
@@ -701,7 +692,7 @@ export default function ComplianceLibraryPage() {
                 <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", textAlign: "center", marginTop: "0.5rem", lineHeight: 1.5 }}>Free. No purchase required. Takes 20 minutes.</p>
                 {/* Secondary action — text link only */}
                 <p style={{ textAlign: "center", marginTop: "0.875rem" }}>
-                  <Link to="/standard" style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(212,144,10,0.50)", textDecoration: "underline", textDecorationColor: "rgba(212,144,10,0.25)" }}>
+                  <Link to="/standard" style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(139,115,85,0.50)", textDecoration: "underline", textDecorationColor: "rgba(139,115,85,0.25)" }}>
                     View full engagement details →
                   </Link>
                 </p>
@@ -718,22 +709,20 @@ export default function ComplianceLibraryPage() {
           <p style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: "7.5pt", fontWeight: 700, color: "#C9A84C", textAlign: "left", marginBottom: "0.75rem", letterSpacing: "0.02em" }}>
             New to LaunchPath? Start here.
           </p>
-          {/* $219 Starter Stack */}
+          {/* Starter Stack */}
           {(() => { const p = PRODUCTS.find(x => x.sku === "LP-RES-006"); const bc = BUNDLE_CONFIGS["LP-RES-006"]; return (
-            <div style={{ border: `${bc.borderWidth} solid ${bc.borderColor}`, borderRadius: 8, overflow: "hidden", padding: "1.25rem 1.5rem", maxWidth: 540 }}>
-              <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", padding: "3px 10px", borderRadius: 20, background: "#0D1B2A", color: bc.badgeColor, border: `1px solid ${bc.badgeColor}44`, display: "inline-block", fontWeight: 700, marginBottom: "0.75rem" }}>{bc.badge}</span>
+            <div style={{ border: `${bc.borderWidth} solid ${bc.borderColor}`, borderRadius: 0, overflow: "hidden", padding: "1.25rem 1.5rem", maxWidth: 540 }}>
+              <span style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", padding: "3px 10px", borderRadius: 0, background: "#1C2B3A", color: bc.badgeColor, border: `1px solid ${bc.badgeColor}44`, display: "inline-block", fontWeight: 700, marginBottom: "0.75rem" }}>{bc.badge}</span>
               <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1.15rem", color: "#fff", letterSpacing: "-0.01em", margin: "0 0 0.375rem" }}>{p.name}</h3>
               <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", margin: "0 0 0.75rem", lineHeight: 1.5 }}>{p.outcome}</p>
-              {p.savings && <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.10em", color: "rgba(212,144,10,0.65)", margin: "0 0 0.875rem" }}>{p.savings}</p>}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
-                <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.25rem", color: "#fff", letterSpacing: "-0.02em" }}>{p.price}</span>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  <a href="/products/starter-stack" style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(212,144,10,0.65)", textDecoration: "none", letterSpacing: "0.06em" }}
-                    onMouseEnter={e => e.currentTarget.style.color = "rgba(212,144,10,1)"}
-                    onMouseLeave={e => e.currentTarget.style.color = "rgba(212,144,10,0.65)"}>
+                  <a href="/products/starter-stack" style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(139,115,85,0.65)", textDecoration: "none", letterSpacing: "0.06em" }}
+                    onMouseEnter={e => e.currentTarget.style.color = "rgba(139,115,85,1)"}
+                    onMouseLeave={e => e.currentTarget.style.color = "rgba(139,115,85,0.65)"}>
                     What's Inside →
                   </a>
-                  <button data-testid={`buy-btn-${p.sku.toLowerCase()}`} onClick={() => buy(p.sku)} style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", background: GOLD, color: NAVY, border: "none", padding: "0.5rem 1rem", cursor: "pointer" }}>{p.primaryCta}</button>
+                  <Link to="/ground-0-briefing" data-testid={`buy-btn-${p.sku.toLowerCase()}`} style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", background: GOLD, color: "#FAF8F4", border: "none", padding: "0.5rem 1rem", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>REQUEST ACCESS →</Link>
                 </div>
               </div>
             </div>
@@ -744,15 +733,15 @@ export default function ComplianceLibraryPage() {
       {/* ── BUNDLE FAQ ───────────────────────────────────────────────── */}
       <section style={{ background: "#040a14", borderBottom: `1px solid ${BORDER}`, padding: "3rem 1.5rem" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1.75rem" }}>BEFORE YOU BUY — READ THIS</p>
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(139,115,85,0.50)", marginBottom: "1.75rem" }}>BEFORE YOU BUY — READ THIS</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
             {[
               {
-                q: "Why is the $499 Document System less expensive than the $699 Complete Library?",
-                a: "Different products, different purpose. The $499 bundle includes the implementation architecture — the folder map, the 0–90 day calendar, and the master checklist — that tells you what to do and when. The $699 library is the complete document collection without the installation structure. Most carriers need the system, not just the documents.",
+                q: "What is the difference between the Document System Bundle and the Complete Library?",
+                a: "Different products, different purpose. The bundle includes the implementation architecture — the folder map, the 0–90 day calendar, and the master checklist — that tells you what to do and when. The library is the complete document collection without the installation structure. Most carriers need the system, not just the documents.",
               },
               {
-                q: "Can I upgrade from the $499 bundle to the $2,500 Standard later?",
+                q: "Can I upgrade from the Document System Bundle to the LaunchPath Standard later?",
                 a: "Yes. Bundle purchasers may apply their purchase toward Standard enrollment within 90 days.",
               },
               {
@@ -762,7 +751,7 @@ export default function ComplianceLibraryPage() {
             ].map((item, i, arr) => (
               <div key={i} style={{ borderBottom: i < arr.length - 1 ? `1px solid ${BORDER}` : "none", padding: "1.5rem 0" }}>
                 <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.952rem", color: "#fff", lineHeight: 1.5, marginBottom: "0.625rem" }}>Q: {item.q}</p>
-                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, margin: 0, paddingLeft: "1.25rem", borderLeft: `2px solid rgba(212,144,10,0.25)` }}>A: {item.a}</p>
+                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, margin: 0, paddingLeft: "1.25rem", borderLeft: `2px solid rgba(139,115,85,0.25)` }}>A: {item.a}</p>
               </div>
             ))}
           </div>
@@ -787,9 +776,9 @@ export default function ComplianceLibraryPage() {
           </p>
 
           {/* Task 05: Micro-CTA above packet grid */}
-          <div style={{ marginBottom: "2.5rem", padding: "1rem 1.25rem", background: "rgba(212,144,10,0.05)", border: "1px solid rgba(212,144,10,0.20)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+          <div style={{ marginBottom: "2.5rem", padding: "1rem 1.25rem", background: "rgba(139,115,85,0.05)", border: "1px solid rgba(139,115,85,0.20)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.6, margin: 0 }}>
-              Buying more than one domain? The Document System Bundle includes all five for $499 — $176 below individual acquisition cost.
+              Buying more than one domain? The Document System Bundle includes all five at a significant discount — with the folder architecture included.
             </p>
             <a href="#bundle" data-testid="domain-bundle-crosssell" style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", color: GOLD, textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0 }}
               onMouseEnter={e => e.currentTarget.style.opacity = "0.75"}
@@ -807,7 +796,7 @@ export default function ComplianceLibraryPage() {
                 name: "New Entrant Compliance Packet",
                 description: "Your full 18-month new entrant roadmap — authority activation through audit window.",
                 bestFor: "Best for carriers in their first 18 months with authority.",
-                price: "$139",
+                price: "",
                 sku: "LP-PKT-001",
                 href: "/products/new-entrant-packet",
                 testid: "domain-card-lp-pkt-001",
@@ -817,7 +806,7 @@ export default function ComplianceLibraryPage() {
                 name: "DQ File Builder Kit",
                 description: "Build a complete, CFR-compliant Driver Qualification file for every driver in your fleet.",
                 bestFor: "Best for fleets adding drivers or building DQ files from scratch.",
-                price: "$129",
+                price: "",
                 sku: "LP-PKT-DQ",
                 href: "/products/dq-file-builder",
                 testid: "domain-card-lp-pkt-dq",
@@ -827,7 +816,7 @@ export default function ComplianceLibraryPage() {
                 name: "Drug & Alcohol Compliance Packet",
                 description: "A complete Part 382 program — policy, testing protocols, and Clearinghouse integration.",
                 bestFor: "Best for owner-operators setting up Part 382 compliance for the first time.",
-                price: "$129",
+                price: "",
                 sku: "LP-PKT-002",
                 href: "/products/drug-alcohol-packet",
                 testid: "domain-card-lp-pkt-002",
@@ -837,7 +826,7 @@ export default function ComplianceLibraryPage() {
                 name: "HOS & Dispatch Compliance Packet",
                 description: "ELD compliance, dispatch standards, and HOS records that hold under inspection.",
                 bestFor: "Best for carriers using ELDs who need HOS records that hold under inspection.",
-                price: "$119",
+                price: "",
                 sku: "LP-PKT-003",
                 href: "/products/hos-packet",
                 testid: "domain-card-lp-pkt-003",
@@ -847,7 +836,7 @@ export default function ComplianceLibraryPage() {
                 name: "Maintenance & Unit File Packet",
                 description: "Unit files, PM schedules, and repair documentation per Part 396.",
                 bestFor: "Best for owner-operators building unit files and PM schedules from zero.",
-                price: "$119",
+                price: "",
                 sku: "LP-PKT-004",
                 href: "/products/maintenance-packet",
                 testid: "domain-card-lp-pkt-004",
@@ -857,19 +846,19 @@ export default function ComplianceLibraryPage() {
                 name: "Insurance & Authority Packet",
                 description: "Filings, renewal calendar, and monitoring that keep your authority active.",
                 bestFor: "Best for carriers managing filings and renewal calendars independently.",
-                price: "$109",
+                price: "",
                 sku: "LP-PKT-005",
                 href: "/products/insurance-packet",
                 testid: "domain-card-lp-pkt-005",
               },
             ].map((card) => (
-              <div key={card.sku} data-testid={card.testid} style={{ background: "#060d19", border: `1px solid rgba(212,144,10,0.20)`, display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden", transition: "border-color 0.2s" }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.45)"}
-                onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.20)"}
+              <div key={card.sku} data-testid={card.testid} style={{ background: "#111B27", border: `1px solid rgba(139,115,85,0.20)`, display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden", transition: "border-color 0.2s" }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.45)"}
+                onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.20)"}
               >
                 {/* Product image mockup */}
                 {DOMAIN_IMAGES[card.sku] && (
-                  <div className="mockup-zoom-wrap" style={{ width: "100%", height: 200, overflow: "hidden", position: "relative", flexShrink: 0, background: "#060d19" }}>
+                  <div className="mockup-zoom-wrap" style={{ width: "100%", height: 200, overflow: "hidden", position: "relative", flexShrink: 0, background: "#111B27" }}>
                     <img
                       src={DOMAIN_IMAGES[card.sku]}
                       alt={card.name}
@@ -882,7 +871,7 @@ export default function ComplianceLibraryPage() {
                 )}
                 <div style={{ padding: "1.25rem", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "1.25rem", flex: 1 }}>
                 <div>
-                  <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.5rem", lineHeight: 1.4 }}>{card.domain}</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", marginBottom: "0.5rem", lineHeight: 1.4 }}>{card.domain}</p>
                   <h3 style={{ fontFamily: COND, fontWeight: 700, fontSize: "1rem", color: "#fff", letterSpacing: "-0.01em", lineHeight: 1.3, marginBottom: "0.5rem" }}>{card.name}</h3>
                   <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, marginBottom: 0 }}>{card.description}</p>
                   {/* P2: Best For line */}
@@ -898,17 +887,17 @@ export default function ComplianceLibraryPage() {
                       data-testid={`buy-btn-${card.sku.toLowerCase()}`}
                       onClick={() => buy(card.sku)}
                       disabled={states[card.sku] === "loading"}
-                      style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", textTransform: "uppercase", background: states[card.sku] === "loading" ? "rgba(212,144,10,0.45)" : GOLD, color: NAVY, border: "none", padding: "0.625rem 0.75rem", cursor: states[card.sku] === "loading" ? "not-allowed" : "pointer", transition: "background 0.15s" }}
-                      onMouseEnter={e => { if (states[card.sku] !== "loading") e.currentTarget.style.background = "#e8a520"; }}
+                      style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", textTransform: "uppercase", background: states[card.sku] === "loading" ? "rgba(139,115,85,0.45)" : GOLD, color: NAVY, border: "none", padding: "0.625rem 0.75rem", cursor: states[card.sku] === "loading" ? "not-allowed" : "pointer", transition: "background 0.15s" }}
+                      onMouseEnter={e => { if (states[card.sku] !== "loading") e.currentTarget.style.background = "#A08060"; }}
                       onMouseLeave={e => { if (states[card.sku] !== "loading") e.currentTarget.style.background = GOLD; }}
                     >
                       {states[card.sku] === "loading" ? "Processing…" : `ADD TO SYSTEM — ${card.price}`}
                     </button>
                     {/* P2 micro-copy under domain packet buy buttons */}
-                    <p style={{ fontFamily: SANS, fontSize: "0.657rem", color: "rgba(255,255,255,0.22)", textAlign: "center", marginTop: "0.25rem", marginBottom: "0.375rem", lineHeight: 1.4 }}>Instant access. One-time payment.</p>
-                    <Link to={card.href} style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: "0.714rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", textDecoration: "none", padding: "0.5rem 0.75rem", border: "1px solid rgba(212,144,10,0.20)", transition: "border-color 0.15s, color 0.15s" }}
-                      onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.50)"; e.currentTarget.style.color = GOLD; }}
-                      onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(212,144,10,0.20)"; e.currentTarget.style.color = "rgba(212,144,10,0.65)"; }}
+                    
+                    <Link to={card.href} style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: "0.714rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(139,115,85,0.65)", textDecoration: "none", padding: "0.5rem 0.75rem", border: "1px solid rgba(139,115,85,0.20)", transition: "border-color 0.15s, color 0.15s" }}
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(139,115,85,0.50)"; e.currentTarget.style.color = GOLD; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(139,115,85,0.20)"; e.currentTarget.style.color = "rgba(139,115,85,0.65)"; }}
                     >
                       VIEW DOMAIN →
                     </Link>
@@ -921,7 +910,7 @@ export default function ComplianceLibraryPage() {
           </div>
 
           {/* Other products — diagnostics and tools */}
-          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "1rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(139,115,85,0.45)", marginBottom: "1rem" }}>
             DIAGNOSTICS &amp; SUPPLEMENTAL TOOLS
           </p>
           {ACCORDION_GROUPS.filter(g => ["diagnostics", "audit-prep"].includes(g.id)).map(group => {
@@ -951,13 +940,13 @@ export default function ComplianceLibraryPage() {
           })}
 
           {/* Bottom bundle reminder */}
-          <div style={{ marginTop: "2.5rem", textAlign: "center", padding: "2rem 1.5rem", borderTop: `1px solid rgba(212,160,23,0.20)`, borderBottom: `1px solid rgba(212,160,23,0.20)` }}>
+          <div style={{ marginTop: "2.5rem", textAlign: "center", padding: "2rem 1.5rem", borderTop: `1px solid rgba(139,115,85,0.20)`, borderBottom: `1px solid rgba(139,115,85,0.20)` }}>
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>BUYING MULTIPLE DOMAINS?</p>
             <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.75, maxWidth: 500, margin: "0 auto 1.25rem" }}>
-              The Document System Bundle includes all five compliance packets plus the folder architecture, implementation calendar, and master checklist — at $176 below individual acquisition cost.
+              The Document System Bundle includes all five compliance packets plus the folder architecture, implementation calendar, and master checklist.
             </p>
             <a href="#bundle" style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.10em", textTransform: "uppercase", color: GOLD, textDecoration: "none" }}>
-              BUILD THE FULL SYSTEM — $499 →
+              REQUEST ACCESS →
             </a>
           </div>
           <ReachMicroCta />
@@ -968,7 +957,7 @@ export default function ComplianceLibraryPage() {
       {/* ── SECTION 6: COMPARISON MATRIX ────────────────────────────── */}
       <section data-testid="comparison-matrix" style={{ background: NAVY3, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, padding: "4rem 1.5rem" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "1rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", marginBottom: "1rem" }}>
             LP-DOC-002 | HOW THE FOUR PATHS COMPARE
           </p>
 
@@ -977,23 +966,23 @@ export default function ComplianceLibraryPage() {
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: SANS }}>
               <thead>
                 <tr style={{ borderBottom: `2px solid ${GOLD}` }}>
-                  <th style={{ textAlign: "left", padding: "0.75rem 1rem", fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", background: "rgba(212,144,10,0.06)" }}></th>
+                  <th style={{ textAlign: "left", padding: "0.75rem 1rem", fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(139,115,85,0.60)", background: "rgba(139,115,85,0.06)" }}></th>
                   {[
-                    { label: "Individual Resources & Packets", sub: "$59–$169", highlight: false },
-                    { label: "Complete LaunchPath Library", sub: "$699", highlight: false },
-                    { label: "Document System Bundle", sub: "$499", highlight: true },
-                    { label: "LaunchPath Standard", sub: "$2,500", highlight: false },
+                    { label: "Individual Resources & Packets", sub: "By Domain", highlight: false },
+                    { label: "Complete LaunchPath Library", sub: "Full Catalog", highlight: false },
+                    { label: "Document System Bundle", sub: "Best Value", highlight: true },
+                    { label: "LaunchPath Standard", sub: "By Admission", highlight: false },
                   ].map(({ label, sub, highlight }) => (
                     <th key={label} style={{
                       textAlign: "center", padding: "0.75rem 1rem", fontFamily: SANS, fontSize: "0.875rem", fontWeight: 800,
                       color: highlight ? GOLD : "#fff",
-                      background: highlight ? "rgba(212,144,10,0.10)" : "rgba(212,144,10,0.06)",
+                      background: highlight ? "rgba(139,115,85,0.10)" : "rgba(139,115,85,0.06)",
                       border: highlight ? `2px solid ${GOLD}` : undefined,
                       borderBottom: highlight ? `2px solid ${GOLD}` : undefined,
                       borderTop: highlight ? `3px solid ${GOLD}` : undefined,
                     }}>
                       {highlight && (
-                        <div style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: "rgba(212,144,10,0.12)", border: `1px solid rgba(212,144,10,0.40)`, padding: "3px 10px", borderRadius: 2, display: "inline-block", marginBottom: "0.375rem" }}>RECOMMENDED</div>
+                        <div style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: "rgba(139,115,85,0.12)", border: `1px solid rgba(139,115,85,0.40)`, padding: "3px 10px", borderRadius: 0, display: "inline-block", marginBottom: "0.375rem" }}>RECOMMENDED</div>
                       )}
                       <div>{label}</div>
                       <div style={{ fontFamily: MONO, fontSize: "0.75rem", fontWeight: 700, marginTop: 2, color: highlight ? GOLD : "rgba(255,255,255,0.45)" }}>{sub}</div>
@@ -1012,7 +1001,7 @@ export default function ComplianceLibraryPage() {
                   ["Direct Q&A access (90-day window)",  "—",                    "—",                    "—",       "✓"],
                   ["Audit-readiness confirmation",       "—",                    "—",                    "—",       "✓"],
                   ["Entry requirement",                  "None — self-directed", "None — self-directed", "None — self-directed", "Ground 0 completion required"],
-                  ["Price",                              "$59–$169 each",        "$699",                 "$499",    "$2,500"],
+                  ["Level",                              "Domain Packet",        "Full Catalog",          "Best Value",   "By Admission"],
                 ].map(([label, col1, col2, col3, col4], i) => (
                   <tr key={label} style={{ borderBottom: `1px solid ${BORDER}`, background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)" }}>
                     <td style={{ padding: "0.875rem 1rem", fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.60)", fontWeight: 600 }}>{label}</td>
@@ -1021,9 +1010,9 @@ export default function ComplianceLibraryPage() {
                         padding: "0.875rem 1rem", textAlign: "center", fontFamily: SANS, fontSize: "0.875rem",
                         color: val === "✓" ? "#C9A84C" : val === "—" ? "#7A8590" : "#fff",
                         fontWeight: val === "✓" ? 700 : 400,
-                        background: ci === 2 ? "rgba(212,144,10,0.04)" : undefined,
-                        borderLeft: ci === 2 ? `1px solid rgba(212,144,10,0.20)` : undefined,
-                        borderRight: ci === 2 ? `1px solid rgba(212,144,10,0.20)` : undefined,
+                        background: ci === 2 ? "rgba(139,115,85,0.04)" : undefined,
+                        borderLeft: ci === 2 ? `1px solid rgba(139,115,85,0.20)` : undefined,
+                        borderRight: ci === 2 ? `1px solid rgba(139,115,85,0.20)` : undefined,
                       }}>{val}</td>
                     ))}
                   </tr>
@@ -1038,22 +1027,22 @@ export default function ComplianceLibraryPage() {
                     <a href="#component-library" style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", textDecoration: "underline", textDecorationColor: "rgba(255,255,255,0.15)" }}>Browse domains →</a>
                   </td>
                   {/* Complete Library */}
-                  <td style={{ padding: "1.25rem 1rem", textAlign: "center", background: "rgba(212,144,10,0.04)", borderLeft: `1px solid rgba(212,144,10,0.20)`, borderRight: `1px solid rgba(212,144,10,0.20)` }}>
-                    <Link to="/products/library" data-testid="compare-library-link" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(212,144,10,0.70)", textDecoration: "none", border: "1px solid rgba(212,144,10,0.30)", padding: "0.5rem 1rem", transition: "border-color 0.15s" }}
-                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.70)"}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.30)"}
+                  <td style={{ padding: "1.25rem 1rem", textAlign: "center", background: "rgba(139,115,85,0.04)", borderLeft: `1px solid rgba(139,115,85,0.20)`, borderRight: `1px solid rgba(139,115,85,0.20)` }}>
+                    <Link to="/products/library" data-testid="compare-library-link" style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(139,115,85,0.70)", textDecoration: "none", border: "1px solid rgba(139,115,85,0.30)", padding: "0.5rem 1rem", transition: "border-color 0.15s" }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.70)"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.30)"}
                     >
                       VIEW THE LIBRARY →
                     </Link>
                   </td>
                   {/* Bundle */}
-                  <td style={{ padding: "1.25rem 1rem", textAlign: "center", background: "rgba(212,144,10,0.08)", borderLeft: `2px solid ${GOLD}`, borderRight: `2px solid ${GOLD}`, borderBottom: `2px solid ${GOLD}` }}>
+                  <td style={{ padding: "1.25rem 1rem", textAlign: "center", background: "rgba(139,115,85,0.08)", borderLeft: `2px solid ${GOLD}`, borderRight: `2px solid ${GOLD}`, borderBottom: `2px solid ${GOLD}` }}>
                     <button
                       data-testid="compare-bundle-buy-btn"
                       onClick={() => buy("LP-BDL-001")}
                       disabled={states["LP-BDL-001"] === "loading"}
                       style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, border: "none", padding: "0.625rem 1.25rem", cursor: "pointer", transition: "background 0.15s" }}
-                      onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+                      onMouseEnter={e => e.currentTarget.style.background = "#A08060"}
                       onMouseLeave={e => e.currentTarget.style.background = GOLD}
                     >
                       {states["LP-BDL-001"] === "loading" ? "Processing…" : "INSTALL THE BUNDLE →"}
@@ -1077,7 +1066,7 @@ export default function ComplianceLibraryPage() {
           <div className="comparison-cards">
             {[
               {
-                title: "INDIVIDUAL ASSETS", price: "$59–$169 each", recommended: false,
+                title: "INDIVIDUAL ASSETS", price: "Domain Packet", recommended: false,
                 rows: [
                   ["Domain compliance packets", "1 per purchase"],
                   ["Folder architecture", "—"], ["Implementation calendar", "—"],
@@ -1088,7 +1077,7 @@ export default function ComplianceLibraryPage() {
                 cta: null,
               },
               {
-                title: "COMPLETE DIY LIBRARY", price: "$699", recommended: false,
+                title: "COMPLETE DIY LIBRARY", price: "", recommended: false,
                 subtitle: "Best fit for experienced safety teams who already have their own implementation process and just need the documents.",
                 rows: [
                   ["Domain compliance packets", "All 8 documents"],
@@ -1100,7 +1089,7 @@ export default function ComplianceLibraryPage() {
                 cta: { label: "VIEW THE LIBRARY →", href: "/products/library" },
               },
               {
-                title: "DOCUMENT SYSTEM BUNDLE", price: "$499", recommended: true,
+                title: "DOCUMENT SYSTEM BUNDLE", price: "", recommended: true,
                 rows: [
                   ["Domain compliance packets", "All 5"],
                   ["Folder architecture", "✓"], ["Implementation calendar", "✓"],
@@ -1108,10 +1097,10 @@ export default function ComplianceLibraryPage() {
                   ["Verification checkpoints", "—"], ["Q&A access", "—"],
                   ["Audit-readiness confirmation", "—"], ["Entry requirement", "None"],
                 ],
-                cta: { label: "INSTALL THE BUNDLE — $499 →", sku: "LP-BDL-001" },
+                cta: { label: "REQUEST ACCESS →", sku: "LP-BDL-001" },
               },
               {
-                title: "LAUNCHPATH STANDARD", price: "$2,500", recommended: false,
+                title: "LAUNCHPATH STANDARD", price: "", recommended: false,
                 rows: [
                   ["Domain compliance packets", "All 5"],
                   ["Folder architecture", "✓"], ["Implementation calendar", "✓"],
@@ -1124,13 +1113,13 @@ export default function ComplianceLibraryPage() {
             ].map((card) => (
               <div key={card.title} style={{
                 background: "#0A1520",
-                border: card.recommended ? `2px solid ${GOLD}` : `1px solid rgba(212,144,10,0.20)`,
-                boxShadow: card.recommended ? `0 0 16px rgba(212,144,10,0.25)` : "none",
-                borderRadius: 8, padding: 20, marginBottom: 12,
+                border: card.recommended ? `2px solid ${GOLD}` : `1px solid rgba(139,115,85,0.20)`,
+                boxShadow: card.recommended ? `0 0 16px rgba(139,115,85,0.25)` : "none",
+                borderRadius: 0, padding: 20, marginBottom: 12,
               }}>
                 {card.recommended && (
                   <div style={{ textAlign: "center", marginBottom: 12 }}>
-                    <span style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: "rgba(212,144,10,0.12)", border: `1px solid rgba(212,144,10,0.35)`, padding: "3px 10px", borderRadius: 20 }}>RECOMMENDED</span>
+                    <span style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: "rgba(139,115,85,0.12)", border: `1px solid rgba(139,115,85,0.35)`, padding: "3px 10px", borderRadius: 0 }}>RECOMMENDED</span>
                   </div>
                 )}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
@@ -1158,7 +1147,7 @@ export default function ComplianceLibraryPage() {
                         {states[card.cta.sku] === "loading" ? "Processing…" : card.cta.label}
                       </button>
                     ) : (
-                      <Link to={card.cta.href} style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "transparent", color: GOLD, border: `1px solid rgba(212,144,10,0.45)`, padding: "0.875rem", textDecoration: "none", textAlign: "center" }}>
+                      <Link to={card.cta.href} style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "transparent", color: GOLD, border: `1px solid rgba(139,115,85,0.45)`, padding: "0.875rem", textDecoration: "none", textAlign: "center" }}>
                         {card.cta.label}
                       </Link>
                     )}
@@ -1173,7 +1162,7 @@ export default function ComplianceLibraryPage() {
       {/* ── SECTION 7: VINCE AUTHORITY BLOCK ────────────────────────── */}
       <section data-testid="vince-authority-block" style={{ background: NAVY2, borderBottom: `1px solid ${BORDER}`, padding: "4rem 1.5rem" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "2rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(139,115,85,0.45)", marginBottom: "2rem" }}>
             LP-DOC-003 | STATION CUSTODIAN
           </p>
           <div style={{ width: 40, height: 3, background: GOLD, margin: "0 auto 2rem" }} />
@@ -1191,7 +1180,7 @@ export default function ComplianceLibraryPage() {
       {/* ── SECTION 8: FOOTER CTA ────────────────────────────────────── */}
       <section data-testid="library-footer-cta" style={{ background: "#040a14", borderBottom: `1px solid ${BORDER}`, padding: "4.5rem 1.5rem" }}>
         <div style={{ maxWidth: 740, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(139,115,85,0.50)", marginBottom: "1.25rem" }}>
             LPOS V1.0 | ENTRY POINT
           </p>
           <h2 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
@@ -1202,14 +1191,14 @@ export default function ComplianceLibraryPage() {
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <Link to="/reach-diagnostic" data-testid="footer-reach-cta" style={{ display: "inline-block", background: GOLD, color: NAVY, fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", padding: "1rem 2.5rem", textDecoration: "none", transition: "background 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+              onMouseEnter={e => e.currentTarget.style.background = "#A08060"}
               onMouseLeave={e => e.currentTarget.style.background = GOLD}
             >
               TAKE THE REACH DIAGNOSTIC — FREE →
             </Link>
-            <Link to="/standard" style={{ display: "inline-block", background: "transparent", color: "rgba(212,144,10,0.75)", fontFamily: SANS, fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "1rem 1.75rem", textDecoration: "none", border: "1px solid rgba(212,144,10,0.28)", transition: "border-color 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.60)"}
-              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,144,10,0.28)"}
+            <Link to="/standard" style={{ display: "inline-block", background: "transparent", color: "rgba(139,115,85,0.75)", fontFamily: SANS, fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "1rem 1.75rem", textDecoration: "none", border: "1px solid rgba(139,115,85,0.28)", transition: "border-color 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.60)"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.28)"}
             >
               VIEW THE LAUNCHPATH STANDARD →
             </Link>
@@ -1262,7 +1251,7 @@ export default function ComplianceLibraryPage() {
         }
       `}} />
 
-      <FooterSection />
+      <SiteFooter />
     </div>
   );
 }
