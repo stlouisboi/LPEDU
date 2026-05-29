@@ -38,8 +38,11 @@ export default function SiteFooter() {
           ))}
         </nav>
 
-        {/* Col 3 — Legal */}
+        {/* Col 3 — Legal + CTA */}
         <div style={{ textAlign: 'right' }}>
+          <Link to="/ground-0-briefing" data-testid="footer-admission-cta" style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FAF8F4', background: '#8B7355', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', marginBottom: '1.5rem' }}>
+            REQUEST ADMISSION →
+          </Link>
           <p style={{ ...mono, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.3)', lineHeight: 1.8 }}>
             © 2026 LaunchPath Standard.<br />
             Verified against 49 CFR.<br />

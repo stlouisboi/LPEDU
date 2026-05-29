@@ -511,7 +511,15 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
-### Phase 123: Ground Zero Briefing Page — Premium Conversion Funnel (May 2026)
+### Phase 124: Page Redesigns + Cohort Counter (May 2026)
+- **Cohort counter on `/ground-0-briefing`**: Live "4 OF 12 SEATS FILLED" bar fetching `/api/cohort-seats` in hero right card — authentic scarcity from real enrollment data
+- **`/reach-diagnostic` redesign**: Replaced old Navbar/FooterSection with SiteHeader/SiteFooter. Updated all old gold (#C5A059, #d4900a) → new antique gold (#8B7355) across REACHAssessmentPage, REACHTeaserSection, CategoryBreakdown, ResultCTAs, RiskMap, MCAuditWindow
+- **`/about` redesign**: Full rewrite from dark CSS-variable theme to premium light theme (#FAF8F4). New status bar (dark navy), Vince photo + credential grid, Playfair Display typography, blockquote sections, doctrine grid. CTA routes to /ground-0-briefing
+- **`/standards/16-deadly-sins` redesign**: Replaced old Navbar/FooterSection with SiteHeader/SiteFooter. Removed all pricing from CTAs ($499, $59). Updated color scheme
+- **SiteFooter**: Added "REQUEST ADMISSION →" CTA button in footer col 3 (appears on all pages using SiteFooter)
+- Testing: 15/17 → 17/17 after fixes — iteration_121.json
+
+
 - **New /ground-0-briefing page**: Replaced old educational Ground0Page at this URL with a premium admission-request conversion page
 - **USDOT Terminal Simulation**: Animated terminal (LP-SCAN-001) where carrier enters DOT number → 16-step compliance scan animation with color-coded output (green=PASS, red=FLAG, muted=info) → completes with "4 OPEN COMPLIANCE GAPS IDENTIFIED" + gold callout
 - **Admission Request Form**: Pre-fills USDOT field from terminal input, posts to existing `/api/admission-request` backend, MailerLite sync wired, shows confirmation state

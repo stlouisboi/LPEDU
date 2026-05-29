@@ -703,7 +703,7 @@ export default function SixteenSinsPage() {
                     const data = await res.json();
                     if (data.url) window.location.href = data.url;
                   } catch {
-                    if (btn) btn.textContent = "GET THE POCKET GUIDE — $59 →";
+                    if (btn) btn.textContent = "GET THE POCKET GUIDE →";
                   }
                 }}
                 style={{
@@ -718,7 +718,7 @@ export default function SixteenSinsPage() {
                 onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
                 onMouseLeave={e => { e.currentTarget.style.background = "#8B7355"; }}
               >
-                GET THE POCKET GUIDE — $59 →
+                GET THE POCKET GUIDE →
               </button>
             </div>
           </div>
@@ -829,7 +829,7 @@ export default function SixteenSinsPage() {
                   onMouseEnter={e => (e.currentTarget.style.borderColor = gold)}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(139,115,85,0.40)")}
                 >
-                  VIEW THE DOCUMENT SYSTEM — $499 →
+                  VIEW THE DOCUMENT SYSTEM →
                 </Link>
               </div>
             </div>
