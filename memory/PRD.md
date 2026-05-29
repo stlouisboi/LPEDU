@@ -462,13 +462,10 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 ### P0 — Blockers (none currently)
 
 ### P1 — High Priority
-- ~~Live E2E Stripe purchase test~~ DONE
-- ~~Google Search Console verification~~ DONE
-- ~~LP-WEB-001 7-Page SEO Cluster~~ DONE (April 2026) — all 7 pages live at /knowledge-center/ with Article + FAQPage schemas, canonical URLs, full internal linking, and CTA architecture per spec
-- ~~Generate all 16 Pinterest pins~~ DONE (May 2026) — 16 portrait pins at 1024×1536 saved as WebP in /public/images/pinterest/
-- Submit updated sitemap.xml to Google Search Console (next step after push to Vercel)
-- Replace Vimeo placeholder URLs in portal modules via /admin/modules
-- ~~Build Verified Registry ID generation logic (auto-generate VRF ID at 90-day program completion)~~ DONE (Feb 2026) — VRF auto-issues when core modules 1-6 complete; module-7 required if module-6 conditional
+- Replace Vimeo placeholder URLs in portal modules via /admin/modules (BLOCKED — waiting on user)
+- Build /reach redesign (new premium aesthetic)
+- Build /about Vince Profile page redesign
+- Build /standards/16-deadly-sins redesign
 
 ### P2 — Medium Priority
 - ~~LP-WEB-001 7-page cluster added to KC index~~ DONE — All 7 pages (P1–P7) now appear in the Articles tab of /knowledge-center. Stat counter updated to "15 Published articles". Pillar page badge applied.
@@ -514,7 +511,18 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
-### Phase 122: KC Index + Sitemap Wiring — All 4 Articles Published (May 2026)
+### Phase 123: Ground Zero Briefing Page — Premium Conversion Funnel (May 2026)
+- **New /ground-0-briefing page**: Replaced old educational Ground0Page at this URL with a premium admission-request conversion page
+- **USDOT Terminal Simulation**: Animated terminal (LP-SCAN-001) where carrier enters DOT number → 16-step compliance scan animation with color-coded output (green=PASS, red=FLAG, muted=info) → completes with "4 OPEN COMPLIANCE GAPS IDENTIFIED" + gold callout
+- **Admission Request Form**: Pre-fills USDOT field from terminal input, posts to existing `/api/admission-request` backend, MailerLite sync wired, shows confirmation state
+- **HeroSection fix**: Added primary "Request Ground 0 Briefing →" CTA (data-testid='hero-primary-cta') alongside secondary REACH Diagnostic CTA
+- **CSS Hydration Fix**: Moved all responsive grid media queries from inline `<style>` tags in 10 components to `index.css` — eliminates React hydration mismatches
+- **Design compliance**: All new elements have border-radius: 0, no pricing displayed, monospace labels throughout
+- Testing: 100% (16/16) — iteration_120.json
+
+---
+
+
 - All 4 draft articles approved by user and wired into KC index (POSTS array, codes LP-BRF-POST-09 through -12)
 - KC hero stat updated: 15 → 19 Published articles (animated count-up confirmed in screenshot)
 - Sitemap updated: 4 new URLs added at priority 0.8, lastmod 2026-05-01
