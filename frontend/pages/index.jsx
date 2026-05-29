@@ -3,8 +3,8 @@ import Head from 'next/head';
 
 const SITE = "https://launchpathedu.com";
 const OG   = `${SITE}/og-launchpath.png`;
-const TITLE = "LaunchPath | FMCSA Compliance for New Motor Carriers";
-const DESC  = "FMCSA compliance system for new motor carriers. Installs your Driver Qualification files, Drug & Alcohol program, and compliance records in 90 days — before your New Entrant Safety Audit. Free REACH Diagnostic included.";
+const TITLE = "LaunchPath | FMCSA 90-Day Compliance Implementation Cohort";
+const DESC  = "A 90-day, 12-carrier guided implementation program where safety director Vince Lawrence personally reviews your driver, equipment, HOS, and drug & alcohol files at five critical checkpoints. Install the compliance system FMCSA expects to find before they open your file.";
 
 const jsonLd = {
   "@context": "https://schema.org",

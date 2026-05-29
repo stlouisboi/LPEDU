@@ -2,6 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── LP Premium Homepage Design Tokens ─────────────────────────── */
+.lp-home {
+  --lp-bg:       #FAF8F4;
+  --lp-card:     #F5F2EC;
+  --lp-primary:  #1C2B3A;
+  --lp-pfg:      #FAF8F4;
+  --lp-accent:   #8B7355;
+  --lp-fg:       #2D3748;
+  --lp-muted:    #6B7280;
+  --lp-border:   rgba(28,43,58,0.15);
+  --lp-red:      #DC2626;
+  --lp-green:    #059669;
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  background: var(--lp-bg);
+  color: var(--lp-fg);
+}
+.lp-home * { box-sizing: border-box; }
+.lp-home .lp-serif { font-family: 'Playfair Display', Georgia, serif; }
+.lp-home .lp-mono  { font-family: 'JetBrains Mono', monospace; }
+
+/* Blueprint grid overlay */
+.lp-blueprint {
+  background-image:
+    linear-gradient(rgba(28,43,58,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28,43,58,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.lp-blueprint-light {
+  background-image:
+    linear-gradient(rgba(250,248,244,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250,248,244,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 /* ── Product mockup image zoom-on-hover ──────────────────────────── */
 .mockup-zoom {
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
