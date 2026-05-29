@@ -511,7 +511,14 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
-### Phase 124: Page Redesigns + Cohort Counter (May 2026)
+### Phase 125: Compliance Library Redesign (May 2026)
+- **`/compliance-library` full redesign**: Updated all color tokens (NAVY #060d19 → #111B27, GOLD #d4900a → #8B7355, Instrument Sans/JetBrains Mono fonts). Replaced Navbar/FooterSection with SiteHeader/SiteFooter. Removed border-radius from all elements.
+- **No pricing rule applied**: Removed ALL price amounts ($499, $699, $139, $129, $119, $59, $219, $2,500) from card displays, CTA text, comparison tables, FAQ, and bundle hero section
+- **All Stripe checkout buttons converted**: 7 buy buttons (bundle-hero-buy-btn, buy-bundle-btn, compare-bundle-buy-btn, buy-btn-lp-pkt-*, path-card-bundle, mobile-compare-buy-*) converted from onClick/Stripe to Link to /ground-0-briefing with "REQUEST ACCESS →" text
+- **Accordion product rows**: AccordionProductRow uses Link to /ground-0-briefing with "REQUEST ACCESS →"
+- Testing: All pricing removed verified — compilation clean — iteration_122 issues resolved
+
+
 - **Cohort counter on `/ground-0-briefing`**: Live "4 OF 12 SEATS FILLED" bar fetching `/api/cohort-seats` in hero right card — authentic scarcity from real enrollment data
 - **`/reach-diagnostic` redesign**: Replaced old Navbar/FooterSection with SiteHeader/SiteFooter. Updated all old gold (#C5A059, #d4900a) → new antique gold (#8B7355) across REACHAssessmentPage, REACHTeaserSection, CategoryBreakdown, ResultCTAs, RiskMap, MCAuditWindow
 - **`/about` redesign**: Full rewrite from dark CSS-variable theme to premium light theme (#FAF8F4). New status bar (dark navy), Vince photo + credential grid, Playfair Display typography, blockquote sections, doctrine grid. CTA routes to /ground-0-briefing

@@ -440,17 +440,12 @@ export default function ComplianceLibraryPage() {
               ))}
             </div>
             {/* CTA */}
-            <button
+            <Link
+              to="/ground-0-briefing"
               data-testid="bundle-hero-buy-btn"
-              onClick={() => buy("LP-BDL-001")}
-              disabled={states["LP-BDL-001"] === "loading"}
-              style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.952rem", letterSpacing: "0.10em", textTransform: "uppercase", background: states["LP-BDL-001"] === "loading" ? "rgba(139,115,85,0.45)" : GOLD, color: NAVY, border: "none", padding: "1.125rem", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", transition: "background 0.2s", marginBottom: "1.25rem" }}
-              onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#A08060"; }}
-              onMouseLeave={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = GOLD; }}
-            >
-              {states["LP-BDL-001"] === "loading" ? "Processing…" : "REQUEST ACCESS"}
-            </button>
-            {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "#ef4444", marginBottom: "0.75rem" }}>{errors["LP-BDL-001"]}</p>}
+              style={{ display: "block", width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.952rem", letterSpacing: "0.10em", textTransform: "uppercase", background: GOLD, color: "#FAF8F4", border: "none", padding: "1.125rem", cursor: "pointer", textDecoration: "none", textAlign: "center", boxSizing: "border-box", marginBottom: "1.25rem" }}>
+              REQUEST ACCESS →
+            </Link>
             {/* P2 micro-copy under bundle hero CTA */}
             <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", textAlign: "center", marginBottom: "0.75rem", lineHeight: 1.5 }}>Instant access. 30-day implementation roadmap included.</p>
 
@@ -531,16 +526,12 @@ export default function ComplianceLibraryPage() {
                 <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.65, margin: 0 }}>{card.situation}</p>
                 <div>
                   {card.action === "buy" ? (
-                    <button
+                    <Link
+                      to="/ground-0-briefing"
                       data-testid={card.testid}
-                      onClick={() => buy(card.sku)}
-                      disabled={states[card.sku] === "loading"}
-                      style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, border: "none", padding: "0.75rem 1rem", cursor: "pointer", transition: "background 0.15s" }}
-                      onMouseEnter={e => e.currentTarget.style.background = "#A08060"}
-                      onMouseLeave={e => e.currentTarget.style.background = GOLD}
-                    >
-                      {states[card.sku] === "loading" ? "Processing…" : card.cta}
-                    </button>
+                      style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: "#FAF8F4", border: "none", padding: "0.75rem 1rem", textDecoration: "none", textAlign: "center" }}>
+                      REQUEST ACCESS →
+                    </Link>
                   ) : (
                     <Link to={card.href} data-testid={card.testid} style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "transparent", color: "rgba(139,115,85,0.85)", border: `1px solid rgba(139,115,85,0.35)`, padding: "0.75rem 1rem", textDecoration: "none", textAlign: "center", transition: "border-color 0.15s" }}
                       onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(139,115,85,0.70)"}
@@ -649,16 +640,12 @@ export default function ComplianceLibraryPage() {
                 <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "#fff" }}>.</span>
               </div>
               {/* Primary CTA — filled */}
-              <button
+              <Link
+                to="/ground-0-briefing"
                 data-testid="buy-bundle-btn"
-                onClick={() => buy("LP-BDL-001")}
-                disabled={states["LP-BDL-001"] === "loading"}
-                style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", background: states["LP-BDL-001"] === "loading" ? "rgba(139,115,85,0.45)" : GOLD, color: NAVY, border: "none", padding: "1rem", cursor: states["LP-BDL-001"] === "loading" ? "not-allowed" : "pointer", transition: "background 0.2s" }}
-                onMouseEnter={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = "#A08060"; }}
-                onMouseLeave={e => { if (states["LP-BDL-001"] !== "loading") e.currentTarget.style.background = GOLD; }}
-              >
-                {states["LP-BDL-001"] === "loading" ? "Processing…" : "REQUEST ACCESS →"}
-              </button>
+                style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", background: GOLD, color: "#FAF8F4", border: "none", padding: "1rem", textDecoration: "none", textAlign: "center" }}>
+                REQUEST ACCESS →
+              </Link>
               {/* P2 micro-copy */}
               <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "rgba(255,255,255,0.30)", textAlign: "center", marginTop: "0.5rem", lineHeight: 1.5 }}>Instant access. 30-day implementation roadmap included.</p>
               {errors["LP-BDL-001"] && <p style={{ fontFamily: SANS, fontSize: "0.714rem", color: "#ef4444", marginTop: "0.375rem" }}>{errors["LP-BDL-001"]}</p>}
@@ -879,20 +866,15 @@ export default function ComplianceLibraryPage() {
                 </div>
                 <div>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.875rem" }}>
-                    <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: "1.25rem", color: GOLD, letterSpacing: "-0.02em" }}>{card.price}</span>
-                    <span style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em" }}>1 ASSET</span>
+                    <span style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em" }}>1 ASSET · 49 CFR</span>
                   </div>
                   <div style={{ display: "flex", gap: "0.5rem", flexDirection: "column" }}>
-                    <button
+                    <Link
+                      to="/ground-0-briefing"
                       data-testid={`buy-btn-${card.sku.toLowerCase()}`}
-                      onClick={() => buy(card.sku)}
-                      disabled={states[card.sku] === "loading"}
-                      style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", textTransform: "uppercase", background: states[card.sku] === "loading" ? "rgba(139,115,85,0.45)" : GOLD, color: NAVY, border: "none", padding: "0.625rem 0.75rem", cursor: states[card.sku] === "loading" ? "not-allowed" : "pointer", transition: "background 0.15s" }}
-                      onMouseEnter={e => { if (states[card.sku] !== "loading") e.currentTarget.style.background = "#A08060"; }}
-                      onMouseLeave={e => { if (states[card.sku] !== "loading") e.currentTarget.style.background = GOLD; }}
-                    >
-                      {states[card.sku] === "loading" ? "Processing…" : `ADD TO SYSTEM — ${card.price}`}
-                    </button>
+                      style={{ width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: "#FAF8F4", border: "none", padding: "0.625rem 0.75rem", textDecoration: "none", textAlign: "center", display: "block" }}>
+                      REQUEST ACCESS →
+                    </Link>
                     {/* P2 micro-copy under domain packet buy buttons */}
                     
                     <Link to={card.href} style={{ display: "block", textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: "0.714rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(139,115,85,0.65)", textDecoration: "none", padding: "0.5rem 0.75rem", border: "1px solid rgba(139,115,85,0.20)", transition: "border-color 0.15s, color 0.15s" }}
@@ -1037,16 +1019,12 @@ export default function ComplianceLibraryPage() {
                   </td>
                   {/* Bundle */}
                   <td style={{ padding: "1.25rem 1rem", textAlign: "center", background: "rgba(139,115,85,0.08)", borderLeft: `2px solid ${GOLD}`, borderRight: `2px solid ${GOLD}`, borderBottom: `2px solid ${GOLD}` }}>
-                    <button
+                    <Link
+                      to="/ground-0-briefing"
                       data-testid="compare-bundle-buy-btn"
-                      onClick={() => buy("LP-BDL-001")}
-                      disabled={states["LP-BDL-001"] === "loading"}
-                      style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, border: "none", padding: "0.625rem 1.25rem", cursor: "pointer", transition: "background 0.15s" }}
-                      onMouseEnter={e => e.currentTarget.style.background = "#A08060"}
-                      onMouseLeave={e => e.currentTarget.style.background = GOLD}
-                    >
-                      {states["LP-BDL-001"] === "loading" ? "Processing…" : "INSTALL THE BUNDLE →"}
-                    </button>
+                      style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: "#FAF8F4", border: "none", padding: "0.625rem 1.25rem", textDecoration: "none" }}>
+                      REQUEST ACCESS →
+                    </Link>
                   </td>
                   {/* Standard */}
                   <td style={{ padding: "1.25rem 1rem", textAlign: "center" }}>
@@ -1138,14 +1116,12 @@ export default function ComplianceLibraryPage() {
                 {card.cta && (
                   <div style={{ marginTop: 16 }}>
                     {card.cta.sku ? (
-                      <button
+                      <Link
+                        to="/ground-0-briefing"
                         data-testid={`mobile-compare-buy-${card.cta.sku.toLowerCase()}`}
-                        onClick={() => buy(card.cta.sku)}
-                        disabled={states[card.cta.sku] === "loading"}
-                        style={{ width: "100%", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, border: "none", padding: "0.875rem", cursor: "pointer" }}
-                      >
-                        {states[card.cta.sku] === "loading" ? "Processing…" : card.cta.label}
-                      </button>
+                        style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: "#FAF8F4", border: "none", padding: "0.875rem", textDecoration: "none", textAlign: "center" }}>
+                        REQUEST ACCESS →
+                      </Link>
                     ) : (
                       <Link to={card.cta.href} style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "transparent", color: GOLD, border: `1px solid rgba(139,115,85,0.45)`, padding: "0.875rem", textDecoration: "none", textAlign: "center" }}>
                         {card.cta.label}
