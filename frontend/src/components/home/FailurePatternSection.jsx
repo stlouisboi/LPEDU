@@ -43,7 +43,6 @@ export default function FailurePatternSection() {
           ))}
         </div>
       </div>
-      <style>{`@media(max-width:768px){.lp-two-col{grid-template-columns:1fr!important;gap:2.5rem!important}}`}</style>
     </section>
   );
 }

@@ -36,6 +36,25 @@
   background-size: 24px 24px;
 }
 
+/* ── LP Home responsive grid classes ─────────────────────────────── */
+@media (max-width: 768px) {
+  .lp-hero-grid  { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  .lp-two-col    { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  .lp-three-col  { grid-template-columns: 1fr !important; }
+  .lp-timeline-desktop { display: none !important; }
+  .lp-timeline-mobile  { display: flex !important; }
+  .lp-desktop-nav      { display: none !important; }
+  .lp-mobile-menu-btn  { display: flex !important; }
+}
+@media (max-width: 640px) {
+  .lp-metrics-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .lp-cal-grid     { grid-template-columns: 1fr !important; }
+  .lp-footer-grid  { grid-template-columns: 1fr !important; }
+  .lp-footer-grid > div:last-child { text-align: left !important; }
+  .lp-form-grid    { grid-template-columns: 1fr !important; }
+}
+@keyframes terminal-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes lp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 /* ── Product mockup image zoom-on-hover ──────────────────────────── */
 .mockup-zoom {
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);

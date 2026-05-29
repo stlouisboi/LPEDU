@@ -62,9 +62,6 @@ export default function SiteHeader({ activePath = '/' }) {
         </div>
       )}
 
-      <style>{`
-        @media(max-width:768px){.lp-desktop-nav{display:none!important}.lp-mobile-menu-btn{display:flex!important}}
-      `}</style>
     </>
   );
 }

@@ -5,7 +5,6 @@ export default function AnnouncementBar() {
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#059669', display: 'inline-block', animation: 'lp-pulse 2s infinite' }} />
         LP-COH-002: Next Cohort Begins July 6, 2026 &nbsp;·&nbsp; Limited to 12 Motor Carriers &nbsp;·&nbsp; 4 Seats Remaining
       </p>
-      <style>{`@keyframes lp-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }`}</style>
     </div>
   );
 }

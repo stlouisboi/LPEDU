@@ -1,23 +1,23 @@
 import Head from 'next/head';
-import Ground0Page from '../src/pages/Ground0Page';
+import Ground0BriefingNewPage from '../src/pages/Ground0BriefingNewPage';
 
 export default function Page() {
   return (
     <>
       <Head>
-        <title>Ground 0 | Free FMCSA Diagnostic | LaunchPath</title>
-        <meta name="description" content="Ground 0 is the entry point for the LaunchPath Standard — covering the 90-Day Compliance Window, the AUTO Risk Model, the Four Pillars of Carrier Survival, and the 16 Deadly Sins. Complete REACH before entry." />
-        <meta property="og:title" content="Ground 0 — The Foundation Module | LaunchPath Standard" />
-        <meta property="og:description" content="Ground 0 is the entry point for the LaunchPath Standard — covering the 90-Day Compliance Window, the AUTO Risk Model, the Four Pillars of Carrier Survival, and the 16 Deadly Sins." />
+        <title>Ground Zero Briefing | LaunchPath Standard — LP-COH-002</title>
+        <meta name="description" content="Request a private Ground Zero Briefing with Vince Lawrence. 20 minutes to review your USDOT compliance exposure and determine if LP-COH-002 is the right fit for your operation. No purchase required." />
+        <meta property="og:title" content="Ground Zero Briefing | LaunchPath Standard" />
+        <meta property="og:description" content="A 20-minute private review with Vince Lawrence. Your USDOT compliance telemetry, highest-risk exposure areas, and whether LP-COH-002 is the right fit." />
         <meta property="og:image" content="https://www.launchpathedu.com/og-launchpath.png" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Ground 0 — The Foundation Module | LaunchPath Standard" />
-        <meta name="twitter:description" content="Ground 0 is the entry point for the LaunchPath Standard — covering the 90-Day Compliance Window, the AUTO Risk Model, the Four Pillars of Carrier Survival, and the 16 Deadly Sins." />
+        <meta name="twitter:title" content="Ground Zero Briefing | LaunchPath Standard" />
+        <meta name="twitter:description" content="A 20-minute private review with Vince Lawrence. Your USDOT compliance telemetry, highest-risk exposure areas, and whether LP-COH-002 is the right fit." />
         <meta name="twitter:image" content="https://www.launchpathedu.com/og-launchpath.png" />
         <link rel="canonical" href="https://launchpathedu.com/ground-0-briefing" />
       </Head>
-      <Ground0Page />
+      <Ground0BriefingNewPage />
     </>
   );
 }

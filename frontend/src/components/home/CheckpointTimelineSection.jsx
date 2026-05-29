@@ -52,7 +52,6 @@ export default function CheckpointTimelineSection() {
           ))}
         </div>
       </div>
-      <style>{`@media(max-width:768px){.lp-timeline-desktop{display:none!important}.lp-timeline-mobile{display:flex!important}}`}</style>
     </section>
   );
 }

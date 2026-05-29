@@ -47,7 +47,6 @@ export default function SiteFooter() {
           </p>
         </div>
       </div>
-      <style>{`@media(max-width:640px){.lp-footer-grid{grid-template-columns:1fr!important}.lp-footer-grid>div:last-child{text-align:left!important}}`}</style>
     </footer>
   );
 }

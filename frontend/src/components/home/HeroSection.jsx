@@ -32,11 +32,11 @@ export default function HeroSection() {
           </p>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link to="/reach-diagnostic" data-testid="hero-reach-cta" style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1C2B3A', border: '1px solid rgba(28,43,58,0.3)', padding: '0.8rem 1.4rem', textDecoration: 'none', borderRadius: 0 }}>
-              → Run REACH Diagnostic
+            <Link to="/ground-0-briefing" data-testid="hero-primary-cta" style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', background: '#1C2B3A', color: '#FAF8F4', padding: '0.8rem 1.6rem', textDecoration: 'none', borderRadius: 0, fontWeight: 700 }}>
+              Request Ground 0 Briefing →
             </Link>
-            <Link to="/standards/16-deadly-sins" data-testid="hero-sins-cta" style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1C2B3A', border: '1px solid rgba(28,43,58,0.3)', padding: '0.8rem 1.4rem', textDecoration: 'none', borderRadius: 0 }}>
-              → See 16 Exposure Sins
+            <Link to="/reach-diagnostic" data-testid="hero-reach-cta" style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1C2B3A', border: '1px solid rgba(28,43,58,0.3)', padding: '0.8rem 1.4rem', textDecoration: 'none', borderRadius: 0 }}>
+              Run REACH Diagnostic
             </Link>
           </div>
         </div>
@@ -71,7 +71,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <style>{`@media(max-width:768px){.lp-hero-grid{grid-template-columns:1fr!important;gap:2.5rem!important}}`}</style>
     </section>
   );
 }

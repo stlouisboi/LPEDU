@@ -32,7 +32,6 @@ export default function SinsPreviewSection() {
           </Link>
         </div>
       </div>
-      <style>{`@media(max-width:768px){.lp-three-col{grid-template-columns:1fr!important}}`}</style>
     </section>
   );
 }

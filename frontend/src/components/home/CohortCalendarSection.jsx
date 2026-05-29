@@ -28,7 +28,6 @@ export default function CohortCalendarSection() {
           ))}
         </div>
       </div>
-      <style>{`@media(max-width:768px){.lp-cal-grid{grid-template-columns:1fr!important}}`}</style>
     </section>
   );
 }

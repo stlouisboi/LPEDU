@@ -18,7 +18,6 @@ export default function ProgramMetricsStrip() {
           </div>
         ))}
       </div>
-      <style>{`@media(max-width:640px){.lp-metrics-grid{grid-template-columns:repeat(2,1fr)!important}}`}</style>
     </div>
   );
 }
