@@ -31,8 +31,8 @@ const METRICS = [
 ];
 
 const mono = "'JetBrains Mono', monospace";
-const sans = "'Inter', sans-serif";
-const heading = "'Newsreader', 'Playfair Display', serif";
+const sans = "'Instrument Sans', sans-serif";
+const heading = "'Playfair Display', serif";
 
 export function REACHTeaserSection({ onBegin, pillarStatuses }) {
   // Merge any passed-in statuses over the defaults
@@ -43,9 +43,9 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
     <section
       data-testid="reach-teaser-section"
       style={{
-        background: "#020617",
-        borderTop: "1px solid rgba(212,144,10,0.18)",
-        borderBottom: "1px solid rgba(212,144,10,0.18)",
+        background: "#111B27",
+        borderTop: "1px solid rgba(139,115,85,0.18)",
+        borderBottom: "1px solid rgba(139,115,85,0.18)",
         padding: "88px 0 80px",
         position: "relative",
         overflow: "hidden",
@@ -54,7 +54,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
       {/* Subtle grid texture */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        backgroundImage: "linear-gradient(rgba(212,144,10,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(212,144,10,0.025) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(139,115,85,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(139,115,85,0.025) 1px, transparent 1px)",
         backgroundSize: "48px 48px",
       }} />
 
@@ -65,7 +65,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           <p style={{
             fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
-            color: "rgba(212,144,10,0.75)", marginBottom: "0.625rem",
+            color: "rgba(139,115,85,0.75)", marginBottom: "0.625rem",
             overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
           }}>
             LP-MOD-REACH · DIAGNOSTIC_ENGINE_v1
@@ -83,7 +83,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
 
           <p style={{
             fontFamily: sans, fontSize: "clamp(0.925rem, 1.5vw, 1.05rem)",
-            color: "rgba(212,144,10,0.8)", lineHeight: 1.4, maxWidth: 520,
+            color: "rgba(139,115,85,0.8)", lineHeight: 1.4, maxWidth: 520,
             fontStyle: "italic", marginBottom: "1rem",
           }}>
             A compliance check built for new and small carriers — not a quiz.
@@ -107,7 +107,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
 
           {/* Scan-sequence indicator chips */}
           <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.375rem", marginBottom: "0.25rem" }}>
-            <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.45)", marginRight: "0.25rem" }}>SCAN_SEQUENCE:</span>
+            <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(139,115,85,0.45)", marginRight: "0.25rem" }}>SCAN_SEQUENCE:</span>
             {[
               { letter: "R", name: "Resources" },
               { letter: "E", name: "Experience" },
@@ -115,8 +115,8 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
               { letter: "C", name: "Commitment" },
               { letter: "H", name: "Discipline" },
             ].map((s, i) => (
-              <span key={s.letter} style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", background: "rgba(197,160,89,0.06)", border: "1px solid rgba(197,160,89,0.20)", padding: "0.2rem 0.5rem" }}>
-                <span style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, color: "#C5A059", letterSpacing: "0.08em" }}>{s.letter}</span>
+              <span key={s.letter} style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", background: "rgba(139,115,85,0.06)", border: "1px solid rgba(139,115,85,0.20)", padding: "0.2rem 0.5rem" }}>
+                <span style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, color: "#8B7355", letterSpacing: "0.08em" }}>{s.letter}</span>
                 <span style={{ fontFamily: mono, fontSize: "0.519rem", color: "rgba(255,255,255,0.30)", letterSpacing: "0.10em", textTransform: "uppercase" }}>{s.name}</span>
               </span>
             ))}
@@ -150,7 +150,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   className="pillar-card"
                   style={{
                     background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(212,144,10,0.14)",
+                    border: "1px solid rgba(139,115,85,0.14)",
                     padding: "1.5rem 1.125rem 1.25rem",
                     display: "flex",
                     flexDirection: "column",
@@ -165,7 +165,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                     e.currentTarget.style.background = "rgba(232,93,4,0.04)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(212,144,10,0.14)";
+                    e.currentTarget.style.borderColor = "rgba(139,115,85,0.14)";
                     e.currentTarget.style.background = "rgba(255,255,255,0.03)";
                   }}
                 >
@@ -173,7 +173,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   <p style={{
                     fontFamily: mono, fontWeight: 700,
                     fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                    color: "#d4900a", lineHeight: 1,
+                    color: "#8B7355", lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}>
                     {p.letter}
@@ -238,15 +238,15 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             </div>
 
             {/* Microcopy above start */}
-            <div style={{ padding: "1rem 1.5rem", background: "rgba(255,255,255,0.025)", border: "1px solid rgba(212,144,10,0.1)", borderLeft: "2px solid rgba(212,144,10,0.35)" }}>
+            <div style={{ padding: "1rem 1.5rem", background: "rgba(255,255,255,0.025)", border: "1px solid rgba(139,115,85,0.1)", borderLeft: "2px solid rgba(139,115,85,0.35)" }}>
               <p style={{ fontFamily: mono, fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.75, margin: 0 }}>
                 Answer every question for where you are today, not where you hope to be. This check only works if it tells the truth.
               </p>
             </div>
 
             {/* WHAT YOU GET AT THE END */}
-            <div style={{ padding: "1.25rem 1.5rem", background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.14)", borderTop: "2px solid rgba(212,144,10,0.35)" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.875rem" }}>
+            <div style={{ padding: "1.25rem 1.5rem", background: "rgba(139,115,85,0.04)", border: "1px solid rgba(139,115,85,0.14)", borderTop: "2px solid rgba(139,115,85,0.35)" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", marginBottom: "0.875rem" }}>
                 WHAT YOU GET AT THE END
               </p>
               <p style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: "0.875rem" }}>
@@ -277,7 +277,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   "If we recommend a call, it's because your exposure is real — not because we need to hit a quota.",
                 ].map((line, i) => (
                   <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: mono, fontSize: "0.567rem", color: "rgba(212,144,10,0.55)", flexShrink: 0, marginTop: 2 }}>—</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.567rem", color: "rgba(139,115,85,0.55)", flexShrink: 0, marginTop: 2 }}>—</span>
                     <p style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.6, margin: 0 }}>{line}</p>
                   </div>
                 ))}
@@ -285,7 +285,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             </div>
 
             {/* CTA block — LP-WEB-012 */}
-            <div style={{ padding: "1.25rem 1.5rem", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(212,144,10,0.12)" }}>
+            <div style={{ padding: "1.25rem 1.5rem", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(139,115,85,0.12)" }}>
               <p style={{ fontFamily: sans, fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: "0 0 1.25rem" }}>
                 Find your exposure first. Then decide how you want to close it.
               </p>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
-import FooterSection from "../components/FooterSection";
+import AnnouncementBar from "../components/home/AnnouncementBar";
+import SiteHeader from "../components/home/SiteHeader";
+import SiteFooter from "../components/home/SiteFooter";
 import { REACHTeaserSection } from "../components/REACHTeaserSection";
 import MCAuditWindow from "../components/MCAuditWindow";
 import { CATEGORIES, QUESTIONS, CATEGORY_INSIGHTS, RESULT_CONFIG, CATEGORY_GAP_CONFIG, getFlaggedNames } from "../data/reachData";
@@ -156,29 +157,22 @@ export default function REACHAssessmentPage() {
   };
 
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF", position: "relative" }}>
+    <div className="lp-home" style={{ fontFamily: "'Instrument Sans', sans-serif", background: "#111B27", minHeight: "100vh", color: "#FFFFFF", position: "relative" }}>
       {/* Dot-grid background */}
       <div style={{
         position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
-        backgroundImage: "radial-gradient(circle, rgba(197,160,89,0.10) 1px, transparent 1px)",
-        backgroundSize: "36px 36px", opacity: 0.30,
+        backgroundImage: "radial-gradient(circle, rgba(139,115,85,0.08) 1px, transparent 1px)",
+        backgroundSize: "36px 36px", opacity: 0.5,
       }} />
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes lp-sweep { 0%{opacity:0} 100%{opacity:0} }
-        .lp-scan-btn { position:relative; overflow:hidden; }
-        .lp-scan-btn::after { content:""; display:none; }
-        .lp-scan-btn:hover::after { animation: none; }
-        .lp-scan-btn:active { box-shadow: inset 0 1px 3px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(0,0,0,0.3); transform: translateY(1px); }
-        @keyframes blink-cur { 0%,100%{opacity:1} 50%{opacity:0} }
-      `}} />
-      <Navbar />
+      <AnnouncementBar />
+      <SiteHeader activePath="/reach-diagnostic" />
 
       {/* ── INTRO — full clinical diagnostic section ─── */}
       {phase === "intro" && (
         <>
           <REACHTeaserSection onBegin={() => setPhase("questions")} />
           {/* MC Audit Window Calculator */}
-          <section style={{ background: "#001428", padding: "4rem 1.5rem", borderTop: "1px solid rgba(197,160,89,0.12)" }}>
+          <section style={{ background: "#0A1018", padding: "4rem 1.5rem", borderTop: "1px solid rgba(139,115,85,0.12)" }}>
             <div style={{ maxWidth: 760, margin: "0 auto" }}>
               <MCAuditWindow />
             </div>
@@ -193,10 +187,10 @@ export default function REACHAssessmentPage() {
           <div style={{
             display: "flex", justifyContent: "space-between", alignItems: "center",
             marginBottom: "2rem", paddingBottom: "0.75rem",
-            borderBottom: "1px solid rgba(212,144,10,0.12)",
+            borderBottom: "1px solid rgba(139,115,85,0.12)",
             flexWrap: "wrap", gap: "0.5rem",
           }}>
-            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.600rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.50)" }}>
+            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.600rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(139,115,85,0.50)" }}>
               LOG_ENTRY_{String(currentQ + 1).padStart(2, '0')}_OF_15 · LP-MOD-REACH
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.22)" }}>
@@ -205,14 +199,14 @@ export default function REACHAssessmentPage() {
           </div>
           {/* 15-cell data grid progress */}
           <div style={{ marginBottom: "3rem" }}>
-            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: "8px" }}>
+            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", marginBottom: "8px" }}>
               LP-REACH-SCAN · {CATEGORIES[currentCatIdx].full} · SECTION {currentCatIdx + 1} OF 5
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(15, 1fr)", gap: 3 }}>
               {Array.from({ length: 15 }, (_, i) => (
                 <div key={i} style={{
                   height: 8,
-                  background: i < currentQ ? "#C5A059" : i === currentQ ? "rgba(197,160,89,0.35)" : "rgba(255,255,255,0.07)",
+                  background: i < currentQ ? "#8B7355" : i === currentQ ? "rgba(139,115,85,0.35)" : "rgba(255,255,255,0.07)",
                   borderRadius: 1,
                   transition: "background 0.25s ease",
                 }} />
@@ -223,7 +217,7 @@ export default function REACHAssessmentPage() {
           <p style={{
             fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
             fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em",
-            textTransform: "uppercase", color: "#d4900a", marginBottom: "2rem",
+            textTransform: "uppercase", color: "#8B7355", marginBottom: "2rem",
           }}>
             {CATEGORIES[currentCatIdx].full} — {CATEGORIES[currentCatIdx].key}
           </p>
@@ -252,10 +246,10 @@ export default function REACHAssessmentPage() {
                   data-testid={`reach-option-${i}`}
                   onClick={() => handleOptionSelect(opt.score, currentQ)}
                   style={{
-                    background: isSelected ? "rgba(197,160,89,0.12)" : "rgba(0,34,68,0.6)",
-                    border: `1px solid ${isSelected ? "#C5A059" : "rgba(197,160,89,0.20)"}`,
+                    background: isSelected ? "rgba(139,115,85,0.12)" : "rgba(17,27,39,0.8)",
+                    border: `1px solid ${isSelected ? "#8B7355" : "rgba(139,115,85,0.20)"}`,
                     borderRadius: 0,
-                    color: isSelected ? "#C5A059" : "rgba(255,255,255,0.72)",
+                    color: isSelected ? "#8B7355" : "rgba(255,255,255,0.72)",
                     fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem",
                     padding: "1rem 1.5rem", textAlign: "left", cursor: "pointer",
                     transition: "background 0.1s, border-color 0.1s",
@@ -263,14 +257,14 @@ export default function REACHAssessmentPage() {
                   }}
                   onMouseEnter={(e) => {
                     if (!isSelected) {
-                      e.currentTarget.style.background = "rgba(197,160,89,0.07)";
-                      e.currentTarget.style.borderColor = "rgba(197,160,89,0.40)";
+                      e.currentTarget.style.background = "rgba(139,115,85,0.07)";
+                      e.currentTarget.style.borderColor = "rgba(139,115,85,0.40)";
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isSelected) {
-                      e.currentTarget.style.background = "rgba(0,34,68,0.6)";
-                      e.currentTarget.style.borderColor = "rgba(197,160,89,0.20)";
+                      e.currentTarget.style.background = "rgba(17,27,39,0.8)";
+                      e.currentTarget.style.borderColor = "rgba(139,115,85,0.20)";
                     }
                   }}
                 >
@@ -289,7 +283,7 @@ export default function REACHAssessmentPage() {
       {/* ── INSIGHT ───────────────────────────────────── */}
       {phase === "insight" && insightIdx !== null && (
         <div style={{ ...wrap, paddingTop: "120px", paddingBottom: "80px" }}>
-          <div style={{ borderLeft: "2px solid #d4900a", paddingLeft: "1.5rem", maxWidth: 480 }}>
+          <div style={{ borderLeft: "2px solid #8B7355", paddingLeft: "1.5rem", maxWidth: 480 }}>
             <p style={{
               fontFamily: "'Newsreader', 'Playfair Display', serif", fontSize: "1.12rem",
               color: "var(--text-muted)", lineHeight: 1.8, fontStyle: "italic",
@@ -308,7 +302,7 @@ export default function REACHAssessmentPage() {
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                 <div style={{
                   width: 8, height: 8, borderRadius: "50%",
-                  background: "#d4900a", opacity: i === 4 ? 1 : 0.5,
+                  background: "#8B7355", opacity: i === 4 ? 1 : 0.5,
                 }} />
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
@@ -319,7 +313,7 @@ export default function REACHAssessmentPage() {
           <p style={{
             fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
             fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em",
-            textTransform: "uppercase", color: "#d4900a", marginBottom: "2rem",
+            textTransform: "uppercase", color: "#8B7355", marginBottom: "2rem",
           }}>
             OPERATIONAL DISCIPLINE — H
           </p>
@@ -352,13 +346,13 @@ export default function REACHAssessmentPage() {
             onClick={handleOpenSubmit}
             className="lp-scan-btn"
             style={{
-              minHeight: 52, background: "#d4900a", color: "#0b1628", border: "none",
+              minHeight: 52, background: "#8B7355", color: "#FAF8F4", border: "none",
               fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.1rem",
               letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer",
               padding: "1rem 2.5rem", transition: "background 0.2s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#8B7355")}
           >
             Complete Assessment
           </button>
@@ -380,10 +374,10 @@ export default function REACHAssessmentPage() {
           <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 1.5rem" }}>
 
             {/* System header */}
-            <div style={{ marginBottom: "2.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(212,144,10,0.15)" }}>
+            <div style={{ marginBottom: "2.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(139,115,85,0.15)" }}>
               <p style={{
                 fontSize: "0.714rem",
-                color: "rgba(212,144,10,0.6)",
+                color: "rgba(139,115,85,0.6)",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 marginBottom: "0.625rem",
@@ -423,7 +417,7 @@ export default function REACHAssessmentPage() {
               overflow: "hidden",
             }}>
               <div style={{
-                background: "#d4900a",
+                background: "#8B7355",
                 height: "100%",
                 width: `${Math.round((analyzedCats / 5) * 100)}%`,
                 transition: "width 0.38s ease",
@@ -446,7 +440,7 @@ export default function REACHAssessmentPage() {
                   }}>
                     <span style={{
                       fontSize: "0.857rem",
-                      color: state === "done" ? "#22c55e" : state === "scanning" ? "#d4900a" : "rgba(255,255,255,0.25)",
+                      color: state === "done" ? "#22c55e" : state === "scanning" ? "#8B7355" : "rgba(255,255,255,0.25)",
                       fontWeight: 700,
                       minWidth: 14,
                     }}>
@@ -454,7 +448,7 @@ export default function REACHAssessmentPage() {
                     </span>
                     <span style={{
                       fontSize: "0.714rem",
-                      color: state === "done" ? "rgba(255,255,255,0.85)" : state === "scanning" ? "#d4900a" : "rgba(255,255,255,0.3)",
+                      color: state === "done" ? "rgba(255,255,255,0.85)" : state === "scanning" ? "#8B7355" : "rgba(255,255,255,0.3)",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                     }}>
@@ -500,7 +494,7 @@ export default function REACHAssessmentPage() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.714rem",
-                color: "rgba(212,144,10,0.55)",
+                color: "rgba(139,115,85,0.55)",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 marginBottom: "1.25rem",
@@ -585,7 +579,7 @@ export default function REACHAssessmentPage() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em",
-                textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "1.5rem",
+                textTransform: "uppercase", color: "rgba(139,115,85,0.65)", marginBottom: "1.5rem",
               }}>
                 AUTHORITY RISK MAP
               </p>
@@ -604,15 +598,15 @@ export default function REACHAssessmentPage() {
             {/* ── Issue 1: Result-specific bridge CTA — immediately below risk map ── */}
             {result === "GO" && (
               <div style={{
-                borderLeft: "3px solid #d4900a",
-                background: "rgba(212,144,10,0.05)",
-                border: "1px solid rgba(212,144,10,0.22)",
+                borderLeft: "3px solid #8B7355",
+                background: "rgba(139,115,85,0.05)",
+                border: "1px solid rgba(139,115,85,0.22)",
                 padding: "1.75rem 1.75rem",
                 marginBottom: "2.5rem",
               }}>
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
-                  letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)",
+                  letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)",
                   marginBottom: "0.875rem",
                 }}>NEXT STEP — QUALIFIED OPERATOR</p>
                 <p style={{
@@ -627,13 +621,13 @@ export default function REACHAssessmentPage() {
                   href="/launchpath-standard"
                   data-testid="cta-standard-direct"
                   style={{
-                    display: "inline-block", background: "#d4900a", color: "#0b1628",
+                    display: "inline-block", background: "#8B7355", color: "#FAF8F4",
                     fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
                     letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none",
                     padding: "1rem 2rem", transition: "background 0.2s",
                   }}
                   onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
-                  onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
+                  onMouseLeave={e => e.currentTarget.style.background = "#8B7355"}
                 >
                   PROCEED TO THE 90-DAY STANDARD →
                 </a>
@@ -665,7 +659,7 @@ export default function REACHAssessmentPage() {
                   </p>
                   <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
                     <a href="/16-deadly-sins" data-testid="cta-wait-sins" className="lp-scan-btn"
-                      style={{ display: "inline-block", background: "#F59E0B", color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", transition: "background 0.2s" }}
+                      style={{ display: "inline-block", background: "#F59E0B", color: "#FAF8F4", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", transition: "background 0.2s" }}
                       onMouseEnter={e => e.currentTarget.style.background = "#f7b731"}
                       onMouseLeave={e => e.currentTarget.style.background = "#F59E0B"}
                     >Review the 16 Deadly Sins →</a>
@@ -710,7 +704,7 @@ export default function REACHAssessmentPage() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.714rem",
-                  color: "rgba(212,144,10,0.65)",
+                  color: "rgba(139,115,85,0.65)",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   marginBottom: "1rem",
@@ -769,14 +763,14 @@ export default function REACHAssessmentPage() {
                     disabled={loading}
                     className="lp-scan-btn"
                     style={{
-                      minHeight: 52, background: "#d4900a", color: "#0b1628", border: "none",
+                      minHeight: 52, background: "#8B7355", color: "#FAF8F4", border: "none",
                       fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       cursor: loading ? "wait" : "pointer", padding: "1rem",
                       opacity: loading ? 0.8 : 1, transition: "background 0.2s",
                     }}
                     onMouseEnter={(e) => { if (!loading) e.currentTarget.style.background = "#D4B87A"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = "#d4900a"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "#8B7355"; }}
                   >
                     {loading ? "Sending..." : "Send My Results"}
                   </button>
@@ -809,7 +803,7 @@ export default function REACHAssessmentPage() {
                         fontWeight: 700,
                         letterSpacing: "0.2em",
                         textTransform: "uppercase",
-                        color: "rgba(212,144,10,0.65)",
+                        color: "rgba(139,115,85,0.65)",
                         marginBottom: "0.875rem",
                       }}>
                         WHAT THIS MEANS
@@ -862,8 +856,8 @@ export default function REACHAssessmentPage() {
                 <div style={{
                   marginTop: "2.5rem",
                   padding: "1.25rem 1.5rem",
-                  borderLeft: "3px solid rgba(212,144,10,0.4)",
-                  background: "rgba(212,144,10,0.04)",
+                  borderLeft: "3px solid rgba(139,115,85,0.4)",
+                  background: "rgba(139,115,85,0.04)",
                 }}>
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
@@ -882,7 +876,7 @@ export default function REACHAssessmentPage() {
         </div>
       )}
 
-      {["results", "intro"].includes(phase) && <FooterSection />}
+      {["results", "intro"].includes(phase) && <SiteFooter />}
     </div>
   );
 }

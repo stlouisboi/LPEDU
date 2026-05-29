@@ -13,14 +13,14 @@ export default function RiskMap({ scores, animate }) {
     <div data-testid="risk-map" style={{ marginBottom: "2.5rem" }}>
       <p style={{
         fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 700,
-        letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a",
+        letterSpacing: "0.16em", textTransform: "uppercase", color: "#8B7355",
         marginBottom: "1.25rem",
       }}>
         AUTHORITY RISK MAP
       </p>
       {rows.map((row) => {
         const pct = Math.round((row.val / row.max) * 100);
-        const barColor = pct >= 78 ? "#d4900a" : pct >= 55 ? "#7A9BB5" : "#6B7A82";
+        const barColor = pct >= 78 ? "#8B7355" : pct >= 55 ? "#7A9BB5" : "#6B7A82";
         return (
           <div key={row.label} style={{ marginBottom: "1rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.35rem" }}>

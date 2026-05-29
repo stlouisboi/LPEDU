@@ -1,14 +1,15 @@
 import { useState, useRef, useCallback } from "react";
 import { Link } from '../../compat/Link';
-import Navbar from "../../components/Navbar";
-import FooterSection from "../../components/FooterSection";
+import AnnouncementBar from "../../components/home/AnnouncementBar";
+import SiteHeader from "../../components/home/SiteHeader";
+import SiteFooter from "../../components/home/SiteFooter";
 import FadeIn from "../../components/FadeIn";
 
-const coral = "#D85A30";
+const coral = "#C0392B";
 const highRisk = "#C0392B";
-const gold = "#d4900a";
-const pageBg = "#060d19";
-const cardBg = "#0B1927";
+const gold = "#8B7355";
+const pageBg = "#111B27";
+const cardBg = "#0F1E2D";
 
 const FEATURED_NUM = ["02", "05", "08", "12", "16"];
 
@@ -242,8 +243,9 @@ export default function SixteenSinsPage() {
     triggerDownload("https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/11djj9iv_LP_16DeadlySins_Checklist_SelfAssessment.pdf");
   }
   return (
-    <div style={{ background: pageBg, minHeight: "100vh", color: "#FFFFFF" }}>
-      <Navbar />
+    <div className="lp-home" style={{ background: pageBg, minHeight: "100vh", color: "#FFFFFF" }}>
+      <AnnouncementBar />
+      <SiteHeader activePath="/standards/16-deadly-sins" />
 
       <main style={{ maxWidth: 1200, margin: "0 auto", padding: "5rem 1.5rem 7rem" }}>
 
@@ -357,7 +359,7 @@ export default function SixteenSinsPage() {
               fontWeight: 700,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(212,144,10,0.7)",
+              color: "rgba(139,115,85,0.7)",
               marginBottom: "0.75rem",
             }}>THE 16 DEADLY SINS — AT A GLANCE</p>
 
@@ -455,7 +457,7 @@ export default function SixteenSinsPage() {
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
               letterSpacing: "0.22em", textTransform: "uppercase",
-              color: "rgba(212,144,10,0.7)", marginBottom: "0.5rem",
+              color: "rgba(139,115,85,0.7)", marginBottom: "0.5rem",
             }}>FEATURED VIOLATIONS</p>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
@@ -484,14 +486,14 @@ export default function SixteenSinsPage() {
         <FadeIn delay={50}>
           <div style={{
             background: "#F6F3EE",
-            border: `1px solid rgba(212,144,10,0.30)`,
+            border: `1px solid rgba(139,115,85,0.30)`,
             borderLeft: `4px solid ${gold}`,
             padding: "2.75rem 3rem",
             marginBottom: "5rem",
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: "#d4900a",
+              letterSpacing: "0.18em", textTransform: "uppercase", color: "#8B7355",
               marginBottom: "0.75rem",
             }}>LP-LEAD-001 | CHECKLIST DOWNLOAD</p>
             <h2 style={{
@@ -515,7 +517,7 @@ export default function SixteenSinsPage() {
                 "Next-step recommendations based on your results",
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <span style={{ color: "#d4900a", fontSize: "0.857rem", marginTop: "0.15rem", flexShrink: 0 }}>→</span>
+                  <span style={{ color: "#8B7355", fontSize: "0.857rem", marginTop: "0.15rem", flexShrink: 0 }}>→</span>
                   <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(13,27,48,0.75)", lineHeight: 1.6 }}>{item}</span>
                 </div>
               ))}
@@ -535,7 +537,7 @@ export default function SixteenSinsPage() {
                 {/* Post-download nudge */}
                 <div style={{
                   background: "rgba(13,27,48,0.04)",
-                  border: "1px solid rgba(212,144,10,0.30)",
+                  border: "1px solid rgba(139,115,85,0.30)",
                   padding: "1.5rem 1.75rem",
                   maxWidth: 520,
                 }}>
@@ -590,7 +592,7 @@ export default function SixteenSinsPage() {
                     outline: "none", width: 280, minWidth: 200,
                     transition: "border-color 0.2s",
                   }}
-                  onFocus={e => { e.currentTarget.style.borderColor = "#d4900a"; }}
+                  onFocus={e => { e.currentTarget.style.borderColor = "#8B7355"; }}
                   onBlur={e => { e.currentTarget.style.borderColor = "rgba(13,27,48,0.20)"; }}
                 />
                 <button
@@ -600,7 +602,7 @@ export default function SixteenSinsPage() {
                   style={{
                     fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem",
                     letterSpacing: "0.10em", textTransform: "uppercase",
-                    color: "#0b1628", background: gateState === "submitting" ? "rgba(212,144,10,0.60)" : gold,
+                    color: "#0b1628", background: gateState === "submitting" ? "rgba(139,115,85,0.60)" : gold,
                     border: "none", padding: "0.875rem 2rem", cursor: gateState === "submitting" ? "default" : "pointer",
                     transition: "background 0.2s", whiteSpace: "nowrap",
                   }}
@@ -674,7 +676,7 @@ export default function SixteenSinsPage() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: "rgba(212,144,10,0.70)", margin: "0 0 0.4rem",
+                  color: "rgba(139,115,85,0.70)", margin: "0 0 0.4rem",
                 }}>LP-RES-001 | POCKET GUIDE</p>
                 <p style={{
                   fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700,
@@ -707,14 +709,14 @@ export default function SixteenSinsPage() {
                 style={{
                   fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem",
                   letterSpacing: "0.10em", textTransform: "uppercase",
-                  color: "#0b1628", background: "#C5A059",
+                  color: "#0b1628", background: "#8B7355",
                   padding: "1rem 2rem", border: "none",
                   cursor: "pointer", whiteSpace: "nowrap",
                   transition: "background 0.2s",
                   flexShrink: 0,
                 }}
                 onMouseEnter={e => { e.currentTarget.style.background = "#e8a520"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "#C5A059"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#8B7355"; }}
               >
                 GET THE POCKET GUIDE — $59 →
               </button>
@@ -736,7 +738,7 @@ export default function SixteenSinsPage() {
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(212,144,10,0.55)",
+              color: "rgba(139,115,85,0.55)",
               marginBottom: "1.25rem",
             }}>CONCLUSION</p>
 
@@ -820,12 +822,12 @@ export default function SixteenSinsPage() {
                     padding: "0.875rem 1.75rem",
                     textDecoration: "none",
                     display: "inline-block",
-                    border: `1px solid rgba(212,144,10,0.40)`,
+                    border: `1px solid rgba(139,115,85,0.40)`,
                     transition: "border-color 0.2s",
                     whiteSpace: "nowrap",
                   }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = gold)}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,144,10,0.40)")}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(139,115,85,0.40)")}
                 >
                   VIEW THE DOCUMENT SYSTEM — $499 →
                 </Link>
@@ -845,9 +847,9 @@ export default function SixteenSinsPage() {
               fontWeight: 700,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: copied ? "#d4900a" : "rgba(255,255,255,0.28)",
+              color: copied ? "#8B7355" : "rgba(255,255,255,0.28)",
               background: "transparent",
-              border: `1px solid ${copied ? "rgba(212,144,10,0.30)" : "rgba(255,255,255,0.08)"}`,
+              border: `1px solid ${copied ? "rgba(139,115,85,0.30)" : "rgba(255,255,255,0.08)"}`,
               padding: "0.4rem 0.9rem",
               cursor: "pointer",
               transition: "all 0.2s",
@@ -864,7 +866,7 @@ export default function SixteenSinsPage() {
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(139,115,85,0.45)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", margin: 0 }}>
@@ -883,7 +885,7 @@ export default function SixteenSinsPage() {
         </div>
       </div>
 
-      <FooterSection />
+      <SiteFooter />
 
       <style dangerouslySetInnerHTML={{__html: `
         .sin-card:hover { background: #0F2238 !important; }

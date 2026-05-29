@@ -17,9 +17,9 @@ export default function ResultCTAs({ result }) {
         <Link
           to="/program"
           data-testid="cta-proceed-standard"
-          style={{ ...btnBase, background: "#d4900a", color: "#000F1F" }}
+          style={{ ...btnBase, background: "#8B7355", color: "#000F1F" }}
           onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#8B7355")}
         >
           Proceed to the 90-Day Standard →
         </Link>
@@ -42,9 +42,9 @@ export default function ResultCTAs({ result }) {
         <button
           data-testid="cta-retake"
           onClick={() => window.location.reload()}
-          style={{ ...btnBase, background: "#d4900a", color: "#000F1F", cursor: "pointer" }}
+          style={{ ...btnBase, background: "#8B7355", color: "#000F1F", cursor: "pointer" }}
           onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#d4900a")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#8B7355")}
         >
           Retake Assessment
         </button>

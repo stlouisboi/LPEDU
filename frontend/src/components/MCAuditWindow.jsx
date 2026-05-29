@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from '../compat/Link';
 
 /* ── Tokens ──────────────────────────────────────────────────────────────── */
-const GOLD  = "#C5A059";
+const GOLD  = "#8B7355";
 const NAVY  = "#001830";
 const MONO  = "'JetBrains Mono','IBM Plex Mono',monospace";
 const SANS  = "'Inter',sans-serif";
@@ -51,7 +51,7 @@ export default function MCAuditWindow({ compact = false }) {
       data-testid="mc-audit-window"
       style={{
         background: NAVY,
-        border: `1px solid rgba(197,160,89,0.30)`,
+        border: `1px solid rgba(139,115,85,0.30)`,
         borderRadius: 8,
         padding: compact ? "1.5rem" : "2rem",
         boxShadow: "inset 4px 4px 10px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.05)",
@@ -60,7 +60,7 @@ export default function MCAuditWindow({ compact = false }) {
     >
       {/* Section label */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.25rem" }}>
-        <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", margin: 0 }}>
+        <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", margin: 0 }}>
           LP-TOOL-WIN | NEW CARRIER AUDIT WINDOW CALCULATOR
         </p>
         <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.12em", color: "#4ade80", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)", padding: "2px 7px", borderRadius: 2, flexShrink: 0, marginLeft: 8 }}>
@@ -78,7 +78,7 @@ export default function MCAuditWindow({ compact = false }) {
       {/* Date input */}
       <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginBottom: result ? "1.75rem" : 0, flexWrap: "wrap" }}>
         <div style={{ flex: 1, minWidth: 200 }}>
-          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: 6 }}>
+          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(139,115,85,0.55)", marginBottom: 6 }}>
             MC/DOT AUTHORITY GRANT DATE
           </p>
           <input
@@ -89,7 +89,7 @@ export default function MCAuditWindow({ compact = false }) {
             max={new Date().toISOString().split("T")[0]}
             style={{
               width: "100%", boxSizing: "border-box",
-              background: "#001020", border: "1px solid rgba(197,160,89,0.30)",
+              background: "#001020", border: "1px solid rgba(139,115,85,0.30)",
               borderRadius: 0, color: "#fff", fontFamily: MONO, fontSize: "0.875rem",
               padding: "0.625rem 0.875rem", outline: "none", colorScheme: "dark",
             }}
@@ -133,7 +133,7 @@ export default function MCAuditWindow({ compact = false }) {
           </div>
 
           {/* Stats row */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(197,160,89,0.15)", marginBottom: "1.25rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(139,115,85,0.15)", marginBottom: "1.25rem" }}>
             <div style={{ background: "#001020", padding: "1rem 1.25rem" }}>
               <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: 4 }}>DAYS ELAPSED</p>
               <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "1.75rem", color: "rgba(255,255,255,0.60)", lineHeight: 1, letterSpacing: "-0.02em" }}>

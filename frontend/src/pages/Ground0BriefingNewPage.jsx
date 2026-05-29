@@ -362,7 +362,13 @@ function AdmissionForm({ dotPrefill, formVisible }) {
 export default function Ground0BriefingNewPage() {
   const [scanComplete, setScanComplete] = useState(false);
   const [dotPrefill, setDotPrefill] = useState('');
+  const [seats, setSeats] = useState(null);
   const formRef = useRef(null);
+  const API = process.env.REACT_APP_BACKEND_URL;
+
+  useEffect(() => {
+    fetch(`${API}/api/cohort-seats`).then(r => r.json()).then(setSeats).catch(() => {});
+  }, [API]);
 
   const handleScanComplete = () => {
     setScanComplete(true);
@@ -425,8 +431,20 @@ export default function Ground0BriefingNewPage() {
               </div>
             ))}
             <div style={{ marginTop: '1.5rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(28,43,58,0.1)' }}>
-              <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6B7280', marginBottom: '0.25rem' }}>Cohort Status</p>
-              <p style={{ ...mono, fontSize: 12, fontWeight: 700, color: '#1C2B3A', letterSpacing: '0.06em' }}>LP-COH-002 · ACCEPTING REQUESTS</p>
+              <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6B7280', marginBottom: '0.5rem' }}>Cohort Status · LP-COH-002</p>
+              {seats ? (
+                <>
+                  <p style={{ ...mono, fontSize: 12, fontWeight: 700, color: '#1C2B3A', letterSpacing: '0.06em', marginBottom: '0.6rem' }}>
+                    {seats.taken} OF {seats.total} SEATS FILLED
+                  </p>
+                  <div style={{ height: 4, background: 'rgba(28,43,58,0.1)', marginBottom: '0.5rem' }}>
+                    <div style={{ height: '100%', background: '#8B7355', width: `${Math.min(100, (seats.taken / seats.total) * 100)}%`, transition: 'width 0.6s ease' }} />
+                  </div>
+                  <p style={{ ...mono, fontSize: 9, letterSpacing: '0.08em', color: '#6B7280' }}>{seats.remaining} seats remaining</p>
+                </>
+              ) : (
+                <p style={{ ...mono, fontSize: 12, fontWeight: 700, color: '#1C2B3A', letterSpacing: '0.06em' }}>ACCEPTING REQUESTS</p>
+              )}
             </div>
           </div>
         </div>

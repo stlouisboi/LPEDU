@@ -22,7 +22,7 @@ export default function CategoryBreakdown({ scores }) {
       <p style={{
         fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
         letterSpacing: "0.22em", textTransform: "uppercase",
-        color: "rgba(212,144,10,0.65)", marginBottom: "1.25rem",
+        color: "rgba(139,115,85,0.65)", marginBottom: "1.25rem",
       }}>
         CATEGORY BREAKDOWN
       </p>
@@ -39,7 +39,7 @@ export default function CategoryBreakdown({ scores }) {
             >
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: status === "pass" ? "0.25rem" : "0.5rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-                  <span style={{ fontFamily: mono, fontSize: "var(--text-sm)", color: "#d4900a", fontWeight: 700 }}>
+                  <span style={{ fontFamily: mono, fontSize: "var(--text-sm)", color: "#8B7355", fontWeight: 700 }}>
                     {cat.code}
                   </span>
                   <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
