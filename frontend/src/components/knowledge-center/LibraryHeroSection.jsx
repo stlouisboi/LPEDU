@@ -50,7 +50,7 @@ export default function LibraryHeroSection() {
           <h1 style={{ ...serif, fontWeight: 900, fontSize: 'clamp(2.5rem,5vw,3.75rem)', color: '#FAF8F4', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
             Operational Library
           </h1>
-          <p style={{ ...sans, fontSize: '1.05rem', color: 'rgba(250,248,244,0.6)', lineHeight: 1.82, maxWidth: 520, marginBottom: '3rem' }}>
+          <p style={{ ...sans, fontSize: '1.05rem', color: 'rgba(250,248,244,0.85)', lineHeight: 1.82, maxWidth: 520, marginBottom: '3rem' }}>
             Documented briefings on FMCSA compliance, authority operations, and the systems that keep new motor carriers alive through the New Entrant period. Each brief is a working document — not a summary.
           </p>
 
@@ -80,7 +80,7 @@ export default function LibraryHeroSection() {
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 40%, rgba(28,43,58,0.85) 100%)' }} />
-          <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem', background: 'rgba(28,43,58,0.6)', border: '1px solid rgba(250,248,244,0.12)', padding: '0.5rem 0.75rem', backdropFilter: 'blur(4px)' }}>
+          <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem', background: 'rgba(28,43,58,0.82)', border: '1px solid rgba(250,248,244,0.12)', padding: '0.5rem 0.75rem', backdropFilter: 'blur(4px)' }}>
             <p style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.4)', margin: 0 }}>
               FMCSA NEW ENTRANT PROGRAM · 18-MONTH WINDOW
             </p>

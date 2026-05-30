@@ -16,7 +16,7 @@ export default function LibraryCTASection() {
           <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.75rem,3.5vw,2.5rem)', color: '#FAF8F4', letterSpacing: '-0.02em', marginBottom: '1.25rem', lineHeight: 1.2 }}>
             Run the FREE readiness diagnostic first.
           </h2>
-          <p style={{ ...sans, fontSize: '1rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.8, maxWidth: 480 }}>
+          <p style={{ ...sans, fontSize: '1rem', color: 'rgba(250,248,244,0.85)', lineHeight: 1.8, maxWidth: 480 }}>
             The REACH Diagnostic maps your current operation against the five audit systems and tells you which briefs are most urgent for your situation.
           </p>
         </div>
@@ -31,9 +31,9 @@ export default function LibraryCTASection() {
           <Link
             to="/reach-diagnostic"
             data-testid="kc-gap-quiz-cta"
-            style={{ ...mono, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'transparent', color: 'rgba(250,248,244,0.6)', border: '1px solid rgba(250,248,244,0.2)', padding: '1.1rem 2rem', textDecoration: 'none', textAlign: 'center', borderRadius: 0, transition: 'border-color 0.2s, color 0.2s' }}
+            style={{ ...mono, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'transparent', color: 'rgba(250,248,244,0.85)', border: '1px solid rgba(250,248,244,0.2)', padding: '1.1rem 2rem', textDecoration: 'none', textAlign: 'center', borderRadius: 0, transition: 'border-color 0.2s, color 0.2s' }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(250,248,244,0.4)'; e.currentTarget.style.color = '#FAF8F4'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(250,248,244,0.2)'; e.currentTarget.style.color = 'rgba(250,248,244,0.6)'; }}>
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(250,248,244,0.2)'; e.currentTarget.style.color = 'rgba(250,248,244,0.85)'; }}>
             5-QUESTION GAP AUDIT →
           </Link>
         </div>

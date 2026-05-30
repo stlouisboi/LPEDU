@@ -16,7 +16,7 @@ export default function FailurePatternSection() {
 
         {/* Left */}
         <div>
-          <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '1.25rem' }}>The Compliance Failure Pattern</p>
+          <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '1.25rem' }}>The Compliance Failure Pattern</p>
           <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.6rem,3vw,2.5rem)', color: '#1C2B3A', lineHeight: 1.2, marginBottom: '1.5rem' }}>
             Most carriers don't fail audits because they're bad operators. They fail because their paperwork doesn't match their operations.
           </h2>

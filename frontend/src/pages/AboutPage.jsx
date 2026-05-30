@@ -68,7 +68,7 @@ export default function AboutPage() {
           {STATUS_ITEMS.map(([key, val]) => (
             <div key={key} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexShrink: 0 }}>
               <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.4)', letterSpacing: '0.14em' }}>{key}:</span>
-              <span style={{ ...mono, fontSize: 9, color: '#8B7355', letterSpacing: '0.14em', fontWeight: 700 }}>{val}</span>
+              <span style={{ ...mono, fontSize: 9, color: '#C8A96E', letterSpacing: '0.14em', fontWeight: 700 }}>{val}</span>
             </div>
           ))}
         </div>
@@ -81,14 +81,14 @@ export default function AboutPage() {
           {/* Left — Identity */}
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(28,43,58,0.15)', padding: '0.4rem 0.9rem', marginBottom: '1.75rem' }}>
-              <Shield size={10} color="#8B7355" />
+              <Shield size={10} color="#C8A96E" />
               <span style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280' }}>Station Custodian · LP-SYS-V5.2</span>
             </div>
 
             <h1 style={{ ...serif, fontWeight: 900, fontSize: 'clamp(2.5rem,5vw,4rem)', color: '#1C2B3A', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '0.4rem' }}>
               Vince Lawrence
             </h1>
-            <p style={{ ...mono, fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '2rem' }}>
+            <p style={{ ...mono, fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '2rem' }}>
               LaunchPath Standard · Station Custodian
             </p>
 
@@ -114,7 +114,7 @@ export default function AboutPage() {
                 priority
               />
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(28,43,58,0.92))', padding: '2.5rem 1.25rem 1.25rem' }}>
-                <p style={{ ...mono, fontSize: 9, color: '#8B7355', letterSpacing: '0.1em', textTransform: 'uppercase' }}>STATION CUSTODIAN — LP-SYS-V5.2</p>
+                <p style={{ ...mono, fontSize: 9, color: '#C8A96E', letterSpacing: '0.1em', textTransform: 'uppercase' }}>STATION CUSTODIAN — LP-SYS-V5.2</p>
               </div>
             </div>
 
@@ -138,7 +138,7 @@ export default function AboutPage() {
       {/* ── Vince's Statement ──────────────────────────────── */}
       <section style={{ background: '#1C2B3A', padding: 'clamp(4rem,7vw,6rem) 1.5rem', borderBottom: '1px solid rgba(139,115,85,0.15)' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '1.5rem' }}>In Vince's Words</p>
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '1.5rem' }}>In Vince's Words</p>
           <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#FAF8F4', letterSpacing: '-0.02em', marginBottom: '2.5rem' }}>
             Vince Lawrence
           </h2>
@@ -169,7 +169,7 @@ export default function AboutPage() {
       <section style={{ background: '#FAF8F4', padding: 'clamp(4rem,7vw,6rem) 1.5rem', borderBottom: '1px solid rgba(28,43,58,0.08)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ maxWidth: 600, marginBottom: '3.5rem' }}>
-            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.5rem' }}>49 CFR — Operational Doctrine</p>
+            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>49 CFR — Operational Doctrine</p>
             <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#1C2B3A', letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>Operational Doctrine</h2>
             <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.55)' }}>Version 4.2 · Authority: Station Custodian</p>
           </div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1px', background: 'rgba(28,43,58,0.1)' }} className="lp-two-col">
             {DOCTRINE.map((d, i) => (
               <div key={d.ref} style={{ background: '#FAF8F4', borderLeft: '2px solid rgba(139,115,85,0.25)', padding: '2rem 2rem 2rem 1.625rem', transition: 'background 0.2s, border-left-color 0.2s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#F5F2EC'; e.currentTarget.style.borderLeftColor = '#8B7355'; }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#F5F2EC'; e.currentTarget.style.borderLeftColor = '#C8A96E'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = '#FAF8F4'; e.currentTarget.style.borderLeftColor = 'rgba(139,115,85,0.25)'; }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
@@ -200,7 +200,7 @@ export default function AboutPage() {
       {/* ── Institutional Boundaries ───────────────────────── */}
       <section style={{ background: '#F5F2EC', padding: 'clamp(4rem,7vw,6rem) 1.5rem', borderBottom: '1px solid rgba(28,43,58,0.08)' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.75rem' }}>Institutional Boundaries</p>
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.75rem' }}>Institutional Boundaries</p>
           <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#1C2B3A', letterSpacing: '-0.02em', marginBottom: '1rem' }}>
             What LaunchPath Does Not Provide
           </h2>
@@ -244,7 +244,7 @@ export default function AboutPage() {
       {/* ── Closing CTA ────────────────────────────────────── */}
       <section style={{ background: '#1C2B3A', padding: 'clamp(4rem,7vw,6rem) 1.5rem' }}>
         <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '1.25rem' }}>Next Step</p>
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '1.25rem' }}>Next Step</p>
           <p style={{ ...sans, fontSize: '1.05rem', color: 'rgba(250,248,244,0.65)', lineHeight: 1.82, marginBottom: '2.75rem', maxWidth: 560, margin: '0 auto 2.75rem' }}>
             Not all applicants are accepted. Admission is based on operational readiness — not urgency, not ability to pay. If you are in your first 90 days and you are serious about building the system before FMCSA arrives, this is where it starts.
           </p>
@@ -253,7 +253,7 @@ export default function AboutPage() {
             <Link
               to="/ground-0-briefing"
               data-testid="about-ground0-cta"
-              style={{ display: 'inline-flex', alignItems: 'center', background: '#8B7355', color: '#FAF8F4', ...mono, fontWeight: 700, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '1rem 2.25rem', textDecoration: 'none', borderRadius: 0, whiteSpace: 'nowrap' }}
+              style={{ display: 'inline-flex', alignItems: 'center', background: '#C8A96E', color: '#FAF8F4', ...mono, fontWeight: 700, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '1rem 2.25rem', textDecoration: 'none', borderRadius: 0, whiteSpace: 'nowrap' }}
             >
               REQUEST GROUND ZERO BRIEFING →
             </Link>

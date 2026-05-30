@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';
@@ -41,7 +41,7 @@ export default function FeaturedProductCard({ onBuy, loading, error }) {
             <h2 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 'clamp(1.75rem,3.5vw,2.5rem)', color: NAVY, letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>
               Document System Bundle
             </h2>
-            <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(28,43,58,0.6)', lineHeight: 1.7, marginBottom: '1.75rem' }}>
+            <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '1.75rem' }}>
               The complete document system. You install it yourself. Every compliance domain required for the new entrant audit — filed, organized, and structured with a 0–30–60–90 implementation calendar.
             </p>
 
@@ -52,7 +52,7 @@ export default function FeaturedProductCard({ onBuy, loading, error }) {
               {INCLUDES.map((item, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                   <span style={{ color: GOLD, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>
-                  <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.7)', lineHeight: 1.5 }}>{item}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.85)', lineHeight: 1.5 }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -69,7 +69,7 @@ export default function FeaturedProductCard({ onBuy, loading, error }) {
               data-testid="cl-bundle-buy-btn"
               onClick={onBuy}
               disabled={isLoading}
-              style={{ fontFamily: MONO, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: NAVY, color: '#FAF8F4', border: 'none', padding: '1.25rem 2rem', cursor: isLoading ? 'wait' : 'pointer', display: 'block', width: '100%', textAlign: 'center', borderRadius: 0, marginBottom: '0.5rem', opacity: isLoading ? 0.6 : 1 }}>
+              style={{ fontFamily: MONO, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: NAVY, color: '#FAF8F4', border: 'none', padding: '1.25rem 2rem', cursor: isLoading ? 'wait' : 'pointer', display: 'block', width: '100%', textAlign: 'center', borderRadius: 0, marginBottom: '0.5rem', minHeight: 56, opacity: isLoading ? 0.6 : 1 }}>
               {isLoading ? 'PROCESSING...' : 'INSTALL THE BUNDLE — $499 →'}
             </button>
             {error && <p style={{ fontFamily: MONO, fontSize: 9, color: '#ef4444', marginBottom: '0.5rem' }}>{error}</p>}

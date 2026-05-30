@@ -1,5 +1,5 @@
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';

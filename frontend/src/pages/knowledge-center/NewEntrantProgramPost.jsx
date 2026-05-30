@@ -1,8 +1,9 @@
 import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
-import Navbar from "../../components/Navbar";
-import FooterSection from "../../components/FooterSection";
-import BriefBundleCTA from "../../components/BriefBundleCTA";
+import AnnouncementBar from "../../components/home/AnnouncementBar";
+import SiteHeader from "../../components/home/SiteHeader";
+import SiteFooter from "../../components/home/SiteFooter";
+import ArticleAdmissionCTA from "../../components/ArticleAdmissionCTA";
 import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const navy = "#0D1B30";
@@ -95,7 +96,9 @@ export default function NewEntrantProgramPost() {
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <ReadingProgressBar />
-      <Navbar />
+      <AnnouncementBar />
+
+      <SiteHeader />
 
       {/* Article Hero */}
       <div style={{
@@ -232,9 +235,8 @@ export default function NewEntrantProgramPost() {
           LaunchPath Transportation EDU · Accuracy Over Hype. Systems Over Shortcuts.
         </p>
       </div>
-
-      <BriefBundleCTA />
-      <FooterSection />
+      <ArticleAdmissionCTA />
+      <SiteFooter />
     </div>
   );
 }

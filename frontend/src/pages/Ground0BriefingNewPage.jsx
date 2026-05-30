@@ -58,7 +58,7 @@ function TerminalLine({ step, visible }) {
     fail:    '#ef4444',
     divider: 'rgba(250,248,244,0.2)',
     summary: '#FAF8F4',
-    action:  '#8B7355',
+    action:  '#C8A96E',
   };
   const prefix = {
     info:    '  › ',
@@ -113,7 +113,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
 
         {/* Terminal label */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '1.25rem' }}>
-          <span style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8B7355' }}>LP-SCAN-001 · COMPLIANCE EXPOSURE TERMINAL</span>
+          <span style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8A96E' }}>LP-SCAN-001 · COMPLIANCE EXPOSURE TERMINAL</span>
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', display: 'inline-block', boxShadow: '0 0 8px rgba(34,197,94,0.6)' }} />
           <span style={{ ...mono, fontSize: 9, color: '#22c55e', letterSpacing: '0.1em' }}>LIVE</span>
         </div>
@@ -144,7 +144,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
                   <span style={{ color: 'rgba(250,248,244,0.3)', fontSize: 10 }}>This scan shows you what an investigator's review process looks like — not what they find in your files.</span>
                 </div>
                 <div style={{ display: 'flex', gap: 0, alignItems: 'stretch' }}>
-                  <span style={{ ...mono, fontSize: 11, color: '#8B7355', padding: '0.75rem 0.9rem', border: '1px solid rgba(250,248,244,0.15)', borderRight: 'none', background: 'rgba(139,115,85,0.08)', display: 'flex', alignItems: 'center', letterSpacing: '0.06em' }}>DOT&gt;</span>
+                  <span style={{ ...mono, fontSize: 11, color: '#C8A96E', padding: '0.75rem 0.9rem', border: '1px solid rgba(250,248,244,0.15)', borderRight: 'none', background: 'rgba(139,115,85,0.08)', display: 'flex', alignItems: 'center', letterSpacing: '0.06em' }}>DOT&gt;</span>
                   <input
                     ref={inputRef}
                     value={dotInput}
@@ -159,7 +159,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
                     onClick={startScan}
                     disabled={!dotInput.trim()}
                     data-testid="dot-scan-btn"
-                    style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', background: dotInput.trim() ? '#8B7355' : 'rgba(139,115,85,0.2)', color: dotInput.trim() ? '#1C2B3A' : 'rgba(250,248,244,0.2)', border: 'none', padding: '0.75rem 1.25rem', cursor: dotInput.trim() ? 'pointer' : 'default', borderRadius: 0, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                    style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', background: dotInput.trim() ? '#C8A96E' : 'rgba(139,115,85,0.2)', color: dotInput.trim() ? '#1C2B3A' : 'rgba(250,248,244,0.2)', border: 'none', padding: '0.75rem 1.25rem', cursor: dotInput.trim() ? 'pointer' : 'default', borderRadius: 0, fontWeight: 700, whiteSpace: 'nowrap' }}>
                     Run Scan →
                   </button>
                 </div>
@@ -170,7 +170,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
               <div>
                 {/* DOT acknowledgment */}
                 <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.4)', marginBottom: '1rem' }}>
-                  <span style={{ color: '#8B7355' }}>DOT&gt;</span> {dotInput}
+                  <span style={{ color: '#C8A96E' }}>DOT&gt;</span> {dotInput}
                 </div>
                 <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.35)', marginBottom: '1rem' }}>
                   Initiating scan for DOT-{dotInput}...
@@ -180,7 +180,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
                 ))}
                 {scanState === 'scanning' && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
-                    <span style={{ ...mono, fontSize: 11, color: '#8B7355', animation: 'terminal-blink 1s step-end infinite' }}>█</span>
+                    <span style={{ ...mono, fontSize: 11, color: '#C8A96E', animation: 'terminal-blink 1s step-end infinite' }}>█</span>
                   </div>
                 )}
               </div>
@@ -190,7 +190,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
 
         {scanState === 'complete' && (
           <div style={{ marginTop: '1.5rem', padding: '1.25rem 1.5rem', background: 'rgba(139,115,85,0.08)', border: '1px solid rgba(139,115,85,0.3)', borderLeft: '3px solid #8B7355' }}>
-            <p style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8B7355', marginBottom: 4 }}>Scan complete — 4 gaps identified</p>
+            <p style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: 4 }}>Scan complete — 4 gaps identified</p>
             <p style={{ ...sans, fontSize: '0.9rem', color: 'rgba(250,248,244,0.6)', lineHeight: 1.7, margin: 0 }}>
               These are the compliance domains every new entrant authority is reviewed against. The Ground Zero Briefing maps your specific exposure — and determines whether LP-COH-002 is the right fit. Complete the admission request below.
             </p>
@@ -246,9 +246,9 @@ function AdmissionForm({ dotPrefill, formVisible }) {
     return (
       <div data-testid="admission-success-ground0" style={{ textAlign: 'center', padding: '4rem 1.5rem' }}>
         <div style={{ width: 56, height: 56, background: '#1C2B3A', border: '2px solid #8B7355', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-          <CheckCircle size={24} color="#8B7355" />
+          <CheckCircle size={24} color="#C8A96E" />
         </div>
-        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.75rem' }}>Request Received</p>
+        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.75rem' }}>Request Received</p>
         <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.5rem', color: '#1C2B3A', marginBottom: '1rem' }}>Your admission request has been recorded.</h3>
         <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.7)', lineHeight: 1.8, maxWidth: 480, margin: '0 auto 2rem' }}>
           Vince reviews every request personally. You will receive a response within 24–48 hours. If LP-COH-002 is a fit, you will be directed to schedule your Ground Zero Briefing.
@@ -263,7 +263,7 @@ function AdmissionForm({ dotPrefill, formVisible }) {
   return (
     <div style={{ opacity: formVisible ? 1 : 0.35, transition: 'opacity 0.6s ease', pointerEvents: formVisible ? 'auto' : 'none' }}>
       <div style={{ borderBottom: '1px solid rgba(28,43,58,0.1)', paddingBottom: '2rem', marginBottom: '2.5rem' }}>
-        <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.5rem' }}>ADMISSION REQUEST FORM · REF: LP-ADM-001</p>
+        <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>ADMISSION REQUEST FORM · REF: LP-ADM-001</p>
         <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#1C2B3A', marginBottom: '0.75rem' }}>
           Request Your Ground Zero Briefing
         </h2>
@@ -389,7 +389,7 @@ export default function Ground0BriefingNewPage() {
           {/* Left */}
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(28,43,58,0.15)', padding: '0.4rem 0.9rem', marginBottom: '1.75rem' }}>
-              <Shield size={10} color="#8B7355" />
+              <Shield size={10} color="#C8A96E" />
               <span style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280' }}>LP-COH-002 · Admission Gate</span>
             </div>
 
@@ -408,7 +408,7 @@ export default function Ground0BriefingNewPage() {
             <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
               {TRUST_ITEMS.map(({ icon: Icon, label }, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Icon size={14} color="#8B7355" />
+                  <Icon size={14} color="#C8A96E" />
                   <span style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6B7280' }}>{label}</span>
                 </div>
               ))}
@@ -417,7 +417,7 @@ export default function Ground0BriefingNewPage() {
 
           {/* Right — What to expect */}
           <div style={{ background: '#F5F2EC', border: '1px solid rgba(28,43,58,0.12)', padding: '2rem' }}>
-            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '1.25rem' }}>What the briefing covers</p>
+            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '1.25rem' }}>What the briefing covers</p>
             {[
               'Your USDOT telemetry review — what the registry shows about your authority',
               'Your compliance exposure profile across five domains',
@@ -426,7 +426,7 @@ export default function Ground0BriefingNewPage() {
               'Whether admission is appropriate or premature',
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: '0.85rem' }}>
-                <ChevronRight size={13} color="#8B7355" style={{ flexShrink: 0, marginTop: 3 }} />
+                <ChevronRight size={13} color="#C8A96E" style={{ flexShrink: 0, marginTop: 3 }} />
                 <span style={{ ...sans, fontSize: '0.875rem', color: 'rgba(45,55,72,0.75)', lineHeight: 1.65 }}>{item}</span>
               </div>
             ))}
@@ -438,7 +438,7 @@ export default function Ground0BriefingNewPage() {
                     {seats.taken} OF {seats.total} SEATS FILLED
                   </p>
                   <div style={{ height: 4, background: 'rgba(28,43,58,0.1)', marginBottom: '0.5rem' }}>
-                    <div style={{ height: '100%', background: '#8B7355', width: `${Math.min(100, (seats.taken / seats.total) * 100)}%`, transition: 'width 0.6s ease' }} />
+                    <div style={{ height: '100%', background: '#C8A96E', width: `${Math.min(100, (seats.taken / seats.total) * 100)}%`, transition: 'width 0.6s ease' }} />
                   </div>
                   <p style={{ ...mono, fontSize: 9, letterSpacing: '0.08em', color: '#6B7280' }}>{seats.remaining} seats remaining</p>
                 </>

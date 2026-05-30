@@ -1,8 +1,9 @@
 import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
-import Navbar from "../../components/Navbar";
-import FooterSection from "../../components/FooterSection";
-import BriefBundleCTA from "../../components/BriefBundleCTA";
+import AnnouncementBar from "../../components/home/AnnouncementBar";
+import SiteHeader from "../../components/home/SiteHeader";
+import SiteFooter from "../../components/home/SiteFooter";
+import ArticleAdmissionCTA from "../../components/ArticleAdmissionCTA";
 
 const navy = "#0D1B30";
 const gold = "#d4900a";
@@ -87,7 +88,9 @@ export default function BoxTruckFMCSAPost() {
 
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
-      <Navbar />
+      <AnnouncementBar />
+
+      <SiteHeader />
 
       {/* Article Hero */}
       <div style={{
@@ -223,9 +226,8 @@ export default function BoxTruckFMCSAPost() {
           LaunchPath Transportation EDU · Accuracy Over Hype. Systems Over Shortcuts.
         </p>
       </div>
-
-      <BriefBundleCTA />
-      <FooterSection />
+      <ArticleAdmissionCTA />
+      <SiteFooter />
     </div>
   );
 }

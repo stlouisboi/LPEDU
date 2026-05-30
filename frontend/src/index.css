@@ -8,7 +8,7 @@
   --lp-card:     #F5F2EC;
   --lp-primary:  #1C2B3A;
   --lp-pfg:      #FAF8F4;
-  --lp-accent:   #8B7355;
+  --lp-accent:   #C8A96E;
   --lp-fg:       #2D3748;
   --lp-muted:    #6B7280;
   --lp-border:   rgba(28,43,58,0.15);
@@ -710,3 +710,94 @@ button:active, .btn-press:active, a.btn-press:active {
 .bp-sweep-line-delayed {
   animation-delay: 2s;
 }
+
+/* ── Readability Spec: Tired-Eyes Mobile Improvements ────────────────────── */
+
+/* 1. Ensure base font size is 16px — never smaller on mobile */
+html { font-size: 16px; }
+
+/* 2. Dark mode — soften light parchment sections for cab reading at night */
+@media (prefers-color-scheme: dark) {
+  .lp-home,
+  .content-page,
+  [data-readability-light] {
+    --color-background: #1A1F26;
+    --color-foreground: #E8E4DC;
+    --color-card: #1E2530;
+    --color-border: rgba(232, 228, 220, 0.12);
+    --color-accent: #C8A96E;
+    --color-muted: rgba(232, 228, 220, 0.65);
+    background-color: #1A1F26 !important;
+    color: #E8E4DC;
+  }
+  /* Dark sections (navy) already look correct — do not invert */
+  [style*="background:#1C2B3A"],
+  [style*="background: #1C2B3A"] {
+    background: #1C2B3A !important;
+  }
+}
+
+/* 3. Global touch target floor for all interactive elements */
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* 4. Content pages — readability improvements for article body */
+.content-page {
+  line-height: 1.75;
+}
+.content-page p,
+.content-page li,
+.content-page td {
+  font-size: 1rem;   /* 16px — never smaller */
+  line-height: 1.75;
+  color: var(--text-muted, #1E3355);
+}
+.content-page h1 { font-size: clamp(1.875rem, 4vw, 3rem); line-height: 1.15; }
+.content-page h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.2; }
+.content-page h3 { font-size: clamp(1.125rem, 2vw, 1.5rem); line-height: 1.25; }
+
+/* 5. Date and email inputs — 16px explicit to prevent iOS Safari auto-zoom */
+input[type="date"],
+input[type="email"],
+input[type="text"],
+input[type="tel"],
+select,
+textarea {
+  font-size: 16px !important; /* critical — prevents iOS zoom on focus */
+}
+
+/* 6. CTA buttons — 56px min-height on mobile */
+@media (max-width: 640px) {
+  button,
+  a[data-testid*="cta"],
+  a[data-testid*="btn"],
+  .cl-cta-btn {
+    min-height: 52px;
+  }
+}
+
+/* 7. Knowledge Center filter tabs — sticky on mobile below header (56px) */
+[data-testid="kc-filter-bar"] {
+  position: sticky;
+  top: 56px;
+  z-index: 40;
+}
+@media (min-width: 768px) {
+  [data-testid="kc-filter-bar"] {
+    position: relative;
+    top: unset;
+  }
+}
+
+/* 8. No pure white backgrounds */
+body { background-color: #FAF8F4; }
+
+/* 9. Mono labels — min 10px on mobile for readability */
+@media (max-width: 640px) {
+  [data-mono-label] {
+    font-size: 10px !important;
+    letter-spacing: 0.12em !important;
+  }
+}
+

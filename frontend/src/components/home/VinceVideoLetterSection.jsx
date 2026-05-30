@@ -52,13 +52,13 @@ export default function VinceVideoLetterSection({ videoUrl }) {
 
         {/* Right — Metadata */}
         <div>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.5rem' }}>Safety Director · LaunchPath</p>
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Safety Director · LaunchPath</p>
           <h2 style={{ ...serif, fontWeight: 900, fontSize: 'clamp(1.6rem,3vw,2rem)', color: '#1C2B3A', marginBottom: '1.75rem', lineHeight: 1.2 }}>Vince Lawrence</h2>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
             {CREDS.map(({ icon: Icon, text }, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <Icon size={14} color="#8B7355" style={{ flexShrink: 0 }} />
+                <Icon size={14} color="#C8A96E" style={{ flexShrink: 0 }} />
                 <span style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.9rem', color: '#2D3748' }}>{text}</span>
               </div>
             ))}

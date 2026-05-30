@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BORDER = 'rgba(28,43,58,0.12)';
 const SERIF = "'Playfair Display', serif";
 const MONO = "'JetBrains Mono', monospace";
@@ -46,7 +46,7 @@ export default function AuditWindowCalculator() {
         <h2 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#FAF8F4', letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
           How Much of Your Audit Window Is Left?
         </h2>
-        <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.75, marginBottom: '2rem' }}>
+        <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(250,248,244,0.85)', lineHeight: 1.75, marginBottom: '2rem' }}>
           FMCSA targets new carriers for a safety audit within 18 months of authority grant. Enter your MC effective date.
         </p>
 
@@ -60,7 +60,7 @@ export default function AuditWindowCalculator() {
             value={date}
             onChange={e => compute(e.target.value)}
             data-testid="cl-audit-date-input"
-            style={{ fontFamily: MONO, fontSize: '0.9rem', background: 'rgba(250,248,244,0.08)', border: `1px solid rgba(250,248,244,0.2)`, color: '#FAF8F4', padding: '0.875rem 1rem', width: '100%', maxWidth: 320, borderRadius: 0, outline: 'none', colorScheme: 'dark' }}
+            style={{ fontFamily: MONO, fontSize: '16px', background: 'rgba(250,248,244,0.08)', border: `1px solid rgba(250,248,244,0.2)`, color: '#FAF8F4', padding: '0.875rem 1rem', minHeight: 52, width: '100%', maxWidth: 320, borderRadius: 0, outline: 'none', colorScheme: 'dark' }}
           />
         </div>
 

@@ -206,7 +206,7 @@ export default function REACHAssessmentPage() {
               {Array.from({ length: 15 }, (_, i) => (
                 <div key={i} style={{
                   height: 8,
-                  background: i < currentQ ? "#8B7355" : i === currentQ ? "rgba(139,115,85,0.35)" : "rgba(255,255,255,0.07)",
+                  background: i < currentQ ? "#C8A96E" : i === currentQ ? "rgba(139,115,85,0.35)" : "rgba(255,255,255,0.07)",
                   borderRadius: 1,
                   transition: "background 0.25s ease",
                 }} />
@@ -217,7 +217,7 @@ export default function REACHAssessmentPage() {
           <p style={{
             fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
             fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em",
-            textTransform: "uppercase", color: "#8B7355", marginBottom: "2rem",
+            textTransform: "uppercase", color: "#C8A96E", marginBottom: "2rem",
           }}>
             {CATEGORIES[currentCatIdx].full} — {CATEGORIES[currentCatIdx].key}
           </p>
@@ -247,9 +247,9 @@ export default function REACHAssessmentPage() {
                   onClick={() => handleOptionSelect(opt.score, currentQ)}
                   style={{
                     background: isSelected ? "rgba(139,115,85,0.12)" : "rgba(17,27,39,0.8)",
-                    border: `1px solid ${isSelected ? "#8B7355" : "rgba(139,115,85,0.20)"}`,
+                    border: `1px solid ${isSelected ? "#C8A96E" : "rgba(139,115,85,0.20)"}`,
                     borderRadius: 0,
-                    color: isSelected ? "#8B7355" : "rgba(255,255,255,0.72)",
+                    color: isSelected ? "#C8A96E" : "rgba(255,255,255,0.72)",
                     fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem",
                     padding: "1rem 1.5rem", textAlign: "left", cursor: "pointer",
                     transition: "background 0.1s, border-color 0.1s",
@@ -302,7 +302,7 @@ export default function REACHAssessmentPage() {
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                 <div style={{
                   width: 8, height: 8, borderRadius: "50%",
-                  background: "#8B7355", opacity: i === 4 ? 1 : 0.5,
+                  background: "#C8A96E", opacity: i === 4 ? 1 : 0.5,
                 }} />
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
@@ -313,7 +313,7 @@ export default function REACHAssessmentPage() {
           <p style={{
             fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
             fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em",
-            textTransform: "uppercase", color: "#8B7355", marginBottom: "2rem",
+            textTransform: "uppercase", color: "#C8A96E", marginBottom: "2rem",
           }}>
             OPERATIONAL DISCIPLINE — H
           </p>
@@ -346,13 +346,13 @@ export default function REACHAssessmentPage() {
             onClick={handleOpenSubmit}
             className="lp-scan-btn"
             style={{
-              minHeight: 52, background: "#8B7355", color: "#FAF8F4", border: "none",
+              minHeight: 52, background: "#C8A96E", color: "#FAF8F4", border: "none",
               fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1.1rem",
               letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer",
               padding: "1rem 2.5rem", transition: "background 0.2s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#D4B87A")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#8B7355")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#C8A96E")}
           >
             Complete Assessment
           </button>
@@ -417,7 +417,7 @@ export default function REACHAssessmentPage() {
               overflow: "hidden",
             }}>
               <div style={{
-                background: "#8B7355",
+                background: "#C8A96E",
                 height: "100%",
                 width: `${Math.round((analyzedCats / 5) * 100)}%`,
                 transition: "width 0.38s ease",
@@ -440,7 +440,7 @@ export default function REACHAssessmentPage() {
                   }}>
                     <span style={{
                       fontSize: "0.857rem",
-                      color: state === "done" ? "#22c55e" : state === "scanning" ? "#8B7355" : "rgba(255,255,255,0.25)",
+                      color: state === "done" ? "#22c55e" : state === "scanning" ? "#C8A96E" : "rgba(255,255,255,0.25)",
                       fontWeight: 700,
                       minWidth: 14,
                     }}>
@@ -448,7 +448,7 @@ export default function REACHAssessmentPage() {
                     </span>
                     <span style={{
                       fontSize: "0.714rem",
-                      color: state === "done" ? "rgba(255,255,255,0.85)" : state === "scanning" ? "#8B7355" : "rgba(255,255,255,0.3)",
+                      color: state === "done" ? "rgba(255,255,255,0.85)" : state === "scanning" ? "#C8A96E" : "rgba(255,255,255,0.3)",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                     }}>
@@ -621,13 +621,13 @@ export default function REACHAssessmentPage() {
                   href="/launchpath-standard"
                   data-testid="cta-standard-direct"
                   style={{
-                    display: "inline-block", background: "#8B7355", color: "#FAF8F4",
+                    display: "inline-block", background: "#C8A96E", color: "#FAF8F4",
                     fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
                     letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none",
                     padding: "1rem 2rem", transition: "background 0.2s",
                   }}
                   onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
-                  onMouseLeave={e => e.currentTarget.style.background = "#8B7355"}
+                  onMouseLeave={e => e.currentTarget.style.background = "#C8A96E"}
                 >
                   PROCEED TO THE 90-DAY STANDARD →
                 </a>
@@ -763,14 +763,14 @@ export default function REACHAssessmentPage() {
                     disabled={loading}
                     className="lp-scan-btn"
                     style={{
-                      minHeight: 52, background: "#8B7355", color: "#FAF8F4", border: "none",
+                      minHeight: 52, background: "#C8A96E", color: "#FAF8F4", border: "none",
                       fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1rem",
                       letterSpacing: "0.08em", textTransform: "uppercase",
                       cursor: loading ? "wait" : "pointer", padding: "1rem",
                       opacity: loading ? 0.8 : 1, transition: "background 0.2s",
                     }}
                     onMouseEnter={(e) => { if (!loading) e.currentTarget.style.background = "#D4B87A"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = "#8B7355"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "#C8A96E"; }}
                   >
                     {loading ? "Sending..." : "Send My Results"}
                   </button>

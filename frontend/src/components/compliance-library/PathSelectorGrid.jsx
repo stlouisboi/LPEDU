@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';
@@ -77,7 +77,7 @@ export default function PathSelectorGrid({ onBuyBundle, bundleLoading }) {
                   {path.label}
                 </span>
               )}
-              <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(28,43,58,0.7)', lineHeight: 1.65, marginBottom: path.sublabel ? '0.5rem' : '1.25rem' }}>
+              <p style={{ fontFamily: SANS, fontSize: '1rem', color: 'rgba(28,43,58,0.85)', lineHeight: 1.65, marginBottom: path.sublabel ? '0.5rem' : '1.25rem' }}>
                 {path.situation}
               </p>
               {path.sublabel && (

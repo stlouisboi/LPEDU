@@ -1,7 +1,8 @@
 import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
-import Navbar from "../../components/Navbar";
-import FooterSection from "../../components/FooterSection";
+import AnnouncementBar from "../../components/home/AnnouncementBar";
+import SiteHeader from "../../components/home/SiteHeader";
+import SiteFooter from "../../components/home/SiteFooter";
 import { PrimaryCtaBlock, SecondaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
 
 const gold = "#d4900a";
@@ -36,7 +37,9 @@ export const FAQ = [
 export default function NewEntrantAuditChecklistPost() {
   return (
     <div className="content-page" style={{ background: "var(--bg)", minHeight: "100vh" }}>
-      <Navbar />
+      <AnnouncementBar />
+
+      <SiteHeader />
 
       {/* Hero */}
       <div style={{ background: "var(--bg-2)", borderBottom: `3px solid ${gold}`, padding: "5rem 1.5rem 3.5rem" }}>
@@ -169,8 +172,7 @@ export default function NewEntrantAuditChecklistPost() {
         <SecondaryCtaBlock />
         <RegulatoryDisclaimer />
       </div>
-
-      <FooterSection />
+      <SiteFooter />
     </div>
   );
 }

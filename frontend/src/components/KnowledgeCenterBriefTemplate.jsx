@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "./Navbar";
-import FooterSection from "./FooterSection";
+import AnnouncementBar from "./home/AnnouncementBar";
+import SiteHeader from "./home/SiteHeader";
+import SiteFooter from "./home/SiteFooter";
 import ShareButton from "./ShareButton";
 import ReadingProgressBar from "./ReadingProgressBar";
 
@@ -135,7 +136,8 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
   return (
     <div className="brief-root" style={{ background: C.bgMain, minHeight: "100vh", color: C.white }}>
       <ReadingProgressBar />
-      <Navbar />
+      <AnnouncementBar />
+      <SiteHeader />
 
       {/* ── HERO BLOCK ───────────────────────────────────────────────── */}
       <section className="brief-hero" style={{ background: `linear-gradient(160deg, ${C.navy} 0%, #001833 100%)`, borderBottom: `2px solid ${C.gold}`, padding: "5rem 1.5rem 4rem" }}>
@@ -496,7 +498,7 @@ export default function KnowledgeCenterBriefTemplate({ data }) {
         </p>
       </div>
 
-      <FooterSection />
+      <SiteFooter />
 
       <style dangerouslySetInnerHTML={{__html: `
         /* ── Screen layout helpers ── */

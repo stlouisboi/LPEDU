@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const SERIF = "'Playfair Display', serif";
 const MONO = "'JetBrains Mono', monospace";
 const SANS = "'Instrument Sans', sans-serif";
@@ -16,7 +16,7 @@ export default function LibraryFooterCTA() {
         <h2 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 'clamp(1.75rem,3.5vw,2.5rem)', color: '#FAF8F4', letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '1rem' }}>
           Every operator starts with the REACH Diagnostic.
         </h2>
-        <p style={{ fontFamily: SANS, fontSize: '1rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.8, maxWidth: 560, margin: '0 auto 2.5rem' }}>
+        <p style={{ fontFamily: SANS, fontSize: '1rem', color: 'rgba(250,248,244,0.85)', lineHeight: 1.8, maxWidth: 560, margin: '0 auto 2.5rem' }}>
           Before you buy anything, run the REACH Diagnostic. It takes 4–6 minutes. It identifies your exposure across all four compliance pillars — before FMCSA does.
         </p>
 
@@ -24,7 +24,7 @@ export default function LibraryFooterCTA() {
           <Link
             href="/reach-diagnostic"
             data-testid="cl-footer-reach-cta"
-            style={{ fontFamily: MONO, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: GOLD, color: '#FAF8F4', padding: '1.1rem 2.5rem', textDecoration: 'none', borderRadius: 0, display: 'inline-block' }}>
+            style={{ fontFamily: MONO, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: GOLD, color: '#FAF8F4', padding: '1.1rem 2.5rem', textDecoration: 'none', borderRadius: 0, display: 'inline-block', minHeight: 56 }}>
             TAKE THE REACH DIAGNOSTIC — FREE →
           </Link>
           <Link

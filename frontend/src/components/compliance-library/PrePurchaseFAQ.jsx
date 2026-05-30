@@ -1,5 +1,5 @@
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';
@@ -35,7 +35,7 @@ export default function PrePurchaseFAQ() {
               <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1rem', color: NAVY, lineHeight: 1.4, marginBottom: '0.75rem' }}>
                 {item.q}
               </p>
-              <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(28,43,58,0.65)', lineHeight: 1.8, margin: 0 }}>
+              <p style={{ fontFamily: SANS, fontSize: '1rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.8, margin: 0 }}>
                 {item.a}
               </p>
             </div>

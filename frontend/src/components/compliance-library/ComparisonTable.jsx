@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';
@@ -62,9 +62,9 @@ export default function ComparisonTable({ onBuyBundle, bundleLoading }) {
             <tbody>
               {ROWS.map((row, ri) => (
                 <tr key={ri} style={{ borderBottom: `1px solid ${BORDER}`, background: ri % 2 === 0 ? BG : CARD }}>
-                  <td style={{ padding: '0.875rem 1rem', fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.75)', borderRight: `1px solid ${BORDER}`, fontWeight: row.priceRow ? 700 : 400 }}>{row.label}</td>
+                  <td style={{ padding: '0.875rem 1rem', fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.88)', borderRight: `1px solid ${BORDER}`, fontWeight: row.priceRow ? 700 : 400 }}>{row.label}</td>
                   {[row.indiv, row.lib, row.bundle, row.standard].map((val, ci) => (
-                    <td key={ci} style={{ padding: '0.875rem 1rem', textAlign: 'center', fontFamily: SANS, fontSize: '0.875rem', borderRight: ci < 3 ? `1px solid ${BORDER}` : 'none', background: ci === 2 ? 'rgba(139,115,85,0.04)' : undefined, fontWeight: (row.priceRow && ci === 2) ? 700 : 400, color: row.priceRow ? (ci === 2 ? NAVY : 'rgba(28,43,58,0.6)') : 'rgba(28,43,58,0.7)' }}>
+                    <td key={ci} style={{ padding: '0.875rem 1rem', textAlign: 'center', fontFamily: SANS, fontSize: '0.875rem', borderRight: ci < 3 ? `1px solid ${BORDER}` : 'none', background: ci === 2 ? 'rgba(139,115,85,0.04)' : undefined, fontWeight: (row.priceRow && ci === 2) ? 700 : 400, color: row.priceRow ? (ci === 2 ? NAVY : 'rgba(28,43,58,0.82)') : 'rgba(28,43,58,0.85)' }}>
                       {val}
                     </td>
                   ))}
@@ -117,7 +117,7 @@ export default function ComparisonTable({ onBuyBundle, bundleLoading }) {
               <div style={{ padding: '1rem' }}>
                 {ROWS.map((row, ri) => (
                   <div key={ri} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: ri < ROWS.length - 1 ? `1px solid ${BORDER}` : 'none', gap: '0.5rem' }}>
-                    <span style={{ fontFamily: SANS, fontSize: '0.8rem', color: 'rgba(28,43,58,0.6)', lineHeight: 1.4 }}>{row.label}</span>
+                    <span style={{ fontFamily: SANS, fontSize: '0.8rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.4 }}>{row.label}</span>
                     <span style={{ fontFamily: MONO, fontSize: '0.8rem', color: NAVY, fontWeight: 600, textAlign: 'right', flexShrink: 0 }}>{col.vals[ri]}</span>
                   </div>
                 ))}

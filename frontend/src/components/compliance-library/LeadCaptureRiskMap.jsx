@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const BORDER = 'rgba(28,43,58,0.12)';
 const SERIF = "'Playfair Display', serif";
@@ -43,7 +43,7 @@ export default function LeadCaptureRiskMap() {
           <h2 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: NAVY, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
             Get the First 90 Days Risk Map™ — Free
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(28,43,58,0.65)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+          <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
             A single-page tactical document showing the compliance exposure points that reach new carriers in the first 90 days after authority activates — organized by phase.
           </p>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -54,7 +54,7 @@ export default function LeadCaptureRiskMap() {
             ].map((pt, i) => (
               <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.625rem' }}>
                 <span style={{ color: GOLD, fontWeight: 700, flexShrink: 0 }}>·</span>
-                <span style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.7)', lineHeight: 1.6 }}>{pt}</span>
+                <span style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.85)', lineHeight: 1.6 }}>{pt}</span>
               </li>
             ))}
           </ul>
@@ -77,7 +77,7 @@ export default function LeadCaptureRiskMap() {
                   onChange={e => setFirstName(e.target.value)}
                   placeholder="Carrier"
                   data-testid="cl-lead-firstname"
-                  style={{ fontFamily: SANS, fontSize: '0.9rem', border: `1px solid ${BORDER}`, background: BG, color: NAVY, padding: '0.875rem 1rem', width: '100%', borderRadius: 0, outline: 'none', boxSizing: 'border-box' }}
+                  style={{ fontFamily: SANS, fontSize: '16px', border: `1px solid ${BORDER}`, background: BG, color: NAVY, padding: '0.875rem 1rem', minHeight: 52, width: '100%', borderRadius: 0, outline: 'none', boxSizing: 'border-box' }}
                 />
               </div>
               <div style={{ marginBottom: '0.875rem' }}>
@@ -89,7 +89,7 @@ export default function LeadCaptureRiskMap() {
                   placeholder="carrier@company.com"
                   required
                   data-testid="cl-lead-email"
-                  style={{ fontFamily: SANS, fontSize: '0.9rem', border: `1px solid ${BORDER}`, background: BG, color: NAVY, padding: '0.875rem 1rem', width: '100%', borderRadius: 0, outline: 'none', boxSizing: 'border-box' }}
+                  style={{ fontFamily: SANS, fontSize: '16px', border: `1px solid ${BORDER}`, background: BG, color: NAVY, padding: '0.875rem 1rem', minHeight: 52, width: '100%', borderRadius: 0, outline: 'none', boxSizing: 'border-box' }}
                 />
               </div>
               <button

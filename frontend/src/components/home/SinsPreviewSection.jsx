@@ -13,14 +13,14 @@ export default function SinsPreviewSection() {
   return (
     <section style={{ background: '#1C2B3A', padding: 'clamp(4rem,7vw,6rem) 1.5rem' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.75rem' }}>Compliance Threat Taxonomy</p>
+        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.75rem' }}>Compliance Threat Taxonomy</p>
         <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.6rem,3vw,2.5rem)', color: '#FAF8F4', marginBottom: '3rem', maxWidth: 600 }}>
           16 Documented Paths to Automatic Audit Failure
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'rgba(250,248,244,0.08)', marginBottom: '2.5rem' }} className="lp-three-col">
           {SINS.map((s, i) => (
             <div key={i} style={{ background: 'rgba(250,248,244,0.03)', padding: '1.75rem' }}>
-              <p style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.5rem' }}>Sin {s.num}</p>
+              <p style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Sin {s.num}</p>
               <p style={{ ...serif, fontWeight: 700, fontSize: '1rem', color: '#FAF8F4', marginBottom: '0.75rem' }}>{s.name}</p>
               <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.875rem', color: 'rgba(250,248,244,0.5)', lineHeight: 1.7, margin: 0 }}>{s.desc}</p>
             </div>

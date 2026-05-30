@@ -18,7 +18,7 @@ export default function CohortMapSection() {
   return (
     <section style={{ background: '#FAF8F4', borderTop: '1px solid rgba(28,43,58,0.08)', borderBottom: '1px solid rgba(28,43,58,0.08)', padding: 'clamp(4rem,7vw,6rem) 1.5rem' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.75rem' }}>National Cohort Reach</p>
+        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.75rem' }}>National Cohort Reach</p>
         <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.6rem,3vw,2.5rem)', color: '#1C2B3A', marginBottom: '2.5rem' }}>
           LP-COH-001 Graduates — Active Across 14 States
         </h2>

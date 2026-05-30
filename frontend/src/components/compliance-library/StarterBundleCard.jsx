@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';
@@ -22,7 +22,7 @@ export default function StarterBundleCard({ onBuy, loading, error }) {
           <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 'clamp(1.25rem,2.5vw,1.75rem)', color: NAVY, letterSpacing: '-0.015em', marginBottom: '0.625rem' }}>
             LaunchPath Starter Stack
           </h3>
-          <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(28,43,58,0.65)', lineHeight: 1.7, marginBottom: '0.5rem' }}>
+          <p style={{ fontFamily: SANS, fontSize: '1rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.5rem' }}>
             The three foundational diagnostic and prep tools — bundled at a third below individual acquisition cost.
           </p>
           <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.4)', marginBottom: '1.25rem' }}>

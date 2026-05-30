@@ -19,7 +19,7 @@ export default function HeroSection() {
         {/* Left — Copy */}
         <div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(28,43,58,0.15)', padding: '0.4rem 0.9rem', marginBottom: '1.75rem' }}>
-            <Shield size={11} color="#8B7355" />
+            <Shield size={11} color="#C8A96E" />
             <span style={{ ...mono, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280' }}>FMCSA 90-Day Compliance Implementation Cohort</span>
           </div>
 

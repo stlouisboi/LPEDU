@@ -1,5 +1,5 @@
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';
 const SERIF = "'Playfair Display', serif";
@@ -22,7 +22,7 @@ export default function VinceQuoteSection() {
 
         {/* Attribution */}
         <div>
-          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.7)', lineHeight: 2, margin: 0 }}>
+          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.85)', lineHeight: 2, margin: 0 }}>
             VINCE LAWRENCE<br />
             <span style={{ color: 'rgba(28,43,58,0.45)' }}>STATION CUSTODIAN, LAUNCHPATH TRANSPORTATION EDU</span><br />
             <span style={{ color: 'rgba(28,43,58,0.45)' }}>25 YEARS IN SAFETY MANAGEMENT · OSHA CERTIFIED</span>

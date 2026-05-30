@@ -1,0 +1,53 @@
+{
+  "summary": "Frontend testing of article page shell swaps, KC Index visual verification, and readability spec. All 11 test cases passed. Article pages correctly use AnnouncementBar+SiteHeader, ArticleAdmissionCTA routes to /ground-0-briefing, no $499 on article pages, KC Index testids visible, filter bar sticky, gold color updated to #C8A96E, inputs at 16px, AuditWindowCalculator working with 3 stat cards.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "KC Index filter bar",
+        "issues": ["Filter bar sticky top is 60px (computed), spec says 56px — minor 4px delta, functionally correct"]
+      },
+      {
+        "screen": "AuditWindowCalculator INSTALLATION PHASE CTA",
+        "issues": ["Phase 0 (0-182 days elapsed) CTA still shows '$499' label: 'INSTALL THE DOCUMENT SYSTEM — $499 →' linking to '#bundle'. Not on article pages so test #10 passes, but worth updating if pricing has been removed site-wide."]
+      }
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Consider updating AuditWindowCalculator PHASES[0].ctaLabel from '$499' to a non-pricing CTA if the pricing has been fully removed",
+    "Consider aligning filter bar sticky top from 60px to 56px if spec is strict"
+  ],
+  "critical_code_review_comments": [
+    "AuditWindowCalculator.jsx line 11: ctaLabel still has '$499' text for INSTALLATION_PHASE — may conflict with site-wide pricing removal intent",
+    "ArticleAdmissionCTA.jsx uses 'import Link from next/link' directly (not via compat/Link) — works since the app is Next.js, no issue"
+  ],
+  "updated_files": [],
+  "success_rate": {
+    "backend": "N/A",
+    "frontend": "100%"
+  },
+  "test_results": {
+    "article_page_no_old_navbar": "PASS",
+    "article_page_has_announcementbar_siteheader": "PASS",
+    "article_page_has_article_admission_cta": "PASS",
+    "article_cta_routes_ground0_briefing": "PASS — href=/ground-0-briefing, text='BEGIN GROUND 0 — FREE →'",
+    "article_page_has_sitefooter": "PASS",
+    "brief_page_has_announcementbar_siteheader": "PASS",
+    "brief_page_cta_not_pricing": "PASS — routes to /reach-diagnostic",
+    "kc_index_testids_visible": "PASS — kc-hero, kc-filter-bar, kc-article-grid all present",
+    "filter_bar_sticky": "PASS — position:sticky, top:60px (spec says 56px, minor delta)",
+    "gold_color_C8A96E": "PASS — rgb(200,169,110) confirmed, no old #8B7355",
+    "input_font_size_16px": "PASS — date input 16px, email input 16px",
+    "no_499_on_article_pages": "PASS",
+    "audit_calculator_returns_3_stat_cards_and_cta": "PASS — 3 cards (days elapsed, days remaining, status) and contextual CTA shown"
+  },
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All article page shell swaps confirmed working. ArticleAdmissionCTA correctly shows BEGIN GROUND 0 button to /ground-0-briefing with no pricing. KC Index 7 components all loading. Readability spec applied. Only minor issue: AuditWindowCalculator INSTALLATION PHASE still has $499 in CTA label."
+}

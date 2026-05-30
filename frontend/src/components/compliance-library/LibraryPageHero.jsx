@@ -1,5 +1,5 @@
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const SERIF = "'Playfair Display', serif";
 const MONO = "'JetBrains Mono', monospace";
@@ -15,7 +15,7 @@ export default function LibraryPageHero() {
         <h1 style={{ fontFamily: SERIF, fontWeight: 900, fontSize: 'clamp(2.5rem,5vw,3.75rem)', color: '#FAF8F4', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
           The LaunchPath Operating Standards Library
         </h1>
-        <p style={{ fontFamily: SANS, fontSize: '1.05rem', color: 'rgba(250,248,244,0.6)', lineHeight: 1.82, maxWidth: 640, margin: '0 auto 2.5rem' }}>
+        <p style={{ fontFamily: SANS, fontSize: '1.05rem', color: 'rgba(250,248,244,0.85)', lineHeight: 1.82, maxWidth: 640, margin: '0 auto 2.5rem' }}>
           Choose your path: DIY document system or guided 90-day implementation for new motor carriers.
         </p>
 
@@ -35,7 +35,7 @@ export default function LibraryPageHero() {
           <a
             href="/reach-diagnostic"
             data-testid="cl-hero-reach-cta"
-            style={{ fontFamily: MONO, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: GOLD, color: '#FAF8F4', padding: '1.1rem 2.5rem', textDecoration: 'none', borderRadius: 0, display: 'inline-block' }}>
+            style={{ fontFamily: MONO, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: GOLD, color: '#FAF8F4', padding: '1.1rem 2.5rem', textDecoration: 'none', borderRadius: 0, display: 'inline-block', minHeight: 56 }}>
             TAKE THE REACH DIAGNOSTIC — FREE
           </a>
           <a

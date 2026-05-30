@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const NAVY = '#1C2B3A';
-const GOLD = '#8B7355';
+const GOLD = '#C8A96E';
 const BG = '#FAF8F4';
 const CARD = '#F5F2EC';
 const BORDER = 'rgba(28,43,58,0.12)';
@@ -32,7 +32,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
         <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.625rem', fontWeight: 700 }}>
           JUST NEED ONE AREA FIXED?
         </p>
-        <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(28,43,58,0.65)', lineHeight: 1.75, maxWidth: 680, marginBottom: '1.5rem' }}>
+        <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.75, maxWidth: 680, marginBottom: '1.5rem' }}>
           Know exactly which domain needs attention? Each packet covers one compliance area completely. Select your domain. Install it. Move to the next.
         </p>
 
@@ -61,7 +61,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
               }}>
                 <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{d.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1.05rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{d.title}</h3>
-                <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.6)', lineHeight: 1.7, marginBottom: '0.625rem', flexGrow: 1 }}>{d.desc}</p>
+                <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.625rem', flexGrow: 1 }}>{d.desc}</p>
                 <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.4)', marginBottom: '0.875rem' }}>Best for: {d.bestFor}</p>
                 <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '1.75rem', color: NAVY, marginBottom: '1rem' }}>{d.price}</div>
                 <button
@@ -91,7 +91,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
               <div key={s.sku} style={{ padding: '1.75rem', background: CARD, borderRight: i === 0 ? `1px solid ${BORDER}` : 'none', display: 'flex', flexDirection: 'column' }}>
                 <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{s.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{s.title}</h3>
-                <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.6)', lineHeight: 1.7, marginBottom: '0.875rem', flexGrow: 1 }}>{s.desc}</p>
+                <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.875rem', flexGrow: 1 }}>{s.desc}</p>
                 <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '1.5rem', color: NAVY, marginBottom: '1rem' }}>{s.price}</div>
                 <Link
                   href={s.href}
@@ -106,7 +106,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
 
         {/* Bundle upsell footer */}
         <div style={{ background: 'rgba(28,43,58,0.04)', border: `1px solid ${BORDER}`, borderTop: 'none', padding: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap' }}>
-          <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.65)', lineHeight: 1.65, maxWidth: 560, margin: 0 }}>
+          <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.65, maxWidth: 560, margin: 0 }}>
             The Document System Bundle includes all five compliance packets plus the folder architecture, implementation calendar, and master checklist — at $176 below individual acquisition cost.
           </p>
           <a href="#bundle" style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', background: NAVY, color: '#FAF8F4', padding: '0.875rem 1.5rem', textDecoration: 'none', borderRadius: 0, whiteSpace: 'nowrap', flexShrink: 0 }}>

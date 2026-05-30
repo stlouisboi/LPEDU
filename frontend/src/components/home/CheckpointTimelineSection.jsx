@@ -13,7 +13,7 @@ export default function CheckpointTimelineSection() {
   return (
     <section style={{ background: '#F5F2EC', borderTop: '1px solid rgba(28,43,58,0.1)', borderBottom: '1px solid rgba(28,43,58,0.1)', padding: 'clamp(4rem,7vw,6rem) 1.5rem' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '1rem' }}>The LaunchPath System</p>
+        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '1rem' }}>The LaunchPath System</p>
         <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.6rem,3vw,2.5rem)', color: '#1C2B3A', marginBottom: '3.5rem', maxWidth: 560 }}>
           Five Custodian Checkpoints. 90 Days. One Verified Outcome.
         </h2>
@@ -28,7 +28,7 @@ export default function CheckpointTimelineSection() {
                 <div style={{ width: 40, height: 40, background: '#1C2B3A', border: '2px solid #8B7355', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', flexShrink: 0, zIndex: 1 }}>
                   <span style={{ ...mono, fontWeight: 700, fontSize: 11, color: '#FAF8F4' }}>{c.num}</span>
                 </div>
-                <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: '#8B7355', marginBottom: '0.4rem' }}>{c.week}</p>
+                <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: '#C8A96E', marginBottom: '0.4rem' }}>{c.week}</p>
                 <p style={{ ...serif, fontWeight: 700, fontSize: '0.875rem', color: '#1C2B3A', marginBottom: '0.5rem', lineHeight: 1.3 }}>{c.title}</p>
                 <p style={{ ...mono, fontSize: 9, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6B7280', lineHeight: 1.5 }}>{c.desc}</p>
               </div>
@@ -44,7 +44,7 @@ export default function CheckpointTimelineSection() {
                 <span style={{ ...mono, fontWeight: 700, fontSize: 10, color: '#FAF8F4' }}>{c.num}</span>
               </div>
               <div>
-                <p style={{ ...mono, fontSize: 9, color: '#8B7355', marginBottom: 2 }}>{c.week}</p>
+                <p style={{ ...mono, fontSize: 9, color: '#C8A96E', marginBottom: 2 }}>{c.week}</p>
                 <p style={{ ...serif, fontWeight: 700, fontSize: '0.95rem', color: '#1C2B3A', marginBottom: 4 }}>{c.title}</p>
                 <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.85rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.6, margin: 0 }}>{c.desc}</p>
               </div>

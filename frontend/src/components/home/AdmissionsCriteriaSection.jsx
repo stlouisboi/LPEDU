@@ -14,10 +14,10 @@ const TIERS = [
     cta: 'Request Ground 0 Briefing', href: '/ground-0-briefing', ctaBg: '#1C2B3A', ctaColor: '#FAF8F4',
   },
   {
-    badge: 'Borderline — Apply Anyway', badgeColor: '#8B7355',
-    borderColor: '#8B7355',
+    badge: 'Borderline — Apply Anyway', badgeColor: '#C8A96E',
+    borderColor: '#C8A96E',
     title: 'Gaps exist. Authority is active. This is fixable.',
-    icon: AlertTriangle, iconColor: '#8B7355',
+    icon: AlertTriangle, iconColor: '#C8A96E',
     items: ['New entrant carrier (authority < 6 months)', 'Compliance gaps exist but authority is active', 'MCS-150 may be out of date'],
     cta: 'Submit for Review', href: '/ground-0-briefing', ctaBg: '#1C2B3A', ctaColor: '#FAF8F4',
   },
@@ -35,7 +35,7 @@ export default function AdmissionsCriteriaSection() {
   return (
     <section style={{ background: '#FAF8F4', padding: 'clamp(4rem,7vw,6rem) 1.5rem' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.75rem' }}>Admissions Criteria</p>
+        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.75rem' }}>Admissions Criteria</p>
         <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.6rem,3vw,2.5rem)', color: '#1C2B3A', marginBottom: '3rem' }}>Who Qualifies for LP-COH-002</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }} className="lp-three-col">
           {TIERS.map((t, i) => {

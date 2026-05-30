@@ -1,7 +1,8 @@
 import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
-import Navbar from "../../components/Navbar";
-import FooterSection from "../../components/FooterSection";
+import AnnouncementBar from "../../components/home/AnnouncementBar";
+import SiteHeader from "../../components/home/SiteHeader";
+import SiteFooter from "../../components/home/SiteFooter";
 import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const gold = "#d4900a";
@@ -62,7 +63,9 @@ export default function Day1AuthorityBrief() {
   return (
     <div style={{ background: ivory, minHeight: "100vh" }}>
       <ReadingProgressBar />
-      <Navbar />
+      <AnnouncementBar />
+
+      <SiteHeader />
 
       {/* ── HERO ── */}
       <section style={{ background: navy, padding: "5rem 1.5rem 4rem" }}>
@@ -195,8 +198,7 @@ export default function Day1AuthorityBrief() {
           </Link>
         </div>
       </main>
-
-      <FooterSection />
+      <SiteFooter />
     </div>
   );
 }

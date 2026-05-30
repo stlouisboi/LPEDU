@@ -19,7 +19,7 @@ export default function CohortMapChart({ memberStates = [] }) {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={isActive ? '#8B7355' : '#E8E4DC'}
+                fill={isActive ? '#C8A96E' : '#E8E4DC'}
                 stroke="#1C2B3A"
                 strokeWidth={0.5}
                 style={{ default: { outline: 'none' }, hover: { outline: 'none' }, pressed: { outline: 'none' } }}
