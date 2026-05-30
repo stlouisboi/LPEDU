@@ -7,7 +7,7 @@ const NAV = [
   { label: 'REACH Diagnostic', href: '/reach-diagnostic' },
   { label: '16 Sins', href: '/standards/16-deadly-sins' },
   { label: 'About Vince', href: '/about' },
-  { label: 'Library', href: '/knowledge-center' },
+  { label: 'Documents', href: '/compliance-library' },
   { label: 'Portal', href: '/portal' },
 ];
 
