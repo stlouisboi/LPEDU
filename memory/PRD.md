@@ -511,7 +511,12 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
-### Phase 125: Compliance Library Redesign (May 2026)
+### Phase 126: Real Logo Integration (May 2026)
+- **Logo in SiteHeader**: Replaced LP text box placeholder with real `launchpath-logo.png` — transparent PNG cropped from user-provided 1366×768 canvas to 1318×210 wordmark bounds. Renders at 148×44 on parchment header.
+- **Logo in SiteFooter**: Cropped `white_logo.png` and made background transparent → `launchpath-logo-white.png`. Renders at 120×18 in dark navy footer.
+- Both logos apply across all redesigned pages (SiteHeader/SiteFooter are shared components).
+
+
 - **`/compliance-library` full redesign**: Updated all color tokens (NAVY #060d19 → #111B27, GOLD #d4900a → #8B7355, Instrument Sans/JetBrains Mono fonts). Replaced Navbar/FooterSection with SiteHeader/SiteFooter. Removed border-radius from all elements.
 - **No pricing rule applied**: Removed ALL price amounts ($499, $699, $139, $129, $119, $59, $219, $2,500) from card displays, CTA text, comparison tables, FAQ, and bundle hero section
 - **All Stripe checkout buttons converted**: 7 buy buttons (bundle-hero-buy-btn, buy-bundle-btn, compare-bundle-buy-btn, buy-btn-lp-pkt-*, path-card-bundle, mobile-compare-buy-*) converted from onClick/Stripe to Link to /ground-0-briefing with "REQUEST ACCESS →" text

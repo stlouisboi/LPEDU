@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import Image from 'next/image';
 import { Link } from '../../compat/Link';
-import { Menu, X, Shield } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const NAV = [
   { label: 'REACH Diagnostic', href: '/reach-diagnostic' },
@@ -20,14 +21,15 @@ export default function SiteHeader({ activePath = '/' }) {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
           {/* Logo */}
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-            <div style={{ width: 36, height: 36, background: '#1C2B3A', border: '1px solid #8B7355', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <span style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: 14, color: '#FAF8F4' }}>LP</span>
-            </div>
-            <div>
-              <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: 14, color: '#1C2B3A', lineHeight: 1.1 }}>LAUNCHPATH</div>
-              <div style={{ ...mono, fontSize: 8, color: '#6B7280' }}>Safety Standard</div>
-            </div>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+            <Image
+              src="/launchpath-logo.png"
+              alt="LaunchPath"
+              width={148}
+              height={44}
+              style={{ objectFit: 'contain', objectPosition: 'left center', display: 'block' }}
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}

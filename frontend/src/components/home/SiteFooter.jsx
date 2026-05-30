@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Link } from '../../compat/Link';
 
 const mono = { fontFamily: 'JetBrains Mono, monospace' };
@@ -17,12 +18,15 @@ export default function SiteFooter() {
 
         {/* Col 1 */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1rem' }}>
-            <div style={{ width: 28, height: 28, background: '#FAF8F4', border: '1px solid #8B7355', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: 11, color: '#1C2B3A' }}>LP</span>
-            </div>
-            <span style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: 12, color: '#FAF8F4' }}>LAUNCHPATH</span>
-          </div>
+          <Link to="/" style={{ display: 'inline-block', marginBottom: '1rem', textDecoration: 'none' }}>
+            <Image
+              src="/launchpath-logo-white.png"
+              alt="LaunchPath"
+              width={120}
+              height={18}
+              style={{ objectFit: 'contain', objectPosition: 'left center', display: 'block', opacity: 0.85 }}
+            />
+          </Link>
           <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: 'rgba(250,248,244,0.4)', lineHeight: 1.7, marginBottom: '0.75rem' }}>
             Install the compliance system FMCSA expects to find before they open your file.
           </p>
