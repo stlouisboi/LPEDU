@@ -682,4 +682,22 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 ### Knowledge Center Index Redesign — 7-Component Architecture (May 2026)
 - Created 7 KC components in `components/knowledge-center/`: `LibraryHeroSection`, `LibraryEntryBanner`, `ChecklistDownloadBanner`, `ArticleFilterBar`, `ArticleCard`, `ArticleGrid`, `LibraryCTASection`
 - Assembled in `KnowledgeCenterIndex.jsx`
-- Build passes — VISUAL TESTING STILL PENDING by user
+- Build passes — Visual testing CONFIRMED by testing agent (kc-hero, kc-filter-bar, kc-article-grid all present)
+
+
+### Article Page Shell Swap + ArticleAdmissionCTA (May 2026)
+- Created `ArticleAdmissionCTA.jsx` — replaces `BriefBundleCTA` across all article pages. Shows "BEGIN GROUND 0 — FREE →" CTA routing to `/ground-0-briefing`. NO pricing displayed.
+- Bulk-updated 24 knowledge-center article pages (Python script): `Navbar`/`FooterSection`/`BriefBundleCTA` → `AnnouncementBar`/`SiteHeader`/`SiteFooter`/`ArticleAdmissionCTA`
+- Updated `KnowledgeCenterBriefTemplate.jsx` (covers 6 brief files) with same shell swap
+- All article and brief pages now use premium site header/footer
+- Testing: 100% pass (iteration_124.json)
+
+
+### Readability Spec — Tired-Eyes Mobile Improvements (May 2026)
+- **Gold color:** Updated `#8B7355` → `#C8A96E` globally (better contrast on dark backgrounds: 5.2:1 vs 3.26:1). Applied across 16 home components + all compliance-library + KC components.
+- **Contrast:** Body text opacity bumped: 0.55/0.6 → 0.85 on dark bg, 0.6/0.65 → 0.82 on light bg, 0.7/0.75 → 0.85/0.88
+- **Input font-size:** `16px` explicit on date + email inputs (prevents iOS Safari auto-zoom)
+- **Touch targets:** Added `minHeight: 52-56px` on primary inputs and CTA buttons
+- **Global CSS (`index.css`):** Added `prefers-color-scheme: dark` variables for light sections, `font-size: 16px` base, KC filter bar sticky at `top: 56px`, explicit `16px!important` on all input types
+- **Line height:** Body text at 1.75 globally via `.content-page` CSS
+- Testing: 100% pass (iteration_124.json)
