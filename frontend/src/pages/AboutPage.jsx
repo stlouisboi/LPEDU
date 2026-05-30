@@ -63,7 +63,7 @@ export default function AboutPage() {
       <SiteHeader activePath="/about" />
 
       {/* ── System Status Bar ──────────────────────────────── */}
-      <div style={{ background: '#1C2B3A', borderBottom: '1px solid rgba(139,115,85,0.2)', padding: '0.55rem 1.5rem', overflow: 'hidden' }}>
+      <div style={{ background: '#1C2B3A', borderBottom: '1px solid rgba(200,169,110,0.2)', padding: '0.55rem 1.5rem', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: '2.5rem', overflowX: 'auto', scrollbarWidth: 'none' }}>
           {STATUS_ITEMS.map(([key, val]) => (
             <div key={key} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexShrink: 0 }}>
@@ -136,7 +136,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Vince's Statement ──────────────────────────────── */}
-      <section style={{ background: '#1C2B3A', padding: 'clamp(4rem,7vw,6rem) 1.5rem', borderBottom: '1px solid rgba(139,115,85,0.15)' }}>
+      <section style={{ background: '#1C2B3A', padding: 'clamp(4rem,7vw,6rem) 1.5rem', borderBottom: '1px solid rgba(200,169,110,0.15)' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
           <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '1.5rem' }}>In Vince's Words</p>
           <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#FAF8F4', letterSpacing: '-0.02em', marginBottom: '2.5rem' }}>
@@ -176,12 +176,12 @@ export default function AboutPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1px', background: 'rgba(28,43,58,0.1)' }} className="lp-two-col">
             {DOCTRINE.map((d, i) => (
-              <div key={d.ref} style={{ background: '#FAF8F4', borderLeft: '2px solid rgba(139,115,85,0.25)', padding: '2rem 2rem 2rem 1.625rem', transition: 'background 0.2s, border-left-color 0.2s' }}
+              <div key={d.ref} style={{ background: '#FAF8F4', borderLeft: '2px solid rgba(200,169,110,0.25)', padding: '2rem 2rem 2rem 1.625rem', transition: 'background 0.2s, border-left-color 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = '#F5F2EC'; e.currentTarget.style.borderLeftColor = '#C8A96E'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#FAF8F4'; e.currentTarget.style.borderLeftColor = 'rgba(139,115,85,0.25)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#FAF8F4'; e.currentTarget.style.borderLeftColor = 'rgba(200,169,110,0.25)'; }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-                  <span style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(139,115,85,0.6)' }}>
+                  <span style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.6)' }}>
                     DOC-{String(i + 1).padStart(3, '0')} · {d.ref}
                   </span>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(34,197,94,0.7)', border: '1px solid rgba(34,197,94,0.2)', padding: '0.15rem 0.5rem' }}>

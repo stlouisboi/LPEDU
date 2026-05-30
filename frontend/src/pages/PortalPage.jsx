@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { Lock, CheckCircle, ArrowRight } from "@phosphor-icons/react";
 import { usePathname } from 'next/navigation';
-import Navbar from "../components/Navbar";
-import FooterSection from "../components/FooterSection";
+import AnnouncementBar from "../components/home/AnnouncementBar";
+import SiteHeader from "../components/home/SiteHeader";
+import SiteFooter from "../components/home/SiteFooter";
 import { ALL_MODULE_DATA, MODULE_1_DATA } from "../data/moduleData";
 import { CURRICULUM, MODULE_OVERVIEWS } from "../data/portalData";
 import PortalHeader from "../components/portal/PortalHeader";
@@ -319,7 +320,9 @@ export default function PortalPage() {
   if (authChecked === null) {
     return (
       <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
-        <Navbar />
+        <AnnouncementBar />
+
+        <SiteHeader />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
           <p data-testid="portal-auth-loading" style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.5)" }}>
             Verifying access...
@@ -333,7 +336,9 @@ export default function PortalPage() {
   if (!authChecked) {
     return (
       <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
-        <Navbar />
+        <AnnouncementBar />
+
+        <SiteHeader />
         <Ground0LessonPlayer
           user={null}
           API={API}
@@ -342,7 +347,7 @@ export default function PortalPage() {
             setAuthChecked(true);
           }}
         />
-        <FooterSection />
+      <SiteFooter />
       </div>
     );
   }
@@ -357,7 +362,9 @@ export default function PortalPage() {
         color: "#FFFFFF",
       }}
     >
-      <Navbar />
+      <AnnouncementBar />
+
+      <SiteHeader />
 
       {/* Portal header strip */}
       <PortalHeader user={user} onLogout={handleLogout} />
@@ -926,8 +933,7 @@ export default function PortalPage() {
           )}
         </main>
       </div>
-
-      <FooterSection />
+      <SiteFooter />
 
       <style dangerouslySetInnerHTML={{__html: `
         @media (max-width: 768px) {

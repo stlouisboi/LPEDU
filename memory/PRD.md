@@ -679,7 +679,25 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - Testing: 100% pass rate, 17/17 criteria (iteration_123.json). Hydration error in DomainComponentGrid fixed by testing agent.
 
 
-### Knowledge Center Index Redesign — 7-Component Architecture (May 2026)
+### Portal Option A Shell Swap + Full Gold Token Update (May 2026)
+- **Portal Option A:** `PortalPage.jsx` updated — `Navbar`/`FooterSection` → `AnnouncementBar`/`SiteHeader`/`SiteFooter`. All 3 portal views (login, no-access, main) now use premium shell.
+- **REACH page:** Background unified `#111B27`/`#0A1018` → `#1C2B3A`/`#152433`. Gold `#8B7355` → `#C8A96E` including question option borders and diagnostic flow.
+- **About page:** Stray `#8B7355` blockquote border updated to `#C8A96E`.
+- **16 Deadly Sins page:** Gold token `#8B7355` → `#C8A96E` throughout.
+- **Portal sub-components:** `MCAuditWindow.jsx` gold updated. Portal sub-components (PortalHeader, PortalSidebar etc.) now consistent with brand.
+- **Global gold token:** `--lp-accent: #C8A96E` in `index.css`. Every page on the site now uses the spec-compliant accessible gold.
+- Build: 127/127 pages. No errors.
+- **Portal Option B (full dashboard redesign):** BACKLOG — after first enrollment, with real user feedback.
+
+### Priority Stack (as of May 2026)
+1. DONE: Compliance Library 13-component redesign
+2. DONE: Article page shell swaps (24 pages + BriefTemplate)
+3. DONE: KC Index 7-component redesign (visual verified)
+4. DONE: Readability Spec site-wide (contrast, touch targets, iOS fix, dark mode)
+5. DONE: Portal Option A shell swap
+6. DONE: Gold token unified to #C8A96E across all pages
+7. NEXT: GitHub/Vercel production push (user action)
+8. NEXT: Vimeo URLs for portal modules (blocked - awaiting user data)
 - Created 7 KC components in `components/knowledge-center/`: `LibraryHeroSection`, `LibraryEntryBanner`, `ChecklistDownloadBanner`, `ArticleFilterBar`, `ArticleCard`, `ArticleGrid`, `LibraryCTASection`
 - Assembled in `KnowledgeCenterIndex.jsx`
 - Build passes — Visual testing CONFIRMED by testing agent (kc-hero, kc-filter-bar, kc-article-grid all present)
