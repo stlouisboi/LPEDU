@@ -666,3 +666,20 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - Bar turns red when `seats.remaining <= 3` (urgency signal)
 - Uses existing `seats` state (already fetched from `/api/cohort-seats`)
 - Live data confirmed: 4 of 12 filled, 8 remaining
+
+
+### Compliance Library Premium Redesign — 13-Component Architecture (May 2026)
+- Completely rebuilt `/compliance-library` as a premium conversion page with 13 modular components in `components/compliance-library/`
+- **Components created:** `LibraryPageHero`, `PathSelectorGrid`, `FeaturedProductCard`, `StandardGateCard`, `StarterBundleCard`, `AuditWindowCalculator`, `LibraryMetricsStrip`, `PrePurchaseFAQ`, `LeadCaptureRiskMap`, `DomainComponentGrid`, `ComparisonTable`, `VinceQuoteSection`, `LibraryFooterCTA`
+- **Pricing rules enforced:** DIY product prices displayed ($499 bundle, $699 library, $219 starter, domain packets $109–$139, supplemental $59–$169). Standard price NEVER shown — "Disclosed at Ground 0" in ComparisonTable.
+- **Navigation fix:** `PathSelectorGrid` moved to immediately below hero (was buried mid-page).
+- **AuditWindowCalculator:** Rebuilt with full output state — DAYS ELAPSED, DAYS REMAINING, AUDIT WINDOW STATUS cards + contextual CTAs.
+- **SEO:** Title updated to "Compliance Library | FMCSA Document Systems for Motor Carriers | LaunchPath"
+- All $2,500 references removed. All Standard CTAs route to /ground-0-briefing.
+- Testing: 100% pass rate, 17/17 criteria (iteration_123.json). Hydration error in DomainComponentGrid fixed by testing agent.
+
+
+### Knowledge Center Index Redesign — 7-Component Architecture (May 2026)
+- Created 7 KC components in `components/knowledge-center/`: `LibraryHeroSection`, `LibraryEntryBanner`, `ChecklistDownloadBanner`, `ArticleFilterBar`, `ArticleCard`, `ArticleGrid`, `LibraryCTASection`
+- Assembled in `KnowledgeCenterIndex.jsx`
+- Build passes — VISUAL TESTING STILL PENDING by user
