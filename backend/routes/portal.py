@@ -697,7 +697,69 @@ async def post_lesson_question(lesson_id: str, data: LessonQARequest, request: R
     return {k: v for k, v in doc.items()}
 
 
-# ── Announcements (user-facing) ───────────────────────────────────────────────
+# ── Audit Window Countdown — LP-WRK-001 §3.1 Portal Widget ───────────────────
+@router.get("/portal/audit-window")
+async def get_audit_window(request: Request):
+    """
+    Returns the carrier's new entrant safety audit window countdown.
+    Sources authority_grant_date from icp_assessments for this user's email.
+    """
+    user = await get_user_from_request(request)
+    if not user:
+        return {"has_data": False}
+
+    email = user.get("email", "")
+    if not email:
+        return {"has_data": False}
+
+    # Look up most recent ICP assessment for this carrier
+    assessment = await db.icp_assessments.find_one(
+        {"email": email},
+        {"_id": 0},
+        sort=[("assessed_at", -1)],
+    )
+
+    authority_grant_date = (assessment or {}).get("authority_grant_date", "")
+    if not authority_grant_date:
+        return {"has_data": False, "reason": "no_authority_grant_date"}
+
+    try:
+        grant = datetime.strptime(authority_grant_date[:10], "%Y-%m-%d")
+    except ValueError:
+        return {"has_data": False, "reason": "invalid_date_format"}
+
+    now             = datetime.now(timezone.utc).replace(tzinfo=None)
+    window_end      = grant + timedelta(days=548)   # 18 months ≈ 548 days
+    days_remaining  = (window_end - now).days
+    total_days      = 548
+    days_elapsed    = (now - grant).days
+    pct_elapsed     = min(100, round((days_elapsed / total_days) * 100))
+    window_open     = days_remaining > 0
+
+    # Urgency tier
+    if not window_open:
+        urgency = "closed"
+    elif days_remaining <= 60:
+        urgency = "critical"   # < 60 days — red
+    elif days_remaining <= 120:
+        urgency = "high"       # 60–120 days — amber
+    elif days_remaining <= 240:
+        urgency = "moderate"   # 120–240 days — yellow
+    else:
+        urgency = "low"        # > 240 days — green
+
+    return {
+        "has_data": True,
+        "authority_grant_date": authority_grant_date,
+        "audit_window_end": window_end.strftime("%Y-%m-%d"),
+        "days_remaining": max(0, days_remaining),
+        "days_elapsed": days_elapsed,
+        "pct_elapsed": pct_elapsed,
+        "window_open": window_open,
+        "urgency": urgency,
+    }
+
+
 @router.get("/portal/announcements")
 async def get_announcements(request: Request):
     user = await get_user_from_request(request)

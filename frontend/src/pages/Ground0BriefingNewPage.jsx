@@ -434,13 +434,21 @@ export default function Ground0BriefingNewPage() {
               <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6B7280', marginBottom: '0.5rem' }}>Cohort Status · LP-COH-002</p>
               {seats ? (
                 <>
-                  <p style={{ ...mono, fontSize: 12, fontWeight: 700, color: '#1C2B3A', letterSpacing: '0.06em', marginBottom: '0.6rem' }}>
+                  <p style={{ ...mono, fontSize: 12, fontWeight: 700, color: seats.near_capacity ? '#B45309' : '#1C2B3A', letterSpacing: '0.06em', marginBottom: '0.6rem' }}>
                     {seats.taken} OF {seats.total} SEATS FILLED
                   </p>
                   <div style={{ height: 4, background: 'rgba(28,43,58,0.1)', marginBottom: '0.5rem' }}>
-                    <div style={{ height: '100%', background: '#C8A96E', width: `${Math.min(100, (seats.taken / seats.total) * 100)}%`, transition: 'width 0.6s ease' }} />
+                    <div style={{ height: '100%', background: seats.near_capacity ? '#F59E0B' : '#C8A96E', width: `${Math.min(100, (seats.taken / seats.total) * 100)}%`, transition: 'width 0.6s ease' }} />
                   </div>
-                  <p style={{ ...mono, fontSize: 9, letterSpacing: '0.08em', color: '#6B7280' }}>{seats.remaining} seats remaining</p>
+                  {seats.near_capacity ? (
+                    <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.25)', padding: '8px 12px', marginTop: '0.5rem' }}>
+                      <p style={{ ...mono, fontSize: 9, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#B45309', margin: 0, fontWeight: 700 }}>
+                        COHORT NEARLY FULL — {seats.remaining} SEAT{seats.remaining !== 1 ? 'S' : ''} REMAIN
+                      </p>
+                    </div>
+                  ) : (
+                    <p style={{ ...mono, fontSize: 9, letterSpacing: '0.08em', color: '#6B7280' }}>{seats.remaining} seats remaining</p>
+                  )}
                 </>
               ) : (
                 <p style={{ ...mono, fontSize: 12, fontWeight: 700, color: '#1C2B3A', letterSpacing: '0.06em' }}>ACCEPTING REQUESTS</p>
@@ -460,6 +468,25 @@ export default function Ground0BriefingNewPage() {
       {/* ── Admission Form ─────────────────────────────────── */}
       <section ref={formRef} style={{ background: '#FAF8F4', borderTop: '1px solid rgba(28,43,58,0.08)', padding: 'clamp(4rem,7vw,6rem) 1.5rem' }}>
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
+
+          {/* Near-capacity urgency banner — LP-WRK-001 §7.4 */}
+          {seats?.near_capacity && (
+            <div
+              data-testid="ground0-urgency-banner"
+              style={{ background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.30)', borderLeft: '3px solid #F59E0B', padding: '14px 20px', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: 12 }}
+            >
+              <AlertTriangle size={14} color="#B45309" style={{ flexShrink: 0 }} />
+              <div>
+                <p style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#B45309', margin: '0 0 3px' }}>
+                  COHORT NEARLY FULL — {seats.remaining} SEAT{seats.remaining !== 1 ? 'S' : ''} REMAIN
+                </p>
+                <p style={{ ...sans, fontSize: '0.8rem', color: 'rgba(45,55,72,0.65)', margin: 0 }}>
+                  LP-COH-002 is filling. Briefing requests are reviewed in the order received. Submit yours before the cohort closes.
+                </p>
+              </div>
+            </div>
+          )}
+
           <AdmissionForm dotPrefill={dotPrefill} formVisible={true} />
         </div>
       </section>

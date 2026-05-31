@@ -33,6 +33,58 @@ function PortalLoading() {
   );
 }
 
+// ── Audit Window Countdown Widget ────────────────────────────────────────────
+const URGENCY_PALETTE = {
+  low:      { bar: '#34D399', text: '#34D399', bg: 'rgba(52,211,153,0.06)',  border: 'rgba(52,211,153,0.18)'  },
+  moderate: { bar: '#FBBF24', text: '#FBBF24', bg: 'rgba(251,191,36,0.06)',  border: 'rgba(251,191,36,0.18)'  },
+  high:     { bar: '#F59E0B', text: '#F59E0B', bg: 'rgba(245,158,11,0.08)',  border: 'rgba(245,158,11,0.28)'  },
+  critical: { bar: '#F87171', text: '#F87171', bg: 'rgba(248,113,113,0.08)', border: 'rgba(248,113,113,0.30)' },
+  closed:   { bar: '#6B7280', text: 'rgba(255,255,255,0.35)', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.08)' },
+};
+
+function AuditWindowWidget({ data }) {
+  const pal     = URGENCY_PALETTE[data.urgency] || URGENCY_PALETTE.low;
+  const pctFull = Math.min(100, data.pct_elapsed);
+
+  return (
+    <div
+      data-testid="audit-window-widget"
+      style={{ background: pal.bg, border: `1px solid ${pal.border}`, borderLeft: `3px solid ${pal.bar}`, padding: '16px 20px', marginBottom: '1.75rem' }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12 }}>
+        <div>
+          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '9px', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: pal.text, margin: '0 0 6px' }}>
+            NEW ENTRANT SAFETY AUDIT WINDOW
+          </p>
+          {data.window_open ? (
+            <p style={{ margin: 0 }}>
+              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '22px', fontWeight: 700, color: pal.text, lineHeight: 1 }}>{data.days_remaining}</span>
+              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginLeft: 6 }}>DAYS REMAINING</span>
+            </p>
+          ) : (
+            <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '13px', fontWeight: 700, color: pal.text, margin: 0, letterSpacing: '0.10em' }}>AUDIT WINDOW CLOSED</p>
+          )}
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.40)', margin: '5px 0 0' }}>
+            Authority granted: {data.authority_grant_date} &nbsp;·&nbsp; Window closes: {data.audit_window_end}
+          </p>
+        </div>
+        {data.urgency === 'critical' && (
+          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '9px', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.35)', color: '#F87171', padding: '5px 10px', alignSelf: 'flex-start' }}>
+            ACTION REQUIRED
+          </div>
+        )}
+      </div>
+      {/* Progress bar */}
+      <div style={{ height: 3, background: 'rgba(255,255,255,0.07)', marginTop: 14 }}>
+        <div style={{ height: '100%', background: pal.bar, width: `${pctFull}%`, transition: 'width 0.6s ease' }} />
+      </div>
+      <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '9px', color: 'rgba(255,255,255,0.30)', margin: '5px 0 0', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+        {data.days_elapsed} DAYS ELAPSED OF 548-DAY NEW ENTRANT WINDOW (18 MONTHS)
+      </p>
+    </div>
+  );
+}
+
 // Data is imported from ../data/portalData
 
 export default function PortalPage() {
@@ -50,6 +102,7 @@ export default function PortalPage() {
   const [gateStatuses, setGateStatuses] = useState({});
   const [unlockNotice, setUnlockNotice] = useState(null); // module_id of newly unlocked module
   const [vrfCredential, setVrfCredential] = useState(null);
+  const [auditWindow,   setAuditWindow]   = useState(null);
   const [bannerDismissed, setBannerDismissed] = useState(
     () => localStorage.getItem("g0_banner_dismissed") === "true"
   );
@@ -238,6 +291,15 @@ export default function PortalPage() {
       .catch(() => {});
   }, [API, user, hasCohortAccess]);
 
+  // Audit window countdown (LP-WRK-001 §3.1 portal widget)
+  useEffect(() => {
+    if (!user) return;
+    fetch(`${API}/api/portal/audit-window`, { credentials: "include" })
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => { if (d?.has_data) setAuditWindow(d); })
+      .catch(() => {});
+  }, [API, user]);
+
   // Per-lesson view tracking
   const [lessonProgress, setLessonProgress] = useState({}); // { "module-1": ["1-1", "1-2"], ... }
 
@@ -392,6 +454,11 @@ export default function PortalPage() {
 
         {/* ── Main Content ── */}
         <main style={{ flex: 1, padding: "2.5rem 2.5rem" }} className="portal-main">
+
+          {/* ── Audit Window Countdown Widget — LP-WRK-001 §3.1 ── */}
+          {auditWindow?.has_data && (
+            <AuditWindowWidget data={auditWindow} />
+          )}
 
           {/* ── G0 Complete Banner ── */}
           {hasCohortAccess === false && !bannerDismissed && (
