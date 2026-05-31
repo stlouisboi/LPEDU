@@ -760,6 +760,43 @@ async def get_audit_window(request: Request):
     }
 
 
+
+class AuthorityDateRequest(BaseModel):
+    authority_grant_date: str  # ISO date string "YYYY-MM-DD"
+
+
+@router.post("/portal/authority-grant-date")
+async def save_authority_grant_date(body: AuthorityDateRequest, request: Request):
+    """
+    LP-WRK-001 portal prompt — saves authority_grant_date to the carrier's icp_assessment.
+    Creates a minimal assessment record if one doesn't exist.
+    """
+    user = await get_user_from_request(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    email = user.get("email", "")
+    if not email:
+        raise HTTPException(status_code=400, detail="No email on account")
+
+    # Validate date format
+    try:
+        datetime.strptime(body.authority_grant_date[:10], "%Y-%m-%d")
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD")
+
+    now = datetime.now(timezone.utc).isoformat()
+    await db.icp_assessments.update_one(
+        {"email": email},
+        {"$set": {"authority_grant_date": body.authority_grant_date, "updated_at": now},
+         "$setOnInsert": {"email": email, "assessed_at": now}},
+        upsert=True,
+    )
+    logger.info(f"Authority grant date saved for {email}: {body.authority_grant_date}")
+    return {"ok": True, "authority_grant_date": body.authority_grant_date}
+
+
+
 @router.get("/portal/announcements")
 async def get_announcements(request: Request):
     user = await get_user_from_request(request)

@@ -249,7 +249,7 @@ export default function REACHAssessmentPage() {
           </p>
 
           {currentQ === 0 && (
-            <p style={{ fontSize: "0.924rem", color: "rgba(255,255,255,0.40)", fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", marginBottom: "2rem", marginTop: "-1.75rem", lineHeight: 1.75, maxWidth: 500 }}>
+            <p style={{ fontSize: "0.924rem", color: "rgba(255,255,255,0.40)", fontFamily: "'Instrument Sans', sans-serif", marginBottom: "2rem", marginTop: "-1.75rem", lineHeight: 1.75, maxWidth: 500 }}>
               This is a reality check to keep you from walking into a bad deal with your own name on the door. If you answer like who you wish you were instead of who you are right now, the road will correct that faster than any program.
             </p>
           )}
@@ -267,7 +267,7 @@ export default function REACHAssessmentPage() {
                     border: `1px solid ${isSelected ? "#C8A96E" : "rgba(200,169,110,0.20)"}`,
                     borderRadius: 0,
                     color: isSelected ? "#C8A96E" : "rgba(255,255,255,0.72)",
-                    fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1rem",
+                    fontFamily: "'Instrument Sans', sans-serif", fontSize: "1rem",
                     padding: "1rem 1.5rem", textAlign: "left", cursor: "pointer",
                     transition: "background 0.1s, border-color 0.1s",
                     boxShadow: isSelected ? "inset 0 1px 3px rgba(0,0,0,0.5)" : "none",
@@ -291,7 +291,7 @@ export default function REACHAssessmentPage() {
             })}
           </div>
 
-          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.38)", marginTop: "2rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <p style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.38)", marginTop: "2rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             {CATEGORIES[currentCatIdx].full}
           </p>
         </div>
@@ -303,7 +303,7 @@ export default function REACHAssessmentPage() {
           <div style={{ borderLeft: "2px solid #8B7355", paddingLeft: "1.5rem", maxWidth: 480 }}>
             <p style={{
               fontFamily: "'Newsreader', 'Playfair Display', serif", fontSize: "1.12rem",
-              color: "var(--text-muted)", lineHeight: 1.8, fontStyle: "italic",
+              color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontStyle: "italic",
             }}>
               {CATEGORY_INSIGHTS[insightIdx]}
             </p>
@@ -318,13 +318,13 @@ export default function REACHAssessmentPage() {
             {CATEGORIES.map((c, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                 <div style={{
-                  width: 8, height: 8, borderRadius: "50%",
+                  width: 8, height: 8, borderRadius: 0,
                   background: "#C8A96E", opacity: i === 4 ? 1 : 0.5,
                 }} />
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
             ))}
-            <span style={{ fontSize: "var(--text-sm)", color: "var(--text-subtle)", marginLeft: "0.5rem" }}>5 of 5</span>
+            <span style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.38)", marginLeft: "0.5rem" }}>5 of 5</span>
           </div>
 
           <p style={{
@@ -352,7 +352,7 @@ export default function REACHAssessmentPage() {
             style={{
               width: "100%", background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(255,255,255,0.15)", color: "#FFFFFF",
-              fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "1.1rem",
+              fontFamily: "'Instrument Sans', sans-serif", fontSize: "1.1rem",
               padding: "1rem 1.25rem", resize: "vertical", boxSizing: "border-box",
               marginBottom: "1.5rem", outline: "none",
             }}
@@ -373,7 +373,7 @@ export default function REACHAssessmentPage() {
           >
             Complete Assessment
           </button>
-          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.38)", marginTop: "1rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <p style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.38)", marginTop: "1rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             OPERATIONAL DISCIPLINE — FINAL QUESTION
           </p>
         </div>
@@ -520,7 +520,7 @@ export default function REACHAssessmentPage() {
                 LP-MOD-REACH · DIAGNOSTIC_ENGINE_v1
               </p>
               <p style={{
-                fontSize: "var(--text-sm)",
+                fontSize: "0.762rem",
                 color: "#FFFFFF",
                 fontWeight: 700,
                 letterSpacing: "0.08em",
@@ -754,7 +754,7 @@ export default function REACHAssessmentPage() {
                   data-testid="cta-standard-direct"
                   style={{
                     display: "inline-block", background: "#C8A96E", color: "#FAF8F4",
-                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "var(--text-sm)",
+                    fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.762rem",
                     letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none",
                     padding: "1rem 2rem", transition: "background 0.2s",
                   }}
@@ -909,7 +909,7 @@ export default function REACHAssessmentPage() {
                 </form>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "var(--text-sm)",
+                  fontSize: "0.762rem",
                   color: "rgba(255,255,255,0.4)",
                   marginTop: "0.875rem",
                   fontStyle: "italic",

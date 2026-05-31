@@ -44,9 +44,9 @@ const EXCLUSIONS = [
 
 const CREDENTIALS = [
   { val: 'U.S. Navy', label: 'Veteran' },
-  { val: 'OSHA 30', label: 'Certified' },
-  { val: '20+ Years', label: 'Manufacturing & Safety Systems' },
-  { val: 'LP-SYS-V5.2', label: 'Station Custodian' },
+  { val: 'OSHA 30', label: 'OSHA 30-Hour Certified' },
+  { val: '25+ Years', label: 'Safety & Compliance Systems' },
+  { val: 'SAHC-NC', label: 'Safety & Health Council of North Carolina — Member' },
 ];
 
 const STATUS_ITEMS = [
@@ -145,16 +145,16 @@ export default function AboutPage() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2.5rem' }}>
             {[
-              'I did not come from trucking. I came from 20 years of building and leading operational systems in manufacturing environments — where documented processes were the difference between a compliant operation and a costly one, and where leadership meant being accountable for systems other people ran.',
+              'I did not come from trucking. I came from 25 years of building and leading operational systems in manufacturing and safety environments — where documented processes were the difference between a compliant operation and a costly one, and where leadership meant being accountable for systems other people ran.',
               'When I looked at what new motor carriers were operating without in their first 90 days, I recognized the same failure pattern I had watched surface on the plant floor. Not ignorance. Not laziness. The absence of a system. LaunchPath is built from that pattern recognition. The names are different. The failure modes are not.',
               'In trucking, those same missing systems show up as failed New Entrant Safety Audits, revoked authority, and small carriers running out of cash while fixed costs keep burning.',
-              'The Navy runs on documented procedure. Manufacturing operations at the leadership level run on system accountability. OSHA certification is not a trucking credential — it is a regulatory philosophy credential. FMCSA and OSHA operate from the same foundation: industries that will not self-regulate require documented systems, audit mechanisms, and consequence structures. That is the environment I built systems in for two decades. That is the background LaunchPath is built from.',
+              'The Navy runs on documented procedure. Manufacturing and safety operations at the leadership level run on system accountability. OSHA 30-Hour certification is not a trucking credential — it is a regulatory philosophy credential. FMCSA and OSHA operate from the same foundation: industries that will not self-regulate require documented systems, audit mechanisms, and consequence structures. That is the environment I built systems in for two decades. That is the background LaunchPath is built from.',
             ].map((para, i) => (
               <p key={i} style={{ ...sans, fontSize: '1.05rem', color: 'rgba(250,248,244,0.72)', lineHeight: 1.9 }}>{para}</p>
             ))}
           </div>
 
-          <blockquote style={{ borderLeft: '2px solid #8B7355', paddingLeft: '1.5rem' }}>
+          <blockquote style={{ borderLeft: '2px solid rgba(200,169,110,0.45)', paddingLeft: '1.5rem' }}>
             <p style={{ ...serif, fontWeight: 600, fontSize: '1.2rem', color: '#FAF8F4', lineHeight: 1.6, fontStyle: 'italic' }}>
               "My responsibility is not to motivate carriers — it is to prevent preventable failure."
             </p>
@@ -162,6 +162,29 @@ export default function AboutPage() {
               — Vince Lawrence, Station Custodian
             </footer>
           </blockquote>
+        </div>
+      </section>
+
+      {/* ── Other Ventures ─────────────────────────────────── */}
+      <section style={{ background: '#0a0f1a', borderTop: '1px solid rgba(200,169,110,0.08)', borderBottom: '1px solid rgba(200,169,110,0.08)', padding: 'clamp(3rem,5vw,4.5rem) 1.5rem' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.55)', marginBottom: '2rem' }}>Other Ventures</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1px', background: 'rgba(200,169,110,0.08)' }}>
+            <div style={{ background: '#001B36', padding: '2rem 2rem', borderTop: '2px solid #C8A96E' }}>
+              <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Founded 2022</p>
+              <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.3rem', color: '#FAF8F4', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>GigLine</h3>
+              <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.75 }}>
+                Employment and transition platform for U.S. veterans and service members. Built to address the structural gap between military occupational experience and civilian hiring systems. GigLine focuses on documented skill translation, not resume inflation.
+              </p>
+            </div>
+            <div style={{ background: '#001B36', padding: '2rem 2rem', borderTop: '2px solid rgba(200,169,110,0.4)' }}>
+              <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Current</p>
+              <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.3rem', color: '#FAF8F4', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>LaunchPath Transportation EDU</h3>
+              <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.75 }}>
+                Institutional compliance operating standard for new motor carriers. Kernersville, North Carolina. Building on 25 years of documented system installation across manufacturing, safety, and workforce environments.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

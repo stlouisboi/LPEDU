@@ -42,6 +42,71 @@ const URGENCY_PALETTE = {
   closed:   { bar: '#6B7280', text: 'rgba(255,255,255,0.35)', bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.08)' },
 };
 
+
+// ── Audit Window Prompt — one-field activation for carriers without authority_grant_date ──
+function AuditWindowPrompt({ onSave }) {
+  const API_URL = process.env.REACT_APP_BACKEND_URL;
+  const [date,   setDate]   = useState('');
+  const [saving, setSaving] = useState(false);
+  const [error,  setError]  = useState('');
+
+  const handleSave = async () => {
+    if (!date) return;
+    setSaving(true);
+    setError('');
+    try {
+      const resp = await fetch(`${API_URL}/api/portal/authority-grant-date`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ authority_grant_date: date }),
+      });
+      if (!resp.ok) throw new Error('Save failed');
+      // Re-fetch audit window to get the full computed response
+      const aw = await fetch(`${API_URL}/api/portal/audit-window`, { credentials: 'include' });
+      const awData = await aw.json();
+      if (awData.has_data) onSave(awData);
+    } catch (e) {
+      setError('Could not save. Try again.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div
+      data-testid="audit-window-prompt"
+      style={{ background: 'rgba(200,169,110,0.04)', border: '1px solid rgba(200,169,110,0.18)', borderLeft: '3px solid rgba(200,169,110,0.45)', padding: '18px 22px', marginBottom: '1.75rem' }}
+    >
+      <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '9px', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.65)', margin: '0 0 6px' }}>
+        NEW ENTRANT AUDIT WINDOW TRACKER
+      </p>
+      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: '14px', color: 'rgba(255,255,255,0.65)', margin: '0 0 14px', lineHeight: 1.55 }}>
+        Enter your FMCSA authority grant date to activate your audit window countdown.
+      </p>
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <input
+          data-testid="audit-window-date-input"
+          type="date"
+          value={date}
+          onChange={e => setDate(e.target.value)}
+          style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(200,169,110,0.25)', color: '#ffffff', padding: '10px 14px', outline: 'none', colorScheme: 'dark', minHeight: 44 }}
+        />
+        <button
+          data-testid="audit-window-save-btn"
+          onClick={handleSave}
+          disabled={!date || saving}
+          style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '10px', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', background: date ? '#C8A96E' : 'rgba(200,169,110,0.2)', color: date ? '#001B36' : 'rgba(255,255,255,0.30)', border: 'none', padding: '10px 18px', minHeight: 44, cursor: date ? 'pointer' : 'default' }}
+        >
+          {saving ? 'SAVING...' : 'ACTIVATE TRACKER'}
+        </button>
+      </div>
+      {error && <p style={{ fontFamily: "'Inter',sans-serif", fontSize: '12px', color: '#F87171', margin: '8px 0 0' }}>{error}</p>}
+    </div>
+  );
+}
+
+
 function AuditWindowWidget({ data }) {
   const pal     = URGENCY_PALETTE[data.urgency] || URGENCY_PALETTE.low;
   const pctFull = Math.min(100, data.pct_elapsed);
@@ -102,7 +167,8 @@ export default function PortalPage() {
   const [gateStatuses, setGateStatuses] = useState({});
   const [unlockNotice, setUnlockNotice] = useState(null); // module_id of newly unlocked module
   const [vrfCredential, setVrfCredential] = useState(null);
-  const [auditWindow,   setAuditWindow]   = useState(null);
+  const [auditWindow,       setAuditWindow]       = useState(null);
+  const [auditWindowReady,  setAuditWindowReady]  = useState(false);
   const [bannerDismissed, setBannerDismissed] = useState(
     () => localStorage.getItem("g0_banner_dismissed") === "true"
   );
@@ -297,7 +363,8 @@ export default function PortalPage() {
     fetch(`${API}/api/portal/audit-window`, { credentials: "include" })
       .then((r) => r.ok ? r.json() : null)
       .then((d) => { if (d?.has_data) setAuditWindow(d); })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setAuditWindowReady(true));
   }, [API, user]);
 
   // Per-lesson view tracking
@@ -456,8 +523,10 @@ export default function PortalPage() {
         <main style={{ flex: 1, padding: "2.5rem 2.5rem" }} className="portal-main">
 
           {/* ── Audit Window Countdown Widget — LP-WRK-001 §3.1 ── */}
-          {auditWindow?.has_data && (
+          {auditWindow?.has_data ? (
             <AuditWindowWidget data={auditWindow} />
+          ) : auditWindowReady && (
+            <AuditWindowPrompt onSave={(data) => setAuditWindow(data)} />
           )}
 
           {/* ── G0 Complete Banner ── */}
