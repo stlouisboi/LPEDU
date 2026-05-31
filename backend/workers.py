@@ -429,6 +429,173 @@ async def _dropout_recovery_worker():
     logger.info("Dropout recovery worker completed.")
 
 
+def _audit_window_urgency_email(first_name: str, tier: str, days_remaining: int) -> tuple:
+    """Build audit window urgency reminder email. Returns (subject, html)."""
+    NAVY = "#001B36"
+    TEXT = "rgba(255,255,255,0.82)"
+    MUTED = "rgba(255,255,255,0.48)"
+    PORTAL_URL = (FRONTEND_URL or "https://www.launchpathedu.com") + "/portal"
+
+    if tier == "moderate":
+        color = "#FBBF24"
+        subject = f"Your FMCSA audit window — {days_remaining} days remaining."
+        header_label = f"AUDIT WINDOW · MODERATE URGENCY · {days_remaining} DAYS REMAINING"
+        headline = "Your New Entrant audit window has entered the middle phase."
+        paras = [
+            f"You have {days_remaining} days remaining in your 18-month New Entrant Safety Audit window.",
+            "This is the phase where carriers building correctly have time to complete the installation and verify each domain before FMCSA arrives. Carriers not building correctly are running out of that time.",
+            "The LaunchPath Standard is designed to be completed in 90 days. If you have not started, the window to do it properly is narrowing.",
+        ]
+        bullets = [
+            "Run your Audit Readiness Check in the portal to confirm your current exposure",
+            "Ensure your Driver Qualification Files, D&A program, and insurance certificates are complete and current",
+            "Review the 16 Deadly Sins — these are the gaps FMCSA finds most often",
+        ]
+        cta_label = "Run Audit Readiness Check →"
+    elif tier == "high":
+        color = "#F59E0B"
+        subject = f"FMCSA audit window: {days_remaining} days remaining. Action required."
+        header_label = f"AUDIT WINDOW · HIGH URGENCY · {days_remaining} DAYS REMAINING"
+        headline = f"Your FMCSA audit window closes in {days_remaining} days."
+        paras = [
+            f"You have {days_remaining} days remaining. That is not a safety margin — that is the close of the window.",
+            "At this stage, gaps in your compliance infrastructure are visible to FMCSA before they are visible to you. The time to find them first is now, not when you receive notice of a scheduled audit.",
+            "If any domain — driver qualification, drug and alcohol, hours of service, vehicle maintenance, or insurance authority — is incomplete, that is where FMCSA will go first.",
+        ]
+        bullets = [
+            "Run a full Audit Readiness Check immediately",
+            "Verify all DQ files are complete and current for every operating driver",
+            "Confirm your D&A program enrollment and random testing pool are active",
+            "Check that insurance certificates reflect current operations and are filed with FMCSA",
+        ]
+        cta_label = "Open Portal — Check Compliance Status →"
+    else:  # critical
+        color = "#F87171"
+        subject = f"URGENT — FMCSA audit window closes in {days_remaining} days."
+        header_label = f"AUDIT WINDOW · CRITICAL · {days_remaining} DAYS REMAINING"
+        headline = f"Your FMCSA audit window closes in {days_remaining} days."
+        paras = [
+            "This is not a warning you should set aside. At this stage, the probability that FMCSA will schedule a New Entrant Safety Audit before this window closes is high.",
+            "Any outstanding compliance gaps — missing documents, unverified files, inactive programs — are the same items FMCSA will use to evaluate your authority status.",
+            "The cost of a failed New Entrant audit is not a fine. It is loss of operating authority, disrupted operations, and remediation that can run $10,000–$25,000 in professional correction fees.",
+            "You have time to act. You do not have time to delay.",
+        ]
+        bullets = [
+            "Run Audit Readiness Check NOW — every domain",
+            "Review flagged items and correct them immediately",
+            "Contact the Station Custodian if you need urgent review support",
+        ]
+        cta_label = "OPEN PORTAL — IMMEDIATE ACTION REQUIRED →"
+
+    body_html = "".join(
+        f'<p style="font-size:15px;color:{TEXT};line-height:1.80;margin:0 0 14px;">{p}</p>'
+        for p in paras
+    )
+    bullets_html = "".join(
+        f'<li style="font-size:14px;color:{MUTED};line-height:1.75;margin:0 0 8px;">{b}</li>'
+        for b in bullets
+    )
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#000a14;font-family:'Inter',Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#000a14;">
+  <tr><td align="center" style="padding:40px 16px;">
+    <table width="100%" style="max-width:600px;background:{NAVY};border-top:3px solid {color};">
+      <tr><td style="padding:40px 40px 0;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:{color};margin:0 0 28px;">{header_label}</p>
+        <p style="font-size:16px;color:{TEXT};line-height:1.75;margin:0 0 20px;">{first_name},</p>
+        <h2 style="font-size:21px;font-weight:700;color:#ffffff;margin:0 0 24px;line-height:1.3;">{headline}</h2>
+        {body_html}
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:{color};margin:0 0 12px;">ACTION ITEMS</p>
+        <ul style="margin:0 0 24px;padding:0 0 0 18px;">{bullets_html}</ul>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:24px 0;"></div>
+        <table cellpadding="0" cellspacing="0" style="margin:28px 0;"><tr>
+          <td><a href="{PORTAL_URL}" style="display:inline-block;background:{color};color:{NAVY};font-family:'Inter',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;padding:14px 28px;">{cta_label}</a></td>
+        </tr></table>
+        <p style="font-size:15px;color:{TEXT};margin:0 0 4px;">— Vince Lawrence</p>
+        <p style="font-size:12px;color:{MUTED};margin:0;">Station Custodian, LaunchPath Transportation EDU</p>
+      </td></tr>
+      <tr><td style="padding:24px 40px 32px;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(255,255,255,0.20);margin:0;text-transform:uppercase;">LP-WRK-001 &nbsp;·&nbsp; launchpathedu.com &nbsp;·&nbsp; Not legal or compliance advice.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>"""
+    return subject, html
+
+
+async def _send_audit_window_urgency_reminders():
+    """
+    LP-WRK-001 — Audit window urgency portal reminders.
+    Fires MailerSend emails when a carrier's New Entrant audit window
+    crosses into 'moderate' (120–240 days), 'high' (60–120 days),
+    or 'critical' (<60 days) urgency tiers. Each tier sends once per carrier
+    (deduped via flags on icp_assessments).
+    """
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+
+    assessments = await db.icp_assessments.find(
+        {"authority_grant_date": {"$exists": True, "$nin": ["", None]}},
+        {"_id": 0},
+    ).to_list(500)
+
+    sent = 0
+    for rec in assessments:
+        email = rec.get("email", "")
+        authority_grant_date = rec.get("authority_grant_date", "")
+        if not email or not authority_grant_date:
+            continue
+
+        try:
+            grant = datetime.strptime(authority_grant_date[:10], "%Y-%m-%d")
+        except ValueError:
+            continue
+
+        window_end = grant + timedelta(days=548)
+        days_remaining = (window_end - now).days
+
+        if days_remaining <= 0:
+            continue  # Window closed
+
+        # Determine urgency tier
+        if days_remaining <= 60:
+            tier = "critical"
+        elif days_remaining <= 120:
+            tier = "high"
+        elif days_remaining <= 240:
+            tier = "moderate"
+        else:
+            continue  # Low urgency — no reminder yet
+
+        flag_key = f"audit_window_{tier}_sent"
+        if rec.get(flag_key):
+            continue  # Already sent this tier's reminder
+
+        # Fetch user name
+        user = await db.users.find_one({"email": email}, {"_id": 0})
+        first_name = "Operator"
+        if user:
+            first_name = (user.get("name") or "").split()[0] or "Operator"
+
+        subject, html = _audit_window_urgency_email(first_name, tier, days_remaining)
+        try:
+            await send_mailersend_email(email, first_name, subject, html)
+            await db.icp_assessments.update_one(
+                {"email": email},
+                {"$set": {flag_key: True, f"{flag_key}_at": datetime.now(timezone.utc).isoformat()}},
+            )
+            sent += 1
+            logger.info(f"Audit window {tier} reminder sent to {email} ({days_remaining} days remaining)")
+        except Exception as exc:
+            logger.error(f"Audit window urgency email failed for {email}: {exc}")
+
+    logger.info(f"Audit window urgency worker: {sent} reminders sent.")
+
+
 async def _reevaluation_180d_worker():
     """
     LP-WRK-001 §1.4 — NOT-ADMITTED-TIMING re-evaluation at 180 days.
@@ -470,6 +637,7 @@ async def followup_email_worker():
             await _send_onboarding_checkin_emails()
             await _send_followup_emails()
             await _send_monthly_audit_reminders()
+            await _send_audit_window_urgency_reminders()
             await _send_ground0_sequence_emails()
             await process_pending_sequences()
             await _dropout_recovery_worker()
