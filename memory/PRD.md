@@ -42,6 +42,16 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 126: LP-WRK-001 Items 5–10 — Complete (June 2026)
+- **Item 5 — Nurture Sequences (Track A & B)**: Track A (NURTURE-NEAR, ICP 40–59): 5 emails at Days 0, 3, 7, 14, 21. Day 21 email has dynamic audit window countdown from `authority_grant_date`. Track B (NURTURE-FAR, ICP 20–39): 11 emails at weeks 1–11 (Month 1 Foundation → Month 2 Consequence → Month 3 Positioning). Auto-enrolled from `/api/reach` based on `icp_classification`. Both wired into `process_pending_sequences()` worker.
+- **Item 6 — Admin Checkpoint UI**: New `carrier_checkpoints` MongoDB collection. 5 LP-WRK-001 spec checkpoints per enrolled carrier (CP-01 Day 14 through CP-05 Day 90). `/api/admin/checkpoints` auto-initializes checkpoints for all enrolled carriers. `/admin/checkpoints` admin panel with accordion per carrier, 5-dot progress indicator, PASSED/FAILED/UNDER_REVIEW marking with notes. Wired into AdminNavBar between Admissions and Gate Reviews.
+- **Item 7 — Dropout Recovery**: Three-tier MailerSend email flow (Day+3 reminder, Day+7 final notice, Day+44 deferred enrollment offer). Worker detects missed checkpoint deadlines from enrolled carrier grant dates.
+- **Item 8 — Alumni Sequence (Flow 9)**: 4 emails post-VRF issuance (Week 1, Month 1, Month 3, Month 6). Enrolled automatically in `_issue_vrf_id_if_eligible()` in portal.py. Covers credential use, 6-month maintenance calendar, referral ask, Year 2 changes.
+- **Item 9 — CRM State Machine**: `_update_crm_state(email, state)` helper for 16-state LP-WRK-001 taxonomy. Updates MailerLite subscriber `crm_state` field + local `crm_states` collection audit trail. Fires at: REACH submission (→ NURTURE-NEAR/FAR), ICP≥60 (→ GROUND-0-PENDING), checkpoint PASSED (→ COHORT-ACTIVE), checkpoint FAILED (→ COHORT-AT-RISK), VRF issued (→ LP-VRF-ISSUED).
+- **Item 10 — 180-day Re-evaluation**: `_reevaluation_180d_worker()` in workers.py scans `icp_assessments` for NURTURE_NEAR/FAR leads 180+ days old and sends a REACH retake prompt. Deduplicated by `reevaluation_180d_sent` flag.
+- **AdminSequencesPage updated**: 9-stat strip, 6-flow legend with Track A/B/Alumni. Flow descriptions per LP-WRK-001 spec.
+- Testing: 100% pass (iteration_126.json — 8 backend, all frontend spec items verified).
+
 ### Phase 117: LP-WEB Spec Package v2 — Complete Implementation (May 2026)
 - **LP-WEB-[E] Bug Fix 2**: Globally standardized "REACH Assessment" / "REACH Test" → "REACH Diagnostic" across ALL 15+ public-facing files (78 instances now correctly say "REACH Diagnostic"). Scope: Ground0Page, AdmissionPage, KC posts, WhoIsItForSection, FAQSection, SocialProofSection, HowItWorksSection, BriefBundleCTA, ReachRedirectView, CompleteView, REACHTeaserSection, KCClusterCtaBlocks, PreOpChecklistThankYou, reach-diagnostic.jsx SEO title, and more.
 - **LP-WEB-[F] Program Page Gaps**: Added 3 conversion improvements to PricingSection.jsx: (1) Payment plan callout (`data-testid="payment-plan-callout"`) — "$1,500 at enrollment · $1,500 at Day 30"; (2) Cohort date block (`data-testid="cohort-date-block"`) — "LP-COH-001 — NEXT COHORT / Coming Soon — Date TBD"; (3) Post-admission path (`data-testid="post-admission-path"`) — "WHAT HAPPENS AFTER ADMISSION" with IF ADMITTED / IF FULL sections.
@@ -711,13 +721,13 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
   - Current state: 4/12 taken, 8 remaining, `near_capacity: false`, `at_capacity: false`
 - Testing: 100% pass rate — 7/7 backend, 12/12 frontend (iteration_125.json)
 
-### LP-WRK-001 Items Remaining (Backlog)
-- Item 5: MailerLite Track A (NURTURE-NEAR 30-day sequence) + Track B (NURTURE-FAR 90-day sequence)
-- Item 6: Checkpoint PASSED/FAILED admin panel UI
-- Item 7: Drop-out recovery protocol (MailerSend triggers at days 7/14/21/30)
-- Item 8: Alumni sequence (MailerLite, post-credential)
-- Item 9: Full CRM tag state machine (17-tag taxonomy in MailerLite)
-- Item 10: NOT-ADMITTED-TIMING re-evaluation trigger (180-day)
+### LP-WRK-001 Items Remaining (Backlog — all Items 5-10 DONE as of Phase 126)
+- ~~Item 5: MailerLite Track A (NURTURE-NEAR 30-day sequence) + Track B (NURTURE-FAR 90-day sequence)~~ DONE
+- ~~Item 6: Checkpoint PASSED/FAILED admin panel UI~~ DONE
+- ~~Item 7: Drop-out recovery protocol (MailerSend triggers at days 7/14/21/30)~~ DONE
+- ~~Item 8: Alumni sequence (MailerLite, post-credential)~~ DONE
+- ~~Item 9: Full CRM tag state machine (17-tag taxonomy in MailerLite)~~ DONE
+- ~~Item 10: NOT-ADMITTED-TIMING re-evaluation trigger (180-day)~~ DONE
 - Item 11: LP-VRF-PUB-001 public registry page + card design (BLOCKED — wait for first enrollment)
 1. DONE: Compliance Library 13-component redesign
 2. DONE: Article page shell swaps (24 pages + BriefTemplate)
