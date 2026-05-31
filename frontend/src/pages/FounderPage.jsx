@@ -121,7 +121,7 @@ export default function FounderPage() {
 
       {/* ── File Classification Band ── */}
       <div style={{ background: "#050a14", borderBottom: "1px solid rgba(197,160,89,0.14)", padding: "0.6rem 1.5rem" }}>
-        <div style={{ maxWidth: 1020, margin: "0 auto", display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap" }}>
+        <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap" }}>
           {[
             { text: "LP-FOUNDER-001",              dim: false },
             { text: "|",                            dim: true  },
@@ -136,7 +136,7 @@ export default function FounderPage() {
         </div>
       </div>
 
-      <main style={{ maxWidth: 1020, margin: "0 auto", padding: "5.5rem 1.5rem 8rem" }}>
+      <main style={{ maxWidth: 1440, margin: "0 auto", padding: "5.5rem 2.5rem 8rem" }}>
 
         {/* ══ SECTION 1: Identity Dossier ══ */}
         <section

@@ -45,6 +45,7 @@ import AdminProductFilesPage from "./pages/AdminProductFilesPage";
 import AdminGateReviewsPage from "./pages/AdminGateReviewsPage";
 import AdminCommunityPage from "./pages/AdminCommunityPage";
 import AdminAuditReadinessPage from "./pages/AdminAuditReadinessPage";
+import AdminAuditWindowsPage from "./pages/AdminAuditWindowsPage";
 import ProductConfirmedPage from "./pages/ProductConfirmedPage";
 import { usePathname } from 'next/navigation';
 
@@ -153,6 +154,7 @@ function AppRouter() {
       <Route path="/admin/products" element={<AdminProductFilesPage />} />
       <Route path="/admin/gate-reviews" element={<AdminGateReviewsPage />} />
       <Route path="/admin/audit-readiness" element={<AdminAuditReadinessPage />} />
+      <Route path="/admin/audit-windows" element={<AdminAuditWindowsPage />} />
           <Route path="/admin/community" element={<AdminCommunityPage />} />
       <Route path="/products/confirmed" element={<ProductConfirmedPage />} />
       <Route path="/knowledge-center" element={<KnowledgeCenterIndex />} />

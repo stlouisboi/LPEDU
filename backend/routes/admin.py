@@ -433,6 +433,64 @@ async def list_registry_ids(coach_id: str = Depends(_require_coach)):
     return {"registry_ids": docs}
 
 
+@router.get("/admin/audit-windows")
+async def list_audit_windows(coach_id: str = Depends(_require_coach)):
+    """Admin view: all carriers with authority_grant_date, urgency tier, and reminder email status."""
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+
+    assessments = await db.icp_assessments.find(
+        {"authority_grant_date": {"$exists": True, "$nin": ["", None]}},
+        {"_id": 0},
+    ).to_list(500)
+
+    results = []
+    for rec in assessments:
+        email = rec.get("email", "")
+        authority_grant_date = rec.get("authority_grant_date", "")
+        if not email or not authority_grant_date:
+            continue
+        try:
+            grant = datetime.strptime(authority_grant_date[:10], "%Y-%m-%d")
+        except ValueError:
+            continue
+
+        window_end = grant + timedelta(days=548)
+        days_remaining = (window_end - now).days
+
+        if days_remaining <= 0:
+            tier = "expired"
+        elif days_remaining <= 60:
+            tier = "critical"
+        elif days_remaining <= 120:
+            tier = "high"
+        elif days_remaining <= 240:
+            tier = "moderate"
+        else:
+            tier = "low"
+
+        user = await db.users.find_one({"email": email}, {"_id": 0})
+        name = (user.get("name", "") if user else "") or ""
+
+        results.append({
+            "email": email,
+            "name": name,
+            "authority_grant_date": authority_grant_date[:10],
+            "days_remaining": days_remaining,
+            "window_end": window_end.strftime("%Y-%m-%d"),
+            "urgency": tier,
+            "moderate_sent": bool(rec.get("audit_window_moderate_sent")),
+            "high_sent": bool(rec.get("audit_window_high_sent")),
+            "critical_sent": bool(rec.get("audit_window_critical_sent")),
+            "moderate_sent_at": rec.get("audit_window_moderate_sent_at"),
+            "high_sent_at": rec.get("audit_window_high_sent_at"),
+            "critical_sent_at": rec.get("audit_window_critical_sent_at"),
+        })
+
+    tier_order = {"expired": 0, "critical": 1, "high": 2, "moderate": 3, "low": 4}
+    results.sort(key=lambda x: tier_order.get(x["urgency"], 5))
+    return {"carriers": results, "total": len(results)}
+
+
 # ── 16 Deadly Sins Checklist Leads ───────────────────────────────────────────
 @router.get("/admin/sins-leads")
 async def list_sins_leads(coach_id: str = Depends(_require_coach)):

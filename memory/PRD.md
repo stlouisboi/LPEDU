@@ -525,6 +525,11 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 130: Admin Audit Windows Dashboard + Founder Page Zoom (June 2026)
+- **`/admin/audit-windows`**: New admin page — dark institutional theme, AdminNavBar, tier filters (ALL/CRITICAL/HIGH/MODERATE/LOW), search, reminder email flag indicators (MOD/HI/CRIT with ✓ when sent). Backend `GET /api/admin/audit-windows` queries all `icp_assessments` with `authority_grant_date`, computes urgency tier, returns reminder email status flags. Sorted by urgency (critical first). Auth-gated (admin login required). Added "Audit Windows" to AdminNavBar.
+- **Founder page zoom-out**: `maxWidth` widened from `1020px` → `1440px` (both content and classification band). Padding increased to `2.5rem`. Page now fills wide viewport correctly.
+- Testing: Verified via screenshot — 6 live carriers loading, tiers correct, dark theme confirmed.
+
 ### Phase 129: Audit Window Urgency Reminder Emails (June 2026)
 - **`_audit_window_urgency_email()`**: Email builder returning institutional MailerSend HTML for three tiers — `moderate` (120–240 days, amber), `high` (60–120 days, amber-red), `critical` (<60 days, red). Doctrinal voice: plain-English, consequence-aware, no hype. Each has tier-colored header band, action items list, and direct portal CTA.
 - **`_send_audit_window_urgency_reminders()`**: Daily worker queries all `icp_assessments` with `authority_grant_date`. Computes urgency tier. Fires exactly one email per tier per carrier lifetime (deduped via `audit_window_{tier}_sent` flags on `icp_assessments`). Matched portal.py thresholds exactly.
