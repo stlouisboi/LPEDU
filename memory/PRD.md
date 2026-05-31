@@ -525,6 +525,12 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 129: Audit Window Urgency Reminder Emails (June 2026)
+- **`_audit_window_urgency_email()`**: Email builder returning institutional MailerSend HTML for three tiers — `moderate` (120–240 days, amber), `high` (60–120 days, amber-red), `critical` (<60 days, red). Doctrinal voice: plain-English, consequence-aware, no hype. Each has tier-colored header band, action items list, and direct portal CTA.
+- **`_send_audit_window_urgency_reminders()`**: Daily worker queries all `icp_assessments` with `authority_grant_date`. Computes urgency tier. Fires exactly one email per tier per carrier lifetime (deduped via `audit_window_{tier}_sent` flags on `icp_assessments`). Matched portal.py thresholds exactly.
+- **Wired into `followup_email_worker()`**: Runs as part of the daily 24h background loop between `_send_monthly_audit_reminders()` and `_send_ground0_sequence_emails()`.
+- Testing: 10/10 PASS — iteration_129.json
+
 ### Phase 128: Final Pre-Production Batch — Validated (June 2026)
 - **Authority Grant Date Prompt** (`data-testid=audit-window-prompt`): New inline widget renders at top of Portal main content when `authority_grant_date` is missing from `icp_assessments`. Date input + "ACTIVATE TRACKER" button. Calls `POST /api/portal/authority-grant-date` → re-fetches audit-window → transitions to `AuditWindowWidget`. Only shown after auth + `auditWindowReady=true`.
 - **REACH Diagnostic Page CSS cleanup**: Removed all unresolved `var()` CSS references from REACHAssessmentPage.jsx. All colors are now hardcoded (`#C8A96E` gold, `#1C2B3A` slate). `var(--text-sm)` and `var(--font-body)` verified as globally defined in index.css — no broken rendering.
