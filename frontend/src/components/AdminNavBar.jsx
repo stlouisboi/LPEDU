@@ -8,9 +8,10 @@ const NAVY  = "#001A33";
 
 const NAV_LINKS = [
   { to: "/admin/admissions",      label: "Admissions"      },
+  { to: "/admin/checkpoints",     label: "Checkpoints"     },
+  { to: "/admin/gate-reviews",    label: "Gate Reviews"    },
   { to: "/admin/modules",         label: "Modules"         },
   { to: "/admin/products",        label: "Products"        },
-  { to: "/admin/gate-reviews",    label: "Gate Reviews"    },
   { to: "/admin/community",       label: "Community"       },
   { to: "/admin/audit-readiness", label: "Audit Readiness" },
   { to: "/admin/sins-leads",      label: "Sins Leads"      },

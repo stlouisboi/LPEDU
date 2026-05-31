@@ -831,15 +831,36 @@ async def submit_reach(data: REACHSubmit):
     subject, html = _build_reach_email(data.result, data.total_score, data.category_scores, data.email)
     asyncio.create_task(send_mailersend_email(data.email, data.email.split("@")[0], subject, html))
 
+    first_name = data.email.split("@")[0]
+
     # Enroll WAIT / NO-GO into correction sequence (nurture)
     if data.result in ("WAIT", "NO-GO"):
         from routes.sequences import enroll_reach_correction_sequence
-        first_name = data.email.split("@")[0]
         asyncio.create_task(enroll_reach_correction_sequence(data.email, first_name))
+
+    # LP-WRK-001 §3.1 — NURTURE-NEAR (ICP 40–59) → Track A (30-day, 5 emails)
+    if icp["classification"] == "NURTURE_NEAR":
+        from routes.sequences import enroll_nurture_near_sequence, _update_crm_state
+        asyncio.create_task(enroll_nurture_near_sequence(
+            email=data.email,
+            first_name=first_name,
+            icp_score=icp["score"],
+            icp_dimensions=icp.get("dimensions", {}),
+            authority_grant_date=data.authority_grant_date or "",
+        ))
+        asyncio.create_task(_update_crm_state(data.email, "NURTURE-NEAR"))
+
+    # LP-WRK-001 §3.2 — NURTURE-FAR (ICP 20–39) → Track B (12-week, 11 emails)
+    elif icp["classification"] == "NURTURE_FAR":
+        from routes.sequences import enroll_nurture_far_sequence, _update_crm_state
+        asyncio.create_task(enroll_nurture_far_sequence(data.email, first_name))
+        asyncio.create_task(_update_crm_state(data.email, "NURTURE-FAR"))
 
     # ICP ≥ 60 → auto-trigger admission (LP-WRK-001 §7.3)
     if icp["score"] >= 60:
         asyncio.create_task(_notify_owner_icp_qualified(data, icp))
+        from routes.sequences import _update_crm_state
+        asyncio.create_task(_update_crm_state(data.email, "GROUND-0-PENDING"))
 
     return {"ok": True, "result": data.result, "icp_score": icp["score"], "icp_classification": icp["classification"]}
 

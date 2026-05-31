@@ -439,3 +439,149 @@ async def list_sins_leads(coach_id: str = Depends(_require_coach)):
     docs = await db.sins_leads.find({}, {"_id": 0}).sort("captured_at", -1).to_list(500)
     return {"leads": docs, "total": len(docs)}
 
+
+# ── Carrier Checkpoints — LP-WRK-001 §4.2 / §7.6 ─────────────────────────────
+
+CHECKPOINT_CONFIG = [
+    {"code": "CP-01", "label": "Authority & Entity Foundation",   "target_day": 14},
+    {"code": "CP-02", "label": "Driver Qualification Files",      "target_day": 30},
+    {"code": "CP-03", "label": "Drug & Alcohol Program",          "target_day": 45},
+    {"code": "CP-04", "label": "HOS, Maintenance & Insurance",    "target_day": 60},
+    {"code": "CP-05", "label": "Integrity Audit Simulation",      "target_day": 90},
+]
+
+VALID_CP_STATUSES = {"PENDING", "SUBMITTED", "UNDER_REVIEW", "PASSED", "FAILED"}
+
+
+class CheckpointUpdateRequest(BaseModel):
+    status: str
+    admin_notes: Optional[str] = ""
+
+
+async def _ensure_checkpoints(carrier_id: str, carrier_email: str, carrier_name: str):
+    """Idempotently create the 5 LP-WRK-001 checkpoints for a carrier."""
+    existing = await db.carrier_checkpoints.count_documents({"carrier_id": carrier_id})
+    if existing >= 5:
+        return
+    now = datetime.now(timezone.utc).isoformat()
+    docs = []
+    for cp in CHECKPOINT_CONFIG:
+        docs.append({
+            "checkpoint_id": str(uuid.uuid4()),
+            "carrier_id": carrier_id,
+            "carrier_email": carrier_email,
+            "carrier_name": carrier_name,
+            "checkpoint_code": cp["code"],
+            "checkpoint_label": cp["label"],
+            "target_day": cp["target_day"],
+            "status": "PENDING",
+            "admin_notes": "",
+            "submitted_at": None,
+            "reviewed_at": None,
+            "created_at": now,
+        })
+    await db.carrier_checkpoints.insert_many(docs)
+    logger.info(f"Initialized 5 checkpoints for carrier {carrier_id}")
+
+
+@router.get("/admin/checkpoints")
+async def list_all_checkpoints(coach_id: str = Depends(_require_coach)):
+    """List all checkpoints grouped by enrolled carrier. Auto-initializes if needed."""
+    # Get all cohort-enrolled carriers
+    carriers = await db.user_access.find(
+        {"has_access": True, "access_level": "cohort"},
+        {"_id": 0}
+    ).to_list(200)
+
+    # Ensure checkpoints exist for every enrolled carrier
+    for c in carriers:
+        user = await db.users.find_one({"user_id": c["user_id"]}, {"_id": 0}) or {}
+        await _ensure_checkpoints(
+            carrier_id=c["user_id"],
+            carrier_email=user.get("email", ""),
+            carrier_name=user.get("name", user.get("email", "Unknown")),
+        )
+
+    # Fetch all checkpoints sorted
+    docs = await db.carrier_checkpoints.find(
+        {}, {"_id": 0}
+    ).sort([("carrier_id", 1), ("target_day", 1)]).to_list(2000)
+
+    # Group by carrier
+    grouped: dict = {}
+    for doc in docs:
+        cid = doc["carrier_id"]
+        if cid not in grouped:
+            grouped[cid] = {
+                "carrier_id": cid,
+                "carrier_email": doc.get("carrier_email", ""),
+                "carrier_name": doc.get("carrier_name", "Unknown"),
+                "checkpoints": [],
+            }
+        grouped[cid]["checkpoints"].append(doc)
+
+    return {"carriers": list(grouped.values()), "total_carriers": len(grouped)}
+
+
+@router.get("/admin/checkpoints/carrier/{carrier_id}")
+async def get_carrier_checkpoints(carrier_id: str, coach_id: str = Depends(_require_coach)):
+    """Fetch the 5 checkpoints for a specific carrier."""
+    docs = await db.carrier_checkpoints.find(
+        {"carrier_id": carrier_id}, {"_id": 0}
+    ).sort("target_day", 1).to_list(10)
+    if not docs:
+        raise HTTPException(status_code=404, detail="No checkpoints found for this carrier")
+    return {"carrier_id": carrier_id, "checkpoints": docs}
+
+
+@router.patch("/admin/checkpoints/{checkpoint_id}")
+async def update_checkpoint(
+    checkpoint_id: str,
+    body: CheckpointUpdateRequest,
+    coach_id: str = Depends(_require_coach),
+):
+    """Mark a checkpoint PASSED / FAILED / SUBMITTED / UNDER_REVIEW and add written notes."""
+    if body.status not in VALID_CP_STATUSES:
+        raise HTTPException(status_code=400, detail=f"Invalid status. Must be one of: {VALID_CP_STATUSES}")
+    now = datetime.now(timezone.utc).isoformat()
+    update_fields: dict = {
+        "status": body.status,
+        "admin_notes": body.admin_notes or "",
+        "reviewed_at": now,
+    }
+    result = await db.carrier_checkpoints.update_one(
+        {"checkpoint_id": checkpoint_id},
+        {"$set": update_fields},
+    )
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Checkpoint not found")
+
+    # Trigger CRM tag update if transitioning to terminal state
+    if body.status in {"PASSED", "FAILED"}:
+        cp = await db.carrier_checkpoints.find_one({"checkpoint_id": checkpoint_id}, {"_id": 0})
+        if cp:
+            from routes.sequences import _update_crm_state  # type: ignore
+            carrier_email = cp.get("carrier_email", "")
+            if carrier_email:
+                crm_tag = "COHORT-ACTIVE" if body.status == "PASSED" else "COHORT-AT-RISK"
+                try:
+                    await _update_crm_state(carrier_email, crm_tag)
+                except Exception:
+                    pass  # CRM update is best-effort
+
+    return {"ok": True, "checkpoint_id": checkpoint_id, "new_status": body.status}
+
+
+@router.post("/admin/checkpoints/initialize/{carrier_id}")
+async def init_checkpoints_for_carrier(carrier_id: str, coach_id: str = Depends(_require_coach)):
+    """Manually initialize checkpoints for a specific carrier."""
+    user = await db.users.find_one({"user_id": carrier_id}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=404, detail="Carrier not found")
+    await _ensure_checkpoints(
+        carrier_id=carrier_id,
+        carrier_email=user.get("email", ""),
+        carrier_name=user.get("name", user.get("email", "Unknown")),
+    )
+    return {"ok": True, "carrier_id": carrier_id}
+

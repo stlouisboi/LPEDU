@@ -10,13 +10,19 @@ const SANS = "'Inter',sans-serif";
 
 const SEQ_LABELS = {
   reach_correction: "WAIT / NO-GO Correction",
-  sins_nurture: "16 Sins Lead Nurture",
+  sins_nurture:     "16 Sins Lead Nurture",
   pre_op_checklist: "Pre-Op Checklist Welcome",
+  nurture_near:     "Track A — NURTURE NEAR (30d)",
+  nurture_far:      "Track B — NURTURE FAR (90d)",
+  alumni:           "Post-Credential Alumni",
 };
 const SEQ_COLORS = {
   reach_correction: "#C0392B",
-  sins_nurture: GOLD,
+  sins_nurture:     GOLD,
   pre_op_checklist: "#4A90B8",
+  nurture_near:     "#C8A96E",
+  nurture_far:      "#6B9FBF",
+  alumni:           "#34D399",
 };
 
 export default function AdminSequencesPage() {
@@ -69,7 +75,7 @@ export default function AdminSequencesPage() {
               Drip Sequences
             </h1>
             <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.40)", margin: 0 }}>
-              Flow 4: WAIT/NO-GO Correction &nbsp;·&nbsp; Flow 5: 16 Deadly Sins Nurture &nbsp;·&nbsp; Flow 6: Pre-Op Checklist
+              Flow 4: WAIT/NO-GO Correction &nbsp;·&nbsp; Flow 5: 16 Deadly Sins Nurture &nbsp;·&nbsp; Flow 6: Pre-Op Checklist &nbsp;·&nbsp; Flow 7: Track A (NURTURE-NEAR) &nbsp;·&nbsp; Flow 8: Track B (NURTURE-FAR) &nbsp;·&nbsp; Flow 9: Alumni
             </p>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -94,7 +100,7 @@ export default function AdminSequencesPage() {
         )}
 
         {/* Stats strip */}
-        <div style={{ display: "flex", gap: "1px", marginBottom: "2rem", background: "rgba(255,255,255,0.06)" }}>
+        <div style={{ display: "flex", gap: "1px", marginBottom: "2rem", background: "rgba(255,255,255,0.06)", flexWrap: "wrap" }}>
           {[
             { label: "Total Enrolled", value: stats.total ?? "—" },
             { label: "Active", value: stats.active ?? "—" },
@@ -102,8 +108,11 @@ export default function AdminSequencesPage() {
             { label: "Flow 4 (Correction)", value: stats.reach_correction ?? "—", color: "#C0392B" },
             { label: "Flow 5 (Nurture)", value: stats.sins_nurture ?? "—", color: GOLD },
             { label: "Flow 6 (Pre-Op)", value: stats.pre_op_checklist ?? "—", color: "#4A90B8" },
+            { label: "Track A (Near)", value: stats.nurture_near ?? "—", color: "#C8A96E" },
+            { label: "Track B (Far)", value: stats.nurture_far ?? "—", color: "#6B9FBF" },
+            { label: "Alumni", value: stats.alumni ?? "—", color: "#34D399" },
           ].map((s, i) => (
-            <div key={i} style={{ flex: 1, background: "#0B1525", padding: "1rem 1.25rem" }}>
+            <div key={i} style={{ flex: 1, minWidth: 80, background: "#0B1525", padding: "1rem 1.25rem" }}>
               <p style={{ fontFamily: MONO, fontSize: "0.555rem", fontWeight: 700, letterSpacing: "0.16em", color: "rgba(197,160,89,0.50)", textTransform: "uppercase", margin: "0 0 0.375rem" }}>{s.label}</p>
               <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.924rem", color: s.color || "#fff", margin: 0 }}>{s.value}</p>
             </div>
@@ -111,11 +120,14 @@ export default function AdminSequencesPage() {
         </div>
 
         {/* Sequence legend */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "2rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "2rem" }}>
           {[
             { type: "reach_correction", flow: "Flow 4", trigger: "REACH WAIT or NO-GO result", steps: "5 emails — Day 0, 2, 5, 9, 14", cta: "Ground 0 → REACH re-entry" },
             { type: "sins_nurture",     flow: "Flow 5", trigger: "16 Deadly Sins checklist opt-in", steps: "5 emails — Day 0, 2, 4, 7, 11", cta: "Doctrine → Ground 0 → REACH" },
             { type: "pre_op_checklist", flow: "Flow 6", trigger: "Pre-op checklist form submit", steps: "3 emails — Day 0, 3, 7", cta: "Compliance Library → Program" },
+            { type: "nurture_near",     flow: "Flow 7 — Track A", trigger: "REACH ICP score 40–59 (NURTURE-NEAR)", steps: "5 emails — Day 0, 3, 7, 14, 21", cta: "Audit window → compliance docs → REACH re-eval" },
+            { type: "nurture_far",      flow: "Flow 8 — Track B", trigger: "REACH ICP score 20–39 (NURTURE-FAR)", steps: "11 emails — Weeks 1–11 (90-day)", cta: "Foundation → Consequence → Positioning → REACH retake" },
+            { type: "alumni",           flow: "Flow 9 — Alumni", trigger: "LP-VRF credential issued (program completion)", steps: "4 emails — Week 1, Month 1, 3, 6", cta: "Credential use → maintenance → referral → Year 2" },
           ].map((s, i) => (
             <div key={i} style={{ background: "#0B1525", padding: "1.25rem 1.5rem", borderTop: `2px solid ${SEQ_COLORS[s.type]}` }}>
               <p style={{ fontFamily: MONO, fontSize: "0.555rem", fontWeight: 700, letterSpacing: "0.18em", color: `${SEQ_COLORS[s.type]}80`, textTransform: "uppercase", margin: "0 0 0.375rem" }}>{s.flow}</p>

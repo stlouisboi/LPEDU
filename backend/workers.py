@@ -308,6 +308,160 @@ async def _send_ground0_sequence_emails():
     logger.info(f"Ground 0 sequence worker: {sent} Email 2s sent from {len(due)} due.")
 
 
+async def _dropout_recovery_worker():
+    """
+    LP-WRK-001 §4.6 — Drop-out recovery protocol.
+    Runs daily, checks for checkpoints whose target_day has passed
+    without being marked PASSED, and fires MailerSend recovery emails.
+    """
+    from routes.sequences import send_dropout_recovery_day3, send_dropout_recovery_day7, send_deferred_enrollment_offer, _update_crm_state
+
+    now = datetime.now(timezone.utc)
+
+    # Get all enrolled carriers
+    carriers = await db.user_access.find(
+        {"has_access": True, "access_level": "cohort"},
+        {"_id": 0}
+    ).to_list(200)
+
+    for carrier_rec in carriers:
+        carrier_id = carrier_rec.get("user_id")
+        if not carrier_id:
+            continue
+
+        granted_at_str = carrier_rec.get("granted_at", "")
+        if not granted_at_str:
+            continue
+        try:
+            granted_at = datetime.fromisoformat(granted_at_str.replace("Z", "+00:00"))
+            if granted_at.tzinfo is None:
+                granted_at = granted_at.replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+
+        user = await db.users.find_one({"user_id": carrier_id}, {"_id": 0})
+        if not user or not user.get("email"):
+            continue
+        email = user["email"]
+        first_name = (user.get("name") or "").split()[0] or "Operator"
+
+        checkpoints = await db.carrier_checkpoints.find(
+            {"carrier_id": carrier_id, "status": {"$in": ["PENDING", "SUBMITTED", "UNDER_REVIEW"]}},
+            {"_id": 0}
+        ).to_list(10)
+
+        for cp in checkpoints:
+            target_day = cp.get("target_day", 0)
+            cp_code = cp.get("checkpoint_code", "")
+            cp_label = cp.get("checkpoint_label", "")
+            checkpoint_id = cp.get("checkpoint_id", "")
+
+            deadline = granted_at + timedelta(days=target_day)
+            days_overdue = (now - deadline).days
+
+            if days_overdue < 3:
+                continue  # Not yet overdue enough
+
+            # Day +3: first reminder
+            if days_overdue == 3 and not cp.get("recovery_day3_sent"):
+                try:
+                    await send_dropout_recovery_day3(email, first_name, cp_label, cp_code)
+                    await db.carrier_checkpoints.update_one(
+                        {"checkpoint_id": checkpoint_id},
+                        {"$set": {"recovery_day3_sent": True, "recovery_day3_sent_at": now.isoformat()}}
+                    )
+                except Exception as exc:
+                    logger.error(f"Dropout Day+3 failed for {email}: {exc}")
+
+            # Day +5: update MailerLite tag to AT-RISK
+            elif days_overdue == 5 and not cp.get("at_risk_tagged"):
+                try:
+                    await _update_crm_state(email, "COHORT-AT-RISK")
+                    await db.carrier_checkpoints.update_one(
+                        {"checkpoint_id": checkpoint_id},
+                        {"$set": {"at_risk_tagged": True}}
+                    )
+                except Exception as exc:
+                    logger.error(f"AT-RISK tag failed for {email}: {exc}")
+
+            # Day +7: final cure notice
+            elif days_overdue == 7 and not cp.get("recovery_day7_sent"):
+                try:
+                    await send_dropout_recovery_day7(email, first_name, cp_label, cp_code)
+                    await db.carrier_checkpoints.update_one(
+                        {"checkpoint_id": checkpoint_id},
+                        {"$set": {"recovery_day7_sent": True, "recovery_day7_sent_at": now.isoformat()}}
+                    )
+                except Exception as exc:
+                    logger.error(f"Dropout Day+7 failed for {email}: {exc}")
+
+            # Day +14: move to COHORT-PAUSED
+            elif days_overdue >= 14 and not cp.get("cohort_paused"):
+                try:
+                    await _update_crm_state(email, "COHORT-PAUSED")
+                    await db.carrier_checkpoints.update_one(
+                        {"checkpoint_id": checkpoint_id},
+                        {"$set": {"cohort_paused": True, "cohort_paused_at": now.isoformat()}}
+                    )
+                    await db.user_access.update_one(
+                        {"user_id": carrier_id},
+                        {"$set": {"cohort_status": "PAUSED"}}
+                    )
+                except Exception as exc:
+                    logger.error(f"COHORT-PAUSED update failed for {email}: {exc}")
+
+            # Day +44: seat released — deferred enrollment offer
+            elif days_overdue >= 44 and not cp.get("deferred_offer_sent"):
+                try:
+                    from routes.sequences import send_deferred_enrollment_offer
+                    await send_deferred_enrollment_offer(email, first_name)
+                    await db.carrier_checkpoints.update_one(
+                        {"checkpoint_id": checkpoint_id},
+                        {"$set": {"deferred_offer_sent": True, "deferred_offer_sent_at": now.isoformat()}}
+                    )
+                    await db.user_access.update_one(
+                        {"user_id": carrier_id},
+                        {"$set": {"cohort_status": "SEAT_RELEASED"}}
+                    )
+                except Exception as exc:
+                    logger.error(f"Deferred offer failed for {email}: {exc}")
+
+    logger.info("Dropout recovery worker completed.")
+
+
+async def _reevaluation_180d_worker():
+    """
+    LP-WRK-001 §1.4 — NOT-ADMITTED-TIMING re-evaluation at 180 days.
+    Checks icp_assessments for NURTURE_NEAR / NURTURE_FAR leads 180+ days old.
+    """
+    from routes.sequences import send_180day_reevaluation_email
+
+    cutoff = datetime.now(timezone.utc) - timedelta(days=180)
+    candidates = await db.icp_assessments.find(
+        {
+            "icp_classification": {"$in": ["NURTURE_NEAR", "NURTURE_FAR"]},
+            "assessed_at": {"$lte": cutoff.isoformat()},
+            "reevaluation_180d_sent": {"$ne": True},
+        },
+        {"_id": 0}
+    ).to_list(500)
+
+    sent = 0
+    for rec in candidates:
+        email = rec.get("email", "")
+        if not email:
+            continue
+        first_name = email.split("@")[0]
+        score = rec.get("icp_score", 0)
+        try:
+            await send_180day_reevaluation_email(email, first_name, original_score=score)
+            sent += 1
+        except Exception as exc:
+            logger.error(f"180-day re-eval failed for {email}: {exc}")
+
+    logger.info(f"180-day re-evaluation worker: {sent} emails sent.")
+
+
 async def followup_email_worker():
     """Background worker — runs once daily."""
     await asyncio.sleep(3600)
@@ -318,6 +472,8 @@ async def followup_email_worker():
             await _send_monthly_audit_reminders()
             await _send_ground0_sequence_emails()
             await process_pending_sequences()
+            await _dropout_recovery_worker()
+            await _reevaluation_180d_worker()
         except Exception as e:
             logger.error(f"Followup email worker error: {e}")
         await asyncio.sleep(86400)

@@ -63,6 +63,15 @@ async def _issue_vrf_id_if_eligible(user_id: str):
     )
     logger.info(f"VRF ID issued for user {user_id}: {registry_code}")
 
+    # LP-WRK-001 §5 — Enroll alumni sequence (tag: LP-VRF-ISSUED)
+    carrier_email = user_info.get("email", "")
+    carrier_name  = user_info.get("name", carrier_email.split("@")[0])
+    if carrier_email:
+        from routes.sequences import enroll_alumni_sequence, _update_crm_state
+        import asyncio
+        asyncio.create_task(enroll_alumni_sequence(carrier_email, carrier_name, registry_id=registry_code))
+        asyncio.create_task(_update_crm_state(carrier_email, "LP-VRF-ISSUED"))
+
 
 class PortalCheckoutRequest(BaseModel):
     origin_url: str
