@@ -479,9 +479,7 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ### P1 — High Priority
 - Replace Vimeo placeholder URLs in portal modules via /admin/modules (BLOCKED — waiting on user)
-- Build /reach redesign (new premium aesthetic)
-- Build /about Vince Profile page redesign
-- Build /standards/16-deadly-sins redesign
+- Production push to Vercel/Railway — blocked until Vimeo URLs populated
 
 ### P2 — Medium Priority
 - ~~LP-WEB-001 7-page cluster added to KC index~~ DONE — All 7 pages (P1–P7) now appear in the Articles tab of /knowledge-center. Stat counter updated to "15 Published articles". Pillar page badge applied.
@@ -526,6 +524,12 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 
 ---
+
+### Phase 128: Final Pre-Production Batch — Validated (June 2026)
+- **Authority Grant Date Prompt** (`data-testid=audit-window-prompt`): New inline widget renders at top of Portal main content when `authority_grant_date` is missing from `icp_assessments`. Date input + "ACTIVATE TRACKER" button. Calls `POST /api/portal/authority-grant-date` → re-fetches audit-window → transitions to `AuditWindowWidget`. Only shown after auth + `auditWindowReady=true`.
+- **REACH Diagnostic Page CSS cleanup**: Removed all unresolved `var()` CSS references from REACHAssessmentPage.jsx. All colors are now hardcoded (`#C8A96E` gold, `#1C2B3A` slate). `var(--text-sm)` and `var(--font-body)` verified as globally defined in index.css — no broken rendering.
+- **About page bio**: Vince bio updated — "25 years", "U.S. Navy" credential, GigLine venture ("Founded 2022", veteran employment platform) all confirmed live.
+- Testing: 8/8 PASS — iteration_128.json
 
 ### Phase 126: Real Logo Integration (May 2026)
 - **Logo in SiteHeader**: Replaced LP text box placeholder with real `launchpath-logo.png` — transparent PNG cropped from user-provided 1366×768 canvas to 1318×210 wordmark bounds. Renders at 148×44 on parchment header.
