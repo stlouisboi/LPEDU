@@ -689,7 +689,36 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - Build: 127/127 pages. No errors.
 - **Portal Option B (full dashboard redesign):** BACKLOG — after first enrollment, with real user feedback.
 
-### Priority Stack (as of May 2026)
+### LP-WRK-001 Qualification-to-Enrollment Workflow — Items 1–4 (May 2026)
+- **Item 1 — ICP Profile Phase in REACH Diagnostic:**
+  - 4 new ICP fields added to REACH form as a dedicated "profile" phase between open-text and analyzing
+  - Step 1: `LP-ICP-01` — authority_grant_date (date input + NOT YET GRANTED bypass)
+  - Step 2: `LP-ICP-02` — fleet_size (5 click-to-advance options)
+  - Step 3: `LP-ICP-03` — file_state (5 options, highest-weight ICP dimension)
+  - Step 4: `LP-ICP-04` — decision_authority (4 options, → transitions to analyzing)
+  - Progress bar (4 gold segments) tracks step position
+- **Item 2 — ICP Scoring Engine:**
+  - 5-dimension 0–100 score: D1 Authority (25pts), D2 Audit Window (20pts), D3 Fleet (15pts), D4 File State (25pts), D5 Decision (15pts)
+  - Classifications: PRIORITY_GO(≥85) / GO(≥70) / CONDITIONAL_GO(≥60) / NURTURE_NEAR(≥40) / NURTURE_FAR(≥20) / NOT_READY
+  - Returns `icp_score` + `icp_classification` in API response
+  - Stores full record in `icp_assessments` MongoDB collection
+- **Item 3 — Admission Auto-Trigger:**
+  - ICP ≥ 60 → `_notify_owner_icp_qualified()` sends MailerSend alert to Vince with full score breakdown
+  - All 4 ICP fields + REACH result + score stored in MailerLite subscriber fields
+  - Primary tag `GROUND-0-PENDING` / `NURTURE-NEAR` / `NURTURE-FAR` / `DIY-CUSTOMER` written to MailerLite
+- **Item 4 — Seat Counter Threshold Flags:**
+  - `/api/cohort-seats` now returns `near_capacity` (bool, remaining ≤ 2) and `at_capacity` (bool, remaining = 0)
+  - Current state: 4/12 taken, 8 remaining, `near_capacity: false`, `at_capacity: false`
+- Testing: 100% pass rate — 7/7 backend, 12/12 frontend (iteration_125.json)
+
+### LP-WRK-001 Items Remaining (Backlog)
+- Item 5: MailerLite Track A (NURTURE-NEAR 30-day sequence) + Track B (NURTURE-FAR 90-day sequence)
+- Item 6: Checkpoint PASSED/FAILED admin panel UI
+- Item 7: Drop-out recovery protocol (MailerSend triggers at days 7/14/21/30)
+- Item 8: Alumni sequence (MailerLite, post-credential)
+- Item 9: Full CRM tag state machine (17-tag taxonomy in MailerLite)
+- Item 10: NOT-ADMITTED-TIMING re-evaluation trigger (180-day)
+- Item 11: LP-VRF-PUB-001 public registry page + card design (BLOCKED — wait for first enrollment)
 1. DONE: Compliance Library 13-component redesign
 2. DONE: Article page shell swaps (24 pages + BriefTemplate)
 3. DONE: KC Index 7-component redesign (visual verified)
