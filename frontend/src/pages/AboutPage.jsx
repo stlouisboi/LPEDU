@@ -105,12 +105,12 @@ export default function AboutPage() {
 
           {/* Right — Vince Photo + Credentials */}
           <div>
-            <div style={{ position: 'relative', overflow: 'hidden', height: 460, border: '1px solid rgba(28,43,58,0.1)' }}>
+            <div style={{ position: 'relative', overflow: 'hidden', height: 560, border: '1px solid rgba(28,43,58,0.1)' }}>
               <Image
                 src="https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/apm4exp9_Vince.png"
                 alt="Vince Lawrence — Station Custodian, LaunchPath Standard"
                 fill
-                style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                style={{ objectFit: 'cover', objectPosition: '50% 30%' }}
                 priority
               />
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(28,43,58,0.92))', padding: '2.5rem 1.25rem 1.25rem' }}>
