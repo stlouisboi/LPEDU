@@ -27,11 +27,18 @@ class ProgramCheckoutRequest(BaseModel):
 
 @router.get("/cohort-seats")
 async def get_cohort_seats():
-    """Returns remaining seats in the current cohort (max 12)."""
+    """Returns remaining seats with LP-WRK-001 §7.4 threshold flags."""
     MAX_SEATS = 12
+    NEAR_CAPACITY_THRESHOLD = 10   # at 10/12 filled → surface waitlist option
     taken = await db.payment_transactions.count_documents({"payment_status": "paid", "status": {"$in": ["completed", "complete"]}})
     remaining = max(0, MAX_SEATS - taken)
-    return {"remaining": remaining, "total": MAX_SEATS, "taken": taken}
+    return {
+        "remaining": remaining,
+        "total": MAX_SEATS,
+        "taken": taken,
+        "near_capacity": remaining <= (MAX_SEATS - NEAR_CAPACITY_THRESHOLD),  # ≤ 2 seats left
+        "at_capacity": remaining == 0,
+    }
 
 
 @router.post("/create-program-checkout")

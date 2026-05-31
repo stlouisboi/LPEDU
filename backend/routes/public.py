@@ -60,6 +60,11 @@ class REACHSubmit(BaseModel):
     total_score: int
     category_scores: REACHCategoryScores
     open_response: Optional[str] = None
+    # LP-WRK-001 Section 7.1 — ICP Qualification Fields
+    authority_grant_date: Optional[str] = None   # YYYY-MM-DD
+    fleet_size: Optional[str] = None             # "1-3" | "4-5" | "6-10" | "11+" | "none"
+    file_state: Optional[str] = None             # "nothing" | "some_docs_unsure" | "have_disorganized" | "system_unreviewed" | "consultant"
+    decision_authority: Optional[str] = None     # "sole_owner" | "owner_with_partner" | "fleet_manager" | "employee"
 
 
 class AdmissionSubmit(BaseModel):
@@ -661,8 +666,138 @@ async def go_email_capture(data: GOEmailCapture):
     return {"ok": True}
 
 
+# ── LP-WRK-001 §7.2 — ICP Scoring Engine ─────────────────────────────────────
+
+def _calculate_icp_score(
+    reach_a: int,
+    authority_grant_date: Optional[str],
+    fleet_size: Optional[str],
+    file_state: Optional[str],
+    decision_authority: Optional[str],
+) -> dict:
+    """5-dimension ICP score (0–100). Returns score, classification, primary_tag."""
+
+    # Dimension 1 — Authority Status (25 pts): derived from REACH authority score
+    if reach_a >= 7:    d1 = 25
+    elif reach_a >= 5:  d1 = 20
+    elif reach_a >= 3:  d1 = 10
+    else:               d1 = 0
+
+    # Dimension 2 — Audit Window Position (20 pts): from authority_grant_date
+    d2 = 0
+    if authority_grant_date:
+        try:
+            grant = datetime.strptime(authority_grant_date, "%Y-%m-%d")
+            months = (datetime.now() - grant).days / 30.44
+            if months < 6:    d2 = 20
+            elif months < 12: d2 = 15
+            elif months < 18: d2 = 10
+            else:             d2 = 5
+        except ValueError:
+            d2 = 0
+
+    # Dimension 3 — Fleet Size (15 pts)
+    d3 = {"1-3": 15, "4-5": 12, "6-10": 8, "11+": 3, "none": 0}.get(fleet_size or "", 0)
+
+    # Dimension 4 — File State (25 pts) — highest weight dimension
+    d4 = {
+        "nothing":            25,
+        "some_docs_unsure":   20,
+        "have_disorganized":  15,
+        "system_unreviewed":   8,
+        "consultant":          2,
+    }.get(file_state or "", 0)
+
+    # Dimension 5 — Decision Authority (15 pts)
+    d5 = {
+        "sole_owner":         15,
+        "owner_with_partner": 10,
+        "fleet_manager":       5,
+        "employee":            0,
+    }.get(decision_authority or "", 0)
+
+    score = d1 + d2 + d3 + d4 + d5
+
+    if score >= 85:    cls = "PRIORITY_GO"
+    elif score >= 70:  cls = "GO"
+    elif score >= 60:  cls = "CONDITIONAL_GO"
+    elif score >= 40:  cls = "NURTURE_NEAR"
+    elif score >= 20:  cls = "NURTURE_FAR"
+    else:              cls = "NOT_READY"
+
+    primary_tag = (
+        "GROUND-0-PENDING" if score >= 60
+        else "NURTURE-NEAR" if score >= 40
+        else "NURTURE-FAR" if score >= 20
+        else "DIY-CUSTOMER"
+    )
+    return {
+        "score": score,
+        "classification": cls,
+        "primary_tag": primary_tag,
+        "dimensions": {"d1": d1, "d2": d2, "d3": d3, "d4": d4, "d5": d5},
+    }
+
+
+async def _store_icp_assessment(data, icp: dict) -> None:
+    """Persist ICP record to icp_assessments collection."""
+    try:
+        await db.icp_assessments.insert_one({
+            "email": data.email,
+            "reach_result": data.result,
+            "reach_total_score": data.total_score,
+            "authority_grant_date": data.authority_grant_date or "",
+            "fleet_size": data.fleet_size or "",
+            "file_state": data.file_state or "",
+            "decision_authority": data.decision_authority or "",
+            "icp_score": icp["score"],
+            "icp_classification": icp["classification"],
+            "icp_primary_tag": icp["primary_tag"],
+            "icp_dimensions": icp["dimensions"],
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        })
+    except Exception as exc:
+        logger.error(f"ICP record store error: {exc}")
+
+
+async def _notify_owner_icp_qualified(data, icp: dict) -> None:
+    """LP-WRK-001 §7.3 — Notify Vince when ICP ≥ 60."""
+    if not COACH_EMAIL:
+        return
+    score = icp["score"]
+    cls = icp["classification"].replace("_", " ")
+    dims = icp["dimensions"]
+    subject = f"LP-ICP-ALERT: {cls} ({score}/100) — {data.email}"
+    html = f"""<div style="font-family:monospace;background:#0D1117;color:#E6EDF3;padding:32px;max-width:600px;">
+      <p style="font-size:10px;letter-spacing:0.2em;color:#C8A96E;margin-bottom:16px;">LP-WRK-001 · ICP QUALIFICATION ALERT · {cls}</p>
+      <h2 style="font-size:22px;color:#E6EDF3;margin:0 0 8px;">New Qualified Lead: {data.email}</h2>
+      <p style="font-size:14px;color:rgba(230,237,243,0.6);margin:0 0 24px;">REACH: <strong style="color:#E6EDF3;">{data.result}</strong> ({data.total_score}pts) &nbsp;|&nbsp; ICP: <strong style="color:#C8A96E;">{score}/100 — {cls}</strong></p>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px 0;font-size:12px;color:rgba(230,237,243,0.5);width:50%;">Authority Window (D2)</td><td style="padding:8px 0;font-size:13px;color:#E6EDF3;">{dims["d2"]}/20 — Grant: {data.authority_grant_date or "not provided"}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px 0;font-size:12px;color:rgba(230,237,243,0.5);">Fleet Size (D3)</td><td style="padding:8px 0;font-size:13px;color:#E6EDF3;">{dims["d3"]}/15 — {data.fleet_size or "not provided"}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:8px 0;font-size:12px;color:rgba(230,237,243,0.5);">File State (D4)</td><td style="padding:8px 0;font-size:13px;color:#C8A96E;font-weight:700;">{dims["d4"]}/25 — {(data.file_state or "not provided").replace("_"," ")}</td></tr>
+        <tr><td style="padding:8px 0;font-size:12px;color:rgba(230,237,243,0.5);">Decision Authority (D5)</td><td style="padding:8px 0;font-size:13px;color:#E6EDF3;">{dims["d5"]}/15 — {(data.decision_authority or "not provided").replace("_"," ")}</td></tr>
+      </table>
+      <p style="font-size:12px;color:rgba(230,237,243,0.4);border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;margin:0;">
+        Primary Tag: <strong style="color:#C8A96E;">{icp["primary_tag"]}</strong> · Log in at /admin/login to review.</p>
+    </div>"""
+    try:
+        await send_mailersend_email(COACH_EMAIL, "Vince", subject, html)
+        logger.info(f"ICP alert sent for {data.email} score={score}")
+    except Exception as exc:
+        logger.error(f"ICP notify_owner error: {exc}")
+
+
 @router.post("/reach")
 async def submit_reach(data: REACHSubmit):
+    icp = _calculate_icp_score(
+        reach_a=data.category_scores.a,
+        authority_grant_date=data.authority_grant_date,
+        fleet_size=data.fleet_size,
+        file_state=data.file_state,
+        decision_authority=data.decision_authority,
+    )
+
     tag_map = {"GO": "REACH_GO", "WAIT": "REACH_WAIT", "NO-GO": "REACH_NOGO"}
     payload = {
         "email": data.email, "status": "active",
@@ -673,6 +808,14 @@ async def submit_reach(data: REACHSubmit):
             "reach_authority": str(data.category_scores.a), "reach_commitment": str(data.category_scores.c),
             "reach_hustle": str(data.category_scores.h), "reach_open_response": data.open_response or "",
             "reach_tag": tag_map.get(data.result, "REACH_COMPLETE"),
+            # ICP fields (LP-WRK-001 §7.1 + §7.2)
+            "authority_grant_date": data.authority_grant_date or "",
+            "fleet_size": data.fleet_size or "",
+            "file_state": data.file_state or "",
+            "decision_authority": data.decision_authority or "",
+            "icp_score": str(icp["score"]),
+            "icp_classification": icp["classification"],
+            "icp_primary_tag": icp["primary_tag"],
         },
     }
     headers = {"Authorization": f"Bearer {MAILERLITE_API_TOKEN}", "Content-Type": "application/json", "Accept": "application/json"}
@@ -681,14 +824,24 @@ async def submit_reach(data: REACHSubmit):
     if resp.status_code not in (200, 201):
         logger.error(f"MailerLite REACH error {resp.status_code}: {resp.text}")
         raise HTTPException(status_code=502, detail="Could not save assessment.")
+
+    # Store ICP assessment record (awaited — critical data)
+    await _store_icp_assessment(data, icp)
+
     subject, html = _build_reach_email(data.result, data.total_score, data.category_scores, data.email)
     asyncio.create_task(send_mailersend_email(data.email, data.email.split("@")[0], subject, html))
-    # Enroll WAIT / NO-GO into correction sequence
+
+    # Enroll WAIT / NO-GO into correction sequence (nurture)
     if data.result in ("WAIT", "NO-GO"):
         from routes.sequences import enroll_reach_correction_sequence
         first_name = data.email.split("@")[0]
         asyncio.create_task(enroll_reach_correction_sequence(data.email, first_name))
-    return {"ok": True, "result": data.result}
+
+    # ICP ≥ 60 → auto-trigger admission (LP-WRK-001 §7.3)
+    if icp["score"] >= 60:
+        asyncio.create_task(_notify_owner_icp_qualified(data, icp))
+
+    return {"ok": True, "result": data.result, "icp_score": icp["score"], "icp_classification": icp["classification"]}
 
 
 @router.post("/admission")

@@ -27,6 +27,13 @@ export default function REACHAssessmentPage() {
   const [submitted, setSubmitted] = useState(false);
   const [animateMap, setAnimateMap] = useState(false);
 
+  // LP-WRK-001 §7.1 — ICP Profile fields
+  const [profileStep, setProfileStep] = useState(0);          // 0-3
+  const [authorityGrantDate, setAuthorityGrantDate] = useState("");
+  const [fleetSize, setFleetSize] = useState("");
+  const [fileState, setFileState] = useState("");
+  const [decisionAuthority, setDecisionAuthority] = useState("");
+
   const API = process.env.REACT_APP_BACKEND_URL;
 
   // Analyzing animation
@@ -93,6 +100,11 @@ export default function REACHAssessmentPage() {
     const computed = calcScores(answers);
     setScores(computed);
     setResult(computed.outcome);
+    setPhase("profile");   // LP-WRK-001 §7.1 — capture ICP fields before analyzing
+    setProfileStep(0);
+  };
+
+  const handleProfileComplete = () => {
     setPhase("analyzing");
     setAnalyzedCats(0);
   };
@@ -112,6 +124,11 @@ export default function REACHAssessmentPage() {
           total_score: scores.total,
           category_scores: { r: scores.r, e: scores.e, a: scores.a, c: scores.c, h: scores.h },
           open_response: openAnswer,
+          // LP-WRK-001 §7.1 — ICP qualification fields
+          authority_grant_date: authorityGrantDate || null,
+          fleet_size: fleetSize || null,
+          file_state: fileState || null,
+          decision_authority: decisionAuthority || null,
         }),
       });
       // For WAIT/NO-GO: also register in the REACH waitlist
@@ -361,6 +378,121 @@ export default function REACHAssessmentPage() {
           </p>
         </div>
       )}
+
+      {/* ── ICP PROFILE PHASE (LP-WRK-001 §7.1) ────────── */}
+      {phase === "profile" && (() => {
+        const PROFILE_STEPS = [
+          {
+            code: "LP-ICP-01 · AUTHORITY WINDOW",
+            q: "When did FMCSA grant your MC/DOT authority?",
+            type: "date",
+          },
+          {
+            code: "LP-ICP-02 · FLEET PROFILE",
+            q: "How many power units do you currently operate?",
+            type: "options",
+            opts: [
+              { label: "1–3 units — owner-operator", val: "1-3" },
+              { label: "4–5 units — small fleet",    val: "4-5" },
+              { label: "6–10 units",                 val: "6-10" },
+              { label: "11+ units",                  val: "11+" },
+              { label: "No equipment yet",           val: "none" },
+            ],
+            onSelect: (v) => { setFleetSize(v); setProfileStep(2); },
+          },
+          {
+            code: "LP-ICP-03 · COMPLIANCE FILE STATE",
+            q: "Which best describes your current compliance file situation?",
+            type: "options",
+            opts: [
+              { label: "I have nothing. I don't know where to start.",            val: "nothing" },
+              { label: "I have some documents but I'm not sure they're right.",   val: "some_docs_unsure" },
+              { label: "I have documents but haven't organized them properly.",   val: "have_disorganized" },
+              { label: "I have a system but it hasn't been reviewed.",            val: "system_unreviewed" },
+              { label: "I have a compliance consultant handling this.",           val: "consultant" },
+            ],
+            onSelect: (v) => { setFileState(v); setProfileStep(3); },
+          },
+          {
+            code: "LP-ICP-04 · DECISION STRUCTURE",
+            q: "What is your role in this operation?",
+            type: "options",
+            opts: [
+              { label: "Sole owner — I make all decisions.",                      val: "sole_owner" },
+              { label: "Owner with a spouse or partner who is also involved.",    val: "owner_with_partner" },
+              { label: "Fleet manager — owner approval required for purchases.",  val: "fleet_manager" },
+              { label: "Employee — I am not the decision-maker.",                 val: "employee" },
+            ],
+            onSelect: (v) => { setDecisionAuthority(v); handleProfileComplete(); },
+          },
+        ];
+        const step = PROFILE_STEPS[profileStep];
+        return (
+          <div style={{ paddingTop: "80px", paddingBottom: "80px", minHeight: "calc(100vh - 64px)", fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace" }}>
+            <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 1.5rem" }}>
+
+              {/* Progress */}
+              <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: "2.5rem" }}>
+                {[0,1,2,3].map(i => (
+                  <div key={i} style={{ flex: 1, height: 2, background: i <= profileStep ? "#C8A96E" : "rgba(255,255,255,0.08)", transition: "background 0.25s" }} />
+                ))}
+              </div>
+
+              <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,169,110,0.7)", marginBottom: "1.25rem" }}>
+                {step.code}
+              </p>
+              <p style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontWeight: 600, fontSize: "clamp(1.1rem,2.5vw,1.4rem)", color: "#FFFFFF", lineHeight: 1.55, marginBottom: "2.25rem", maxWidth: 540 }}>
+                {step.q}
+              </p>
+
+              {step.type === "date" ? (
+                <div>
+                  <input
+                    type="date"
+                    data-testid="reach-icp-date"
+                    value={authorityGrantDate}
+                    onChange={e => setAuthorityGrantDate(e.target.value)}
+                    style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "16px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(200,169,110,0.25)", color: "#FFFFFF", padding: "0.875rem 1.25rem", minHeight: 52, width: "100%", maxWidth: 320, borderRadius: 0, outline: "none", colorScheme: "dark", boxSizing: "border-box", marginBottom: "1rem" }}
+                  />
+                  <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "0.5rem" }}>
+                    <button
+                      data-testid="reach-icp-date-submit"
+                      onClick={() => setProfileStep(1)}
+                      disabled={!authorityGrantDate}
+                      style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", background: authorityGrantDate ? "#C8A96E" : "rgba(200,169,110,0.2)", color: authorityGrantDate ? "#1C2B3A" : "rgba(255,255,255,0.3)", border: "none", padding: "0.875rem 1.5rem", minHeight: 48, cursor: authorityGrantDate ? "pointer" : "default", borderRadius: 0 }}>
+                      CONTINUE →
+                    </button>
+                    <button
+                      data-testid="reach-icp-date-skip"
+                      onClick={() => { setAuthorityGrantDate(""); setProfileStep(1); }}
+                      style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.12)", padding: "0.875rem 1.25rem", minHeight: 48, cursor: "pointer", borderRadius: 0 }}>
+                      NOT YET GRANTED
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                  {step.opts.map((opt, i) => (
+                    <button
+                      key={i}
+                      data-testid={`reach-icp-opt-${profileStep}-${i}`}
+                      onClick={() => step.onSelect(opt.val)}
+                      style={{ background: "rgba(21,36,51,0.8)", border: "1px solid rgba(200,169,110,0.2)", borderRadius: 0, color: "rgba(255,255,255,0.8)", fontFamily: "'Instrument Sans',sans-serif", fontSize: "1rem", padding: "0.875rem 1.5rem", textAlign: "left", cursor: "pointer", minHeight: 52, transition: "background 0.1s, border-color 0.1s" }}
+                      onMouseEnter={e => { e.currentTarget.style.background = "rgba(200,169,110,0.08)"; e.currentTarget.style.borderColor = "#C8A96E"; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = "rgba(21,36,51,0.8)"; e.currentTarget.style.borderColor = "rgba(200,169,110,0.2)"; }}>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              <p style={{ fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginTop: "2rem" }}>
+                LP-WRK-001 · QUALIFICATION PROFILE · STEP {profileStep + 1} OF 4
+              </p>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ── ANALYZING ─────────────────────────────────── */}
       {phase === "analyzing" && (
