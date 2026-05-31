@@ -42,6 +42,12 @@ Core requirements:
 
 ## WHAT'S BEEN IMPLEMENTED
 
+### Phase 127: P1 Urgency Signals + Audit Window Widget (June 2026)
+- **Dynamic AnnouncementBar**: Fetches `/api/cohort-seats` on mount. When `near_capacity=true`: amber dot, 1s pulse, "COHORT NEARLY FULL — X SEATS REMAIN" text. When `at_capacity=true`: red dot, "AT CAPACITY — Join Waitlist". Default: green dot, seat count suffix. data-testid=announcement-bar verified live.
+- **Ground 0 Urgency Signal**: Seat progress bar turns amber when `near_capacity`. Conditional `data-testid=ground0-urgency-banner` banner with AlertTriangle appears above admission form when `near_capacity=true`. Sidebar pill shows "COHORT NEARLY FULL" treatment.
+- **Portal Audit Window Countdown Widget** (`data-testid=audit-window-widget`): New `GET /api/portal/audit-window` endpoint. Sources `authority_grant_date` from `icp_assessments`. Returns `days_remaining`, `urgency` tier, `pct_elapsed` of 18-month window. Widget renders at top of portal main content with color-coded urgency bar (low=green → moderate=yellow → high=amber → critical=red). Currently showing 91 days remaining (83% elapsed) for test user — amber urgency. Only visible when `has_data=true` (carrier has submitted REACH with `authority_grant_date`).
+- Testing: 10/10 backend + 6/6 frontend (iteration_127.json)
+
 ### Phase 126: LP-WRK-001 Items 5–10 — Complete (June 2026)
 - **Item 5 — Nurture Sequences (Track A & B)**: Track A (NURTURE-NEAR, ICP 40–59): 5 emails at Days 0, 3, 7, 14, 21. Day 21 email has dynamic audit window countdown from `authority_grant_date`. Track B (NURTURE-FAR, ICP 20–39): 11 emails at weeks 1–11 (Month 1 Foundation → Month 2 Consequence → Month 3 Positioning). Auto-enrolled from `/api/reach` based on `icp_classification`. Both wired into `process_pending_sequences()` worker.
 - **Item 6 — Admin Checkpoint UI**: New `carrier_checkpoints` MongoDB collection. 5 LP-WRK-001 spec checkpoints per enrolled carrier (CP-01 Day 14 through CP-05 Day 90). `/api/admin/checkpoints` auto-initializes checkpoints for all enrolled carriers. `/admin/checkpoints` admin panel with accordion per carrier, 5-dot progress indicator, PASSED/FAILED/UNDER_REVIEW marking with notes. Wired into AdminNavBar between Admissions and Gate Reviews.
