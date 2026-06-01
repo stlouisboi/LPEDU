@@ -26,7 +26,7 @@ export default function StarterBundleCard({ onBuy, loading, error }) {
             The three foundational diagnostic and prep tools — bundled at a third below individual acquisition cost.
           </p>
           <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.4)', marginBottom: '1.25rem' }}>
-            $357 individual value. Save 39%.
+            $357 individual value. Save 39%. Not a substitute for the LaunchPath Standard.
           </p>
           <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '2.5rem', color: NAVY, lineHeight: 1, marginBottom: '1.5rem' }}>$219</div>
 

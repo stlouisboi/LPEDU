@@ -67,11 +67,6 @@ export default function ComplianceLibraryPage() {
         error={errors['LP-BDL-001']}
       />
       <StandardGateCard />
-      <StarterBundleCard
-        onBuy={() => buy('LP-RES-006')}
-        loading={states['LP-RES-006']}
-        error={errors['LP-RES-006']}
-      />
       <AuditWindowCalculator />
       <LibraryMetricsStrip />
       <PrePurchaseFAQ />
@@ -84,6 +79,11 @@ export default function ComplianceLibraryPage() {
       <ComparisonTable
         onBuyBundle={() => buy('LP-BDL-001')}
         bundleLoading={states['LP-BDL-001']}
+      />
+      <StarterBundleCard
+        onBuy={() => buy('LP-RES-006')}
+        loading={states['LP-RES-006']}
+        error={errors['LP-RES-006']}
       />
       <VinceQuoteSection />
       <LibraryFooterCTA />
