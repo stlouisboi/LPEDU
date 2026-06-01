@@ -525,6 +525,10 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 134: VRF Card Fix + New Bundle Cover (June 2026)
+- **VRF card garbled text fixed**: Used Pillow to paint matching dark background (RGB 14,13,12) over garbled "WHDEL WIDL WIDEY FRACCED" region (y=443–492), replaced with "SAMPLE CARRIER LLC" in Liberation Mono white. `/registry-card.png` updated in-place.
+- **New bundle cover image applied**: `bundle-document-system.webp` replaced with user-uploaded book-stack image (323kkse9), optimized to 36KB at 900px wide. Visible on `/bundle`, BundleSalesPage lightbox, and BundlePage hero.
+
 ### Phase 133: Image Zoom Fix + Header Enhancement (June 2026)
 - **Product image zoom fixed**: All domain grid cards and supplemental cards in `DomainComponentGrid.jsx` changed from `objectFit: cover` (cropped) to `objectFit: contain` with `background: #1C2B3A`. Height increased to 220px. `StarterBundleCard.jsx` same fix. Lightbox covers in `BundleSalesPage.jsx` also fixed.
 - **SiteHeader enhanced**: New nav structure (Standard, Documents, Diagnostic, Knowledge, Tools dropdown with 4 sub-items). 3px `#1C2B3A` top border. Logo + thin rule separator. Hover states: gold underline slide-in via CSS transition. Active state: navy underline. CTA buttons: PORTAL (outlined, navy) + REQUEST ADMISSION (navy bg, hover turns gold). Scroll shadow via `useEffect`. Mobile drawer preserved.
