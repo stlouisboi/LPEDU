@@ -13,7 +13,7 @@ const CHECK = <span style={{ color: '#166534', fontWeight: 700 }}>✓</span>;
 const DASH  = <span style={{ color: 'rgba(28,43,58,0.3)' }}>—</span>;
 
 const ROWS = [
-  { label: 'Domain compliance packets',          indiv: '1 per purchase', lib: 'All 8 documents',  bundle: 'All 5',       standard: 'All 5' },
+  { label: 'Domain compliance packets',          indiv: '1 per purchase', lib: 'All 8 components',  bundle: 'All 5',       standard: 'All 5' },
   { label: 'Folder architecture / structure',    indiv: DASH,             lib: DASH,               bundle: CHECK,         standard: CHECK },
   { label: '0–30–60–90 Implementation calendar', indiv: DASH,             lib: DASH,               bundle: CHECK,         standard: CHECK },
   { label: 'Master compliance checklist',        indiv: DASH,             lib: DASH,               bundle: CHECK,         standard: CHECK },
@@ -105,7 +105,7 @@ export default function ComparisonTable({ onBuyBundle, bundleLoading }) {
         <div className="cl-comparison-mobile" style={{ display: 'none', flexDirection: 'column', gap: '1rem' }}>
           {[
             { title: 'INDIVIDUAL PACKETS', vals: ['1 per purchase', DASH, DASH, DASH, DASH, DASH, DASH, DASH, 'None', '$59–$169 each'], cta: null, recommended: false },
-            { title: 'COMPLETE LIBRARY',   vals: ['All 8 documents', DASH, DASH, DASH, DASH, DASH, DASH, DASH, 'None', '$699'], cta: { label: 'VIEW THE LIBRARY →', href: '/products/library', isLink: true }, recommended: false },
+            { title: 'COMPLETE LIBRARY',   vals: ['All 8 components', DASH, DASH, DASH, DASH, DASH, DASH, DASH, 'None', '$699'], cta: { label: 'VIEW THE LIBRARY →', href: '/products/library', isLink: true }, recommended: false },
             { title: 'DOCUMENT SYSTEM BUNDLE', vals: ['All 5', CHECK, CHECK, CHECK, DASH, DASH, DASH, DASH, 'None', '$499'], cta: { label: isLoading ? '...' : 'INSTALL THE BUNDLE →', onClick: onBuyBundle }, recommended: true },
             { title: 'LAUNCHPATH STANDARD', vals: ['All 5', CHECK, CHECK, CHECK, CHECK, CHECK, CHECK, CHECK, 'Ground 0 required', 'Disclosed at Ground 0'], cta: { label: 'BEGIN GROUND 0 →', href: '/ground-0-briefing', isLink: true }, recommended: false },
           ].map((col, ci) => (
