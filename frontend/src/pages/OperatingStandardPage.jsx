@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import AuthorityClockSection from "../components/AuthorityClockSection";
 
@@ -84,7 +84,7 @@ const divider = {
 export default function OperatingStandardPage() {
   return (
     <div style={{ fontFamily: "'Inter', sans-serif", background: "#0d1c30", minHeight: "100vh", color: "#FFFFFF" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── HERO ─────────────────────────────────────── */}
       <div style={{ background: "#000F1F", borderBottom: "1px solid rgba(212,144,10,0.2)", padding: "100px 24px 80px" }}>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from '../compat/Link';
 import { useRouter } from 'next/router';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 
 const API   = process.env.REACT_APP_BACKEND_URL;
 const GOLD  = "#d4900a";
@@ -99,7 +99,7 @@ export default function ThankYouPage() {
         .ty-btn { transition: opacity 0.2s, transform 0.2s; }
       `}</style>
 
-      <Navbar />
+      <SiteHeader />
 
       <main style={{ maxWidth: 760, margin: "0 auto", padding: "5rem 1.5rem 6rem" }}>
 

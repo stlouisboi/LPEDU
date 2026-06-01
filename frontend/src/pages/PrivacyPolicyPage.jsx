@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import Head from "next/head";
 
@@ -44,7 +44,7 @@ export default function PrivacyPolicyPage() {
         <meta name="description" content="LaunchPath Transportation Education privacy policy. How we collect, use, and protect your information." />
         <meta name="robots" content="noindex" />
       </Head>
-      <Navbar />
+      <SiteHeader />
 
       <main style={{ maxWidth: 760, margin: "0 auto", padding: "80px clamp(20px, 5vw, 40px) 120px" }}>
 

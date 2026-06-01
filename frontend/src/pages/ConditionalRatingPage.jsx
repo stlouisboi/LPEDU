@@ -1,5 +1,5 @@
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
 
@@ -78,7 +78,7 @@ const DIY_NO = [
 export default function ConditionalRatingPage() {
   return (
     <div style={{ background: navy, minHeight: "100vh", color: "#f4f7fb" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── Hero ── */}
       <div style={{ background: navy, borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "5rem 2rem 4rem" }}>

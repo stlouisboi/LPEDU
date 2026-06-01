@@ -1,5 +1,5 @@
 import { Link } from '../../compat/Link';
-import Navbar from "../../components/Navbar";
+import SiteHeader from "../../components/home/SiteHeader";
 import FooterSection from "../../components/FooterSection";
 
 const coral  = "#D85A30";
@@ -71,7 +71,7 @@ const MATRIX = [
 export default function AutoMethodPage() {
   return (
     <div style={{ background: pageBg, minHeight: "100vh", color: "#F5F5F5", overflowX: "hidden" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── File Classification Band ── */}
       <div style={{ background: "#050a14", borderBottom: "1px solid rgba(216,90,48,0.18)", padding: "0.6rem 1.5rem" }}>

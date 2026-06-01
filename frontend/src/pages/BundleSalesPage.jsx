@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const API   = process.env.REACT_APP_BACKEND_URL;
@@ -420,7 +420,7 @@ export default function BundleSalesPage() {
           .bsp-compare th, .bsp-compare td { padding: .625rem .75rem; }
         }
       `}} />
-      <Navbar />
+      <SiteHeader />
 
       {/* ── S1: HERO ────────────────────────────────────────────────── */}
       <section style={{ background: NAVY, borderBottom: `3px solid ${CORAL}`, padding: "88px 24px 72px", position: "relative", overflow: "hidden" }}>

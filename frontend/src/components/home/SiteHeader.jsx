@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 const NAV = [
   { label: 'REACH Diagnostic', href: '/reach-diagnostic' },
   { label: '16 Sins', href: '/standards/16-deadly-sins' },
+  { label: 'Tools', href: '/tools' },
   { label: 'About Vince', href: '/about' },
   { label: 'Documents', href: '/compliance-library' },
   { label: 'Portal', href: '/portal' },

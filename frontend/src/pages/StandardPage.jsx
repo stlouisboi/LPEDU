@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 /* ── Design Tokens ─────────────────────────────────────────────── */
@@ -119,7 +119,7 @@ function FaqAccordion({ items }) {
 export default function StandardPage() {
   return (
     <div style={{ background: S950, minHeight: "100vh", color: WHITE }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── SECTION 1: HERO ─────────────────────────────────────── */}
       <section style={{ background: S950, borderTop: `2px solid ${GOLD}`, paddingTop: "6rem", paddingBottom: "5rem", paddingLeft: "1.5rem", paddingRight: "1.5rem" }}>

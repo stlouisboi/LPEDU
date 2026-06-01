@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import CarrierFilesPage from '../src/pages/CarrierFilesPage';
-import Navbar from '../src/components/Navbar';
+import SiteHeader from '../src/components/home/SiteHeader';
 import FooterSection from '../src/components/FooterSection';
 
 const TITLE = "Carrier Files | LaunchPath Transportation EDU";
@@ -16,7 +16,7 @@ export default function CarrierFiles() {
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
       </Head>
-      <Navbar />
+      <SiteHeader />
       <CarrierFilesPage />
       <FooterSection />
     </>

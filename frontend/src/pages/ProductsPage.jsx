@@ -1,5 +1,5 @@
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
 
@@ -66,7 +66,7 @@ export default function ProductsPage() {
 
   return (
     <div style={{ background: "#060d19", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* Header */}
       <section style={{ background: "#0b1628", borderBottom: `3px solid ${coral}`, padding: "72px 24px 56px" }}>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import { ArrowRight, ArrowLeft, CheckCircle } from "@phosphor-icons/react";
 
@@ -186,7 +186,7 @@ export default function ReadinessPage() {
 
   const wrap = (children) => (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
       <main style={{ maxWidth: 760, margin: "0 auto", padding: "5rem 1.5rem 7rem" }}>
         {children}
       </main>

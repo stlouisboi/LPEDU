@@ -1,5 +1,5 @@
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
 import { FMCSADomainTable } from "../components/FMCSADomainTable";
@@ -59,7 +59,7 @@ const MATRIX_ROWS = [
 export default function StandardsPage() {
   return (
     <div style={{ background: "#060d19", minHeight: "100vh", color: "#FFFFFF" }}>
-      <Navbar />
+      <SiteHeader />
 
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: "5rem 1.5rem 6rem" }}>
 

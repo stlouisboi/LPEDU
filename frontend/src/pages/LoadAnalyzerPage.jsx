@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -406,7 +406,7 @@ export default function LoadAnalyzerPage() {
 
   return (
     <div style={{ background: BG, minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* Header */}
       <div style={{ background: NAVY, borderBottom: "1px solid rgba(212,144,10,0.20)" }}>

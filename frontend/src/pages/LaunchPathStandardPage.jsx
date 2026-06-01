@@ -1,6 +1,6 @@
 import { Link } from '../compat/Link';
 import { useRef, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import { useCountUp } from "../hooks/useCountUp";
 
@@ -189,7 +189,7 @@ export default function LaunchPathStandardPage() {
           .qualifier-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── HERO ─────────────────────────────────────────── */}
       <section style={{ background: navy, borderBottom: `3px solid ${gold}`, padding: "88px 24px 72px", position: "relative", overflow: "hidden" }}>

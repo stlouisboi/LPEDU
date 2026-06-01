@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from 'next/navigation';
 ;
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 
 const mono = "'Inter', sans-serif";
 const sans = "'Inter', sans-serif";
@@ -236,7 +236,7 @@ export default function CoachRegistryPage() {
   if (!authChecked || loading) {
     return (
       <div style={{ fontFamily: sans, background: "#020617", minHeight: "100vh", color: "#FFF" }}>
-        <Navbar />
+        <SiteHeader />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.18em", color: "rgba(212,144,10,0.6)", textTransform: "uppercase" }}>
             INITIALIZING_REGISTRY...
@@ -250,7 +250,7 @@ export default function CoachRegistryPage() {
 
   return (
     <div style={{ fontFamily: sans, background: "#020617", minHeight: "100vh", color: "#FFF" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* Registry header */}
       <div style={{

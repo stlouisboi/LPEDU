@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Navbar from '../src/components/Navbar';
+import SiteHeader from '../src/components/home/SiteHeader';
 import FooterSection from '../src/components/FooterSection';
 
 const C = {
@@ -144,7 +144,7 @@ export default function DoctrinePage() {
       </Head>
 
       <div style={{ background: C.bg, minHeight: '100vh', fontFamily: BODY }}>
-        <Navbar />
+        <SiteHeader />
 
         {/* ── Hero ── */}
         <div style={{ background: C.bgMid, borderBottom: `1px solid ${C.border}`, padding: '72px 24px 64px' }}>

@@ -1,5 +1,5 @@
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
 import { ArrowRight } from "@phosphor-icons/react";
@@ -35,7 +35,7 @@ const VECTORS = [
 export default function AutoDiagnosticPage() {
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* Hero */}
       <section style={{ padding: "7rem 1.5rem 5rem", borderBottom: "1px solid var(--border)" }}>

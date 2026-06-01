@@ -1,6 +1,6 @@
 import { Link } from '../compat/Link';
 import { useRouter } from 'next/router';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 // ── Replace with actual Gumroad bundle URL when available ──
@@ -262,7 +262,7 @@ export default function Ground0CompletePage() {
 
   return (
     <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── Header Block ─────────────────────────────────── */}
       <div style={{

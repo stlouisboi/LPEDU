@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
 
@@ -345,7 +345,7 @@ export default function PartnersPage() {
 
   return (
     <div style={{ background: "#080f1e", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── Hero ── */}
       <section data-testid="partners-hero" style={{

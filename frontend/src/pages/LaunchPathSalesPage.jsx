@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import { T, mono, serif, display } from "../components/sales/tokens";
 import { SectionLabel, SectionDivider, CTAButton } from "../components/sales/SharedComponents";
 
@@ -20,7 +20,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 function Nav({ scrollToAdmission }) {
   return (
     <>
-      <Navbar />
+      <SiteHeader />
       <div style={{
         background: "rgba(11,18,32,0.97)",
         borderBottom: `1px solid ${T.navyBorder}`,

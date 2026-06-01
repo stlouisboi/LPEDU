@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import { BookMockup3D, BookInfoPanel, BOOK_PRODUCTS } from "../components/BookMockup3D";
 
 const gold = "#d4900a";
@@ -12,7 +12,7 @@ export default function ProductPreviewPage() {
   if (!product) {
     return (
       <div style={{ background: "#000814", minHeight: "100vh", color: "#FFFFFF" }}>
-        <Navbar />
+        <SiteHeader />
         <main style={{ maxWidth: 900, margin: "0 auto", padding: "6rem 1.5rem", textAlign: "center" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>LP-SYS-LIBRARY | PRODUCT PREVIEW</p>
           <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "2rem", color: "#FFFFFF", marginBottom: "1rem" }}>Product Preview</h1>
@@ -24,7 +24,7 @@ export default function ProductPreviewPage() {
 
   return (
     <div style={{ background: "#000814", minHeight: "100vh", color: "#FFFFFF" }}>
-      <Navbar />
+      <SiteHeader />
       <main style={{ maxWidth: 1200, margin: "0 auto", padding: "3rem 1.5rem 5rem" }}>
 
         {/* Header */}

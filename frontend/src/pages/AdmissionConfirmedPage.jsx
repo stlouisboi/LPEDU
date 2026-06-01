@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from '../compat/Link';
 import { useRouter } from 'next/router';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const gold = "#C5A059";
@@ -34,7 +34,7 @@ export default function AdmissionConfirmedPage() {
 
   return (
     <div style={{ background: "#080f1e", minHeight: "100vh", color: "#FFFFFF", fontFamily: "'Inter', sans-serif" }}>
-      <Navbar />
+      <SiteHeader />
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "112px 24px 80px", textAlign: "center" }}>
 
         {status === "checking" && (

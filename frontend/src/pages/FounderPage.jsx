@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import { Link } from "../compat/Link";
 
@@ -117,7 +117,7 @@ export default function FounderPage() {
   };
   return (
     <div style={{ background: BG, minHeight: "100vh", color: "#F5F5F5", overflowX: "hidden" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── File Classification Band ── */}
       <div style={{ background: "#050a14", borderBottom: "1px solid rgba(197,160,89,0.14)", padding: "0.6rem 1.5rem" }}>

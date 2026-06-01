@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Navbar from '../../../src/components/Navbar';
+import SiteHeader from '../../../src/components/home/SiteHeader';
 import FooterSection from '../../../src/components/FooterSection';
 import AuthorityClock from '../../../src/components/AuthorityClock';
 
@@ -180,7 +180,7 @@ export default function RiskMapPage() {
       </Head>
 
       <div style={{ background: C.bg, minHeight: '100vh', fontFamily: S.inter }}>
-        <Navbar />
+        <SiteHeader />
 
         {/* ── Section 1: Hero ─────────────────────────────────────────────── */}
         <section style={{ background: C.bg, paddingTop: '80px', paddingBottom: '80px' }}>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
 
@@ -108,7 +108,7 @@ export default function ComplianceGapQuizPage() {
         .gap-card { transition: border-color 0.2s; }
         .gap-card:hover { border-color: rgba(212,144,10,0.30) !important; }
       `}} />
-      <Navbar />
+      <SiteHeader />
 
       {/* ── Hero ── */}
       <div style={{ background: navy, borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "5rem 2rem 4rem" }}>

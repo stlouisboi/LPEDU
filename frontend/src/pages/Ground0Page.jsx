@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const MODULES = [
@@ -73,7 +73,7 @@ export default function Ground0Page() {
 
   return (
     <div style={{ fontFamily: "'Inter', sans-serif", background: "#F5F6F7", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── LP-WEB-G: Preview Section — renders before REACH gate ── */}
       <div style={{ background: "#0b1628", borderBottom: "1px solid rgba(197,160,89,0.18)", padding: "72px 24px 64px" }}>

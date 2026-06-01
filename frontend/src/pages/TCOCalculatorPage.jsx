@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -186,7 +186,7 @@ export default function TCOCalculatorPage() {
 
   return (
     <div style={{ background: BG, minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
       <div style={{ background: NAVY, borderBottom: "1px solid rgba(212,144,10,0.20)" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", padding: "4rem 1.5rem 3rem" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, marginBottom: 8 }}>LP-TOOL-001 — TCO CALCULATOR</p>

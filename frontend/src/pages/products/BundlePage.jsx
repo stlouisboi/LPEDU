@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useState } from "react";
 import { Link } from '../../compat/Link';
-import Navbar from "../../components/Navbar";
+import SiteHeader from "../../components/home/SiteHeader";
 import FooterSection from "../../components/FooterSection";
 
 const API  = process.env.REACT_APP_BACKEND_URL;
@@ -175,7 +175,7 @@ export default function BundlePage() {
         }
       `}} />
 
-      <Navbar />
+      <SiteHeader />
 
       {/* ── HERO ───────────────────────────────────────────────────────── */}
       <section style={{

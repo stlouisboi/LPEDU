@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 
 const API = process.env.REACT_APP_BACKEND_URL;
 const GOLD   = "#d4900a";
@@ -62,7 +62,7 @@ export default function ProductConfirmedPage() {
         .lp-spinner { animation: lp-spin 0.75s linear infinite; border:2px solid rgba(212,144,10,0.25); border-top-color:${GOLD}; border-radius:50%; width:18px; height:18px; display:inline-block; }
       `}} />
 
-      <Navbar />
+      <SiteHeader />
 
       {/* Gold accent line */}
       <div style={{ height: "3px", background: `linear-gradient(to right, ${GOLD}, rgba(212,144,10,0.3), transparent)` }} />

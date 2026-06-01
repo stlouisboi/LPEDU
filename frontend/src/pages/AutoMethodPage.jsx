@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const gold = "#d4900a";
@@ -135,7 +135,7 @@ const PILLARS = [
 export default function AutoMethodPage() {
   return (
     <div style={{ fontFamily: SANS, background: midBg, minHeight: "100vh", color: "#FFFFFF" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* ── 1. HERO ─────────────────────────────────────────── */}
       <div style={{ background: darkBg, padding: "100px 24px 80px", borderBottom: `1px solid ${BORDER}` }}>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import FadeIn from "../components/FadeIn";
 import { ArrowRight, CheckCircle } from "@phosphor-icons/react";
@@ -74,7 +74,7 @@ export default function ContactPage() {
 
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
 
       <section style={{ padding: "7rem 1.5rem 5rem", borderBottom: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 480px", gap: "7rem", alignItems: "start" }} className="contact-grid">

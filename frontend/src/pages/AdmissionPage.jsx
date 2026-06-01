@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const COMPLIANCE_STATUS_OPTIONS = [
@@ -139,7 +139,7 @@ export default function AdmissionPage() {
         .lp-scan-btn:hover::after { animation:lp-sweep .55s ease-out forwards; }
         .adm-input:focus { border-color: rgba(212,144,10,0.55) !important; }
       `}} />
-      <Navbar />
+      <SiteHeader />
 
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px", position: "relative", zIndex: 1 }}>
 

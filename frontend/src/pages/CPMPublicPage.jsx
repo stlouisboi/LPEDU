@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 import { CPMCalculator } from "../components/CPMCalculator";
 
 export default function CPMPublicPage() {
   return (
     <div style={{ background: "#F0F2F4", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "5rem 1.5rem 6rem" }}>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>
           LP-TOOLS | COST PER MILE CALCULATOR

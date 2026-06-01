@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from '../compat/Link';
-import Navbar from "../components/Navbar";
+import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
 
 const GOLD = "#d4900a";
@@ -68,7 +68,7 @@ const display = "'Newsreader', 'Playfair Display', serif";
 export default function ToolsIndexPage() {
   return (
     <div style={{ background: "#F0F2F4", minHeight: "100vh" }}>
-      <Navbar />
+      <SiteHeader />
 
       {/* Header */}
       <div style={{ background: NAVY, borderBottom: "1px solid rgba(212,144,10,0.2)" }}>
