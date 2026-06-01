@@ -67,7 +67,7 @@ export default function StarterStackPage() {
       subtitle="Compliance Assessment + DQ Infrastructure + Audit Readiness — 3-Document System"
       price="$219"
       sku="LP-RES-006"
-      image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/3e4a1a7c6cccefa64a3714b009dbfa366f636c720274436e5dce3d2ad6317e75.png"
+      image="/images/products/starter-stack.webp"
       tagline="Three documents. 84 pages. The self-audit, the DQ file system, and the audit prep kit — in one acquisition at $138 off individual pricing."
       positioning={[
         "This is not a general compliance overview. The Starter Stack is a targeted acquisition for carriers who need to assess their current exposure, build their driver qualification file infrastructure, and establish audit readiness — without purchasing a full domain system.",

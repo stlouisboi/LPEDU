@@ -23,7 +23,7 @@ export default function SafetyAuditPrepPage() {
       seoDescription="Know exactly what FMCSA auditors check, what to pull first, and how to respond within 48 hours of receiving your audit notice. The complete audit prep system for new motor carriers. $169."
       price="$169"
       sku="LP-RES-004"
-      image="https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/f1ddc39e48c368c4ef812892aa94c6788efe10c117dc9a062c4d9c57d9dd07b5.png"
+      image="/images/products/tool-audit-prep.webp"
       ctaLabel="GET THE PREP PACK — $169 →"
       valuePoints={[
         "18-month audit window timeline — know when to be ready, not just what to have.",

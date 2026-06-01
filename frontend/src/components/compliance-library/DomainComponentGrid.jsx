@@ -19,8 +19,8 @@ const DOMAINS = [
 ];
 
 const SUPPLEMENTAL = [
-  { code: 'DIAGNOSTIC TOOLS', title: '16 Deadly Sins Pocket Guide & Audit Prep', desc: 'Self-audit tools and audit prep resources.', price: '$59', sku: 'LP-PKT-SINS', href: '/standards/16-deadly-sins' },
-  { code: 'AUDIT PREPARATION & RESPONSE', title: '18-Month Readiness Protocol', desc: '18-month readiness protocol and 48-hour response system for New Entrant Safety Audits.', price: '$169', sku: 'LP-RES-004', href: '/products/safety-audit-prep' },
+  { code: 'DIAGNOSTIC TOOLS', title: '16 Deadly Sins Pocket Guide & Audit Prep', desc: 'Self-audit tools and audit prep resources.', price: '$59', sku: 'LP-PKT-SINS', href: '/standards/16-deadly-sins', img: '/images/products/tool-deadly-sins.webp' },
+  { code: 'AUDIT PREPARATION & RESPONSE', title: '18-Month Readiness Protocol', desc: '18-month readiness protocol and 48-hour response system for New Entrant Safety Audits.', price: '$169', sku: 'LP-RES-004', href: '/products/safety-audit-prep', img: '/images/products/tool-audit-prep.webp' },
 ];
 
 export default function DomainComponentGrid({ onBuy, states, errors }) {
@@ -39,7 +39,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
         {/* Upsell note */}
         <div style={{ marginBottom: '2.5rem', padding: '0.875rem 1.25rem', background: CARD, border: `1px solid ${BORDER}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
           <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.55)', margin: 0, lineHeight: 1.5 }}>
-            Buying more than one domain? The Document System Bundle includes all five for $499 — $176 below individual acquisition cost.
+            Buying more than one domain? The Document System Bundle includes all six compliance packets plus the Unified Folder Structure Guide — $176 below individual acquisition cost.
           </p>
           <a href="#bundle" data-testid="domain-bundle-crosssell" style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: GOLD, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
             INSTALL THE BUNDLE →
@@ -54,11 +54,16 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
             const isLoading = states?.[d.sku] === 'loading';
             return (
               <div key={d.sku} style={{
-                padding: '1.75rem',
                 borderRight: col < 2 ? `1px solid ${BORDER}` : 'none',
                 borderBottom: row < 1 ? `1px solid ${BORDER}` : 'none',
                 display: 'flex', flexDirection: 'column',
               }}>
+                {d.img && (
+                  <div style={{ overflow: 'hidden', borderBottom: `1px solid ${BORDER}`, flexShrink: 0 }}>
+                    <img src={d.img} alt={d.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
+                  </div>
+                )}
+                <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                 <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{d.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1.05rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{d.title}</h3>
                 <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.625rem', flexGrow: 1 }}>{d.desc}</p>
@@ -78,6 +83,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
                   style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', background: 'transparent', color: NAVY, border: `1px solid ${BORDER}`, padding: '0.75rem 1rem', textDecoration: 'none', display: 'block', textAlign: 'center', borderRadius: 0 }}>
                   VIEW DOMAIN →
                 </Link>
+                </div>
               </div>
             );
           })}
@@ -88,7 +94,13 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
           {SUPPLEMENTAL.map((s, i) => {
             const isLoading = states?.[s.sku] === 'loading';
             return (
-              <div key={s.sku} style={{ padding: '1.75rem', background: CARD, borderRight: i === 0 ? `1px solid ${BORDER}` : 'none', display: 'flex', flexDirection: 'column' }}>
+              <div key={s.sku} style={{ background: CARD, borderRight: i === 0 ? `1px solid ${BORDER}` : 'none', display: 'flex', flexDirection: 'column' }}>
+                {s.img && (
+                  <div style={{ overflow: 'hidden', borderBottom: `1px solid ${BORDER}`, flexShrink: 0 }}>
+                    <img src={s.img} alt={s.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
+                  </div>
+                )}
+                <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                 <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{s.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{s.title}</h3>
                 <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.875rem', flexGrow: 1 }}>{s.desc}</p>
@@ -99,6 +111,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
                   style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', background: 'transparent', color: NAVY, border: `1px solid ${BORDER}`, padding: '0.75rem 1rem', textDecoration: 'none', display: 'block', textAlign: 'center', borderRadius: 0 }}>
                   VIEW PAGE →
                 </Link>
+                </div>
               </div>
             );
           })}

@@ -15,7 +15,16 @@ export default function StarterBundleCard({ onBuy, loading, error }) {
   return (
     <section data-testid="cl-starter-bundle" style={{ background: BG, borderBottom: `1px solid ${BORDER}`, padding: '3rem 1.5rem' }}>
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
-        <div style={{ background: CARD, border: `1px solid ${BORDER}`, padding: '2.25rem' }}>
+        <div style={{ background: CARD, border: `1px solid ${BORDER}`, overflow: 'hidden' }}>
+          {/* Product cover */}
+          <div style={{ borderBottom: `1px solid ${BORDER}` }}>
+            <img
+              src="/images/products/starter-stack.webp"
+              alt="LaunchPath Starter Stack"
+              style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+          <div style={{ padding: '2.25rem' }}>
           <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.625rem', fontWeight: 700 }}>
             STARTER BUNDLE — ENTRY POINT
           </p>
@@ -46,6 +55,7 @@ export default function StarterBundleCard({ onBuy, loading, error }) {
             </button>
           </div>
           {error && <p style={{ fontFamily: MONO, fontSize: 9, color: '#ef4444', marginTop: '0.5rem' }}>{error}</p>}
+          </div>
         </div>
       </div>
     </section>

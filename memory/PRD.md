@@ -525,7 +525,14 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
-### Phase 131: Product Cover Art + Business Decisions (June 2026)
+### Phase 131: Product Cover Art (Batch 2) + Business Decisions (June 2026)
+- **Second batch of branded product images**: 4 more custom covers applied — Starter Stack (LP-STK-001), Document System Bundle (LP-BDL-001), New Entrant Compliance Packet (LP-PKT-001/Domain 1), 18-Month Readiness Protocol (LP-DIAG-002/Safety Audit Prep). All converted from PNG to WebP (28–116KB).
+- **Domain grid images LIVE**: `DomainComponentGrid.jsx` updated to render product cover images at top of each domain card (180px height, object-fit cover). All 6 domain cards + 2 supplemental tool cards now show branded covers.
+- **StarterBundleCard updated**: Cover image (220px) added above the card content block.
+- **All product pages now use local WebP** instead of CDN URLs: StarterStackPage, SafetyAuditPrepPage, BundleSalesPage, BundlePage (already local). NewEntrantPacketPage auto-updated via domain1-new-entrant.webp replacement.
+- **Copy fix**: DomainComponentGrid upsell note updated from "all five" → "all six".
+
+### Phase 131b: Product Cover Art (Batch 1) + Business Decisions (June 2026)
 - **New branded product images**: 4 custom covers uploaded and applied — HOS & Dispatch (LP-PKT-004), Maintenance & Unit File (LP-PKT-005), Insurance & Authority (LP-PKT-006/Domain 6), 16 Deadly Sins Pocket Guide (LP-DIAG-001). All converted from PNG to WebP (30–50KB). Applied to individual product pages AND ComplianceLibraryPage domain card grid via `DomainComponentGrid.jsx`.
 - **Domain count 5 → 6**: LibraryMetricsStrip.jsx updated (metric shows "6"), BundleSalesPage.jsx updated ("6 compliance packets", "110 pages", "All 6" in comparison table, FAQ, hero copy, and footer pricing all updated).
 - **MailerSend Risk Map fallback**: `POST /api/risk-map/email-capture` now queues a branded transactional email via MailerSend with direct PDF link (`c738vw2e_LaunchPath_First_90_Days_Risk_Overview_v2.pdf`) — guarantees delivery independent of MailerLite automation timing.

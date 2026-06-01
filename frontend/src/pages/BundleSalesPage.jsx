@@ -16,7 +16,7 @@ const SERIF = "'Newsreader', 'Playfair Display', serif";
 
 // ── Product images (same as Stripe checkout) ──────────────────────────────────
 const BASE = "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/";
-const IMG_BUNDLE = BASE + "64d8c85e1b2fcbdc822a1cfbd3e6d33b0474d2e2ebb60f845755c564dc6bb5d7.png";
+const IMG_BUNDLE = "/images/products/bundle-document-system.webp";
 const IMG_PKT = {
   "LP-PKT-001": BASE + "2a792816a78b73cdc5cdda45a303201ac524991f95981c97aae09cb1f52e738e.png",
   "LP-PKT-002": BASE + "1bad3292205ed62246b466e0dcf3b09ada132cea612035cc9f8674f8802472c3.png",
