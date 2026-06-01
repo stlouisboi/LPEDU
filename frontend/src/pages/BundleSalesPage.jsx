@@ -15,15 +15,77 @@ const MONO  = "'Inter', sans-serif";
 const SERIF = "'Newsreader', 'Playfair Display', serif";
 
 // ── Product images (same as Stripe checkout) ──────────────────────────────────
-const BASE = "https://static.prod-images.emergentagent.com/jobs/af40d51d-d305-49f1-a1bf-bdfcdf7e2c6c/images/";
 const IMG_BUNDLE = "/images/products/bundle-document-system.webp";
 const IMG_PKT = {
-  "LP-PKT-001": BASE + "2a792816a78b73cdc5cdda45a303201ac524991f95981c97aae09cb1f52e738e.png",
-  "LP-PKT-002": BASE + "1bad3292205ed62246b466e0dcf3b09ada132cea612035cc9f8674f8802472c3.png",
-  "LP-PKT-003": BASE + "546de6eb252c5e998f89c6565bc7193a3c0c002bff62910ac9e730b31f8d82dc.png",
-  "LP-PKT-004": BASE + "1dc88494a074059a36d3b6b46b6b8a956c70a05a5a219c9f88e69300f3a6ec3e.png",
-  "LP-PKT-005": BASE + "1765edddd11eb37db174f165574154c8c2680e6ea93eec2b608a15b19ed2bfcd.png",
+  "LP-PKT-001": "/images/products/domain1-new-entrant.webp",
+  "LP-PKT-002": "/images/products/domain3-drug-alcohol.webp",
+  "LP-PKT-003": "/images/products/domain4-hos-dispatch.webp",
+  "LP-PKT-004": "/images/products/domain5-maintenance.webp",
+  "LP-PKT-005": "/images/products/domain6-insurance.webp",
 };
+
+// ── Document Cover Lightbox data ──────────────────────────────────────────────
+const COVER_PREVIEWS = [
+  { sku: 'LP-PKT-001', title: 'New Entrant Compliance Packet',     domain: 'DOMAIN 1', img: '/images/products/domain1-new-entrant.webp' },
+  { sku: 'LP-PKT-DQ',  title: 'DQ File Builder Kit',              domain: 'DOMAIN 2', img: '/images/products/domain2-dq-files.webp' },
+  { sku: 'LP-PKT-002', title: 'Drug & Alcohol Compliance Packet',  domain: 'DOMAIN 3', img: '/images/products/domain3-drug-alcohol.webp' },
+  { sku: 'LP-PKT-003', title: 'HOS & Dispatch Compliance Packet',  domain: 'DOMAIN 4', img: '/images/products/domain4-hos-dispatch.webp' },
+  { sku: 'LP-PKT-004', title: 'Maintenance & Unit File Packet',    domain: 'DOMAIN 5', img: '/images/products/domain5-maintenance.webp' },
+  { sku: 'LP-PKT-005', title: 'Insurance & Authority Packet',      domain: 'DOMAIN 6', img: '/images/products/domain6-insurance.webp' },
+];
+
+function CoversLightbox({ onClose }) {
+  return (
+    <div
+      data-testid="covers-lightbox-overlay"
+      onClick={onClose}
+      style={{ position: 'fixed', inset: 0, background: 'rgba(4,9,20,0.96)', zIndex: 1000, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', padding: '2.5rem 1.5rem 3rem', overflowY: 'auto' }}
+    >
+      <div onClick={e => e.stopPropagation()} style={{ width: '100%', maxWidth: 960 }}>
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+          <div>
+            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(212,144,10,0.8)', margin: '0 0 0.25rem' }}>LP-BDL-001 · DOCUMENT SYSTEM BUNDLE</p>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 'clamp(1.25rem,3vw,1.75rem)', color: '#FAF8F4', margin: 0 }}>All Six Compliance Domain Covers</h2>
+          </div>
+          <button
+            data-testid="covers-lightbox-close"
+            onClick={onClose}
+            aria-label="Close preview"
+            style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: '#FAF8F4', fontFamily: MONO, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.5rem 1rem', cursor: 'pointer', borderRadius: 0, flexShrink: 0 }}
+          >
+            CLOSE ✕
+          </button>
+        </div>
+
+        {/* 3×2 cover grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }} className="covers-grid">
+          {COVER_PREVIEWS.map(c => (
+            <div key={c.sku} data-testid={`cover-preview-${c.sku.toLowerCase()}`} style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ border: '1px solid rgba(212,144,10,0.25)', overflow: 'hidden', background: '#0d1929' }}>
+                <img
+                  src={c.img}
+                  alt={c.title}
+                  style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+              <div style={{ paddingTop: '0.75rem' }}>
+                <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(212,144,10,0.7)', margin: '0 0 0.25rem' }}>{c.domain} · {c.sku}</p>
+                <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '0.875rem', color: '#FAF8F4', margin: 0, lineHeight: 1.35 }}>{c.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer note */}
+        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', marginTop: '2rem', textAlign: 'center' }}>
+          All six domain packets included in LP-BDL-001 — Document System Bundle
+        </p>
+      </div>
+      <style suppressHydrationWarning>{`@media(max-width:700px){.covers-grid{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:440px){.covers-grid{grid-template-columns:1fr!important}}`}</style>
+    </div>
+  );
+}
 
 // ── Checkout ──────────────────────────────────────────────────────────────────
 function useBuy() {
@@ -387,6 +449,7 @@ export default function BundleSalesPage() {
   const { state, error, buy } = useBuy();
   const [openFaq, setOpenFaq] = useState(null);
   const [stickyVisible, setStickyVisible] = useState(false);
+  const [showCovers, setShowCovers] = useState(false);
   const heroCTARef = useRef(null);
 
   // Show sticky bar only after hero CTA scrolls out of view
@@ -403,6 +466,7 @@ export default function BundleSalesPage() {
 
   return (
     <div style={{ background: DARK, minHeight: "100vh", color: "#FFF", fontFamily: MONO, overflowX: "hidden" }}>
+      {showCovers && <CoversLightbox onClose={() => setShowCovers(false)} />}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
@@ -463,7 +527,7 @@ export default function BundleSalesPage() {
           </div>
 
           {/* Right: product image */}
-          <div style={{ flex: "0 0 auto", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.25rem" }}>
             <div style={{ position: "relative", width: 280 }}>
               <div style={{ position: "absolute", inset: -8, background: `linear-gradient(135deg, rgba(212,144,10,0.15), transparent)`, borderRadius: 4 }} />
               <Image
@@ -477,6 +541,14 @@ export default function BundleSalesPage() {
                 LP-BDL-001
               </div>
             </div>
+            {/* Lightbox trigger */}
+            <button
+              data-testid="covers-lightbox-trigger"
+              onClick={() => setShowCovers(true)}
+              style={{ marginTop: 16, fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', background: 'transparent', color: 'rgba(212,144,10,0.85)', border: '1px solid rgba(212,144,10,0.35)', padding: '0.625rem 1.25rem', cursor: 'pointer', borderRadius: 0, whiteSpace: 'nowrap' }}
+            >
+              PREVIEW ALL 6 DOCUMENTS →
+            </button>
           </div>
         </div>
       </section>

@@ -525,6 +525,11 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 132: Cohort Bar Reset + Bundle Lightbox (June 2026)
+- **AnnouncementBar simplified**: Removed dynamic `/api/cohort-seats` fetch and seat counter logic entirely. Bar now shows clean static copy: "LP-COH-002 · Next Cohort Begins July 6, 2026 · Limited to 12 Motor Carriers" with green pulsing dot. No fake scarcity signals.
+- **Product cover lightbox on `/bundle`**: Added `CoversLightbox` modal component. "PREVIEW ALL 6 DOCUMENTS →" button below the bundle cover image in the hero. Opens full-screen dark overlay showing all 6 domain covers in a 3×2 responsive grid (collapses to 2×3 on mobile). Each cover shows image + domain label + SKU + title. Close button top-right.
+- **IMG_PKT updated to local WebP files** in BundleSalesPage.jsx (removed CDN URL dependency).
+
 ### Phase 131: Product Cover Art (Batch 2) + Business Decisions (June 2026)
 - **Second batch of branded product images**: 4 more custom covers applied — Starter Stack (LP-STK-001), Document System Bundle (LP-BDL-001), New Entrant Compliance Packet (LP-PKT-001/Domain 1), 18-Month Readiness Protocol (LP-DIAG-002/Safety Audit Prep). All converted from PNG to WebP (28–116KB).
 - **Domain grid images LIVE**: `DomainComponentGrid.jsx` updated to render product cover images at top of each domain card (180px height, object-fit cover). All 6 domain cards + 2 supplemental tool cards now show branded covers.
