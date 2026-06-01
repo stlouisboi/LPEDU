@@ -189,7 +189,7 @@ const WHO_FOR = [
 ];
 
 const WHAT_YOU_GET = [
-  "5 compliance packets (92 pages total)",
+  "6 compliance packets (110 pages total)",
   "Unified Folder Structure Guide (4 pages)",
   "Folder Setup Walkthrough (video)",
   "Immediate download access",
@@ -206,7 +206,7 @@ const STEPS = [
 
 const COMPARE = [
   { feature: "Price",                          ind: "$59–$169 each",  bundle: "$499",   std: "$2,500" },
-  { feature: "Packets Included",               ind: "1",             bundle: "All 5",  std: "All 5" },
+  { feature: "Packets Included",               ind: "1",             bundle: "All 6",  std: "All 6" },
   { feature: "Folder Structure Guide",         ind: false,           bundle: true,     std: true },
   { feature: "Folder Setup Walkthrough",       ind: false,           bundle: true,     std: true },
   { feature: "Station Custodian Verification", ind: false,           bundle: false,    std: true },
@@ -222,8 +222,8 @@ const FAQS = [
     a: "All packets are PDF files. You can view them on any device, print them, or store them digitally. The video walkthrough is hosted online with lifetime access.",
   },
   {
-    q: "Do I need all five packets?",
-    a: "If you're a new motor carrier preparing for or currently in the New Entrant monitoring period — yes. The five domains are the five areas FMCSA reviews in your safety audit. Missing one domain is the same as failing one domain.",
+    q: "Do I need all six packets?",
+    a: "If you're a new motor carrier preparing for or currently in the New Entrant monitoring period — yes. The six domains are the six areas FMCSA reviews in your safety audit. Missing one domain is the same as failing one domain.",
   },
   {
     q: "What's the difference between the bundle and The Standard?",
@@ -445,7 +445,7 @@ export default function BundleSalesPage() {
             </h1>
             <div style={{ height: 2, background: CORAL, width: 64, marginBottom: "1.5rem" }} />
             <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,.7)", lineHeight: 1.75, marginBottom: "2.5rem", maxWidth: 600 }}>
-              Five compliance packets. 92 pages. Every template, checklist, and regulatory brief a new motor carrier needs — in one installation kit.
+            Six compliance packets. 110 pages. Every template, checklist, and regulatory brief a new motor carrier needs — in one installation kit.
             </p>
 
             {/* Price block */}
@@ -457,7 +457,7 @@ export default function BundleSalesPage() {
               <GoldCTA state={state} buy={buy} size="lg" />
               {error && <p style={{ color: "#f87171", fontSize: ".875rem", marginTop: ".75rem" }}>{error}</p>}
               <p style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,.65)", marginTop: ".875rem", lineHeight: 1.7 }}>
-                Includes all five domain packets plus the Unified Folder Structure Guide and Folder Setup Walkthrough.
+                Includes all six domain packets plus the Unified Folder Structure Guide and Folder Setup Walkthrough.
               </p>
             </div>
           </div>
@@ -697,7 +697,7 @@ export default function BundleSalesPage() {
           <p style={{ fontFamily: MONO, fontSize: ".714rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: GOLD_DIM, marginBottom: "1rem" }}>LP-BDL-001 &nbsp;|&nbsp; NEW CARRIER DOCUMENT SYSTEM</p>
           <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(3rem,6vw,4.5rem)", color: GOLD, lineHeight: 1, marginBottom: ".5rem", letterSpacing: "-.02em" }}>$499</p>
           <p style={{ fontSize: ".9rem", color: "rgba(255,255,255,.45)", marginBottom: "2.5rem" }}>
-            One-time purchase. Lifetime access. 92 pages + folder guide + setup video.
+            One-time purchase. Lifetime access. 110 pages + folder guide + setup video.
           </p>
           <GoldCTA state={state} buy={buy} size="lg" />
           {error && <p style={{ color: "#f87171", fontSize: ".875rem", marginTop: ".75rem" }}>{error}</p>}

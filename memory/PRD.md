@@ -525,6 +525,12 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 131: Product Cover Art + Business Decisions (June 2026)
+- **New branded product images**: 4 custom covers uploaded and applied — HOS & Dispatch (LP-PKT-004), Maintenance & Unit File (LP-PKT-005), Insurance & Authority (LP-PKT-006/Domain 6), 16 Deadly Sins Pocket Guide (LP-DIAG-001). All converted from PNG to WebP (30–50KB). Applied to individual product pages AND ComplianceLibraryPage domain card grid via `DomainComponentGrid.jsx`.
+- **Domain count 5 → 6**: LibraryMetricsStrip.jsx updated (metric shows "6"), BundleSalesPage.jsx updated ("6 compliance packets", "110 pages", "All 6" in comparison table, FAQ, hero copy, and footer pricing all updated).
+- **MailerSend Risk Map fallback**: `POST /api/risk-map/email-capture` now queues a branded transactional email via MailerSend with direct PDF link (`c738vw2e_LaunchPath_First_90_Days_Risk_Overview_v2.pdf`) — guarantees delivery independent of MailerLite automation timing.
+- Testing: Backend curl confirmed `{"ok":True}`, product pages screenshots verified.
+
 ### Phase 130: Admin Audit Windows Dashboard + Founder Page Zoom (June 2026)
 - **`/admin/audit-windows`**: New admin page — dark institutional theme, AdminNavBar, tier filters (ALL/CRITICAL/HIGH/MODERATE/LOW), search, reminder email flag indicators (MOD/HI/CRIT with ✓ when sent). Backend `GET /api/admin/audit-windows` queries all `icp_assessments` with `authority_grant_date`, computes urgency tier, returns reminder email status flags. Sorted by urgency (critical first). Auth-gated (admin login required). Added "Audit Windows" to AdminNavBar.
 - **Founder page zoom-out**: `maxWidth` widened from `1020px` → `1440px` (both content and classification band). Padding increased to `2.5rem`. Page now fills wide viewport correctly.

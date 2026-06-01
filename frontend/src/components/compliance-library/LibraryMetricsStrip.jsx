@@ -9,7 +9,7 @@ const MONO = "'JetBrains Mono', monospace";
 const STATS = [
   { val: '49 CFR',    label: 'Primary Regulation Indexed' },
   { val: '11',        label: 'Operational Briefs' },
-  { val: '5',         label: 'Compliance Domains' },
+  { val: '6',         label: 'Compliance Domains' },
   { val: '16',        label: 'Documented Failure Patterns' },
   { val: '18-Month',  label: 'New Entrant Audit Window' },
 ];

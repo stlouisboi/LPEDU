@@ -1128,6 +1128,43 @@ async def risk_map_email_capture(data: RiskMapCapture):
         upsert=True,
     )
     logger.info(f"Risk Map lead captured: {data.email}")
+
+    # MailerSend fallback — deliver PDF link directly to inbox
+    first = data.first_name or "Carrier"
+    risk_map_pdf = "https://customer-assets.emergentagent.com/job_your-numbers-calc/artifacts/c738vw2e_LaunchPath_First_90_Days_Risk_Overview_v2.pdf"
+    risk_map_subject = "Your First 90 Days Risk Map — LaunchPath"
+    risk_map_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#FAF8F4;font-family:'Inter',Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#FAF8F4;">
+  <tr><td align="center" style="padding:48px 20px;">
+    <table width="100%" style="max-width:580px;background:#FAF8F4;border-top:3px solid #1C2B3A;">
+      <tr><td style="padding:40px 40px 0;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(200,169,110,0.70);margin:0 0 24px;">LP-LEAD-001 &nbsp;|&nbsp; FIRST 90 DAYS RISK MAP</p>
+        <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:700;color:#1C2B3A;margin:0 0 20px;line-height:1.3;">Your Risk Map is ready, {first}.</h1>
+        <p style="font-size:15px;color:rgba(28,43,58,0.75);line-height:1.80;margin:0 0 16px;">The First 90 Days Risk Map shows the compliance exposure points that reach new carriers in the first 90 days after authority activates — organized by phase.</p>
+        <p style="font-size:15px;color:rgba(28,43,58,0.75);line-height:1.80;margin:0 0 28px;">Use it to identify which phase of the audit window you are in and what gaps are most likely to exist right now.</p>
+        <table cellpadding="0" cellspacing="0" style="margin:0 0 28px;">
+          <tr><td style="background:#1C2B3A;">
+            <a href="{risk_map_pdf}" style="display:inline-block;background:#1C2B3A;color:#FAF8F4;font-family:'JetBrains Mono','Courier New',monospace;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:16px 32px;">DOWNLOAD THE RISK MAP &#8594;</a>
+          </td></tr>
+        </table>
+        <p style="font-size:13px;color:rgba(28,43,58,0.45);line-height:1.7;margin:0 0 28px;">If the button above doesn't work, copy and paste this link into your browser:<br><a href="{risk_map_pdf}" style="color:#C8A96E;word-break:break-all;">Click here to download</a></p>
+        <div style="height:1px;background:rgba(28,43,58,0.10);margin:0 0 24px;"></div>
+        <p style="font-size:14px;color:rgba(28,43,58,0.55);line-height:1.75;margin:0 0 4px;">After reviewing the Risk Map, the REACH Diagnostic will show your exact compliance exposure score across all 5 categories — free, 20 minutes.</p>
+        <a href="{FRONTEND_URL}/reach-diagnostic" style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#C8A96E;text-decoration:none;">Take the REACH Diagnostic &#8594;</a>
+      </td></tr>
+      <tr><td style="padding:24px 40px 32px;">
+        <p style="font-family:'JetBrains Mono','Courier New',monospace;font-size:9px;letter-spacing:0.10em;color:rgba(28,43,58,0.30);margin:0;text-transform:uppercase;">LaunchPath Transportation EDU &nbsp;·&nbsp; launchpathedu.com &nbsp;·&nbsp; Not done-for-you compliance.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>"""
+    asyncio.create_task(send_mailersend_email(data.email, first, risk_map_subject, risk_map_html))
+    logger.info(f"Risk Map delivery email queued: {data.email}")
+
     return {"ok": True}
 
 
