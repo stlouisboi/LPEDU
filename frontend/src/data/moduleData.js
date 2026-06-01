@@ -5,7 +5,7 @@ export const MODULE_1_DATA = {
   code: "MOD-1",
   title: "Driver Qualification File",
   description:
-    "Build the complete, audit-ready Driver Qualification File for every operating driver — including the owner-operator. Nine implementation units covering business foundation, federal filings, Motus registration transition, and the DQF gate. Module 2 does not unlock until the Station Custodian verifies this module complete.",
+    "Build the complete, audit-ready Driver Qualification File for every operating driver — including the owner-operator. Nine implementation units covering business foundation, federal filings, and the DQF gate. Module 2 does not unlock until the Station Custodian verifies this module complete.",
   totalDuration: "~132 min",
   lessonCount: 9,
   lessons: [
@@ -20,28 +20,24 @@ export const MODULE_1_DATA = {
     {
       id: "1-9",
       number: "1.9",
-      title: "Motus: Securing Your Authority Through the FMCSA Registration Transition",
-      subtitle: "FMCSA's new registration infrastructure — what's changing, what to verify, and how to migrate without problems",
-      duration: "~12 min",
+      // ── LP-UNAUTHORIZED ────────────────────────────────────────────────────────
+      // This lesson was NOT authored under LP-STD-VOICE-001 and does not appear
+      // in any LaunchPath curriculum build history, module script record, or
+      // architecture document. Origin is unknown. DO NOT display in portal sidebar.
+      // DO NOT accept a Vimeo URL. DO NOT unlock for any enrolled carrier.
+      // Routing to Vince for authorization review before any use.
+      // ──────────────────────────────────────────────────────────────────────────
+      __status: "UNAUTHORIZED — HOLD PENDING VINCE REVIEW",
+      __displayInPortal: false,
+      __acceptVimeoUrl: false,
+      title: "HOLD — UNAUTHORIZED LESSON (Motus Transition)",
+      subtitle: "Not authorized under LP-STD-VOICE-001. Do not publish.",
+      duration: null,
       pillar: "Authority Protection",
-      description: "FMCSA is replacing the Unified Registration System with Motus — a new registration platform that will be the single dashboard for all carrier registration work. This is not a new permit or a new type of authority. It is a registration infrastructure change. Your existing USDOT number and MC authority carry forward. This lesson covers what Motus is, who it applies to, the three preparation requirements FMCSA has identified, the most common failure patterns, and a 10-step verification checklist you run monthly until Phase 2 opens to carriers. Portal health, MCS-150 currency, and BOC-3 integrity are all Authority Protection items. This lesson belongs in Module 1 for that reason.",
+      description: "UNAUTHORIZED. This lesson was not built from a LaunchPath script record. It does not appear in any curriculum architecture document or build session history. Flagged pending Vince review. If Motus is a third-party FMCSA registration platform, a script must be written under LP-STD-VOICE-001 before this lesson can proceed.",
       videoUrl: null,
-      studentActions: [
-        "Log into your FMCSA Portal (portal.fmcsa.dot.gov) and confirm the account is active.",
-        "Verify the Company Official is an owner or employee — not a consultant.",
-        "Confirm the Login.gov email matches the Company Official on file.",
-        "Enable multi-factor authentication on your Login.gov account.",
-        "File or update your MCS-150 Biennial Update if stale or outdated.",
-        "Confirm your physical address is correct and inspectable — no PO Boxes.",
-        "Audit your fleet count against actual equipment.",
-        "Verify your BOC-3 status at safer.fmcsa.dot.gov.",
-        "Designate a backup Company Official.",
-        "Subscribe to FMCSA email alerts for the Phase 2 carrier invitation.",
-        "Download and complete the Motus Transition Checklist.",
-      ],
-      resources: [
-        { label: "Motus Transition Checklist — LP-CUR-M1-L9", href: "/tools/motus-checklist" },
-      ],
+      studentActions: [],
+      resources: [],
     },
   ],
   completionChecklist: [
@@ -301,10 +297,10 @@ export const MODULE_4_DATA = {
     },
     {
       id: "4-7", number: "4.7",
-      title: "Program Verification and Audit-Readiness",
-      subtitle: "Confirming your D&A program is complete, current, and ready for examination",
+      title: "New Entrant Audit Preparation",
+      subtitle: "The audit timeline, what investigators request, pass/fail indicators, and the self-audit protocol",
       duration: "~17 min",
-      description: "Before moving to Module 5, this lesson verifies your D&A program against the audit checklist. Consortium enrollment is confirmed, Clearinghouse registration is active, the written policy is distributed and on file, and the chain-of-custody documentation system is installed. NOTE: Verify lesson title against script file.",
+      description: "The New Entrant Safety Audit is not a surprise — FMCSA follows a documented sequence with known document requests and known evaluation criteria. This lesson maps the audit timeline, what investigators will ask for at each pillar, what constitutes a pass vs. a fail indicator, and how to run the self-audit protocol before the auditor arrives.",
       videoUrl: null,
       resources: [],
     },
@@ -385,10 +381,10 @@ export const MODULE_5_DATA = {
     },
     {
       id: "5-7", number: "5.7",
-      title: "HOS Self-Audit Routine",
-      subtitle: "Monthly review to catch patterns before the FMCSA auditor does",
+      title: "The Monthly Self-Audit",
+      subtitle: "The recurring HOS compliance review cadence — catching patterns before the auditor does",
       duration: "~14 min",
-      description: "HOS violations create patterns in the log that FMCSA auditors are trained to identify. This lesson installs a monthly self-audit routine that reviews logs against dispatch records, identifies anomalies, and documents corrective steps — the operational discipline that keeps HOS violations off your SMS record. NOTE: Verify lesson title against script file.",
+      description: "HOS compliance is not a one-time installation — it requires a recurring review cadence to catch violations before they accumulate into an SMS pattern. This lesson installs the monthly self-audit routine: reviewing logs against dispatch records, identifying anomalies, documenting corrective steps, and building the operational discipline that keeps HOS violations off your safety record.",
       videoUrl: null,
       resources: [],
     },
@@ -592,10 +588,10 @@ export const MODULE_8_DATA = {
     },
     {
       id: "8-5", number: "8.5",
-      title: "ELD Compliance Verification",
-      subtitle: "Confirming your ELD setup is audit-ready and correctly registered",
+      title: "Managing Errors, Malfunctions, and Edits Without Cheating",
+      subtitle: "Device malfunction protocol, legitimate log edits, and the line that cannot be crossed",
       duration: "~13 min",
-      description: "This closing lesson verifies your ELD setup against the compliance checklist: device is FMCSA-registered, drivers are trained, data transfer capability is confirmed, malfunction protocol is documented and accessible, and retention system is in place. NOTE: Verify lesson title against script file.",
+      description: "ELD malfunctions and log errors are a compliance event, not just a technical problem. This closing lesson covers the malfunction response protocol, how to make legitimate log edits with proper annotation, what constitutes a falsification violation versus a correction, and the specific line that — when crossed — converts a documentation error into a federal violation.",
       videoUrl: null,
       resources: [],
     },
@@ -657,10 +653,10 @@ export const MODULE_9_DATA = {
     },
     {
       id: "9-5", number: "9.5",
-      title: "Hazmat Liability Exposure",
-      subtitle: "What non-specialist carriers face for inadvertent violations — and how to manage the risk",
+      title: "Insurance, Safety Rating, and One Bad Day Scenarios",
+      subtitle: "Hazmat insurance requirements, cost exposure, and the consequence distribution of under-prepared operations",
       duration: "~10 min",
-      description: "PHMSA penalties for hazmat violations are among the highest in transportation regulatory enforcement. This closing lesson maps the liability exposure for non-specialist carriers who cross into regulated hazmat territory — inadvertently or otherwise — and the documentation practices that reduce that exposure. NOTE: Verify lesson title against script file.",
+      description: "A single hazmat incident without adequate insurance coverage or a compliant program can end an operation in one event. This closing lesson maps the specific hazmat insurance requirements, the cost exposure carriers absorb when those requirements aren't met, and the consequence distribution of under-prepared hazmat operations — what one bad day looks like across insurance, safety rating, and PHMSA enforcement.",
       videoUrl: null,
       resources: [],
     },
