@@ -1,5 +1,10 @@
-import ComplianceLibraryPage from '../src/pages/ComplianceLibraryPage';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
+
+const ComplianceLibraryPage = dynamic(
+  () => import('../src/pages/ComplianceLibraryPage'),
+  { ssr: false }
+);
 
 export default function Page() {
   return (
