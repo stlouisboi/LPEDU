@@ -16,12 +16,11 @@ export default function StarterBundleCard({ onBuy, loading, error }) {
     <section data-testid="cl-starter-bundle" style={{ background: BG, borderBottom: `1px solid ${BORDER}`, padding: '3rem 1.5rem' }}>
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
         <div style={{ background: CARD, border: `1px solid ${BORDER}`, overflow: 'hidden' }}>
-          {/* Product cover */}
-          <div style={{ borderBottom: `1px solid ${BORDER}` }}>
+          <div style={{ borderBottom: `1px solid rgba(255,255,255,0.1)`, overflow: 'hidden' }}>
             <img
               src="/images/products/starter-stack.webp"
               alt="LaunchPath Starter Stack"
-              style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', height: 240, objectFit: 'contain', display: 'block', background: '#1C2B3A' }}
             />
           </div>
           <div style={{ padding: '2.25rem' }}>

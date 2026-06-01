@@ -59,8 +59,8 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
                 display: 'flex', flexDirection: 'column',
               }}>
                 {d.img && (
-                  <div style={{ overflow: 'hidden', borderBottom: `1px solid ${BORDER}`, flexShrink: 0 }}>
-                    <img src={d.img} alt={d.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
+                  <div style={{ overflow: 'hidden', borderBottom: `1px solid ${BORDER}`, flexShrink: 0, background: '#1C2B3A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img src={d.img} alt={d.title} style={{ width: '100%', height: 220, objectFit: 'contain', display: 'block' }} />
                   </div>
                 )}
                 <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -96,8 +96,8 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
             return (
               <div key={s.sku} style={{ background: CARD, borderRight: i === 0 ? `1px solid ${BORDER}` : 'none', display: 'flex', flexDirection: 'column' }}>
                 {s.img && (
-                  <div style={{ overflow: 'hidden', borderBottom: `1px solid ${BORDER}`, flexShrink: 0 }}>
-                    <img src={s.img} alt={s.title} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
+                  <div style={{ overflow: 'hidden', borderBottom: `1px solid ${BORDER}`, flexShrink: 0, background: '#1C2B3A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img src={s.img} alt={s.title} style={{ width: '100%', height: 220, objectFit: 'contain', display: 'block' }} />
                   </div>
                 )}
                 <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>

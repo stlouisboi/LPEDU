@@ -525,6 +525,10 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 133: Image Zoom Fix + Header Enhancement (June 2026)
+- **Product image zoom fixed**: All domain grid cards and supplemental cards in `DomainComponentGrid.jsx` changed from `objectFit: cover` (cropped) to `objectFit: contain` with `background: #1C2B3A`. Height increased to 220px. `StarterBundleCard.jsx` same fix. Lightbox covers in `BundleSalesPage.jsx` also fixed.
+- **SiteHeader enhanced**: New nav structure (Standard, Documents, Diagnostic, Knowledge, Tools dropdown with 4 sub-items). 3px `#1C2B3A` top border. Logo + thin rule separator. Hover states: gold underline slide-in via CSS transition. Active state: navy underline. CTA buttons: PORTAL (outlined, navy) + REQUEST ADMISSION (navy bg, hover turns gold). Scroll shadow via `useEffect`. Mobile drawer preserved.
+
 ### Phase 132: Cohort Bar Reset + Bundle Lightbox (June 2026)
 - **AnnouncementBar simplified**: Removed dynamic `/api/cohort-seats` fetch and seat counter logic entirely. Bar now shows clean static copy: "LP-COH-002 · Next Cohort Begins July 6, 2026 · Limited to 12 Motor Carriers" with green pulsing dot. No fake scarcity signals.
 - **Product cover lightbox on `/bundle`**: Added `CoversLightbox` modal component. "PREVIEW ALL 6 DOCUMENTS →" button below the bundle cover image in the hero. Opens full-screen dark overlay showing all 6 domain covers in a 3×2 responsive grid (collapses to 2×3 on mobile). Each cover shows image + domain label + SKU + title. Close button top-right.

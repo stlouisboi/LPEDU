@@ -62,11 +62,11 @@ function CoversLightbox({ onClose }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }} className="covers-grid">
           {COVER_PREVIEWS.map(c => (
             <div key={c.sku} data-testid={`cover-preview-${c.sku.toLowerCase()}`} style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ border: '1px solid rgba(212,144,10,0.25)', overflow: 'hidden', background: '#0d1929' }}>
+              <div style={{ border: '1px solid rgba(212,144,10,0.25)', overflow: 'hidden', background: '#0d1929', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={c.img}
                   alt={c.title}
-                  style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block' }}
+                  style={{ width: '100%', aspectRatio: '3/4', objectFit: 'contain', display: 'block' }}
                 />
               </div>
               <div style={{ paddingTop: '0.75rem' }}>
