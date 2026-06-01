@@ -525,6 +525,11 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 135: Hero Copy — Three LP-STD-VOICE-001 Additions (June 2026)
+- **Sub-headline (Addition 1)**: "Twelve weeks to install the compliance system FMCSA will inspect — a clean audit preserves the authority; an empty file ends it." Sits between the program tag badge and the locked H1.
+- **Credential explainer (Addition 2)**: "Issued on a clean Week 11 Integrity Audit — driver files, drug program, HOS, maintenance records, and authority documentation." Sits directly below the VRF card.
+- **Scope strip (Addition 3)**: Dark navy three-column data strip below the existing 2×2 metadata grid. DURATION: "12 weeks · 69 lessons · 10 modules" | SCOPE: "Driver qualification · drug & alcohol · HOS · maintenance · insurance · authority continuity" | OUTCOME: "Verified Registry ID on clean Integrity Audit." Gold label, cream value, navy background.
+
 ### Phase 134: VRF Card Fix + New Bundle Cover (June 2026)
 - **VRF card garbled text fixed**: Used Pillow to paint matching dark background (RGB 14,13,12) over garbled "WHDEL WIDL WIDEY FRACCED" region (y=443–492), replaced with "SAMPLE CARRIER LLC" in Liberation Mono white. `/registry-card.png` updated in-place.
 - **New bundle cover image applied**: `bundle-document-system.webp` replaced with user-uploaded book-stack image (323kkse9), optimized to 36KB at 900px wide. Visible on `/bundle`, BundleSalesPage lightbox, and BundlePage hero.
