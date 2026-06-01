@@ -20,24 +20,27 @@ export const MODULE_1_DATA = {
     {
       id: "1-9",
       number: "1.9",
-      // ── LP-UNAUTHORIZED ────────────────────────────────────────────────────────
-      // This lesson was NOT authored under LP-STD-VOICE-001 and does not appear
-      // in any LaunchPath curriculum build history, module script record, or
-      // architecture document. Origin is unknown. DO NOT display in portal sidebar.
-      // DO NOT accept a Vimeo URL. DO NOT unlock for any enrolled carrier.
-      // Routing to Vince for authorization review before any use.
-      // ──────────────────────────────────────────────────────────────────────────
-      __status: "UNAUTHORIZED — HOLD PENDING VINCE REVIEW",
-      __displayInPortal: false,
-      __acceptVimeoUrl: false,
-      title: "HOLD — UNAUTHORIZED LESSON (Motus Transition)",
-      subtitle: "Not authorized under LP-STD-VOICE-001. Do not publish.",
-      duration: null,
+      title: "Motus: Securing Your Authority Through the FMCSA Registration Transition",
+      subtitle: "FMCSA's new registration infrastructure — what's changing, what to verify, and how to migrate without problems",
+      duration: "~12 min",
       pillar: "Authority Protection",
-      description: "UNAUTHORIZED. This lesson was not built from a LaunchPath script record. It does not appear in any curriculum architecture document or build session history. Flagged pending Vince review. If Motus is a third-party FMCSA registration platform, a script must be written under LP-STD-VOICE-001 before this lesson can proceed.",
+      description: "FMCSA is replacing the Unified Registration System with Motus — a new registration platform that will be the single dashboard for all carrier registration work. This is not a new permit or a new type of authority. It is a registration infrastructure change. Your existing USDOT number and MC authority carry forward. This lesson covers what Motus is, who it applies to, the three preparation requirements FMCSA has identified, the most common failure patterns, and a 10-step verification checklist you run monthly until Phase 2 opens to carriers. Portal health, MCS-150 currency, and BOC-3 integrity are all Authority Protection items. This lesson belongs in Module 1 for that reason.",
       videoUrl: null,
-      studentActions: [],
-      resources: [],
+      studentActions: [
+        "Log into your FMCSA Portal (portal.fmcsa.dot.gov) and confirm the account is active.",
+        "Verify the Company Official is an owner or employee — not a consultant.",
+        "Confirm the Login.gov email matches the Company Official on file.",
+        "Enable multi-factor authentication on your Login.gov account.",
+        "File or update your MCS-150 Biennial Update if stale or outdated.",
+        "Confirm your physical address is correct and inspectable — no PO Boxes.",
+        "Audit your fleet count against actual equipment.",
+        "Verify your BOC-3 status at safer.fmcsa.dot.gov.",
+        "Designate a backup Company Official.",
+        "Subscribe to FMCSA email alerts for the Phase 2 carrier invitation.",
+      ],
+      resources: [
+        { label: "Motus Transition Checklist — LP-CUR-M1-L9", href: "/tools/motus-checklist" },
+      ],
     },
   ],
   completionChecklist: [
