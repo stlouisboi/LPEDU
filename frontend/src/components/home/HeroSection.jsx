@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Link } from '../../compat/Link';
 import { Shield } from 'lucide-react';
 
@@ -59,8 +58,49 @@ export default function HeroSection() {
 
           {/* Card frame */}
           <div style={{ border: '1px solid rgba(28,43,58,0.2)', padding: 3, background: '#F5F2EC', boxShadow: '0 20px 60px rgba(28,43,58,0.12)' }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '1.586', overflow: 'hidden', background: '#0A0A0A' }}>
-              <Image src="/registry-card.png" alt="LaunchPath Verified Registry ID credential card" fill style={{ objectFit: 'cover' }} priority />
+            {/* Code-rendered credential card — no static image */}
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              aspectRatio: '1.586',
+              background: '#080808',
+              border: '1.5px solid rgba(200,169,110,0.45)',
+              borderRadius: 12,
+              overflow: 'hidden',
+              padding: '1.75rem 2rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              boxSizing: 'border-box',
+            }}>
+              {/* Subtle grain texture */}
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E")', opacity: 0.5, pointerEvents: 'none' }} />
+
+              {/* Top: LP monogram */}
+              <div>
+                <p style={{ ...mono, fontWeight: 900, fontSize: 'clamp(1.6rem,3vw,2.4rem)', color: '#FFFFFF', margin: 0, letterSpacing: '-0.02em' }}>LP</p>
+              </div>
+
+              {/* Center: card text block */}
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ ...mono, fontSize: 'clamp(0.55rem,1vw,0.72rem)', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.70)', margin: '0 0 0.25rem' }}>
+                  VERIFIED REGISTRY ID
+                </p>
+                <p style={{ ...mono, fontSize: 'clamp(0.5rem,0.9vw,0.66rem)', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.90)', margin: '0 0 0.4rem' }}>
+                  CARRIER NAME · VERIFIED.
+                </p>
+                <p style={{ ...mono, fontSize: 'clamp(0.6rem,1.1vw,0.82rem)', fontWeight: 700, letterSpacing: '0.10em', color: '#FFFFFF', margin: 0 }}>
+                  LP-VRF-0941
+                </p>
+              </div>
+
+              {/* Bottom: brand + seal */}
+              <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+                <p style={{ ...mono, fontSize: 'clamp(0.45rem,0.8vw,0.6rem)', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8A96E', margin: 0 }}>
+                  LAUNCHPATH STANDARD
+                </p>
+                <Shield size={28} color="#C8A96E" strokeWidth={1.5} style={{ opacity: 0.85 }} />
+              </div>
             </div>
           </div>
 
