@@ -143,9 +143,13 @@ export const MODULE_3_DATA = {
   title: "The 16 Deadly Sins",
   description: "The Exposure & Refuge framework. Each of the 16 documented FMCSA violation categories is presented as an exposure with a corresponding refuge — the system you install to prevent it permanently.",
   totalDuration: "~115 min",
-  lessonCount: 8,
+  lessonCount: 12,
   gateLesson: null,
   gateType: null,
+  downloads: [
+    { label: "PSP Decision Card",          href: "/standards/psp-decision-card" },
+    { label: "Professional Refusal Script", href: "/standards/professional-refusal-script" },
+  ],
   lessons: [
     {
       id: "3-1", number: "3.1",
@@ -219,6 +223,42 @@ export const MODULE_3_DATA = {
       videoUrl: null,
       resources: [],
     },
+    {
+      id: "3-9", number: "3.9",
+      title: "What a PSP Is",
+      subtitle: "The FMCSA Pre-Employment Screening Program — what it contains and how carriers use it",
+      duration: "~12 min",
+      description: "The Pre-Employment Screening Program is an FMCSA electronic record-sharing program that allows carriers to request a driver's five-year crash history and three-year inspection and violation history from FMCSA's Motor Carrier Management Information System. This lesson explains what the PSP is, what records it contains, how carriers access it, and what it means for driver hiring decisions under Part 391.",
+      videoUrl: null,
+      resources: [],
+    },
+    {
+      id: "3-10", number: "3.10",
+      title: "What Goes on Your Record",
+      subtitle: "Inspections, violations, and crash data — what enters federal databases and how long it follows you",
+      duration: "~13 min",
+      description: "Every roadside inspection result, violation citation, and crash report is entered into FMCSA's federal databases — and it follows both the driver and the carrier. This lesson maps what enters the record, how long it remains, the difference between carrier-level and driver-level records, and how your inspection history directly affects your SMS percentile scores and insurance standing.",
+      videoUrl: null,
+      resources: [],
+    },
+    {
+      id: "3-11", number: "3.11",
+      title: "The Dispatch Permission Trap",
+      subtitle: "How dispatch decisions transfer carrier liability — and how to structure authorization to prevent it",
+      duration: "~14 min",
+      description: "The dispatch permission trap occurs when a carrier authorizes a driver to operate under conditions that create a compliance violation — and becomes liable for the outcome. This lesson identifies the specific dispatch decisions that transfer carrier liability, how the pattern shows up in FMCSA enforcement records, and how to structure the dispatch authorization function to avoid creating exposure through permission.",
+      videoUrl: null,
+      resources: [],
+    },
+    {
+      id: "3-12", number: "3.12",
+      title: "Decision Discipline & Refusal Language",
+      subtitle: "The framework and documented language for refusing an unsafe assignment — for carrier and driver",
+      duration: "~12 min",
+      description: "The right to refuse an unsafe assignment is both a driver protection and a carrier risk management tool. This lesson covers the decision framework for refusing an unsafe load, route, or dispatch instruction, the specific language that documents the refusal correctly, and how a properly documented refusal creates an evidence trail that protects both the carrier and the driver in an enforcement or litigation context.",
+      videoUrl: null,
+      resources: [],
+    },
   ],
   completionChecklist: [
     { id: "3-cl-1", text: "All 16 FMCSA violation categories reviewed and confirmed understood" },
@@ -228,6 +268,8 @@ export const MODULE_3_DATA = {
     { id: "3-cl-5", text: "Vehicle maintenance exposure refuges confirmed installed — Sins 12, 14, 15 addressed" },
     { id: "3-cl-6", text: "Hours of Service exposure refuges confirmed installed — Sins 13, 16 addressed" },
     { id: "3-cl-7", text: "Complete Exposure Map reviewed — all 16 patterns accounted for in your four-pillar system" },
+    { id: "3-cl-8", text: "PSP Decision Card downloaded and filed — PSP authorization process understood" },
+    { id: "3-cl-9", text: "Professional Refusal Script reviewed — documented refusal language in place" },
   ],
 };
 
