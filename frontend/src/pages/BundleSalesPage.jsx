@@ -18,6 +18,7 @@ const SERIF = "'Newsreader', 'Playfair Display', serif";
 const IMG_BUNDLE = "/images/products/bundle-document-system.webp";
 const IMG_PKT = {
   "LP-PKT-001": "/images/products/domain1-new-entrant.webp",
+  "LP-PKT-DQ":  "/images/products/domain2-dq-files.webp",
   "LP-PKT-002": "/images/products/domain3-drug-alcohol.webp",
   "LP-PKT-003": "/images/products/domain4-hos-dispatch.webp",
   "LP-PKT-004": "/images/products/domain5-maintenance.webp",
@@ -172,7 +173,19 @@ const PACKETS = [
     ],
   },
   {
-    code: "LP-PKT-002", domain: "Domain 2", title: "Drug & Alcohol Compliance Packet",
+    code: "LP-PKT-DQ", domain: "Domain 2", title: "DQ File Builder Kit",
+    pages: 18, value: "$127",
+    desc: "The driver qualification file FMCSA inspects first. Covers all 11 required DQ elements, employment application standards, MVR and PSP procedures, medical certificate tracking, CDL verification, road test certification, and the annual review cycle.",
+    bullets: [
+      "11-Element DQ File Checklist",
+      "Employment Application Template",
+      "MVR & PSP Request Procedures",
+      "Medical Certificate Tracking System",
+      "Annual Review Process Guide",
+    ],
+  },
+  {
+    code: "LP-PKT-002", domain: "Domain 3", title: "Drug & Alcohol Compliance Packet",
     pages: 18, value: "$127",
     desc: "The program that must exist before your first driver operates. Covers all six testing types, written policy requirements, consortium enrollment, Clearinghouse obligations, and SAP procedures.",
     bullets: [
@@ -184,7 +197,7 @@ const PACKETS = [
     ],
   },
   {
-    code: "LP-PKT-003", domain: "Domain 3", title: "HOS & Dispatch Compliance Packet",
+    code: "LP-PKT-003", domain: "Domain 4", title: "HOS & Dispatch Compliance Packet",
     pages: 18, value: "$127",
     desc: "The rules that follow you on every mile. Covers property-carrying HOS limits, sleeper berth splits, adverse driving conditions, personal conveyance, ELD requirements, and common violations.",
     bullets: [
@@ -196,7 +209,7 @@ const PACKETS = [
     ],
   },
   {
-    code: "LP-PKT-004", domain: "Domain 4", title: "Maintenance & Unit File Packet",
+    code: "LP-PKT-004", domain: "Domain 5", title: "Maintenance & Unit File Packet",
     pages: 18, value: "$127",
     desc: "The equipment documentation that proves you maintain what you operate. Covers annual inspections, DVIRs, preventive maintenance, tire and brake standards, and out-of-service criteria.",
     bullets: [
@@ -208,7 +221,7 @@ const PACKETS = [
     ],
   },
   {
-    code: "LP-PKT-005", domain: "Domain 5", title: "Insurance & Authority Packet",
+    code: "LP-PKT-005", domain: "Domain 6", title: "Insurance & Authority Packet",
     pages: 18, value: "$127",
     desc: "The filings that keep your authority active. Covers minimum coverage requirements, SAFER status verification, insurance filing procedures, cargo claims, and authority lapse scenarios.",
     bullets: [
@@ -235,7 +248,8 @@ const BONUSES = [
 ];
 
 const LINE_ITEMS = [
-  { code: "LP-PKT-001", name: "New Entrant Compliance Packet",      price: "$97" },
+  { code: "LP-PKT-001", name: "New Entrant Compliance Packet",      price: "$97"  },
+  { code: "LP-PKT-DQ",  name: "DQ File Builder Kit",               price: "$127" },
   { code: "LP-PKT-002", name: "Drug & Alcohol Compliance Packet",   price: "$127" },
   { code: "LP-PKT-003", name: "HOS & Dispatch Compliance Packet",   price: "$127" },
   { code: "LP-PKT-004", name: "Maintenance & Unit File Packet",     price: "$127" },

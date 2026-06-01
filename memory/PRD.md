@@ -525,6 +525,12 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 136: DQ File Builder Kit Added as 6th Packet (June 2026)
+- **LP-PKT-DQ (Domain 2)** added to BundleSalesPage PACKETS array as the 2nd card (between New Entrant and Drug & Alcohol). Full content: 18 pages, $127 value, 5 bullets (11-Element DQ File Checklist, Employment Application Template, MVR & PSP Procedures, Medical Certificate Tracking, Annual Review Process Guide).
+- **Domain labels updated** for existing 5 packets: D&A→Domain 3, HOS→Domain 4, Maintenance→Domain 5, Insurance→Domain 6.
+- **IMG_PKT updated** — LP-PKT-DQ mapped to `domain2-dq-files.webp`.
+- **LINE_ITEMS updated** — DQ File Builder Kit inserted after LP-PKT-001 in the pricing breakdown table.
+
 ### Phase 135: Hero Copy — Three LP-STD-VOICE-001 Additions (June 2026)
 - **Sub-headline (Addition 1)**: "Twelve weeks to install the compliance system FMCSA will inspect — a clean audit preserves the authority; an empty file ends it." Sits between the program tag badge and the locked H1.
 - **Credential explainer (Addition 2)**: "Issued on a clean Week 11 Integrity Audit — driver files, drug program, HOS, maintenance records, and authority documentation." Sits directly below the VRF card.
