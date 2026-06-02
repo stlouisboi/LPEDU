@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import MaintenancePacketPage from '../../src/pages/products/MaintenancePacketPage';
 
-const OG = "https://launchpathedu.com/images/products/domain5-maintenance.webp";
+const OG = "https://launchpathedu.com/og-maintenance-packet.png";
 
 export default function Page() {
   return (
@@ -12,7 +12,9 @@ export default function Page() {
         <meta property="og:title" content="Maintenance & Unit File Packet — Part 396 Fleet Maintenance Standard | LaunchPath" />
         <meta property="og:description" content="Per-VIN unit files, inspection documentation, and maintenance logs for Part 396 fleet maintenance compliance." />
         <meta property="og:image" content={OG} />
-        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="product" />
         <meta property="og:url" content="https://launchpathedu.com/products/maintenance-packet" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={OG} />

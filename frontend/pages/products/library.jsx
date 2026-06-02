@@ -2,7 +2,7 @@ import Head from "next/head";
 import LibraryPage from "../../src/pages/products/LibraryPage";
 
 const URL = "https://launchpathedu.com/products/library";
-const OG_IMAGE = "https://launchpathedu.com/images/products/complete-diy-library.webp";
+const OG_IMAGE = "https://launchpathedu.com/og-library.png";
 
 export default function Library() {
   return (
@@ -22,6 +22,10 @@ export default function Library() {
         <meta property="og:title" content="Complete LaunchPath DIY Library — $699" />
         <meta property="og:description" content="Every compliance document LaunchPath produces for new motor carriers — 8 assets, one acquisition, instant access." />
         <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={OG_IMAGE} />
 
         {/* JSON-LD Product Schema */}
         <script

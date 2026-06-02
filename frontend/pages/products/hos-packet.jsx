@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import HOSPacketPage from '../../src/pages/products/HOSPacketPage';
 
-const OG = "https://launchpathedu.com/images/products/domain4-hos-dispatch.webp";
+const OG = "https://launchpathedu.com/og-hos-packet.png";
 
 export default function Page() {
   return (
@@ -12,7 +12,9 @@ export default function Page() {
         <meta property="og:title" content="HOS & Dispatch Packet — Part 395 Hours-of-Service Standard | LaunchPath" />
         <meta property="og:description" content="ELD compliance, dispatch logs, and hours documentation for Part 395 hours-of-service compliance." />
         <meta property="og:image" content={OG} />
-        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="product" />
         <meta property="og:url" content="https://launchpathedu.com/products/hos-packet" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={OG} />

@@ -19,11 +19,11 @@ export default function HeroSection() {
         <div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(28,43,58,0.15)', padding: '0.4rem 0.9rem', marginBottom: '1.25rem' }}>
             <Shield size={11} color="#C8A96E" />
-            <span style={{ ...mono, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280' }}>FMCSA 90-Day Compliance Implementation Cohort</span>
+            <span style={{ ...mono, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280' }}>FMCSA 90-Day Compliance Implementation Cohort</span>
           </div>
 
           {/* Sub-headline — Addition 1 */}
-          <p style={{ ...mono, fontSize: '0.925rem', letterSpacing: '0.01em', color: 'rgba(28,43,58,0.60)', lineHeight: 1.65, marginBottom: '1.25rem', maxWidth: 520, fontWeight: 400 }}>
+          <p style={{ ...mono, fontSize: '0.925rem', letterSpacing: '0.01em', color: 'rgba(28,43,58,0.60)', lineHeight: 1.65, marginBottom: '1.25rem', maxWidth: 520, fontWeight: 500 }}>
             Twelve weeks to install the compliance system FMCSA will inspect — a clean audit preserves the authority; an empty file ends it.
           </p>
 
@@ -49,10 +49,10 @@ export default function HeroSection() {
         <div>
           {/* Telemetry strip */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, padding: '0 2px' }}>
-            <span style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: '#6B7280' }}>[LAT: 38.0931] [LNG: -95.7129]</span>
+            <span style={{ ...mono, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', color: '#6B7280' }}>[LAT: 38.0931] [LNG: -95.7129]</span>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
-              <span style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: '#059669' }}>SYSTEM STATUS: ACTIVE</span>
+              <span style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', color: '#059669' }}>SYSTEM STATUS: ACTIVE</span>
             </div>
           </div>
 
@@ -176,7 +176,7 @@ export default function HeroSection() {
           </div>
 
           {/* Addition 2 — Credential explainer */}
-          <p style={{ ...mono, fontSize: 11, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.50)', lineHeight: 1.6, margin: '0.625rem 0 0', paddingLeft: 2 }}>
+          <p style={{ ...mono, fontSize: 11, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.60)', lineHeight: 1.6, margin: '0.625rem 0 0', paddingLeft: 2 }}>
             Issued on a clean Week&nbsp;11 Integrity Audit — driver files, drug program, HOS, maintenance records, and authority documentation.
           </p>
 
@@ -184,7 +184,7 @@ export default function HeroSection() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: 'rgba(28,43,58,0.1)', marginTop: '0.625rem' }}>
             {CARD_META.map((m, i) => (
               <div key={i} style={{ background: '#FAF8F4', padding: '0.75rem 1rem' }}>
-                <div style={{ ...mono, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B7280', marginBottom: 2 }}>{m.label}</div>
+                <div style={{ ...mono, fontSize: 8, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B7280', marginBottom: 2 }}>{m.label}</div>
                 <div style={{ ...mono, fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1C2B3A', fontWeight: 700 }}>{m.value}</div>
               </div>
             ))}
@@ -198,7 +198,7 @@ export default function HeroSection() {
               { label: 'Outcome',   value: 'Verified Registry ID on clean Integrity Audit.' },
             ].map((col) => (
               <div key={col.label} style={{ background: '#1C2B3A', padding: '0.75rem 1rem' }}>
-                <div style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.65)', marginBottom: 4 }}>{col.label}</div>
+                <div style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)', marginBottom: 4 }}>{col.label}</div>
                 <div style={{ ...mono, fontSize: 10, letterSpacing: '0.04em', color: 'rgba(250,248,244,0.85)', lineHeight: 1.55, fontWeight: 600 }}>{col.value}</div>
               </div>
             ))}

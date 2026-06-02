@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import SixteenSinsPage from '../../src/pages/standards/SixteenSinsPage';
 
-const OG = "https://launchpathedu.com/images/products/tool-deadly-sins.webp";
+const OG = "https://launchpathedu.com/og-16-deadly-sins.png";
 
 export default function Page() {
   return (
@@ -12,7 +12,9 @@ export default function Page() {
         <meta property="og:title" content="The 16 Deadly Sins: Exposure Patterns That End Motor Carrier Authority | LaunchPath" />
         <meta property="og:description" content="16 recurring preventable failures. Each documented, mapped to CFR, preventable. Know them before pressure finds them for you." />
         <meta property="og:image" content={OG} />
-        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="product" />
         <meta property="og:url" content="https://launchpathedu.com/products/16-deadly-sins" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="The 16 Deadly Sins: Exposure Patterns That End Motor Carrier Authority | LaunchPath" />

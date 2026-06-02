@@ -525,6 +525,10 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 137: Font Weight Boost + OG Image Audit (June 2026)
+- **Tired-Eyes Font Weight**: Boosted `fontWeight` across all small text (8-11px) in `AnnouncementBar.jsx` (700), `HeroSection.jsx` (badge 700, telemetry 600/700, metadata labels 700, scope strip labels 700, sub-headline 500→500, credential explainer 500), `LibraryMetricsStrip.jsx` (600), `DomainComponentGrid.jsx` (domain/supplemental code labels 700, "Best for" line 600). Also bumped opacity on credential explainer text (0.50→0.60) for better contrast.
+- **OG Image Audit**: Generated 3 new 1200×630 institutional OG images (`og-bundle.png`, `og-library.png`, `og-16-deadly-sins.png`) using PIL. Fixed all 11 product pages to use proper 1200×630 PNG OG images instead of square 640×640 WebP product mockups. Added `og:image:width=1200`, `og:image:height=630`, `twitter:image`, `og:type=product` uniformly. Fixed `starter-stack.jsx` from generic `og-launchpath.png` → `og-starter-stack.png`. All 6 new og:image URLs return HTTP 200.
+
 ### Phase 136: DQ File Builder Kit Added as 6th Packet (June 2026)
 - **LP-PKT-DQ (Domain 2)** added to BundleSalesPage PACKETS array as the 2nd card (between New Entrant and Drug & Alcohol). Full content: 18 pages, $127 value, 5 bullets (11-Element DQ File Checklist, Employment Application Template, MVR & PSP Procedures, Medical Certificate Tracking, Annual Review Process Guide).
 - **Domain labels updated** for existing 5 packets: D&A→Domain 3, HOS→Domain 4, Maintenance→Domain 5, Insurance→Domain 6.

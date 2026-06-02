@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import NewEntrantPacketPage from '../../src/pages/products/NewEntrantPacketPage';
 
-const OG = "https://launchpathedu.com/images/products/domain1-new-entrant.webp";
+const OG = "https://launchpathedu.com/og-new-entrant-packet.png";
 
 export default function Page() {
   return (
@@ -12,7 +12,9 @@ export default function Page() {
         <meta property="og:title" content="New Entrant Packet — FMCSA New-Authority Operating Standard | LaunchPath" />
         <meta property="og:description" content="The 18-month monitoring period framework, DQ file system, and new entrant audit preparation for new motor carriers." />
         <meta property="og:image" content={OG} />
-        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="product" />
         <meta property="og:url" content="https://launchpathedu.com/products/new-entrant-packet" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={OG} />

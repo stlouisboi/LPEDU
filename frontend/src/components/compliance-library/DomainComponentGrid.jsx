@@ -64,10 +64,10 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
                   </div>
                 )}
                 <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{d.code}</p>
+                <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{d.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1.05rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{d.title}</h3>
                 <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.625rem', flexGrow: 1 }}>{d.desc}</p>
-                <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.4)', marginBottom: '0.875rem' }}>Best for: {d.bestFor}</p>
+                <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.55)', marginBottom: '0.875rem' }}>Best for: {d.bestFor}</p>
                 <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '1.75rem', color: NAVY, marginBottom: '1rem' }}>{d.price}</div>
                 <button
                   data-testid={`buy-btn-${d.sku.toLowerCase()}`}
@@ -101,7 +101,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
                   </div>
                 )}
                 <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{s.code}</p>
+                <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{s.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{s.title}</h3>
                 <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.875rem', flexGrow: 1 }}>{s.desc}</p>
                 <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '1.5rem', color: NAVY, marginBottom: '1rem' }}>{s.price}</div>
