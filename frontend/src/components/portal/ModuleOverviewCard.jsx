@@ -28,7 +28,7 @@ export default function ModuleOverviewCard({ moduleInfo, type }) {
         <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
           {moduleInfo.title}
         </h1>
-        <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
+        <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.75)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
           {moduleInfo.lessonCount} LESSONS · {moduleInfo.duration}
         </span>
       </div>

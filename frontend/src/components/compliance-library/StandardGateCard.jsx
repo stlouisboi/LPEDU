@@ -28,13 +28,13 @@ export default function StandardGateCard() {
             style={{ fontFamily: MONO, fontWeight: 700, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', background: GOLD, color: '#FAF8F4', padding: '1.1rem 2rem', textDecoration: 'none', textAlign: 'center', borderRadius: 0, display: 'block', minHeight: 56 }}>
             BEGIN GROUND 0 →
           </Link>
-          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.35)', textAlign: 'center' }}>
+          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.75)', textAlign: 'center' }}>
             Free. No purchase required. Takes 20 minutes.
           </p>
           <Link
             href="/standard"
             data-testid="cl-standard-details-link"
-            style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.45)', textDecoration: 'underline', textAlign: 'center' }}>
+            style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.80)', textDecoration: 'underline', textAlign: 'center' }}>
             View full engagement details →
           </Link>
         </div>

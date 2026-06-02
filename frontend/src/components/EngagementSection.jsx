@@ -271,7 +271,7 @@ export default function EngagementSection() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "0.5rem",
-                    color: "rgba(255,255,255,0.55)",
+                    color: "rgba(250,248,244,0.85)",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 600,
                     fontSize: "0.857rem",

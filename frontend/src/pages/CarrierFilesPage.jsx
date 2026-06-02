@@ -168,7 +168,7 @@ function CaseFile({ c, index }) {
       }}>
         {Object.entries(c.profile).map(([k, v]) => (
           <div key={k} style={{ background: CARD, padding: '0.875rem 1.25rem' }}>
-            <p style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.5)', margin: '0 0 0.3rem' }}>{k}</p>
+            <p style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.78)', margin: '0 0 0.3rem' }}>{k}</p>
             <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: BODY, margin: 0, lineHeight: 1.5 }}>{v}</p>
           </div>
         ))}
@@ -217,7 +217,7 @@ function CaseFile({ c, index }) {
           </div>
           {c.auditResult.recordableNotes && (
             <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: MUTED, lineHeight: 1.75, margin: 0, paddingLeft: '0.1rem' }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', color: 'rgba(200,169,110,0.45)', marginRight: 8 }}>NOTES</span>
+              <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', color: 'rgba(200,169,110,0.75)', marginRight: 8 }}>NOTES</span>
               {c.auditResult.recordableNotes}
             </p>
           )}
@@ -258,7 +258,7 @@ function CaseFile({ c, index }) {
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
           }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.45)' }}>
+              <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)' }}>
                 {c.productLinks ? 'DOMAIN PACKETS' : 'DOMAIN PACKET'} —
               </span>
               <span style={{ fontFamily: SANS, fontSize: '0.85rem', color: MUTED }}>
@@ -298,7 +298,7 @@ function Section({ label, children, last }) {
       padding: '1.5rem 0',
       borderBottom: last ? 'none' : '1px solid rgba(255,255,255,0.05)',
     }}>
-      <p style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.5)', margin: '0 0 0.875rem' }}>
+      <p style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.78)', margin: '0 0 0.875rem' }}>
         {label}
       </p>
       {children}
@@ -313,10 +313,10 @@ export default function CarrierFilesPage() {
       {/* Classification band */}
       <div style={{ borderBottom: '1px solid rgba(200,169,110,0.1)', padding: '0 1.5rem' }}>
         <div style={{ maxWidth: 920, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 40 }}>
-          <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.45)' }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)' }}>
             LP-MKT-001 · Carrier Files
           </span>
-          <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.35)' }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.70)' }}>
             3 FILES PUBLISHED
           </span>
         </div>
@@ -340,7 +340,7 @@ export default function CarrierFilesPage() {
 
         {/* Privacy standard */}
         <div style={{ marginTop: '1rem' }}>
-          <p style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.45)', marginBottom: '1.25rem' }}>
+          <p style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)', marginBottom: '1.25rem' }}>
             PRIVACY STANDARD — ALL FILES
           </p>
           <div style={{ overflowX: 'auto' }}>

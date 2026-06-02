@@ -107,7 +107,7 @@ export default function ProductPageTemplate({
 
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "1.1rem",
-                  color: "rgba(255,255,255,0.55)", marginBottom: "1rem", fontStyle: "italic",
+                  color: "rgba(250,248,244,0.85)", marginBottom: "1rem", fontStyle: "italic",
                 }}>{subtitle}</p>
 
                 <div style={{ height: 2, background: coral, width: 64, marginBottom: "1.75rem" }} />
@@ -160,7 +160,7 @@ export default function ProductPageTemplate({
                       style={{
                         background: "none",
                         border: "1px solid rgba(255,255,255,0.14)",
-                        color: "rgba(255,255,255,0.50)",
+                        color: "rgba(250,248,244,0.82)",
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.714rem", letterSpacing: "0.10em", textTransform: "uppercase",
                         padding: "0.625rem 1.125rem", cursor: "pointer",
@@ -383,7 +383,7 @@ export default function ProductPageTemplate({
           <FadeIn delay={220}>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-              color: "rgba(255,255,255,0.4)", lineHeight: 1.7,
+              color: "rgba(250,248,244,0.78)", lineHeight: 1.7,
               borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.5rem",
               fontStyle: "italic",
             }}>
@@ -440,7 +440,7 @@ export default function ProductPageTemplate({
                 aria-label="Close preview"
                 style={{
                   background: "none", border: "none",
-                  color: "rgba(255,255,255,0.35)", fontSize: "1.5rem",
+                  color: "rgba(250,248,244,0.75)", fontSize: "1.5rem",
                   cursor: "pointer", padding: "0 0.25rem", lineHeight: 1,
                   marginLeft: "1.5rem", flexShrink: 0,
                   transition: "color 0.15s",

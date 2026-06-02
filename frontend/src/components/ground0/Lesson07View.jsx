@@ -96,7 +96,7 @@ export default function Lesson07View({ onViewCompletion }) {
           <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.82)", lineHeight: 1.75, marginBottom: "0.875rem" }}>
             <strong style={{ color: "#FFFFFF" }}>The Install Track</strong> helps you actually build — the authority-protecting, audit-ready, FMCSA-compliant operation — in the next 90 days.
           </p>
-          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.857rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.857rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, margin: 0 }}>
             Not figure it out on your own. Not piece it together from forums and YouTube. Build it with a structured sequence, a Station Custodian who verifies your work at five checkpoints, and a 90-day window that maps directly to your New Entrant audit exposure period.
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function Lesson07View({ onViewCompletion }) {
         {captureStatus === "done" ? (
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", flexShrink: 0 }} />
-            <p style={{ margin: 0, fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.667rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.55)" }}>
+            <p style={{ margin: 0, fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.667rem", letterSpacing: "0.1em", color: "rgba(250,248,244,0.85)" }}>
               CONFIRMED — Your next step has been saved. Check your inbox for what comes next.
             </p>
           </div>

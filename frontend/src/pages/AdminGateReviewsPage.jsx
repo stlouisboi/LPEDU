@@ -69,7 +69,7 @@ function ReviewCard({ review, onDecide }) {
             <span style={{ fontFamily: SANS, fontSize: "0.857rem", fontWeight: 600, color: "#fff" }}>
               {review.user_name || "Operator"}
             </span>
-            <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.45)" }}>
+            <span style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(250,248,244,0.82)" }}>
               {review.user_email}
             </span>
           </div>
@@ -99,7 +99,7 @@ function ReviewCard({ review, onDecide }) {
           {/* Decision form — only for pending reviews */}
           {review.status === "pending" && (
             <div>
-              <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>STATION CUSTODIAN DECISION</p>
+              <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(250,248,244,0.78)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>STATION CUSTODIAN DECISION</p>
 
               <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.875rem", flexWrap: "wrap" }}>
                 {["approved", isIntegrity ? "conditional" : null, "declined"].filter(Boolean).map(opt => (
@@ -193,7 +193,7 @@ export default function AdminGateReviewsPage() {
           <h1 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontSize: "clamp(1.5rem,3vw,2.25rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
             Gate Reviews
           </h1>
-          <p style={{ fontFamily: "'Source Sans 3', 'Helvetica Neue', Arial, sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
+          <p style={{ fontFamily: "'Source Sans 3', 'Helvetica Neue', Arial, sans-serif", fontSize: "0.924rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.6 }}>
             Review operator submissions at MOD-1 (Driver Qualification File) and MOD-6 (Integrity Audit). Approval unlocks the next module.
           </p>
         </div>
@@ -218,7 +218,7 @@ export default function AdminGateReviewsPage() {
           ))}
           <button
             onClick={fetchReviews}
-            style={{ marginLeft: "auto", fontFamily: MONO, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.375rem 0.875rem", cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)", background: "transparent", color: "rgba(255,255,255,0.4)" }}
+            style={{ marginLeft: "auto", fontFamily: MONO, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.375rem 0.875rem", cursor: "pointer", border: "1px solid rgba(255,255,255,0.1)", background: "transparent", color: "rgba(250,248,244,0.78)" }}
           >
             ↻ Refresh
           </button>
@@ -226,11 +226,11 @@ export default function AdminGateReviewsPage() {
 
         {/* Reviews list */}
         {loading ? (
-          <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em" }}>LOADING REVIEWS...</p>
+          <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", letterSpacing: "0.1em" }}>LOADING REVIEWS...</p>
         ) : reviews.length === 0 ? (
           <div style={{ border: "1px solid rgba(255,255,255,0.06)", padding: "3rem 2rem", textAlign: "center" }}>
             <CheckCircle size={24} color="rgba(34,197,94,0.4)" style={{ marginBottom: "0.75rem" }} />
-            <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(255,255,255,0.4)" }}>No {filter === "all" ? "" : filter} reviews at this time.</p>
+            <p style={{ fontFamily: SANS, fontSize: "0.924rem", color: "rgba(250,248,244,0.78)" }}>No {filter === "all" ? "" : filter} reviews at this time.</p>
           </div>
         ) : (
           reviews.map(r => <ReviewCard key={r.review_id} review={r} onDecide={handleDecide} />)

@@ -23,7 +23,7 @@ function AnimatedStat({ num, label }) {
   return (
     <div>
       <div style={{ ...mono, fontSize: '1.875rem', fontWeight: 700, color: '#FAF8F4', lineHeight: 1, marginBottom: '0.3rem' }}>{count}</div>
-      <div style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.4)' }}>{label}</div>
+      <div style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.78)' }}>{label}</div>
     </div>
   );
 }
@@ -32,7 +32,7 @@ function StatText({ val, label }) {
   return (
     <div>
       <div style={{ ...serif, fontSize: '1.5rem', fontWeight: 700, color: '#FAF8F4', lineHeight: 1, marginBottom: '0.3rem' }}>{val}</div>
-      <div style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.4)' }}>{label}</div>
+      <div style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.78)' }}>{label}</div>
     </div>
   );
 }
@@ -44,7 +44,7 @@ export default function LibraryHeroSection() {
 
         {/* Left */}
         <div>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.35)', marginBottom: '1.5rem' }}>
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.75)', marginBottom: '1.5rem' }}>
             LAUNCHPATH / OPERATIONAL LIBRARY
           </p>
           <h1 style={{ ...serif, fontWeight: 900, fontSize: 'clamp(2.5rem,5vw,3.75rem)', color: '#FAF8F4', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
@@ -81,7 +81,7 @@ export default function LibraryHeroSection() {
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 40%, rgba(28,43,58,0.85) 100%)' }} />
           <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem', background: 'rgba(28,43,58,0.82)', border: '1px solid rgba(250,248,244,0.12)', padding: '0.5rem 0.75rem', backdropFilter: 'blur(4px)' }}>
-            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.4)', margin: 0 }}>
+            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.78)', margin: 0 }}>
               FMCSA NEW ENTRANT PROGRAM · 18-MONTH WINDOW
             </p>
           </div>

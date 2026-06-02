@@ -35,7 +35,7 @@ export default function RecoveryPathBlock() {
             marginBottom: "1.25rem",
           }}>
             You already got the letter.<br />
-            <span style={{ color: "rgba(255,255,255,0.5)", fontWeight: 400, fontSize: "0.72em" }}>
+            <span style={{ color: "rgba(250,248,244,0.82)", fontWeight: 400, fontSize: "0.72em" }}>
               It's not over — but the clock just got shorter.
             </span>
           </h2>
@@ -197,7 +197,7 @@ export default function RecoveryPathBlock() {
             fontFamily: "'Inter', sans-serif",
             fontStyle: "italic",
             fontSize: "1rem",
-            color: "rgba(255,255,255,0.45)",
+            color: "rgba(250,248,244,0.82)",
             textAlign: "center",
           }}>
             The Standard was not built for easy situations. It was built for this one.

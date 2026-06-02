@@ -24,8 +24,8 @@ export default function VinceQuoteSection() {
         <div>
           <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.85)', lineHeight: 2, margin: 0 }}>
             VINCE LAWRENCE<br />
-            <span style={{ color: 'rgba(28,43,58,0.45)' }}>STATION CUSTODIAN, LAUNCHPATH TRANSPORTATION EDU</span><br />
-            <span style={{ color: 'rgba(28,43,58,0.45)' }}>25 YEARS IN SAFETY MANAGEMENT · OSHA CERTIFIED</span>
+            <span style={{ color: 'rgba(28,43,58,0.78)' }}>STATION CUSTODIAN, LAUNCHPATH TRANSPORTATION EDU</span><br />
+            <span style={{ color: 'rgba(28,43,58,0.78)' }}>25 YEARS IN SAFETY MANAGEMENT · OSHA CERTIFIED</span>
           </p>
         </div>
       </div>

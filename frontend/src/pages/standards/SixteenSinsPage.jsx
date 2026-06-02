@@ -443,7 +443,7 @@ export default function SixteenSinsPage() {
         <FadeIn delay={45}>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-            color: "rgba(255,255,255,0.55)", lineHeight: 1.75,
+            color: "rgba(250,248,244,0.85)", lineHeight: 1.75,
             maxWidth: 640, marginBottom: "4rem", fontStyle: "italic",
           }}>
             Below are the 5 most common authority-ending behaviors.
@@ -475,7 +475,7 @@ export default function SixteenSinsPage() {
           </div>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "1rem",
-            color: "rgba(255,255,255,0.45)", lineHeight: 1.75,
+            color: "rgba(250,248,244,0.82)", lineHeight: 1.75,
             maxWidth: 640, marginBottom: "4rem", fontStyle: "italic",
           }}>
             These are 5 of the 16. The remaining 11 — including prevention protocols for all 16 — are in the full checklist.
@@ -643,7 +643,7 @@ export default function SixteenSinsPage() {
             }}>The full checklist includes these additional failure patterns:</h3>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.857rem",
-              color: "rgba(255,255,255,0.40)", lineHeight: 1.7, marginBottom: "1.75rem",
+              color: "rgba(250,248,244,0.78)", lineHeight: 1.7, marginBottom: "1.75rem",
             }}>
               Each includes the full description, CFR citation, consequence details, and prevention protocol.
             </p>
@@ -656,7 +656,7 @@ export default function SixteenSinsPage() {
                   }}>→</span>
                   <span style={{
                     fontFamily: "'Inter', sans-serif", fontSize: "0.9rem",
-                    fontWeight: 500, color: "rgba(255,255,255,0.55)", lineHeight: 1.5,
+                    fontWeight: 500, color: "rgba(250,248,244,0.85)", lineHeight: 1.5,
                   }}>SIN {sin.num} — {sin.name}</span>
                 </div>
               ))}
@@ -684,7 +684,7 @@ export default function SixteenSinsPage() {
                 }}>Get all 16 — with full prevention protocols</p>
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "0.857rem",
-                  color: "rgba(255,255,255,0.45)", lineHeight: 1.6, maxWidth: 400, margin: 0,
+                  color: "rgba(250,248,244,0.82)", lineHeight: 1.6, maxWidth: 400, margin: 0,
                 }}>
                   CFR citations, consequence details, and prevention systems for every sin. A permanent reference for your operation.
                 </p>
@@ -738,7 +738,7 @@ export default function SixteenSinsPage() {
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(200,169,110,0.55)",
+              color: "rgba(200,169,110,0.80)",
               marginBottom: "1.25rem",
             }}>CONCLUSION</p>
 
@@ -804,7 +804,7 @@ export default function SixteenSinsPage() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.857rem",
-                  color: "rgba(255,255,255,0.35)",
+                  color: "rgba(250,248,244,0.75)",
                   margin: 0,
                   letterSpacing: "0.05em",
                 }}>Already know what you need?</p>
@@ -866,10 +866,10 @@ export default function SixteenSinsPage() {
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "2.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,169,110,0.45)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,169,110,0.75)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.85)", margin: 0 }}>
               The AUTO Method: Why These Failures Happen
             </p>
           </div>

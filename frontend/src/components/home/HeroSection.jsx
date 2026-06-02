@@ -63,7 +63,7 @@ export default function HeroSection() {
           </div>
 
           {/* Addition 2 — Credential explainer */}
-          <p style={{ ...mono, fontSize: 11, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.60)', lineHeight: 1.6, margin: '0.625rem 0 0', paddingLeft: 2 }}>
+          <p style={{ ...mono, fontSize: 11, fontWeight: 500, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.75)', lineHeight: 1.6, margin: '0.625rem 0 0', paddingLeft: 2 }}>
             Issued on a clean Week&nbsp;11 Integrity Audit — driver files, drug program, HOS, maintenance records, and authority documentation.
           </p>
 
@@ -71,18 +71,18 @@ export default function HeroSection() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: 'rgba(28,43,58,0.1)', marginTop: '0.625rem' }}>
             {CARD_META.map((m, i) => (
               <div key={i} style={{ background: '#FAF8F4', padding: '0.75rem 1rem' }}>
-                <div style={{ ...mono, fontSize: 8, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B7280', marginBottom: 2 }}>{m.label}</div>
-                <div style={{ ...mono, fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1C2B3A', fontWeight: 700 }}>{m.value}</div>
+                <div style={{ ...mono, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.60)', marginBottom: 3 }}>{m.label}</div>
+                <div style={{ ...mono, fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#1C2B3A', fontWeight: 700 }}>{m.value}</div>
               </div>
             ))}
           </div>
 
-          {/* Addition 3 — Three-column scope strip */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1px', background: 'rgba(28,43,58,0.1)', marginTop: '1px' }}>
+          {/* Three-column scope strip */}
+          <div className="lp-scope-strip" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1px', background: 'rgba(28,43,58,0.1)', marginTop: '1px' }}>
             {[
-              { label: 'Duration',  value: '12 weeks · 69 lessons · 10 modules' },
-              { label: 'Scope',     value: 'Driver qualification · drug & alcohol · HOS · maintenance · insurance · authority continuity' },
-              { label: 'Outcome',   value: 'Verified Registry ID on clean Integrity Audit.' },
+              { label: 'Duration', value: '12 weeks · 69 lessons · 10 modules' },
+              { label: 'Scope',    value: '6 FMCSA compliance domains' },
+              { label: 'Outcome',  value: 'Verified Registry ID on clean Integrity Audit.' },
             ].map((col) => (
               <div key={col.label} style={{ background: '#1C2B3A', padding: '0.75rem 1rem' }}>
                 <div style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)', marginBottom: 4 }}>{col.label}</div>

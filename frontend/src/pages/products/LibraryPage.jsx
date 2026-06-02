@@ -124,9 +124,9 @@ export default function LibraryPage() {
                 <div style={{ flex: 1 }}>
                   <p style={{ fontFamily: MONO, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(212,144,10,0.50)", marginBottom: "0.25rem" }}>{item.label}</p>
                   <p style={{ fontFamily: SANS, fontSize: "0.875rem", fontWeight: 600, color: "#fff", marginBottom: "0.25rem" }}>{item.name}</p>
-                  <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.55 }}>{item.desc}</p>
+                  <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(250,248,244,0.78)", lineHeight: 1.55 }}>{item.desc}</p>
                 </div>
-                <span style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, color: "rgba(255,255,255,0.40)", textDecoration: "line-through", flexShrink: 0, marginTop: "0.25rem" }}>{item.price}</span>
+                <span style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, color: "rgba(250,248,244,0.78)", textDecoration: "line-through", flexShrink: 0, marginTop: "0.25rem" }}>{item.price}</span>
               </div>
             ))}
           </div>
@@ -143,7 +143,7 @@ export default function LibraryPage() {
           <p style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.75rem" }}>
             NOT SURE IF YOU NEED THE FULL LIBRARY?
           </p>
-          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.75, margin: 0 }}>
             If you only need the five domain compliance packets with a unified folder architecture and 0–30–60–90 day implementation calendar, the{" "}
             <a href="/products/bundle" style={{ color: GOLD, textDecoration: "none" }}>Document System Bundle ($499)</a>{" "}
             covers the core system at $176 below individual domain cost — and $200 below the Library price. The Library adds diagnostics and audit prep on top of the domain system.

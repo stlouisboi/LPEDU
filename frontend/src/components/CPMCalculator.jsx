@@ -151,7 +151,7 @@ function ResultsCard({ fixedCPM, variableCPM, totalCPM }) {
         <p data-testid="cpm-total-display" style={{ fontFamily: display, fontWeight: 800, fontSize: "clamp(3rem, 8vw, 4.5rem)", color: "#d4900a", letterSpacing: "-0.02em", lineHeight: 1, marginBottom: "0.5rem" }}>
           {fmtCPM(totalCPM)}
         </p>
-        <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)", letterSpacing: "0.04em" }}>
+        <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.82)", letterSpacing: "0.04em" }}>
           per mile operated · minimum acceptable rate
         </p>
       </div>
@@ -226,7 +226,7 @@ function EmailGate({ onSubmit, loading, dark }) {
       <h3 style={{ fontFamily: display, fontWeight: 700, fontSize: "1.25rem", color: "#FFFFFF", marginBottom: "0.5rem", letterSpacing: "-0.01em" }}>
         Enter your email to see your full cost breakdown.
       </h3>
-      <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", marginBottom: "1.5rem", lineHeight: 1.6 }}>
+      <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.85)", marginBottom: "1.5rem", lineHeight: 1.6 }}>
         No sales sequence. No pressure. Your CPM breakdown arrives immediately.
       </p>
       <form onSubmit={(e) => { e.preventDefault(); if (email) onSubmit(email); }} style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>

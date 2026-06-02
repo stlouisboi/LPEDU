@@ -12,9 +12,9 @@ export default function ProgramMetricsStrip() {
         {STATS.map((s, i) => (
           <div key={i} style={{ borderRight: i < 3 ? '1px solid rgba(250,248,244,0.1)' : 'none', padding: '2.5rem 2rem', textAlign: 'center' }}>
             <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '2.5rem', fontWeight: 900, color: '#FAF8F4', lineHeight: 1 }}>
-              {s.num}{s.unit && <span style={{ fontSize: '1.2rem', marginLeft: 4, opacity: 0.6 }}>{s.unit}</span>}
+              {s.num}{s.unit && <span style={{ fontSize: '1.2rem', marginLeft: 4, opacity: 0.85 }}>{s.unit}</span>}
             </div>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.5)', marginTop: 8, display: 'block' }}>{s.label}</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.75)', marginTop: 8, display: 'block', fontWeight: 600 }}>{s.label}</span>
           </div>
         ))}
       </div>

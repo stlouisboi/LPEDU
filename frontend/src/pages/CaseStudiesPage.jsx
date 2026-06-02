@@ -112,7 +112,7 @@ export default function CaseStudiesPage() {
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.75, maxWidth: 620, marginBottom: "0.75rem" }}>
               The following cases are anonymized composites drawn from FMCSA enforcement patterns and New Entrant Safety Audit data. No names, no locations — only the operational behaviors and missing systems that produced each outcome.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.6, maxWidth: 560 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.75)", lineHeight: 1.6, maxWidth: 560 }}>
               Every pattern here maps to a specific LaunchPath compliance domain. The systems that prevent these outcomes are the same systems installed during Ground 0 and the LaunchPath Standard program.
             </p>
           </FadeIn>
@@ -166,7 +166,7 @@ export default function CaseStudiesPage() {
                       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.60)", margin: "0 0 0.35rem" }}>
                         {c.id} &nbsp;·&nbsp; {c.tag}
                       </p>
-                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.40)", margin: 0 }}>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.78)", margin: 0 }}>
                         {c.lane}
                       </p>
                     </div>

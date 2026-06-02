@@ -43,7 +43,7 @@ export default function PortalHeader({ user, onLogout }) {
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.714rem",
               letterSpacing: "0.12em",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(250,248,244,0.82)",
               textTransform: "uppercase",
             }}>
               OPERATOR: {(user.name || user.email || "").toUpperCase().slice(0, 20)}

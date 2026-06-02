@@ -337,7 +337,7 @@ export default function HeroSection() {
             </p>
 
             {/* Trust line */}
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: "4px 0 0", maxWidth: 480 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.65, margin: "4px 0 0", maxWidth: 480 }}>
               25+ years in safety and compliance implementation. U.S. Navy veteran. OSHA 30-Hour certified. Built for carriers who answer to the work, not the pitch.
             </p>
 

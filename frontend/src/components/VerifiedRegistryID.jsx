@@ -147,7 +147,7 @@ export default function VerifiedRegistryID({ user }) {
   };
 
   if (loading) return (
-    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
       LOADING CREDENTIAL...
     </p>
   );
@@ -155,8 +155,8 @@ export default function VerifiedRegistryID({ user }) {
   if (!credential?.issued) return (
     <div data-testid="registry-id-pending" style={{ padding: "2rem", border: "1px solid rgba(212,144,10,0.2)", background: "rgba(212,144,10,0.03)", maxWidth: 580 }}>
       <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(212,144,10,0.6)", marginBottom: "0.75rem" }}>LP-VRF · PENDING ISSUANCE</p>
-      <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "1.5rem", fontWeight: 700, color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>Verified Registry ID — Pending</h2>
-      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7 }}>
+      <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "1.5rem", fontWeight: 700, color: "rgba(250,248,244,0.85)", marginBottom: "0.75rem" }}>Verified Registry ID — Pending</h2>
+      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7 }}>
         The Verified Registry ID is issued automatically when all core modules (1–6) are complete. If Module 6 results in a conditional outcome, Module 7 must also be completed before the credential is issued.
       </p>
     </div>
@@ -261,18 +261,18 @@ export default function VerifiedRegistryID({ user }) {
             <Shield size={22} color="#d4900a" weight="fill" />
             <div>
               <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#d4900a", margin: 0 }}>LAUNCHPATH VERIFIED REGISTRY</p>
-              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.571rem", letterSpacing: "0.18em", color: "rgba(255,255,255,0.3)", textTransform: "uppercase", margin: 0 }}>LPOS v1.0 · LP-SYS-001</p>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.571rem", letterSpacing: "0.18em", color: "rgba(250,248,244,0.72)", textTransform: "uppercase", margin: 0 }}>LPOS v1.0 · LP-SYS-001</p>
             </div>
           </div>
 
           {/* Operator */}
           <div style={{ marginBottom: "2rem" }}>
-            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.25rem" }}>ISSUED TO</p>
+            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(250,248,244,0.75)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.25rem" }}>ISSUED TO</p>
             <h2 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 800, fontSize: "clamp(1.4rem,3vw,2rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: "0 0 0.25rem" }}>
               {credential.operator_name}
             </h2>
             {credential.operator_email && (
-              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", margin: 0 }}>{credential.operator_email}</p>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", margin: 0 }}>{credential.operator_email}</p>
             )}
           </div>
 
@@ -301,7 +301,7 @@ export default function VerifiedRegistryID({ user }) {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.25rem", flexWrap: "wrap", gap: "0.75rem" }}>
             <div>
               <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", margin: "0 0 0.2rem" }}>DATE OF ISSUANCE</p>
-              <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.762rem", fontWeight: 600, color: "rgba(255,255,255,0.55)", margin: 0 }}>{formatDate(credential.issued_at)}</p>
+              <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.762rem", fontWeight: 600, color: "rgba(250,248,244,0.85)", margin: 0 }}>{formatDate(credential.issued_at)}</p>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px rgba(34,197,94,0.6)" }} />
@@ -342,7 +342,7 @@ export default function VerifiedRegistryID({ user }) {
             fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.762rem",
             letterSpacing: "0.08em", textTransform: "uppercase",
             padding: "0.75rem 1.25rem", background: "transparent",
-            border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.55)",
+            border: "1px solid rgba(255,255,255,0.18)", color: "rgba(250,248,244,0.85)",
             cursor: "pointer", transition: "all 0.2s",
           }}
           onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"; e.currentTarget.style.color = "#fff"; }}

@@ -110,7 +110,7 @@ export function FMCSADomainTable({ showPricing = true }) {
                   <span style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.714rem",
-                    color: "rgba(255,255,255,0.35)",
+                    color: "rgba(250,248,244,0.75)",
                     display: "block", marginBottom: "0.2rem",
                   }}>{row.num}</span>
                   <span style={{

@@ -258,7 +258,7 @@ export default function LaunchPathStandardPage() {
             verified Hours of Service records, insurance filings confirmed on FMCSA's system,
             and a <strong style={{ color: gold }}>Verified Registry ID</strong> proving the work was done.
           </p>
-          <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.45)", fontStyle: "italic", lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontSize: "0.9375rem", color: "rgba(250,248,244,0.82)", fontStyle: "italic", lineHeight: 1.75, margin: 0 }}>
             All six compliance domains. Five verification checkpoints. One Station Custodian reviewing your actual documents — not your plan.
           </p>
         </div>
@@ -506,7 +506,7 @@ export default function LaunchPathStandardPage() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 200px 200px", background: "#0a1220" }}>
               <div style={{ padding: "1.25rem 1.75rem" }} />
               <div style={{ padding: "1.25rem 1.25rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.08)" }}>
-                <p style={{ fontFamily: mono, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "0.375rem" }}>DOCUMENT SYSTEM</p>
+                <p style={{ fontFamily: mono, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.82)", marginBottom: "0.375rem" }}>DOCUMENT SYSTEM</p>
                 <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.375rem", color: "rgba(255,255,255,0.8)" }}>$499</p>
               </div>
               <div style={{ padding: "1.25rem 1.25rem", textAlign: "center", borderLeft: `1px solid rgba(197,160,89,0.3)`, background: "rgba(197,160,89,0.06)" }}>

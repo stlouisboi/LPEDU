@@ -80,7 +80,7 @@ export default function GapTracker({ assessmentAnswers }) {
         <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontWeight: 700, fontSize: "0.924rem", color: "#FFFFFF", marginBottom: "0.375rem" }}>
           {gaps} OF 5 {gaps === 1 ? "GAP" : "GAPS"} REMAINING
         </p>
-        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.924rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.6 }}>
           Close these gaps, then retake Ground 0 to confirm readiness for the next cohort.
         </p>
       </div>

@@ -16,7 +16,7 @@ const MONO = "'JetBrains Mono','Courier New',monospace";
 const SANS = "'Inter',sans-serif";
 
 const STATUS_CONFIG = {
-  PENDING:      { label: 'PENDING',      color: 'rgba(255,255,255,0.30)', bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.10)' },
+  PENDING:      { label: 'PENDING',      color: 'rgba(250,248,244,0.72)', bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.10)' },
   SUBMITTED:    { label: 'SUBMITTED',    color: '#F59E0B',                bg: 'rgba(245,158,11,0.08)',  border: 'rgba(245,158,11,0.25)'   },
   UNDER_REVIEW: { label: 'UNDER REVIEW', color: '#60A5FA',                bg: 'rgba(96,165,250,0.08)', border: 'rgba(96,165,250,0.25)'   },
   PASSED:       { label: 'PASSED',       color: '#34D399',                bg: 'rgba(52,211,153,0.08)', border: 'rgba(52,211,153,0.25)'   },
@@ -151,7 +151,7 @@ function CheckpointCard({ cp, onUpdate }) {
             {cp.checkpoint_label}
           </p>
           {cp.reviewed_at && (
-            <p style={{ margin: '4px 0 0', fontFamily: MONO, fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.08em' }}>
+            <p style={{ margin: '4px 0 0', fontFamily: MONO, fontSize: '10px', color: 'rgba(250,248,244,0.75)', letterSpacing: '0.08em' }}>
               Reviewed: {new Date(cp.reviewed_at).toLocaleDateString()}
             </p>
           )}
@@ -178,7 +178,7 @@ function CheckpointCard({ cp, onUpdate }) {
           {editing && (
             <button
               onClick={() => { setEditing(false); setPendingAction(null); }}
-              style={{ fontFamily: MONO, fontSize: '9px', padding: '7px 12px', background: 'transparent', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.45)', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase' }}
+              style={{ fontFamily: MONO, fontSize: '9px', padding: '7px 12px', background: 'transparent', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(250,248,244,0.82)', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase' }}
             >
               CANCEL
             </button>
@@ -216,7 +216,7 @@ function CheckpointCard({ cp, onUpdate }) {
             </div>
           ) : cp.admin_notes ? (
             <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', padding: '10px 14px' }}>
-              <p style={{ margin: '0 0 4px', fontFamily: MONO, fontSize: '9px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Admin Notes</p>
+              <p style={{ margin: '0 0 4px', fontFamily: MONO, fontSize: '9px', color: 'rgba(250,248,244,0.75)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Admin Notes</p>
               <p style={{ margin: 0, fontSize: '13px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.65, whiteSpace: 'pre-wrap', fontFamily: SANS }}>{cp.admin_notes}</p>
             </div>
           ) : null}
@@ -245,7 +245,7 @@ function CarrierSection({ carrierGroup, onUpdate }) {
       >
         <div style={{ flex: 1, textAlign: 'left' }}>
           <p style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: '#ffffff', fontFamily: SANS }}>{carrier_name}</p>
-          <p style={{ margin: '2px 0 0', fontFamily: MONO, fontSize: '10px', color: 'rgba(255,255,255,0.40)', letterSpacing: '0.08em' }}>{carrier_email}</p>
+          <p style={{ margin: '2px 0 0', fontFamily: MONO, fontSize: '10px', color: 'rgba(250,248,244,0.78)', letterSpacing: '0.08em' }}>{carrier_email}</p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <div style={{ textAlign: 'right' }}>
@@ -256,11 +256,11 @@ function CarrierSection({ carrierGroup, onUpdate }) {
                 return <div key={i} style={{ width: 10, height: 10, background: STATUS_CONFIG[s]?.color || 'rgba(255,255,255,0.20)' }} title={cp?.checkpoint_code || ''} />;
               })}
             </div>
-            <p style={{ margin: '4px 0 0', fontFamily: MONO, fontSize: '9px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.10em', textTransform: 'uppercase' }}>
+            <p style={{ margin: '4px 0 0', fontFamily: MONO, fontSize: '9px', color: 'rgba(250,248,244,0.75)', letterSpacing: '0.10em', textTransform: 'uppercase' }}>
               {passed}/5 Passed{failed > 0 ? ` · ${failed} Failed` : ''}
             </p>
           </div>
-          <span style={{ color: 'rgba(255,255,255,0.40)', fontSize: '18px', lineHeight: 1 }}>{open ? '▲' : '▼'}</span>
+          <span style={{ color: 'rgba(250,248,244,0.78)', fontSize: '18px', lineHeight: 1 }}>{open ? '▲' : '▼'}</span>
         </div>
       </button>
 
@@ -335,7 +335,7 @@ export default function AdminCheckpointsPage() {
   if (authState === 'checking') {
     return (
       <div style={{ minHeight: '100vh', background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ fontFamily: MONO, fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.14em' }}>LOADING...</p>
+        <p style={{ fontFamily: MONO, fontSize: '11px', color: 'rgba(250,248,244,0.75)', letterSpacing: '0.14em' }}>LOADING...</p>
       </div>
     );
   }
@@ -361,7 +361,7 @@ export default function AdminCheckpointsPage() {
           <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff', margin: '0 0 8px', letterSpacing: '-0.02em', fontFamily: SANS }}>
             Carrier Checkpoints
           </h1>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: 0, maxWidth: '640px', lineHeight: 1.65, fontFamily: SANS }}>
+          <p style={{ fontSize: '15px', color: 'rgba(250,248,244,0.85)', margin: 0, maxWidth: '640px', lineHeight: 1.65, fontFamily: SANS }}>
             Five compliance-domain checkpoints per enrolled carrier. Mark PASSED or FAILED and add written gap notes. Notes on FAILED checkpoints are visible to the carrier in their portal.
           </p>
         </div>
@@ -390,7 +390,7 @@ export default function AdminCheckpointsPage() {
         {/* Filters */}
         {data && (
           <div style={{ display: 'flex', gap: '12px', marginBottom: '24px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <p style={{ fontFamily: MONO, fontSize: '11px', color: 'rgba(255,255,255,0.50)', margin: 0, letterSpacing: '0.08em' }}>
+            <p style={{ fontFamily: MONO, fontSize: '11px', color: 'rgba(250,248,244,0.82)', margin: 0, letterSpacing: '0.08em' }}>
               {data.total_carriers} enrolled carrier{data.total_carriers !== 1 ? 's' : ''}
             </p>
             <div style={{ height: '14px', width: '1px', background: 'rgba(255,255,255,0.12)' }} />
@@ -413,7 +413,7 @@ export default function AdminCheckpointsPage() {
             <button
               data-testid="refresh-checkpoints"
               onClick={load}
-              style={{ fontFamily: MONO, fontSize: '9px', padding: '6px 14px', background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.45)', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase', marginLeft: 'auto' }}
+              style={{ fontFamily: MONO, fontSize: '9px', padding: '6px 14px', background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(250,248,244,0.82)', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase', marginLeft: 'auto' }}
             >
               REFRESH
             </button>
@@ -423,7 +423,7 @@ export default function AdminCheckpointsPage() {
         {/* Loading / error / empty */}
         {loading && (
           <div style={{ padding: '60px 0', textAlign: 'center' }}>
-            <p style={{ fontFamily: MONO, fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>LOADING CHECKPOINTS...</p>
+            <p style={{ fontFamily: MONO, fontSize: '11px', color: 'rgba(250,248,244,0.75)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>LOADING CHECKPOINTS...</p>
           </div>
         )}
         {error && (
@@ -433,10 +433,10 @@ export default function AdminCheckpointsPage() {
         )}
         {!loading && !error && data && filteredCarriers.length === 0 && (
           <div style={{ padding: '80px 0', textAlign: 'center' }}>
-            <p style={{ fontFamily: MONO, fontSize: '13px', color: 'rgba(255,255,255,0.30)', letterSpacing: '0.14em' }}>
+            <p style={{ fontFamily: MONO, fontSize: '13px', color: 'rgba(250,248,244,0.72)', letterSpacing: '0.14em' }}>
               {filter === 'ALL' ? 'NO ENROLLED CARRIERS' : `NO ${filter.replace('_', ' ')} CARRIERS`}
             </p>
-            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.30)', marginTop: '8px', fontFamily: SANS }}>
+            <p style={{ fontSize: '14px', color: 'rgba(250,248,244,0.72)', marginTop: '8px', fontFamily: SANS }}>
               {filter === 'ALL'
                 ? 'Carriers enrolled with cohort access will appear here with their 5 checkpoints.'
                 : 'Change the filter to view other carriers.'}

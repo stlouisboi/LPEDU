@@ -124,12 +124,12 @@ function AuditWindowWidget({ data }) {
           {data.window_open ? (
             <p style={{ margin: 0 }}>
               <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '22px', fontWeight: 700, color: pal.text, lineHeight: 1 }}>{data.days_remaining}</span>
-              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginLeft: 6 }}>DAYS REMAINING</span>
+              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '11px', color: 'rgba(250,248,244,0.82)', marginLeft: 6 }}>DAYS REMAINING</span>
             </p>
           ) : (
             <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '13px', fontWeight: 700, color: pal.text, margin: 0, letterSpacing: '0.10em' }}>AUDIT WINDOW CLOSED</p>
           )}
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.40)', margin: '5px 0 0' }}>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: '12px', color: 'rgba(250,248,244,0.78)', margin: '5px 0 0' }}>
             Authority granted: {data.authority_grant_date} &nbsp;·&nbsp; Window closes: {data.audit_window_end}
           </p>
         </div>
@@ -143,7 +143,7 @@ function AuditWindowWidget({ data }) {
       <div style={{ height: 3, background: 'rgba(255,255,255,0.07)', marginTop: 14 }}>
         <div style={{ height: '100%', background: pal.bar, width: `${pctFull}%`, transition: 'width 0.6s ease' }} />
       </div>
-      <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '9px', color: 'rgba(255,255,255,0.30)', margin: '5px 0 0', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+      <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '9px', color: 'rgba(250,248,244,0.72)', margin: '5px 0 0', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
         {data.days_elapsed} DAYS ELAPSED OF 548-DAY NEW ENTRANT WINDOW (18 MONTHS)
       </p>
     </div>
@@ -453,7 +453,7 @@ export default function PortalPage() {
 
         <SiteHeader />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-          <p data-testid="portal-auth-loading" style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.5)" }}>
+          <p data-testid="portal-auth-loading" style={{ fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.82)" }}>
             Verifying access...
           </p>
         </div>
@@ -555,7 +555,7 @@ export default function PortalPage() {
                   right: "1rem",
                   background: "none",
                   border: "none",
-                  color: "rgba(255,255,255,0.35)",
+                  color: "rgba(250,248,244,0.75)",
                   cursor: "pointer",
                   fontSize: "1.25rem",
                   lineHeight: 1,
@@ -814,7 +814,7 @@ export default function PortalPage() {
                         <span style={{
                           fontFamily: "'Inter', sans-serif",
                           fontSize: "0.762rem", letterSpacing: "0.12em",
-                          color: "rgba(255,255,255,0.3)", textTransform: "uppercase",
+                          color: "rgba(250,248,244,0.72)", textTransform: "uppercase",
                         }}>
                           {tasks.filter(t => t.status === "verified").length}/{tasks.length} VERIFIED
                         </span>
@@ -874,7 +874,7 @@ export default function PortalPage() {
                   <CheckCircle size={18} color="#22c55e" />
                   <div>
                     <p style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.857rem", color: "#22c55e", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "0.2rem" }}>MODULE APPROVED — SYSTEM ADVANCED</p>
-                    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.55)" }}>Your {unlockNotice?.replace("-", " ")?.toUpperCase()} submission was approved by the Station Custodian. Your next module is now unlocked.</p>
+                    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.85)" }}>Your {unlockNotice?.replace("-", " ")?.toUpperCase()} submission was approved by the Station Custodian. Your next module is now unlocked.</p>
                   </div>
                 </div>
               )}
@@ -909,7 +909,7 @@ export default function PortalPage() {
                         </div>
                       )}
                       <div style={{ marginTop: "1.25rem", padding: "0.75rem 1rem", background: "rgba(245,158,11,0.05)", border: "1px solid rgba(245,158,11,0.15)" }}>
-                        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
+                        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.6 }}>
                           While you wait, continue reviewing earlier lessons. Your next module will unlock automatically when the review is approved.
                         </p>
                       </div>

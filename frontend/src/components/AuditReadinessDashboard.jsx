@@ -32,7 +32,7 @@ function TeaserView() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", maxWidth: 420, marginBottom: "1.5rem" }}>
             {DOMAIN_ORDER.map(d => (
               <div key={d} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", padding: "0.5rem 0.75rem" }}>
-                <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", margin: 0 }}>{DOMAIN_LABELS[d]}</p>
+                <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", margin: 0 }}>{DOMAIN_LABELS[d]}</p>
               </div>
             ))}
           </div>
@@ -51,10 +51,10 @@ function TeaserView() {
 function EmptyDashboard({ onRunCheck }) {
   return (
     <div data-testid="audit-empty-state" style={{ padding: "2.5rem 1.5rem", border: "1px solid rgba(255,255,255,0.08)", textAlign: "center" }}>
-      <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", margin: "0 0 0.75rem" }}>
+      <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", margin: "0 0 0.75rem" }}>
         NO CHECK COMPLETED YET
       </p>
-      <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.924rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: "0 0 1.5rem", maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
+      <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.924rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.7, margin: "0 0 1.5rem", maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
         No monthly check has been completed yet. Run your first check to establish your baseline.
       </p>
       <button
@@ -150,7 +150,7 @@ function DashboardScreen({ dashData, onRunCheck, onViewHistory }) {
         ].map(([label, desc]) => (
           <div key={label} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
             <span style={{ fontFamily: "monospace", fontSize: "0.476rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.6)", flexShrink: 0, paddingTop: 2 }}>{label}</span>
-            <span style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.3)", lineHeight: 1.4 }}>{desc}</span>
+            <span style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(250,248,244,0.72)", lineHeight: 1.4 }}>{desc}</span>
           </div>
         ))}
       </div>
@@ -181,7 +181,7 @@ function DashboardHeader({ dashData, onRunCheck, onViewHistory }) {
           <button
             data-testid="view-history-btn"
             onClick={onViewHistory}
-            style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "none", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.45)", fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}
+            style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "none", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(250,248,244,0.82)", fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}
           >
             <History size={12} /> History
           </button>
@@ -255,7 +255,7 @@ export default function AuditReadinessDashboard() {
   if (loading) {
     return (
       <section style={{ padding: "2.5rem 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.16em", color: "rgba(255,255,255,0.3)", textTransform: "uppercase" }}>Loading...</p>
+        <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.16em", color: "rgba(250,248,244,0.72)", textTransform: "uppercase" }}>Loading...</p>
       </section>
     );
   }

@@ -79,7 +79,7 @@ function CoversLightbox({ onClose }) {
         </div>
 
         {/* Footer note */}
-        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', marginTop: '2rem', textAlign: 'center' }}>
+        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.72)', textTransform: 'uppercase', marginTop: '2rem', textAlign: 'center' }}>
           All six domain packets included in LP-BDL-001 — Document System Bundle
         </p>
       </div>
@@ -413,7 +413,7 @@ function SystemAccessStrip({ visible, state, buy }) {
             fontSize: ".714rem",
             letterSpacing: ".1em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.3)",
+            color: "rgba(250,248,244,0.72)",
             whiteSpace: "nowrap",
           }}>
             LP-BDL-001 · Document System · Required for audit-ready documentation

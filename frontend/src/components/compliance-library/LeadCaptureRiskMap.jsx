@@ -100,7 +100,7 @@ export default function LeadCaptureRiskMap() {
                 {status === 'loading' ? 'SENDING...' : 'SEND ME THE RISK MAP →'}
               </button>
               {status === 'error' && <p style={{ fontFamily: MONO, fontSize: 9, color: '#ef4444' }}>Something went wrong. Please try again.</p>}
-              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.4)', textAlign: 'center' }}>
+              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.75)', textAlign: 'center' }}>
                 No spam. One email. Unsubscribe anytime.
               </p>
             </form>

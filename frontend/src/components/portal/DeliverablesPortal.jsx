@@ -48,11 +48,11 @@ export default function DeliverablesPortal({ API }) {
           <div key={pdf.id} data-testid={`deliverable-${pdf.id}`} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.14)", borderLeft: "3px solid #d4900a", padding: "1rem 1.25rem", gap: "1rem", flexWrap: "wrap" }}>
             <div>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600, color: "#fff", margin: "0 0 3px" }}>{pdf.display_name}</p>
-              {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 5px" }}>{pdf.description}</p>}
+              {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(250,248,244,0.82)", margin: "0 0 5px" }}>{pdf.description}</p>}
               <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)" }}>
                 {CATEGORY_LABELS[pdf.category] || pdf.category}
               </span>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.30)", margin: "4px 0 0" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", color: "rgba(250,248,244,0.72)", margin: "4px 0 0" }}>
                 This asset is designed to be used in your daily operation — not stored.
               </p>
             </div>

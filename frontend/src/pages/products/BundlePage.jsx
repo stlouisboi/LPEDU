@@ -221,10 +221,10 @@ export default function BundlePage() {
               {/* Price block */}
               <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
                 <span style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(2.75rem, 5vw, 4rem)", color: "#FFFFFF", lineHeight: 1, letterSpacing: "-0.02em" }}>$499</span>
-                <span style={{ fontSize: "1rem", color: "rgba(255,255,255,0.4)", textDecoration: "line-through" }}>$635 retail</span>
+                <span style={{ fontSize: "1rem", color: "rgba(250,248,244,0.78)", textDecoration: "line-through" }}>$635 retail</span>
                 <span style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4ade80", background: "rgba(74,222,128,0.1)", padding: "0.25rem 0.6rem" }}>SAVE $138</span>
               </div>
-              <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.4)", marginBottom: "2rem" }}>
+              <p style={{ fontSize: "0.875rem", color: "rgba(250,248,244,0.78)", marginBottom: "2rem" }}>
                 PDF delivery · Instant download · No subscription
               </p>
 
@@ -234,7 +234,7 @@ export default function BundlePage() {
               {/* Reassurance */}
               <div style={{ display: "flex", gap: "2rem", marginTop: "1.75rem", flexWrap: "wrap" }}>
                 {["185+ pages across 5 domains", "Instant PDF download", "Stripe-secured checkout"].map((t, i) => (
-                  <span key={i} style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                  <span key={i} style={{ fontSize: "0.8rem", color: "rgba(250,248,244,0.78)", display: "flex", alignItems: "center", gap: "0.4rem" }}>
                     <span style={{ color: GOLD }}>—</span> {t}
                   </span>
                 ))}
@@ -267,7 +267,7 @@ export default function BundlePage() {
                       <span style={{ fontSize: "0.714rem", color: GOLD_DIM, fontFamily: MONO, letterSpacing: "0.1em", display: "block", marginBottom: "0.1rem" }}>{p.domain}</span>
                       <span style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.85)", fontWeight: 600 }}>{p.title.split(" Compliance")[0].split(" Packet")[0]}</span>
                     </div>
-                    <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", fontFamily: MONO, flexShrink: 0, marginLeft: "0.5rem" }}>{p.pages}pp</span>
+                    <span style={{ fontSize: "0.8rem", color: "rgba(250,248,244,0.75)", fontFamily: MONO, flexShrink: 0, marginLeft: "0.5rem" }}>{p.pages}pp</span>
                   </div>
                 ))}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.625rem 0.875rem", background: "rgba(212,144,10,0.04)", borderLeft: `2px solid rgba(212,144,10,0.35)` }}>
@@ -278,8 +278,8 @@ export default function BundlePage() {
 
               <div style={{ marginTop: "1.5rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                  <span style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.5)" }}>Retail value</span>
-                  <span style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.35)", textDecoration: "line-through" }}>$635</span>
+                  <span style={{ fontSize: "0.857rem", color: "rgba(250,248,244,0.82)" }}>Retail value</span>
+                  <span style={{ fontSize: "0.857rem", color: "rgba(250,248,244,0.75)", textDecoration: "line-through" }}>$635</span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <span style={{ fontSize: "0.857rem", fontWeight: 700, color: "#FFFFFF" }}>Bundle price</span>
@@ -333,11 +333,11 @@ export default function BundlePage() {
                 <div>
                   <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: GOLD_DIM, letterSpacing: "0.12em", marginBottom: "0.25rem" }}>{p.domain} &nbsp;·&nbsp; {p.code}</p>
                   <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", lineHeight: 1.3, margin: 0 }}>{p.title}</p>
-                  <p style={{ fontFamily: MONO, fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", marginTop: "0.25rem" }}>{p.pages} pages · PDF</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.8rem", color: "rgba(250,248,244,0.75)", marginTop: "0.25rem" }}>{p.pages} pages · PDF</p>
                 </div>
                 <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>{p.desc}</p>
                 <div style={{ textAlign: "right", flexShrink: 0 }}>
-                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.3)", textDecoration: "line-through", marginBottom: "0.1rem" }}>{p.retail}</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(250,248,244,0.72)", textDecoration: "line-through", marginBottom: "0.1rem" }}>{p.retail}</p>
                   <p style={{ fontFamily: MONO, fontSize: "0.857rem", color: GOLD_DIM, letterSpacing: "0.1em" }}>INCLUDED</p>
                 </div>
               </div>
@@ -358,7 +358,7 @@ export default function BundlePage() {
                   <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: GOLD_DIM, letterSpacing: "0.12em", marginBottom: "0.25rem" }}>BONUS &nbsp;·&nbsp; {b.code}</p>
                   <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.3, margin: 0 }}>{b.title}</p>
                 </div>
-                <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.7, margin: 0 }}>{b.desc}</p>
+                <p style={{ fontSize: "0.9rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, margin: 0 }}>{b.desc}</p>
                 <span style={{ fontFamily: MONO, fontSize: "0.714rem", color: "#4ade80", background: "rgba(74,222,128,0.08)", padding: "0.25rem 0.6rem", letterSpacing: "0.12em", flexShrink: 0 }}>{b.tag}</span>
               </div>
             ))}
@@ -420,7 +420,7 @@ export default function BundlePage() {
                   <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", margin: 0 }}>{r.title}</p>
                   <span style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(248,113,113,0.55)", letterSpacing: "0.1em", flexShrink: 0, marginLeft: "1rem" }}>{r.code}</span>
                 </div>
-                <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: 0 }}>{r.desc}</p>
+                <p style={{ fontSize: "0.875rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.7, margin: 0 }}>{r.desc}</p>
               </div>
             ))}
             {/* 6th cell: CTA */}
@@ -456,7 +456,7 @@ export default function BundlePage() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 160px 160px", background: "#0a1220" }} className="bundle-compare-grid">
               <div style={{ padding: "1rem 1.5rem" }} />
               <div style={{ padding: "1rem", textAlign: "center", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
-                <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "0.25rem" }}>DOCUMENT SYSTEM</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.82)", marginBottom: "0.25rem" }}>DOCUMENT SYSTEM</p>
                 <p style={{ fontFamily: SERIF, fontWeight: 700, fontSize: "1.25rem", color: "#FFFFFF" }}>$499</p>
               </div>
               <div style={{ padding: "1rem", textAlign: "center", borderLeft: `1px solid rgba(212,144,10,0.25)`, background: "rgba(212,144,10,0.05)" }}>
@@ -511,7 +511,7 @@ export default function BundlePage() {
                 {["You haven't applied for authority yet and have no timeline", "You are looking for shortcuts or content to passively read", "You are already under a Satisfactory rating with no compliance gaps", "You expect a human to complete the installation for you"].map((t, i) => (
                   <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                     <span style={{ color: "rgba(248,113,113,0.65)", fontSize: "0.7rem", flexShrink: 0, marginTop: "0.2rem" }}>✕</span>
-                    <span style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{t}</span>
+                    <span style={{ fontSize: "0.9rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.65 }}>{t}</span>
                   </li>
                 ))}
               </ul>
@@ -549,7 +549,7 @@ export default function BundlePage() {
 
           {/* Upsell note */}
           <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-            <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.875rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, marginBottom: "0.75rem" }}>
               Carriers enrolled in the <strong style={{ color: "rgba(255,255,255,0.65)" }}>LaunchPath Standard ($2,500)</strong> receive this complete bundle at no additional cost as part of their cohort materials. If you are evaluating both options, that is worth knowing.
             </p>
             <Link to="/reach-diagnostic" style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: GOLD, textDecoration: "none" }}>

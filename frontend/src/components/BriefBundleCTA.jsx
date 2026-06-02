@@ -38,7 +38,7 @@ export default function BriefBundleCTA() {
           </p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-            color: "rgba(255,255,255,0.55)", lineHeight: 1.6,
+            color: "rgba(250,248,244,0.85)", lineHeight: 1.6,
           }}>
             Driver files, maintenance records, HOS systems, drug program, insurance controls. $499. Ships as a complete operational package.
           </p>

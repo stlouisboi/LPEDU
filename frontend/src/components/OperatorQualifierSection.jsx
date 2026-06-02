@@ -133,7 +133,7 @@ export default function OperatorQualifierSection() {
                   <label style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.857rem",
-                    color: "rgba(255,255,255,0.50)",
+                    color: "rgba(250,248,244,0.82)",
                     whiteSpace: "nowrap",
                   }}>
                     MC issue date:
@@ -173,7 +173,7 @@ export default function OperatorQualifierSection() {
                       <span style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.857rem",
-                        color: "rgba(255,255,255,0.35)",
+                        color: "rgba(250,248,244,0.75)",
                       }}>
                         of 90
                       </span>
@@ -283,7 +283,7 @@ export default function OperatorQualifierSection() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "var(--text-sm)",
-            color: "rgba(255,255,255,0.35)",
+            color: "rgba(250,248,244,0.75)",
             textAlign: "center",
             marginTop: "2.25rem",
             lineHeight: 1.6,

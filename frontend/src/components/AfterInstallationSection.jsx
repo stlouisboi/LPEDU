@@ -84,7 +84,7 @@ export default function AfterInstallationSection() {
             fontFamily: "'Inter', sans-serif",
             fontSize: "1rem",
             fontStyle: "italic",
-            color: "rgba(255,255,255,0.50)",
+            color: "rgba(250,248,244,0.82)",
             lineHeight: 1.8,
             margin: 0,
           }}>

@@ -75,7 +75,7 @@ export default function ThankYouPage() {
             borderTopColor: GOLD, borderRadius: "50%",
             animation: "spin 0.8s linear infinite", margin: "0 auto 1.25rem",
           }} />
-          <p style={{ fontFamily: MONO, fontSize: "0.75rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.15em" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.75rem", color: "rgba(250,248,244,0.82)", letterSpacing: "0.15em" }}>
             CONFIRMING YOUR ORDER…
           </p>
         </div>
@@ -126,7 +126,7 @@ export default function ThankYouPage() {
         {data && (
           <p className="ty-fade ty-fade-2" style={{
             fontFamily: MONO, fontSize: "0.857rem",
-            color: "rgba(255,255,255,0.45)", marginBottom: "2.5rem",
+            color: "rgba(250,248,244,0.82)", marginBottom: "2.5rem",
             borderLeft: `2px solid ${GOLD}`, paddingLeft: "0.875rem",
           }}>
             {productName}
@@ -137,7 +137,7 @@ export default function ThankYouPage() {
         <div className="ty-fade ty-fade-3" style={{ marginBottom: "3rem" }}>
           <p style={{
             fontFamily: MONO, fontSize: "0.714rem", letterSpacing: "0.15em",
-            color: "rgba(255,255,255,0.35)", textTransform: "uppercase",
+            color: "rgba(250,248,244,0.75)", textTransform: "uppercase",
             marginBottom: "0.875rem",
           }}>
             FROM VINCE — LAUNCHPATH FOUNDER
@@ -243,7 +243,7 @@ export default function ThankYouPage() {
               data-testid="thank-you-download-email-fallback"
               style={{
                 fontFamily: MONO, fontSize: "0.75rem",
-                color: "rgba(255,255,255,0.45)", letterSpacing: "0.08em",
+                color: "rgba(250,248,244,0.82)", letterSpacing: "0.08em",
                 padding: "0.875rem 0",
               }}
             >
@@ -287,7 +287,7 @@ export default function ThankYouPage() {
         {/* ── Footer note ── */}
         <p className="ty-fade ty-fade-5" style={{
           fontFamily: SANS, fontSize: "0.857rem",
-          color: "rgba(255,255,255,0.30)", lineHeight: 1.7,
+          color: "rgba(250,248,244,0.72)", lineHeight: 1.7,
         }}>
           Questions? Reply to your receipt email or reach out at{" "}
           <a href="mailto:vince@launchpathedu.com" style={{ color: "rgba(212,144,10,0.7)", textDecoration: "none" }}>

@@ -120,7 +120,7 @@ export default function ComplianceGapQuizPage() {
             <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.6rem)", color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "1.1rem" }}>
               5-Question Compliance Gap Audit
             </h1>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 540 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.75, maxWidth: 540 }}>
               Five yes/no questions covering the five domains most commonly cited in New Entrant Safety Audits. Your answers identify which gaps are active in your operation and surface the case study that matches each one.
             </p>
           </FadeIn>
@@ -139,7 +139,7 @@ export default function ComplianceGapQuizPage() {
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.75, marginBottom: "1.25rem" }}>
                 Answer each question honestly based on what exists in your operation today — not what you intend to build. A "yes" requires documentation you can produce right now. If you would have to create it before an audit, the answer is no.
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.7, marginBottom: "2.5rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.78)", lineHeight: 1.7, marginBottom: "2.5rem" }}>
                 This audit covers 5 domains: Hours of Service, Drug &amp; Alcohol, Insurance, Vehicle Maintenance, and Authority Maintenance. It takes under 2 minutes.
               </p>
               <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", flexWrap: "wrap" }}>
@@ -152,7 +152,7 @@ export default function ComplianceGapQuizPage() {
                 ].map(d => (
                   <div key={d.num} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                     <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.667rem", color: gold, fontWeight: 700 }}>{d.num}</span>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em" }}>{d.label}</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", letterSpacing: "0.06em" }}>{d.label}</span>
                   </div>
                 ))}
               </div>
@@ -182,7 +182,7 @@ export default function ComplianceGapQuizPage() {
             {/* Progress bar */}
             <div style={{ marginBottom: "2.5rem" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.625rem" }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)" }}>
                   Question {current + 1} of {QUESTIONS.length}
                 </span>
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em" }}>
@@ -273,7 +273,7 @@ export default function ComplianceGapQuizPage() {
                     }}
                   />
                 ))}
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", marginLeft: "0.5rem" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", marginLeft: "0.5rem" }}>
                   {score}/{QUESTIONS.length} systems in place
                 </span>
               </div>
@@ -308,7 +308,7 @@ export default function ComplianceGapQuizPage() {
                     </p>
                     <div style={{ background: "rgba(0,0,0,0.20)", border: "1px solid rgba(255,255,255,0.06)", padding: "0.875rem 1.125rem", marginBottom: "1.25rem" }}>
                       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(212,144,10,0.55)", marginBottom: "0.375rem" }}>NEXT ACTION</p>
-                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0 }}>{gap.fix}</p>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.65, margin: 0 }}>{gap.fix}</p>
                     </div>
                     <Link
                       to="/case-studies"
@@ -345,7 +345,7 @@ export default function ComplianceGapQuizPage() {
                   ? "Confirm your systems will hold under audit."
                   : "Close the gaps before FMCSA finds them."}
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 480, marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.75, maxWidth: 480, marginBottom: "1.75rem" }}>
                 {gaps.length === 0
                   ? "The REACH Diagnostic confirms whether your systems will hold under FMCSA scrutiny."
                   : `The REACH Diagnostic identifies gaps in your operation and gives you a GO / WAIT / NO-GO result before you lose authority.`}
@@ -363,7 +363,7 @@ export default function ComplianceGapQuizPage() {
                 <button
                   data-testid="quiz-retake-btn"
                   onClick={restart}
-                  style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.08em", color: "rgba(255,255,255,0.35)", background: "transparent", border: "1px solid rgba(255,255,255,0.12)", padding: "1rem 1.75rem", cursor: "pointer", transition: "border-color 0.18s", whiteSpace: "nowrap" }}
+                  style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.08em", color: "rgba(250,248,244,0.75)", background: "transparent", border: "1px solid rgba(255,255,255,0.12)", padding: "1rem 1.75rem", cursor: "pointer", transition: "border-color 0.18s", whiteSpace: "nowrap" }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.28)"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; }}
                 >

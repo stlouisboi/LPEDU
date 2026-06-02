@@ -37,7 +37,7 @@ export default function ConsequenceNumberBlock() {
           }}>
             A single letter.<br />
             <span style={{ color: "#f87171" }}>Revenue stops overnight.</span><br />
-            <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 400, fontSize: "0.72em" }}>Fixed costs don't.</span>
+            <span style={{ color: "rgba(250,248,244,0.85)", fontWeight: 400, fontSize: "0.72em" }}>Fixed costs don't.</span>
           </h2>
 
           <p style={{
@@ -90,7 +90,7 @@ export default function ConsequenceNumberBlock() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "var(--text-sm)",
-                  color: "rgba(255,255,255,0.55)",
+                  color: "rgba(250,248,244,0.85)",
                   lineHeight: 1.5,
                 }}>{item.label}</p>
               </div>

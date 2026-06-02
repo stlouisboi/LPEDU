@@ -801,3 +801,21 @@ body { background-color: #FAF8F4; }
   }
 }
 
+/* 10. Scope strip — single column on mobile */
+@media (max-width: 640px) {
+  .lp-scope-strip {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 11. Footer — stack to single column on mobile */
+@media (max-width: 640px) {
+  .lp-footer-grid {
+    grid-template-columns: 1fr !important;
+    text-align: left !important;
+  }
+  .lp-footer-grid > *:last-child {
+    text-align: left !important;
+  }
+}
+

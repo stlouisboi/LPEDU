@@ -62,10 +62,10 @@ export default function VerifyPage() {
       {/* Classification band */}
       <div style={{ borderBottom: '1px solid rgba(200,169,110,0.12)', padding: '0 1.5rem' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 40 }}>
-          <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.5)' }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.78)' }}>
             LP-VRF-PUB-001 · Public Registry
           </span>
-          <a href="/" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.45)', textDecoration: 'none' }}>
+          <a href="/" style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)', textDecoration: 'none' }}>
             LaunchPathEDU.com
           </a>
         </div>
@@ -140,7 +140,7 @@ export default function VerifyPage() {
           </button>
         </div>
 
-        <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', color: 'rgba(200,169,110,0.35)', marginBottom: '3rem' }}>
+        <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', color: 'rgba(200,169,110,0.70)', marginBottom: '3rem' }}>
           Format: LP-VRF-XXXXXXXX — provided directly by the carrier
         </p>
       </div>
@@ -180,7 +180,7 @@ export default function VerifyPage() {
 
                 {/* Verification details */}
                 <div>
-                  <p style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.55)', marginBottom: '1.25rem' }}>
+                  <p style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.80)', marginBottom: '1.25rem' }}>
                     What This Credential Confirms
                   </p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -197,7 +197,7 @@ export default function VerifyPage() {
 
                   {/* Broker note */}
                   <div style={{ marginTop: '2rem', padding: '1rem 1.25rem', background: 'rgba(200,169,110,0.04)', border: '1px solid rgba(200,169,110,0.1)' }}>
-                    <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.5)', marginBottom: '0.5rem' }}>Note for Brokers</p>
+                    <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.78)', marginBottom: '0.5rem' }}>Note for Brokers</p>
                     <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(250,248,244,0.50)', lineHeight: 1.7, margin: 0 }}>
                       This credential confirms the carrier completed a structured 90-day compliance program with verified file reviews. It does not replace standard carrier onboarding due diligence or insurance verification.
                     </p>
@@ -237,7 +237,7 @@ export default function VerifyPage() {
       {/* What the registry is — always shown below fold */}
       <div style={{ borderTop: '1px solid rgba(200,169,110,0.08)', padding: 'clamp(3rem,6vw,5rem) 1.5rem' }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <p style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.45)', marginBottom: '2rem' }}>
+          <p style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)', marginBottom: '2rem' }}>
             About This Registry
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '2rem' }} className="verify-about-grid">

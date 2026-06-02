@@ -207,7 +207,7 @@ export default function REACHAssessmentPage() {
             borderBottom: "1px solid rgba(200,169,110,0.12)",
             flexWrap: "wrap", gap: "0.5rem",
           }}>
-            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.600rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,169,110,0.50)" }}>
+            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.600rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,169,110,0.78)" }}>
               LOG_ENTRY_{String(currentQ + 1).padStart(2, '0')}_OF_15 · LP-MOD-REACH
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.22)" }}>
@@ -216,7 +216,7 @@ export default function REACHAssessmentPage() {
           </div>
           {/* 15-cell data grid progress */}
           <div style={{ marginBottom: "3rem" }}>
-            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,169,110,0.55)", marginBottom: "8px" }}>
+            <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,169,110,0.80)", marginBottom: "8px" }}>
               LP-REACH-SCAN · {CATEGORIES[currentCatIdx].full} · SECTION {currentCatIdx + 1} OF 5
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(15, 1fr)", gap: 3 }}>
@@ -249,7 +249,7 @@ export default function REACHAssessmentPage() {
           </p>
 
           {currentQ === 0 && (
-            <p style={{ fontSize: "0.924rem", color: "rgba(255,255,255,0.40)", fontFamily: "'Instrument Sans', sans-serif", marginBottom: "2rem", marginTop: "-1.75rem", lineHeight: 1.75, maxWidth: 500 }}>
+            <p style={{ fontSize: "0.924rem", color: "rgba(250,248,244,0.78)", fontFamily: "'Instrument Sans', sans-serif", marginBottom: "2rem", marginTop: "-1.75rem", lineHeight: 1.75, maxWidth: 500 }}>
               This is a reality check to keep you from walking into a bad deal with your own name on the door. If you answer like who you wish you were instead of who you are right now, the road will correct that faster than any program.
             </p>
           )}
@@ -303,7 +303,7 @@ export default function REACHAssessmentPage() {
           <div style={{ borderLeft: "2px solid #8B7355", paddingLeft: "1.5rem", maxWidth: 480 }}>
             <p style={{
               fontFamily: "'Newsreader', 'Playfair Display', serif", fontSize: "1.12rem",
-              color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontStyle: "italic",
+              color: "rgba(250,248,244,0.85)", lineHeight: 1.8, fontStyle: "italic",
             }}>
               {CATEGORY_INSIGHTS[insightIdx]}
             </p>
@@ -465,7 +465,7 @@ export default function REACHAssessmentPage() {
                     <button
                       data-testid="reach-icp-date-skip"
                       onClick={() => { setAuthorityGrantDate(""); setProfileStep(1); }}
-                      style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.12)", padding: "0.875rem 1.25rem", minHeight: 48, cursor: "pointer", borderRadius: 0 }}>
+                      style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", color: "rgba(250,248,244,0.72)", border: "1px solid rgba(255,255,255,0.12)", padding: "0.875rem 1.25rem", minHeight: 48, cursor: "pointer", borderRadius: 0 }}>
                       NOT YET GRANTED
                     </button>
                   </div>
@@ -626,7 +626,7 @@ export default function REACHAssessmentPage() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.714rem",
-                color: "rgba(200,169,110,0.55)",
+                color: "rgba(200,169,110,0.80)",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 marginBottom: "1.25rem",
@@ -655,7 +655,7 @@ export default function REACHAssessmentPage() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.714rem",
-                  color: "rgba(255,255,255,0.35)",
+                  color: "rgba(250,248,244,0.75)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                 }}>
@@ -738,7 +738,7 @@ export default function REACHAssessmentPage() {
               }}>
                 <p style={{
                   fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700,
-                  letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(200,169,110,0.55)",
+                  letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(200,169,110,0.80)",
                   marginBottom: "0.875rem",
                 }}>NEXT STEP — QUALIFIED OPERATOR</p>
                 <p style={{
@@ -910,7 +910,7 @@ export default function REACHAssessmentPage() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.762rem",
-                  color: "rgba(255,255,255,0.4)",
+                  color: "rgba(250,248,244,0.78)",
                   marginTop: "0.875rem",
                   fontStyle: "italic",
                 }}>

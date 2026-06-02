@@ -168,7 +168,7 @@ export default function LessonView({ lesson, lessonIndex, totalLessons, complete
                 </a>
               ) : (
                 <button disabled data-testid={`pdf-download-${lesson.number}`}
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.45)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", cursor: "not-allowed" }}>
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", background: "transparent", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(250,248,244,0.82)", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", cursor: "not-allowed" }}>
                   {dlIcon} {lesson.pdfLabel} — Coming Soon
                 </button>
               )}
@@ -232,7 +232,7 @@ export default function LessonView({ lesson, lessonIndex, totalLessons, complete
           onClick={onBack}
           style={{
             background: "none", border: "1px solid rgba(255,255,255,0.12)",
-            color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', sans-serif",
+            color: "rgba(250,248,244,0.82)", fontFamily: "'Inter', sans-serif",
             fontSize: "0.857rem", fontWeight: 600, padding: "0.75rem 1.25rem",
             cursor: "pointer", letterSpacing: "0.04em", transition: "all 0.15s",
           }}

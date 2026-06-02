@@ -126,14 +126,14 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
             {['#DC2626','#D97706','#16A34A'].map((c, i) => (
               <span key={i} style={{ width: 10, height: 10, borderRadius: '50%', background: c, display: 'inline-block', opacity: 0.7 }} />
             ))}
-            <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.3)', marginLeft: 8, letterSpacing: '0.08em' }}>fmcsa-compliance-scan — bash</span>
+            <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.72)', marginLeft: 8, letterSpacing: '0.08em' }}>fmcsa-compliance-scan — bash</span>
           </div>
 
           {/* Terminal body */}
           <div style={{ padding: '1.5rem 1.75rem', minHeight: 300 }}>
 
             {/* Prompt line */}
-            <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.4)', marginBottom: '1rem', letterSpacing: '0.04em' }}>
+            <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.78)', marginBottom: '1rem', letterSpacing: '0.04em' }}>
               LaunchPath Compliance Terminal v1.0 — New Entrant Scan
             </div>
 
@@ -141,7 +141,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
               <div>
                 <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.55)', marginBottom: '1.25rem', lineHeight: 1.7 }}>
                   Enter your USDOT number to initiate a new entrant compliance scan.<br />
-                  <span style={{ color: 'rgba(250,248,244,0.3)', fontSize: 10 }}>This scan shows you what an investigator's review process looks like — not what they find in your files.</span>
+                  <span style={{ color: 'rgba(250,248,244,0.72)', fontSize: 10 }}>This scan shows you what an investigator's review process looks like — not what they find in your files.</span>
                 </div>
                 <div style={{ display: 'flex', gap: 0, alignItems: 'stretch' }}>
                   <span style={{ ...mono, fontSize: 11, color: '#C8A96E', padding: '0.75rem 0.9rem', border: '1px solid rgba(250,248,244,0.15)', borderRight: 'none', background: 'rgba(139,115,85,0.08)', display: 'flex', alignItems: 'center', letterSpacing: '0.06em' }}>DOT&gt;</span>
@@ -169,10 +169,10 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
             {(scanState === 'scanning' || scanState === 'complete') && (
               <div>
                 {/* DOT acknowledgment */}
-                <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.4)', marginBottom: '1rem' }}>
+                <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.78)', marginBottom: '1rem' }}>
                   <span style={{ color: '#C8A96E' }}>DOT&gt;</span> {dotInput}
                 </div>
-                <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.35)', marginBottom: '1rem' }}>
+                <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.75)', marginBottom: '1rem' }}>
                   Initiating scan for DOT-{dotInput}...
                 </div>
                 {SCAN_STEPS.map((step, idx) => (

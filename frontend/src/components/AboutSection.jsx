@@ -128,7 +128,7 @@ export default function AboutSection() {
               <p style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.762rem",
-                color: "rgba(255,255,255,0.5)",
+                color: "rgba(250,248,244,0.82)",
                 letterSpacing: "0.06em",
               }}>
                 U.S. Navy · OSHA Certified · 25 Yrs Ops

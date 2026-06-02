@@ -122,7 +122,7 @@ function AnnouncementsTab() {
     <div>
       {/* Create form */}
       <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "1.75rem", marginBottom: "2rem" }}>
-        <p style={{ fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: "1.25rem" }}>
+        <p style={{ fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,248,244,0.75)", marginBottom: "1.25rem" }}>
           NEW ANNOUNCEMENT
         </p>
         <input
@@ -142,7 +142,7 @@ function AnnouncementsTab() {
         />
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <label style={{ fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.08em", textTransform: "uppercase" }}>Priority:</label>
+            <label style={{ fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", letterSpacing: "0.08em", textTransform: "uppercase" }}>Priority:</label>
             <select
               data-testid="ann-priority-select"
               value={priority}
@@ -168,9 +168,9 @@ function AnnouncementsTab() {
 
       {/* List */}
       {loading ? (
-        <p style={{ fontSize: "0.762rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>LOADING...</p>
+        <p style={{ fontSize: "0.762rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.1em", textTransform: "uppercase" }}>LOADING...</p>
       ) : items.length === 0 ? (
-        <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.3)" }}>No announcements yet.</p>
+        <p style={{ fontSize: "0.857rem", color: "rgba(250,248,244,0.72)" }}>No announcements yet.</p>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           {items.map((ann) => (
@@ -181,9 +181,9 @@ function AnnouncementsTab() {
                     {ann.priority.toUpperCase()}
                   </span>
                   <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.924rem", color: "#fff" }}>{ann.title}</span>
-                  {!ann.is_active && <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.06)", padding: "0.1rem 0.45rem" }}>INACTIVE</span>}
+                  {!ann.is_active && <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", background: "rgba(255,255,255,0.06)", padding: "0.1rem 0.45rem" }}>INACTIVE</span>}
                 </div>
-                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: 0 }}>{ann.body}</p>
+                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.6, margin: 0 }}>{ann.body}</p>
               </div>
               <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
                 <button
@@ -260,7 +260,7 @@ function QATab() {
     <div>
       {/* Filter */}
       <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1.5rem", alignItems: "center" }}>
-        <span style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Show:</span>
+        <span style={{ fontSize: "0.714rem", color: "rgba(250,248,244,0.75)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Show:</span>
         {["all", "unanswered"].map((f) => (
           <button key={f} onClick={() => setFilter(f)} style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.375rem 0.875rem", background: filter === f ? "rgba(212,144,10,0.12)" : "none", border: `1px solid ${filter === f ? "rgba(212,144,10,0.4)" : "rgba(255,255,255,0.1)"}`, color: filter === f ? "#d4900a" : "rgba(255,255,255,0.4)", cursor: "pointer" }}>
             {f === "unanswered" ? `Unanswered (${items.filter((i) => !i.reply).length})` : `All (${items.length})`}
@@ -270,9 +270,9 @@ function QATab() {
       </div>
 
       {loading ? (
-        <p style={{ fontSize: "0.762rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>LOADING...</p>
+        <p style={{ fontSize: "0.762rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.1em", textTransform: "uppercase" }}>LOADING...</p>
       ) : filtered.length === 0 ? (
-        <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.3)" }}>{filter === "unanswered" ? "No unanswered questions." : "No questions yet."}</p>
+        <p style={{ fontSize: "0.857rem", color: "rgba(250,248,244,0.72)" }}>{filter === "unanswered" ? "No unanswered questions." : "No questions yet."}</p>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {filtered.map((item) => (

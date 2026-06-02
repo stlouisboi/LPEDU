@@ -95,7 +95,7 @@ export default function CostOfInactionSection() {
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "var(--text-sm)",
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(250,248,244,0.82)",
                   lineHeight: 1.55,
                   margin: 0,
                   whiteSpace: "pre-line",

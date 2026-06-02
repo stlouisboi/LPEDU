@@ -71,7 +71,7 @@ export default function LessonQA({ lessonId, lessonNumber }) {
         </p>
       ) : items.length === 0 ? (
         <div style={{ padding: "1rem 0", marginBottom: "1.25rem" }}>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.3)", margin: 0 }}>No questions yet for this lesson. Be the first to ask.</p>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.72)", margin: 0 }}>No questions yet for this lesson. Be the first to ask.</p>
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.5rem" }}>
@@ -126,7 +126,7 @@ export default function LessonQA({ lessonId, lessonNumber }) {
 
       {/* Post question form */}
       <div style={{ background: "rgba(255,255,255,0.015)", border: "1px solid rgba(255,255,255,0.07)", padding: "1.25rem" }}>
-        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: "0.875rem" }}>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", marginBottom: "0.875rem" }}>
           ASK A QUESTION
         </p>
         <textarea

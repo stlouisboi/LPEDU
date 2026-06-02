@@ -187,7 +187,7 @@ function AdminLoginGate({ onSuccess }) {
 function UrlField({ label, value, onChange, placeholder }) {
   return (
     <div style={{ flex: 1 }}>
-      <p style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", margin: "0 0 4px" }}>{label}</p>
+      <p style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", margin: "0 0 4px" }}>{label}</p>
       <input
         type="url" value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder || "https://"}
         style={{ width: "100%", boxSizing: "border-box", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.10)", color: "#FFFFFF", fontFamily: mono, fontSize: "0.857rem", padding: "0.5rem 0.75rem", outline: "none", transition: "border-color 0.15s" }}
@@ -257,12 +257,12 @@ function ModuleEditor({ module }) {
           LP-{module.code} | {module.type ? module.type.toUpperCase() + " MODULE" : "IMPLEMENTATION MODULE"}
         </p>
         <h2 style={{ fontFamily: display, fontWeight: 700, fontSize: "1.75rem", color: "#FFFFFF", letterSpacing: "-0.02em", marginBottom: "0.375rem" }}>{module.title}</h2>
-        <p style={{ fontFamily: mono, fontSize: "0.857rem", color: "rgba(255,255,255,0.35)" }}>{module.lessons.length} lessons</p>
+        <p style={{ fontFamily: mono, fontSize: "0.857rem", color: "rgba(250,248,244,0.75)" }}>{module.lessons.length} lessons</p>
       </div>
 
       {/* Description */}
       <div style={{ marginBottom: "2.5rem" }}>
-        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: "0.625rem" }}>MODULE DESCRIPTION</p>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(250,248,244,0.75)", marginBottom: "0.625rem" }}>MODULE DESCRIPTION</p>
         <textarea
           value={description} onChange={e => setDescription(e.target.value)} rows={3}
           style={{ width: "100%", boxSizing: "border-box", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.10)", color: "#FFFFFF", fontFamily: mono, fontSize: "0.924rem", padding: "0.75rem", outline: "none", resize: "vertical", lineHeight: 1.6 }}
@@ -270,7 +270,7 @@ function ModuleEditor({ module }) {
       </div>
 
       {/* Lessons */}
-      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: "1rem" }}>
+      <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(250,248,244,0.75)", marginBottom: "1rem" }}>
         LESSONS — {module.lessons.length} UNITS
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "2rem" }}>
@@ -298,7 +298,7 @@ function ModuleEditor({ module }) {
         >
           {saveState === "saving" ? "Saving…" : saveState === "saved" ? "✓ Saved" : saveState === "error" ? "Error — Try Again" : "Save Changes"}
         </button>
-        {lastSaved && <p style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(255,255,255,0.30)" }}>Last saved: {lastSaved}</p>}
+        {lastSaved && <p style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(250,248,244,0.72)" }}>Last saved: {lastSaved}</p>}
       </div>
     </div>
   );

@@ -61,7 +61,7 @@ export default function FeaturedProductCard({ onBuy, loading, error }) {
           {/* Right */}
           <div style={{ background: CARD, border: `1px solid ${BORDER}`, padding: '2rem' }}>
             <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '3.5rem', color: NAVY, lineHeight: 1, marginBottom: '0.25rem' }}>$499</div>
-            <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.4)', marginBottom: '1.75rem' }}>
+            <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.75)', marginBottom: '1.75rem' }}>
               INSTANT ACCESS · ONE-TIME · $176 BELOW INDIVIDUAL COST
             </div>
 
@@ -73,7 +73,7 @@ export default function FeaturedProductCard({ onBuy, loading, error }) {
               {isLoading ? 'PROCESSING...' : 'INSTALL THE BUNDLE — $499 →'}
             </button>
             {error && <p style={{ fontFamily: MONO, fontSize: 9, color: '#ef4444', marginBottom: '0.5rem' }}>{error}</p>}
-            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.4)', textAlign: 'center', marginBottom: '1.5rem' }}>
+            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.75)', textAlign: 'center', marginBottom: '1.5rem' }}>
               Instant access. 30-day implementation roadmap included.
             </p>
 
@@ -90,7 +90,7 @@ export default function FeaturedProductCard({ onBuy, loading, error }) {
               </div>
             </div>
 
-            <a href="#component-library" style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.45)', textDecoration: 'underline', display: 'block', textAlign: 'center' }}>
+            <a href="#component-library" style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.78)', textDecoration: 'underline', display: 'block', textAlign: 'center' }}>
               Not ready for the full system? Explore individual domains below →
             </a>
           </div>

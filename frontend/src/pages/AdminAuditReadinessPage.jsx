@@ -104,7 +104,7 @@ function CarrierRow({ carrier, onVerifyDomain, onSendEmail }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", flexWrap: "wrap" }}>
             <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.875rem", fontWeight: 600, color: "rgba(255,255,255,0.85)", margin: 0 }}>{carrier.name}</p>
-            <p style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.3)", margin: 0 }}>{carrier.email}</p>
+            <p style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(250,248,244,0.72)", margin: 0 }}>{carrier.email}</p>
             {carrier.isStale && <AlertTriangle size={12} color="#fbbf24" />}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.25rem" }}>
@@ -158,7 +158,7 @@ function CarrierRow({ carrier, onVerifyDomain, onSendEmail }) {
                   {/* Domain info */}
                   <div style={{ flex: 1, minWidth: 160 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.375rem" }}>
-                      <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: 0 }}>{DOMAIN_LABELS[dk]}</p>
+                      <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.85)", margin: 0 }}>{DOMAIN_LABELS[dk]}</p>
                       {DOMAIN_CRITICAL[dk] && (
                         <span style={{ fontFamily: "monospace", fontSize: "0.44rem", letterSpacing: "0.1em", color: "rgba(239,68,68,0.6)", background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.18)", padding: "1px 4px", textTransform: "uppercase" }}>CRITICAL</span>
                       )}
@@ -166,7 +166,7 @@ function CarrierRow({ carrier, onVerifyDomain, onSendEmail }) {
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                       <ColorBadge color={dr.color} />
                       {dr.scorePercent != null && (
-                        <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em" }}>{dr.scorePercent}%</span>
+                        <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.08em" }}>{dr.scorePercent}%</span>
                       )}
                     </div>
                     {/* SC Override */}
@@ -276,11 +276,11 @@ export default function AdminAuditReadinessPage() {
           <h2 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontSize: "clamp(1.1rem,2vw,1.4rem)", fontWeight: 700, color: "#FFFFFF", margin: "0 0 0.25rem" }}>
             Carrier Readiness Overview
           </h2>
-          <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", margin: 0 }}>
             {carriers.length} carrier{carriers.length !== 1 ? "s" : ""} · Verify domains, add notes, send monthly email
           </p>
         </div>
-        <button onClick={load} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}>
+        <button onClick={load} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(250,248,244,0.82)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}>
           Refresh
         </button>
       </div>
@@ -293,11 +293,11 @@ export default function AdminAuditReadinessPage() {
         aria-label="Search carriers"
       />
 
-      {loading && <p style={{ fontFamily: "monospace", fontSize: "0.619rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.16em" }}>Loading...</p>}
+      {loading && <p style={{ fontFamily: "monospace", fontSize: "0.619rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.16em" }}>Loading...</p>}
       {error && <p style={{ color: "rgba(239,68,68,0.7)", fontSize: "0.875rem" }}>{error}</p>}
 
       {!loading && !error && filtered.length === 0 && (
-        <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.875rem", color: "rgba(255,255,255,0.35)" }}>
+        <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.875rem", color: "rgba(250,248,244,0.75)" }}>
           {search ? "No carriers match your search." : "No audit readiness checks yet. Carriers appear here after their first check."}
         </p>
       )}

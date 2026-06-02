@@ -99,12 +99,12 @@ export default function VRFCredentialCard({
         {/* Header row */}
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
           <div>
-            <p style={{ ...mono, fontSize: t.sysCode, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.5)', margin: '0 0 0.15rem' }}>LP-SYS-001 · LPOS v1.0</p>
+            <p style={{ ...mono, fontSize: t.sysCode, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.78)', margin: '0 0 0.15rem' }}>LP-SYS-001 · LPOS v1.0</p>
             <p style={{ ...mono, fontWeight: 900, fontSize: t.logoMark, color: '#FFFFFF', margin: 0, letterSpacing: '-0.02em', lineHeight: 1 }}>LP</p>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <p style={{ ...mono, fontSize: t.issuedBy, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.45)', margin: '0 0 0.15rem' }}>ISSUED BY</p>
-            <p style={{ ...mono, fontSize: t.issuedBy, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', margin: 0 }}>LAUNCHPATH EDU LLC</p>
+            <p style={{ ...mono, fontSize: t.issuedBy, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.75)', margin: '0 0 0.15rem' }}>ISSUED BY</p>
+            <p style={{ ...mono, fontSize: t.issuedBy, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.75)', margin: 0 }}>LAUNCHPATH EDU LLC</p>
           </div>
         </div>
 
@@ -131,7 +131,7 @@ export default function VRFCredentialCard({
 
           {/* Issued date — only when provided */}
           {issuedLabel && (
-            <p style={{ ...mono, fontSize: t.issuedBy, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.4)', margin: '0.15rem 0 0' }}>
+            <p style={{ ...mono, fontSize: t.issuedBy, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.72)', margin: '0.15rem 0 0' }}>
               Issued {issuedLabel}
             </p>
           )}
@@ -157,7 +157,7 @@ export default function VRFCredentialCard({
               <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '1px solid rgba(200,169,110,0.4)', background: 'radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%)' }} />
               <Shield size={t.sealIcon} color="#C8A96E" strokeWidth={1.5} />
             </div>
-            <p style={{ ...mono, fontSize: t.sealLabel, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.5)', margin: 0 }}>
+            <p style={{ ...mono, fontSize: t.sealLabel, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.78)', margin: 0 }}>
               VERIFIED
             </p>
           </div>

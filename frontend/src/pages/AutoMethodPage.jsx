@@ -193,7 +193,7 @@ export default function AutoMethodPage() {
                   }}>{item.dir}</p>
                   <p style={{
                     fontFamily: SANS, fontSize: "0.857rem",
-                    color: "rgba(255,255,255,0.50)", lineHeight: 1.5,
+                    color: "rgba(250,248,244,0.82)", lineHeight: 1.5,
                     whiteSpace: "pre-line", marginBottom: "1.25rem",
                   }}>{item.sub}</p>
                   {/* CFR anchor */}
@@ -212,7 +212,7 @@ export default function AutoMethodPage() {
           <h2 style={{ fontFamily: COND, fontWeight: 800, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFFF", letterSpacing: "-0.025em", marginBottom: "0.5rem" }}>
             What Each Vector Costs
           </h2>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, maxWidth: 580, marginBottom: "3rem" }}>
+          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, maxWidth: 580, marginBottom: "3rem" }}>
             Dollar-cost exposure by attack surface. Unguarded new carriers absorb all four simultaneously.
           </p>
 
@@ -299,7 +299,7 @@ export default function AutoMethodPage() {
                 {/* Exposure range */}
                 <div style={{ marginBottom: "1.25rem", paddingBottom: "1.25rem", borderBottom: "1px solid rgba(197,160,89,0.12)" }}>
                   <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "1.75rem", color: "#C5A059", lineHeight: 1, letterSpacing: "-0.02em", marginBottom: 4 }}>{t.range}</p>
-                  <p style={{ fontFamily: SANS, fontSize: "0.75rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.4 }}>{t.rangeNote}</p>
+                  <p style={{ fontFamily: SANS, fontSize: "0.75rem", color: "rgba(250,248,244,0.78)", lineHeight: 1.4 }}>{t.rangeNote}</p>
                 </div>
 
                 {/* Consequences */}
@@ -307,7 +307,7 @@ export default function AutoMethodPage() {
                   {t.items.map((item, i) => (
                     <li key={i} style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", alignItems: "flex-start" }}>
                       <span style={{ color: "rgba(197,160,89,0.5)", fontWeight: 700, flexShrink: 0, fontSize: "0.75rem", marginTop: 2 }}>→</span>
-                      <span style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.55 }}>{item}</span>
+                      <span style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.55 }}>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -323,7 +323,7 @@ export default function AutoMethodPage() {
             <div>
               <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(197,160,89,0.55)", marginBottom: 4 }}>LP-RISK-TOT-01 | AGGREGATE FIRST-YEAR EXPOSURE</p>
               <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "2rem", color: "#C5A059", letterSpacing: "-0.02em", lineHeight: 1 }}>$50K – $815K+</p>
-              <p style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(255,255,255,0.40)", marginTop: 4 }}>across all four vectors, unprotected new carrier, 18-month review window</p>
+              <p style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(250,248,244,0.78)", marginTop: 4 }}>across all four vectors, unprotected new carrier, 18-month review window</p>
             </div>
             <Link
               to="/compliance-library"
@@ -390,7 +390,7 @@ export default function AutoMethodPage() {
                     fontFamily: COND, fontWeight: 700, fontSize: "1.5rem",
                     color: gold, letterSpacing: "0.08em",
                   }}>{d.vector}</span>
-                  <span style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.04em" }}>
+                  <span style={{ fontFamily: SANS, fontSize: "0.88rem", color: "rgba(250,248,244,0.82)", letterSpacing: "0.04em" }}>
                     {d.threat} — attacks {d.pillar}
                   </span>
                 </div>
@@ -482,7 +482,7 @@ export default function AutoMethodPage() {
                   {g.desc}
                 </p>
 
-                <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.45)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "2px solid rgba(212,144,10,0.18)", paddingLeft: "0.875rem", marginBottom: "0.875rem", maxWidth: 580 }}>
+                <p style={{ fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.82)", lineHeight: 1.75, fontStyle: "italic", borderLeft: "2px solid rgba(212,144,10,0.18)", paddingLeft: "0.875rem", marginBottom: "0.875rem", maxWidth: 580 }}>
                   {g.consequence}
                 </p>
 
@@ -493,7 +493,7 @@ export default function AutoMethodPage() {
             ))}
           </div>
 
-          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.50)", lineHeight: 1.75, marginTop: "2rem", marginBottom: "1rem" }}>
+          <p style={{ fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.82)", lineHeight: 1.75, marginTop: "2rem", marginBottom: "1rem" }}>
             These guards are installed through the 90-day LaunchPath Standard.
           </p>
           <Link
@@ -531,7 +531,7 @@ export default function AutoMethodPage() {
             ].map((col) => (
               <div key={col.label} style={{ background: midBg, padding: "2rem 1.5rem" }}>
                 <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: gold, marginBottom: "0.4rem" }}>{col.label}</p>
-                <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.40)", marginBottom: "1.25rem", fontStyle: "italic" }}>{col.role}</p>
+                <p style={{ fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.78)", marginBottom: "1.25rem", fontStyle: "italic" }}>{col.role}</p>
                 {col.items.map((item, i) => (
                   <p key={i} style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.65)", marginBottom: "0.4rem", lineHeight: 1.5 }}>{item}</p>
                 ))}
@@ -556,7 +556,7 @@ export default function AutoMethodPage() {
             {PILLARS.map((p) => (
               <div key={p.label} style={{ background: darkBg, padding: "2rem" }}>
                 <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1rem", color: "#FFFFFF", marginBottom: "0.6rem" }}>{p.label}</p>
-                <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", lineHeight: 1.72 }}>{p.desc}</p>
+                <p style={{ fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.85)", lineHeight: 1.72 }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -584,7 +584,7 @@ export default function AutoMethodPage() {
               paddingLeft: "1.25rem",
             }}>{line}</p>
           ))}
-          <p style={{ fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.40)", fontStyle: "italic" }}>
+          <p style={{ fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.78)", fontStyle: "italic" }}>
             This is the sequence AUTO enforces.
           </p>
         </div>
@@ -604,7 +604,7 @@ export default function AutoMethodPage() {
           <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.82, marginBottom: "0.75rem", maxWidth: 520 }}>
             The Four Pillars define what must be protected. The LaunchPath Standard installs the guards that block all four vectors.
           </p>
-          <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.82, marginBottom: "2.5rem", maxWidth: 520 }}>
+          <p style={{ fontSize: "1rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.82, marginBottom: "2.5rem", maxWidth: 520 }}>
             The Standard is accessed through Ground 0 — the free qualification and readiness module that determines where your operation stands before implementation begins.
           </p>
 
@@ -650,7 +650,7 @@ export default function AutoMethodPage() {
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
-            <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+            <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.85)", margin: 0 }}>
               The Operating Standard: What Gets Installed
             </p>
           </div>

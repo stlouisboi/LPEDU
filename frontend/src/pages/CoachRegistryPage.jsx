@@ -83,7 +83,7 @@ function SubmittedTaskRow({ task, onVerify, onRemediate, loadingTaskId }) {
         {/* Submitted at */}
         <span style={{
           fontFamily: mono, fontSize: "0.714rem",
-          letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)",
+          letterSpacing: "0.1em", color: "rgba(250,248,244,0.75)",
           textTransform: "uppercase", flexShrink: 0,
         }}>
           {timeAgo(task.submittedAt)}
@@ -276,7 +276,7 @@ export default function CoachRegistryPage() {
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
             {lastUpdated && (
-              <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)", textTransform: "uppercase" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.762rem", letterSpacing: "0.12em", color: "rgba(250,248,244,0.72)", textTransform: "uppercase" }}>
                 LAST_SYNC: {lastUpdated.toLocaleTimeString()}
               </p>
             )}
@@ -295,7 +295,7 @@ export default function CoachRegistryPage() {
             >
               [REFRESH_REGISTRY]
             </button>
-            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", color: "rgba(250,248,244,0.75)", textTransform: "uppercase" }}>
               OPERATOR: {user?.name?.toUpperCase().slice(0, 20)}
             </p>
           </div>
@@ -346,7 +346,7 @@ export default function CoachRegistryPage() {
               COHORT_SIGNAL_OVERVIEW
             </p>
             <div style={{ flex: 1, height: 1, background: "rgba(212,144,10,0.15)" }} />
-            <span style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            <span style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
               {carriers.length} CARRIER{carriers.length !== 1 ? "S" : ""}
             </span>
           </div>
@@ -397,7 +397,7 @@ export default function CoachRegistryPage() {
                     {c.name}
                   </span>
                   <span><SignalBadge signal={c.signal} integrity={c.integrity} pulse={c.pulse} /></span>
-                  <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.08em", color: "rgba(255,255,255,0.55)" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.08em", color: "rgba(250,248,244,0.85)" }}>
                     {c.verifiedTasks}/{c.totalTasks} VERIFIED
                   </span>
                   <span style={{
@@ -446,7 +446,7 @@ export default function CoachRegistryPage() {
               <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
                 QUEUE_EMPTY
               </p>
-              <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.3)" }}>
+              <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.72)" }}>
                 No tasks pending verification.
               </p>
             </div>
@@ -604,11 +604,11 @@ function DeliverablesAdmin({ API, mono }) {
               <div key={pdf.id} style={{ background: "#000A14", border: "1px solid rgba(255,255,255,0.07)", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
                 <div style={{ flex: 1 }}>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", fontWeight: 600, color: "#fff", margin: "0 0 4px" }}>{pdf.display_name}</p>
-                  {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", margin: "0 0 6px" }}>{pdf.description}</p>}
+                  {pdf.description && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "rgba(250,248,244,0.82)", margin: "0 0 6px" }}>{pdf.description}</p>}
                   <div style={{ display: "flex", gap: "1.25rem" }}>
                     <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#d4900a" }}>{CATEGORIES.find(c => c.value === pdf.category)?.label || pdf.category}</span>
-                    <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{formatSize(pdf.size)}</span>
-                    <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>{pdf.download_count} DOWNLOADS</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)" }}>{formatSize(pdf.size)}</span>
+                    <span style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)" }}>{pdf.download_count} DOWNLOADS</span>
                   </div>
                 </div>
                 <button onClick={() => handleDelete(pdf.id)} style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", background: "transparent", border: "1px solid rgba(232,89,48,0.3)", color: "rgba(232,89,48,0.7)", padding: "0.45rem 0.875rem", cursor: "pointer" }}>REMOVE</button>

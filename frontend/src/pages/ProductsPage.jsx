@@ -197,7 +197,7 @@ export default function ProductsPage() {
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)" }}>{p.price}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(250,248,244,0.85)" }}>{p.price}</span>
                   <Link to={p.href} style={{
                     fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                     letterSpacing: "0.1em", textTransform: "uppercase", color: gold,
@@ -238,7 +238,7 @@ export default function ProductsPage() {
                     textAlign: "left", padding: "0.875rem 1rem",
                     fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
                     fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.35)", borderBottom: "1px solid rgba(255,255,255,0.08)",
+                    color: "rgba(250,248,244,0.75)", borderBottom: "1px solid rgba(255,255,255,0.08)",
                     background: "#060d19",
                   }}>Feature / Deliverable</th>
 
@@ -249,7 +249,7 @@ export default function ProductsPage() {
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>Individual Packet</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.78)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>Individual Packet</p>
                     <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$97–$127</p>
                   </th>
 
@@ -262,7 +262,7 @@ export default function ProductsPage() {
                     borderRight: "1px solid rgba(212,144,10,0.15)",
                   }}>
                     <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: gold, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Recommended DIY</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>New Carrier System</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.85)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>New Carrier System</p>
                     <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: gold }}>$499</p>
                   </th>
 
@@ -273,7 +273,7 @@ export default function ProductsPage() {
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>LaunchPath Standard</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.78)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.3rem" }}>LaunchPath Standard</p>
                     <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
                   </th>
                 </tr>

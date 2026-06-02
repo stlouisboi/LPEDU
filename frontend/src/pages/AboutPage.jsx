@@ -67,7 +67,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: '2.5rem', overflowX: 'auto', scrollbarWidth: 'none' }}>
           {STATUS_ITEMS.map(([key, val]) => (
             <div key={key} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexShrink: 0 }}>
-              <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.4)', letterSpacing: '0.14em' }}>{key}:</span>
+              <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.78)', letterSpacing: '0.14em' }}>{key}:</span>
               <span style={{ ...mono, fontSize: 9, color: '#C8A96E', letterSpacing: '0.14em', fontWeight: 700 }}>{val}</span>
             </div>
           ))}
@@ -158,7 +158,7 @@ export default function AboutPage() {
             <p style={{ ...serif, fontWeight: 600, fontSize: '1.2rem', color: '#FAF8F4', lineHeight: 1.6, fontStyle: 'italic' }}>
               "My responsibility is not to motivate carriers — it is to prevent preventable failure."
             </p>
-            <footer style={{ ...sans, fontSize: '0.8rem', color: 'rgba(250,248,244,0.4)', marginTop: '0.75rem' }}>
+            <footer style={{ ...sans, fontSize: '0.8rem', color: 'rgba(250,248,244,0.78)', marginTop: '0.75rem' }}>
               — Vince Lawrence, Station Custodian
             </footer>
           </blockquote>
@@ -168,7 +168,7 @@ export default function AboutPage() {
       {/* ── Other Ventures ─────────────────────────────────── */}
       <section style={{ background: '#0a0f1a', borderTop: '1px solid rgba(200,169,110,0.08)', borderBottom: '1px solid rgba(200,169,110,0.08)', padding: 'clamp(3rem,5vw,4.5rem) 1.5rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.55)', marginBottom: '2rem' }}>Other Ventures</p>
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.80)', marginBottom: '2rem' }}>Other Ventures</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1px', background: 'rgba(200,169,110,0.08)' }}>
             <div style={{ background: '#001B36', padding: '2rem 2rem', borderTop: '2px solid #C8A96E' }}>
               <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Founded 2022</p>

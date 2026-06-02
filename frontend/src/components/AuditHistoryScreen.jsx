@@ -21,7 +21,7 @@ function ScoreTooltip({ active, payload, label }) {
       <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)", margin: "0 0 8px", paddingBottom: "6px", borderBottom: "1px solid rgba(197,160,89,0.10)" }}>{label}</p>
       {overall && (
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: domains.length ? "8px" : 0 }}>
-          <span style={{ fontFamily: "monospace", fontSize: "0.44rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.40)" }}>Overall</span>
+          <span style={{ fontFamily: "monospace", fontSize: "0.44rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(250,248,244,0.78)" }}>Overall</span>
           <span style={{ fontFamily: "monospace", fontSize: "0.952rem", fontWeight: 700, color: "#C8933F", letterSpacing: "-0.02em" }}>{overall.value ?? "—"}%</span>
         </div>
       )}
@@ -135,7 +135,7 @@ function ScoreTrendChart({ history }) {
           style={{ display: "flex", alignItems: "center", gap: "0.375rem", background: "none", border: "none", cursor: "pointer", padding: 0, opacity: activeDomains.has("overall") ? 1 : 0.3, transition: "opacity 0.15s" }}
         >
           <div style={{ width: 18, height: 2.5, background: "#C8933F", borderRadius: 2 }} />
-          <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.55)" }}>Overall</span>
+          <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(250,248,244,0.85)" }}>Overall</span>
         </button>
         {DOMAIN_ORDER.map((dk) => (
           <button
@@ -144,7 +144,7 @@ function ScoreTrendChart({ history }) {
             style={{ display: "flex", alignItems: "center", gap: "0.375rem", background: "none", border: "none", cursor: "pointer", padding: 0, opacity: activeDomains.has(dk) ? 1 : 0.3, transition: "opacity 0.15s" }}
           >
             <div style={{ width: 14, height: 1.5, background: DOMAIN_COLORS[dk], borderRadius: 1 }} />
-            <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.4)" }}>{DOMAIN_LABELS[dk]}</span>
+            <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(250,248,244,0.78)" }}>{DOMAIN_LABELS[dk]}</span>
           </button>
         ))}
       </div>
@@ -171,7 +171,7 @@ function OverallBadge({ color }) {
     RED:    { bg: "rgba(239,68,68,0.1)",  border: "rgba(239,68,68,0.3)",  text: "rgba(239,68,68,0.9)"  },
   };
   const s = styles[color];
-  if (!s) return <span style={{ fontFamily: "monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.3)" }}>—</span>;
+  if (!s) return <span style={{ fontFamily: "monospace", fontSize: "0.524rem", color: "rgba(250,248,244,0.72)" }}>—</span>;
   return (
     <span style={{ fontFamily: "monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: s.text, background: s.bg, border: `1px solid ${s.border}`, padding: "2px 8px" }}>
       {color}
@@ -185,11 +185,11 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
       <section data-testid="audit-history-screen" style={{ padding: "2.5rem 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
           <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.7)", margin: 0 }}>CHECK HISTORY</p>
-          <button onClick={onBack} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.4)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: 0, cursor: "pointer", display: "flex", alignItems: "center", gap: "0.35rem" }}>
+          <button onClick={onBack} style={{ background: "none", border: "none", color: "rgba(250,248,244,0.78)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: 0, cursor: "pointer", display: "flex", alignItems: "center", gap: "0.35rem" }}>
             <ArrowLeft size={11} /> Back
           </button>
         </div>
-        <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.875rem", color: "rgba(255,255,255,0.35)" }}>No history yet.</p>
+        <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.875rem", color: "rgba(250,248,244,0.75)" }}>No history yet.</p>
       </section>
     );
   }
@@ -202,14 +202,14 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
           <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.7)", margin: "0 0 0.25rem" }}>
             CHECK HISTORY
           </p>
-          <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", margin: 0 }}>
             {history.length} check{history.length !== 1 ? "s" : ""} on record
           </p>
         </div>
         <button
           data-testid="history-back-btn"
           onClick={onBack}
-          style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.4rem 0.75rem", cursor: "pointer" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.35rem", background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(250,248,244,0.78)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.4rem 0.75rem", cursor: "pointer" }}
         >
           <ArrowLeft size={11} /> Back to Dashboard
         </button>
@@ -270,7 +270,7 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
                   <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", flexWrap: "wrap" }}>
                     <OverallBadge color={overall.color} />
                     {overall.scorePercent != null && (
-                      <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em" }}>
+                      <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.1em" }}>
                         {overall.scorePercent}%
                       </span>
                     )}

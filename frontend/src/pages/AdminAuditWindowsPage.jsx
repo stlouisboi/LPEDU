@@ -46,7 +46,7 @@ function CarrierRow({ c }) {
     >
       <div style={{ minWidth: 0 }}>
         <p style={{ fontFamily: SANS, fontSize: "0.875rem", fontWeight: 600, color: "rgba(255,255,255,0.85)", margin: "0 0 2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.name || "—"}</p>
-        <p style={{ fontFamily: MONO, fontSize: "0.524rem", color: "rgba(255,255,255,0.35)", margin: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.email}</p>
+        <p style={{ fontFamily: MONO, fontSize: "0.524rem", color: "rgba(250,248,244,0.75)", margin: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.email}</p>
       </div>
       <div>
         <p style={{ fontFamily: MONO, fontSize: "0.476rem", color: "rgba(255,255,255,0.28)", margin: "0 0 2px", letterSpacing: "0.08em", textTransform: "uppercase" }}>GRANT DATE</p>
@@ -118,7 +118,7 @@ export default function AdminAuditWindowsPage() {
   }
 
   if (authState === "checking") {
-    return <div style={{ minHeight: "100vh", background: DARK, display: "flex", alignItems: "center", justifyContent: "center" }}><p style={{ fontFamily: MONO, fontSize: "11px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.14em" }}>LOADING...</p></div>;
+    return <div style={{ minHeight: "100vh", background: DARK, display: "flex", alignItems: "center", justifyContent: "center" }}><p style={{ fontFamily: MONO, fontSize: "11px", color: "rgba(250,248,244,0.75)", letterSpacing: "0.14em" }}>LOADING...</p></div>;
   }
 
   if (authState === "unauthed") {
@@ -160,11 +160,11 @@ export default function AdminAuditWindowsPage() {
           <div>
             <p style={{ fontFamily: MONO, fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: GOLD, margin: "0 0 0.25rem" }}>STATION CUSTODIAN — AUDIT WINDOW TRACKER</p>
             <h2 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontSize: "clamp(1.1rem,2vw,1.6rem)", fontWeight: 700, color: "#FFFFFF", margin: "0 0 0.25rem" }}>New Entrant Audit Windows</h2>
-            <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", margin: 0 }}>
+            <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", margin: 0 }}>
               {carriers.length} carrier{carriers.length !== 1 ? "s" : ""} with authority grant date set · Reminder emails auto-fire at moderate / high / critical thresholds
             </p>
           </div>
-          <button onClick={load} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)", color: "rgba(255,255,255,0.5)", fontFamily: MONO, fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}>
+          <button onClick={load} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.10)", color: "rgba(250,248,244,0.82)", fontFamily: MONO, fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}>
             Refresh
           </button>
         </div>
@@ -200,10 +200,10 @@ export default function AdminAuditWindowsPage() {
           ))}
         </div>
 
-        {loading && <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(255,255,255,0.30)", letterSpacing: "0.16em", padding: "1.5rem 1.25rem" }}>Loading...</p>}
+        {loading && <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.16em", padding: "1.5rem 1.25rem" }}>Loading...</p>}
         {error && <p style={{ color: "rgba(239,68,68,0.7)", fontSize: "0.875rem", padding: "1rem 1.25rem" }}>{error}</p>}
         {!loading && !error && filtered.length === 0 && (
-          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.35)", padding: "1.5rem 1.25rem" }}>
+          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(250,248,244,0.75)", padding: "1.5rem 1.25rem" }}>
             {search || filter !== "all" ? "No carriers match current filters." : "No carriers with authority_grant_date set yet."}
           </p>
         )}

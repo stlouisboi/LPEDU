@@ -188,7 +188,7 @@ function GuardNode({ guard, visible, delay }) {
       </div>
       <div style={{ minWidth: 0 }}>
         <p style={{ fontFamily: SANS, fontSize: "0.75rem", fontWeight: 600, color: "rgba(255,255,255,0.80)", margin: "0 0 2px", lineHeight: 1.2 }}>{guard.name}</p>
-        <p style={{ fontFamily: SANS, fontSize: "0.625rem", color: "rgba(255,255,255,0.35)", margin: 0, lineHeight: 1.4 }}>{guard.sub}</p>
+        <p style={{ fontFamily: SANS, fontSize: "0.625rem", color: "rgba(250,248,244,0.75)", margin: 0, lineHeight: 1.4 }}>{guard.sub}</p>
       </div>
     </div>
   );
@@ -216,7 +216,7 @@ function ThreatDetail({ threat }) {
         </div>
         <div style={{ flex: 1, minWidth: 200 }}>
           <p style={{ fontFamily: SANS, fontSize: "0.875rem", fontWeight: 600, color: "#FFFFFF", margin: "0 0 4px" }}>{threat.label}</p>
-          <p style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: 0 }}>{threat.example}</p>
+          <p style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.6, margin: 0 }}>{threat.example}</p>
         </div>
         <div style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: "0.375rem" }}>
           <PulseDot active color="#22c55e" />
@@ -270,7 +270,7 @@ export default function SystemArchitectureDiagram() {
             The Four-Pillar Operating Standard
           </h2>
           <p
-            style={{ fontFamily: SANS, fontSize: "clamp(0.9rem,1.6vw,1rem)", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 620 }}
+            style={{ fontFamily: SANS, fontSize: "clamp(0.9rem,1.6vw,1rem)", color: "rgba(250,248,244,0.85)", lineHeight: 1.75, maxWidth: 620 }}
           >
             This is the four-pillar operating standard we implement to protect your MC authority from shutdowns, coverage gaps, and cash-flow failure. Hover a threat vector to see how each pillar responds.
           </p>
@@ -408,7 +408,7 @@ export default function SystemArchitectureDiagram() {
             ].map(item => (
               <div key={item.label} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                 <span style={{ width: 7, height: 7, borderRadius: "50%", background: item.dot, flexShrink: 0, display: "inline-block" }} />
-                <p style={{ fontFamily: MONO, fontSize: "0.5625rem", fontWeight: 600, letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: 0 }}>{item.label}</p>
+                <p style={{ fontFamily: MONO, fontSize: "0.5625rem", fontWeight: 600, letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(250,248,244,0.75)", margin: 0 }}>{item.label}</p>
               </div>
             ))}
           </div>

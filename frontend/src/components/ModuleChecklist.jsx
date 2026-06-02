@@ -112,7 +112,7 @@ export default function ModuleChecklist({
         <p style={{
           fontFamily: "'Inter',sans-serif",
           fontSize: "0.857rem",
-          color: "rgba(255,255,255,0.4)",
+          color: "rgba(250,248,244,0.78)",
           lineHeight: 1.5,
         }}>
           {isGateModule
@@ -123,7 +123,7 @@ export default function ModuleChecklist({
 
       {/* Checklist items */}
       {loading ? (
-        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1rem" }}>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1rem" }}>
           LOADING...
         </p>
       ) : (
@@ -189,7 +189,7 @@ export default function ModuleChecklist({
             {allChecked ? "CHECKLIST COMPLETE" : `STATUS: ${checkedCount} OF ${checklist.length} ITEMS`}
           </p>
           {!allChecked && (
-            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.3)" }}>
+            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.72)" }}>
               Complete all items above to enable submission
             </p>
           )}
@@ -223,7 +223,7 @@ export default function ModuleChecklist({
       {/* Gate info */}
       {isGateModule && !submitted && (
         <div style={{ marginTop: "1rem", padding: "0.75rem 1rem", background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.15)", borderLeft: "3px solid rgba(212,144,10,0.5)" }}>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.65 }}>
             <strong style={{ color: "rgba(212,144,10,0.8)" }}>Station Custodian review</strong> — Reviewed within 2 business days. You will be notified by email when the review is complete.
           </p>
         </div>

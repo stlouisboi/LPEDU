@@ -42,7 +42,7 @@ export default function CategoryBreakdown({ scores }) {
                   <span style={{ fontFamily: mono, fontSize: "var(--text-sm)", color: "#8B7355", fontWeight: 700 }}>
                     {cat.code}
                   </span>
-                  <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                  <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.82)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
                     — {cat.name}
                   </span>
                 </div>

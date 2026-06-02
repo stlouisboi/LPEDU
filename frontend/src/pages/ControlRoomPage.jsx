@@ -147,7 +147,7 @@ function GateModal({ open, toolName, onClose, onSuccess, extraData }) {
         >
           {loading ? "PROCESSING..." : "GET MY RESULTS →"}
         </button>
-        <button onClick={onClose} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.30)", fontFamily: MONO, fontSize: "0.714rem", cursor: "pointer", marginTop: "1.25rem", width: "100%", letterSpacing: "0.1em" }}>
+        <button onClick={onClose} style={{ background: "none", border: "none", color: "rgba(250,248,244,0.72)", fontFamily: MONO, fontSize: "0.714rem", cursor: "pointer", marginTop: "1.25rem", width: "100%", letterSpacing: "0.1em" }}>
           CANCEL
         </button>
       </div>
@@ -236,7 +236,7 @@ function CalendarTool({ onExport }) {
                 padding: "1rem 1.25rem",
               }}>
                 <div>
-                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.40)", letterSpacing: "0.08em", marginBottom: "0.2rem" }}>DAY {t.day}</p>
+                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(250,248,244,0.78)", letterSpacing: "0.08em", marginBottom: "0.2rem" }}>DAY {t.day}</p>
                   <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: t.status === "OVERDUE" ? "#e74c3c" : t.status === "UPCOMING" ? GOLD : "rgba(255,255,255,0.35)", fontWeight: 700, letterSpacing: "0.08em" }}>{t.status}</p>
                 </div>
                 <div>
@@ -245,7 +245,7 @@ function CalendarTool({ onExport }) {
                   <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(244,241,235,0.55)", lineHeight: 1.6 }}>{t.desc}</p>
                 </div>
                 <div style={{ textAlign: "right", minWidth: 90 }}>
-                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.40)" }}>
+                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(250,248,244,0.78)" }}>
                     {t.taskDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                   </p>
                   {t.diff !== 0 && (
@@ -309,7 +309,7 @@ function GaugeSVG({ score }) {
         boxShadow: `inset 0 1px 4px rgba(0,0,0,0.5), 0 0 20px ${verdictColor}22`,
       }}>
         <p style={{ fontFamily: MONO, fontWeight: 700, fontSize: "1.125rem", color: verdictColor, letterSpacing: "0.15em" }}>{verdict}</p>
-        <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.40)", marginTop: "0.25rem" }}>{score}/10 DOMAINS READY</p>
+        <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(250,248,244,0.78)", marginTop: "0.25rem" }}>{score}/10 DOMAINS READY</p>
       </div>
     </div>
   );
@@ -446,7 +446,7 @@ function HealthCheckTool({ onGetPlan, sharedScore }) {
 
           {/* Progress note — always visible once started */}
           {!allAnswered && answered > 0 && (
-            <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", textAlign: "center", marginTop: "1rem", letterSpacing: "0.08em" }}>
+            <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(250,248,244,0.75)", textAlign: "center", marginTop: "1rem", letterSpacing: "0.08em" }}>
               {HEALTH_QUESTIONS.length - answered} QUESTION{HEALTH_QUESTIONS.length - answered !== 1 ? "S" : ""} REMAINING
             </p>
           )}
@@ -483,7 +483,7 @@ function HealthCheckTool({ onGetPlan, sharedScore }) {
                   display: "block", width: "100%", marginTop: allAnswered ? "0.625rem" : "1.5rem",
                   background: showShare ? "rgba(255,255,255,0.05)" : "transparent",
                   border: `1px solid ${showShare ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.20)"}`,
-                  color: "rgba(255,255,255,0.55)",
+                  color: "rgba(250,248,244,0.85)",
                   fontFamily: MONO, fontWeight: 700, fontSize: "0.8rem",
                   letterSpacing: "0.12em", textTransform: "uppercase",
                   padding: "0.875rem", cursor: "pointer",
@@ -500,7 +500,7 @@ function HealthCheckTool({ onGetPlan, sharedScore }) {
                   border: "1px solid rgba(255,255,255,0.12)",
                   boxShadow: "inset 0 1px 4px rgba(0,0,0,0.4)",
                 }}>
-                  <p style={{ fontFamily: MONO, fontSize: "0.675rem", color: "rgba(255,255,255,0.40)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.6rem" }}>
+                  <p style={{ fontFamily: MONO, fontSize: "0.675rem", color: "rgba(250,248,244,0.78)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.6rem" }}>
                     SHAREABLE LINK — {score}/10 · {verdict}
                   </p>
                   <div style={{ display: "flex", gap: "0.5rem" }}>
@@ -596,7 +596,7 @@ function ComplianceMapTool() {
                     <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: m.color, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.2rem" }}>{m.label}</p>
                     <p style={{ fontFamily: SANS, fontWeight: 600, color: "#fff", fontSize: "0.95rem" }}>{m.title}</p>
                   </div>
-                  <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: "rgba(255,255,255,0.30)", marginLeft: "1rem" }}>{expanded === i ? "−" : "+"}</span>
+                  <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: "rgba(250,248,244,0.72)", marginLeft: "1rem" }}>{expanded === i ? "−" : "+"}</span>
                 </div>
                 {expanded === i && (
                   <ul style={{ marginTop: "0.875rem", paddingLeft: "1rem", listStyle: "none" }}>
@@ -682,7 +682,7 @@ function FolderSandboxTool() {
                   <p style={{ fontFamily: SANS, fontWeight: 600, fontSize: "0.95rem", color: expanded === i ? "#fff" : "rgba(255,255,255,0.80)" }}>{f.name}</p>
                 </div>
               </div>
-              <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: "rgba(255,255,255,0.30)" }}>{expanded === i ? "−" : "+"}</span>
+              <span style={{ fontFamily: MONO, fontSize: "0.857rem", color: "rgba(250,248,244,0.72)" }}>{expanded === i ? "−" : "+"}</span>
             </div>
 
             {expanded === i && (
@@ -820,7 +820,7 @@ export default function ControlRoomPage() {
                 transition: "all 0.15s", whiteSpace: "nowrap",
               }}
             >
-              <p style={{ fontFamily: MONO, fontSize: "0.675rem", color: "rgba(255,255,255,0.30)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{t.code}</p>
+              <p style={{ fontFamily: MONO, fontSize: "0.675rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>{t.code}</p>
               <p style={{ fontFamily: SANS, fontSize: "0.9rem", fontWeight: 600, color: activeTool === t.id ? "#fff" : "rgba(255,255,255,0.55)" }}>{t.label}</p>
             </button>
           ))}

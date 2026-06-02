@@ -51,7 +51,7 @@ export default function ResultCTAs({ result }) {
         <Link
           to="/contact"
           data-testid="cta-contact"
-          style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.857rem" }}
+          style={{ ...btnBase, background: "transparent", color: "rgba(250,248,244,0.82)", padding: "0.875rem 0.5rem", fontSize: "0.857rem" }}
         >
           Contact →
         </Link>
@@ -74,7 +74,7 @@ export default function ResultCTAs({ result }) {
       <Link
         to="/contact"
         data-testid="cta-contact"
-        style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.45)", padding: "0.875rem 0.5rem", fontSize: "0.857rem" }}
+        style={{ ...btnBase, background: "transparent", color: "rgba(250,248,244,0.82)", padding: "0.875rem 0.5rem", fontSize: "0.857rem" }}
       >
         Contact →
       </Link>

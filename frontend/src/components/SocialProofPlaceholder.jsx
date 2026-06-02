@@ -26,7 +26,7 @@ export default function SocialProofPlaceholder() {
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "1.05rem",
-          color: "rgba(255,255,255,0.45)",
+          color: "rgba(250,248,244,0.82)",
           lineHeight: 1.75,
           marginBottom: "0.5rem",
         }}>

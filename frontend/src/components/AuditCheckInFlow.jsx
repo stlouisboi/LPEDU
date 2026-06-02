@@ -60,13 +60,13 @@ export default function AuditRunCheckScreen({ onSubmit, onCancel }) {
           <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.7)", margin: "0 0 0.25rem" }}>
             MONTHLY AUDIT READINESS CHECK
           </p>
-          <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.4)", margin: 0 }}>
+          <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.14em", color: "rgba(250,248,244,0.78)", margin: 0 }}>
             Step {step + 1} of {DOMAIN_ORDER.length} — {DOMAIN_LABELS[currentDomain]}
           </p>
         </div>
         <button
           onClick={onCancel}
-          style={{ background: "none", border: "none", color: "rgba(255,255,255,0.35)", cursor: "pointer", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: 0 }}
+          style={{ background: "none", border: "none", color: "rgba(250,248,244,0.75)", cursor: "pointer", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: 0 }}
         >
           Cancel
         </button>
@@ -90,7 +90,7 @@ export default function AuditRunCheckScreen({ onSubmit, onCancel }) {
         </div>
 
         {/* Helper text */}
-        <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.857rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: "0 0 1.5rem" }}>
+        <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.857rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.65, margin: "0 0 1.5rem" }}>
           {DOMAIN_HELPER_TEXT[currentDomain]}
         </p>
 

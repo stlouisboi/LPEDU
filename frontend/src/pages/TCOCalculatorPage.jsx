@@ -326,7 +326,7 @@ export default function TCOCalculatorPage() {
             </div>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.50)" }}>Break-Even Rate</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(250,248,244,0.82)" }}>Break-Even Rate</span>
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.80)" }}>{fmtCPM(result.totalCPM)}</span>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -334,7 +334,7 @@ export default function TCOCalculatorPage() {
                 <span data-testid="tco-margin-target" style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 700, color: GOLD }}>{fmtCPM(result.marginTarget)}</span>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.50)" }}>Monthly Break-Even Revenue</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(250,248,244,0.82)" }}>Monthly Break-Even Revenue</span>
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.80)" }}>{fmt$(result.monthlyBreakEven)}</span>
               </div>
             </div>

@@ -7,7 +7,7 @@ export function EnrollCTA({ onCheckout, paymentState }) {
     <div style={{ background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.18)", padding: "1.75rem", maxWidth: 560 }}>
       <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(212,144,10,0.7)", marginBottom: "0.5rem" }}>UNLOCK THIS MODULE</p>
       <p style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "1.25rem", color: "#FFFFFF", letterSpacing: "-0.01em", marginBottom: "0.625rem" }}>Part of the LaunchPath Standard</p>
-      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
         All 9 implementation modules, cohort delivery, and facilitator support. $2,500 one-time enrollment.
       </p>
       {paymentState === "error" && (
@@ -22,11 +22,11 @@ export function EnrollCTA({ onCheckout, paymentState }) {
         >
           {paymentState === "loading" ? "Preparing…" : "Request Cohort Placement"}
         </button>
-        <a href="/reach-diagnostic" style={{ display: "inline-flex", alignItems: "center", color: "rgba(255,255,255,0.55)", fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.857rem", padding: "0.75rem 1.25rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>
+        <a href="/reach-diagnostic" style={{ display: "inline-flex", alignItems: "center", color: "rgba(250,248,244,0.85)", fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.857rem", padding: "0.75rem 1.25rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>
           Run REACH Diagnostic →
         </a>
       </div>
-      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.30)", marginTop: "0.875rem", fontStyle: "italic" }}>
+      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.72)", marginTop: "0.875rem", fontStyle: "italic" }}>
         Admission subject to assessment and cohort availability.
       </p>
     </div>
@@ -44,7 +44,7 @@ export default function LockedModuleView({ moduleInfo, type, onCheckout, payment
   if (!moduleInfo) return (
     <div data-testid="locked-module-view">
       <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4900a", marginBottom: "1.25rem" }}>COHORT MODULE — LOCKED</p>
-      <h1 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "rgba(255,255,255,0.35)", marginBottom: "2rem" }}>This module is part of the LaunchPath Standard.</h1>
+      <h1 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "rgba(250,248,244,0.75)", marginBottom: "2rem" }}>This module is part of the LaunchPath Standard.</h1>
       <EnrollCTA onCheckout={onCheckout} paymentState={paymentState} />
     </div>
   );
@@ -80,7 +80,7 @@ export default function LockedModuleView({ moduleInfo, type, onCheckout, payment
         <h1 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3vw,2.5rem)", color: "#FFFFFF", letterSpacing: "-0.02em", margin: 0 }}>
           {moduleInfo.title}
         </h1>
-        <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
+        <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(250,248,244,0.82)", letterSpacing: "0.12em", textTransform: "uppercase", flexShrink: 0 }}>
           {moduleInfo.lessonCount} LESSONS · {moduleInfo.duration}
         </span>
       </div>
@@ -92,7 +92,7 @@ export default function LockedModuleView({ moduleInfo, type, onCheckout, payment
       {/* Lesson structure — visible, content locked */}
       <div style={{ background: "rgba(255,255,255,0.015)", border: "1px solid rgba(255,255,255,0.07)", padding: "1.75rem", maxWidth: 560, marginBottom: "2.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1.25rem" }}>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.45)", textTransform: "uppercase", margin: 0 }}>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(250,248,244,0.82)", textTransform: "uppercase", margin: 0 }}>
             LESSON STRUCTURE — {moduleInfo.lessonCount} UNITS
           </p>
           <Lock size={11} color="rgba(212,144,10,0.55)" />

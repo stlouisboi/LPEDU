@@ -299,7 +299,7 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
           style={{
             fontFamily: mono,
             fontSize: "0.714rem",
-            color: "rgba(255,255,255,0.35)",
+            color: "rgba(250,248,244,0.75)",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             flexShrink: 0,
@@ -548,7 +548,7 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
             ) : (
               <div data-testid="dqf-submitted-state" style={{ padding: "0.75rem 1rem", background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.25)", display: "flex", alignItems: "flex-start", gap: "0.75rem", flexWrap: "wrap" }}>
                 <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f59e0b", flexShrink: 0 }}>PENDING REVIEW</span>
-                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>You will be notified by email when a decision is made. Expected: 2 business days.</span>
+                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.5 }}>You will be notified by email when a decision is made. Expected: 2 business days.</span>
               </div>
             )}
           </div>

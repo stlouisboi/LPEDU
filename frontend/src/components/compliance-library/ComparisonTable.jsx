@@ -10,7 +10,7 @@ const MONO = "'JetBrains Mono', monospace";
 const SANS = "'Instrument Sans', sans-serif";
 
 const CHECK = <span style={{ color: '#166534', fontWeight: 700 }}>✓</span>;
-const DASH  = <span style={{ color: 'rgba(28,43,58,0.3)' }}>—</span>;
+const DASH  = <span style={{ color: 'rgba(28,43,58,0.70)' }}>—</span>;
 
 const ROWS = [
   { label: 'Domain compliance packets',          indiv: '1 per purchase', lib: 'All 8 components',  bundle: 'All 5',       standard: 'All 5' },
@@ -75,7 +75,7 @@ export default function ComparisonTable({ onBuyBundle, bundleLoading }) {
               <tr style={{ borderTop: `1px solid ${BORDER}` }}>
                 <td style={{ padding: '1.25rem 1rem' }} />
                 <td style={{ padding: '1.25rem 1rem', textAlign: 'center', borderRight: `1px solid ${BORDER}` }}>
-                  <a href="#component-library" style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.45)', textDecoration: 'underline' }}>Browse domains →</a>
+                  <a href="#component-library" style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.78)', textDecoration: 'underline' }}>Browse domains →</a>
                 </td>
                 <td style={{ padding: '1.25rem 1rem', textAlign: 'center', borderRight: `1px solid ${BORDER}` }}>
                   <Link href="/products/library" data-testid="compare-library-link" style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: NAVY, border: `1px solid ${BORDER}`, padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', borderRadius: 0 }}>

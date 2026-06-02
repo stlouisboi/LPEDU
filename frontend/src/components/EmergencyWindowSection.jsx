@@ -88,7 +88,7 @@ export default function EmergencyWindowSection() {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "var(--text-sm)",
-            color: "rgba(255,255,255,0.35)",
+            color: "rgba(250,248,244,0.75)",
             fontStyle: "italic",
             margin: 0,
           }}>

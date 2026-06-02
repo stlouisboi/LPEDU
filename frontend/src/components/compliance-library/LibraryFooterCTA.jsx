@@ -30,7 +30,7 @@ export default function LibraryFooterCTA() {
           <Link
             href="/ground-0-briefing"
             data-testid="cl-footer-standard-link"
-            style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.45)', textDecoration: 'underline' }}>
+            style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.80)', textDecoration: 'underline' }}>
             VIEW THE LAUNCHPATH STANDARD →
           </Link>
         </div>

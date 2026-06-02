@@ -223,7 +223,7 @@ export default function AdminAdmissionsPage() {
       {/* Auth checking */}
       {authState === "checking" && (
         <div style={{ maxWidth: 420, margin: "0 auto", padding: "112px 24px", textAlign: "center" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>Verifying access...</p>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.75)" }}>Verifying access...</p>
         </div>
       )}
 
@@ -245,7 +245,7 @@ export default function AdminAdmissionsPage() {
               <h1 style={{ fontFamily: condensed, fontWeight: 700, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "#FFFFFF", lineHeight: 1.1, marginBottom: "0.75rem" }}>
                 Admission Requests
               </h1>
-              <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, maxWidth: 560 }}>
+              <p style={{ fontSize: "1rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.65, maxWidth: 560 }}>
                 Operators who completed Ground 0 and requested admission. Payment of $2,500 triggers automatic enrollment.
               </p>
             </div>
@@ -256,7 +256,7 @@ export default function AdminAdmissionsPage() {
                 fontFamily: mono, fontSize: "0.714rem", fontWeight: 700,
                 letterSpacing: "0.14em", textTransform: "uppercase",
                 padding: "0.625rem 1.25rem", background: "transparent",
-                color: "rgba(255,255,255,0.40)", border: "1px solid rgba(255,255,255,0.12)",
+                color: "rgba(250,248,244,0.78)", border: "1px solid rgba(255,255,255,0.12)",
                 cursor: "pointer", flexShrink: 0, transition: "all 0.15s",
               }}
               onMouseEnter={(e) => { e.currentTarget.style.color = "#f87171"; e.currentTarget.style.borderColor = "rgba(248,113,113,0.3)"; }}
@@ -276,7 +276,7 @@ export default function AdminAdmissionsPage() {
             ].map((s) => (
               <div key={s.label} style={{ background: card, padding: "1.25rem 1.5rem" }}>
                 <p style={{ fontFamily: condensed, fontWeight: 700, fontSize: "1.75rem", color: s.color, marginBottom: "0.2rem", lineHeight: 1 }}>{s.value}</p>
-                <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.40)" }}>{s.label}</p>
+                <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.78)" }}>{s.label}</p>
               </div>
             ))}
           </div>
@@ -316,7 +316,7 @@ export default function AdminAdmissionsPage() {
           {/* Table */}
           {loading ? (
             <div style={{ textAlign: "center", padding: "3rem" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>Loading...</p>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)" }}>Loading...</p>
             </div>
           ) : filtered.length === 0 ? (
             <div style={{ background: card, padding: "3rem", textAlign: "center" }}>
@@ -327,7 +327,7 @@ export default function AdminAdmissionsPage() {
               {/* Header */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 210px 140px 110px 130px 170px", background: "#0a1220", padding: "0.75rem 1.25rem", gap: "1rem" }}>
                 {["Carrier / Contact", "Compliance Status", "Submitted", "Lane", "Status", "Actions"].map((h) => (
-                  <p key={h} style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", margin: 0 }}>{h}</p>
+                  <p key={h} style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", margin: 0 }}>{h}</p>
                 ))}
               </div>
 
@@ -346,12 +346,12 @@ export default function AdminAdmissionsPage() {
                   <div>
                     <p style={{ fontFamily: body, fontWeight: 600, fontSize: "var(--text-sm)", color: "#FFFFFF", marginBottom: "0.2rem" }}>{req.carrier_name}</p>
                     <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(197,160,89,0.65)" }}>{req.email}</p>
-                    {req.dot_mc_number && <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)" }}>{req.dot_mc_number}</p>}
+                    {req.dot_mc_number && <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.75)" }}>{req.dot_mc_number}</p>}
                   </div>
 
                   <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.4 }}>{req.compliance_status}</p>
 
-                  <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.40)" }}>
+                  <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.78)" }}>
                     {req.submission_date ? new Date(req.submission_date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—"}
                   </p>
 

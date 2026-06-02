@@ -9,7 +9,7 @@ function ColorBadge({ color, size = "sm" }) {
     RED:    { bg: "rgba(239,68,68,0.1)",  border: "rgba(239,68,68,0.3)",  text: "rgba(239,68,68,0.9)"  },
   };
   const s = styles[color];
-  if (!s) return <span style={{ fontFamily: "monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em" }}>—</span>;
+  if (!s) return <span style={{ fontFamily: "monospace", fontSize: "0.524rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.12em" }}>—</span>;
   const fontSize = size === "lg" ? "0.714rem" : "0.524rem";
   return (
     <span style={{ fontFamily: "monospace", fontSize, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: s.text, background: s.bg, border: `1px solid ${s.border}`, padding: size === "lg" ? "3px 10px" : "2px 7px" }}>
@@ -132,7 +132,7 @@ export default function AuditResultsScreen({ result, onBack, onViewHistory }) {
           <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(197,160,89,0.7)", margin: "0 0 0.25rem" }}>
             AUDIT READINESS — RESULTS
           </p>
-          <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.35)", margin: 0 }}>
+          <p style={{ fontFamily: "monospace", fontSize: "0.619rem", letterSpacing: "0.14em", color: "rgba(250,248,244,0.75)", margin: 0 }}>
             {monthLabel} · Submitted {submittedLabel}
           </p>
         </div>
@@ -140,7 +140,7 @@ export default function AuditResultsScreen({ result, onBack, onViewHistory }) {
           <button
             data-testid="view-history-from-results-btn"
             onClick={onViewHistory}
-            style={{ background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.4rem 0.75rem", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.35rem" }}
+            style={{ background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(250,248,244,0.78)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.4rem 0.75rem", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.35rem" }}
           >
             <History size={11} /> View History
           </button>
@@ -150,7 +150,7 @@ export default function AuditResultsScreen({ result, onBack, onViewHistory }) {
       {/* Overall status */}
       <div style={{ background: sty.bg, border: `1px solid ${sty.border}`, borderLeft: `3px solid ${sty.leftBorder}`, padding: "1.25rem 1.5rem", marginBottom: "1.25rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.5rem" }}>
-          <p style={{ fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: 0 }}>OVERALL STATUS</p>
+          <p style={{ fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(250,248,244,0.75)", margin: 0 }}>OVERALL STATUS</p>
           <ColorBadge color={overallColor} size="lg" />
           {overall.scorePercent != null && !criticalOverride && (
             <span style={{ fontFamily: "monospace", fontSize: "0.619rem", color: sty.labelColor }}>{overall.scorePercent}%</span>
@@ -196,7 +196,7 @@ export default function AuditResultsScreen({ result, onBack, onViewHistory }) {
         <button
           data-testid="toggle-summary-json-btn"
           onClick={() => setShowJson(v => !v)}
-          style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "none", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.35)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "none", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(250,248,244,0.75)", fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.12em", textTransform: "uppercase", padding: "0.5rem 0.875rem", cursor: "pointer" }}
         >
           {showJson ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
           {showJson ? "Hide" : "View"} Summary JSON
@@ -209,7 +209,7 @@ export default function AuditResultsScreen({ result, onBack, onViewHistory }) {
             >
               {copied ? "Copied" : "Copy"}
             </button>
-            <pre style={{ background: "rgba(0,0,0,0.4)", border: "1px solid rgba(255,255,255,0.08)", padding: "1rem", overflowX: "auto", fontFamily: "monospace", fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: 0 }}>
+            <pre style={{ background: "rgba(0,0,0,0.4)", border: "1px solid rgba(255,255,255,0.08)", padding: "1rem", overflowX: "auto", fontFamily: "monospace", fontSize: "0.714rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.7, margin: 0 }}>
               {JSON.stringify(result.summaryJson || {}, null, 2)}
             </pre>
           </div>

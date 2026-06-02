@@ -72,7 +72,7 @@ export default function AdmissionConfirmedPage() {
               The Station Custodian will be in contact within 24 hours to initiate your onboarding sequence and confirm your cohort start date.
             </p>
 
-            <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 520, margin: "0 auto 3rem", fontStyle: "italic" }}>
+            <p style={{ fontSize: "1rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: 520, margin: "0 auto 3rem", fontStyle: "italic" }}>
               Check your inbox for a receipt from Stripe and a welcome message from Vince Lawrence.
             </p>
 

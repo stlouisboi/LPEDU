@@ -265,7 +265,7 @@ export default function StandardsPage() {
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{p.desc}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexShrink: 0 }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.55)" }}>{p.price}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "rgba(250,248,244,0.85)" }}>{p.price}</span>
                   <Link to={p.href} style={{
                     fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.8rem",
                     letterSpacing: "0.1em", textTransform: "uppercase", color: gold,
@@ -316,7 +316,7 @@ export default function StandardsPage() {
                     textAlign: "left", padding: "0.875rem 1rem",
                     fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
                     fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.35)", borderBottom: "1px solid rgba(255,255,255,0.08)",
+                    color: "rgba(250,248,244,0.75)", borderBottom: "1px solid rgba(255,255,255,0.08)",
                     background: "#060d19",
                   }}>Feature</th>
                   <th style={{
@@ -335,7 +335,7 @@ export default function StandardsPage() {
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
                     borderLeft: "1px solid rgba(255,255,255,0.06)",
                   }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Guided Implementation</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.2rem" }}>Guided Implementation</p>
                     <p style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#FFFFFF" }}>$2,500</p>
                   </th>
                 </tr>

@@ -401,7 +401,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
         </div>
 
         <div style={{ paddingTop: "0.25rem" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.667rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", marginBottom: "1.25rem" }}>
             INDICATOR_GRID — SIGNAL DECOMPOSITION
           </p>
           {indicators.map((ind) => (

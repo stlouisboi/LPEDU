@@ -107,7 +107,7 @@ export default function ConditionalRatingPage() {
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.2rem, 2.5vw, 1.65rem)", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.75rem" }}>
             Where Conditional sits in the FMCSA safety fitness framework
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, marginBottom: "2.25rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.75, marginBottom: "2.25rem" }}>
             FMCSA assigns one of three safety fitness ratings following a New Entrant Safety Audit or targeted compliance review. Each rating carries a different operational consequence.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "4rem" }}>
@@ -165,7 +165,7 @@ export default function ConditionalRatingPage() {
           <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.2rem, 2.5vw, 1.65rem)", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.75rem" }}>
             From Conditional to Satisfactory: the five-step sequence
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, marginBottom: "2.25rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.75, marginBottom: "2.25rem" }}>
             FMCSA does not publish a single form for this process. What follows is the operational sequence carriers use to upgrade their rating.
           </p>
 
@@ -217,7 +217,7 @@ export default function ConditionalRatingPage() {
             <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.2rem, 2.5vw, 1.65rem)", color: "#FFFFFF", lineHeight: 1.25, marginBottom: "0.75rem" }}>
               DIY vs. outside help: how to make the call
             </h2>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, marginBottom: "2.25rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.952rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.75, marginBottom: "2.25rem" }}>
               Most Conditional ratings are self-correctable. Some are not. The difference is scope and timeline, not carrier capability.
             </p>
 
@@ -250,7 +250,7 @@ export default function ConditionalRatingPage() {
             </div>
 
             <div style={{ background: darkCard, border: "1px solid rgba(255,255,255,0.07)", padding: "1.5rem 1.75rem" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.75, margin: 0 }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.75, margin: 0 }}>
                 <strong style={{ color: "rgba(255,255,255,0.70)" }}>On timeline:</strong> If you are within 10 days of the 45-day deadline and have not yet submitted a CAP, the DIY window has likely closed. In that scenario, an experienced consultant can sometimes negotiate a brief extension with the regional office while the CAP is prepared — but this is not guaranteed and should not be planned for.
               </p>
             </div>

@@ -18,7 +18,7 @@ export default function ArticleCard({ variant = 'standard', code, category, titl
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '1.25rem', flexWrap: 'wrap' }}>
               <span style={{ ...mono, fontSize: 8, letterSpacing: '0.14em', textTransform: 'uppercase', background: '#8B7355', color: '#FAF8F4', padding: '0.2rem 0.6rem' }}>PILLAR GUIDE</span>
               <span style={{ ...mono, fontSize: 8, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6B7280' }}>{category}</span>
-              <span style={{ ...mono, fontSize: 8, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.35)', marginLeft: 'auto' }}>{readTime}</span>
+              <span style={{ ...mono, fontSize: 8, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.72)', marginLeft: 'auto' }}>{readTime}</span>
             </div>
             <h2 style={{ ...serif, fontWeight: 800, fontSize: 'clamp(1.4rem,3vw,2rem)', color: '#1C2B3A', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
               {title}

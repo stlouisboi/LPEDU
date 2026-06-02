@@ -92,7 +92,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
           <p style={{
             fontFamily: "monospace", fontSize: "0.619rem",
             letterSpacing: "0.16em", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.3)", marginBottom: "1.25rem",
+            color: "rgba(250,248,244,0.72)", marginBottom: "1.25rem",
           }}>
             Built for new and small motor carriers (1–20 trucks) in their first 24 months of authority.
           </p>
@@ -107,7 +107,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
 
           {/* Scan-sequence indicator chips */}
           <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.375rem", marginBottom: "0.25rem" }}>
-            <span style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(200,169,110,0.45)", marginRight: "0.25rem" }}>SCAN_SEQUENCE:</span>
+            <span style={{ fontFamily: mono, fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(200,169,110,0.75)", marginRight: "0.25rem" }}>SCAN_SEQUENCE:</span>
             {[
               { letter: "R", name: "Resources" },
               { letter: "E", name: "Experience" },
@@ -117,10 +117,10 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             ].map((s, i) => (
               <span key={s.letter} style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", background: "rgba(200,169,110,0.06)", border: "1px solid rgba(200,169,110,0.20)", padding: "0.2rem 0.5rem" }}>
                 <span style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, color: "#8B7355", letterSpacing: "0.08em" }}>{s.letter}</span>
-                <span style={{ fontFamily: mono, fontSize: "0.519rem", color: "rgba(255,255,255,0.30)", letterSpacing: "0.10em", textTransform: "uppercase" }}>{s.name}</span>
+                <span style={{ fontFamily: mono, fontSize: "0.65rem", color: "rgba(250,248,244,0.72)", letterSpacing: "0.10em", textTransform: "uppercase" }}>{s.name}</span>
               </span>
             ))}
-            <span style={{ fontFamily: mono, fontSize: "0.519rem", color: "rgba(34,197,94,0.70)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginLeft: "0.25rem" }}>READY</span>
+            <span style={{ fontFamily: mono, fontSize: "0.65rem", color: "rgba(34,197,94,0.70)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginLeft: "0.25rem" }}>READY</span>
           </div>
         </div>
 
@@ -194,7 +194,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   {/* Description */}
                   <p style={{
                     fontFamily: sans, fontSize: "0.762rem",
-                    color: "rgba(255,255,255,0.45)",
+                    color: "rgba(250,248,244,0.82)",
                     lineHeight: 1.55, flexGrow: 1,
                   }}>
                     {p.desc}
@@ -239,17 +239,17 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
 
             {/* Microcopy above start */}
             <div style={{ padding: "1rem 1.5rem", background: "rgba(255,255,255,0.025)", border: "1px solid rgba(200,169,110,0.1)", borderLeft: "2px solid rgba(200,169,110,0.35)" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.75, margin: 0 }}>
+              <p style={{ fontFamily: mono, fontSize: "0.8rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.75, margin: 0 }}>
                 Answer every question for where you are today, not where you hope to be. This check only works if it tells the truth.
               </p>
             </div>
 
             {/* WHAT YOU GET AT THE END */}
             <div style={{ padding: "1.25rem 1.5rem", background: "rgba(200,169,110,0.04)", border: "1px solid rgba(200,169,110,0.14)", borderTop: "2px solid rgba(200,169,110,0.35)" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,169,110,0.55)", marginBottom: "0.875rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.675rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,169,110,0.80)", marginBottom: "0.875rem" }}>
                 WHAT YOU GET AT THE END
               </p>
-              <p style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: "0.875rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.65, marginBottom: "0.875rem" }}>
                 After 15 questions, you receive one of three ratings:
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }}>
@@ -260,11 +260,11 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                 ].map(r => (
                   <div key={r.label} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
                     <span style={{ fontFamily: mono, fontSize: "0.625rem", fontWeight: 700, color: r.color, letterSpacing: "0.10em", flexShrink: 0, minWidth: 50, marginTop: "0.1rem" }}>{r.label}</span>
-                    <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.55, margin: 0 }}>{r.desc}</p>
+                    <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.55, margin: 0 }}>{r.desc}</p>
                   </div>
                 ))}
               </div>
-              <p style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.30)", lineHeight: 1.65, margin: 0, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "0.75rem", letterSpacing: "0.04em" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(250,248,244,0.72)", lineHeight: 1.65, margin: 0, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "0.75rem", letterSpacing: "0.04em" }}>
                 Each result includes a domain-by-domain exposure map and the specific LaunchPath resources that address each gap.
               </p>
 
@@ -277,8 +277,8 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   "If we recommend a call, it's because your exposure is real — not because we need to hit a quota.",
                 ].map((line, i) => (
                   <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                    <span style={{ fontFamily: mono, fontSize: "0.567rem", color: "rgba(200,169,110,0.55)", flexShrink: 0, marginTop: 2 }}>—</span>
-                    <p style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.6, margin: 0 }}>{line}</p>
+                    <span style={{ fontFamily: mono, fontSize: "0.567rem", color: "rgba(200,169,110,0.80)", flexShrink: 0, marginTop: 2 }}>—</span>
+                    <p style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(250,248,244,0.75)", lineHeight: 1.6, margin: 0 }}>{line}</p>
                   </div>
                 ))}
               </div>
@@ -286,7 +286,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
 
             {/* CTA block — LP-WEB-012 */}
             <div style={{ padding: "1.25rem 1.5rem", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(200,169,110,0.12)" }}>
-              <p style={{ fontFamily: sans, fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: "0 0 1.25rem" }}>
+              <p style={{ fontFamily: sans, fontSize: "0.875rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.7, margin: "0 0 1.25rem" }}>
                 Find your exposure first. Then decide how you want to close it.
               </p>
               {onBegin ? (
@@ -294,50 +294,38 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
                   onClick={onBegin}
                   data-testid="reach-begin-diagnostic-btn"
                   style={{
-                    display: "inline-flex", alignItems: "stretch",
-                    border: "1px solid #C9A84C", borderRadius: 4,
-                    background: "transparent", cursor: "pointer", overflow: "hidden",
-                    transition: "opacity 0.2s", padding: 0,
+                    display: "inline-flex", alignItems: "center", gap: 10,
+                    background: "#C9A84C", border: "none", cursor: "pointer",
+                    padding: "14px 28px",
+                    fontFamily: "'Inter', Helvetica, sans-serif",
+                    fontSize: 13, fontWeight: 700, letterSpacing: "0.08em",
+                    textTransform: "uppercase", color: "#0F1C27",
+                    transition: "background 0.2s",
+                    borderRadius: 0,
                   }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = "0.82"}
-                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                  onMouseEnter={e => e.currentTarget.style.background = "#D4B87A"}
+                  onMouseLeave={e => e.currentTarget.style.background = "#C9A84C"}
                 >
-                  <span style={{ background: "#C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 1L10 6L1 11V1Z" fill="#0A0A0A" stroke="#0A0A0A" strokeWidth="0.5" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                  <span style={{ background: "transparent", padding: "13px 22px", display: "flex", alignItems: "center", fontFamily: "'Inter', Helvetica, sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "#C9A84C" }}>
-                    Run REACH Diagnostic
-                  </span>
-                  <span style={{ background: "transparent", borderLeft: "1px solid #C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", color: "#C9A84C", fontSize: 14 }}>
-                    →
-                  </span>
+                  Run REACH Diagnostic →
                 </button>
               ) : (
                 <a
                   href="/reach-diagnostic"
                   data-testid="reach-begin-diagnostic-btn"
                   style={{
-                    display: "inline-flex", alignItems: "stretch",
-                    border: "1px solid #C9A84C", borderRadius: 4,
-                    textDecoration: "none", overflow: "hidden",
-                    transition: "opacity 0.2s",
+                    display: "inline-flex", alignItems: "center", gap: 10,
+                    background: "#C9A84C", textDecoration: "none",
+                    padding: "14px 28px",
+                    fontFamily: "'Inter', Helvetica, sans-serif",
+                    fontSize: 13, fontWeight: 700, letterSpacing: "0.08em",
+                    textTransform: "uppercase", color: "#0F1C27",
+                    transition: "background 0.2s",
+                    borderRadius: 0,
                   }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = "0.82"}
-                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                  onMouseEnter={e => e.currentTarget.style.background = "#D4B87A"}
+                  onMouseLeave={e => e.currentTarget.style.background = "#C9A84C"}
                 >
-                  <span style={{ background: "#C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 1L10 6L1 11V1Z" fill="#0A0A0A" stroke="#0A0A0A" strokeWidth="0.5" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                  <span style={{ background: "transparent", padding: "13px 22px", display: "flex", alignItems: "center", fontFamily: "'Inter', Helvetica, sans-serif", fontSize: 13, fontWeight: 500, letterSpacing: "0.04em", color: "#C9A84C" }}>
-                    Run REACH Diagnostic
-                  </span>
-                  <span style={{ background: "transparent", borderLeft: "1px solid #C9A84C", padding: "13px 14px", display: "flex", alignItems: "center", color: "#C9A84C", fontSize: 14 }}>
-                    →
-                  </span>
+                  Run REACH Diagnostic →
                 </a>
               )}
             </div>

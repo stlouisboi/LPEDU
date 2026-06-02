@@ -152,7 +152,7 @@ export default function PortalSidebar({ selectedId, hasCohortAccess, gateStatuse
         const registryIssued = isAllCoreDone();
         return (
           <div data-testid="journey-progress-summary" style={{ margin: "1.25rem 1rem 0", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.1rem", paddingBottom: "0.75rem", paddingLeft: "0.5rem" }}>
-            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(250,248,244,0.75)", marginBottom: "0.35rem" }}>
               Progress: <strong style={{ color: "rgba(255,255,255,0.65)" }}>{completedCount} of 10</strong> modules
             </p>
             <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: registryIssued ? "#22c55e" : "rgba(255,255,255,0.28)" }}>

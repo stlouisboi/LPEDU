@@ -191,7 +191,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
             <button
               data-testid={`test-dl-btn-${sku.toLowerCase()}`}
               onClick={handleTestDl}
-              style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", background: "transparent", border: "1px solid rgba(255,255,255,0.14)", padding: "0.4rem 0.875rem", cursor: "pointer" }}
+              style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(250,248,244,0.85)", background: "transparent", border: "1px solid rgba(255,255,255,0.14)", padding: "0.4rem 0.875rem", cursor: "pointer" }}
             >
               Test DL
             </button>
@@ -219,7 +219,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
       {/* File info row */}
       {hasFile && (
         <div style={{ paddingLeft: "110px", marginTop: "0.4rem", display: "flex", gap: "1.5rem" }}>
-          <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)" }}>{fileInfo.filename}</span>
+          <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.75)" }}>{fileInfo.filename}</span>
           <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)" }}>{fmtSize(fileInfo.size)}</span>
           <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)" }}>{fmtDate(fileInfo.updated_at)}</span>
         </div>
@@ -233,7 +233,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
           </span>
           <ul style={{ margin: "0.35rem 0 0 0", paddingLeft: "1rem", listStyle: "disc" }}>
             {bundleContents[sku].map(compSku => (
-              <li key={compSku} style={{ fontFamily: mono, fontSize: "0.667rem", color: "rgba(255,255,255,0.40)", lineHeight: 1.9 }}>
+              <li key={compSku} style={{ fontFamily: mono, fontSize: "0.667rem", color: "rgba(250,248,244,0.78)", lineHeight: 1.9 }}>
                 <span style={{ color: "rgba(212,144,10,0.45)", marginRight: "0.5rem" }}>{compSku}</span>
                 {productsMap?.[compSku]?.name || compSku}
               </li>
@@ -256,7 +256,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
                 {testResults.tokens.map(item => (
                   item.token ? (
                     <div key={item.token} style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
-                      <span style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.35)", minWidth: 80 }}>{item.sku}</span>
+                      <span style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(250,248,244,0.75)", minWidth: 80 }}>{item.sku}</span>
                       <a
                         href={`${API}/api/products/download?token=${item.token}`}
                         target="_blank"
@@ -288,7 +288,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
           <button onClick={handleUpload} style={{ background: gold, color: navy, fontFamily: mono, fontWeight: 700, fontSize: "0.714rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.4rem 1rem", border: "none", cursor: "pointer" }}>
             Confirm Upload
           </button>
-          <button onClick={() => { setUploadState("idle"); setSelectedFile(null); if (fileRef.current) fileRef.current.value = ""; }} style={{ background: "transparent", color: "rgba(255,255,255,0.35)", fontFamily: mono, fontSize: "0.714rem", border: "1px solid rgba(255,255,255,0.12)", padding: "0.4rem 0.75rem", cursor: "pointer" }}>
+          <button onClick={() => { setUploadState("idle"); setSelectedFile(null); if (fileRef.current) fileRef.current.value = ""; }} style={{ background: "transparent", color: "rgba(250,248,244,0.75)", fontFamily: mono, fontSize: "0.714rem", border: "1px solid rgba(255,255,255,0.12)", padding: "0.4rem 0.75rem", cursor: "pointer" }}>
             Cancel
           </button>
         </div>
@@ -300,7 +300,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
           <div style={{ height: 4, background: "rgba(255,255,255,0.08)", borderRadius: 2, overflow: "hidden", maxWidth: 320 }}>
             <div style={{ height: "100%", width: `${progress}%`, background: gold, transition: "width 0.2s", borderRadius: 2 }} />
           </div>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.35)", marginTop: "0.35rem" }}>Uploading… {progress}%</p>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.75)", marginTop: "0.35rem" }}>Uploading… {progress}%</p>
         </div>
       )}
 
@@ -365,7 +365,7 @@ function LiveCheckoutTestPanel() {
       <p style={{ fontFamily: mono, fontSize: "0.924rem", color: "#fff", marginBottom: "0.375rem", fontWeight: 600 }}>
         Live Checkout Test — LP-TEST-001 ($1.00)
       </p>
-      <p style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", marginBottom: "1.25rem", lineHeight: 1.6 }}>
+      <p style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(250,248,244,0.78)", marginBottom: "1.25rem", lineHeight: 1.6 }}>
         Initiates a real $1.00 Stripe charge (live mode). Use to verify the full Stripe → webhook → confirmed page → download pipeline end-to-end.
         <br />
         <span style={{ color: "rgba(212,144,10,0.70)" }}>Use a real card on the Stripe checkout page — this is a live charge.</span>
@@ -394,8 +394,8 @@ function LiveCheckoutTestPanel() {
       {simState === "done" && simResult && (
         <div style={{ marginTop: "1rem", background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.20)", padding: "1rem" }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "#22c55e", marginBottom: "0.5rem", fontWeight: 700 }}>SIMULATION COMPLETE</p>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", marginBottom: "0.375rem" }}>Session: {simResult.session_id}</p>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>Email sent to: {simResult.sent_to}</p>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.85)", marginBottom: "0.375rem" }}>Session: {simResult.session_id}</p>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.85)", marginBottom: "0.75rem" }}>Email sent to: {simResult.sent_to}</p>
           <a
             href={simResult.confirmed_page}
             target="_blank"
@@ -484,7 +484,7 @@ export default function AdminProductFilesPage() {
           <h1 style={{ fontFamily: disp, fontWeight: 700, fontSize: "1.75rem", color: "#fff", marginBottom: "0.5rem", letterSpacing: "-0.02em" }}>
             Product File Manager
           </h1>
-          <p style={{ fontFamily: body, fontSize: "0.924rem", color: "rgba(255,255,255,0.40)" }}>
+          <p style={{ fontFamily: body, fontSize: "0.924rem", color: "rgba(250,248,244,0.78)" }}>
             {satisfiedCount} of {totalCount} products have files uploaded
             {missingCount > 0 && (
               <span style={{ color: "#ef4444", marginLeft: "0.75rem" }}>
@@ -512,13 +512,13 @@ export default function AdminProductFilesPage() {
         <LiveCheckoutTestPanel />
 
         {totalCount === 0 ? (
-          <p style={{ fontFamily: mono, fontSize: "0.857rem", color: "rgba(255,255,255,0.30)" }}>Loading products…</p>
+          <p style={{ fontFamily: mono, fontSize: "0.857rem", color: "rgba(250,248,244,0.72)" }}>Loading products…</p>
         ) : (
           <>
             {/* Table header */}
             <div style={{ display: "grid", gridTemplateColumns: "110px 1fr 60px 160px 1fr", gap: "1rem", padding: "0.75rem 0", borderBottom: `2px solid rgba(212,144,10,0.25)`, marginBottom: "0.25rem" }}>
               {["SKU", "Product Name", "Price", "Status", "Actions"].map(h => (
-                <span key={h} style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)" }}>{h}</span>
+                <span key={h} style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)" }}>{h}</span>
               ))}
             </div>
 
@@ -541,7 +541,7 @@ export default function AdminProductFilesPage() {
         {/* Instructions */}
         <div style={{ marginTop: "3rem", background: "rgba(255,255,255,0.02)", border: `1px solid ${BORDER}`, padding: "1.5rem" }}>
           <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: "0.75rem" }}>UPLOAD NOTES</p>
-          <ul style={{ fontFamily: body, fontSize: "0.924rem", color: "rgba(255,255,255,0.50)", lineHeight: 2, margin: 0, paddingLeft: "1.25rem" }}>
+          <ul style={{ fontFamily: body, fontSize: "0.924rem", color: "rgba(250,248,244,0.82)", lineHeight: 2, margin: 0, paddingLeft: "1.25rem" }}>
             <li>Only PDF files are accepted (max 50MB per file).</li>
             <li>Use "Test DL" to verify a file is downloadable before buyers hit it.</li>
             <li>Replacing a file for a SKU overwrites the previous version immediately.</li>

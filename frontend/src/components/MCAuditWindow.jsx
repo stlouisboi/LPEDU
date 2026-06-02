@@ -60,7 +60,7 @@ export default function MCAuditWindow({ compact = false }) {
     >
       {/* Section label */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.25rem" }}>
-        <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(200,169,110,0.55)", margin: 0 }}>
+        <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(200,169,110,0.80)", margin: 0 }}>
           LP-TOOL-WIN | NEW CARRIER AUDIT WINDOW CALCULATOR
         </p>
         <span style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.12em", color: "#4ade80", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)", padding: "2px 7px", borderRadius: 2, flexShrink: 0, marginLeft: 8 }}>
@@ -71,14 +71,14 @@ export default function MCAuditWindow({ compact = false }) {
       <h3 style={{ fontFamily: COND, fontWeight: 800, fontSize: compact ? "1.25rem" : "1.5rem", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.375rem" }}>
         How Much of Your Audit Window Is Left?
       </h3>
-      <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, marginBottom: "1.5rem" }}>
+      <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.65, marginBottom: "1.5rem" }}>
         FMCSA targets new carriers for a safety audit within 18 months of authority grant. Enter your MC effective date.
       </p>
 
       {/* Date input */}
       <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginBottom: result ? "1.75rem" : 0, flexWrap: "wrap" }}>
         <div style={{ flex: 1, minWidth: 200 }}>
-          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,169,110,0.55)", marginBottom: 6 }}>
+          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,169,110,0.80)", marginBottom: 6 }}>
             MC/DOT AUTHORITY GRANT DATE
           </p>
           <input
@@ -135,13 +135,13 @@ export default function MCAuditWindow({ compact = false }) {
           {/* Stats row */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(200,169,110,0.15)", marginBottom: "1.25rem" }}>
             <div style={{ background: "#001020", padding: "1rem 1.25rem" }}>
-              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: 4 }}>DAYS ELAPSED</p>
+              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", marginBottom: 4 }}>DAYS ELAPSED</p>
               <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "1.75rem", color: "rgba(255,255,255,0.60)", lineHeight: 1, letterSpacing: "-0.02em" }}>
                 {result.elapsed.toLocaleString()}
               </p>
             </div>
             <div style={{ background: "#001020", padding: "1rem 1.25rem" }}>
-              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.30)", marginBottom: 4 }}>
+              <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)", marginBottom: 4 }}>
                 {result.remaining > 0 ? "DAYS REMAINING" : "DAYS PAST WINDOW"}
               </p>
               <p style={{ fontFamily: COND, fontWeight: 800, fontSize: "1.75rem", color: result.remaining > 0 ? GOLD : "#ef4444", lineHeight: 1, letterSpacing: "-0.02em" }}>

@@ -32,7 +32,7 @@ export function AuditDomainCard({ domain, domainResult, isCritical, isStale, las
       >
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-            <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+            <p style={{ fontFamily: "monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(250,248,244,0.85)", margin: 0 }}>
               {DOMAIN_LABELS[domain]}
             </p>
             {isCritical && (
@@ -109,7 +109,7 @@ export function AuditDomainCard({ domain, domainResult, isCritical, isStale, las
             </div>
           )}
           {!selfColor && (
-            <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.857rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.6, margin: "0.875rem 0 0" }}>
+            <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.857rem", color: "rgba(250,248,244,0.75)", lineHeight: 1.6, margin: "0.875rem 0 0" }}>
               Complete the Monthly Audit Readiness Check to see your status for this domain.
             </p>
           )}

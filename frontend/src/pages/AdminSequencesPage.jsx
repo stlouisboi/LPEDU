@@ -74,7 +74,7 @@ export default function AdminSequencesPage() {
             <h1 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "1.75rem", color: "#fff", margin: "0 0 0.35rem" }}>
               Drip Sequences
             </h1>
-            <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.40)", margin: 0 }}>
+            <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(250,248,244,0.78)", margin: 0 }}>
               Flow 4: WAIT/NO-GO Correction &nbsp;·&nbsp; Flow 5: 16 Deadly Sins Nurture &nbsp;·&nbsp; Flow 6: Pre-Op Checklist &nbsp;·&nbsp; Flow 7: Track A (NURTURE-NEAR) &nbsp;·&nbsp; Flow 8: Track B (NURTURE-FAR) &nbsp;·&nbsp; Flow 9: Alumni
             </p>
           </div>
@@ -132,16 +132,16 @@ export default function AdminSequencesPage() {
             <div key={i} style={{ background: "#0B1525", padding: "1.25rem 1.5rem", borderTop: `2px solid ${SEQ_COLORS[s.type]}` }}>
               <p style={{ fontFamily: MONO, fontSize: "0.555rem", fontWeight: 700, letterSpacing: "0.18em", color: `${SEQ_COLORS[s.type]}80`, textTransform: "uppercase", margin: "0 0 0.375rem" }}>{s.flow}</p>
               <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "0.924rem", color: "#fff", margin: "0 0 0.5rem" }}>{SEQ_LABELS[s.type]}</p>
-              <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", margin: "0 0 0.25rem" }}><strong style={{ color: "rgba(255,255,255,0.65)" }}>Trigger:</strong> {s.trigger}</p>
-              <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", margin: "0 0 0.25rem" }}><strong style={{ color: "rgba(255,255,255,0.65)" }}>Schedule:</strong> {s.steps}</p>
-              <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(255,255,255,0.45)", margin: 0 }}><strong style={{ color: "rgba(255,255,255,0.65)" }}>CTA path:</strong> {s.cta}</p>
+              <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", margin: "0 0 0.25rem" }}><strong style={{ color: "rgba(255,255,255,0.65)" }}>Trigger:</strong> {s.trigger}</p>
+              <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", margin: "0 0 0.25rem" }}><strong style={{ color: "rgba(255,255,255,0.65)" }}>Schedule:</strong> {s.steps}</p>
+              <p style={{ fontFamily: SANS, fontSize: "0.762rem", color: "rgba(250,248,244,0.82)", margin: 0 }}><strong style={{ color: "rgba(255,255,255,0.65)" }}>CTA path:</strong> {s.cta}</p>
             </div>
           ))}
         </div>
 
         {/* Enrolled list */}
         {loading ? (
-          <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", textAlign: "center", padding: "3rem 0" }}>Loading...</p>
+          <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", textAlign: "center", padding: "3rem 0" }}>Loading...</p>
         ) : seqs.length === 0 ? (
           <div style={{ textAlign: "center", padding: "4rem 0", border: "1px solid rgba(255,255,255,0.06)" }}>
             <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.14em", textTransform: "uppercase" }}>No sequences enrolled yet</p>
@@ -163,7 +163,7 @@ export default function AdminSequencesPage() {
                 <div key={i} data-testid={`seq-row-${i}`} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.04)", marginBottom: "1px" }}>
                   <div style={{ background: "#0B1525", padding: "0.875rem 1rem" }}>
                     <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "#fff", margin: 0 }}>{seq.email}</p>
-                    <p style={{ fontFamily: MONO, fontSize: "0.555rem", color: "rgba(255,255,255,0.30)", margin: "0.2rem 0 0", letterSpacing: "0.08em" }}>enrolled {seq.enrolled_at ? new Date(seq.enrolled_at).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "—"}</p>
+                    <p style={{ fontFamily: MONO, fontSize: "0.555rem", color: "rgba(250,248,244,0.72)", margin: "0.2rem 0 0", letterSpacing: "0.08em" }}>enrolled {seq.enrolled_at ? new Date(seq.enrolled_at).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "—"}</p>
                   </div>
                   <div style={{ background: "#0B1525", padding: "0.875rem 1rem" }}>
                     <p style={{ fontFamily: MONO, fontSize: "0.580rem", color: `${color}99`, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>{SEQ_LABELS[seq.sequence_type] || seq.sequence_type}</p>
@@ -172,7 +172,7 @@ export default function AdminSequencesPage() {
                     <div style={{ flex: 1, height: 3, background: "rgba(255,255,255,0.08)", borderRadius: 2 }}>
                       <div style={{ width: `${(sent / total) * 100}%`, height: "100%", background: color, borderRadius: 2, transition: "width 0.3s" }} />
                     </div>
-                    <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(255,255,255,0.45)", margin: 0, flexShrink: 0 }}>{sent}/{total}</p>
+                    <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(250,248,244,0.82)", margin: 0, flexShrink: 0 }}>{sent}/{total}</p>
                   </div>
                   <div style={{ background: "#0B1525", padding: "0.875rem 1rem" }}>
                     <span style={{ fontFamily: MONO, fontSize: "0.580rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: seq.completed ? "#3d9970" : color, background: seq.completed ? "rgba(61,153,112,0.10)" : `${color}12`, padding: "0.25rem 0.625rem" }}>

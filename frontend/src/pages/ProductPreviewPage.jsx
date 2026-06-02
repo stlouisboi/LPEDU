@@ -16,7 +16,7 @@ export default function ProductPreviewPage() {
         <main style={{ maxWidth: 900, margin: "0 auto", padding: "6rem 1.5rem", textAlign: "center" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase", color: gold, marginBottom: "1rem" }}>LP-SYS-LIBRARY | PRODUCT PREVIEW</p>
           <h1 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "2rem", color: "#FFFFFF", marginBottom: "1rem" }}>Product Preview</h1>
-          <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', sans-serif" }}>View products in the <a href="/compliance-library" style={{ color: gold }}>Compliance Library</a>.</p>
+          <p style={{ color: "rgba(250,248,244,0.82)", fontFamily: "'Inter', sans-serif" }}>View products in the <a href="/compliance-library" style={{ color: gold }}>Compliance Library</a>.</p>
         </main>
       </div>
     );
@@ -41,7 +41,7 @@ export default function ProductPreviewPage() {
           }}>3D Book Mockup Export</h1>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-            color: "rgba(255,255,255,0.55)", marginTop: "0.5rem",
+            color: "rgba(250,248,244,0.85)", marginTop: "0.5rem",
           }}>
             Select a product, drag to rotate, then export your Gumroad cover image and thumbnail.
           </p>
@@ -99,7 +99,7 @@ export default function ProductPreviewPage() {
             <p style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.714rem",
-              color: "rgba(255,255,255,0.3)",
+              color: "rgba(250,248,244,0.72)",
               letterSpacing: "0.08em",
               marginTop: "0.75rem",
               textAlign: "center",
@@ -113,7 +113,7 @@ export default function ProductPreviewPage() {
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
               letterSpacing: "0.12em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)", marginBottom: "0.75rem",
+              color: "rgba(250,248,244,0.72)", marginBottom: "0.75rem",
             }}>RIGHT PANEL CONTENT</p>
             <BookInfoPanel productId={activeId} />
 
@@ -129,10 +129,10 @@ export default function ProductPreviewPage() {
                 letterSpacing: "0.12em", textTransform: "uppercase",
                 color: gold, marginBottom: "0.75rem",
               }}>Export Guide</p>
-              <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
+              <p style={{ fontSize: "0.857rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
                 <strong style={{ color: "rgba(255,255,255,0.85)" }}>Cover (1280×720)</strong> — Gumroad product listing image. Shows full scene.
               </p>
-              <p style={{ fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
+              <p style={{ fontSize: "0.857rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.6 }}>
                 <strong style={{ color: "rgba(255,255,255,0.85)" }}>Thumbnail (600×600)</strong> — Tighter crop, square format. Gumroad grid thumbnail.
               </p>
             </div>
@@ -157,7 +157,7 @@ export default function ProductPreviewPage() {
           }}>{product.name}</p>
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: "var(--text-sm)",
-            color: "rgba(255,255,255,0.5)", marginTop: "0.25rem",
+            color: "rgba(250,248,244,0.82)", marginTop: "0.25rem",
           }}>{product.outcomeLine}</p>
         </div>
 

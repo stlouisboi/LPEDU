@@ -182,7 +182,7 @@ function PathCard({ path }) {
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.714rem",
-          color: "rgba(255,255,255,0.35)",
+          color: "rgba(250,248,244,0.75)",
           letterSpacing: "0.1em",
           marginBottom: "1.25rem",
         }}>
@@ -232,7 +232,7 @@ function PathCard({ path }) {
         fontFamily: "'Inter', sans-serif",
         fontStyle: "italic",
         fontSize: "0.825rem",
-        color: "rgba(255,255,255,0.55)",
+        color: "rgba(250,248,244,0.85)",
         lineHeight: 1.55,
         marginBottom: "1.5rem",
       }}>
@@ -244,7 +244,7 @@ function PathCard({ path }) {
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.857rem",
-          color: "rgba(255,255,255,0.55)",
+          color: "rgba(250,248,244,0.85)",
         }}>
           {path.priceLabel}
         </p>
@@ -375,7 +375,7 @@ export default function Ground0CompletePage() {
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.4)",
+            color: "rgba(250,248,244,0.78)",
             marginBottom: "2.5rem",
           }}>
             Choose Your Path

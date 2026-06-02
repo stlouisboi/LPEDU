@@ -18,7 +18,7 @@ export default function AuthGateModal({ authMode, authForm, authError, authLoadi
         <button
           data-testid="auth-modal-close"
           onClick={onClose}
-          style={{ position: "absolute", top: "1rem", right: "1rem", background: "none", border: "none", color: "rgba(255,255,255,0.35)", cursor: "pointer", fontSize: "1.25rem", lineHeight: 1, padding: "0.25rem", transition: "color 0.15s" }}
+          style={{ position: "absolute", top: "1rem", right: "1rem", background: "none", border: "none", color: "rgba(250,248,244,0.75)", cursor: "pointer", fontSize: "1.25rem", lineHeight: 1, padding: "0.25rem", transition: "color 0.15s" }}
           onMouseEnter={e => e.currentTarget.style.color = "#FFFFFF"}
           onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.35)"}
         >
@@ -31,7 +31,7 @@ export default function AuthGateModal({ authMode, authForm, authError, authLoadi
         <h3 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", marginBottom: "0.625rem", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
           {authMode === "register" ? "Create your account to continue" : "Sign in to continue"}
         </h3>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: "1.75rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.85)", lineHeight: 1.65, marginBottom: "1.75rem" }}>
           Lessons G0-4 through G0-6 and your progress are saved to your account. Takes 30 seconds.
         </p>
 
@@ -72,7 +72,7 @@ export default function AuthGateModal({ authMode, authForm, authError, authLoadi
         <form onSubmit={authMode === "register" ? onRegister : onLogin} style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
           {authMode === "register" && (
             <div>
-              <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", display: "block", marginBottom: "0.375rem" }}>
+              <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(250,248,244,0.82)", display: "block", marginBottom: "0.375rem" }}>
                 Name (optional)
               </label>
               <input
@@ -86,7 +86,7 @@ export default function AuthGateModal({ authMode, authForm, authError, authLoadi
             </div>
           )}
           <div>
-            <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", display: "block", marginBottom: "0.375rem" }}>
+            <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(250,248,244,0.82)", display: "block", marginBottom: "0.375rem" }}>
               Email address
             </label>
             <input
@@ -100,7 +100,7 @@ export default function AuthGateModal({ authMode, authForm, authError, authLoadi
             />
           </div>
           <div>
-            <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", display: "block", marginBottom: "0.375rem" }}>
+            <label style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(250,248,244,0.82)", display: "block", marginBottom: "0.375rem" }}>
               Password
             </label>
             <PasswordInput

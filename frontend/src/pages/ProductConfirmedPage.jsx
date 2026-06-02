@@ -89,7 +89,7 @@ function PendingState({ retryNum }) {
       <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2rem)", color: "#fff", marginBottom: "1rem", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
         Verifying your payment...
       </h2>
-      <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+      <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
         This takes just a moment. Do not close this tab.
       </p>
       {retryNum > 0 && (
@@ -124,7 +124,7 @@ function ConfirmedState({ data, downloadUrl }) {
           {isBundle ? `Your ${data?.product_name} is ready.` : `Your ${data?.product_name} is ready.`}
         </h2>
         {isBundle && (
-          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", marginTop: "0.625rem", lineHeight: 1.6 }}>
+          <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(250,248,244,0.82)", marginTop: "0.625rem", lineHeight: 1.6 }}>
             {downloadTokens.length} files included — each has its own download link below.
           </p>
         )}
@@ -185,13 +185,13 @@ function ConfirmedState({ data, downloadUrl }) {
           <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: "0.75rem" }}>
             NOT SURE WHAT TO DO NEXT?
           </p>
-          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
+          <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
             Take the REACH Diagnostic. Free. 4–6 minutes. No sales call.
           </p>
           <Link
             to="/reach-diagnostic"
             data-testid="ground0-cta-btn"
-            style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.50)", padding: "0.75rem 1.5rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.14)" }}
+            style={{ display: "inline-block", fontFamily: SANS, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(250,248,244,0.82)", padding: "0.75rem 1.5rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.14)" }}
           >
             Take the REACH Diagnostic →
           </Link>
@@ -380,7 +380,7 @@ function FailedState() {
       <h2 style={{ fontFamily: COND, fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2rem)", color: "#fff", marginBottom: "1rem", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
         We could not verify your payment.
       </h2>
-      <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.50)", lineHeight: 1.75, maxWidth: 460, margin: "0 auto 2.5rem" }}>
+      <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.75, maxWidth: 460, margin: "0 auto 2.5rem" }}>
         If you completed checkout, your receipt is in your email and your download link is included. If you need help, contact us at{" "}
         <a href="mailto:support@launchpathedu.com" style={{ color: GOLD, textDecoration: "none" }}>support@launchpathedu.com</a>.
       </p>

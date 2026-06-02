@@ -30,11 +30,11 @@ export default function VinceVideoLetterSection({ videoUrl }) {
                   {/* Placeholder backdrop */}
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0D1B2A 0%, #1C2B3A 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{ textAlign: 'center' }}>
-                      <div style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.3)', marginBottom: '2rem' }}>Director's Briefing</div>
+                      <div style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.72)', marginBottom: '2rem' }}>Director's Briefing</div>
                       <button onClick={() => videoUrl && setPlaying(true)} aria-label="Play director's briefing" style={{ width: 64, height: 64, background: 'rgba(139,115,85,0.9)', border: 'none', cursor: videoUrl ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', borderRadius: 0 }}>
                         <Play size={22} color="#1C2B3A" fill="#1C2B3A" />
                       </button>
-                      <div style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', color: 'rgba(250,248,244,0.45)' }}>
+                      <div style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', color: 'rgba(250,248,244,0.80)' }}>
                         {videoUrl ? 'Click to play' : 'Recording coming soon'}
                       </div>
                     </div>
@@ -45,7 +45,7 @@ export default function VinceVideoLetterSection({ videoUrl }) {
             {/* Bottom strip */}
             <div style={{ background: 'rgba(28,43,58,0.95)', padding: '0.6rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: 'rgba(250,248,244,0.5)' }}>Director's Briefing · Recorded May 2026</span>
-              <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.3)' }}>LP-VID-001</span>
+              <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.72)' }}>LP-VID-001</span>
             </div>
           </div>
         </div>

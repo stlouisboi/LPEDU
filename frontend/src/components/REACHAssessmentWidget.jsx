@@ -264,7 +264,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
             {i < 4 && <div style={{ width: 18, height: 1, background: "rgba(255,255,255,0.1)" }} />}
           </div>
         ))}
-        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.55)", marginLeft: "0.4rem" }}>{currentCatIdx + 1} of 5</span>
+        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.85)", marginLeft: "0.4rem" }}>{currentCatIdx + 1} of 5</span>
       </div>
 
       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.85)", marginBottom: "1.5rem" }}>
@@ -299,7 +299,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
           );
         })}
       </div>
-      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.45)" }}>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.82)" }}>
         Question {currentQ + 1} of 15
       </p>
     </div>
@@ -353,7 +353,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       >
         Complete Assessment
       </button>
-      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.45)", marginTop: "0.75rem" }}>Question 15 of 15</p>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.82)", marginTop: "0.75rem" }}>Question 15 of 15</p>
     </div>
   );
 
@@ -400,7 +400,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
       {/* Risk Map */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.75rem", marginBottom: "2rem" }}>
         <RiskMap scores={scores} animate={animateMap} />
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.45)", marginTop: "0.5rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(250,248,244,0.82)", marginTop: "0.5rem" }}>
           TOTAL REACH SCORE: {scores.total}/42
         </p>
       </div>
@@ -436,7 +436,7 @@ export default function REACHAssessmentWidget({ onEmailCaptured }) {
               {loading ? "Sending..." : "Send My Results"}
             </button>
           </form>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.50)", marginTop: "0.75rem", fontStyle: "italic" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(250,248,244,0.82)", marginTop: "0.75rem", fontStyle: "italic" }}>
             No sales sequence. Results and preparation resources only.
           </p>
         </div>

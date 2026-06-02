@@ -186,7 +186,7 @@ export default function Navbar() {
                                   </span>
                                 )}
                               </div>
-                              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.40)", margin: 0, lineHeight: 1.4 }}>
+                              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.78)", margin: 0, lineHeight: 1.4 }}>
                                 {sub.sub}
                               </p>
                             </Link>

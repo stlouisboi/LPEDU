@@ -53,7 +53,7 @@ export default function AdminSinsLeadsPage() {
             <h1 style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "1.75rem", color: "#fff", margin: "0 0 0.35rem" }}>
               16 Deadly Sins — Checklist Downloads
             </h1>
-            <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.40)", margin: 0 }}>
+            <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "rgba(250,248,244,0.78)", margin: 0 }}>
               Email captures from the 16 Deadly Sins self-audit checklist gate
             </p>
           </div>
@@ -99,7 +99,7 @@ export default function AdminSinsLeadsPage() {
 
         {/* Lead table */}
         {loading ? (
-          <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(255,255,255,0.35)", textAlign: "center", padding: "3rem 0" }}>Loading leads...</p>
+          <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", textAlign: "center", padding: "3rem 0" }}>Loading leads...</p>
         ) : error ? (
           <p style={{ fontFamily: SANS, fontSize: "0.857rem", color: "#ef4444", textAlign: "center", padding: "3rem 0" }}>{error}</p>
         ) : leads.length === 0 ? (
@@ -130,7 +130,7 @@ export default function AdminSinsLeadsPage() {
                   <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(197,160,89,0.65)", letterSpacing: "0.08em", margin: 0 }}>{lead.source || "—"}</p>
                 </div>
                 <div style={{ background: "#0B1525", padding: "0.875rem 1rem" }}>
-                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.45)", margin: 0 }}>
+                  <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(250,248,244,0.82)", margin: 0 }}>
                     {lead.captured_at ? new Date(lead.captured_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—"}
                   </p>
                 </div>

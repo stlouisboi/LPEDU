@@ -52,7 +52,7 @@ export default function AuditWindowCalculator() {
 
         {/* Date input */}
         <div style={{ marginBottom: '2rem' }}>
-          <label style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.4)', display: 'block', marginBottom: '0.5rem' }}>
+          <label style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.78)', display: 'block', marginBottom: '0.5rem' }}>
             MC/DOT AUTHORITY GRANT DATE
           </label>
           <input
@@ -77,7 +77,7 @@ export default function AuditWindowCalculator() {
                   <div style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '2rem', color: card.isStatus ? card.color : '#FAF8F4', lineHeight: 1, marginBottom: '0.4rem' }}>
                     {card.value}
                   </div>
-                  <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.35)' }}>{card.label}</div>
+                  <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.75)' }}>{card.label}</div>
                 </div>
               ))}
             </div>

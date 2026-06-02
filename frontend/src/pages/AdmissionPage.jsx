@@ -109,7 +109,7 @@ export default function AdmissionPage() {
   const hintStyle = {
     fontFamily: "'Inter', sans-serif",
     fontSize: "0.857rem",
-    color: "rgba(255,255,255,0.40)",
+    color: "rgba(250,248,244,0.78)",
     marginTop: "0.4rem",
     fontStyle: "italic",
   };
@@ -406,7 +406,7 @@ export default function AdmissionPage() {
               fontSize: "0.714rem",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.30)",
+              color: "rgba(250,248,244,0.72)",
               marginBottom: "2.5rem",
             }}>
               Powered by Stripe · Secure checkout
@@ -619,7 +619,7 @@ export default function AdmissionPage() {
                     </div>
                   ))}
                 </div>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.30)", marginTop: "0.875rem", paddingTop: "0.75rem", borderTop: "1px solid rgba(255,255,255,0.06)", lineHeight: 1.6 }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(250,248,244,0.72)", marginTop: "0.875rem", paddingTop: "0.75rem", borderTop: "1px solid rgba(255,255,255,0.06)", lineHeight: 1.6 }}>
                   If you are interested in a payment plan, note it in the message field below. Payment plan availability is discussed during admission review.
                 </p>
               </div>

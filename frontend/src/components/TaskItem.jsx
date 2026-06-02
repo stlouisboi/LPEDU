@@ -66,7 +66,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
         {/* Category badge */}
         <span style={{
           fontFamily: mono, fontSize: "0.762rem", fontWeight: 700,
-          letterSpacing: "0.1em", color: "rgba(255,255,255,0.35)",
+          letterSpacing: "0.1em", color: "rgba(250,248,244,0.75)",
           textTransform: "uppercase", flexShrink: 0,
         }}>
           {task.category?.toUpperCase() || ""}

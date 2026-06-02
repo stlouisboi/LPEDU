@@ -49,7 +49,7 @@ export default function OverviewView({ lessons, completedLessons, onBegin, isEmb
                 </div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0 }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.45)" }}>{lesson.duration}</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(250,248,244,0.82)" }}>{lesson.duration}</span>
                 {isComplete && <CheckCircle size={16} color="#22c55e" weight="fill" />}
               </div>
             </div>
@@ -75,7 +75,7 @@ export default function OverviewView({ lessons, completedLessons, onBegin, isEmb
       </button>
 
       {completedLessons.length > 0 && (
-        <p style={{ fontSize: "0.762rem", color: "rgba(255,255,255,0.4)", marginTop: "0.875rem" }}>
+        <p style={{ fontSize: "0.762rem", color: "rgba(250,248,244,0.78)", marginTop: "0.875rem" }}>
           {completedLessons.length} of {lessons.length} lessons completed
         </p>
       )}

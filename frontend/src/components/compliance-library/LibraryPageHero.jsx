@@ -9,7 +9,7 @@ export default function LibraryPageHero() {
   return (
     <section data-testid="cl-hero" style={{ background: NAVY, padding: 'clamp(4rem,8vw,6rem) 1.5rem', borderBottom: `1px solid rgba(250,248,244,0.08)` }}>
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.35)', marginBottom: '1.5rem' }}>
+        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.75)', marginBottom: '1.5rem' }}>
           LP-SYS-LIBRARY · OPERATING STANDARDS LIBRARY
         </p>
         <h1 style={{ fontFamily: SERIF, fontWeight: 900, fontSize: 'clamp(2.5rem,5vw,3.75rem)', color: '#FAF8F4', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
@@ -26,7 +26,7 @@ export default function LibraryPageHero() {
             '· Install a complete document system in 90 days',
             '· Know exactly what FMCSA will look for before they arrive',
           ].map((pt, i) => (
-            <span key={i} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.4)' }}>{pt}</span>
+            <span key={i} style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.78)' }}>{pt}</span>
           ))}
         </div>
 
@@ -41,7 +41,7 @@ export default function LibraryPageHero() {
           <a
             href="#bundle"
             data-testid="cl-hero-bundle-link"
-            style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.45)', textDecoration: 'underline' }}>
+            style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.80)', textDecoration: 'underline' }}>
             Already know what you need? Skip to the DIY Bundle →
           </a>
         </div>
