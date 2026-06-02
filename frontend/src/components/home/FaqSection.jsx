@@ -31,7 +31,7 @@ export default function FaqSection() {
               </button>
               {open === i && (
                 <div style={{ paddingBottom: '1.25rem' }}>
-                  <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.9rem', color: 'rgba(45,55,72,0.75)', lineHeight: 1.8, margin: 0 }}>{faq.a}</p>
+                  <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.9rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.8, margin: 0 }}>{faq.a}</p>
                 </div>
               )}
             </div>

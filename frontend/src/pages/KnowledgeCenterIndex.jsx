@@ -73,7 +73,7 @@ function BriefCard({ brief, index }) {
         <h2 style={{ ...serif, fontWeight: 700, fontSize: '1.1rem', color: '#1C2B3A', lineHeight: 1.3, letterSpacing: '-0.01em', marginBottom: '0.625rem' }}>
           {brief.title}
         </h2>
-        <p style={{ ...sans, fontSize: '0.9rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.75, marginBottom: '0.75rem' }}>{brief.teaser}</p>
+        <p style={{ ...sans, fontSize: '0.9rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.75, marginBottom: '0.75rem' }}>{brief.teaser}</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           {isPublished && (
             <span style={{ ...mono, fontSize: 8, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C8A96E', background: 'rgba(139,115,85,0.1)', border: '1px solid rgba(139,115,85,0.2)', padding: '0.2rem 0.5rem' }}>
@@ -166,7 +166,7 @@ export default function KnowledgeCenterIndex() {
           <div style={{ marginBottom: '2rem' }}>
             <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>LP-BRF-07 through LP-BRF-11</p>
             <h2 style={{ ...serif, fontWeight: 700, fontSize: '1.5rem', color: '#1C2B3A', letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>The 90-Day Compliance Series</h2>
-            <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.6)', maxWidth: 560, lineHeight: 1.75 }}>
+            <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.75)', maxWidth: 560, lineHeight: 1.75 }}>
               Five briefs that follow the operational lifecycle of a new motor carrier from Day 1 authority activation through the 18-month New Entrant review period.
             </p>
           </div>

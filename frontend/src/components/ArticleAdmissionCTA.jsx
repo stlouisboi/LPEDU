@@ -52,7 +52,7 @@ export default function ArticleAdmissionCTA() {
             }}>
             BEGIN GROUND 0 — FREE →
           </Link>
-          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.5)', margin: 0 }}>
+          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.82)', margin: 0 }}>
             Free. No purchase required. Takes 20 minutes.
           </p>
         </div>

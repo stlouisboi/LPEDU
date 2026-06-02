@@ -44,7 +44,7 @@ export default function VinceVideoLetterSection({ videoUrl }) {
             </div>
             {/* Bottom strip */}
             <div style={{ background: 'rgba(28,43,58,0.95)', padding: '0.6rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: 'rgba(250,248,244,0.5)' }}>Director's Briefing · Recorded May 2026</span>
+              <span style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: 'rgba(250,248,244,0.82)' }}>Director's Briefing · Recorded May 2026</span>
               <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.72)' }}>LP-VID-001</span>
             </div>
           </div>

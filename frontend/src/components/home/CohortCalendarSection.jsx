@@ -22,7 +22,7 @@ export default function CohortCalendarSection() {
               <p style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>{m.date}</p>
               <div style={{ ...serif, fontWeight: 900, fontSize: '2.5rem', color: '#1C2B3A', lineHeight: 1, marginBottom: '0.75rem' }}>{m.num}</div>
               <p style={{ ...serif, fontWeight: 700, fontSize: '0.95rem', color: '#1C2B3A', marginBottom: '0.5rem' }}>{m.title}</p>
-              <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.85rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.65, marginBottom: '1rem' }}>{m.desc}</p>
+              <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.85rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.65, marginBottom: '1rem' }}>{m.desc}</p>
               <span style={{ ...mono, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: m.statusColor, border: `1px solid ${m.statusColor}`, padding: '0.25rem 0.5rem' }}>{m.status}</span>
             </div>
           ))}

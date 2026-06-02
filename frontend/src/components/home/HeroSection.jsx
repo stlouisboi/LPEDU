@@ -32,7 +32,7 @@ export default function HeroSection() {
             Install the compliance system FMCSA expects to find before they open your file.
           </h1>
 
-          <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '1.05rem', color: 'rgba(45,55,72,0.75)', lineHeight: 1.8, marginBottom: '2.25rem', maxWidth: 520 }}>
+          <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '1.05rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.8, marginBottom: '2.25rem', maxWidth: 520 }}>
             A 90-day, 12-carrier guided implementation program where safety director Vince Lawrence personally reviews your actual driver, equipment, hours-of-service, and drug-and-alcohol files at five critical checkpoints — securing your authority before an investigator exposes the gaps.
           </p>
 

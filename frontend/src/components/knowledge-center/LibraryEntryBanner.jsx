@@ -9,7 +9,7 @@ export default function LibraryEntryBanner() {
           <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8B7355', marginBottom: '0.4rem' }}>
             NEW TO THIS LIBRARY?
           </p>
-          <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.7)', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.7, margin: 0 }}>
             Start with the pillar guide — the full startup sequence from formation to first dispatch, before you read anything else.
           </p>
         </div>

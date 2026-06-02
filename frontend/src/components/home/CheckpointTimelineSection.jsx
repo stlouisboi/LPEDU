@@ -46,7 +46,7 @@ export default function CheckpointTimelineSection() {
               <div>
                 <p style={{ ...mono, fontSize: 9, color: '#C8A96E', marginBottom: 2 }}>{c.week}</p>
                 <p style={{ ...serif, fontWeight: 700, fontSize: '0.95rem', color: '#1C2B3A', marginBottom: 4 }}>{c.title}</p>
-                <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.85rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.6, margin: 0 }}>{c.desc}</p>
+                <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.85rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.6, margin: 0 }}>{c.desc}</p>
               </div>
             </div>
           ))}

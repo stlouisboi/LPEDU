@@ -63,12 +63,12 @@ export default function AboutPage() {
       <SiteHeader activePath="/about" />
 
       {/* ── System Status Bar ──────────────────────────────── */}
-      <div style={{ background: '#1C2B3A', borderBottom: '1px solid rgba(200,169,110,0.2)', padding: '0.55rem 1.5rem', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: '2.5rem', overflowX: 'auto', scrollbarWidth: 'none' }}>
+      <div style={{ background: '#1C2B3A', borderBottom: '1px solid rgba(200,169,110,0.2)', padding: '0.55rem 1.5rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '0.75rem 2rem' }}>
           {STATUS_ITEMS.map(([key, val]) => (
-            <div key={key} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexShrink: 0 }}>
-              <span style={{ ...mono, fontSize: 9, color: 'rgba(250,248,244,0.78)', letterSpacing: '0.14em' }}>{key}:</span>
-              <span style={{ ...mono, fontSize: 9, color: '#C8A96E', letterSpacing: '0.14em', fontWeight: 700 }}>{val}</span>
+            <div key={key} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <span style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.72)', letterSpacing: '0.14em' }}>{key}:</span>
+              <span style={{ ...mono, fontSize: 11, color: '#C8A96E', letterSpacing: '0.14em', fontWeight: 700 }}>{val}</span>
             </div>
           ))}
         </div>
@@ -95,10 +95,10 @@ export default function AboutPage() {
             <p style={{ ...sans, fontSize: '1.1rem', color: 'rgba(45,55,72,0.8)', lineHeight: 1.85, marginBottom: '1.25rem', maxWidth: 520 }}>
               LaunchPath is an institutional operating standard for new motor carriers, not a course or coaching program.
             </p>
-            <p style={{ ...sans, fontSize: '1rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.8, marginBottom: '1.25rem', maxWidth: 520 }}>
+            <p style={{ ...sans, fontSize: '1rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.8, marginBottom: '1.25rem', maxWidth: 520 }}>
               That means a defined set of documents, checkpoints, and behaviors every accepted carrier installs — not videos to watch when there is time.
             </p>
-            <p style={{ ...sans, fontSize: '1rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.8, maxWidth: 520 }}>
+            <p style={{ ...sans, fontSize: '1rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.8, maxWidth: 520 }}>
               LaunchPath exists to get new motor carriers through the New Entrant period with authority, insurance, and cash flow intact. It requires the right paperwork and programs in place before you put a truck on the road.
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function AboutPage() {
               {CREDENTIALS.map(({ val, label }) => (
                 <div key={val} style={{ background: '#F5F2EC', padding: '0.875rem 1rem' }}>
                   <div style={{ ...serif, fontWeight: 700, fontSize: '0.95rem', color: '#1C2B3A', marginBottom: '0.2rem' }}>{val}</div>
-                  <div style={{ ...sans, fontSize: '0.75rem', color: 'rgba(45,55,72,0.55)', lineHeight: 1.4 }}>{label}</div>
+                  <div style={{ ...sans, fontSize: '0.75rem', color: 'rgba(28,43,58,0.72)', lineHeight: 1.4 }}>{label}</div>
                 </div>
               ))}
             </div>
@@ -173,14 +173,14 @@ export default function AboutPage() {
             <div style={{ background: '#001B36', padding: '2rem 2rem', borderTop: '2px solid #C8A96E' }}>
               <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Founded 2022</p>
               <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.3rem', color: '#FAF8F4', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>GigLine</h3>
-              <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.75 }}>
+              <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(250,248,244,0.82)', lineHeight: 1.75 }}>
                 Employment and transition platform for U.S. veterans and service members. Built to address the structural gap between military occupational experience and civilian hiring systems. GigLine focuses on documented skill translation, not resume inflation.
               </p>
             </div>
             <div style={{ background: '#001B36', padding: '2rem 2rem', borderTop: '2px solid rgba(200,169,110,0.4)' }}>
               <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Current</p>
               <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.3rem', color: '#FAF8F4', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>LaunchPath Transportation EDU</h3>
-              <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.75 }}>
+              <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(250,248,244,0.82)', lineHeight: 1.75 }}>
                 Institutional compliance operating standard for new motor carriers. Kernersville, North Carolina. Building on 25 years of documented system installation across manufacturing, safety, and workforce environments.
               </p>
             </div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
           <div style={{ maxWidth: 600, marginBottom: '3.5rem' }}>
             <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>49 CFR — Operational Doctrine</p>
             <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#1C2B3A', letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>Operational Doctrine</h2>
-            <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.55)' }}>Version 4.2 · Authority: Station Custodian</p>
+            <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.72)' }}>Version 4.2 · Authority: Station Custodian</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1px', background: 'rgba(28,43,58,0.1)' }} className="lp-two-col">
@@ -213,7 +213,7 @@ export default function AboutPage() {
                   </span>
                 </div>
                 <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.05rem', color: '#1C2B3A', marginBottom: '0.875rem', lineHeight: 1.3 }}>{d.title}</h3>
-                <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.8 }}>{d.body}</p>
+                <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.8 }}>{d.body}</p>
               </div>
             ))}
           </div>
@@ -227,7 +227,7 @@ export default function AboutPage() {
           <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#1C2B3A', letterSpacing: '-0.02em', marginBottom: '1rem' }}>
             What LaunchPath Does Not Provide
           </h2>
-          <p style={{ ...sans, fontSize: '1rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+          <p style={{ ...sans, fontSize: '1rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
             Knowing what we don't do is as important as knowing what we do. LaunchPath is a compliance education and implementation system. We build infrastructure. We do not operate your business.
           </p>
 
@@ -238,7 +238,7 @@ export default function AboutPage() {
                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
                 <ChevronRight size={14} color="rgba(28,43,58,0.3)" style={{ flexShrink: 0, marginTop: 3 }} />
-                <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.7)', lineHeight: 1.7 }}>{item}</p>
+                <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.7 }}>{item}</p>
               </div>
             ))}
           </div>

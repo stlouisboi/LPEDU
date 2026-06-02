@@ -48,7 +48,7 @@ export default function SiteFooter() {
           <Link to="/ground-0-briefing" data-testid="footer-admission-cta" style={{ ...mono, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1C2B3A', background: '#C8A96E', padding: '0.65rem 1.25rem', textDecoration: 'none', display: 'inline-block', marginBottom: '1.5rem', fontWeight: 700 }}>
             REQUEST ADMISSION →
           </Link>
-          <p style={{ ...mono, fontSize: 10, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.50)', lineHeight: 1.8 }}>
+          <p style={{ ...mono, fontSize: 10, letterSpacing: '0.08em', color: 'rgba(250,248,244,0.82)', lineHeight: 1.8 }}>
             © 2026 LaunchPath Standard.<br />
             Verified against 49 CFR.<br />
             All rights reserved.

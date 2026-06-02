@@ -160,7 +160,7 @@ export default function VerifyPage() {
                   <p style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#059669', margin: 0 }}>
                     ON RECORD — VERIFIED
                   </p>
-                  <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(250,248,244,0.55)', margin: '0.2rem 0 0' }}>
+                  <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(250,248,244,0.82)', margin: '0.2rem 0 0' }}>
                     This registry ID is valid and on file with LaunchPath.
                   </p>
                 </div>
@@ -190,7 +190,7 @@ export default function VerifyPage() {
                           <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: GOLD, background: 'rgba(200,169,110,0.1)', padding: '2px 6px' }}>{item.code}</span>
                           <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: CREAM }}>{item.label}</span>
                         </div>
-                        <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.7, margin: 0 }}>{item.desc}</p>
+                        <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(250,248,244,0.82)', lineHeight: 1.7, margin: 0 }}>{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -198,7 +198,7 @@ export default function VerifyPage() {
                   {/* Broker note */}
                   <div style={{ marginTop: '2rem', padding: '1rem 1.25rem', background: 'rgba(200,169,110,0.04)', border: '1px solid rgba(200,169,110,0.1)' }}>
                     <p style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.78)', marginBottom: '0.5rem' }}>Note for Brokers</p>
-                    <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(250,248,244,0.50)', lineHeight: 1.7, margin: 0 }}>
+                    <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(250,248,244,0.82)', lineHeight: 1.7, margin: 0 }}>
                       This credential confirms the carrier completed a structured 90-day compliance program with verified file reviews. It does not replace standard carrier onboarding due diligence or insurance verification.
                     </p>
                   </div>
@@ -215,7 +215,7 @@ export default function VerifyPage() {
                 <p style={{ fontFamily: MONO, fontSize: 12, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: CREAM, margin: '0 0 0.5rem' }}>
                   Not on Record
                 </p>
-                <p style={{ fontFamily: SANS, fontSize: '0.925rem', color: 'rgba(250,248,244,0.50)', lineHeight: 1.75, margin: 0, maxWidth: 520 }}>
+                <p style={{ fontFamily: SANS, fontSize: '0.925rem', color: 'rgba(250,248,244,0.82)', lineHeight: 1.75, margin: 0, maxWidth: 520 }}>
                   No credential matching <span style={{ fontFamily: MONO, color: GOLD }}>{normalize(input)}</span> is in the LaunchPath Verified Registry. Verify the ID directly with the carrier. If you believe this is an error, contact{' '}
                   <a href="mailto:vince@launchpathedu.com" style={{ color: GOLD, textDecoration: 'none' }}>vince@launchpathedu.com</a>.
                 </p>
@@ -248,7 +248,7 @@ export default function VerifyPage() {
             ].map((item) => (
               <div key={item.label}>
                 <p style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.75rem' }}>{item.label}</p>
-                <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(250,248,244,0.50)', lineHeight: 1.75, margin: 0 }}>{item.body}</p>
+                <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(250,248,244,0.82)', lineHeight: 1.75, margin: 0 }}>{item.body}</p>
               </div>
             ))}
           </div>

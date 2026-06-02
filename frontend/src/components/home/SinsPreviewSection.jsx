@@ -22,7 +22,7 @@ export default function SinsPreviewSection() {
             <div key={i} style={{ background: 'rgba(250,248,244,0.03)', padding: '1.75rem' }}>
               <p style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>Sin {s.num}</p>
               <p style={{ ...serif, fontWeight: 700, fontSize: '1rem', color: '#FAF8F4', marginBottom: '0.75rem' }}>{s.name}</p>
-              <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.875rem', color: 'rgba(250,248,244,0.5)', lineHeight: 1.7, margin: 0 }}>{s.desc}</p>
+              <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.875rem', color: 'rgba(250,248,244,0.82)', lineHeight: 1.7, margin: 0 }}>{s.desc}</p>
             </div>
           ))}
         </div>

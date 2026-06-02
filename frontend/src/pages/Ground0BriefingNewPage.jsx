@@ -139,7 +139,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
 
             {scanState === 'idle' && (
               <div>
-                <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.55)', marginBottom: '1.25rem', lineHeight: 1.7 }}>
+                <div style={{ ...mono, fontSize: 11, color: 'rgba(250,248,244,0.82)', marginBottom: '1.25rem', lineHeight: 1.7 }}>
                   Enter your USDOT number to initiate a new entrant compliance scan.<br />
                   <span style={{ color: 'rgba(250,248,244,0.72)', fontSize: 10 }}>This scan shows you what an investigator's review process looks like — not what they find in your files.</span>
                 </div>
@@ -191,7 +191,7 @@ function TerminalSection({ onScanComplete, prefillDot, setPrefillDot }) {
         {scanState === 'complete' && (
           <div style={{ marginTop: '1.5rem', padding: '1.25rem 1.5rem', background: 'rgba(139,115,85,0.08)', border: '1px solid rgba(139,115,85,0.3)', borderLeft: '3px solid #8B7355' }}>
             <p style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: 4 }}>Scan complete — 4 gaps identified</p>
-            <p style={{ ...sans, fontSize: '0.9rem', color: 'rgba(250,248,244,0.6)', lineHeight: 1.7, margin: 0 }}>
+            <p style={{ ...sans, fontSize: '0.9rem', color: 'rgba(250,248,244,0.80)', lineHeight: 1.7, margin: 0 }}>
               These are the compliance domains every new entrant authority is reviewed against. The Ground Zero Briefing maps your specific exposure — and determines whether LP-COH-002 is the right fit. Complete the admission request below.
             </p>
           </div>
@@ -238,8 +238,8 @@ function AdmissionForm({ dotPrefill, formVisible }) {
     transition: 'border-color 0.15s',
   };
   const labelSt = {
-    display: 'block', fontFamily: 'JetBrains Mono, monospace', fontSize: 9,
-    letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280', marginBottom: '0.4rem',
+    display: 'block', fontFamily: 'JetBrains Mono, monospace', fontSize: 11,
+    letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.65)', marginBottom: '0.4rem',
   };
 
   if (state === 'success') {
@@ -250,7 +250,7 @@ function AdmissionForm({ dotPrefill, formVisible }) {
         </div>
         <p style={{ ...mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.75rem' }}>Request Received</p>
         <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.5rem', color: '#1C2B3A', marginBottom: '1rem' }}>Your admission request has been recorded.</h3>
-        <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.7)', lineHeight: 1.8, maxWidth: 480, margin: '0 auto 2rem' }}>
+        <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.8, maxWidth: 480, margin: '0 auto 2rem' }}>
           Vince reviews every request personally. You will receive a response within 24–48 hours. If LP-COH-002 is a fit, you will be directed to schedule your Ground Zero Briefing.
         </p>
         <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', color: '#6B7280' }}>
@@ -263,11 +263,11 @@ function AdmissionForm({ dotPrefill, formVisible }) {
   return (
     <div style={{ opacity: formVisible ? 1 : 0.35, transition: 'opacity 0.6s ease', pointerEvents: formVisible ? 'auto' : 'none' }}>
       <div style={{ borderBottom: '1px solid rgba(28,43,58,0.1)', paddingBottom: '2rem', marginBottom: '2.5rem' }}>
-        <p style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>ADMISSION REQUEST FORM · REF: LP-ADM-001</p>
+        <p style={{ ...mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.5rem' }}>ADMISSION REQUEST FORM · REF: LP-ADM-001</p>
         <h2 style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.5rem,3vw,2rem)', color: '#1C2B3A', marginBottom: '0.75rem' }}>
           Request Your Ground Zero Briefing
         </h2>
-        <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.75, maxWidth: 540 }}>
+        <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.72)', lineHeight: 1.75, maxWidth: 540 }}>
           Vince reviews every request personally. This is not a purchase. Admission details, cohort dates, and investment are discussed during the briefing — after your compliance exposure is reviewed.
         </p>
       </div>
@@ -275,7 +275,7 @@ function AdmissionForm({ dotPrefill, formVisible }) {
       {/* Trust strip */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
         {['SC REVIEWED', '24–48H RESPONSE', '12 SEATS / COHORT', 'NO OBLIGATION'].map((t, i) => (
-          <span key={i} style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B7280', border: '1px solid rgba(28,43,58,0.15)', padding: '0.35rem 0.7rem' }}>{t}</span>
+          <span key={i} style={{ ...mono, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.65)', border: '1px solid rgba(28,43,58,0.2)', padding: '0.35rem 0.7rem' }}>{t}</span>
         ))}
       </div>
 
@@ -351,7 +351,7 @@ function AdmissionForm({ dotPrefill, formVisible }) {
             style={{ ...mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', background: isValid ? '#1C2B3A' : 'rgba(28,43,58,0.3)', color: '#FAF8F4', border: 'none', padding: '1rem 2rem', cursor: isValid && state !== 'loading' ? 'pointer' : 'default', fontWeight: 700, borderRadius: 0 }}>
             {state === 'loading' ? 'Submitting...' : 'Submit Admission Request →'}
           </button>
-          <p style={{ ...mono, fontSize: 9, color: '#6B7280', letterSpacing: '0.08em' }}>No payment required. Reviewed within 24–48h.</p>
+          <p style={{ ...mono, fontSize: 11, color: 'rgba(28,43,58,0.60)', letterSpacing: '0.08em' }}>No payment required. Reviewed within 24–48h.</p>
         </div>
       </form>
 
@@ -390,18 +390,18 @@ export default function Ground0BriefingNewPage() {
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, border: '1px solid rgba(28,43,58,0.15)', padding: '0.4rem 0.9rem', marginBottom: '1.75rem' }}>
               <Shield size={10} color="#C8A96E" />
-              <span style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280' }}>LP-COH-002 · Admission Gate</span>
+              <span style={{ ...mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.60)' }}>LP-COH-002 · Admission Gate</span>
             </div>
 
             <h1 style={{ ...serif, fontWeight: 900, fontSize: 'clamp(2.2rem,5vw,3.6rem)', color: '#1C2B3A', lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '1.5rem' }}>
               The Ground Zero Briefing.
             </h1>
 
-            <p style={{ ...sans, fontSize: '1.05rem', color: 'rgba(45,55,72,0.72)', lineHeight: 1.85, marginBottom: '1.75rem', maxWidth: 520 }}>
+            <p style={{ ...sans, fontSize: '1.05rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.85, marginBottom: '1.75rem', maxWidth: 520 }}>
               A 20-minute private review with Vince Lawrence. He will examine your USDOT compliance telemetry, identify your highest-risk exposure areas, and tell you directly whether LP-COH-002 is the right fit for your operation.
             </p>
 
-            <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.55)', lineHeight: 1.75, maxWidth: 500 }}>
+            <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.72)', lineHeight: 1.75, maxWidth: 500 }}>
               This is not a sales call. Investment details are disclosed during the briefing — after your compliance file has been reviewed. The briefing itself is free.
             </p>
 
@@ -427,7 +427,7 @@ export default function Ground0BriefingNewPage() {
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: '0.85rem' }}>
                 <ChevronRight size={13} color="#C8A96E" style={{ flexShrink: 0, marginTop: 3 }} />
-                <span style={{ ...sans, fontSize: '0.875rem', color: 'rgba(45,55,72,0.75)', lineHeight: 1.65 }}>{item}</span>
+                <span style={{ ...sans, fontSize: '0.875rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.65 }}>{item}</span>
               </div>
             ))}
             <div style={{ marginTop: '1.5rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(28,43,58,0.1)' }}>
@@ -480,7 +480,7 @@ export default function Ground0BriefingNewPage() {
                 <p style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#B45309', margin: '0 0 3px' }}>
                   COHORT NEARLY FULL — {seats.remaining} SEAT{seats.remaining !== 1 ? 'S' : ''} REMAIN
                 </p>
-                <p style={{ ...sans, fontSize: '0.8rem', color: 'rgba(45,55,72,0.65)', margin: 0 }}>
+                <p style={{ ...sans, fontSize: '0.8rem', color: 'rgba(28,43,58,0.75)', margin: 0 }}>
                   LP-COH-002 is filling. Briefing requests are reviewed in the order received. Submit yours before the cohort closes.
                 </p>
               </div>
@@ -496,7 +496,7 @@ export default function Ground0BriefingNewPage() {
         <p style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B7280', marginBottom: '0.5rem' }}>
           Not ready for admission?
         </p>
-        <p style={{ ...sans, fontSize: '0.9rem', color: 'rgba(45,55,72,0.6)', marginBottom: '1rem' }}>
+        <p style={{ ...sans, fontSize: '0.9rem', color: 'rgba(28,43,58,0.65)', marginBottom: '1rem' }}>
           Run the REACH Diagnostic first — 15 questions that score your compliance exposure across five domains.
         </p>
         <Link to="/reach-diagnostic" style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1C2B3A', border: '1px solid rgba(28,43,58,0.25)', padding: '0.6rem 1.25rem', textDecoration: 'none', display: 'inline-block', borderRadius: 0 }}>

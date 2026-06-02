@@ -13,7 +13,7 @@ export default function ChecklistDownloadBanner() {
           <h2 style={{ ...serif, fontWeight: 700, fontSize: '1.35rem', color: '#1C2B3A', letterSpacing: '-0.015em', marginBottom: '0.5rem' }}>
             All 6 compliance checklists in one printable PDF
           </h2>
-          <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(45,55,72,0.65)', lineHeight: 1.65 }}>
+          <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(28,43,58,0.75)', lineHeight: 1.65 }}>
             New Entrant — HOS — Drug & Alcohol — Maintenance — Insurance — Authority Registrations
           </p>
         </div>
