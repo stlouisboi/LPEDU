@@ -140,9 +140,19 @@ export default function HowItWorksSection() {
               ))}
             </div>
           </div>
-          <p style={{ ...mono, fontSize: 8, letterSpacing: '0.10em', color: 'rgba(255,255,255,0.40)', marginTop: '1rem', textTransform: 'uppercase' }}>
-            Nodes 1–2 are open access. Nodes 3–5 are earned through the program.
-          </p>
+          <div style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+            <p style={{ ...mono, fontSize: 8, letterSpacing: '0.10em', color: 'rgba(255,255,255,0.40)', textTransform: 'uppercase', margin: 0 }}>
+              Nodes 1–2 are open access. Nodes 3–5 are earned through the program.
+            </p>
+            <p data-testid="roadmap-scroll-hint" style={{ ...mono, fontSize: 8, letterSpacing: '0.12em', color: 'rgba(197,160,89,0.50)', textTransform: 'uppercase', margin: 0, display: 'none' }} className="roadmap-scroll-hint">
+              ← scroll to see full sequence →
+            </p>
+          </div>
+          <style>{`
+            @media (max-width: 767px) {
+              .roadmap-scroll-hint { display: block !important; }
+            }
+          `}</style>
         </div>
 
         {/* Bottom CTA */}
