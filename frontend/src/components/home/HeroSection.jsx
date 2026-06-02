@@ -23,7 +23,7 @@ export default function HeroSection() {
           </div>
 
           {/* Sub-headline — Addition 1 */}
-          <p style={{ ...mono, fontSize: '0.8rem', letterSpacing: '0.01em', color: 'rgba(28,43,58,0.60)', lineHeight: 1.65, marginBottom: '1.25rem', maxWidth: 520, fontWeight: 400 }}>
+          <p style={{ ...mono, fontSize: '0.925rem', letterSpacing: '0.01em', color: 'rgba(28,43,58,0.60)', lineHeight: 1.65, marginBottom: '1.25rem', maxWidth: 520, fontWeight: 400 }}>
             Twelve weeks to install the compliance system FMCSA will inspect — a clean audit preserves the authority; an empty file ends it.
           </p>
 
@@ -176,7 +176,7 @@ export default function HeroSection() {
           </div>
 
           {/* Addition 2 — Credential explainer */}
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.50)', lineHeight: 1.6, margin: '0.625rem 0 0', paddingLeft: 2 }}>
+          <p style={{ ...mono, fontSize: 11, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.50)', lineHeight: 1.6, margin: '0.625rem 0 0', paddingLeft: 2 }}>
             Issued on a clean Week&nbsp;11 Integrity Audit — driver files, drug program, HOS, maintenance records, and authority documentation.
           </p>
 
@@ -198,8 +198,8 @@ export default function HeroSection() {
               { label: 'Outcome',   value: 'Verified Registry ID on clean Integrity Audit.' },
             ].map((col) => (
               <div key={col.label} style={{ background: '#1C2B3A', padding: '0.75rem 1rem' }}>
-                <div style={{ ...mono, fontSize: 7, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.65)', marginBottom: 4 }}>{col.label}</div>
-                <div style={{ ...mono, fontSize: 8, letterSpacing: '0.04em', color: 'rgba(250,248,244,0.82)', lineHeight: 1.55, fontWeight: 600 }}>{col.value}</div>
+                <div style={{ ...mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.65)', marginBottom: 4 }}>{col.label}</div>
+                <div style={{ ...mono, fontSize: 10, letterSpacing: '0.04em', color: 'rgba(250,248,244,0.85)', lineHeight: 1.55, fontWeight: 600 }}>{col.value}</div>
               </div>
             ))}
           </div>

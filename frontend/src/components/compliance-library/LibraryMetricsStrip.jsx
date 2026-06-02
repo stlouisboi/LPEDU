@@ -21,7 +21,7 @@ export default function LibraryMetricsStrip() {
         {STATS.map((s, i) => (
           <div key={i} style={{ padding: '2rem 1.5rem', borderRight: `1px solid ${BORDER}`, textAlign: 'center' }}>
             <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '1.75rem', color: NAVY, lineHeight: 1, marginBottom: '0.35rem' }}>{s.val}</div>
-            <div style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.4)' }}>{s.label}</div>
+            <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(28,43,58,0.4)' }}>{s.label}</div>
           </div>
         ))}
       </div>

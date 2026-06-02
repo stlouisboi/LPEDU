@@ -29,7 +29,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
         {/* Header */}
-        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.625rem', fontWeight: 700 }}>
+        <p style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.625rem', fontWeight: 700 }}>
           JUST NEED ONE AREA FIXED?
         </p>
         <p style={{ fontFamily: SANS, fontSize: '0.95rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.75, maxWidth: 680, marginBottom: '1.5rem' }}>
@@ -38,10 +38,10 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
 
         {/* Upsell note */}
         <div style={{ marginBottom: '2.5rem', padding: '0.875rem 1.25rem', background: CARD, border: `1px solid ${BORDER}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
-          <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.55)', margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.55)', margin: 0, lineHeight: 1.5 }}>
             Buying more than one domain? The Document System Bundle includes all six compliance packets plus the Unified Folder Structure Guide — $176 below individual acquisition cost.
           </p>
-          <a href="#bundle" data-testid="domain-bundle-crosssell" style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: GOLD, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+          <a href="#bundle" data-testid="domain-bundle-crosssell" style={{ fontFamily: MONO, fontWeight: 700, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: GOLD, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
             INSTALL THE BUNDLE →
           </a>
         </div>
@@ -64,23 +64,23 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
                   </div>
                 )}
                 <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{d.code}</p>
+                <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{d.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1.05rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{d.title}</h3>
-                <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.625rem', flexGrow: 1 }}>{d.desc}</p>
-                <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.08em', color: 'rgba(28,43,58,0.4)', marginBottom: '0.875rem' }}>Best for: {d.bestFor}</p>
+                <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.625rem', flexGrow: 1 }}>{d.desc}</p>
+                <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.06em', color: 'rgba(28,43,58,0.4)', marginBottom: '0.875rem' }}>Best for: {d.bestFor}</p>
                 <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '1.75rem', color: NAVY, marginBottom: '1rem' }}>{d.price}</div>
                 <button
                   data-testid={`buy-btn-${d.sku.toLowerCase()}`}
                   onClick={() => onBuy(d.sku)}
                   disabled={isLoading}
-                  style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', background: NAVY, color: '#FAF8F4', border: 'none', padding: '0.75rem 1rem', cursor: isLoading ? 'wait' : 'pointer', display: 'block', width: '100%', textAlign: 'center', borderRadius: 0, marginBottom: '0.5rem', opacity: isLoading ? 0.6 : 1 }}>
+                  style={{ fontFamily: MONO, fontWeight: 700, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', background: NAVY, color: '#FAF8F4', border: 'none', padding: '0.875rem 1rem', cursor: isLoading ? 'wait' : 'pointer', display: 'block', width: '100%', textAlign: 'center', borderRadius: 0, marginBottom: '0.5rem', opacity: isLoading ? 0.6 : 1 }}>
                   {isLoading ? 'PROCESSING...' : `ADD TO SYSTEM — ${d.price} →`}
                 </button>
-                {errors?.[d.sku] && <p style={{ fontFamily: MONO, fontSize: 8, color: '#ef4444', marginBottom: '0.4rem' }}>{errors[d.sku]}</p>}
+                {errors?.[d.sku] && <p style={{ fontFamily: MONO, fontSize: 11, color: '#ef4444', marginBottom: '0.4rem' }}>{errors[d.sku]}</p>}
                 <Link
                   href={d.href}
                   data-testid={`view-domain-${d.sku.toLowerCase()}`}
-                  style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', background: 'transparent', color: NAVY, border: `1px solid ${BORDER}`, padding: '0.75rem 1rem', textDecoration: 'none', display: 'block', textAlign: 'center', borderRadius: 0 }}>
+                  style={{ fontFamily: MONO, fontWeight: 700, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', background: 'transparent', color: NAVY, border: `1px solid ${BORDER}`, padding: '0.875rem 1rem', textDecoration: 'none', display: 'block', textAlign: 'center', borderRadius: 0 }}>
                   VIEW DOMAIN →
                 </Link>
                 </div>
@@ -101,14 +101,14 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
                   </div>
                 )}
                 <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <p style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{s.code}</p>
+                <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, marginBottom: '0.5rem' }}>{s.code}</p>
                 <h3 style={{ fontFamily: SERIF, fontWeight: 700, fontSize: '1rem', color: NAVY, lineHeight: 1.3, marginBottom: '0.5rem' }}>{s.title}</h3>
-                <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.875rem', flexGrow: 1 }}>{s.desc}</p>
+                <p style={{ fontFamily: SANS, fontSize: '0.9rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.7, marginBottom: '0.875rem', flexGrow: 1 }}>{s.desc}</p>
                 <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: '1.5rem', color: NAVY, marginBottom: '1rem' }}>{s.price}</div>
                 <Link
                   href={s.href}
                   data-testid={`view-page-${s.sku.toLowerCase()}`}
-                  style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', background: 'transparent', color: NAVY, border: `1px solid ${BORDER}`, padding: '0.75rem 1rem', textDecoration: 'none', display: 'block', textAlign: 'center', borderRadius: 0 }}>
+                  style={{ fontFamily: MONO, fontWeight: 700, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', background: 'transparent', color: NAVY, border: `1px solid ${BORDER}`, padding: '0.875rem 1rem', textDecoration: 'none', display: 'block', textAlign: 'center', borderRadius: 0 }}>
                   VIEW PAGE →
                 </Link>
                 </div>
@@ -122,7 +122,7 @@ export default function DomainComponentGrid({ onBuy, states, errors }) {
           <p style={{ fontFamily: SANS, fontSize: '0.875rem', color: 'rgba(28,43,58,0.82)', lineHeight: 1.65, maxWidth: 560, margin: 0 }}>
             The Document System Bundle includes all five compliance packets plus the folder architecture, implementation calendar, and master checklist — at $176 below individual acquisition cost.
           </p>
-          <a href="#bundle" style={{ fontFamily: MONO, fontWeight: 700, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', background: NAVY, color: '#FAF8F4', padding: '0.875rem 1.5rem', textDecoration: 'none', borderRadius: 0, whiteSpace: 'nowrap', flexShrink: 0 }}>
+          <a href="#bundle" style={{ fontFamily: MONO, fontWeight: 700, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', background: NAVY, color: '#FAF8F4', padding: '0.875rem 1.5rem', textDecoration: 'none', borderRadius: 0, whiteSpace: 'nowrap', flexShrink: 0 }}>
             BUILD THE FULL SYSTEM — $499 →
           </a>
         </div>

@@ -41,9 +41,9 @@ export default function SiteHeader({ activePath = '/' }) {
       <style suppressHydrationWarning>{`
         .lp-nav-link {
           font-family: ${MONO};
-          font-size: 9.5px;
+          font-size: 11px;
           font-weight: 700;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: rgba(28,43,58,0.52);
           text-decoration: none;
@@ -56,9 +56,9 @@ export default function SiteHeader({ activePath = '/' }) {
         .lp-nav-link.active { color: ${NAVY}; border-color: ${NAVY}; }
         .lp-tools-trigger {
           font-family: ${MONO};
-          font-size: 9.5px;
+          font-size: 11px;
           font-weight: 700;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: rgba(28,43,58,0.52);
           background: none;
@@ -89,9 +89,9 @@ export default function SiteHeader({ activePath = '/' }) {
         .lp-dropdown-item {
           display: block;
           font-family: ${MONO};
-          font-size: 9px;
+          font-size: 10px;
           font-weight: 700;
-          letter-spacing: 0.14em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
           color: rgba(28,43,58,0.6);
           text-decoration: none;
@@ -101,9 +101,9 @@ export default function SiteHeader({ activePath = '/' }) {
         .lp-dropdown-item:hover { background: rgba(200,169,110,0.08); color: ${NAVY}; }
         .lp-btn-outline {
           font-family: ${MONO};
-          font-size: 9px;
+          font-size: 10px;
           font-weight: 700;
-          letter-spacing: 0.14em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
           color: ${NAVY};
           border: 1px solid rgba(28,43,58,0.3);
@@ -115,9 +115,9 @@ export default function SiteHeader({ activePath = '/' }) {
         .lp-btn-outline:hover { border-color: ${NAVY}; color: ${NAVY}; }
         .lp-btn-primary {
           font-family: ${MONO};
-          font-size: 9px;
+          font-size: 10px;
           font-weight: 700;
-          letter-spacing: 0.14em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
           background: ${NAVY};
           color: ${BG};

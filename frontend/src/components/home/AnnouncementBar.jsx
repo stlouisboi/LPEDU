@@ -10,7 +10,7 @@ export default function AnnouncementBar() {
       data-testid="announcement-bar"
       style={{ background: '#1C2B3A', height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FAF8F4', margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+      <p style={{ fontFamily: MONO, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FAF8F4', margin: 0, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
         <span
           data-testid="announcement-bar-dot"
           style={{ width: 8, height: 8, borderRadius: '50%', background: '#059669', display: 'inline-block', animation: 'lp-pulse 2s infinite' }}

@@ -6,9 +6,19 @@ Disallow: /admin/
 Disallow: /portal
 Disallow: /control-room
 Disallow: /product-preview
+Disallow: /mockups
+Disallow: /readiness
+Disallow: /reach-assessment
+Disallow: /auto-diagnostic
+
+# Post-conversion / funnel redirect pages
 Disallow: /admission/confirmed
 Disallow: /products/confirmed
 Disallow: /ground-0-complete
-Disallow: /mockups
+Disallow: /thank-you
+Disallow: /resources/ground0-nogo
+Disallow: /resources/ground0-wait
+Disallow: /resources/reach-nogo
+Disallow: /resources/reach-wait
 
 Sitemap: https://launchpathedu.com/sitemap.xml
