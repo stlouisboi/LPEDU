@@ -525,7 +525,12 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
-### Phase 137: Font Weight Boost + OG Image Audit (June 2026)
+### Phase 138: VRF Credential Card + /verify Registry Page (June 2026)
+- **VRFCredentialCard.jsx extracted** to `/src/components/shared/VRFCredentialCard.jsx` — accepts `carrierName`, `registryId`, `issuedAt`, `size` ("hero"|"full") props. `HeroSection.jsx` now uses `<VRFCredentialCard size="hero" />` with zero visual regression.
+- **`GET /api/public/verify?id=LP-VRF-XXXXXXXX`** added to `public.py` — queries `registry_ids` collection, excludes PII (user_id, email). Returns `{ found, registry_id, operator_name, issued_at }`.
+- **`/verify` page (LP-VRF-PUB-001)**: Dark navy institutional page. Classification band, Playfair H1, monospace search input + gold VERIFY button. Three states: idle → found (VRFCredentialCard full-size + 3 verification detail items + broker note) → notfound (AlertTriangle, gold-highlighted searched ID, contact email). "About This Registry" 3-column section always visible below fold. SSR-safe (dynamic import). Sitemap updated.
+
+
 - **Tired-Eyes Font Weight**: Boosted `fontWeight` across all small text (8-11px) in `AnnouncementBar.jsx` (700), `HeroSection.jsx` (badge 700, telemetry 600/700, metadata labels 700, scope strip labels 700, sub-headline 500→500, credential explainer 500), `LibraryMetricsStrip.jsx` (600), `DomainComponentGrid.jsx` (domain/supplemental code labels 700, "Best for" line 600). Also bumped opacity on credential explainer text (0.50→0.60) for better contrast.
 - **OG Image Audit**: Generated 3 new 1200×630 institutional OG images (`og-bundle.png`, `og-library.png`, `og-16-deadly-sins.png`) using PIL. Fixed all 11 product pages to use proper 1200×630 PNG OG images instead of square 640×640 WebP product mockups. Added `og:image:width=1200`, `og:image:height=630`, `twitter:image`, `og:type=product` uniformly. Fixed `starter-stack.jsx` from generic `og-launchpath.png` → `og-starter-stack.png`. All 6 new og:image URLs return HTTP 200.
 

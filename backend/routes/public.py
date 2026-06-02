@@ -486,6 +486,29 @@ async def root():
     return {"message": "Hello World"}
 
 
+@router.get("/public/verify")
+async def verify_carrier(id: str = ""):
+    """Public endpoint — brokers verify a carrier's LaunchPath credential by registry ID."""
+    if not id:
+        return {"found": False, "error": "No registry ID provided"}
+
+    registry_id = id.strip().upper()
+    doc = await db.registry_ids.find_one(
+        {"registry_id": registry_id},
+        {"_id": 0, "user_id": 0, "operator_email": 0},  # exclude PII
+    )
+    if not doc:
+        return {"found": False}
+
+    return {
+        "found": True,
+        "registry_id": doc.get("registry_id", ""),
+        "operator_name": doc.get("operator_name", ""),
+        "issued_at": doc.get("issued_at", ""),
+        "issued_trigger": doc.get("issued_trigger", "program_completion"),
+    }
+
+
 @router.post("/contact")
 async def submit_contact(form: ContactForm):
     parts = form.name.strip().split(" ", 1)
