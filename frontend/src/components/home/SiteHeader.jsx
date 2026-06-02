@@ -12,7 +12,7 @@ const NAV_PRIMARY = [
 
 const NAV_TOOLS = [
   { label: '16 Deadly Sins',    href: '/standards/16-deadly-sins' },
-  { label: 'Audit Window Calc', href: '/tools/audit-window-calculator' },
+  { label: 'Audit Window',      href: '/tools' },
   { label: 'Tools Hub',         href: '/tools' },
   { label: 'About Vince',       href: '/about' },
 ];

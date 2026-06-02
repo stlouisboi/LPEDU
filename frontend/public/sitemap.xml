@@ -1,59 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Core pages -->
-  <url><loc>https://launchpathedu.com/</loc><lastmod>2026-04-05</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://launchpathedu.com/standard</loc><lastmod>2026-04-04</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://launchpathedu.com/compliance-library</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <!-- ── CORE PAGES ──────────────────────────────────────────── -->
+  <url><loc>https://launchpathedu.com/</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://launchpathedu.com/compliance-library</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://launchpathedu.com/bundle</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://launchpathedu.com/admission</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://launchpathedu.com/reach-diagnostic</loc><lastmod>2026-04-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://launchpathedu.com/ground-0-briefing</loc><lastmod>2026-04-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 
-  <!-- Doctrinal pages -->
+  <!-- ── PROGRAM & STANDARD PAGES ────────────────────────────── -->
+  <url><loc>https://launchpathedu.com/launchpath-standard</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://launchpathedu.com/standard</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/program</loc><lastmod>2026-04-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/standards</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ── DOCTRINAL & ABOUT PAGES ──────────────────────────────── -->
   <url><loc>https://launchpathedu.com/doctrine</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/about</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://launchpathedu.com/founder</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://launchpathedu.com/standards/auto-method</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://launchpathedu.com/standards/16-deadly-sins</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://launchpathedu.com/ground-0-briefing</loc><lastmod>2026-04-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://launchpathedu.com/16-deadly-sins</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/auto-method</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- Supporting pages -->
-  <url><loc>https://launchpathedu.com/about</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/program</loc><lastmod>2026-04-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/bundle</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/standards/auto-method</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/standards/16-deadly-sins</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://launchpathedu.com/operating-standard</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://launchpathedu.com/compliance-gap-quiz</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://launchpathedu.com/conditional-rating</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://launchpathedu.com/tools</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- ── PRODUCT PAGES (canonical: /products/) ───────────────── -->
+  <url><loc>https://launchpathedu.com/products</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/products/bundle</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/products/library</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/products/new-entrant-packet</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/products/dq-file-builder</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://launchpathedu.com/products/drug-alcohol-packet</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/products/hos-packet</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/products/maintenance-packet</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/products/insurance-packet</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/products/starter-stack</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/products/safety-audit-prep</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://launchpathedu.com/products/new-carrier-document-system</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/products/16-deadly-sins</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ── TOOLS ─────────────────────────────────────────────────── -->
+  <url><loc>https://launchpathedu.com/tools</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://launchpathedu.com/tools/tco-calculator</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://launchpathedu.com/tools/load-analyzer</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://launchpathedu.com/contact</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://launchpathedu.com/coach-registry</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://launchpathedu.com/tools/motus-checklist</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
-  <!-- Resources -->
-  <url><loc>https://launchpathedu.com/resources/first-90-days-risk-map</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- ── SUPPORTING PAGES ─────────────────────────────────────── -->
+  <url><loc>https://launchpathedu.com/contact</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/partners</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://launchpathedu.com/case-studies</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/carrier-files</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://launchpathedu.com/compliance-gap-quiz</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/conditional-rating</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/document-system-bundle</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
-  <!-- Standards packets -->
-  <url><loc>https://launchpathedu.com/standards/new-entrant-packet</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/standards/drug-alcohol-packet</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/standards/dq-file-builder</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/standards/hos-packet</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/standards/maintenance-packet</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/standards/insurance-packet</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/standards/starter-stack</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://launchpathedu.com/standards/safety-audit-prep</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://launchpathedu.com/standards/new-carrier-document-system</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- ── RESOURCES ────────────────────────────────────────────── -->
+  <url><loc>https://launchpathedu.com/resources/first-90-days-risk-map</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
-  <!-- Products index -->
-  <url><loc>https://launchpathedu.com/products</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://launchpathedu.com/products/bundle</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://launchpathedu.com/products/library</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <!-- Knowledge Center index -->
+  <!-- ── KNOWLEDGE CENTER ─────────────────────────────────────── -->
   <url><loc>https://launchpathedu.com/knowledge-center</loc><lastmod>2026-04-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://launchpathedu.com/knowledge-center/all-checklists</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- LP-WEB-001: 7-Page SEO Cluster — Pillar first -->
+  <!-- SEO Cluster — Pillar + Spokes -->
   <url><loc>https://launchpathedu.com/knowledge-center/how-to-start-a-trucking-company</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://launchpathedu.com/knowledge-center/driver-qualification-file-requirements-fmcsa</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://launchpathedu.com/knowledge-center/new-trucking-authority-first-steps</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -93,6 +100,16 @@
   <url><loc>https://launchpathedu.com/knowledge-center/fmcsa-new-entrant-review</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://launchpathedu.com/knowledge-center/new-motor-carrier-financial-requirements</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- Legal -->
+  <!-- LP-BRF-07 through LP-BRF-12 -->
+  <url><loc>https://launchpathedu.com/knowledge-center/lp-brf-07</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/knowledge-center/lp-brf-08</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/knowledge-center/lp-brf-09</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/knowledge-center/lp-brf-10</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/knowledge-center/lp-brf-11</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://launchpathedu.com/knowledge-center/lp-brf-12</loc><lastmod>2026-04-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- ── LEGAL ─────────────────────────────────────────────────── -->
   <url><loc>https://launchpathedu.com/privacy-policy</loc><lastmod>2026-04-04</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://launchpathedu.com/terms-of-service</loc><lastmod>2026-04-04</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url></urlset>
+  <url><loc>https://launchpathedu.com/terms-of-service</loc><lastmod>2026-04-04</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+</urlset>
