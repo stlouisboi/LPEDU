@@ -75,6 +75,15 @@ export default function HowToStartTruckingPost() {
         </div>
       </div>
 
+      {/* Article hero image */}
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '2.5rem 1.5rem 0' }}>
+        <img
+          src="/images/kc-pillar-hero.png"
+          alt="How to Start a Trucking Company Without Getting Shut Down in Year One — LaunchPath Transportation EDU"
+          style={{ width: '100%', height: 'auto', display: 'block', border: '1px solid rgba(13,27,48,0.10)' }}
+        />
+      </div>
+
       {/* Body */}
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "4rem 1.5rem" }}>
 
