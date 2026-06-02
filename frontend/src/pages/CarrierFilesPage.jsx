@@ -14,6 +14,7 @@ const CASES = [
     index: "001",
     outcome: "SATISFACTORY",
     outcomeOk: true,
+    productLink: { label: "DQ File Builder Kit", href: "/products/dq-file-builder", note: "Covers every §391 gap documented in this file." },
     profile: {
       "Operation type":    "Owner-operator · dry van · 1 power unit",
       "Authority granted": "10 months before New Entrant Safety Audit",
@@ -43,6 +44,7 @@ const CASES = [
     index: "002",
     outcome: "SATISFACTORY",
     outcomeOk: true,
+    productLink: { label: "Drug & Alcohol Compliance Packet", href: "/products/drug-alcohol-packet", note: "Addresses every §382 gap documented in this file." },
     profile: {
       "Operation type":    "Small fleet · dry van · 3 power units · 4 drivers",
       "Authority granted": "6 months before New Entrant Safety Audit",
@@ -72,6 +74,11 @@ const CASES = [
     index: "003",
     outcome: "SATISFACTORY",
     outcomeOk: true,
+    productLinks: [
+      { label: "HOS & Dispatch Compliance Packet",     href: "/products/hos-packet" },
+      { label: "Vehicle Maintenance Compliance Packet", href: "/products/maintenance-packet" },
+    ],
+    productLinkNote: "The two packets covering the gaps documented in this file.",
     profile: {
       "Operation type":    "Owner-operator · flatbed · 1 power unit",
       "Authority granted": "5 months before New Entrant Safety Audit",
@@ -223,7 +230,7 @@ function CaseFile({ c, index }) {
 
         {/* Carrier Note */}
         {c.note ? (
-          <Section label="CARRIER NOTE" last>
+          <Section label="CARRIER NOTE" last={!c.productLink && !c.productLinks}>
             <blockquote style={{
               margin: 0,
               paddingLeft: '1.25rem',
@@ -238,9 +245,47 @@ function CaseFile({ c, index }) {
             </blockquote>
           </Section>
         ) : (
-          <Section label="CARRIER NOTE" last>
+          <Section label="CARRIER NOTE" last={!c.productLink && !c.productLinks}>
             <p style={{ fontFamily: MONO, fontSize: '0.75rem', color: MUTED, margin: 0, letterSpacing: '0.06em' }}>Section omitted — carrier declined to provide a statement.</p>
           </Section>
+        )}
+
+        {/* Domain packet link */}
+        {(c.productLink || c.productLinks) && (
+          <div style={{
+            padding: '1.25rem 0',
+            borderTop: '1px solid rgba(200,169,110,0.12)',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
+          }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
+              <span style={{ fontFamily: MONO, fontSize: 9, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(200,169,110,0.45)' }}>
+                {c.productLinks ? 'DOMAIN PACKETS' : 'DOMAIN PACKET'} —
+              </span>
+              <span style={{ fontFamily: SANS, fontSize: '0.85rem', color: MUTED }}>
+                {c.productLink ? c.productLink.note : c.productLinkNote}
+              </span>
+            </div>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              {c.productLink && (
+                <a href={c.productLink.href} style={{
+                  fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
+                  color: GOLD, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6,
+                  borderBottom: '1px solid rgba(200,169,110,0.3)', paddingBottom: 1,
+                }}>
+                  {c.productLink.label} →
+                </a>
+              )}
+              {c.productLinks && c.productLinks.map(pl => (
+                <a key={pl.href} href={pl.href} style={{
+                  fontFamily: MONO, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
+                  color: GOLD, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6,
+                  borderBottom: '1px solid rgba(200,169,110,0.3)', paddingBottom: 1,
+                }}>
+                  {pl.label} →
+                </a>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>
