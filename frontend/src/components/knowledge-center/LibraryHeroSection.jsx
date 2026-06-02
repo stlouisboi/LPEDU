@@ -73,15 +73,14 @@ export default function LibraryHeroSection() {
         </div>
 
         {/* Right */}
-        <div style={{ position: 'relative', overflow: 'hidden', height: 420, border: '1px solid rgba(250,248,244,0.12)' }}>
+        <div style={{ position: 'relative', overflow: 'hidden', height: 420, border: '1px solid rgba(250,248,244,0.12)', background: '#0c1623', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img
-            src="https://images.unsplash.com/photo-1698077671410-139c80ac4fb8?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=640"
-            alt="Freight carriers on highway — LaunchPath Operational Library"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+            src="/images/kc-pillar-hero.png"
+            alt="How to Start a Trucking Company Without Getting Shut Down in Year One — LaunchPath"
+            style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 40%, rgba(28,43,58,0.85) 100%)' }} />
           <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem', background: 'rgba(28,43,58,0.82)', border: '1px solid rgba(250,248,244,0.12)', padding: '0.5rem 0.75rem', backdropFilter: 'blur(4px)' }}>
-            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.78)', margin: 0 }}>
+            <p style={{ fontFamily: "'JetBrains Mono','Courier New',monospace", fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.82)', margin: 0, fontWeight: 600 }}>
               FMCSA NEW ENTRANT PROGRAM · 18-MONTH WINDOW
             </p>
           </div>
