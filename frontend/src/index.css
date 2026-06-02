@@ -801,10 +801,11 @@ body { background-color: #FAF8F4; }
   }
 }
 
-/* 10. Scope strip — single column on mobile */
+/* 12. KC hero stats — 2×2 on mobile */
 @media (max-width: 640px) {
-  .lp-scope-strip {
-    grid-template-columns: 1fr !important;
+  .lp-kc-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem 0 !important;
   }
 }
 

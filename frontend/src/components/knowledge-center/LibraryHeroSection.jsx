@@ -55,7 +55,7 @@ export default function LibraryHeroSection() {
           </p>
 
           {/* Stats */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 0, borderTop: '1px solid rgba(250,248,244,0.12)', paddingTop: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 0, borderTop: '1px solid rgba(250,248,244,0.12)', paddingTop: '2rem' }} className="lp-kc-stats-grid">
             {[
               { num: 19, label: 'Articles Published', isCount: true },
               { num: 8, label: 'Briefs Published', isCount: true },

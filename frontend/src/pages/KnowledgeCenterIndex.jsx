@@ -110,10 +110,10 @@ function TimelineCard({ brief, index }) {
         onMouseEnter={e => { if (isPublished) { e.currentTarget.style.background = '#F5F2EC'; e.currentTarget.style.borderColor = 'rgba(139,115,85,0.35)'; } }}
         onMouseLeave={e => { e.currentTarget.style.background = '#FAF8F4'; e.currentTarget.style.borderColor = 'rgba(28,43,58,0.1)'; }}
       >
-        <p style={{ ...mono, fontSize: 8, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.625rem' }}>{brief.phase}</p>
+        <p style={{ ...mono, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.625rem', fontWeight: 700 }}>{brief.phase}</p>
         <h2 style={{ ...serif, fontWeight: 700, fontSize: '1.05rem', color: '#1C2B3A', lineHeight: 1.3, marginBottom: '0.625rem' }}>{brief.title}</h2>
-        <p style={{ ...sans, fontSize: '0.875rem', color: 'rgba(45,55,72,0.6)', lineHeight: 1.75, marginBottom: '0.75rem' }}>{brief.teaser}</p>
-        <span style={{ ...mono, fontSize: 8, letterSpacing: '0.1em', background: 'rgba(139,115,85,0.08)', color: '#C8A96E', border: '1px solid rgba(139,115,85,0.2)', padding: '0.2rem 0.5rem' }}>{brief.readTime}</span>
+        <p style={{ ...sans, fontSize: '0.875rem', color: 'rgba(28,43,58,0.72)', lineHeight: 1.75, marginBottom: '0.75rem' }}>{brief.teaser}</p>
+        <span style={{ ...mono, fontSize: 10, letterSpacing: '0.1em', background: 'rgba(139,115,85,0.08)', color: '#C8A96E', border: '1px solid rgba(139,115,85,0.2)', padding: '0.2rem 0.5rem', fontWeight: 600 }}>{brief.readTime}</span>
       </div>
     </a>
   );
@@ -152,7 +152,7 @@ export default function KnowledgeCenterIndex() {
       {activeTab === "briefs" && (
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '2.5rem 1.5rem 5rem' }}>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 12 }}>
-            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6B7280' }}>8 BRIEFS PUBLISHED</p>
+            <p style={{ ...mono, fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6B7280', fontWeight: 600 }}>8 BRIEFS PUBLISHED</p>
           </div>
           {BRIEFS.map((brief, i) => (
             <BriefCard key={brief.slug} brief={brief} index={i} />
