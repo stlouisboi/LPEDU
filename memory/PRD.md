@@ -525,6 +525,14 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 139: Carrier Files — 3 Case Studies Published (June 2026)
+- **3 composite case studies** written in Calm Foreman voice and rendered as institutional dossier cards in `CarrierFilesPage.jsx`:
+  - **LP-CF-001** (Southeast, owner-operator, dry van): DQ file gaps — §391.51 incomplete employment verification + no annual MVR review. SATISFACTORY. 1 recordable. Carrier note: "I thought a folder was enough."
+  - **LP-CF-002** (Midwest, 3-truck fleet): Drug & alcohol program — had a written policy but no consortium enrollment, no pre-employment test records. SATISFACTORY. 0 violations. "Where they would have been": single §382.301/305 finding = automatic Unsatisfactory + authority revocation.
+  - **LP-CF-003** (Mid-Atlantic, flatbed OO): HOS + maintenance — no DVIR system, no PM records, inconsistent HOS logs. SATISFACTORY. 2 recordables (pre-enrollment historical gaps, CAPs accepted).
+- **Design**: Dark navy card with gold top border, SATISFACTORY badge, profile data grid, "WHAT WAS INSTALLED" with CFR citation chips, "WHERE THEY WOULD HAVE BEEN" consequence block, italic Playfair serif carrier notes.
+- **SEO**: Changed `noindex` → `index, follow`. Added canonical, og:image, og:type, twitter:card. Sitemap priority bumped 0.5 → 0.7.
+
 ### Phase 138: VRF Credential Card + /verify Registry Page (June 2026)
 - **VRFCredentialCard.jsx extracted** to `/src/components/shared/VRFCredentialCard.jsx` — accepts `carrierName`, `registryId`, `issuedAt`, `size` ("hero"|"full") props. `HeroSection.jsx` now uses `<VRFCredentialCard size="hero" />` with zero visual regression.
 - **`GET /api/public/verify?id=LP-VRF-XXXXXXXX`** added to `public.py` — queries `registry_ids` collection, excludes PII (user_id, email). Returns `{ found, registry_id, operator_name, issued_at }`.
