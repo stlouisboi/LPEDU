@@ -587,7 +587,7 @@ export default function BundleSalesPage() {
         <div style={{ maxWidth: 1040, margin: "0 auto" }}>
           <SectionRail label="WHAT'S INCLUDED" />
           <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,.7)", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 680 }}>
-            The Document System Bundle contains every compliance document a new motor carrier needs for the first 18 months of operation. Five domain-specific packets covering authority, insurance, driver qualification, drug & alcohol, hours of service, vehicle maintenance, and audit preparation — plus the folder architecture that organizes it all.
+            The Document System Bundle contains every compliance document a new motor carrier needs for the first 18 months of operation. Six domain-specific packets covering authority, driver qualification, insurance, drug & alcohol, hours of service, vehicle maintenance, and audit preparation — plus the folder architecture that organizes it all.
           </p>
 
           {/* 5 Packets grid */}
