@@ -320,7 +320,7 @@ export default function AdminAdmissionsPage() {
             </div>
           ) : filtered.length === 0 ? (
             <div style={{ background: card, padding: "3rem", textAlign: "center" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>No records</p>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>No records</p>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>

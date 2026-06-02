@@ -533,7 +533,7 @@ function HealthCheckTool({ onGetPlan, sharedScore }) {
                       {copied ? "COPIED ✓" : "COPY"}
                     </button>
                   </div>
-                  <p style={{ fontFamily: MONO, fontSize: "0.625rem", color: "rgba(255,255,255,0.25)", marginTop: "0.5rem", letterSpacing: "0.04em" }}>
+                  <p style={{ fontFamily: MONO, fontSize: "0.625rem", color: "rgba(255,255,255,0.55)", marginTop: "0.5rem", letterSpacing: "0.04em" }}>
                     This link shows your {score}/10 score and redirects to the live check.
                   </p>
                 </div>

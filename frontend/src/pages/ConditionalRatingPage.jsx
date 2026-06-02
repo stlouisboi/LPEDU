@@ -294,7 +294,7 @@ export default function ConditionalRatingPage() {
 
         {/* ── Disclaimer ── */}
         <FadeIn delay={100}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.6, marginTop: "3rem", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "1.5rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.52)", lineHeight: 1.6, marginTop: "3rem", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "1.5rem" }}>
             Information on this page reflects FMCSA safety fitness determination procedures as documented in 49 CFR Part 385. Timelines and procedures are subject to change. Verify current requirements at fmcsa.dot.gov. LaunchPath Transportation EDU is an educational program and does not provide legal, compliance, or financial advice.
           </p>
         </FadeIn>

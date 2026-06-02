@@ -163,7 +163,7 @@ export default function DQFilePacketPage() {
                 color: "rgba(255,255,255,0.68)", lineHeight: 1.7,
                 paddingLeft: "1.25rem", position: "relative",
               }}>
-                <span style={{ position: "absolute", left: 0, color: "rgba(255,255,255,0.2)" }}>—</span>
+                <span style={{ position: "absolute", left: 0, color: "rgba(255,255,255,0.50)" }}>—</span>
                 {item}
               </li>
             ))}

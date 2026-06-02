@@ -171,7 +171,7 @@ function BlueprintWire({ height = 600 }) {
 
 function Check({ yes }) {
   if (yes) return <span style={{ color: gold, fontWeight: 700, fontSize: "1rem" }}>✓</span>;
-  return <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "1rem" }}>—</span>;
+  return <span style={{ color: "rgba(255,255,255,0.50)", fontSize: "1rem" }}>—</span>;
 }
 
 export default function LaunchPathStandardPage() {
@@ -587,7 +587,7 @@ export default function LaunchPathStandardPage() {
             Request Admission →
           </Link>
 
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginTop: "1.5rem" }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginTop: "1.5rem" }}>
             No payment required at this step &nbsp;·&nbsp; Decision within 24–48 hours
           </p>
 

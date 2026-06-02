@@ -54,7 +54,7 @@ export default function AnnouncementsFeed() {
               onClick={() => dismiss(ann.announcement_id)}
               style={{
                 position: "absolute", top: "0.75rem", right: "0.875rem",
-                background: "none", border: "none", color: "rgba(255,255,255,0.28)",
+                background: "none", border: "none", color: "rgba(255,255,255,0.58)",
                 cursor: "pointer", padding: "0.2rem", display: "flex", alignItems: "center",
                 transition: "color 0.15s",
               }}

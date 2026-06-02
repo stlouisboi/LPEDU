@@ -279,7 +279,7 @@ function ModuleEditor({ module }) {
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
               <span style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, color: "rgba(197,160,89,0.55)", letterSpacing: "0.1em", flexShrink: 0 }}>{String(i + 1).padStart(2, "0")}</span>
               <span style={{ fontFamily: body, fontSize: "0.924rem", fontWeight: 500, color: "rgba(255,255,255,0.80)" }}>{lesson.title}</span>
-              <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", marginLeft: "auto", flexShrink: 0 }}>{lesson.duration}</span>
+              <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", marginLeft: "auto", flexShrink: 0 }}>{lesson.duration}</span>
             </div>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               <UrlField label="Vimeo URL" value={lessonUrls[lesson.id]?.vimeo_url || ""} onChange={v => setUrl(lesson.id, "vimeo_url", v)} placeholder="https://vimeo.com/..." />
@@ -367,8 +367,8 @@ export default function AdminModulesPage() {
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* Sidebar */}
         <aside style={{ width: 260, flexShrink: 0, background: "#060d18", borderRight: "1px solid rgba(255,255,255,0.07)", overflowY: "auto", padding: "1.5rem 0" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", padding: "0 1.25rem", marginBottom: "0.5rem" }}>MODULES</p>
-          <p style={{ fontFamily: mono, fontSize: "0.571rem", color: "rgba(255,255,255,0.20)", padding: "0 1.25rem", marginBottom: "0.75rem" }}>Eye icon = visible in portal</p>
+          <p style={{ fontFamily: mono, fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", padding: "0 1.25rem", marginBottom: "0.5rem" }}>MODULES</p>
+          <p style={{ fontFamily: mono, fontSize: "0.571rem", color: "rgba(255,255,255,0.50)", padding: "0 1.25rem", marginBottom: "0.75rem" }}>Eye icon = visible in portal</p>
           {ALL_MODULES.map(m => {
             const isVisible = visibilityMap[m.id] !== false;
             const isToggling = togglingId === m.id;
@@ -403,7 +403,7 @@ export default function AdminModulesPage() {
                     {isToggling ? "…" : isVisible ? "●" : "○"}
                   </span>
                 </div>
-                <span style={{ fontFamily: mono, fontSize: "0.619rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em" }}>LP-{m.code} · {m.lessons.length} lessons</span>
+                <span style={{ fontFamily: mono, fontSize: "0.619rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em" }}>LP-{m.code} · {m.lessons.length} lessons</span>
               </button>
             );
           })}

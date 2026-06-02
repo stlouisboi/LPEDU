@@ -458,6 +458,27 @@ export default function Ground0BriefingNewPage() {
         </div>
       </section>
 
+      {/* ── After the Briefing ─────────────────────────────── */}
+      <section style={{ background: '#FAF8F4', borderTop: '1px solid rgba(28,43,58,0.08)', padding: 'clamp(2.5rem,5vw,4rem) 1.5rem' }}>
+        <div style={{ maxWidth: 860, margin: '0 auto' }}>
+          <div
+            data-testid="after-briefing-block"
+            style={{
+              background: '#1C2B3A',
+              borderLeft: '3px solid #C8A96E',
+              padding: '2rem 2.25rem',
+            }}
+          >
+            <p style={{ ...mono, fontSize: 9, fontWeight: 700, letterSpacing: '0.20em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '0.875rem' }}>
+              After the Briefing
+            </p>
+            <p style={{ ...sans, fontSize: '0.95rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.8, margin: 0 }}>
+              If Vince determines LP-COH-002 is appropriate for your operation, you will receive an admission decision within 24–48 hours. Cohort investment, timeline, and onboarding materials are provided at that point. If the timing or fit is off, Vince will tell you directly — and point you to the resource that addresses your current exposure.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── Terminal Scan ──────────────────────────────────── */}
       <TerminalSection
         onScanComplete={handleScanComplete}

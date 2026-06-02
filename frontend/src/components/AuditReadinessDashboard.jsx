@@ -39,7 +39,7 @@ function TeaserView() {
           <a href="/program" data-testid="audit-enroll-cta" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#d4900a", color: "#000F1F", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "0.75rem 1.25rem", textDecoration: "none" }}>
             Unlock Monthly Audit Readiness <ArrowRight size={14} />
           </a>
-          <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)", marginTop: "0.625rem" }}>
+          <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.50)", marginTop: "0.625rem" }}>
             LAUNCHPATH STANDARD — ENROLLED CARRIERS ONLY
           </p>
         </div>
@@ -106,7 +106,7 @@ function DashboardScreen({ dashData, onRunCheck, onViewHistory }) {
               </span>
             </div>
           )}
-          <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", margin: "0.25rem 0 0" }}>
+          <p style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: "0.25rem 0 0" }}>
             {monthLabel} · Last check: {submittedLabel || "—"}
           </p>
         </div>
@@ -171,7 +171,7 @@ function DashboardHeader({ dashData, onRunCheck, onViewHistory }) {
           <h3 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontSize: "clamp(1.1rem,2vw,1.35rem)", fontWeight: 700, color: "#FFFFFF", margin: "0 0 0.25rem" }}>
             Self-Reported Dashboard
           </h3>
-          <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.38)", margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: "var(--font-body,'Source Sans 3',sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.65)", margin: 0, lineHeight: 1.5 }}>
             Self-reported status is distinct from Station Custodian verification. Both shown separately — never merged.
           </p>
         </div>

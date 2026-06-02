@@ -80,7 +80,7 @@ export default function LessonView({ lesson, lessonIndex, totalLessons, complete
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.16em", color: "rgba(212,144,10,0.65)", textTransform: "uppercase", position: "relative" }}>
             Video — Available on Vimeo
           </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", marginTop: "0.35rem", position: "relative" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.58)", marginTop: "0.35rem", position: "relative" }}>
             URL coming soon
           </p>
         </div>
@@ -157,7 +157,7 @@ export default function LessonView({ lesson, lessonIndex, totalLessons, complete
         const dlIcon  = <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
         return (
           <div style={{ marginBottom: "2rem" }}>
-            <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "0.75rem" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.58)", marginBottom: "0.75rem" }}>
               {hasPdfs && extras.length > 0 ? "REFERENCE DOCUMENTS" : "REFERENCE DOCUMENT"}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.625rem" }}>
@@ -262,7 +262,7 @@ export default function LessonView({ lesson, lessonIndex, totalLessons, complete
       </div>
 
       {lesson.assessmentOptions && !selectedOption && (
-        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", color: "rgba(255,255,255,0.28)", marginTop: "0.875rem", textAlign: "right", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.619rem", color: "rgba(255,255,255,0.58)", marginTop: "0.875rem", textAlign: "right", letterSpacing: "0.12em", textTransform: "uppercase" }}>
           SELECT AN ANSWER ABOVE TO CONTINUE
         </p>
       )}

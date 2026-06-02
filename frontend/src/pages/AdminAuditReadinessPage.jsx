@@ -8,7 +8,7 @@ const OVERRIDE_OPTS = ["", "GREEN", "YELLOW", "RED"];
 
 function ColorBadge({ color }) {
   const s = COLOR_STYLES[color] || null;
-  if (!s || !color) return <span style={{ fontFamily: "monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em" }}>—</span>;
+  if (!s || !color) return <span style={{ fontFamily: "monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em" }}>—</span>;
   return (
     <span style={{ fontFamily: "monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: s.labelColor, background: s.bg, border: `1px solid ${s.border}`, padding: "2px 7px" }}>
       {color}
@@ -110,11 +110,11 @@ function CarrierRow({ carrier, onVerifyDomain, onSendEmail }) {
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.25rem" }}>
             <ColorBadge color={overallColor} />
             {carrier.latestCheckMonth && (
-              <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em" }}>
+              <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.08em" }}>
                 {formatMonthLabel(carrier.latestCheckMonth)}
               </span>
             )}
-            <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.2)", letterSpacing: "0.08em" }}>
+            <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.50)", letterSpacing: "0.08em" }}>
               {carrier.totalChecks} check{carrier.totalChecks !== 1 ? "s" : ""}
             </span>
           </div>
@@ -171,7 +171,7 @@ function CarrierRow({ carrier, onVerifyDomain, onSendEmail }) {
                     </div>
                     {/* SC Override */}
                     <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
-                      <label style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>SC Override:</label>
+                      <label style={{ fontFamily: "monospace", fontSize: "0.476rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>SC Override:</label>
                       <select
                         value={pendingOverride}
                         onChange={e => setPendingOverrides(p => ({ ...p, [dk]: e.target.value || null }))}

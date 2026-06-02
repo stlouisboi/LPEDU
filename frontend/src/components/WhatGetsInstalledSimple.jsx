@@ -180,7 +180,7 @@ export default function WhatGetsInstalledSimple() {
                       {d.title}
                     </p>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", flexShrink: 0 }}>
-                      <span style={{ fontFamily: JBMONO, fontSize: "0.52rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.45)" }}>STATUS: VERIFIED</span>
+                      <span style={{ fontFamily: JBMONO, fontSize: "0.52rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(197,160,89,0.65)" }}>STATUS: VERIFIED</span>
                       <div className="wgi-status-dot" />
                     </div>
                   </div>

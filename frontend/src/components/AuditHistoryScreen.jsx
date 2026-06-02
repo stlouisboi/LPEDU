@@ -286,7 +286,7 @@ export default function AuditHistoryScreen({ history, onBack, onViewResult }) {
                         {delta > 0 ? `+${delta}%` : `${delta}%`}
                       </span>
                     )}
-                    <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.2)", letterSpacing: "0.08em" }}>
+                    <span style={{ fontFamily: "monospace", fontSize: "0.476rem", color: "rgba(255,255,255,0.50)", letterSpacing: "0.08em" }}>
                       {submittedLabel}
                     </span>
                   </div>

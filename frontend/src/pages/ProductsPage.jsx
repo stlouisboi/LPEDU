@@ -407,7 +407,7 @@ function MatrixCell({ value, col }) {
     );
   }
   if (value === null) {
-    return <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "var(--text-sm)" }}>—</span>;
+    return <span style={{ color: "rgba(255,255,255,0.48)", fontSize: "var(--text-sm)" }}>—</span>;
   }
   if (value && value.label) {
     return (

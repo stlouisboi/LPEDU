@@ -303,7 +303,7 @@ export default function TCOCalculatorPage() {
                 </button>
                 {gateState === "error" && <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#FC8181", margin: 0 }}>Something went wrong — try again.</p>}
               </form>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.25)", margin: "14px 0 0", lineHeight: 1.6 }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.55)", margin: "14px 0 0", lineHeight: 1.6 }}>
                 No spam. You'll receive occasional compliance and operational insights from LaunchPath EDU.
               </p>
             </div>

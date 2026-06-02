@@ -353,7 +353,7 @@ export default function CoachRegistryPage() {
 
           {carriers.length === 0 ? (
             <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "2rem", textAlign: "center" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
                 NO_CARRIERS_REGISTERED
               </p>
             </div>
@@ -368,7 +368,7 @@ export default function CoachRegistryPage() {
                 gap: "1rem",
               }}>
                 {["CARRIER_ID", "NAME", "SIGNAL", "TASKS", "SUBMITTED", "INTEGRITY"].map((h) => (
-                  <span key={h} style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
+                  <span key={h} style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.58)", textTransform: "uppercase" }}>
                     {h}
                   </span>
                 ))}
@@ -443,7 +443,7 @@ export default function CoachRegistryPage() {
 
           {submittedQueue.length === 0 ? (
             <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "2.5rem", textAlign: "center" }}>
-              <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
                 QUEUE_EMPTY
               </p>
               <p style={{ fontFamily: sans, fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.72)" }}>
@@ -461,7 +461,7 @@ export default function CoachRegistryPage() {
                 gap: "1rem",
               }}>
                 {["CARRIER_ID", "TASK_ID", "TASK_NAME", "SUBMITTED", "ACTIONS"].map((h) => (
-                  <span key={h} style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
+                  <span key={h} style={{ fontFamily: mono, fontSize: "0.762rem", fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.58)", textTransform: "uppercase" }}>
                     {h}
                   </span>
                 ))}
@@ -596,7 +596,7 @@ function DeliverablesAdmin({ API, mono }) {
         </p>
         {pdfs.length === 0 ? (
           <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "2.5rem", textAlign: "center" }}>
-            <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>NO DELIVERABLES UPLOADED YET</p>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.14em", textTransform: "uppercase" }}>NO DELIVERABLES UPLOADED YET</p>
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>

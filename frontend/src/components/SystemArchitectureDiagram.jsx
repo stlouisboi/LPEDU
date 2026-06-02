@@ -412,7 +412,7 @@ export default function SystemArchitectureDiagram() {
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: MONO, fontSize: "0.5rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.18)", margin: 0 }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.5rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.48)", margin: 0 }}>
             LaunchPath Operating Standard v1.0
           </p>
         </div>

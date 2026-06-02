@@ -70,7 +70,7 @@ export function AuditDomainCard({ domain, domainResult, isCritical, isStale, las
                 </span>
               </>
             ) : (
-              <span style={{ fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>
+              <span style={{ fontFamily: "monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.50)" }}>
                 NOT YET VERIFIED
               </span>
             )}

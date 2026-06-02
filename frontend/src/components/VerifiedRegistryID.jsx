@@ -286,7 +286,7 @@ export default function VerifiedRegistryID({ user }) {
 
           {/* Four-pillar grid */}
           <div style={{ marginBottom: "1.75rem" }}>
-            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: "0.75rem" }}>FOUR-PILLAR CERTIFICATION</p>
+            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>FOUR-PILLAR CERTIFICATION</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.375rem" }}>
               {PILLARS.map((pillar) => (
                 <div key={pillar} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -300,7 +300,7 @@ export default function VerifiedRegistryID({ user }) {
           {/* Footer row */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.25rem", flexWrap: "wrap", gap: "0.75rem" }}>
             <div>
-              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", margin: "0 0 0.2rem" }}>DATE OF ISSUANCE</p>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", margin: "0 0 0.2rem" }}>DATE OF ISSUANCE</p>
               <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.762rem", fontWeight: 600, color: "rgba(250,248,244,0.85)", margin: 0 }}>{formatDate(credential.issued_at)}</p>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>

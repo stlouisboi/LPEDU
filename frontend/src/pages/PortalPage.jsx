@@ -836,7 +836,7 @@ export default function PortalPage() {
                         <p style={{
                           fontFamily: "'Inter', sans-serif",
                           fontSize: "0.714rem", letterSpacing: "0.16em",
-                          color: "rgba(255,255,255,0.28)", textTransform: "uppercase",
+                          color: "rgba(255,255,255,0.58)", textTransform: "uppercase",
                         }}>
                           NO_TASKS_ASSIGNED
                         </p>

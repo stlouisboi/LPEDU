@@ -23,7 +23,7 @@ export default function PortalHeader({ user, onLogout }) {
         >
           LAUNCHPATH COHORT PORTAL
         </p>
-        <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.8rem" }}>—</span>
+        <span style={{ color: "rgba(255,255,255,0.50)", fontSize: "0.8rem" }}>—</span>
         <p
           style={{
             fontFamily: "'Inter', sans-serif",

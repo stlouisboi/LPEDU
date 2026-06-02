@@ -109,7 +109,7 @@ export default function TaskItem({ task, onSubmit, loading }) {
         {/* Expand chevron */}
         <span style={{
           fontFamily: mono, fontSize: "0.714rem",
-          color: "rgba(255,255,255,0.25)", flexShrink: 0,
+          color: "rgba(255,255,255,0.55)", flexShrink: 0,
           transform: expanded ? "rotate(180deg)" : "none",
           transition: "transform 0.2s",
         }}>▾</span>

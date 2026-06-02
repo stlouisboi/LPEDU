@@ -86,9 +86,9 @@ export default function VinceVideoLetterSection({ videoUrl }) {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
             {CREDS.map(({ icon: Icon, text }, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <Icon size={14} color="#C8A96E" style={{ flexShrink: 0 }} />
-                <span style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.9rem', color: '#2D3748' }}>{text}</span>
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                <Icon size={14} color="#C8A96E" style={{ flexShrink: 0, marginTop: 2 }} />
+                <span style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.875rem', color: '#2D3748', lineHeight: 1.5 }}>{text}</span>
               </div>
             ))}
           </div>

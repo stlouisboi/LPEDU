@@ -1,4 +1,4 @@
-# LaunchPath Transportation EDU — PRD
+# LaunchPath Transportation EDU LLC — PRD
 Station Custodian: Vince Lawrence (LP-VNL) | vince@launchpathedu.com
 
 ---
@@ -833,3 +833,54 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - **Global CSS (`index.css`):** Added `prefers-color-scheme: dark` variables for light sections, `font-size: 16px` base, KC filter bar sticky at `top: 56px`, explicit `16px!important` on all input types
 - **Line height:** Body text at 1.75 globally via `.content-page` CSS
 - Testing: 100% pass (iteration_124.json)
+
+---
+
+## CHANGELOG — LP-WEB-011 (June 2, 2026)
+
+### All 8 Changes Implemented and Verified (8/8 PASS)
+
+1. **Change 1 — Hero Contrast Line** ✅  
+   Added "This is not a compliance course. It is a 90-day installation of the compliance system FMCSA will inspect." below H1 in `HeroSection.jsx`. Styled as body text, no bold, no accent.
+
+2. **Change 2 — How It Works Block** ✅  
+   New `HowItWorksSection.jsx` component with 3-step cards (STEP 01, 02 active; STEP 03 earned/muted). Inserted between `FailurePatternSection` and `CheckpointTimelineSection` in `HomePage.jsx`.
+
+3. **Change 3 — System Roadmap Visual** ✅  
+   5-node flow diagram inside `HowItWorksSection`: REACH Diagnostic → Ground 0 Briefing (both active/gold) → 90-Day Standard → Week 11 Integrity Audit → Verified Registry ID (all earned/muted). CTA "Run REACH Diagnostic — Free →" added below.
+
+4. **Change 4 — Director's Briefing Teaser** ✅  
+   Replaced "Recording coming soon" with LP-VID-001 structured teaser in `VinceVideoLetterSection.jsx`. 4 bullets, "Request Ground 0 Briefing →" CTA. Swappable: when videoUrl is populated, teaser is replaced by play button.
+
+5. **Change 5 — Legal Name** ✅  
+   "LaunchPath Transport EDU" → "LaunchPath Transportation EDU LLC" in `VinceVideoLetterSection.jsx`.
+
+6. **Change 6 — Cohort Map Broken State** ✅  
+   Replaced broken dynamic map with static "LP-COH-002 · National Cohort" block in `CohortMapSection.jsx`. Shows 3 status pills.
+
+7. **Change 7 — REACH Disambiguation Line** ✅  
+   Added "This is not a quiz. It is a pre-inspection scan of your compliance exposure..." in `REACHTeaserSection.jsx` between H2 and italic subhead.
+
+8. **Change 8 — Ground 0 After Briefing Block** ✅  
+   Added `data-testid="after-briefing-block"` dark navy + gold-left-border section in `Ground0BriefingNewPage.jsx` (NOT Ground0Page.jsx). Appears between "What the briefing covers" and the TerminalSection/AdmissionForm.
+
+---
+
+## PENDING/BACKLOG (post LP-WEB-011)
+
+- **P0 BLOCKED**: Vimeo URLs for 69 portal modules — user must input via /admin/modules. Director's Briefing teaser will auto-swap to player once LP-VID-001 URL is populated.
+- **P1**: Production push to Vercel/GitHub (awaiting Vimeo URL population)
+- **P2**: Portal Option B — Full Premium Dashboard Redesign (blocked on Vimeo URLs)
+- **P2**: Backlink Outreach per /app/memory/BACKLINK_TARGETS.md
+- **DEFERRED**: HowToStartTruckingPost.jsx article CTA separation enhancements (from prior session)
+
+---
+
+## CHANGELOG — Visual Readability Pass (June 2, 2026)
+
+### Changes
+- **Global opacity sweep** (all `.jsx` except `HowItWorksSection.jsx`): raised all `color: rgba(255,255,255,X)` text values where X < 0.40 to minimum 0.48–0.65. Targeted `color:` property only, left border/background values unchanged.
+- **Gold label opacity** (`rgba(197,160,89,0.45)` and `rgba(212,144,10,0.45)`) raised to 0.65 for visibility on dark backgrounds.
+- **Roadmap node mobile fix** in `HowItWorksSection.jsx`: nodes now use `flex: '0 0 auto'`, fixed 108px width, connector lines have fixed 48px width. Container uses `overflowX: 'auto'` with `minWidth: 720px` — prevents overlap on 390px mobile.
+- **HowItWorksSection earned states** — boosted from 0.28/0.38 to 0.50/0.55 (still visually distinct from active states but readable).
+- **Credentials flex fix** — `alignItems: 'flex-start'` so "Founder, LaunchPath Transportation EDU LLC" wraps correctly on mobile without clipping.

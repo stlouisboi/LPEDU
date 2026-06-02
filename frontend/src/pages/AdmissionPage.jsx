@@ -236,7 +236,7 @@ export default function AdmissionPage() {
                 background: "rgba(197,160,89,0.04)", border: "1px solid rgba(197,160,89,0.15)",
                 padding: "1.125rem 1.25rem",
               }}>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.18em", color: "rgba(197,160,89,0.45)", marginBottom: "0.5rem" }}>{c.code}</p>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.18em", color: "rgba(197,160,89,0.65)", marginBottom: "0.5rem" }}>{c.code}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.810rem", fontWeight: 700, color: "rgba(255,255,255,0.80)", marginBottom: "0.25rem" }}>{c.label}</p>
                 <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.10em", color: "#C5A059", marginBottom: "0.25rem" }}>{c.req}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.32)" }}>{c.note}</p>
@@ -318,7 +318,7 @@ export default function AdmissionPage() {
               { n: "05", t: "Orientation begins", d: "Ground 0 + Module 1 within 24 hrs of payment" },
             ].map(s => (
               <div key={s.n} style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start", flex: "1 1 160px" }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", fontWeight: 700, color: "rgba(212,144,10,0.45)", letterSpacing: "0.1em", flexShrink: 0, marginTop: "0.1rem" }}>{s.n}</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", fontWeight: 700, color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", flexShrink: 0, marginTop: "0.1rem" }}>{s.n}</span>
                 <div>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.810rem", fontWeight: 600, color: "rgba(255,255,255,0.70)", marginBottom: "0.1rem" }}>{s.t}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.32)" }}>{s.d}</p>
@@ -440,7 +440,7 @@ export default function AdmissionPage() {
               ].map((t) => (
                 <div key={t.label} style={{ display: "flex", flexDirection: "column", gap: "0.15rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.09)", padding: "0.625rem 0.875rem", flex: "1 1 140px" }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,160,89,0.75)" }}>{t.label}</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.02em" }}>{t.hint}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.02em" }}>{t.hint}</span>
                 </div>
               ))}
             </div>
@@ -614,7 +614,7 @@ export default function AdmissionPage() {
                     { n: "05", t: "Orientation begins: Ground 0 + Module 1 unlock within 24 hours of payment." },
                   ].map(s => (
                     <div key={s.n} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", fontWeight: 700, color: "rgba(212,144,10,0.45)", letterSpacing: "0.1em", flexShrink: 0, marginTop: "0.15rem" }}>{s.n}</span>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", fontWeight: 700, color: "rgba(212,144,10,0.65)", letterSpacing: "0.1em", flexShrink: 0, marginTop: "0.15rem" }}>{s.n}</span>
                       <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.810rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.55, margin: 0 }}>{s.t}</p>
                     </div>
                   ))}

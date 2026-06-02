@@ -36,13 +36,6 @@ const ROADMAP_NODES = [
 
 function RoadmapNode({ node, isLast }) {
   const isActive = node.status === 'active';
-  const wrapper = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 0,
-    flex: isLast ? '0 0 auto' : '1 1 0',
-    minWidth: 0,
-  };
   const nodeDot = {
     flexShrink: 0,
     width: 10,
@@ -53,34 +46,37 @@ function RoadmapNode({ node, isLast }) {
     zIndex: 2,
   };
   const connector = {
-    flex: 1,
+    width: 48,
+    flexShrink: 0,
     height: 1,
     background: isActive
       ? 'linear-gradient(to right, rgba(200,169,110,0.55), rgba(200,169,110,0.18))'
       : 'rgba(255,255,255,0.07)',
+    alignSelf: 'flex-end',
+    marginBottom: 5,
   };
 
   return (
-    <div style={wrapper}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
-        <div style={{ textAlign: 'center', minWidth: 110 }}>
-          <div style={{ ...mono, fontSize: 8, letterSpacing: '0.16em', color: isActive ? '#C8A96E' : 'rgba(197,160,89,0.38)', textTransform: 'uppercase', marginBottom: 4 }}>{node.code}</div>
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', flexShrink: 0, width: 108 }}>
+        <div style={{ textAlign: 'center', width: '100%' }}>
+          <div style={{ ...mono, fontSize: 8, letterSpacing: '0.16em', color: isActive ? '#C8A96E' : 'rgba(197,160,89,0.50)', textTransform: 'uppercase', marginBottom: 4 }}>{node.code}</div>
           {node.href ? (
-            <a href={node.href} style={{ ...sans, fontSize: '0.714rem', fontWeight: 600, color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.30)', textDecoration: 'none', display: 'block', lineHeight: 1.35, marginBottom: 3 }}>
+            <a href={node.href} style={{ ...sans, fontSize: '0.714rem', fontWeight: 600, color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.40)', textDecoration: 'none', display: 'block', lineHeight: 1.35, marginBottom: 3 }}>
               {node.label}
             </a>
           ) : (
-            <p style={{ ...sans, fontSize: '0.714rem', fontWeight: 600, color: 'rgba(255,255,255,0.28)', lineHeight: 1.35, marginBottom: 3, margin: '0 0 3px' }}>{node.label}</p>
+            <p style={{ ...sans, fontSize: '0.714rem', fontWeight: 600, color: 'rgba(255,255,255,0.40)', lineHeight: 1.35, marginBottom: 3, margin: '0 0 3px' }}>{node.label}</p>
           )}
-          <p style={{ ...mono, fontSize: 8, color: isActive ? 'rgba(197,160,89,0.65)' : 'rgba(255,255,255,0.20)', letterSpacing: '0.08em', margin: 0 }}>{node.sub}</p>
+          <p style={{ ...mono, fontSize: 8, color: isActive ? 'rgba(197,160,89,0.65)' : 'rgba(255,255,255,0.35)', letterSpacing: '0.08em', margin: 0 }}>{node.sub}</p>
           {!isActive && (
-            <p style={{ ...mono, fontSize: 7, color: 'rgba(255,255,255,0.18)', letterSpacing: '0.12em', textTransform: 'uppercase', margin: '3px 0 0' }}>EARNED</p>
+            <p style={{ ...mono, fontSize: 7, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase', margin: '3px 0 0' }}>EARNED</p>
           )}
         </div>
         <div style={nodeDot} />
       </div>
       {!isLast && <div style={connector} />}
-    </div>
+    </>
   );
 }
 
@@ -114,10 +110,10 @@ export default function HowItWorksSection() {
                 <p style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', color: isActive ? 'rgba(197,160,89,0.85)' : 'rgba(197,160,89,0.35)', textTransform: 'uppercase', marginBottom: '0.875rem' }}>
                   STEP {step.num} {!isActive && '· EARNED'}
                 </p>
-                <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.125rem', color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.38)', lineHeight: 1.25, marginBottom: '0.875rem' }}>
+                <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.125rem', color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.55)', lineHeight: 1.25, marginBottom: '0.875rem' }}>
                   {step.label}
                 </h3>
-                <p style={{ ...sans, fontSize: '0.875rem', color: isActive ? 'rgba(255,255,255,0.68)' : 'rgba(255,255,255,0.28)', lineHeight: 1.8, marginBottom: step.cta ? '1.5rem' : 0 }}>
+                <p style={{ ...sans, fontSize: '0.875rem', color: isActive ? 'rgba(255,255,255,0.68)' : 'rgba(255,255,255,0.50)', lineHeight: 1.8, marginBottom: step.cta ? '1.5rem' : 0 }}>
                   {step.body}
                 </p>
                 {step.cta && (
@@ -135,14 +131,16 @@ export default function HowItWorksSection() {
 
         {/* System Roadmap Visual */}
         <div data-testid="system-roadmap" style={{ background: '#1C2B3A', padding: '1.75rem 2rem', borderTop: '1px solid rgba(197,160,89,0.15)' }}>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.55)', marginBottom: '1.25rem' }}>LP-SYS — Installation Sequence</p>
-          {/* Nodes row */}
-          <div style={{ display: 'flex', alignItems: 'center', overflowX: 'auto', paddingBottom: '0.5rem' }}>
-            {ROADMAP_NODES.map((node, i) => (
-              <RoadmapNode key={node.code} node={node} isLast={i === ROADMAP_NODES.length - 1} />
-            ))}
+          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.65)', marginBottom: '1.25rem' }}>LP-SYS — Installation Sequence</p>
+          {/* Nodes row — horizontally scrollable, fixed-width nodes prevent overlap on mobile */}
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', minWidth: 720, paddingBottom: '0.25rem' }}>
+              {ROADMAP_NODES.map((node, i) => (
+                <RoadmapNode key={node.code} node={node} isLast={i === ROADMAP_NODES.length - 1} />
+              ))}
+            </div>
           </div>
-          <p style={{ ...mono, fontSize: 8, letterSpacing: '0.10em', color: 'rgba(255,255,255,0.20)', marginTop: '1rem', textTransform: 'uppercase' }}>
+          <p style={{ ...mono, fontSize: 8, letterSpacing: '0.10em', color: 'rgba(255,255,255,0.40)', marginTop: '1rem', textTransform: 'uppercase' }}>
             Nodes 1–2 are open access. Nodes 3–5 are earned through the program.
           </p>
         </div>

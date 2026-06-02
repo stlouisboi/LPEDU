@@ -461,7 +461,7 @@ export default function SixteenSinsPage() {
             }}>FEATURED VIOLATIONS</p>
             <p style={{
               fontFamily: "'Inter', sans-serif", fontSize: "0.88rem",
-              color: "rgba(255,255,255,0.38)", letterSpacing: "0.02em",
+              color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em",
             }}>The 5 most common authority-ending behaviors — documented below in full</p>
             <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginTop: "1.5rem" }} />
           </div>
@@ -997,7 +997,7 @@ function SinCard({ sin }) {
         <p style={{
           fontFamily: "'Courier New', Courier, monospace",
           fontSize: "0.714rem",
-          color: "rgba(255,255,255,0.28)",
+          color: "rgba(255,255,255,0.58)",
           letterSpacing: "0.06em",
           textTransform: "uppercase",
           margin: 0,

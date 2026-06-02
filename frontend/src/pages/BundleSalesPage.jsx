@@ -155,7 +155,7 @@ function Check() {
   return <span style={{ color: GOLD, fontWeight: 700, fontSize: "1rem" }}>✓</span>;
 }
 function Cross() {
-  return <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "1rem" }}>—</span>;
+  return <span style={{ color: "rgba(255,255,255,0.50)", fontSize: "1rem" }}>—</span>;
 }
 
 // ── Packet data (spec-exact) ──────────────────────────────────────────────────

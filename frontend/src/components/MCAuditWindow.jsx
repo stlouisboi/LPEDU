@@ -102,7 +102,7 @@ export default function MCAuditWindow({ compact = false }) {
         <div>
           {/* 18-cell month grid */}
           <div style={{ marginBottom: "1.5rem" }}>
-            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 6 }}>
+            <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 6 }}>
               18-MONTH AUDIT WINDOW — {result.monthsElapsed} OF 18 MONTHS ELAPSED
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(18, 1fr)", gap: 3 }}>
@@ -127,8 +127,8 @@ export default function MCAuditWindow({ compact = false }) {
               })}
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-              <p style={{ fontFamily: MONO, fontSize: 8, color: "rgba(255,255,255,0.20)", letterSpacing: "0.10em" }}>MONTH 1</p>
-              <p style={{ fontFamily: MONO, fontSize: 8, color: "rgba(255,255,255,0.20)", letterSpacing: "0.10em" }}>MONTH 18</p>
+              <p style={{ fontFamily: MONO, fontSize: 8, color: "rgba(255,255,255,0.50)", letterSpacing: "0.10em" }}>MONTH 1</p>
+              <p style={{ fontFamily: MONO, fontSize: 8, color: "rgba(255,255,255,0.50)", letterSpacing: "0.10em" }}>MONTH 18</p>
             </div>
           </div>
 

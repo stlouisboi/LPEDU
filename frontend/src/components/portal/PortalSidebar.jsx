@@ -15,7 +15,7 @@ export default function PortalSidebar({ selectedId, hasCohortAccess, gateStatuse
     >
       {/* Operator Tools quick-access */}
       <div style={{ padding: "0 1.5rem 1.75rem", marginBottom: "1.75rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)", marginBottom: "0.875rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)", marginBottom: "0.875rem" }}>
           OPERATOR TOOLS
         </p>
         {[
@@ -51,7 +51,7 @@ export default function PortalSidebar({ selectedId, hasCohortAccess, gateStatuse
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.38)",
+          color: "rgba(255,255,255,0.65)",
           padding: "0 1.5rem",
           marginBottom: "1.25rem",
         }}

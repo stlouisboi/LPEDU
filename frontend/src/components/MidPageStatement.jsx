@@ -60,7 +60,7 @@ export default function MidPageStatement() {
             marginBottom: "1.5rem",
           }}>
             There are 16 documented failure patterns<br />
-            <span style={{ color: "rgba(255,255,255,0.38)", fontWeight: 400 }}>in new carrier compliance.</span>
+            <span style={{ color: "rgba(255,255,255,0.65)", fontWeight: 400 }}>in new carrier compliance.</span>
           </h2>
 
           <p style={{

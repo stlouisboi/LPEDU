@@ -144,7 +144,7 @@ export default function AdminSequencesPage() {
           <p style={{ fontFamily: MONO, fontSize: "0.762rem", color: "rgba(250,248,244,0.75)", textAlign: "center", padding: "3rem 0" }}>Loading...</p>
         ) : seqs.length === 0 ? (
           <div style={{ textAlign: "center", padding: "4rem 0", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.14em", textTransform: "uppercase" }}>No sequences enrolled yet</p>
+            <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.14em", textTransform: "uppercase" }}>No sequences enrolled yet</p>
           </div>
         ) : (
           <div data-testid="sequences-table">

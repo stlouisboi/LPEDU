@@ -185,7 +185,7 @@ export default function ComplianceGapQuizPage() {
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(250,248,244,0.72)" }}>
                   Question {current + 1} of {QUESTIONS.length}
                 </span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em" }}>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.06em" }}>
                   {Math.round(progress)}% complete
                 </span>
               </div>
@@ -237,7 +237,7 @@ export default function ComplianceGapQuizPage() {
                 </button>
               </div>
 
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.22)", marginTop: "1.5rem", lineHeight: 1.5 }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.52)", marginTop: "1.5rem", lineHeight: 1.5 }}>
                 A "yes" requires documentation you can produce today. If you would need to create it first, select No.
               </p>
             </div>

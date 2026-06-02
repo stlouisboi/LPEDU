@@ -46,7 +46,7 @@ export default function ExposureBand() {
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                 <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(200,147,63,0.45)", flexShrink: 0 }} />
                 <span style={{ fontFamily: MONO, fontSize: "0.625rem", fontWeight: 700, color: GOLD, letterSpacing: "0.06em", minWidth: 24 }}>{chip.code}</span>
-                <span style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.10em" }}>{chip.label}</span>
+                <span style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.10em" }}>{chip.label}</span>
               </div>
             ))}
           </div>

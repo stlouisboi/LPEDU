@@ -122,7 +122,7 @@ export default function OperatorQualifierSection() {
                   fontWeight: 700,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: "rgba(212,144,10,0.45)",
+                  color: "rgba(212,144,10,0.65)",
                   marginBottom: "0.875rem",
                 }}>
                   LP-WIN-001 — AUTHORITY WINDOW STATUS
@@ -222,7 +222,7 @@ export default function OperatorQualifierSection() {
                   <p style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.857rem",
-                    color: "rgba(255,255,255,0.28)",
+                    color: "rgba(255,255,255,0.58)",
                     fontStyle: "italic",
                     margin: 0,
                   }}>

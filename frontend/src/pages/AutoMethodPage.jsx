@@ -424,7 +424,7 @@ export default function AutoMethodPage() {
 
                 {/* CFR */}
                 <p style={{
-                  fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.28)",
+                  fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.58)",
                   letterSpacing: "0.06em", textTransform: "uppercase",
                 }}>
                   CFR ANCHOR: {d.cfr} — {d.cfrNote}
@@ -463,7 +463,7 @@ export default function AutoMethodPage() {
               >
                 <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", flexWrap: "wrap", marginBottom: "0.75rem" }}>
                   <div style={{ flexShrink: 0 }}>
-                    <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", color: "rgba(212,144,10,0.45)", textTransform: "uppercase", marginBottom: "0.3rem" }}>{g.code}</p>
+                    <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.12em", color: "rgba(212,144,10,0.65)", textTransform: "uppercase", marginBottom: "0.3rem" }}>{g.code}</p>
                     <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: "1.1rem", color: gold, margin: 0 }}>{g.name}</p>
                   </div>
                   <div style={{
@@ -486,7 +486,7 @@ export default function AutoMethodPage() {
                   {g.consequence}
                 </p>
 
-                <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ fontFamily: MONO, fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
                   CFR ANCHOR: {g.cfr} — {g.cfrNote}
                 </p>
               </div>
@@ -647,7 +647,7 @@ export default function AutoMethodPage() {
       <div style={{ borderTop: `1px solid ${BORDER}`, padding: "2.5rem 1.5rem" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.35rem" }}>
               NEXT IN THE FRAMEWORK
             </p>
             <p style={{ fontFamily: SANS, fontSize: "var(--text-sm)", color: "rgba(250,248,244,0.85)", margin: 0 }}>

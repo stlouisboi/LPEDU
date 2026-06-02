@@ -18,7 +18,7 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
     <div data-testid="g0-complete-view" style={{ maxWidth: 640, animation: "heroEnter 0.5s ease-out forwards" }}>
       {/* Ceremony Header */}
       <div style={{ borderTop: "3px solid #d4900a", background: "rgba(0,0,0,0.35)", padding: "1.25rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", margin: 0 }}>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.58)", margin: 0 }}>
           LP-MOD-G0 · GROUND 0 · WISDOM MODULE COMPLETE
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "rgba(212,144,10,0.08)", border: "1px solid rgba(212,144,10,0.22)", padding: "0.25rem 0.75rem" }}>
@@ -87,7 +87,7 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
                     <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 600, color: "rgba(255,255,255,0.80)" }}>{mod.name}</span>
                     {mod.tag && <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: mod.tagColor, background: "rgba(0,0,0,0.3)", border: `1px solid ${mod.tagColor}`, padding: "0.1rem 0.4rem", flexShrink: 0 }}>{mod.tag}</span>}
                   </div>
-                  <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.5, margin: 0 }}>{mod.desc}</p>
+                  <p style={{ fontFamily: "var(--font-body, 'Source Sans 3', sans-serif)", fontSize: "0.762rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.5, margin: 0 }}>{mod.desc}</p>
                 </div>
               </div>
             ))}
@@ -114,14 +114,14 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
             <span>Continue to Install the LaunchPath Operating System</span>
             <ArrowRight size={18} />
           </a>
-          <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginTop: "0.875rem", lineHeight: 1.6 }}>
+          <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.52)", marginTop: "0.875rem", lineHeight: 1.6 }}>
             NO PAYMENT AT THIS STEP · ADMISSION REVIEWED WITHIN 24 HOURS
           </p>
           {onViewLesson07 && (
             <button
               onClick={onViewLesson07}
               data-testid="g0-view-lesson07-btn"
-              style={{ background: "none", border: "none", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(197,160,89,0.45)", cursor: "pointer", letterSpacing: "0.14em", textTransform: "uppercase", padding: "0.5rem 0", marginTop: "0.5rem", display: "block", transition: "color 0.15s" }}
+              style={{ background: "none", border: "none", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(197,160,89,0.65)", cursor: "pointer", letterSpacing: "0.14em", textTransform: "uppercase", padding: "0.5rem 0", marginTop: "0.5rem", display: "block", transition: "color 0.15s" }}
               onMouseEnter={e => e.currentTarget.style.color = "rgba(197,160,89,0.80)"}
               onMouseLeave={e => e.currentTarget.style.color = "rgba(197,160,89,0.45)"}
             >
@@ -136,7 +136,7 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
         data-testid="g0-restart-btn"
         style={{
           background: "none", border: "none", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace",
-          fontSize: "0.524rem", color: "rgba(255,255,255,0.22)", cursor: "pointer",
+          fontSize: "0.524rem", color: "rgba(255,255,255,0.52)", cursor: "pointer",
           letterSpacing: "0.16em", textTransform: "uppercase", padding: "0.5rem 0",
           marginTop: "1.5rem", display: "block", transition: "color 0.15s",
         }}

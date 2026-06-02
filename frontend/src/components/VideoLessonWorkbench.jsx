@@ -418,7 +418,7 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
           {/* Supporting Resources */}
           {lesson.studentActions?.length > 0 && (
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.5rem", marginBottom: "1.5rem" }}>
-              <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", marginBottom: "0.875rem" }}>
+              <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.55)", textTransform: "uppercase", marginBottom: "0.875rem" }}>
                 STUDENT ACTIONS
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -450,7 +450,7 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
                   fontSize: "0.714rem",
                   fontWeight: 700,
                   letterSpacing: "0.2em",
-                  color: "rgba(255,255,255,0.25)",
+                  color: "rgba(255,255,255,0.55)",
                   textTransform: "uppercase",
                   marginBottom: "0.875rem",
                 }}
@@ -571,7 +571,7 @@ export function VideoLessonWorkbench({ moduleData, gateStatus, onGateSubmit, vie
               fontSize: "0.762rem",
               fontWeight: 700,
               letterSpacing: "0.22em",
-              color: "rgba(255,255,255,0.22)",
+              color: "rgba(255,255,255,0.52)",
               textTransform: "uppercase",
               marginBottom: "0.75rem",
               paddingBottom: "0.75rem",

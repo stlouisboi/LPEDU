@@ -38,7 +38,7 @@ export default function ModuleOverviewCard({ moduleInfo, type }) {
       </p>
 
       <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", padding: "1.75rem", maxWidth: 560 }}>
-        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", marginBottom: "1.25rem" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.2em", color: "rgba(255,255,255,0.55)", textTransform: "uppercase", marginBottom: "1.25rem" }}>
           KEY TOPICS — {moduleInfo.lessonCount} IMPLEMENTATION UNITS
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
@@ -57,7 +57,7 @@ export default function ModuleOverviewCard({ moduleInfo, type }) {
 
       <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "0.875rem" }}>
         <div style={{ width: 7, height: 7, background: "rgba(212,144,10,0.45)", borderRadius: "50%", flexShrink: 0 }} />
-        <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.28)", textTransform: "uppercase" }}>
+        <p style={{ fontFamily: mono, fontSize: "0.714rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.58)", textTransform: "uppercase" }}>
           COHORT DELIVERY SEQUENCE — YOUR FACILITATOR WILL ACTIVATE THIS MODULE
         </p>
       </div>

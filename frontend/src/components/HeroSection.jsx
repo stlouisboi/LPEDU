@@ -332,7 +332,7 @@ export default function HeroSection() {
             </Link>
 
             {/* Support text */}
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.38)", letterSpacing: "0.02em", margin: 0 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em", margin: 0 }}>
               Takes under 5 minutes. No email. No sales call. Instant exposure map.
             </p>
 

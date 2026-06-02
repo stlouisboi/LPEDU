@@ -210,7 +210,7 @@ export default function REACHAssessmentPage() {
             <p style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.600rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,169,110,0.78)" }}>
               LOG_ENTRY_{String(currentQ + 1).padStart(2, '0')}_OF_15 · LP-MOD-REACH
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.22)" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.600rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.52)" }}>
               {new Date().toISOString().replace("T"," ").substring(0,19)} UTC
             </p>
           </div>
@@ -291,7 +291,7 @@ export default function REACHAssessmentPage() {
             })}
           </div>
 
-          <p style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.38)", marginTop: "2rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <p style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.65)", marginTop: "2rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             {CATEGORIES[currentCatIdx].full}
           </p>
         </div>
@@ -324,7 +324,7 @@ export default function REACHAssessmentPage() {
                 {i < 4 && <div style={{ width: 24, height: 1, background: "rgba(255,255,255,0.12)" }} />}
               </div>
             ))}
-            <span style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.38)", marginLeft: "0.5rem" }}>5 of 5</span>
+            <span style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.65)", marginLeft: "0.5rem" }}>5 of 5</span>
           </div>
 
           <p style={{
@@ -373,7 +373,7 @@ export default function REACHAssessmentPage() {
           >
             Complete Assessment
           </button>
-          <p style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.38)", marginTop: "1rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <p style={{ fontSize: "0.714rem", color: "rgba(255,255,255,0.65)", marginTop: "1rem", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             OPERATIONAL DISCIPLINE — FINAL QUESTION
           </p>
         </div>
@@ -486,7 +486,7 @@ export default function REACHAssessmentPage() {
                 </div>
               )}
 
-              <p style={{ fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginTop: "2rem" }}>
+              <p style={{ fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginTop: "2rem" }}>
                 LP-WRK-001 · QUALIFICATION PROFILE · STEP {profileStep + 1} OF 4
               </p>
             </div>
@@ -718,7 +718,7 @@ export default function REACHAssessmentPage() {
               <RiskMap scores={scores} animate={animateMap} />
               <p style={{
                 fontFamily: "'Inter', sans-serif", fontSize: "0.714rem",
-                color: "rgba(255,255,255,0.28)", letterSpacing: "0.1em",
+                color: "rgba(255,255,255,0.58)", letterSpacing: "0.1em",
                 textTransform: "uppercase", marginTop: "1rem",
               }}>
                 {scores.total >= 32 ? "GO THRESHOLD MET — PROCEED TO GROUND 0"

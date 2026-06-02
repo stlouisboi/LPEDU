@@ -283,7 +283,7 @@ function QATab() {
                   LESSON {item.lesson_id}
                 </span>
                 <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.762rem", color: "rgba(255,255,255,0.6)" }}>{item.user_name}</span>
-                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.25)" }}>{formatDate(item.created_at)}</span>
+                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.55)" }}>{formatDate(item.created_at)}</span>
                 {item.reply ? (
                   <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#22c55e", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)", padding: "0.1rem 0.45rem", marginLeft: "auto" }}>ANSWERED</span>
                 ) : (

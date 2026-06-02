@@ -139,7 +139,7 @@ function IndicatorBar({ label, code, value, color, animate, weight }) {
         </div>
         <div style={{ textAlign: "right" }}>
           <p style={{ fontFamily: mono, fontSize: "0.952rem", fontWeight: 700, color, marginBottom: "0.1rem" }}>{value}%</p>
-          <p style={{ fontFamily: mono, fontSize: "0.600rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.22)", textTransform: "uppercase" }}>WT: {weight}</p>
+          <p style={{ fontFamily: mono, fontSize: "0.600rem", letterSpacing: "0.14em", color: "rgba(255,255,255,0.52)", textTransform: "uppercase" }}>WT: {weight}</p>
         </div>
       </div>
       {/* Track */}
@@ -204,7 +204,7 @@ function StatusTicker({ grade, integrity, pulse, alignment }) {
           [{current.code}]
         </span>
         <span style={{
-          fontFamily: mono, fontSize: "0.600rem", color: "rgba(255,255,255,0.38)",
+          fontFamily: mono, fontSize: "0.600rem", color: "rgba(255,255,255,0.65)",
           letterSpacing: "0.08em", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
         }}>
           {ts} — {current.msg}
@@ -224,7 +224,7 @@ function LiveClock() {
     return () => clearInterval(id);
   }, []);
   return (
-    <span style={{ fontFamily: mono, fontSize: "0.600rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.28)" }}>
+    <span style={{ fontFamily: mono, fontSize: "0.600rem", letterSpacing: "0.10em", color: "rgba(255,255,255,0.58)" }}>
       {ts}
     </span>
   );
@@ -359,7 +359,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
             ADMINISTRATIVE_HEALTH_MONITOR<BlinkCursor />
           </p>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
-            <p style={{ fontFamily: mono, fontSize: "0.620rem", letterSpacing: "0.12em", color: "rgba(255,255,255,0.28)" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.620rem", letterSpacing: "0.12em", color: "rgba(255,255,255,0.58)" }}>
               LPOS v1.0 · LP-SYS-SIGNAL · REAL-TIME
             </p>
             <LiveClock />
@@ -391,7 +391,7 @@ export default function SignalMonitor({ carrierId, refreshKey = 0 }) {
 
           {/* Sub-label below gauge */}
           <div style={{ marginTop: "0.75rem", textAlign: "center" }}>
-            <p style={{ fontFamily: mono, fontSize: "0.600rem", letterSpacing: "0.16em", color: "rgba(255,255,255,0.22)", textTransform: "uppercase" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.600rem", letterSpacing: "0.16em", color: "rgba(255,255,255,0.52)", textTransform: "uppercase" }}>
               COMPOSITE_SCORE
             </p>
             <p style={{ fontFamily: mono, fontSize: "0.667rem", letterSpacing: "0.10em", color: `${grade.color}99`, marginTop: "0.2rem" }}>

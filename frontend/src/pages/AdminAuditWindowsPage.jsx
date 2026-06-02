@@ -32,7 +32,7 @@ function EmailFlag({ sent, sentAt, label }) {
           {sent ? "✓" : "–"}
         </span>
       </div>
-      <span style={{ fontFamily: MONO, fontSize: "0.44rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>{label}</span>
+      <span style={{ fontFamily: MONO, fontSize: "0.44rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>{label}</span>
     </div>
   );
 }
@@ -49,16 +49,16 @@ function CarrierRow({ c }) {
         <p style={{ fontFamily: MONO, fontSize: "0.524rem", color: "rgba(250,248,244,0.75)", margin: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.email}</p>
       </div>
       <div>
-        <p style={{ fontFamily: MONO, fontSize: "0.476rem", color: "rgba(255,255,255,0.28)", margin: "0 0 2px", letterSpacing: "0.08em", textTransform: "uppercase" }}>GRANT DATE</p>
+        <p style={{ fontFamily: MONO, fontSize: "0.476rem", color: "rgba(255,255,255,0.58)", margin: "0 0 2px", letterSpacing: "0.08em", textTransform: "uppercase" }}>GRANT DATE</p>
         <p style={{ fontFamily: MONO, fontSize: "0.619rem", color: "rgba(255,255,255,0.65)", margin: 0 }}>{c.authority_grant_date}</p>
       </div>
       <div>
-        <p style={{ fontFamily: MONO, fontSize: "0.476rem", color: "rgba(255,255,255,0.28)", margin: "0 0 2px", letterSpacing: "0.08em", textTransform: "uppercase" }}>DAYS LEFT</p>
+        <p style={{ fontFamily: MONO, fontSize: "0.476rem", color: "rgba(255,255,255,0.58)", margin: "0 0 2px", letterSpacing: "0.08em", textTransform: "uppercase" }}>DAYS LEFT</p>
         <p style={{ fontFamily: MONO, fontSize: "0.857rem", fontWeight: 700, color: cfg.color, margin: 0 }}>{c.days_remaining <= 0 ? "CLOSED" : c.days_remaining}</p>
       </div>
       <div>
         <TierBadge tier={c.urgency} />
-        <p style={{ fontFamily: MONO, fontSize: "0.44rem", color: "rgba(255,255,255,0.22)", margin: "4px 0 0", letterSpacing: "0.06em" }}>closes {c.window_end}</p>
+        <p style={{ fontFamily: MONO, fontSize: "0.44rem", color: "rgba(255,255,255,0.52)", margin: "4px 0 0", letterSpacing: "0.06em" }}>closes {c.window_end}</p>
       </div>
       <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}>
         <EmailFlag sent={c.moderate_sent} sentAt={c.moderate_sent_at} label="MOD" />
@@ -188,7 +188,7 @@ export default function AdminAuditWindowsPage() {
         {/* Legend */}
         <div style={{ display: "flex", gap: "1.25rem", marginBottom: "1rem", flexWrap: "wrap", padding: "0.5rem 1.25rem", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
           {["MOD → 120–240 days", "HI → 60–120 days", "CRIT → <60 days"].map(t => (
-            <span key={t} style={{ fontFamily: MONO, fontSize: "0.476rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>{t}</span>
+            <span key={t} style={{ fontFamily: MONO, fontSize: "0.476rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(255,255,255,0.58)" }}>{t}</span>
           ))}
           <span style={{ fontFamily: MONO, fontSize: "0.476rem", letterSpacing: "0.10em", textTransform: "uppercase", color: "rgba(52,211,153,0.55)", marginLeft: "auto" }}>✓ = reminder sent</span>
         </div>
@@ -196,7 +196,7 @@ export default function AdminAuditWindowsPage() {
         {/* Column headers */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 120px 110px 140px 90px", gap: "0 1rem", padding: "0.5rem 1.25rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
           {["CARRIER", "GRANT DATE", "DAYS LEFT", "URGENCY", "REMINDERS"].map(h => (
-            <span key={h} style={{ fontFamily: MONO, fontSize: "0.476rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>{h}</span>
+            <span key={h} style={{ fontFamily: MONO, fontSize: "0.476rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>{h}</span>
           ))}
         </div>
 

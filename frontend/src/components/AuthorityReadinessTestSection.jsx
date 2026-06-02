@@ -178,7 +178,7 @@ export default function AuthorityReadinessTestSection() {
           fontFamily: mono,
           fontSize: "0.762rem",
           letterSpacing: "0.14em",
-          color: "rgba(255,255,255,0.25)",
+          color: "rgba(255,255,255,0.55)",
           textTransform: "uppercase",
           marginTop: "1.5rem",
         }}>

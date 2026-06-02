@@ -35,7 +35,7 @@ export default function Lesson07View({ onViewCompletion }) {
           <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
           <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#22c55e" }}>GO PATH</span>
         </div>
-        <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.12em" }}>5–7 MIN</span>
+        <span style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.12em" }}>5–7 MIN</span>
       </div>
 
       <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.4rem, 2.5vw, 2rem)", color: "#FFFFFF", marginBottom: "2rem", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
@@ -195,7 +195,7 @@ export default function Lesson07View({ onViewCompletion }) {
           <span>JOIN THE NEXT INSTALL GROUP</span>
           <ArrowRight size={18} />
         </a>
-        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginTop: "0.875rem", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.52)", marginTop: "0.875rem", lineHeight: 1.6 }}>
           NO PAYMENT AT THIS STEP · FORM TAKES ABOUT 4 MINUTES · REVIEWED WITHIN 24–48 HOURS
         </p>
       </div>
@@ -204,7 +204,7 @@ export default function Lesson07View({ onViewCompletion }) {
       <button
         data-testid="g0-lesson07-view-summary"
         onClick={onViewCompletion}
-        style={{ background: "none", border: "none", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.28)", cursor: "pointer", letterSpacing: "0.16em", textTransform: "uppercase", padding: "0.5rem 0", display: "block", transition: "color 0.15s" }}
+        style={{ background: "none", border: "none", fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", color: "rgba(255,255,255,0.58)", cursor: "pointer", letterSpacing: "0.16em", textTransform: "uppercase", padding: "0.5rem 0", display: "block", transition: "color 0.15s" }}
         onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.55)"}
         onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.28)"}
       >

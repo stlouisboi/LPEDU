@@ -93,7 +93,7 @@ function PendingState({ retryNum }) {
         This takes just a moment. Do not close this tab.
       </p>
       {retryNum > 0 && (
-        <p style={{ fontFamily: MONO, fontSize: "0.857rem", color: "rgba(255,255,255,0.22)", letterSpacing: "0.06em" }}>
+        <p style={{ fontFamily: MONO, fontSize: "0.857rem", color: "rgba(255,255,255,0.52)", letterSpacing: "0.06em" }}>
           Checking... attempt {retryNum} of 10
         </p>
       )}
@@ -169,7 +169,7 @@ function ConfirmedState({ data, downloadUrl }) {
           </a>
         </div>
       )}
-      <p style={{ textAlign: "center", fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.28)", marginBottom: "3rem", lineHeight: 1.65 }}>
+      <p style={{ textAlign: "center", fontFamily: SANS, fontSize: "0.857rem", color: "rgba(255,255,255,0.58)", marginBottom: "3rem", lineHeight: 1.65 }}>
         Download links expire in 60 minutes. Return to this page any time to generate fresh links.
       </p>
 
@@ -182,7 +182,7 @@ function ConfirmedState({ data, downloadUrl }) {
       {/* Ground 0 block */}
       {showGround0 && (
         <div data-testid="ground0-block" style={{ borderTop: `1px solid ${BORDER}`, paddingTop: "2rem" }}>
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: "0.75rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>
             NOT SURE WHAT TO DO NEXT?
           </p>
           <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(250,248,244,0.82)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
@@ -336,7 +336,7 @@ function UpsellCard({ upsell, purchasedSku }) {
           </Link>
           <p style={{
             fontFamily: MONO, fontSize: "0.625rem", letterSpacing: "0.14em",
-            textTransform: "uppercase", color: "rgba(255,255,255,0.22)",
+            textTransform: "uppercase", color: "rgba(255,255,255,0.52)",
             textAlign: "center", marginTop: "0.75rem",
           }}>
             $2,500 · Reviewed within 24 hrs · Not every applicant admitted

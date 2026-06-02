@@ -82,7 +82,7 @@ export default function ToolsIndexPage() {
           <p style={{ fontFamily: sans, fontSize: "1.1rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.78, maxWidth: 560, marginBottom: "0.75rem" }}>
             Four tools built for new motor carriers — financial analysis, compliance auditing, and health scoring. All free to use.
           </p>
-          <p style={{ fontFamily: mono, fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", margin: 0 }}>
+          <p style={{ fontFamily: mono, fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.58)", margin: 0 }}>
             Best suited for new and small carriers operating 1–20 trucks.
           </p>
         </div>

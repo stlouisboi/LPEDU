@@ -87,15 +87,15 @@ export default function Ground0Page() {
             marginBottom: "2rem",
           }}>
             <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(197,160,89,0.80)" }}>LP-BRF-001</span>
-            <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.75rem" }}>·</span>
-            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)" }}>Est. ~20 min</span>
-            <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.75rem" }}>·</span>
+            <span style={{ color: "rgba(255,255,255,0.48)", fontSize: "0.75rem" }}>·</span>
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>Est. ~20 min</span>
+            <span style={{ color: "rgba(255,255,255,0.48)", fontSize: "0.75rem" }}>·</span>
             <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#22c55e", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px rgba(34,197,94,0.7)", display: "inline-block", flexShrink: 0 }} />
               STATUS: OPEN
             </span>
-            <span style={{ color: "rgba(255,255,255,0.18)", fontSize: "0.75rem" }}>·</span>
-            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)" }}>NO ACCOUNT REQUIRED</span>
+            <span style={{ color: "rgba(255,255,255,0.48)", fontSize: "0.75rem" }}>·</span>
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.619rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.58)" }}>NO ACCOUNT REQUIRED</span>
           </div>
 
           <h1 style={{ fontFamily: "'Newsreader','Playfair Display',serif", fontWeight: 700, fontSize: "clamp(1.75rem,3.5vw,2.75rem)", color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "1.25rem" }}>
@@ -389,7 +389,7 @@ export default function Ground0Page() {
             { code: "05", label: "The Standard — Installation Track", body: "Nine modules. Verified implementation. A 90-day sequence that converts readiness into a functioning compliance operating system." },
           ].map(({ code, label, body, highlight }) => (
             <div key={code} style={{ display: "flex", gap: "1.5rem", marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-              <span style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", fontWeight: 700, color: "rgba(197,160,89,0.45)", flexShrink: 0, paddingTop: "0.2rem", letterSpacing: "0.1em", minWidth: 20 }}>{code}</span>
+              <span style={{ fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace", fontSize: "0.571rem", fontWeight: 700, color: "rgba(197,160,89,0.65)", flexShrink: 0, paddingTop: "0.2rem", letterSpacing: "0.1em", minWidth: 20 }}>{code}</span>
               <div>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", fontWeight: 700, color: highlight ? "#C5A059" : "rgba(255,255,255,0.75)", marginBottom: "0.4rem", letterSpacing: "0.02em" }}>{label}</p>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", color: "rgba(255,255,255,0.48)", lineHeight: 1.7, margin: 0 }}>{body}</p>
@@ -407,7 +407,7 @@ export default function Ground0Page() {
             >
               Complete the REACH Diagnostic &rarr;
             </a>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.28)", marginTop: "0.875rem", fontStyle: "italic" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.58)", marginTop: "0.875rem", fontStyle: "italic" }}>
               REACH qualification is required before beginning Ground 0. The assessment takes approximately 5 minutes.
             </p>
           </div>

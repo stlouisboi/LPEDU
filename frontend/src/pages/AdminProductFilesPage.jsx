@@ -220,8 +220,8 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
       {hasFile && (
         <div style={{ paddingLeft: "110px", marginTop: "0.4rem", display: "flex", gap: "1.5rem" }}>
           <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(250,248,244,0.75)" }}>{fileInfo.filename}</span>
-          <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)" }}>{fmtSize(fileInfo.size)}</span>
-          <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.25)" }}>{fmtDate(fileInfo.updated_at)}</span>
+          <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.55)" }}>{fmtSize(fileInfo.size)}</span>
+          <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "rgba(255,255,255,0.55)" }}>{fmtDate(fileInfo.updated_at)}</span>
         </div>
       )}
 
@@ -234,7 +234,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
           <ul style={{ margin: "0.35rem 0 0 0", paddingLeft: "1rem", listStyle: "disc" }}>
             {bundleContents[sku].map(compSku => (
               <li key={compSku} style={{ fontFamily: mono, fontSize: "0.667rem", color: "rgba(250,248,244,0.78)", lineHeight: 1.9 }}>
-                <span style={{ color: "rgba(212,144,10,0.45)", marginRight: "0.5rem" }}>{compSku}</span>
+                <span style={{ color: "rgba(212,144,10,0.65)", marginRight: "0.5rem" }}>{compSku}</span>
                 {productsMap?.[compSku]?.name || compSku}
               </li>
             ))}
@@ -273,7 +273,7 @@ function ProductRow({ sku, product, fileInfo, onUploaded, bundleContents, bundle
                   )
                 ))}
               </div>
-              <button onClick={() => setTestResults(null)} style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.25)", background: "none", border: "none", cursor: "pointer", padding: "0.5rem 0 0", letterSpacing: "0.08em" }}>
+              <button onClick={() => setTestResults(null)} style={{ fontFamily: mono, fontSize: "0.625rem", color: "rgba(255,255,255,0.55)", background: "none", border: "none", cursor: "pointer", padding: "0.5rem 0 0", letterSpacing: "0.08em" }}>
                 DISMISS
               </button>
             </div>
@@ -540,7 +540,7 @@ export default function AdminProductFilesPage() {
 
         {/* Instructions */}
         <div style={{ marginTop: "3rem", background: "rgba(255,255,255,0.02)", border: `1px solid ${BORDER}`, padding: "1.5rem" }}>
-          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: "0.75rem" }}>UPLOAD NOTES</p>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>UPLOAD NOTES</p>
           <ul style={{ fontFamily: body, fontSize: "0.924rem", color: "rgba(250,248,244,0.82)", lineHeight: 2, margin: 0, paddingLeft: "1.25rem" }}>
             <li>Only PDF files are accepted (max 50MB per file).</li>
             <li>Use "Test DL" to verify a file is downloadable before buyers hit it.</li>

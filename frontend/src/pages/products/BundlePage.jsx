@@ -147,7 +147,7 @@ function BuyButton({ state, onClick, size = "lg" }) {
 
 function Check({ yes }) {
   if (yes) return <span style={{ color: GOLD, fontWeight: 700 }}>✓</span>;
-  return <span style={{ color: "rgba(255,255,255,0.2)" }}>—</span>;
+  return <span style={{ color: "rgba(255,255,255,0.50)" }}>—</span>;
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -543,7 +543,7 @@ export default function BundlePage() {
           <BuyButton state={state} onClick={buy} size="lg" />
           {error && <p style={{ color: "#f87171", fontSize: "0.875rem", marginTop: "0.75rem" }}>{error}</p>}
 
-          <p style={{ fontFamily: MONO, fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)", marginTop: "1.5rem" }}>
+          <p style={{ fontFamily: MONO, fontSize: "0.714rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.50)", marginTop: "1.5rem" }}>
             Stripe-secured checkout &nbsp;·&nbsp; Instant access after payment
           </p>
 

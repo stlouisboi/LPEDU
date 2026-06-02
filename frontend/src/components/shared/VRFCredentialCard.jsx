@@ -146,7 +146,7 @@ export default function VRFCredentialCard({
             <p style={{ ...mono, fontSize: t.footer, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8A96E', margin: '0 0 0.1rem' }}>
               LAUNCHPATH STANDARD
             </p>
-            <p style={{ ...mono, fontSize: t.footerSub, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', margin: 0 }}>
+            <p style={{ ...mono, fontSize: t.footerSub, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.50)', margin: 0 }}>
               FMCSA MOTOR CARRIER COMPLIANCE
             </p>
           </div>

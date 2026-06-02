@@ -314,7 +314,7 @@ export default function ProductPageTemplate({
         {domainStep && (
           <FadeIn delay={195}>
             <div data-testid="domain-sequence-strip" style={{ background: "#070e1d", border: "1px solid rgba(212,144,10,0.12)", padding: "1.25rem 1.5rem", marginBottom: "2rem" }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.45)", marginBottom: "0.875rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.567rem", fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "0.875rem" }}>
                 INSTALLATION SEQUENCE — DOMAIN {domainStep} OF 6
               </p>
               <div style={{ display: "flex", gap: "0", flexWrap: "wrap", alignItems: "center" }}>

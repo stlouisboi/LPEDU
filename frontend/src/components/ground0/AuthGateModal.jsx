@@ -50,7 +50,7 @@ export default function AuthGateModal({ authMode, authForm, authError, authLoadi
         {/* Divider */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
           <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.1)" }} />
-          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.14em", textTransform: "uppercase" }}>OR</span>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.14em", textTransform: "uppercase" }}>OR</span>
           <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.1)" }} />
         </div>
 

@@ -54,11 +54,11 @@ export default function LessonQA({ lessonId, lessonNumber }) {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1.5rem" }}>
         <ChatCircle size={15} color="rgba(212,144,10,0.7)" />
-        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", margin: 0 }}>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.58)", margin: 0 }}>
           LESSON {lessonNumber} — Q&A
         </p>
         {items.length > 0 && (
-          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.22)", letterSpacing: "0.1em" }}>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.52)", letterSpacing: "0.1em" }}>
             {items.length} {items.length === 1 ? "QUESTION" : "QUESTIONS"}
           </span>
         )}
@@ -66,7 +66,7 @@ export default function LessonQA({ lessonId, lessonNumber }) {
 
       {/* Questions list */}
       {loading ? (
-        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1rem" }}>
+        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1rem" }}>
           LOADING...
         </p>
       ) : items.length === 0 ? (
@@ -83,7 +83,7 @@ export default function LessonQA({ lessonId, lessonNumber }) {
                   <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", fontWeight: 700, color: "rgba(212,144,10,0.8)", letterSpacing: "0.06em" }}>
                     {item.user_name}
                   </span>
-                  <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.22)", letterSpacing: "0.08em" }}>
+                  <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.52)", letterSpacing: "0.08em" }}>
                     {formatTime(item.created_at)}
                   </span>
                 </div>
@@ -100,7 +100,7 @@ export default function LessonQA({ lessonId, lessonNumber }) {
                       Station Custodian
                     </span>
                     {item.replied_at && (
-                      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.22)", letterSpacing: "0.08em" }}>
+                      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.619rem", color: "rgba(255,255,255,0.52)", letterSpacing: "0.08em" }}>
                         {formatTime(item.replied_at)}
                       </span>
                     )}

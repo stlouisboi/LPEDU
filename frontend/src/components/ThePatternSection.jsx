@@ -84,7 +84,7 @@ export default function ThePatternSection() {
               <p style={{ fontFamily: SERIF, fontWeight: 900, fontSize: "5rem", color: GOLD, lineHeight: 1, margin: "0 0 0.375rem", letterSpacing: "-0.04em" }}>
                 200
               </p>
-              <p style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.12em", margin: 0 }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.12em", margin: 0 }}>
                 CARRIERS · SAME SEQUENCE
               </p>
             </div>
@@ -120,7 +120,7 @@ export default function ThePatternSection() {
               <p style={{ fontFamily: SERIF, fontWeight: 900, fontSize: "2.25rem", color: "rgba(231,76,60,0.85)", lineHeight: 1, margin: "0 0 0.375rem", letterSpacing: "-0.02em" }}>
                 $40,000
               </p>
-              <p style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em", margin: 0 }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.567rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.08em", margin: 0 }}>
                 AFTER AUTHORITY REVOCATION
               </p>
             </div>

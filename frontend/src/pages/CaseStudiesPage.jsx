@@ -176,7 +176,7 @@ export default function CaseStudiesPage() {
                           {c.rating}
                         </span>
                       </div>
-                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.04em" }}>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", color: "rgba(255,255,255,0.58)", letterSpacing: "0.04em" }}>
                         Day {c.daysOnAuthority} of authority
                       </span>
                     </div>
@@ -203,7 +203,7 @@ export default function CaseStudiesPage() {
 
                   {/* Sin tag */}
                   <div style={{ marginTop: "1.5rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: "0.625rem" }}>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.25)", letterSpacing: "0.10em", textTransform: "uppercase" }}>Maps to</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.55)", letterSpacing: "0.10em", textTransform: "uppercase" }}>Maps to</span>
                     <Link to="/16-deadly-sins" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.762rem", fontWeight: 600, color: "rgba(212,144,10,0.65)", textDecoration: "none", letterSpacing: "0.06em" }}>
                       {c.sin} →
                     </Link>
@@ -251,7 +251,7 @@ export default function CaseStudiesPage() {
 
         {/* ── Disclaimer ── */}
         <FadeIn delay={140}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.6, marginTop: "3rem", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "1.5rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.714rem", color: "rgba(255,255,255,0.52)", lineHeight: 1.6, marginTop: "3rem", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "1.5rem" }}>
             Cases are anonymized composites based on FMCSA enforcement data and New Entrant Safety Audit patterns. No identifying information. Penalty figures reflect ranges documented in FMCSA civil penalty guidance. LaunchPath Transportation EDU is an educational program and does not provide legal, compliance, or financial advice.
           </p>
         </FadeIn>
