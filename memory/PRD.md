@@ -884,3 +884,14 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 - **Roadmap node mobile fix** in `HowItWorksSection.jsx`: nodes now use `flex: '0 0 auto'`, fixed 108px width, connector lines have fixed 48px width. Container uses `overflowX: 'auto'` with `minWidth: 720px` — prevents overlap on 390px mobile.
 - **HowItWorksSection earned states** — boosted from 0.28/0.38 to 0.50/0.55 (still visually distinct from active states but readable).
 - **Credentials flex fix** — `alignItems: 'flex-start'` so "Founder, LaunchPath Transportation EDU LLC" wraps correctly on mobile without clipping.
+
+---
+
+## CHANGELOG — Roadmap Redesign (June 3, 2026)
+
+- Completely rewrote `HowItWorksSection.jsx` roadmap section
+- Old design: floating text above tiny dots, misaligned at different heights (amateur look)
+- New design: 5-column CSS grid with consistent node structure, gold top-border for active, dim border for earned
+- Each node: step number → serif label → mono sub-label → status badge ("Open Access" / "Program Required")
+- Header bar with legend, bottom caption bar, horizontal scroll on mobile
+- Scrap of `RoadmapNode` component — replaced with inline grid map

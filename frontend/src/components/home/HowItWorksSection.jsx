@@ -26,59 +26,13 @@ const STEPS = [
   },
 ];
 
-const ROADMAP_NODES = [
-  { code: 'LP-01', label: 'REACH Diagnostic', sub: 'Free · 15 Questions', status: 'active', href: '/reach-diagnostic' },
-  { code: 'LP-02', label: 'Ground 0 Briefing', sub: '20 Min · Private Review', status: 'active', href: '/ground-0-briefing' },
-  { code: 'LP-03', label: '90-Day Standard', sub: '10 Modules · 5 Checkpoints', status: 'enrolled', href: null },
-  { code: 'LP-04', label: 'Week 11 Integrity Audit', sub: 'Pre-FMCSA Simulation', status: 'enrolled', href: null },
-  { code: 'LP-05', label: 'Verified Registry ID', sub: 'Issued on Clean Completion', status: 'issued', href: null },
+const SEQ_NODES = [
+  { num: '01', label: 'REACH Diagnostic',        sub: 'Free · 15 Questions',       status: 'active',  href: '/reach-diagnostic'  },
+  { num: '02', label: 'Ground 0 Briefing',       sub: '20 Min · Private Review',   status: 'active',  href: '/ground-0-briefing' },
+  { num: '03', label: '90-Day Standard',         sub: '10 Modules · 5 Checkpoints', status: 'program', href: null },
+  { num: '04', label: 'Week 11 Integrity Audit', sub: 'Pre-FMCSA Simulation',       status: 'program', href: null },
+  { num: '05', label: 'Verified Registry ID',    sub: 'Issued on Clean Completion', status: 'program', href: null },
 ];
-
-function RoadmapNode({ node, isLast }) {
-  const isActive = node.status === 'active';
-  const nodeDot = {
-    flexShrink: 0,
-    width: 10,
-    height: 10,
-    background: isActive ? '#C8A96E' : 'rgba(197,160,89,0.22)',
-    border: isActive ? '2px solid #C8A96E' : '2px solid rgba(197,160,89,0.30)',
-    borderRadius: 0,
-    zIndex: 2,
-  };
-  const connector = {
-    width: 48,
-    flexShrink: 0,
-    height: 1,
-    background: isActive
-      ? 'linear-gradient(to right, rgba(200,169,110,0.55), rgba(200,169,110,0.18))'
-      : 'rgba(255,255,255,0.07)',
-    alignSelf: 'flex-end',
-    marginBottom: 5,
-  };
-
-  return (
-    <>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', flexShrink: 0, width: 108 }}>
-        <div style={{ textAlign: 'center', width: '100%' }}>
-          <div style={{ ...mono, fontSize: 8, letterSpacing: '0.16em', color: isActive ? '#C8A96E' : 'rgba(197,160,89,0.50)', textTransform: 'uppercase', marginBottom: 4 }}>{node.code}</div>
-          {node.href ? (
-            <a href={node.href} style={{ ...sans, fontSize: '0.714rem', fontWeight: 600, color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.40)', textDecoration: 'none', display: 'block', lineHeight: 1.35, marginBottom: 3 }}>
-              {node.label}
-            </a>
-          ) : (
-            <p style={{ ...sans, fontSize: '0.714rem', fontWeight: 600, color: 'rgba(255,255,255,0.40)', lineHeight: 1.35, marginBottom: 3, margin: '0 0 3px' }}>{node.label}</p>
-          )}
-          <p style={{ ...mono, fontSize: 8, color: isActive ? 'rgba(197,160,89,0.65)' : 'rgba(255,255,255,0.35)', letterSpacing: '0.08em', margin: 0 }}>{node.sub}</p>
-          {!isActive && (
-            <p style={{ ...mono, fontSize: 7, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase', margin: '3px 0 0' }}>EARNED</p>
-          )}
-        </div>
-        <div style={nodeDot} />
-      </div>
-      {!isLast && <div style={connector} />}
-    </>
-  );
-}
 
 export default function HowItWorksSection() {
   return (
@@ -108,7 +62,7 @@ export default function HowItWorksSection() {
                 position: 'relative',
               }}>
                 <p style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', color: isActive ? 'rgba(197,160,89,0.85)' : 'rgba(197,160,89,0.35)', textTransform: 'uppercase', marginBottom: '0.875rem' }}>
-                  STEP {step.num} {!isActive && '· EARNED'}
+                  STEP {step.num} {!isActive && '· PROGRAM REQUIRED'}
                 </p>
                 <h3 style={{ ...serif, fontWeight: 700, fontSize: '1.125rem', color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.55)', lineHeight: 1.25, marginBottom: '0.875rem' }}>
                   {step.label}
@@ -129,29 +83,86 @@ export default function HowItWorksSection() {
           })}
         </div>
 
-        {/* System Roadmap Visual */}
-        <div data-testid="system-roadmap" style={{ background: '#1C2B3A', padding: '1.75rem 2rem', borderTop: '1px solid rgba(197,160,89,0.15)' }}>
-          <p style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.65)', marginBottom: '1.25rem' }}>LP-SYS — Installation Sequence</p>
-          {/* Nodes row — horizontally scrollable, fixed-width nodes prevent overlap on mobile */}
-          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '0.75rem' }}>
-            <div style={{ display: 'flex', alignItems: 'flex-end', minWidth: 720, paddingBottom: '0.25rem' }}>
-              {ROADMAP_NODES.map((node, i) => (
-                <RoadmapNode key={node.code} node={node} isLast={i === ROADMAP_NODES.length - 1} />
-              ))}
+        {/* ── System Sequence Grid ───────────────────────────────────── */}
+        <div data-testid="system-roadmap" style={{ background: '#131F2E', border: '1px solid rgba(197,160,89,0.12)' }}>
+
+          {/* Grid header bar */}
+          <div style={{ padding: '1.25rem 1.75rem', borderBottom: '1px solid rgba(197,160,89,0.10)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+            <p style={{ ...mono, fontSize: 9, letterSpacing: '0.20em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.65)', margin: 0 }}>LP-SYS-001 · Installation Sequence</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ width: 8, height: 8, background: '#C8A96E', display: 'inline-block' }} />
+                <span style={{ ...mono, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.50)' }}>Open Access</span>
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ width: 8, height: 8, background: 'transparent', border: '1px solid rgba(197,160,89,0.30)', display: 'inline-block' }} />
+                <span style={{ ...mono, fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.50)' }}>Program Required</span>
+              </span>
             </div>
           </div>
-          <div style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-            <p style={{ ...mono, fontSize: 8, letterSpacing: '0.10em', color: 'rgba(255,255,255,0.40)', textTransform: 'uppercase', margin: 0 }}>
-              Nodes 1–2 are open access. Nodes 3–5 are earned through the program.
+
+          {/* 5-column node grid */}
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', minWidth: 680 }}>
+              {SEQ_NODES.map((node, i) => {
+                const isActive = node.status === 'active';
+                const isLast = i === SEQ_NODES.length - 1;
+                return (
+                  <div key={node.num} style={{
+                    borderRight: isLast ? 'none' : '1px solid rgba(197,160,89,0.08)',
+                    borderTop: isActive ? '2px solid #C8A96E' : '2px solid rgba(197,160,89,0.18)',
+                    padding: '1.5rem 1.25rem 1.25rem',
+                    position: 'relative',
+                    background: isActive ? 'rgba(200,169,110,0.04)' : 'transparent',
+                  }}>
+
+                    {/* Step number */}
+                    <p style={{ ...mono, fontSize: 8, letterSpacing: '0.18em', color: isActive ? '#C8A96E' : 'rgba(197,160,89,0.30)', textTransform: 'uppercase', marginBottom: '0.625rem' }}>{node.num}</p>
+
+                    {/* Label */}
+                    {node.href ? (
+                      <a href={node.href} style={{ ...serif, fontSize: '0.875rem', fontWeight: 700, color: '#FFFFFF', textDecoration: 'none', display: 'block', lineHeight: 1.3, marginBottom: '0.5rem' }}>
+                        {node.label}
+                      </a>
+                    ) : (
+                      <p style={{ ...serif, fontSize: '0.875rem', fontWeight: 700, color: 'rgba(255,255,255,0.45)', lineHeight: 1.3, marginBottom: '0.5rem', margin: '0 0 0.5rem' }}>
+                        {node.label}
+                      </p>
+                    )}
+
+                    {/* Sub label */}
+                    <p style={{ ...mono, fontSize: 8, color: isActive ? 'rgba(197,160,89,0.65)' : 'rgba(255,255,255,0.30)', letterSpacing: '0.06em', lineHeight: 1.5, marginBottom: '0.875rem' }}>{node.sub}</p>
+
+                    {/* Status badge */}
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 5,
+                      padding: '3px 8px',
+                      background: isActive ? 'rgba(200,169,110,0.10)' : 'transparent',
+                      border: isActive ? '1px solid rgba(197,160,89,0.35)' : '1px solid rgba(255,255,255,0.08)',
+                    }}>
+                      <span style={{ width: 5, height: 5, background: isActive ? '#C8A96E' : 'rgba(255,255,255,0.20)', display: 'inline-block' }} />
+                      <span style={{ ...mono, fontSize: 7, letterSpacing: '0.14em', textTransform: 'uppercase', color: isActive ? 'rgba(197,160,89,0.80)' : 'rgba(255,255,255,0.30)' }}>
+                        {isActive ? 'Open Access' : 'Program Required'}
+                      </span>
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom caption */}
+          <div style={{ padding: '0.875rem 1.75rem', borderTop: '1px solid rgba(197,160,89,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <p style={{ ...mono, fontSize: 8, letterSpacing: '0.10em', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', margin: 0 }}>
+              Steps 01–02 are open access. Steps 03–05 are issued through the program.
             </p>
             <p data-testid="roadmap-scroll-hint" style={{ ...mono, fontSize: 8, letterSpacing: '0.12em', color: 'rgba(197,160,89,0.50)', textTransform: 'uppercase', margin: 0, display: 'none' }} className="roadmap-scroll-hint">
-              ← scroll to see full sequence →
+              ← scroll →
             </p>
           </div>
           <style>{`
-            @media (max-width: 767px) {
-              .roadmap-scroll-hint { display: block !important; }
-            }
+            @media (max-width: 767px) { .roadmap-scroll-hint { display: block !important; } }
           `}</style>
         </div>
 
